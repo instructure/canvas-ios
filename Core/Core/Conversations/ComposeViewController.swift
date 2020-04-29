@@ -17,9 +17,8 @@
 //
 
 import UIKit
-import Core
 
-class ComposeViewController: UIViewController, ErrorViewController {
+public class ComposeViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var attachmentsContainer: UIView!
     let attachmentsController = AttachmentCardsViewController.create()
     @IBOutlet var bodyMinHeight: NSLayoutConstraint!
@@ -56,7 +55,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         self?.updateRecipients()
     }
 
-    static func create(
+    public static func create(
         body: String? = nil,
         context: Context,
         observeeID: String? = nil,
@@ -77,7 +76,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         return controller
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
 
@@ -97,7 +96,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
 
         bodyMinHeight.isActive = true
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
-        bodyView.placeholderColor = .named(.textDark)
+        bodyView.placeholderColor = UIColor.named(.textDark)
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .named(.textDarkest)
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
@@ -113,7 +112,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         course?.refresh()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         navigationController?.navigationBar.useModalStyle()
@@ -126,7 +125,7 @@ class ComposeViewController: UIViewController, ErrorViewController {
         }
     }
 
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         bodyMinHeight.constant = -bodyView.frame.minY
     }
@@ -206,12 +205,12 @@ extension ComposeViewController: FilePickerDelegate {
         filePicker.showOptions(for: file, from: self)
     }
 
-    func filePicker(didPick url: URL) {
+    public func filePicker(didPick url: URL) {
         _ = attachments // lazy init
         UploadManager.shared.upload(url: url, batchID: batchID, to: .myFiles, folderPath: "my files/conversation attachments")
     }
 
-    func filePicker(didRetry file: File) {
+    public func filePicker(didRetry file: File) {
         UploadManager.shared.upload(file: file, to: .myFiles, folderPath: "my files/conversation attachments")
     }
 

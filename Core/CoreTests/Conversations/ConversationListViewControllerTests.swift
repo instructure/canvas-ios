@@ -18,19 +18,19 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class ConversationListViewControllerTests: ParentTestCase {
-    lazy var controller = ConversationListViewController.create()
+class ConversationListViewControllerTests: CoreTestCase {
+    var controller: ConversationListViewController!
 
     override func setUp() {
         super.setUp()
+        controller = ConversationListViewController.create()
         Clock.mockNow(DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25).date!)
-        api.mock(controller.conversations, value: [
+        api.mock(GetConversations(scope: nil, filter: nil), value: [
             .make(),
             .make(id: "2", subject: "", workflow_state: .read, last_message: "last", last_message_at: Clock.now.add(.year, number: -1), context_name: "CTX"),
-        ])
+            ] )
     }
 
     func loadView() {
@@ -39,11 +39,12 @@ class ConversationListViewControllerTests: ParentTestCase {
     }
 
     func testLayout() {
+        environment.mockStore = false
         let navigation = UINavigationController(rootViewController: controller)
         loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertFalse(navigation.isNavigationBarHidden)
-        XCTAssertEqual(navigation.navigationBar.barStyle, .default)
+        XCTAssertEqual(navigation.navigationBar.barStyle, .black)
 
         XCTAssertTrue(controller.emptyView.isHidden)
         XCTAssertTrue(controller.errorView.isHidden)
@@ -66,7 +67,7 @@ class ConversationListViewControllerTests: ParentTestCase {
     func testTappingComposeRoutesToCourseActionSheet() {
         loadView()
         controller.composeButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertNotNil(router.presented as? ConversationCoursesActionSheet)
+        XCTAssert(router.lastRoutedTo(URL(string: "/conversations/compose")!))
     }
 
     func testRouteToCompose() {
@@ -82,11 +83,12 @@ class ConversationListViewControllerTests: ParentTestCase {
     }
 
     func testErrorEmpty() {
-        api.mock(controller.conversations, error: NSError.instructureError("Doh!"))
+        environment.mockStore = false
+        api.mock(GetConversations(scope: nil, filter: nil), error: NSError.instructureError("Doh!"))
+
         loadView()
 
         XCTAssertTrue(controller.emptyView.isHidden)
-        XCTAssertFalse(controller.errorView.isHidden)
         XCTAssertEqual(controller.errorLabel.text, "Doh!")
 
         api.mock(controller.conversations, value: [])

@@ -19,7 +19,6 @@
 import AVKit
 import Foundation
 import UIKit
-import Core
 
 class AttachmentCardsViewController: UIViewController {
     let stackView = HorizontalScrollingStackview()

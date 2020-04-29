@@ -28,15 +28,20 @@ open class HorizontalMenuViewController: UIViewController {
     var underlineWidthConstraint: NSLayoutConstraint?
     var underlineLeftConstraint: NSLayoutConstraint?
     var menuHeightConstraint: NSLayoutConstraint?
+    var isMultiPage = true
     public weak var delegate: HorizontalPagedMenuDelegate?
     public private(set) var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     private var itemCount: Int {
-        return delegate?.viewControllers.count ?? 0
+        return delegate?.numberOfMenuItems ?? 0
     }
 
     private var menuCellHeight: CGFloat {
         return delegate?.menuHeight ?? HorizontalMenuViewController.defaultMenuHeight
+    }
+
+    private var menuCellWidth: CGFloat {
+        view.bounds.size.width / CGFloat(itemCount)
     }
 
     override open func viewDidLoad() {
@@ -71,10 +76,9 @@ open class HorizontalMenuViewController: UIViewController {
 
     func updateFrames() {
         guard let menuLayout = menu?.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let menuItemWidth = view.bounds.size.width / CGFloat(itemCount)
-        menuLayout.itemSize = CGSize(width: menuItemWidth, height: menuCellHeight)
-        menuHeightConstraint?.constant = itemCount == 1 ? 0 : menuCellHeight
-        underlineWidthConstraint?.constant = menuItemWidth
+        menuLayout.itemSize = CGSize(width: menuCellWidth, height: menuCellHeight)
+        menuHeightConstraint?.constant = itemCount == 1 && isMultiPage ? 0 : menuCellHeight
+        underlineWidthConstraint?.constant = menuCellWidth
         view.layoutIfNeeded()
         reload()
     }
@@ -96,7 +100,7 @@ open class HorizontalMenuViewController: UIViewController {
 
         view.addSubview(menu)
         menu.pinToLeftAndRightOfSuperview()
-        let h = itemCount == 1 ? 0 : menuCellHeight
+        let h = itemCount == 1 && isMultiPage ? 0 : menuCellHeight
         menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": h])?.first
         menu.addConstraintsWithVFL("V:|[view]")
     }
@@ -152,9 +156,7 @@ open class HorizontalMenuViewController: UIViewController {
 }
 
 extension HorizontalMenuViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemCount
-    }
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { itemCount }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == menu {
@@ -185,11 +187,19 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == menu {
-            pages?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            if isMultiPage {
+                pages?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            } else {
+                underlineLeftConstraint?.constant = menuCellWidth * CGFloat(indexPath.item)
+                UIView.animate(withDuration: 0.2) { [weak self] in
+                    self?.underlineView?.superview?.layoutIfNeeded()
+                }
+            }
 
             let cell = collectionView.cellForItem(at: selectedIndexPath)
             cell?.isSelected = false
             selectedIndexPath = indexPath
+            delegate?.didSelectMenuItem(at: indexPath)
         }
     }
 
@@ -296,9 +306,12 @@ public protocol HorizontalPagedMenuDelegate: class {
     var menuItemSelectedColor: UIColor? { get }
     var menuItemDefaultColor: UIColor? { get }
     var menuItemFont: UIFont { get }
+    var numberOfMenuItems: Int { get }
 
     func menuItemTitle(at: IndexPath) -> String
     func accessibilityIdentifier(at: IndexPath) -> String
+    func didSelectMenuItem(at: IndexPath)
+
 }
 
 public extension HorizontalPagedMenuDelegate {
@@ -309,6 +322,12 @@ public extension HorizontalPagedMenuDelegate {
     var menuItemDefaultColor: UIColor? { UIColor.named(.textDark) }
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
+
+    var numberOfMenuItems: Int {
+        return viewControllers.count
+    }
+
+    func didSelectMenuItem(at: IndexPath) {}
 }
 
 public protocol HorizontalPagedMenuItem {

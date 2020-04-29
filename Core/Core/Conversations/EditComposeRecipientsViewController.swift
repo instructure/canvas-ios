@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Core
 
 protocol EditComposeRecipientsViewControllerDelegate: class {
     func editRecipientsControllerDidFinish(_ controller: EditComposeRecipientsViewController)
@@ -58,7 +57,7 @@ class EditComposeRecipientsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         view.frame.size.height = 304
-        titleLabel.text = NSLocalizedString("Recipients", bundle: .parent, comment: "")
+        titleLabel.text = NSLocalizedString("Recipients", bundle: .core, comment: "")
         teachers.exhaust(force: false)
         tas.exhaust(force: false)
     }

@@ -40,7 +40,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.conversations) { _, _ in
-        return ConversationListViewController.create()
+        return ParentConversationListViewController.create()
     },
 
     RouteHandler(.conversation(":conversationID")) { _, params in

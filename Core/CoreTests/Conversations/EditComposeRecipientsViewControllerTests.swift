@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class EditComposeRecipientsViewControllerTests: ParentTestCase {
+class EditComposeRecipientsViewControllerTests: CoreTestCase {
     var courseID = "1"
     var observeeID = "2"
     lazy var controller = EditComposeRecipientsViewController.create(
@@ -30,6 +29,11 @@ class EditComposeRecipientsViewControllerTests: ParentTestCase {
         selectedRecipients: [.make(from: .make(id: "2", name: "B", full_name: "B", avatar_url: nil))]
     )
     var callbackController: EditComposeRecipientsViewController?
+
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
 
     func testLayout() {
         let teacher = APISearchRecipient.make(

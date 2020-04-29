@@ -17,11 +17,10 @@
 //
 
 import XCTest
-@testable import Parent
 @testable import Core
 import TestsFoundation
 
-class ConversationCoursesActionSheetTests: ParentTestCase {
+class ConversationCoursesActionSheetTests: CoreTestCase {
     lazy var controller = ConversationCoursesActionSheet.create(delegate: self)
 
     let selectedExpectation = XCTestExpectation(description: "selected")
@@ -30,7 +29,7 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
 
     override func setUp() {
         super.setUp()
-        env.mockStore = true
+        environment.mockStore = true
     }
 
     func loadView() {
@@ -48,7 +47,7 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
     }
 
     func testActivityIndicator() {
-        env.mockStore = false
+        environment.mockStore = false
 
         let enrollmentsTask = api.mock(GetEnrollmentsRequest(context: ContextModel.currentUser,
                                                              userID: nil,
@@ -72,7 +71,7 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
     }
 
     func testShowError() {
-        env.mockStore = false
+        environment.mockStore = false
         api.mock(GetEnrollmentsRequest(context: ContextModel.currentUser,
                                        userID: nil,
                                        gradingPeriodID: nil,
@@ -125,7 +124,11 @@ class ConversationCoursesActionSheetTests: ParentTestCase {
     }
 
     func testCellTapped() {
-        let enrollment = Enrollment.make(from: .make(course_id: "1", type: "ObserverEnrollment", observed_user: .make()), course: .make(from: .make(id: "1"), in: databaseClient), in: databaseClient)
+        let apiUser = APIUser.make()
+        let course = Course.make()
+        User.make(from: apiUser, courseID: "1", groupID: nil, in: databaseClient)
+        let enrollment = Enrollment.make(from: .make(course_id: "1", type: "ObserverEnrollment", observed_user: apiUser), course: course, in: databaseClient)
+
         loadView()
 
         _ = controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))

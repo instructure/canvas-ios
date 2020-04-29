@@ -192,8 +192,8 @@ public struct GetConversationsRequest: APIRequestable {
     enum Include: String {
         case participant_avatars
     }
-    enum Scope: String {
-        case unread, starred, archived, sent
+    public enum Scope: String {
+        case unread, starred, sent, archived
     }
 
     public let path = "conversations"
@@ -201,13 +201,18 @@ public struct GetConversationsRequest: APIRequestable {
     let include: [Include]
     let perPage: Int?
     let scope: Scope?
+    let filter: String?
 
     public var query: [APIQueryItem] {
-        [
+        var q: [APIQueryItem] = [
             .include(include.map { $0.rawValue }),
             .perPage(perPage),
             .optionalValue("scope", scope?.rawValue),
         ]
+        if let filter = filter {
+            q.append( .array("filter", [ filter ]) )
+        }
+        return q
     }
 }
 
@@ -225,19 +230,24 @@ public struct GetConversationRequest: APIRequestable {
     }
 }
 
-struct PutConversationRequest: APIRequestable {
-    typealias Response = APIConversation
-    struct Body: Encodable {
-        let id: String
-        let workflow_state: ConversationWorkflowState
+public struct PutConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
+    public struct Body: Encodable, Equatable {
+        let conversation: ConversationContainer
     }
 
     let id: String
     let workflowState: ConversationWorkflowState
-    var path: String { "conversations/\(id)" }
-    let method = APIMethod.put
-    var body: Body? {
-        return Body(id: id, workflow_state: workflowState)
+    public var path: String { "conversations/\(id)" }
+    public let method = APIMethod.put
+
+    struct ConversationContainer: Encodable, Equatable {
+        let id: String
+        let workflow_state: ConversationWorkflowState
+    }
+
+    public var body: Body? {
+        return Body(conversation: ConversationContainer(id: id, workflow_state: workflowState))
     }
 }
 

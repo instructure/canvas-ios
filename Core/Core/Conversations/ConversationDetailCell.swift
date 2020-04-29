@@ -18,7 +18,6 @@
 
 import AVKit
 import UIKit
-import Core
 
 class ConversationDetailCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UITextView!

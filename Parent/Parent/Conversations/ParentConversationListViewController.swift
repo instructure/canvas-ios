@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
+class ParentConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var emptyView: EmptyView!
@@ -33,7 +33,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
         self?.update()
     }
 
-    static func create() -> ConversationListViewController {
+    static func create() -> ParentConversationListViewController {
         return loadFromStoryboard()
     }
 
@@ -108,7 +108,7 @@ class ConversationListViewController: UIViewController, ConversationCoursesActio
     }
 }
 
-extension ConversationListViewController: UITableViewDataSource, UITableViewDelegate {
+extension ParentConversationListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return conversations.count
     }

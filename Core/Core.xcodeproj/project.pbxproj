@@ -30,6 +30,22 @@
 		3B3FCA2D238026D00011F11A /* ActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA2C238026D00011F11A /* ActivityTests.swift */; };
 		3B3FCA3323802D680011F11A /* GetActivitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA3223802D680011F11A /* GetActivitiesTests.swift */; };
 		3B4D861523295263005126A5 /* GradeListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D861423295263005126A5 /* GradeListViewController.storyboard */; };
+		3B4D89262450A8E9004ED120 /* ComposeReplyViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D891E2450A8E8004ED120 /* ComposeReplyViewController.storyboard */; };
+		3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D891F2450A8E8004ED120 /* ComposeReplyViewController.swift */; };
+		3B4D89282450A8E9004ED120 /* ComposeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D89202450A8E8004ED120 /* ComposeViewController.storyboard */; };
+		3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89212450A8E8004ED120 /* ConversationCoursesActionSheet.swift */; };
+		3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89222450A8E8004ED120 /* ConversationDetailCell.swift */; };
+		3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89232450A8E8004ED120 /* ComposeViewController.swift */; };
+		3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89242450A8E8004ED120 /* AttachmentCardsViewController.swift */; };
+		3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89252450A8E9004ED120 /* ComposeRecipientsView.swift */; };
+		3B4D89332450A8F4004ED120 /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D892E2450A8F3004ED120 /* ConversationListCell.swift */; };
+		3B4D89342450A8F4004ED120 /* ConversationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D892F2450A8F3004ED120 /* ConversationDetailViewController.swift */; };
+		3B4D89352450A8F4004ED120 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89302450A8F3004ED120 /* ConversationListViewController.swift */; };
+		3B4D89362450A8F4004ED120 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D89312450A8F3004ED120 /* ConversationListViewController.storyboard */; };
+		3B4D89372450A8F4004ED120 /* ConversationDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D89322450A8F4004ED120 /* ConversationDetailViewController.storyboard */; };
+		3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89382450A8FC004ED120 /* EditComposeRecipientsViewController.swift */; };
+		3B4D893B2450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */; };
+		3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
 		3B5542462369F401007D3CE0 /* AssignmentListRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */; };
 		3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */; };
@@ -46,11 +62,19 @@
 		3BA9FF752332B05700196A06 /* GradingPeriodRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF742332B05700196A06 /* GradingPeriodRequestableTests.swift */; };
 		3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF782332B39700196A06 /* GradingPeriodUseCaseTests.swift */; };
 		3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */; };
+		3BCDACF824536B9E00E41D27 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */; };
 		3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */; };
 		3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */; };
 		3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */; };
 		3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */; };
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
+		3BEA6CC824588D1400BE4589 /* EditComposeRecipientsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */; };
+		3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */; };
+		3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */; };
+		3BEA6CCB24588D1400BE4589 /* AttachmentCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */; };
+		3BEA6CCC24588D1400BE4589 /* ComposeReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */; };
+		3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */; };
+		3BEA6CCF2458A10700BE4589 /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CCE2458A10700BE4589 /* ConversationListViewControllerTests.swift */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
 		5859503A27B333221FD6E835 /* DiscussionReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859511C5D2888D3B3E01A30 /* DiscussionReply.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
@@ -1003,6 +1027,22 @@
 		3B4B75C6222F09C7002CCBEC /* CreateSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSubmission.swift; sourceTree = "<group>"; };
 		3B4D861223295239005126A5 /* GradeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewController.swift; sourceTree = "<group>"; };
 		3B4D861423295263005126A5 /* GradeListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GradeListViewController.storyboard; sourceTree = "<group>"; };
+		3B4D891E2450A8E8004ED120 /* ComposeReplyViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ComposeReplyViewController.storyboard; sourceTree = "<group>"; };
+		3B4D891F2450A8E8004ED120 /* ComposeReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewController.swift; sourceTree = "<group>"; };
+		3B4D89202450A8E8004ED120 /* ComposeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
+		3B4D89212450A8E8004ED120 /* ConversationCoursesActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheet.swift; sourceTree = "<group>"; };
+		3B4D89222450A8E8004ED120 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
+		3B4D89232450A8E8004ED120 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		3B4D89242450A8E8004ED120 /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
+		3B4D89252450A8E9004ED120 /* ComposeRecipientsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeRecipientsView.swift; sourceTree = "<group>"; };
+		3B4D892E2450A8F3004ED120 /* ConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
+		3B4D892F2450A8F3004ED120 /* ConversationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewController.swift; sourceTree = "<group>"; };
+		3B4D89302450A8F3004ED120 /* ConversationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
+		3B4D89312450A8F3004ED120 /* ConversationListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConversationListViewController.storyboard; sourceTree = "<group>"; };
+		3B4D89322450A8F4004ED120 /* ConversationDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConversationDetailViewController.storyboard; sourceTree = "<group>"; };
+		3B4D89382450A8FC004ED120 /* EditComposeRecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewController.swift; sourceTree = "<group>"; };
+		3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = EditComposeRecipientsViewController.storyboard; sourceTree = "<group>"; };
+		3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -1040,6 +1080,7 @@
 		3BA9FF7C2332B43C00196A06 /* GradingPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingPeriod.swift; sourceTree = "<group>"; };
 		3BC3E01C2315A0DE00E15C6D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItemTests.swift; sourceTree = "<group>"; };
 		3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLogger.swift; sourceTree = "<group>"; };
@@ -1049,6 +1090,13 @@
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
 		3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
+		3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
+		3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReplyViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		3BEA6CCE2458A10700BE4589 /* ConversationListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		3BF3428B233D2CC00095D0D3 /* SyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusViewController.swift; sourceTree = "<group>"; };
 		3BF5C54E2187800B0081A858 /* GetAssignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAssignmentsTests.swift; sourceTree = "<group>"; };
@@ -2667,6 +2715,21 @@
 		7D26B84423A7F27E00262380 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */,
+				3B4D89382450A8FC004ED120 /* EditComposeRecipientsViewController.swift */,
+				3B4D89322450A8F4004ED120 /* ConversationDetailViewController.storyboard */,
+				3B4D892F2450A8F3004ED120 /* ConversationDetailViewController.swift */,
+				3B4D892E2450A8F3004ED120 /* ConversationListCell.swift */,
+				3B4D89312450A8F3004ED120 /* ConversationListViewController.storyboard */,
+				3B4D89302450A8F3004ED120 /* ConversationListViewController.swift */,
+				3B4D89242450A8E8004ED120 /* AttachmentCardsViewController.swift */,
+				3B4D89252450A8E9004ED120 /* ComposeRecipientsView.swift */,
+				3B4D891E2450A8E8004ED120 /* ComposeReplyViewController.storyboard */,
+				3B4D891F2450A8E8004ED120 /* ComposeReplyViewController.swift */,
+				3B4D89202450A8E8004ED120 /* ComposeViewController.storyboard */,
+				3B4D89232450A8E8004ED120 /* ComposeViewController.swift */,
+				3B4D89212450A8E8004ED120 /* ConversationCoursesActionSheet.swift */,
+				3B4D89222450A8E8004ED120 /* ConversationDetailCell.swift */,
 				7D8E820423C7892600A8DA2C /* AddMessage.swift */,
 				B1B140D723A04D1900EBF687 /* APIConversation.swift */,
 				9F900E74232178EB00BB44B4 /* APISearchRecipient.swift */,
@@ -2677,6 +2740,7 @@
 				7D26B84223A7F24400262380 /* GetConversations.swift */,
 				9F87D07A2322F4C500EDA363 /* GetSearchRecipients.swift */,
 				9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */,
+				3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -2684,6 +2748,13 @@
 		7D26B84523A8043900262380 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				3BEA6CCE2458A10700BE4589 /* ConversationListViewControllerTests.swift */,
+				3BEA6CC524588D1400BE4589 /* AttachmentCardsViewControllerTests.swift */,
+				3BEA6CC624588D1400BE4589 /* ComposeReplyViewControllerTests.swift */,
+				3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */,
+				3BEA6CC424588D1400BE4589 /* ConversationCoursesActionSheetTests.swift */,
+				3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */,
+				3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */,
 				7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */,
 				B1BF4AB123A17BD800F61ACD /* APIConversationTests.swift */,
 				9F900E7823217CC000BB44B4 /* APISearchRecipientsTests.swift */,
@@ -2956,6 +3027,7 @@
 				B150C6392298DAB90096D58C /* WKWebViewExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIBarButtonItemExtensions.swift */,
+				3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4141,7 +4213,7 @@
 				TargetAttributes = {
 					2C96482D211E2F1A002C3255 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 					};
 					2C964836211E2F1A002C3255 = {
@@ -4246,6 +4318,7 @@
 				3B4D861523295263005126A5 /* GradeListViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */,
+				3B4D89262450A8E9004ED120 /* ComposeReplyViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
@@ -4262,11 +4335,13 @@
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7D7242622429C473007ED42F /* CourseListViewController.storyboard in Resources */,
 				B14707B52437BC1C00CE1DBD /* ExternalURLViewController.storyboard in Resources */,
+				3B4D89362450A8F4004ED120 /* ConversationListViewController.storyboard in Resources */,
 				7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
 				7D5F103E2429BAAB00803324 /* CourseCardCell.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
+				3B4D89282450A8E9004ED120 /* ComposeViewController.storyboard in Resources */,
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
 				3B339B6C226FAA1000D3283D /* ChatBubbleView.xib in Resources */,
 				7D86286B224D493C003A37DC /* AudioPlayerViewController.storyboard in Resources */,
@@ -4276,9 +4351,11 @@
 				7D2E82882270BB9B00735854 /* FilePickerViewController.storyboard in Resources */,
 				7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */,
 				7D7F71E6242030C000D6F9CB /* ConferenceDetailsViewController.storyboard in Resources */,
+				3B4D89372450A8F4004ED120 /* ConversationDetailViewController.storyboard in Resources */,
 				97DDE0DC2411ADBE00A05B55 /* CreateTodoViewController.storyboard in Resources */,
 				7DA260FF23F773DC005D2121 /* PlannerListViewController.storyboard in Resources */,
 				7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */,
+				3B4D893B2450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard in Resources */,
 				B11AEBB724070FF100B736D6 /* PlannerFilterViewController.storyboard in Resources */,
 				9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */,
 				9FCF1540227B6BC1009D35F6 /* GradeCircleView.xib in Resources */,
@@ -4442,6 +4519,7 @@
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,
 				7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */,
 				7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */,
+				3BEA6CC824588D1400BE4589 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */,
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				970862C82419700300112A6A /* GetCoursesRequestTests.swift in Sources */,
@@ -4468,6 +4546,7 @@
 				7D64A97723676025004EAEDF /* APICourseSectionTests.swift in Sources */,
 				9F62EDD82326D1E500EA9F79 /* GetSearchRecipientsTests.swift in Sources */,
 				3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */,
+				3BEA6CCC24588D1400BE4589 /* ComposeReplyViewControllerTests.swift in Sources */,
 				7D70DE9A233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift in Sources */,
 				B1487F97243E3FAF00013404 /* GetModuleItemSequenceTests.swift in Sources */,
 				B1F13290224BBFC0002C0555 /* ModuleItemTypeTests.swift in Sources */,
@@ -4477,6 +4556,7 @@
 				9F4D65B22396A3D600660038 /* ProfileSettingsViewControllerTests.swift in Sources */,
 				7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */,
+				3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,
 				7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */,
@@ -4528,6 +4608,7 @@
 				B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */,
 				3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */,
 				7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */,
+				3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */,
@@ -4607,6 +4688,7 @@
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
+				3BEA6CCB24588D1400BE4589 /* AttachmentCardsViewControllerTests.swift in Sources */,
 				7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */,
 				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
 				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
@@ -4645,6 +4727,7 @@
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,
 				B1F13294224BC656002C0555 /* ModuleItemTests.swift in Sources */,
+				3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */,
 				B15CA273221DE1FA0014FB02 /* GetModulesTests.swift in Sources */,
 				9FBE536B223C2B9F001EC40C /* APIPermissionsRequestableTests.swift in Sources */,
 				B1B42C1622403AFD0087399A /* UploadManagerTests.swift in Sources */,
@@ -4694,6 +4777,7 @@
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
+				3BEA6CCF2458A10700BE4589 /* ConversationListViewControllerTests.swift in Sources */,
 				7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */,
 				7D2DC2F42199EC93008FE29A /* SecretTests.swift in Sources */,
 				B1E789B521B1AD890087FE4A /* LoggerTests.swift in Sources */,
@@ -4716,6 +4800,7 @@
 				7DA2604A23F722D9005D2121 /* GradeFormatter.swift in Sources */,
 				7DA2602723F722C2005D2121 /* LoginDelegate.swift in Sources */,
 				7DA260E123F72359005D2121 /* ItemPickerViewController.swift in Sources */,
+				3BCDACF824536B9E00E41D27 /* ConversationsViewController.swift in Sources */,
 				7DA260B123F72352005D2121 /* GetCustomColors.swift in Sources */,
 				7DA260F423F72397005D2121 /* FilePickerCell.swift in Sources */,
 				7DA2604C23F722D9005D2121 /* GradingType.swift in Sources */,
@@ -4731,6 +4816,7 @@
 				7DA260CE23F72359005D2121 /* CalendarDayIconView.swift in Sources */,
 				7DA25FEA23F721DE005D2121 /* Conversation.swift in Sources */,
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
+				3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */,
 				B1A7848F24411F19001A2B50 /* BackgroundVideoPlayer.swift in Sources */,
 				7DA2606823F722D9005D2121 /* TabVisibility.swift in Sources */,
 				7DA2609923F7233D005D2121 /* Scope.swift in Sources */,
@@ -4810,6 +4896,7 @@
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
+				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
 				7DA260D723F72359005D2121 /* EmptyView.swift in Sources */,
 				7DFD5F7C23FF158700D988E0 /* PlannerViewController.swift in Sources */,
@@ -4861,6 +4948,7 @@
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
 				7DA260C023F72352005D2121 /* GetUserSettings.swift in Sources */,
 				7DA25FE123F72154005D2121 /* AudioRecorderViewController.swift in Sources */,
+				3B4D892D2450A8E9004ED120 /* ComposeRecipientsView.swift in Sources */,
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
 				7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */,
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,
@@ -4878,6 +4966,7 @@
 				7DA2609823F72338005D2121 /* Router.swift in Sources */,
 				7DA25FB323F72136005D2121 /* APIFavoriteRequestable.swift in Sources */,
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
+				3B4D89332450A8F4004ED120 /* ConversationListCell.swift in Sources */,
 				7DA25FE223F721DA005D2121 /* UserAgent.swift in Sources */,
 				7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */,
 				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
@@ -4906,6 +4995,7 @@
 				7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */,
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,
 				7DA25FAD23F72136005D2121 /* APIEnrollment.swift in Sources */,
+				3B4D89352450A8F4004ED120 /* ConversationListViewController.swift in Sources */,
 				7DFD5F7B23FF158700D988E0 /* CalendarDaysViewController.swift in Sources */,
 				7DA25FB123F72136005D2121 /* APIExternalToolRequestable.swift in Sources */,
 				7DA2604E23F722D9005D2121 /* LatePolicyInterval.swift in Sources */,
@@ -4921,6 +5011,7 @@
 				7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
 				7DA25FA223F72136005D2121 /* APIBrandVariablesRequestable.swift in Sources */,
+				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
 				7DA25FC623F72136005D2121 /* APIPermissionsRequestable.swift in Sources */,
 				7DA260CF23F72359005D2121 /* ChatBubbleView.swift in Sources */,
 				7DA260C823F72359005D2121 /* AccessIconView.swift in Sources */,
@@ -4964,6 +5055,7 @@
 				7DA2600C23F7227A005D2121 /* NSPersistentContainerExtensions.swift in Sources */,
 				7DA2606623F722D9005D2121 /* Tab.swift in Sources */,
 				7DA25FAC23F72136005D2121 /* APIDocViewer.swift in Sources */,
+				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
 				7DA25F9723F72136005D2121 /* AssignmentListRequestable.swift in Sources */,
@@ -5011,6 +5103,7 @@
 				7DA25FCE23F72136005D2121 /* APISubmissionRequestable.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
+				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,
 				7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */,
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
@@ -5031,6 +5124,7 @@
 				7DA2603523F722D9005D2121 /* LockStatusViewable.swift in Sources */,
 				7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
+				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
 				7DA260F123F72391005D2121 /* FileUploadTarget.swift in Sources */,
 				7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */,
 				7DA2602E23F722C2005D2121 /* LoginStartViewController.swift in Sources */,
@@ -5090,9 +5184,11 @@
 				7DA260D523F72359005D2121 /* DynamicLabel.swift in Sources */,
 				7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */,
 				7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */,
+				3B4D892C2450A8E9004ED120 /* AttachmentCardsViewController.swift in Sources */,
 				7DA2603C23F722D9005D2121 /* Context.swift in Sources */,
 				7DA25FB923F72136005D2121 /* APILatePolicy.swift in Sources */,
 				7DA260BA23F72352005D2121 /* GetQuizzes.swift in Sources */,
+				3B4D89342450A8F4004ED120 /* ConversationDetailViewController.swift in Sources */,
 				7DA2603623F722D9005D2121 /* SubmissionViewable.swift in Sources */,
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,

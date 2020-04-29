@@ -19,10 +19,9 @@
 import XCTest
 import UIKit
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class ComposeViewControllerTests: ParentTestCase {
+class ComposeViewControllerTests: CoreTestCase {
     lazy var controller = ComposeViewController.create(
         body: "body",
         context: ContextModel(.course, id: "1"),
@@ -31,6 +30,11 @@ class ComposeViewControllerTests: ParentTestCase {
         subject: "subject",
         hiddenMessage: "hidden"
     )
+
+    override func setUp() {
+        super.setUp()
+        environment.mockStore = false
+    }
 
     func loadView() {
         controller.view.layoutIfNeeded()

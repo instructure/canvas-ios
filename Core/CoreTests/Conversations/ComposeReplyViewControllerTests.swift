@@ -18,10 +18,9 @@
 
 import XCTest
 @testable import Core
-@testable import Parent
 import TestsFoundation
 
-class ComposeReplyViewControllerTests: ParentTestCase {
+class ComposeReplyViewControllerTests: CoreTestCase {
     lazy var conversation = Conversation.make(from: .make(messages: [ .make() ]))
 
     lazy var controller = ComposeReplyViewController.create(conversation: conversation, message: conversation.messages.first, all: true)

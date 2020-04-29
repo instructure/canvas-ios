@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Core
 
 class ComposeReplyViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var attachmentsContainer: UIView!
@@ -77,7 +76,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
-        bodyView.placeholderColor = .named(.textDark)
+        bodyView.placeholderColor = UIColor.named(.textDark)
         bodyView.font = .scaledNamedFont(.medium16)
         bodyView.textColor = .named(.textDarkest)
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)

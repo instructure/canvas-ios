@@ -17,21 +17,38 @@
 //
 
 import Foundation
+import CoreData
 
 public class GetConversations: CollectionUseCase {
     public typealias Model = Conversation
     let include: [GetConversationsRequest.Include] = [.participant_avatars]
     let perPage: Int = 100
-
-    public var cacheKey: String? = "conversations"
+    let requestScope: GetConversationsRequest.Scope?
+    public var cacheKey: String? {
+        let scope = requestScope?.rawValue ?? "all"
+        return "conversations-\(scope)-\(filter ?? "")"
+    }
+    let filter: String?
 
     public var request: GetConversationsRequest {
-        return GetConversationsRequest(include: include, perPage: perPage, scope: nil)
+        return GetConversationsRequest(include: include, perPage: perPage, scope: requestScope, filter: filter)
     }
 
-    public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
+    public var scope: Scope {
+        if let filter = filter {
+            return Scope(
+                predicate: NSPredicate(format: "%K == %@", #keyPath(Conversation.contextCode), filter),
+                order: [NSSortDescriptor(key: #keyPath(Conversation.lastMessageAt), ascending: false), ]
+            )
+        } else {
+            return Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
+        }
+    }
 
-    public init() {}
+    public init(scope: GetConversationsRequest.Scope? = nil, filter: String? = nil) {
+        self.requestScope = scope
+        self.filter = filter
+    }
 }
 
 public class GetConversationsWithSent: APIUseCase {
@@ -42,7 +59,7 @@ public class GetConversationsWithSent: APIUseCase {
     public var cacheKey: String? = "conversations"
 
     public var request: GetConversationsRequest {
-        return GetConversationsRequest(include: include, perPage: perPage, scope: nil)
+        return GetConversationsRequest(include: include, perPage: perPage, scope: nil, filter: nil)
     }
 
     public var scope = Scope.all(orderBy: #keyPath(Conversation.lastMessageAt), ascending: false)
@@ -56,7 +73,7 @@ public class GetConversationsWithSent: APIUseCase {
                 return
             }
 
-            let sentRequest = GetConversationsRequest(include: self.include, perPage: self.perPage, scope: .sent)
+            let sentRequest = GetConversationsRequest(include: self.include, perPage: self.perPage, scope: .sent, filter: nil)
             environment.api.exhaust(sentRequest) { (sentConversations, sentResponse, sentError) in
                 if let error = sentError {
                     completionHandler(nil, sentResponse, error)
@@ -83,5 +100,31 @@ public class GetConversation: APIUseCase {
     public init(id: String, include: [GetConversationRequest.Include] = [.participant_avatars]) {
         self.id = id
         self.include = include
+    }
+}
+
+public class UpdateConversation: APIUseCase {
+    public var cacheKey: String?
+    public typealias Model = Conversation
+    public let id: String
+    public let state: ConversationWorkflowState
+
+    public var request: PutConversationRequest {
+        return PutConversationRequest(id: id, workflowState: state)
+    }
+
+    public var scope: Scope { Scope(predicate: NSPredicate(format: "%K == %@", "id", id), order: []) }
+
+    public init(id: String, state: ConversationWorkflowState) {
+        self.id = id
+        self.state = state
+    }
+
+    public func write(response: APIConversation?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        // currently `UpdateConversations` is used to mark a discussion as unread. The response does not
+        //  include `context_name` field, so it makes cells jump, so not updating the whole object.
+        let conversation: Conversation? = client.first(where: #keyPath(Conversation.id), equals: response?.id.value ?? "")
+        if let workflowState = response?.workflow_state { conversation?.workflowState = workflowState }
+        try? client.save()
     }
 }

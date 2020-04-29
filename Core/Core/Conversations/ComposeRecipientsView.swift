@@ -17,7 +17,6 @@
 //
 
 import UIKit
-import Core
 
 class ComposeRecipientsView: UIView {
     var context: Context?
@@ -103,7 +102,7 @@ class ComposeRecipientsView: UIView {
     }
 
     func updatePills() {
-        additionalRecipients.text = String.localizedStringWithFormat(NSLocalizedString("+%d", bundle: .parent, comment: ""), recipients.count - 1)
+        additionalRecipients.text = String.localizedStringWithFormat(NSLocalizedString("+%d", bundle: .core, comment: ""), recipients.count - 1)
         additionalRecipients.isHidden = recipients.count <= 1 || isExpanded
 
         pills.forEach { $0.removeFromSuperview() }

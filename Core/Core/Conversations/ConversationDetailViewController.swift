@@ -17,9 +17,8 @@
 //
 
 import Foundation
-import Core
 
-class ConversationDetailViewController: UIViewController {
+public class ConversationDetailViewController: UIViewController {
 
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -33,19 +32,19 @@ class ConversationDetailViewController: UIViewController {
         self?.update()
     }
 
-    static func create(conversationID: String) -> ConversationDetailViewController {
+    public static func create(conversationID: String) -> ConversationDetailViewController {
         let vc = loadFromStoryboard()
         vc.conversationID = conversationID
         vc.myID = vc.env.currentSession?.userID ?? ""
         return vc
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refresh()
     }
@@ -92,26 +91,26 @@ class ConversationDetailViewController: UIViewController {
 }
 
 extension ConversationDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         conversations.first?.messages.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ConversationDetailCell = tableView.dequeue(for: indexPath)
         let msg = conversations.first?.messages[indexPath.section]
         cell.update(msg, myID: myID, userMap: userMap, parent: self)
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         section + 1 == conversations.first?.messages.count ? 0 : 16
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let msg = conversations.first?.messages[indexPath.section] else { return nil }
         var actions: [UIContextualAction] = []
 

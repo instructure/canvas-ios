@@ -19,27 +19,47 @@
 import CoreData
 
 public class GetConversationCourses: APIUseCase {
-    public init() {}
+
+    public init(role: Role = .observer) {
+        self.role = role
+    }
+
     public typealias Response = [APIEnrollment]
     public typealias Model = Enrollment
-
+    var role: Role
     public var cacheKey: String? = "get-conversation-courses"
     public var request: GetEnrollmentsRequest {
-        return GetEnrollmentsRequest(context: ContextModel.currentUser, userID: nil, gradingPeriodID: nil, types: ["ObserverEnrollment"], includes: [.observed_users])
+        let types: [String]? = role == .observer ? ["ObserverEnrollment"] : nil
+        let includes: [GetEnrollmentsRequest.Include] = role == .observer ? [.observed_users] : []
+        return GetEnrollmentsRequest(context: ContextModel.currentUser, userID: nil, gradingPeriodID: nil, types: types, includes: includes)
     }
 
     public var scope: Scope {
-        return Scope(
-            predicate: NSPredicate(format: "%K == %@ AND %K == %@ AND %K != nil",
-                #keyPath(Enrollment.type), "ObserverEnrollment",
-                #keyPath(Enrollment.stateRaw), "active",
-                #keyPath(Enrollment.observedUser)
-            ),
-            order: [
-                NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
-                NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
-            ]
-        )
+        if role == .observer {
+            return Scope(
+                predicate: NSPredicate(
+                    format: "%K == %@ AND %K == %@ AND %K != nil",
+                    #keyPath(Enrollment.type), "ObserverEnrollment",
+                    #keyPath(Enrollment.stateRaw), "active",
+                    #keyPath(Enrollment.observedUser)
+                ),
+                order: [
+                    NSSortDescriptor(key: #keyPath(Enrollment.observedUser.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                ]
+            )
+        } else {
+            return Scope(
+                predicate: NSPredicate(
+                    format: "%K == %@ AND %K == %@",
+                    #keyPath(Enrollment.type), role.rawValue,
+                    #keyPath(Enrollment.stateRaw), "active"
+                ),
+                order: [
+                    NSSortDescriptor(key: #keyPath(Enrollment.course.name), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+                ]
+            )
+        }
     }
 
     public var fetchedCourses: [APICourse]?

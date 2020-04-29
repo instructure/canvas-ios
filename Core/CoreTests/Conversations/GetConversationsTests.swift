@@ -23,7 +23,7 @@ class GetConversationsWithSentTests: CoreTestCase {
     func testMakeRequest() {
         let useCase = GetConversationsWithSent()
         api.mock(useCase.request, value: [.make()])
-        api.mock(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent), value: [.make()])
+        api.mock(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent, filter: nil), value: [.make()])
 
         let expectation = XCTestExpectation(description: "make request")
         useCase.makeRequest(environment: environment) { (conversations, _, _) in
@@ -48,7 +48,7 @@ class GetConversationsWithSentTests: CoreTestCase {
     func testMakeRequestErrorSent() {
         let useCase = GetConversationsWithSent()
         api.mock(useCase.request, value: [.make()])
-        api.mock(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent), error: NSError.instructureError("error"))
+        api.mock(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent, filter: nil), error: NSError.instructureError("error"))
 
         let expectation = XCTestExpectation(description: "make request")
         useCase.makeRequest(environment: environment) { (_, _, error) in
