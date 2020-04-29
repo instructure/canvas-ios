@@ -84,7 +84,7 @@ export class API {
       const getNextPage = next && (() => {
         this.request(httpClient.get(next, config))
       })
-      if (getNextPage && config.params && config.params.per_page >= 99) {
+      if (getNextPage && config.params && config.params.per_page >= 100) {
         getNextPage() // automatically request all pages
       }
       if (current && current !== first) {
@@ -157,7 +157,7 @@ export class API {
   getPages (context: CanvasContext, contextID: string): Paginated<PageModel[]> {
     return this.paginate(`${context}/${contextID}/pages`, {
       params: {
-        per_page: 99,
+        per_page: 100,
       },
       transform: (pages: Page[]) => pages.map(page => new PageModel(page)),
     })

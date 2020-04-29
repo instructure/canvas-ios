@@ -33,8 +33,8 @@ class InboxTests: ParentUITestCase {
             body: "This is a reply with attachments"
         )
         let conversation = APIConversation.make(id: "1", messages: [message])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: nil), value: [conversation])
-        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent), value: [])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: nil, filter: nil), value: [conversation])
+        mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 100, scope: .sent, filter: nil), value: [])
         mockData(GetConversationRequest(id: conversation.id.value, include: [.participant_avatars]), value: conversation)
         let target = FileUploadTarget.make()
         mockData(PostFileUploadTargetRequest(

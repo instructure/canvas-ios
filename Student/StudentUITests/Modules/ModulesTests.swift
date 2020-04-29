@@ -27,11 +27,11 @@ class ModulesTests: StudentUITestCase {
     }
 
     func testUnlockModuleItemWithPrerequisiteModule() {
-        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 99), value: [
+        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 100), value: [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .locked),
         ])
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths], perPage: 99), value: [
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths], perPage: 100), value: [
             .make(
                 id: "1",
                 module_id: "1",
@@ -41,7 +41,7 @@ class ModulesTests: StudentUITestCase {
                 completion_requirement: .make(type: .must_view, completed: false)
             ),
         ])
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 99), value: [
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 100), value: [
             .make(
                 id: "2",
                 module_id: "2",
@@ -68,7 +68,7 @@ class ModulesTests: StudentUITestCase {
         XCTAssertEqual(app.find(id: "module_cell_0_0").label(), "Module 1")
         XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page. Status: Locked")
         XCTAssertFalse(ModulesDetail.moduleItem(index: 0).isEnabled)
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 99), value: [
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 100), value: [
             .make(
                 id: "2",
                 module_id: "2",
@@ -78,7 +78,7 @@ class ModulesTests: StudentUITestCase {
                 content_details: .make(locked_for_user: false)
             ),
         ])
-        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 99), value: [
+        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 100), value: [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .unlocked),
         ])

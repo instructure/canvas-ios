@@ -69,7 +69,7 @@ public struct ListQuizzesRequest: APIRequestable {
     // let public searchTerm: String?
     public let perPage: Int?
 
-    public init(courseID: String, perPage: Int? = 99) {
+    public init(courseID: String, perPage: Int? = 100) {
         self.courseID = courseID
         self.perPage = perPage
     }

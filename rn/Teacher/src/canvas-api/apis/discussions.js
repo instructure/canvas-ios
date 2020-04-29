@@ -25,7 +25,7 @@ export function getDiscussions (context: CanvasContext, contextID: string, param
   const url = `${context}/${contextID}/discussion_topics`
   const options = {
     params: {
-      per_page: 99,
+      per_page: 100,
       include: ['sections'],
       ...parameters,
     },

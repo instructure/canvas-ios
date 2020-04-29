@@ -26,7 +26,7 @@ class GetConversationCoursesTests: CoreTestCase {
         api.mock(enrollmentsRequest, value: [enrollment])
 
         let course = APICourse.make(id: ID("1"))
-        let coursesRequest = GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 99)
+        let coursesRequest = GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 100)
         api.mock(coursesRequest, value: [course])
 
         let useCase = GetConversationCourses()

@@ -25,7 +25,7 @@ export function getAssignmentGroups (courseID: string, gradingPeriodID?: string,
   let options = {
     params: {
       include: include ?? [],
-      per_page: 99,
+      per_page: 100,
       grading_period_id: gradingPeriodID ?? [],
     },
   }

@@ -25,7 +25,7 @@ export function getQuizzes (courseID: string): ApiPromise<Quiz[]> {
   const url = `courses/${courseID}/quizzes`
   const options = {
     params: {
-      per_page: 99,
+      per_page: 100,
     },
   }
   let quizzes = paginate(url, options)
@@ -42,7 +42,7 @@ export function getQuizSubmissions (courseID: string, quizID: string): ApiPromis
   let options = {
     params: {
       include: [ 'submission' ],
-      per_page: 99,
+      per_page: 100,
     },
   }
   const submissions = paginate(url, options)

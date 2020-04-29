@@ -503,10 +503,10 @@ open class CoreUITestCase: XCTestCase {
             "rce_enhancements",
             "new_gradebook",
         ])
-        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=99", value: [String]())
+        mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=100", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())
         if Bundle.main.isTeacherApp {
-            mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/\(course.id)/lti_apps/launch_definitions?per_page=99&placements%5B%5D=course_navigation", value: [String]())
+            mockEncodableRequest("https://canvas.instructure.com/api/v1/courses/\(course.id)/lti_apps/launch_definitions?per_page=100&placements%5B%5D=course_navigation", value: [String]())
         }
         return course
     }
@@ -557,7 +557,7 @@ open class CoreUITestCase: XCTestCase {
                 .tabs,
                 .term,
                 .total_scores,
-            ], perPage: 99), value: courses)
+            ], perPage: 100), value: courses)
         } else {
             XCTFail("Unknown app")
         }

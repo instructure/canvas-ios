@@ -38,7 +38,7 @@ class ParentUITestCase: CoreUITestCase {
             mockEncodableRequest([
                 "users/self/enrollments",
                 "?include[]=avatar_url&include[]=observed_users",
-                paginated ? "&per_page=99" : "",
+                paginated ? "&per_page=100" : "",
                 "&role[]=ObserverEnrollment",
                 "&state[]=active&state[]=completed&state[]=creation_pending",
                 "&state[]=current_and_future&state[]=invited",
@@ -51,6 +51,6 @@ class ParentUITestCase: CoreUITestCase {
         mockData(GetUserSettingsRequest(userID: "self"), value: .make())
         mockData(GetUserProfileRequest(userID: "self"), value: .make())
         mockData(GetGlobalNavExternalToolsRequest(), value: [])
-        mockEncodableRequest("users/self/observer_alerts/1?per_page=99", value: [String]())
+        mockEncodableRequest("users/self/observer_alerts/1?per_page=100", value: [String]())
     }
 }

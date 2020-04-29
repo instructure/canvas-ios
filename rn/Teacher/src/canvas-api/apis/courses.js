@@ -39,7 +39,7 @@ export function getCourses (): ApiPromise<Course[]> {
 
 export function getCourseTabs (courseID: string): ApiPromise<Tab[]> {
   const tabs = paginate(`courses/${courseID}/tabs`, {
-    per_page: 99,
+    per_page: 100,
   })
   return exhaust(tabs)
 }
@@ -78,7 +78,7 @@ export function getCourseSections (courseID: string): ApiPromise<Section[]> {
   const sections = paginate(`courses/${courseID}/sections`, {
     params: {
       include: ['total_students'],
-      per_page: 99,
+      per_page: 100,
     },
   })
   return exhaust(sections)
@@ -115,13 +115,13 @@ export function createCourse (course: CreateCourse): ApiPromise<Course> {
 
 export function getCourseEnabledFeatures (courseID: string): ApiPromise<string[]> {
   let features = paginate(`/courses/${courseID}/features/enabled`, {
-    per_page: 99,
+    per_page: 100,
   })
   return exhaust(features)
 }
 
 export function getCourseLicenses (courseID: string): ApiPromise<License[]> {
-  const licenses = paginate(`courses/${courseID}/content_licenses`, { params: { per_page: 99 } })
+  const licenses = paginate(`courses/${courseID}/content_licenses`, { params: { per_page: 100 } })
   return exhaust(licenses)
 }
 
