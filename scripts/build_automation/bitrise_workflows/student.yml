@@ -125,11 +125,12 @@ workflows:
             scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist Student/Student/Info.plist
             scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist Student/GradesWidget/Info.plist
             scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist Student/SubmitAssignment/Info.plist
-            scripts/build_automation/automateVersioning.sh generateReleaseNotes
             git add Student/Student/Info.plist
             git add Student/GradesWidget/Info.plist
             git add Student/SubmitAssignment/Info.plist
             scripts/build_automation/automateVersioning.sh checkInReleaseBranchAndTag
+            scripts/build_automation/automateVersioning.sh generateReleaseNotes
+
         title: Branch,Tag,Trigger Release
     - trigger-bitrise-workflow:
         inputs:
