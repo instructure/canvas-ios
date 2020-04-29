@@ -53,7 +53,8 @@ extension APIModuleItem {
         url: URL? = URL(string: "https://canvas.example.edu/api/v1/courses/222/assignments/987"),
         published: Bool? = nil,
         content_details: ContentDetails? = nil,
-        completion_requirement: CompletionRequirement? = nil
+        completion_requirement: CompletionRequirement? = nil,
+        mastery_paths: APIMasteryPath? = nil
     ) -> APIModuleItem {
         return APIModuleItem(
             id: id,
@@ -66,7 +67,8 @@ extension APIModuleItem {
             url: url,
             published: published,
             content_details: content_details,
-            completion_requirement: completion_requirement
+            completion_requirement: completion_requirement,
+            mastery_paths: mastery_paths
         )
     }
 }
@@ -103,5 +105,15 @@ extension APIModuleItemSequence {
         modules: [APIModule] = [.make()]
     ) -> Self {
         return .init(items: items, modules: modules)
+    }
+}
+
+extension APIMasteryPath {
+    public static func make(
+        locked: Bool = false,
+        assignment_sets: [AssignmentSet] = [],
+        selected_set_id: ID? = nil
+    ) -> Self {
+        return .init(locked: locked, assignment_sets: assignment_sets, selected_set_id: selected_set_id)
     }
 }

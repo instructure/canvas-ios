@@ -57,6 +57,7 @@ public struct APIModuleItem: Codable, Equatable {
     public let published: Bool?
     public let content_details: ContentDetails? // include[]=content_details not available in sequence call
     public let completion_requirement: CompletionRequirement? // not available in sequence call
+    public let mastery_paths: APIMasteryPath? // include[]=mastery_paths
 
     public init(
         id: ID,
@@ -69,7 +70,8 @@ public struct APIModuleItem: Codable, Equatable {
         url: URL?,
         published: Bool?,
         content_details: ContentDetails?,
-        completion_requirement: CompletionRequirement?
+        completion_requirement: CompletionRequirement?,
+        mastery_paths: APIMasteryPath?
     ) {
         self.id = id
         self.module_id = module_id
@@ -82,6 +84,7 @@ public struct APIModuleItem: Codable, Equatable {
         self.published = published
         self.content_details = content_details
         self.completion_requirement = completion_requirement
+        self.mastery_paths = mastery_paths
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -96,6 +99,7 @@ public struct APIModuleItem: Codable, Equatable {
         case content
         case content_details
         case completion_requirement
+        case mastery_paths
     }
 
     public init(from decoder: Decoder) throws {
@@ -111,6 +115,7 @@ public struct APIModuleItem: Codable, Equatable {
         content = try ModuleItemType?(from: decoder)
         content_details = try container.decodeIfPresent(ContentDetails.self, forKey: .content_details)
         completion_requirement = try container.decodeIfPresent(CompletionRequirement.self, forKey: .completion_requirement)
+        mastery_paths = try container.decodeIfPresent(APIMasteryPath.self, forKey: .mastery_paths)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -125,6 +130,7 @@ public struct APIModuleItem: Codable, Equatable {
         try container.encode(published, forKey: .published)
         try container.encodeIfPresent(content_details, forKey: .content_details)
         try container.encode(completion_requirement, forKey: .completion_requirement)
+        try container.encodeIfPresent(mastery_paths, forKey: .mastery_paths)
         try content?.encode(to: encoder)
     }
 }
@@ -150,4 +156,18 @@ public struct APIModuleItemSequence: Codable, Equatable {
 
     public let items: [Node]
     public let modules: [APIModule]
+}
+
+public struct APIMasteryPath: Codable, Equatable {
+    public struct AssignmentSet: Codable, Equatable {
+        public let assignments: [Assignment]
+    }
+
+    public struct Assignment: Codable, Equatable {
+        public let model: APIAssignment
+    }
+
+    public let locked: Bool
+    public let assignment_sets: [AssignmentSet]
+    public let selected_set_id: ID?
 }

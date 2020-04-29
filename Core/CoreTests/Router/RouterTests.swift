@@ -341,20 +341,6 @@ class RouterTests: CoreTestCase {
         XCTAssertNotNil(router.match(components))
     }
 
-    func testRouteToExternalURL() {
-        let mockView = MockViewController()
-        let url = URLComponents(string: "https://foobar.com/support")!
-        var didUseLocalSupportRoute = false
-        let router = Router(routes: [
-            RouteHandler("/support") { _, _ in
-                didUseLocalSupportRoute = true
-                return UIViewController()
-            },
-        ]) { _, _, _ in }
-        router.route(to: url, from: mockView)
-        XCTAssertFalse(didUseLocalSupportRoute)
-    }
-
     func testShowAlertController() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _ in }

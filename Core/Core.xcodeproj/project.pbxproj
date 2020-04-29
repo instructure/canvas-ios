@@ -67,7 +67,6 @@
 		3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */; };
 		3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */; };
 		3BDB8F3722E6389F003D81C3 /* PresenterPageViewLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */; };
-		3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */; };
 		3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE2C76E219335FA004B8E5E /* ColoredNavViewProtocol.swift */; };
 		3BEA6CC824588D1400BE4589 /* EditComposeRecipientsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC224588D1300BE4589 /* EditComposeRecipientsViewControllerTests.swift */; };
 		3BEA6CC924588D1400BE4589 /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC324588D1300BE4589 /* ComposeViewControllerTests.swift */; };
@@ -516,7 +515,6 @@
 		7DA260C423F72352005D2121 /* UploadMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B0226ABDB100B30C80 /* UploadMedia.swift */; };
 		7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */; };
 		7DA260C623F72352005D2121 /* GetConversationCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */; };
-		7DA260C723F72352005D2121 /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */; };
 		7DA260C823F72359005D2121 /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18359A722244E230005A918 /* AccessIconView.swift */; };
 		7DA260C923F72359005D2121 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */; };
 		7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */; };
@@ -695,6 +693,7 @@
 		B107F6CB234BB847000DAC83 /* ItemPickerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F6CA234BB847000DAC83 /* ItemPickerElement.swift */; };
 		B109249423CE81C400796903 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109249323CE81C400796903 /* RoleTests.swift */; };
 		B10E89072384807B00E7684E /* GradeListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10E89062384807B00E7684E /* GradeListViewControllerTests.swift */; };
+		B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1128B572450CF96008EA17E /* ModuleItemSequence.swift */; };
 		B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */; };
 		B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */; };
 		B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBB22405D31C00B736D6 /* CoreWebViewControllerTests.swift */; };
@@ -706,6 +705,7 @@
 		B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
+		B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12AB4A22457500F009872C4 /* MasteryPath.swift */; };
 		B133A78A221F59A3000E393E /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A789221F59A3000E393E /* ContextColorTests.swift */; };
 		B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14707AB24379FED00CE1DBD /* LTIViewController.storyboard */; };
 		B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14707B22437BC1C00CE1DBD /* ExternalURLViewController.swift */; };
@@ -1086,8 +1086,6 @@
 		3BDB8F3222E62D51003D81C3 /* PresenterPageViewLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLogger.swift; sourceTree = "<group>"; };
 		3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		3BDB8F3622E6389F003D81C3 /* PresenterPageViewLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPageViewLoggerTests.swift; sourceTree = "<group>"; };
-		3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudentsTests.swift; sourceTree = "<group>"; };
 		3BE2ADCA21B704F1008D91AB /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
 		3BE2C75F218CB50B004B8E5E /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
 		3BE2C763218CB53F004B8E5E /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
@@ -1732,6 +1730,7 @@
 		B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
 		B10E8904238447A700E7684E /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		B10E89062384807B00E7684E /* GradeListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewControllerTests.swift; sourceTree = "<group>"; };
+		B1128B572450CF96008EA17E /* ModuleItemSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequence.swift; sourceTree = "<group>"; };
 		B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnabledFeatureFlagsTests.swift; sourceTree = "<group>"; };
 		B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLTests.swift; sourceTree = "<group>"; };
 		B11AAC3C237A2428002BC41F /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
@@ -1745,6 +1744,7 @@
 		B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
+		B12AB4A22457500F009872C4 /* MasteryPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPath.swift; sourceTree = "<group>"; };
 		B12D462B23D754CF0000ED55 /* GoogleCloudAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleCloudAssignmentViewController.swift; sourceTree = "<group>"; };
 		B133A789221F59A3000E393E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		B1445300212E5B6E0009D848 /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
@@ -2421,10 +2421,12 @@
 				B1A6BC85218A5D07000515E3 /* LatePolicyInterval.swift */,
 				7DCF1EB7216BC876003AF358 /* LatePolicyStatus.swift */,
 				B1E789A321B0EC1A0087FE4A /* LogEvent.swift */,
+				B12AB4A22457500F009872C4 /* MasteryPath.swift */,
 				9F6878B0223952FB00E559CE /* MediaComment.swift */,
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				B15CA27D221DFA450014FB02 /* Module.swift */,
 				B1F1328D224BBBC7002C0555 /* ModuleItem.swift */,
+				B1128B572450CF96008EA17E /* ModuleItemSequence.swift */,
 				B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */,
 				B1F13289224BAD43002C0555 /* ModuleItemType.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
@@ -3516,7 +3518,6 @@
 				B1999AAC2305AA7B00DA97A4 /* GetEnabledFeatureFlags.swift */,
 				3BA9FF7A2332B3BA00196A06 /* GetGradingPeriods.swift */,
 				9FE84DD9214FE06300B95A68 /* GetGroup.swift */,
-				3BE1A6F923E4540D0037CAB1 /* GetObservedStudents.swift */,
 				7D819FFE228DB48C00C61EDD /* GetQuiz.swift */,
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
@@ -3667,7 +3668,6 @@
 				7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */,
 				B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */,
 				9FA690F123C7A683009D12D9 /* GetConversationCoursesTests.swift */,
-				3BE1A6FB23E46C0C0037CAB1 /* GetObservedStudentsTests.swift */,
 			);
 			path = "Use Cases";
 			sourceTree = "<group>";
@@ -4506,7 +4506,6 @@
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
 				3BDB8F3522E63676003D81C3 /* StringExtensionTests.swift in Sources */,
-				3BE1A6FC23E46C0C0037CAB1 /* GetObservedStudentsTests.swift in Sources */,
 				7DA31BB32421365400F4082B /* ConferenceDetailsViewControllerTests.swift in Sources */,
 				7DD4763B23FF21B600AB045C /* CalendarViewControllerTests.swift in Sources */,
 				7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */,
@@ -4914,7 +4913,6 @@
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
-				7DA260C723F72352005D2121 /* GetObservedStudents.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
 				7DA25F9F23F72136005D2121 /* APIAssignmentOverride+Requestable.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
@@ -4944,6 +4942,7 @@
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
 				7D72425C2429BEE9007ED42F /* DashboardSectionHeaderView.swift in Sources */,
+				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
 				7DA25FE523F721DA005D2121 /* App.swift in Sources */,
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
@@ -5047,6 +5046,7 @@
 				7DA260B423F72352005D2121 /* GetGroup.swift in Sources */,
 				7DA2606423F722D9005D2121 /* SubmissionWorkflowState.swift in Sources */,
 				7DA260BD23F72352005D2121 /* GetSubmission.swift in Sources */,
+				B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */,
 				B14707B42437BC1C00CE1DBD /* ExternalURLViewController.swift in Sources */,
 				7DA260E223F72359005D2121 /* KeyboardTransitioning.swift in Sources */,
 				7DA2600923F7227A005D2121 /* NSErrorExtensions.swift in Sources */,

@@ -367,9 +367,12 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return ProfileSettingsViewController.create()
     },
 
-    "/support/:type": { _, params in
-        let type = params["type"].flatMap { ErrorReportType(rawValue: $0) } ?? .problem
-        return ErrorReportViewController.create(type: type)
+    "/support/problem": { _, _ in
+        return ErrorReportViewController.create(type: .problem)
+    },
+
+    "/support/feature": { _, _ in
+        return ErrorReportViewController.create(type: .feature)
     },
 ]
 
