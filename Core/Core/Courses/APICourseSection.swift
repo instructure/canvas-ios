@@ -68,7 +68,7 @@ public struct GetCourseSectionsRequest: APIRequestable {
     let include: [Include]
     let perPage: Int
 
-    init(courseID: String, include: [Include] = [], perPage: Int = 99) {
+    init(courseID: String, include: [Include] = [], perPage: Int = 100) {
         self.courseID = courseID
         self.include = include
         self.perPage = perPage

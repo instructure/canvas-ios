@@ -41,11 +41,11 @@ class APIExternalToolRequestableTests: XCTestCase {
     }
 
     func testGetExternalToolsRequest() {
-        let request = GetExternalToolsRequest(context: ContextModel(.course, id: "1"), includeParents: true, perPage: 99)
+        let request = GetExternalToolsRequest(context: ContextModel(.course, id: "1"), includeParents: true, perPage: 100)
         XCTAssertEqual(request.path, "courses/1/external_tools")
         XCTAssertEqual(request.cacheKey, "course_1_external_tools")
         XCTAssertEqual(request.queryItems, [
-            URLQueryItem(name: "per_page", value: "99"),
+            URLQueryItem(name: "per_page", value: "100"),
             URLQueryItem(name: "include_parents", value: "true"),
         ])
     }

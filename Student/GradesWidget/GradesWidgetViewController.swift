@@ -90,7 +90,7 @@ class GradesWidgetViewController: UIViewController {
     lazy var courses: Store<LocalUseCase<Course>> = env.subscribe(scope: .all(orderBy: #keyPath(Course.id))) { [weak self] in
         self?.reload()
     }
-    lazy var favorites = env.subscribe(GetCourses(showFavorites: true, perPage: 99)) { [weak self] in
+    lazy var favorites = env.subscribe(GetCourses(showFavorites: true, perPage: 100)) { [weak self] in
         self?.reload()
     }
     lazy var submissionList = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in

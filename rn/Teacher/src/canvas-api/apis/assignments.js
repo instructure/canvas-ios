@@ -59,7 +59,7 @@ export function getAssignmentGradeableStudents (courseID: string, assignmentID: 
 
   let options = {
     params: {
-      per_page: 99,
+      per_page: 100,
     },
   }
   const students = paginate(url, options)

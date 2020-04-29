@@ -55,7 +55,7 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
                                                              types: ["ObserverEnrollment"],
                                                              includes: [.observed_users]),
                                        value: [])
-        let coursesTask = api.mock(GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 99))
+        let coursesTask = api.mock(GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 100))
 
         enrollmentsTask.paused = true
         coursesTask.paused = true

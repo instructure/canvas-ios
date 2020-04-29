@@ -62,4 +62,4 @@ type Paginated<T> = {|
 }
 ```
 
-If the request params include `per_page` of `99` or greater, then the `getNextPage` function will be automatically called as each page returns, so your component will incrementally receive the full `list`.
+If the request params include `per_page` of `100` or greater, then the `getNextPage` function will be automatically called as each page returns, so your component will incrementally receive the full `list`.

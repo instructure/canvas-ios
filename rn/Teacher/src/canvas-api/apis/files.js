@@ -24,7 +24,7 @@ import httpClient from '../httpClient'
 export function getFolderFiles (folderID: string): ApiPromise<File[]> {
   const files = paginate(`folders/${folderID}/files`, {
     params: {
-      per_page: 99,
+      per_page: 100,
       include: ['usage_rights'],
     },
   })
@@ -36,7 +36,7 @@ export function getFolderFiles (folderID: string): ApiPromise<File[]> {
 export function getFolderFolders (folderID: string): ApiPromise<Folder[]> {
   const files = paginate(`folders/${folderID}/folders`, {
     params: {
-      per_page: 99,
+      per_page: 100,
       include: ['usage_rights'],
     },
   })

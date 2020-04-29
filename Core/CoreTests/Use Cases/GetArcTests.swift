@@ -26,7 +26,7 @@ class GetArcTests: CoreTestCase {
     func testRequest() {
         XCTAssertEqual(useCase.request.context.contextType, .course)
         XCTAssertEqual(useCase.request.context.id, "1")
-        XCTAssertEqual(useCase.request.perPage, 99)
+        XCTAssertEqual(useCase.request.perPage, 100)
         XCTAssertTrue(useCase.request.includeParents)
     }
 

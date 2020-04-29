@@ -328,7 +328,7 @@ public class ListFoldersRequest: APIRequestable {
     let context: Context
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99) {
+    init(context: Context, perPage: Int? = 100) {
         self.context = context
         self.perPage = perPage
     }
@@ -352,7 +352,7 @@ public class ListFilesRequest: APIRequestable {
     let context: Context
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99) {
+    init(context: Context, perPage: Int? = 100) {
         self.context = context
         self.perPage = perPage
     }

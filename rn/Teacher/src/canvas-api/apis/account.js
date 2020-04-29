@@ -24,7 +24,7 @@ import { paginate, exhaust } from '../utils/pagination'
 export function getAccountNotifications (): ApiPromise<AccountNotification[]> {
   const groups = paginate(`accounts/self/users/self/account_notifications`, {
     params: {
-      per_page: 99,
+      per_page: 100,
     },
   })
   return exhaust(groups)

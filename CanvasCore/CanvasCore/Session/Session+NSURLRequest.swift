@@ -59,7 +59,7 @@ extension Session {
         
         var paramsPlusPagination = parameters
         if paginated {
-            paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 99
+            paramsPlusPagination["per_page"] = (parameters["per_page"] as? Int) ?? 100
         }
         
         var request = try URLRequest(method: .GET, URL: url, parameters: paramsPlusPagination, encoding: encoding)

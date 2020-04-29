@@ -26,7 +26,7 @@ export function getLTILaunchDefinitions (courseID: string): ApiPromise<LTILaunch
 
   const paginated = paginate(url, {
     params: {
-      per_page: 99,
+      per_page: 100,
       placements: ['course_navigation'],
     },
   })

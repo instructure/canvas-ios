@@ -14,6 +14,7 @@ app:
     opts:
       is_expand: false
   - RCT_NO_LAUNCH_PACKAGER: 1
+  - FORCE_BUNDLING: "1"
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other

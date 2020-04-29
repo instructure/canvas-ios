@@ -214,7 +214,7 @@ describe('model api', () => {
     })
 
     it('automatically calls getNextPage if page size >= 99', () => {
-      api.paginate('users/self/todo', { params: { per_page: 99 } })
+      api.paginate('users/self/todo', { params: { per_page: 100 } })
       const config = mock(httpClient.get).mock.calls[0][1]
       let response = template.apiResponse({
         data: [ 1 ],
@@ -233,7 +233,7 @@ describe('model api', () => {
       expect(httpClient.get).toHaveBeenCalledWith(
         'users/self/todo?page=2',
         {
-          params: { per_page: 99 },
+          params: { per_page: 100 },
           transform: expect.any(Function),
         }
       )
@@ -313,7 +313,7 @@ describe('model api', () => {
       expect(httpClient.get).toHaveBeenCalledWith(
         'courses/1/pages',
         {
-          params: { per_page: 99 },
+          params: { per_page: 100 },
           transform: expect.any(Function),
         }
       )

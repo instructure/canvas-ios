@@ -145,7 +145,7 @@ struct ListDiscussionTopicsRequest: APIRequestable {
     let include: [GetTopicRequest.Include]
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 99, include: [GetTopicRequest.Include] = GetTopicRequest.defaultIncludes) {
+    init(context: Context, perPage: Int? = 100, include: [GetTopicRequest.Include] = GetTopicRequest.defaultIncludes) {
         self.context = context
         self.include = include
         self.perPage = perPage
