@@ -151,9 +151,9 @@ workflows:
             scripts/build_automation/automateVersioning.sh verifyInputs
             scripts/build_automation/automateVersioning.sh checkoutReleaseBranch
             scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist Parent/Parent/Info.plist
-            scripts/build_automation/automateVersioning.sh generateReleaseNotes
             git add Parent/Parent/Info.plist
             scripts/build_automation/automateVersioning.sh checkInReleaseBranchAndTag
+            scripts/build_automation/automateVersioning.sh generateReleaseNotes
 
         title: Branch,Tag,Trigger Release
     - trigger-bitrise-workflow:
