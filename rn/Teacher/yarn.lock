@@ -7063,11 +7063,6 @@ react-native-counter@Kerumen/react-native-counter:
   dependencies:
     eases "^1.0.8"
 
-react-native-device-info@^0.10.1:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"
-  integrity sha1-NQzWjtQ4OQIt3qCjpCNDnxb6T7o=
-
 react-native-document-picker@Elyx0/react-native-document-picker:
   version "3.3.3"
   resolved "https://codeload.github.com/Elyx0/react-native-document-picker/tar.gz/cbd209f2d484ae91986836fb9453731b77aa1807"

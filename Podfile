@@ -59,7 +59,6 @@ def react_native_pods
   pod 'ReactNativeART', :path => './rn/Teacher/node_modules/@react-native-community/art'
   pod 'RNAudio', :path => './rn/Teacher/node_modules/react-native-audio'
   pod 'RNCAsyncStorage', :path => './rn/Teacher/node_modules/@react-native-community/async-storage'
-  pod 'RNDeviceInfo', :path => './rn/Teacher/node_modules/react-native-device-info'
   pod 'RNFS', :path => './rn/Teacher/node_modules/react-native-fs'
   pod 'RNSearchBar', :path => './rn/Teacher/node_modules/react-native-search-bar'
   pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'

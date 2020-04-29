@@ -315,13 +315,6 @@ NativeModules.ModuleItemsProgress = {
 
 jest.mock('../../src/common/components/AuthenticatedWebView', () => 'AuthenticatedWebView')
 jest.mock('../../src/common/components/A11yGroup', () => 'A11yGroup')
-jest.mock('react-native-device-info', () => {
-  return {
-    getVersion: () => {
-      return '1.0'
-    },
-  }
-})
 
 jest.mock('../../src/canvas-api/httpClient')
 

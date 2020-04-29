@@ -391,8 +391,6 @@ PODS:
     - React
   - RNCAsyncStorage (1.9.0):
     - React
-  - RNDeviceInfo (0.9.3):
-    - React
   - RNFS (2.16.6):
     - React
   - RNSearchBar (3.5.1):
@@ -448,7 +446,6 @@ DEPENDENCIES:
   - "ReactNativeART (from `./rn/Teacher/node_modules/@react-native-community/art`)"
   - RNAudio (from `./rn/Teacher/node_modules/react-native-audio`)
   - "RNCAsyncStorage (from `./rn/Teacher/node_modules/@react-native-community/async-storage`)"
-  - RNDeviceInfo (from `./rn/Teacher/node_modules/react-native-device-info`)
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
@@ -548,8 +545,6 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-audio"
   RNCAsyncStorage:
     :path: "./rn/Teacher/node_modules/@react-native-community/async-storage"
-  RNDeviceInfo:
-    :path: "./rn/Teacher/node_modules/react-native-device-info"
   RNFS:
     :path: "./rn/Teacher/node_modules/react-native-fs"
   RNSearchBar:
@@ -621,12 +616,11 @@ SPEC CHECKSUMS:
   ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
   RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
   RNCAsyncStorage: 453cd7c335ec9ba3b877e27d02238956b76f3268
-  RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 8e51842804c690f9865f586ce8962a61a035b1ca
+PODFILE CHECKSUM: 40de70f973b9228051187200695dc9f1cf0cfcc8
 
 COCOAPODS: 1.9.1
