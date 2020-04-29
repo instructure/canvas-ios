@@ -54,7 +54,6 @@
     "react-native-button": "^2.1.0",
     "react-native-camera": "^3.23.1",
     "react-native-counter": "Kerumen/react-native-counter",
-    "react-native-device-info": "^0.10.1",
     "react-native-document-picker": "Elyx0/react-native-document-picker",
     "react-native-fs": "^2.3.2",
     "react-native-hyperlink": "obipawan/react-native-hyperlink",
