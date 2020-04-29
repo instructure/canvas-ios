@@ -98,11 +98,7 @@
 		7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D00F3472457776600C370D5 /* StudentDetailsViewController.storyboard */; };
 		7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F3492458A83900C370D5 /* GetAlertThresholdsTests.swift */; };
 		7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F34B2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift */; };
-		7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */; };
-		7D111CFF23A2DDD100C912C0 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D111CFE23A2DDD100C912C0 /* ConversationListViewController.swift */; };
-		7D111D0123A2DDDF00C912C0 /* ConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D111D0023A2DDDF00C912C0 /* ConversationListViewController.storyboard */; };
-		7D1591BC23AD79B100ED0106 /* ComposeRecipientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1591BB23AD79B100ED0106 /* ComposeRecipientsView.swift */; };
-		7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE023AC1E0A005BA31D /* ComposeViewControllerTests.swift */; };
+		7D231BE123AC1E0A005BA31D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
 		7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D33976B24534CD30074ED71 /* StudentListViewController.swift */; };
 		7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D33976D24534D8C0074ED71 /* StudentListViewController.storyboard */; };
@@ -441,8 +437,6 @@
 		3B36A2E32322C26B00599A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B36A2EC2322C2A000599A1E /* APIAlertThresholdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdTests.swift; sourceTree = "<group>"; };
 		3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdFixture.swift; sourceTree = "<group>"; };
-		3B54E3542326F87D00D8D1D2 /* StudentSettingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSettingsPresenterTests.swift; sourceTree = "<group>"; };
-		3B432E2C23D7A5EA00253849 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
 		3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
 		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
@@ -592,7 +586,6 @@
 		7D00F3472457776600C370D5 /* StudentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		7D00F3492458A83900C370D5 /* GetAlertThresholdsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlertThresholdsTests.swift; sourceTree = "<group>"; };
 		7D00F34B2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
-		7D016B6223E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D32963823D6574A008ED385 /* TableEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableEmptyView.xib; sourceTree = "<group>"; };
 		7D33976B24534CD30074ED71 /* StudentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
@@ -749,6 +742,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B1F6F06245928FA0057E049 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		3B36A2E02322C26A00599A1E /* ParentUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +936,7 @@
 				5E7790AF1C46CBA100429BF8 /* Frameworks */,
 				5E6441881C3EE2E0003D7397 /* Products */,
 				E2CB0046CD9881A39071A512 /* Pods */,
+				3B1F6F06245928FA0057E049 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1418,10 +1419,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */,
-				974BA7F923A89C5C00E09D5A /* ConversationDetailViewController.storyboard in Resources */,
 				7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */,
 				7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */,
-				7D57D3CE23AADAAC00EB2CC5 /* ComposeViewController.storyboard in Resources */,
 				7D4C6F35243BE099003C1728 /* AdminViewController.storyboard in Resources */,
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */,
@@ -1437,8 +1436,6 @@
 				2CB69BB41D91CDF00059C5A5 /* DetailsInfoCell.xib in Resources */,
 				7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
-				3B92109C231F02D500820CC3 /* StudentSettingsViewController.storyboard in Resources */,
-				7D6F4CE923C676CE001C957D /* ComposeReplyViewController.storyboard in Resources */,
 				2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */,
 				2CB69BBD1D91CDFB0059C5A5 /* DetailsLocationCell.xib in Resources */,
 			);
@@ -1585,27 +1582,21 @@
 				97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */,
 				97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
-				3B36A2ED2322C2A000599A1E /* GetAlertThresholdRequestableTests.swift in Sources */,
+				3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
-				B1AA55D0235785A200DFD184 /* SettingsViewControllerTests.swift in Sources */,
+				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
-				3B8F23CB2327050F00788730 /* StudentSettingsPresenterTests.swift in Sources */,
-				B109249023CE7F9500796903 /* EditComposeRecipientsViewControllerTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */,
-				7D016B6323E8C6D100C6E0CA /* AttachmentCardsViewControllerTests.swift in Sources */,
 				7D00F34624574A9900C370D5 /* GetObservedStudentsTests.swift in Sources */,
-				7DFDB43223A3EDFB00B28DED /* ConversationListViewControllerTests.swift in Sources */,
+				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
-				7D6F4CEB23C69F7F001C957D /* ComposeReplyViewControllerTests.swift in Sources */,
-				7D231BE123AC1E0A005BA31D /* ComposeViewControllerTests.swift in Sources */,
+				7D231BE123AC1E0A005BA31D /* (null) in Sources */,
 				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
 				7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */,
-				9F397F8523C8D54600A3E2AF /* ConversationCoursesActionSheetTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
-				97D477C923AA738300A6BC78 /* ConversationDetailViewControllerTests.swift in Sources */,
 				7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */,
 				97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */,
 				B18F80E423463A060001A666 /* RoutesTests.swift in Sources */,
@@ -1630,10 +1621,8 @@
 				7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */,
 				497C48E41F9153D100A3BC06 /* Student+Details.swift in Sources */,
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
-				3B36A2D92322C15200599A1E /* AlertThresholdRequestables.swift in Sources */,
 				3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */,
-				B109249223CE7FC900796903 /* EditComposeRecipientsViewController.swift in Sources */,
-				3B432E2D23D7A5EA00253849 /* ConversationDetailCell.swift in Sources */,
+				3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
