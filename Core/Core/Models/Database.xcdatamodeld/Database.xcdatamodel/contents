@@ -50,6 +50,7 @@
         <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
+        <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
@@ -320,12 +321,17 @@
         <relationship name="moduleItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ModuleItem" inverseName="masteryPath" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="MasteryPathAssignment" representedClassName="Core.MasteryPathAssignment" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="pointsPossible" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignmentSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignmentSet" inverseName="assignments" inverseEntity="MasteryPathAssignmentSet"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="masteryPathAssignment" inverseEntity="Assignment"/>
     </entity>
     <entity name="MasteryPathAssignmentSet" representedClassName="Core.MasteryPathAssignmentSet" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="assignmentSet" inverseEntity="MasteryPathAssignment"/>
         <relationship name="masteryPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPath" inverseName="assignmentSets" inverseEntity="MasteryPath"/>
     </entity>
@@ -679,7 +685,7 @@
     <elements>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="583"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="598"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="163"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
@@ -705,8 +711,8 @@
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="103"/>
-        <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="73"/>
+        <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
+        <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="103"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
         <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="358"/>

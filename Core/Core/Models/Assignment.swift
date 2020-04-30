@@ -51,6 +51,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var todo: Todo?
     @NSManaged public var syllabus: Syllabus?
+    @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -101,6 +102,8 @@ public class Assignment: NSManagedObject {
         guard let assignmentGroup = assignmentGroup else { return nil }
         return assignmentGroup.name
     }
+
+    public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
 
     @discardableResult
     public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool) -> Assignment {

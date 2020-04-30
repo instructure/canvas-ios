@@ -43,6 +43,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var lockExplanation: String?
     @NSManaged public var masteryPathItem: ModuleItem?
     @NSManaged public var masteryPath: MasteryPath?
+    @NSManaged public var moduleItem: ModuleItem? // inverse of masteryPathItem
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -128,6 +129,11 @@ public class ModuleItem: NSManagedObject {
             path.type = item.content
             path.masteryPath = MasteryPath.save(masteryPath, in: context)
             model.masteryPathItem = path
+        } else {
+            if let masteryPathItem = model.masteryPathItem {
+                context.delete(masteryPathItem)
+            }
+            model.masteryPathItem = nil
         }
         return model
     }

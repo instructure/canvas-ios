@@ -703,6 +703,8 @@
 		B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */; };
 		B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */; };
 		B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */; };
+		B127C0EE245B2EE3008DB716 /* MasteryPathAssignmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B127C0ED245B2EE3008DB716 /* MasteryPathAssignmentCell.xib */; };
+		B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127C0EF245B56BE008DB716 /* MasteryPathViewControllerTests.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
 		B12A763A2191459F000693DE /* file-post-body.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A76392191459F000693DE /* file-post-body.txt */; };
 		B12AB4A32457500F009872C4 /* MasteryPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12AB4A22457500F009872C4 /* MasteryPath.swift */; };
@@ -736,6 +738,9 @@
 		B175D61E23A9694E00F8E696 /* SpringBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61D23A9694E00F8E696 /* SpringBoard.swift */; };
 		B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D61F23A9696200F8E696 /* SpringBoardTests.swift */; };
 		B17855B3226ABDDD00B30C80 /* UploadMediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */; };
+		B17B3E97245A1BB300DC3318 /* MasteryPathAssignmentSetDivider.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17B3E96245A1BB300DC3318 /* MasteryPathAssignmentSetDivider.xib */; };
+		B17C83292459ED4D00CE1FED /* MasteryPathViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B17C83282459ED4D00CE1FED /* MasteryPathViewController.storyboard */; };
+		B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17F27642459EDF100CD47A1 /* MasteryPathViewController.swift */; };
 		B18359AA222450DE0005A918 /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18359A9222450DE0005A918 /* AccessIconView.xib */; };
 		B1846D1322EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1846D1222EA32F000BC4C4A /* NotificationCenterExtensionsTests.swift */; };
 		B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */; };
@@ -1742,6 +1747,8 @@
 		B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewControllerTests.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
+		B127C0ED245B2EE3008DB716 /* MasteryPathAssignmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasteryPathAssignmentCell.xib; sourceTree = "<group>"; };
+		B127C0EF245B56BE008DB716 /* MasteryPathViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPathViewControllerTests.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
 		B12A76392191459F000693DE /* file-post-body.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "file-post-body.txt"; sourceTree = "<group>"; };
 		B12AB4A22457500F009872C4 /* MasteryPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPath.swift; sourceTree = "<group>"; };
@@ -1787,7 +1794,10 @@
 		B175D61F23A9696200F8E696 /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		B17855B0226ABDB100B30C80 /* UploadMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMedia.swift; sourceTree = "<group>"; };
 		B17855B2226ABDDD00B30C80 /* UploadMediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMediaTests.swift; sourceTree = "<group>"; };
+		B17B3E96245A1BB300DC3318 /* MasteryPathAssignmentSetDivider.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasteryPathAssignmentSetDivider.xib; sourceTree = "<group>"; };
+		B17C83282459ED4D00CE1FED /* MasteryPathViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MasteryPathViewController.storyboard; sourceTree = "<group>"; };
 		B17F23B02137981B00771F86 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
+		B17F27642459EDF100CD47A1 /* MasteryPathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPathViewController.swift; sourceTree = "<group>"; };
 		B18359A722244E230005A918 /* AccessIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIconView.swift; sourceTree = "<group>"; };
 		B18359A9222450DE0005A918 /* AccessIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccessIconView.xib; sourceTree = "<group>"; };
 		B183F99C225297F2000A6930 /* PublishedIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedIconView.swift; sourceTree = "<group>"; };
@@ -2607,6 +2617,7 @@
 		7D159CE9242E553900A77A15 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B17C831F2458C16000CE1FED /* Mastery Paths */,
 				B162469E2445001E00982C52 /* CompletionRequirement.swift */,
 				B1A784892441136C001A2B50 /* GetModuleItem.swift */,
 				B1A7848A2441136C001A2B50 /* GetModuleItemSequence.swift */,
@@ -2927,6 +2938,7 @@
 			isa = PBXGroup;
 			children = (
 				B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */,
+				B127C0EF245B56BE008DB716 /* MasteryPathViewControllerTests.swift */,
 				B1F614AC243D0BD300F1FBA3 /* ModuleItems */,
 				7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */,
 				7D67C269242E6BE900BC5CD1 /* ModuleStoreTests.swift */,
@@ -3563,6 +3575,17 @@
 				B175D61F23A9696200F8E696 /* SpringBoardTests.swift */,
 			);
 			path = SpringBoard;
+			sourceTree = "<group>";
+		};
+		B17C831F2458C16000CE1FED /* Mastery Paths */ = {
+			isa = PBXGroup;
+			children = (
+				B17B3E96245A1BB300DC3318 /* MasteryPathAssignmentSetDivider.xib */,
+				B17C83282459ED4D00CE1FED /* MasteryPathViewController.storyboard */,
+				B17F27642459EDF100CD47A1 /* MasteryPathViewController.swift */,
+				B127C0ED245B2EE3008DB716 /* MasteryPathAssignmentCell.xib */,
+			);
+			path = "Mastery Paths";
 			sourceTree = "<group>";
 		};
 		B1911CE721C845E700F42F91 /* Notifications */ = {
@@ -4321,6 +4344,7 @@
 				3B4D89262450A8E9004ED120 /* ComposeReplyViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */,
+				B17C83292459ED4D00CE1FED /* MasteryPathViewController.storyboard in Resources */,
 				7DEAD09822789E8A0030C28A /* RichContentEditor.css in Resources */,
 				7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */,
 				7DFFAB1A219DDB22003E71F8 /* CommentListViewController.storyboard in Resources */,
@@ -4329,11 +4353,13 @@
 				7D159CF0242E55AD00A77A15 /* ModuleListViewController.storyboard in Resources */,
 				9FBFE6D322412B9E002B3796 /* ActAsUserViewController.storyboard in Resources */,
 				B14707B92437CC9000CE1DBD /* ModuleItemSequenceViewController.storyboard in Resources */,
+				B17B3E97245A1BB300DC3318 /* MasteryPathAssignmentSetDivider.xib in Resources */,
 				7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */,
 				B102EEB4243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard in Resources */,
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7D7242622429C473007ED42F /* CourseListViewController.storyboard in Resources */,
+				B127C0EE245B2EE3008DB716 /* MasteryPathAssignmentCell.xib in Resources */,
 				B14707B52437BC1C00CE1DBD /* ExternalURLViewController.storyboard in Resources */,
 				3B4D89362450A8F4004ED120 /* ConversationListViewController.storyboard in Resources */,
 				7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */,
@@ -4526,6 +4552,7 @@
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				3B67BCB821B5E72000055324 /* CreateSubmissionTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
+				B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DE949822385E68100B27F93 /* TodoListViewControllerTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
@@ -5101,6 +5128,7 @@
 				7DA25F9E23F72136005D2121 /* APIAssignmentOverride.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
 				7DA25FCE23F72136005D2121 /* APISubmissionRequestable.swift in Sources */,
+				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
 				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,

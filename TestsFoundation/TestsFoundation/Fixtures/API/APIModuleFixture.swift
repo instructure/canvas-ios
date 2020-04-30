@@ -117,3 +117,22 @@ extension APIMasteryPath {
         return .init(locked: locked, assignment_sets: assignment_sets, selected_set_id: selected_set_id)
     }
 }
+
+extension APIMasteryPath.AssignmentSet {
+    public static func make(
+        id: ID = "1",
+        position: Int = 0,
+        assignments: [APIMasteryPath.Assignment] = [.make()]
+    ) -> Self {
+        return .init(id: id, position: position, assignments: assignments)
+    }
+}
+
+extension APIMasteryPath.Assignment {
+    public static func make(
+        position: Int = 0,
+        model: APIAssignment = .make()
+    ) -> Self {
+        return .init(position: position, model: model)
+    }
+}

@@ -21,7 +21,7 @@ import SafariServices
 
 private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
 
-public class ModuleListViewController: UIViewController, ColoredNavViewProtocol {
+public class ModuleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -83,7 +83,6 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         tableView.backgroundColor = .named(.backgroundLightest)
         tableView.refreshControl = refreshControl
         tableView.registerCell(EmptyCell.self)
-        tableView.registerCell(LoadingCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
         if let footer = tableView.tableFooterView as? UILabel {
             footer.isHidden = true
@@ -103,6 +102,9 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
         if !store.shouldRefresh {
             scrollToModule()
         }
+
+        // TODO: remove this
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(refreshProgress))
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -149,7 +151,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol 
     func scrollToModule() {
         if let moduleID = moduleID, let section = store.sectionForModule(moduleID) {
             let rect = tableView.rect(forSection: section)
-            tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
+            tableView.setContentOffset(CGPoint(x: 0, y: rect.maxY), animated: true)
         }
     }
 
@@ -213,11 +215,9 @@ extension ModuleListViewController: UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let module = store[section]
+        let pending = store.isLoading || store.isLoadingItemsForModule(module.id)
         if isSectionExpanded(section) == true {
-            if store.isLoadingItemsForModule(module.id) {
-                return module.items.count + 1 // loading cell
-            }
-            if module.items.count == 0 {
+            if !pending, module.items.count == 0 {
                 return 1 // empty cell
             }
             return module.items.count
@@ -228,9 +228,6 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let module = store[indexPath.section]
         if indexPath.row == module.items.count {
-            if store.isLoadingItemsForModule(module.id) {
-                return tableView.dequeue(for: indexPath) as LoadingCell
-            }
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
         let item = module.items[indexPath.row]
@@ -251,6 +248,11 @@ extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
         let item = store[indexPath.section].items[indexPath.row]
+        if let masteryPath = item.masteryPath, masteryPath.needsSelection {
+            let viewController = MasteryPathViewController.create(masteryPath: masteryPath)
+            viewController.delegate = self
+            env.router.show(viewController, from: self)
+        }
         guard let htmlURL = item.htmlURL else {
             tableView.deselectRow(at: indexPath, animated: true)
             return
@@ -309,5 +311,25 @@ extension ModuleListViewController: ModuleStoreDelegate {
 
     func moduleStoreDidEncounterError(_ error: Error) {
         errorView.isHidden = false
+    }
+}
+
+extension ModuleListViewController: MasteryPathDelegate {
+    func didSelectMasteryPath(id: String, inModule moduleID: String, item itemID: String) {
+        spinnerView.isHidden = false
+        let request = PostSelectMasteryPath(
+            courseID: courseID,
+            moduleID: moduleID,
+            moduleItemID: itemID,
+            assignmentSetID: id
+        )
+        env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
+            self?.spinnerView.isHidden = true
+            if let error = error {
+                self?.showError(error)
+                return
+            }
+            self?.refreshProgress()
+        } }
     }
 }

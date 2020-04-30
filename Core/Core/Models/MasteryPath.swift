@@ -38,27 +38,37 @@ public class MasteryPath: NSManagedObject {
 }
 
 public class MasteryPathAssignmentSet: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var position: Int
     @NSManaged public var masteryPath: MasteryPath?
     @NSManaged public var assignments: Set<MasteryPathAssignment>
 
     public static func save(_ item: APIMasteryPath.AssignmentSet, in context: NSManagedObjectContext) -> MasteryPathAssignmentSet {
         let model = context.insert() as MasteryPathAssignmentSet
-        model.assignments = Set(item.assignments.map { .save($0.model, in: context) })
+        model.id = item.id.value
+        model.assignments = Set(item.assignments.map { .save($0, in: context) })
+        model.position = item.position ?? 0
         return model
     }
 }
 
 public class MasteryPathAssignment: NSManagedObject {
     @NSManaged public var id: String
+    @NSManaged public var courseID: String
     @NSManaged public var name: String
+    @NSManaged public var position: Int
     @NSManaged public var pointsPossible: NSNumber?
     @NSManaged public var assignmentSet: MasteryPathAssignmentSet?
+    @NSManaged public var model: Assignment?
 
-    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext) -> MasteryPathAssignment {
+    public static func save(_ item: APIMasteryPath.Assignment, in context: NSManagedObjectContext) -> MasteryPathAssignment {
         let model = context.insert() as MasteryPathAssignment
-        model.id = item.id.value
-        model.name = item.name
-        model.pointsPossible = NSNumber(value: item.points_possible)
+        model.position = item.position ?? 0
+        model.id = item.model.id.value
+        model.courseID = item.model.course_id.value
+        model.name = item.model.name
+        model.pointsPossible = NSNumber(value: item.model.points_possible)
+        model.model = Assignment.save(item.model, in: context, updateSubmission: false)
         return model
     }
 }
