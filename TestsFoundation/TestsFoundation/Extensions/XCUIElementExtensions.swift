@@ -32,6 +32,10 @@ public extension XCUIElement {
         return descendants(matching: type).matching(id: id).firstElement
     }
 
+    func find(idStartingWith prefix: String, type: XCUIElement.ElementType = .any) -> Element {
+        return descendants(matching: type).matching(idStartingWith: prefix).firstElement
+    }
+
     func find(value: String, type: XCUIElement.ElementType = .any) -> Element {
         return descendants(matching: type).matching(value: value).firstElement
     }

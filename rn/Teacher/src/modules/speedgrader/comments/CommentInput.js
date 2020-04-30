@@ -111,7 +111,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
           { Boolean(this.props.addMedia) &&
             <TouchableOpacity
               style={styles.mediaButton}
-              testID='comment-input.add-media'
+              testID='SubmissionComments.addMediaButton'
               onPress={this.props.addMedia}
               accessible
               accessibilityLabel={addMedia}
@@ -133,7 +133,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
                 this.props.autoFocus
               }
               multiline
-              testID='comment-input.comment'
+              testID='SubmissionComments.commentTextView'
               placeholder={placeholder}
               placeholderTextColor={colors.textDark}
               style={styles.input}
@@ -148,7 +148,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
               CommentInput.persistentComment.text.length > 0 &&
               <TouchableOpacity
                 style={styles.sendButton}
-                testID='comment-input.send'
+                testID='SubmissionComments.addCommentButton'
                 onPress={!disableSend ? this.makeComment : null}
                 accessibilityLabel={send}
                 accessibilityTraits={['button']}

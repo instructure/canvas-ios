@@ -107,13 +107,13 @@ export default class CommentRow extends Component<CommentRowProps, any> {
   }
 
   renderContents = () => {
-    const { contents, from } = this.props
+    const { contents, from, localID } = this.props
     switch (contents.type) {
       case 'text':
         let { comment } = contents
         return (
           <View>
-            <ChatBubble from={from} message={comment.comment} />
+            <ChatBubble from={from} message={comment.comment} testID={`SubmissionComments.textCell.${localID}`} />
             {Boolean(comment.attachments) && comment.attachments.map((attachment) => {
               return <CommentAttachment attachment={attachment} from={from} onPress={this.showAttachment(attachment)} />
             })}

@@ -133,7 +133,8 @@ async function completeUpload (id, type, context, contextID) {
 // UTILS
 
 function formatDomain (domain) {
-  if (!domain.startsWith('https')) {
+  // localhost domain used for testing over an unsecured connection
+  if (!domain.startsWith('https') && !domain.startsWith('http://localhost:')) {
     domain = `https://${domain}`
   }
   if (domain.endsWith('/')) {

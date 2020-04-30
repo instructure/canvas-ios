@@ -21,9 +21,13 @@ import TestsFoundation
 import XCTest
 @testable import CoreUITests
 
-enum SpeedGrader {
-    static var doneButton: Element {
-        return app.find(id: "header.navigation-done")
+public enum SpeedGrader: String, RawElementWrapper {
+    case doneButton = "header.navigation-done"
+    case gradePickerButton = "grade-picker.button"
+
+    public static func segmentButton(label: String) -> Element {
+        let segmentControl = app.find(id: "speedgrader.segment-control").waitToExist()
+        return segmentControl.rawElement.buttons.matching(label: label).firstElement
     }
 
     static func userName(userID: String) -> Element {
@@ -37,9 +41,5 @@ enum SpeedGrader {
             button.tap()
             button.waitToVanish()
         }
-    }
-
-    static var gradePickerButton: Element {
-        app.find(id: "grade-picker.button")
     }
 }

@@ -82,7 +82,7 @@ exports[`AudioRecorder renders default state 1`] = `
           }
         }
         onPress={[Function]}
-        testID="audio-recorder.cancel-btn"
+        testID="AudioRecorder.cancelButton"
         underlayColor="transparent"
       >
         <Image
@@ -136,7 +136,7 @@ exports[`AudioRecorder renders default state 1`] = `
             "width": 64,
           }
         }
-        testID="audio-recorder.record-btn"
+        testID="AudioRecorder.recordButton"
       >
         <View />
       </TouchableHighlight>
@@ -249,7 +249,7 @@ exports[`AudioRecorder renders recording state 1`] = `
             "width": 32,
           }
         }
-        testID="audio-recorder.stop-btn"
+        testID="AudioRecorder.stopButton"
       >
         <View />
       </TouchableHighlight>
@@ -340,7 +340,7 @@ exports[`AudioRecorder renders reset state 1`] = `
           }
         }
         onPress={[Function]}
-        testID="audio-recorder.cancel-btn"
+        testID="AudioRecorder.cancelButton"
         underlayColor="transparent"
       >
         <Image
@@ -394,7 +394,7 @@ exports[`AudioRecorder renders reset state 1`] = `
             "width": 64,
           }
         }
-        testID="audio-recorder.record-btn"
+        testID="AudioRecorder.recordButton"
       >
         <View />
       </TouchableHighlight>
@@ -444,7 +444,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           }
         }
         onPress={[Function]}
-        testID="audio-recorder.reset-btn"
+        testID="AudioRecorder.clearButton"
         underlayColor="transparent"
       >
         <Image
@@ -516,7 +516,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           }
         }
         onPress={[Function]}
-        testID="audio-recorder.cancel-btn"
+        testID="AudioRecorder.cancelButton"
         underlayColor="transparent"
       >
         <Image
@@ -558,7 +558,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           "paddingVertical": 12,
         }
       }
-      testID="audio-recorder.done-btn"
+      testID="AudioRecorder.sendButton"
     >
       <View>
         <Text

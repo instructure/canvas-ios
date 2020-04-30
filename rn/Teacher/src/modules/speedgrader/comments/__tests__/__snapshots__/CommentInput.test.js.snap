@@ -53,7 +53,7 @@ exports[`CommentInput CommentInput renders 1`] = `
             "marginTop": 2,
           }
         }
-        testID="comment-input.comment"
+        testID="SubmissionComments.commentTextView"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -130,7 +130,7 @@ exports[`CommentInput Wont render the media buttons when allowMediaInputs is set
             "marginTop": 2,
           }
         }
-        testID="comment-input.comment"
+        testID="SubmissionComments.commentTextView"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -207,7 +207,7 @@ exports[`CommentInput disables the send button with a prop 1`] = `
             "marginTop": 2,
           }
         }
-        testID="comment-input.comment"
+        testID="SubmissionComments.commentTextView"
         underlineColorAndroid="transparent"
         value=""
       />

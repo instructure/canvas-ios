@@ -57,7 +57,6 @@
 		7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		7DBF920322690E9400710D0F /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC5717B22F8B1CB00F2E9BB /* AssignmentDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3B22F8A0A0000AACCE /* AssignmentDetailsTests.swift */; };
-		7DC5717C22F8B1CB00F2E9BB /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3E22F8A0A0000AACCE /* AudioRecorder.swift */; };
 		7DC5717D22F8B1CB00F2E9BB /* Syllabus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4022F8A0A0000AACCE /* Syllabus.swift */; };
 		7DC5717E22F8B1CB00F2E9BB /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4122F8A0A0000AACCE /* SyllabusTests.swift */; };
 		7DC5717F22F8B1CB00F2E9BB /* FilePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4422F8A0A0000AACCE /* FilePicker.swift */; };
@@ -625,7 +624,6 @@
 		7DCF0F3722F8A096000AACCE /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		7DCF0F3822F8A096000AACCE /* StudentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTestCase.swift; sourceTree = "<group>"; };
 		7DCF0F3B22F8A0A0000AACCE /* AssignmentDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsTests.swift; sourceTree = "<group>"; };
-		7DCF0F3E22F8A0A0000AACCE /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		7DCF0F4022F8A0A0000AACCE /* Syllabus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Syllabus.swift; sourceTree = "<group>"; };
 		7DCF0F4122F8A0A0000AACCE /* SyllabusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		7DCF0F4422F8A0A0000AACCE /* FilePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePicker.swift; sourceTree = "<group>"; };
@@ -1484,14 +1482,6 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
-		7DCF0F3F22F8A0A0000AACCE /* AudioVideo */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0F3E22F8A0A0000AACCE /* AudioRecorder.swift */,
-			);
-			path = AudioVideo;
-			sourceTree = "<group>";
-		};
 		7DCF0F4222F8A0A0000AACCE /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
@@ -1729,7 +1719,6 @@
 			children = (
 				E89B3001244F3EB0007CF19B /* Conferences */,
 				7DCF0F3D22F8A0A0000AACCE /* Assignments */,
-				7DCF0F3F22F8A0A0000AACCE /* AudioVideo */,
 				7DCF0F4322F8A0A0000AACCE /* Course */,
 				E8EA86162304A36000E4FD76 /* Dashboard */,
 				7DCF0F4522F8A0A0000AACCE /* FilePicker */,
@@ -2444,7 +2433,6 @@
 				E8C6F50723D627260086B865 /* QuizzesTests.swift in Sources */,
 				E8C6F52A23D63A1F0086B865 /* StudentUITestCase.swift in Sources */,
 				7DC5718A22F8B1CB00F2E9BB /* SubmissionDetailsTests.swift in Sources */,
-				7DC5717C22F8B1CB00F2E9BB /* AudioRecorder.swift in Sources */,
 				7DC5718C22F8B1CB00F2E9BB /* SubmissionFilesTests.swift in Sources */,
 				E8C6F52923D638100086B865 /* LoginStartTests.swift in Sources */,
 				7DC5718722F8B1CB00F2E9BB /* DocViewer.swift in Sources */,

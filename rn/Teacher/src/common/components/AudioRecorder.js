@@ -97,7 +97,7 @@ export default class AudioRecorder extends Component<Props, any> {
               <TouchableHighlight
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 onPress={this._remove}
-                testID='audio-recorder.reset-btn'
+                testID='AudioRecorder.clearButton'
                 underlayColor='transparent'
                 accessibilityLabel={i18n('Clear recording')}
                 accessibilityTraits='button'
@@ -116,7 +116,7 @@ export default class AudioRecorder extends Component<Props, any> {
               <TouchableHighlight
                 onPress={this._cancel}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                testID='audio-recorder.cancel-btn'
+                testID='AudioRecorder.cancelButton'
                 underlayColor='transparent'
                 accessibilityLabel={i18n('Cancel')}
                 accessibilityTraits='button'
@@ -218,7 +218,7 @@ export default class AudioRecorder extends Component<Props, any> {
         <TouchableHighlight
           style={style.recordButton}
           onPress={this.startRecording}
-          testID='audio-recorder.record-btn'
+          testID='AudioRecorder.recordButton'
           accessibilityLabel={i18n('Start recording')}
           accessibilityTraits='button'
         >
@@ -234,7 +234,7 @@ export default class AudioRecorder extends Component<Props, any> {
         <TouchableHighlight
           style={style.stopButton}
           onPress={this.stopRecording}
-          testID='audio-recorder.stop-btn'
+          testID='AudioRecorder.stopButton'
           accessibilityLabel={i18n('Stop recording')}
           accessibilityTraits='button'
         >
@@ -250,7 +250,7 @@ export default class AudioRecorder extends Component<Props, any> {
       <TouchableHighlight
         style={style.sendButton}
         onPress={this._sendRecording}
-        testID='audio-recorder.done-btn'
+        testID='AudioRecorder.sendButton'
         accessibilityLabel={text}
       >
         <View>

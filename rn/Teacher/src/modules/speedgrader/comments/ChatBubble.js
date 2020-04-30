@@ -31,6 +31,7 @@ import { colors, createStyleSheet } from '../../../common/stylesheet'
 type BubbleProps = {
   message: string,
   from: 'me' | 'them',
+  testID: string,
 }
 
 export default class ChatBubble extends Component<BubbleProps, any> {
@@ -58,7 +59,7 @@ export default class ChatBubble extends Component<BubbleProps, any> {
           capInsets={{ left: 18, right: 18, top: 24, bottom: 16 }}
           resizeMode='stretch'
         />
-        <Text style={[styles.message, fromStyle]}>
+        <Text style={[styles.message, fromStyle]} testID={this.props.testID}>
           {this.props.message}
         </Text>
       </View>
