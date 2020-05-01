@@ -157,7 +157,10 @@ open class HorizontalMenuViewController: UIViewController {
 }
 
 extension HorizontalMenuViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { itemCount }
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == menu { return itemCount }
+        return isMultiPage ? itemCount : delegate?.viewControllers.count ?? 0
+    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == menu {
