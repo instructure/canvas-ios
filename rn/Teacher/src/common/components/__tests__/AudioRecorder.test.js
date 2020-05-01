@@ -68,44 +68,44 @@ describe('AudioRecorder', () => {
     RNAudioRecorder.startRecording = jest.fn(() => RNAudioRecorder.onProgress({
       currentTime: 0,
     }))
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
     expect(recorder.toJSON()).toMatchSnapshot()
   })
 
   it('renders stopped state', () => {
     RNAudioRecorder.stopRecording = jest.fn(() => RNAudioRecorder.onFinished(data))
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const stopBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.stop-btn')
+    const stopBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.stopButton')
     stopBtn.props.onPress()
     expect(recorder.toJSON()).toMatchSnapshot()
   })
 
   it('renders reset state', () => {
     RNAudioRecorder.stopRecording = jest.fn(() => RNAudioRecorder.onFinished(data))
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const stopBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.stop-btn')
+    const stopBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.stopButton')
     stopBtn.props.onPress()
-    const resetBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.reset-btn')
+    const resetBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.clearButton')
     resetBtn.props.onPress()
     expect(recorder.toJSON()).toMatchSnapshot()
   })
 
   it('calls cancel', async () => {
-    const cancelBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.cancel-btn')
+    const cancelBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.cancelButton')
     await cancelBtn.props.onPress()
     expect(props.onCancel).toHaveBeenCalled()
   })
 
   it('calls onFinishedRecording with data', () => {
     RNAudioRecorder.stopRecording = jest.fn(() => RNAudioRecorder.onFinished(data))
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const stopBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.stop-btn')
+    const stopBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.stopButton')
     stopBtn.props.onPress()
-    const doneBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.done-btn')
+    const doneBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.sendButton')
     doneBtn.props.onPress()
     expect(props.onFinishedRecording).toHaveBeenCalledWith({
       fileName: expect.any(String),
@@ -114,9 +114,9 @@ describe('AudioRecorder', () => {
   })
 
   it('removes cancel button while recording', () => {
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const cancelBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.cancel-btn')
+    const cancelBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.cancelButton')
     expect(cancelBtn).toBeNull()
   })
 
@@ -125,7 +125,7 @@ describe('AudioRecorder', () => {
     // $FlowFixMe
     Alert.alert = spy
     RNAudioRecorder.startRecording = jest.fn(() => { throw new Error('fail') })
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
     expect(spy).toHaveBeenCalled()
   })
@@ -135,9 +135,9 @@ describe('AudioRecorder', () => {
     // $FlowFixMe
     Alert.alert = spy
     RNAudioRecorder.stopRecording = jest.fn(() => { throw new Error('fail') })
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const stopBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.stop-btn')
+    const stopBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.stopButton')
     stopBtn.props.onPress()
     expect(spy).toHaveBeenCalled()
   })
@@ -150,9 +150,9 @@ describe('AudioRecorder', () => {
       status: 'NOT OK',
     }
     RNAudioRecorder.stopRecording = jest.fn(() => RNAudioRecorder.onFinished(error))
-    const recordBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.record-btn')
+    const recordBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.recordButton')
     recordBtn.props.onPress()
-    const stopBtn: any = explore(recorder.toJSON()).selectByID('audio-recorder.stop-btn')
+    const stopBtn: any = explore(recorder.toJSON()).selectByID('AudioRecorder.stopButton')
     stopBtn.props.onPress()
     expect(spy).toHaveBeenCalledWith('Recording failed')
   })

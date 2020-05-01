@@ -57,7 +57,7 @@ class IPadAssignmentsTest: CoreUITestCase {
         )
     }
 
-    func testAssignments() {
+    func xtestAssignments() {
         XCUIDevice.shared.orientation = .landscapeLeft
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()
         SpringBoard.shared.moveSplit(toFraction: 0.75)

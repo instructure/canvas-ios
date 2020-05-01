@@ -54,14 +54,17 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     func upload() {
         task = env.api.makeRequest(GetMediaServiceRequest()) { (data, _, error) in
-            guard
-                error == nil,
-                let domain = data?.domain.replacingOccurrences(of: "https://", with: ""),
-                let url = URL(string: "https://\(domain)")
-            else {
+            var url: URL?
+            if let domain = data?.domain,
+                domain.starts(with: "http://localhost:") {
+                url = URL(string: domain)
+            } else if let domain = data?.domain.replacingOccurrences(of: "https://", with: "") {
+                url = URL(string: "https://\(domain)")
+            }
+            guard let baseUrl = url, error == nil else {
                 return self.callback(nil, error)
             }
-            self.mediaAPI = URLSessionAPI(baseURL: url, urlSession: self.urlSession)
+            self.mediaAPI = URLSessionAPI(baseURL: baseUrl, urlSession: self.urlSession)
             self.getSession()
         }
     }

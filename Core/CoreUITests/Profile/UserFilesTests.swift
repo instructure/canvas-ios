@@ -66,8 +66,8 @@ class UserFilesTests: CoreUITestCase {
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
-        app.find(id: "audio-recorder.record-btn").tap()
-        app.find(id: "audio-recorder.stop-btn").tap()
+        AudioRecorder.recordButton.tap()
+        AudioRecorder.stopButton.tap()
 
         mockUpload {
             app.find(id: "audio-recorder.done-btn").tap()

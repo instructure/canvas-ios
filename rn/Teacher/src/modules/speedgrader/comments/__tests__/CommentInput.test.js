@@ -58,15 +58,15 @@ describe('CommentInput', () => {
     component.getInstance()._textInput.blur = blur
 
     const input = explore(tree)
-      .selectByID('comment-input.comment') || {}
+      .selectByID('SubmissionComments.commentTextView') || {}
     input.props.onChangeText('Hello!')
 
     const noSend = explore(tree)
-      .selectByID('comment-input.send')
+      .selectByID('SubmissionComments.addCommentButton')
     expect(noSend).toBeNull()
 
     const send = explore(component.toJSON())
-      .selectByID('comment-input.send') || {}
+      .selectByID('SubmissionComments.addCommentButton') || {}
     send.props.onPress()
 
     expect(makeComment).toHaveBeenCalledWith({ type: 'text', comment: 'Hello!' })

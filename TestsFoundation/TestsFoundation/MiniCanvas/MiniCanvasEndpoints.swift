@@ -201,6 +201,13 @@ enum MiniCanvasEndpoints {
         // https://canvas.instructure.com/doc/api/sections.html
         .apiRequest(GetCourseSectionsRequest(courseID: Pattern.courseID)) { _ in [] },
 
+        // MARK: Services
+        // https://canvas.instructure.com/doc/api/services.html
+        .apiRequest(GetMediaServiceRequest()) { request in
+            APIMediaService(domain: request.baseUrl.absoluteString)
+        },
+        .apiRequest(PostMediaSessionRequest()) { _ in APIMediaSession(ks: "t") },
+
         // MARK: Submissions
         // https://canvas.instructure.com/doc/api/submissions.html
         .apiRequest(GetSubmissionSummaryRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { request in
@@ -310,5 +317,8 @@ enum MiniCanvasEndpoints {
             .json(["needs_grading_count": 0, "assignments_needing_submitting": 0])
         },
         .rest("/api/v1/courses/:courseID/lti_apps/launch_definitions") { _ in .json([String]()) },
+
+        // kaltura
+        .rest("/api_v3/index.php", method: .post) { _ in .ok(.text("<id>1234</id>")) },
     ]
 }

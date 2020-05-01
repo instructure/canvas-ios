@@ -111,6 +111,7 @@
 		E839146523102F9200D772E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC287D22B19D5C00C0B692 /* XCTest.framework */; };
 		E871745123BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745023BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift */; };
 		E871745423BEC1B500525E67 /* SubmissionListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745323BEC1B500525E67 /* SubmissionListFixture.swift */; };
+		E87612F0245A2F9900CBDEBC /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87612EF245A2F9900CBDEBC /* AudioRecorder.swift */; };
 		E87D9C5F23F1C5FA00C2E0C9 /* FileDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87D9C5E23F1C5FA00C2E0C9 /* FileDetails.swift */; };
 		E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */; };
 		E89B3007244F3F8A007CF19B /* ConferencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B3005244F3F89007CF19B /* ConferencesList.swift */; };
@@ -227,6 +228,7 @@
 		E81B575723E23DAA002A0C38 /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		E871745023BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyInfoFixture.swift; sourceTree = "<group>"; };
 		E871745323BEC1B500525E67 /* SubmissionListFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListFixture.swift; sourceTree = "<group>"; };
+		E87612EF245A2F9900CBDEBC /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		E87D9C5E23F1C5FA00C2E0C9 /* FileDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDetails.swift; sourceTree = "<group>"; };
 		E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITestCase.swift; sourceTree = "<group>"; };
 		E89B3005244F3F89007CF19B /* ConferencesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConferencesList.swift; path = ../../../../Student/StudentE2ETests/Conferences/ConferencesList.swift; sourceTree = "<group>"; };
@@ -557,9 +559,18 @@
 			path = GraphQL;
 			sourceTree = "<group>";
 		};
+		E87612EE245A2F9900CBDEBC /* AudioVideo */ = {
+			isa = PBXGroup;
+			children = (
+				E87612EF245A2F9900CBDEBC /* AudioRecorder.swift */,
+			);
+			path = AudioVideo;
+			sourceTree = "<group>";
+		};
 		E87D9C5C23F1C5D700C2E0C9 /* CoreUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				E87612EE245A2F9900CBDEBC /* AudioVideo */,
 				E89B3004244F3F72007CF19B /* Conferences */,
 				E87D9C5D23F1C5E500C2E0C9 /* Filles */,
 			);
@@ -752,6 +763,7 @@
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
+				E87612F0245A2F9900CBDEBC /* AudioRecorder.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				3BAA4177218A361100701E03 /* EnrollmentFixture.swift in Sources */,

@@ -1024,7 +1024,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               "marginTop": 2,
             }
           }
-          testID="comment-input.comment"
+          testID="SubmissionComments.commentTextView"
           underlineColorAndroid="transparent"
           value=""
         />

@@ -17,9 +17,8 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum AudioRecorder: String, ElementWrapper {
+public enum AudioRecorder: String, ElementWrapper {
     case cancelButton, clearButton, recordButton, sendButton, stopButton, timeLabel
     // embedded AudioPlayer
     case currentTimeLabel, loadingView, playPauseButton, remainingTimeLabel, timeSlider
