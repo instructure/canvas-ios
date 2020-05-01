@@ -263,6 +263,10 @@ open class HelmManager: NSObject {
             pushOntoNav(navigationController)
             callback?()
         }
+        else if let split = topViewController as? UISplitViewController, let navigationController = split.masterNavigationController {
+            pushOntoNav(navigationController)
+            callback?()
+        }
             //  This is a hack to fix coming from native assignment detail
             //  navigating to a child group discussion
             //  As more code moves to RN this will probably lose it's need here,
