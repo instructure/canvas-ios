@@ -267,11 +267,6 @@ public class CanvadocView: UIView {
         parent?.addChild(controller)
         controller.didMove(toParent: parent)
     }
-
-    public override func removeFromSuperview() {
-        pdfViewController?.dismiss(animated: false) // avoid orphan popovers
-        super.removeFromSuperview()
-    }
 }
 
 extension CanvadocView: AnnotationStateManagerDelegate {
