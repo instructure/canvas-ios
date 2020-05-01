@@ -306,7 +306,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
     tabs.push({
       id: 'student-view',
       label: i18n('Student View'),
-      subtitle: i18n('Opens in Student App'),
+      subtitle: i18n('Opens in Canvas Student'),
       visibility: 'public',
       position: Math.max(),
     })
