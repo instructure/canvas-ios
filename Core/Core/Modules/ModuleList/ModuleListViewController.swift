@@ -102,9 +102,6 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         if !store.shouldRefresh {
             scrollToModule()
         }
-
-        // TODO: remove this
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: self, action: #selector(refreshProgress))
     }
 
     public override func viewWillAppear(_ animated: Bool) {
