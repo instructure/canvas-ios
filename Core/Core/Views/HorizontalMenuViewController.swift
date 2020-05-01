@@ -56,6 +56,7 @@ open class HorizontalMenuViewController: UIViewController {
         super.viewWillLayoutSubviews()
         pages?.collectionViewLayout.invalidateLayout()
         menu?.collectionViewLayout.invalidateLayout()
+        underlineWidthConstraint?.constant = menuCellWidth
     }
 
     public func reload() {
