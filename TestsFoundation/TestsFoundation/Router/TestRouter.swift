@@ -29,6 +29,7 @@ public class TestRouter: RouterProtocol {
         }
         return nil
     }
+    public var last: UIViewController? { viewControllerCalls.last?.0 }
     public var routes = [URLComponents: () -> UIViewController?]()
 
     public func mock(_ url: URLComponents, factory: @escaping () -> UIViewController?) {

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mastery Path View Controller-->
+        <scene sceneID="fXM-pV-5QQ">
+            <objects>
+                <viewController storyboardIdentifier="MasteryPathViewController" id="W0r-du-yU1" customClass="MasteryPathViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BDS-l2-7km">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TyM-ow-38e">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="423-1U-zxW">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CaC-Ol-a22">
+                                                <rect key="frame" x="16" y="18" width="382" height="94"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="CaC-Ol-a22" secondAttribute="bottom" constant="16" id="ChA-l3-z6G"/>
+                                            <constraint firstAttribute="height" constant="128" placeholder="YES" id="IhX-ou-ZHT"/>
+                                            <constraint firstItem="CaC-Ol-a22" firstAttribute="top" secondItem="423-1U-zxW" secondAttribute="top" constant="18" id="KJK-Wh-I07"/>
+                                            <constraint firstAttribute="trailing" secondItem="CaC-Ol-a22" secondAttribute="trailing" constant="16" id="j99-XO-lLJ"/>
+                                            <constraint firstItem="CaC-Ol-a22" firstAttribute="leading" secondItem="423-1U-zxW" secondAttribute="leading" constant="16" id="t9u-Lh-hxB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="423-1U-zxW" firstAttribute="bottom" secondItem="tCx-w2-OoD" secondAttribute="bottom" id="EHl-uz-MnR"/>
+                                    <constraint firstItem="423-1U-zxW" firstAttribute="top" secondItem="tCx-w2-OoD" secondAttribute="top" id="UoM-35-lR0"/>
+                                    <constraint firstItem="423-1U-zxW" firstAttribute="trailing" secondItem="tCx-w2-OoD" secondAttribute="trailing" id="ikJ-zi-l8G"/>
+                                    <constraint firstItem="423-1U-zxW" firstAttribute="width" secondItem="pIG-Hi-i2L" secondAttribute="width" id="jDa-8g-OY6"/>
+                                    <constraint firstItem="423-1U-zxW" firstAttribute="leading" secondItem="tCx-w2-OoD" secondAttribute="leading" id="nsg-b4-9bm"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="tCx-w2-OoD"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="pIG-Hi-i2L"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Nho-gJ-B45" firstAttribute="bottom" secondItem="TyM-ow-38e" secondAttribute="bottom" id="ihp-uR-8p2"/>
+                            <constraint firstItem="TyM-ow-38e" firstAttribute="leading" secondItem="Nho-gJ-B45" secondAttribute="leading" id="kjT-pA-7fl"/>
+                            <constraint firstItem="Nho-gJ-B45" firstAttribute="trailing" secondItem="TyM-ow-38e" secondAttribute="trailing" id="vWC-bK-9wt"/>
+                            <constraint firstItem="TyM-ow-38e" firstAttribute="top" secondItem="Nho-gJ-B45" secondAttribute="top" id="xKy-Y8-4Yk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nho-gJ-B45"/>
+                    </view>
+                    <connections>
+                        <outlet property="stackView" destination="CaC-Ol-a22" id="Q9b-ks-4if"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qi-i1-5Gg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-129" y="-136"/>
+        </scene>
+    </scenes>
+</document>

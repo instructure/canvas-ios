@@ -119,7 +119,6 @@ class ModuleStore: NSObject {
         isLoading = true
         api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
-            self.isLoading = false
             guard let response = response else {
                 performUIUpdate {
                     self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
@@ -143,6 +142,8 @@ class ModuleStore: NSObject {
                     }
                     if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {
                         self.getModules(next)
+                    } else {
+                        self.isLoading = false
                     }
                 } catch {
                     self.delegate?.moduleStoreDidEncounterError(error)
@@ -155,7 +156,6 @@ class ModuleStore: NSObject {
         isLoadingModule[moduleID] = true
         api.makeRequest(request) { [weak self] response, urlResponse, error in
             guard let self = self else { return }
-            self.isLoadingModule[moduleID] = false
             guard let response = response else {
                 performUIUpdate {
                     self.delegate?.moduleStoreDidEncounterError(error ?? NSError.internalError())
@@ -180,6 +180,8 @@ class ModuleStore: NSObject {
             }
             if let next = urlResponse.flatMap({ request.getNext(from: $0) }) {
                 self.getItems(moduleID: moduleID, request: next)
+            } else {
+                self.isLoadingModule[moduleID] = false
             }
         }
     }

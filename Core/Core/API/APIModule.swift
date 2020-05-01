@@ -160,10 +160,13 @@ public struct APIModuleItemSequence: Codable, Equatable {
 
 public struct APIMasteryPath: Codable, Equatable {
     public struct AssignmentSet: Codable, Equatable {
+        public let id: ID
+        public let position: Int?
         public let assignments: [Assignment]
     }
 
     public struct Assignment: Codable, Equatable {
+        public let position: Int?
         public let model: APIAssignment
     }
 

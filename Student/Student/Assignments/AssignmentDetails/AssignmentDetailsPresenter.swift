@@ -248,7 +248,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     }
 
     func viewSubmissionButtonSectionIsHidden() -> Bool {
-        return assignment?.lockStatus == .before
+        return assignment?.lockStatus == .before || assignment?.isMasteryPathAssignment == true
     }
 
     func descriptionIsHidden() -> Bool {
@@ -259,7 +259,8 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         return assignment?.lockStatus != .unlocked ||
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
-            assignment?.submission?.excused == true
+            assignment?.submission?.excused == true ||
+            assignment?.isMasteryPathAssignment == true
     }
 
     func assignmentDescription() -> String {

@@ -167,3 +167,22 @@ public struct PutMarkModuleItemDone: APIRequestable {
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/done"
     }
 }
+
+// https://canvas.instructure.com/doc/api/modules.html#method.context_module_items_api.select_mastery_path
+public struct PostSelectMasteryPath: APIRequestable {
+    public typealias Response = APINoContent
+
+    public let courseID: String
+    public let moduleID: String
+    public let moduleItemID: String
+    public let assignmentSetID: String
+
+    public let method = APIMethod.post
+    public var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/select_mastery_path"
+    }
+    public var query: [APIQueryItem] {
+        return [.value("assignment_set_id", assignmentSetID)]
+    }
+}

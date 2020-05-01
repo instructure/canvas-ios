@@ -136,16 +136,6 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "B2, published")
     }
 
-    func testLoadingItems() {
-        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
-        let task = api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make()])
-        task.paused = true
-        viewController.view.layoutIfNeeded()
-        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? LoadingCell)
-        task.paused = false
-        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemCell)
-    }
-
     func testEmptyItems() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [])
@@ -244,12 +234,8 @@ class ModuleListViewControllerTests: CoreTestCase {
         let next = HTTPURLResponse(next: link)
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1", items: nil)])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")], response: next)
-        let task = api.mock(GetNextRequest<[APIModuleItem]>(path: link), value: [.make(id: "2")])
-        task.paused = true
+        api.mock(GetNextRequest<[APIModuleItem]>(path: link), value: [.make(id: "2")])
         viewController.view.layoutIfNeeded()
-        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
-        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)))
-        task.paused = false
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
     }
@@ -422,12 +408,15 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testMasteryPath() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
-            .make(id: "1", title: "Unlockable", mastery_paths:
-                .make(locked: false, assignment_sets: [
-                    .init(assignments: [.init(model: .make())]),
-                ])
-            ),
+            .make(id: "1", title: "Unlockable", mastery_paths: .make(locked: false, assignment_sets: [
+                .make(assignments: [.make(model: .make())]),
+            ])),
         ])
+        let task = api.mock(
+            PostSelectMasteryPath(courseID: "1", moduleID: "1", moduleItemID: "1", assignmentSetID: "1"),
+            value: APINoContent()
+        )
+        task.paused = true
         viewController.view.layoutIfNeeded()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         let item = moduleItemCell(at: IndexPath(row: 0, section: 0))
@@ -436,5 +425,16 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(path.nameLabel.text, "Select a Path")
         XCTAssertEqual(path.dueLabel.text, "1 Option")
         XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.icon(.masteryPaths))
+        viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(id: "1", title: "Unlocked", mastery_paths: nil),
+        ])
+        let masteryPath = router.last as! MasteryPathViewController
+        XCTAssertTrue(viewController.spinnerView.isHidden)
+        masteryPath.delegate?.didSelectMasteryPath(id: "1", inModule: "1", item: "1")
+        XCTAssertFalse(viewController.spinnerView.isHidden)
+        task.paused = false
+        XCTAssertTrue(viewController.spinnerView.isHidden)
+        XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
     }
 }
