@@ -64,6 +64,7 @@ class CoreTestCase: XCTestCase {
         UUID.reset()
         ExperimentalFeature.allEnabled = false
         Analytics.shared.handler = analytics
+        environment.app = .student
     }
 
     override func tearDown() {

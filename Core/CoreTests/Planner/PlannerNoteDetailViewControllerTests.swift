@@ -27,7 +27,7 @@ class PlannerNoteDetailViewControllerTests: CoreTestCase {
 
     override func setUp() {
         p = Plannable.make(from: .make(
-            plannable_type: Plannable.PlannableType.planner_note.rawValue,
+            plannable_type: PlannableType.planner_note.rawValue,
             plannable: APIPlannable.plannable(
                 title: "title", details: "description"),
             plannable_date: date),

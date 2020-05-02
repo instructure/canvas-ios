@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let env = AppEnvironment.shared
         env.router = Teacher.router
         env.loginDelegate = self
+        env.app = .teacher
         return env
     }()
 

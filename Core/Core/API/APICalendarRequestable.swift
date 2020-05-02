@@ -25,7 +25,13 @@ public struct GetCalendarEventsRequest: APIRequestable {
         case submission
     }
 
-    public let path = "calendar_events"
+    public var path: String {
+        if let userID = userID {
+            let context = ContextModel(.user, id: userID)
+            return "\(context.pathComponent)/calendar_events"
+        }
+        return "calendar_events"
+    }
     public let contexts: [Context]?
     public let startDate: Date?
     public let endDate: Date?
@@ -33,6 +39,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let perPage: Int
     public let include: [Include]
     public let allEvents: Bool?
+    public let userID: String?
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
@@ -46,7 +53,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
         type: CalendarEventType = .event,
         perPage: Int = 100,
         include: [Include] = [],
-        allEvents: Bool? = nil
+        allEvents: Bool? = nil,
+        userID: String? = nil
     ) {
         self.contexts = contexts
         self.startDate = startDate
@@ -55,6 +63,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.perPage = perPage
         self.include = include
         self.allEvents = allEvents
+        self.userID = userID
     }
 
     public var query: [APIQueryItem] {

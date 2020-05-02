@@ -30,7 +30,7 @@ public class CreatePlannerNote: APIUseCase {
         details: String? = nil,
         todoDate: Date,
         courseID: String? = nil,
-        linkedObjectType: Plannable.PlannableType = .planner_note,
+        linkedObjectType: PlannableType = .planner_note,
         linkedObjectId: String? = nil
     ) {
         request = PostPlannerNoteRequest(body: PostPlannerNoteRequest.Body(

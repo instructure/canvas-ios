@@ -170,6 +170,10 @@ public struct GetCoursesRequest: APIRequestable {
         case active, invited_or_pending, completed
     }
 
+    public enum EnrollmentType: String {
+        case teacher, student, ta, observer, designer
+    }
+
     public enum State: String {
         case available, completed, unpublished
     }
@@ -198,6 +202,7 @@ public struct GetCoursesRequest: APIRequestable {
     ]
 
     let enrollmentState: EnrollmentState?
+    let enrollmentType: EnrollmentType?
     let state: [State]?
     let include: [Include]
     let perPage: Int
@@ -205,12 +210,14 @@ public struct GetCoursesRequest: APIRequestable {
 
     public init(
         enrollmentState: EnrollmentState? = .active,
+        enrollmentType: EnrollmentType? = nil,
         state: [State]? = nil,
         include: [Include] = Self.defaultIncludes,
         perPage: Int = 10,
         studentID: String? = nil
     ) {
         self.enrollmentState = enrollmentState
+        self.enrollmentType = enrollmentType
         self.state = state
         self.include = include
         self.perPage = perPage
@@ -231,6 +238,7 @@ public struct GetCoursesRequest: APIRequestable {
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
+            .optionalValue("enrollment_type", enrollmentType?.rawValue),
         ]
     }
 }

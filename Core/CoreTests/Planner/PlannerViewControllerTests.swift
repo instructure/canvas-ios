@@ -60,7 +60,7 @@ class PlannerViewControllerTests: CoreTestCase {
             .make(id: "1", name: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
             .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
         ])
-        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // planner nil
+        XCTAssertNil(controller.list.plannables?.useCase.contextCodes) // planner nil
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars")
         controller.calendar.delegate?.calendarWillFilter()
         var filter = router.presented as! PlannerFilterViewController
@@ -68,10 +68,10 @@ class PlannerViewControllerTests: CoreTestCase {
         filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
         router.dismiss()
         XCTAssertEqual(controller.calendar.filterButton.title(for: .normal), "Calendars (1)")
-        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("course_2") == true)
-        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("course_2") == true)
-        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes.contains("user_1") == true)
-        XCTAssert(controller.list.plannables?.useCase.contextCodes.contains("user_1") == true)
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("course_2") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes!.contains("course_2") == true)
+        XCTAssert(controller.calendar.days.plannables?.useCase.contextCodes!.contains("user_1") == true)
+        XCTAssert(controller.list.plannables?.useCase.contextCodes!.contains("user_1") == true)
 
         // select all calendars
         controller.calendar.filterButton.sendActions(for: .primaryActionTriggered)
@@ -79,7 +79,7 @@ class PlannerViewControllerTests: CoreTestCase {
         filter.view.layoutIfNeeded()
         filter.tableView.delegate?.tableView?(filter.tableView!, didSelectRowAt: IndexPath(row: 0, section: 0))
         router.dismiss()
-        XCTAssertEqual(controller.list.plannables?.useCase.contextCodes, []) // all selected
+        XCTAssertNil(controller.list.plannables?.useCase.contextCodes) // all selected
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)

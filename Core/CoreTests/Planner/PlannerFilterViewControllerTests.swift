@@ -46,7 +46,7 @@ class PlannerFilterViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
-        api.mock(controller.courses, value: [course1])
+        api.mock(controller.courses.useCase.request, value: [course1])
         controller.view.layoutIfNeeded()
         let tableView = controller.tableView!
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
@@ -61,7 +61,7 @@ class PlannerFilterViewControllerTests: CoreTestCase {
     func testPaginatedRefresh() {
         controller.view.layoutIfNeeded()
         let next = HTTPURLResponse(next: "/courses?page=2")
-        api.mock(controller.courses, value: [course1], response: next)
+        api.mock(controller.courses.useCase.request, value: [course1], response: next)
         api.mock(GetNextRequest(path: "/courses?page=2"), value: [course2])
         let tableView = controller.tableView!
         tableView.refreshControl?.sendActions(for: .valueChanged)
@@ -74,7 +74,7 @@ class PlannerFilterViewControllerTests: CoreTestCase {
     }
 
     func testLoadingState() {
-        let task = api.mock(controller.courses, value: [])
+        let task = api.mock(controller.courses.useCase.request, value: [])
         task.paused = true
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.spinnerView.isHidden)
@@ -83,15 +83,45 @@ class PlannerFilterViewControllerTests: CoreTestCase {
     }
 
     func testErrorAndEmptyState() {
-        api.mock(controller.courses, error: NSError.instructureError("fail"))
+        api.mock(controller.courses.useCase.request, error: NSError.instructureError("fail"))
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.errorView.isHidden)
         XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading courses. Pull to refresh to try again.")
-        api.mock(controller.courses, value: [])
+        api.mock(controller.courses.useCase.request, value: [])
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(controller.errorView.isHidden)
         XCTAssertFalse(controller.emptyStateView.isHidden)
         XCTAssertEqual(controller.emptyTitleLabel.text, "No Courses")
         XCTAssertEqual(controller.emptyMessageLabel.text, "Your child's courses might not be published yet.")
+    }
+
+    func testShowsObserveeCoursesForObserversWithPagination() {
+        environment.app = .parent
+        let match = APICourse.make(
+            id: "1",
+            name: "Observed Course",
+            enrollments: [.make(id: "1", associated_user_id: studentID)]
+        )
+        let notAMatch = APICourse.make(
+            id: "2",
+            name: "Other observee",
+            enrollments: [.make(id: "2", associated_user_id: "2000")]
+        )
+        let next = HTTPURLResponse(next: "/courses?page=2")
+        api.mock(GetNextRequest(path: "/courses?page=2"), value: [match])
+        api.mock(GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            include: [],
+            perPage: 100,
+            studentID: nil
+        ), value: [notAMatch], response: next)
+        controller.view.layoutIfNeeded()
+        let tableView = controller.tableView!
+        XCTAssertEqual(controller.tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 1)
+        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! PlannerFilterCell
+        print(cell)
+        XCTAssertEqual(cell.courseNameLabel.text, "Observed Course")
     }
 }

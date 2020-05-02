@@ -42,10 +42,14 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
 
     lazy var controller = CalendarDaysViewController.create(selectedDate: Clock.now, delegate: self)
 
+    func getPlannablesRequest(from: Date, to: Date) -> GetPlannablesRequest {
+        GetPlannablesRequest(startDate: from, endDate: to)
+    }
+
     func testDates() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
         environment.mockStore = false
-        api.mock(getPlannables(
+        api.mock(getPlannablesRequest(
             from: DateComponents(calendar: .current, year: 2020, month: 1, day: 26).date!,
             to: DateComponents(calendar: .current, year: 2020, month: 3, day: 1).date!
         ), value: [

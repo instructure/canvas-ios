@@ -35,6 +35,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         let env = AppEnvironment.shared
         env.router = router
         env.loginDelegate = self
+        env.app = .parent
         return env
     }()
 
