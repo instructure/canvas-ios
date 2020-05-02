@@ -38,7 +38,7 @@ public class ModuleItem: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var completionRequirementTypeRaw: String?
     @NSManaged public var minScoreRaw: NSNumber?
-    @NSManaged public var completed: Bool
+    @NSManaged public var completedRaw: NSNumber?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var masteryPathItem: ModuleItem?
@@ -82,6 +82,11 @@ public class ModuleItem: NSManagedObject {
         set { minScoreRaw = NSNumber(value: newValue) }
     }
 
+    public var completed: Bool? {
+        get { return completedRaw?.boolValue }
+        set { completedRaw = NSNumber(value: newValue) }
+    }
+
     public var completionRequirement: CompletionRequirement? {
         get {
             guard let type = completionRequirementType else { return nil }
@@ -89,7 +94,7 @@ public class ModuleItem: NSManagedObject {
         }
         set {
             completionRequirementType = newValue?.type
-            completed = newValue?.completed ?? false
+            completed = newValue?.completed
             minScore = newValue?.min_score
         }
     }
