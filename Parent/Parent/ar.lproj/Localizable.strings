@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(لا يوجد موضوع)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ مستحق في %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ سيبدأ في %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@، خلال %2$@، آخر رسالة تمت في %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@، غير مقروءة";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "إضافة";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "إضافة مرفقات";
 
 /* No comment provided by engineer. */
 "Add Student" = "إضافة طالب";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "أضف طلاباً في المقدمة أو زر القائمة العامة للتخفي كطالب.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "تنبيهي عندما:";
 
 /* Alerts Tab */
 "Alerts" = "تنبيهات";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "حدث خطأ";
-
-/* No comment provided by engineer. */
 "Announcement" = "الإعلان";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "درجة المهمة أكبر من";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "درجة المهمة أصغر من";
-
-/* Assignment Missing Description */
-"Assignment missing" = "مهمة مفقودة";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "التذكير بالمهمة";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "لا يمكن استخدام نسبة مئوية أكبر من 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "لا يمكن استخدام نسبة مئوية أقل من 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "لا توجد تنبيهات عالقة";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "اختر مساقاً لإرسال رسالة";
 
 /* No comment provided by engineer. */
 "Compose Message" = "إنشاء رسالة";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "إعلانات المساق";
-
-/* Course Grade High On Description */
-"Course grade above" = "درجة المساق أكبر من";
-
-/* Course Grade Low On Description */
-"Course grade below" = "درجة المساق أصغر من";
 
 /* Courses Tab */
 "Courses" = "المساقات";
@@ -107,9 +59,6 @@
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "تحرير المستلمين";
-
-/* No comment provided by engineer. */
 "Event reminder" = "التذكير بالحدث";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "تعذر تحميل (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
-
-/* No comment provided by engineer. */
-"File" = "الملف";
-
-/* No comment provided by engineer. */
 "Find School" = "البحث عن مدرسة";
-
-/* No comment provided by engineer. */
-"for %@" = "لـ %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "لا يمكن أن تكون أعلى درجة للمهمة أقل من أدنى درجة للمهمة";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "لا يمكن أن تكون أعلى درجة للمساق أقل من أدنى درجة للمساق";
 
 /* No comment provided by engineer. */
 "In-Class" = "في الصف";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "أدخل رمز إقران الطالب المقدم لك.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "إعلانات المؤسسة";
-
-/* Title for an alert view */
-"Invalid Input" = "إدخال غير صالح";
-
 /* No comment provided by engineer. */
 "Late" = "متأخر";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "متأخر: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "لا يمكن أن تكون أدنى درجة للمهمة أكبر من أعلى درجة للمهمة";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "لا يمكن أن تكون أدنى درجة للمساق أكبر من أعلى درجة للمساق";
-
 /* No comment provided by engineer. */
 "Manage Students" = "إدارة الطلاب";
-
-/* No comment provided by engineer. */
-"Message" = "الرسالة";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "رسالة من %1$@، %2$@، في %3$@، %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "غير منجزة";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "لا يوجد";
 
-/* No comment provided by engineer. */
-"New Message" = "رسالة جديدة";
-
 /* Empty Courses Text */
 "No Courses" = "لا يوجد أي مساق";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "لا توجد أي درجة";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "لا يوجد أي طالب";
 
 /* No comment provided by engineer. */
-"No Subject" = "لا يوجد موضوع";
-
-/* OK Button Title */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
-
-/* No comment provided by engineer. */
-"Recipients" = "المتلقون";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "بخصوص: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "بخصوص: %1$@، المهمة -  %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "رد";
-
-/* No comment provided by engineer. */
-"Reply All" = "رد على الكل";
-
-/* No comment provided by engineer. */
 "Retry" = "إعادة المحاولة";
-
-/* No comment provided by engineer. */
-"Send" = "إرسال";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "الإعداد %@";
-
-/* No comment provided by engineer. */
-"Subject" = "الموضوع";
 
 /* No comment provided by engineer. */
 "Submitted" = "تم الإرسال";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "مساقات هذا الطالب قد لا تكون قد نشرت بعد.";
 
 /* No comment provided by engineer. */
-"To" = "إلى";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "مشكلة تسجيل الدخول";
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "تحميل %1$@ في %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "مرحباً أيها المسؤول!";

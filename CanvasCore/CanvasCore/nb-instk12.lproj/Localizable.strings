@@ -352,6 +352,9 @@
 /* label to be read for visually impaired users with quiz assignment types */
 "quiz" = "test";
 
+/* No comment provided by engineer. */
+"Quiz Details" = "Testdetaljer";
+
 /* Title for alert that shows when a quiz hits the due date */
 "Quiz Due" = "Test forventet";
 

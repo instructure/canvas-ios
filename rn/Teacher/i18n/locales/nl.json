@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Weet je zeker dat je deze opdracht wilt verwijderen?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Weet je zeker dat je deze pagina wilt verwijderen?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Weet je zeker dat je dit antwoord wilt verwijderen?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Cijfers"
   },
-  "grades_muted_76c70047": {
-    "message": "Cijfers verborgen"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Cijfers verborgen, anonieme beoordeling"
-  },
   "green_15af4778": {
     "message": "Groen"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Alles als gelezen markeren"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Markeren als gelezen"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Markeren als ongelezen"
+  },
   "me_bf110f4d": {
     "message": "mij"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Verschillende inleverdatums"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Cijfers verbergen"
   },
   "my_files_eea33f44": {
     "message": "Al mijn bestanden"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Alleen docenten"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Oeps, we kunnen die pagina niet vinden."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Gebruikersvoorkeuren { courseName } openen"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Overschrijvingscijfer { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Paginadetails"
-  },
-  "page_not_found_683da852": {
-    "message": "Pagina niet gevonden"
   },
   "pages_front_page_9ce5188": {
     "message": "Voorpagina van pagina's"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Weergave voor cursisten"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Cursistweergave voor inschrijvingen niet gevonden"
   },
   "students_1b8cd07b": {
     "message": "Cursisten"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Je bent uitgenodigd"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Je moet de Cursistweergave voor deze cursus eenmaal vanaf de website openen voordat je Cursistweergave in de app gebruikt."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Je moet Camera- en Microfoon-toestemming inschakelen bij Instellingen om de camera te gebruiken."

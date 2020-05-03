@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Ekkert efnisheiti)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ skiladagur er %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ mun hefjast þann %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, í %2$@, síðustu skilaboðin voru þann %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, ólesið";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Bæta við";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Bæta við viðhengjum";
 
 /* No comment provided by engineer. */
 "Add Student" = "Bæta við nemanda";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Bæta nemendum við efst eða fara í altæka valmynd til að dyljast sem nemandi.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Vara mig við þegar:";
 
 /* Alerts Tab */
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Villa kom upp";
-
-/* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Verkefnaeinkunn fyrir ofan";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Verkefnaeinkunn fyrir neðan";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Verkefni vantar";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Áminning um verkefni";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Hætta við";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Ekki er hægt að nota prósentu sem er hærri en 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Ekki er hægt að nota prósentu sem er lægri en 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Þú ert búin(n) að sinna öllum viðvörunum";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Veldu námskeið til að senda skilaboð til";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Semja skilaboð";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Námskeiðs tilkynningar";
-
-/* Course Grade High On Description */
-"Course grade above" = "Námskeiðseinkunn fyrir ofan";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Námskeiðseinkunn fyrir neðan";
 
 /* Courses Tab */
 "Courses" = "Námskeið";
@@ -107,9 +59,6 @@
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Breyta viðtakendum";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Mistókst að hlaða (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Tókst ekki. Smelltu fyrir valkosti";
-
-/* No comment provided by engineer. */
-"File" = "Skrá";
-
-/* No comment provided by engineer. */
 "Find School" = "Finna skóla";
-
-/* No comment provided by engineer. */
-"for %@" = "fyrir %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Forsíða";
 
 /* No comment provided by engineer. */
 "Grades" = "Einkunnir";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Há verkefniseinkunn getur ekki verið lægri en lág verkefniseinkunn";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Há námskeiðseinkunn getur ekki verið lægri en lág námskeiðseinkunn";
 
 /* No comment provided by engineer. */
 "In-Class" = "í bekknum";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Settu inn pörunarkóða nemanda sem þú fékkst.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Stofnana tilkynningar";
-
-/* Title for an alert view */
-"Invalid Input" = "Ógilt inntak";
-
 /* No comment provided by engineer. */
 "Late" = "Seint";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Lág verkefniseinkunn getur ekki verið hærri en há verkefniseinkunn";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Lág námskeiðseinkunn getur ekki verið hærri en há námskeiðseinkunn";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Stjórna nemendum";
-
-/* No comment provided by engineer. */
-"Message" = "Skilaboð";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Skilaboð frá %1$@, %2$@, þann %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Vantar";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "á ekki við";
 
-/* No comment provided by engineer. */
-"New Message" = "Ný skilaboð";
-
 /* Empty Courses Text */
 "No Courses" = "Engin námskeið";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Engin einkunn";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Engir nemendur";
 
 /* No comment provided by engineer. */
-"No Subject" = "Ekkert efnisheiti";
-
-/* OK Button Title */
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Leyfis krafist";
-
-/* No comment provided by engineer. */
-"Recipients" = "Viðtakendur";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Varðandi: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "Varðandi: %1$@, verkefni - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Svara";
-
-/* No comment provided by engineer. */
-"Reply All" = "Svara öllum";
-
-/* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
-
-/* No comment provided by engineer. */
-"Send" = "Senda";
 
 /* No comment provided by engineer. */
 "Settings" = "Stillingar";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Stillingar. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Efni";
 
 /* No comment provided by engineer. */
 "Submitted" = "Skilað";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "Námskeið þessa nemanda eru ef til vill ekki birt enn.";
 
 /* No comment provided by engineer. */
-"To" = "Til";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "Vandamál við innskráningu";
 
 /* No comment provided by engineer. */
 "Unread" = "Ólesið";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Upphleðsla %1$@ er í %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Velkominn, stjórnandi!";

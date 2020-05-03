@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "是否确定要删除这个讨论?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "是否确定要删除此页面？"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "是否确定要删除此回复?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "评分"
   },
-  "grades_muted_76c70047": {
-    "message": "已屏蔽评分"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "已屏蔽评分，匿名评分"
-  },
   "green_15af4778": {
     "message": "绿色"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "全部标记为已读"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "标记为已读"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "标记为未读"
+  },
   "me_bf110f4d": {
     "message": "本人"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "多个截止日期"
-  },
-  "mute_grades_b85bece1": {
-    "message": "屏蔽评分"
   },
   "my_files_eea33f44": {
     "message": "我的文件"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "仅教师"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "糟糕，我们找不到该页面。"
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "打开{ courseName }用户首选项"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "覆盖评分{ grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "页面详细信息"
-  },
-  "page_not_found_683da852": {
-    "message": "页面未找到"
   },
   "pages_front_page_9ce5188": {
     "message": "页面首页"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "学生视图"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "找不到学生视图注册"
   },
   "students_1b8cd07b": {
     "message": "学生"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "您已获得邀请"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "您必须在网站上访问此课程的学生视图一次后才能在应用程序中使用学生视图。"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "您必须在“设置”中启用照相机和麦克风权限才能使用照相机。"

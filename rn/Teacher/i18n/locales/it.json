@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Vuoi eliminare questa discussione?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Vuoi eliminare questa pagina?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Vuoi eliminare questa risposta?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Voti"
   },
-  "grades_muted_76c70047": {
-    "message": "Voti disattivati"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Voti disattivati, valutazione anonima"
-  },
   "green_15af4778": {
     "message": "Verde"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Contrassegna tutto come letto"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Contrassegna come letto"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Contrassegna come non letto"
+  },
   "me_bf110f4d": {
     "message": "me"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Più date di scadenza"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Disattiva voti"
   },
   "my_files_eea33f44": {
     "message": "I miei file"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Solo insegnanti"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Spiacenti, impossibile trovare questa pagina."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Apri le preferenze utente di { courseName }"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Sovrascrivi voto { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Dettagli pagina"
-  },
-  "page_not_found_683da852": {
-    "message": "Pagina non trovata"
   },
   "pages_front_page_9ce5188": {
     "message": "Pagine pagina iniziale"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Student View"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Iscrizione Student View non trovata"
   },
   "students_1b8cd07b": {
     "message": "Studenti"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Sei stato invitato"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Devi accedere a Student View per questo corso una volta dal sito web prima di usare Student View nell’app."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Devi abilitare le autorizzazioni videocamera e microfono in Impostazioni per usare la videocamera."

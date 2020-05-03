@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Er du sikker på, at du vil slette denne diskussion?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Er du sikker på, at du ønsker at slette denne side?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Er du sikker på, du vil slette dette svar?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Karakterer"
   },
-  "grades_muted_76c70047": {
-    "message": "Karakterer uden besked til de studerende"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Karakterer uden besked til de studerende, anonym klassificering"
-  },
   "green_15af4778": {
     "message": "Grøn"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Markér alle som \"læst\""
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Marker som læst"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Marker som ulæst"
+  },
   "me_bf110f4d": {
     "message": "mig"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Flere forfaldsdatoer"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Giv ikke besked til de studerende om karakterer"
   },
   "my_files_eea33f44": {
     "message": "Mine filer"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Kun lærere"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Ups, vi kunne ikke finde den side."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Åbn brugerpræferencer for { courseName }"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Tilsidesæt karakter { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Sidedetaljer"
-  },
-  "page_not_found_683da852": {
-    "message": "Side ikke fundet"
   },
   "pages_front_page_9ce5188": {
     "message": "Sider forside"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Visning for studerende"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Tilmelding ikke fundet i visning for studerende"
   },
   "students_1b8cd07b": {
     "message": "Studerende"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Du er blevet inviteret"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Du skal tage adgang til Visning for studerende for dette fag en gang fra webstedet, før du kan bruger Visning for studerende i appen."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Du skal aktivere kamera- og mikrofonrettigheder i Indstillinger for at bruge kameraet."

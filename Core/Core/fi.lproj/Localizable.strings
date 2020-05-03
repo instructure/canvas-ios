@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ pts";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "vanhempi";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Tehtävän tiedot";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Yritys %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Sisällön linkin virhe";
 
 /* No comment provided by engineer. */
+"Contribute" = "Anna lausunto";
+
+/* No comment provided by engineer. */
+"Contributed" = "Osallistui";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Luomani keskustelu";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Keskustelua koskeva kommentti";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Keskustelun tiedot";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Keskustelun lähetys";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Tiedosto";
+
+/* No comment provided by engineer. */
+"File Details" = "Tiedoston tiedot";
 
 /* No comment provided by engineer. */
 "File Upload" = "Tiedoston lataus";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Merkitse valmiiksi";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Merkitse kumotuksi";
+
+/* No comment provided by engineer. */
+"Mark done" = "Merkitse valmiiksi";
+
+/* No comment provided by engineer. */
+"Marked done" = "Merkitse valmiiksi";
+
+/* No comment provided by engineer. */
 "me" = "minä";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Puuttuu";
+
+/* No comment provided by engineer. */
+"Module Item" = "Moduulikohde";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduulit";
@@ -767,6 +800,9 @@
 "Quiz" = "Tietovisa";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Tietovisan tiedot";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Nauhoita ääni";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Aikatauluttaminen";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Saa pisteitä vähintään  %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Saatu pisteitä vähintään %@";
 
 /* No comment provided by engineer. */
 "Search" = "Hae";
@@ -1085,7 +1127,13 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "Näytä";
+
+/* No comment provided by engineer. */
 "View Modules" = "Tarkastele moduuleita";
+
+/* No comment provided by engineer. */
+"Viewed" = "Tarkasteltu";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Emme löytäneet ketään sellaista.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Sinut kirjataan ulos tältä opiskelijatililtä.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";

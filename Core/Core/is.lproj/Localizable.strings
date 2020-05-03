@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Meðaleinkunn";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ punktar";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "foreldri";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Upplýsingar um verkefni";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tilraun %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Efnishlekksvilla";
 
 /* No comment provided by engineer. */
+"Contribute" = "Leggja til";
+
+/* No comment provided by engineer. */
+"Contributed" = "Lagði til";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Samræður sem ég hef stofnað";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Athugasemd við umræðu";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Upplýsingar umræðu";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Umræðupóstur";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Skrá";
+
+/* No comment provided by engineer. */
+"File Details" = "Upplýsingar um skrá";
 
 /* No comment provided by engineer. */
 "File Upload" = "Hlaða upp skrá";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Handvirk OAuth innskráning";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Merkja sem lokið";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Merkja sem ólokið";
+
+/* No comment provided by engineer. */
+"Mark done" = "Merkja sem lokið";
+
+/* No comment provided by engineer. */
+"Marked done" = "Merkja sem lokið";
+
+/* No comment provided by engineer. */
 "me" = "ég";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Vantar";
+
+/* No comment provided by engineer. */
+"Module Item" = "Námsefni atriði";
 
 /* No comment provided by engineer. */
 "Modules" = "Námsefni";
@@ -767,6 +800,9 @@
 "Quiz" = "Próf";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Prófupplýsingar";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Taka upp hljóð";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Tímasett";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Ná minnst %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Náði minnst %@";
 
 /* No comment provided by engineer. */
 "Search" = "Leita";
@@ -1085,7 +1127,13 @@
 "Video" = "Myndband";
 
 /* No comment provided by engineer. */
+"View" = "Skoða";
+
+/* No comment provided by engineer. */
 "View Modules" = "Skoða einingar";
+
+/* No comment provided by engineer. */
+"Viewed" = "Skoðað";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Við fundum engan þannig.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Þú þarft að virkja hljóðnemaleyfi í stillingum.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Þú verður skráð(ur) út af þessum nemandareikningi.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Þú munt hætta að virka sem %@ og fara aftur í þinn reikning.";

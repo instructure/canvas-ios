@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ poeng";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en foresatt";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Oppgavedetaljer";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Forsøk %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Avvik på innholdslenke";
 
 /* No comment provided by engineer. */
+"Contribute" = "Bidra";
+
+/* No comment provided by engineer. */
+"Contributed" = "Bidratt";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Samtaler opprettet av meg";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Diskusjonskommentarer";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Diskusjonsdetaljer";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Diskusjonspost";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"File Details" = "Fildetaljer";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filopplasting";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Manuell OAuth-innlogging";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Merk som utført";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Merk som ikke fullført";
+
+/* No comment provided by engineer. */
+"Mark done" = "Merk ferdig";
+
+/* No comment provided by engineer. */
+"Marked done" = "Merket ferdig";
+
+/* No comment provided by engineer. */
 "me" = "meg";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Mangler";
+
+/* No comment provided by engineer. */
+"Module Item" = "Modulelement";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
@@ -767,6 +800,9 @@
 "Quiz" = "Test";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Testdetaljer";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Lydopptak";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planlegger";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Oppnå et minimumsresultat på %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Fikk minst %@";
 
 /* No comment provided by engineer. */
 "Search" = "Søk";
@@ -1085,7 +1127,13 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "Vis";
+
+/* No comment provided by engineer. */
 "View Modules" = "Vis moduler";
+
+/* No comment provided by engineer. */
+"Viewed" = "Vist";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Vi kunne ikke finne noen som stemte med det.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du må aktivere mikrofontillatelse fra innstillinger.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Du blir logget ut av denne studentkontoen.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";

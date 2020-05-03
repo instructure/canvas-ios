@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Segur que voleu suprimir aquest debat?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Segur que voleu suprimir aquesta pàgina?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Segur que voleu suprimir aquesta resposta?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Qualificacions"
   },
-  "grades_muted_76c70047": {
-    "message": "Qualificacions ocultes"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Qualificacions ocultes; qualificació anònima"
-  },
   "green_15af4778": {
     "message": "Verd"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Marca tots com a Llegit"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Marca-ho com a llegit"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Marca-ho com a no llegit"
+  },
   "me_bf110f4d": {
     "message": "mi"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Dates de venciment múltiples"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Oculta les qualificacions"
   },
   "my_files_eea33f44": {
     "message": "Els meus fitxers"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Només professors"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "No hem pogut trobar aquesta pàgina."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Obre les preferències d'usuari per a { courseName }"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Substitueix la qualificació { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Detalls de la pàgina"
-  },
-  "page_not_found_683da852": {
-    "message": "No s'ha trobat la pàgina"
   },
   "pages_front_page_9ce5188": {
     "message": "Pàgines pàgina frontal"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Vista d'estudiant"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "No s'ha trobat la vista d'estudiant de la inscripció"
   },
   "students_1b8cd07b": {
     "message": "Estudiants"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Heu estat convidat"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Abans d'utilitzar la Vista d'estudiant a l'aplicació, heu d'accedir a la Vista d'estudiant d'aquest curs una vegada des del lloc web."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Per utilitzar la càmera, heu d'activar els permisos per a la càmera i per al micròfon a Configuració."

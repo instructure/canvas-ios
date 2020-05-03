@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ pts";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "um pai";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Tem a certeza de que deseja eliminar este comentário?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detalhes da tarefa";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativa %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Erro de ligação de conteúdo";
 
 /* No comment provided by engineer. */
+"Contribute" = "Contribuir";
+
+/* No comment provided by engineer. */
+"Contributed" = "Contributo feito";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Conversa Criada por mim";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Comentário de Discussão";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Detalhes da discussão";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Postagem de discussão";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Ficheiro";
+
+/* No comment provided by engineer. */
+"File Details" = "Detalhes do ficheiro";
 
 /* No comment provided by engineer. */
 "File Upload" = "Carregar de arquivos";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Login Manual OAuth";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Marcar como Terminado";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Marcar como Não Terminado";
+
+/* No comment provided by engineer. */
+"Mark done" = "Marcar terminado";
+
+/* No comment provided by engineer. */
+"Marked done" = "Marcação feita";
+
+/* No comment provided by engineer. */
 "me" = "eu";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Em falta";
+
+/* No comment provided by engineer. */
+"Module Item" = "Item de módulo";
 
 /* No comment provided by engineer. */
 "Modules" = "Módulos";
@@ -767,6 +800,9 @@
 "Quiz" = "Teste";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Detalhes do teste";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Gravar Áudio";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Agendamento";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Classificar ao menos %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Classificar ao menos %@";
 
 /* No comment provided by engineer. */
 "Search" = "Pesquisar";
@@ -1085,7 +1127,13 @@
 "Video" = "Vídeo";
 
 /* No comment provided by engineer. */
+"View" = "Ver";
+
+/* No comment provided by engineer. */
 "View Modules" = "Visualizar módulos";
+
+/* No comment provided by engineer. */
+"Viewed" = "Exibida";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Não conseguíamos encontrar alguém assim.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Você deve habilitar as permissões de Microfone nas Definições.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Você será desconectado desta conta de aluno.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Você vai parar de agir como %@ e retornar à sua conta.";
