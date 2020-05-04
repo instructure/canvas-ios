@@ -21,6 +21,7 @@
 // needs to be commonjs so eslint-plugin-format-message can read it
 module.exports = {
   ar: require('./ar.json'),
+  ca: require('./ca.json'),
   cy: require('./cy.json'),
   da: require('./da.json'),
   'da-instk12': require('./da-instk12.json'),
