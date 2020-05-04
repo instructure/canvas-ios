@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ točk";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "eden od staršev";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Podrobnosti o nalogi";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poskus %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Napake pri referencah";
 
 /* No comment provided by engineer. */
+"Contribute" = "Prispevaj";
+
+/* No comment provided by engineer. */
+"Contributed" = "Prispevano";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Pogovori, ki sem jih ustvaril(a) jaz";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Komentar k razpravi";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Podrobnosti o razpravi";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Objava v razpravi";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Datoteka";
+
+/* No comment provided by engineer. */
+"File Details" = "Podatki o datoteki";
 
 /* No comment provided by engineer. */
 "File Upload" = "Nalaganje datotek";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Ročna prijava OAuth";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Označi kot dokončano";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Označi kot nedokončano";
+
+/* No comment provided by engineer. */
+"Mark done" = "Označi kot dokončano";
+
+/* No comment provided by engineer. */
+"Marked done" = "Označeno kot dokončano";
+
+/* No comment provided by engineer. */
 "me" = "jaz";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
+
+/* No comment provided by engineer. */
+"Module Item" = "Element modula";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduli";
@@ -767,6 +800,9 @@
 "Quiz" = "Kviz";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Podrobnosti o kvizu";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Posnemi zvok";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Razporejanje";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Rezultat vsaj %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Dosežen rezultat vsaj %@";
 
 /* No comment provided by engineer. */
 "Search" = "Iskanje";
@@ -1085,7 +1127,13 @@
 "Video" = "Videoposnetek";
 
 /* No comment provided by engineer. */
+"View" = "Ogled";
+
+/* No comment provided by engineer. */
 "View Modules" = "Ogled modulov";
+
+/* No comment provided by engineer. */
+"Viewed" = "Ogledano";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nikogar takšnega nismo uspeli najti.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Za snemanje zvoka morate v možnosti »Nastavitve« omogočiti dovoljenja mikrofona.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Iz tega študentskega računa boste odjavljeni.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Prenehali boste nastopati v vlogi %@ in vrnili se boste v svoj račun.";

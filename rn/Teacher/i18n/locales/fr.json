@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Voulez-vous vraiment supprimer cette discussion ?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Êtes-vous sûr de vouloir supprimer cette page ?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Voulez-vous vraiment supprimer cette réponse ?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Notes"
   },
-  "grades_muted_76c70047": {
-    "message": "Notes silencieuses"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Notes silencieuses, notation anonyme"
-  },
   "green_15af4778": {
     "message": "Vert"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Marquer tout comme lu"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Marquer comme lu"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Marquer comme non-lu"
+  },
   "me_bf110f4d": {
     "message": "moi"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Échéances multiples"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Rendre les notes silencieuses"
   },
   "my_files_eea33f44": {
     "message": "Mes fichiers"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Uniquement les enseignants"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Oups, nous n’avons pas pu trouver cette page."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Ouvrir { courseName } préférences de l'utilisateur"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Outrepasser la note { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Détails de la page"
-  },
-  "page_not_found_683da852": {
-    "message": "Page introuvable"
   },
   "pages_front_page_9ce5188": {
     "message": "Première page"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Affichage élève"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Inscription à l'affichage élève introuvable"
   },
   "students_1b8cd07b": {
     "message": "Étudiants"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Vous êtes invité"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Vous devez activer l’affichage élève pour ce cours une première fois depuis le site Web avant de l’utiliser dans l’application."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Vous devez activer les autorisations « appareil photo et microphone » dans les Paramètres pour utiliser l’appareil photo."

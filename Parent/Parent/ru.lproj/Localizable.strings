@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Нет субъекта)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ необходимо завершить через %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ начнется в %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, в %2$@, последнее сообщение было %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, не прочитано";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Добавить";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Добавить вложения";
 
 /* No comment provided by engineer. */
 "Add Student" = "Добавить студента";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Добавьте учащихся в верхней части или пройдите в общее меню, чтобы выступит в качестве учащегося.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Оповестить меня, когда:";
 
 /* Alerts Tab */
 "Alerts" = "Предупреждения";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Произошла ошибка";
-
-/* No comment provided by engineer. */
 "Announcement" = "Объявление";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Оценка за задание выше";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Оценка за задание ниже";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Задание отсутствует";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Напоминание о тестировании";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Нельзя использовать проценты выше 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Нельзя использовать проценты меньше 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Выполнить задания по оповещениям";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Выбрать курс для сообщения";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Написать сообщение";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Объявления курса";
-
-/* Course Grade High On Description */
-"Course grade above" = "Оценка за курс выше";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Оценка за курс ниже";
 
 /* Courses Tab */
 "Courses" = "Курсы";
@@ -107,9 +59,6 @@
 "Dismiss" = "Отклонить";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Редактировать получателей";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Напоминание о событии";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
-
-/* No comment provided by engineer. */
-"File" = "Файл";
-
-/* No comment provided by engineer. */
 "Find School" = "Найти школу";
-
-/* No comment provided by engineer. */
-"for %@" = "для %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Высокая оценка за задание не может быть ниже низкой оценки за задание";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Высокая оценка за курс не может быть ниже низкой оценки за курс";
 
 /* No comment provided by engineer. */
 "In-Class" = "Аудиторный";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Введите полученный код привязки студента.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Объявления заведения";
-
-/* Title for an alert view */
-"Invalid Input" = "Некорректный ввод";
-
 /* No comment provided by engineer. */
 "Late" = "Поздно";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Низкая оценка за задание не может быть выше высокой оценки за задание";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Низкая оценка за курс не может быть выше высокой оценки за курс";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Управление студентами";
-
-/* No comment provided by engineer. */
-"Message" = "Сообщение";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Сообщение от %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Отсутствует";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "нет данных";
 
-/* No comment provided by engineer. */
-"New Message" = "Новое сообщение";
-
 /* Empty Courses Text */
 "No Courses" = "Курсы отсутствуют";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Без оценки";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Студенты отсутствуют";
 
 /* No comment provided by engineer. */
-"No Subject" = "Нет темы";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Требуется разрешение";
-
-/* No comment provided by engineer. */
-"Recipients" = "Получатели";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Касательно: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "Касательно: %1$@, задание - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Ответить";
-
-/* No comment provided by engineer. */
-"Reply All" = "Ответить на все";
-
-/* No comment provided by engineer. */
 "Retry" = "Повторить";
-
-/* No comment provided by engineer. */
-"Send" = "Отправить";
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Настройки. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Тема";
 
 /* No comment provided by engineer. */
 "Submitted" = "Отправлено";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "Курсы этого студента пока еще не могут быть опубликованы.";
 
 /* No comment provided by engineer. */
-"To" = "Кому";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "Проблема со входом в систему";
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Добро пожаловать, администратор!";

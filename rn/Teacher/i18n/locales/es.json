@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "¿Está seguro de que desea eliminar este foro de discusión?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "¿Está seguro de que desea eliminar esta página?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "¿Está seguro de que desea eliminar esta respuesta?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Calificaciones"
   },
-  "grades_muted_76c70047": {
-    "message": "Calificaciones silenciadas"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Calificaciones silenciadas, calificación anónima"
-  },
   "green_15af4778": {
     "message": "Verde"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Marcar todas como leídas"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Marcar como leído"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Marcar como no leído"
+  },
   "me_bf110f4d": {
     "message": "yo"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Varias fechas de entrega"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Silenciar calificaciones"
   },
   "my_files_eea33f44": {
     "message": "Mis archivos"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Solo profesores"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Ups, no hemos podido encontrar esa página."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Abrir { courseName } preferencias de usuario"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Anular calificación { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Detalles de la página"
-  },
-  "page_not_found_683da852": {
-    "message": "Página no encontrada"
   },
   "pages_front_page_9ce5188": {
     "message": "Página principal de las páginas"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Vista del estudiante"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "No se encontró la inscripción en la Vista del estudiante"
   },
   "students_1b8cd07b": {
     "message": "Estudiantes"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Ha recibido una invitación"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Debe acceder una vez a la Vista del estudiante de este curso desde el sitio web antes de usar la Vista del estudiante en la aplicación."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Debes habilitar los permisos de cámara y micrófono en Configuraciones para usar la cámara."

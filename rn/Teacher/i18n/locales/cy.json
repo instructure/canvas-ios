@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Ydych chi’n siŵr eich bod am ddileu’r drafodaeth hon?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Ydych chi’n siŵr eich bod am ddileu’r dudalen hon?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Ydych chi’n siŵr eich bod am ddileu’r ateb hwn?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Graddau"
   },
-  "grades_muted_76c70047": {
-    "message": "Graddau wedi’u tewi"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Graddau wedi’u tewi, Graddio’n ddienw"
-  },
   "green_15af4778": {
     "message": "Gwyrdd"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Marcio bod y cyfan wedi’i ddarllen"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Marcio eu bod wedi’u darllen"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Marcio eu bod heb eu darllen"
+  },
   "me_bf110f4d": {
     "message": "fi"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Mwy nag un dyddiad erbyn"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Tewi Graddau"
   },
   "my_files_eea33f44": {
     "message": "Fy Ffeiliau"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Dim ond athrawon"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Wps, doedd dim modd dod o hyd i’r dudalen honno."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Agor dewisiadau defnyddiwr ar gyfer { courseName }"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Disodli Gradd { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Manylion y Dudalen"
-  },
-  "page_not_found_683da852": {
-    "message": "Heb ddod o hyd i’r dudalen"
   },
   "pages_front_page_9ce5188": {
     "message": "Tudalen Flaen ar gyfer Tudalennau"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Gwedd Myfyriwr"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Doedd dim modd dod o hyd i Ymrestriad Gwedd Myfyriwr"
   },
   "students_1b8cd07b": {
     "message": "Myfyrwyr"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Rydych chi wedi cael gwahoddiad"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Rhaid i chi agor y Wedd Myfyriwr ar gyfer y cwrs hwn o wefan cyn defnyddio’r Wedd Myfyriwr yn yr ap."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Rhaid i chi alluogi hawliau'r Camera a'r Microffon yn y Gosodiadau er mwyn defnyddio'r camera."

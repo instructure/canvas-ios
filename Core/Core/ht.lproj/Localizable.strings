@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ pwen";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "yon paran";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detay Sesyon";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Erè Lyen Kontni";
 
 /* No comment provided by engineer. */
+"Contribute" = "Kontribye";
+
+/* No comment provided by engineer. */
+"Contributed" = "Kontribye";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Konvèsasyon Kreye pa Mwen menm";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Kòmantè Diskisyon";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Detay Diskisyon";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Poste Diskisyon";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fichye";
+
+/* No comment provided by engineer. */
+"File Details" = "Detay Fichye";
 
 /* No comment provided by engineer. */
 "File Upload" = "Transfè Fichye";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Make kòm Fini";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Make kòm Poko fini";
+
+/* No comment provided by engineer. */
+"Mark done" = "Make tankou li fini";
+
+/* No comment provided by engineer. */
+"Marked done" = "Make Fini";
+
+/* No comment provided by engineer. */
 "me" = "mwen menm";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Manke";
+
+/* No comment provided by engineer. */
+"Module Item" = "Modil Eleman";
 
 /* No comment provided by engineer. */
 "Modules" = "Modil";
@@ -767,6 +800,9 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Detay Quiz";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Anrejistre Son";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planifikasyon";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Fè omwen %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Fè omwen %@";
 
 /* No comment provided by engineer. */
 "Search" = "Chèche";
@@ -1085,7 +1127,13 @@
 "Video" = "Videyo";
 
 /* No comment provided by engineer. */
+"View" = "Afiche";
+
+/* No comment provided by engineer. */
 "View Modules" = "Afiche Modil";
+
+/* No comment provided by engineer. */
+"Viewed" = "Afiche";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nou pa kapab jwenn moun konsa.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Y ap dekonekte w sou kont elèv li a.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Ou pral sispann aji tankou %@ epi sou kont ou.";

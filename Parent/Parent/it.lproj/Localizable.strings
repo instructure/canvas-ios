@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Nessun oggetto)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ Scade alle %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ inizierà alle %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, l’ultimo messaggio era del %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, non letto";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Aggiungi";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Aggiungi allegati";
 
 /* No comment provided by engineer. */
 "Add Student" = "Aggiungi studente";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Aggiungi studenti in cima o visita il menu globale per eseguire il mascheramento come studente.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Avvisami quando:";
 
 /* Alerts Tab */
 "Alerts" = "Avvisi";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Si è verificato un errore";
-
-/* No comment provided by engineer. */
 "Announcement" = "Annuncio";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Voto compito sopra";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Voto compito sotto";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Compito mancante";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Promemoria compito";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Annulla";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Impossibile usare una percentuale superiore a 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Impossibile usare una percentuale inferiore a 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Sei in pari con gli avvisi";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Scegli un corso da messaggiare";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Componi messaggio";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Annunci corso";
-
-/* Course Grade High On Description */
-"Course grade above" = "Voto corso sopra";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Voto corso sotto";
 
 /* Courses Tab */
 "Courses" = "Corsi";
@@ -107,9 +59,6 @@
 "Dismiss" = "Ignora";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Modifica destinatari";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Promemoria evento";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Impossibile caricare NS (discussionKitModelName)ManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Non riuscito. Tocca per le opzioni";
-
-/* No comment provided by engineer. */
-"File" = "File";
-
-/* No comment provided by engineer. */
 "Find School" = "Trova scuola";
-
-/* No comment provided by engineer. */
-"for %@" = "per %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Pagina iniziale";
 
 /* No comment provided by engineer. */
 "Grades" = "Voti";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Il voto compito alto non può essere inferiore al voto compito basso";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Il voto corso alto non può essere inferiore al voto corso basso";
 
 /* No comment provided by engineer. */
 "In-Class" = "In classe";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Inserisci il codice accoppiamento studente fornito.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Annunci istituto";
-
-/* Title for an alert view */
-"Invalid Input" = "Input non valido";
-
 /* No comment provided by engineer. */
 "Late" = "In ritardo";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "In ritardo: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Il voto compito basso non può essere superiore al voto compito alto";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Il voto corso basso non può essere superiore al voto corso alto";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Gestisci studenti";
-
-/* No comment provided by engineer. */
-"Message" = "Messaggio";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Messaggio da %1$@, %2$@, del %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Mancante";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
-/* No comment provided by engineer. */
-"New Message" = "Nuovo messaggio";
-
 /* Empty Courses Text */
 "No Courses" = "Nessun corso";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Nessun voto";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Nessuno studente";
 
 /* No comment provided by engineer. */
-"No Subject" = "Nessun oggetto";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Autorizzazione necessaria";
-
-/* No comment provided by engineer. */
-"Recipients" = "Destinatari";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Su: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "Su: %1$@, Compito - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Rispondi";
-
-/* No comment provided by engineer. */
-"Reply All" = "Rispondi a tutti";
-
-/* No comment provided by engineer. */
 "Retry" = "Riprova";
-
-/* No comment provided by engineer. */
-"Send" = "Invia";
 
 /* No comment provided by engineer. */
 "Settings" = "Impostazioni";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Impostazioni. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Oggetto";
 
 /* No comment provided by engineer. */
 "Submitted" = "Inviato";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "I corsi di questo studente potrebbero non essere ancora stati pubblicati.";
 
 /* No comment provided by engineer. */
-"To" = "A";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "Problemi durante l’accesso";
 
 /* No comment provided by engineer. */
 "Unread" = "Non letto";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Il caricamento di %1$@ avviene alle %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Benvenuto, amministratore!";

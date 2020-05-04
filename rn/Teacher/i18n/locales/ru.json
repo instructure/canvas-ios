@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Вы уверены, что хотите удалить эту дискуссию?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Вы действительно хотите удалить эту страницу?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Вы действительно хотите удалить этот ответ?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Оценки"
   },
-  "grades_muted_76c70047": {
-    "message": "Оценки скрыты"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Оценки скрыты, анонимное выставление оценок"
-  },
   "green_15af4778": {
     "message": "Зеленый"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Отметить все как прочитанное"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Отметить как прочитанное"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Отметить как непрочитанное"
+  },
   "me_bf110f4d": {
     "message": "меня"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Множественные сроки выполнения"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Скрыть оценки"
   },
   "my_files_eea33f44": {
     "message": "Мои файлы"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Только учителя"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Ой, невозможно найти эту страницу."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Открыть { courseName } пользовательские предпочтения"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Отменить степень { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Данные страницы"
-  },
-  "page_not_found_683da852": {
-    "message": "Страница не найдена"
   },
   "pages_front_page_9ce5188": {
     "message": "Страницы титульной страницы"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Просмотр студентом"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Просмотр для студентов, зачисление не найдено"
   },
   "students_1b8cd07b": {
     "message": "Студенты"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "Вам поступило приглашение"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "Вы должны войти в просмотр для студентов для этого курса один раз с веб-сайта, прежде чем использовать просмотр для студентов в приложении."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "Вы должны активировать разрешения для камеры и микрофона в настройках для использования камеры."

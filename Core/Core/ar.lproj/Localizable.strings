@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ النقاط";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "ولي أمر";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "تفاصيل المهمة";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "خطأ في ارتباط المحتوى";
 
 /* No comment provided by engineer. */
+"Contribute" = "مساهمة";
+
+/* No comment provided by engineer. */
+"Contributed" = "بمساهمة";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "المحادثة التي قمتُ بإنشائها";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "تعليق على النقاش";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "تفاصيل النقاش";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "منشور النقاش";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "الملف";
+
+/* No comment provided by engineer. */
+"File Details" = "تفاصيل الملف";
 
 /* No comment provided by engineer. */
 "File Upload" = "تحميل ملف";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "وضع علامة تم";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "وضع علامة تم التراجع عنه";
+
+/* No comment provided by engineer. */
+"Mark done" = "وضع علامة \"تم\"";
+
+/* No comment provided by engineer. */
+"Marked done" = "يحمل علامة \"تم\"";
+
+/* No comment provided by engineer. */
 "me" = "أنا";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "مفقود";
+
+/* No comment provided by engineer. */
+"Module Item" = "عنصر الوحدة";
 
 /* No comment provided by engineer. */
 "Modules" = "الوحدات النمطية";
@@ -767,6 +800,9 @@
 "Quiz" = "الاختبار الموجز";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "تفاصيل الاختبار الموجز";
+
+/* No comment provided by engineer. */
 "Record Audio" = "تسجيل الصوت";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "الجدولة";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "الحصول على الأقل على درجة %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "تم الحصول على الأقل على درجة %@";
 
 /* No comment provided by engineer. */
 "Search" = "بحث";
@@ -1085,7 +1127,13 @@
 "Video" = "فيديو";
 
 /* No comment provided by engineer. */
+"View" = "عرض";
+
+/* No comment provided by engineer. */
 "View Modules" = "عرض الوحدات المنطقية";
+
+/* No comment provided by engineer. */
+"Viewed" = "تمت لمشاهدة";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "لم نتمكن من العثور على شخص مثلك.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "سيتم إخراجك من حساب هذا الطلب.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";

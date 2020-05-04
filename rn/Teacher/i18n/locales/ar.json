@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "هل تريد بالتأكيد حذف هذه المناقشة؟"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "هل تريد بالتأكيد حذف هذه الصفحة؟"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "هل تريد بالتأكيد حذف هذا الرد؟"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "الدرجات"
   },
-  "grades_muted_76c70047": {
-    "message": "تم إخفاء الدرجات"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "تم إخفاء الدرجات، منح الدرجات دون الكشف عن الهوية"
-  },
   "green_15af4778": {
     "message": "أخضر"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "وضع علامة على الكل كمقروء"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "وضع علامة كمقروء"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "وضع علامة كغير مقروء"
+  },
   "me_bf110f4d": {
     "message": "أنا"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "مواعيد استحقاق متعددة"
-  },
-  "mute_grades_b85bece1": {
-    "message": "إخفاء الدرجات"
   },
   "my_files_eea33f44": {
     "message": "ملفاتي"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "المعلمون فقط"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "عذرًا، تعذر علينا العثور على تلك الصفحة."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "فتح تفضيلات مستخدم { courseName } "
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "تجاوز الدرجة { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "تفاصيل الصفحة"
-  },
-  "page_not_found_683da852": {
-    "message": "لم يتم العثور على الصفحة"
   },
   "pages_front_page_9ce5188": {
     "message": "الصفحة الأمامية للصفحات"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "طريقة عرض الطالب"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "لم يتم العثور على تسجيل طريقة عرض الطالب"
   },
   "students_1b8cd07b": {
     "message": "الطلاب"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "تمت دعوتك"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "يجب أن تصل لطريقة عرض الطالب لهذا المساق مرة واحدة من موقع الويب قبل استخدام عرض الطالب في التطبيق."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "يجب أن تقوم بتمكين أذونات الكاميرا والميكروفون في الإعدادات لاستخدام الكاميرا."

@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ poäng";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en vårdnadshavare";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Uppgiftens detaljer";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Fel med innehållslänk";
 
 /* No comment provided by engineer. */
+"Contribute" = "Bidra";
+
+/* No comment provided by engineer. */
+"Contributed" = "Bidragit";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Konversation skapad av mig";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Diskussionskommentar";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Diskussionens detaljer";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Diskussionsinlägg";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fil";
+
+/* No comment provided by engineer. */
+"File Details" = "Filinformation";
 
 /* No comment provided by engineer. */
 "File Upload" = "Filuppladdning";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Markera som klar";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Markera som ångrad";
+
+/* No comment provided by engineer. */
+"Mark done" = "Markera som klar";
+
+/* No comment provided by engineer. */
+"Marked done" = "Markering är färdig";
+
+/* No comment provided by engineer. */
 "me" = "jag";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Saknas";
+
+/* No comment provided by engineer. */
+"Module Item" = "Modulobjekt";
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
@@ -767,6 +800,9 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Quizinformation";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Spela in ljud";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Schemalägger";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Lägsta poäng %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Fick minst %@";
 
 /* No comment provided by engineer. */
 "Search" = "Sök";
@@ -1085,7 +1127,13 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "Visa";
+
+/* No comment provided by engineer. */
 "View Modules" = "Visa moduler";
+
+/* No comment provided by engineer. */
+"Viewed" = "Visad";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Det gick inte att hitta någon med de egenskaperna.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Du kommer att loggas ut ur det här studentkontot.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du kommer att sluta att agera som %@, och gå tillbaka till ditt konto.";
