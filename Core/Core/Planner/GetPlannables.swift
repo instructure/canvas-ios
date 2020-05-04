@@ -194,7 +194,7 @@ public class GetPlannables: UseCase {
             for course in courses {
                 let enrollments = course.enrollments ?? []
                 for enrollment in enrollments where enrollment.associated_user_id == userID {
-                    codes.append(course.canvasContextID)
+                    codes.append(ContextModel(.course, id: course.id.value).canvasContextID)
                 }
             }
             callback(codes)
