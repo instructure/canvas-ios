@@ -72,7 +72,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
             .make(description: "", ended_at: Clock.now, recordings: [ .make(
                 created_at: Clock.now,
                 duration_minutes: 65,
-                playback_formats: [ .make(length: "", type: "", url: URL(string: "/playback")!) ],
+                playback_formats: [ .make(length: "", type: "video", url: URL(string: "/playback")!) ],
                 playback_url: nil,
                 title: "Recording 1"
             ), ]),
@@ -100,7 +100,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
                 .make(
                     playback_formats: [
                         .make(type: "statistics", url: URL(string: "/statistics")!),
-                        .make(type: "video", url: URL(string: "playback")!),
+                        .make(type: "video", url: URL(string: "/playback")!),
                     ],
                     playback_url: nil
                 ),
