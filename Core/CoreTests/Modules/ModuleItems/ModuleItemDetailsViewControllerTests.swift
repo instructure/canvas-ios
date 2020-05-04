@@ -167,4 +167,22 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         wait(for: [expectation], timeout: 1)
     }
+
+    func testMarkAsViewedWhenCompletedNilDoesNotPostNotification() {
+        router.mock("/?origin=module_item_details") { DetailViewController() }
+        let expectation = XCTestExpectation(description: "notification was sent when it should not have been")
+        expectation.isInverted = true
+        var token: NSObjectProtocol?
+        token = NotificationCenter.default.addObserver(forName: .moduleItemRequirementCompleted, object: nil, queue: nil) { _ in
+            NotificationCenter.default.removeObserver(token!)
+            expectation.fulfill()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            url: URL(string: "/")!,
+            completion_requirement: .make(type: .must_view, completed: nil)
+        ))
+        controller.view.layoutIfNeeded()
+        wait(for: [expectation], timeout: 0.1)
+    }
 }

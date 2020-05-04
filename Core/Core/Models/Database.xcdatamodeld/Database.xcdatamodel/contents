@@ -353,7 +353,7 @@
         <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="ModuleItem" representedClassName="Core.ModuleItem" syncable="YES">
-        <attribute name="completed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="completedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="completionRequirementTypeRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
