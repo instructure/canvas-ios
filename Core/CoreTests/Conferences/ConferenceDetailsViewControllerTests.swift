@@ -72,7 +72,7 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
             .make(description: "", ended_at: Clock.now, recordings: [ .make(
                 created_at: Clock.now,
                 duration_minutes: 65,
-                playback_formats: [ .make(length: "", type: "", url: URL(string: "/playback")!) ],
+                playback_formats: [ .make(length: "", type: "video", url: URL(string: "/playback")!) ],
                 playback_url: nil,
                 title: "Recording 1"
             ), ]),
@@ -92,5 +92,23 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
         XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/playback")))
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
+    }
+
+    func testConferenceWithStatistics() {
+        api.mock(controller.conferences, value: .init(conferences: [
+            .make(id: conferenceID, recordings: [
+                .make(
+                    playback_formats: [
+                        .make(type: "statistics", url: URL(string: "/statistics")!),
+                        .make(type: "video", url: URL(string: "/playback")!),
+                    ],
+                    playback_url: nil
+                ),
+            ]),
+        ]))
+        controller.view.layoutIfNeeded()
+        let index0 = IndexPath(row: 0, section: 0)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
+        XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/playback")))
     }
 }
