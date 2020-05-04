@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Ni zadeve)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ima rok ob %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ se začne ob %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, v %2$@, zadnje sporočilo je bilo dne %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, neprebrano";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1–100 %";
-
 /* No comment provided by engineer. */
 "Add" = "Dodaj";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Dodaj priloge";
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Dodajte študente na vrhu ali pa pojdite v globalni meni, da prevzamete vlogo študenta.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Obvesti me, ko:";
 
 /* Alerts Tab */
 "Alerts" = "Opozorila";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Prišlo je do napake.";
-
-/* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Ocena pri nalogi višja od";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Ocena pri nalogi nižja od";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Manjkajoča naloga";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Opomnik za nalogo";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Prekliči";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Ni mogoče uporabiti odstotka, ki je večji od 100.";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Ni mogoče uporabiti odstotka, ki je manjši od 0.";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Seznanitev z opozorili";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Izberite predmet za pošiljanje sporočila";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Sestavi sporočilo";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Obvestila o predmetu";
-
-/* Course Grade High On Description */
-"Course grade above" = "Ocena pri predmetu višja od";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Ocena pri predmetu nižja od";
 
 /* Courses Tab */
 "Courses" = "Predmeti";
@@ -107,9 +59,6 @@
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Uredi prejemnike";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Opozorilo o dogodku";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
-
-/* No comment provided by engineer. */
-"File" = "Datoteka";
-
-/* No comment provided by engineer. */
 "Find School" = "Poišči šolo";
-
-/* No comment provided by engineer. */
-"for %@" = "za %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Visoka ocena naloge ne more biti nižja od nizke ocene naloge.";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Visoka ocena predmeta ne more biti nižja od nizke ocene predmeta.";
 
 /* No comment provided by engineer. */
 "In-Class" = "V razredu";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Vnesite kodo za vzpostavljanje povezave študentov, ki ste jo prejeli.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Obvestila ustanove";
-
-/* Title for an alert view */
-"Invalid Input" = "Neveljaven vnos";
-
 /* No comment provided by engineer. */
 "Late" = "Zamuda";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Zamuda: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Nizka ocena naloge ne more biti višja od visoke ocene naloge.";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Nizka ocena predmeta ne more biti višja od visoke ocene predmeta.";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Uredi študente";
-
-/* No comment provided by engineer. */
-"Message" = "Sporočilo";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Sporočilo od %1$@, %2$@, dne %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Manjkajoče";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "Ni na voljo";
 
-/* No comment provided by engineer. */
-"New Message" = "Novo sporočilo";
-
 /* Empty Courses Text */
 "No Courses" = "Ni predmetov.";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Ni ocen.";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Ni študentov.";
 
 /* No comment provided by engineer. */
-"No Subject" = "Ni kratkega opisa predmeta.";
-
-/* OK Button Title */
 "OK" = "V redu";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
-
-/* No comment provided by engineer. */
-"Recipients" = "Prejemniki";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Zadeva: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "Zadeva: %1$@, Naloga – %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Odgovori";
-
-/* No comment provided by engineer. */
-"Reply All" = "Odgovori vsem";
-
-/* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
-
-/* No comment provided by engineer. */
-"Send" = "Pošlji";
 
 /* No comment provided by engineer. */
 "Settings" = "Nastavitve";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Nastavitve. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Kratek opis predmeta";
 
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
 
 /* No comment provided by engineer. */
-"To" = "Naslovnik";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "Težave pri prijavi";
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Nalaganje %1$@ je ob %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Dobrodošli, skrbnik!";

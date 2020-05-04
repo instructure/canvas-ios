@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ punts";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un progenitor";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Detalls de la tasca";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intent %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "S'ha produït un error a l'enllaç al contingut";
 
 /* No comment provided by engineer. */
+"Contribute" = "Contribueix";
+
+/* No comment provided by engineer. */
+"Contributed" = "Contribuït";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Conversa que he creat";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Comentari sobre el debat";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Informació sobre el debat";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Publicació sobre el debat";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Fitxer";
+
+/* No comment provided by engineer. */
+"File Details" = "Detalls del fitxer";
 
 /* No comment provided by engineer. */
 "File Upload" = "Càrrega de fitxer";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Inici de sessió amb autenticació manual";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Marca-ho com fet";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Marca-ho com a desfet";
+
+/* No comment provided by engineer. */
+"Mark done" = "Marca com a fet";
+
+/* No comment provided by engineer. */
+"Marked done" = "Marcat com a fet";
+
+/* No comment provided by engineer. */
 "me" = "mi";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Falta";
+
+/* No comment provided by engineer. */
+"Module Item" = "Element del mòdul";
 
 /* No comment provided by engineer. */
 "Modules" = "Mòduls";
@@ -767,6 +800,9 @@
 "Quiz" = "Qüestionari";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Informació del qüestionari";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Enregistra so";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planificació";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Puntuació mínima %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Puntuació mínima obtinguda %@";
 
 /* No comment provided by engineer. */
 "Search" = "Cerca";
@@ -1085,7 +1127,13 @@
 "Video" = "Vídeo";
 
 /* No comment provided by engineer. */
+"View" = "Mostra";
+
+/* No comment provided by engineer. */
 "View Modules" = "Mostra els mòduls";
+
+/* No comment provided by engineer. */
+"Viewed" = "Vist";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "No hem trobat ningú així.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Es tancarà la vostra sessió en aquest compte d'estudiant.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre compte.";

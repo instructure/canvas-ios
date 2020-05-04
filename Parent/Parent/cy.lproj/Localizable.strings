@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Dim pwnc)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ erbyn %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ yn dechrau am %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, yn %2$@, roedd y neges ddiwethaf am %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, heb eu darllen";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Ychwanegu";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Ychwanegu Atodiadau";
 
 /* No comment provided by engineer. */
 "Add Student" = "Ychwanegu Myfyriwr";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ychwanegwch fyfyrwyr at y brig neu ewch i’r ddewislen gyffredinol i esgus eich bod chi’n fyfyriwr.";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Rhowch wybod i mi pan:";
 
 /* Alerts Tab */
 "Alerts" = "Negeseuon Hysbysu";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "Gwall";
-
-/* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "Gradd yr aseiniad yn uwch na";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "Gradd yr aseiniad yn is na";
-
-/* Assignment Missing Description */
-"Assignment missing" = "Aseiniad ar goll";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Nodyn atgoffa ar gyfer aseiniad";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Methu defnyddio canran mwy na 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Methu defnyddio canran llai na 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Dewiswch gwrs i anfon neges ato";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Creu Neges";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Cyhoeddiadau cwrs";
-
-/* Course Grade High On Description */
-"Course grade above" = "Gradd y cwrs yn uwch na";
-
-/* Course Grade Low On Description */
-"Course grade below" = "Gradd y cwrs yn is na";
 
 /* Courses Tab */
 "Courses" = "Cyrsiau";
@@ -107,9 +59,6 @@
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Golygu Derbynwyr";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
-
-/* No comment provided by engineer. */
-"File" = "Ffeil";
-
-/* No comment provided by engineer. */
 "Find School" = "Dod o hyd i Ysgol";
-
-/* No comment provided by engineer. */
-"for %@" = "ar gyfer %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
 "Grades" = "Graddau";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "Ni all gradd aseiniad uchel fod yn is na gradd aseiniad isel";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "Ni all gradd cwrs uchel fod yn is na gradd cwrs isel";
 
 /* No comment provided by engineer. */
 "In-Class" = "Yn y dosbarth";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Rhowch y cod paru myfyriwr a roddwyd i chi.";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Cyhoeddiadau sefydliadau";
-
-/* Title for an alert view */
-"Invalid Input" = "Mewnbwn Annilys";
-
 /* No comment provided by engineer. */
 "Late" = "Yn Hwyr";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "Ni all gradd aseiniad isel fod yn uwch na gradd aseiniad uchel";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "Ni all gradd cwrs isel fod yn uwch na gradd cwrs uchel";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
-
-/* No comment provided by engineer. */
-"Message" = "Neges";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Neges gan %1$@, %2$@, ar %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ar goll";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "Amherthnasol";
 
-/* No comment provided by engineer. */
-"New Message" = "Neges Newydd";
-
 /* Empty Courses Text */
 "No Courses" = "Dim Cyrsiau";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Dim Gradd";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Dim Myfyrwyr";
 
 /* No comment provided by engineer. */
-"No Subject" = "Dim Pwnc";
-
-/* OK Button Title */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
-
-/* No comment provided by engineer. */
-"Recipients" = "Derbynwyr";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Ynghylch: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "Ynghylch: %1$@, Aseinaid - %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Ateb";
-
-/* No comment provided by engineer. */
-"Reply All" = "Ateb Pawb";
-
-/* No comment provided by engineer. */
 "Retry" = "Ailgynnig";
-
-/* No comment provided by engineer. */
-"Send" = "Anfon";
 
 /* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Gosodiadau. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Pwnc";
 
 /* No comment provided by engineer. */
 "Submitted" = "Wedi cyflwyno";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
 
 /* No comment provided by engineer. */
-"To" = "I";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
 
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Croeso, Weinyddwr!";

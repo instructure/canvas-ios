@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@得分";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "家长";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "作业详情";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "内容链接错误";
 
 /* No comment provided by engineer. */
+"Contribute" = "投寄";
+
+/* No comment provided by engineer. */
+"Contributed" = "已投寄";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "我创建的会话";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "讨论评论";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "讨论详细信息";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "讨论帖";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "文件";
+
+/* No comment provided by engineer. */
+"File Details" = "文件详细信息";
 
 /* No comment provided by engineer. */
 "File Upload" = "文件上传";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "手动 OAuth 登录";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "标记为已完成";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "标记为未完成";
+
+/* No comment provided by engineer. */
+"Mark done" = "标记为完成";
+
+/* No comment provided by engineer. */
+"Marked done" = "已做记号";
+
+/* No comment provided by engineer. */
 "me" = "本人";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "缺失";
+
+/* No comment provided by engineer. */
+"Module Item" = "单元项目";
 
 /* No comment provided by engineer. */
 "Modules" = "单元";
@@ -767,6 +800,9 @@
 "Quiz" = "测验";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "测验详情";
+
+/* No comment provided by engineer. */
 "Record Audio" = "录制音频";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "日程安排";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "最低评分%@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "最低评分%@";
 
 /* No comment provided by engineer. */
 "Search" = "搜索";
@@ -1085,7 +1127,13 @@
 "Video" = "视频";
 
 /* No comment provided by engineer. */
+"View" = "查看";
+
+/* No comment provided by engineer. */
 "View Modules" = "查看模块";
+
+/* No comment provided by engineer. */
+"Viewed" = "已查看";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "找不到这样的人。";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "您将退出此学生账户。";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "你将停止担当%@并返回至帐号。";

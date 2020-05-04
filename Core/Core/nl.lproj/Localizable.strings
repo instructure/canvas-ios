@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ ptn";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "een ouder";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Opdrachtdetails";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poging %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Fout met inhoudslink";
 
 /* No comment provided by engineer. */
+"Contribute" = "Bijdragen";
+
+/* No comment provided by engineer. */
+"Contributed" = "Bijgedragen";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Gesprek dat ik heb gemaakt";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Opmerking bij discussie";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Discussiedetails";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Discussiebericht";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Bestand";
+
+/* No comment provided by engineer. */
+"File Details" = "Bestandsdetails";
 
 /* No comment provided by engineer. */
 "File Upload" = "Bestand uploaden";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Als gereed markeren";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Als ongedaan markeren";
+
+/* No comment provided by engineer. */
+"Mark done" = "Gereed markeren";
+
+/* No comment provided by engineer. */
+"Marked done" = "Gereed gemarkeerd";
+
+/* No comment provided by engineer. */
 "me" = "mij";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Ontbrekend";
+
+/* No comment provided by engineer. */
+"Module Item" = "Module-item";
 
 /* No comment provided by engineer. */
 "Modules" = "Modules";
@@ -767,6 +800,9 @@
 "Quiz" = "Toets";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Toetsdetails";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Audio opnemen";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planning";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Minimaal scoren %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Minimaal gescoord %@";
 
 /* No comment provided by engineer. */
 "Search" = "Zoeken";
@@ -1085,7 +1127,13 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "Bekijken";
+
+/* No comment provided by engineer. */
 "View Modules" = "Modules weergeven";
+
+/* No comment provided by engineer. */
+"Viewed" = "Bekeken";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "We hebben niemand kunnen vinden die daaraan voldoet.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Je moet Microfoon-toestemmingen inschakelen in Instellingen.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Je wordt afgemeld bij dit cursistaccount.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";

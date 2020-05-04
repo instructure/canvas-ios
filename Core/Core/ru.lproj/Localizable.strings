@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ баллы";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "родитель";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Сведения о задании";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Ошибка ссылки на содержимое";
 
 /* No comment provided by engineer. */
+"Contribute" = "Предоставить";
+
+/* No comment provided by engineer. */
+"Contributed" = "Предоставлено";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Обсуждение, созданное мной";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Комментарий к дискуссии";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Сведения об обсуждении";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Размещение обсуждения";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "Файл";
+
+/* No comment provided by engineer. */
+"File Details" = "Подробная информация о файле";
 
 /* No comment provided by engineer. */
 "File Upload" = "Отправка файла";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Ручной вход в OAuth";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Отметить как выполненное";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Пометить как невыполненное";
+
+/* No comment provided by engineer. */
+"Mark done" = "Отметить как выполненное";
+
+/* No comment provided by engineer. */
+"Marked done" = "Отмечено как выполненное";
+
+/* No comment provided by engineer. */
 "me" = "меня";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Отсутствует";
+
+/* No comment provided by engineer. */
+"Module Item" = "Элемент модуля";
 
 /* No comment provided by engineer. */
 "Modules" = "Модули";
@@ -767,6 +800,9 @@
 "Quiz" = "Тест";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Сведения о тесте";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Записать аудио";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Составление плана";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Набрать по меньшей мере %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Набрано по меньшей мере %@";
 
 /* No comment provided by engineer. */
 "Search" = "Поиск";
@@ -1085,7 +1127,13 @@
 "Video" = "Видео";
 
 /* No comment provided by engineer. */
+"View" = "Просмотр";
+
+/* No comment provided by engineer. */
 "View Modules" = "Просмотр модулей";
+
+/* No comment provided by engineer. */
+"Viewed" = "Просмотрено";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Мы не смогли найти никогда похожего.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "Будет выполнен выход из учетной записи этого студента.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Вы прекратите действовать как %@ и вернетесь в свою учетную запись.";

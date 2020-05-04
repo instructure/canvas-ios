@@ -98,6 +98,30 @@
 			<string>%d need grading</string>
 		</dict>
 	</dict>
+	<key>d_options</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@options@</string>
+		<key>options</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d Option</string>
+			<key>other</key>
+			<string>%d Options</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d Options</string>
+		</dict>
+	</dict>
 	<key>d_questions</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

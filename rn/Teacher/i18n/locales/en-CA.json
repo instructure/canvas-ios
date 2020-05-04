@@ -143,9 +143,6 @@
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Are you sure you want to delete this discussion?"
   },
-  "are_you_sure_you_want_to_delete_this_page_2185844": {
-    "message": "Are you sure you want to delete this page?"
-  },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
     "message": "Are you sure you want to delete this reply?"
   },
@@ -716,12 +713,6 @@
   "grades_a61eba0a": {
     "message": "Grades"
   },
-  "grades_muted_76c70047": {
-    "message": "Grades muted"
-  },
-  "grades_muted_anonymous_grading_9291ea4b": {
-    "message": "Grades muted, Anonymous grading"
-  },
   "green_15af4778": {
     "message": "Green"
   },
@@ -875,6 +866,12 @@
   "mark_all_as_read_8f3bdf57": {
     "message": "Mark All as Read"
   },
+  "mark_as_read_47ec83dd": {
+    "message": "Mark as Read"
+  },
+  "mark_as_unread_4ded3977": {
+    "message": "Mark as Unread"
+  },
   "me_bf110f4d": {
     "message": "me"
   },
@@ -913,9 +910,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates"
-  },
-  "mute_grades_b85bece1": {
-    "message": "Mute Grades"
   },
   "my_files_eea33f44": {
     "message": "My Files"
@@ -1079,9 +1073,6 @@
   "only_teachers_1628d9b9": {
     "message": "Only teachers"
   },
-  "oops_we_couldn_t_find_that_page_7474fec6": {
-    "message": "Oops, we couldn’t find that page."
-  },
   "open_coursename_user_preferences_430b877e": {
     "message": "Open { courseName } user preferences"
   },
@@ -1114,12 +1105,6 @@
   },
   "override_grade_grade_f33671d4": {
     "message": "Override Grade { grade }"
-  },
-  "page_details_847e35e6": {
-    "message": "Page Details"
-  },
-  "page_not_found_683da852": {
-    "message": "Page Not Found"
   },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
@@ -1441,9 +1426,6 @@
   },
   "student_view_ac9b672f": {
     "message": "Student View"
-  },
-  "student_view_enrollment_not_found_8f9cbdd5": {
-    "message": "Student View Enrollment Not Found"
   },
   "students_1b8cd07b": {
     "message": "Students"
@@ -1799,9 +1781,6 @@
   },
   "you_have_been_invited_a724be1a": {
     "message": "You have been invited"
-  },
-  "you_must_access_student_view_for_this_course_once__ae054476": {
-    "message": "You must access Student View for this course once from the website before using Student View in the app."
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "You must enable Camera and Microphone permissions in Settings to use the camera."

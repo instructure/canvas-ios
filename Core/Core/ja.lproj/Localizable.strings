@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ポイント";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "親";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "課題の詳細";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "コンテンツリンクエラー";
 
 /* No comment provided by engineer. */
+"Contribute" = "投稿する";
+
+/* No comment provided by engineer. */
+"Contributed" = "投稿されました";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "私が作成した会話";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "ディスカッションのコメント";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "ディスカッションの詳細";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "ディスカッション掲示";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "ファイル";
+
+/* No comment provided by engineer. */
+"File Details" = "ファイル詳細";
 
 /* No comment provided by engineer. */
 "File Upload" = "ファイルのアップロード";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "完了としてマークする";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "未了としてマークする";
+
+/* No comment provided by engineer. */
+"Mark done" = "完了にする";
+
+/* No comment provided by engineer. */
+"Marked done" = "完了済み";
+
+/* No comment provided by engineer. */
 "me" = "私";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "欠如";
+
+/* No comment provided by engineer. */
+"Module Item" = "モジュール アイテム";
 
 /* No comment provided by engineer. */
 "Modules" = "モジュール";
@@ -767,6 +800,9 @@
 "Quiz" = "クイズ";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "クイズの詳細情報";
+
+/* No comment provided by engineer. */
 "Record Audio" = "オーディオを録音する";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "スケジュール中";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "最低得点%@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "最低得点しました%@";
 
 /* No comment provided by engineer. */
 "Search" = "検索";
@@ -1085,7 +1127,13 @@
 "Video" = "ビデオ";
 
 /* No comment provided by engineer. */
+"View" = "表示";
+
+/* No comment provided by engineer. */
 "View Modules" = "モジュールの表示";
+
+/* No comment provided by engineer. */
+"Viewed" = "表示しました";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "そのような人物を見つけることができませんでした。";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "この受講生アカウントからログアウトされます。";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "%@行動することを止め、自分のアカウントに戻る";

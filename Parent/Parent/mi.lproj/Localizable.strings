@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(Kaore he kaupapa)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ka tae i te wā ī %2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@ ka timata ī %2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, i roto %2$@, te karere whakamutunga i runga %3$@ %4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@, kaore i pānuihia";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "Tāpiri";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "Tāpiri ngā Apititanga";
 
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Tāpiri ākonga ki runga ara haere ki te tahua o te ao ki te āhua rua hei ākonga";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "Matohi ahau ina:";
 
 /* Alerts Tab */
 "Alerts" = "He whakamatāra";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "I puta tētahi Hapa";
-
-/* No comment provided by engineer. */
 "Announcement" = "Pānui";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "kōeke whakataunga runga";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "kōeke whakataunga raro";
-
-/* Assignment Missing Description */
-"Assignment missing" = "e ngaro ana whakataunga";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Whakataunga whakamaharatanga";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "Kāore e taea te whakamahi te ōrau e tiketike ake ana i te 100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "Kāore e taea te whakamahi te ōrau e he iti iho i te 0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "Mau ake i runga i Matohi";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "Kōwhiri he akoranga hei karare";
 
 /* No comment provided by engineer. */
 "Compose Message" = "Tito Karere";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "Kōrerorero akoranga";
-
-/* Course Grade High On Description */
-"Course grade above" = "kōeke akoranga i runga";
-
-/* Course Grade Low On Description */
-"Course grade below" = "kōeke akoranga i raro";
 
 /* Courses Tab */
 "Courses" = "Akoranga";
@@ -107,9 +59,6 @@
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "Whakatika ngā Kaiwhiwhi";
-
-/* No comment provided by engineer. */
 "Event reminder" = "Tauwhāinga whakamaharatanga";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
-
-/* No comment provided by engineer. */
-"File" = "Kōnae";
-
-/* No comment provided by engineer. */
 "Find School" = "Kimihia taku kura";
-
-/* No comment provided by engineer. */
-"for %@" = "hoki %@";
 
 /* No comment provided by engineer. */
 "Front Page" = "Whārangi mua";
 
 /* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "e kore e taea te whakataunga teitei kōeke e raro atu kōeke whakatuanga iti";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "e kore e taea te kōeke akoranga tiketike e raro atu kōeke akoranga iti";
 
 /* No comment provided by engineer. */
 "In-Class" = "I roto i te-Akomanga";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Whakauru te ākonga waihere Hono kua tukuna atu ki a koe";
 
-/* Institution Announcement Description */
-"Institution announcements" = "Whare huinga kōrerorero";
-
-/* Title for an alert view */
-"Invalid Input" = "Tāuru muhu";
-
 /* No comment provided by engineer. */
 "Late" = "Tūreiti";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Tūreiti: %1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "e kore e taea raro iho te whakataunga kōeke e tiketike ake te whakataunga kōeke teitei";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = "e kore e taea raro iho te kōeke akoranga kia tiketike ake kōeke akoranga teitei";
-
 /* No comment provided by engineer. */
 "Manage Students" = "Whakahaere ngā ākonga";
-
-/* No comment provided by engineer. */
-"Message" = "Karere";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Karere mai %1$@, %2$@, i runga %3$@, %4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "Ngaro";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "N/A";
 
-/* No comment provided by engineer. */
-"New Message" = "Karere Hōu";
-
 /* Empty Courses Text */
 "No Courses" = "Kāore he Akoranga";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "Kaore he Kōeke";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "Kāore he ākonga";
 
 /* No comment provided by engineer. */
-"No Subject" = "Kāore he Kaupapa";
-
-/* OK Button Title */
 "OK" = "Ae";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
-
-/* No comment provided by engineer. */
-"Recipients" = "Ngā Kaiwhiwhi";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "E pā ana: %@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "E pā ana: %1$@, Whakataunga: %2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "Whakautu";
-
-/* No comment provided by engineer. */
-"Reply All" = "Whakautu ki te katoa";
-
-/* No comment provided by engineer. */
 "Retry" = "Ngana anō";
-
-/* No comment provided by engineer. */
-"Send" = "Tukua";
 
 /* No comment provided by engineer. */
 "Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "Ngā Tautuhinga. %@";
-
-/* No comment provided by engineer. */
-"Subject" = "Kaupapa";
 
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "Kaore e pānuitia ngā akoranga a tēnei ākonga i tēnei wā.";
 
 /* No comment provided by engineer. */
-"To" = "Ki a";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "He raruraru ki te takiuru?";
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Haere mai Kaiwhakahaere";

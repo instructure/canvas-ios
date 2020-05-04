@@ -1,29 +1,11 @@
 /* No comment provided by engineer. */
-"(No subject)" = "(无标题)";
-
-/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@截止日期%2$@";
 
 /* No comment provided by engineer. */
 "%@ will begin at %@" = "%1$@开始日期%2$@";
 
-/* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@，上一条消息位于%3$@%4$@";
-
-/* added to conversation label when unread */
-"%@, unread" = "%@，未读";
-
-/* No comment provided by engineer. */
-"+%d" = "+%d";
-
-/* Percentage field placeholder */
-"1-100%" = "1-100%";
-
 /* No comment provided by engineer. */
 "Add" = "添加";
-
-/* No comment provided by engineer. */
-"Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
 "Add Student" = "添加学生";
@@ -31,26 +13,14 @@
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "在顶部添加学生或访问全局菜单以伪装成学生。";
 
-/* Alert Section Header */
+/* No comment provided by engineer. */
 "Alert me when:" = "通知我当：";
 
 /* Alerts Tab */
 "Alerts" = "警告";
 
 /* No comment provided by engineer. */
-"An Error Occurred" = "发生错误";
-
-/* No comment provided by engineer. */
 "Announcement" = "公告";
-
-/* Assignment Grade High On Description */
-"Assignment grade above" = "以上作业成绩";
-
-/* Assignment Grade Low On Description */
-"Assignment grade below" = "以下作业成绩";
-
-/* Assignment Missing Description */
-"Assignment missing" = "没交作业";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "作业提醒";
@@ -67,17 +37,8 @@
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
-/* Percent value is over 100 */
-"Cannot use percent that is higher than 100" = "不可以使用超过百分之100";
-
-/* Percent value is under 0 */
-"Cannot use percent that is less than 0" = "不可以使用小于百分之0";
-
 /* Empty Alerts Text */
 "Caught up on Alerts" = "赶上了通知";
-
-/* No comment provided by engineer. */
-"Choose a course to message" = "选择一个课程来发送讯息";
 
 /* No comment provided by engineer. */
 "Compose Message" = "撰写消息";
@@ -87,15 +48,6 @@
 
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
-
-/* Course Announcement Description */
-"Course announcements" = "课程通告";
-
-/* Course Grade High On Description */
-"Course grade above" = "以上课程成绩";
-
-/* Course Grade Low On Description */
-"Course grade below" = "以下课程成绩";
 
 /* Courses Tab */
 "Courses" = "课程";
@@ -107,9 +59,6 @@
 "Dismiss" = "解散";
 
 /* No comment provided by engineer. */
-"Edit Recipients" = "编辑收件人";
-
-/* No comment provided by engineer. */
 "Event reminder" = "活动提醒";
 
 /* No comment provided by engineer. */
@@ -119,28 +68,13 @@
 "Failed to load (discussionKitModelName) NSManagedObjectModel" = "无法加载 (discussionKitModelName) NSManagedObjectModel";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "失败。点击以获取选项";
-
-/* No comment provided by engineer. */
-"File" = "文件";
-
-/* No comment provided by engineer. */
 "Find School" = "查找学校";
-
-/* No comment provided by engineer. */
-"for %@" = "事由%@";
 
 /* No comment provided by engineer. */
 "Front Page" = "首页";
 
 /* No comment provided by engineer. */
 "Grades" = "评分";
-
-/* High Assignment Grade too Low */
-"High assignment grade cannot be lower than low assignment grade" = "得分高的作业不能低于得分低的作业";
-
-/* High Course Grade too Low */
-"High course grade cannot be lower than low course grade" = "得分高的课程不能低于得分低的课程";
 
 /* No comment provided by engineer. */
 "In-Class" = "在课堂";
@@ -154,12 +88,6 @@
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "输入提供给您的学生配对码。";
 
-/* Institution Announcement Description */
-"Institution announcements" = "机构通告";
-
-/* Title for an alert view */
-"Invalid Input" = "输入无效";
-
 /* No comment provided by engineer. */
 "Late" = "迟到、迟交";
 
@@ -169,20 +97,8 @@
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "迟交：%1$@ (%2$@/%3$@)";
 
-/* Low Assignment Grade too High */
-"Low assignment grade cannot be higher than high assignment grade" = "得分低的作业不能高于得分高的作业 ";
-
-/* Low Course Grade too High */
-"Low course grade cannot be higher than high course grade" = " 得分低的课程不能高于得分高的课程 ";
-
 /* No comment provided by engineer. */
 "Manage Students" = "管理学生";
-
-/* No comment provided by engineer. */
-"Message" = "消息";
-
-/* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "消息来自 %1$@，%2$@，位于 %3$@，%4$@";
 
 /* No comment provided by engineer. */
 "Missing" = "丢失";
@@ -199,22 +115,16 @@
 /* No comment provided by engineer. */
 "n/a" = "不适用";
 
-/* No comment provided by engineer. */
-"New Message" = "新消息";
-
 /* Empty Courses Text */
 "No Courses" = "没有课程";
 
 /* Title for label when no grade has been assigned to the course */
 "No Grade" = "没有评分";
 
-/* Empty Students Text */
+/* No comment provided by engineer. */
 "No Students" = "没有学生";
 
 /* No comment provided by engineer. */
-"No Subject" = "无主题";
-
-/* OK Button Title */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -222,9 +132,6 @@
 
 /* No comment provided by engineer. */
 "Permission Needed" = "需要权限";
-
-/* No comment provided by engineer. */
-"Recipients" = "收件人";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "事由：%@";
@@ -238,25 +145,13 @@
 "Regarding: %@, Assignment - %@" = "事由：%1$@，作业 -%2$@";
 
 /* No comment provided by engineer. */
-"Reply" = "回复";
-
-/* No comment provided by engineer. */
-"Reply All" = "回复所有人";
-
-/* No comment provided by engineer. */
 "Retry" = "重试";
-
-/* No comment provided by engineer. */
-"Send" = "发送";
 
 /* No comment provided by engineer. */
 "Settings" = "设置";
 
 /* No comment provided by engineer. */
 "Settings. %@" = "设置。%@";
-
-/* No comment provided by engineer. */
-"Subject" = "主题";
 
 /* No comment provided by engineer. */
 "Submitted" = "提交";
@@ -289,16 +184,10 @@
 "This student's courses may not be published yet." = "此学生的课程可能尚未发布。";
 
 /* No comment provided by engineer. */
-"To" = "致";
-
-/* No comment provided by engineer. */
 "Trouble logging in" = "在登录时遇到问题";
 
 /* No comment provided by engineer. */
 "Unread" = "未读";
-
-/* No comment provided by engineer. */
-"Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "欢迎您，网站管理员！";

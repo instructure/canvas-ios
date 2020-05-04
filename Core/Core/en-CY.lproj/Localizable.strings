@@ -7,6 +7,9 @@
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Class";
 
+/* No comment provided by engineer. */
+"%@ pts" = "%@ pts";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "a parent";
 
@@ -66,6 +69,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
+
+/* No comment provided by engineer. */
+"Assignment Details" = "Assignment details";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -209,6 +215,12 @@
 "Content Link Error" = "Content Link Error";
 
 /* No comment provided by engineer. */
+"Contribute" = "Contribute";
+
+/* No comment provided by engineer. */
+"Contributed" = "Contributed";
+
+/* No comment provided by engineer. */
 "Conversation Created By Me" = "Conversation Created By Me";
 
 /* No comment provided by engineer. */
@@ -293,6 +305,9 @@
 "Discussion Comment" = "Discussion Comment";
 
 /* No comment provided by engineer. */
+"Discussion Details" = "Discussion details";
+
+/* No comment provided by engineer. */
 "Discussion Post" = "Discussion post";
 
 /* No comment provided by engineer. */
@@ -369,6 +384,9 @@
 
 /* No comment provided by engineer. */
 "File" = "File";
+
+/* No comment provided by engineer. */
+"File Details" = "File Details";
 
 /* No comment provided by engineer. */
 "File Upload" = "File upload";
@@ -584,6 +602,18 @@
 "Manual OAuth Login" = "Manual OAuth Login";
 
 /* No comment provided by engineer. */
+"Mark as Done" = "Mark as done";
+
+/* No comment provided by engineer. */
+"Mark as Undone" = "Mark as Undone";
+
+/* No comment provided by engineer. */
+"Mark done" = "Mark as completed";
+
+/* No comment provided by engineer. */
+"Marked done" = "Marked completed";
+
+/* No comment provided by engineer. */
 "me" = "me";
 
 /* No comment provided by engineer. */
@@ -597,6 +627,9 @@
 
 /* No comment provided by engineer. */
 "Missing" = "Missing";
+
+/* No comment provided by engineer. */
+"Module Item" = "Unit item";
 
 /* No comment provided by engineer. */
 "Modules" = "Units";
@@ -767,6 +800,9 @@
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
+"Quiz Details" = "Quiz details";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Record audio";
 
 /* No comment provided by engineer. */
@@ -810,6 +846,12 @@
 
 /* No comment provided by engineer. */
 "Scheduling" = "Scheduling";
+
+/* No comment provided by engineer. */
+"Score at least %@" = "Score at least %@";
+
+/* No comment provided by engineer. */
+"Scored at least %@" = "Scored at least %@";
 
 /* No comment provided by engineer. */
 "Search" = "Search";
@@ -1085,7 +1127,13 @@
 "Video" = "Video";
 
 /* No comment provided by engineer. */
+"View" = "View";
+
+/* No comment provided by engineer. */
 "View Modules" = "View Units";
+
+/* No comment provided by engineer. */
+"Viewed" = "Viewed";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "We couldn’t find somebody like that.";
@@ -1125,9 +1173,6 @@
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
-
-/* No comment provided by engineer. */
-"You will be logged out of this student account." = "You will be logged out of this student account.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";
