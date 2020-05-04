@@ -31,3 +31,16 @@ class APIPairingCodeTests: CoreTestCase {
         XCTAssertEqual(model.code, "code")
     }
 }
+
+class APIAccountTermsOfServiceTests: CoreTestCase {
+    func testGetAccountTermsOfService() {
+        let r = GetAccountTermsOfService()
+        XCTAssertEqual(r.path, "account/self/terms_of_service")
+        XCTAssertEqual(r.method, .get)
+    }
+
+    func testObject() {
+        let model = APIAccountTermsOfService.make()
+        XCTAssertEqual(model.account_id, "1")
+    }
+}

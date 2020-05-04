@@ -31,6 +31,19 @@ public struct APIPairingCode: Codable, Equatable {
     let workflow_state: String?
 }
 
+public struct GetAccountTermsOfService: APIRequestable {
+    public typealias Response = APIAccountTermsOfService
+    public var path: String = "accounts/self/terms_of_service"
+}
+
+public struct APIAccountTermsOfService: Codable, Equatable {
+    let account_id: ID
+    let content: String?
+    let id: ID?
+    let passive: Bool?
+    let terms_type: String?
+}
+
 #if DEBUG
 extension APIPairingCode {
     public static func make(
@@ -44,6 +57,24 @@ extension APIPairingCode {
             code: code,
             expires_at: expires_at,
             workflow_state: workflow_state
+        )
+    }
+}
+
+extension APIAccountTermsOfService {
+    public static func make(
+        account_id: ID = "1",
+        content: String? = "content",
+        id: ID? = nil,
+        passive: Bool? = false,
+        terms_type: String? = nil
+    ) -> APIAccountTermsOfService {
+        return APIAccountTermsOfService(
+            account_id: account_id,
+            content: content,
+            id: id,
+            passive: passive,
+            terms_type: terms_type
         )
     }
 }
