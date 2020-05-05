@@ -48,10 +48,19 @@ class APIAccountTermsOfServiceTests: CoreTestCase {
 class PostAccountUserRequestTests: CoreTestCase {
     func testPostAccountUserRequest() {
         let accountID = "1"
-        let r = PostAccountUserRequest(accountID: accountID, pairingCode: "123", name: "john doe", email: "john@doe.com", password: "password")
+        let email = "john@doe.com"
+        let password = "password"
+        let name = "john doe"
+        let code = "123"
+        let r = PostAccountUserRequest(accountID: accountID, pairingCode: code, name: name, email: email, password: password)
         XCTAssertEqual(r.path, "accounts/\(accountID)/users")
         XCTAssertEqual(r.method, .post)
-        let url = try? r.urlRequest(relativeTo: URL(string: "https://foo.com")!, accessToken: nil, actAsUserID: nil)
-        XCTAssertEqual(url?.url?.query, "user%5Binitial_enrollment_type%5D=observer&pairing_code%5Bcode%5D=123&user%5Bname%5D=john%20doe&pseudonym%5Bunique_id%5D=john@doe.com&pseudonym%5Bpassword%5D=password")
+        let body = PostAccountUserRequest.Body(
+            pseudonym: PostAccountUserRequest.Body.Pseudonym(unique_id: email, password: password),
+            pairing_code: PostAccountUserRequest.Body.PairingCode(code: code),
+            user: PostAccountUserRequest.Body.User(name: name, initial_enrollment_type: "observer")
+        )
+
+        XCTAssertEqual(r.body, body)
     }
 }

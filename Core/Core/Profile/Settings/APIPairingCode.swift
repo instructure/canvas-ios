@@ -48,29 +48,34 @@ public struct APIAccountTermsOfService: Codable, Equatable {
 public struct PostAccountUserRequest: APIRequestable {
     public typealias Response = APIUser
     let accountID: String
-    let pairingCode: String
-    let name: String
-    let email: String
-    let password: String
     public let method: APIMethod = .post
     public var path: String { "accounts/\(accountID)/users" }
+    public var body: Body?
 
     init(accountID: String, pairingCode: String, name: String, email: String, password: String) {
         self.accountID = accountID
-        self.pairingCode = pairingCode
-        self.name = name
-        self.email = email
-        self.password = password
+        self.body = Body(
+            pseudonym: Body.Pseudonym(unique_id: email, password: password),
+            pairing_code: Body.PairingCode(code: pairingCode),
+            user: Body.User(name: name, initial_enrollment_type: "observer")
+        )
     }
 
-    public var query: [APIQueryItem] {
-        [
-            .value("user[initial_enrollment_type]", "observer"),
-            .value("pairing_code[code]", pairingCode),
-            .value("user[name]", name),
-            .value("pseudonym[unique_id]", email),
-            .value("pseudonym[password]", password),
-        ]
+    public struct Body: Encodable, Equatable {
+        public struct Pseudonym: Encodable, Equatable {
+            let unique_id: String
+            let password: String
+        }
+        public struct PairingCode: Encodable, Equatable {
+            let code: String
+        }
+        public struct User: Encodable, Equatable {
+            let name: String
+            let initial_enrollment_type: String
+        }
+        let pseudonym: Pseudonym
+        let pairing_code: PairingCode
+        let user: User
     }
 }
 
