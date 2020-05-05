@@ -34,7 +34,7 @@ class APIPairingCodeTests: CoreTestCase {
 
 class APIAccountTermsOfServiceTests: CoreTestCase {
     func testGetAccountTermsOfService() {
-        let r = GetAccountTermsOfService()
+        let r = GetAccountTermsOfServiceRequest()
         XCTAssertEqual(r.path, "accounts/self/terms_of_service")
         XCTAssertEqual(r.method, .get)
     }
