@@ -44,6 +44,36 @@ public struct APIAccountTermsOfService: Codable, Equatable {
     let terms_type: String?
 }
 
+//  https://canvas.instructure.com/doc/api/users.html#method.users.create
+public struct PostAccountUserRequest: APIRequestable {
+    public typealias Response = APIUser
+    let accountID: String
+    let pairingCode: String
+    let name: String
+    let email: String
+    let password: String
+    public let method: APIMethod = .post
+    public var path: String { "accounts/\(accountID)/users" }
+
+    init(accountID: String, pairingCode: String, name: String, email: String, password: String) {
+        self.accountID = accountID
+        self.pairingCode = pairingCode
+        self.name = name
+        self.email = email
+        self.password = password
+    }
+
+    public var query: [APIQueryItem] {
+        [
+            .value("user[initial_enrollment_type]", "observer"),
+            .value("pairing_code[code]", pairingCode),
+            .value("user[name]", name),
+            .value("pseudonym[unique_id]", email),
+            .value("pseudonym[password]", password),
+        ]
+    }
+}
+
 #if DEBUG
 extension APIPairingCode {
     public static func make(
