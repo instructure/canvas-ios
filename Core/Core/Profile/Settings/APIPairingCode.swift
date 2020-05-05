@@ -31,7 +31,7 @@ public struct APIPairingCode: Codable, Equatable {
     let workflow_state: String?
 }
 
-public struct GetAccountTermsOfService: APIRequestable {
+public struct GetAccountTermsOfServiceRequest: APIRequestable {
     public typealias Response = APIAccountTermsOfService
     public var path: String = "accounts/self/terms_of_service"
 }
