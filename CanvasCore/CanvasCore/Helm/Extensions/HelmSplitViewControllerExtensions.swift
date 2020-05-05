@@ -51,7 +51,7 @@ extension HelmSplitViewController {
     
     override open var description: String {
         get {
-            return "displayMode: \(self.displayMode) master: \((masterTopViewController as? HelmModule)?.moduleName ?? "N/A") detail: \((detailTopViewController as? HelmModule)?.moduleName ?? "N/A") masterVC: \( masterNavigationController != nil ? String(describing: masterNavigationController.self) : "N/A") detailVC: \( detailNavigationController != nil ? String(describing: detailNavigationController.self) : "N/A")"
+            return "<\(type(of: self))  displayMode: \(self.displayMode) master: \((masterTopViewController as? HelmModule)?.moduleName ?? "N/A") detail: \((detailTopViewController as? HelmModule)?.moduleName ?? "N/A") masterVC: \( masterNavigationController != nil ? String(describing: masterNavigationController.self) : "N/A") detailVC: \( detailNavigationController != nil ? String(describing: detailNavigationController.self) : "N/A")"
         }
     }
 }
