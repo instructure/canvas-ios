@@ -31,3 +31,36 @@ class APIPairingCodeTests: CoreTestCase {
         XCTAssertEqual(model.code, "code")
     }
 }
+
+class APIAccountTermsOfServiceTests: CoreTestCase {
+    func testGetAccountTermsOfService() {
+        let r = GetAccountTermsOfServiceRequest()
+        XCTAssertEqual(r.path, "accounts/self/terms_of_service")
+        XCTAssertEqual(r.method, .get)
+    }
+
+    func testObject() {
+        let model = APIAccountTermsOfService.make()
+        XCTAssertEqual(model.account_id, "1")
+    }
+}
+
+class PostAccountUserRequestTests: CoreTestCase {
+    func testPostAccountUserRequest() {
+        let accountID = "1"
+        let email = "john@doe.com"
+        let password = "password"
+        let name = "john doe"
+        let code = "123"
+        let r = PostAccountUserRequest(accountID: accountID, pairingCode: code, name: name, email: email, password: password)
+        XCTAssertEqual(r.path, "accounts/\(accountID)/users")
+        XCTAssertEqual(r.method, .post)
+        let body = PostAccountUserRequest.Body(
+            pseudonym: PostAccountUserRequest.Body.Pseudonym(unique_id: email, password: password),
+            pairing_code: PostAccountUserRequest.Body.PairingCode(code: code),
+            user: PostAccountUserRequest.Body.User(name: name, initial_enrollment_type: "observer")
+        )
+
+        XCTAssertEqual(r.body, body)
+    }
+}
