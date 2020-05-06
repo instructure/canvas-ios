@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Account View Controller-->
+        <scene sceneID="2eg-Dq-D3D">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountViewController" id="Jp3-g1-62a" customClass="CreateAccountViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DNl-cT-inT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O9p-Et-woO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ozk-jV-mg5">
+                                        <rect key="frame" x="16" y="76" width="382" height="732"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createAccountLogo" translatesAutoresizingMaskIntoConstraints="NO" id="a41-8e-cSj">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="139"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="139" id="Yxo-qJ-21n"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-TI-ktg">
+                                                <rect key="frame" x="0.0" y="139" width="382" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="nX4-oT-FZq"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HS8-gj-VVw" customClass="CreateAccountRow" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="179" width="382" height="52"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLP-1E-a3Y" customClass="CreateAccountRow" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="231" width="382" height="128"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXG-cR-ZWu" customClass="CreateAccountRow" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="359" width="382" height="128"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="By tapping ‘Create Account’, you agree to the Terms of Service and acknowledge the Privacy Policy." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REw-0S-rs7" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="487" width="382" height="61"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWV-8A-wJd" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="548" width="382" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="H7U-cm-eXL"/>
+                                                </constraints>
+                                                <state key="normal" title="Create Account"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="actionCreateAccount:" destination="Jp3-g1-62a" eventType="primaryActionTriggered" id="4n4-cp-ZxK"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYy-qY-o74">
+                                                <rect key="frame" x="0.0" y="604" width="382" height="128"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? Sign In " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQu-cR-LuX" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="53.5" width="382" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="i5p-Yp-9v2"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5k-Ro-reQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="128"/>
+                                                        <connections>
+                                                            <action selector="actionSignIn:" destination="Jp3-g1-62a" eventType="primaryActionTriggered" id="0rv-mj-1sd"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="dQu-cR-LuX" firstAttribute="centerY" secondItem="wYy-qY-o74" secondAttribute="centerY" id="2Q8-32-eVP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="o5k-Ro-reQ" secondAttribute="bottom" id="7TL-hw-f7V"/>
+                                                    <constraint firstAttribute="trailing" secondItem="o5k-Ro-reQ" secondAttribute="trailing" id="E1B-Az-rew"/>
+                                                    <constraint firstItem="o5k-Ro-reQ" firstAttribute="leading" secondItem="wYy-qY-o74" secondAttribute="leading" id="hbG-3c-3AM"/>
+                                                    <constraint firstItem="dQu-cR-LuX" firstAttribute="leading" secondItem="wYy-qY-o74" secondAttribute="leading" id="kGY-lM-pPw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dQu-cR-LuX" secondAttribute="trailing" id="m6a-1V-y9k"/>
+                                                    <constraint firstItem="o5k-Ro-reQ" firstAttribute="top" secondItem="wYy-qY-o74" secondAttribute="top" id="qWY-ld-f6a"/>
+                                                    <constraint firstItem="o5k-Ro-reQ" firstAttribute="leading" secondItem="wYy-qY-o74" secondAttribute="leading" id="sEz-we-KsG"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="DoS-wG-moD" firstAttribute="trailing" secondItem="ozk-jV-mg5" secondAttribute="trailing" constant="16" id="6Jj-O8-UPW"/>
+                                    <constraint firstItem="ozk-jV-mg5" firstAttribute="top" secondItem="d5L-UO-jMO" secondAttribute="top" constant="44" id="MLI-kY-uOd"/>
+                                    <constraint firstItem="ozk-jV-mg5" firstAttribute="bottom" secondItem="d5L-UO-jMO" secondAttribute="bottom" id="pbC-p4-LvX"/>
+                                    <constraint firstItem="ozk-jV-mg5" firstAttribute="leading" secondItem="DoS-wG-moD" secondAttribute="leading" constant="16" id="tgM-m4-kXz"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="d5L-UO-jMO"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="DoS-wG-moD"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xfI-cW-2KZ" firstAttribute="bottom" secondItem="O9p-Et-woO" secondAttribute="bottom" id="0D5-4G-upc"/>
+                            <constraint firstItem="xfI-cW-2KZ" firstAttribute="trailing" secondItem="O9p-Et-woO" secondAttribute="trailing" id="uhc-Dy-gFI"/>
+                            <constraint firstItem="O9p-Et-woO" firstAttribute="leading" secondItem="xfI-cW-2KZ" secondAttribute="leading" id="vGw-0z-eVQ"/>
+                            <constraint firstItem="O9p-Et-woO" firstAttribute="top" secondItem="xfI-cW-2KZ" secondAttribute="top" id="xfB-Vm-eXG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xfI-cW-2KZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="alreadyHaveAccountLabel" destination="dQu-cR-LuX" id="8Rm-dJ-s8P"/>
+                        <outlet property="createAccountButton" destination="LWV-8A-wJd" id="p9K-PR-MsR"/>
+                        <outlet property="email" destination="PLP-1E-a3Y" id="EeC-hi-xNm"/>
+                        <outlet property="name" destination="HS8-gj-VVw" id="Kf8-HD-w2C"/>
+                        <outlet property="password" destination="oXG-cR-ZWu" id="kp7-ME-HJn"/>
+                        <outlet property="scrollView" destination="O9p-Et-woO" id="qtn-ja-CM9"/>
+                        <outlet property="stackView" destination="ozk-jV-mg5" id="KNn-3F-sUc"/>
+                        <outlet property="termsAndConditionsLabel" destination="REw-0S-rs7" id="ARw-Ri-1Fr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7E-yV-66r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="75.669642857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="createAccountLogo" width="164" height="148"/>
+    </resources>
+</document>

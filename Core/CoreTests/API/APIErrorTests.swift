@@ -29,6 +29,27 @@ class APIErrorTests: XCTestCase {
         return from(data: try! JSONSerialization.data(withJSONObject: dict), response: response)
     }
 
+    func testCreateAccountErrors() {
+        let str = """
+        {
+            "errors": {
+                "user": {},
+                "observee": {},
+                "pairing_code": {
+                    "code": [{
+                        "attribute": "code",
+                        "type": "invalid",
+                        "message": "invalid"
+                    }]
+                },
+            }
+        }
+        """
+        let data = str.data(using: .utf8)
+        let error = APIError.from(data: data, response: nil, error: NSError.instructureError("default"))
+        XCTAssertEqual(error.localizedDescription.trimmingCharacters(in: .whitespacesAndNewlines), "code: invalid")
+    }
+
     func testFrom() {
         XCTAssertEqual(from(), "default")
         XCTAssertEqual(from(data: Data()), "default")

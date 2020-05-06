@@ -71,7 +71,7 @@ class CommentListViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace) { [weak self] in
+        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace) { [weak self] _ in
             if let self = self, !self.comments.isEmpty {
                 self.tableView?.scrollToRow(at: IndexPath(row: self.comments.count - 1, section: 0), at: .bottom, animated: false)
             }

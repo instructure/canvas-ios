@@ -94,6 +94,7 @@ public protocol APIRequestable {
     var form: APIFormData? { get }
     var body: Body? { get }
     var cachePolicy: URLRequest.CachePolicy { get }
+    var shouldHandleCookies: Bool { get }
 
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
@@ -122,6 +123,9 @@ extension APIRequestable {
     }
     public var cachePolicy: URLRequest.CachePolicy {
         return .useProtocolCachePolicy
+    }
+    public var shouldHandleCookies: Bool {
+        return true
     }
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
@@ -161,6 +165,8 @@ extension APIRequestable {
         for (key, value) in headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
+
+        request.httpShouldHandleCookies = shouldHandleCookies
 
         return request
     }

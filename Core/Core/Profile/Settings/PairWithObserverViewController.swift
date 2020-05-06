@@ -46,7 +46,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         instructionsLabel.text = NSLocalizedString("Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.", comment: "")
         if ExperimentalFeature.studentQRCodePairing.isEnabled {
             instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
-            codeContainer.backgroundColor = .red
+            codeContainer.backgroundColor = .named(.backgroundLightest)
             codeContainer.setNeedsDisplay()
         }
 
@@ -106,46 +106,48 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         else { return }
 
         var comps = URLComponents(string: "canvas-parent://create-account/create-account/\(accountID)/\(code)")
-        comps?.queryItems = [
-            URLQueryItem(name: "baseURL", value: host),
-        ]
+        comps?.queryItems = [ URLQueryItem(name: "baseURL", value: host), ]
 
-        let input = comps?.url?.absoluteString ?? ""
-        let data = input.data(using: String.Encoding.ascii)
-        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
-        qrFilter.setValue(data, forKey: "inputMessage")
-        let transform = CGAffineTransform(scaleX: 10, y: 10)
-        guard let qrImage = qrFilter.outputImage?.transformed(by: transform) else { return }
+        if AppEnvironment.shared.loginDelegate?.canOpenExternalURL(comps?.url) == true {
+            let input = comps?.url?.absoluteString ?? ""
+            let data = input.data(using: String.Encoding.ascii)
+            guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
+            qrFilter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 10, y: 10)
+            guard let qrImage = qrFilter.outputImage?.transformed(by: transform) else { return }
 
-        qrCodeImageView.image = UIImage(ciImage: qrImage)
-        qrCodeContainer.isHidden = false
-        codeContainer.isHidden = true
-        codeLabel.text = comps?.url?.absoluteString
-        deepLinkURL = comps?.url
-        let attrStr = NSAttributedString(
-            string: NSLocalizedString("Pairing Code: ", comment: ""),
-            attributes: [
-                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
-            ]
-        )
+            qrCodeImageView.image = UIImage(ciImage: qrImage)
+            qrCodeContainer.isHidden = false
+            codeContainer.isHidden = true
+            codeLabel.text = comps?.url?.absoluteString
+            deepLinkURL = comps?.url
+            let attrStr = NSAttributedString(
+                string: NSLocalizedString("Pairing Code: ", comment: ""),
+                attributes: [
+                    NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
+                    NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+                ]
+            )
 
-        let attrStr2 = NSAttributedString(
-            string: pairingCode ?? "",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
-            ]
-        )
-        let mutableAttributedString = NSMutableAttributedString()
-        mutableAttributedString.append(attrStr)
-        mutableAttributedString.append(attrStr2)
+            let attrStr2 = NSAttributedString(
+                string: pairingCode ?? "",
+                attributes: [
+                    NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
+                    NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+                ]
+            )
+            let mutableAttributedString = NSMutableAttributedString()
+            mutableAttributedString.append(attrStr)
+            mutableAttributedString.append(attrStr2)
 
-        qrCodePairingCodeLabel.attributedText = mutableAttributedString
-        qrCodeContainer.layer.borderWidth = 1
-        qrCodeContainer.layer.borderColor = UIColor.named(.borderMedium).cgColor
-        qrCodeContainer.layer.cornerRadius = 4
-        tapToCopyButton.isHidden = true
+            qrCodePairingCodeLabel.attributedText = mutableAttributedString
+            qrCodeContainer.layer.borderWidth = 1
+            qrCodeContainer.layer.borderColor = UIColor.named(.borderMedium).cgColor
+            qrCodeContainer.layer.cornerRadius = 4
+            tapToCopyButton.isHidden = true
+        } else {
+            //  TODO: - navigate to app store
+        }
     }
 
     func displayPairingCode(_ code: String?) {

@@ -53,4 +53,20 @@ class UIScrollViewExtensionsTests: XCTestCase {
         ratio = scrollView.contentOffsetRatio
         XCTAssertEqual(ratio, CGPoint(x: 0.5, y: 0))
     }
+
+    func testScrollToView() {
+        let scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        scrollView.contentSize = CGSize(width: 100, height: 300)
+        scrollView.contentOffset.y = 0
+
+        let tf = UITextField()
+        scrollView.addSubview(tf)
+        tf.frame = CGRect(x: 0, y: 270, width: 100, height: 21)
+
+        let keyboardRect = CGRect(x: 0, y: 200, width: 100, height: 75)
+        scrollView.scrollToView(view: tf, keyboardRect: keyboardRect)
+
+        XCTAssertEqual(scrollView.contentOffset.y, 266)
+    }
 }

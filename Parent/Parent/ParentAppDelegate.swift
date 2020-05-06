@@ -173,6 +173,11 @@ extension ParentAppDelegate: LoginDelegate {
         }
     }
 
+    public func canOpenExternalURL(_ url: URL?) -> Bool {
+        guard let url = url else { return false }
+        return UIApplication.shared.canOpenURL(url)
+    }
+
     func launchLimitedWebView(url: URL, from sourceViewController: UIViewController) {
         let controller = CoreWebViewController()
         controller.isInteractionLimited = true

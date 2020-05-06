@@ -35,4 +35,21 @@ extension UIScrollView {
         let centerY = (contentOffset.y + (frame.size.height / 2.0)) / h
         return CGPoint(x: centerX, y: centerY)
     }
+
+    /// Scroll to the textfield (`view`) when the keyboard is shown
+    /// Must be used in conojuction with UITextFieldDelegate and Keyboard notifications
+    public func scrollToView(view: UIView?, keyboardRect: CGRect) {
+        var visibleRect = CGRect(x: contentOffset.x, y: contentOffset.y, width: bounds.size.width, height: bounds.size.height)
+        var viewRect: CGRect = CGRect.zero
+        visibleRect.size.height -= keyboardRect.height
+
+        if let view = view, let superview = view.superview {
+            viewRect = convert(view.frame, from: superview)
+        }
+
+        if !visibleRect.contains(viewRect) {
+            let yOffset = (viewRect.size.height < visibleRect.size.height) ? (viewRect.origin.y) - (visibleRect.size.height - viewRect.size.height) : viewRect.origin.y
+            setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
+        }
+    }
 }

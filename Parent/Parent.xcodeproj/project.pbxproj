@@ -29,6 +29,9 @@
 		3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2D62322C15200599A1E /* GetAlertThresholds.swift */; };
 		3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2EC2322C2A000599A1E /* APIAlertThresholdTests.swift */; };
 		3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */; };
+		3B4C544A245E841600E1AE33 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C5449245E841600E1AE33 /* CreateAccountViewController.swift */; };
+		3B4C544C245E844200E1AE33 /* CreateAccountViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C544B245E844200E1AE33 /* CreateAccountViewController.storyboard */; };
+		3B4C544E245E8C6100E1AE33 /* CreateAccountRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C544D245E8C6100E1AE33 /* CreateAccountRow.xib */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
 		3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */; };
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
@@ -436,6 +439,9 @@
 		3B36A2E32322C26B00599A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B36A2EC2322C2A000599A1E /* APIAlertThresholdTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdTests.swift; sourceTree = "<group>"; };
 		3B36A2F02322C56F00599A1E /* APIAlertThresholdFixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThresholdFixture.swift; sourceTree = "<group>"; };
+		3B4C5449245E841600E1AE33 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		3B4C544B245E844200E1AE33 /* CreateAccountViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccountViewController.storyboard; sourceTree = "<group>"; };
+		3B4C544D245E8C6100E1AE33 /* CreateAccountRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountRow.xib; sourceTree = "<group>"; };
 		3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
 		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
@@ -780,6 +786,16 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		3B4C5448245E837600E1AE33 /* Create Account */ = {
+			isa = PBXGroup;
+			children = (
+				3B4C5449245E841600E1AE33 /* CreateAccountViewController.swift */,
+				3B4C544B245E844200E1AE33 /* CreateAccountViewController.storyboard */,
+				3B4C544D245E8C6100E1AE33 /* CreateAccountRow.xib */,
+			);
+			path = "Create Account";
+			sourceTree = "<group>";
+		};
 		3BA9FF6B2332997D00196A06 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +968,7 @@
 		5E6441891C3EE2E0003D7397 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C5448245E837600E1AE33 /* Create Account */,
 				497C48C51F91539700A3BC06 /* Airwolf */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
 				7D111CFD23A2DDAD00C912C0 /* Conversations */,
@@ -1424,12 +1441,14 @@
 				5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */,
 				2CB69BBA1D91CDF70059C5A5 /* DetailsDateCell.xib in Resources */,
 				2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */,
+				3B4C544C245E844200E1AE33 /* CreateAccountViewController.storyboard in Resources */,
 				2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */,
 				2CB69BB11D91CDEC0059C5A5 /* AlertCell.xib in Resources */,
 				78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */,
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
 				7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */,
 				2C61CD091D9311B400196C03 /* Localizable.strings in Resources */,
+				3B4C544E245E8C6100E1AE33 /* CreateAccountRow.xib in Resources */,
 				2CB69BB41D91CDF00059C5A5 /* DetailsInfoCell.xib in Resources */,
 				7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */,
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
@@ -1640,6 +1659,7 @@
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
 				7D00F34424574A6F00C370D5 /* GetObservedStudents.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
+				3B4C544A245E841600E1AE33 /* CreateAccountViewController.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
 				497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */,
 				6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */,
