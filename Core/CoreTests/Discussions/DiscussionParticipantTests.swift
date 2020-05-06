@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,10 +20,10 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class ConversationParticipantTests: CoreTestCase {
+class DiscussionParticipantTests: CoreTestCase {
     func testDisplayName() {
-        let participant = ConversationParticipant.make(from: .make(
-            name: "Blob",
+        let participant = DiscussionParticipant.make(from: .make(
+            display_name: "Blob",
             pronouns: "They/Them"
         ))
         XCTAssertEqual(participant.name, "Blob")

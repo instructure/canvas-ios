@@ -177,27 +177,45 @@
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="isForcedRead" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isRead" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="isRemoved" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="parentID" optional="YES" attributeType="String"/>
+        <attribute name="topicID" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
+        <relationship name="attachment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="discussionEntry" inverseEntity="File"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionParticipant" inverseName="entries" inverseEntity="DiscussionParticipant"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="repliesRaw" inverseEntity="DiscussionEntry"/>
+        <relationship name="repliesRaw" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="DiscussionEntry" inverseName="parent" inverseEntity="DiscussionEntry"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="discussionEntries" inverseEntity="Submission"/>
     </entity>
+    <entity name="DiscussionParticipant" representedClassName="Core.DiscussionParticipant" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="author" inverseEntity="DiscussionEntry"/>
+        <relationship name="topics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="author" inverseEntity="DiscussionTopic"/>
+    </entity>
     <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
+        <attribute name="allowRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="assignmentID" optional="YES" attributeType="String"/>
-        <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
-        <attribute name="authorID" optional="YES" attributeType="String" defaultValueString=" "/>
-        <attribute name="authorName" optional="YES" attributeType="String" defaultValueString=" "/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="htmlUrl" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="lastReplyAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
+        <attribute name="onlyGradersCanRate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="discussionTopic" inverseEntity="Assignment"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="discussionTopic" inverseEntity="File"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionParticipant" inverseName="topics" inverseEntity="DiscussionParticipant"/>
     </entity>
     <entity name="Enrollment" representedClassName="Core.Enrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
@@ -275,6 +293,7 @@
         <attribute name="userRaw" optional="YES" attributeType="Binary"/>
         <attribute name="uuid" optional="YES" attributeType="String"/>
         <relationship name="conversationMessage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationMessage" inverseName="attachmentsRaw" inverseEntity="ConversationMessage"/>
+        <relationship name="discussionEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="attachment" inverseEntity="DiscussionEntry"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
@@ -692,13 +711,14 @@
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="253"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="150"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="255"/>
+        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="283"/>
+        <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="268"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="373"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="598"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="613"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>

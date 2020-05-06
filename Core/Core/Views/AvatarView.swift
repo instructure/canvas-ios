@@ -111,6 +111,6 @@ open class AvatarView: UIView {
             """
             content = CoreWebView.htmlString(initials(for: name))
         }
-        return "<div aria-hidden style=\"\(style)\">\(content)</div>"
+        return "<div aria-hidden=\"true\" style=\"\(style)\">\(content)</div>"
     }
 }

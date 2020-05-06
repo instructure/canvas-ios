@@ -157,6 +157,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
 
+    "/:context/:contextID/discussion_topics/new": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/reply": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": nil,
+
     "/:context/:contextID/discussions/:discussionID": discussionViewController,
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
@@ -497,6 +502,9 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
             assetID: discussionID,
             url: url
         )
+    }
+    if ExperimentalFeature.htmlDiscussions.isEnabled {
+        return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
     }
     return HelmViewController(
         moduleName: "/:context/:contextID/discussion_topics/:discussionID",

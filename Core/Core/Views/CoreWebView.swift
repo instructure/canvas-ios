@@ -25,7 +25,7 @@ public protocol CoreWebViewLinkDelegate: class {
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
     public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: self)
+        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
         return true
     }
     public var routeLinksFrom: UIViewController { return self }
@@ -85,29 +85,45 @@ open class CoreWebView: WKWebView {
 
         return """
             <!doctype html>
+            <html
+                lang="\(CoreWebView.htmlString(Locale.current.identifier))"
+                dir="\(effectiveUserInterfaceLayoutDirection == .leftToRight ? "ltr" : "rtl")"
+            >
             <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
             <style>\(css)</style>
             \(jquery)
             \(content)
+            </html>
         """
     }
 
     var css: String {
         let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
-        let buttonFore = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
+        let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
         return """
+            :root {
+                --color-backgroundInfo: \(UIColor.named(.backgroundInfo).hexString);
+                --color-backgroundLight: \(UIColor.named(.backgroundLight).hexString);
+                --color-backgroundLightest: \(UIColor.named(.backgroundLightest).hexString);
+                --color-borderMedium: \(UIColor.named(.borderMedium).hexString);
+                --color-textDark: \(UIColor.named(.textDark).hexString);
+                --color-textDarkest: \(UIColor.named(.textDarkest).hexString);
+                --brand-buttonPrimaryBackground: \(buttonBack.hexString);
+                --brand-buttonPrimaryText: \(buttonText.hexString);
+                --brand-linkColor: \(link.hexString);
+            }
             html {
-                background: \(UIColor.named(.backgroundLightest).hexString);
-                color: \(UIColor.named(.textDarkest).hexString);
-                font: -apple-system-body;
+                background: var(--color-backgroundLightest);
+                color: var(--color-textDarkest);
+                font-family: system-ui;
             }
             body {
                 margin: 16px;
             }
             a {
-                color: \(link.hexString);
+                color: var(--brand-linkColor);
                 overflow-wrap: break-word;
             }
             h2 {
@@ -132,9 +148,9 @@ open class CoreWebView: WKWebView {
                 display: block;
                 margin: 20 auto 20 auto;
                 padding: 12px 8px 12px 8px;
-                background-color: \(buttonBack.hexString);
+                background-color: var(--brand-buttonPrimaryBackground);
                 border-radius: 4px;
-                color: \(buttonFore.hexString);
+                color: var(--brand-buttonPrimaryText);
                 font-weight: 600;
                 text-decoration: none;
                 text-align: center;
@@ -143,6 +159,9 @@ open class CoreWebView: WKWebView {
                 font-weight: 500;
                 font-size: 16px;
                 text-align: center;
+            }
+            [dir=rtl] .rtl-mirror-x {
+                transform: scaleX(-1);
             }
         """
     }
@@ -290,12 +309,12 @@ extension CoreWebView {
 
     public static func keepCookieAlive(for env: AppEnvironment) {
         guard env.api.loginSession?.accessToken != nil else { return }
-        DispatchQueue.main.async {
+        performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
             let interval: TimeInterval = 10 * 60 // ten minutes
             cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
                 let request = GetWebSessionRequest(to: env.api.baseURL.appendingPathComponent("users/self"))
-                env.api.makeRequest(request) { data, _, _ in DispatchQueue.main.async {
+                env.api.makeRequest(request) { data, _, _ in performUIUpdate {
                     guard let url = data?.session_url else { return }
                     cookieKeepAliveWebView.load(URLRequest(url: url))
                 } }
@@ -305,7 +324,7 @@ extension CoreWebView {
     }
 
     public static func stopCookieKeepAlive() {
-        DispatchQueue.main.async {
+        performUIUpdate {
             cookieKeepAliveTimer?.invalidate()
             cookieKeepAliveTimer = nil
         }

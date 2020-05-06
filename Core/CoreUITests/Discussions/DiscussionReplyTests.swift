@@ -33,10 +33,10 @@ class DiscussionReplyTests: CoreUITestCase {
     var markedAsRead: [ID: Bool] = [:]
 
     @discardableResult
-    func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionFullTopic = .make()) -> APIDiscussionTopic {
+    func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionView = .make()) -> APIDiscussionTopic {
         mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
-        mockData(GetTopicRequest(context: course, topicID: discussion.id.value), value: discussion)
-        mockData(GetFullTopicRequest(context: course, topicID: discussion.id.value), value: fullTopic)
+        mockData(GetDiscussionTopicRequest(context: course, topicID: discussion.id.value), value: discussion)
+        mockData(GetDiscussionViewRequest(context: course, topicID: discussion.id.value), value: fullTopic)
         mockData(ListDiscussionEntriesRequest(context: course, topicID: discussion.id.value), value: fullTopic.view)
         let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/read")!
         mockURL(readDiscussionUrl, response: HTTPURLResponse(url: readDiscussionUrl, statusCode: 204, httpVersion: nil, headerFields: [:]))
@@ -199,7 +199,7 @@ class DiscussionReplyTests: CoreUITestCase {
         mockBaseRequests()
         mockCoursePermission()
         let messageIds = (10...20).map(ID.init)
-        let discussion = mockDiscussion(fullTopic: APIDiscussionFullTopic.make(
+        let discussion = mockDiscussion(fullTopic: APIDiscussionView.make(
             unread_entries: messageIds,
             view: messageIds.map { APIDiscussionEntry.make(id: $0, message: "reply \($0)") }
         ))

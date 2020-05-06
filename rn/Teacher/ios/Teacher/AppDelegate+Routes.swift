@@ -21,6 +21,7 @@ import CanvasCore
 import Core
 
 extension AppDelegate {
+    // swiftlint:disable:next function_body_length
     @objc func registerNativeRoutes() {
         HelmManager.shared.registerNativeViewController(for: "/courses/:courseID/attendance/:toolID", factory: { props in
             guard let courseID = props["courseID"] as? String else { return nil }
@@ -123,6 +124,22 @@ extension AppDelegate {
             guard let pageURL = props["url"] as? String else { return nil }
             return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: pageURL, app: .teacher)
         })
+
+        let discussionDetails = { (props: Props) -> UIViewController? in
+            guard ExperimentalFeature.htmlDiscussions.isEnabled else {
+                return HelmViewController(
+                    moduleName: "/:context/:contextID/discussion_topics/:discussionID",
+                    props: props
+                )
+            }
+            guard let contextType = props["context"] as? String else { return nil }
+            guard let contextID = props["contextID"] as? String else { return nil }
+            guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+            guard let topicID = props["discussionID"] as? String else { return nil }
+            return DiscussionDetailsViewController.create(context: context, topicID: topicID)
+        }
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussions/:discussionID", factory: discussionDetails)
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID", factory: discussionDetails)
 
         HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
