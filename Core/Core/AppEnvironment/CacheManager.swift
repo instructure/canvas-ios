@@ -55,7 +55,6 @@ public class CacheManager {
 
     public static func clear() {
         URLCache.shared.removeAllCachedResponses()
-        clearAppGroup(Bundle.main.appGroupID())
         clearAppGroup("group.com.instructure.Contexts") // LocalStoreAppGroupName
         clearCaches()
         clearLibrary()
@@ -64,12 +63,13 @@ public class CacheManager {
     }
 
     public static func clearAppGroup(_ id: String?) {
-        guard let id = id, let folder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: id) else { return }
+        guard let id = id, let folder = URL.sharedContainer(id) else { return }
         clearDirectory(folder)
     }
 
     public static func clearCaches() {
-        clearDirectory(.cachesDirectory)
+        clearDirectory(.cachesDirectory(appGroup: nil))
+        clearDirectory(.cachesDirectory(appGroup: Bundle.main.appGroupID()))
     }
 
     public static func clearLibrary() {

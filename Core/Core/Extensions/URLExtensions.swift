@@ -27,6 +27,15 @@ extension URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
     }
 
+    public static func cachesDirectory(appGroup: String?) -> URL {
+        var folder = URL.cachesDirectory
+        if let appGroup = appGroup, let group = sharedContainer(appGroup) {
+            folder = group.appendingPathComponent("caches", isDirectory: true)
+            try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+        }
+        return folder
+    }
+
     public static var documentsDirectory: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }

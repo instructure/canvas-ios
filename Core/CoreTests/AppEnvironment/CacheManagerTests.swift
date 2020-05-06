@@ -74,6 +74,7 @@ class CacheManagerTests: CoreTestCase {
 
     func testClearNeeded() {
         UserDefaults.standard.set(-1, forKey: "lastDeletedAt")
+        environment.userDefaults?.showGradesOnDashboard = true
         let cache = write("cache", in: .cachesDirectory)
         let doc = write("doc", in: .documentsDirectory)
         CacheManager.clearIfNeeded()
@@ -81,6 +82,7 @@ class CacheManagerTests: CoreTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: doc.path))
         XCTAssertEqual(UserDefaults.standard.integer(forKey: "lastDeletedAt"), CacheManager.bundleVersion)
         try? FileManager.default.removeItem(at: doc)
+        XCTAssertEqual(environment.userDefaults?.showGradesOnDashboard, true)
     }
 
     func testClearRNAsyncStorage() {

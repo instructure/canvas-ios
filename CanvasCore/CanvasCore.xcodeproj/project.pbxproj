@@ -424,6 +424,8 @@
 		B196F79B206AB60400DE640F /* CoreDataSync.m in Sources */ = {isa = PBXBuildFile; fileRef = B196F79A206AB60400DE640F /* CoreDataSync.m */; };
 		B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC93218CAB51000515E3 /* SessionToken.swift */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
+		B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C316FE2463348700CA368C /* NativeUserDefaults.m */; };
+		B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C317002463371300CA368C /* NativeUserDefaults.swift */; };
 		B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
@@ -958,6 +960,8 @@
 		B196F79A206AB60400DE640F /* CoreDataSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataSync.m; sourceTree = "<group>"; };
 		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		B1C316FE2463348700CA368C /* NativeUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUserDefaults.m; sourceTree = "<group>"; };
+		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
 		B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleItemsProgress.m; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
@@ -1393,6 +1397,8 @@
 				7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */,
 				B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */,
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
+				B1C317002463371300CA368C /* NativeUserDefaults.swift */,
+				B1C316FE2463348700CA368C /* NativeUserDefaults.m */,
 				494AE0931F843A02001A8F31 /* PushNotifications.h */,
 				494AE0941F843A03001A8F31 /* PushNotifications.m */,
 				9FBD22DB2264D001007E48E6 /* QLPreviewManager.h */,
@@ -2676,6 +2682,7 @@
 				49CE96A11F8FF4A700121A43 /* ProgressDispatcher.swift in Sources */,
 				4961F5D71F8FB3EB0093EC86 /* FetchedDetailsCollection.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
+				B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				4961F5EA1F8FB4030093EC86 /* SynchronizedModel.swift in Sources */,
@@ -2752,6 +2759,7 @@
 				4961F63E1F8FB71B0093EC86 /* Tab+Collections.swift in Sources */,
 				4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */,
 				49CE967D1F8FF41B00121A43 /* NextOrSubmitView.swift in Sources */,
+				B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */,
 				7D52D87822FCC73100684932 /* SubmissionAPI.swift in Sources */,
 				493020791F902462006BD777 /* ContextID.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,

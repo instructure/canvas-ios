@@ -20,6 +20,8 @@
 
 import React, { type Element, type ComponentType } from 'react'
 import {
+  NativeEventEmitter,
+  NativeModules,
   View,
   SectionList,
   StyleSheet,
@@ -58,6 +60,10 @@ import { extractDateFromString } from '@utils/dateUtils'
 import ExperimentalFeature from '@common/ExperimentalFeature'
 import { logEvent } from '@common/CanvasAnalytics'
 
+const {
+  UserDefaults,
+} = NativeModules
+
 type ColorfulCourse = { color: string } & Course
 type Props = {
   totalCourseCount: number,
@@ -76,7 +82,6 @@ type Props = {
   acceptEnrollment?: (string, string) => any,
   rejectEnrollment?: (string, string) => any,
   hideInvite?: (string) => any,
-  showGrades?: boolean,
   pending: number,
   hideOverlays: boolean,
 }
@@ -122,6 +127,11 @@ export class Dashboard extends React.Component<Props, State> {
     showingModal: false,
     fetchingEnrollments: false,
     noCoursesLayout: null,
+    showGrades: false,
+  }
+
+  componentDidMount () {
+    this.observeShowGrades()
   }
 
   async componentWillReceiveProps (newProps: Props) {
@@ -141,6 +151,17 @@ export class Dashboard extends React.Component<Props, State> {
         showingModal: true,
       })
     }
+  }
+
+  observeShowGrades () {
+    const emitter = new NativeEventEmitter(UserDefaults)
+    emitter.addListener(UserDefaults.didChangeNotification, this.updateShowGrades)
+    this.updateShowGrades()
+  }
+
+  updateShowGrades = () => {
+    UserDefaults.getShowGradesOnDashboard()
+      .then(showGrades => this.setState({ showGrades }))
   }
 
   calculateLayout = (width: number, height: number) => {
@@ -244,7 +265,7 @@ export class Dashboard extends React.Component<Props, State> {
         hideOverlay={this.props.hideOverlays}
         course={item}
         grade={extractGradeInfo(item)}
-        showGrade={this.props.showGrades}
+        showGrade={this.state.showGrades}
         onPress={this.selectCourse}
         onCoursePreferencesPressed={this.showUserCoursePreferences}
         initialHeight={cardSize}
@@ -635,7 +656,6 @@ export function mapStateToProps (isFullDashboard: boolean) {
       (state.asyncActions['userInfo.canActAsUser']?.pending ?? 0)
     )
     const error = state.favoriteCourses.error || accountNotifications.error
-    const showGrades = state.userInfo.showsGradesOnCourseCards
     return {
       pending,
       error,
@@ -646,7 +666,6 @@ export function mapStateToProps (isFullDashboard: boolean) {
       totalCourseCount,
       isFullDashboard,
       groups,
-      showGrades,
       allCourses: allCoursesStringKeys,
       sections,
       enrollments,

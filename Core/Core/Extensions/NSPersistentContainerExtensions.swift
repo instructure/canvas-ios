@@ -52,15 +52,7 @@ extension NSPersistentContainer {
     }
 
     public static func databaseURL(for appGroup: String?, session: LoginSession?) -> URL? {
-        var folder = URL.cachesDirectory
-
-        if let appGroup = appGroup {
-            guard let appGroupFolder = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-                return nil
-            }
-            folder = appGroupFolder
-        }
-
+        let folder = URL.cachesDirectory(appGroup: appGroup)
         var fileName = "Database.sqlite"
         if let host = session?.baseURL.host, let userID = session?.userID {
             fileName = "Database-\(host)-\(userID).sqlite"

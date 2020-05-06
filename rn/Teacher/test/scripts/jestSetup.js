@@ -313,6 +313,11 @@ NativeModules.ModuleItemsProgress = {
   contributedDiscussion: jest.fn(),
 }
 
+NativeModules.UserDefaults = {
+  didChangeNotification: 'NSUserDefaultsDidChangeNotification',
+  getShowGradesOnDashboard: jest.fn(() => Promise.resolve(false)),
+}
+
 jest.mock('../../src/common/components/AuthenticatedWebView', () => 'AuthenticatedWebView')
 jest.mock('../../src/common/components/A11yGroup', () => 'A11yGroup')
 
