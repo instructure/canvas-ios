@@ -19,12 +19,12 @@
 import Foundation
 import CoreData
 
-public final class Plannable: NSManagedObject {
-    public enum PlannableType: String, Codable {
-        case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
-        case other
-    }
+public enum PlannableType: String, Codable {
+    case announcement, assignment, discussion_topic, quiz, wiki_page, planner_note, calendar_event, assessment_request
+    case other
+}
 
+public final class Plannable: NSManagedObject {
     public typealias JSON = APIPlannable
 
     @NSManaged public var id: String
@@ -51,6 +51,22 @@ public final class Plannable: NSManagedObject {
     public var context: Context? {
         get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
+    }
+
+    @discardableResult
+    public static func save(_ item: PlannableItem, userID: String?, in client: NSManagedObjectContext) -> Plannable {
+        let model: Plannable = client.first(where: #keyPath(Plannable.id), equals: item.plannableID) ?? client.insert()
+        model.id = item.plannableID
+        model.plannableType = item.plannableType
+        model.htmlURL = item.htmlURL
+        model.contextName = item.contextName
+        model.title = item.plannableTitle
+        model.date = item.date
+        model.pointsPossible = item.pointsPossible
+        model.details = item.details
+        model.context = item.context
+        model.userID = userID
+        return model
     }
 
     @discardableResult

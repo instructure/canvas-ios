@@ -18,18 +18,82 @@
 
 import CoreData
 
-public class GetPlannables: CollectionUseCase {
+public protocol PlannableItem {
+    var plannableID: String { get }
+    var plannableType: PlannableType { get }
+    var htmlURL: URL? { get }
+    var context: Context? { get }
+    var contextName: String? { get }
+    var plannableTitle: String? { get }
+    var date: Date? { get }
+    var pointsPossible: Double? { get }
+    var details: String? { get }
+}
+
+extension APIPlannable: PlannableItem {
+    public var plannableID: String { plannable_id.value }
+    public var plannableType: PlannableType { PlannableType(rawValue: plannable_type) ?? .other }
+    public var htmlURL: URL? { html_url?.rawValue }
+    public var plannableTitle: String? { self.plannable?.title }
+    public var date: Date? { plannable_date }
+    public var pointsPossible: Double? { self.plannable?.points_possible }
+    public var details: String? { self.plannable?.details }
+    public var contextName: String? { context_name }
+    public var context: Context? {
+        guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
+            return nil
+        }
+        switch type {
+        case .course:
+            if let id = course_id?.rawValue {
+                return ContextModel(.course, id: id)
+            }
+        case .group:
+            if let id = group_id?.rawValue {
+                return ContextModel(.group, id: id)
+            }
+        case .user:
+            if let id = user_id?.rawValue {
+                return ContextModel(.user, id: id)
+            }
+        default: return nil
+        }
+        return nil
+    }
+}
+
+extension APICalendarEvent: PlannableItem {
+    public var plannableID: String { id.value }
+    public var plannableType: PlannableType {
+        if case .assignment = type { return .assignment }
+        return .calendar_event
+    }
+    public var plannableTitle: String? { title }
+    public var htmlURL: URL? { html_url }
+    public var context: Context? { ContextModel(canvasContextID: context_code) }
+    public var contextName: String? { nil }
+    public var date: Date? { start_at }
+    public var pointsPossible: Double? { assignment?.points_possible }
+    public var details: String? { description }
+
+}
+
+public class GetPlannables: UseCase {
     public typealias Model = Plannable
+    public struct Response: Codable, Equatable {
+        let plannables: [APIPlannable]?
+        let calendarEvents: [APICalendarEvent]?
+    }
 
     var userID: String?
     var startDate: Date
     var endDate: Date
-    var contextCodes: [String] = []
+    var contextCodes: [String]?
     var filter: String = ""
 
     public let syncContext: NSManagedObjectContext?
 
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String] = [], filter: String = "", syncContext: NSManagedObjectContext? = nil) {
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "", syncContext: NSManagedObjectContext? = nil) {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
@@ -39,7 +103,8 @@ public class GetPlannables: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(contextCodes.joined(separator: ","))"
+        let codes = contextCodes?.joined(separator: ",") ?? ""
+        return "get-plannables-\(userID ?? "")-\(startDate)-\(endDate)-\(filter)-\(codes)"
     }
 
     public var scope: Scope {
@@ -60,13 +125,93 @@ public class GetPlannables: CollectionUseCase {
         return Scope(predicate: predicate, order: order)
     }
 
-    public var request: GetPlannablesRequest {
-        return GetPlannablesRequest(userID: userID, startDate: startDate, endDate: endDate, contextCodes: contextCodes, filter: filter)
+    public func reset(context: NSManagedObjectContext) {
+        let all: [Plannable] = context.fetch(scope.predicate)
+        context.delete(all)
     }
 
-    public func write(response: [APIPlannable]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        for p in response ?? [] {
-            Plannable.save(p, in: client, userID: userID)
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        if environment.app == .parent {
+            getObserverCalendarEvents(env: environment) { response, urlResponse, error in
+                completionHandler(Response(plannables: nil, calendarEvents: response), urlResponse, error)
+            }
+        } else {
+            let request = GetPlannablesRequest(
+                userID: userID,
+                startDate: startDate,
+                endDate: endDate,
+                contextCodes: contextCodes ?? [],
+                filter: filter
+            )
+            environment.api.makeRequest(request) { response, urlResponse, error in
+                completionHandler(Response(plannables: response, calendarEvents: nil), urlResponse, error)
+            }
         }
+    }
+
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let items: [PlannableItem] = response?.plannables ?? response?.calendarEvents ?? []
+        for item in items {
+            Plannable.save(item, userID: userID, in: client)
+        }
+    }
+
+    func getObserverCalendarEvents(env: AppEnvironment, callback: @escaping ([APICalendarEvent]?, URLResponse?, Error?) -> Void) {
+        getObserverContextCodes(env: env) { contextCodes in
+            let contexts = contextCodes.compactMap(ContextModel.init(canvasContextID:))
+            self.getCalendarEvents(env: env, contexts: contexts, type: .event) { response, urlResponse, error in
+                guard let events = response, error == nil else {
+                    callback(nil, urlResponse, error)
+                    return
+                }
+                self.getCalendarEvents(env: env, contexts: contexts, type: .assignment) { response, urlResponse, error in
+                    guard let assignments = response, error == nil else {
+                        callback(nil, urlResponse, error)
+                        return
+                    }
+                    callback(events + assignments, urlResponse, nil)
+                }
+            }
+        }
+    }
+
+    func getObserverContextCodes(env: AppEnvironment, callback: @escaping ([String]) -> Void) {
+        if let contextCodes = contextCodes { return callback(contextCodes) }
+        guard let userID = userID else { return callback(contextCodes ?? []) }
+        let request = GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            include: [],
+            perPage: 100
+        )
+        env.api.exhaust(request) { response, _, _ in
+            guard let courses = response else {
+                callback([])
+                return
+            }
+            var codes: [String] = []
+            for course in courses {
+                let enrollments = course.enrollments ?? []
+                for enrollment in enrollments where enrollment.associated_user_id == userID {
+                    codes.append(ContextModel(.course, id: course.id.value).canvasContextID)
+                }
+            }
+            callback(codes)
+        }
+
+    }
+
+    func getCalendarEvents(env: AppEnvironment, contexts: [Context], type: CalendarEventType = .event, callback: @escaping ([APICalendarEvent]?, URLResponse?, Error?) -> Void) {
+        let request = GetCalendarEventsRequest(
+            contexts: contexts,
+            startDate: startDate,
+            endDate: endDate,
+            type: type,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        )
+        env.api.exhaust(request, callback: callback)
     }
 }

@@ -22,7 +22,9 @@ import XCTest
 class GetPlannablesTests: CoreTestCase {
     var start = Clock.now
     var end = Clock.now.addDays(1)
-    lazy var useCase = GetPlannables(startDate: start, endDate: end)
+    var userID: String?
+    var contextCodes: [String]?
+    lazy var useCase = GetPlannables(userID: userID, startDate: start, endDate: end, contextCodes: contextCodes)
 
     func testCacheKey() {
         XCTAssertEqual(useCase.cacheKey, "get-plannables--\(start)-\(end)--")
@@ -64,7 +66,56 @@ class GetPlannablesTests: CoreTestCase {
         XCTAssertEqual(plannables, [yes])
     }
 
-    func testRequest() {
-        XCTAssertEqual(useCase.request.startDate, start)
+    func testMakeRequest() {
+        api.mock(GetPlannablesRequest(
+            userID: nil,
+            startDate: start,
+            endDate: end,
+            contextCodes: []
+        ), value: [.make(plannable_id: "1")])
+        let expectation = XCTestExpectation(description: "callback")
+        useCase.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response?.plannables?.first?.plannable_id, "1")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testMakeRequestParentApp() {
+        environment.app = .parent
+        contextCodes = ["course_1"]
+        let studentID = "1"
+        api.mock(GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            include: [],
+            perPage: 100
+        ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: studentID)])])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [ContextModel(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .event,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [.make(id: "1", type: .event)])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [ContextModel(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [.make(id: "2", type: .assignment)])
+        let expectation = XCTestExpectation(description: "callback")
+        useCase.makeRequest(environment: environment) { response, _, _ in
+            XCTAssertEqual(response?.calendarEvents?[0].type, .event)
+            XCTAssertEqual(response?.calendarEvents?[1].type, .assignment)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
     }
 }

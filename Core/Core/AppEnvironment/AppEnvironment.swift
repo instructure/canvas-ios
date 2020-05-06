@@ -24,6 +24,11 @@ public protocol AppEnvironmentDelegate {
 }
 
 open class AppEnvironment {
+    public enum App {
+        case parent, student, teacher
+    }
+
+    public var app: App?
     public var api: API
     public var database: NSPersistentContainer
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.shared

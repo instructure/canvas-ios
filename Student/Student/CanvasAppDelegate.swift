@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         let env = AppEnvironment.shared
         env.loginDelegate = self
         env.router = router
+        env.app = .student
         return env
     }()
 

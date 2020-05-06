@@ -21,7 +21,7 @@ import XCTest
 
 class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     func getPlannables(from: Date, to: Date) -> GetPlannables {
-        return GetPlannables(startDate: from, endDate: to)
+        return GetPlannables(userID: userID, startDate: from, endDate: to, contextCodes: contextCodes)
     }
 
     var willRefresh = false
@@ -41,8 +41,14 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         isDragging = false
     }
 
+    func getPlannablesRequest(from: Date, to: Date) -> GetPlannablesRequest {
+        GetPlannablesRequest(startDate: from, endDate: to)
+    }
+
     var start = Clock.now.startOfDay()
     var end = Clock.now.startOfDay().addDays(1)
+    var userID: String?
+    var contextCodes: [String]?
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
     override func setUp() {
@@ -63,7 +69,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             plannable: .init(title: "note", details: "deets"),
             plannable_date: date.addMinutes(60)
         )
-        api.mock(getPlannables(from: start, to: end), value: [ assignment, note ])
+        api.mock(getPlannablesRequest(from: start, to: end), value: [ assignment, note ])
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, true)
@@ -95,6 +101,46 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         XCTAssertTrue(willRefresh)
     }
 
+    func testLayoutParentApp() {
+        environment.app = .parent
+        userID = "1"
+        contextCodes = ["course_1"]
+        api.mock(GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            include: [],
+            perPage: 100
+        ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: userID)])])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [ContextModel(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .event,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [.make(id: "1", title: "Event", start_at: Clock.now, type: .event)])
+        api.mock(GetCalendarEventsRequest(
+            contexts: [ContextModel(.course, id: "1")],
+            startDate: start,
+            endDate: end,
+            type: .assignment,
+            include: [.submission],
+            allEvents: false,
+            userID: userID
+        ), value: [.make(id: "2", title: "Assignment", start_at: Clock.now, type: .assignment)])
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.tableView.dataSource?.tableView(controller.tableView, numberOfRowsInSection: 0), 2)
+        let index0 = IndexPath(row: 0, section: 0)
+        let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
+        XCTAssertEqual(cell?.title.text, "Assignment")
+
+        let index1 = IndexPath(row: 1, section: 0)
+        let cell1 = controller.tableView.cellForRow(at: index1) as? PlannerListCell
+        XCTAssertEqual(cell1?.title.text, "Event")
+    }
+
     func testNavigationToTodo() {
         let date = Clock.now
         let note = APIPlannable.make(
@@ -103,7 +149,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             plannable: APIPlannable.plannable(title: "to do title", details: "hello world"),
             plannable_date: date
         )
-        api.mock(getPlannables(from: start, to: end), value: [note])
+        api.mock(getPlannablesRequest(from: start, to: end), value: [note])
         controller.view.layoutIfNeeded()
         let index0 = IndexPath(row: 0, section: 0)
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
@@ -113,7 +159,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     }
 
     func testEmptyState() {
-        api.mock(getPlannables(from: start, to: end), value: [])
+        api.mock(getPlannablesRequest(from: start, to: end), value: [])
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.emptyStateView.isHidden, false)
@@ -130,7 +176,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     }
 
     func testErrorState() {
-        api.mock(getPlannables(from: start, to: end), error: NSError.instructureError("oops"))
+        api.mock(getPlannablesRequest(from: start, to: end), error: NSError.instructureError("oops"))
         controller.view.layoutIfNeeded()
 
         XCTAssertEqual(controller.errorView.isHidden, false)
@@ -139,7 +185,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(willRefresh)
 
-        api.mock(getPlannables(from: start, to: end), value: [])
+        api.mock(getPlannablesRequest(from: start, to: end), value: [])
         controller.refresh(force: true)
         XCTAssertEqual(controller.errorView.isHidden, true)
     }

@@ -123,7 +123,7 @@ extension APIUseCase where Response == Request.Response {
 public protocol CollectionUseCase: APIUseCase {}
 extension CollectionUseCase where Response == Request.Response {
     public func reset(context: NSManagedObjectContext) {
-        let all: [Model] = context.fetch(self.scope.predicate)
+        let all: [Model] = context.fetch(scope.predicate)
         context.delete(all)
     }
 }

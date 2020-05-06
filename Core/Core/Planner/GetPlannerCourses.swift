@@ -39,10 +39,6 @@ class GetPlannerCourses: APIUseCase {
         )
     }
 
-    var request: GetCoursesRequest {
-        GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100, studentID: studentID)
-    }
-
     init(studentID: String?) {
         self.studentID = studentID
     }
@@ -53,13 +49,59 @@ class GetPlannerCourses: APIUseCase {
         }
     }
 
+    var request: GetCoursesRequest {
+        GetCoursesRequest(
+            enrollmentState: .active,
+            state: [.available],
+            include: [.observed_users],
+            perPage: 100,
+            studentID: studentID
+        )
+    }
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
+        if environment.app == .parent {
+            getObserverCourses(env: environment, callback: completionHandler)
+            return
+        }
+        environment.api.makeRequest(request, callback: completionHandler)
+    }
+
     func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        guard let response = response else { return }
+        guard let courses = response else { return }
         let planner: Planner = client.first(where: #keyPath(Planner.studentID), equals: studentID) ?? client.insert()
         planner.studentID = studentID
-        for apiCourse in response {
+        for apiCourse in courses {
             let course = Course.save(apiCourse, in: client)
             planner.courses.insert(course)
+        }
+    }
+
+    func getNext(from response: URLResponse) -> GetNextRequest<[APICourse]>? {
+        if AppEnvironment.shared.app == .parent {
+            return nil // Parent app exhausts
+        }
+        return request.getNext(from: response)
+    }
+
+    func getObserverCourses(env: AppEnvironment, callback: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
+        let request = GetCoursesRequest(
+            enrollmentState: .active,
+            enrollmentType: .observer,
+            state: [.available],
+            include: [],
+            perPage: 100,
+            studentID: nil
+        )
+        env.api.exhaust(request) { [studentID] response, urlResponse, error in
+            guard let courses = response, error == nil else {
+                callback(response, urlResponse, error)
+                return
+            }
+            let result = courses.filter { course in
+                return course.enrollments?.contains { $0.associated_user_id == studentID } == true
+            }
+            callback(result, urlResponse, error)
         }
     }
 }

@@ -3370,6 +3370,7 @@
 			isa = PBXGroup;
 			children = (
 				97F69C3723F1F9A6009622E3 /* APIPlannableTests.swift */,
+				977EAC442412AA26005E1290 /* CreateTodoViewControllerTests.swift */,
 				7DD4763923FF21B500AB045C /* CalendarDaysViewControllerTests.swift */,
 				7DD4763A23FF21B500AB045C /* CalendarViewControllerTests.swift */,
 				97F69C4323F2208D009622E3 /* GetPlannablesTests.swift */,
@@ -3378,7 +3379,6 @@
 				97F69C4923F34DB1009622E3 /* PlannerListViewControllerTests.swift */,
 				7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */,
 				97F5520724062199005D80FC /* PlannerNoteDetailViewControllerTests.swift */,
-				977EAC442412AA26005E1290 /* CreateTodoViewControllerTests.swift */,
 			);
 			path = Planner;
 			sourceTree = "<group>";

@@ -169,7 +169,7 @@ public struct PostPlannerNoteRequest: APIRequestable {
         let details: String?
         let todo_date: Date
         let course_id: String?
-        let linked_object_type: Plannable.PlannableType?
+        let linked_object_type: PlannableType?
         let linked_object_id: String?
     }
 }
