@@ -23,8 +23,17 @@ import TestsFoundation
 class DiscussionEntryTests: CoreTestCase {
     func testSave() {
         let apiEntry = APIDiscussionEntry.make()
-        let entry = DiscussionEntry.save(apiEntry, in: databaseClient)
+        let entry = DiscussionEntry.make(from: apiEntry)
         XCTAssertEqual(entry.id, apiEntry.id.value)
         XCTAssertEqual(entry.message, apiEntry.message)
+    }
+
+    func testReplies() {
+        let entry = DiscussionEntry.make(from: .make(replies: [
+            .make(id: "2"),
+        ]))
+        XCTAssertEqual(entry.replies.count, 1)
+        entry.replies = []
+        XCTAssertEqual(entry.replies.count, 0)
     }
 }

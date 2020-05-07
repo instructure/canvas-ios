@@ -53,3 +53,4 @@ ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature('graphql_speed_
 ExperimentalFeature.refreshTokens = new ExperimentalFeature('refresh_tokens')
 ExperimentalFeature.nativeDashboard = new ExperimentalFeature('native_dashboard')
 ExperimentalFeature.dashboardConferences = new ExperimentalFeature('dashboard_conferences')
+ExperimentalFeature.htmlDiscussions = new ExperimentalFeature('html_discussions')

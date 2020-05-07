@@ -124,7 +124,7 @@ class AssignmentTests: CoreTestCase {
         a.submissionTypes = [.discussion_topic]
         XCTAssertEqual(a.descriptionHTML, "<i>No Content</i>")
         a.discussionTopic = DiscussionTopic.make()
-        XCTAssertEqual(a.descriptionHTML, a.discussionTopic?.html)
+        XCTAssertEqual(a.descriptionHTML, DiscussionDetailsViewController.topicHTML(a.discussionTopic!))
     }
 
     func testUseRubricForGrading() {

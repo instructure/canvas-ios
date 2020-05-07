@@ -60,28 +60,28 @@ class ListDiscussionEntriesRequestTests: XCTestCase {
     }
 }
 
-class GetTopicRequestTests: XCTestCase {
+class GetDiscussionTopicRequestTests: XCTestCase {
     func testPath() {
-        let request = GetTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2")
+        let request = GetDiscussionTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2")
         XCTAssertEqual(request.path, "courses/1/discussion_topics/2")
     }
 
     func testQuery() {
-        let request = GetTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2", include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        let request = GetDiscussionTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2", include: [.allDates, .overrides, .sections, .sectionsUserCount])
         XCTAssertEqual(request.query, [
             .include(["all_dates", "overrides", "sections", "section_user_count"]),
         ])
     }
 }
 
-class GetFullTopicRequestTests: XCTestCase {
+class GetDiscussionViewRequestTests: XCTestCase {
     func testPath() {
-        let request = GetFullTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2")
+        let request = GetDiscussionViewRequest(context: ContextModel(.course, id: "1"), topicID: "2")
         XCTAssertEqual(request.path, "courses/1/discussion_topics/2/view")
     }
 
     func testQuery() {
-        let request = GetFullTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2", includeNewEntries: true)
+        let request = GetDiscussionViewRequest(context: ContextModel(.course, id: "1"), topicID: "2", includeNewEntries: true)
         XCTAssertEqual(request.queryItems, [URLQueryItem(name: "include_new_entries", value: "1")])
     }
 }

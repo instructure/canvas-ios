@@ -32,6 +32,18 @@ extension DiscussionEntry {
     }
 }
 
+extension DiscussionParticipant {
+    @discardableResult
+    public static func make(
+        from api: APIDiscussionParticipant = .make(),
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> DiscussionParticipant {
+        let model = DiscussionParticipant.save(api, in: context)
+        try! context.save()
+        return model
+    }
+}
+
 extension DiscussionTopic {
     @discardableResult
     public static func make(
