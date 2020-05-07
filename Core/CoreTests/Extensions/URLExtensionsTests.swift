@@ -49,6 +49,16 @@ class URLExtensionsTests: XCTestCase {
 
     func testCachesDirectory() {
         XCTAssertEqual(URL.cachesDirectory, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
+        XCTAssertEqual(URL.cachesDirectory, URL.cachesDirectory(appGroup: nil))
+    }
+
+    func testAppGroupCachesDirectory() {
+        let expected = URL.sharedContainer("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
+        let url = URL.cachesDirectory(appGroup: "group.instructure.shared")
+        XCTAssertEqual(url, expected)
+        var isDir: ObjCBool = false
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir))
+        XCTAssertTrue(isDir.boolValue)
     }
 
     func testDocumentsDirectory() {

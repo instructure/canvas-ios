@@ -30,6 +30,11 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         notificationPayload = notification.userInfo
     }
 
+    var defaultsDidChange = false
+    func userDefaultsDidChange(notification: Notification) {
+        defaultsDidChange = true
+    }
+
     var externalURL: URL?
     func openExternalURL(_ url: URL) {
         externalURL = url
@@ -65,6 +70,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
 
         let n = NSNotification.Name("redux-action")
         NotificationCenter.default.addObserver(self, selector: #selector(reduxActionCalled(notification:)), name: n, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(notification:)), name: UserDefaults.didChangeNotification, object: nil)
     }
 
     func testLayout() {
@@ -91,18 +97,14 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         (cell?.accessoryView as? UISwitch)?.isOn = !existingValue
         (cell?.accessoryView as? UISwitch)?.sendActions(for: .valueChanged)
         XCTAssertEqual(environment.userDefaults?.showGradesOnDashboard, !existingValue)
-        XCTAssertNotNil(notificationPayload)
-        var type: String? = notificationPayload?["type"] as? String
-        var payload: [String: Bool]? = notificationPayload?["payload"] as? [String: Bool]
-        XCTAssertEqual(type, "userInfo.updateShowGradesOnDashboard")
-        XCTAssertEqual(payload?["showsGradesOnCourseCards"], !existingValue)
+        XCTAssertTrue(defaultsDidChange)
 
         index = IndexPath(row: 2, section: 0)
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Color Overlay")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        type = notificationPayload?["type"] as? String
-        payload = notificationPayload?["payload"] as? [String: Bool]
+        let type = notificationPayload?["type"] as? String
+        let payload = notificationPayload?["payload"] as? [String: Bool]
         XCTAssertEqual(type, "userInfo.updateUserSettings")
         XCTAssertEqual(payload?["hideOverlay"], true)
 
