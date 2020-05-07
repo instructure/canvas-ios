@@ -68,7 +68,7 @@ class EditComposeRecipientsViewController: UIViewController {
     }
 
     func update() {
-        recipients = (teachers.all ?? []) + (tas.all ?? [])
+        recipients = teachers.all + tas.all
         recipients.sort {
             let tieBreaker = $0.fullName.localizedCompare($0.fullName) == .orderedAscending
             let lhs = [

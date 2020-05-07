@@ -36,6 +36,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var author: DiscussionParticipant?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var allowRating: Bool
+    @NSManaged public var sortByRating: Bool
     @NSManaged public var onlyGradersCanRate: Bool
 
     @discardableResult
@@ -59,6 +60,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         }
         model.lockedForUser = item.locked_for_user
         model.allowRating = item.allow_rating
+        model.sortByRating = item.sort_by_rating
         model.onlyGradersCanRate = item.only_graders_can_rate == true
         return model
     }

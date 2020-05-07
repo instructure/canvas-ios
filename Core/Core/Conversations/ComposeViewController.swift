@@ -152,7 +152,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
         updateSendButton()
         let subject = subjectField.text ?? ""
         let recipientIDs = recipientsView.recipients.map({ $0.id })
-        let attachmentIDs = attachments.all?.compactMap { $0.id }
+        let attachmentIDs = attachments.all.compactMap { $0.id }
         CreateConversation(subject: subject, body: body(), recipientIDs: recipientIDs, canvasContextID: context.canvasContextID, attachmentIDs: attachmentIDs).fetch { [weak self] _, _, error in
             performUIUpdate {
                 if let error = error {
@@ -178,7 +178,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
 
     func updateRecipients() {
         guard !teachers.pending else { return }
-        recipientsView.recipients = teachers.all?.sorted(by: { $0.name < $1.name }) ?? []
+        recipientsView.recipients = teachers.all.sorted(by: { $0.name < $1.name })
     }
 }
 
@@ -217,7 +217,7 @@ extension ComposeViewController: FilePickerDelegate {
     func updateAttachments() {
         bodyMinHeight.isActive = attachments.isEmpty
         attachmentsContainer.isHidden = attachments.isEmpty
-        attachmentsController.updateAttachments(attachments.all?.sorted(by: File.objectIDCompare) ?? [])
+        attachmentsController.updateAttachments(attachments.all.sorted(by: File.objectIDCompare))
         updateSendButton()
     }
 }

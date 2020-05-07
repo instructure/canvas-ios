@@ -167,7 +167,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             publishedLabel.text = NSLocalizedString("Unpublished", bundle: .core, comment: "")
             publishedLabel.textColor = .named(.textDark)
         }
-        publishedView.isHidden = !Bundle.main.isTeacherApp
+        publishedView.isHidden = env.app != .teacher
 
         loadHTML()
     }
@@ -224,14 +224,22 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 }
 
 extension DiscussionDetailsViewController {
+    // shortcuts to encode text for html
+    static func t(_ text: String?) -> String { CoreWebView.htmlString(text) }
+    func t(_ text: String?) -> String { CoreWebView.htmlString(text) }
+
     func loadHTML() {
         guard let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
+        var entries = self.entries.all
+        if topic.sortByRating {
+            entries = entries.sorted { $0.likeCount > $1.likeCount }
+        }
         webView.loadHTMLString(webView.html(for: """
             \(Self.topicHTML(topic))
             \(topicReplyButton)
             <div style="border-top:0.3px solid var(--color-borderMedium); margin:16px 0;"></div>
             <h2 style="font-size:20px; font-weight:600; margin:0; padding:0;">
-                \(NSLocalizedString("Replies", bundle: .core, comment: ""))
+                \(t(NSLocalizedString("Replies", bundle: .core, comment: "")))
             </h2>
             \(entries.map { entryHTML($0, depth: 0) } .joined(separator: "\n"))
             """
@@ -254,21 +262,21 @@ extension DiscussionDetailsViewController {
         guard let author = author else {
             return """
             <div style="color:var(--color-textDark); display:flex; font-size:12px; margin:16px 0;">
-                \(CoreWebView.htmlString(dateString))
+                \(t(dateString))
             </div>
             """
         }
         return """
         <div style="align-items:center; display:flex; margin:16px 0;">
-            <a style="display:block; text-decoration:none;" href="../users/\(author.id)" aria-label="\(CoreWebView.htmlString(author.displayName))">
+            <a style="display:block; text-decoration:none;" href="../users/\(author.id)" aria-label="\(t(author.displayName))">
                 \(AvatarView.html(for: author.avatarURL, name: author.name, size: isTopic ? 32 : 24))
             </a>
             <div style="flex:1; -webkit-margin-start:\(isTopic ? 16 : 8)px;">
                 <div style="font-size:14px; font-weight:600;" aria-hidden="true">
-                    \(CoreWebView.htmlString(author.displayName))
+                    \(t(author.displayName))
                 </div>
                 <div style="font-size:12px; margin-top:-2px; color:var(--color-textDark);">
-                    \(CoreWebView.htmlString(dateString))
+                    \(t(dateString))
                 </div>
             </div>
         </div>
@@ -279,11 +287,11 @@ extension DiscussionDetailsViewController {
         guard let attachment = attachment else { return "" }
         return """
         <a style="display:flex; align-items:center; font-size:14px; font-weight:600; text-decoration:none; margin:16px 0;" href="\(
-            CoreWebView.htmlString(attachment.url?.absoluteString)
+            t(attachment.url?.absoluteString)
         )">\(
             paperclipIcon
         )<span style="-webkit-margin-start:4px; flex:1;">\(
-            CoreWebView.htmlString(attachment.displayName)
+            t(attachment.displayName)
         )</span></a>
         """
     }
@@ -292,7 +300,7 @@ extension DiscussionDetailsViewController {
         guard topic.first?.lockedForUser == false, permissions.first?.postToForum == true else { return "" }
         return """
         <div style="display:flex; margin:16px 0;">
-            <a href="\(topicID)/reply" style="
+            <a href="\(t(topicID))/reply" style="
                 align-items: center;
                 background: var(--brand-buttonPrimaryBackground);
                 border: 0 none;
@@ -304,37 +312,16 @@ extension DiscussionDetailsViewController {
             ">
                 \(Self.replyIcon)
                 <span style="font-size:14px; font-weight:500; -webkit-margin-start:10px;">
-                    \(CoreWebView.htmlString(NSLocalizedString("Reply", bundle: .core, comment: "")))
+                    \(t(NSLocalizedString("Reply", bundle: .core, comment: "")))
                 </span>
             </a>
         </div>
         """
     }
 
-    static let paperclipIcon = """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="14" aria-hidden="true">
-    <path fill-rule="evenodd" fill="currentColor" d="
-        M1752.77 221.1C1532.65 1 1174.28 1 954.17 221.1l-838.6 838.6c-154.05 154.16-154.05 404.9 0 558.94
-        149.54 149.42 409.98 149.31 559.06 0l758.74-758.62c87.98-88.1 87.98-231.42 0-319.51-88.32-88.21
-        -231.64-87.98-319.51 0l-638.8 638.9 79.85 79.85 638.8-638.9c43.93-43.83 115.54-43.94 159.81 0
-        43.93 44.04 43.93 115.87 0 159.8L594.78 1538.8c-110.23 110.12-289.35 110-399.36 0-110.12-110.11-110
-        -289.24 0-399.24l838.59-838.6c175.96-175.95 462.38-176.18 638.9 0 176.08 176.2 176.08 462.84 0
-        638.92l-798.6 798.72 79.85 79.85 798.6-798.72c220.02-220.13 220.02-578.49 0-798.61"/>
-    </svg>
-    """
-
-    static let replyIcon = """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" aria-hidden="true" class="rtl-mirror-x">
-    <path fill-rule="evenodd" fill="currentColor" d="
-        M835.942 632.563H244.966l478.08-478.08-90.496-90.496L-.026 696.563 632.55
-        1329.14l90.496-90.496-478.08-478.08h590.976c504.448 0 914.816 410.368 914.816
-        914.816v109.184h128V1675.38c0-574.976-467.84-1042.816-1042.816-1042.816"/>
-    </svg>
-    """
-
     func entryHTML(_ entry: DiscussionEntry, depth: UInt) -> String {
         return """
-        <div id="entry-\(entry.id)" style="position:relative; -webkit-margin-start:\(depth * 32)px;">
+        <div id="entry-\(t(entry.id))" style="position:relative; -webkit-margin-start:\(depth * 32)px;">
             \(threadLines(depth: depth))
             \(unreadDiv(entry.isRead))
             \(Self.entryHeader(author: entry.author, date: entry.updatedAt, isTopic: false))
@@ -374,7 +361,7 @@ extension DiscussionDetailsViewController {
             -webkit-margin-start: -6px;
             overflow: hidden;
         ">
-            \(CoreWebView.htmlString(NSLocalizedString("Unread", bundle: .core, comment: "")))
+            \(t(NSLocalizedString("Unread", bundle: .core, comment: "")))
         </div>
         """
     }
@@ -383,7 +370,7 @@ extension DiscussionDetailsViewController {
         if !entry.isRemoved { return entry.message ?? "" }
         return """
         <p style="font-style:italic; color:var(--color-textDark);">
-            \(CoreWebView.htmlString(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
+            \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
         </p>
         """
     }
@@ -393,19 +380,19 @@ extension DiscussionDetailsViewController {
         var actions = ""
         if topic.first?.lockedForUser == false, permissions.first?.postToForum == true {
             actions = """
-            <a href="\(topicID)/entries/\(entry.id)/replies" style="
+            <a href="\(t(topicID))/entries/\(t(entry.id))/replies" style="
                 color: var(--color-textDark);
                 font-weight: 600;
                 text-decoration: none;
             ">
-                \(CoreWebView.htmlString(NSLocalizedString("Reply", bundle: .core, comment: "")))
+                \(t(NSLocalizedString("Reply", bundle: .core, comment: "")))
             </a>
             <div style="border-left:1px solid var(--color-borderMedium); height:16px; margin:0 16px; width:0;"></div>
             """
         }
         actions += """
         <button
-            aria-label="\(NSLocalizedString("Show more options", bundle: .core, comment: ""))"
+            aria-label="\(t(NSLocalizedString("Show more options", bundle: .core, comment: "")))"
             style="
                 background: none;
                 border: 0 none;
@@ -422,8 +409,58 @@ extension DiscussionDetailsViewController {
             </svg>
         </button>
         """
-        let rating = ""
-        // TODO: Rating
+
+        let rating: String
+        if topic.first?.allowRating != true {
+            rating = ""
+        } else if canRate {
+            let count = entry.likeCount <= 0 ? "" : String.localizedStringWithFormat(
+                NSLocalizedString("(%d)", bundle: .core, comment: "number of likes next to the like button"),
+                entry.likeCount
+            )
+            rating = """
+            <div style="
+                align-items: center;
+                color: var(\(entry.isLikedByMe ? "--brand-linkColor" : "--color-textDark"));
+                display: flex;
+                margin: -2px 0;
+            ">
+                <span style="
+                    clip-path: inset(50%);
+                    height: 1px;
+                    overflow: hidden;
+                    width: 1px;
+                ">
+                    \(t(entry.likeCount > 0 ? entry.likeCountText : ""))
+                </span>
+                <span style="-webkit-margin-end:6px;" aria-hidden="true">
+                    \(t(count))
+                </span>
+                <label style="display:flex; position:relative;">
+                    <input
+                        type="checkbox"
+                        style="
+                            position: absolute;
+                            top: 0; left: 0;
+                            width: 100%; height: 100%;
+                            margin: 0;
+                            opacity: 0.001;
+                        "
+                        aria-label="\(t(NSLocalizedString("Like", bundle: .core, comment: "like action")))"
+                        \(entry.isLikedByMe ? "checked" : "")
+                    />
+                    \(entry.isLikedByMe ? Self.likeSolidIcon : Self.likeLineIcon)
+                </label>
+            </div>
+            """
+        } else {
+            rating = """
+            <div style="color:var(--color-textDark);">
+                \(t(entry.likeCount > 0 ? entry.likeCountText : ""))
+            </div>
+            """
+        }
+
         return """
         <div style="align-items:center; display:flex; margin:16px 0;">
             \(actions)
@@ -436,7 +473,7 @@ extension DiscussionDetailsViewController {
     func viewMoreRepliesLink(_ entry: DiscussionEntry, depth: UInt) -> String {
         guard depth >= maxDepth, !entry.replies.isEmpty else { return "" }
         return """
-        <a href="\(topicID)/replies/\(entry.id)" style="
+        <a href="\(t(topicID))/replies/\(t(entry.id))" style="
             color: var(--color-textDark);
             background: var(--color-backgroundLight);
             border: 1px solid var(--color-borderMedium);
@@ -448,7 +485,7 @@ extension DiscussionDetailsViewController {
             text-align: center;
             text-decoration: none;
         ">
-            \(CoreWebView.htmlString(NSLocalizedString("View more replies", bundle: .core, comment: "")))
+            \(t(NSLocalizedString("View more replies", bundle: .core, comment: "")))
         </a>
         """
     }
@@ -457,4 +494,60 @@ extension DiscussionDetailsViewController {
         guard !entry.replies.isEmpty, depth < maxDepth else { return "" }
         return entry.replies.map { entryHTML($0, depth: depth + 1) } .joined(separator: "\n")
     }
+
+    static let paperclipIcon = """
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="14" aria-hidden="true">
+    <path fill-rule="evenodd" fill="currentColor" d="
+        M1752.77 221.1C1532.65 1 1174.28 1 954.17 221.1l-838.6 838.6c-154.05 154.16-154.05 404.9 0 558.94
+        149.54 149.42 409.98 149.31 559.06 0l758.74-758.62c87.98-88.1 87.98-231.42 0-319.51-88.32-88.21
+        -231.64-87.98-319.51 0l-638.8 638.9 79.85 79.85 638.8-638.9c43.93-43.83 115.54-43.94 159.81 0
+        43.93 44.04 43.93 115.87 0 159.8L594.78 1538.8c-110.23 110.12-289.35 110-399.36 0-110.12-110.11-110
+        -289.24 0-399.24l838.59-838.6c175.96-175.95 462.38-176.18 638.9 0 176.08 176.2 176.08 462.84 0
+        638.92l-798.6 798.72 79.85 79.85 798.6-798.72c220.02-220.13 220.02-578.49 0-798.61"/>
+    </svg>
+    """
+
+    static let replyIcon = """
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="18" aria-hidden="true" class="rtl-mirror-x">
+    <path fill-rule="evenodd" fill="currentColor" d="
+        M835.942 632.563H244.966l478.08-478.08-90.496-90.496L-.026 696.563 632.55
+        1329.14l90.496-90.496-478.08-478.08h590.976c504.448 0 914.816 410.368 914.816
+        914.816v109.184h128V1675.38c0-574.976-467.84-1042.816-1042.816-1042.816"/>
+    </svg>
+    """
+
+    static let likeLineIcon = """
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="24" height="24" aria-hidden="true">
+    <path fill-rule="evenodd" fill="currentColor" d="
+        M1637.176 1129.412h-112.94v112.94c62.23 0 112.94 50.599 112.94 112.942 0 62.344-50.71
+        112.941-112.94 112.941h-112.942v112.941c62.23 0 112.941 50.598 112.941 112.942 0
+        62.343-50.71 112.94-112.94 112.94h-960c-155.634 0-282.354-126.606-282.354-282.352
+        V903.529h106.617c140.16 0 274.334-57.6 368.3-157.778C778.486 602.089 937.28 379.256
+        957.385 112.94h36.367c50.484 0 98.033 22.363 130.334 61.44 32.64 39.53 45.854 91.144
+        36.14 141.515-22.7 118.589-60.197 236.048-111.246 349.102-23.83 52.517-19.313 112.602
+        11.746 160.94 31.397 48.566 84.706 77.591 142.644 77.591h433.807c62.231 0 112.942 50.598
+        112.942 112.942 0 62.343-50.71 112.94-112.942 112.94m225.883-112.94c0-124.575-101.308
+        -225.883-225.883-225.883H1203.37c-19.651 0-37.044-9.374-47.66-25.863-10.391-16.15-11.86
+        -35.577-3.84-53.196 54.663-121.073 94.87-247.115 119.378-374.513 15.925-83.576-5.873
+        -169.072-60.085-234.578C1157.29 37.384 1078.005 0 993.751 0H846.588v56.47c0 254.457
+        -155.068 473.224-285.063 612.029-72.734 77.477-176.98 122.09-285.967 122.09H56v734.117
+        C56 1742.682 233.318 1920 451.294 1920h960c124.574 0 225.882-101.308 225.882-225.882
+        0-46.42-14.117-89.676-38.174-125.59 87.869-30.947 151.116-114.862 151.116-213.234 0-46.419
+        -14.118-89.675-38.174-125.59 87.868-30.946 151.115-114.862 151.115-213.233"/>
+    </svg>
+    """
+
+    static let likeSolidIcon = """
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="24" height="24" aria-hidden="true">
+    <path fill-rule="evenodd" fill="currentColor" d="
+        M1863.059 1016.47c0-124.574-101.308-225.882-225.883-225.882H1203.37c-19.651 0-37.044-9.374
+        -47.66-25.863-10.391-16.15-11.86-35.577-3.84-53.196 54.776-121.073 94.87-247.115 119.378
+        -374.513 15.925-83.576-5.873-169.072-60.085-234.578C1157.29 37.384 1078.005 0 993.751 0
+        H846.588v56.47c0 254.457-155.068 473.224-285.063 612.029-72.734 77.477-176.98 122.09
+        -285.967 122.09H56v734.117C56 1742.682 233.318 1920 451.294 1920h960c124.574 0 225.882
+        -101.308 225.882-225.882 0-46.42-14.117-89.676-38.174-125.59 87.869-30.947 151.116-114.862
+        151.116-213.234 0-46.419-14.118-89.675-38.174-125.59 87.868-30.946 151.115-114.862 151.115
+        -213.233"/>
+    </svg>
+    """
 }

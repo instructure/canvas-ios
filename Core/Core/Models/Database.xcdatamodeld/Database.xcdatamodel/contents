@@ -179,8 +179,10 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isForcedRead" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isLikedByMe" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isRead" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="isRemoved" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="parentID" optional="YES" attributeType="String"/>
@@ -213,6 +215,7 @@
         <attribute name="onlyGradersCanRate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sortByRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="discussionTopic" inverseEntity="Assignment"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="discussionTopic" inverseEntity="File"/>
@@ -717,9 +720,9 @@
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="253"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="283"/>
+        <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="268"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="283"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="373"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>

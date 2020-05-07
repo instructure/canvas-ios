@@ -36,4 +36,9 @@ class DiscussionEntryTests: CoreTestCase {
         entry.replies = []
         XCTAssertEqual(entry.replies.count, 0)
     }
+
+    func testLikeCount() {
+        let entry = DiscussionEntry.make(from: .make(rating_count: 5))
+        XCTAssertEqual(entry.likeCountText, "5 likes")
+    }
 }

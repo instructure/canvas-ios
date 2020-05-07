@@ -24,9 +24,11 @@ public final class DiscussionEntry: NSManagedObject {
     @NSManaged public var author: DiscussionParticipant?
     @NSManaged public var createdAt: Date?
     @NSManaged public var id: String
+    @NSManaged public var isLikedByMe: Bool
     @NSManaged public var isForcedRead: Bool
     @NSManaged public var isRead: Bool
     @NSManaged public var isRemoved: Bool
+    @NSManaged public var likeCount: Int
     @NSManaged public var message: String?
     @NSManaged public var parent: DiscussionEntry?
     @NSManaged public var parentID: String?
@@ -41,6 +43,13 @@ public final class DiscussionEntry: NSManagedObject {
         set { repliesRaw = NSOrderedSet(array: newValue) }
     }
 
+    public var likeCountText: String {
+        String.localizedStringWithFormat(
+            NSLocalizedString("d_likes", bundle: .core, comment: ""),
+            likeCount
+        )
+    }
+
     @discardableResult
     public static func save(
         _ item: APIDiscussionEntry,
@@ -48,6 +57,7 @@ public final class DiscussionEntry: NSManagedObject {
         parent: DiscussionEntry? = nil,
         unreadIDs: Set<String>? = nil,
         forcedIDs: Set<String>? = nil,
+        entryRatings: [String: Int]? = nil,
         in context: NSManagedObjectContext
     ) -> DiscussionEntry {
         let model: DiscussionEntry = context.first(where: #keyPath(DiscussionEntry.id), equals: item.id.value) ?? context.insert()
@@ -57,9 +67,11 @@ public final class DiscussionEntry: NSManagedObject {
         }
         model.createdAt = item.created_at
         model.id = item.id.value
+        model.isLikedByMe = (entryRatings?[model.id] ?? 0) > 0
         model.isForcedRead = forcedIDs?.contains(model.id) == true
         model.isRead = unreadIDs?.contains(model.id) != true
         model.isRemoved = item.deleted == true
+        model.likeCount = item.rating_count ?? 0
         model.message = item.message
         model.parent = parent
         model.parentID = item.parent_id?.value
@@ -68,7 +80,7 @@ public final class DiscussionEntry: NSManagedObject {
         model.userID = item.user_id?.value ?? item.editor_id?.value ?? ""
 
         item.replies?.forEach { reply in
-            DiscussionEntry.save(reply, topicID: topicID, parent: model, unreadIDs: unreadIDs, forcedIDs: forcedIDs, in: context)
+            DiscussionEntry.save(reply, topicID: topicID, parent: model, unreadIDs: unreadIDs, forcedIDs: forcedIDs, entryRatings: entryRatings, in: context)
         }
 
         return model
