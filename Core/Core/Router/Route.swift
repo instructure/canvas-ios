@@ -178,5 +178,9 @@ public struct Route: Equatable {
 
     public static let wrongApp = Route("/wrong-app")
 
+    public static func createAccount(accountID: String, pairingCode: String) -> Route {
+         Route("/create-account/\(accountID)/\(pairingCode)")
+    }
+
     public static let anythingElse = Route("*")
 }
