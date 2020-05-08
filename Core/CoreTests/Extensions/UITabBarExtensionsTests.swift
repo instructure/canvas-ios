@@ -22,6 +22,10 @@ import TestsFoundation
 
 class UITabBarExtensionsTests: XCTestCase {
     func testUseGlobalNavStyle() {
+        Brand.shared = Brand(
+            response: APIBrandVariables.make(primary: "#333"),
+            baseURL: URL(string: "https://canvas.instructure.com")!
+        )
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
