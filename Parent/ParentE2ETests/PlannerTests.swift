@@ -51,28 +51,28 @@ class PlannerTests: CoreUITestCase {
     }
 
     func testPlanner() {
-        PlannerList.event(id: "2233").waitToExist()
+        PlannerList.event(id: "2904").waitToExist()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 1 event")
 
-        PlannerList.event(id: "2233").tap()
+        PlannerList.event(id: "2904").tap()
         app.find(label: "first").waitToExist()
         XCTAssert(app.find(label: "Instructure SLC\n6330 S 3000 E Salt Lake City, UT 84121").exists())
         NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
-        PlannerList.event(id: "2234").waitToExist() // second
+        PlannerList.event(id: "2905").waitToExist() // second
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
 
-        PlannerList.event(id: "2234").tap()
+        PlannerList.event(id: "2905").tap()
         app.find(label: "second").waitToExist()
         NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
-        PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
+        PlannerList.event(id: "assignment_23334").waitToExist() // third
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 1 event")
 
-        PlannerList.event(id: "2236").tap()
-        app.find(label: "third").waitToExist()
+        PlannerList.event(id: "assignment_23334").tap()
+        app.find(label: "Planner Assignment").waitToExist()
         NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
@@ -99,14 +99,14 @@ class PlannerTests: CoreUITestCase {
         PlannerCalendar.dayButton(year: y, month: m - 1, day: 15).swipeLeft()
 
         PlannerCalendar.dayButton(for: reference).tap()
-        PlannerList.event(id: "2233").waitToExist()
-        PlannerList.event(id: "2233").swipeRight()
+        PlannerList.event(id: "2904").waitToExist()
+        PlannerList.event(id: "2904").swipeRight()
         PlannerCalendar.dayButton(for: reference.addDays(-1)).waitToExist()
         XCTAssert(PlannerCalendar.dayButton(for: reference.addDays(-1)).isSelected)
         PlannerCalendar.monthButton.tap() // collapse
         PlannerList.emptyTitle.swipeDown() // pull to refresh
         PlannerList.emptyTitle.swipeLeft()
-        PlannerList.event(id: "2233").swipeDown() // more pull to refresh
+        PlannerList.event(id: "2904").swipeDown() // more pull to refresh
         PlannerCalendar.monthButton.tapUntil {
             PlannerCalendar.monthButton.isSelected
         } // expand
@@ -139,7 +139,7 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "23334").waitToVanish()
+        PlannerList.event(id: "assignment_23334").waitToVanish()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerCalendar.filterButton.tap()
@@ -147,10 +147,10 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, true)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "23334").waitToExist()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
+        PlannerList.event(id: "assignment_23334").waitToExist()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 1 event")
 
-        PlannerList.event(id: "23334").tap()
+        PlannerList.event(id: "assignment_23334").tap()
         app.find(label: "This exists just for testing the planner").waitToExist()
     }
 }
