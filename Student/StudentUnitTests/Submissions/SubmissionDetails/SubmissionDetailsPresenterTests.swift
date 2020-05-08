@@ -339,6 +339,19 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
     }
 
+    func testLockedEmptyViewIsHiddenWithUntilDateInThePast() {
+        Assignment.make(from: .make(
+            submission: .make(id: "1", assignment_id: "1", user_id: 1, workflow_state: SubmissionWorkflowState.submitted),
+            submission_types: [ .online_upload ],
+            allowed_extensions: ["png"],
+            lock_at: Date().addDays(-5),
+            locked_for_user: true,
+            lock_explanation: "this is locked"
+            )
+        )
+        XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
+    }
+
     func testLockedEmptyViewHeaderWithQuiz() {
         Assignment.make(from: .make(quiz_id: "1",
                                     submission_types: [ .online_upload ],
