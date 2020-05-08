@@ -64,6 +64,10 @@ open class CoreWebView: WKWebView {
                 self.setNeedsLayout()
             }
         }
+        handle("loadFrameSource") { [weak self] message in
+            guard let src = message.body as? String else { return }
+            self?.loadFrame(src: src)
+        }
     }
 
     public var contentInputAccessoryView: UIView? {
@@ -75,6 +79,15 @@ open class CoreWebView: WKWebView {
     @discardableResult
     open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
         return super.loadHTMLString(html(for: string), baseURL: baseURL)
+    }
+
+    func loadFrame(src: String) {
+        let url = URL(string: src)
+        let request = GetWebSessionRequest(to: url)
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in performUIUpdate {
+            guard let response = response else { return }
+            self?.load(URLRequest(url: response.session_url))
+        } }
     }
 
     func html(for content: String) -> String {
@@ -214,6 +227,16 @@ open class CoreWebView: WKWebView {
                     iframe.addEventListener('error', event => replace(event.target))
                 }
             })
+
+            // If there is only one iframe
+            // and id="cnvs_content"
+            // and the src is a canvas file
+            // reload the webview with an authenticated version of the iframe's src
+            // https://community.canvaslms.com/thread/31562-canvas-ios-app-not-loading-iframe-content
+            const iframes = document.querySelectorAll('iframe');
+            if (iframes.length == 1 && /\\/courses\\/\\d+\\/files\\/\\d+\\/download/.test(iframes[0].src) && iframes[0].id === "cnvs_content") {
+                window.webkit.messageHandlers.loadFrameSource.postMessage(iframes[0].src)
+            }
 
             // Send content height whenever it changes
             let lastHeight = 0
