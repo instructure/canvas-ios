@@ -109,6 +109,28 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor, UIColor(hexString: "#fff"))
     }
 
+    func testLockedForUserDoesNotApplyToTeachers() {
+        environment.app = .teacher
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1", items: nil) ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(
+                id: "1",
+                position: 1,
+                content_details: .make(
+                    due_at: nil,
+                    points_possible: 10,
+                    locked_for_user: true,
+                    lock_explanation: "Reasons"
+                ),
+                completion_requirement: nil
+            ),
+        ])
+        viewController.view.layoutIfNeeded()
+        let item1 = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(item1.isUserInteractionEnabled)
+        XCTAssertTrue(item1.nameLabel.isEnabled)
+    }
+
     func testTableViewSort() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "B", position: 2, published: true, items: nil),

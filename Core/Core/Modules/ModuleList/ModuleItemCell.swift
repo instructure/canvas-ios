@@ -28,11 +28,13 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
+    let env = AppEnvironment.shared
+
     func update(_ item: ModuleItem) {
         backgroundColor = .named(.backgroundLightest)
-        isUserInteractionEnabled = !item.lockedForUser && item.masteryPath?.locked != true
+        isUserInteractionEnabled = env.app == .teacher || (!item.lockedForUser && item.masteryPath?.locked != true)
         nameLabel.text = item.title
-        nameLabel.isEnabled = !item.lockedForUser
+        nameLabel.isEnabled = env.app == .teacher || !item.lockedForUser
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
         publishedIconView.published = item.published
