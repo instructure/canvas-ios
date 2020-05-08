@@ -129,6 +129,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                     accessToken: token.access_token,
                     baseURL: baseURL,
                     expiresAt: token.expires_in.flatMap { Clock.now + $0 },
+                    locale: token.user.effective_locale,
                     refreshToken: token.refresh_token,
                     userID: token.user.id.value,
                     userName: token.user.name,
