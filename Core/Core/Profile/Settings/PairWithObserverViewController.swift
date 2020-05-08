@@ -134,7 +134,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: pairingCode ?? "",
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest)
+                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
             ]
         )
         let mutableAttributedString = NSMutableAttributedString()
