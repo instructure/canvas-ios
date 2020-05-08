@@ -84,7 +84,7 @@ open class CoreWebView: WKWebView {
     func loadFrame(src: String) {
         let url = URL(string: src)
         let request = GetWebSessionRequest(to: url)
-        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, urlResponse, error in performUIUpdate {
+        AppEnvironment.shared.api.makeRequest(request) { [weak self] response, _, _ in performUIUpdate {
             guard let response = response else { return }
             self?.load(URLRequest(url: response.session_url))
         } }
