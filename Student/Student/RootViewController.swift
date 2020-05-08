@@ -49,8 +49,8 @@ func dashboardTab(session: Session) -> UIViewController {
     dashboardNav.navigationBar.useGlobalNavStyle()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
-    dashboardSplit.tabBarItem.image = .icon(.dashboard, .line)
-    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboard, .solid)
+    dashboardSplit.tabBarItem.image = .icon(.dashboardTab)
+    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboardTabActive)
     dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
     dashboardSplit.navigationItem.titleView = Brand.shared.headerImageView()
     return dashboardSplit
@@ -64,8 +64,8 @@ func calendarTab(session: Session) -> UIViewController {
     ]
     split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
     split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
-    split.tabBarItem.image = .icon(.calendarMonth, .line)
-    split.tabBarItem.selectedImage = .icon(.calendarMonth, .solid)
+    split.tabBarItem.image = .icon(.calendarTab)
+    split.tabBarItem.selectedImage = .icon(.calendarTabActive)
     split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
     return split
 }
@@ -77,8 +77,8 @@ func todoTab() -> UIViewController {
         UINavigationController(rootViewController: EmptyViewController()),
     ]
     todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
-    todo.tabBarItem.image = .icon(.todo)
-    todo.tabBarItem.selectedImage = .icon(.todoSolid)
+    todo.tabBarItem.image = .icon(.todoTab)
+    todo.tabBarItem.selectedImage = .icon(.todoTabActive)
     todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
     return todo
 }
@@ -90,8 +90,8 @@ func notificationsTab() -> UIViewController {
         UINavigationController(rootViewController: EmptyViewController()),
     ]
     split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
-    split.tabBarItem.image = .icon(.alerts, .line)
-    split.tabBarItem.selectedImage = .icon(.alerts, .solid)
+    split.tabBarItem.image = .icon(.alertsTab)
+    split.tabBarItem.selectedImage = .icon(.alertsTabActive)
     split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
     return split
 }

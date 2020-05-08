@@ -25,7 +25,7 @@ class UITabBarExtensionsTests: XCTestCase {
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
-        XCTAssertEqual(tabBar.tintColor, Brand.shared.navBackground)
+        XCTAssertEqual(tabBar.tintColor, Brand.shared.primary)
         XCTAssertEqual(tabBar.barTintColor, UIColor.named(.backgroundLightest))
         XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.named(.textDark))
         XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.named(.crimson))
