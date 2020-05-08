@@ -56,6 +56,7 @@ function convert(svgPath, pdfPath, size, pad = 0) {
   for (const path of svg.querySelectorAll('path')) {
     pdf
       .path(path.getAttribute('d').trim())
+      .fillOpacity(path.getAttribute('opacity') || '1.0')
       .fill(path.getAttribute('fill-rule') || 'evenodd')
   }
   pdf.end()
