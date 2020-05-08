@@ -126,7 +126,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: NSLocalizedString("Pairing Code: ", comment: ""),
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest)
+                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
             ]
         )
 
