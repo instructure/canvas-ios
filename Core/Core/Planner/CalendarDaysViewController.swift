@@ -92,7 +92,7 @@ class CalendarDaysViewController: UIViewController {
     }
 
     func updateDots() {
-        let list: [Date] = plannables?.all?.compactMap({ $0.date }).sorted() ?? []
+        let list: [Date] = plannables?.all.compactMap({ $0.date }).sorted() ?? []
         var i = 0
         for week in weeksStackView.arrangedSubviews {
             for day in week.subviews.compactMap({ $0 as? CalendarDayButton }) {

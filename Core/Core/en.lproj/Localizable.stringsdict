@@ -214,6 +214,28 @@
 			<string>%g points</string>
 		</dict>
 	</dict>
+	<key>d_likes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@likes@</string>
+		<key>likes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d like</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d likes</string>
+		</dict>
+	</dict>
 	<key>d_questions</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

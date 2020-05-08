@@ -72,7 +72,7 @@ public struct APIDiscussionPermissions: Codable, Equatable {
 public struct APIDiscussionView: Codable, Equatable {
     let participants: [APIDiscussionParticipant]
     let unread_entries: [ID]
-    // let entry_ratings: [ID: Int]
+    let entry_ratings: [String: Int]
     let forced_entries: [ID]
     let view: [APIDiscussionEntry]
     let new_entries: [APIDiscussionEntry]?
@@ -160,7 +160,7 @@ extension APIDiscussionView {
             .make(id: 2, display_name: "Alice", html_url: URL(string: "/users/2")),
         ],
         unread_entries: [ID] = [1, 3, 5],
-        // entry_ratings: [ID: Int] = [3: 1, 5: 1],
+        entry_ratings: [String: Int] = ["3": 1, "5": 1],
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
             .make(id: 1, message: "m1", rating_count: 1, replies: [
@@ -177,7 +177,7 @@ extension APIDiscussionView {
         return APIDiscussionView(
             participants: participants,
             unread_entries: unread_entries,
-            // entry_ratings: entry_ratings,
+            entry_ratings: entry_ratings,
             forced_entries: forced_entries,
             view: view,
             new_entries: new_entries
@@ -330,7 +330,7 @@ struct GetDiscussionViewRequest: APIRequestable {
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = []
         if includeNewEntries {
-            query.append(.value("include_new_entries", "1"))
+            query.append(.bool("include_new_entries", true))
         }
         return query
     }

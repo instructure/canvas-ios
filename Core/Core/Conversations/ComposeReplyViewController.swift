@@ -141,7 +141,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         let myID = env.currentSession?.userID ?? ""
         let recipients = !all ? [ message.authorID ]
             : message.participantIDs.filter { $0 != myID }
-        let attachmentIDs = attachments.all?.compactMap { $0.id }
+        let attachmentIDs = attachments.all.compactMap { $0.id }
         AddMessage(conversationID: conversation.id, attachmentIDs: attachmentIDs, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
             if let error = error {
                 self?.sendButton.customView = nil
@@ -181,6 +181,6 @@ extension ComposeReplyViewController: FilePickerDelegate {
     func updateAttachments() {
         bodyMinHeight.isActive = attachments.isEmpty
         attachmentsContainer.isHidden = attachments.isEmpty
-        attachmentsController.updateAttachments(attachments.all?.sorted(by: File.objectIDCompare) ?? [])
+        attachmentsController.updateAttachments(attachments.all.sorted(by: File.objectIDCompare))
     }
 }

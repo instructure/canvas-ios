@@ -270,7 +270,7 @@ extension AssignmentListViewController {
 
     func gradingPeriodsDidUpdate() {
         if gradingPeriods.pending == false && gradingPeriods.requested {
-            selectedGradingPeriod = gradingPeriods.all?.current
+            selectedGradingPeriod = gradingPeriods.all.current
             fetchData(showActivityIndicator: true)
         }
     }

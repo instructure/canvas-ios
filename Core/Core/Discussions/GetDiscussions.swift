@@ -74,13 +74,14 @@ class GetDiscussionView: CollectionUseCase {
             DiscussionParticipant.save(participant, in: client)
         }
         let unreadIDs = Set(view.unread_entries.map { $0.value })
-        let forcedIDS = Set(view.forced_entries.map { $0.value })
+        let forcedIDs = Set(view.forced_entries.map { $0.value })
+        let entryRatings = view.entry_ratings
         for entry in view.view {
-            DiscussionEntry.save(entry, topicID: topicID, unreadIDs: unreadIDs, forcedIDs: forcedIDS, in: client)
+            DiscussionEntry.save(entry, topicID: topicID, unreadIDs: unreadIDs, forcedIDs: forcedIDs, entryRatings: entryRatings, in: client)
         }
         view.new_entries?.forEach { entry in
             let parent: DiscussionEntry? = client.first(where: #keyPath(DiscussionEntry.id), equals: entry.parent_id?.value)
-            DiscussionEntry.save(entry, topicID: topicID, parent: parent, unreadIDs: unreadIDs, forcedIDs: forcedIDS, in: client)
+            DiscussionEntry.save(entry, topicID: topicID, parent: parent, unreadIDs: unreadIDs, forcedIDs: forcedIDs, entryRatings: entryRatings, in: client)
         }
     }
 }
