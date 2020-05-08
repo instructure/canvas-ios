@@ -706,6 +706,7 @@ extension SubmissionViewController {
                 self.submissionInteractor?.selectAnswer(.id(answer.id), forQuestionAtIndex: questionIndex) {}
 
             case .MultipleAnswers:
+                tableView.deselectRow(at: indexPath, animated: false)
                 let answer = question.question.answers[answerIndex]
                 self.submissionInteractor?.selectAnswer(question.answer.toggleAnswerID(answer.id), forQuestionAtIndex: questionIndex) {}
 
