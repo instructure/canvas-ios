@@ -286,7 +286,9 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func lockedEmptyViewIsHidden() -> Bool {
         if let assignment = assignment.first {
-            return assignment.lockExplanation == nil && !(assignment.lockedForUser)
+            let isHidden = ( assignment.lockExplanation == nil && !(assignment.lockedForUser) )
+                || (assignment.submission != nil && assignment.submission?.workflowState != .unsubmitted)
+            return isHidden
         }
         return true
     }
