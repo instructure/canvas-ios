@@ -107,6 +107,23 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.lockedTitleLabel.text, "Discuss this thing!")
     }
 
+    func testLockedForUserTeacherApp() {
+        environment.app = .teacher
+        router.mock("/courses/1/quizzes/2?origin=module_item_details") {
+            DetailViewController()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            title: "Discuss this thing!",
+            content: .quiz("2"),
+            url: URL(string: "/courses/1/quizzes/2")!,
+            content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.children.first as? DetailViewController)
+        XCTAssertTrue(controller.lockedView.isHidden)
+    }
+
     func testAssignmentLockedForUser() {
         router.mock("/courses/1/assignments/2?origin=module_item_details") {
             DetailViewController()
@@ -114,7 +131,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         api.mock(controller.store, value: .make(
             id: "3",
             title: "Submit this thing!",
-            content: .assignment("1"),
+            content: .assignment("2"),
             url: URL(string: "/courses/1/assignments/2")!,
             content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
         ))

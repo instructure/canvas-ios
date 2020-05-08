@@ -75,7 +75,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     func update() {
         guard store.requested, !store.pending else { return }
         let itemViewController = self.itemViewController()
-        let showLocked = item?.isAssignment != true && item?.lockedForUser == true
+        let showLocked = env.app != .teacher && item?.isAssignment != true && item?.lockedForUser == true
         lockedView.isHidden = !showLocked
         lockedTitleLabel.text = item?.title
         if let lockExplanation = item?.lockExplanation {
