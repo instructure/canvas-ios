@@ -140,6 +140,19 @@ let router = Router(routes: [
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
+    RouteHandler(.createAccount(accountID: ":accountID", pairingCode: ":pairingCode")) { url, params in
+        guard
+            let queryItem = url.queryItems?.first,
+            queryItem.name == "baseURL",
+            let host = queryItem.value,
+            let accountID = params["accountID"],
+            let code = params["pairingCode"],
+            let baseURL = URL(string: "https://\(host)")
+         else { return nil }
+
+        return nil
+    },
+
 ]) { url, _, _ in
     var components = url
     if components.scheme?.hasPrefix("http") == false {
