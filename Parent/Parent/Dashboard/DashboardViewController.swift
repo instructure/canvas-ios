@@ -85,7 +85,7 @@ class DashboardViewController: UIViewController {
 
         studentListHiddenHeight.isActive = true
 
-        tabsController.tabBar.barTintColor = .named(.backgroundLightest)
+        tabsController.tabBar.useGlobalNavStyle()
         tabsController.tabBar.isTranslucent = false
         embed(tabsController, in: tabsContainer)
 
@@ -235,8 +235,8 @@ class DashboardViewController: UIViewController {
             return controller
         } ?? AdminViewController.create()
         courses.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses Tab")
-        courses.tabBarItem.image = UIImage.icon(.courses)
-        courses.tabBarItem.selectedImage = UIImage.icon(.courses)
+        courses.tabBarItem.image = UIImage.icon(.coursesTab)
+        courses.tabBarItem.selectedImage = UIImage.icon(.coursesTabActive)
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
 
         var selectedDate = Clock.now
@@ -247,8 +247,8 @@ class DashboardViewController: UIViewController {
             PlannerViewController.create(studentID: id, selectedDate: selectedDate)
         } ?? AdminViewController.create()
         calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar Tab")
-        calendar.tabBarItem.image = UIImage.icon(.calendar)
-        calendar.tabBarItem.selectedImage = UIImage.icon(.calendar)
+        calendar.tabBarItem.image = UIImage.icon(.calendarTab)
+        calendar.tabBarItem.selectedImage = UIImage.icon(.calendarTabActive)
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
 
         let alerts = currentStudentID.flatMap { (id: String) -> UIViewController? in
@@ -258,8 +258,8 @@ class DashboardViewController: UIViewController {
             return controller
         } ?? AdminViewController.create()
         alerts.tabBarItem.title = NSLocalizedString("Alerts", comment: "Alerts Tab")
-        alerts.tabBarItem.image = UIImage.icon(.notification)
-        alerts.tabBarItem.selectedImage = UIImage.icon(.notification)
+        alerts.tabBarItem.image = UIImage.icon(.alertsTab)
+        alerts.tabBarItem.selectedImage = UIImage.icon(.alertsTabActive)
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
         alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.named(.white) ], for: .normal)

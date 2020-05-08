@@ -23,8 +23,9 @@ extension UIImage {
     public enum IconName: String, CaseIterable {
         case attendance, cameraLine, cameraSolid, collaborations, conferences, dropdown
         case calendarEmptyLine, calendarEmptySolid, calendarTodayLine
-        case todo, todoSolid
         case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
+        case alertsTab, alertsTabActive, calendarTab, calendarTabActive, coursesTab, coursesTabActive, dashboardTab, dashboardTabActive
+        case inboxTab, inboxTabActive, todoTab, todoTabActive
     }
 
     public static func icon(_ name: IconName) -> UIImage {

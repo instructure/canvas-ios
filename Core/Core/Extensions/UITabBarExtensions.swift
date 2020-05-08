@@ -21,8 +21,8 @@ import UIKit
 extension UITabBar {
     /// Styles the `UITabBar` to use some elements of the organizations branding colors
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        let hasEnoughContrast = brand.navBackground.contrast(against: UIColor.named(.backgroundLightest)) >= 3
-        let activeColor = hasEnoughContrast ? brand.navBackground : brand.navTextColor
+        let hasEnoughContrast = brand.primary.contrast(against: UIColor.named(.backgroundLightest)) >= 3
+        let activeColor = hasEnoughContrast ? brand.primary : brand.navTextColor
         tintColor = activeColor.ensureContrast(against: .named(.backgroundLightest))
 
         barStyle = .default

@@ -95,7 +95,9 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         }
         Analytics.shared.logSession(session)
         getPreferences()
-        showRootView()
+        GetBrandVariables().fetch(environment: self.environment) { [weak self] _, _, _ in performUIUpdate {
+            self?.showRootView()
+        } }
     }
 
     func showRootView() {

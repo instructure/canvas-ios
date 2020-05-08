@@ -22,18 +22,22 @@ import TestsFoundation
 
 class UITabBarExtensionsTests: XCTestCase {
     func testUseGlobalNavStyle() {
+        Brand.shared = Brand(
+            response: APIBrandVariables.make(primary: "#333"),
+            baseURL: URL(string: "https://canvas.instructure.com")!
+        )
         let tabBar = UITabBar()
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
-        XCTAssertEqual(tabBar.tintColor, Brand.shared.navBackground)
+        XCTAssertEqual(tabBar.tintColor, Brand.shared.primary)
         XCTAssertEqual(tabBar.barTintColor, UIColor.named(.backgroundLightest))
         XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.named(.textDark))
         XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.named(.crimson))
         XCTAssertEqual(tabBar.barStyle, .default)
 
         let shiny = Brand(response: APIBrandVariables.make(
-            nav_bgd: "#ffffff",
-            nav_text_color: "#333"
+            nav_text_color: "#333",
+            primary: "#ffffff"
         ), baseURL: URL(string: "https://canvas.instructure.com")!)
         tabBar.useGlobalNavStyle(brand: shiny)
         XCTAssertEqual(tabBar.tintColor, shiny.navTextColor)
