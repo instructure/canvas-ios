@@ -97,6 +97,28 @@ class LoginWebViewControllerTests: CoreTestCase {
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Authentication failed. Most likely the user denied the request for access.")
     }
 
+    func testLocaleIsSetOnLogin() {
+        controller.view.layoutIfNeeded()
+        let action = MockAction()
+        let token = APIOAuthToken(
+            access_token: "token",
+            refresh_token: "refresh",
+            token_type: "Bearer",
+            user: APIOAuthUser(
+                id: "1",
+                name: "john doe",
+                effective_locale: "pt",
+                email: nil),
+            real_user: nil,
+            expires_in: nil
+        )
+        api.mock(PostLoginOAuthRequest(client: controller.mobileVerifyModel!, code: "c"), value: token)
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?code=c")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { [weak self] _ in
+            XCTAssertEqual(self?.loggedIn?.locale, token.user.effective_locale)
+        }
+    }
+
     func testAuthChallenge() {
         var disposition: URLSession.AuthChallengeDisposition?
         var credential: URLCredential?
