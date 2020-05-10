@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Aggiungi studenti in cima o visita il menu globale per eseguire il mascheramento come studente.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Aggiungi studenti in cima.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Avvisami quando:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Inserisci il codice accoppiamento studente fornito.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Soglia non valida";
 
 /* No comment provided by engineer. */
 "Late" = "In ritardo";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Piano di studio";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Il valore deve essere un numero compreso tra 0 e 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Si è verificato un problema durante il caricamento del file database AlertKit.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Si è verificato un problema durante il caricamento del file database DiscussionKit.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Si è verificato un errore durante il caricamento degli studenti. Trascinare verso il basso per aggiornare e riprovare.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Questo annuncio è scaduto.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Benvenuto, amministratore!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Impossibile impostare una soglia alta che è inferiore o pari alla soglia bassa precedentemente impostata.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Impossibile impostare una soglia bassa che è superiore o pari alla soglia alta precedentemente impostata.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Devi consentire le notifiche in Impostazioni per impostare i promemoria.";

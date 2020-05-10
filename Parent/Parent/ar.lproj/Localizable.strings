@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "أضف طلاباً في المقدمة أو زر القائمة العامة للتخفي كطالب.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "إضافة طالب في المقدمة.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "تنبيهي عندما:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "أدخل رمز إقران الطالب المقدم لك.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "حد غير صالح";
 
 /* No comment provided by engineer. */
 "Late" = "متأخر";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "المناهج";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "يجب أن تكون القيمة رقمًا بين 0 و100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AlertKit.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات DiscussionKit.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الطلاب. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "انتهت صلاحية هذا الإعلان.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "مرحباً أيها المسؤول!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "لا يمكنك تعيين حد مرتفع أقل أو يساوي حداً منخفضاً تم تعيينه مسبقاً.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "لا يمكنك تعيين حد منخفض أعلى أو يساوي حداً مرتفعاً تم تعيينه مسبقاً.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";

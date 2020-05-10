@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.";
 
 /* No comment provided by engineer. */
+"(No subject)" = "(No subject)";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Class";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, the last message was on %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, unread";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "a parent";
@@ -23,6 +35,9 @@
 "Act as User" = "Act as user";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Add attachments";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Add Planner Note";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Alerts";
+
+/* No comment provided by engineer. */
+"All" = "All";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "All annotations saved.";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "Appointment signups";
 
 /* No comment provided by engineer. */
+"Archived" = "Archived";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Are you sure you want to delete this page?";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Assignment details";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Assignment mark above";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Assignment mark below";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Assignment missing";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "Check network and try again!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Choose a module to message";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Choose photo";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "Clear filter";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Clear Filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clear recording";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Complete";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Compose new message";
 
 /* concluded datetime */
 "Concluded %@" = "Concluded %@";
@@ -245,7 +284,16 @@
 "Course Activities" = "Module activities";
 
 /* No comment provided by engineer. */
+"Course announcements" = "Module announcements";
+
+/* No comment provided by engineer. */
 "Course Content" = "Module content";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Module mark above";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Module mark below";
 
 /* No comment provided by engineer. */
 "Courses" = "Modules";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "Edit";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "Edit Recipients";
+
 /* Description for email communication channel */
 "Email Notifications" = "Email notifications";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "Failed Upload";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Failed. Tap for options";
+
+/* No comment provided by engineer. */
 "File" = "File";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Find your school or district";
+
+/* No comment provided by engineer. */
+"for %@" = "for %@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "Forget %@";
@@ -488,7 +548,13 @@
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "Inbox zero";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Incomplete";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Institution announcements";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Interactions on this page are limited by your institution.";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "Locate QR Code";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Locked until \"%@\" is graded";
+
+/* No comment provided by engineer. */
 "Log In" = "Log in";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "Membership update";
 
 /* No comment provided by engineer. */
+"Message" = "Message";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Message from %1$@, %2$@, on %3$@, %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "Missing";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "New conferences";
+
+/* No comment provided by engineer. */
+"New Message" = "New message";
 
 /* No comment provided by engineer. */
 "New To Do" = "New To Do";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "No results";
+
+/* No comment provided by engineer. */
+"No Subject" = "No Subject";
 
 /* No comment provided by engineer. */
 "No Submission" = "No submission";
@@ -803,6 +884,9 @@
 "Quiz Details" = "Quiz details";
 
 /* No comment provided by engineer. */
+"Recipients" = "Recipients";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Record audio";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "Re-do";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Regarding: %@";
+
+/* No comment provided by engineer. */
 "Remove" = "Remove";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Reply";
+
+/* No comment provided by engineer. */
+"Reply All" = "Reply all";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
@@ -869,6 +962,9 @@
 "See what's new." = "See what's new.";
 
 /* No comment provided by engineer. */
+"Select a Path" = "Select a Path";
+
+/* No comment provided by engineer. */
 "Select Course" = "Select Module";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Send weekly summary";
+
+/* No comment provided by engineer. */
+"Sent" = "Sent";
 
 /* No comment provided by engineer. */
 "Set text color" = "Set text colour";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Something is Wrong";
+
+/* No comment provided by engineer. */
+"Starred" = "Starred";
 
 /* No comment provided by engineer. */
 "Start recording" = "Start recording";
@@ -1064,6 +1166,9 @@
 "Title..." = "Title...";
 
 /* No comment provided by engineer. */
+"To" = "To";
+
+/* No comment provided by engineer. */
 "to %@" = "to %@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "unpublished";
 
 /* No comment provided by engineer. */
+"Unread" = "Unread";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "Unsupported Item";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "Upload file";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Uploading %1$@ is at %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "You will stop acting as this user and return to your account.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "You’re all caught up";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Your child's modules might not be published yet.";

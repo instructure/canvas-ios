@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "在顶部添加学生或访问全局菜单以伪装成学生。";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "将学生添加到顶部。";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "通知我当：";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "输入提供给您的学生配对码。";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "无效的阈值";
 
 /* No comment provided by engineer. */
 "Late" = "迟到、迟交";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "值必须是介于 0 至 100 之间的数字";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "加载AlertKit数据库文件时出现问题。";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "加载DiscussionKit数据库文件时出现问题。";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "加载学生时发生错误。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "此公告已过期。";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "欢迎您，网站管理员！";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "设定的上限值不得小于或等于上次设定的下限值。";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "设定的下限值不得高于或等于上次设定的上限值。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";

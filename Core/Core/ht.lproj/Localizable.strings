@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Aji tankou\" se avan tou koneksyon an tan ke itilizatè san modpas. Ou ka fè nenpòt aksyon kòmsi w te itilizatè sa a, epi pou lòt itilizatè yo, y ap panse se moun nan k ap fè aksyon yo. Men, jounal odit yo endike ke se te ou menm ki te fè aksyon yo nan non itilizatè sa a.";
 
 /* No comment provided by engineer. */
+"(No subject)" = "(Okenn Sijè)";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pwen";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, nan %2$@, dènye mesaj la se te nan dat %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, poko li";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "yon paran";
@@ -23,6 +35,9 @@
 "Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Ajoute Atachman";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Alèt";
+
+/* No comment provided by engineer. */
+"All" = "Tout";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Tout anotasyon anrejistre.";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "Randevou Enskripsyon";
 
 /* No comment provided by engineer. */
+"Archived" = "Achive";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Èske se vre ou vle efase paj sa a?";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Detay Sesyon";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Npot sesyon pi wo a";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Npot sesyon pi ba a";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Sesyon ki manke";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "Verifye rezo an epi eseye ankò!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Chwazi yon kou pou voye mesaj";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Chwazi Foto";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "Efase Filtè";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Efase Filtrasyon";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Efase anrejistreman";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Fini";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Ekri nouvo mesaj";
 
 /* concluded datetime */
 "Concluded %@" = "Fini %@";
@@ -245,7 +284,16 @@
 "Course Activities" = "Aktivite Kou";
 
 /* No comment provided by engineer. */
+"Course announcements" = "Anons kou";
+
+/* No comment provided by engineer. */
 "Course Content" = "Kontni Kou";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Nòt kou pi wo a";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Nòt kou pi ba a";
 
 /* No comment provided by engineer. */
 "Courses" = "Kou";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "Modifye";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "Chanje Destinatè";
+
 /* Description for email communication channel */
 "Email Notifications" = "Avètisman Imèl";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "Echèk Transfè";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
+
+/* No comment provided by engineer. */
 "File" = "Fichye";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Jwenn lekòl oswa distri ou a";
+
+/* No comment provided by engineer. */
+"for %@" = "pou %@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "Bliye %@";
@@ -488,7 +548,13 @@
 "Inbox" = "Bwat resepsyon";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "Bwat Resepsyon Zewo";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Enkonplè";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Anons Enstitisyon";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Enstitisyon ou an limite entèaksyon sou paj sa a.";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "Jwenn Kòd QR";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Bloke jiskaske \"%@\" evalye";
+
+/* No comment provided by engineer. */
 "Log In" = "Konekte";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "Aktyalize Manm";
 
 /* No comment provided by engineer. */
+"Message" = "Mesaj";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Mesaj de %1$@, %2$@, nan dat %3$@, %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "Manke";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "Nouvo Konferans";
+
+/* No comment provided by engineer. */
+"New Message" = "Nouvo Mesaj";
 
 /* No comment provided by engineer. */
 "New To Do" = "Nouco Tach";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Okenn Rezilta";
+
+/* No comment provided by engineer. */
+"No Subject" = "Pa gen Sijè";
 
 /* No comment provided by engineer. */
 "No Submission" = "Pa gen Soumisyon";
@@ -803,6 +884,9 @@
 "Quiz Details" = "Detay Quiz";
 
 /* No comment provided by engineer. */
+"Recipients" = "Destinatè";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Anrejistre Son";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "Refè";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Konsènan: %@";
+
+/* No comment provided by engineer. */
 "Remove" = "Elimine";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Elimine %1$@ pa %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Reponn";
+
+/* No comment provided by engineer. */
+"Reply All" = "Reponn Tout";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reponn anotasyon an oswa ansyen kòmantè yo";
@@ -869,6 +962,9 @@
 "See what's new." = "Gade kisa ki nouvo.";
 
 /* No comment provided by engineer. */
+"Select a Path" = "Seleksyone yon Wout";
+
+/* No comment provided by engineer. */
 "Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Voye rezime chak semenn";
+
+/* No comment provided by engineer. */
+"Sent" = "Voye";
 
 /* No comment provided by engineer. */
 "Set text color" = "Defini koulè tèks";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Yon Bagay pa Bon";
+
+/* No comment provided by engineer. */
+"Starred" = "Favori";
 
 /* No comment provided by engineer. */
 "Start recording" = "Kòmanse anrejistreman";
@@ -1064,6 +1166,9 @@
 "Title..." = "Tit...";
 
 /* No comment provided by engineer. */
+"To" = "Pou";
+
+/* No comment provided by engineer. */
 "to %@" = "pou %@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "pa pibliye";
 
 /* No comment provided by engineer. */
+"Unread" = "Poko li";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "Eleman pa Sipòte";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "Transfere Fichye";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Yo pran w";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";

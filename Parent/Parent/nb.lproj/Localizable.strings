@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Legg til studenter på øverst eller besøk den globale menyen for å maskere deg som student.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Legg til studenter på toppen.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Varsle meg når:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Oppgi studentparingskoden som ble gitt til deg.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ugyldig terskel";
 
 /* No comment provided by engineer. */
 "Late" = "Seint";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Emneoversikt";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Verdien må være et tall mellom 0 og 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Det oppstod et problem under lasting av AlertKit databasefilen.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Det oppstod et problem under lasting av DiscussionKit databasefilen.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Det oppsto en feil under lasting av studenter. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Denne kunngjøringen har utløpt-";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Velkommen, admin!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Du kan ikke sette en høy terskel som er lavere eller lik en tidligere satt terskel.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Du kan ikke sette en lav terskel som er høyere eller lik en tidligere satt terskel.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du må tillate varsler i Innstillingene for å stille inn påminnelser.";

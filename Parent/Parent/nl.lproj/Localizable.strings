@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Voeg bovenaan cursisten toe of open het algemene menu om je voor te doen als cursist.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Cursisten bovenaan toevoegen.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Waarschuw me als:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Voer de koppelingscode cursist in die je gekregen hebt.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ongeldige drempel";
 
 /* No comment provided by engineer. */
 "Late" = "Laat";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "De waarde moet een getal zijn tussen 0 en 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Er is een probleem met het laden van het AlertKit-databasebestand.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Er is een probleem met het laden van het DiscussionKit databasebestand.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van cursisten. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Deze aankondiging is vervallen.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Welkom beheerder!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Je kunt geen hoge drempel instellen die lager is dan of gelijk aan een voorheen ingestelde lage drempel.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Je kunt geen lage drempel instellen die hoger is dan of gelijk aan een voorheen ingestelde hoge drempel.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";

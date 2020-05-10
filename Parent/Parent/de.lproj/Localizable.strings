@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Fügen Sie Studenten oben hinzu oder besuchen Sie das globale Menü zur Maskierung als ein Student.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Studenten oben hinzufügen.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Mich alarmieren wenn:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Geben Sie den Studenten-Pairing-Code ein, den Sie erhalten haben.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Ungültige Schwelle";
 
 /* No comment provided by engineer. */
 "Late" = "Zu spät";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Lehrplan";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Der Wert muss eine Zahl zwischen 0 und 100. sein.";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Beim Laden der AlertKit-Datenbankdatei ist ein Problem aufgetreten.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Beim Laden der DiscussionKit-Datenbankdatei ist ein Problem aufgetreten.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Fehler beim Laden der Studenten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Diese Ankündigung ist nicht mehr gültig.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Willkommen, Admin!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Sie können keinen oberen Schwellenwert festlegen, der niedriger oder gleich einem zuvor festgelegten unteren Schwellenwert ist.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Sie können keinen unteren Schwellenwert festlegen, der höher oder gleich einem zuvor festgelegten oberen Schwellenwert ist.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sie müssen in den Einstellungen die Option Benachrichtigungen erlauben, um Erinnerungen zu verwenden.";

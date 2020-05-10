@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講生を追加する、またはグローバルメニューに移動して受講生としてマスカレードします。";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "上部に受講生を追加します。";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "次の時にアラートしてください：";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "無効なしきい値";
 
 /* No comment provided by engineer. */
 "Late" = "遅滞";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "値は0から100の間でなければなりません。";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "AlertKit データベースファイルを読み込み中、問題がありました。.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "この発表は終了しました。";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "ようこそ、管理者さん!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "以前に設定した低しきい値以下の高しきい値を設定することはできません。";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "以前に設定した高しきい値以上の低しきい値を設定することはできません。";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";

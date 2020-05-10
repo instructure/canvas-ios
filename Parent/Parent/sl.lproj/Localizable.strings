@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Dodajte študente na vrhu ali pa pojdite v globalni meni, da prevzamete vlogo študenta.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Dodaj študente na vrh.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Obvesti me, ko:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Vnesite kodo za vzpostavljanje povezave študentov, ki ste jo prejeli.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Neveljavna mejna vrednost";
 
 /* No comment provided by engineer. */
 "Late" = "Zamuda";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Vrednost mora biti število 0–100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AlertKit.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Pri nalaganju študentov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Čas tega obvestila se je iztekel.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Dobrodošli, skrbnik!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Ni mogoče nastaviti zgornje mejne vrednosti, ki je nižja ali enaka predhodno nastavljeni spodnji mejni vrednosti.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ni mogoče nastaviti spodnje mejne vrednosti, ki je višja ali enaka predhodno nastavljeni zgornji mejni vrednosti.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";

@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "AgregAgregue estudiantes en la parte superior o visite el menú global para hacerse pasar por un estudiante.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Agregar estudiantes en la parte superior.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Avíseme cuando:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Introduzca el código de emparejamiento de estudiante que se le proporcionó.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Umbral inválido";
 
 /* No comment provided by engineer. */
 "Late" = "Con atraso";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Programa del curso";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "El valor debe ser un número entre 0 y 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Hubo un problema al cargar el AlertKit archivo de la base de datos.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Hubo un problema al cargar el DiscussionKit archivo de la base de datos.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Hubo un error al cargar los estudiantes. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Este anuncio ha caducado.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "¡Bienvenido, administrador!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "No puede establecer un umbral superior que sea menor o igual a un umbral inferior establecido previamente.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "No puede establecer un umbral inferior que sea mayor o igual a un umbral superior establecido previamente.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Debe habilitar las notificaciones en Configuraciones para poder configurar recordatorios.";
