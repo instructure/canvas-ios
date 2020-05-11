@@ -356,12 +356,10 @@ extension DiscussionDetailsViewController {
         }
         actions += """
         <button class="\(Styles.moreOptions)" aria-label="\(t(NSLocalizedString("Show more options", bundle: .core, comment: "")))">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20" width="24" aria-hidden="true">
-            <g fill="currentColor">
-                <circle r="2" cx="4" cy="10" />
-                <circle r="2" cx="12" cy="10" />
-                <circle r="2" cx="20" cy="10" />
-            </g>
+            <svg xmlns="http://www.w3.org/2000/svg" class="\(Styles.icon)" aria-hidden="true">
+                <circle r="2" cx="2" cy="10" />
+                <circle r="2" cx="10" cy="10" />
+                <circle r="2" cx="18" cy="10" />
             </svg>
         </button>
         """
@@ -414,8 +412,8 @@ extension DiscussionDetailsViewController {
     }
 
     static let paperclipIcon = """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" height="24" width="24" aria-hidden="true">
-    <path fill-rule="evenodd" fill="currentColor" d="
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" class="\(Styles.icon)" aria-hidden="true">
+    <path d="
         M1752.77 221.1C1532.65 1 1174.28 1 954.17 221.1l-838.6 838.6c-154.05 154.16-154.05 404.9 0 558.94
         149.54 149.42 409.98 149.31 559.06 0l758.74-758.62c87.98-88.1 87.98-231.42 0-319.51-88.32-88.21
         -231.64-87.98-319.51 0l-638.8 638.9 79.85 79.85 638.8-638.9c43.93-43.83 115.54-43.94 159.81 0
@@ -426,8 +424,8 @@ extension DiscussionDetailsViewController {
     """
 
     static let likeLineIcon = """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="24" height="24" aria-hidden="true">
-    <path fill-rule="evenodd" fill="currentColor" d="
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" class="\(Styles.icon)" aria-hidden="true">
+    <path d="
         M1637.176 1129.412h-112.94v112.94c62.23 0 112.94 50.599 112.94 112.942 0 62.344-50.71
         112.941-112.94 112.941h-112.942v112.941c62.23 0 112.941 50.598 112.941 112.942 0
         62.343-50.71 112.94-112.94 112.94h-960c-155.634 0-282.354-126.606-282.354-282.352
@@ -447,8 +445,8 @@ extension DiscussionDetailsViewController {
     """
 
     static let likeSolidIcon = """
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="24" height="24" aria-hidden="true">
-    <path fill-rule="evenodd" fill="currentColor" d="
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" class="\(Styles.icon)" aria-hidden="true">
+    <path d="
         M1863.059 1016.47c0-124.574-101.308-225.882-225.883-225.882H1203.37c-19.651 0-37.044-9.374
         -47.66-25.863-10.391-16.15-11.86-35.577-3.84-53.196 54.776-121.073 94.87-247.115 119.378
         -374.513 15.925-83.576-5.873-169.072-60.085-234.578C1157.29 37.384 1078.005 0 993.751 0
@@ -465,7 +463,7 @@ extension DiscussionDetailsViewController {
         case avatar, avatarInitials, avatarTopic
         case deleted, entry, entryContent, moreReplies, unread
         case actions, like, liked, likeIcon, moreOptions, reply, replyPipe
-        case blockLink, heading, hiddenCheck, screenreader
+        case blockLink, heading, hiddenCheck, icon, screenreader
 
         var description: String { "-i\(String(rawValue, radix: 36))" }
 
@@ -490,16 +488,28 @@ extension DiscussionDetailsViewController {
     static let css = """
     body {
         \(Styles.font(.medium, 14))
+        --max-lines: none;
     }
 
     .\(Styles.authorName) {
         color: \(Styles.color(.textDarkest));
         \(Styles.font(.semibold, 14))
+        --max-lines: 2;
     }
     .\(Styles.date) {
         color: \(Styles.color(.textDark));
         \(Styles.font(.semibold, 12))
         margin-top: 2px;
+        --max-lines: 2;
+    }
+    \(""/* 2 lines then ellipsis */)
+    .\(Styles.authorName),
+    .\(Styles.date) {
+        overflow: hidden;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--max-lines);
     }
     .\(Styles.entryHeader) {
         align-items: center;
@@ -526,6 +536,7 @@ extension DiscussionDetailsViewController {
     }
     .\(Styles.avatarInitials) {
         border: 1px solid \(Styles.color(.borderMedium));
+        overflow: hidden;
     }
     .\(Styles.avatarTopic) {
         font-size: 18px;
@@ -606,7 +617,7 @@ extension DiscussionDetailsViewController {
         border: 0 none;
         color: inherit;
         display: flex;
-        margin: 0;
+        margin: -2px 0;
         padding: 0;
     }
     .\(Styles.reply) {
@@ -641,6 +652,12 @@ extension DiscussionDetailsViewController {
         top: 0;
         width: 100%;
     }
+    .\(Styles.icon) {
+        fill: currentcolor;
+        height: 20px;
+        padding: 2px;
+        width: 20px;
+    }
     .\(Styles.screenreader) {
         clip-path: inset(50%);
         height: 1px;
@@ -648,5 +665,5 @@ extension DiscussionDetailsViewController {
         width: 1px;
     }
     """
-        .replacingOccurrences(of: "\\s*([{}:;])\\s*", with: "$1", options: .regularExpression)
+        .replacingOccurrences(of: "\\s*([{}:;,])\\s*", with: "$1", options: .regularExpression)
 }
