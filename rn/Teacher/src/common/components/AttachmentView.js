@@ -132,11 +132,14 @@ export default class AttachmentView extends Component<Props, State> {
       </View>
     }
     let body = <View></View>
+    let image = (
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} onError={this.onError} testID="AttachmentView.image" />
+      </View>
+    )
     switch (this.props.attachment.mime_class) {
       case 'image':
-        body = <View style={styles.imageContainer}>
-          <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} onError={this.onError} testID="AttachmentView.image" />
-        </View>
+        body = image
         break
       case 'audio':
       case 'video':
@@ -151,6 +154,8 @@ export default class AttachmentView extends Component<Props, State> {
       default:
         if (this.props.attachment['content-type'] && this.props.attachment['content-type'].indexOf('audio') !== -1) {
           body = this.renderAudioVisual()
+        } else if (this.props.attachment['content-type'] === 'image/heic') {
+          body = image
         } else {
           body = (
             <CanvasWebView

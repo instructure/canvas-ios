@@ -77,6 +77,26 @@ describe('AttachmentView', () => {
     expect(tree.find('Image').length).toEqual(1)
   })
 
+  it('renders a heic', async () => {
+    let props = {
+      navigator: templates.navigator(),
+      attachment: {
+        id: '1',
+        display_name: 'Something.heic',
+        url: 'http://www.fillmurray.com/100/100',
+        mime_class: 'file',
+        'content-type': 'image/heic',
+      },
+    }
+
+    let tree = shallow(
+      <AttachmentView {...props} />
+    )
+    await tree.instance().fetchFile()
+    tree.update()
+    expect(tree.find('Image').length).toEqual(1)
+  })
+
   it('renders unsupported stuffs', async () => {
     let props = {
       navigator: templates.navigator(),
