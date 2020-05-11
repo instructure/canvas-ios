@@ -570,7 +570,7 @@ open class CoreUITestCase: XCTestCase {
             role: Bundle.main.isTeacherTestsRunner ? "TeacherEnrollment" : "StudentEnrollment"
         )
     }
-    open lazy var baseCourse = mock(course: .make(enrollments: [ baseEnrollment ]))
+    open lazy var baseCourse = mock(course: .make(workflow_state: .available, enrollments: [ baseEnrollment ]))
 
     open func mockBaseRequests() {
         mockData(GetUserRequest(userID: "self"), value: APIUser.make())
