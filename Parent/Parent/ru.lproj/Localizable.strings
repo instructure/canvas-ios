@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Добавьте учащихся в верхней части или пройдите в общее меню, чтобы выступит в качестве учащегося.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Добавить студентов в верхнюю часть.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Оповестить меня, когда:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Введите полученный код привязки студента.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Недействительный порог";
 
 /* No comment provided by engineer. */
 "Late" = "Поздно";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Значение должно быть числом от 0 до 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Возникла проблема при загрузке файла базы данных AlertKit.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Возникла проблема при загрузке файла базы данных DiscussionKit.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Произошла ошибка при загрузке студентов. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Срок действия этого объявления истек.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Добро пожаловать, администратор!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Вы не можете задать верхний порог, который ниже или равен ранее заданному нижнему порогу.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Вы не можете задать нижний порог, который выше или равен ранее заданному верхнему порогу.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";

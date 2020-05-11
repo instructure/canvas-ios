@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"تصرف كـ\" هو تسجيل الدخول كما لو كنت هذا المستخدم دون كلمة مرور. ستتمكن من اتخاذ أي إجراء كما لو كنت هذا المستخدم، ومن وجهة نظر المستخدمين الآخرين، سيبدو الأمر كما لو كان هذا المستخدم هو من قام بهذه الإجراءات. ولكن سجلات التدقيق ستسجل أنك كنت الشخص الذي قام بالإجراءات نيابةً عن هذا المستخدم.";
 
 /* No comment provided by engineer. */
+"(No subject)" = "(لا يوجد موضوع)";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ النقاط";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@، خلال %2$@، آخر رسالة تمت في %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@، غير مقروءة";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "ولي أمر";
@@ -23,6 +35,9 @@
 "Act as User" = "تصرف كمستخدم";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "إضافة مرفقات";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "إضافة ملاحظة مخطِط";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "التنبيهات";
+
+/* No comment provided by engineer. */
+"All" = "الكل";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "تم حفظ جميع التعليقات التوضيحية.";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "مواعيد التسجيل";
 
 /* No comment provided by engineer. */
+"Archived" = "مؤرشف";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "هل تريد بالتأكيد حذف هذه الصفحة؟";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "تفاصيل المهمة";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "تقييم المهمة أعلاه";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "تقييم المهمة أدناه";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "مهمة مفقودة";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "تحقق من الشبكة وحاول مرة أخرى!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "اختر مساقاً لإرسال رسالة";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "اختيار صورة";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "مسح عامل التصفية";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "مسح عامل التصفية";
 
 /* No comment provided by engineer. */
 "Clear recording" = "مسح التسجيل";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "مكتمل";
+
+/* No comment provided by engineer. */
+"Compose new message" = "إنشاء رسالة جديدة";
 
 /* concluded datetime */
 "Concluded %@" = "تم الانتهاء %@";
@@ -245,7 +284,16 @@
 "Course Activities" = "أنشطة المساق";
 
 /* No comment provided by engineer. */
+"Course announcements" = "إعلانات المساق";
+
+/* No comment provided by engineer. */
 "Course Content" = "محتوى المساق";
+
+/* No comment provided by engineer. */
+"Course grade above" = "تقييم المساق أعلاه";
+
+/* No comment provided by engineer. */
+"Course grade below" = "تقييم المساق أدناه";
 
 /* No comment provided by engineer. */
 "Courses" = "المساقات";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "تحرير";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "تحرير المستلمين";
+
 /* Description for email communication channel */
 "Email Notifications" = "إعلامات البريد الإلكتروني";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "تعذر التحميل";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
+
+/* No comment provided by engineer. */
 "File" = "الملف";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "ابحث عن مدرستك أو دائرتك التعليمية";
+
+/* No comment provided by engineer. */
+"for %@" = "لـ %@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "نسيت %@";
@@ -488,7 +548,13 @@
 "Inbox" = "علبة الوارد";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "علبة الوارد صفر";
+
+/* No comment provided by engineer. */
 "Incomplete" = "غير مكتمل";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "إعلانات المؤسسة";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "التفاعلات الموجودة في هذه الصفحة مقيدة بمؤسستك.";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "ابحث عن رمز QR";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "مؤمَّن حتى منح درجة لـ \"%@\"";
+
+/* No comment provided by engineer. */
 "Log In" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "تحديث العضوية";
 
 /* No comment provided by engineer. */
+"Message" = "الرسالة";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "رسالة من %1$@، %2$@، في %3$@، %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "مفقود";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "مؤتمرات جديدة";
+
+/* No comment provided by engineer. */
+"New Message" = "رسالة جديدة";
 
 /* No comment provided by engineer. */
 "New To Do" = "قائمة مهمة جديدة";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "لا توجد نتائج";
+
+/* No comment provided by engineer. */
+"No Subject" = "لا يوجد موضوع";
 
 /* No comment provided by engineer. */
 "No Submission" = "لا يوجد إرسال";
@@ -803,6 +884,9 @@
 "Quiz Details" = "تفاصيل الاختبار الموجز";
 
 /* No comment provided by engineer. */
+"Recipients" = "المتلقون";
+
+/* No comment provided by engineer. */
 "Record Audio" = "تسجيل الصوت";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "إعادة";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "بخصوص: %@";
+
+/* No comment provided by engineer. */
 "Remove" = "إزالة";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "تمت إزالة %1$@ بواسطة %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "رد";
+
+/* No comment provided by engineer. */
+"Reply All" = "رد على الكل";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
@@ -869,6 +962,9 @@
 "See what's new." = "تعرف على الجديد.";
 
 /* No comment provided by engineer. */
+"Select a Path" = "حدد مساراً";
+
+/* No comment provided by engineer. */
 "Select Course" = "تحديد مساق";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "إرسال ملخص أسبوعي";
+
+/* No comment provided by engineer. */
+"Sent" = "مرسَل";
 
 /* No comment provided by engineer. */
 "Set text color" = "تعيين لون النص";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "هناك شيء خطأ";
+
+/* No comment provided by engineer. */
+"Starred" = "تم وضع نجمة عليها";
 
 /* No comment provided by engineer. */
 "Start recording" = "بدء تسجيل";
@@ -1064,6 +1166,9 @@
 "Title..." = "العنوان...";
 
 /* No comment provided by engineer. */
+"To" = "إلى";
+
+/* No comment provided by engineer. */
 "to %@" = "إلى %@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "غير منشور";
 
 /* No comment provided by engineer. */
+"Unread" = "غير مقروء";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "عنصر غير مدعوم";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "تحميل ملف";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "تحميل %1$@ في %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "ستتوقف عن التصرف باعتبارك هذا المستخدم وستعود إلى حسابك.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "لقد اطلعت عليها جميعًا";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "ربما لم يتم نشر مساقات الطالب بعد.";

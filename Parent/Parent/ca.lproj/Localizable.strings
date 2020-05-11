@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Afegiu estudiants a la part superior o visiteu el menú global per fer-vos passar per un estudiant.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Afegiu estudiants a la part superior.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Aviseu-me quan:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Introduïu el codi d'aparellament d'estudiants que se us ha proporcionat.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Llindar no vàlid";
 
 /* No comment provided by engineer. */
 "Late" = "Tardà";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Temari";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de AlertKit.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de DiscussionKit.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "S'ha produït un error en carregar els estudiants. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Aquest anunci ha caducat.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Benvingut, administrador!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "No podeu definir un llindar superior que sigui inferior o igual a un llindar inferior definit prèviament.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "No podeu definir un llindar inferior que sigui superior o igual a un llindar superior definit prèviament.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";

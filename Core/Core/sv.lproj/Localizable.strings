@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att ”agera som” är i själva verket som att logga in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och ur andra användares synvinklar är det som om den här användaren utförde dem. I revisionsloggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
 
 /* No comment provided by engineer. */
+"(No subject)" = "(inget ämne)";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ poäng";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@ mottogs det senaste meddelandet %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, oläst";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en vårdnadshavare";
@@ -23,6 +35,9 @@
 "Act as User" = "Agera som användare";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Lägg till bilagor";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Notiser";
+
+/* No comment provided by engineer. */
+"All" = "Alla";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alla noteringar har sparats.";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "Mötesbokningar";
 
 /* No comment provided by engineer. */
+"Archived" = "Arkiverade";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Vill du ta bort den här sidan?";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Uppgiftens detaljer";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Uppgiftsomdöme över";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Uppgiftsbetyg nedan";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Tilldelning saknas";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "Kontrollera nätverket och försök igen!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Välj en kurs att skicka meddelande till";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Välj foto";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "Rensa filter";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Rensa filter";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Färdig";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Skriv nytt meddelande";
 
 /* concluded datetime */
 "Concluded %@" = "Avslutad %@";
@@ -245,7 +284,16 @@
 "Course Activities" = "Kursaktiviteter";
 
 /* No comment provided by engineer. */
+"Course announcements" = "Anslag";
+
+/* No comment provided by engineer. */
 "Course Content" = "Kursinnehåll";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Kursbetyg över";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Kursbetyg under";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurser";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "Redigera";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "Redigera mottagare";
+
 /* Description for email communication channel */
 "Email Notifications" = "E-postaviseringar";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "Det gick inte att läsa in";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Misslyckades. Flik för alternativ";
+
+/* No comment provided by engineer. */
 "File" = "Fil";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Hitta din skola eller ditt distrikt";
+
+/* No comment provided by engineer. */
+"for %@" = "för %@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "Glöm %@";
@@ -488,7 +548,13 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "Inbox Zero";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Ej fullständig";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Institutionens anslag";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Interaktioner på den här sidan har begränsats av din institution.";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "Lokalisera QR-kod";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Låst tills ”%@” har bedömts";
+
+/* No comment provided by engineer. */
 "Log In" = "Logga in";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "Uppdatering av medlemskap";
 
 /* No comment provided by engineer. */
+"Message" = "Meddelande";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Meddelande från %1$@, %2$@, %3$@, %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "Saknas";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "Nya konferenser";
+
+/* No comment provided by engineer. */
+"New Message" = "Nytt kursmeddelande";
 
 /* No comment provided by engineer. */
 "New To Do" = "Ny att-göra";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Inga resultat";
+
+/* No comment provided by engineer. */
+"No Subject" = "Inget ämne";
 
 /* No comment provided by engineer. */
 "No Submission" = "Ingen inlämning";
@@ -803,6 +884,9 @@
 "Quiz Details" = "Quizinformation";
 
 /* No comment provided by engineer. */
+"Recipients" = "Mottagare";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Spela in ljud";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "Gör om";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Angående : %@";
+
+/* No comment provided by engineer. */
 "Remove" = "Ta bort";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Borttagen %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Svara";
+
+/* No comment provided by engineer. */
+"Reply All" = "Svara alla";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
@@ -869,6 +962,9 @@
 "See what's new." = "Se vad som är nytt";
 
 /* No comment provided by engineer. */
+"Select a Path" = "Välj en sökväg";
+
+/* No comment provided by engineer. */
 "Select Course" = "Välj kurs";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Skicka veckovis sammanfattning";
+
+/* No comment provided by engineer. */
+"Sent" = "Skickade";
 
 /* No comment provided by engineer. */
 "Set text color" = "Ange textfärg";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Något stämmer inte";
+
+/* No comment provided by engineer. */
+"Starred" = "Stjärnmärkta";
 
 /* No comment provided by engineer. */
 "Start recording" = "Starta inspelning";
@@ -1064,6 +1166,9 @@
 "Title..." = "Titel...";
 
 /* No comment provided by engineer. */
+"To" = "Till";
+
+/* No comment provided by engineer. */
 "to %@" = "till %@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "avpublicerad";
 
 /* No comment provided by engineer. */
+"Unread" = "Olästa";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "Objektet stöds inte";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "Ladda upp fil";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Uppladdning av %1$@ är på %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du kommer att sluta att agera som den här användaren och gå tillbaka till ditt konto.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Du är helt i kapp!";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";

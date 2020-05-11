@@ -50,6 +50,22 @@
 			<string>%d begivenheder</string>
 		</dict>
 	</dict>
+	<key>d_likes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@likes@</string>
+		<key>likes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d like</string>
+			<key>other</key>
+			<string>%d likes</string>
+		</dict>
+	</dict>
 	<key>d_needs_grading</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -77,9 +93,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Option</string>
+			<string>%d Indstillinger</string>
 			<key>other</key>
-			<string>%d Options</string>
+			<string>%d Muligheder</string>
 		</dict>
 	</dict>
 	<key>d_questions</key>

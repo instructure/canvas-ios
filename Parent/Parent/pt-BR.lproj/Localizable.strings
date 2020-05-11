@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Adicione alunos ao topo ou visite o menu global para se fingir de aluno.";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Adicione alunos ao topo.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Avisem-me quando:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Insira o código de emparelhamento do aluno fornecido.";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Limiar inválida.";
 
 /* No comment provided by engineer. */
 "Late" = "Atrasado";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Programa";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "O valor deve ser um número entre 0 e 100";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "Houve um problema ao carregar o arquivo do banco de dados AlertKit .";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "Houve um problema ao carregar o arquivo do banco de dados DiscussionKit .";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "Houve um erro ao carregar alunos. Puxe para atualizar para tentar novamente.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Este aviso expirou.";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Bem-vindo, Admin!";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Não é possível definir um limite alto que seja inferior ou igual a um limite baixo definido anteriormente.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Não é possível definir um limite baixo que seja superior ou igual a um limite alto definido anteriormente.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";

@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "「～として」は、基本的にこのユーザーとしてパスワードなしでログインしています。あたかもこのユーザーであるかのようにアクションを取ることができ、また、他のユーザーの観点からだと、あたかもこのユーザーがそれを実行したかのように見ることができます。ただし、監査ログには、このユーザーの代わりにアクションを実行したのは、あなた だったと記録されます。";
 
 /* No comment provided by engineer. */
+"(No subject)" = "（件名なし）";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ポイント";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@、未読";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "親";
@@ -23,6 +35,9 @@
 "Act as User" = "ユーザーとして行動する";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "添付を追加";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "アラート";
+
+/* No comment provided by engineer. */
+"All" = "すべて";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "すべての注釈が保存されました。";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "受講生予約サインアップ";
 
 /* No comment provided by engineer. */
+"Archived" = "アーカイブ済み";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "このページを削除してもよろしいですか？";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "課題の詳細";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "未満の課題成績";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "を超える課題成績";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "課題がありません";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "ネットワークをチェックして、もういちど試してください。";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "メッセージを送るコースを選択する";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "写真を選択する";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "フィルターをクリア";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "フィルターをクリアする";
 
 /* No comment provided by engineer. */
 "Clear recording" = "録音をクリアする";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "完了";
+
+/* No comment provided by engineer. */
+"Compose new message" = "新規メッセージを作成";
 
 /* concluded datetime */
 "Concluded %@" = "完了%@";
@@ -245,7 +284,16 @@
 "Course Activities" = "コースアクティビティ";
 
 /* No comment provided by engineer. */
+"Course announcements" = "コースのアナウンスメント";
+
+/* No comment provided by engineer. */
 "Course Content" = "コース内容";
+
+/* No comment provided by engineer. */
+"Course grade above" = "未満のコース成績";
+
+/* No comment provided by engineer. */
+"Course grade below" = "を超えるコース成績";
 
 /* No comment provided by engineer. */
 "Courses" = "コース";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "編集";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "受信者を編集する";
+
 /* Description for email communication channel */
 "Email Notifications" = "メール通知";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "アップロードに失敗しました";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
+
+/* No comment provided by engineer. */
 "File" = "ファイル";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "あなたの学校または地域を見つける";
+
+/* No comment provided by engineer. */
+"for %@" = "ための%@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "忘れた%@";
@@ -488,7 +548,13 @@
 "Inbox" = "受信トレイ";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "受信トレイゼロ";
+
+/* No comment provided by engineer. */
 "Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "教育機関のアナウンスメント";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "このページでのやり取りは、あなたの教育機関によって制限されています。";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "QR コードを探す";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "\"%@\" が採点されるまで、ロックされています";
+
+/* No comment provided by engineer. */
 "Log In" = "ログイン";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "メンバーシップ更新";
 
 /* No comment provided by engineer. */
+"Message" = "メッセージ";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "%1$@からの%2$@、%3$@日のメッセージ、%4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "欠如";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "新しい会議";
+
+/* No comment provided by engineer. */
+"New Message" = "新しいメッセージ";
 
 /* No comment provided by engineer. */
 "New To Do" = "新しい To Do";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "結果はありません";
+
+/* No comment provided by engineer. */
+"No Subject" = "件名なし";
 
 /* No comment provided by engineer. */
 "No Submission" = "提出なし";
@@ -803,6 +884,9 @@
 "Quiz Details" = "クイズの詳細情報";
 
 /* No comment provided by engineer. */
+"Recipients" = "受信者";
+
+/* No comment provided by engineer. */
 "Record Audio" = "オーディオを録音する";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "やり直し";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Re：%@";
+
+/* No comment provided by engineer. */
 "Remove" = "削除";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "返信";
+
+/* No comment provided by engineer. */
+"Reply All" = "全員に返信";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
@@ -869,6 +962,9 @@
 "See what's new." = "最新情報を見る。";
 
 /* No comment provided by engineer. */
+"Select a Path" = "パスを選択する";
+
+/* No comment provided by engineer. */
 "Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "毎週のサマリを送信する";
+
+/* No comment provided by engineer. */
+"Sent" = "送信済み";
 
 /* No comment provided by engineer. */
 "Set text color" = "テキストの色を設定する";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "なにか問題があります";
+
+/* No comment provided by engineer. */
+"Starred" = "スターあり";
 
 /* No comment provided by engineer. */
 "Start recording" = "録画開始";
@@ -1064,6 +1166,9 @@
 "Title..." = "タイトル...";
 
 /* No comment provided by engineer. */
+"To" = "変更後";
+
+/* No comment provided by engineer. */
 "to %@" = "～へ%@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "未公開";
 
 /* No comment provided by engineer. */
+"Unread" = "未読";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "サポートされていない項目";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "ファイルアップロード";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "このユーザーとして行動することを止め、自分のアカウントに戻る";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "これで完了です";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "お子様のコースはまだ公開されていない可能性があります。";

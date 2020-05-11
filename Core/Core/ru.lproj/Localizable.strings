@@ -5,10 +5,22 @@
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Действовать как\" фактически означает вход в систему в качестве данного пользователя без пароля. Вы сможете выполнять любые действия, как будто вы являетесь этим пользователем, и с точки зрения других пользователей это будет выглядеть так, как будто именно этот пользователь выполнил это действие. Тем не менее, в контрольных журналах записывается информация от том, что именно вы выполняли указанные действия от имени этого пользователя.";
 
 /* No comment provided by engineer. */
+"(No subject)" = "(Нет субъекта)";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
 /* No comment provided by engineer. */
 "%@ pts" = "%@ баллы";
+
+/* label for conversation row with context, subject, & last message date & text */
+"%@, in %@, the last message was on %@ %@" = "%1$@, в %2$@, последнее сообщение было %3$@ %4$@";
+
+/* added to conversation label when unread */
+"%@, unread" = "%@, не прочитано";
+
+/* No comment provided by engineer. */
+"+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "родитель";
@@ -23,6 +35,9 @@
 "Act as User" = "Действовать как пользователь";
 
 /* No comment provided by engineer. */
+"Add Attachments" = "Добавить вложения";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Добавьте примечание планировщика";
 
 /* No comment provided by engineer. */
@@ -33,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Предупреждения";
+
+/* No comment provided by engineer. */
+"All" = "Все";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Все аннотации сохранены.";
@@ -65,6 +83,9 @@
 "Appointment Signups" = "Заявления о регистрации";
 
 /* No comment provided by engineer. */
+"Archived" = "Архивировано";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Вы действительно хотите удалить эту страницу?";
 
 /* No comment provided by engineer. */
@@ -72,6 +93,15 @@
 
 /* No comment provided by engineer. */
 "Assignment Details" = "Сведения о задании";
+
+/* No comment provided by engineer. */
+"Assignment grade above" = "Оценка за задание выше";
+
+/* No comment provided by engineer. */
+"Assignment grade below" = "Оценка за задание ниже";
+
+/* No comment provided by engineer. */
+"Assignment missing" = "Задание отсутствует";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -158,6 +188,9 @@
 "Check network and try again!" = "Проверьте сеть и попробуйте еще раз!";
 
 /* No comment provided by engineer. */
+"Choose a course to message" = "Выбрать курс для сообщения";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Выбрать фото";
 
 /* No comment provided by engineer. */
@@ -168,6 +201,9 @@
 
 /* No comment provided by engineer. */
 "Clear filter" = "Очистить фильтр";
+
+/* No comment provided by engineer. */
+"Clear Filter" = "Очистить фильтр";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Удалить запись";
@@ -198,6 +234,9 @@
 
 /* No comment provided by engineer. */
 "Complete" = "Завершить";
+
+/* No comment provided by engineer. */
+"Compose new message" = "Написать новое сообщение";
 
 /* concluded datetime */
 "Concluded %@" = "Завершено %@";
@@ -245,7 +284,16 @@
 "Course Activities" = "Активность в рамках курса";
 
 /* No comment provided by engineer. */
+"Course announcements" = "Объявления курса";
+
+/* No comment provided by engineer. */
 "Course Content" = "Содержание курса";
+
+/* No comment provided by engineer. */
+"Course grade above" = "Оценка за курс выше";
+
+/* No comment provided by engineer. */
+"Course grade below" = "Оценка за курс ниже";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
@@ -255,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
+
+/* No comment provided by engineer. */
+"d_options" = "d_options";
 
 /* No comment provided by engineer. */
 "d_questions" = "d_questions";
@@ -334,6 +385,9 @@
 /* No comment provided by engineer. */
 "Edit" = "Редактировать";
 
+/* No comment provided by engineer. */
+"Edit Recipients" = "Редактировать получателей";
+
 /* Description for email communication channel */
 "Email Notifications" = "Уведомления по электронной почте";
 
@@ -383,6 +437,9 @@
 "Failed Upload" = "Сбой загрузки";
 
 /* No comment provided by engineer. */
+"Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
+
+/* No comment provided by engineer. */
 "File" = "Файл";
 
 /* No comment provided by engineer. */
@@ -420,6 +477,9 @@
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Найдите свое учебное заведение или район";
+
+/* No comment provided by engineer. */
+"for %@" = "для %@";
 
 /* No comment provided by engineer. */
 "Forget %@" = "Исключить %@";
@@ -488,7 +548,13 @@
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
+"Inbox Zero" = "Входящие Ноль";
+
+/* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"Institution announcements" = "Объявления заведения";
 
 /* No comment provided by engineer. */
 "Interactions on this page are limited by your institution." = "Взаимодействие на этой странице ограничено вашей организацией.";
@@ -572,6 +638,9 @@
 "Locate QR Code" = "Определить местонахождение кода QR";
 
 /* No comment provided by engineer. */
+"Locked until \"%@\" is graded" = "Заблокировано до получения оценки \"%@\"";
+
+/* No comment provided by engineer. */
 "Log In" = "Войти";
 
 /* No comment provided by engineer. */
@@ -626,6 +695,12 @@
 "Membership Update" = "Обновление членства";
 
 /* No comment provided by engineer. */
+"Message" = "Сообщение";
+
+/* No comment provided by engineer. */
+"Message from %@, %@, on %@, %@" = "Сообщение от %1$@, %2$@, %3$@, %4$@";
+
+/* No comment provided by engineer. */
 "Missing" = "Отсутствует";
 
 /* No comment provided by engineer. */
@@ -642,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "New Conferences" = "Новые конференции";
+
+/* No comment provided by engineer. */
+"New Message" = "Новое сообщение";
 
 /* No comment provided by engineer. */
 "New To Do" = "Новая задача";
@@ -681,6 +759,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Нет результатов";
+
+/* No comment provided by engineer. */
+"No Subject" = "Нет темы";
 
 /* No comment provided by engineer. */
 "No Submission" = "Нет отправки";
@@ -803,6 +884,9 @@
 "Quiz Details" = "Сведения о тесте";
 
 /* No comment provided by engineer. */
+"Recipients" = "Получатели";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Записать аудио";
 
 /* No comment provided by engineer. */
@@ -815,6 +899,9 @@
 "Redo" = "Повторить";
 
 /* No comment provided by engineer. */
+"Regarding: %@" = "Касательно: %@";
+
+/* No comment provided by engineer. */
 "Remove" = "Удалить";
 
 /* No comment provided by engineer. */
@@ -822,6 +909,12 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Удалено %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Reply" = "Ответить";
+
+/* No comment provided by engineer. */
+"Reply All" = "Ответить на все";
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
@@ -869,6 +962,9 @@
 "See what's new." = "Посмотрите, что нового.";
 
 /* No comment provided by engineer. */
+"Select a Path" = "Выбрать путь";
+
+/* No comment provided by engineer. */
 "Select Course" = "Выбрать курс";
 
 /* No comment provided by engineer. */
@@ -885,6 +981,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Отправить еженедельный отчет";
+
+/* No comment provided by engineer. */
+"Sent" = "Отправлено";
 
 /* No comment provided by engineer. */
 "Set text color" = "Задать цвет текста";
@@ -915,6 +1014,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Что-то неверно";
+
+/* No comment provided by engineer. */
+"Starred" = "Отмечено звездочкой";
 
 /* No comment provided by engineer. */
 "Start recording" = "Запустить запись";
@@ -1064,6 +1166,9 @@
 "Title..." = "Заголовок...";
 
 /* No comment provided by engineer. */
+"To" = "Кому";
+
+/* No comment provided by engineer. */
 "to %@" = "к %@";
 
 /* No comment provided by engineer. */
@@ -1091,6 +1196,9 @@
 "unpublished" = "не опубликовано";
 
 /* No comment provided by engineer. */
+"Unread" = "Не прочитано";
+
+/* No comment provided by engineer. */
 "Unsupported Item" = "Неподдерживаемый элемент";
 
 /* No comment provided by engineer. */
@@ -1098,6 +1206,9 @@
 
 /* No comment provided by engineer. */
 "Upload File" = "Загрузить файл";
+
+/* No comment provided by engineer. */
+"Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
 /* No comment provided by engineer. */
 "Uploading %@ of %@" = "Загрузка %1$@ из %2$@";
@@ -1179,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Вы прекратите действовать как этот пользователь и вернетесь в свою учетную запись.";
+
+/* No comment provided by engineer. */
+"You’re all caught up" = "Вы все нагнали";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";

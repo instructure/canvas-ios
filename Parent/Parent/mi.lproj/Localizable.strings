@@ -14,6 +14,9 @@
 "Add students at the top or visit the global menu to masquerade as a student." = "Tāpiri ākonga ki runga ara haere ki te tahua o te ao ki te āhua rua hei ākonga";
 
 /* No comment provided by engineer. */
+"Add students at the top." = "Tāpiri ngā ākonga ki runga.";
+
+/* No comment provided by engineer. */
 "Alert me when:" = "Matohi ahau ina:";
 
 /* Alerts Tab */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Input the student pairing code provided to you." = "Whakauru te ākonga waihere Hono kua tukuna atu ki a koe";
+
+/* No comment provided by engineer. */
+"Invalid Threshold" = "Paepae koremana";
 
 /* No comment provided by engineer. */
 "Late" = "Tūreiti";
@@ -168,6 +174,9 @@
 /* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
 
+/* No comment provided by engineer. */
+"The value must a number between 0 and 100" = "Me waiho te wāriu i waenganui i te 0 me te 100 kaute";
+
 /* AlertKit Database Load Failure Message */
 "There was a problem loading the AlertKit database file." = "He raruraru i te wā e uta ana i te AlertKit Matāra kōnae pātengi rarunga.";
 
@@ -176,6 +185,9 @@
 
 /* DiscussionKit Database Load Failure Message */
 "There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
+
+/* No comment provided by engineer. */
+"There was an error loading students. Pull to refresh to try again." = "He hapa i te wā e uta ana i ngā ākonga. Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Kua pau te wā o tēnei pānuitanga";
@@ -191,6 +203,12 @@
 
 /* No comment provided by engineer. */
 "Welcome, Admin!" = "Haere mai Kaiwhakahaere";
+
+/* No comment provided by engineer. */
+"You cannot set a high threshold that is lower or equal to a previously set low threshold." = "Kaore e taea te whakatau he paepae teitei kei raro iho ara ōrite rānei ki te paepae o raro kua whakatautia i muri.";
+
+/* No comment provided by engineer. */
+"You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Kaore e taea te whakatau he paepa o raro kei te teitei ara ōrite rānei ki te paepae teitei kua whakatautia i muri.";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";

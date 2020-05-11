@@ -1,0 +1,12 @@
+/* (No Comment) */
+"Enabled" = "已启用";
+
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+"Group" = "小组";
+
+/* (No Comment) */
+"Name" = "姓名";
+
+/* (No Comment) */
+"none given" = "未给定";
+
