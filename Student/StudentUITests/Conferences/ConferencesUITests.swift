@@ -24,10 +24,6 @@ import XCTest
 @testable import Core
 
 class ConferencesUITests: MiniCanvasUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] {
-        [.dashboardConferences]
-    }
-
     let date = Date(timeIntervalSinceReferenceDate: 0)
     lazy var liveConference = APIConference.make(context_type: "Course", started_at: date)
 

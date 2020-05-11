@@ -356,14 +356,12 @@ export class Dashboard extends React.Component<Props, State> {
     let sections = []
 
     // Live Conferences
-    if (ExperimentalFeature.dashboardConferences.isEnabled) {
-      sections.push({
-        sectionID: 'dashboard.conferences',
-        data: this.props.liveConferences,
-        renderItem: this.renderLiveConference,
-        keyExtractor: ({ id }) => `conference-${id}`,
-      })
-    }
+    sections.push({
+      sectionID: 'dashboard.conferences',
+      data: this.props.liveConferences,
+      renderItem: this.renderLiveConference,
+      keyExtractor: ({ id }) => `conference-${id}`,
+    })
 
     // Course Invites
     if (this.props.enrollments.length > 0) {
