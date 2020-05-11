@@ -27,10 +27,6 @@ class ConferencesE2ETests: CoreUITestCase {
     lazy var inProgress = ConferencesList.Cell(id: "520")
     lazy var concluded = ConferencesList.Cell(id: "548")
 
-    override var experimentalFeatures: [ExperimentalFeature] {
-        [.dashboardConferences]
-    }
-
     override func setUp() {
         super.setUp()
 

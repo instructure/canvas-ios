@@ -86,10 +86,8 @@ class AssignmentDetailsTests: StudentUITestCase {
         XCTAssertFalse(AssignmentDetails.gradeCell.isVisible)
         XCTAssertEqual(AssignmentDetails.submitAssignmentButton.label(), "View Discussion")
 
-        let authorAvatar = app.webViews.staticTexts.element(boundBy: 0).label
-        let authorName = app.webViews.staticTexts.element(boundBy: 1).label
-        let message = app.webViews.staticTexts.element(boundBy: 2).label
-        XCTAssertEqual(authorAvatar, "B")
+        let authorName = app.webViews.links.element(boundBy: 0).label
+        let message = app.webViews.staticTexts.element(boundBy: 0).label
         XCTAssertEqual(authorName, assignment.discussion_topic?.author.display_name)
         XCTAssertEqual(message, assignment.discussion_topic?.message)
     }

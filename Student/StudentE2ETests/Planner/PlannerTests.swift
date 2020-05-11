@@ -52,7 +52,7 @@ class PlannerTests: CoreUITestCase {
 
     func testPlanner() {
         PlannerList.event(id: "2233").waitToExist()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 1 event")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 2 events")
 
         PlannerList.event(id: "2233").tap()
         app.find(label: "first").waitToExist()
@@ -62,7 +62,7 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerList.event(id: "2234").waitToExist() // second
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 4 events")
 
         PlannerList.event(id: "2234").tap()
         app.find(label: "second").waitToExist()
