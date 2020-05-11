@@ -31,21 +31,10 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     @IBOutlet weak var tableView: UITableView!
     public let titleSubtitleView = TitleSubtitleView.create()
 
-    struct Section {
-        var module: APIModule
-        var nextItems: GetNextRequest<[APIModuleItem]>?
-        var nextItemsPending: Bool = false
-    }
-
     let env = AppEnvironment.shared
     public var color: UIColor?
     var courseID = ""
-    var data: [String: Section] = [:]
     var moduleID: String?
-    var modules: [APIModule] {
-        return data.values.map { $0.module }.sorted { $0.position < $1.position }
-    }
-    var nextPage: GetNextRequest<[APIModule]>?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.reloadCourse()
@@ -53,7 +42,9 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.reloadCourse()
     }
-    lazy var store = ModuleStore(courseID: courseID)
+    lazy var modules = env.subscribe(GetModules(courseID: courseID)) { [weak self] in
+        self?.update()
+    }
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -91,17 +82,11 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         }
 
         NotificationCenter.default.addObserver(self, selector: #selector(moduleItemViewDidLoad), name: .moduleItemViewDidLoad, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshProgress), name: .moduleItemRequirementCompleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .moduleItemRequirementCompleted, object: nil)
 
         courses.refresh()
         colors.refresh()
-
-        store.delegate = self
-        store.refresh()
-        moduleStoreDidChange(store)
-        if !store.shouldRefresh {
-            scrollToModule()
-        }
+        modules.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -114,41 +99,33 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         }
     }
 
+    func update() {
+        spinnerView.isHidden = !modules.pending || refreshControl.isRefreshing
+        emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil
+        errorView.isHidden = modules.error == nil
+        tableView.reloadData()
+        scrollToModule()
+    }
+
     func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
         view.tintColor = color
     }
 
     @objc func refresh() {
-        errorView.isHidden = true
-        store.refresh(force: true)
-    }
-
-    @objc func refreshProgress() {
-        errorView.isHidden = true
-        spinnerView.isHidden = false
-        store.refresh(force: true)
+        modules.refresh(force: true)
     }
 
     func isSectionExpanded(_ section: Int) -> Bool {
-        return collapsedIDs[courseID]?.contains(store[section].id) == false
-    }
-
-    func showLoadingNextPage() {
-        tableView.contentInset.bottom = 0
-        tableView.tableFooterView?.isHidden = false
-    }
-
-    func hideLoadingNextPage() {
-        let footerHeight = tableView.tableFooterView?.frame.height ?? 0
-        tableView.contentInset.bottom = -footerHeight
-        tableView.tableFooterView?.isHidden = true
+        guard let module = modules[section] else { return false }
+        return collapsedIDs[courseID]?.contains(module.id) != true
     }
 
     func scrollToModule() {
-        if let moduleID = moduleID, let section = store.sectionForModule(moduleID) {
+        if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }) {
             let rect = tableView.rect(forSection: section)
-            tableView.setContentOffset(CGPoint(x: 0, y: rect.maxY), animated: true)
+            tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
+            self.moduleID = nil
         }
     }
 
@@ -158,12 +135,12 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
             let userInfo = notification.userInfo,
             let moduleID = userInfo["moduleID"] as? String,
             let itemID = userInfo["itemID"] as? String,
-            let section = store.sectionForModule(moduleID)
+            let section = modules.all.firstIndex(where: { $0.id == moduleID })
         else {
             return
         }
-        let module = store[section]
-        guard let row = module.items.firstIndex(where: { $0.id == itemID }) else { return }
+        let module = modules[section]
+        guard let row = module?.items.firstIndex(where: { $0.id == itemID }) else { return }
         let indexPath = IndexPath(row: row, section: section)
         if tableView.indexPathsForSelectedRows?.contains(indexPath) == true { return }
         tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: true) }
@@ -181,11 +158,11 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
 extension ModuleListViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return store.count
+        return modules.count
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let module = store[section]
+        guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
         header.update(module, isExpanded: isSectionExpanded(section)) { [weak self] in
             self?.toggleSection(section)
@@ -194,48 +171,38 @@ extension ModuleListViewController: UITableViewDataSource {
     }
 
     func toggleSection(_ section: Int) {
-        let module = store[section]
+        guard let module = modules[section] else { return }
         if isSectionExpanded(section) {
-            tableView.performBatchUpdates({
-                let remove = (0..<tableView.numberOfRows(inSection: section)).map { IndexPath(row: $0, section: section) }
-                collapsedIDs[courseID]?.insert(module.id)
-                tableView.deleteRows(at: remove, with: .automatic)
-            }, completion: nil)
+            collapsedIDs[courseID]?.insert(module.id)
         } else {
             collapsedIDs[courseID]?.remove(module.id)
-            tableView.performBatchUpdates({
-                let add = (0..<tableView(tableView, numberOfRowsInSection: section)).map { IndexPath(row: $0, section: section) }
-                tableView.insertRows(at: add, with: .automatic)
-            }, completion: nil)
         }
+        tableView.reloadSections([section], with: .automatic)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let module = store[section]
-        let pending = store.isLoading || store.isLoadingItemsForModule(module.id)
-        if isSectionExpanded(section) == true {
-            if !pending, module.items.count == 0 {
-                return 1 // empty cell
-            }
-            return module.items.count
-        }
-        return 0
+        guard isSectionExpanded(section) else { return 0 }
+        return max(modules[section]?.items.count ?? 0, 1)
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let module = store[indexPath.section]
-        if indexPath.row == module.items.count {
+        let module = modules[indexPath.section]
+        if indexPath.row == module?.items.count {
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
-        let item = module.items[indexPath.row]
-        switch item.type {
+        let item = module?.items[indexPath.row]
+        switch item?.type {
         case .subHeader:
             let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
-            cell.update(item)
+            if let item = item {
+                cell.update(item)
+            }
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-            cell.update(item)
+            if let item = item {
+                cell.update(item)
+            }
             return cell
         }
     }
@@ -243,8 +210,8 @@ extension ModuleListViewController: UITableViewDataSource {
 
 extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard store.count > indexPath.section, store[indexPath.section].items.count > indexPath.row else { return }
-        let item = store[indexPath.section].items[indexPath.row]
+        guard let module = modules[indexPath.section], module.items.count > indexPath.row else { return }
+        let item = module.items[indexPath.row]
         if let masteryPath = item.masteryPath, masteryPath.needsSelection {
             let viewController = MasteryPathViewController.create(masteryPath: masteryPath)
             viewController.delegate = self
@@ -284,33 +251,6 @@ extension ModuleListViewController {
     }
 }
 
-extension ModuleListViewController: ModuleStoreDelegate {
-    func moduleStoreDidChange(_ moduleStore: ModuleStore) {
-        if store.isLoading {
-            spinnerView.isHidden = refreshControl.isRefreshing
-            if store.count > 0 {
-                emptyView.isHidden = true
-                showLoadingNextPage()
-            }
-        } else {
-            emptyView.isHidden = store.count > 0
-            spinnerView.isHidden = true
-            refreshControl.endRefreshing()
-            hideLoadingNextPage()
-        }
-        let selected = tableView.indexPathForSelectedRow
-        tableView.reloadData()
-        if let selected = selected, tableView.cellForRow(at: selected) != nil {
-            tableView.selectRow(at: selected, animated: false, scrollPosition: .none)
-        }
-        scrollToModule()
-    }
-
-    func moduleStoreDidEncounterError(_ error: Error) {
-        errorView.isHidden = false
-    }
-}
-
 extension ModuleListViewController: MasteryPathDelegate {
     func didSelectMasteryPath(id: String, inModule moduleID: String, item itemID: String) {
         spinnerView.isHidden = false
@@ -326,7 +266,7 @@ extension ModuleListViewController: MasteryPathDelegate {
                 self?.showError(error)
                 return
             }
-            self?.refreshProgress()
+            self?.refresh()
         } }
     }
 }

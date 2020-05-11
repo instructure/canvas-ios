@@ -40,19 +40,13 @@ class GetModulesTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        XCTAssertEqual(useCase.cacheKey, "get-modules-1")
-    }
-
-    func testRequest() {
-        XCTAssertEqual(useCase.request.path, "courses/1/modules")
+        XCTAssertEqual(useCase.cacheKey, "courses/1/modules/items")
     }
 
     func testWrite() {
-        let item = APIModule.make(items: [.make()])
-        useCase.write(response: [item], urlResponse: nil, to: databaseClient)
-
+        useCase.write(response: .init(sections: [.init(module: .make(id: "1"), items: [.make(module_id: "1")])]), urlResponse: nil, to: databaseClient)
         let module: Module = databaseClient.fetch().first!
-        XCTAssertEqual(module.id, item.id.value)
+        XCTAssertEqual(module.id, "1")
         XCTAssertEqual(module.courseID, "1")
         let moduleItem: ModuleItem = databaseClient.fetch().first!
         XCTAssertEqual(moduleItem.moduleID, module.id)

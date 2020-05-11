@@ -19,31 +19,79 @@
 import CoreData
 import Foundation
 
-public class GetModules: APIUseCase {
+public class GetModules: UseCase {
     public typealias Model = Module
+    public struct Response: Codable {
+        struct Section: Codable {
+            let module: APIModule
+            let items: [APIModuleItem]
+        }
+        let sections: [Section]
+    }
+
+    static let loadItemsQueue = DispatchQueue.global()
 
     public let courseID: String
 
-    public var scope: Scope {
-        let position = NSSortDescriptor(key: #keyPath(Module.position), ascending: true)
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID)
-        return Scope(predicate: predicate, order: [position], sectionNameKeyPath: nil)
-    }
-
     public var cacheKey: String? {
-        return "get-modules-\(courseID)"
+        "\(ContextModel(.course, id: courseID).pathComponent)/modules/items"
     }
 
-    public var request: GetModulesRequest {
-        return GetModulesRequest(courseID: courseID)
+    public var scope: Scope {
+        return .where(#keyPath(Module.courseID), equals: courseID, orderBy: #keyPath(Module.position), ascending: true)
     }
 
     public init(courseID: String) {
         self.courseID = courseID
     }
 
-    public func write(response: [APIModule]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func reset(context: NSManagedObjectContext) {
+        let all: [Model] = context.fetch(scope.predicate)
+        context.delete(all)
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        let request = GetModulesRequest(courseID: courseID)
+        environment.api.exhaust(request) { [courseID] modules, urlResponse, error in
+            guard let modules = modules, error == nil else {
+                completionHandler(nil, urlResponse, error)
+                return
+            }
+            var sections: [Response.Section] = []
+            var urlResponse: URLResponse?
+            let loadGroup = DispatchGroup()
+            loadGroup.enter()
+            for module in modules {
+                loadGroup.enter()
+                let request = GetModuleItemsRequest(courseID: courseID, moduleID: module.id.value, include: [.content_details, .mastery_paths])
+                environment.api.exhaust(request) { items, response, error in
+                    defer { loadGroup.leave() }
+                    urlResponse = response
+                    guard let items = items, error == nil else {
+                        completionHandler(nil, urlResponse, error)
+                        return
+                    }
+                    sections.append(Response.Section(module: module, items: items))
+                }
+            }
+            loadGroup.leave()
+            loadGroup.notify(queue: .main) {
+                completionHandler(Response(sections: sections), urlResponse, nil)
+            }
+        }
+    }
+
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
-        Module.save(response, forCourse: courseID, in: client)
+        for section in response.sections {
+            let module = Module.save(section.module, forCourse: courseID, in: client)
+            for item in section.items {
+                let item = ModuleItem.save(item, forCourse: courseID, in: client)
+                module.items.append(item)
+                if let masteryPath = item.masteryPathItem {
+                    module.items.append(masteryPath)
+                }
+            }
+        }
     }
 }
