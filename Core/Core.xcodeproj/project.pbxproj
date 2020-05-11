@@ -211,7 +211,6 @@
 		7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81A000228DC1F000C61EDD /* GetQuizTests.swift */; };
 		7D82DB382374A82800C699B8 /* FileDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D82DB372374A82800C699B8 /* FileDetailsViewControllerTests.swift */; };
 		7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D842A8D22A818C800484B92 /* WrongAppLinkView.xib */; };
-		7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */; };
 		7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */; };
 		7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285A224C05BB003A37DC /* APIMediaCommentRequestableTests.swift */; };
 		7D86285D224C15BA003A37DC /* UploadMediaCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D86285C224C15BA003A37DC /* UploadMediaCommentTests.swift */; };
@@ -1480,7 +1479,6 @@
 		7D846E1E22BD775200B7FA62 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		7D846E1F22BD775200B7FA62 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D846E2022BD775200B7FA62 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Main.strings"; sourceTree = "<group>"; };
-		7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewTests.swift; sourceTree = "<group>"; };
 		7D85D8E8226E5DFE002DBF63 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		7D85FFEB23E2314B0055851D /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
@@ -2702,7 +2700,6 @@
 			isa = PBXGroup;
 			children = (
 				7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */,
-				7D85D8E4226A8CFB002DBF63 /* AvatarViewTests.swift */,
 				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
 				7D016B6023E89B7F00C6E0CA /* CircleProgressViewTests.swift */,
@@ -4651,7 +4648,6 @@
 				97F69C4023F209DB009622E3 /* PlannableTests.swift in Sources */,
 				7D80AC25212C61F100C40ECE /* APIAccountRequestableTests.swift in Sources */,
 				9F09A4CF22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift in Sources */,
-				7D85D8E5226A8CFB002DBF63 /* AvatarViewTests.swift in Sources */,
 				7D80AC2D212C801600C40ECE /* APIOAuthTests.swift in Sources */,
 				B1F1328C224BB383002C0555 /* APIModuleTests.swift in Sources */,
 				7D64A96A23622D3A004EAEDF /* CalendarDayIconViewTests.swift in Sources */,

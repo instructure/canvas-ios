@@ -84,33 +84,4 @@ open class AvatarView: UIView {
             return "\(value)\(char)"
         }.localizedUppercase
     }
-
-    public static func html(for url: URL?, name: String, size: CGFloat = 32) -> String {
-        var style = """
-        background:#fff; \
-        border-radius:50%; \
-        height:\(size)px; \
-        width:\(size)px;
-        """
-        let content: String
-        if let url = scrubbedURL(url)?.absoluteString {
-            style += """
-            background-image:url(\(CoreWebView.htmlString(url))); \
-            background-size:cover;
-            """
-            content = ""
-        } else {
-            style += """
-            border:1px solid \(UIColor.named(.borderMedium).hexString); \
-            box-sizing:border-box; \
-            color:\(UIColor.named(.textDark).hexString); \
-            line-height:\(size)px; \
-            font-size:\(round(size / 2.25))px; \
-            font-weight:600; \
-            text-align:center;
-            """
-            content = CoreWebView.htmlString(initials(for: name))
-        }
-        return "<div aria-hidden=\"true\" style=\"\(style)\">\(content)</div>"
-    }
 }

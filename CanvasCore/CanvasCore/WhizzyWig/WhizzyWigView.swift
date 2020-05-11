@@ -32,6 +32,7 @@ private func renderHTML(_ html: String, fontColor: UIColor, backgroundColor: UIC
     var template = try! String(contentsOf: templateURL!, encoding: String.Encoding.utf8)
 
     template = template.replacingOccurrences(of: "{{fontColorDark}}", with: fontColor.hex)
+    template = template.replacingOccurrences(of: "{{fontSize}}", with: "\(UIFont.scaledNamedFont(.regular16).pointSize)")
     template = template.replacingOccurrences(of: "{{backgroundColor}}", with: backgroundColor.hex)
     let paddingString = "\(padding.top)px \(padding.right)px \(padding.bottom)px \(padding.left)px;"
     template = template.replacingOccurrences(of: "{{padding}}", with: paddingString)
