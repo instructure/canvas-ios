@@ -488,16 +488,28 @@ extension DiscussionDetailsViewController {
     static let css = """
     body {
         \(Styles.font(.medium, 14))
+        --max-lines: none;
     }
 
     .\(Styles.authorName) {
         color: \(Styles.color(.textDarkest));
         \(Styles.font(.semibold, 14))
+        --max-lines: 2;
     }
     .\(Styles.date) {
         color: \(Styles.color(.textDark));
         \(Styles.font(.semibold, 12))
         margin-top: 2px;
+        --max-lines: 2;
+    }
+    \(""/* 2 lines then ellipsis */)
+    .\(Styles.authorName),
+    .\(Styles.date) {
+        overflow: hidden;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--max-lines);
     }
     .\(Styles.entryHeader) {
         align-items: center;
@@ -524,6 +536,7 @@ extension DiscussionDetailsViewController {
     }
     .\(Styles.avatarInitials) {
         border: 1px solid \(Styles.color(.borderMedium));
+        overflow: hidden;
     }
     .\(Styles.avatarTopic) {
         font-size: 18px;
@@ -652,5 +665,5 @@ extension DiscussionDetailsViewController {
         width: 1px;
     }
     """
-        .replacingOccurrences(of: "\\s*([{}:;])\\s*", with: "$1", options: .regularExpression)
+        .replacingOccurrences(of: "\\s*([{}:;,])\\s*", with: "$1", options: .regularExpression)
 }
