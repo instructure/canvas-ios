@@ -103,6 +103,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         spinnerView.isHidden = !modules.pending || refreshControl.isRefreshing
         emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil
         errorView.isHidden = modules.error == nil
+        tableView.tableFooterView?.setNeedsLayout()
         tableView.reloadData()
         scrollToModule()
     }

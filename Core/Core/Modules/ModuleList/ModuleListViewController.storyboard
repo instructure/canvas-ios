@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,8 +20,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="EF8-7Z-xiu" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="252.5"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="EF8-7Z-xiu" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="191" width="375" height="252.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9E-bq-N0r">
@@ -84,20 +84,9 @@
                                         <constraint firstItem="a9E-bq-N0r" firstAttribute="leading" secondItem="EF8-7Z-xiu" secondAttribute="leading" id="xFf-MO-h5S"/>
                                     </constraints>
                                 </view>
-                                <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading more modules..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CI0-fv-bBt" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="443.5" width="375" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                    <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                    </userDefinedRuntimeAttributes>
-                                </label>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemCell" id="aAq-Ui-Stp" customClass="ModuleItemCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="280.5" width="375" height="82.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="82.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aAq-Ui-Stp" id="UBc-rt-n2v">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
@@ -170,7 +159,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ModuleItemSubHeaderCell" id="Wvk-RZ-0fh" customClass="ModuleItemSubHeaderCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="363" width="375" height="52.5"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="375" height="52.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wvk-RZ-0fh" id="SeG-X8-Qxd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
