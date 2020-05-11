@@ -52,6 +52,8 @@ let c3 = template.course({
   id: '3',
 })
 
+let c4 = template.course({ id: '4', workflow_state: 'completed' })
+
 let defaultProps = {
   navigator: template.navigator({
     dismiss: jest.fn(),
@@ -106,6 +108,9 @@ describe('CourseSelect', () => {
           },
           [c3.id]: {
             course: c3,
+          },
+          [c4.id]: {
+            course: c4,
           },
         },
       },
