@@ -40,11 +40,11 @@
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aX-wW-Ee5" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="4" width="212" height="46"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
@@ -73,18 +73,18 @@
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQV-x4-3qS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                                 <rect key="frame" x="32" y="7.5" width="67" height="17"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textSuccess"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="wSe-0M-z3E" secondAttribute="bottom" id="2cF-e2-PTr"/>
-                                                            <constraint firstItem="ZQV-x4-3qS" firstAttribute="leading" secondItem="wSe-0M-z3E" secondAttribute="trailing" constant="8" id="aIF-pN-Q5e"/>
+                                                            <constraint firstItem="ZQV-x4-3qS" firstAttribute="leading" secondItem="wSe-0M-z3E" secondAttribute="trailing" constant="6" id="aIF-pN-Q5e"/>
                                                             <constraint firstItem="ZQV-x4-3qS" firstAttribute="centerY" secondItem="wSe-0M-z3E" secondAttribute="centerY" id="cwj-Kv-WUm"/>
                                                             <constraint firstItem="wSe-0M-z3E" firstAttribute="leading" secondItem="qeG-uP-73U" secondAttribute="leading" id="pLP-Ey-Xvh"/>
                                                             <constraint firstItem="wSe-0M-z3E" firstAttribute="top" secondItem="qeG-uP-73U" secondAttribute="top" constant="4" id="pPg-4n-fqm"/>

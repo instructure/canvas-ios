@@ -116,27 +116,17 @@ open class CoreWebView: WKWebView {
         let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
         return """
-            :root {
-                --color-backgroundInfo: \(UIColor.named(.backgroundInfo).hexString);
-                --color-backgroundLight: \(UIColor.named(.backgroundLight).hexString);
-                --color-backgroundLightest: \(UIColor.named(.backgroundLightest).hexString);
-                --color-borderMedium: \(UIColor.named(.borderMedium).hexString);
-                --color-textDark: \(UIColor.named(.textDark).hexString);
-                --color-textDarkest: \(UIColor.named(.textDarkest).hexString);
-                --brand-buttonPrimaryBackground: \(buttonBack.hexString);
-                --brand-buttonPrimaryText: \(buttonText.hexString);
-                --brand-linkColor: \(link.hexString);
-            }
             html {
-                background: var(--color-backgroundLightest);
-                color: var(--color-textDarkest);
+                background: \(UIColor.named(.backgroundLightest).hexString);
+                color: \(UIColor.named(.textDarkest).hexString);
                 font-family: system-ui;
+                font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
             }
             body {
                 margin: 16px;
             }
             a {
-                color: var(--brand-linkColor);
+                color: \(link.hexString);
                 overflow-wrap: break-word;
             }
             h2 {
@@ -161,20 +151,17 @@ open class CoreWebView: WKWebView {
                 display: block;
                 margin: 20 auto 20 auto;
                 padding: 12px 8px 12px 8px;
-                background-color: var(--brand-buttonPrimaryBackground);
+                background-color: \(buttonBack.hexString);
                 border-radius: 4px;
-                color: var(--brand-buttonPrimaryText);
+                color: \(buttonText.hexString);
                 font-weight: 600;
                 text-decoration: none;
                 text-align: center;
             }
             .lock-explanation {
                 font-weight: 500;
-                font-size: 16px;
+                font-size: 1rem;
                 text-align: center;
-            }
-            [dir=rtl] .rtl-mirror-x {
-                transform: scaleX(-1);
             }
         """
     }
