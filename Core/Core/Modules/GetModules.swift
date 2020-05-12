@@ -29,8 +29,6 @@ public class GetModules: UseCase {
         let sections: [Section]
     }
 
-    static let loadItemsQueue = DispatchQueue.global()
-
     public let courseID: String
 
     public var cacheKey: String? {
