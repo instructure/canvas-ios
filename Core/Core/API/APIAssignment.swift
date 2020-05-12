@@ -20,10 +20,10 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/assignments.html#Assignment
 public struct APIAssignment: Codable, Equatable {
-    public let id: ID
+    let id: ID
     let course_id: ID
     let quiz_id: ID?
-    public let name: String
+    let name: String
     let description: String?
     let points_possible: Double?
     let due_at: Date?

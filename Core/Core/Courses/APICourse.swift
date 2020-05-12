@@ -25,7 +25,7 @@ public struct APICourse: Codable, Equatable {
     // let uuid: String?
     // let integration_id: String?
     // let sis_import_id: String?
-    public let name: String?
+    let name: String?
     let course_code: String?
     let workflow_state: CourseWorkflowState?
     let account_id: String?

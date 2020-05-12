@@ -27,7 +27,7 @@ public struct GetAssignmentRequest: APIRequestable {
     let include: [GetAssignmentInclude]
     let allDates: Bool?
 
-    public init(courseID: String, assignmentID: String, allDates: Bool? = nil, include: [GetAssignmentInclude]) {
+    init(courseID: String, assignmentID: String, allDates: Bool? = nil, include: [GetAssignmentInclude]) {
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.include = include
