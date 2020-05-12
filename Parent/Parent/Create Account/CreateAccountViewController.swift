@@ -46,6 +46,8 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
         scrollView.keyboardDismissMode = .onDrag
 
         name.labelName.text = NSLocalizedString("Full name", comment: "")
@@ -84,7 +86,9 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func actionSignIn(_ sender: Any) {
-        AppEnvironment.shared.router.dismiss(self)
+        AppEnvironment.shared.router.dismiss(self) {
+            if let delegate = AppEnvironment.shared.loginDelegate { delegate.changeUser() }
+        }
     }
 
     @IBAction func actionCreateAccount(_ sender: Any) {
