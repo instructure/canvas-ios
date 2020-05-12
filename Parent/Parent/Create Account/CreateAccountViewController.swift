@@ -28,8 +28,6 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var createAccountButton: DynamicButton!
     @IBOutlet weak var termsAndConditionsLabel: DynamicLabel!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
-    var keyboardSpace: NSLayoutConstraint = NSLayoutConstraint()
-    var keyboard: KeyboardTransitioning?
     var selectedTextField: UITextField?
     var baseURL: URL?
     var accountID: String = ""
@@ -54,18 +52,21 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         name.textField.placeholder = NSLocalizedString("Full name...", comment: "")
         name.errorLabel.text = nil
         name.textField.delegate = self
+        name.textField.returnKeyType = .next
 
         email.textField.keyboardType = .emailAddress
         email.labelName.text = NSLocalizedString("Email address", comment: "")
         email.textField.placeholder = NSLocalizedString("Email...", comment: "")
         email.errorLabel.text = nil
         email.textField.delegate = self
+        email.textField.returnKeyType = .next
 
         password.textField.isSecureTextEntry = true
         password.labelName.text = NSLocalizedString("Password", comment: "")
         password.textField.placeholder = NSLocalizedString("Password...", comment: "")
         password.textField.delegate = self
         password.errorLabel.text = nil
+        password.textField.returnKeyType = .done
 
         createAccountButton.layer.cornerRadius = 4
 
@@ -76,13 +77,22 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         stackView.setCustomSpacing(4, after: password)
         stackView.setCustomSpacing(16, after: termsAndConditionsLabel)
         stackView.setCustomSpacing(16, after: createAccountButton)
+
+        setupKeyboardNofications()
     }
 
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        keyboard = KeyboardTransitioning(view: view, space: keyboardSpace, callback: { [weak self] keyboardFrame in
-            self?.keyboardDidChangeState(keyboardFrame: keyboardFrame)
-        })
+    func setupKeyboardNofications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        guard
+            let info = notification.userInfo as? [String: Any],
+            let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+            else { return }
+        scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
 
     @IBAction func actionSignIn(_ sender: Any) {
@@ -157,6 +167,28 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
 extension CreateAccountViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         selectedTextField = textField
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.contentOffset = CGPoint.zero
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let next: UITextField?
+
+        switch textField {
+        case name.textField: next = email.textField
+        case email.textField: next = password.textField
+        default: next = nil
+        }
+
+        if let next = next {
+            next.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
     }
 }
 
