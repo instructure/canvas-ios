@@ -108,46 +108,42 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         var comps = URLComponents(string: "canvas-parent://create-account/create-account/\(accountID)/\(code)")
         comps?.queryItems = [ URLQueryItem(name: "baseURL", value: host), ]
 
-        if AppEnvironment.shared.loginDelegate?.canOpenExternalURL(comps?.url) == true {
-            let input = comps?.url?.absoluteString ?? ""
-            let data = input.data(using: String.Encoding.ascii)
-            guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
-            qrFilter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 10, y: 10)
-            guard let qrImage = qrFilter.outputImage?.transformed(by: transform) else { return }
+        let input = comps?.url?.absoluteString ?? ""
+        let data = input.data(using: String.Encoding.ascii)
+        guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return }
+        qrFilter.setValue(data, forKey: "inputMessage")
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        guard let qrImage = qrFilter.outputImage?.transformed(by: transform) else { return }
 
-            qrCodeImageView.image = UIImage(ciImage: qrImage)
-            qrCodeContainer.isHidden = false
-            codeContainer.isHidden = true
-            codeLabel.text = comps?.url?.absoluteString
-            deepLinkURL = comps?.url
-            let attrStr = NSAttributedString(
-                string: NSLocalizedString("Pairing Code: ", comment: ""),
-                attributes: [
-                    NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
-                    NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
-                ]
-            )
+        qrCodeImageView.image = UIImage(ciImage: qrImage)
+        qrCodeContainer.isHidden = false
+        codeContainer.isHidden = true
+        codeLabel.text = comps?.url?.absoluteString
+        deepLinkURL = comps?.url
+        let attrStr = NSAttributedString(
+            string: NSLocalizedString("Pairing Code: ", comment: ""),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
+                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+            ]
+        )
 
-            let attrStr2 = NSAttributedString(
-                string: pairingCode ?? "",
-                attributes: [
-                    NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
-                    NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
-                ]
-            )
-            let mutableAttributedString = NSMutableAttributedString()
-            mutableAttributedString.append(attrStr)
-            mutableAttributedString.append(attrStr2)
+        let attrStr2 = NSAttributedString(
+            string: pairingCode ?? "",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
+                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+            ]
+        )
+        let mutableAttributedString = NSMutableAttributedString()
+        mutableAttributedString.append(attrStr)
+        mutableAttributedString.append(attrStr2)
 
-            qrCodePairingCodeLabel.attributedText = mutableAttributedString
-            qrCodeContainer.layer.borderWidth = 1
-            qrCodeContainer.layer.borderColor = UIColor.named(.borderMedium).cgColor
-            qrCodeContainer.layer.cornerRadius = 4
-            tapToCopyButton.isHidden = true
-        } else {
-            //  TODO: - navigate to app store
-        }
+        qrCodePairingCodeLabel.attributedText = mutableAttributedString
+        qrCodeContainer.layer.borderWidth = 1
+        qrCodeContainer.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        qrCodeContainer.layer.cornerRadius = 4
+        tapToCopyButton.isHidden = true
     }
 
     func displayPairingCode(_ code: String?) {

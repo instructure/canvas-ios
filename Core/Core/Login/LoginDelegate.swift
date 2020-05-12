@@ -25,7 +25,6 @@ public protocol LoginDelegate: class {
     var whatsNewURL: URL? { get }
     var findSchoolButtonTitle: String { get }
 
-    func canOpenExternalURL(_ url: URL?) -> Bool
     func openExternalURL(_ url: URL)
     func openSupportTicket()
     func userDidLogin(session: LoginSession)
@@ -44,7 +43,6 @@ extension LoginDelegate {
 
     public func openSupportTicket() {}
     public func changeUser() {}
-    public func canOpenExternalURL(_ url: URL?) -> Bool { return false }
 
     public func userDidStartActing(as session: LoginSession) {
         userDidLogin(session: session)
