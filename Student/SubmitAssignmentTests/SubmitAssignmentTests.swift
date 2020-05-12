@@ -22,7 +22,7 @@ import XCTest
 import CoreData
 
 class SubmitAssignmentTests: XCTestCase {
-    let env = AppEnvironment.shared
+    let env = TestEnvironment()
     let api = MockURLSession.self
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
@@ -35,9 +35,8 @@ class SubmitAssignmentTests: XCTestCase {
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         MockURLSession.reset()
         UploadManager.shared = uploadManager
-        env.api = URLSessionAPI()
-        env.database = database
         MockUploadManager.reset()
+        env.mockStore = false
     }
 
     override func tearDown() {

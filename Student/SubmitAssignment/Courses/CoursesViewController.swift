@@ -24,7 +24,7 @@ class CoursesViewController: UIViewController, CoursesView {
     @IBOutlet weak var tableView: UITableView!
     let activityIndicator = UIActivityIndicatorView(style: .white)
 
-    static func create(environment: AppEnvironment, selectedCourseID: String?, callback: @escaping (Course) -> Void) -> CoursesViewController {
+    static func create(environment: AppEnvironment = .shared, selectedCourseID: String?, callback: @escaping (Course) -> Void) -> CoursesViewController {
         let view = loadFromStoryboard()
         let presenter = CoursesPresenter(environment: environment, selectedCourseID: selectedCourseID, callback: callback)
         view.presenter = presenter

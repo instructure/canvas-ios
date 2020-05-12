@@ -18,75 +18,81 @@
 
 import Foundation
 import XCTest
-import Core
+@testable import Core
 import Social
 
 class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
-    var viewController: SubmitAssignmentViewController!
+    lazy var viewController: SubmitAssignmentViewController = SubmitAssignmentViewController()
 
-    var configurationItems: [SLComposeSheetConfigurationItem]? {
-        return viewController.configurationItems() as? [SLComposeSheetConfigurationItem]
+    var configurationItems: [SLComposeSheetConfigurationItem] {
+        return viewController.configurationItems() as! [SLComposeSheetConfigurationItem]
     }
 
     override func setUp() {
         super.setUp()
         LoginSession.add(.make())
-        viewController = SubmitAssignmentViewController()
-        load()
-    }
-
-    func load() {
-        XCTAssertNotNil(viewController.view)
-        env.api = URLSessionAPI()
-        env.database = database
         env.userDefaults?.reset()
+        viewController.uploadManager = uploadManager
     }
 
-    func testSelectsFirstCourseAndAssignmentByDefault() throws {
-        let presenter = try XCTUnwrap(viewController.presenter)
-        api.mock(presenter.courses, value: [.make(name: "Course 1")])
-        api.mock(GetSubmittableAssignments(courseID: "1"), value: [.make(name: "Assignment 1", submission_types: [.online_upload])])
-        viewController.presentationAnimationDidFinish()
-        drainMainQueue()
-        XCTAssertEqual(configurationItems?.count, 2)
-        XCTAssertEqual(configurationItems?.first?.title, "Course")
-        XCTAssertEqual(configurationItems?.first?.value, "Course 1")
-        XCTAssertEqual(configurationItems?.last?.title, "Assignment")
-        XCTAssertEqual(configurationItems?.last?.value, "Assignment 1")
-    }
-
-    func testDefaultCourseDoesNotOverrideSelected() throws {
+    func testLayout() {
         env.userDefaults?.submitAssignmentCourseID = "1"
-        env.userDefaults?.submitAssignmentID = "2"
-        let task = api.mock(GetCourse(courseID: "1"), value: .make(id: "1", name: "Default"))
-        task.paused = true
-        viewController.presentationAnimationDidFinish()
+        env.userDefaults?.submitAssignmentID = "1"
+        api.mock(GetCourseRequest(courseID: "1", include: []), value: .make(id: "1", name: "C1"))
+        api.mock(GetAssignmentRequest(courseID: "1", assignmentID: "1", include: []), value: .make(
+            id: "1",
+            name: "A1",
+            submission_types: [.online_upload])
+        )
+        let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
+        try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
+        viewController.view.layoutIfNeeded()
         drainMainQueue()
-        viewController.presenter?.select(course: Course.make(from: .make(id: "2", name: "Selected")))
+        XCTAssertEqual(configurationItems.count, 2)
+        XCTAssertEqual(configurationItems[0].title, "Course")
+        XCTAssertEqual(configurationItems[0].value, "C1")
+        XCTAssertFalse(configurationItems[0].valuePending)
+        XCTAssertNoThrow(configurationItems[0].tapHandler)
+        XCTAssertEqual(configurationItems[1].title, "Assignment")
+        XCTAssertEqual(configurationItems[1].value, "A1")
+        XCTAssertFalse(configurationItems[1].valuePending)
+        XCTAssertNoThrow(configurationItems[1].tapHandler)
+
+        let data = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
+        let file = NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTI.fileURL.rawValue)
+        let image = NSItemProvider(item: UIImage.icon(.addImageLine), typeIdentifier: UTI.image.rawValue)
+        let item = TestExtensionItem(mockAttachments: [data, file, image])
+        viewController.load(items: [item])
         drainMainQueue()
-        task.paused = false
-        drainMainQueue()
-        let course = try XCTUnwrap(configurationItems?.first)
-        XCTAssertEqual(course.value, "Selected")
+        XCTAssertTrue(viewController.isContentValid())
+        let expectation = XCTestExpectation(description: "submit")
+        viewController.submit(comment: nil, callback: expectation.fulfill)
+        wait(for: [expectation], timeout: 10)
+        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertTrue(uploadManager.uploadWasCalled)
+    }
+}
+
+class TestExtensionItem: NSExtensionItem {
+    var mocks: [NSItemProvider]?
+    init(mockAttachments: [NSItemProvider]?) {
+        self.mocks = mockAttachments
+        super.init()
     }
 
-    func testDefaultAssignmentDoesNotOverrideSelected() throws {
-        env.userDefaults?.submitAssignmentCourseID = "1"
-        env.userDefaults?.submitAssignmentID = "2"
-        api.mock(GetCourse(courseID: "1"), value: .make(id: "1"))
-        let task = api.mock(GetAssignment(courseID: "1", assignmentID: "2"), value: .make(id: "2", name: "Default"))
-        task.paused = true
-        viewController.presentationAnimationDidFinish()
-        drainMainQueue()
-        XCTAssertEqual(configurationItems?.count, 2)
-        var assignment = try XCTUnwrap(configurationItems?.last)
-        XCTAssertTrue(assignment.valuePending)
-        viewController.presenter?.select(assignment: Assignment.make(from: .make(id: "3", name: "Selected")))
-        drainMainQueue()
-        task.paused = false
-        drainMainQueue()
-        XCTAssertEqual(configurationItems?.count, 2)
-        assignment = try XCTUnwrap(configurationItems?.last)
-        XCTAssertEqual(assignment.value, "Selected")
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override var attachments: [NSItemProvider]? {
+        get { return mocks }
+        set { mocks = newValue }
+    }
+}
+
+class ErrorItem: NSItemProvider {
+    override func loadFileRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping (URL?, Error?) -> Void) -> Progress {
+        completionHandler(nil, NSError.instructureError("doh"))
+        return .discreteProgress(totalUnitCount: 1)
     }
 }

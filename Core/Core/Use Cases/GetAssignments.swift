@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-public class GetAssignments: CollectionUseCase {
+public class GetAssignments: UseCase {
     public enum Sort: String {
         case position, dueAt, name
     }
@@ -68,6 +68,15 @@ public class GetAssignments: CollectionUseCase {
         return Scope(predicate: predicate, order: order)
     }
 
+    public func reset(context: NSManagedObjectContext) {
+        let all: [Model] = context.fetch(scope.predicate)
+        context.delete(all)
+    }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        environment.api.makeRequest(request, callback: completionHandler)
+    }
+
     public func write(response: [APIAssignment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
@@ -96,5 +105,9 @@ public class GetSubmittableAssignments: GetAssignments {
         let a = NSSortDescriptor(key: #keyPath(Assignment.dueAtSortNilsAtBottom), ascending: true)
         let b = NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare))
         return Scope(predicate: predicate, order: [ a, b ])
+    }
+
+    public override func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        environment.api.exhaust(request, callback: completionHandler)
     }
 }

@@ -35,6 +35,11 @@ public class MockUploadManager: UploadManager {
         return singleSharedTestDatabase
     }
 
+    public override func add(url: URL, batchID: String? = nil) throws -> File {
+        addWasCalled = true
+        return File.make()
+    }
+
     open override func upload(batch batchID: String, to uploadContext: FileUploadContext, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
     }
