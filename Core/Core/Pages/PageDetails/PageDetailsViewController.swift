@@ -20,7 +20,8 @@ import UIKit
 
 public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showOptions))
-    @IBOutlet weak var webView: CoreWebView!
+    @IBOutlet weak var webViewContainer: UIView!
+    let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
@@ -68,6 +69,8 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
+        webViewContainer.addSubview(webView)
+        webView.pin(inside: webViewContainer)
         webView.linkDelegate = self
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
