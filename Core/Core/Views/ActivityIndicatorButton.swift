@@ -35,7 +35,7 @@ public class ActivityIndicatorButton: DynamicButton {
         addSubview(spinner)
         spinner.pinToTopAndBottomOfSuperview()
         spinner.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        spinner.centerXAnchor.constraint(equalToSystemSpacingAfter: centerXAnchor, multiplier: 1).isActive = true
+        spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         spinner.isHidden = true
         spinner.hidesWhenStopped = true
         spinner.tintColor = .named(.backgroundLightest)
