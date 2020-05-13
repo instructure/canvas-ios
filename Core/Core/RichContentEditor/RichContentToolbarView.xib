@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,6 +60,9 @@
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -76,6 +79,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -92,6 +98,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -108,6 +117,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -124,6 +136,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.9882352941176471" green="0.36862745098039218" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.9882352941176471" green="0.36862745098039218" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -140,6 +155,9 @@
                                             </constraints>
                                             <color key="tintColor" red="1" green="0.75686274509803919" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="1" green="0.75686274509803919" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -156,6 +174,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.53725490196078429" green="0.77254901960784317" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.53725490196078429" green="0.77254901960784317" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -172,6 +193,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.078431372549019607" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.078431372549019607" green="0.50980392156862742" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
@@ -188,6 +212,9 @@
                                             </constraints>
                                             <color key="tintColor" red="0.396078431372549" green="0.27450980392156865" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="contentEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                                            <state key="normal">
+                                                <color key="titleColor" red="0.396078431372549" green="0.27450980392156865" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="emptySolid"/>
                                             </userDefinedRuntimeAttributes>
