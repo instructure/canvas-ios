@@ -20,9 +20,10 @@ import Foundation
 import XCTest
 @testable import Core
 import Social
+@testable import TestsFoundation
 
 class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
-    lazy var viewController: SubmitAssignmentViewController = SubmitAssignmentViewController()
+    var viewController: SubmitAssignmentViewController!
 
     var configurationItems: [SLComposeSheetConfigurationItem] {
         return viewController.configurationItems() as! [SLComposeSheetConfigurationItem]
@@ -32,6 +33,7 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
         super.setUp()
         LoginSession.add(.make())
         env.userDefaults?.reset()
+        viewController = SubmitAssignmentViewController()
         viewController.uploadManager = uploadManager
     }
 
@@ -47,7 +49,9 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
         let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
         viewController.view.layoutIfNeeded()
-        drainMainQueue()
+        viewController.env.database = database
+        viewController.env.api = URLSessionAPI(urlSession: MockURLSession())
+        viewController.presentationAnimationDidFinish()
         XCTAssertEqual(configurationItems.count, 2)
         XCTAssertEqual(configurationItems[0].title, "Course")
         XCTAssertEqual(configurationItems[0].value, "C1")
@@ -57,7 +61,6 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
         XCTAssertEqual(configurationItems[1].value, "A1")
         XCTAssertFalse(configurationItems[1].valuePending)
         XCTAssertNoThrow(configurationItems[1].tapHandler)
-
         let data = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let file = NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTI.fileURL.rawValue)
         let image = NSItemProvider(item: UIImage.icon(.addImageLine), typeIdentifier: UTI.image.rawValue)

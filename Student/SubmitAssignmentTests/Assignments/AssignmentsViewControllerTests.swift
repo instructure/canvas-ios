@@ -54,7 +54,7 @@ class AssignmentsViewControllerTests: SubmitAssignmentTests {
                 ),
             ]
         )
-        controller.loadViewIfNeeded()
+        controller.view.layoutIfNeeded()
         let tableView = controller.tableView
         XCTAssertEqual(controller.tableView.dataSource?.tableView(tableView!, numberOfRowsInSection: 0), 2)
         let firstCell = controller.tableView.dataSource?.tableView(tableView!, cellForRowAt: IndexPath(row: 0, section: 0))

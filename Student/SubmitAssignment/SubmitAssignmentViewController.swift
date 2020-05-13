@@ -39,22 +39,22 @@ class SubmitAssignmentViewController: SLComposeServiceViewController {
         if let session = LoginSession.mostRecent {
             env.userDidLogin(session: session)
         }
-        if let courseID = env.userDefaults?.submitAssignmentCourseID, let assignmentID = env.userDefaults?.submitAssignmentID {
-            courses = env.subscribe(GetCourse(courseID: courseID, include: [])) { [weak self] in
-                self?.update()
-            }
-            courses?.refresh()
-            assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [])) { [weak self] in
-                self?.update()
-            }
-            assignments?.refresh()
-        }
         placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
         navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", bundle: .core, comment: "")
     }
 
     override func presentationAnimationDidFinish() {
         super.presentationAnimationDidFinish()
+        if let courseID = env.userDefaults?.submitAssignmentCourseID, let assignmentID = env.userDefaults?.submitAssignmentID {
+            courses = env.subscribe(GetCourse(courseID: courseID, include: [])) { [weak self] in
+                self?.update()
+            }
+            courses?.refresh(force: true)
+            assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [])) { [weak self] in
+                self?.update()
+            }
+            assignments?.refresh(force: true)
+        }
         let items = extensionContext?.inputItems as? [NSExtensionItem] ?? []
         load(items: items)
     }
