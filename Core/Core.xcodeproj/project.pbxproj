@@ -62,6 +62,8 @@
 		3BA9FF752332B05700196A06 /* GradingPeriodRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF742332B05700196A06 /* GradingPeriodRequestableTests.swift */; };
 		3BA9FF792332B39700196A06 /* GradingPeriodUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF782332B39700196A06 /* GradingPeriodUseCaseTests.swift */; };
 		3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */; };
+		3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */; };
+		3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */; };
 		3BCDACF824536B9E00E41D27 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */; };
 		3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */; };
 		3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */; };
@@ -1088,6 +1090,8 @@
 		3BA9FF7C2332B43C00196A06 /* GradingPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingPeriod.swift; sourceTree = "<group>"; };
 		3BC3E01C2315A0DE00E15C6D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorButton.swift; sourceTree = "<group>"; };
+		3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyIndicatorButtonTests.swift; sourceTree = "<group>"; };
 		3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItemTests.swift; sourceTree = "<group>"; };
@@ -2687,6 +2691,7 @@
 				7D1758B521598CA400F88613 /* TitleSubtitleView.xib */,
 				9767F2972383B846006633CA /* TokenLabelView.swift */,
 				3BA649D6242530470047D8DC /* NotificationView.swift */,
+				3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2713,6 +2718,7 @@
 				7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */,
 				B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
+				3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4563,6 +4569,7 @@
 				7D80AC19212B697600C40ECE /* APIGroupRequestableTests.swift in Sources */,
 				7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */,
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
+				3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagsRequestableTests.swift in Sources */,
 				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
 				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
@@ -5169,6 +5176,7 @@
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				7DA2601123F7227A005D2121 /* UIColorInstColorsExtensions.swift in Sources */,
 				7DA25FF123F7225D005D2121 /* AccountNotificationIcon.swift in Sources */,
+				3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */,
 				7DA2600B23F7227A005D2121 /* NSNumberExtensions.swift in Sources */,
 				7DA25FC223F72136005D2121 /* APIPage.swift in Sources */,
 				7DA260C123F72352005D2121 /* GetGradingPeriods.swift in Sources */,
