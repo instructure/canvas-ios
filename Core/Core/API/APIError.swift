@@ -34,6 +34,7 @@ public enum APIError: Error {
                         (error as? [String])?.first ??
                         (error as? [String: Any])?["message"] as? String ??
                         (error as? [[String: Any]])?.first?["message"] as? String ??
+                        embeddedDict(error) ??
                         ""
                 } .joined(separator: "\n")
                 return NSError.instructureError(message)
@@ -43,5 +44,11 @@ public enum APIError: Error {
             return NSError.instructureError(NSLocalizedString("There was an unexpected error. Please try again.", bundle: .core, comment: ""))
         }
         return error
+    }
+
+    private static func embeddedDict( _ dict: Any?) -> String? {
+        guard let d = dict as? [String: Any], let arr = d.first?.value as? [[String: Any]], let embeddedDict = arr.first else { return nil }
+        guard let attr = embeddedDict["attribute"] as? String, let msg = embeddedDict["message"] as? String else { return nil}
+        return "\(attr): \(msg)"
     }
 }

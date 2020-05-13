@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="dp4-DX-snF">
-                                <rect key="frame" x="16" y="60" width="382" height="153.5"/>
+                                <rect key="frame" x="16" y="60" width="382" height="157"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MM-LR-o7s" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="57.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="61"/>
                                         <string key="text">Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -31,7 +31,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EH4-JY-Fzl">
-                                        <rect key="frame" x="0.0" y="81.5" width="382" height="72"/>
+                                        <rect key="frame" x="0.0" y="85" width="382" height="72"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-Xc-ovi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="24" width="382" height="24"/>
@@ -75,7 +75,7 @@
                                         </constraints>
                                     </view>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-RC-I4s" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="153.5" width="382" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="157" width="382" height="0.0"/>
                                         <state key="normal" title="Tap to copy"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
@@ -86,7 +86,7 @@
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyL-yF-jzV">
-                                        <rect key="frame" x="0.0" y="153.5" width="382" height="240"/>
+                                        <rect key="frame" x="0.0" y="157" width="382" height="240"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nh0-Cv-0H5">
                                                 <rect key="frame" x="131" y="34" width="120" height="120"/>

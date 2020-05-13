@@ -141,6 +141,7 @@ let router = Router(routes: [
     },
 
     RouteHandler(.createAccount(accountID: ":accountID", pairingCode: ":pairingCode")) { url, params in
+        guard ExperimentalFeature.parentQRCodePairing.isEnabled else { return nil }
         guard
             let queryItem = url.queryItems?.first,
             queryItem.name == "baseURL",
@@ -149,8 +150,7 @@ let router = Router(routes: [
             let code = params["pairingCode"],
             let baseURL = URL(string: "https://\(host)")
          else { return nil }
-
-        return nil
+        return CreateAccountViewController.create(baseURL: baseURL, accountID: accountID, pairingCode: code)
     },
 
 ]) { url, _, _ in

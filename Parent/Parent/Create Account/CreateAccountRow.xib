@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAccountRow" customModule="Parent" customModuleProvider="target">
+            <connections>
+                <outlet property="errorLabel" destination="wjW-TU-Cyn" id="UDT-sK-A5K"/>
+                <outlet property="labelName" destination="5zk-4a-UlR" id="0vw-gF-IhS"/>
+                <outlet property="textField" destination="Ann-bm-UmG" id="sjx-X8-MRY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="MGR-hV-ltY">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjW-TU-Cyn" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="116" width="414" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="crimson"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular12"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="crimson"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-bm-UmG" customClass="DynamicTextField" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="52" width="414" height="56"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="EV8-5Z-Bgb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zk-4a-UlR" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="hLI-7k-j6f" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wjW-TU-Cyn" secondAttribute="bottom" priority="750" constant="12" id="02W-PF-lhr"/>
+                <constraint firstItem="hLI-7k-j6f" firstAttribute="trailing" secondItem="Ann-bm-UmG" secondAttribute="trailing" id="A2u-Zj-64b"/>
+                <constraint firstItem="Ann-bm-UmG" firstAttribute="leading" secondItem="hLI-7k-j6f" secondAttribute="leading" id="He4-6h-2xz"/>
+                <constraint firstItem="wjW-TU-Cyn" firstAttribute="top" secondItem="Ann-bm-UmG" secondAttribute="bottom" constant="8" id="LNY-Ww-wJ6"/>
+                <constraint firstItem="hLI-7k-j6f" firstAttribute="trailing" secondItem="5zk-4a-UlR" secondAttribute="trailing" id="LXz-31-MUe"/>
+                <constraint firstItem="hLI-7k-j6f" firstAttribute="trailing" secondItem="wjW-TU-Cyn" secondAttribute="trailing" id="Qws-0R-ldT"/>
+                <constraint firstItem="wjW-TU-Cyn" firstAttribute="leading" secondItem="hLI-7k-j6f" secondAttribute="leading" id="WoO-cZ-MBJ"/>
+                <constraint firstItem="5zk-4a-UlR" firstAttribute="top" secondItem="hLI-7k-j6f" secondAttribute="top" id="j1j-P0-W6w"/>
+                <constraint firstItem="Ann-bm-UmG" firstAttribute="top" secondItem="5zk-4a-UlR" secondAttribute="bottom" constant="8" id="mSj-0L-jiI"/>
+                <constraint firstItem="5zk-4a-UlR" firstAttribute="leading" secondItem="hLI-7k-j6f" secondAttribute="leading" id="zA6-As-Xea"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="hLI-7k-j6f"/>
+            <point key="canvasLocation" x="-72" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="crimson">
+            <color red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

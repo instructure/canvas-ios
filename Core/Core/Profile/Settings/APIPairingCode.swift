@@ -47,12 +47,14 @@ public struct APIAccountTermsOfService: Codable, Equatable {
 //  https://canvas.instructure.com/doc/api/users.html#method.users.create
 public struct PostAccountUserRequest: APIRequestable {
     public typealias Response = APIUser
-    let accountID: String
     public let method: APIMethod = .post
-    public var path: String { "accounts/\(accountID)/users" }
     public var body: Body?
+    let baseURL: URL
+    let accountID: String
+    public var shouldHandleCookies: Bool = false
 
-    init(accountID: String, pairingCode: String, name: String, email: String, password: String) {
+    public init(baseURL: URL, accountID: String, pairingCode: String, name: String, email: String, password: String) {
+        self.baseURL = baseURL
         self.accountID = accountID
         self.body = Body(
             pseudonym: Body.Pseudonym(unique_id: email, password: password),
@@ -61,17 +63,33 @@ public struct PostAccountUserRequest: APIRequestable {
         )
     }
 
-    public struct Body: Encodable, Equatable {
-        public struct Pseudonym: Encodable, Equatable {
+    public let headers: [String: String?] = [
+        HttpHeader.accept: "application/json",
+        HttpHeader.authorization: nil,
+    ]
+
+    public var cachePolicy: URLRequest.CachePolicy {
+        return .reloadIgnoringLocalAndRemoteCacheData
+    }
+
+    public var path: String {
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        components?.scheme = "https"
+        return components?.url?.appendingPathComponent("/api/v1/accounts/\(accountID)/users").absoluteString ??  ""
+    }
+
+    public struct Body: Codable, Equatable {
+        public struct Pseudonym: Codable, Equatable {
             let unique_id: String
             let password: String
         }
-        public struct PairingCode: Encodable, Equatable {
+        public struct PairingCode: Codable, Equatable {
             let code: String
         }
-        public struct User: Encodable, Equatable {
+        public struct User: Codable, Equatable {
             let name: String
             let initial_enrollment_type: String
+            let terms_of_use: Bool = true
         }
         let pseudonym: Pseudonym
         let pairing_code: PairingCode

@@ -46,7 +46,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         instructionsLabel.text = NSLocalizedString("Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.", comment: "")
         if ExperimentalFeature.studentQRCodePairing.isEnabled {
             instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
-            codeContainer.backgroundColor = .red
+            codeContainer.backgroundColor = .named(.backgroundLightest)
             codeContainer.setNeedsDisplay()
         }
 
@@ -106,9 +106,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         else { return }
 
         var comps = URLComponents(string: "canvas-parent://create-account/create-account/\(accountID)/\(code)")
-        comps?.queryItems = [
-            URLQueryItem(name: "baseURL", value: host),
-        ]
+        comps?.queryItems = [ URLQueryItem(name: "baseURL", value: host), ]
 
         let input = comps?.url?.absoluteString ?? ""
         let data = input.data(using: String.Encoding.ascii)
