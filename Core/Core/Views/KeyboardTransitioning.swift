@@ -23,9 +23,9 @@ import UIKit
 public class KeyboardTransitioning {
     weak var view: UIView?
     weak var space: NSLayoutConstraint?
-    var callback: ((CGRect) -> Void)?
+    var callback: (() -> Void)?
 
-    public init(view: UIView?, space: NSLayoutConstraint?, callback: ((CGRect) -> Void)? = nil) {
+    public init(view: UIView?, space: NSLayoutConstraint?, callback: (() -> Void)? = nil) {
         self.view = view
         self.space = space
         self.callback = callback
@@ -52,14 +52,11 @@ public class KeyboardTransitioning {
         else {
             space.constant = constant
             view.layoutIfNeeded()
-            callback?(keyboardFrame)
             return
         }
         UIView.animate(withDuration: animationDuration, delay: 0, options: .init(rawValue: animationCurve), animations: {
             space.constant = constant
             view.layoutIfNeeded()
-        }, completion: { [weak self] _ in
-            self?.callback?(keyboardFrame)
-        })
+        }, completion: nil)
     }
 }

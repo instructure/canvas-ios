@@ -72,6 +72,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
 
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
         termsAndConditionsLabel.text = NSLocalizedString("By tapping ‘Create Account’, you agree to the Terms of Service and acknowledge the Privacy Policy.", comment: "")
+
         alreadyHaveAccountLabel.text = NSLocalizedString("Already have an account? Sign In", comment: "")
 
         stackView.setCustomSpacing(4, after: password)
