@@ -57,7 +57,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWV-8A-wJd" customClass="DynamicButton" customModule="Parent" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWV-8A-wJd" customClass="ActivityIndicatorButton" customModule="Core">
                                                 <rect key="frame" x="0.0" y="548" width="382" height="56"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="H7U-cm-eXL"/>

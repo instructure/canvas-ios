@@ -25,7 +25,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var name: CreateAccountRow!
     @IBOutlet weak var email: CreateAccountRow!
     @IBOutlet weak var password: CreateAccountRow!
-    @IBOutlet weak var createAccountButton: DynamicButton!
+    @IBOutlet weak var createAccountButton: ActivityIndicatorButton!
     @IBOutlet weak var termsAndConditionsLabel: DynamicLabel!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
     var selectedTextField: UITextField?
@@ -118,8 +118,10 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
             email: userEmail,
             password: userPassword
         )
+        createAccountButton.showSpinner(true)
         AppEnvironment.shared.api.makeRequest(request) { [weak self] (_, _, error) in
             performUIUpdate {
+                self?.createAccountButton.showSpinner(false)
                 if let error = error {
                     self?.showError(error)
                     return
