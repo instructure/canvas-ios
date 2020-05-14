@@ -139,6 +139,7 @@
                         <outlet property="scrollView" destination="O9p-Et-woO" id="qtn-ja-CM9"/>
                         <outlet property="stackView" destination="ozk-jV-mg5" id="KNn-3F-sUc"/>
                         <outlet property="termsAndConditionsTextView" destination="VDF-fl-83L" id="Irr-T6-lUr"/>
+                        <outlet property="termsAndConditionsTextViewHeight" destination="thm-f1-49u" id="awc-i3-Gmy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7E-yV-66r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

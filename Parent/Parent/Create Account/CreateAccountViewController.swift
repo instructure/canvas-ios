@@ -28,6 +28,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var createAccountButton: ActivityIndicatorButton!
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
+    @IBOutlet weak var termsAndConditionsTextViewHeight: NSLayoutConstraint!
     var selectedTextField: UITextField?
     var baseURL: URL?
     var accountID: String = ""
@@ -80,6 +81,11 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         stackView.setCustomSpacing(16, after: createAccountButton)
 
         setupKeyboardNofications()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        adjustTermsAndConditionsHeight()
     }
 
     func setupKeyboardNofications() {
@@ -201,6 +207,11 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         let attributed = NSMutableAttributedString(string: message, attributes: attributes)
         attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: link))
         return attributed
+    }
+
+    func adjustTermsAndConditionsHeight() {
+        termsAndConditionsTextView.sizeToFit()
+        termsAndConditionsTextViewHeight.constant = termsAndConditionsTextView.frame.size.height
     }
 }
 
