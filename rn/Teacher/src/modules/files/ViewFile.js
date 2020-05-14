@@ -280,6 +280,8 @@ export default class ViewFile extends Component<Props, State> {
     let mimeClass = file && file.mime_class
     if (file && file['content-type'].includes('audio')) {
       mimeClass = 'audio'
+    } else if (file && file['content-type'] === 'image/heic') {
+      mimeClass = 'image'
     }
     switch (mimeClass) {
       case 'image':
