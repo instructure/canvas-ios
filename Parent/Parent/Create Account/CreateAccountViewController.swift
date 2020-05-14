@@ -73,7 +73,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
         termsAndConditionsLabel.text = NSLocalizedString("By tapping ‘Create Account’, you agree to the Terms of Service and acknowledge the Privacy Policy.", comment: "")
 
-        alreadyHaveAccountLabel.text = NSLocalizedString("Already have an account? Sign In", comment: "")
+        alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
         stackView.setCustomSpacing(4, after: password)
         stackView.setCustomSpacing(16, after: termsAndConditionsLabel)
@@ -164,6 +164,29 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
 
     func keyboardDidChangeState(keyboardFrame: CGRect) {
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
+    }
+
+    func footerAttributedString() -> NSAttributedString {
+        let a = NSAttributedString(
+            string: NSLocalizedString("Already have an account? ", comment: ""),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+                NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+            ]
+        )
+
+        let b = NSAttributedString(
+            string: NSLocalizedString("Sign In", comment: ""),
+            attributes: [
+                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+                NSAttributedString.Key.foregroundColor: UIColor.named(.electric),
+            ]
+        )
+
+        let mutable = NSMutableAttributedString()
+        mutable.append(a)
+        mutable.append(b)
+        return mutable
     }
 }
 
