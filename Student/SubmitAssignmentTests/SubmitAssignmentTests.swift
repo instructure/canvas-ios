@@ -22,7 +22,7 @@ import XCTest
 import CoreData
 
 class SubmitAssignmentTests: XCTestCase {
-    let env = AppEnvironment.shared
+    var env = TestEnvironment()
     let api = MockURLSession.self
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
@@ -33,10 +33,12 @@ class SubmitAssignmentTests: XCTestCase {
         super.setUp()
         LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
+        env = TestEnvironment()
+        env.database = database
+        AppEnvironment.shared = env
+        env.mockStore = false
         MockURLSession.reset()
         UploadManager.shared = uploadManager
-        env.api = URLSessionAPI()
-        env.database = database
         MockUploadManager.reset()
     }
 
