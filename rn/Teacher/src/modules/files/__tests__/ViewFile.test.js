@@ -139,6 +139,17 @@ describe('ViewFile', () => {
     expect(tree.find('[testID="view-file.image"]').length).toBe(1)
   })
 
+  it('renders heic', async () => {
+    props.file.mime_class = 'file'
+    props.file['content-type'] = 'image/heic'
+    const tree = shallow(<ViewFile {...props} />)
+    await Promise.resolve() // wait for mkdir.
+    await Promise.resolve() // wait for file download.
+    await updatedState(tree)
+    tree.update()
+    expect(tree.find('[testID="view-file.image"]').length).toBe(1)
+  })
+
   it('tries to fetch image again after failing', async () => {
     props.file.mime_class = 'image'
     const tree = shallow(<ViewFile {...props} />)
