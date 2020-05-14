@@ -26,7 +26,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var email: CreateAccountRow!
     @IBOutlet weak var password: CreateAccountRow!
     @IBOutlet weak var createAccountButton: ActivityIndicatorButton!
-    @IBOutlet weak var termsAndConditionsLabel: DynamicLabel!
+    @IBOutlet weak var termsAndConditionsTextView: UITextView!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
     var selectedTextField: UITextField?
     var baseURL: URL?
@@ -71,12 +71,12 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.layer.cornerRadius = 4
 
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
-        termsAndConditionsLabel.text = NSLocalizedString("By tapping ‘Create Account’, you agree to the Terms of Service and acknowledge the Privacy Policy.", comment: "")
+        termsAndConditionsTextView.attributedText = termsOfServicePrivacyPolicyAttributedString()
+        termsAndConditionsTextView.delegate = self
 
         alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
-        stackView.setCustomSpacing(4, after: password)
-        stackView.setCustomSpacing(16, after: termsAndConditionsLabel)
+        stackView.setCustomSpacing(16, after: termsAndConditionsTextView)
         stackView.setCustomSpacing(16, after: createAccountButton)
 
         setupKeyboardNofications()
@@ -166,27 +166,41 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
 
+    func termsOfServicePrivacyPolicyAttributedString() -> NSAttributedString {
+        let privacyPolicy = NSLocalizedString("Privacy Policy", comment: "Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.'")
+        let terms = NSLocalizedString("Terms of Service", comment: "Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.'")
+        let str = NSLocalizedString("By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.", comment: "")
+        let message = String.localizedStringWithFormat(str, terms, privacyPolicy)
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+        ]
+        let attributed = NSMutableAttributedString(string: message, attributes: attributes)
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: terms))
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: privacyPolicy))
+        attributed.addAttribute(
+            .link,
+            value: "https://www.instructure.com/policies/acceptable-use?newhome=canvas",
+            range: (message as NSString).range(of: terms)
+        )
+        attributed.addAttribute(
+            .link,
+            value: "https://www.instructure.com/policies/privacy?newhome=canvas",
+            range: (message as NSString).range(of: privacyPolicy)
+        )
+        return attributed
+    }
+
     func footerAttributedString() -> NSAttributedString {
-        let a = NSAttributedString(
-            string: NSLocalizedString("Already have an account? ", comment: ""),
-            attributes: [
-                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
-            ]
-        )
-
-        let b = NSAttributedString(
-            string: NSLocalizedString("Sign In", comment: ""),
-            attributes: [
-                NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.electric),
-            ]
-        )
-
-        let mutable = NSMutableAttributedString()
-        mutable.append(a)
-        mutable.append(b)
-        return mutable
+        let link = NSLocalizedString("Sign In", comment: "Link text in 'Already have an account? Sign In")
+        let message = String.localizedStringWithFormat(NSLocalizedString("Already have an account? %@", comment: ""), link)
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+        ]
+        let attributed = NSMutableAttributedString(string: message, attributes: attributes)
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: link))
+        return attributed
     }
 }
 
@@ -215,6 +229,13 @@ extension CreateAccountViewController: UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+extension CreateAccountViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }
 
