@@ -108,6 +108,26 @@ class CreateAccountViewControllerTests: ParentTestCase {
 
         XCTAssertTrue(changeUserCalled)
     }
+
+    func testSignInNavigatesToLoginForHost() {
+        let loginNav = LoginNavigationController.create(loginDelegate: self, app: .parent)
+        let nav = UINavigationController(rootViewController: vc)
+
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 300, height: 600))
+        window.rootViewController = loginNav
+        window.makeKeyAndVisible()
+        loginNav.viewDidAppear(false)
+        loginNav.viewControllers.first?.present(nav, animated: false, completion: nil)
+        XCTAssertNotNil(loginNav.viewControllers.first?.presentedViewController)
+
+        loadView()
+        vc.actionSignIn(UIButton())
+        guard let login = loginNav.viewControllers.last as? LoginWebViewController else {
+            XCTFail("Expected LoginWebViewController")
+            return
+        }
+        XCTAssertEqual(login.host, baseURL.host)
+    }
 }
 
 extension CreateAccountViewControllerTests: LoginDelegate {
