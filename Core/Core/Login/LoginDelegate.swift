@@ -24,6 +24,7 @@ public protocol LoginDelegate: class {
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }
     var findSchoolButtonTitle: String { get }
+    var supportedDeepLinkActions: [String] { get }
 
     func openExternalURL(_ url: URL)
     func openSupportTicket()
@@ -32,30 +33,33 @@ public protocol LoginDelegate: class {
     func userDidStopActing(as session: LoginSession)
     func userDidLogout(session: LoginSession)
     func changeUser()
+    func handleDeepLink(url: URL)
 }
 
-extension LoginDelegate {
-    public var supportsCanvasNetwork: Bool { true }
-    public var supportsQRCodeLogin: Bool { true }
-    public var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
-    public var whatsNewURL: URL? { nil }
-    public var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
+public extension LoginDelegate {
+    var supportsCanvasNetwork: Bool { true }
+    var supportsQRCodeLogin: Bool { true }
+    var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
+    var whatsNewURL: URL? { nil }
+    var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
+    var supportedDeepLinkActions: [String] { [] }
 
-    public func openSupportTicket() {}
-    public func changeUser() {}
+    func openSupportTicket() {}
+    func changeUser() {}
+    func handleDeepLink(url: URL) {}
 
-    public func userDidStartActing(as session: LoginSession) {
+    func userDidStartActing(as session: LoginSession) {
         userDidLogin(session: session)
     }
-    public func userDidStopActing(as session: LoginSession) {
+    func userDidStopActing(as session: LoginSession) {
         userDidLogout(session: session)
     }
 
-    public func startActing(as session: LoginSession) {
+    func startActing(as session: LoginSession) {
         userDidStartActing(as: session)
     }
 
-    public func stopActing(as session: LoginSession, findOriginalFrom entries: Set<LoginSession> = LoginSession.sessions) {
+    func stopActing(as session: LoginSession, findOriginalFrom entries: Set<LoginSession> = LoginSession.sessions) {
         guard let baseURL = session.originalBaseURL, let userID = session.originalUserID else { return }
         if let original = entries.first(where: { $0.baseURL == baseURL && $0.userID == userID && $0.masquerader == nil }) {
             userDidStopActing(as: session)

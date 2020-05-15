@@ -30,6 +30,8 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
+    var supportedDeepLinkActions: [String] = []
+    var deepLinkUrl: URL?
 
     lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false, app: .student)
 
@@ -39,6 +41,8 @@ class LoginStartViewControllerTests: CoreTestCase {
         supportsQRCodeLogin = true
         MDMManager.mockDefaults()
         api.mock(GetUserRequest(userID: "1"), value: .make())
+        deepLinkUrl = nil
+        supportedDeepLinkActions = []
     }
 
     func testAnimateIn() {
@@ -178,6 +182,21 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
 
+    func testCreateAccont() throws {
+        supportedDeepLinkActions = ["create-account"]
+        let code = "parent-app://create-account/foo"
+        controller.view.layoutIfNeeded()
+        XCTAssertFalse(controller.useQRCodeButton.isHidden)
+        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
+        controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
+        let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
+        tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
+        let alert = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(alert.title, "Camera not available")
+        controller.scanner(ScannerViewController(), didScanCode: code)
+        XCTAssertEqual(deepLinkUrl, URL(string: code))
+    }
+
     func testQRLoginFeatureGetsTurnedOn() {
         ExperimentalFeature.qrLoginParent.isEnabled = false
         supportsQRCodeLogin = false
@@ -239,5 +258,9 @@ extension LoginStartViewControllerTests: LoginDelegate {
 
     func userDidLogout(session: LoginSession) {
         loggedOut = session
+    }
+
+    func handleDeepLink(url: URL) {
+        deepLinkUrl = url
     }
 }
