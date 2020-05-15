@@ -25,7 +25,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var title: String?
     @NSManaged public var message: String?
-    @NSManaged public var htmlUrl: URL?
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var postedAt: Date?
     @NSManaged public var lastReplyAt: Date?
     @NSManaged public var discussionSubEntryCount: Int
@@ -42,6 +42,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var canDelete: Bool
     @NSManaged public var canReply: Bool
     @NSManaged public var canUpdate: Bool
+    @NSManaged public var groupCategoryID: String?
+    @NSManaged public var groupTopicChildren: [String: String]?
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: NSManagedObjectContext) -> DiscussionTopic {
@@ -49,7 +51,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         let model: DiscussionTopic = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.title = item.title
-        model.htmlUrl = item.html_url
+        model.htmlURL = item.html_url
         model.postedAt = item.posted_at
         model.lastReplyAt = item.last_reply_at
         model.discussionSubEntryCount = item.discussion_subentry_count
@@ -72,8 +74,15 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             model.canReply = permissions.reply == true
             model.canUpdate = permissions.update == true
         }
-        print(item.group_category_id as Any)
-        print(item.group_topic_children as Any)
+        model.groupCategoryID = item.group_category_id?.value
+        model.groupTopicChildren = item.group_topic_children.flatMap { children in
+            guard !children.isEmpty else { return nil }
+            var dict: [String: String] = [:]
+            for child in children {
+                dict[child.group_id.value] = child.id.value
+            }
+            return dict
+        }
         return model
     }
 }

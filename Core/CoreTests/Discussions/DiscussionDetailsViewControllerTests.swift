@@ -67,7 +67,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
                 .make(id: 4, user_id: 4, parent_id: 3, message: "Hot Pockets claim to be sandwiches"),
             ]
         ))
-        api.mock(controller.group, value: .make())
+        api.mock(controller.group, value: .make(course_id: 1))
+        api.mock(controller.groups, value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             id: 1,
@@ -134,5 +135,51 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(titleView?.subtitle, "Course One")
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
+    }
+
+    func testStudentGroupTopic() {
+        environment.app = .student
+        let course = controller.context
+        let group = ContextModel(.group, id: "1")
+        api.mock(GetDiscussionView(context: course, topicID: "1"), value: .make(
+            participants: [],
+            unread_entries: [],
+            forced_entries: [],
+            view: []
+        ))
+        api.mock(GetDiscussionView(context: group, topicID: "2"), value: .make(
+            participants: [
+                .make(id: 2, display_name: "Bob"),
+            ],
+            unread_entries: [4],
+            forced_entries: [2],
+            view: [
+                .make(id: 1, user_id: 2, message: """
+                <p>Cube rule all the way.</p>
+                <p>Oreos are sandwiches.</p>
+                """),
+            ]
+        ))
+        api.mock(GetContextPermissions(context: group, permissions: [ .postToForum ]), value: .make(post_to_forum: true))
+        api.mock(GetDiscussionTopic(context: course, topicID: "1"), value: .make(
+            id: 1,
+            assignment_id: 1,
+            title: "What is a sandwich?",
+            group_category_id: 7,
+            group_topic_children: [ .make(id: "2", group_id: "1") ]
+        ))
+        api.mock(GetDiscussionTopic(context: group, topicID: "2"), value: .make(
+            id: 2,
+            assignment_id: 1,
+            title: "What is a sandwich? - Group One",
+            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            html_url: baseURL.appendingPathComponent("groups/1/discussion_topics/2")
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.context.canvasContextID, group.canvasContextID)
+        XCTAssertEqual(controller.topicID, "2")
+        XCTAssert(webView.html.contains("Is the cube rule of food valid?"))
+        XCTAssert(webView.html.contains("Bob"))
+        XCTAssert(webView.html.contains("Oreos are sandwiches."))
     }
 }

@@ -185,8 +185,8 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
         } else if replyToEntryID == nil {
             html = DiscussionDetailsViewController.topicHTML(topic)
         }
-        if let html = html, webView.url != topic.htmlUrl {
-            webView.loadHTMLString(webView.html(for: html), baseURL: topic.htmlUrl)
+        if let html = html, webView.url != topic.htmlURL {
+            webView.loadHTMLString(webView.html(for: html), baseURL: topic.htmlURL)
         }
 
         if editEntryID != nil, let entry = editEntry?.first {

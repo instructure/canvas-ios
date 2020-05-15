@@ -187,7 +187,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         drainMainQueue()
         XCTAssert(router.calls.isEmpty)
 
-        a.discussionTopic?.htmlUrl = url
+        a.discussionTopic?.htmlURL = url
         presenter.submitType(.discussion_topic, for: a, button: UIView())
         drainMainQueue()
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))

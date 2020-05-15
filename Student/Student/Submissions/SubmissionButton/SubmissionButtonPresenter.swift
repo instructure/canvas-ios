@@ -111,7 +111,7 @@ class SubmissionButtonPresenter: NSObject {
             ).presentTool(from: view, animated: true)
         case .discussion_topic:
             Analytics.shared.logEvent("assignment_detail_discussionlaunch")
-            guard let url = assignment.discussionTopic?.htmlUrl else { return }
+            guard let url = assignment.discussionTopic?.htmlURL else { return }
             env.router.route(to: url, from: view)
         case .media_recording:
             Analytics.shared.logEvent("submit_mediarecording_selected")
