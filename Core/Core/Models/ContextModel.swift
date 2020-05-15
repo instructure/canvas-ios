@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct ContextModel: Context, Equatable, Hashable {
+public struct ContextModel: Codable, Context, Equatable, Hashable {
     public let contextType: ContextType
     public let id: String
 

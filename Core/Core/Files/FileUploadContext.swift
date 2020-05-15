@@ -20,32 +20,28 @@ import Foundation
 
 public enum FileUploadContext: Codable {
     enum CodingKeys: String, CodingKey {
-        case type, userID, courseID, assignmentID, comment
+        case type, context, courseID, assignmentID, comment
     }
 
     enum Key: String, Codable {
-        case course, user, submission, submissionComment
+        case context, submission, submissionComment
     }
 
-    case course(String)
-    case user(String)
+    case context(Context)
     case submission(courseID: String, assignmentID: String, comment: String?)
     case submissionComment(courseID: String, assignmentID: String)
 
     public static var myFiles: FileUploadContext {
-        return .user("self")
+        return .context(ContextModel.currentUser)
     }
 
     public init(from decoder: Decoder) throws {
         let decoder = try decoder.container(keyedBy: CodingKeys.self)
         let type = try decoder.decode(Key.self, forKey: .type)
         switch type {
-        case .course:
-            let courseID = try decoder.decode(String.self, forKey: .courseID)
-            self = .course(courseID)
-        case .user:
-            let userID = try decoder.decode(String.self, forKey: .userID)
-            self = .user(userID)
+        case .context:
+            let context = try decoder.decode(ContextModel.self, forKey: .context)
+            self = .context(context)
         case .submission:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
@@ -61,12 +57,9 @@ public enum FileUploadContext: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case let .course(courseID):
-            try container.encode(Key.course, forKey: .type)
-            try container.encode(courseID, forKey: .courseID)
-        case let .user(userID):
-            try container.encode(Key.user, forKey: .type)
-            try container.encode(userID, forKey: .userID)
+        case let .context(context):
+            try container.encode(Key.context, forKey: .type)
+            try container.encode(ContextModel(context.contextType, id: context.id), forKey: .context)
         case let .submission(courseID, assignmentID, comment):
             try container.encode(Key.submission, forKey: .type)
             try container.encode(courseID, forKey: .courseID)

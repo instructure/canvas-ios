@@ -50,6 +50,6 @@ public class TitleSubtitleView: UIView {
         let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
         let color = title ?? tintColor
         titleLabel.textColor = color
-        subtitleLabel.textColor = color
+        subtitleLabel.textColor = color == .named(.textDarkest) ? .named(.textDark) : color
     }
 }

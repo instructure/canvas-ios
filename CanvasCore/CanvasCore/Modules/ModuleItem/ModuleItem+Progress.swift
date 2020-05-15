@@ -48,6 +48,8 @@ extension ModuleItem {
                 kind = .viewed
             case .submit:
                 kind = .submitted
+            case .contribute:
+                kind = .contributed
             }
 
             let progress: Progress

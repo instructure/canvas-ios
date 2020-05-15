@@ -246,11 +246,7 @@ public struct PostFileUploadTargetRequest: APIRequestable {
 
     public var path: String {
         switch context {
-        case let .course(courseID):
-            let context = ContextModel(.course, id: courseID)
-            return "\(context.pathComponent)/files"
-        case let .user(userID):
-            let context = ContextModel(.user, id: userID)
+        case let .context(context):
             return "\(context.pathComponent)/files"
         case let .submission(courseID, assignmentID, _):
             let context = ContextModel(.course, id: courseID)

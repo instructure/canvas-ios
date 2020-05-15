@@ -112,8 +112,8 @@ class DiscussionReplyTests: CoreUITestCase {
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
         app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil), value: .make())
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil, entryID: "2"), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", entryID: "2", message: ""), value: .make())
 
         let undoButton = app.find(id: "rich-text-toolbar-item-undo")
 
@@ -143,7 +143,7 @@ class DiscussionReplyTests: CoreUITestCase {
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
         app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", body: nil), value: .make())
+        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
         DiscussionDetails.replyButton.tap()
         DiscussionEditReply.attachmentButton.tap()
 

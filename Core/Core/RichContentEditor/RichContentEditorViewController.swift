@@ -27,7 +27,7 @@ public protocol RichContentEditorDelegate: class {
 
 public class RichContentEditorViewController: UIViewController {
     let toolbar = RichContentToolbarView()
-    public let webView = CoreWebView(frame: .zero)
+    public var webView = CoreWebView(frame: .zero)
 
     let batchID = UUID.string
     public weak var delegate: RichContentEditorDelegate?
@@ -37,6 +37,7 @@ public class RichContentEditorViewController: UIViewController {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
         }
     }
+    var selection: CGRect = .zero
     var context: Context = ContextModel.currentUser
     var uploadContext = FileUploadContext.myFiles
     let uploadManager = UploadManager.shared
@@ -80,11 +81,15 @@ public class RichContentEditorViewController: UIViewController {
         webView.loadHTMLString("""
             <style>
             :root {
-                --background-danger: \(UIColor.named(.backgroundDanger).hexString);
-                --background-darkest: \(UIColor.named(.backgroundDarkest).hexString);
-                --brand-link-color: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
+                --brand-linkColor: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
                 --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
-                --text-dark: \(UIColor.named(.textDark).hexString);
+                --color-backgroundDanger: \(UIColor.named(.backgroundDanger).hexString);
+                --color-backgroundDarkest: \(UIColor.named(.backgroundDarkest).hexString);
+                --color-backgroundLightest: \(UIColor.named(.backgroundLightest).hexString);
+                --color-textDark: \(UIColor.named(.textDark).hexString);
+                --color-textDarkest: \(UIColor.named(.textDarkest).hexString);
+
+                font-size: \(UIFont.scaledNamedFont(.medium16).pointSize)px;
             }
             </style>
             <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\"></div>
@@ -140,6 +145,7 @@ public class RichContentEditorViewController: UIViewController {
     }
 
     func updateState(_ state: [String: Any?]?) {
+        updateScroll(state)
         toolbar.updateState(state)
         let isEmpty = state?["isEmpty"] as? Bool ?? true
         let isUploading = state?["isUploading"] as? Bool ?? false
@@ -151,6 +157,33 @@ public class RichContentEditorViewController: UIViewController {
         if let data = try? JSONSerialization.data(withJSONObject: flags),
             let flags = String(data: data, encoding: .utf8) {
             webView.evaluateJavaScript("editor.featureFlags = \(flags)")
+        }
+    }
+
+    func updateScroll(_ state: [String: Any?]?) {
+        guard
+            let r = state?["selection"] as? [String: CGFloat],
+            let x = r["x"], let y = r["y"], let width = r["width"], let height = r["height"]
+        else { return }
+        var rect = CGRect(x: x, y: y, width: width, height: height)
+        guard rect != selection else { return }
+        selection = rect
+        var scrollView = webView.scrollView
+        if webView.autoresizesHeight {
+            var view: UIView = webView
+            while let parent = view.superview {
+                rect = rect.offsetBy(dx: view.frame.minX, dy: view.frame.minY)
+                view = parent
+                guard let scroll = parent as? UIScrollView, scroll.isScrollEnabled else { continue }
+                scrollView = scroll
+                break
+            }
+        }
+        if rect.maxY - scrollView.frame.height > scrollView.contentOffset.y {
+            let y = rect.maxY - scrollView.frame.height
+            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: true)
+        } else if rect.minY < scrollView.contentOffset.y {
+            scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: rect.minY), animated: true)
         }
     }
 

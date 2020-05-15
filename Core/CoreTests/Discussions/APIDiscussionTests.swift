@@ -19,8 +19,8 @@
 import XCTest
 @testable import Core
 
-class APIDiscussionRequestableTests: XCTestCase {
-    func testCreateGradedDiscussionRequest() {
+class APIDiscussionTests: XCTestCase {
+    func testPostDiscussionTopicRequest() {
         let assignment = APIAssignmentParameters(
             name: "A",
             description: "d",
@@ -42,14 +42,25 @@ class APIDiscussionRequestableTests: XCTestCase {
         XCTAssertEqual(request.body, expectedBody)
     }
 
-    func testCreateDiscussionEntryRequest() {
-        let expectedBody = PostDiscussionEntryRequest.Body(message: "Hello there")
+    func testPostDiscussionEntryRequest() {
         let context = ContextModel(.course, id: "1")
-        let request = PostDiscussionEntryRequest(context: context, topicID: "42", body: expectedBody)
+        let url = Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png")!
+        let request = PostDiscussionEntryRequest(context: context, topicID: "42", message: "Hello There", attachment: url)
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics/42/entries")
         XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.body, expectedBody)
+        XCTAssertEqual(request.form?.count, 2)
+        XCTAssertEqual(request.form?.first?.key, "message")
+        XCTAssertEqual(request.form?.first?.value, .string("Hello There"))
+        XCTAssertEqual(request.form?.last?.key, "attachment")
+        XCTAssertEqual(request.form?.last?.value, .file(
+            filename: url.lastPathComponent,
+            type: "application/octet-stream",
+            at: url
+        ))
+
+        let reply = PostDiscussionEntryRequest(context: context, topicID: "42", entryID: "1", message: "Reply")
+        XCTAssertEqual(reply.path, "courses/1/discussion_topics/42/entries/1/replies")
     }
 }
 
@@ -63,6 +74,7 @@ class ListDiscussionEntriesRequestTests: XCTestCase {
 class GetDiscussionTopicRequestTests: XCTestCase {
     func testPath() {
         let request = GetDiscussionTopicRequest(context: ContextModel(.course, id: "1"), topicID: "2")
+        XCTAssertEqual(request.method, .get)
         XCTAssertEqual(request.path, "courses/1/discussion_topics/2")
     }
 

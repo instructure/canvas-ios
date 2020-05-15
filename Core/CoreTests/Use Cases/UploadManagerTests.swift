@@ -29,7 +29,7 @@ class UploadManagerTests: CoreTestCase {
         }
     }
 
-    let uploadContext: FileUploadContext = .course("1")
+    let uploadContext: FileUploadContext = .context(ContextModel(.course, id: "1"))
     let backgroundSession = MockURLSession()
     let manager = UploadManager(identifier: "upload-manager-tests")
     var context: NSManagedObjectContext {
@@ -134,7 +134,7 @@ class UploadManagerTests: CoreTestCase {
         let file = try manager.add(url: url, batchID: "1")
         mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext, taskID: 0), taskID: 1)
         let expectation = XCTestExpectation(description: "callback was called")
-        manager.upload(file: file, to: .course("1"), callback: expectation.fulfill)
+        manager.upload(file: file, to: .context(ContextModel(.course, id: "1")), callback: expectation.fulfill)
         wait(for: [expectation], timeout: 1)
         let tasks = MockURLSession.dataMocks.values
         XCTAssertEqual(tasks.count, 2) // target and upload

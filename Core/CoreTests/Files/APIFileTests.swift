@@ -160,7 +160,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .course("1"),
+            context: .context(ContextModel(.course, id:"1")),
             body: body
         )
         XCTAssertEqual(request.path, "courses/1/files")
@@ -174,7 +174,7 @@ class PostFileUploadTargetRequestTests: XCTestCase {
             size: 0
         )
         let request = PostFileUploadTargetRequest(
-            context: .user("1"),
+            context: .context(ContextModel(.user, id: "1")),
             body: body
         )
         XCTAssertEqual(request.path, "users/1/files")

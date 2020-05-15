@@ -206,6 +206,10 @@
     <entity name="DiscussionTopic" representedClassName="Core.DiscussionTopic" syncable="YES">
         <attribute name="allowRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="assignmentID" optional="YES" attributeType="String"/>
+        <attribute name="canAttach" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canReply" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canUpdate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="htmlUrl" optional="YES" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
@@ -722,7 +726,7 @@
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="283"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="343"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="373"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>

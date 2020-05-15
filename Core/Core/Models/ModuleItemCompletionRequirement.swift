@@ -21,4 +21,5 @@ import Foundation
 public enum ModuleItemCompletionRequirement: String {
     case view
     case submit
+    case contribute
 }

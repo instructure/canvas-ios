@@ -1,5 +1,10 @@
+html {
+    background: var(--color-backgroundLightest);
+    color: var(--color-textDarkest);
+    font-family: system-ui;
+    font-weight: 500;
+}
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -10,40 +15,36 @@ html, body {
 }
 #content {
     box-sizing: border-box;
-    min-height: 100%;
-    padding: 1em;
+    min-height: 1.25rem;
+    padding: 16px;
 }
 #content:empty::before,
 #content.show-placeholder::before {
     content: attr(placeholder);
-    color: var(--text-dark);
+    color: var(--color-textDark);
     position: absolute;
-}
-.is-hidden {
-    display: none;
 }
 svg {
     display: block;
 }
 [data-media_comment_id] {
-    background-color: var(--background-darkest);
+    background-color: var(--color-backgroundDarkest);
     width: 288px;
 }
 [data-uploading] {
     opacity: 0.25;
 }
 .image-overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     position: absolute;
 }
 .progress {
     height: 44px;
-    left: 50%;
-    margin: -22px;
     pointer-events: none;
-    position: absolute;
     transform: rotateZ(-90deg);
     width: 44px;
-    top: 50%;
 }
 .progress-track {
     fill: none;
@@ -57,49 +58,55 @@ svg {
     transition: stroke-dashoffset 0.5s linear;
 }
 .remove-image {
-    background: var(--background-darkest);
+    background: var(--color-backgroundDarkest);
     border: 0 none;
     border-radius: 12px;
     fill: white;
     height: 24px;
+    -webkit-margin-start: calc(50% - 20px);
     padding: 3px;
     position: absolute;
-    right: 8px;
     top: 8px;
     width: 24px;
 }
 .upload-error {
-    background: white linear-gradient(to right, var(--background-danger), var(--background-danger) 40px, white 40px, white);
+    align-items: center;
+    background: white linear-gradient(to right, var(--color-backgroundDanger), var(--color-backgroundDanger) 40px, white 40px, white);
     border-radius: 4px;
     bottom: 8px;
+    display: flex;
     left: 8px;
     line-height: 1.2;
     min-width: 220px;
-    padding: 12px 48px 12px 52px;
+    padding: 12px 0 12px 0;
     position: absolute;
     right: 8px;
 }
+[dir=rtl] .upload-error {
+    background: white linear-gradient(to left, var(--color-backgroundDanger), var(--color-backgroundDanger) 40px, white 40px, white);
+}
 .upload-error-icon {
     fill: white;
-    left: 10px;
-    margin-top: -10px;
-    position: absolute;
-    top: 50%;
+    padding: 10px;
     width: 20px;
 }
 .retry-upload {
     border: 0 none;
-    fill: var(--brand-link-color);
-    margin-top: -10px;
+    fill: var(--brand-linkColor);
     padding: 0;
-    position: absolute;
-    right: 12px;
-    top: 50%;
+    margin: 12px;
+}
+.upload-error-text {
+    flex: 1;
+    -webkit-margin-start: 12px;
 }
 .upload-error-title {
     font-weight: 600;
 }
 .upload-error-message {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-top: 4px;
+}
+.is-hidden {
+    display: none;
 }

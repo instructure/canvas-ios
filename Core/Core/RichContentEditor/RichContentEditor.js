@@ -230,6 +230,7 @@ const editor = window.editor = {
             isUploading: content.querySelector('[data-uploading]') != null,
             isEmpty: !hasImages && !text.trim(),
             foreColor, linkHref, linkText, imageSrc, imageAlt,
+            selection: editor.getSelectionBoundingRect(),
         })
     }),
 
@@ -243,19 +244,20 @@ const editor = window.editor = {
         content.focus()
     },
 
-    updateScroll: throttle(() => {
+    getSelectionBoundingRect () {
         const selection = getSelection()
         if (selection.rangeCount <= 0) return
-        const span = document.createElement('span')
-        const range = selection.getRangeAt(0).cloneRange()
-        range.collapse(false)
-        range.insertNode(span)
-        const { bottom } = span.getBoundingClientRect()
-        span.remove()
-        if (bottom > innerHeight) {
-            scrollTo(0, scrollY + bottom - innerHeight + 16)
+        let { x, y, width, height } = selection.getRangeAt(0).getBoundingClientRect()
+        if (x === 0 && y === 0 && width === 0 && height === 0) {
+            const span = document.createElement('span')
+            const range = selection.getRangeAt(0).cloneRange()
+            range.collapse(false)
+            range.insertNode(span)
+            ;({ x, y, width, height } = span.getBoundingClientRect())
+            span.remove()
         }
-    }),
+        return { x: x + scrollX, y: y + scrollY, width, height }
+    },
 }
 
 const rgbToHex = (rgb) => {
@@ -294,7 +296,7 @@ const imgOverlay = img => {
             <svg class="upload-error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" width="20" height="20">
                 <path d="M960 1920C429.8 1920 0 1490.2 0 960S429.8 0 960 0s960 429.8 960 960-429.8 960-960 960zm-9.84-577.32c-84.47 0-153.19 68.73-153.19 153.2 0 84.46 68.72 153.19 153.2 153.19s153.18-68.72 153.18-153.2-68.72-153.18-153.19-153.18zM1153.66 320h-407l99.13 898.62h208.75L1153.66 320z"/>
             </svg>
-            <div>
+            <div class="upload-error-text">
                 <div class="upload-error-title"></div>
                 <div class="upload-error-message"></div>
             </div>
@@ -351,7 +353,6 @@ function throttle (fn, ms = 200) {
 }
 
 document.addEventListener('selectionchange', e => {
-    editor.updateScroll()
     editor.postState()
 }, { passive: true })
 

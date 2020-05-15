@@ -239,21 +239,26 @@ struct PostDiscussionTopicRequest: APIRequestable {
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.add_reply
 struct PostDiscussionEntryRequest: APIRequestable {
     typealias Response = APIDiscussionEntry
-    struct Body: Codable, Equatable {
-        let message: String
-    }
 
     let context: Context
     let topicID: String
-    let body: Body?
+    let form: APIFormData?
     let method = APIMethod.post
     let replyId: String?
 
-    init(context: Context, topicID: String, body: Body?, entryID: String? = nil) {
+    init(context: Context, topicID: String, entryID: String? = nil, message: String, attachment: URL? = nil) {
         self.context = context
         self.topicID = topicID
-        self.body = body
         self.replyId = entryID
+        var form: APIFormData = [ (key: "message", value: .string(message)) ]
+        if let url = attachment {
+            form.append((key: "attachment", value: .file(
+                filename: url.lastPathComponent,
+                type: "application/octet-stream",
+                at: url
+            )))
+        }
+        self.form = form
     }
 
     public var path: String {

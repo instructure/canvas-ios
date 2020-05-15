@@ -38,6 +38,10 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var allowRating: Bool
     @NSManaged public var sortByRating: Bool
     @NSManaged public var onlyGradersCanRate: Bool
+    @NSManaged public var canAttach: Bool
+    @NSManaged public var canDelete: Bool
+    @NSManaged public var canReply: Bool
+    @NSManaged public var canUpdate: Bool
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: NSManagedObjectContext) -> DiscussionTopic {
@@ -62,6 +66,12 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.allowRating = item.allow_rating
         model.sortByRating = item.sort_by_rating
         model.onlyGradersCanRate = item.only_graders_can_rate == true
+        if let permissions = item.permissions {
+            model.canAttach = permissions.attach == true
+            model.canDelete = permissions.delete == true
+            model.canReply = permissions.reply == true
+            model.canUpdate = permissions.update == true
+        }
         return model
     }
 }
