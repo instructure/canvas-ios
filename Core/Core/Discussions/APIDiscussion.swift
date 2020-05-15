@@ -164,6 +164,12 @@ extension APIDiscussionPermissions {
     }
 }
 
+extension APIDiscussionTopicChild {
+    public static func make(id: String = "1", group_id: String = "2") -> APIDiscussionTopicChild {
+        return APIDiscussionTopicChild(id: ID(id), group_id: ID(group_id))
+    }
+}
+
 extension APIDiscussionView {
     public static func make(
         participants: [APIDiscussionParticipant] = [

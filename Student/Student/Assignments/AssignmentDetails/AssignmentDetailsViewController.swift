@@ -134,6 +134,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         presenter?.viewIsReady()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let color = presenter?.courses.first?.color {
+            navigationController?.navigationBar.useContextColor(color)
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter?.viewDidAppear()

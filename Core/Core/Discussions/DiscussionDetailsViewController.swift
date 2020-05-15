@@ -39,7 +39,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var maxDepth = 3
-    var search: String?
     var topicID = ""
 
     var assignment: Store<GetAssignment>?
@@ -54,6 +53,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     }
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
+    }
+    lazy var groups = env.subscribe(GetGroups()) { [weak self] in
+        self?.update()
     }
     lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
         self?.update()
@@ -102,6 +104,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         topic.refresh()
         entries.refresh()
         permissions.refresh()
+        groups.exhaust(force: false)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -139,9 +142,14 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     }
 
     func update() {
-        if assignment?.useCase.assignmentID != topic.first?.assignmentID {
+        guard fixStudentGroupTopic() else { return }
+        var courseID: String? = context.id
+        if context.contextType == .group {
+            courseID = groups.first(where: { $0.id == context.id })?.courseID
+        }
+        if assignment?.useCase.assignmentID != topic.first?.assignmentID, let cID = courseID {
             assignment = topic.first?.assignmentID.map {
-                env.subscribe(GetAssignment(courseID: context.id, assignmentID: $0)) { [weak self] in
+                env.subscribe(GetAssignment(courseID: cID, assignmentID: $0)) { [weak self] in
                     self?.update()
                 }
             }
@@ -210,7 +218,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 <style>\(Self.css)</style>
                 \(entryHTML(entry, depth: 0))
             """)
-            controller.webView.loadHTMLString(html, baseURL: topic.first?.htmlUrl)
+            controller.webView.loadHTMLString(html, baseURL: topic.first?.htmlURL)
             env.router.show(controller, from: self)
             return true
         }
@@ -223,6 +231,37 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             topic.first?.onlyGradersCanRate != true ||
             course.first?.enrollments?.contains { $0.isTeacher || $0.isTA } == true
         )
+    }
+
+    // If a topic has children, & current user is a student,
+    // they should see their child group topic, not this course one
+    func fixStudentGroupTopic() -> Bool {
+        guard
+            env.app == .student, context.contextType == .course,
+            let topic = topic.first, topic.groupCategoryID != nil,
+            let subs = topic.groupTopicChildren
+        else { return true }
+        if let groupID = groups.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
+            context = ContextModel(.group, id: groupID)
+            topicID = childID
+            entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
+                self?.update()
+            }
+            group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
+                self?.updateNavBar()
+            }
+            permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
+                self?.update()
+            }
+            self.topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
+                self?.update()
+            }
+            entries.refresh()
+            group.refresh()
+            permissions.refresh()
+            self.topic.refresh()
+        }
+        return false
     }
 }
 
@@ -247,7 +286,7 @@ extension DiscussionDetailsViewController {
             """)
             \(entries.map { entryHTML($0, depth: 0) } .joined(separator: "\n"))
             """
-        ), baseURL: topic.htmlUrl)
+        ), baseURL: topic.htmlURL)
     }
 
     public static func topicHTML(_ topic: DiscussionTopic) -> String {
