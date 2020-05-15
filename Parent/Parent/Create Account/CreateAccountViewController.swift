@@ -26,8 +26,9 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var email: CreateAccountRow!
     @IBOutlet weak var password: CreateAccountRow!
     @IBOutlet weak var createAccountButton: ActivityIndicatorButton!
-    @IBOutlet weak var termsAndConditionsLabel: DynamicLabel!
+    @IBOutlet weak var termsAndConditionsTextView: UITextView!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
+    @IBOutlet weak var termsAndConditionsTextViewHeight: NSLayoutConstraint!
     var selectedTextField: UITextField?
     var baseURL: URL?
     var accountID: String = ""
@@ -71,15 +72,20 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.layer.cornerRadius = 4
 
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
-        termsAndConditionsLabel.text = NSLocalizedString("By tapping ‘Create Account’, you agree to the Terms of Service and acknowledge the Privacy Policy.", comment: "")
+        termsAndConditionsTextView.attributedText = termsOfServicePrivacyPolicyAttributedString()
+        termsAndConditionsTextView.delegate = self
 
-        alreadyHaveAccountLabel.text = NSLocalizedString("Already have an account? Sign In", comment: "")
+        alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
-        stackView.setCustomSpacing(4, after: password)
-        stackView.setCustomSpacing(16, after: termsAndConditionsLabel)
+        stackView.setCustomSpacing(16, after: termsAndConditionsTextView)
         stackView.setCustomSpacing(16, after: createAccountButton)
 
         setupKeyboardNofications()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        adjustTermsAndConditionsHeight()
     }
 
     func setupKeyboardNofications() {
@@ -165,6 +171,48 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     func keyboardDidChangeState(keyboardFrame: CGRect) {
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
+
+    func termsOfServicePrivacyPolicyAttributedString() -> NSAttributedString {
+        let privacyPolicy = NSLocalizedString("Privacy Policy", comment: "Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.'")
+        let terms = NSLocalizedString("Terms of Service", comment: "Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.'")
+        let str = NSLocalizedString("By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.", comment: "")
+        let message = String.localizedStringWithFormat(str, terms, privacyPolicy)
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+        ]
+        let attributed = NSMutableAttributedString(string: message, attributes: attributes)
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: terms))
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: privacyPolicy))
+        attributed.addAttribute(
+            .link,
+            value: "https://www.instructure.com/policies/acceptable-use?newhome=canvas",
+            range: (message as NSString).range(of: terms)
+        )
+        attributed.addAttribute(
+            .link,
+            value: "https://www.instructure.com/policies/privacy?newhome=canvas",
+            range: (message as NSString).range(of: privacyPolicy)
+        )
+        return attributed
+    }
+
+    func footerAttributedString() -> NSAttributedString {
+        let link = NSLocalizedString("Sign In", comment: "Link text in 'Already have an account? Sign In")
+        let message = String.localizedStringWithFormat(NSLocalizedString("Already have an account? %@", comment: ""), link)
+        let attributes = [
+            NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
+            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+        ]
+        let attributed = NSMutableAttributedString(string: message, attributes: attributes)
+        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: link))
+        return attributed
+    }
+
+    func adjustTermsAndConditionsHeight() {
+        termsAndConditionsTextView.sizeToFit()
+        termsAndConditionsTextViewHeight.constant = termsAndConditionsTextView.frame.size.height
+    }
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
@@ -192,6 +240,13 @@ extension CreateAccountViewController: UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+extension CreateAccountViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
 }
 
