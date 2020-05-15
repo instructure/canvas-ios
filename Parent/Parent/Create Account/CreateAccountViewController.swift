@@ -97,8 +97,13 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     @IBAction func actionSignIn(_ sender: Any) {
+        let loginNav = navigationController?.presentingViewController
         AppEnvironment.shared.router.dismiss(self) {
-            if let delegate = AppEnvironment.shared.loginDelegate { delegate.changeUser() }
+            AppEnvironment.shared.loginDelegate?.changeUser()
+            if let nav = loginNav as? LoginNavigationController,
+                let host = self.baseURL?.host {
+                nav.login(host: host)
+            }
         }
     }
 
