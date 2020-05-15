@@ -140,6 +140,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
+    var supportedDeepLinkActions: [String] {
+        return ["create-account"]
+    }
+
     var supportsQRCodeLogin: Bool {
         ExperimentalFeature.qrLoginParent.isEnabled
     }
@@ -207,6 +211,10 @@ extension ParentAppDelegate: LoginDelegate {
         if let session = environment.currentSession {
             userDidLogout(session: session)
         }
+    }
+
+    func handleDeepLink(url: URL) {
+        _ = application(UIApplication.shared, open: url, options: [:])
     }
 }
 

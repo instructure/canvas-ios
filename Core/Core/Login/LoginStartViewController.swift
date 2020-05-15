@@ -360,7 +360,13 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
-            self.logIn(withCode: code)
+            if let url = URL(string: code),
+                let host = url.host,
+                self.loginDelegate?.supportedDeepLinkActions.contains(host) == true {
+                self.loginDelegate?.handleDeepLink(url: url)
+            } else {
+                self.logIn(withCode: code)
+            }
         }
     }
 }
