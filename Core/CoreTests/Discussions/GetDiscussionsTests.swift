@@ -58,4 +58,19 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertEqual(entries[0].replies[0].isRead, true)
         XCTAssertEqual(entries[0].replies[0].isForcedRead, true)
     }
+
+    func testGetDiscussionEntry() {
+        let useCase = GetDiscussionEntry(context: ContextModel(.course, id: "1"), topicID: "2", entryID: "3")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(DiscussionEntry.id), equals: "3"))
+    }
+
+    func testCreateDiscussionReply() {
+        let useCase = CreateDiscussionReply(context: ContextModel(.course, id: "1"), topicID: "2", message: "replied")
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertEqual(useCase.request.topicID, "2")
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+        let reply: DiscussionEntry? = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")
+        XCTAssertNotNil(reply)
+    }
 }

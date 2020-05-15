@@ -252,7 +252,7 @@ extension DiscussionDetailsViewController {
 
     public static func topicHTML(_ topic: DiscussionTopic) -> String {
         return """
-        <style>\(Self.css)</style>
+        <style>\(css)</style>
         \(entryHeader(author: topic.author, date: topic.postedAt, attachment: topic.attachments?.first, isTopic: true))
         \(topic.message ?? "")
         """
@@ -312,6 +312,16 @@ extension DiscussionDetailsViewController {
         """
     }
 
+    static func singleEntryHTML(_ entry: DiscussionEntry) -> String {
+        return """
+        <style>\(css)</style>
+        <div class="\(Styles.entry)">
+            \(entryHeader(author: entry.author, date: entry.updatedAt, attachment: entry.isRemoved ? nil : entry.attachment, isTopic: true))
+            \(messageHTML(entry))
+        </div>
+        """
+    }
+
     func entryHTML(_ entry: DiscussionEntry, depth: UInt) -> String {
         return """
         <div id="entry-\(t(entry.id))" class="\(Styles.entry)">
@@ -323,7 +333,7 @@ extension DiscussionDetailsViewController {
             """)
             \(Self.entryHeader(author: entry.author, date: entry.updatedAt, attachment: entry.isRemoved ? nil : entry.attachment, isTopic: false))
             <div class="\(Styles.entryContent)">
-                \(messageHTML(entry))
+                \(Self.messageHTML(entry))
                 \(entryButtonsHTML(entry))
                 \(viewMoreRepliesLink(entry, depth: depth))
                 \((!entry.replies.isEmpty && depth < maxDepth) ? entry.replies.map {
@@ -334,7 +344,7 @@ extension DiscussionDetailsViewController {
         """
     }
 
-    func messageHTML(_ entry: DiscussionEntry) -> String {
+    static func messageHTML(_ entry: DiscussionEntry) -> String {
         if !entry.isRemoved { return entry.message ?? "" }
         return """
         <p class="\(Styles.deleted)">

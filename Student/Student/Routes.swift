@@ -158,9 +158,34 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics": nil,
 
     "/:context/:contextID/discussion_topics/new": nil,
-    "/:context/:contextID/discussion_topics/:discussionID/reply": nil,
     "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
-    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params in
+        guard
+            let context = ContextModel(path: url.path),
+            let discussionID = params["discussionID"]
+        else { return nil }
+        if ExperimentalFeature.htmlDiscussions.isEnabled {
+            return DiscussionReplyViewController.create(context: context, topicID: discussionID)
+        }
+        return HelmViewController(
+            moduleName: "/:context/:contextID/discussion_topics/:discussionID/reply",
+            props: makeProps(url, params: params)
+        )
+    },
+    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { url, params in
+        guard
+            let context = ContextModel(path: url.path),
+            let discussionID = params["discussionID"],
+            let entryID = params["entryID"]
+        else { return nil }
+        if ExperimentalFeature.htmlDiscussions.isEnabled {
+            return DiscussionReplyViewController.create(context: context, topicID: discussionID, replyToEntryID: entryID)
+        }
+        return HelmViewController(
+            moduleName: "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies",
+            props: makeProps(url, params: params)
+        )
+    },
 
     "/:context/:contextID/discussions/:discussionID": discussionViewController,
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
