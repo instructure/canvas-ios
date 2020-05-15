@@ -72,6 +72,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             model.canReply = permissions.reply == true
             model.canUpdate = permissions.update == true
         }
+        print(item.group_category_id as Any)
+        print(item.group_topic_children as Any)
         return model
     }
 }

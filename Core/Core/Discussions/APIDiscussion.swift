@@ -36,6 +36,13 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let sort_by_rating: Bool
     let only_graders_can_rate: Bool?
     let locked_for_user: Bool
+    let group_category_id: ID?
+    let group_topic_children: [APIDiscussionTopicChild]?
+}
+
+public struct APIDiscussionTopicChild: Codable, Equatable {
+    let id: ID
+    let group_id: ID
 }
 
 public struct APIDiscussionParticipant: Codable, Equatable {
@@ -96,7 +103,9 @@ extension APIDiscussionTopic {
         allow_rating: Bool = false,
         sort_by_rating: Bool = false,
         only_graders_can_rate: Bool? = nil,
-        locked_for_user: Bool = false
+        locked_for_user: Bool = false,
+        group_category_id: ID? = nil,
+        group_topic_children: [APIDiscussionTopicChild]? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -114,7 +123,9 @@ extension APIDiscussionTopic {
             allow_rating: allow_rating,
             sort_by_rating: sort_by_rating,
             only_graders_can_rate: only_graders_can_rate,
-            locked_for_user: locked_for_user
+            locked_for_user: locked_for_user,
+            group_category_id: group_category_id,
+            group_topic_children: group_topic_children
         )
     }
 }
