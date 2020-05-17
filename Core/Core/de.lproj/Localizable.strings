@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "Möchten Sie diese Seite wirklich löschen?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Sind Sie sicher, dass Sie die Studentenansicht verlassen wollen?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Wollen Sie diesen Kommentar wirklich löschen?";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "Was ist neu?";
 
 /* No comment provided by engineer. */
+"Select" = "Auswählen";
+
+/* No comment provided by engineer. */
 "Select a Path" = "Wählen Sie einen Pfad";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Einen auswählen";
+
+/* No comment provided by engineer. */
+"Selected!" = "Ausgewählt!";
 
 /* No comment provided by engineer. */
 "Send" = "Senden";

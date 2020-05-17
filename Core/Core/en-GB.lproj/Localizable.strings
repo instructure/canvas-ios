@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "Are you sure you want to delete this page?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Are you sure you want to exit Student View?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "See what's new.";
 
 /* No comment provided by engineer. */
+"Select" = "Select";
+
+/* No comment provided by engineer. */
 "Select a Path" = "Select a Path";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Select one";
+
+/* No comment provided by engineer. */
+"Selected!" = "Selected!";
 
 /* No comment provided by engineer. */
 "Send" = "Send";

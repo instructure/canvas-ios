@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "Vill du ta bort den här sidan?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Är du säker på att du vill avsluta studentvyn?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "Se vad som är nytt";
 
 /* No comment provided by engineer. */
+"Select" = "Välj";
+
+/* No comment provided by engineer. */
 "Select a Path" = "Välj en sökväg";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Selected!" = "Valda!";
 
 /* No comment provided by engineer. */
 "Send" = "Skicka";

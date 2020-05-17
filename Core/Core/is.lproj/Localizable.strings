@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "Viltu örugglega eyða þessari síðu?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Viltu örugglega fara úr nemendaskjá?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "Sjáðu hvað er nýtt.";
 
 /* No comment provided by engineer. */
+"Select" = "Velja";
+
+/* No comment provided by engineer. */
 "Select a Path" = "Veldu leið";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Velja einn";
+
+/* No comment provided by engineer. */
+"Selected!" = "Valið!";
 
 /* No comment provided by engineer. */
 "Send" = "Senda";
