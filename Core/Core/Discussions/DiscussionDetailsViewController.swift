@@ -355,7 +355,10 @@ extension DiscussionDetailsViewController {
         return """
         <div class="\(Styles.divider)"></div>
         <div class="\(Styles.groupTopicChildren)" style="background:\(color)33">
-            <p>\(t(NSLocalizedString("Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.", bundle: .core, comment: "")))</p>
+            <p>\(t(NSLocalizedString(
+                "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.",
+                bundle: .core, comment: ""
+            )))</p>
             \(groups?.map { (group: Group) -> String in
                 guard let topicID = children[group.id] else { return "" }
                 return """
