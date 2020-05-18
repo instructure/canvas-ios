@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "是否確定要刪除此內容頁？";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "是否確定離開學生視圖？";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "您確定要刪除此評論嗎？";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "看看有哪些變更。";
 
 /* No comment provided by engineer. */
+"Select" = "選擇";
+
+/* No comment provided by engineer. */
 "Select a Path" = "選取一個路徑";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "選擇一個";
+
+/* No comment provided by engineer. */
+"Selected!" = "已選擇！";
 
 /* No comment provided by engineer. */
 "Send" = "發送";

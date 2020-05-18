@@ -89,6 +89,9 @@
 "Are you sure you want to delete this page?" = "Czy na pewno chcesz usunąć tę stronę?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to exit Student View?" = "Czy na pewno chcesz wyłączyć Widok uczestnika?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Czy na pewno chcesz usunąć ten komentarz?";
 
 /* No comment provided by engineer. */
@@ -962,6 +965,9 @@
 "See what's new." = "Zobacz nowości.";
 
 /* No comment provided by engineer. */
+"Select" = "Wybierz";
+
+/* No comment provided by engineer. */
 "Select a Path" = "Wybierz ścieżkę";
 
 /* No comment provided by engineer. */
@@ -969,6 +975,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Wybierz jeden";
+
+/* No comment provided by engineer. */
+"Selected!" = "Wybrano!";
 
 /* No comment provided by engineer. */
 "Send" = "Wyślij";
