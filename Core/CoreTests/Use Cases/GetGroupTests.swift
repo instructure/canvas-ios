@@ -24,7 +24,7 @@ class GetGroupTest: CoreTestCase {
     func testItCreatesGroup() {
         let response = APIGroup.make()
 
-        let getGroup = GetGroup(groupID: "1", env: environment)
+        let getGroup = GetGroup(groupID: "1")
         getGroup.write(response: response, urlResponse: nil, to: databaseClient)
 
         let groups: [Group] = databaseClient.fetch()
@@ -37,24 +37,31 @@ class GetGroupTest: CoreTestCase {
         let group = Group.make(from: .make(id: "1", name: "Old Name"))
         let response = APIGroup.make(id: "1", name: "New Name")
 
-        let getGroup = GetGroup(groupID: "1", env: environment)
+        let getGroup = GetGroup(groupID: "1")
         getGroup.write(response: response, urlResponse: nil, to: databaseClient)
         databaseClient.refresh()
         XCTAssertEqual(group.name, "New Name")
     }
 
     func testCacheKey() {
-        let getGroup = GetGroup(groupID: "1", env: environment)
+        let getGroup = GetGroup(groupID: "1")
         XCTAssertEqual("get-group-1", getGroup.cacheKey)
     }
 
     func testScope() {
         let group = Group.make(from: .make(id: "1", name: "Old Name"))
-        let getGroup = GetGroup(groupID: "1", env: environment)
+        let getGroup = GetGroup(groupID: "1")
 
         let groups: [Group] = databaseClient.fetch(getGroup.scope.predicate, sortDescriptors: getGroup.scope.order)
 
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first, group)
+    }
+
+    func testGetGroups() {
+        XCTAssertEqual(GetGroups().cacheKey, "users/self/groups")
+        XCTAssertEqual(GetGroups().request.context.canvasContextID, "user_self")
+        XCTAssertEqual(GetGroups(context: ContextModel(.course, id: "2")).cacheKey, "courses/2/groups")
+        XCTAssertEqual(GetGroups(context: ContextModel(.account, id: "7")).request.context.canvasContextID, "account_7")
     }
 }

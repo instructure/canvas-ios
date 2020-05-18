@@ -68,7 +68,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             ]
         ))
         api.mock(controller.group, value: .make(course_id: 1))
-        api.mock(controller.groups, value: [ .make(course_id: 1) ])
+        api.mock(GetGroups(context: controller.context), value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             id: 1,
@@ -181,5 +181,28 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(webView.html.contains("Is the cube rule of food valid?"))
         XCTAssert(webView.html.contains("Bob"))
         XCTAssert(webView.html.contains("Oreos are sandwiches."))
+    }
+
+    func testTeacherGroupTopic() {
+        environment.app = .teacher
+        api.mock(controller.entries, value: .make(
+            participants: [],
+            unread_entries: [],
+            forced_entries: [],
+            view: []
+        ))
+        api.mock(controller.topic, value: .make(
+            id: 1,
+            assignment_id: 1,
+            title: "What is a sandwich?",
+            group_category_id: 7,
+            group_topic_children: [ .make(id: "2", group_id: "1") ]
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.context.canvasContextID, "course_1")
+        XCTAssertEqual(controller.topicID, "1")
+        XCTAssert(webView.html.contains("each group has its own conversation"))
+        XCTAssert(webView.html.contains("Group One"))
+        XCTAssert(webView.html.contains("/groups/1/discussion_topics/2"))
     }
 }
