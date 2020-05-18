@@ -54,9 +54,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var groups = env.subscribe(GetGroups()) { [weak self] in
+    lazy var groups = context.contextType == .course ? env.subscribe(GetGroups(context: context)) { [weak self] in
         self?.update()
-    }
+    } : nil
     lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
         self?.update()
     }
@@ -104,7 +104,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         topic.refresh()
         entries.refresh()
         permissions.refresh()
-        groups.exhaust(force: false)
+        groups?.exhaust(force: false)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -143,13 +143,10 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func update() {
         guard fixStudentGroupTopic() else { return }
-        var courseID: String? = context.id
-        if context.contextType == .group {
-            courseID = groups.first(where: { $0.id == context.id })?.courseID
-        }
-        if assignment?.useCase.assignmentID != topic.first?.assignmentID, let cID = courseID {
+        if assignment?.useCase.assignmentID != topic.first?.assignmentID,
+            let courseID = context.contextType == .group ? group.first?.courseID : context.id {
             assignment = topic.first?.assignmentID.map {
-                env.subscribe(GetAssignment(courseID: cID, assignmentID: $0)) { [weak self] in
+                env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0)) { [weak self] in
                     self?.update()
                 }
             }
@@ -241,7 +238,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             let topic = topic.first, topic.groupCategoryID != nil,
             let subs = topic.groupTopicChildren
         else { return true }
-        if let groupID = groups.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
+        if let groupID = groups?.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
             context = ContextModel(.group, id: groupID)
             topicID = childID
             entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
@@ -250,6 +247,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
                 self?.updateNavBar()
             }
+            groups = nil
             permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
                 self?.update()
             }
@@ -279,6 +277,7 @@ extension DiscussionDetailsViewController {
         webView.loadHTMLString(webView.html(for: """
             \(Self.topicHTML(topic))
             \(topicReplyButton)
+            \(groupTopicChildrenList(topic))
             \(entries.isEmpty ? "" : """
             <h2 class="\(Styles.heading)">
                 \(t(NSLocalizedString("Replies", bundle: .core, comment: "")))
@@ -347,6 +346,25 @@ extension DiscussionDetailsViewController {
             <a style="\(Styles.font(.semibold, 16))text-decoration:none" href="\(t(topicID))/reply">
                 \(t(NSLocalizedString("Reply", bundle: .core, comment: "")))
             </a>
+        </div>
+        """
+    }
+
+    func groupTopicChildrenList(_ topic: DiscussionTopic) -> String {
+        guard let children = topic.groupTopicChildren, !children.isEmpty, let color = color?.hexString else { return "" }
+        return """
+        <div class="\(Styles.divider)"></div>
+        <div class="\(Styles.groupTopicChildren)" style="background:\(color)33">
+            <p>\(t(NSLocalizedString("Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.", bundle: .core, comment: "")))</p>
+            \(groups?.map { (group: Group) -> String in
+                guard let topicID = children[group.id] else { return "" }
+                return """
+                <a href="/groups/\(t(group.id))/discussion_topics/\(t(topicID))" class="\(Styles.groupTopicChild)">
+                    <span style="flex:1">\(t(group.name))</span>
+                    \(Self.disclosureIcon)
+                </a>
+                """
+            } .joined(separator: "\n") ?? "")
         </div>
         """
     }
@@ -507,12 +525,19 @@ extension DiscussionDetailsViewController {
     </svg>
     """
 
+    static let disclosureIcon = """
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true">
+    <path fill="currentColor" d="M8 7L9.5 5.5L16 12L9.5 18.5L8 17L13 12L8 7Z"/>
+    </svg>
+    """
+
     enum Styles: Int, CustomStringConvertible {
         case authorName, date, entryHeader, topicHeader
         case avatar, avatarInitials, avatarTopic
+        case groupTopicChild, groupTopicChildren
         case deleted, entry, entryContent, moreReplies, unread
         case actions, like, liked, likeIcon, moreOptions, reply, replyPipe
-        case blockLink, heading, hiddenCheck, icon, screenreader
+        case blockLink, divider, heading, hiddenCheck, icon, mirrorRTL, screenreader
 
         var description: String { "-i\(String(rawValue, radix: 36))" }
 
@@ -594,6 +619,25 @@ extension DiscussionDetailsViewController {
         -webkit-margin-end: 12px;
         -webkit-margin-start: -2px;
         width: 40px;
+    }
+
+    .\(Styles.groupTopicChildren) {
+        border-radius: 8px;
+        display: flex;
+        flex-flow: column;
+        margin: 12px 0;
+        padding-bottom: 12px;
+    }
+    .\(Styles.groupTopicChildren) > p {
+        \(Styles.font(.medium, 14))
+        margin: 12px;
+    }
+    .\(Styles.groupTopicChild) {
+        color: \(Styles.color(.textDarkest));
+        \(Styles.font(.semibold, 16))
+        display: flex;
+        margin: 12px 8px 12px 12px;
+        text-decoration: none;
     }
 
     .\(Styles.deleted) {
@@ -685,6 +729,10 @@ extension DiscussionDetailsViewController {
         display: flex;
         text-decoration: none;
     }
+    .\(Styles.divider) {
+        border-top: 0.3px solid \(Styles.color(.borderMedium));
+        margin: 16px -16px;
+    }
     .\(Styles.heading) {
         border-top: 0.3px solid \(Styles.color(.borderMedium));
         border-bottom: 0.3px solid \(Styles.color(.borderMedium));
@@ -706,6 +754,9 @@ extension DiscussionDetailsViewController {
         height: 20px;
         padding: 2px;
         width: 20px;
+    }
+    [dir=rtl] .\(Styles.mirrorRTL) {
+        transform: scaleX(-1);
     }
     .\(Styles.screenreader) {
         clip-path: inset(50%);

@@ -693,7 +693,7 @@
 		9FCF53E922776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF53E822776EAA006D2EFE /* GetRecentlyGradedSubmissionsTests.swift */; };
 		9FD504EA2180BE2900B395BA /* APIFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E92180BE2900B395BA /* APIFileTests.swift */; };
 		9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4032C237EF6B800469B45 /* PageListViewControllerTests.swift */; };
-		9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */; };
+		9FE84DDC214FE5C500B95A68 /* GetGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDB214FE5C500B95A68 /* GetGroupTests.swift */; };
 		9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */; };
 		9FEBF1D823CE1E18001C824B /* CreateConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */; };
 		B102EEB4243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B102EEB3243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard */; };
@@ -1739,7 +1739,7 @@
 		9FE21AAB226A0C1300A1D9AD /* GetRecentlyGradedSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecentlyGradedSubmissions.swift; sourceTree = "<group>"; };
 		9FE4032C237EF6B800469B45 /* PageListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewControllerTests.swift; sourceTree = "<group>"; };
 		9FE84DD9214FE06300B95A68 /* GetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroup.swift; sourceTree = "<group>"; };
-		9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTest.swift; sourceTree = "<group>"; };
+		9FE84DDB214FE5C500B95A68 /* GetGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupTests.swift; sourceTree = "<group>"; };
 		9FE84DDD2150281300B95A68 /* GetContextTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabs.swift; sourceTree = "<group>"; };
 		9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
 		9FEBF1D723CE1E18001C824B /* CreateConversationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversationTests.swift; sourceTree = "<group>"; };
@@ -3712,7 +3712,7 @@
 				9FE84DE1215037A000B95A68 /* GetContextTabsTest.swift */,
 				7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */,
 				B119B4BC2307208200A74062 /* GetEnabledFeatureFlagsTests.swift */,
-				9FE84DDB214FE5C500B95A68 /* GetGroupTest.swift */,
+				9FE84DDB214FE5C500B95A68 /* GetGroupTests.swift */,
 				B1487F96243E3FAF00013404 /* GetModuleItemSequenceTests.swift */,
 				B1487F98243E43C400013404 /* GetModuleItemTests.swift */,
 				B15CA272221DE1FA0014FB02 /* GetModulesTests.swift */,
@@ -4685,7 +4685,7 @@
 				977EAC452412AA26005E1290 /* CreateTodoViewControllerTests.swift in Sources */,
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
-				9FE84DDC214FE5C500B95A68 /* GetGroupTest.swift in Sources */,
+				9FE84DDC214FE5C500B95A68 /* GetGroupTests.swift in Sources */,
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
 				7D724265242A5871007ED42F /* CourseListViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,

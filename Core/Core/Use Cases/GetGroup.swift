@@ -34,13 +34,18 @@ public class GetGroup: APIUseCase {
         return "get-group-\(groupID)"
     }
 
-    public init(groupID: String, env: AppEnvironment = .shared) {
+    public init(groupID: String) {
         self.groupID = groupID
     }
 }
 
 class GetGroups: CollectionUseCase {
     typealias Model = Group
-    var cacheKey: String? = "get-users-self-groups"
-    let request = GetGroupsRequest(context: ContextModel.currentUser)
+    let cacheKey: String?
+    let request: GetGroupsRequest
+
+    init(context: Context = ContextModel.currentUser) {
+        cacheKey = "\(context.pathComponent)/groups"
+        request = GetGroupsRequest(context: context)
+    }
 }
