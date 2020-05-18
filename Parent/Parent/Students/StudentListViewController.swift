@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class StudentListViewController: UIViewController {
+class StudentListViewController: UIViewController, ErrorViewController {
     lazy var addStudentButton = UIBarButtonItem(
         image: .icon(.add, .solid),
         style: .plain,
@@ -38,7 +38,9 @@ class StudentListViewController: UIViewController {
     var showAddStudentPrompt = false
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
-        if error == nil {
+        if let error = error {
+            self?.showError(error)
+        } else {
             self?.students.exhaust()
         }
     })

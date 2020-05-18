@@ -27,7 +27,7 @@ class DashboardNavigationController: UINavigationController {
     override var childForStatusBarStyle: UIViewController? { nil }
 }
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
@@ -58,7 +58,9 @@ class DashboardViewController: UIViewController {
     var shownNotAParent = false
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
-        if error == nil {
+        if let error = error {
+            self?.showError(error)
+        } else {
             self?.students.exhaust()
         }
     })

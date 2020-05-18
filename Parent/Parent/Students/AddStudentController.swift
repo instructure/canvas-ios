@@ -46,17 +46,11 @@ class AddStudentController {
         env.router.show(alert, from: vc, options: .modal())
     }
 
-    private func addPairingCode(code: String) {
+    func addPairingCode(code: String) {
         let request = PostObserveesRequest(userID: "self", pairingCode: code)
         env.api.makeRequest(request) { [weak self] _, _, error in
-            guard let self = self, let vc = self.presentingViewController else { return }
             performUIUpdate {
-                if let error = error {
-                    let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: { _ in }))
-                    self.env.router.show(alert, from: vc, options: .modal())
-                }
-                self.handler(error)
+                self?.handler(error)
             }
         }
     }

@@ -53,7 +53,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="thm-f1-49u"/>
                                                 </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -120,10 +119,45 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="d5L-UO-jMO"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="DoS-wG-moD"/>
                             </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txa-8O-cUk">
+                                <rect key="frame" x="16" y="348" width="382" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVV-j9-DlH" customClass="CircleProgressView" customModule="Core">
+                                        <rect key="frame" x="169" y="78" width="44" height="44"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="sRX-Lo-pGf"/>
+                                            <constraint firstAttribute="height" constant="44" id="vui-o0-znQ"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIq-c6-DZ4" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="138" width="382" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="DVV-j9-DlH" firstAttribute="centerX" secondItem="txa-8O-cUk" secondAttribute="centerX" id="83Z-DE-aXI"/>
+                                    <constraint firstItem="EIq-c6-DZ4" firstAttribute="top" secondItem="DVV-j9-DlH" secondAttribute="bottom" constant="16" id="C9X-Eu-Sk5"/>
+                                    <constraint firstItem="EIq-c6-DZ4" firstAttribute="leading" secondItem="txa-8O-cUk" secondAttribute="leading" id="HZ6-Jx-5HC"/>
+                                    <constraint firstAttribute="height" constant="200" id="TsY-qp-8sT"/>
+                                    <constraint firstAttribute="trailing" secondItem="EIq-c6-DZ4" secondAttribute="trailing" id="XFt-07-Cnz"/>
+                                    <constraint firstItem="DVV-j9-DlH" firstAttribute="centerY" secondItem="txa-8O-cUk" secondAttribute="centerY" id="daz-XJ-RFN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xfI-cW-2KZ" firstAttribute="bottom" secondItem="O9p-Et-woO" secondAttribute="bottom" id="0D5-4G-upc"/>
+                            <constraint firstItem="xfI-cW-2KZ" firstAttribute="trailing" secondItem="txa-8O-cUk" secondAttribute="trailing" constant="16" id="TcF-Sb-za2"/>
+                            <constraint firstItem="txa-8O-cUk" firstAttribute="centerY" secondItem="DNl-cT-inT" secondAttribute="centerY" id="YN4-qw-TcR"/>
+                            <constraint firstItem="txa-8O-cUk" firstAttribute="leading" secondItem="xfI-cW-2KZ" secondAttribute="leading" constant="16" id="owt-vy-0Hb"/>
                             <constraint firstItem="xfI-cW-2KZ" firstAttribute="trailing" secondItem="O9p-Et-woO" secondAttribute="trailing" id="uhc-Dy-gFI"/>
                             <constraint firstItem="O9p-Et-woO" firstAttribute="leading" secondItem="xfI-cW-2KZ" secondAttribute="leading" id="vGw-0z-eVQ"/>
                             <constraint firstItem="O9p-Et-woO" firstAttribute="top" secondItem="xfI-cW-2KZ" secondAttribute="top" id="xfB-Vm-eXG"/>
@@ -132,6 +166,9 @@
                     </view>
                     <connections>
                         <outlet property="alreadyHaveAccountLabel" destination="dQu-cR-LuX" id="8Rm-dJ-s8P"/>
+                        <outlet property="asyncActivityIndicator" destination="DVV-j9-DlH" id="2FM-7J-bBt"/>
+                        <outlet property="asyncOpLabel" destination="EIq-c6-DZ4" id="ejl-Zr-sMW"/>
+                        <outlet property="asyncOperationContainer" destination="txa-8O-cUk" id="eos-JW-QPB"/>
                         <outlet property="createAccountButton" destination="LWV-8A-wJd" id="p9K-PR-MsR"/>
                         <outlet property="email" destination="PLP-1E-a3Y" id="EeC-hi-xNm"/>
                         <outlet property="name" destination="HS8-gj-VVw" id="Kf8-HD-w2C"/>

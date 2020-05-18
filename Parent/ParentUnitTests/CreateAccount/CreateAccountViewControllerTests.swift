@@ -32,6 +32,9 @@ class CreateAccountViewControllerTests: ParentTestCase {
         super.setUp()
         changeUserCalled = false
         vc = CreateAccountViewController.create(baseURL: baseURL, accountID: accountID, pairingCode: code)
+
+        let removeThese = LoginSession.sessions.filter({ $0.baseURL.host == baseURL.host })
+        removeThese.forEach { LoginSession.sessions.remove($0) }
     }
 
     func loadView() {
@@ -128,7 +131,53 @@ class CreateAccountViewControllerTests: ParentTestCase {
         }
         XCTAssertEqual(login.host, baseURL.host)
     }
+
+    func testMultipleAccountPairAction() {
+        let entry1 = LoginSession.make(baseURL: baseURL, userID: "1")
+        let entry2 = LoginSession.make(baseURL: baseURL, userID: "2")
+        LoginSession.add(entry1)
+        LoginSession.add(entry2)
+        let action = CreateAccountViewController.PairAction.nextAction(baseURL: baseURL)
+        XCTAssertEqual(action, CreateAccountViewController.PairAction.multipleAccounts)
+    }
+
+    func testSingleAccountPairAction() {
+        let entry1 = LoginSession.make(baseURL: baseURL, userID: "1")
+        LoginSession.add(entry1)
+        let action = CreateAccountViewController.PairAction.nextAction(baseURL: baseURL)
+        XCTAssertEqual(action, CreateAccountViewController.PairAction.singleAccount)
+    }
+
+    func testLayoutWithSingleAccountPairActionWithError() {
+        let entry1 = LoginSession.make(baseURL: baseURL, userID: "1")
+        LoginSession.add(entry1)
+
+        let mockPresenter = MockPresentingViewController()
+        let dashNav = DashboardNavigationController(rootViewController: mockPresenter)
+
+        let nav = UINavigationController(rootViewController: vc)
+
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 300, height: 600))
+        window.rootViewController = dashNav
+        window.makeKeyAndVisible()
+        dashNav.viewDidAppear(false)
+        dashNav.viewControllers.first?.present(nav, animated: false, completion: nil)
+
+        api.mock(PostObserveesRequest(userID: "self", pairingCode: code), error: NSError.instructureError("bad code"))
+
+        loadView()
+
+        XCTAssertTrue(vc.scrollView.isHidden)
+        XCTAssertFalse(vc.asyncOperationContainer.isHidden)
+        XCTAssertEqual(vc.asyncOpLabel.text, "Adding Student...")
+
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.message, "bad code")
+    }
 }
+
+class MockPresentingViewController: UIViewController {}
+extension MockPresentingViewController: ErrorViewController {}
 
 extension CreateAccountViewControllerTests: LoginDelegate {
     func openExternalURL(_ url: URL) {

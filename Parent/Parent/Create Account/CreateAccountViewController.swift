@@ -20,6 +20,25 @@ import UIKit
 import Core
 
 class CreateAccountViewController: UIViewController, ErrorViewController {
+
+    enum PairAction {
+        case singleAccount
+        case multipleAccounts
+        case createAccount
+
+        static func nextAction(baseURL: URL?) -> Self {
+            let matching: [LoginSession] = LoginSession.sessions.filter { $0.baseURL.host == baseURL?.host }
+            switch matching.count {
+            case 0: return .createAccount
+            case 1: return .singleAccount
+            default: return .multipleAccounts
+            }
+        }
+    }
+
+    @IBOutlet weak var asyncActivityIndicator: CircleProgressView!
+    @IBOutlet weak var asyncOpLabel: UILabel!
+    @IBOutlet weak var asyncOperationContainer: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var name: CreateAccountRow!
@@ -33,6 +52,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     var baseURL: URL?
     var accountID: String = ""
     var pairingCode: String = ""
+    var addStudentPairingController: AddStudentController?
 
     static func create(baseURL: URL, accountID: String, pairingCode: String) -> CreateAccountViewController {
         let vc = loadFromStoryboard()
@@ -44,6 +64,17 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let next = PairAction.nextAction(baseURL: baseURL)
+        switch next {
+        case .singleAccount:
+            addPairingCodeToCurrentAccount(pairingCode)
+            return
+        case .multipleAccounts:
+            promptUserForWhichLoggedInAccount()
+            return
+        default: break  // no accounts matching
+        }
 
         navigationController?.setNavigationBarHidden(true, animated: false)
 
@@ -218,6 +249,30 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         termsAndConditionsTextView.sizeToFit()
         termsAndConditionsTextViewHeight.constant = termsAndConditionsTextView.frame.size.height
     }
+
+    func addPairingCodeToCurrentAccount(_ code: String) {
+        assert(presentingViewController is ErrorViewController, "presentingViewController needs to conform to ErrorViewController protocol")
+        guard let presentingVC = presentingViewController as? ErrorViewController else { return }
+        addStudentPairingController = AddStudentController(presentingViewController: self) { [unowned self] error in
+            AppEnvironment.shared.router.dismiss(self) {
+                if let error = error { presentingVC.showError(error) }
+            }
+        }
+
+        showNonSignupUI(message: NSLocalizedString("Adding Student...", comment: ""))
+        addStudentPairingController?.addPairingCode(code: code)
+    }
+
+    func promptUserForWhichLoggedInAccount() {
+        //  TODO: - prompt user
+    }
+
+    func showNonSignupUI(message: String?, show: Bool = true) {
+        self.scrollView.isHidden = show
+        self.asyncOperationContainer.isHidden = !show
+        self.asyncActivityIndicator.color = .named(.electric)
+        self.asyncOpLabel.text = message
+    }
 }
 
 extension CreateAccountViewController: UITextFieldDelegate {
@@ -278,3 +333,5 @@ class CreateAccountRow: UIView {
         }
     }
 }
+
+extension DashboardNavigationController: ErrorViewController {}

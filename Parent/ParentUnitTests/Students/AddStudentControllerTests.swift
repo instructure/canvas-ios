@@ -62,9 +62,5 @@ class AddStudentControllerTests: ParentTestCase {
         router.dismiss()
         let textField = try XCTUnwrap(alert.textFields?.first)
         textField.text = "abc"
-        let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
-        add.handler?(add)
-        let error = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(error.message, "Oops!")
     }
 }
