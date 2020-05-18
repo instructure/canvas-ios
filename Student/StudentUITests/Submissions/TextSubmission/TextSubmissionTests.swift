@@ -39,8 +39,8 @@ class TextSubmissionTests: StudentUITestCase {
         sleep(1)
 
         let webView = app.find(id: "RichContentEditor.webView")
-        webView.typeText("This is rich content.")
-        webView.tap()
+        webView.typeText("     This is rich content.")
+        webView.tapAt(.zero).tapAt(.zero)
         app.find(label: "Select All").tap()
         RichContentToolbar.textColorButton.tap()
         RichContentToolbar.blueColorButton.tap()
