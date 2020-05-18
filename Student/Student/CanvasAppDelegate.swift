@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
         CacheManager.resetAppIfNecessary()
+        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif

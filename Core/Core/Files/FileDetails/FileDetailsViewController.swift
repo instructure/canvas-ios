@@ -366,7 +366,12 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
 
     func saveAnnotations() {
         for child in children {
-            _ = try? (child as? PDFViewController)?.document?.save()
+            if let pdf = child as? PDFViewController {
+                _ = try? pdf.document?.save()
+                if let document = pdf.document {
+                    pdfViewController(pdf, didSave: document, error: nil)
+                }
+            }
         }
     }
 

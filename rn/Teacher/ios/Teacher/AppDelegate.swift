@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
         CacheManager.resetAppIfNecessary()
+        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
