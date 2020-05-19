@@ -67,7 +67,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme == "canvas-parent" {
-            environment.router.route(to: url, from: topMostViewController()!, options: .modal(embedInNav: true, addDoneButton: true))
+            environment.router.route(to: url, from: topMostViewController()!, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
         }
         return false
     }

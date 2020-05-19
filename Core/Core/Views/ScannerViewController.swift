@@ -19,16 +19,16 @@
 import AVFoundation
 import UIKit
 
-protocol ScannerDelegate: class {
+public protocol ScannerDelegate: class {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String)
 }
 
-class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    weak var delegate: ScannerDelegate?
+    public weak var delegate: ScannerDelegate?
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
@@ -123,7 +123,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         captureSession = nil
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if (captureSession?.isRunning == false) {
@@ -131,7 +131,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         if (captureSession?.isRunning == true) {
@@ -139,7 +139,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
 
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
 
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -154,11 +154,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         delegate?.scanner(self, didScanCode: code)
     }
 
-    override var prefersStatusBarHidden: Bool {
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
 

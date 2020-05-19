@@ -37,6 +37,7 @@
 		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
 		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
 		3BC50CC5246B11C00023159F /* CreateAccountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC4246B11C00023159F /* CreateAccountViewControllerTests.swift */; };
+		3BC50CCF24746FED0023159F /* SelectAddStudentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CCE24746FED0023159F /* SelectAddStudentMethodViewController.swift */; };
 		3BD0CD732327026400B3341E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD722327026400B3341E /* Core.framework */; };
 		3BD0CD762327027000B3341E /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD0CD742327027000B3341E /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BEA6CC0245887F000BE4589 /* ParentConversationListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */; };
@@ -447,6 +448,7 @@
 		3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentTestCase.swift; sourceTree = "<group>"; };
 		3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		3BC50CC4246B11C00023159F /* CreateAccountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerTests.swift; sourceTree = "<group>"; };
+		3BC50CCE24746FED0023159F /* SelectAddStudentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddStudentMethodViewController.swift; sourceTree = "<group>"; };
 		3BD0CD722327026400B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD0CD742327027000B3341E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEA6CBE245887F000BE4589 /* ParentConversationListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ParentConversationListViewController.storyboard; sourceTree = "<group>"; };
@@ -904,6 +906,7 @@
 				5E0F9A4F1C739E6A00BB7707 /* Alerts */,
 				7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
+				3BC50CCE24746FED0023159F /* SelectAddStudentMethodViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1680,6 +1683,7 @@
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
 				61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */,
 				497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */,
+				3BC50CCF24746FED0023159F /* SelectAddStudentMethodViewController.swift in Sources */,
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
 				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
