@@ -29,7 +29,7 @@ class PageE2ETests: CoreUITestCase {
 
         CourseNavigation.pages.tap()
 
-        PagesList.frontPage.tap()
+        PageList.frontPage.tap()
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 }

@@ -112,6 +112,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
     func update() {
         guard let page = page else { return }
         titleSubtitleView.title = page.title
+        optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
         webView.loadHTMLString(page.body)
     }

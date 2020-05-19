@@ -106,6 +106,9 @@
 		E81B575D23E243CA002A0C38 /* ComposeReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575423E23DAA002A0C38 /* ComposeReply.swift */; };
 		E81B575E23E243CA002A0C38 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575523E23DAA002A0C38 /* Compose.swift */; };
 		E81B575F23E243CA002A0C38 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575723E23DAA002A0C38 /* Courses.swift */; };
+		E829685824747C37007E7F23 /* PageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829685724747C37007E7F23 /* PageList.swift */; };
+		E829685A2474845D007E7F23 /* PageEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82968592474845D007E7F23 /* PageEdit.swift */; };
+		E829685C2474A188007E7F23 /* PageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829685B2474A188007E7F23 /* PageDetails.swift */; };
 		E839146523102F9200D772E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC287D22B19D5C00C0B692 /* XCTest.framework */; };
 		E871745123BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745023BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift */; };
 		E871745423BEC1B500525E67 /* SubmissionListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745323BEC1B500525E67 /* SubmissionListFixture.swift */; };
@@ -222,6 +225,9 @@
 		E81B575423E23DAA002A0C38 /* ComposeReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReply.swift; sourceTree = "<group>"; };
 		E81B575523E23DAA002A0C38 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		E81B575723E23DAA002A0C38 /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		E829685724747C37007E7F23 /* PageList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageList.swift; sourceTree = "<group>"; };
+		E82968592474845D007E7F23 /* PageEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEdit.swift; sourceTree = "<group>"; };
+		E829685B2474A188007E7F23 /* PageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDetails.swift; sourceTree = "<group>"; };
 		E871745023BEA8BF00525E67 /* APIPostPolicyInfoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPostPolicyInfoFixture.swift; sourceTree = "<group>"; };
 		E871745323BEC1B500525E67 /* SubmissionListFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListFixture.swift; sourceTree = "<group>"; };
 		E87612EF245A2F9900CBDEBC /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
@@ -545,6 +551,16 @@
 			path = ParentUIElements;
 			sourceTree = "<group>";
 		};
+		E829685424747BA3007E7F23 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E829685724747C37007E7F23 /* PageList.swift */,
+				E82968592474845D007E7F23 /* PageEdit.swift */,
+				E829685B2474A188007E7F23 /* PageDetails.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
 		E871745223BEC1A200525E67 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -564,6 +580,7 @@
 		E87D9C5C23F1C5D700C2E0C9 /* CoreUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				E829685424747BA3007E7F23 /* Pages */,
 				E87612EE245A2F9900CBDEBC /* AudioVideo */,
 				E89B3004244F3F72007CF19B /* Conferences */,
 				E87D9C5D23F1C5E500C2E0C9 /* Filles */,
@@ -726,6 +743,7 @@
 				9F6878B52239701F00E559CE /* MediaCommentFixture.swift in Sources */,
 				EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */,
 				9F4B53AC2180FFDF0056A557 /* FileFixture.swift in Sources */,
+				E829685A2474845D007E7F23 /* PageEdit.swift in Sources */,
 				B19792EF21751FBC0000369C /* TestPersistence.swift in Sources */,
 				B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */,
 				B141ABE4231EE16F00E73D84 /* APIOAuthTokenFixture.swift in Sources */,
@@ -756,6 +774,7 @@
 				B1A32BDE2159A1D70071B41E /* APIAssignmentFixture.swift in Sources */,
 				7DB0A1D421C1C90D009ABB40 /* APIAccountResultsFixture.swift in Sources */,
 				E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */,
+				E829685C2474A188007E7F23 /* PageDetails.swift in Sources */,
 				E87612F0245A2F9900CBDEBC /* AudioRecorder.swift in Sources */,
 				B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */,
 				B1D5EF622358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift in Sources */,
@@ -805,6 +824,7 @@
 				58595A4F59ADDF88417FB368 /* LoggingHttpServer.swift in Sources */,
 				58595E93BC97CDFF3A1ECF2F /* MiniCanvasState.swift in Sources */,
 				585951A0E753164D3759B783 /* MiniAssignment.swift in Sources */,
+				E829685824747C37007E7F23 /* PageList.swift in Sources */,
 				58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */,
 				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
 				58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */,

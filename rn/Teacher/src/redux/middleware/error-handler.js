@@ -28,6 +28,12 @@ export function alertError (error: any, alertTitle?: string, callback?: Function
   const message = parseErrorMessage(error)
   let buttons = [{ text: i18n('Dismiss'), onPress: () => { if (callback) callback() } }]
   Alert.alert(title, message, buttons)
+
+  if (error instanceof Error) {
+    console.warn(`Error: ${error.message}.  Stack:\n${error.stack}`)
+  } else {
+    console.warn(`Error: ${error}`)
+  }
 }
 
 export function defaultErrorTitle (): string {

@@ -34,7 +34,7 @@ public struct APIPage: Codable, Equatable {
 extension APIPage {
     public static func make(
         body: String? = nil,
-        editing_roles: String? = nil,
+        editing_roles: String? = "teacher",
         front_page: Bool = false,
         html_url: URL = URL(string: "/courses/42/pages/answers-page")!,
         page_id: ID = ID("42"),

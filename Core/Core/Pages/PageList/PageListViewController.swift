@@ -62,7 +62,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Pages", bundle: .core, comment: ""))
         if canCreatePage {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(createPage))
+            let item = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(createPage))
+            item.accessibilityIdentifier = "PageList.add"
+            navigationItem.rightBarButtonItem = item
         }
 
         emptyMessageLabel.text = NSLocalizedString("There are no pages to display yet.", bundle: .core, comment: "")
@@ -202,9 +204,11 @@ class PageListFrontPageCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?) {
-        accessibilityIdentifier = "PageListFrontPageCell"
+        accessibilityIdentifier = "PageList.frontPage"
         headingLabel.text = NSLocalizedString("Front Page", bundle: .core, comment: "")
+        headingLabel.accessibilityIdentifier = "PageList.frontPageHeading"
         titleLabel.text = page?.title
+        titleLabel.accessibilityIdentifier = "PageList.frontPageTitle"
     }
 }
 
@@ -214,7 +218,7 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?, indexPath: IndexPath) {
-        accessibilityIdentifier = "PageListCell.\(indexPath.row)"
+        titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
         accessIconView.icon = UIImage.icon(.document, .line)
         accessIconView.published = page?.published == true
         dateLabel.text = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString

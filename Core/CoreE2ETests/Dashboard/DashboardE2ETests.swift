@@ -48,7 +48,7 @@ class DashboardE2ETests: CoreUITestCase {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.pages.tap()
-        PagesList.frontPage.tap()
+        PageList.frontPage.tap()
 
         TabBar.dashboardTab.tap()
         Dashboard.coursesLabel.waitToExist()
