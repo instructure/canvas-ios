@@ -24,9 +24,10 @@ extension DiscussionEntry {
     @discardableResult
     public static func make(
         from api: APIDiscussionEntry = .make(),
+        topicID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> DiscussionEntry {
-        let model = DiscussionEntry.save(api, in: context)
+        let model = DiscussionEntry.save(api, topicID: topicID, in: context)
         try! context.save()
         return model
     }

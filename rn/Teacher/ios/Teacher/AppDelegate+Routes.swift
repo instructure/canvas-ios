@@ -126,6 +126,14 @@ extension AppDelegate {
         })
 
         if ExperimentalFeature.htmlDiscussions.isEnabled {
+            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/announcements/:announcementID", factory: { (props: Props) -> UIViewController? in
+                guard let contextType = props["context"] as? String else { return nil }
+                guard let contextID = props["contextID"] as? String else { return nil }
+                guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+                guard let topicID = props["announcementID"] as? String else { return nil }
+                return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
+            })
+
             let discussionDetails = { (props: Props) -> UIViewController? in
                 guard let contextType = props["context"] as? String else { return nil }
                 guard let contextID = props["contextID"] as? String else { return nil }

@@ -21,15 +21,17 @@ import XCTest
 @testable import Core
 
 class GetDiscussionsTests: CoreTestCase {
+    let context = ContextModel(.course, id: "1")
+
     func testGetDiscussionTopic() {
-        let useCase = GetDiscussionTopic(context: ContextModel(.course, id: "1"), topicID: "2")
+        let useCase = GetDiscussionTopic(context: context, topicID: "2")
         XCTAssertEqual(useCase.cacheKey, "courses/1/discussions/2")
         XCTAssertEqual(useCase.request.context.canvasContextID, "course_1")
         XCTAssertEqual(useCase.scope, Scope.where(#keyPath(DiscussionTopic.id), equals: "2"))
     }
 
     func testGetDiscussionView() {
-        let useCase = GetDiscussionView(context: ContextModel(.course, id: "1"), topicID: "2")
+        let useCase = GetDiscussionView(context: context, topicID: "2")
         XCTAssertEqual(useCase.cacheKey, "courses/1/discussions/2/view")
         XCTAssertEqual(useCase.request.context.canvasContextID, "course_1")
 
@@ -45,11 +47,11 @@ class GetDiscussionsTests: CoreTestCase {
                 .make(id: 1, user_id: 1, message: "teacher reply"),
             ],
             new_entries: [
-                .make(id: 2, user_id: 2, parent_id: 1, message: "student reply"),
+                .make(id: 2, user_id: 2, parent_id: 1, created_at: Date(), message: "student reply"),
             ]
         ), urlResponse: nil, to: databaseClient)
         let entries: [DiscussionEntry] = databaseClient.fetch(scope: useCase.scope)
-        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.count, 2)
         XCTAssertEqual(entries[0].author?.id, "1")
         XCTAssertEqual(entries[0].isRead, false)
         XCTAssertEqual(entries[0].isForcedRead, false)
@@ -59,18 +61,104 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertEqual(entries[0].replies[0].isForcedRead, true)
     }
 
+    func testDeleteDiscussionTopic() {
+        DiscussionTopic.make()
+        let useCase = DeleteDiscussionTopic(context: context, topicID: "1")
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertEqual(useCase.request.topicID, "1")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(DiscussionTopic.id), equals: "1"))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+        let topics: [DiscussionTopic] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(topics.count, 0)
+    }
+
     func testGetDiscussionEntry() {
-        let useCase = GetDiscussionEntry(context: ContextModel(.course, id: "1"), topicID: "2", entryID: "3")
+        let useCase = GetDiscussionEntry(context: context, topicID: "2", entryID: "3")
         XCTAssertEqual(useCase.scope, .where(#keyPath(DiscussionEntry.id), equals: "3"))
     }
 
     func testCreateDiscussionReply() {
-        let useCase = CreateDiscussionReply(context: ContextModel(.course, id: "1"), topicID: "2", message: "replied")
+        let useCase = CreateDiscussionReply(context: context, topicID: "2", message: "replied")
         XCTAssertNil(useCase.cacheKey)
         XCTAssertEqual(useCase.request.topicID, "2")
         XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
         useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
         let reply: DiscussionEntry? = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")
         XCTAssertNotNil(reply)
+    }
+
+    var notifications: [Notification] = []
+    func testMarkDiscussionTopicRead() {
+        let useCase = MarkDiscussionTopicRead(context: context, topicID: "1", isRead: true)
+        XCTAssertNil(useCase.cacheKey)
+        NotificationCenter.default.addObserver(self, selector: #selector(observeNotification(_:)), name: nil, object: nil)
+        notifications = []
+        useCase.write(response: nil, urlResponse: nil, to: databaseClient)
+        XCTAssertEqual(notifications.count, 2)
+        XCTAssertEqual(notifications.first?.name, .CompletedModuleItemRequirement)
+        XCTAssertEqual(notifications.last?.name, .moduleItemRequirementCompleted)
+    }
+    @objc func observeNotification(_ notification: Notification) {
+        notifications.append(notification)
+    }
+
+    let emptyResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/"), statusCode: 204, httpVersion: nil, headerFields: nil)
+    func testMarkDiscussionEntriesRead() {
+        let useCase = MarkDiscussionEntriesRead(context: context, topicID: "1", isRead: true, isForcedRead: true)
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient))
+        let entry = DiscussionEntry.make()
+        let topic = DiscussionTopic.make()
+        useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isRead, true)
+        XCTAssertEqual(entry.isForcedRead, true)
+        XCTAssertEqual(topic.unreadCount, 0)
+        let unmark = MarkDiscussionEntriesRead(context: context, topicID: "1", isRead: false, isForcedRead: false)
+        unmark.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isRead, false)
+        XCTAssertEqual(entry.isForcedRead, false)
+        XCTAssertEqual(topic.unreadCount, 1)
+    }
+
+    func testMarkDiscussionEntryRead() {
+        let useCase = MarkDiscussionEntryRead(context: context, topicID: "1", entryID: "1", isRead: true, isForcedRead: true)
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient))
+        let entry = DiscussionEntry.make()
+        let topic = DiscussionTopic.make()
+        useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isRead, true)
+        XCTAssertEqual(entry.isForcedRead, true)
+        XCTAssertEqual(topic.unreadCount, 0)
+    }
+
+    func testRateDiscussionEntry() {
+        let useCase = RateDiscussionEntry(context: context, topicID: "1", entryID: "1", isLiked: true)
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertEqual(useCase.request.entryID, "1")
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient))
+        let entry = DiscussionEntry.make()
+        useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isLikedByMe, true)
+        XCTAssertEqual(entry.likeCount, 1)
+        let unmark = RateDiscussionEntry(context: context, topicID: "1", entryID: "1", isLiked: false)
+        unmark.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isLikedByMe, false)
+        XCTAssertEqual(entry.likeCount, 0)
+    }
+
+    func testDeleteDiscussionEntry() {
+        let useCase = DeleteDiscussionEntry(context: context, topicID: "1", entryID: "1")
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertEqual(useCase.request.entryID, "1")
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient))
+        let entry = DiscussionEntry.make()
+        useCase.write(response: nil, urlResponse: emptyResponse, to: databaseClient)
+        XCTAssertEqual(entry.isRemoved, true)
     }
 }

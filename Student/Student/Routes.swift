@@ -75,7 +75,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/announcements": nil,
 
-    "/:context/:contextID/announcements/:announcementID": nil,
+    "/:context/:contextID/announcements/:announcementID": ExperimentalFeature.htmlDiscussions.isEnabled ? ({ url, params in
+        guard let context = ContextModel(path: url.path), let announcementID = params["announcementID"] else { return nil }
+        return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
+    }) : nil,
 
     "/courses/:courseID/assignments": nil,
 

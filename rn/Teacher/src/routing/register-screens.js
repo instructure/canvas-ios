@@ -134,7 +134,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/:context/:contextID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/announcements/new', wrap(AnnouncementEdit), store)
-  registerScreen('/:context/:contextID/announcements/:announcementID', wrap(DiscussionDetails), store, { deepLink: true })
+  registerScreen('/:context/:contextID/announcements/:announcementID', ExperimentalFeature.htmlDiscussions.isEnabled ? null : wrap(DiscussionDetails), store, { deepLink: true })
   registerScreen('/:context/:contextID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/:context/:contextID/discussions/:discussionID', ExperimentalFeature.htmlDiscussions.isEnabled ? null : wrap(DiscussionDetails), store, { deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics/:discussionID', ExperimentalFeature.htmlDiscussions.isEnabled ? null : wrap(DiscussionDetails), store, { deepLink: true })

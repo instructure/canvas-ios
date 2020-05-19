@@ -23,6 +23,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     public typealias JSON = APIDiscussionTopic
 
     @NSManaged public var id: String
+    @NSManaged public var isAnnouncement: Bool
     @NSManaged public var title: String?
     @NSManaged public var message: String?
     @NSManaged public var htmlURL: URL?
@@ -44,12 +45,14 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var canUpdate: Bool
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var groupTopicChildren: [String: String]?
+    @NSManaged public var unreadCount: Int
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: NSManagedObjectContext) -> DiscussionTopic {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(DiscussionTopic.id), item.id.value)
         let model: DiscussionTopic = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
+        model.isAnnouncement = item.subscription_hold == "topic_is_announcement"
         model.title = item.title
         model.htmlURL = item.html_url
         model.postedAt = item.posted_at

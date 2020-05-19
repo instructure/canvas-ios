@@ -20,6 +20,8 @@ import XCTest
 @testable import Core
 
 class APIDiscussionTests: XCTestCase {
+    let context = ContextModel(.course, id: "1")
+
     func testPostDiscussionTopicRequest() {
         let assignment = APIAssignmentParameters(
             name: "A",
@@ -34,7 +36,6 @@ class APIDiscussionTests: XCTestCase {
             unlock_at: nil
         )
         let expectedBody = PostDiscussionTopicRequest.Body(title: "T", message: "M", published: true, assignment: assignment)
-        let context = ContextModel(.course, id: "1")
         let request = PostDiscussionTopicRequest(context: context, body: expectedBody)
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
@@ -43,7 +44,6 @@ class APIDiscussionTests: XCTestCase {
     }
 
     func testPostDiscussionEntryRequest() {
-        let context = ContextModel(.course, id: "1")
         let url = Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png")!
         let request = PostDiscussionEntryRequest(context: context, topicID: "42", message: "Hello There", attachment: url)
 
@@ -61,6 +61,54 @@ class APIDiscussionTests: XCTestCase {
 
         let reply = PostDiscussionEntryRequest(context: context, topicID: "42", entryID: "1", message: "Reply")
         XCTAssertEqual(reply.path, "courses/1/discussion_topics/42/entries/1/replies")
+    }
+
+    func testMarkDiscussionTopicReadRequest() {
+        let mark = MarkDiscussionTopicReadRequest(context: context, topicID: "1", isRead: true)
+        XCTAssertEqual(mark.method, .put)
+        XCTAssertEqual(mark.path, "courses/1/discussion_topics/1/read")
+        let unmark = MarkDiscussionTopicReadRequest(context: context, topicID: "1", isRead: false)
+        XCTAssertEqual(unmark.method, .delete)
+        XCTAssertEqual(unmark.path, "courses/1/discussion_topics/1/read")
+    }
+
+    func testMarkDiscussionEntriesReadRequest() {
+        let mark = MarkDiscussionEntriesReadRequest(context: context, topicID: "1", isRead: true, isForcedRead: false)
+        XCTAssertEqual(mark.method, .put)
+        XCTAssertEqual(mark.path, "courses/1/discussion_topics/1/read_all")
+        XCTAssertEqual(mark.query, [ .bool("forced_read_state", false) ])
+        let unmark = MarkDiscussionEntriesReadRequest(context: context, topicID: "1", isRead: false, isForcedRead: true)
+        XCTAssertEqual(unmark.method, .delete)
+        XCTAssertEqual(unmark.path, "courses/1/discussion_topics/1/read_all")
+        XCTAssertEqual(unmark.query, [ .bool("forced_read_state", true) ])
+    }
+
+    func testMarkDiscussionEntryReadRequest() {
+        let mark = MarkDiscussionEntryReadRequest(context: context, topicID: "1", entryID: "2", isRead: true, isForcedRead: false)
+        XCTAssertEqual(mark.method, .put)
+        XCTAssertEqual(mark.path, "courses/1/discussion_topics/1/entries/2/read")
+        XCTAssertEqual(mark.query, [ .bool("forced_read_state", false) ])
+        let unmark = MarkDiscussionEntryReadRequest(context: context, topicID: "1", entryID: "2", isRead: false, isForcedRead: true)
+        XCTAssertEqual(unmark.method, .delete)
+        XCTAssertEqual(unmark.path, "courses/1/discussion_topics/1/entries/2/read")
+        XCTAssertEqual(unmark.query, [ .bool("forced_read_state", true) ])
+    }
+
+    func testPostDiscussionEntryRatingRequest() {
+        let mark = PostDiscussionEntryRatingRequest(context: context, topicID: "1", entryID: "2", isLiked: true)
+        XCTAssertEqual(mark.method, .post)
+        XCTAssertEqual(mark.path, "courses/1/discussion_topics/1/entries/2/rating")
+        XCTAssertEqual(mark.body, [ "rating": 1 ])
+        let unmark = PostDiscussionEntryRatingRequest(context: context, topicID: "1", entryID: "2", isLiked: false)
+        XCTAssertEqual(unmark.method, .post)
+        XCTAssertEqual(unmark.path, "courses/1/discussion_topics/1/entries/2/rating")
+        XCTAssertEqual(unmark.body, [ "rating": 0 ])
+    }
+
+    func testDeleteDiscussionEntryRequest() {
+        let request = DeleteDiscussionEntryRequest(context: context, topicID: "1", entryID: "1")
+        XCTAssertEqual(request.method, .delete)
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/1/entries/1")
     }
 }
 

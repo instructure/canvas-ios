@@ -22,7 +22,8 @@ import WebKit
 import TestsFoundation
 
 class DiscussionDetailsViewControllerTests: CoreTestCase {
-    lazy var controller = DiscussionDetailsViewController.create(context: ContextModel(.course, id: "1"), topicID: "1")
+    let course = ContextModel(.course, id: "1")
+    lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1")
 
     var baseURL: URL { environment.api.baseURL }
     let webView = MockWebView()
@@ -80,7 +81,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             published: true,
             attachments: [.make()],
             author: .make(display_name: "Instructor", pronouns: "she/her"),
-            permissions: .make(reply: true),
+            permissions: .make(attach: true, update: true, reply: true, delete: true),
             allow_rating: true,
             sort_by_rating: true
         ))
@@ -133,6 +134,62 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(web?.webView.linkDelegate === controller)
         XCTAssertEqual(titleView?.title, "Discussion Replies")
         XCTAssertEqual(titleView?.subtitle, "Course One")
+
+        XCTAssert(controller.optionsButton == controller.navigationItem.rightBarButtonItem)
+        _ = controller.optionsButton.target?.perform(controller.optionsButton.action)
+        var sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.count, 4)
+
+        XCTAssertEqual(sheet?.actions[0].title, "Mark All as Read")
+        let emptyResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/"), statusCode: 204, httpVersion: nil, headerFields: nil)
+        api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
+        sheet?.actions[0].action()
+        XCTAssert(!webView.html.contains("Unread"))
+        XCTAssertEqual(sheet?.actions[1].title, "Mark All as Unread")
+        sheet?.actions[1].action()
+        XCTAssert(webView.html.contains("Unread"))
+
+        XCTAssertEqual(sheet?.actions[2].title, "Edit")
+        sheet?.actions[2].action()
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/discussion_topics/1/edit")))
+
+        api.mock(DeleteDiscussionTopicRequest(context: course, topicID: "1"), error: NSError.internalError())
+        XCTAssertEqual(sheet?.actions[3].title, "Delete")
+        sheet?.actions[3].action()
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
+
+        api.mock(RateDiscussionEntry(context: course, topicID: "1", entryID: "1", isLiked: true), response: emptyResponse)
+        // Too hard to simulate the webView handler
+        controller.like("1", isLiked: true)
+        XCTAssert(webView.html.contains("1 like"))
+
+        environment.app = .teacher // to make sure we get all the options
+        controller.showMoreOptions(for: "1")
+        sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.count, 3)
+
+        api.mock(MarkDiscussionEntryReadRequest(context: course, topicID: "1", entryID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
+        XCTAssertEqual(sheet?.actions[0].title, "Mark as Read")
+        sheet?.actions[0].action()
+        XCTAssertEqual(controller.entries.first?.isRead, true)
+
+        controller.showMoreOptions(for: "1")
+        sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions[0].title, "Mark as Unread")
+        sheet?.actions[0].action()
+        XCTAssertEqual(controller.entries.first?.isRead, false)
+
+        XCTAssertEqual(sheet?.actions[1].title, "Edit")
+        sheet?.actions[1].action()
+        XCTAssert(router.presented is DiscussionReplyViewController)
+
+        api.mock(DeleteDiscussionEntryRequest(context: course, topicID: "1", entryID: "1"), error: NSError.internalError())
+        XCTAssertEqual(sheet?.actions[2].title, "Delete")
+        sheet?.actions[2].action()
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
+
+        controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.refreshControl.isRefreshing, false)
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
