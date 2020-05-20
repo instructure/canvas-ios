@@ -27,6 +27,7 @@ enum MiniCanvasEndpoints {
         static let userID = ":userID"
         static let folderID = ":folderID"
         static let fileID = ":fileID"
+        static let topicID = ":topicID"
         static let courseContext = Context(ContextType.course, id: courseID)
         static let folderContext = Context(ContextType.folder, id: folderID)
     }
@@ -82,6 +83,15 @@ enum MiniCanvasEndpoints {
             throw ServerError.notFound
         }
         return file
+    }
+
+    private static func lookupDiscussion<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniDiscussion {
+        let topicID = request[Pattern.topicID]!
+        let course = try lookupCourse(forRequest: request)
+        guard let topic = course.discussions.first(where: { $0.id == topicID }) else {
+            throw ServerError.notFound
+        }
+        return topic
     }
 
     private static func parsePageUpdate(request: MiniCanvasServer.APIRequest<Data>) throws -> APIPage {
@@ -186,6 +196,22 @@ enum MiniCanvasEndpoints {
             try lookupCourse(forRequest: request).settings
         },
 
+        // MARK: Discussion Topics
+        // https://canvas.instructure.com/doc/api/discussion_topics.html
+        .apiRequest(ListDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
+            try lookupCourse(forRequest: request).discussions.map { $0.api }
+        },
+
+        {
+            print(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID).path)
+            return .apiRequest(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
+                try lookupDiscussion(forRequest: request).api
+            }
+        }(),
+        .apiRequest(GetDiscussionViewRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
+            try lookupDiscussion(forRequest: request).view(state: request.state)
+        },
+
         // MARK: Enrollments
         // https://canvas.instructure.com/doc/api/enrollments.html
         .apiRequest(GetEnrollmentsRequest(context: .currentUser)) { request in
@@ -223,7 +249,7 @@ enum MiniCanvasEndpoints {
             return file.api
         },
         .rest("/api/v1/files/\(Pattern.fileID)", method: .put) { request in
-           let file = try lookupFile(forRequest: request)
+            let file = try lookupFile(forRequest: request)
             file.api = try mergeJSONData(old: file.api, new: request.body)
             return .json(file.api)
         },
@@ -438,8 +464,8 @@ enum MiniCanvasEndpoints {
         },
         .graphQLAny(operationName: "SubmissionList") { request in
             guard let variables = request.body["variables"] as? [String: Any],
-                  let assignmentID = variables["assignmentID"] as? String else {
-                throw ServerError.badRequest
+                let assignmentID = variables["assignmentID"] as? String else {
+                    throw ServerError.badRequest
             }
             guard let assignment = request.state.assignment(byId: assignmentID) else { throw ServerError.notFound }
             return assignment.submissionList(state: request.state)
@@ -479,7 +505,7 @@ enum MiniCanvasEndpoints {
         },
         .rest("/users/self") { _ in .ok(.htmlBody("")) },
         .apiRequest(GetDashboardCardsRequest()) { request in
-                try request.state.userEnrollments().compactMap { enrollment in
+            try request.state.userEnrollments().compactMap { enrollment in
                 guard let course = request.state.course(byId: enrollment.course_id!)?.api else {
                     throw ServerError.notFound
                 }

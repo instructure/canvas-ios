@@ -93,8 +93,9 @@ extension MiniCanvasState {
     public func assignment(byId id: String?) -> MiniAssignment? {
         courses.lazy.compactMap({ $0.assignment(byId: id) }).first
     }
+    public var allUsers: [APIUser] { students + teachers + observers }
     public func user(byId id: String) -> APIUser? {
-        (students + teachers + observers).first { $0.id.value == id }
+        allUsers.first { $0.id == id }
     }
 
     public var selfUser: APIUser { user(byId: selfId)! }

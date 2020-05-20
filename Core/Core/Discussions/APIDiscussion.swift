@@ -155,6 +155,16 @@ extension APIDiscussionParticipant {
             pronouns: pronouns
         )
     }
+
+    public static func make(from user: APIUser) -> APIDiscussionParticipant {
+        APIDiscussionParticipant.make(
+            id: user.id,
+            display_name: user.name,
+            avatar_image_url: user.avatar_url?.rawValue,
+            html_url: URL(string: "/users/\(user.id)"),
+            pronouns: user.pronouns
+        )
+    }
 }
 
 extension APIDiscussionPermissions {

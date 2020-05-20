@@ -33,6 +33,7 @@ public class MiniCourse {
     public var courseFiles: MiniFolder?
     public var contentLicenses: [Any] = []
     public var settings: APICourseSettings = .make()
+    public var discussions: [MiniDiscussion] = []
 
     public var id: String { api.id.value }
 
@@ -133,6 +134,13 @@ public class MiniCourse {
         ))
         state.files[file.id] = file
         folder.fileIDs.append(file.id)
+
+        let topicID = state.nextId()
+        let topic = APIDiscussionTopic.make(
+            id: topicID,
+            html_url: state.baseUrl.appendingPathComponent("/course/\(course.id)/discussion_topics/\(topicID)")
+        )
+        course.discussions.append(MiniDiscussion.create(topic, populatingState: state))
     }
 
     func createQuizAssignment(state: MiniCanvasState) {
