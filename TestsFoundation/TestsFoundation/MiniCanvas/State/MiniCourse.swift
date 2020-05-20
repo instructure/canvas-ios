@@ -99,6 +99,7 @@ public class MiniCourse {
             let pageId = state.nextId()
             course.pages.append(APIPage.make(
                 body: "This is a page!",
+                editing_roles: "teacher",
                 front_page: i == 0,
                 html_url: URL(string: "/courses/\(course.id)/pages/page-\(pageId)")!,
                 page_id: pageId,
