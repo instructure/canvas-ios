@@ -24,6 +24,11 @@ import TestsFoundation
 class DashboardViewControllerTests: ParentTestCase {
     lazy var vc = Parent.DashboardViewController.create()
 
+    override class func setUp() {
+        super.setUp()
+        ExperimentalFeature.parentQRCodePairing.isEnabled = false
+    }
+
     func testLayoutMenu() {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(
@@ -69,6 +74,23 @@ class DashboardViewControllerTests: ParentTestCase {
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.presented is UIAlertController)
+        router.dismiss(vc, completion: nil)
+
+        ExperimentalFeature.parentQRCodePairing.isEnabled = true
+
+        (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.presented is SelectAddStudentMethodViewController)
+        guard let selectVC = router.presented as? SelectAddStudentMethodViewController else { XCTFail("Expected SelectAddStudentMethodViewController"); return }
+        var row = selectVC.tableView(selectVC.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(row.textLabel?.text, "QR Code")
+        row = selectVC.tableView(selectVC.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+        XCTAssertEqual(row.textLabel?.text, "Pairing Code")
+        selectVC.tableView(selectVC.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssert(router.presented is ScannerViewController)
+        router.dismiss(vc, completion: nil)
+        selectVC.tableView(selectVC.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        XCTAssert(router.presented is UIAlertController)
+        router.dismiss(vc, completion: nil)
 
         XCTAssertNoThrow(vc.viewWillDisappear(false))
     }

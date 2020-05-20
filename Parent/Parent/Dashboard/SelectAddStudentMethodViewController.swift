@@ -83,7 +83,7 @@ class SelectAddStudentMethodViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let method = AddObserveeMethod(rawValue: indexPath.row) else { fatalError("Invalid row") }
+        guard let method = AddObserveeMethod(rawValue: indexPath.row) else { return }
         delegate?.didSelectAddStudentMethod(method: method)
     }
 }
