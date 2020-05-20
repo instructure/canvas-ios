@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ozk-jV-mg5">
-                                        <rect key="frame" x="16" y="76" width="382" height="722"/>
+                                        <rect key="frame" x="16" y="76" width="382" height="723"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="createAccountLogo" translatesAutoresizingMaskIntoConstraints="NO" id="a41-8e-cSj">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="139"/>
@@ -47,13 +47,12 @@
                                                 <rect key="frame" x="0.0" y="359" width="382" height="128"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDF-fl-83L">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VDF-fl-83L">
                                                 <rect key="frame" x="0.0" y="487" width="382" height="51"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="thm-f1-49u"/>
                                                 </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -108,7 +107,18 @@
                                                     <constraint firstItem="o5k-Ro-reQ" firstAttribute="leading" secondItem="wYy-qY-o74" secondAttribute="leading" id="sEz-we-KsG"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XGr-ed-dRR">
+                                                <rect key="frame" x="0.0" y="722" width="382" height="1"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="Zn0-N2-vWH"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="XGr-ed-dRR" secondAttribute="trailing" id="dBO-uH-9Jj"/>
+                                            <constraint firstItem="XGr-ed-dRR" firstAttribute="leading" secondItem="ozk-jV-mg5" secondAttribute="leading" id="p64-5A-fGI"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -136,6 +146,7 @@
                         <outlet property="email" destination="PLP-1E-a3Y" id="EeC-hi-xNm"/>
                         <outlet property="name" destination="HS8-gj-VVw" id="Kf8-HD-w2C"/>
                         <outlet property="password" destination="oXG-cR-ZWu" id="kp7-ME-HJn"/>
+                        <outlet property="scrollPadding" destination="Zn0-N2-vWH" id="B8t-co-os4"/>
                         <outlet property="scrollView" destination="O9p-Et-woO" id="qtn-ja-CM9"/>
                         <outlet property="stackView" destination="ozk-jV-mg5" id="KNn-3F-sUc"/>
                         <outlet property="termsAndConditionsTextView" destination="VDF-fl-83L" id="Irr-T6-lUr"/>

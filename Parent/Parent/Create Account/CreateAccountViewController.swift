@@ -29,6 +29,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
     @IBOutlet weak var termsAndConditionsTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollPadding: NSLayoutConstraint!
     var selectedTextField: UITextField?
     var baseURL: URL?
     var accountID: String = ""
@@ -46,8 +47,6 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
 
         navigationController?.setNavigationBarHidden(true, animated: false)
-
-        scrollView.keyboardDismissMode = .onDrag
 
         name.labelName.text = NSLocalizedString("Full name", comment: "")
         name.textField.placeholder = NSLocalizedString("Full name...", comment: "")
@@ -89,16 +88,19 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     func setupKeyboardNofications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func keyboardWillHide(_ notification: Notification) {
+        scrollPadding.constant = 0
     }
 
-    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         guard
             let info = notification.userInfo as? [String: Any],
             let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             else { return }
+        scrollPadding.constant = 200
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
 
