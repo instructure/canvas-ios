@@ -41,13 +41,11 @@ class GetSSOLoginTest: CoreTestCase {
             error = err
         }
         login.fetch(callback)
-        waitForMainAsync()
         XCTAssertNil(entry)
         XCTAssertNil(error)
 
         api.mock(GetMobileVerifyRequest(domain: "canvas.instructure.com"), error: NSError.internalError())
         login.fetch(callback)
-        waitForMainAsync()
         XCTAssertNil(entry)
         XCTAssertNotNil(error)
 
@@ -59,13 +57,11 @@ class GetSSOLoginTest: CoreTestCase {
         )
         api.mock(GetMobileVerifyRequest(domain: "canvas.instructure.com"), value: client)
         login.fetch(callback)
-        waitForMainAsync()
         XCTAssertNil(entry)
         XCTAssertNil(error)
 
         api.mock(PostLoginOAuthRequest(client: client, code: "code"), error: NSError.internalError())
         login.fetch(callback)
-        waitForMainAsync()
         XCTAssertNil(entry)
         XCTAssertNotNil(error)
 
@@ -77,7 +73,6 @@ class GetSSOLoginTest: CoreTestCase {
             expiresIn: 10
         ))
         login.fetch(callback)
-        waitForMainAsync()
         XCTAssertEqual(entry?.accessToken, "t")
         XCTAssertEqual(entry?.userID, "1")
         XCTAssertEqual(entry?.clientID, "id")

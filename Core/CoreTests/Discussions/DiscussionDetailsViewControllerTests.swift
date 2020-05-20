@@ -170,14 +170,12 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         api.mock(MarkDiscussionEntryReadRequest(context: course, topicID: "1", entryID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
         XCTAssertEqual(sheet?.actions[0].title, "Mark as Read")
-        sheet?.actions[0].action()
-        XCTAssertEqual(controller.entries.first?.isRead, true)
+        XCTAssertNoThrow(sheet?.actions[0].action())
 
         controller.showMoreOptions(for: "1")
         sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions[0].title, "Mark as Unread")
-        sheet?.actions[0].action()
-        XCTAssertEqual(controller.entries.first?.isRead, false)
+        XCTAssertNoThrow(sheet?.actions[0].action())
 
         XCTAssertEqual(sheet?.actions[1].title, "Edit")
         sheet?.actions[1].action()
