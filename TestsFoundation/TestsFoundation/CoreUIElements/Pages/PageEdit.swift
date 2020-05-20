@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
-
-enum PagesList {
-    static var frontPage: Element {
-        return app.find(id: "PageListFrontPageCell")
-    }
-
-    static func page(index: Int) -> Element {
-        return app.find(id: "PageList.\(index)")
-    }
+public enum PageEdit: String, RawRepresentable, RawElementWrapper {
+    case done = "pages.edit.doneButton"
+    case title = "pages.edit.titleInput"
+    case published = "pages.edit.published.row"
+    case frontPage = "pages.edit.front_page.row"
+    case canEdit = "pages.edit.editing_roles.row"
 }

@@ -67,6 +67,23 @@ enum MiniCanvasEndpoints {
         return user
     }
 
+    private static func parsePageUpdate(request: MiniCanvasServer.APIRequest<Data>) throws -> APIPage {
+        let course = try lookupCourse(forRequest: request)
+        let body = try XCTUnwrap(JSONSerialization.jsonObject(with: request.body) as? [String: Any])
+        let page = try XCTUnwrap(body["wiki_page"] as? [String: Any])
+        let id = request.state.nextId()
+        return APIPage.make(
+            body: page["body"] as? String,
+            editing_roles: page["editing_roles"] as? String,
+            front_page: try XCTUnwrap(page["front_page"] as? Bool),
+            html_url: URL(string: "/courses/\(course.id)/pages/\(id)")!,
+            page_id: id,
+            published: try XCTUnwrap(page["published"] as? Bool),
+            title: try XCTUnwrap(page["title"] as? String),
+            url: id.value
+        )
+    }
+
     public static let endpoints: [MiniCanvasServer.Endpoint] = [
         // MARK: Account Notifications
         // https://canvas.instructure.com/doc/api/account_notifications.html
@@ -176,6 +193,31 @@ enum MiniCanvasEndpoints {
         .apiRequest(DeleteLoginOAuthRequest(session: .make())) { _ in .init() },
         .apiRequest(GetWebSessionRequest(to: nil)) { request in
             .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? request.baseUrl)
+        },
+
+        // MARK: Pages
+        // https://canvas.instructure.com/doc/api/pages.html
+        .apiRequest(GetFrontPageRequest(context: Pattern.courseContext)) { request in
+            try lookupCourse(forRequest: request).pages[0]
+        },
+        .apiRequest(GetPagesRequest(context: Pattern.courseContext)) { request in
+            try lookupCourse(forRequest: request).pages
+        },
+        .apiRequest(GetPageRequest(context: Pattern.courseContext, url: ":url")) { request in
+            try lookupCourse(forRequest: request).pages.first { $0.url == request[":url"] }
+        },
+        .rest("/api/v1/courses/:courseID/pages", method: .post) { request in
+            let page = try parsePageUpdate(request: request)
+            let course = try lookupCourse(forRequest: request)
+            course.pages.append(page)
+            return .json(page)
+        },
+        .rest("/api/v1/courses/:courseID/pages/:url", method: .put) { request in
+            let page = try parsePageUpdate(request: request)
+            let course = try lookupCourse(forRequest: request)
+            course.pages.removeAll { $0.url == request[":url"] }
+            course.pages.append(page)
+            return .json(page)
         },
 
         // MARK: Quiz Submissions

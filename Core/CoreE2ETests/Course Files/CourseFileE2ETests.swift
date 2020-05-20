@@ -40,7 +40,7 @@ class CourseFileE2ETests: CoreUITestCase {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.pages.tap()
-        PagesList.page(index: 1).tap()
+        PageList.page(index: 1).tap()
         app.links.firstElement.tap()
         app.find(type: .image).waitToExist()
     }

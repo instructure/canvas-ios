@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+public enum PageList: String, RawRepresentable, ElementWrapper {
+    case frontPage, frontPageHeading, frontPageTitle, add
 
-enum PagesList {
-    static var frontPage: Element {
-        return app.find(id: "PageListFrontPageCell")
-    }
-
-    static func page(index: Int) -> Element {
-        return app.find(id: "PageList.\(index)")
+    public static func page(index: Int) -> Element {
+        app.find(id: "PageList.\(index)")
     }
 }

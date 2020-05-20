@@ -29,6 +29,7 @@ public class MiniCourse {
     public var gradingPeriods: [APIGradingPeriod] = []
     public var featureFlags: [String] = []
     public var conferences: [APIConference] = []
+    public var pages: [APIPage] = []
 
     public var id: String { api.id.value }
 
@@ -93,6 +94,19 @@ public class MiniCourse {
         }
         state.enroll(state.teachers[0], intoCourse: course, as: "TeacherEnrollment")
         state.enroll(state.observers[0], intoCourse: course, as: "ObserverEnrollment", observing: state.students[0])
+
+        for i in 0...1 {
+            let pageId = state.nextId()
+            course.pages.append(APIPage.make(
+                body: "This is a page!",
+                editing_roles: "teacher",
+                front_page: i == 0,
+                html_url: URL(string: "/courses/\(course.id)/pages/page-\(pageId)")!,
+                page_id: pageId,
+                title: "Page \(pageId)",
+                url: "page-\(pageId)"
+            ))
+        }
     }
 
     func createQuizAssignment(state: MiniCanvasState) {
