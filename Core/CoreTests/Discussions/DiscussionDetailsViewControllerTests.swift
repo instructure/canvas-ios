@@ -141,7 +141,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(sheet?.actions.count, 4)
 
         XCTAssertEqual(sheet?.actions[0].title, "Mark All as Read")
-        let emptyResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/"), statusCode: 204, httpVersion: nil, headerFields: nil)
+        let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
         api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
         sheet?.actions[0].action()
         XCTAssert(!webView.html.contains("Unread"))

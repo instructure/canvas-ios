@@ -88,22 +88,13 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertNotNil(reply)
     }
 
-    var notifications: [Notification] = []
     func testMarkDiscussionTopicRead() {
         let useCase = MarkDiscussionTopicRead(context: context, topicID: "1", isRead: true)
         XCTAssertNil(useCase.cacheKey)
-        NotificationCenter.default.addObserver(self, selector: #selector(observeNotification(_:)), name: nil, object: nil)
-        notifications = []
-        useCase.write(response: nil, urlResponse: nil, to: databaseClient)
-        XCTAssertEqual(notifications.count, 2)
-        XCTAssertEqual(notifications.first?.name, .CompletedModuleItemRequirement)
-        XCTAssertEqual(notifications.last?.name, .moduleItemRequirementCompleted)
-    }
-    @objc func observeNotification(_ notification: Notification) {
-        notifications.append(notification)
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
     }
 
-    let emptyResponse = HTTPURLResponse(url: URL(fileURLWithPath: "/"), statusCode: 204, httpVersion: nil, headerFields: nil)
+    let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
     func testMarkDiscussionEntriesRead() {
         let useCase = MarkDiscussionEntriesRead(context: context, topicID: "1", isRead: true, isForcedRead: true)
         XCTAssertNil(useCase.cacheKey)
