@@ -38,6 +38,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let locked_for_user: Bool
     let group_category_id: ID?
     let group_topic_children: [APIDiscussionTopicChild]?
+    let subscription_hold: String?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -105,7 +106,8 @@ extension APIDiscussionTopic {
         only_graders_can_rate: Bool? = nil,
         locked_for_user: Bool = false,
         group_category_id: ID? = nil,
-        group_topic_children: [APIDiscussionTopicChild]? = nil
+        group_topic_children: [APIDiscussionTopicChild]? = nil,
+        subscription_hold: String? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -125,7 +127,8 @@ extension APIDiscussionTopic {
             only_graders_can_rate: only_graders_can_rate,
             locked_for_user: locked_for_user,
             group_category_id: group_category_id,
-            group_topic_children: group_topic_children
+            group_topic_children: group_topic_children,
+            subscription_hold: subscription_hold
         )
     }
 }
@@ -250,6 +253,16 @@ struct PostDiscussionTopicRequest: APIRequestable {
     public var path: String {
         "\(context.pathComponent)/discussion_topics"
     }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.destroy
+struct DeleteDiscussionTopicRequest: APIRequestable {
+    typealias Response = APIDiscussionTopic
+
+    let context: Context
+    let topicID: String
+    let method = APIMethod.delete
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.add_entry
@@ -382,4 +395,73 @@ struct ListDiscussionTopicsRequest: APIRequestable {
             .include(include.map { $0.rawValue }),
         ]
     }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_read
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_unread
+struct MarkDiscussionTopicReadRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let isRead: Bool
+
+    var method: APIMethod { isRead ? .put : .delete }
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/read" }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_all_read
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_all_unread
+struct MarkDiscussionEntriesReadRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let isRead: Bool
+    let isForcedRead: Bool
+
+    var method: APIMethod { isRead ? .put : .delete }
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/read_all" }
+    var query: [APIQueryItem] { [ .bool("forced_read_state", isForcedRead) ] }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_entry_read
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_entry_unread
+struct MarkDiscussionEntryReadRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let entryID: String
+    let isRead: Bool
+    let isForcedRead: Bool
+
+    var method: APIMethod { isRead ? .put : .delete }
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/entries/\(entryID)/read" }
+    var query: [APIQueryItem] { [ .bool("forced_read_state", isForcedRead) ] }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.rate_entry
+struct PostDiscussionEntryRatingRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let entryID: String
+    let isLiked: Bool
+
+    var method: APIMethod { .post }
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/entries/\(entryID)/rating" }
+    var body: [String: UInt]? { [ "rating": isLiked ? 1 : 0 ] }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_entries.destroy
+struct DeleteDiscussionEntryRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let entryID: String
+    var method: APIMethod { .delete }
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/entries/\(entryID)" }
 }

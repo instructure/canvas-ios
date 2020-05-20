@@ -38,6 +38,6 @@ class DispatchExtensionsTests: XCTestCase {
                 }
             }
         }
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
 }

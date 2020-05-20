@@ -21,6 +21,7 @@ import UIKit
 import WebKit
 
 public class DiscussionDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate, ErrorViewController {
+    lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showTopicOptions))
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var pointsView: UIView!
     @IBOutlet weak var publishedIcon: UIImageView!
@@ -37,6 +38,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     public var color: UIColor?
     var context: Context = ContextModel.currentUser
     let env = AppEnvironment.shared
+    var isAnnouncementRoute = false
+    var isAnnouncement: Bool { topic.first?.isAnnouncement ?? isAnnouncementRoute }
     var keyboard: KeyboardTransitioning?
     var maxDepth = 3
     var topicID = ""
@@ -61,19 +64,31 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         self?.update()
     }
     lazy var topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
+        self?.updateNavBar()
         self?.update()
     }
+    func entry(_ entryID: String) -> DiscussionEntry? {
+        env.database.viewContext.first(where: #keyPath(DiscussionEntry.id), equals: entryID)
+    }
 
-    public static func create(context: Context, topicID: String) -> DiscussionDetailsViewController {
+    public static func create(context: Context, topicID: String, isAnnouncement: Bool = false) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.isAnnouncementRoute = isAnnouncement
         controller.topicID = topicID
         return controller
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Discussion Details", bundle: .core, comment: ""))
+        setupTitleViewInNavbar(title: isAnnouncement
+            ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
+            : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
+        )
+
+        optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
+        optionsButton.isEnabled = false
+        navigationItem.rightBarButtonItem = optionsButton
 
         pointsView.isHidden = true
         publishedView.isHidden = true
@@ -92,6 +107,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         webView.autoresizesHeight = true // will update the height constraint
         webView.backgroundColor = .named(.backgroundLightest)
         webView.linkDelegate = self
+        webView.addScript(Self.js)
+        webView.handle("like") { [weak self] message in self?.handleLike(message) }
+        webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
 
@@ -117,7 +135,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/discussion_topics/\(topicID)", attributes: [:])
+        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)", attributes: [:])
     }
 
     public override func viewWillLayoutSubviews() {
@@ -138,6 +156,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         spinnerView.color = color
         refreshControl.color = color
+        titleSubtitleView.title = isAnnouncement
+            ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
+            : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
         updateNavBar(subtitle: name, color: color)
     }
 
@@ -152,6 +173,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             }
             assignment?.refresh()
         }
+
+        optionsButton.isEnabled = topic.first != nil
 
         let pending = topic.pending || entries.pending
         let error = topic.error ?? entries.error
@@ -172,7 +195,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             publishedLabel.text = NSLocalizedString("Unpublished", bundle: .core, comment: "")
             publishedLabel.textColor = .named(.textDark)
         }
-        publishedView.isHidden = env.app != .teacher
+        publishedView.isHidden = env.app != .teacher || isAnnouncement
 
         loadHTML()
     }
@@ -196,6 +219,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         let path = Array(url.pathComponents.dropFirst(5))
         if path.count == 1, path[0] == "reply" {
+            Analytics.shared.logEvent(isAnnouncement ? "announcement_replied" : "discussion_topic_replied")
             env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
@@ -204,13 +228,18 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             return true
         }
         if path.count == 2, path[0] == "replies" {
-            guard let entry: DiscussionEntry = env.database.viewContext.first(where: #keyPath(DiscussionEntry.id), equals: path[1]) else { return true }
+            guard let entry = self.entry(path[1]) else { return true }
             let controller = CoreWebViewController()
             let titleView = TitleSubtitleView.create()
-            titleView.title = NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
+            titleView.title = isAnnouncement
+                ? NSLocalizedString("Announcement Replies", bundle: .core, comment: "")
+                : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
             titleView.subtitle = titleSubtitleView.subtitle
             controller.navigationItem.titleView = titleView
             controller.webView.linkDelegate = self
+            controller.webView.addScript(Self.js)
+            controller.webView.handle("like") { [weak self] message in self?.handleLike(message) }
+            controller.webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
             let html = controller.webView.html(for: """
                 <style>\(Self.css)</style>
                 \(entryHTML(entry, depth: 0))
@@ -261,6 +290,163 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         return false
     }
+
+    var isLoaded = false
+    func loaded() {
+        guard !isLoaded else { return }
+        isLoaded = true
+        // AppStoreReview.handleNavigateToAssignment()
+        MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
+    }
+}
+
+extension DiscussionDetailsViewController {
+    @objc func showTopicOptions() {
+        guard let topic = topic.first else { return }
+
+        let sheet = BottomSheetPickerViewController.create()
+        if entries.contains(where: { $0.isRead == false }) {
+            sheet.addAction(image: .icon(.check, .solid), title: NSLocalizedString("Mark All as Read", bundle: .core, comment: "")) { [weak self] in
+                self?.markAllRead(isRead: true)
+            }
+        }
+        if entries.contains(where: { $0.isRead == true }) {
+            sheet.addAction(image: .icon(.no, .solid), title: NSLocalizedString("Mark All as Unread", bundle: .core, comment: "")) { [weak self] in
+                self?.markAllRead(isRead: false)
+            }
+        }
+        if topic.canUpdate {
+            sheet.addAction(image: .icon(.edit), title: NSLocalizedString("Edit", bundle: .core, comment: "")) { [weak self] in
+                self?.editTopic()
+            }
+        }
+        if topic.canDelete {
+            sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+                self?.deleteTopic()
+            }
+        }
+        env.router.show(sheet, from: self, options: .modal())
+    }
+
+    func editTopic() {
+        let path = "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)/edit"
+        env.router.route(to: path, from: self, options: .modal(.formSheet, embedInNav: true))
+    }
+
+    func markAllRead(isRead: Bool) {
+        MarkDiscussionEntriesRead(
+            context: context,
+            topicID: topicID,
+            isRead: isRead,
+            isForcedRead: true
+        ).fetch { [weak self] _, _, error in performUIUpdate {
+            guard let self = self else { return }
+            if let error = error { return self.showError(error) }
+            self.loadHTML()
+        } }
+    }
+
+    func deleteTopic() {
+        DeleteDiscussionTopic(context: context, topicID: topicID).fetch { [weak self] _, _, error in performUIUpdate {
+            guard let self = self else { return }
+            if let error = error { return self.showError(error) }
+            self.env.router.dismiss(self)
+        } }
+    }
+}
+
+extension DiscussionDetailsViewController {
+    private func handleLike(_ message: WKScriptMessage) {
+        guard
+            let body = message.body as? [String: Any],
+            let entryID = body["entryID"] as? String,
+            let isLiked = body["isLiked"] as? Bool
+        else { return }
+        like(entryID, isLiked: isLiked)
+    }
+
+    func like(_ entryID: String, isLiked: Bool) {
+        updateActions(for: entryID, overrideLiked: isLiked)
+        RateDiscussionEntry(
+            context: context,
+            topicID: topicID,
+            entryID: entryID,
+            isLiked: isLiked
+        ).fetch { [weak self] _, _, error in performUIUpdate {
+            if let error = error { self?.showError(error) }
+            self?.updateActions(for: entryID)
+        } }
+    }
+
+    func updateActions(for entryID: String, overrideLiked: Bool? = nil) {
+        guard let entry = self.entry(entryID) else { return }
+        webView.evaluateJavaScript("""
+        document.getElementById('actions-\(entryID)').outerHTML =
+        \(CoreWebView.jsString(entryButtonsHTML(entry, overrideLiked: overrideLiked)))
+        """)
+    }
+
+    private func handleMoreOptions(_ message: WKScriptMessage) {
+        guard
+            let body = message.body as? [String: Any],
+            let entryID = body["entryID"] as? String
+        else { return }
+        showMoreOptions(for: entryID)
+    }
+
+    func showMoreOptions(for entryID: String) {
+        guard let entry = self.entry(entryID), let topic = topic.first else { return }
+        let canEdit = env.app == .teacher || (
+            !topic.lockedForUser &&
+            entry.author?.id == env.currentSession?.userID
+        )
+
+        let sheet = BottomSheetPickerViewController.create()
+        if entry.isRead == false {
+            sheet.addAction(image: .icon(.check, .solid), title: NSLocalizedString("Mark as Read", bundle: .core, comment: "")) { [weak self] in
+                self?.markRead(entryID, isRead: true)
+            }
+        } else {
+            sheet.addAction(image: .icon(.no, .solid), title: NSLocalizedString("Mark as Unread", bundle: .core, comment: "")) { [weak self] in
+                self?.markRead(entryID, isRead: false)
+            }
+        }
+        if canEdit {
+            sheet.addAction(image: .icon(.edit), title: NSLocalizedString("Edit", bundle: .core, comment: "")) { [weak self] in
+                self?.editEntry(entryID)
+            }
+            sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+                self?.deleteEntry(entryID)
+            }
+        }
+        env.router.show(sheet, from: self, options: .modal())
+    }
+
+    func editEntry(_ entryID: String) {
+        let entry = self.entry(entryID)
+        let controller = DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entry?.parentID, editEntryID: entryID)
+        env.router.show(controller, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+    }
+
+    func markRead(_ entryID: String, isRead: Bool) {
+        MarkDiscussionEntryRead(
+            context: context,
+            topicID: topicID,
+            entryID: entryID,
+            isRead: isRead,
+            isForcedRead: true
+        ).fetch()
+    }
+
+    func deleteEntry(_ entryID: String) {
+        DeleteDiscussionEntry(
+            context: context,
+            topicID: topicID,
+            entryID: entryID
+        ).fetch { [weak self] _, _, error in
+            if let error = error { self?.showError(error) }
+        }
+    }
 }
 
 extension DiscussionDetailsViewController {
@@ -270,9 +456,9 @@ extension DiscussionDetailsViewController {
 
     func loadHTML() {
         guard let topic = topic.first, !entries.pending || !entries.isEmpty else { return }
-        var entries = self.entries.all
+        var entries = self.entries.filter { $0.parentID == nil }
         if topic.sortByRating {
-            entries = entries.sorted { $0.likeCount > $1.likeCount }
+            entries.sort { $0.likeCount > $1.likeCount }
         }
         webView.loadHTMLString(webView.html(for: """
             \(Self.topicHTML(topic))
@@ -286,6 +472,7 @@ extension DiscussionDetailsViewController {
             \(entries.map { entryHTML($0, depth: 0) } .joined(separator: "\n"))
             """
         ), baseURL: topic.htmlURL)
+        loaded()
     }
 
     public static func topicHTML(_ topic: DiscussionTopic) -> String {
@@ -413,7 +600,7 @@ extension DiscussionDetailsViewController {
         """
     }
 
-    func entryButtonsHTML(_ entry: DiscussionEntry) -> String {
+    func entryButtonsHTML(_ entry: DiscussionEntry, overrideLiked: Bool? = nil) -> String {
         guard !entry.isRemoved else { return "" }
         var actions = ""
         if topic.first?.lockedForUser == false, permissions.first?.postToForum == true {
@@ -425,7 +612,11 @@ extension DiscussionDetailsViewController {
             """
         }
         actions += """
-        <button class="\(Styles.moreOptions)" aria-label="\(t(NSLocalizedString("Show more options", bundle: .core, comment: "")))">
+        <button
+            data-entry="\(t(entry.id))"
+            class="\(Styles.moreOptions)"
+            aria-label="\(t(NSLocalizedString("Show more options", bundle: .core, comment: "")))"
+        >
             <svg xmlns="http://www.w3.org/2000/svg" class="\(Styles.icon)" aria-hidden="true">
                 <circle r="2" cx="2" cy="10" />
                 <circle r="2" cx="10" cy="10" />
@@ -438,12 +629,13 @@ extension DiscussionDetailsViewController {
         if topic.first?.allowRating != true {
             rating = ""
         } else if canRate {
+            let isLiked = overrideLiked ?? entry.isLikedByMe
             let count = entry.likeCount <= 0 ? "" : String.localizedStringWithFormat(
                 NSLocalizedString("(%d)", bundle: .core, comment: "number of likes next to the like button"),
                 entry.likeCount
             )
             rating = """
-            <div class="\(Styles.like)\(entry.isLikedByMe ? " \(Styles.liked)" : "")">
+            <div class="\(Styles.like)\(isLiked ? " \(Styles.liked)" : "")">
                 <span class="\(Styles.screenreader)">
                     \(t(entry.likeCount > 0 ? entry.likeCountText : ""))
                 </span>
@@ -451,11 +643,12 @@ extension DiscussionDetailsViewController {
                 <label class="\(Styles.likeIcon)">
                     <input
                         type="checkbox"
+                        data-entry="\(t(entry.id))"
                         class="\(Styles.hiddenCheck)"
                         aria-label="\(t(NSLocalizedString("Like", bundle: .core, comment: "like action")))"
-                        \(entry.isLikedByMe ? "checked" : "")
+                        \(isLiked ? "checked" : "")
                     />
-                    \(entry.isLikedByMe ? Self.likeSolidIcon : Self.likeLineIcon)
+                    \(isLiked ? Self.likeSolidIcon : Self.likeLineIcon)
                 </label>
             </div>
             """
@@ -464,7 +657,7 @@ extension DiscussionDetailsViewController {
         }
 
         return """
-        <div class="\(Styles.actions)">
+        <div id="actions-\(entry.id)" class="\(Styles.actions)">
             \(actions)
             <span style="flex:1"></span>
             \(rating)
@@ -480,6 +673,23 @@ extension DiscussionDetailsViewController {
         </a>
         """
     }
+
+    static let js = """
+    document.addEventListener('input', event => {
+        const input = event.target.closest(".\(Styles.hiddenCheck)")
+        const entryID = input && input.dataset.entry
+        if (!entryID) { return }
+        window.webkit.messageHandlers.like.postMessage({ entryID, isLiked: input.checked })
+    })
+    document.addEventListener('click', event => {
+        const button = event.target.closest(".\(Styles.moreOptions)")
+        const entryID = button && button.dataset.entry
+        if (!entryID) { return }
+        const { x, y, width, height } = button.getBoundingClientRect()
+        const rect = { x: x + scrollX, y: y + scrollY, width, height }
+        window.webkit.messageHandlers.moreOptions.postMessage({ entryID, rect })
+    })
+    """
 
     static let paperclipIcon = """
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1920" class="\(Styles.icon)" aria-hidden="true">

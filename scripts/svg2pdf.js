@@ -54,10 +54,12 @@ function convert(svgPath, pdfPath, size, pad = 0) {
     pdf.scale(Math.min((size[0] - pad * 2) / viewBox[2], (size[1] - pad * 2) / viewBox[3]))
   }
   for (const path of svg.querySelectorAll('path')) {
-    pdf
-      .path(path.getAttribute('d').trim())
-      .fillOpacity(path.getAttribute('opacity') || '1.0')
-      .fill(path.getAttribute('fill-rule') || 'evenodd')
+    pdf.path(path.getAttribute('d').trim())
+    const opacity = parseFloat(path.getAttribute('opacity') || '1')
+    if (opacity !== 1) {
+      pdf.fillOpacity(opacity)
+    }
+    pdf.fill(path.getAttribute('fill-rule') || 'evenodd')
   }
   pdf.end()
 }

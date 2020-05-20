@@ -41,6 +41,29 @@ class GetDiscussionTopic: APIUseCase {
     }
 }
 
+class DeleteDiscussionTopic: APIUseCase {
+    typealias Model = DiscussionTopic
+
+    let context: Context
+    let topicID: String
+
+    var cacheKey: String? { nil }
+    var request: DeleteDiscussionTopicRequest {
+        DeleteDiscussionTopicRequest(context: context, topicID: topicID)
+    }
+    var scope: Scope { .where(#keyPath(DiscussionTopic.id), equals: topicID) }
+
+    init(context: Context, topicID: String) {
+        self.context = context
+        self.topicID = topicID
+    }
+
+    func write(response: APIDiscussionTopic?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard response != nil else { return }
+        client.delete(client.fetch(scope: scope) as [DiscussionTopic])
+    }
+}
+
 class GetDiscussionView: CollectionUseCase {
     typealias Model = DiscussionEntry
 
@@ -54,11 +77,9 @@ class GetDiscussionView: CollectionUseCase {
         GetDiscussionViewRequest(context: context, topicID: topicID)
     }
     var scope: Scope {
-        Scope(
-            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-                NSPredicate(key: #keyPath(DiscussionEntry.topicID), equals: topicID),
-                NSPredicate(key: #keyPath(DiscussionEntry.parentID), equals: nil),
-            ]),
+        Scope.where(
+            #keyPath(DiscussionEntry.topicID),
+            equals: topicID,
             orderBy: #keyPath(DiscussionEntry.createdAt)
         )
     }
@@ -123,7 +144,132 @@ class CreateDiscussionReply: APIUseCase {
         )
         if context.contextType == .course {
             NotificationCenter.default.post(moduleItem: .discussion(topicID), completedRequirement: .contribute, courseID: context.id)
-            NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
         }
+        NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+    }
+}
+
+class MarkDiscussionTopicRead: APIUseCase {
+    var cacheKey: String? { nil }
+    let context: Context
+    let request: MarkDiscussionTopicReadRequest
+    let topicID: String
+
+    init(context: Context, topicID: String, isRead: Bool) {
+        self.context = context
+        self.request = MarkDiscussionTopicReadRequest(context: context, topicID: topicID, isRead: isRead)
+        self.topicID = topicID
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        if context.contextType == .course {
+            NotificationCenter.default.post(moduleItem: .discussion(topicID), completedRequirement: .view, courseID: context.id)
+        }
+        NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
+    }
+}
+
+class MarkDiscussionEntriesRead: APIUseCase {
+    var cacheKey: String? { nil }
+    let context: Context
+    let request: MarkDiscussionEntriesReadRequest
+    let topicID: String
+    let isRead: Bool
+    let isForcedRead: Bool
+
+    init(context: Context, topicID: String, isRead: Bool, isForcedRead: Bool) {
+        self.context = context
+        self.request = MarkDiscussionEntriesReadRequest(context: context, topicID: topicID, isRead: isRead, isForcedRead: isForcedRead)
+        self.topicID = topicID
+        self.isRead = isRead
+        self.isForcedRead = isForcedRead
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let entries: [DiscussionEntry] = client.all(where: #keyPath(DiscussionEntry.topicID), equals: topicID)
+        for entry in entries {
+            entry.isForcedRead = isForcedRead
+            entry.isRead = isRead
+        }
+        let topic: DiscussionTopic? = client.first(where: #keyPath(DiscussionTopic.id), equals: topicID)
+        topic?.unreadCount = isRead ? 0 : entries.count
+    }
+}
+
+class MarkDiscussionEntryRead: APIUseCase {
+    var cacheKey: String? { nil }
+    let context: Context
+    let request: MarkDiscussionEntryReadRequest
+    let topicID: String
+    let entryID: String
+    let isRead: Bool
+    let isForcedRead: Bool
+
+    init(context: Context, topicID: String, entryID: String, isRead: Bool, isForcedRead: Bool) {
+        self.context = context
+        self.request = MarkDiscussionEntryReadRequest(context: context, topicID: topicID, entryID: entryID, isRead: isRead, isForcedRead: isForcedRead)
+        self.topicID = topicID
+        self.entryID = entryID
+        self.isRead = isRead
+        self.isForcedRead = isForcedRead
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let entry: DiscussionEntry? = client.first(where: #keyPath(DiscussionEntry.id), equals: entryID)
+        entry?.isForcedRead = isForcedRead
+        entry?.isRead = isRead
+        let entries: [DiscussionEntry] = client.fetch(NSPredicate(format: "%K == %@ and %K == %@",
+            #keyPath(DiscussionEntry.topicID), topicID,
+            #keyPath(DiscussionEntry.isRead), false
+        ))
+        let topic: DiscussionTopic? = client.first(where: #keyPath(DiscussionTopic.id), equals: topicID)
+        topic?.unreadCount = entries.count
+    }
+}
+
+class RateDiscussionEntry: APIUseCase {
+    var cacheKey: String? { nil }
+    let context: Context
+    let request: PostDiscussionEntryRatingRequest
+    let topicID: String
+    let entryID: String
+    let isLiked: Bool
+
+    init(context: Context, topicID: String, entryID: String, isLiked: Bool) {
+        self.context = context
+        self.request = PostDiscussionEntryRatingRequest(context: context, topicID: topicID, entryID: entryID, isLiked: isLiked)
+        self.topicID = topicID
+        self.entryID = entryID
+        self.isLiked = isLiked
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let entry: DiscussionEntry? = client.first(where: #keyPath(DiscussionEntry.id), equals: entryID)
+        entry?.isLikedByMe = isLiked
+        entry?.likeCount += isLiked ? 1 : -1
+    }
+}
+
+class DeleteDiscussionEntry: APIUseCase {
+    var cacheKey: String? { nil }
+    let context: Context
+    let request: DeleteDiscussionEntryRequest
+    let topicID: String
+    let entryID: String
+
+    init(context: Context, topicID: String, entryID: String) {
+        self.context = context
+        self.request = DeleteDiscussionEntryRequest(context: context, topicID: topicID, entryID: entryID)
+        self.topicID = topicID
+        self.entryID = entryID
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let entry: DiscussionEntry? = client.first(where: #keyPath(DiscussionEntry.id), equals: entryID)
+        entry?.isRemoved = true
     }
 }
