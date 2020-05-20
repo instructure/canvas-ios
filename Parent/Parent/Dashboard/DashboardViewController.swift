@@ -198,14 +198,12 @@ class DashboardViewController: UIViewController {
             studentListStack.addArrangedSubview(button)
         }
         let addButton = AddStudentButton()
-        addButton.addTarget(addStudentController, action: #selector(addStudentController.actionAddStudent), for: .primaryActionTriggered)
+        addButton.addTarget(self, action: #selector(actionDidTapAddStudent), for: .primaryActionTriggered)
         studentListStack.addArrangedSubview(addButton)
     }
 
     @IBAction func didTapDropdownButton() {
-        guard !students.isEmpty else {
-            return addStudentController.actionAddStudent()
-        }
+        guard !students.isEmpty else { return actionDidTapAddStudent() }
         toggleStudentList(studentListHiddenHeight.isActive)
     }
 
@@ -279,6 +277,60 @@ class DashboardViewController: UIViewController {
         }
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
+    }
+
+    @objc func actionDidTapAddStudent() {
+        if ExperimentalFeature.parentQRCodePairing.isEnabled {
+            let selectionVC = SelectAddStudentMethodViewController.create(delegate: self)
+            env.router.show(selectionVC, from: self, options: .modal())
+        } else {
+            addStudentController.actionAddStudent()
+        }
+    }
+}
+
+extension DashboardViewController: ScannerDelegate, ErrorViewController {
+    func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
+        env.router.dismiss(scanner) {
+            guard
+                let comps = URLComponents(string: code),
+                let pairingCode = comps.url?.lastPathComponent,
+                comps.queryItems?.first?.name == "baseURL",
+                let host = comps.queryItems?.first?.value
+            else {
+                let error = NSError.instructureError(NSLocalizedString("Could not parse QR code, QR code invalid", comment: ""))
+                self.showError(error)
+                return
+            }
+
+            if host != self.env.currentSession?.baseURL.host {
+                let title = NSLocalizedString("Domain mismatch", comment: "")
+                let msg = NSLocalizedString(
+                    """
+                    The student you are trying to add is at a different Canvas institution.
+                    Sign in or create an account with that institution to add this student.
+                    """,
+                    comment: "")
+                self.showAlert(title: title, message: msg)
+                return
+            }
+            self.addStudentController.addPairingCode(code: pairingCode)
+        }
+    }
+}
+
+extension DashboardViewController: AddStudentMethodProtocol {
+    func didSelectAddStudentMethod(method: AddObserveeMethod) {
+        env.router.dismiss(self) {
+            switch method {
+            case .qr:
+                let scanner = ScannerViewController()
+                scanner.delegate = self
+                self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+            case .pairingCode:
+                self.addStudentController.actionAddStudent()
+            }
+        }
     }
 }
 
