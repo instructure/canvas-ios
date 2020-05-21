@@ -73,6 +73,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
         termsAndConditionsTextView.attributedText = termsOfServicePrivacyPolicyAttributedString()
         termsAndConditionsTextView.delegate = self
+        termsAndConditionsTextView.tintColor = .named(.electric)
 
         alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
@@ -189,8 +190,6 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
             NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
         ]
         let attributed = NSMutableAttributedString(string: message, attributes: attributes)
-        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: terms))
-        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: privacyPolicy))
         attributed.addAttribute(
             .link,
             value: "https://www.instructure.com/policies/acceptable-use?newhome=canvas",
