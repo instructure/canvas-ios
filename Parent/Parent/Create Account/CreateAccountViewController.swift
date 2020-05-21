@@ -100,7 +100,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
             let info = notification.userInfo as? [String: Any],
             let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             else { return }
-        scrollPadding.constant = 200
+        scrollPadding.constant = 350
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
 
