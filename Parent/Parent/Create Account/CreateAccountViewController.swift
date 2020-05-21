@@ -46,6 +46,8 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        scrollView.keyboardDismissMode = .interactive
+
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         name.labelName.text = NSLocalizedString("Full name", comment: "")
