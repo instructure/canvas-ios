@@ -29,6 +29,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var termsAndConditionsTextView: UITextView!
     @IBOutlet weak var alreadyHaveAccountLabel: DynamicLabel!
     @IBOutlet weak var termsAndConditionsTextViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollPadding: NSLayoutConstraint!
     var selectedTextField: UITextField?
     var baseURL: URL?
     var accountID: String = ""
@@ -45,9 +46,9 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        scrollView.keyboardDismissMode = .interactive
 
-        scrollView.keyboardDismissMode = .onDrag
+        navigationController?.setNavigationBarHidden(true, animated: false)
 
         name.labelName.text = NSLocalizedString("Full name", comment: "")
         name.textField.placeholder = NSLocalizedString("Full name...", comment: "")
@@ -74,6 +75,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
         termsAndConditionsTextView.attributedText = termsOfServicePrivacyPolicyAttributedString()
         termsAndConditionsTextView.delegate = self
+        termsAndConditionsTextView.tintColor = .named(.electric)
 
         alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
@@ -89,16 +91,19 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
     }
 
     func setupKeyboardNofications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func keyboardWillHide(_ notification: Notification) {
+        scrollPadding.constant = 0
     }
 
-    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         guard
             let info = notification.userInfo as? [String: Any],
             let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             else { return }
+        scrollPadding.constant = 350
         scrollView.scrollToView(view: selectedTextField, keyboardRect: keyboardFrame)
     }
 
@@ -187,8 +192,6 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
             NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
         ]
         let attributed = NSMutableAttributedString(string: message, attributes: attributes)
-        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: terms))
-        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: privacyPolicy))
         attributed.addAttribute(
             .link,
             value: "https://www.instructure.com/policies/acceptable-use?newhome=canvas",
