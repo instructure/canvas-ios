@@ -258,7 +258,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
     }
 
     func testUpdateUpdateSubmissionLabelsUploadingState() {
-        setupFileForSubmittedLabel(removeID: true, taskID: 1)
+        setupFileForSubmittedLabel(removeID: true, taskID: "1")
         load()
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Uploading...")
@@ -399,7 +399,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     }
 
-    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: Int? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
+    func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = apiAssignment ?? APIAssignment.make(

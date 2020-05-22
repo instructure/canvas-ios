@@ -69,7 +69,7 @@ final public class File: NSManagedObject {
     @NSManaged public var submission: Submission?
     @NSManaged public var uploadError: String?
     @NSManaged public var bytesSent: Int
-    @NSManaged public var taskIDRaw: NSNumber?
+    @NSManaged public var taskID: String?
     @NSManaged public private(set) var userID: String?
     @NSManaged public var contextRaw: Data?
     @NSManaged public var userRaw: Data?
@@ -88,11 +88,6 @@ final public class File: NSManagedObject {
     /// Should only be set in the case of a submission.
     /// Set using `prepareForSubmission(courseID:assignmentID:)`
     @NSManaged public private(set) var assignmentID: String?
-
-    public var taskID: Int? {
-        get { return taskIDRaw?.intValue }
-        set { taskIDRaw = NSNumber(value: newValue) }
-    }
 
     public var context: FileUploadContext? {
         get { return contextRaw.flatMap { try? JSONDecoder().decode(FileUploadContext.self, from: $0) } }

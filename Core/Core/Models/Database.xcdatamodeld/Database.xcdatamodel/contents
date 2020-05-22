@@ -295,7 +295,7 @@
         <attribute name="previewURL" optional="YES" attributeType="URI"/>
         <attribute name="refreshData" optional="YES" attributeType="Binary"/>
         <attribute name="size" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="taskIDRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="taskID" optional="YES" attributeType="String"/>
         <attribute name="thumbnailURL" optional="YES" attributeType="URI"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

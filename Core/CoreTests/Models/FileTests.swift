@@ -47,7 +47,7 @@ class FileTests: CoreTestCase {
         file.taskID = nil
         XCTAssertFalse(file.isUploading)
 
-        file.taskID = 1
+        file.taskID = "1"
         XCTAssertTrue(file.isUploading)
     }
 
