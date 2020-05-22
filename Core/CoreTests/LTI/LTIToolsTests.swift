@@ -153,7 +153,7 @@ class LTIToolsTests: CoreTestCase {
         api.mock(request, value: .make(url: url))
         UserDefaults.standard.set(true, forKey: "open_lti_safari")
         tools.presentTool(from: mockView, animated: true)
-        XCTAssertEqual(login.externalURL, url)
+        XCTAssertEqual(login.externalURL, url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile")))
         XCTAssertNil(router.presented)
     }
 

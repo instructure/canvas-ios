@@ -85,7 +85,7 @@ public class LTITools {
                 self?.markModuleItemRead()
                 completionHandler?(success)
             }
-            let url = response.url
+            let url = response.url.appendingQueryItems(URLQueryItem(name: "platform", value: "mobile"))
             if response.name == "Google Apps" {
                 let controller = GoogleCloudAssignmentViewController(url: url)
                 self.env.router.show(controller, from: view, options: .modal(.overFullScreen, embedInNav: true, addDoneButton: true)) {
