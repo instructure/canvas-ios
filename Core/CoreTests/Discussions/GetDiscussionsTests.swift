@@ -88,6 +88,15 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertNotNil(reply)
     }
 
+    func testUpdateDiscussionReply() {
+        let useCase = UpdateDiscussionReply(context: context, topicID: "2", entryID: "1", message: "updated")
+        XCTAssertNil(useCase.cacheKey)
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        let reply = DiscussionEntry.make()
+        useCase.write(response: .make(message: "updated"), urlResponse: nil, to: databaseClient)
+        XCTAssertEqual(reply.message, "updated")
+    }
+
     func testMarkDiscussionTopicRead() {
         let useCase = MarkDiscussionTopicRead(context: context, topicID: "1", isRead: true)
         XCTAssertNil(useCase.cacheKey)

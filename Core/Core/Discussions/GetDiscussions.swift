@@ -149,6 +149,24 @@ class CreateDiscussionReply: APIUseCase {
     }
 }
 
+class UpdateDiscussionReply: APIUseCase {
+    typealias Model = DiscussionEntry
+
+    var cacheKey: String? { nil }
+    let request: PutDiscussionEntryRequest
+    let scope: Scope
+
+    init(context: Context, topicID: String, entryID: String, message: String) {
+        request = PutDiscussionEntryRequest(context: context, topicID: topicID, entryID: entryID, message: message)
+        scope = .where(#keyPath(DiscussionEntry.id), equals: entryID)
+    }
+
+    func write(response: APIDiscussionEntry?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        DiscussionEntry.save(item, in: client)
+    }
+}
+
 class MarkDiscussionTopicRead: APIUseCase {
     var cacheKey: String? { nil }
     let context: Context

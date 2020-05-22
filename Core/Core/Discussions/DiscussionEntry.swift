@@ -67,15 +67,15 @@ public final class DiscussionEntry: NSManagedObject {
         }
         model.createdAt = item.created_at
         model.id = item.id.value
-        model.isLikedByMe = (entryRatings?[model.id] ?? 0) > 0
-        model.isForcedRead = forcedIDs?.contains(model.id) == true
-        model.isRead = unreadIDs?.contains(model.id) != true
+        model.isLikedByMe = entryRatings?[model.id].map { $0 > 0 } ?? model.isLikedByMe
+        model.isForcedRead = forcedIDs?.contains(model.id) ?? model.isForcedRead
+        model.isRead = unreadIDs.map { !$0.contains(model.id) } ?? model.isRead
         model.isRemoved = item.deleted == true
         model.likeCount = item.rating_count ?? 0
         model.message = item.message
-        model.parent = parent
+        model.parent = parent ?? model.parent
         model.parentID = item.parent_id?.value
-        if let topicID = topicID { model.topicID = topicID }
+        model.topicID = topicID ?? model.topicID
         model.updatedAt = item.updated_at
         model.userID = item.user_id?.value ?? item.editor_id?.value ?? ""
 

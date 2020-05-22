@@ -140,5 +140,12 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.titleSubtitleView.title, "Edit")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
         XCTAssert(webView.html.contains("Is the cube rule of food valid? What's your take?"))
+
+        api.mock(UpdateDiscussionReply(context: context, topicID: "1", entryID: "1", message: ""), error: NSError.internalError())
+        _ = controller.sendButton.target?.perform(controller.sendButton.action)
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
+        XCTAssertEqual(controller.sendButton.customView, nil)
+        api.mock(UpdateDiscussionReply(context: context, topicID: "1", entryID: "1", message: ""), value: .make())
+        _ = controller.sendButton.target?.perform(controller.sendButton.action)
     }
 }
