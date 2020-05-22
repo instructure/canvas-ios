@@ -72,7 +72,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQV-x4-3qS" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                <rect key="frame" x="32" y="7.5" width="67" height="17"/>
+                                                                <rect key="frame" x="30" y="7.5" width="69" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -130,6 +130,9 @@
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="ckl-aB-Paj"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="VWC-rR-MRz"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TAD-yz-xvz" id="r5E-yD-P1f"/>
+                                </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyV-af-he3" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>

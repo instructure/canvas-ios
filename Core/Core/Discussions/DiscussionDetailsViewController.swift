@@ -42,6 +42,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var isAnnouncement: Bool { topic.first?.isAnnouncement ?? isAnnouncementRoute }
     var keyboard: KeyboardTransitioning?
     var maxDepth = 3
+    var readTimer: Timer?
     var topicID = ""
 
     var assignment: Store<GetAssignment>?
@@ -110,6 +111,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         webView.addScript(Self.js)
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
+        webView.handle("loaded") { [weak self] _ in self?.loaded() }
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
 
@@ -240,6 +242,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             controller.webView.addScript(Self.js)
             controller.webView.handle("like") { [weak self] message in self?.handleLike(message) }
             controller.webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
+            controller.webView.handle("loaded") { _ in }
             let html = controller.webView.html(for: """
                 <style>\(Self.css)</style>
                 \(entryHTML(entry, depth: 0))
@@ -297,6 +300,44 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         isLoaded = true
         // AppStoreReview.handleNavigateToAssignment()
         MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
+        scrollViewDidScroll(scrollView) // read initial
+    }
+}
+
+extension DiscussionDetailsViewController: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        readTimer?.invalidate()
+        readTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [weak self] _ in
+            self?.readVisibleEntries()
+        }
+    }
+
+    func readVisibleEntries() {
+        let visible = scrollView.convert(scrollView.bounds, to: webView)
+        // Get all ids of messages that have at least 18px visible
+        // (or all of it is visible if it's smaller than 18px)
+        webView.evaluateJavaScript("""
+        Array.from(document.querySelectorAll('[id^=message-]')).filter(message => {
+            const { top: minY, bottom: maxY, height } = message.getBoundingClientRect()
+            return (Math.min(\(visible.maxY), maxY) - Math.max(\(visible.minY), minY)) >= Math.min(height, 18)
+        }).map(message => message.id.split('-').pop())
+        """) { [weak self] ids, _ in
+            guard let ids = ids as? [String] else { return }
+            self?.readEntries(ids: ids)
+        }
+    }
+
+    func readEntries(ids: [String]) {
+        for entryID in ids {
+            guard let e = entry(entryID), !e.isRead, !e.isForcedRead else { continue }
+            MarkDiscussionEntryRead(
+                context: context,
+                topicID: topicID,
+                entryID: entryID,
+                isRead: true,
+                isForcedRead: false
+            ).fetch()
+        }
     }
 }
 
@@ -472,7 +513,6 @@ extension DiscussionDetailsViewController {
             \(entries.map { entryHTML($0, depth: 0) } .joined(separator: "\n"))
             """
         ), baseURL: topic.htmlURL)
-        loaded()
     }
 
     public static func topicHTML(_ topic: DiscussionTopic) -> String {
@@ -580,7 +620,7 @@ extension DiscussionDetailsViewController {
             """)
             \(Self.entryHeader(author: entry.author, date: entry.updatedAt, attachment: entry.isRemoved ? nil : entry.attachment, isTopic: false))
             <div class="\(Styles.entryContent)">
-                \(Self.messageHTML(entry))
+                <div id="message-\(t(entry.id))">\(Self.messageHTML(entry))</div>
                 \(entryButtonsHTML(entry))
                 \(viewMoreRepliesLink(entry, depth: depth))
                 \((!entry.replies.isEmpty && depth < maxDepth) ? entry.replies.map {
@@ -689,6 +729,7 @@ extension DiscussionDetailsViewController {
         const rect = { x: x + scrollX, y: y + scrollY, width, height }
         window.webkit.messageHandlers.moreOptions.postMessage({ entryID, rect })
     })
+    window.webkit.messageHandlers.loaded.postMessage('')
     """
 
     static let paperclipIcon = """

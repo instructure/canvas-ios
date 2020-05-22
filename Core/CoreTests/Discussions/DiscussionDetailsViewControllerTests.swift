@@ -25,13 +25,21 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     let course = ContextModel(.course, id: "1")
     lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1")
 
+    let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
+
     var baseURL: URL { environment.api.baseURL }
     let webView = MockWebView()
     class MockWebView: CoreWebView {
         var html: String = ""
-        open override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
+        override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
             html = string
             return super.loadHTMLString(string, baseURL: baseURL)
+        }
+
+        var jsResult: Any?
+        var jsError: Error?
+        override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {
+            completionHandler?(jsResult, jsError)
         }
     }
 
@@ -141,7 +149,6 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(sheet?.actions.count, 4)
 
         XCTAssertEqual(sheet?.actions[0].title, "Mark All as Read")
-        let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
         api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
         sheet?.actions[0].action()
         XCTAssert(!webView.html.contains("Unread"))
@@ -190,6 +197,16 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.refreshControl.isRefreshing, false)
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
+    }
+
+    func testAutomaticRead() {
+        controller.view.layoutIfNeeded()
+        api.mock(MarkDiscussionEntryReadRequest(context: course, topicID: "1", entryID: "4", isRead: true, isForcedRead: false), response: emptyResponse)
+        controller.loaded()
+        XCTAssertNotNil(controller.readTimer)
+        webView.jsResult = [ "2", "4" ]
+        controller.readTimer?.fire()
+        XCTAssert(!webView.html.contains("Unread"))
     }
 
     func testStudentGroupTopic() {
