@@ -630,6 +630,8 @@
 		7DDC450F215BF4AA003F3209 /* UIFontExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC450E215BF4AA003F3209 /* UIFontExtensionsTests.swift */; };
 		7DDC4511215BF7AA003F3209 /* BundleExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */; };
 		7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */; };
+		7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDE6E0A2476DF15006523D4 /* DiscussionHTML.swift */; };
+		7DDE6E0D24770E90006523D4 /* preact.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7DDE6E0C24770E8F006523D4 /* preact.min.js */; };
 		7DE3D11F225E7058000CAE7C /* RichContentToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */; };
 		7DE6A7092319B05700A5B796 /* APIErrorReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE6A7082319B05700A5B796 /* APIErrorReportTests.swift */; };
 		7DE949802385E08000B27F93 /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE9497F2385E08000B27F93 /* TodoTests.swift */; };
@@ -1615,6 +1617,8 @@
 		7DDC4510215BF7AA003F3209 /* BundleExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensionsTests.swift; sourceTree = "<group>"; };
 		7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioRecorderViewController.storyboard; sourceTree = "<group>"; };
 		7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
+		7DDE6E0A2476DF15006523D4 /* DiscussionHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTML.swift; sourceTree = "<group>"; };
+		7DDE6E0C24770E8F006523D4 /* preact.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = preact.min.js; sourceTree = "<group>"; };
 		7DE3D11E225E7058000CAE7C /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
 		7DE3D120225E7074000CAE7C /* RichContentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentToolbarView.swift; sourceTree = "<group>"; };
 		7DE6A7052319973700A5B796 /* APIErrorReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReport.swift; sourceTree = "<group>"; };
@@ -2953,11 +2957,13 @@
 				7D5558692461E75F0039CE43 /* DiscussionDetailsViewController.storyboard */,
 				7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */,
 				787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */,
+				7DDE6E0A2476DF15006523D4 /* DiscussionHTML.swift */,
 				7D627169245B422900FC1798 /* DiscussionParticipant.swift */,
 				7D06A2B42469B7EF00D76267 /* DiscussionReplyViewController.storyboard */,
 				7D06A2B22469B7D100D76267 /* DiscussionReplyViewController.swift */,
 				3B635B28225C13DD001F353D /* DiscussionTopic.swift */,
 				7D62716B245B591E00FC1798 /* GetDiscussions.swift */,
+				7DDE6E0C24770E8F006523D4 /* preact.min.js */,
 			);
 			path = Discussions;
 			sourceTree = "<group>";
@@ -4377,6 +4383,7 @@
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradeListViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
+				7DDE6E0D24770E90006523D4 /* preact.min.js in Resources */,
 				97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */,
 				3B4D89262450A8E9004ED120 /* ComposeReplyViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
@@ -5008,6 +5015,7 @@
 				7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */,
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
+				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
 				7DA2609523F72327005D2121 /* RichContentToolbarView.swift in Sources */,
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,

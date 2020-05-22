@@ -265,8 +265,7 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
     public var descriptionHTML: String {
         let fallback = "<i>\(NSLocalizedString("No Content", bundle: .core, comment: ""))</i>"
         if isDiscussion {
-            guard let topic = discussionTopic else { return fallback }
-            return DiscussionDetailsViewController.topicHTML(topic)
+            return discussionTopic.map { DiscussionHTML.string(for: $0) } ?? fallback
         }
         return details ?? fallback
     }

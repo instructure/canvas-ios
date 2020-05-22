@@ -26,21 +26,40 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1")
 
     let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
+    let unread = "class=\"\(DiscussionHTML.Styles.unread)\""
 
     var baseURL: URL { environment.api.baseURL }
     let webView = MockWebView()
     class MockWebView: CoreWebView {
-        var html: String = ""
-        override func loadHTMLString(_ string: String, baseURL: URL? = AppEnvironment.shared.currentSession?.baseURL) -> WKNavigation? {
-            html = string
-            return super.loadHTMLString(string, baseURL: baseURL)
-        }
-
-        var jsResult: Any?
-        var jsError: Error?
+        @objc var runningCount = 0
         override func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((Any?, Error?) -> Void)? = nil) {
-            completionHandler?(jsResult, jsError)
+            runningCount += 1
+            super.evaluateJavaScript(javaScriptString) { result, error in
+                self.runningCount -= 1
+                completionHandler?(result, error)
+            }
         }
+    }
+
+    func waitForWebView() {
+        let webView = self.webView
+        let exp = expectation(for: NSPredicate(key: #keyPath(MockWebView.runningCount), equals: 0), evaluatedWith: webView) { () -> Bool in
+            webView.url != nil && !webView.isLoading
+        }
+        wait(for: [exp], timeout: 9)
+    }
+
+    func getBodyHTML() -> String {
+        waitForWebView()
+        var html = ""
+        let exp = expectation(description: "getBodyHTML")
+        webView.evaluateJavaScript("document.body.innerHTML") { result, error in
+            if let result = result as? String { html = result }
+            XCTAssertNil(error)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 9)
+        return html
     }
 
     override func setUp() {
@@ -108,16 +127,17 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.publishedView.isHidden, true)
 
         XCTAssertEqual(controller.maxDepth, controller.view.traitCollection.horizontalSizeClass == .compact ? 2 : 4)
-        XCTAssert(webView.html.contains("Instructor (she/her)"))
-        XCTAssert(webView.html.contains("May 7, 2020 at 8:35 AM"))
-        XCTAssert(webView.html.contains("Is the cube rule of food valid?"))
-        XCTAssert(webView.html.contains("Bob"))
-        XCTAssert(webView.html.contains("Oreos are sandwiches."))
-        XCTAssert(webView.html.contains("Ruth"))
-        XCTAssert(webView.html.contains("Deleted this reply."))
-        XCTAssert(webView.html.contains("I disagree"))
-        XCTAssert(webView.html.contains("Why?"))
-        XCTAssert(webView.html.contains("View more replies"))
+        let html = getBodyHTML()
+        XCTAssert(html.contains("Instructor (she/her)"))
+        XCTAssert(html.contains("May 7, 2020 at 8:35 AM"))
+        XCTAssert(html.contains("Is the cube rule of food valid?"))
+        XCTAssert(html.contains("Bob"))
+        XCTAssert(html.contains("Oreos are sandwiches."))
+        XCTAssert(html.contains("Ruth"))
+        XCTAssert(html.contains("Deleted this reply."))
+        XCTAssert(html.contains("I disagree"))
+        XCTAssert(html.contains("Why?"))
+        XCTAssert(!html.contains("Hot Pockets"))
 
         var link = baseURL.appendingPathComponent("courses/1/assignments/2")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
@@ -137,11 +157,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         link = baseURL.appendingPathComponent("courses/1/discussion_topics/1/replies/3")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
-        let web = router.viewControllerCalls.last?.0 as? CoreWebViewController
-        let titleView = web?.navigationItem.titleView as? TitleSubtitleView
-        XCTAssert(web?.webView.linkDelegate === controller)
-        XCTAssertEqual(titleView?.title, "Discussion Replies")
-        XCTAssertEqual(titleView?.subtitle, "Course One")
+        let replies = router.viewControllerCalls.last?.0 as? DiscussionDetailsViewController
+        XCTAssertEqual(replies?.showRepliesToEntryID, "3")
 
         XCTAssert(controller.optionsButton == controller.navigationItem.rightBarButtonItem)
         _ = controller.optionsButton.target?.perform(controller.optionsButton.action)
@@ -151,10 +168,10 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(sheet?.actions[0].title, "Mark All as Read")
         api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
         sheet?.actions[0].action()
-        XCTAssert(!webView.html.contains("Unread"))
+        XCTAssert(!getBodyHTML().contains(unread))
         XCTAssertEqual(sheet?.actions[1].title, "Mark All as Unread")
         sheet?.actions[1].action()
-        XCTAssert(webView.html.contains("Unread"))
+        XCTAssert(getBodyHTML().contains(unread))
 
         XCTAssertEqual(sheet?.actions[2].title, "Edit")
         sheet?.actions[2].action()
@@ -168,7 +185,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         api.mock(RateDiscussionEntry(context: course, topicID: "1", entryID: "1", isLiked: true), response: emptyResponse)
         // Too hard to simulate the webView handler
         controller.like("1", isLiked: true)
-        XCTAssert(webView.html.contains("1 like"))
+        XCTAssert(getBodyHTML().contains("1 like"))
 
         environment.app = .teacher // to make sure we get all the options
         controller.showMoreOptions(for: "1")
@@ -199,14 +216,33 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
 
-    func testAutomaticRead() {
+    func testShowReplies() {
+        controller.showRepliesToEntryID = "3"
         controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.pointsView.isHidden, true)
+        XCTAssertEqual(controller.publishedView.isHidden, true)
+        XCTAssertEqual(controller.titleSubtitleView.title, "Discussion Replies")
+        let html = getBodyHTML()
+        XCTAssert(!html.contains("Is the cube rule of food valid?"))
+        XCTAssert(html.contains("Why?"))
+        XCTAssert(html.contains("Hot Pockets"))
+    }
+
+    func testShowEntry() {
+        controller.showEntryID = "4"
+        controller.view.layoutIfNeeded()
+        waitForWebView()
+        XCTAssertEqual((router.last as? DiscussionDetailsViewController)?.showRepliesToEntryID, "4")
+    }
+
+    func testAutomaticRead() {
         api.mock(MarkDiscussionEntryReadRequest(context: course, topicID: "1", entryID: "4", isRead: true, isForcedRead: false), response: emptyResponse)
-        controller.loaded()
+        controller.view.layoutIfNeeded()
+        waitForWebView()
         XCTAssertNotNil(controller.readTimer)
-        webView.jsResult = [ "2", "4" ]
         controller.readTimer?.fire()
-        XCTAssert(!webView.html.contains("Unread"))
+        waitForWebView()
+        XCTAssert(!getBodyHTML().contains(unread))
     }
 
     func testStudentGroupTopic() {
@@ -250,9 +286,10 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, group.canvasContextID)
         XCTAssertEqual(controller.topicID, "2")
-        XCTAssert(webView.html.contains("Is the cube rule of food valid?"))
-        XCTAssert(webView.html.contains("Bob"))
-        XCTAssert(webView.html.contains("Oreos are sandwiches."))
+        let html = getBodyHTML()
+        XCTAssert(html.contains("Is the cube rule of food valid?"))
+        XCTAssert(html.contains("Bob"))
+        XCTAssert(html.contains("Oreos are sandwiches."))
     }
 
     func testTeacherGroupTopic() {
@@ -273,8 +310,9 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, "course_1")
         XCTAssertEqual(controller.topicID, "1")
-        XCTAssert(webView.html.contains("each group has its own conversation"))
-        XCTAssert(webView.html.contains("Group One"))
-        XCTAssert(webView.html.contains("/groups/1/discussion_topics/2"))
+        let html = getBodyHTML()
+        XCTAssert(html.contains("each group has its own conversation"))
+        XCTAssert(html.contains("Group One"))
+        XCTAssert(html.contains("/groups/1/discussion_topics/2"))
     }
 }
