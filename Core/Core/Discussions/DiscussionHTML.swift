@@ -216,6 +216,7 @@ enum DiscussionHTML {
     }
 
     static var preact: String {
+        // swiftlint:disable:next force_try
         try! String(contentsOf: Bundle.core.url(forResource: "preact.min", withExtension: "js")!, encoding: .utf8)
     }
 
