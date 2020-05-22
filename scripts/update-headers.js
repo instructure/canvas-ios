@@ -41,6 +41,7 @@ const ignoreExps = [
   /\.framework\/Versions\//i,
   /node_modules/i,
   /jquery/i,
+  /preact/i,
 ]
 
 //                   optional shebang   space    star block        hash or slash block       space
