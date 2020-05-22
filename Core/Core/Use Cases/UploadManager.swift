@@ -168,7 +168,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                             let request = PostFileUploadRequest(fileURL: url, target: target)
                             let api = URLSessionAPI(loginSession: nil, baseURL: target.upload_url, urlSession: self.backgroundSession)
                             let task = try api.uploadTask(request)
-                            file.taskID = task.taskIdentifier
+                            file.taskID = UUID.string
+                            task.taskDescription = file.taskID
                             try self.context.save()
                             task.resume()
                         } catch let error {
@@ -186,7 +187,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         Logger.shared.log()
         context.performAndWait {
-            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            guard let file = self.file(taskID: task.taskDescription) else { return }
             file.bytesSent = Int(totalBytesSent)
             file.size = Int(totalBytesExpectedToSend)
             try? context.save()
@@ -196,7 +197,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         Logger.shared.log()
         self.context.performAndWait {
-            guard let file = self.file(taskID: task.taskIdentifier) else { return }
+            guard let file = self.file(taskID: task.taskDescription) else { return }
             if error == nil, case let .submission(courseID, assignmentID, comment)? = file.context {
                 self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
                 return
@@ -208,7 +209,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         Logger.shared.log()
         self.context.performAndWait {
-            guard let file = self.file(taskID: dataTask.taskIdentifier) else { return }
+            guard let file = self.file(taskID: dataTask.taskDescription) else { return }
             do {
                 let response = try self.decoder.decode(APIFile.self, from: data)
                 file.update(fromAPIModel: response)
@@ -244,7 +245,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             guard let file = try? context.existingObject(with: objectID) as? File else { return }
             let taskID = file.taskID
             backgroundSession.getAllTasks { tasks in
-                tasks.first { $0.taskIdentifier == taskID }?.cancel()
+                tasks.first { $0.taskDescription == taskID }?.cancel()
             }
             context.delete(file)
             try? context.save()
@@ -256,10 +257,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         guard let session = environment.currentSession else { return }
         context.performAndWait {
             let files: [File] = context.fetch(predicate(userID: session.userID, batchID: batchID))
-            let taskIDs = files.compactMap { $0.taskID }
+            let taskIDs = files.map { $0.taskID }
             backgroundSession.getAllTasks { tasks in
                 for task in tasks {
-                    if taskIDs.contains(task.taskIdentifier) {
+                    if taskIDs.contains(task.taskDescription) {
                         task.cancel()
                     }
                 }
@@ -328,10 +329,11 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         completionHandler?()
     }
 
-    func file(taskID: Int) -> File? {
+    func file(taskID: String?) -> File? {
+        guard let taskID = taskID else { return nil }
         var file: File?
         context.performAndWait {
-            let predicate = NSPredicate(format: "%K == %@", #keyPath(File.taskIDRaw), NSNumber(value: taskID))
+            let predicate = NSPredicate(format: "%K == %@", #keyPath(File.taskID), taskID)
             let files: [File] = context.fetch(predicate)
             file = files.first
         }

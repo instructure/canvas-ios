@@ -30,7 +30,7 @@ extension File {
         courseID: String? = nil,
         removeID: Bool = false,
         removeURL: Bool = false,
-        taskID: Int? = nil,
+        taskID: String? = nil,
         userID: String? = nil,
         uploadError: String? = nil,
         session: LoginSession? = nil,

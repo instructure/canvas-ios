@@ -51,7 +51,7 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
         id: "u",
         display_name: "Upload File",
         size: 100
-    ), bytesSent: 25, taskID: 2)
+    ), bytesSent: 25, taskID: "2")
     lazy var thumbFile = File.make(from: .make(
         id: "t",
         display_name: "Thumbnail File",

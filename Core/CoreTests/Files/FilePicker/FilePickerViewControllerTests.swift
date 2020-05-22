@@ -77,7 +77,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         // Progress
         UploadManager.shared.viewContext.performAndWait {
             let file = controller.files.first!
-            file.taskID = 1
+            file.taskID = "1"
             file.bytesSent = 2
             try? UploadManager.shared.viewContext.save()
         }
@@ -131,7 +131,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
         UploadManager.shared.viewContext.performAndWait {
             let file = controller.files.first!
-            file.taskID = 1
+            file.taskID = "1"
             file.bytesSent = 100
             try? UploadManager.shared.viewContext.save()
         }

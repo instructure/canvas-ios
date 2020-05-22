@@ -148,13 +148,14 @@ public class MockURLSession: URLSession {
         error: Error? = nil,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
-        taskID: Int = 0
+        taskID: Int = 0,
+        taskDescription: String? = nil
     ) -> MockDataTask {
         var data: Data?
         if let value = value {
             data = try! requestable.encode(response: value)
         }
-        return mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+        return mock(requestable, data: data, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID, taskDescription: taskDescription)
     }
 
     @discardableResult
@@ -164,9 +165,10 @@ public class MockURLSession: URLSession {
         error: Error?,
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
-        taskID: Int = 0
+        taskID: Int = 0,
+        taskDescription: String? = nil
     ) -> MockDataTask {
-        return mock(requestable, value: nil, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID)
+        return mock(requestable, value: nil, response: response, error: error, baseURL: baseURL, accessToken: accessToken, taskID: taskID, taskDescription: taskDescription)
     }
 
     @discardableResult
@@ -178,23 +180,28 @@ public class MockURLSession: URLSession {
         baseURL: URL = URL(string: "https://canvas.instructure.com")!,
         accessToken: String? = nil,
         dataHandler: (() -> UrlResponseTuple)? = nil,
-        taskID: Int = 0
+        taskID: Int = 0,
+        taskDescription: String? = nil
     ) -> MockDataTask {
         let request = try! requestable.urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: nil)
-        return mock(request, data: data, response: response, error: error, dataHandler: dataHandler, taskID: taskID)
+        return mock(request, data: data, response: response, error: error, dataHandler: dataHandler, taskID: taskID, taskDescription: taskDescription)
     }
 
     @discardableResult
-    public static func mock(_ request: URLRequest,
-                            data: Data? = nil,
-                            response: URLResponse? = nil,
-                            error: Error? = nil,
-                            dataHandler: (() -> UrlResponseTuple)? = nil,
-                            taskID: Int = 0) -> MockDataTask {
+    public static func mock(
+        _ request: URLRequest,
+        data: Data? = nil,
+        response: URLResponse? = nil,
+        error: Error? = nil,
+        dataHandler: (() -> UrlResponseTuple)? = nil,
+        taskID: Int = 0,
+        taskDescription: String? = nil
+    ) -> MockDataTask {
         let task = MockDataTask()
         task.mock = MockData(data: data, response: response, error: error)
         task.dataHandler = dataHandler
         task.taskIdentifier = taskID
+        task.taskDescription = taskDescription
         MockURLSession.dataMocks[request.url!.withCanonicalQueryParams!.absoluteString] = task
         return task
     }

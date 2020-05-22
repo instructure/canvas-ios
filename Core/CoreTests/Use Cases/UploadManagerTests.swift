@@ -132,24 +132,25 @@ class UploadManagerTests: CoreTestCase {
 
     func testUploadFile() throws {
         let file = try manager.add(url: url, batchID: "1")
-        mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext, taskID: 0), taskID: 1)
+        mockUpload(fileURL: file.localFileURL!, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext), taskID: "1")
         let expectation = XCTestExpectation(description: "callback was called")
+        UUID.mock("1")
         manager.upload(file: file, to: .context(ContextModel(.course, id: "1")), callback: expectation.fulfill)
         wait(for: [expectation], timeout: 1)
         let tasks = MockURLSession.dataMocks.values
         XCTAssertEqual(tasks.count, 2) // target and upload
         XCTAssertTrue(tasks.allSatisfy { $0.resumed })
         context.refresh(file, mergeChanges: true)
-        XCTAssertEqual(file.taskID, 1)
+        XCTAssertEqual(file.taskID, "1")
     }
 
     func testSessionTaskDidCompleteWithUpload() throws {
         LoginSession.add(currentSession)
         let task = MockURLSession.MockDataTask()
         task.mock = MockURLSession.MockData(data: nil, response: nil, error: nil)
-        task.taskIdentifier = 1
+        task.taskDescription = "1"
         let file = try manager.add(url: url)
-        file.taskID = 1
+        file.taskID = "1"
         try context.save()
         XCTAssertTrue(file.isUploading)
         let data = try encoder.encode(APIFile.make(id: "1"))
@@ -172,16 +173,16 @@ class UploadManagerTests: CoreTestCase {
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
         LoginSession.add(currentSession)
         let task1 = MockURLSession.MockDataTask()
-        task1.taskIdentifier = 1
+        task1.taskDescription = "1"
         let task2 = MockURLSession.MockDataTask()
-        task2.taskIdentifier = 2
-        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: 3)
+        task2.taskDescription = "2"
+        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1", "2"], taskID: "3")
 
         let one = try manager.add(url: oneURL, batchID: "assignment-2")
-        one.taskID = 1
+        one.taskID = "1"
         one.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         let two = try manager.add(url: twoURL, batchID: "assignment-2")
-        two.taskID = 2
+        two.taskID = "2"
         two.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
 
@@ -207,11 +208,11 @@ class UploadManagerTests: CoreTestCase {
     func testFailedSubmissionNotification() throws {
         let file = context.insert() as File
         file.uploadError = nil
-        file.taskID = 1
+        file.taskID = "1"
         file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
         try context.save()
         let task = MockURLSession.MockDataTask()
-        task.taskIdentifier = 1
+        task.taskDescription = "1"
         manager.urlSession(backgroundSession, task: task, didCompleteWithError: NSError.instructureError("invalid request"))
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
@@ -236,10 +237,10 @@ class UploadManagerTests: CoreTestCase {
         let two = context.insert() as File
         two.batchID = batchID
         two.setUser(session: currentSession)
-        two.taskID = 2
+        two.taskID = "2"
         try context.save()
-        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1"], taskID: 2)
-        let task = MockURLSession.dataMocks.first { $0.value.taskIdentifier == 2 }?.value
+        mockSubmission(courseID: "1", assignmentID: "2", fileIDs: ["1"], taskID: "2")
+        let task = MockURLSession.dataMocks.first { $0.value.taskDescription == "2" }?.value
         manager.cancel(batchID: batchID)
         let store = manager.subscribe(batchID: batchID, eventHandler: {})
         XCTAssertEqual(store.count, 0)
@@ -248,12 +249,12 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidSendBodyData() throws {
         let file = context.insert() as File
-        file.taskID = 1
+        file.taskID = "1"
         file.size = 101
         file.bytesSent = 0
         try context.save()
         let task = MockURLSession.MockDataTask()
-        task.taskIdentifier = 1
+        task.taskDescription = "1"
         manager.urlSession(
             backgroundSession,
             task: task,
@@ -276,7 +277,7 @@ class UploadManagerTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: Int, accessToken: String? = nil) {
+    private func mockSubmission(courseID: String, assignmentID: String, fileIDs: [String], comment: String? = nil, taskID: String, accessToken: String? = nil) {
         let submission = CreateSubmissionRequest.Body.Submission(
             text_comment: comment,
             submission_type: .online_upload,
@@ -296,12 +297,12 @@ class UploadManagerTests: CoreTestCase {
             value: APISubmission.make(),
             baseURL: currentSession.baseURL,
             accessToken: accessToken ?? currentSession.accessToken,
-            taskID: taskID
+            taskDescription: taskID
         )
     }
 
     @discardableResult
-    private func mockTarget(name: String, size: Int, context: FileUploadContext, taskID: Int = 0) -> FileUploadTarget {
+    private func mockTarget(name: String, size: Int, context: FileUploadContext) -> FileUploadTarget {
         let body = PostFileUploadTargetRequest.Body(name: name, on_duplicate: .rename, parent_folder_id: nil, size: size)
         let requestable = PostFileUploadTargetRequest(context: context, body: body)
         let target = FileUploadTarget.make()
@@ -309,20 +310,19 @@ class UploadManagerTests: CoreTestCase {
             requestable,
             value: target,
             baseURL: AppEnvironment.shared.api.baseURL,
-            accessToken: AppEnvironment.shared.api.loginSession?.accessToken,
-            taskID: taskID
+            accessToken: AppEnvironment.shared.api.loginSession?.accessToken
         )
         return target
     }
 
-    private func mockUpload(fileURL: URL, target: FileUploadTarget, taskID: Int = 1) {
+    private func mockUpload(fileURL: URL, target: FileUploadTarget, taskID: String = "1") {
         let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
         MockURLSession.mock(
             requestable,
             value: APIFile.make(),
             baseURL: target.upload_url,
             accessToken: nil,
-            taskID: taskID
+            taskDescription: taskID
         )
     }
 
@@ -335,7 +335,7 @@ class UploadManagerTests: CoreTestCase {
         var request = URLRequest(url: URL(string: location)!)
         request.setValue("Bearer \(currentSession.accessToken!)", forHTTPHeaderField: HttpHeader.authorization)
         request.setValue("application/json+canvas-string-ids", forHTTPHeaderField: HttpHeader.accept)
-        MockURLSession.mock(request, taskID: 2)
+        MockURLSession.mock(request, taskDescription: "2")
         return task
     }
 }
