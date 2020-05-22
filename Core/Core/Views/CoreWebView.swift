@@ -121,6 +121,7 @@ open class CoreWebView: WKWebView {
                 color: \(UIColor.named(.textDarkest).hexString);
                 font-family: system-ui;
                 font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
+                -webkit-tap-highlight-color: transparent;
             }
             body {
                 margin: 16px;
@@ -290,16 +291,19 @@ extension CoreWebView: WKNavigationDelegate {
         }
     }
 
-    public func scrollIntoView(fragment: String) {
+    public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
         guard autoresizesHeight else { return }
         let script = """
             (() => {
                 let target = document.querySelector('a[name=\"\(fragment)\"],#\(fragment)')
-                return target ? target.clientTop || target.offsetTop : null
+                return target && target.getBoundingClientRect().y
             })()
         """
         evaluateJavaScript(script) { (result: Any?, _: Error?) in
-            guard var offset = result as? CGFloat else { return }
+            guard var offset = result as? CGFloat else {
+                then?(false)
+                return
+            }
             var view: UIView = self
             while let parent = view.superview {
                 offset += view.frame.minY
@@ -309,6 +313,7 @@ extension CoreWebView: WKNavigationDelegate {
                 scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: true)
                 break
             }
+            then?(true)
         }
     }
 }
