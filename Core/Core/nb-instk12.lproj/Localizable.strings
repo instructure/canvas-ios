@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "«Opptre som» betyr kort fortalt å logge på som denne brukeren uten et passord. Du kan bruke denne nøyaktig som din egen bruker, og fra andres synspunkt ser det ut som brukeren utførte dem. Overvåkingloggen vil likevel notere at det var du som utførte handlingene på vegne av denne brukeren.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Uten tittel)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Nåværende posisjon";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Slett kommentar";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Slettet dette svaret.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Beskriv funksjonen";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Diskusjonspost";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Diskusjonssvar";
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskusjoner";
@@ -521,6 +533,9 @@
 "Groups" = "Grupper";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Få en forelder til å skanne denne QR-koden fra Canvas foreldreapplikasjonen for å pare med deg.";
+
+/* No comment provided by engineer. */
 "Help" = "Hjelp";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotek";
+
+/* like action */
+"Like" = "Liker";
 
 /* No comment provided by engineer. */
 "Link" = "Lenke";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Pare med observatør";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Paringskode: ";
+
+/* No comment provided by engineer. */
 "Password" = "Passord";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "publisert";
 
 /* No comment provided by engineer. */
+"Published" = "Publisert";
+
+/* No comment provided by engineer. */
 "purple" = "lilla";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Fjernet %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Svar";
 
 /* No comment provided by engineer. */
 "Reply" = "Svar";
@@ -1001,10 +1028,16 @@
 "Settings" = "Innstillinger";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Del følgende paringskode med en observatør for å gi dem tillatelse til å koble seg med deg. Denne koden vil utløpe om sju dager, eller etter en gangs bruk.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Vis ett måned om gangen";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Vis vurderinger";
+
+/* No comment provided by engineer. */
+"Show more options" = "Vis flere alternativer";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sideadministratorinnlogging";
@@ -1205,6 +1238,9 @@
 "unpublished" = "ikke publisert";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Ikke publisert";
+
+/* No comment provided by engineer. */
 "Unread" = "Ulest";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Vis moduler";
+
+/* No comment provided by engineer. */
+"View more replies" = "Vis flere svar";
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";

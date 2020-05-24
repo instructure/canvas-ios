@@ -56,10 +56,19 @@
 "Courses" = "Cyrsiau";
 
 /* No comment provided by engineer. */
+"Create Account" = "Creu Cyfrif";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Myfyriwr Presennol: %@. Tapiwch i newid myfyrwyr";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Diystyru";
+
+/* No comment provided by engineer. */
+"Email address" = "Cyfeiriad e-bost";
+
+/* No comment provided by engineer. */
+"Email..." = "E-bost...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
+
+/* No comment provided by engineer. */
+"Full name" = "Enw llawn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Enw llawn...";
 
 /* No comment provided by engineer. */
 "Grades" = "Graddau";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Cod Paru";
 
 /* No comment provided by engineer. */
+"Password" = "Cyfrinair";
+
+/* No comment provided by engineer. */
+"Password is required" = "Rhaid rhoi cyfrinair";
+
+/* No comment provided by engineer. */
+"Password..." = "Cyfrinair...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Angen Caniatâd";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Rhowch gyfeiriad e-bost";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Rhowch enw llawn";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Ynghylch: %@";

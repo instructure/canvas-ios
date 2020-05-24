@@ -56,10 +56,19 @@
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
+"Create Account" = "Luo tili";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Kurssin opiskelija %@. Napauta vaihtaaksesi opiskelijoita";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ohita";
+
+/* No comment provided by engineer. */
+"Email address" = "Sähköpostiosoite";
+
+/* No comment provided by engineer. */
+"Email..." = "Sähköposti...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Tapahtuman muistutus";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Etusivu";
+
+/* No comment provided by engineer. */
+"Full name" = "Koko nimi";
+
+/* No comment provided by engineer. */
+"Full name..." = "Koko nimi...";
 
 /* No comment provided by engineer. */
 "Grades" = "Arvosanat";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Parinmuodostuskoodi";
 
 /* No comment provided by engineer. */
+"Password" = "Salasana";
+
+/* No comment provided by engineer. */
+"Password is required" = "Salasana vaaditaan";
+
+/* No comment provided by engineer. */
+"Password..." = "Salasana...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Käyttöoikeus tarvitaan";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Anna sähköpostiosoite.";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Anna koko nimesi";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Koskee: %@";

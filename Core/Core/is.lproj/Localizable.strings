@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Bregðast við sem\" þýðir í raun að skrá sig inn sem viðkomandi notandi án lykilorðs. Þú munt getað gripið til allra aðgerða eins og að þú værir viðkomandi notandi, frá sjónarhóli annarra notenda, eins og þessi notandi hafi framkvæmt viðkomandi aðgerðir. Samt sem áður sýna endurskoðaðar skrár að það varst þú sem framkvæmdir aðgerðirnar fyrir hönd þessa notanda.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Ekkert efnisheiti)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Núverandi staða";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Eyða athugasemd";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Eyddi þessu svari.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Lýsa eiginleika";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Umræðupóstur";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Svör við umræðu";
 
 /* No comment provided by engineer. */
 "Discussions" = "Umræður";
@@ -521,6 +533,9 @@
 "Groups" = "Hópar";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Láttu foreldra þína skanna þennan QR-kóða úr Canvas foreldra appinu til að para við þig.";
+
+/* No comment provided by engineer. */
 "Help" = "Hjálp";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Skráasafn";
+
+/* like action */
+"Like" = "líka við";
 
 /* No comment provided by engineer. */
 "Link" = "Tengill";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Para við áhorfanda";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Pörunarkóði: ";
+
+/* No comment provided by engineer. */
 "Password" = "Lykilorð";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "birt";
 
 /* No comment provided by engineer. */
+"Published" = "Birt";
+
+/* No comment provided by engineer. */
 "purple" = "fjólublár";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Fjarlægt %1$@ af %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Svör";
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
@@ -1001,10 +1028,16 @@
 "Settings" = "Stillingar";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Deildu pörunarkóða með áhorfanda til að leyfa honum að tengja við þig. Þessi kóði rennur út á sjö dögum, eða eftir eina notkun.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Sýna mánuð í einu";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Sýna einkunnir";
+
+/* No comment provided by engineer. */
+"Show more options" = "Sýna fleiri möguleika";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Innskráning svæðisstjórnanda";
@@ -1205,6 +1238,9 @@
 "unpublished" = "óbirt";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Óbirt";
+
+/* No comment provided by engineer. */
 "Unread" = "Ólesið";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Skoða einingar";
+
+/* No comment provided by engineer. */
+"View more replies" = "Skoða fleiri svör";
 
 /* No comment provided by engineer. */
 "Viewed" = "Skoðað";

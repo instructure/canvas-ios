@@ -75,9 +75,9 @@
 			<key>few</key>
 			<string></string>
 			<key>one</key>
-			<string>%d like</string>
+			<string>%d všeček</string>
 			<key>other</key>
-			<string>%d likes</string>
+			<string>%d všečki</string>
 			<key>two</key>
 			<string></string>
 		</dict>

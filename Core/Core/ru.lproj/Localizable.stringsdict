@@ -77,9 +77,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d like</string>
+			<string>%d нравятся</string>
 			<key>other</key>
-			<string>%d likes</string>
+			<string>%d нравится</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

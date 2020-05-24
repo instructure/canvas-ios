@@ -56,10 +56,19 @@
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
+"Create Account" = "Konto erstellen";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Aktueller Student: %@. Antippen, um den Teilnehmer zu wechseln";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ablehnen";
+
+/* No comment provided by engineer. */
+"Email address" = "E-Mail-Adresse";
+
+/* No comment provided by engineer. */
+"Email..." = "E-Mail ...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Ereigniserinnerung";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Frontseite";
+
+/* No comment provided by engineer. */
+"Full name" = "Vollständiger Name";
+
+/* No comment provided by engineer. */
+"Full name..." = "Vollständiger Name ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Noten";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Pairing-Code";
 
 /* No comment provided by engineer. */
+"Password" = "Kennwort";
+
+/* No comment provided by engineer. */
+"Password is required" = "Passwort ist erforderlich";
+
+/* No comment provided by engineer. */
+"Password..." = "Passwort ...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Berechtigung erforderlich";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Bitte geben Sie eine E-Mail-Adresse an.";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Bitte geben Sie Ihren vollständigen Namen ein.";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Betreffend: %@";

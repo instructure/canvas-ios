@@ -56,10 +56,19 @@
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
+"Create Account" = "建立帳戶";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "目前的學生：%@. 點選以轉換學生";
 
 /* No comment provided by engineer. */
 "Dismiss" = "取消";
+
+/* No comment provided by engineer. */
+"Email address" = "電郵地址";
+
+/* No comment provided by engineer. */
+"Email..." = "電郵...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活動提醒";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "首頁";
+
+/* No comment provided by engineer. */
+"Full name" = "全名";
+
+/* No comment provided by engineer. */
+"Full name..." = "全名...";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -137,7 +152,22 @@
 "Pairing Code" = "配對代碼";
 
 /* No comment provided by engineer. */
+"Password" = "密碼";
+
+/* No comment provided by engineer. */
+"Password is required" = "需要輸入密碼";
+
+/* No comment provided by engineer. */
+"Password..." = "密碼...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "需要權限";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "請輸入電郵地址";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "請輸入全名";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "關於：%@";

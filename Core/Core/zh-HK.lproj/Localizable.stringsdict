@@ -55,7 +55,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d likes</string>
+			<string>%d個讚</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

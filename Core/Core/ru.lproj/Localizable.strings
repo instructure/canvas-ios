@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Действовать как\" фактически означает вход в систему в качестве данного пользователя без пароля. Вы сможете выполнять любые действия, как будто вы являетесь этим пользователем, и с точки зрения других пользователей это будет выглядеть так, как будто именно этот пользователь выполнил это действие. Тем не менее, в контрольных журналах записывается информация от том, что именно вы выполняли указанные действия от имени этого пользователя.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Нет субъекта)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Текущая позиция";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Удалить комментарий";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Удалить этот ответ.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Опишите функцию";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Размещение обсуждения";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Отзывы в дискуссии";
 
 /* No comment provided by engineer. */
 "Discussions" = "Обсуждения";
@@ -521,6 +533,9 @@
 "Groups" = "Группы";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Отсканировал ли ваш родитель этот QR-код из приложения Canvas Parent для сопряжения с вами.";
+
+/* No comment provided by engineer. */
 "Help" = "Справка";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Библиотека";
+
+/* like action */
+"Like" = "Мне нравится";
 
 /* No comment provided by engineer. */
 "Link" = "Ссылка";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Объединение с наблюдателем";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Код сопряжения: ";
+
+/* No comment provided by engineer. */
 "Password" = "Пароль";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "опубликовано";
 
 /* No comment provided by engineer. */
+"Published" = "Размещено";
+
+/* No comment provided by engineer. */
 "purple" = "пурпурный";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Удалено %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Ответы";
 
 /* No comment provided by engineer. */
 "Reply" = "Ответить";
@@ -1001,10 +1028,16 @@
 "Settings" = "Настройки";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Сообщите следующий код сопряжения наблюдателю, чтобы он мог связаться с вами. Срок действия этого кода истекает через семь дней или после однократного использования.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Показывать месяц за раз";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Показать оценки";
+
+/* No comment provided by engineer. */
+"Show more options" = "Показать больше вариантов";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Учетная запись администратора";
@@ -1205,6 +1238,9 @@
 "unpublished" = "не опубликовано";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Не опубликовано";
+
+/* No comment provided by engineer. */
 "Unread" = "Не прочитано";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Просмотр модулей";
+
+/* No comment provided by engineer. */
+"View more replies" = "Просмотреть другие ответы";
 
 /* No comment provided by engineer. */
 "Viewed" = "Просмотрено";

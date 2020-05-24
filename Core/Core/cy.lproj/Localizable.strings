@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Bydd \"Gweithredu fel\" yn golygu eich bod yn mewngofnodi fel y defnyddiwr hwn heb gyfrinair. Byddwch chi’n gallu gwneud unrhyw beth fel mai chi yw’r defnyddiwr hwn o safbwynt pobl eraill; bydd yn edrych fel mai’r defnyddiwr hwn sydd wedi gwneud hynny. Ond, bydd logiau archwilio’n cofnodi mai chi wnaeth hynny ar ran y defnyddiwr hwn.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Dim pwnc)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Lleoliad presennol";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Dileu Sylw";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Wedi dileu’r ateb hwn.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Disgrifiwch y nodwedd";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Post Trafodaeth";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Ymatebion Trafodaeth";
 
 /* No comment provided by engineer. */
 "Discussions" = "Trafodaethau";
@@ -521,6 +533,9 @@
 "Groups" = "Grwpiau";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Cael eich rhiant i sganio’r cod QR hwn o ap Canvas Parent i baru â chi.";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Llyfrgell";
+
+/* like action */
+"Like" = "Yn hoffi";
 
 /* No comment provided by engineer. */
 "Link" = "Dolen";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Paru ag Arsyllwr";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Cod Paru: ";
+
+/* No comment provided by engineer. */
 "Password" = "Cyfrinair";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "wedi cyhoeddi";
 
 /* No comment provided by engineer. */
+"Published" = "Wedi Cyhoeddi";
+
+/* No comment provided by engineer. */
 "purple" = "porffor";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "%1$@ wedi’i dynnu gan %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Ateb";
 
 /* No comment provided by engineer. */
 "Reply" = "Ateb";
@@ -1001,10 +1028,16 @@
 "Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Rhannwch y cod paru canlynol gydag arsyllwr i adael iddyn nhw gysylltu â chi. Bydd y cod hwn yn dod i ben mewn saith diwrnod, neu ar ôl cael ei ddefnyddio un waith.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Dangos un mis ar y tro";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Dangos Graddau";
+
+/* No comment provided by engineer. */
+"Show more options" = "Dangos mwy o ddewisiadau";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Manylion Mewngofnodi Gweinyddwr y Safle";
@@ -1205,6 +1238,9 @@
 "unpublished" = "heb gyhoeddi";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Wedi dad-gyhoeddi";
+
+/* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Gweld Modiwlau";
+
+/* No comment provided by engineer. */
+"View more replies" = "Gweld mwy o atebion";
 
 /* No comment provided by engineer. */
 "Viewed" = "Wedi gweld";

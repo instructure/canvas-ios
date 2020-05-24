@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "「～として」は、基本的にこのユーザーとしてパスワードなしでログインしています。あたかもこのユーザーであるかのようにアクションを取ることができ、また、他のユーザーの観点からだと、あたかもこのユーザーがそれを実行したかのように見ることができます。ただし、監査ログには、このユーザーの代わりにアクションを実行したのは、あなた だったと記録されます。";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "（件名なし）";
 
@@ -305,6 +308,9 @@
 "Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "コメントを削除する";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "この返信を削除しました。";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "特徴を記述する";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "ディスカッション掲示";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "ディスカッションの返信";
 
 /* No comment provided by engineer. */
 "Discussions" = "ディスカッション";
@@ -521,6 +533,9 @@
 "Groups" = "グループ";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "あなたとペアリングするために、親にCanvas ParentアプリからこのQRコードをスキャンしてもらいます。";
+
+/* No comment provided by engineer. */
 "Help" = "ヘルプ";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "図書館";
+
+/* like action */
+"Like" = "いいね！";
 
 /* No comment provided by engineer. */
 "Link" = "リンク";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "オブザーバーとペアにする";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "ペアリングコード：";
+
+/* No comment provided by engineer. */
 "Password" = "パスワード";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "公開済み";
 
 /* No comment provided by engineer. */
+"Published" = "公開済み";
+
+/* No comment provided by engineer. */
 "purple" = "パープル";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "返信";
 
 /* No comment provided by engineer. */
 "Reply" = "返信";
@@ -1001,10 +1028,16 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "次のペアリングコードをオブザーバーと共有してあなたとコネクトさせます。このコードは7日間後または1回使用した後に有効期限が切れます。";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "一度に 1 か月表示する";
 
 /* No comment provided by engineer. */
 "Show Grades" = "成績を表示";
+
+/* No comment provided by engineer. */
+"Show more options" = "オプションを多く表示する";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
@@ -1205,6 +1238,9 @@
 "unpublished" = "未公開";
 
 /* No comment provided by engineer. */
+"Unpublished" = "未公開";
+
+/* No comment provided by engineer. */
 "Unread" = "未読";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "モジュールの表示";
+
+/* No comment provided by engineer. */
+"View more replies" = "返信を多く表示する";
 
 /* No comment provided by engineer. */
 "Viewed" = "表示しました";

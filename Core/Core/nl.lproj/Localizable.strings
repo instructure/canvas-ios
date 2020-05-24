@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Optreden als\" is in essentie hetzelfde als aanmelden als deze gebruiker zonder wachtwoord. Je kunt alle acties uitvoeren alsof je die gebruiker bent. Gezien vanuit andere gebruikers lijkt het dan ook alsof die acties door die gebruiker zijn uitgevoerd. De controleogboeken laten echter zien dat jij degene was die namens deze gebruiker die acties verricht hebt.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Geen onderwerp)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Huidige positie";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Opmerking verwijderen";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Dit antwoord is verwijderd.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Beschrijf de functie";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Discussiebericht";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Discussie-antwoorden";
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussies";
@@ -521,6 +533,9 @@
 "Groups" = "Groepen";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Laat je ouder deze QR-code scannen van de Canvas Parent-app om met jou te koppelen.";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotheek";
+
+/* like action */
+"Like" = "Like";
 
 /* No comment provided by engineer. */
 "Link" = "Link";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Koppelen met waarnemer";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Koppelingscode: ";
+
+/* No comment provided by engineer. */
 "Password" = "Wachtwoord";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "gepubliceerd";
 
 /* No comment provided by engineer. */
+"Published" = "Gepubliceerd";
+
+/* No comment provided by engineer. */
 "purple" = "paars";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "%1$@ verwijderd door %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Antwoorden";
 
 /* No comment provided by engineer. */
 "Reply" = "Beantwoorden";
@@ -1001,10 +1028,16 @@
 "Settings" = "Instellingen";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Deel de volgende koppelingscode met een waarnemer zodat deze verbinding met jou kan maken. Deze code vervalt over zeven dagen of na één keer gebruiken.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Een maand tegelijk tonen";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Cijfers tonen";
+
+/* No comment provided by engineer. */
+"Show more options" = "Meer opties weergeven";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Aanmelding sitebeheer";
@@ -1205,6 +1238,9 @@
 "unpublished" = "niet-gepubliceerd";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Niet-gepubliceerd";
+
+/* No comment provided by engineer. */
 "Unread" = "Ongelezen";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Modules weergeven";
+
+/* No comment provided by engineer. */
+"View more replies" = "Meer antwoorden bekijken";
 
 /* No comment provided by engineer. */
 "Viewed" = "Bekeken";

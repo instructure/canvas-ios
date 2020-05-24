@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Aji tankou\" se avan tou koneksyon an tan ke itilizatè san modpas. Ou ka fè nenpòt aksyon kòmsi w te itilizatè sa a, epi pou lòt itilizatè yo, y ap panse se moun nan k ap fè aksyon yo. Men, jounal odit yo endike ke se te ou menm ki te fè aksyon yo nan non itilizatè sa a.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Okenn Sijè)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Efase Kòmantè";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Elimine kòmantè sa a.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Dekri fonksyon an";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Poste Diskisyon";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Repons Diskisyon";
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskisyon";
@@ -521,6 +533,9 @@
 "Groups" = "Gwoup";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Fè paran w eskane Kòd QR sa a ak app Canvas Parent lan pou li kapab asosye ak ou.";
+
+/* No comment provided by engineer. */
 "Help" = "Èd";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliyotèk";
+
+/* like action */
+"Like" = "Jèm";
 
 /* No comment provided by engineer. */
 "Link" = "Lyen";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Asosye avèk Obsèvatè";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Kòd Kouplaj: ";
+
+/* No comment provided by engineer. */
 "Password" = "Modpas";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "pibliye";
 
 /* No comment provided by engineer. */
+"Published" = "Pibliye";
+
+/* No comment provided by engineer. */
 "purple" = "mov";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Elimine %1$@ pa %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Repons";
 
 /* No comment provided by engineer. */
 "Reply" = "Reponn";
@@ -1001,10 +1028,16 @@
 "Settings" = "Paramèt";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Pataje kòd kòd kouplaj annapre a ak yon obsèvatè pou pèmèt li konekte ak ou. Kòd sa a ap ekspire nan sèt jou oswa aprè yon itilizasyon.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Afiche pa mwa";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Afiche Klas";
+
+/* No comment provided by engineer. */
+"Show more options" = "Afiche plis opsyon";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
@@ -1205,6 +1238,9 @@
 "unpublished" = "pa pibliye";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Pa Pibliye";
+
+/* No comment provided by engineer. */
 "Unread" = "Poko li";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Afiche Modil";
+
+/* No comment provided by engineer. */
+"View more replies" = "Afiche plis kòmantè";
 
 /* No comment provided by engineer. */
 "Viewed" = "Afiche";

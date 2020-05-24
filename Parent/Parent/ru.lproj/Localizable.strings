@@ -56,10 +56,19 @@
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
+"Create Account" = "Создать учетную запись";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"Email address" = "Адрес электронной почты";
+
+/* No comment provided by engineer. */
+"Email..." = "Электронная почта...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Напоминание о событии";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
+
+/* No comment provided by engineer. */
+"Full name" = "Полное имя";
+
+/* No comment provided by engineer. */
+"Full name..." = "Полное имя...";
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Код сопряжения";
 
 /* No comment provided by engineer. */
+"Password" = "Пароль";
+
+/* No comment provided by engineer. */
+"Password is required" = "Требуется пароль";
+
+/* No comment provided by engineer. */
+"Password..." = "Пароль...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Требуется разрешение";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Введите адрес эл. почты";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Введите полное имя";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Касательно: %@";

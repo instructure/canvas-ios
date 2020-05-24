@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"تصرف كـ\" هو تسجيل الدخول كما لو كنت هذا المستخدم دون كلمة مرور. ستتمكن من اتخاذ أي إجراء كما لو كنت هذا المستخدم، ومن وجهة نظر المستخدمين الآخرين، سيبدو الأمر كما لو كان هذا المستخدم هو من قام بهذه الإجراءات. ولكن سجلات التدقيق ستسجل أنك كنت الشخص الذي قام بالإجراءات نيابةً عن هذا المستخدم.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(لا يوجد موضوع)";
 
@@ -305,6 +308,9 @@
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "حذف التعليق";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "حذف هذا الرد.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "قم بوصف الميزة";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "منشور النقاش";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "ردود النقاش";
 
 /* No comment provided by engineer. */
 "Discussions" = "النقاشات";
@@ -521,6 +533,9 @@
 "Groups" = "المجموعات";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "اطلب من أحد الوالدين مسح رمز QR من تطبيق Canvas Parent لإقرانه بك.";
+
+/* No comment provided by engineer. */
 "Help" = "المساعدة";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "المكتبة";
+
+/* like action */
+"Like" = "إعجاب";
 
 /* No comment provided by engineer. */
 "Link" = "ارتباط";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "الإقران بالمراقب";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "رمز الإقران:  ";
+
+/* No comment provided by engineer. */
 "Password" = "كلمة المرور";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "تم النشر";
 
 /* No comment provided by engineer. */
+"Published" = "منشور";
+
+/* No comment provided by engineer. */
 "purple" = "أرجواني";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "تمت إزالة %1$@ بواسطة %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "ردود";
 
 /* No comment provided by engineer. */
 "Reply" = "رد";
@@ -1001,10 +1028,16 @@
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "مشاركة رمز الإقران التالي مع مراقب للسماح له بالاتصال بك. ستنتهي صلاحية هذا الرمز خلال سبعة أيام، أو بعد استخدام واحد.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "أظهر شهراً كل مرة";
 
 /* No comment provided by engineer. */
 "Show Grades" = "عرض التقديرات";
+
+/* No comment provided by engineer. */
+"Show more options" = "إظهار خيارات أكثر";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
@@ -1205,6 +1238,9 @@
 "unpublished" = "غير منشور";
 
 /* No comment provided by engineer. */
+"Unpublished" = "غير منشور";
+
+/* No comment provided by engineer. */
 "Unread" = "غير مقروء";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "عرض الوحدات المنطقية";
+
+/* No comment provided by engineer. */
+"View more replies" = "عرض المزيد من الردود";
 
 /* No comment provided by engineer. */
 "Viewed" = "تمت لمشاهدة";
