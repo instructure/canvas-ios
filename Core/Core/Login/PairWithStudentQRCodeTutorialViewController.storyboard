@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pair With StudentQR Code Tutorial View Controller-->
+        <scene sceneID="GpK-yd-Aje">
+            <objects>
+                <viewController storyboardIdentifier="PairWithStudentQRCodeTutorialViewController" id="qea-Ra-Dcd" customClass="PairWithStudentQRCodeTutorialViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ITV-5U-cP7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZd-2s-TKu">
+                                <rect key="frame" x="0.0" y="44" width="406" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yPF-bQ-Oa4">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="545.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pair-with-student-qr-tutorial" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-Cj-BVO">
+                                                <rect key="frame" x="88.5" y="79.5" width="223" height="446"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="223" id="kpq-3C-e2S"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGj-8f-iOq" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                <rect key="frame" x="24" y="20" width="2179" height="19.5"/>
+                                                <string key="text">To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account. </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="5Nd-Cj-BVO" secondAttribute="bottom" constant="20" id="Wzi-ys-zTM"/>
+                                            <constraint firstItem="5Nd-Cj-BVO" firstAttribute="top" secondItem="JGj-8f-iOq" secondAttribute="bottom" constant="40" id="aTK-JW-2V3"/>
+                                            <constraint firstAttribute="trailing" secondItem="JGj-8f-iOq" secondAttribute="trailing" constant="24" id="b08-Pu-Isg"/>
+                                            <constraint firstItem="JGj-8f-iOq" firstAttribute="leading" secondItem="yPF-bQ-Oa4" secondAttribute="leading" constant="24" id="dG9-rS-5gU"/>
+                                            <constraint firstItem="JGj-8f-iOq" firstAttribute="top" secondItem="yPF-bQ-Oa4" secondAttribute="top" constant="20" id="l1Q-oI-Vag"/>
+                                            <constraint firstItem="5Nd-Cj-BVO" firstAttribute="centerX" secondItem="yPF-bQ-Oa4" secondAttribute="centerX" id="oD2-u5-inI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="yPF-bQ-Oa4" firstAttribute="bottom" secondItem="u7K-3N-SmD" secondAttribute="bottom" id="Tx9-qg-x8g"/>
+                                    <constraint firstItem="yPF-bQ-Oa4" firstAttribute="top" secondItem="u7K-3N-SmD" secondAttribute="top" id="ol1-sd-oiP"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="u7K-3N-SmD"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="aBD-8d-zpy"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EE9-v7-s3c" firstAttribute="trailing" secondItem="SZd-2s-TKu" secondAttribute="trailing" id="6En-IT-P1F"/>
+                            <constraint firstItem="SZd-2s-TKu" firstAttribute="width" secondItem="ITV-5U-cP7" secondAttribute="width" multiplier="0.980676" id="8hP-Gt-1xp"/>
+                            <constraint firstItem="yPF-bQ-Oa4" firstAttribute="width" secondItem="ITV-5U-cP7" secondAttribute="width" multiplier="0.966184" id="Lk2-qd-iAy"/>
+                            <constraint firstItem="SZd-2s-TKu" firstAttribute="leading" secondItem="EE9-v7-s3c" secondAttribute="leading" id="OqB-XR-vzD"/>
+                            <constraint firstItem="EE9-v7-s3c" firstAttribute="bottom" secondItem="SZd-2s-TKu" secondAttribute="bottom" id="Pf1-8X-bfD"/>
+                            <constraint firstItem="SZd-2s-TKu" firstAttribute="top" secondItem="EE9-v7-s3c" secondAttribute="top" id="yif-cO-lBR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EE9-v7-s3c"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerLabel" destination="JGj-8f-iOq" id="178-yR-O4M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m8n-jw-yaA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="77"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pair-with-student-qr-tutorial" width="223" height="446"/>
+    </resources>
+</document>

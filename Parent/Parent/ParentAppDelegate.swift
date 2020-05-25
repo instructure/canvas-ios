@@ -214,7 +214,14 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func handleDeepLink(url: URL) {
-        _ = application(UIApplication.shared, open: url, options: [:])
+        if url.host == "create-account" {
+            let title = NSLocalizedString("Login required", comment: "")
+            let message = NSLocalizedString("It looks like you’re trying to add a student. Try adding this student after you’ve logged in", comment: "")
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
+            guard let vc = topMostViewController() else { return }
+            AppEnvironment.shared.router.show(alert, from: vc, options: .modal())
+        }
     }
 }
 

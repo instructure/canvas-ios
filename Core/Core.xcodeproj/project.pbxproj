@@ -64,6 +64,8 @@
 		3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */; };
 		3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */; };
 		3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */; };
+		3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */; };
+		3BC8426A247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */; };
 		3BCDACF824536B9E00E41D27 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */; };
 		3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */; };
 		3BD364AF225E36FC006CEBD8 /* CalendarEventItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */; };
@@ -1096,6 +1098,8 @@
 		3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
 		3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorButton.swift; sourceTree = "<group>"; };
 		3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyIndicatorButtonTests.swift; sourceTree = "<group>"; };
+		3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithStudentQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
+		3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PairWithStudentQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItemTests.swift; sourceTree = "<group>"; };
@@ -2288,6 +2292,8 @@
 				7D0215A621BB1750009A8E69 /* LoginStartViewController.storyboard */,
 				7D0215A821BB1762009A8E69 /* LoginStartViewController.swift */,
 				3B346749213051FD00F9BC2E /* LoginWebViewController.swift */,
+				3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */,
+				3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -4381,6 +4387,7 @@
 				7D72425F2429BEE9007ED42F /* DashboardViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
+				3BC8426A247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard in Resources */,
 				3B4D861523295263005126A5 /* GradeListViewController.storyboard in Resources */,
 				7DDC81442242E2B2000DD25A /* AudioRecorderViewController.storyboard in Resources */,
 				7DDE6E0D24770E90006523D4 /* preact.min.js in Resources */,
@@ -5021,6 +5028,7 @@
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
 				7D72425C2429BEE9007ED42F /* DashboardSectionHeaderView.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
+				3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */,
 				7DA25FE523F721DA005D2121 /* App.swift in Sources */,
 				7DA2606B23F722D9005D2121 /* UTI.swift in Sources */,
 				7DA2602123F7227A005D2121 /* StringExtensions.swift in Sources */,
