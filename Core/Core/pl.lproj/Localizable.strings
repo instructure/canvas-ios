@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Funkcja „Działaj jako” to po prostu logowanie się jako ten użytkownik bez hasła. Będzie można podejmować wszelkie działania z punktu widzenia tego użytkownika. W dzienniku audytu zostanie jednak zapisana informacja, że to Ty wykonywałeś(aś) działania w imieniu tego użytkownika.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Brak tematu)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Bieżąca pozycja";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Usuń komentarz";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Usunięto tę odpowiedź.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Opisz funkcję";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Post do dyskusji";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Odpowiedzi na dyskusję";
 
 /* No comment provided by engineer. */
 "Discussions" = "Dyskusje";
@@ -521,6 +533,9 @@
 "Groups" = "Grupy";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Poproś rodzica o zeskanowanie tego kodu QR w aplikacji Canvas Parent w celu sparowania.";
+
+/* No comment provided by engineer. */
 "Help" = "Pomoc";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Biblioteka";
+
+/* like action */
+"Like" = "Polubienie";
 
 /* No comment provided by engineer. */
 "Link" = "Łącze";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Paruj z obserwującym";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Kod parowania: ";
+
+/* No comment provided by engineer. */
 "Password" = "Hasło";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "opublikowane";
 
 /* No comment provided by engineer. */
+"Published" = "Opublikowane";
+
+/* No comment provided by engineer. */
 "purple" = "fioletowy";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Usunięte %1$@ przez %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Odpowiedzi";
 
 /* No comment provided by engineer. */
 "Reply" = "Odpowiedz";
@@ -1001,10 +1028,16 @@
 "Settings" = "Ustawienia";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Udostępnij następujący kod pasowania obserwującemu, aby umożliwić mu połączenie się z Tobą. Ten kod wygaśnie za siedem dni lub po jednym jego wykorzystaniu.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Wyświetlaj miesiące po kolei";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Pokaż oceny";
+
+/* No comment provided by engineer. */
+"Show more options" = "Pokaż więcej opcji";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Login admina witryny";
@@ -1205,6 +1238,9 @@
 "unpublished" = "nieopublikowane";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Nieopublikowane";
+
+/* No comment provided by engineer. */
 "Unread" = "Nieprzeczytane";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Wyświetl moduły";
+
+/* No comment provided by engineer. */
+"View more replies" = "Wyświetl więcej odpowiedzi";
 
 /* No comment provided by engineer. */
 "Viewed" = "Przejrzane";

@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Toimi nimellä\" tarkoittaa sisäänkirjautumista tänä käyttäjänä ilman salasanaa. Pystyt ryhtymään toimenpiteisiin tänä käyttäjänä ja muille käyttäjille näyttää siltä, että tämä käyttäjä on suorittanut kyseiset toimenpiteet. Tarkistuslokit kuitenkin kirjaavat, että sinä suoritit toimenpiteet tämän käyttäjän toimesta.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(ei aihetta)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Poista kommentti";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Poisti tämä vastauksen.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Kuvaa ominaisuus";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Keskustelun lähetys";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Keskustelun vastaukset";
 
 /* No comment provided by engineer. */
 "Discussions" = "Keskustelut";
@@ -521,6 +533,9 @@
 "Groups" = "Ryhmät";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Pyydä vanhempiasi skannaamaan tämä viivakoodi Canvas Parent -sovelluksesta, jotta he saavat yhteyden sovellukseen.";
+
+/* No comment provided by engineer. */
 "Help" = "Ohje";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Kirjasto";
+
+/* like action */
+"Like" = "Tykkää";
 
 /* No comment provided by engineer. */
 "Link" = "Linkki";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Yhdistä havaitsijan kanssa";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Parinmuodostuskoodi: ";
+
+/* No comment provided by engineer. */
 "Password" = "Salasana";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "julkaistu";
 
 /* No comment provided by engineer. */
+"Published" = "Julkaistu";
+
+/* No comment provided by engineer. */
 "purple" = "purppura";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Kohteen poistaja %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Vastausta";
 
 /* No comment provided by engineer. */
 "Reply" = "Vastaus";
@@ -1001,10 +1028,16 @@
 "Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Jaa seuraava yhdistämiskoodi havaitsijan kanssa mahdollistaaksesi heidän muodostavan yhteyden kanssasi. Tämä koodi vanhenee seitsemässä päivässä tai yhden käytön jälkeen.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Näytä yksi kuukausi kerrallaan";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Näytä arvosanat";
+
+/* No comment provided by engineer. */
+"Show more options" = "Näytä lisäasetukset";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
@@ -1205,6 +1238,9 @@
 "unpublished" = "julkaisematon";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Julkaisematon";
+
+/* No comment provided by engineer. */
 "Unread" = "Lukematon";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Tarkastele moduuleita";
+
+/* No comment provided by engineer. */
+"View more replies" = "Tarkastele lisää vastauksia";
 
 /* No comment provided by engineer. */
 "Viewed" = "Tarkasteltu";

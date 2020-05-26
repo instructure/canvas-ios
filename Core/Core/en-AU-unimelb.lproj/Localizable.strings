@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(No topic)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Delete Comment";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Deleted this reply.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Describe the feature";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Discussion Post";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Discussion Replies";
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussions";
@@ -521,6 +533,9 @@
 "Groups" = "Groups";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Have your parent scan this QR code from the Canvas Parent app to pair with you.";
+
+/* No comment provided by engineer. */
 "Help" = "Help";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Library";
+
+/* like action */
+"Like" = "Like";
 
 /* No comment provided by engineer. */
 "Link" = "Link";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Pair with Observer";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Pairing Code: ";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "published";
 
 /* No comment provided by engineer. */
+"Published" = "Published";
+
+/* No comment provided by engineer. */
 "purple" = "purple";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Replies";
 
 /* No comment provided by engineer. */
 "Reply" = "Reply";
@@ -1001,10 +1028,16 @@
 "Settings" = "Settings";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Show a month at a time";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Show Grades";
+
+/* No comment provided by engineer. */
+"Show more options" = "Show more options";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Site Admin Login";
@@ -1205,6 +1238,9 @@
 "unpublished" = "unpublished";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Unpublished";
+
+/* No comment provided by engineer. */
 "Unread" = "Unread";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "View Modules";
+
+/* No comment provided by engineer. */
+"View more replies" = "View more replies";
 
 /* No comment provided by engineer. */
 "Viewed" = "Viewed";

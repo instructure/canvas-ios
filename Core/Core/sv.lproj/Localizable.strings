@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "Att ”agera som” är i själva verket som att logga in som den här användaren utan lösenord. Du kommer att kunna utföra åtgärder som om du vore den här användaren, och ur andra användares synvinklar är det som om den här användaren utförde dem. I revisionsloggar registreras dock att du var den som utförde åtgärderna på den här användarens vägnar.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(inget ämne)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Ta bort kommentar";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Det här svaret togs bort.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Beskriv funktionen";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Diskussionsinlägg";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Diskussionssvar";
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussioner";
@@ -521,6 +533,9 @@
 "Groups" = "Grupper";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Be din förälder scanna QR-koden från Canvas Parent-appen för att parkopplas med dig.";
+
+/* No comment provided by engineer. */
 "Help" = "Hjälp";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotek";
+
+/* like action */
+"Like" = "Gilla-markering";
 
 /* No comment provided by engineer. */
 "Link" = "Länk";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Koppla med observatör";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Parkopplingskod: ";
+
+/* No comment provided by engineer. */
 "Password" = "Lösenord";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "publicerad";
 
 /* No comment provided by engineer. */
+"Published" = "Publicerad";
+
+/* No comment provided by engineer. */
 "purple" = "lila";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Borttagen %1$@ av %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Svar";
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
@@ -1001,10 +1028,16 @@
 "Settings" = "Inställningar";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Dela följande parkopplingskod med en observatör så att de kan ansluta till dig. Den här koden upphör att gälla om sju dagar, eller efter en användning.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Visa en månad åt gången";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Visa omdömen";
+
+/* No comment provided by engineer. */
+"Show more options" = "Visa fler alternativ";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inloggning för webbplatsadmin";
@@ -1205,6 +1238,9 @@
 "unpublished" = "avpublicerad";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Avpublicerad";
+
+/* No comment provided by engineer. */
 "Unread" = "Olästa";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Visa moduler";
+
+/* No comment provided by engineer. */
+"View more replies" = "Visa fler svar";
 
 /* No comment provided by engineer. */
 "Viewed" = "Visad";

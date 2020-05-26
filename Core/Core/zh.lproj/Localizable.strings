@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "“临时代理”本质上是作为此用户不使用密码登录。您将如同用户一样可以采取任何操作，在别人看来，就如同是该用户在执行这些操作一样。但是，审计日志记录您是代表该用户执行操作的人。";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(无标题)";
 
@@ -305,6 +308,9 @@
 "Current position" = "当前位置";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "删除评论";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "删除此回复。";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "描述功能";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "讨论帖";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "讨论回复";
 
 /* No comment provided by engineer. */
 "Discussions" = "讨论";
@@ -521,6 +533,9 @@
 "Groups" = "小组";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "您的父母是否已从 Canvas Parent 应用程序扫描此二维码与您配对？";
+
+/* No comment provided by engineer. */
 "Help" = "帮助";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "库";
+
+/* like action */
+"Like" = "赞";
 
 /* No comment provided by engineer. */
 "Link" = "链接";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "与旁听者配对";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "配对码：";
+
+/* No comment provided by engineer. */
 "Password" = "密码";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "已发布";
 
 /* No comment provided by engineer. */
+"Published" = "已发布";
+
+/* No comment provided by engineer. */
 "purple" = "紫色";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "已删除 %1$@，删除人%2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "回复";
 
 /* No comment provided by engineer. */
 "Reply" = "回复";
@@ -1001,10 +1028,16 @@
 "Settings" = "设置";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "与旁听者共享以下配对码以允许其与您建立联系。该代码将在七天后或使用一次后失效。";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "一次显示一个月";
 
 /* No comment provided by engineer. */
 "Show Grades" = "显示评分";
+
+/* No comment provided by engineer. */
+"Show more options" = "显示更多的选项";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "站点管理员登录";
@@ -1205,6 +1238,9 @@
 "unpublished" = "取消发布";
 
 /* No comment provided by engineer. */
+"Unpublished" = "未发布";
+
+/* No comment provided by engineer. */
 "Unread" = "未读";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "查看模块";
+
+/* No comment provided by engineer. */
+"View more replies" = "查看更多回复";
 
 /* No comment provided by engineer. */
 "Viewed" = "已查看";

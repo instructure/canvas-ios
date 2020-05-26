@@ -56,10 +56,19 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
+"Create Account" = "Crea un compte";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descarta";
+
+/* No comment provided by engineer. */
+"Email address" = "Adreça electrònica";
+
+/* No comment provided by engineer. */
+"Email..." = "Adreça electrònica...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Recordatori d'esdeveniment";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Pàgina frontal";
+
+/* No comment provided by engineer. */
+"Full name" = "Nom complet";
+
+/* No comment provided by engineer. */
+"Full name..." = "Nom complet...";
 
 /* No comment provided by engineer. */
 "Grades" = "Qualificacions";
@@ -137,7 +152,22 @@
 "Pairing Code" = "S'està aparellant el codi";
 
 /* No comment provided by engineer. */
+"Password" = "Contrasenya";
+
+/* No comment provided by engineer. */
+"Password is required" = "La contrasenya és obligatòria";
+
+/* No comment provided by engineer. */
+"Password..." = "Contrasenya...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Cal permís";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Introduïu una adreça electrònica";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Introduïu un nom complet";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Sobre: %@";

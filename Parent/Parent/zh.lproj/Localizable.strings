@@ -56,10 +56,19 @@
 "Courses" = "课程";
 
 /* No comment provided by engineer. */
+"Create Account" = "创建帐户";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "当前学生：%@. 点击以切换学生";
 
 /* No comment provided by engineer. */
 "Dismiss" = "解散";
+
+/* No comment provided by engineer. */
+"Email address" = "电子邮件地址";
+
+/* No comment provided by engineer. */
+"Email..." = "电子邮件...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活动提醒";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "首页";
+
+/* No comment provided by engineer. */
+"Full name" = "全名";
+
+/* No comment provided by engineer. */
+"Full name..." = "全名...";
 
 /* No comment provided by engineer. */
 "Grades" = "评分";
@@ -137,7 +152,22 @@
 "Pairing Code" = "配对代码";
 
 /* No comment provided by engineer. */
+"Password" = "密码";
+
+/* No comment provided by engineer. */
+"Password is required" = "必须填写密码";
+
+/* No comment provided by engineer. */
+"Password..." = "密码...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "需要权限";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "请输入电子邮件地址";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "请输入全名";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "事由：%@";

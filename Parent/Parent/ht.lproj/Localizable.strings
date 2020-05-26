@@ -56,10 +56,19 @@
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
+"Create Account" = "Kreye Kont";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Elèv aktyèl: %@. Tape pou chanje elèv";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Email address" = "Adrès imèl";
+
+/* No comment provided by engineer. */
+"Email..." = "Imèl...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Rapèl aktivite";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
+
+/* No comment provided by engineer. */
+"Full name" = "Non Konplè";
+
+/* No comment provided by engineer. */
+"Full name..." = "Non Konplè...";
 
 /* No comment provided by engineer. */
 "Grades" = "Nòt";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Kòd Kouplaj";
 
 /* No comment provided by engineer. */
+"Password" = "Modpas";
+
+/* No comment provided by engineer. */
+"Password is required" = "Modpas obligatwa";
+
+/* No comment provided by engineer. */
+"Password..." = "Modpas...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Tanpri ekri yon adrès imèl";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Tanpri antre non konplè a";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Konsènan: %@";

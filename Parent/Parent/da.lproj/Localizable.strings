@@ -56,10 +56,19 @@
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
+"Create Account" = "Opret konto";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Nuværende studerende: %@. Tryk for at skifte studerende";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Afvis";
+
+/* No comment provided by engineer. */
+"Email address" = "E-mailadresse";
+
+/* No comment provided by engineer. */
+"Email..." = "E-mail ...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Begivenhedspåmindelse";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
+
+/* No comment provided by engineer. */
+"Full name" = "Fulde navn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Fulde navn ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Karakterer";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Parringskode";
 
 /* No comment provided by engineer. */
+"Password" = "Adgangskode";
+
+/* No comment provided by engineer. */
+"Password is required" = "Adgangskode er påkrævet";
+
+/* No comment provided by engineer. */
+"Password..." = "Adgangskode ...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Tilladelse nødvendig";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Indtast en e-mailadresse";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Indtast det fulde navn";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Vedrørende: %@";

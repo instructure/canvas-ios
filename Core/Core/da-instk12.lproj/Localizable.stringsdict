@@ -89,7 +89,7 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d like</string>
+			<string>%d lide</string>
 			<key>other</key>
 			<string>%d likes</string>
 			<key>two</key>

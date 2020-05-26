@@ -56,10 +56,19 @@
 "Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
+"Create Account" = "Ustvari račun";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Trenutni študent: %@. Tapnite za preklop študentov";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Email address" = "E-poštni naslov";
+
+/* No comment provided by engineer. */
+"Email..." = "E-pošta ...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Opozorilo o dogodku";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Prva stran";
+
+/* No comment provided by engineer. */
+"Full name" = "Polno ime";
+
+/* No comment provided by engineer. */
+"Full name..." = "Polno ime ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Koda za seznanjanje naprave";
 
 /* No comment provided by engineer. */
+"Password" = "Geslo";
+
+/* No comment provided by engineer. */
+"Password is required" = "Geslo je obvezno";
+
+/* No comment provided by engineer. */
+"Password..." = "Geslo ...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Vnesite e-poštni naslov";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Vnesite polno ime";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Zadeva: %@";

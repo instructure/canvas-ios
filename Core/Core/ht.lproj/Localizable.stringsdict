@@ -89,9 +89,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d like</string>
+			<string>%d jèm</string>
 			<key>other</key>
-			<string>%d likes</string>
+			<string>%d jèm</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

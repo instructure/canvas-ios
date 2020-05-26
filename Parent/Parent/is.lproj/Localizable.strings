@@ -56,10 +56,19 @@
 "Courses" = "Námskeið";
 
 /* No comment provided by engineer. */
+"Create Account" = "Stofna reikning";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
+
+/* No comment provided by engineer. */
+"Email address" = "Netfang";
+
+/* No comment provided by engineer. */
+"Email..." = "Netfang…";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Forsíða";
+
+/* No comment provided by engineer. */
+"Full name" = "Fullt nafn";
+
+/* No comment provided by engineer. */
+"Full name..." = "Fullt nafn…";
 
 /* No comment provided by engineer. */
 "Grades" = "Einkunnir";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Pörunarkóði";
 
 /* No comment provided by engineer. */
+"Password" = "Lykilorð";
+
+/* No comment provided by engineer. */
+"Password is required" = "Lykilorðs er krafist";
+
+/* No comment provided by engineer. */
+"Password..." = "Lykilorð…";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Leyfis krafist";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Settu inn netfang";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Settu inn fullt nafn";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Varðandi: %@";

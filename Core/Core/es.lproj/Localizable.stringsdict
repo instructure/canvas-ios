@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d like</string>
+			<string>%d me gusta</string>
 			<key>other</key>
-			<string>%d likes</string>
+			<string>%d me gustan</string>
 		</dict>
 	</dict>
 	<key>d_needs_grading</key>

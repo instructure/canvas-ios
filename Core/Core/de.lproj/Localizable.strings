@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "„Handeln als“ ist im Grunde die Anmeldung als dieser Benutzer ohne Kennwort. Sie können beliebige Aktionen durchführen, so, als wären Sie dieser Benutzer, und so, dass es für andere Benutzer so aussieht, als ob dieser Benutzer diese durchgeführt hat. Die Audit-Protokolle zeichnen auf, dass Sie die Aktionen im Namen des Benutzers durchgeführt haben.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Kein Betreff)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Aktuelle Position";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Kommentar löschen";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Diese Antwort wurde gelöscht";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Die Funktion beschreiben";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Diskussionsbeitrag";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Antworten auf Diskussion";
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussionen";
@@ -521,6 +533,9 @@
 "Groups" = "Gruppen";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Lassen Sie ein Elternteil diesen QR-Code der Canvas Parent-App scannen, um ein Pairing mit Ihnen herzustellen.";
+
+/* No comment provided by engineer. */
 "Help" = "Hilfe";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliothek";
+
+/* like action */
+"Like" = "Like";
 
 /* No comment provided by engineer. */
 "Link" = "Link";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Pairing mit Beobachter";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Pairing-Code: ";
+
+/* No comment provided by engineer. */
 "Password" = "Kennwort";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "veröffentlicht";
 
 /* No comment provided by engineer. */
+"Published" = "Veröffentlicht";
+
+/* No comment provided by engineer. */
 "purple" = "lila";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "%1$@ entfernt von %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Antworten";
 
 /* No comment provided by engineer. */
 "Reply" = "Antworten";
@@ -1001,10 +1028,16 @@
 "Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Geben Sie den folgenden Pairing-Code an einen Beobachter weiter, damit er sich mit Ihnen verbinden kann. Dieser Code verfällt nach 7 Tagen oder nach der erstmaligen Verwendung.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Jeweils einen Monat anzeigen";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Noten anzeigen";
+
+/* No comment provided by engineer. */
+"Show more options" = "Weitere Optionen anzeigen";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Website-Anmeldung als Admin";
@@ -1205,6 +1238,9 @@
 "unpublished" = "nicht veröffentlicht";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Nicht veröffentlicht";
+
+/* No comment provided by engineer. */
 "Unread" = "Ungelesen";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Module anzeigen";
+
+/* No comment provided by engineer. */
+"View more replies" = "Mehr Antworten anzeigen";
 
 /* No comment provided by engineer. */
 "Viewed" = "Angezeigt";

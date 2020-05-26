@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Mahi pēnei\" ko te whakauru hei kaiwhakamahi kaore he kupuhipa Ka taea e koe te whakamahi ngā mahi anō nei ko koe te kaiwhakamahi, mai anō ētahi atu kaiwhakamahi e titiro ana hoki, anō nei ngā tēnei kaiwhakamahi i mahi Heoi, ka tuhia e ngā kaute tuhinga ko koe te kaihanga i ngā mahi mo tēnei kaiwhakamahi.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Kaore he kaupapa)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Te wāhanga o nāianei";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Muku Kōrero";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Kua mukua tēnei whakautu";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Whakāhua te āhuatanga";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Kōrerorero whakairi";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Ngā kōrero whakautu";
 
 /* No comment provided by engineer. */
 "Discussions" = "Ngā Kōrerorero";
@@ -521,6 +533,9 @@
 "Groups" = "Rōpū";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Ma ō matua e matawai tēnei QR waehere mai i te Canvas Matua Taupanga ki te takirua ki ā koe.";
+
+/* No comment provided by engineer. */
 "Help" = "Āwhina";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Whare pukapuka";
+
+/* like action */
+"Like" = "Pīrangi";
 
 /* No comment provided by engineer. */
 "Link" = "hono";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Hono ki te Kaitirotiro";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Waihere Hono ";
+
+/* No comment provided by engineer. */
 "Password" = "Kupuhipa";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "whakaputaina";
 
 /* No comment provided by engineer. */
+"Published" = "I whakaputaina";
+
+/* No comment provided by engineer. */
 "purple" = "waiporoporo";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Kua tangohia %1$@ e %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Ngā whakautu";
 
 /* No comment provided by engineer. */
 "Reply" = "Whakautu";
@@ -1001,10 +1028,16 @@
 "Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Tuaritia ngā waihere honi e whai ake nei me tētahi kaitirotiro ki te whakāe ia rātou ki te hono ki a koe Ka mutu tēnei waehere i roto i te whitu rā ara i muri o te whakamahi kotahi rānei.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Whakāturia he marama i te wā";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Whakātu Ngā Kōeke";
+
+/* No comment provided by engineer. */
+"Show more options" = "Whakātu  kōwhiringa nui atu";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Takiuru Whakahaere Pae";
@@ -1205,6 +1238,9 @@
 "unpublished" = "kaore i pānuitia";
 
 /* No comment provided by engineer. */
+"Unpublished" = "Kaore ii whakaputaina";
+
+/* No comment provided by engineer. */
 "Unread" = "Kia pānuitia";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Titiro ngā kōwae";
+
+/* No comment provided by engineer. */
+"View more replies" = "Tiro ki nga whakautu anō";
 
 /* No comment provided by engineer. */
 "Viewed" = "Kua Tirohia";

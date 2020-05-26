@@ -56,10 +56,19 @@
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
+"Create Account" = "アカウントを作成する";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
+
+/* No comment provided by engineer. */
+"Email address" = "メールアドレス";
+
+/* No comment provided by engineer. */
+"Email..." = "電子メールアドレス...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "イベントのリマインダ";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "フロントページ";
+
+/* No comment provided by engineer. */
+"Full name" = "フル ネーム";
+
+/* No comment provided by engineer. */
+"Full name..." = "姓名...";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -137,7 +152,22 @@
 "Pairing Code" = "ペアリングコード";
 
 /* No comment provided by engineer. */
+"Password" = "パスワード";
+
+/* No comment provided by engineer. */
+"Password is required" = "パスワードは必須です";
+
+/* No comment provided by engineer. */
+"Password..." = "パスワード...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "メールアドレスを入力してください";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "姓名を入力してください";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "対象：%@";

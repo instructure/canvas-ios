@@ -56,10 +56,19 @@
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
+"Create Account" = "إنشاء حساب";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "الطالب الحالي: %@. اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
 "Dismiss" = "رفض";
+
+/* No comment provided by engineer. */
+"Email address" = "عنوان البريد الإلكتروني";
+
+/* No comment provided by engineer. */
+"Email..." = "بريد إلكتروني...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "التذكير بالحدث";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
+
+/* No comment provided by engineer. */
+"Full name" = "الاسم الكامل";
+
+/* No comment provided by engineer. */
+"Full name..." = "اسم كامل...";
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
@@ -137,7 +152,22 @@
 "Pairing Code" = "رمز الإقران";
 
 /* No comment provided by engineer. */
+"Password" = "كلمة المرور";
+
+/* No comment provided by engineer. */
+"Password is required" = "كلمة المرور مطلوبة";
+
+/* No comment provided by engineer. */
+"Password..." = "كلمة المرور...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "يُرجى إدخال عنوان بريد إلكتروني";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "يُرجى إدخال الاسم الكامل";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "بخصوص: %@";

@@ -56,10 +56,19 @@
 "Courses" = "Akoranga";
 
 /* No comment provided by engineer. */
+"Create Account" = "Waihanga Pūkete";
+
+/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Te ākonga o nāianei: %@. Pātō ki te huri ngā ākonga";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Pana";
+
+/* No comment provided by engineer. */
+"Email address" = "īmēra wāhitau";
+
+/* No comment provided by engineer. */
+"Email..." = "Īmēra:";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Tauwhāinga whakamaharatanga";
@@ -75,6 +84,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Whārangi mua";
+
+/* No comment provided by engineer. */
+"Full name" = "Ingoa tonu";
+
+/* No comment provided by engineer. */
+"Full name..." = "Ingoa tonu";
 
 /* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
@@ -137,7 +152,22 @@
 "Pairing Code" = "Waihere Hono";
 
 /* No comment provided by engineer. */
+"Password" = "Kupuhipa";
+
+/* No comment provided by engineer. */
+"Password is required" = "E hiahiatia naa te kupuhipa";
+
+/* No comment provided by engineer. */
+"Password..." = "Kupuhipa";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "E hiahiatia ana he whakāetanga";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Tēnā koa whakauru he īmēra wāhitau ";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Tēnā koa whakauru he ingoa hou.tonu";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "E pā ana: %@";

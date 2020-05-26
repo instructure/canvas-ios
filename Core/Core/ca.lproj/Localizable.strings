@@ -4,6 +4,9 @@
 /* No comment provided by engineer. */
 "\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Fer de\" consisteix essencialment a iniciar la sessió com a aquest usuari sense cap contrasenya. Podreu dur a terme accions com si fóssiu aquest usuari i, de cara a altres usuaris, serà com si les realitzés aquest usuari. No obstant això, als registres d'auditoria s'enregistrarà que vau ser qui va dur a terme les accions en nom d'aquest usuari.";
 
+/* number of likes next to the like button */
+"(%d)" = "(%d)";
+
 /* No comment provided by engineer. */
 "(No subject)" = "(Sense assumpte)";
 
@@ -305,6 +308,9 @@
 "Current position" = "Posició actual";
 
 /* No comment provided by engineer. */
+"d_likes" = "d_likes";
+
+/* No comment provided by engineer. */
 "d_needs_grading" = "d_needs_grading";
 
 /* No comment provided by engineer. */
@@ -335,6 +341,9 @@
 "Delete Comment" = "Suprimeix el comentari";
 
 /* No comment provided by engineer. */
+"Deleted this reply." = "Suprimida aquesta resposta.";
+
+/* No comment provided by engineer. */
 "Describe the feature" = "Descriu la característica";
 
 /* No comment provided by engineer. */
@@ -363,6 +372,9 @@
 
 /* No comment provided by engineer. */
 "Discussion Post" = "Publicació sobre el debat";
+
+/* No comment provided by engineer. */
+"Discussion Replies" = "Respostes al debat";
 
 /* No comment provided by engineer. */
 "Discussions" = "Debats";
@@ -521,6 +533,9 @@
 "Groups" = "Grups";
 
 /* No comment provided by engineer. */
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Feu que el vostre progenitor escanegi aquest codi QR de l'aplicació Canvas Parent per emparellar-vos-hi.";
+
+/* No comment provided by engineer. */
 "Help" = "Ajuda";
 
 /* No comment provided by engineer. */
@@ -603,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Biblioteca";
+
+/* like action */
+"Like" = "M'agrada";
 
 /* No comment provided by engineer. */
 "Link" = "Enllaç";
@@ -830,6 +848,9 @@
 "Pair with Observer" = "Emparella amb l'observador";
 
 /* No comment provided by engineer. */
+"Pairing Code: " = "Codi d'emparellament: ";
+
+/* No comment provided by engineer. */
 "Password" = "Contrasenya";
 
 /* No comment provided by engineer. */
@@ -875,6 +896,9 @@
 "published" = "publicat";
 
 /* No comment provided by engineer. */
+"Published" = "Publicat";
+
+/* No comment provided by engineer. */
 "purple" = "porpra";
 
 /* Description for Push Notification channel */
@@ -912,6 +936,9 @@
 
 /* No comment provided by engineer. */
 "Removed %1$@ by %2$@" = "Eliminat %1$@ per %2$@";
+
+/* No comment provided by engineer. */
+"Replies" = "Respostes";
 
 /* No comment provided by engineer. */
 "Reply" = "Respon";
@@ -1001,10 +1028,16 @@
 "Settings" = "Configuració";
 
 /* No comment provided by engineer. */
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Compartiu el codi d'emparellament següent amb un observador per permetre que aquest es connecti amb vós. Aquest codi caducarà en set dies o després d'un ús.";
+
+/* No comment provided by engineer. */
 "Show a month at a time" = "Mostra un mes a la vegada";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Mostra les qualificacions";
+
+/* No comment provided by engineer. */
+"Show more options" = "Mostra més opcions";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inici de sessió de l'administrador del lloc web";
@@ -1205,6 +1238,9 @@
 "unpublished" = "no publicat";
 
 /* No comment provided by engineer. */
+"Unpublished" = "No publicat";
+
+/* No comment provided by engineer. */
 "Unread" = "Sense llegir";
 
 /* No comment provided by engineer. */
@@ -1251,6 +1287,9 @@
 
 /* No comment provided by engineer. */
 "View Modules" = "Mostra els mòduls";
+
+/* No comment provided by engineer. */
+"View more replies" = "Mostra més respostes";
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";
