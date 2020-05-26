@@ -300,6 +300,23 @@ struct PostDiscussionEntryRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_entries.update
+struct PutDiscussionEntryRequest: APIRequestable {
+    typealias Response = APIDiscussionEntry
+    struct Body: Codable {
+        let message: String
+    }
+
+    let body: Body?
+    let method = APIMethod.put
+    let path: String
+
+    init(context: Context, topicID: String, entryID: String, message: String) {
+        path = "\(context.pathComponent)/discussion_topics/\(topicID)/entries/\(entryID)"
+        body = Body(message: message)
+    }
+}
+
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.entries
 struct ListDiscussionEntriesRequest: APIRequestable {
     typealias Response = [APIDiscussionEntry]

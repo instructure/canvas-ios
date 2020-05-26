@@ -63,6 +63,14 @@ class APIDiscussionTests: XCTestCase {
         XCTAssertEqual(reply.path, "courses/1/discussion_topics/42/entries/1/replies")
     }
 
+    func testPutDiscussionEntryRequest() {
+        let request = PutDiscussionEntryRequest(context: context, topicID: "42", entryID: "5", message: "Updated")
+
+        XCTAssertEqual(request.method, .put)
+        XCTAssertEqual(request.path, "courses/1/discussion_topics/42/entries/5")
+        XCTAssertEqual(request.body?.message, "Updated")
+    }
+
     func testMarkDiscussionTopicReadRequest() {
         let mark = MarkDiscussionTopicReadRequest(context: context, topicID: "1", isRead: true)
         XCTAssertEqual(mark.method, .put)

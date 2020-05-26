@@ -73,6 +73,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
     let collapsedHeight: CGFloat = 120
     var context: Context = ContextModel.currentUser
     var editEntryID: String?
+    var editHTML: String?
     lazy var editor = RichContentEditorViewController.create(context: context, uploadTo: env.app == .teacher ? .context(context) : .myFiles)
     let env = AppEnvironment.shared
     lazy var filePicker = FilePicker(delegate: self)
@@ -189,7 +190,8 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
             webView.loadHTMLString(html, baseURL: topic.htmlURL)
         }
 
-        if editEntryID != nil, let entry = editEntry?.first {
+        if let entry = editEntry?.first, editHTML != entry.message {
+            editHTML = entry.message
             editor.setHTML(entry.message ?? "")
         }
     }
@@ -238,15 +240,27 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
     }
 
     func saveReply(_ message: String) {
-        CreateDiscussionReply(
-            context: context,
-            topicID: topicID,
-            entryID: replyToEntryID,
-            message: message,
-            attachment: attachmentURL
-        ).fetch { [weak self] _, _, error in performUIUpdate {
-            self?.saveReplyComplete(error: error)
-        } }
+        if let entryID = editEntryID {
+            UpdateDiscussionReply(
+                context: context,
+                topicID: topicID,
+                entryID: entryID,
+                message: message
+            ).fetch { [weak self] _, _, error in performUIUpdate {
+                self?.saveReplyComplete(error: error)
+            } }
+        } else {
+            CreateDiscussionReply(
+                context: context,
+                topicID: topicID,
+                entryID: replyToEntryID,
+                message: message,
+                attachment: attachmentURL
+            ).fetch { [weak self] _, _, error in performUIUpdate {
+                self?.saveReplyComplete(error: error)
+            } }
+            return
+        }
     }
 
     func saveReplyComplete(error: Error?) {
