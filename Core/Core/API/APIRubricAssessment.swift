@@ -18,7 +18,7 @@
 
 import Foundation
 
-typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
+public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
 
 public struct APIRubricAssessment: Codable, Equatable {
     let submissionID: String?

@@ -657,6 +657,12 @@
         <attribute name="id" attributeType="String"/>
         <relationship name="submissionsRaw" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Submission" inverseName="list" inverseEntity="Submission"/>
     </entity>
+    <entity name="SubmissionSummary" representedClassName="Core.SubmissionSummary" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="graded" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="ungraded" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="unsubmitted" attributeType="Integer 64" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Syllabus" representedClassName="Core.Syllabus" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="syllabus" inverseEntity="Assignment"/>
@@ -770,5 +776,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

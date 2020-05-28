@@ -84,5 +84,4 @@ class GetSubmissionCommentsTests: CoreTestCase {
         )
         XCTAssertEqual(getSubmission.scope, scope)
     }
-
 }
