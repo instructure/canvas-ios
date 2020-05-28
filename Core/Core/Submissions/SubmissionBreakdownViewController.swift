@@ -106,8 +106,10 @@ class SubmissionBreakdownViewController: UIViewController {
         didAppear = false
     }
 
+    // swiftlint:disable large_tuple
     var animateFrom: (Double, Double, Double) = (0, 0, 0)
     var animateTo: (Double, Double, Double) = (0, 0, 0)
+    // swiftlint:enable large_tuple
     var animateLink: CADisplayLink?
     var animateStartedAt = Clock.now
     func update() {

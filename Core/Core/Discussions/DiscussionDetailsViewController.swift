@@ -226,7 +226,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             : NSLocalizedString("Unpublished", bundle: .core, comment: "")
         publishedLabel.textColor = .named(isPublished ? .textSuccess : .textDark)
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
-    
+
         if let assignmentID = topic.first?.assignmentID {
             if dueSection.isHidden {
                 dueSection.isHidden = false
