@@ -21,7 +21,7 @@ import UIKit
 
 public struct BottomSheetAction {
     public let action: () -> Void
-    public let image: UIImage
+    public let image: UIImage?
     public let title: String
 }
 
@@ -50,19 +50,24 @@ public class BottomSheetPickerViewController: UIViewController {
         view.frame.size.height = 8
     }
 
-    func addAction(image: UIImage, title: String, action: @escaping () -> Void = {}) {
+    func addAction(image: UIImage?, title: String, action: @escaping () -> Void = {}) {
         loadViewIfNeeded()
         let button = UIButton(type: .system)
-        button.setImage(image, for: .normal)
+
         button.setTitle(title, for: .normal)
         button.contentHorizontalAlignment = .leading
         button.contentVerticalAlignment = .center
-        button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 40, bottom: 16, right: 16)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
         button.tintColor = .named(.textDarkest)
         button.titleLabel?.font = .scaledNamedFont(.medium16)
         button.tag = actions.count
         button.addTarget(self, action: #selector(didSelect(_:)), for: .primaryActionTriggered)
+        button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        if let image = image {
+            button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 40, bottom: 16, right: 16)
+            button.setImage(image, for: .normal)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
+        }
+
         button.sizeToFit()
         view.frame.size.height += button.frame.height
         stackView.addArrangedSubview(button)
