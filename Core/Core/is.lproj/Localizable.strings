@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Tilkynning sem þú hefur stofnað";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Upplýsingar tilkynningar";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Svör við tilkynningum";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tiltækir fundir";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Verkefni vantar";
+
+/* No comment provided by engineer. */
+"Attachment" = "Viðhengi";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tilraun %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Handvirk OAuth innskráning";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Merkja allt sem lesið";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Merkja allt sem ólesið";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Merkja sem lokið";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Merkja sem lesið";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Merkja sem ólokið";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Merkja sem ólesið";
 
 /* No comment provided by engineer. */
 "Mark done" = "Merkja sem lokið";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Opna %@ kjörstillingar notanda";
+
+/* No comment provided by engineer. */
+"Options" = "Valkostir";
 
 /* No comment provided by engineer. */
 "orange" = "appelsínugulur";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Sýna fleiri möguleika";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Innskráning svæðisstjórnanda";
@@ -1286,7 +1313,13 @@
 "View" = "Skoða";
 
 /* No comment provided by engineer. */
+"View Less" = "Sjá minna";
+
+/* No comment provided by engineer. */
 "View Modules" = "Skoða einingar";
+
+/* No comment provided by engineer. */
+"View More" = "Sjá meira";
 
 /* No comment provided by engineer. */
 "View more replies" = "Skoða fleiri svör";

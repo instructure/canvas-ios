@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Aankondigingen die je hebt gemaakt";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Details over aankondiging";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Antwoorden op aankondiging";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Beschikbaarheid voor afspraak";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Opdracht ontbreekt";
+
+/* No comment provided by engineer. */
+"Attachment" = "Bijlage";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poging %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Handmatige OAuth Login";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Alles als gelezen markeren";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Alles als ongelezen markeren";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Als gereed markeren";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Markeren als gelezen";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Als ongedaan markeren";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Markeren als ongelezen";
 
 /* No comment provided by engineer. */
 "Mark done" = "Gereed markeren";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Gebruikersvoorkeuren %@ openen";
+
+/* No comment provided by engineer. */
+"Options" = "Opties";
 
 /* No comment provided by engineer. */
 "orange" = "oranje";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Meer opties weergeven";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Aanmelding sitebeheer";
@@ -1286,7 +1313,13 @@
 "View" = "Bekijken";
 
 /* No comment provided by engineer. */
+"View Less" = "Minder weergeven";
+
+/* No comment provided by engineer. */
 "View Modules" = "Modules weergeven";
+
+/* No comment provided by engineer. */
+"View More" = "Meer weergeven";
 
 /* No comment provided by engineer. */
 "View more replies" = "Meer antwoorden bekijken";

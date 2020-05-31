@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Nemandinn þú ert að reyna að bæta við er í annarri Canvas stofnun.\n                    Skráðu þig inn eða stofnaðu reikning hjá þeirri stofnun til að bæta við þessum nemanda.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ skiladagur er %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Bæta við nemanda";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Bæta nemanda við…";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Bæta nemendum við efst eða fara í altæka valmynd til að dyljast sem nemandi.";
@@ -23,6 +29,9 @@
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Áttu nú þegar reikning? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Til baka";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Með því að smella á „stofna reikning“ samþykkir þú %1$@ og viðurkennir %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Dagatal";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Ekki var hægt að þátta QR-kóða, eða QR-kóði var ógildur";
+
 /* Courses Tab */
 "Courses" = "Námskeið";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Léna misræmi";
 
 /* No comment provided by engineer. */
 "Email address" = "Netfang";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Settu inn fullt nafn";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Persónuverndarstefna";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR kóði";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "Varðandi: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Stillingar. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Innskráning";
+
 /* No comment provided by engineer. */
 "Submitted" = "Skilað";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Þjónustuskilmálar";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Gildið þarf að vera á milli 0 og 100";

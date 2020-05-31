@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    L'estudiant que esteu provant d'afegir és d'una altra institució del Canvas.\n                    Inicieu la sessió o creeu un compte amb aquesta institució per afegir l'estudiant.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ venç a les %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Afegeix un estudiant";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Afegeix un estudiant amb...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Afegiu estudiants a la part superior o visiteu el menú global per fer-vos passar per un estudiant.";
@@ -23,6 +29,9 @@
 "Alerts" = "Avisos";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Ja teniu un compte? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Anunci";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Enrere";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "En tocar \"Crea un compte\", accepteu les %1$@ i reconeixeu la %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendari";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "No s'ha pogut analitzar el codi QR, codi QR no vàlid";
+
 /* Courses Tab */
 "Courses" = "Cursos";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descarta";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "El domini no coincideix";
 
 /* No comment provided by engineer. */
 "Email address" = "Adreça electrònica";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Introduïu un nom complet";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Política de privacitat";
+
+/* No comment provided by engineer. */
+"QR Code" = "Codi QR";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "Sobre: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Configuració. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Inicia la sessió";
+
 /* No comment provided by engineer. */
 "Submitted" = "Enviat";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Temari";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Condicions de servei";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";

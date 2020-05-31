@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Študent, ki ga poskušate dodati, je v drugi ustanovi Canvas.\n                    Prijavite se ali ustvarite račun pri tej ustanovi, če želite dodati tega študenta.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ima rok ob %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Dodaj študenta";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Dodaj študenta s/z ...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Dodajte študente na vrhu ali pa pojdite v globalni meni, da prevzamete vlogo študenta.";
@@ -23,6 +29,9 @@
 "Alerts" = "Opozorila";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Ali že imate račun? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Nazaj";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Če tapnete »Ustvari račun«, pristajate na %1$@ in potrdite %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Koledar";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Kode QR ni bilo razčleniti, neveljavna koda QR";
+
 /* Courses Tab */
 "Courses" = "Predmeti";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Neujemanje domene";
 
 /* No comment provided by engineer. */
 "Email address" = "E-poštni naslov";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Vnesite polno ime";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Pravilnik o zasebnosti";
+
+/* No comment provided by engineer. */
+"QR Code" = "Koda QR";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "Zadeva: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Nastavitve. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Prijava";
+
 /* No comment provided by engineer. */
 "Submitted" = "Poslano";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Pogoji storitve";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Vrednost mora biti število 0–100";

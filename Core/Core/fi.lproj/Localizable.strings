@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Luomasi ilmoitus";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Ilmoituksen tiedot";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Ilmoituksen vastaukset";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tapaamisen saatavilla olo";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tehtävä puuttuu";
+
+/* No comment provided by engineer. */
+"Attachment" = "Liite";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Yritys %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Merkitse kaikki luetuiksi";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Merkitse lukemattomaksi";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Merkitse valmiiksi";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Merkitse luetuksi";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Merkitse kumotuksi";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Merkitse lukemattomaksi";
 
 /* No comment provided by engineer. */
 "Mark done" = "Merkitse valmiiksi";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
+
+/* No comment provided by engineer. */
+"Options" = "Asetukset";
 
 /* No comment provided by engineer. */
 "orange" = "oranssi";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Näytä lisäasetukset";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sivuston pääkäyttäjän kirjautuminen";
@@ -1286,7 +1313,13 @@
 "View" = "Näytä";
 
 /* No comment provided by engineer. */
+"View Less" = "Näytä vähemmän";
+
+/* No comment provided by engineer. */
 "View Modules" = "Tarkastele moduuleita";
+
+/* No comment provided by engineer. */
+"View More" = "Näytä enemmän";
 
 /* No comment provided by engineer. */
 "View more replies" = "Tarkastele lisää vastauksia";

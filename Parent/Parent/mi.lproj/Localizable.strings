@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Ko te akonga e ngana ana koe ki te tāpiri kei tētahi Canvas wharenohonga rerekē.\n                    Waitohu are hanga rānei he pūkete me te wharenohonga ki te tāpiri ki tēnei ākonga.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ ka tae i te wā ī %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Tapiri ākonga";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Tapiri ākonga me...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Tāpiri ākonga ki runga ara haere ki te tahua o te ao ki te āhua rua hei ākonga";
@@ -23,6 +29,9 @@
 "Alerts" = "He whakamatāra";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "He pūkete tāū? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Pānui";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Hoki";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ma te patopato i 'Hanga Pūkete', e whakāe ana koe ki te %1$@ me te whakamihi te %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Maramataka";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Kaore e taea te pāora QR Waehere, QR Waehere koremana";
+
 /* Courses Tab */
 "Courses" = "Akoranga";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Pana";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Rohe kaore e ōrite";
 
 /* No comment provided by engineer. */
 "Email address" = "īmēra wāhitau";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Tēnā koa whakauru he ingoa hou.tonu";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Kaupapahere Tūmataiti";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR Waehere";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "E pā ana: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Ngā Tautuhinga. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Waitohu I roto i";
+
 /* No comment provided by engineer. */
 "Submitted" = "Kua tukuna";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Marautanga";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Ngā Ture o te Ratonga";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Me waiho te wāriu i waenganui i te 0 me te 100 kaute";

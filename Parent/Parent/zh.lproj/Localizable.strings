@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    您尝试添加的学生位于不同的 Canvas 机构。\n                    请在该机构中注册会员或创建帐户以添加该学生。\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@截止日期%2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "添加学生";
+
+/* No comment provided by engineer. */
+"Add student with..." = "使用...添加学生";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "在顶部添加学生或访问全局菜单以伪装成学生。";
@@ -23,6 +29,9 @@
 "Alerts" = "警告";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "已经有一个帐户吗？ %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "公告";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "返回";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "点击“创建帐户”即表示，您同意%1$@和%2$@。";
 
 /* Calendar Tab */
 "Calendar" = "日历";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "无法解析二维码，二维码无效";
+
 /* Courses Tab */
 "Courses" = "课程";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "解散";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "域不匹配";
 
 /* No comment provided by engineer. */
 "Email address" = "电子邮件地址";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "请输入全名";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "隐私政策";
+
+/* No comment provided by engineer. */
+"QR Code" = "二维码";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "事由：%@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "设置。%@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "登录";
+
 /* No comment provided by engineer. */
 "Submitted" = "提交";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "教学大纲";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "服务条款";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "值必须是介于 0 至 100 之间的数字";

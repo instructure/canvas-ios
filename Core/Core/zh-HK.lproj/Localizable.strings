@@ -77,6 +77,12 @@
 "Announcement Created By You" = "您創建的通告";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "通告詳細資料";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "通告回覆";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "預約可用性";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "缺少作業";
+
+/* No comment provided by engineer. */
+"Attachment" = "附件";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "嘗試%d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "手動 OAuth 登入";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "全部標記為已讀";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "全部標記為未讀";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "標記為完成";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "標記為已讀";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "標記為未完成";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "標記為未讀";
 
 /* No comment provided by engineer. */
 "Mark done" = "標記為已完成";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "打開 %@ 用戶偏好設定";
+
+/* No comment provided by engineer. */
+"Options" = "選項";
 
 /* No comment provided by engineer. */
 "orange" = "橙色";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "顯示更多選項";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "網站管理員登入";
@@ -1286,7 +1313,13 @@
 "View" = "檢視";
 
 /* No comment provided by engineer. */
+"View Less" = "檢視更少";
+
+/* No comment provided by engineer. */
 "View Modules" = "查看單元";
+
+/* No comment provided by engineer. */
+"View More" = "檢視更多";
 
 /* No comment provided by engineer. */
 "View more replies" = "檢視更多回覆";

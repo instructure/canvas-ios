@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Announcement created by you";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Announcement details";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Announcement Replies";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Appointment availability";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Assignment missing";
+
+/* No comment provided by engineer. */
+"Attachment" = "Attachment";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Manual OAuth Login";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Mark all as read";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Mark all as unread";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Mark as done";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Mark as read";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Mark as Undone";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Mark as unread";
 
 /* No comment provided by engineer. */
 "Mark done" = "Mark as completed";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Open %@ user preferences";
+
+/* No comment provided by engineer. */
+"Options" = "Options";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Show more options";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Site admin login";
@@ -1286,7 +1313,13 @@
 "View" = "View";
 
 /* No comment provided by engineer. */
+"View Less" = "View Less";
+
+/* No comment provided by engineer. */
 "View Modules" = "View Modules";
+
+/* No comment provided by engineer. */
+"View More" = "View more";
 
 /* No comment provided by engineer. */
 "View more replies" = "View more replies";

@@ -77,6 +77,12 @@
 "Announcement Created By You" = "الإعلان الذي قمت بإنشائه";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "تفاصيل الإعلان";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "ردود الإعلان";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "توفر الموعد";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "مهمة مفقودة";
+
+/* No comment provided by engineer. */
+"Attachment" = "المرفق";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "وضع علامة على الكل كمقروء";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "وضع علامة على الكل كغير مقروء";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "وضع علامة تم";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "وضع علامة كمقروء";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "وضع علامة تم التراجع عنه";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "وضع علامة كغير مقروء";
 
 /* No comment provided by engineer. */
 "Mark done" = "وضع علامة \"تم\"";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
+
+/* No comment provided by engineer. */
+"Options" = "الخيارات";
 
 /* No comment provided by engineer. */
 "orange" = "برتقالي";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "إظهار خيارات أكثر";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "تسجيل دخول مسؤول الموقع";
@@ -1286,7 +1313,13 @@
 "View" = "عرض";
 
 /* No comment provided by engineer. */
+"View Less" = "عرض أقل";
+
+/* No comment provided by engineer. */
 "View Modules" = "عرض الوحدات المنطقية";
+
+/* No comment provided by engineer. */
+"View More" = "عرض المزيد";
 
 /* No comment provided by engineer. */
 "View more replies" = "عرض المزيد من الردود";

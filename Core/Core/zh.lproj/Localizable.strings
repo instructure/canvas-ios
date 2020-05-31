@@ -77,6 +77,12 @@
 "Announcement Created By You" = "您所创建的公告";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "公告详细信息";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "公告回复";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "预约可用性";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "缺少作业";
+
+/* No comment provided by engineer. */
+"Attachment" = "附件";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "手动 OAuth 登录";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "全部标记为已读";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "全部标记为未读";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "标记为已完成";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "标记为已读";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "标记为未完成";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "标记为未读";
 
 /* No comment provided by engineer. */
 "Mark done" = "标记为完成";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "打开%@用户首选项";
+
+/* No comment provided by engineer. */
+"Options" = "选项";
 
 /* No comment provided by engineer. */
 "orange" = "桔黄色";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "显示更多的选项";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "这是一项小组讨论，每个小组都有关于这个主题的会话。这些是您可以参与的讨论。";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "站点管理员登录";
@@ -1286,7 +1313,13 @@
 "View" = "查看";
 
 /* No comment provided by engineer. */
+"View Less" = "查看更少";
+
+/* No comment provided by engineer. */
 "View Modules" = "查看模块";
+
+/* No comment provided by engineer. */
+"View More" = "查看更多";
 
 /* No comment provided by engineer. */
 "View more replies" = "查看更多回复";
