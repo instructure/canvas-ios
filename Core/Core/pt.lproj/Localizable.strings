@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Anúncio Criado Por Si";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Detalhes do anúncio";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Respostas do anúncio";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilidade de compromisso";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tarefa em falta";
+
+/* No comment provided by engineer. */
+"Attachment" = "Anexo";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativa %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Login Manual OAuth";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Marcar tudo como lido";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Marcar tudo como não lido";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Marcar como Terminado";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Marcar como lido";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Marcar como Não Terminado";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Marcar como não lido";
 
 /* No comment provided by engineer. */
 "Mark done" = "Marcar terminado";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Abra as %@ preferências do utilizador";
+
+/* No comment provided by engineer. */
+"Options" = "Opções";
 
 /* No comment provided by engineer. */
 "orange" = "laranja";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostrar mais opções";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Visto que esta é uma discussão de grupo, cada grupo tem uma conversa própria relativa a este tópico. Aqui estão as discussões aos quais tem acesso.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Login do administrador do site";
@@ -1286,7 +1313,13 @@
 "View" = "Ver";
 
 /* No comment provided by engineer. */
+"View Less" = "Ver menos";
+
+/* No comment provided by engineer. */
 "View Modules" = "Visualizar módulos";
+
+/* No comment provided by engineer. */
+"View More" = "Ver mais";
 
 /* No comment provided by engineer. */
 "View more replies" = "Mostrar mais respostas";

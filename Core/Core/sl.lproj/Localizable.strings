@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Obvestila, ki ste jih ustvarili";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Podrobnosti o obvestilu";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Odgovori na obvestilo";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Objave novih sestankov";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Manjkajoča naloga";
+
+/* No comment provided by engineer. */
+"Attachment" = "Priloga";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poskus %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Ročna prijava OAuth";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Označi vse kot prebrano";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Označi vse kot neprebrano";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Označi kot dokončano";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Označi kot prebrano";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Označi kot nedokončano";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Označi kot neprebrano";
 
 /* No comment provided by engineer. */
 "Mark done" = "Označi kot dokončano";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Odpri prednostne nastavitve uporabnika %@.";
+
+/* No comment provided by engineer. */
+"Options" = "Možnosti";
 
 /* No comment provided by engineer. */
 "orange" = "oranžna";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Prikaži več možnosti";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Ker je to razprava skupine, ima za to temo vsaka skupina svoj pogovor. Tu so razprave, do katerih imate dostop.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Prijava skrbnika mesta";
@@ -1286,7 +1313,13 @@
 "View" = "Ogled";
 
 /* No comment provided by engineer. */
+"View Less" = "Prikaži manj";
+
+/* No comment provided by engineer. */
 "View Modules" = "Ogled modulov";
+
+/* No comment provided by engineer. */
+"View More" = "Oglejte si več";
 
 /* No comment provided by engineer. */
 "View more replies" = "Ogled več odgovorov";

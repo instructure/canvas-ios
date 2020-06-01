@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Anunci que heu creat";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Informació de l'anunci";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Respostes a l'anunci";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilitat per a la cita";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Falta la tasca";
+
+/* No comment provided by engineer. */
+"Attachment" = "Fitxer adjunt";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intent %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Inici de sessió amb autenticació manual";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Marca tots com a Llegit";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Marca-ho tot com a no llegit";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Marca-ho com fet";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Marca-ho com a llegit";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Marca-ho com a desfet";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Marca-ho com a no llegit";
 
 /* No comment provided by engineer. */
 "Mark done" = "Marca com a fet";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Obre les preferències d'usuari per a %@";
+
+/* No comment provided by engineer. */
+"Options" = "Opcions";
 
 /* No comment provided by engineer. */
 "orange" = "taronja";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostra més opcions";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Atès que aquest és un debat de grup, cada grup té la seva conversa per a aquest tema. Aquests són els debats als quals teniu accés.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inici de sessió de l'administrador del lloc web";
@@ -1286,7 +1313,13 @@
 "View" = "Mostra";
 
 /* No comment provided by engineer. */
+"View Less" = "Visualitza'n menys";
+
+/* No comment provided by engineer. */
 "View Modules" = "Mostra els mòduls";
+
+/* No comment provided by engineer. */
+"View More" = "Visualitza'n més";
 
 /* No comment provided by engineer. */
 "View more replies" = "Mostra més respostes";

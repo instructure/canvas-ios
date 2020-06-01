@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    الطالب الذي تحاول إضافته في مؤسسة تعليمية مختلفة على Canvas.\n                    سجّل الدخول أو أنشئ حساباً في هذه المؤسسة التعليمية لإضافة هذا الطالب.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ مستحق في %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "إضافة طالب";
+
+/* No comment provided by engineer. */
+"Add student with..." = "إضافة طالب في...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "أضف طلاباً في المقدمة أو زر القائمة العامة للتخفي كطالب.";
@@ -23,6 +29,9 @@
 "Alerts" = "تنبيهات";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "هل تمتلك حسابًا بالفعل؟ %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "الإعلان";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "عودة";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "بالضغط على \"إنشاء حساب\"، أنت توافق على %1$@ وتقر بـ%2$@.";
 
 /* Calendar Tab */
 "Calendar" = "التقويم";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "تعذر تحليل رمز QR، رمز QR غير صالح";
+
 /* Courses Tab */
 "Courses" = "المساقات";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "رفض";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "المجال غير مطابق";
 
 /* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "يُرجى إدخال الاسم الكامل";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "سياسة الخصوصية";
+
+/* No comment provided by engineer. */
+"QR Code" = "رمز QR";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "بخصوص: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "الإعداد %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "تسجيل الدخول";
+
 /* No comment provided by engineer. */
 "Submitted" = "تم الإرسال";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "المناهج";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "شروط الخدمة";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "يجب أن تكون القيمة رقمًا بين 0 و100";

@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Kunngjøring opprettet av deg";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Kunngjøringsdetaljer";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Kunngjøringssvar";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Tilgjengelighet for avtaler";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Oppgave mangler";
+
+/* No comment provided by engineer. */
+"Attachment" = "Vedlegg";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Forsøk %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Manuell OAuth-innlogging";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Merk alle som lest";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Merk alle som ulest";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Merk som utført";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Merk som lest";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Merk som ikke fullført";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Merk som ulest";
 
 /* No comment provided by engineer. */
 "Mark done" = "Merk ferdig";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Åpne %@ brukerinnstillinger";
+
+/* No comment provided by engineer. */
+"Options" = "Valg";
 
 /* No comment provided by engineer. */
 "orange" = "oransje";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Vis flere alternativer";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Siden dette er en gruppe diskusjon, har hver gruppe en egen samtale for dette emne. Her er diskusjonene du har tilgang til.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Sideadministratorinnlogging";
@@ -1286,7 +1313,13 @@
 "View" = "Vis";
 
 /* No comment provided by engineer. */
+"View Less" = "Vis mindre";
+
+/* No comment provided by engineer. */
 "View Modules" = "Vis moduler";
+
+/* No comment provided by engineer. */
+"View More" = "Vis mer";
 
 /* No comment provided by engineer. */
 "View more replies" = "Vis flere svar";

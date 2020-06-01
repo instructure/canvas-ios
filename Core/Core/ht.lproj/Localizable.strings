@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Anons Ou Kreye";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Detay Anons";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Repons Anons";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilite Randevou";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Sesyon ki manke";
+
+/* No comment provided by engineer. */
+"Attachment" = "Atachman";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Make Tout Ke yo Li";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Make Tout Ke yo Poko Li";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Make kòm Fini";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Make tankou Li";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Make kòm Poko fini";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Make tankou Poko Li";
 
 /* No comment provided by engineer. */
 "Mark done" = "Make tankou li fini";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Ouvri %@ preferans itilizatè";
+
+/* No comment provided by engineer. */
+"Options" = "Opsyon";
 
 /* No comment provided by engineer. */
 "orange" = "oranj";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Afiche plis opsyon";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Lefèt ke sa a se yon gwoup diskisyon, chak gwoup gen pwòp konvèsasyon pa li pou sijè sa a. Men a ki diskisyon ou gen aksè.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Koneksyon Admin Sit";
@@ -1286,7 +1313,13 @@
 "View" = "Afiche";
 
 /* No comment provided by engineer. */
+"View Less" = "Afiche Mwens";
+
+/* No comment provided by engineer. */
 "View Modules" = "Afiche Modil";
+
+/* No comment provided by engineer. */
+"View More" = "Afiche Plis";
 
 /* No comment provided by engineer. */
 "View more replies" = "Afiche plis kòmantè";

@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    L'étudiant que vous tentez d'ajouter se trouve dans un autre établissement Canvas.\n                    Connectez-vous ou créez un compte avec cet établissement pour ajouter cet étudiant.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ dû à %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Ajouter un étudiant";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Ajouter étudiant avec…";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ajoutez des étudiants en haut ou visitez le menu universel pour personnifier un étudiant.";
@@ -23,6 +29,9 @@
 "Alerts" = "Alertes";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Vous possédez déjà un compte? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Annonce";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Revenir";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "En tapotant sur « Créer un compte », vous acceptez les %1$@ ainsi que %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendrier";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Impossible d’analyser le code QR., code QR invalide";
+
 /* Courses Tab */
 "Courses" = "Cours";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejeter";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Incompatibilité du domaine";
 
 /* No comment provided by engineer. */
 "Email address" = "Adresse courriel";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Veuillez saisir votre nom complet";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Politique de confidentialité";
+
+/* No comment provided by engineer. */
+"QR Code" = "Code QR";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "En ce qui concerne : %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Paramètres. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Se connecter";
+
 /* No comment provided by engineer. */
 "Submitted" = "Soumis";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programme";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Conditions d'utilisation";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "La valeur doit être un nombre compris entre 0 et 100";

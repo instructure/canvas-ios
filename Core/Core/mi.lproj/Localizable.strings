@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Pānuitanga Waihangatia e koe";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Taipitopito Pānuitanga";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Pānuitanga ngā Whakautu";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Wāhui te wātea";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "E ngaro ana whakataunga";
+
+/* No comment provided by engineer. */
+"Attachment" = "Āpitihanga";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Whakamātau %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Kua Pānuihia te Katoa";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Tohua kaore i Pānuitia katoa";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Tohu kua Oti";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Tohua kua pānuitia";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Tohua kua whakakoretia";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Tohu  rite kaore i Pānuitia";
 
 /* No comment provided by engineer. */
 "Mark done" = "tohu mahia";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Huaki %@ ngā manakohanga o ngā kaiwhakamahi";
+
+/* No comment provided by engineer. */
+"Options" = "Ngā kōwhiringa";
 
 /* No comment provided by engineer. */
 "orange" = "ārani";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Whakātu  kōwhiringa nui atu";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Mai te mea he kōrero rōpū tēnei, kei ia rōpū ngā kōrerorero mō tēnei kaupapa. Anei ngā kōrero hei whakauru atu mau.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Takiuru Whakahaere Pae";
@@ -1286,7 +1313,13 @@
 "View" = "Tirohia";
 
 /* No comment provided by engineer. */
+"View Less" = "Tirohia iti rawa";
+
+/* No comment provided by engineer. */
 "View Modules" = "Titiro ngā kōwae";
+
+/* No comment provided by engineer. */
+"View More" = "Tirohia atu";
 
 /* No comment provided by engineer. */
 "View more replies" = "Tiro ki nga whakautu anō";

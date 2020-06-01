@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Созданное вами объявление";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Сведения об объявлении";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Ответы на объявление";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Доступность регистрации";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Задание отсутствует";
+
+/* No comment provided by engineer. */
+"Attachment" = "Вложение";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Ручной вход в OAuth";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Отметить все как прочитанное";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Отметить все как непрочитанное";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Отметить как выполненное";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Отметить как прочитанное";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Пометить как невыполненное";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Отметить как непрочитанное";
 
 /* No comment provided by engineer. */
 "Mark done" = "Отметить как выполненное";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Открыть %@ пользовательские предпочтения";
+
+/* No comment provided by engineer. */
+"Options" = "Опции";
 
 /* No comment provided by engineer. */
 "orange" = "оранжевого цвета";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Показать больше вариантов";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Поскольку это групповое обсуждение, у каждой группы есть свой разговор на эту тему. Вот обсуждения, к которым у вас есть доступ.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Учетная запись администратора";
@@ -1286,7 +1313,13 @@
 "View" = "Просмотр";
 
 /* No comment provided by engineer. */
+"View Less" = "Показать меньше";
+
+/* No comment provided by engineer. */
 "View Modules" = "Просмотр модулей";
+
+/* No comment provided by engineer. */
+"View More" = "Показать еще";
 
 /* No comment provided by engineer. */
 "View more replies" = "Просмотреть другие ответы";

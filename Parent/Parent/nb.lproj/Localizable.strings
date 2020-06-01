@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    Studenten du forsøker å legge til, er på en annen Canvas-institusjon.\n                    Logg inn eller opprett en konto hos den institusjonen for å legge til denne studenten.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ har frist %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Legg til student";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Legg til student med...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Legg til studenter på øverst eller besøk den globale menyen for å maskere deg som student.";
@@ -23,6 +29,9 @@
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Har du allerede en konto? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Kunngjøring";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ved å klikke på “Opprett konto”, godtar du %1$@ og erkjenner %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Kunne ikke analysere QR-koden, QR-kode ugyldig";
+
 /* Courses Tab */
 "Courses" = "Emner";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avvis";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Domenefeil";
 
 /* No comment provided by engineer. */
 "Email address" = "E-postadresse";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "Angi fullt navn";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "retningslinjer for personvern";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR-kode";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "Vedrørende: %@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Innstillinger. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Logg inn";
+
 /* No comment provided by engineer. */
 "Submitted" = "Sendt inn";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Emneoversikt";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "tjenestevilkår";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Verdien må være et tall mellom 0 og 100";

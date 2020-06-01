@@ -77,6 +77,12 @@
 "Announcement Created By You" = "Anslag som du skapat";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "Meddelandeinformation";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "Meddelandesvar";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "Mötestillgänglighet";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Uppgift saknas";
+
+/* No comment provided by engineer. */
+"Attachment" = "Bilaga";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "Markera alla som lästa";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "Markera alla som olästa";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "Markera som klar";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "Markera som läst";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "Markera som ångrad";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "Markera som oläst";
 
 /* No comment provided by engineer. */
 "Mark done" = "Markera som klar";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Öppna %@ användarinställningar";
+
+/* No comment provided by engineer. */
+"Options" = "Alternativ";
 
 /* No comment provided by engineer. */
 "orange" = "orange";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "Visa fler alternativ";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Eftersom det här är en gruppdiskussion, har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till.";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "Inloggning för webbplatsadmin";
@@ -1286,7 +1313,13 @@
 "View" = "Visa";
 
 /* No comment provided by engineer. */
+"View Less" = "Visa mindre";
+
+/* No comment provided by engineer. */
 "View Modules" = "Visa moduler";
+
+/* No comment provided by engineer. */
+"View More" = "Visa mer";
 
 /* No comment provided by engineer. */
 "View more replies" = "Visa fler svar";

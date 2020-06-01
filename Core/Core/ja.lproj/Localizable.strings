@@ -77,6 +77,12 @@
 "Announcement Created By You" = "あなたが作成したアナウンスメント";
 
 /* No comment provided by engineer. */
+"Announcement Details" = "アナウンスの詳細";
+
+/* No comment provided by engineer. */
+"Announcement Replies" = "アナウンスの回答";
+
+/* No comment provided by engineer. */
 "Appointment Availability" = "予約利用可能性";
 
 /* No comment provided by engineer. */
@@ -108,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Assignment missing" = "課題がありません";
+
+/* No comment provided by engineer. */
+"Attachment" = "添付ファイル";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -692,10 +701,22 @@
 "Manual OAuth Login" = "手動 O承認ログイン";
 
 /* No comment provided by engineer. */
+"Mark All as Read" = "すべて既読にする";
+
+/* No comment provided by engineer. */
+"Mark All as Unread" = "すべて未読にする";
+
+/* No comment provided by engineer. */
 "Mark as Done" = "完了としてマークする";
 
 /* No comment provided by engineer. */
+"Mark as Read" = "既読にする";
+
+/* No comment provided by engineer. */
 "Mark as Undone" = "未了としてマークする";
+
+/* No comment provided by engineer. */
+"Mark as Unread" = "未読にする";
 
 /* No comment provided by engineer. */
 "Mark done" = "完了にする";
@@ -825,6 +846,9 @@
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "%@ ユーザー設定を開く";
+
+/* No comment provided by engineer. */
+"Options" = "オプション";
 
 /* No comment provided by engineer. */
 "orange" = "オレンジ";
@@ -1038,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Show more options" = "オプションを多く表示する";
+
+/* No comment provided by engineer. */
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "これはグループディスカッションのため、各グループはこのトピックについてそれぞれの会話を行います。利用するディスカッションは以下のとおりです。";
 
 /* No comment provided by engineer. */
 "Site Admin Login" = "サイト管理者ログイン";
@@ -1286,7 +1313,13 @@
 "View" = "表示";
 
 /* No comment provided by engineer. */
+"View Less" = "少なく表示";
+
+/* No comment provided by engineer. */
 "View Modules" = "モジュールの表示";
+
+/* No comment provided by engineer. */
+"View More" = "その他を表示";
 
 /* No comment provided by engineer. */
 "View more replies" = "返信を多く表示する";

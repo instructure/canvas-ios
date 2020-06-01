@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    追加しようとしている受講生は、別のCanvas教育機関に所属しています。\n                    この受講生を追加するには、その機関でサインインまたはアカウントを作成してください。\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@の期日は（）です%2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "受講生を追加";
+
+/* No comment provided by engineer. */
+"Add student with..." = "受講生を追加...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講生を追加する、またはグローバルメニューに移動して受講生としてマスカレードします。";
@@ -23,6 +29,9 @@
 "Alerts" = "アラート";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "アカウントをすでにお持ちですか？%@";
+
+/* No comment provided by engineer. */
 "Announcement" = "発表";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "[アカウントを作成]をタップすると、%1$@に同意し、%2$@を受け入れたことになります。";
 
 /* Calendar Tab */
 "Calendar" = "予定表";
@@ -52,6 +64,9 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "QRコードを解析できませんでした、QRコードが無効です";
+
 /* Courses Tab */
 "Courses" = "コース";
 
@@ -63,6 +78,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "ドメインの不一致";
 
 /* No comment provided by engineer. */
 "Email address" = "メールアドレス";
@@ -169,6 +187,12 @@
 /* No comment provided by engineer. */
 "Please enter full name" = "姓名を入力してください";
 
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "個人情報保護方針";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR コード";
+
 /* No comment provided by engineer. */
 "Regarding: %@" = "対象：%@";
 
@@ -189,6 +213,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "設定。%@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "サインイン";
+
 /* No comment provided by engineer. */
 "Submitted" = "提出済み";
 
@@ -203,6 +230,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "サービス利用規約";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "値は0から100の間でなければなりません。";
