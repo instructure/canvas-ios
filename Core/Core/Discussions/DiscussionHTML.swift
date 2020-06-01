@@ -234,7 +234,7 @@ enum DiscussionHTML {
             entries.length > 0 && h('h2', { class: \(s(.heading)) },
                 \(s(NSLocalizedString("Replies", bundle: .core, comment: "")))
             ),
-            entries.map(entry => h(Discussion.Entry, { topic, entry, depth: 0, maxDepth, canLike }))
+            entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike }))
         )
     }
 
@@ -297,6 +297,7 @@ enum DiscussionHTML {
                     bundle: .core, comment: ""
                 )))),
                 groupTopicChildren.map(({ id, name, topicID }) => h('a', {
+                    key: id,
                     href: `/groups/${id}/discussion_topics/${topicID}`,
                     class: \(s(.groupTopicChild))
                 },
@@ -330,7 +331,7 @@ enum DiscussionHTML {
                 \(s(NSLocalizedString("View more replies", bundle: .core, comment: "")))
             ),
             depth < maxDepth && entry.replies && entry.replies.map(entry =>
-                h(Discussion.Entry, { topic, entry, depth: depth + 1, maxDepth, canLike })
+                h(Discussion.Entry, { key: entry.id, topic, entry, depth: depth + 1, maxDepth, canLike })
             )
         )
     )

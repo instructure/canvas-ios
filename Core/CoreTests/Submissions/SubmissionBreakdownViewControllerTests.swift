@@ -23,7 +23,7 @@ import TestsFoundation
 class SubmissionBreakdownViewControllerTests: CoreTestCase {
     let now = DateComponents(calendar: .current, year: 2020, month: 12, day: 5).date!
     let course = ContextModel(.course, id: "1")
-    lazy var controller = SubmissionBreakdownViewController.create(context: course, assignmentID: "1", submissionTypes: [.discussion_topic])
+    lazy var controller = SubmissionBreakdownViewController.create(courseID: course.id, assignmentID: "1", submissionTypes: [.discussion_topic])
 
     override func setUp() {
         super.setUp()
@@ -34,7 +34,7 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
 
     func testLayout() {
         controller.view.layoutIfNeeded()
-        controller.viewDidAppear(false)
+        controller.viewWillAppear(false)
         XCTAssertEqual(controller.onPaperLabel.isHidden, true)
         XCTAssertEqual(controller.noSubmissionsLabel.isHidden, true)
         XCTAssertEqual(controller.gradedView.isHidden, false)
@@ -77,7 +77,7 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
     func testOnPaper() {
         controller.submissionTypes = [.on_paper]
         controller.view.layoutIfNeeded()
-        controller.viewDidAppear(false)
+        controller.viewWillAppear(false)
         XCTAssertEqual(controller.onPaperLabel.isHidden, false)
         XCTAssertEqual(controller.noSubmissionsLabel.isHidden, true)
         XCTAssertEqual(controller.gradedView.isHidden, false)
@@ -88,7 +88,7 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
     func testEmpty() {
         api.mock(controller.summary, value: .make(graded: 0, ungraded: 0, not_submitted: 0))
         controller.view.layoutIfNeeded()
-        controller.viewDidAppear(false)
+        controller.viewWillAppear(false)
         XCTAssertEqual(controller.onPaperLabel.isHidden, true)
         XCTAssertEqual(controller.noSubmissionsLabel.isHidden, false)
         XCTAssertEqual(controller.gradedView.isHidden, true)

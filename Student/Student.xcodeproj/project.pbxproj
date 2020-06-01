@@ -484,6 +484,7 @@
 		6A41FB3501A555E20167FCFB /* Pods-defaults-PreSubmissionAnnotations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-PreSubmissionAnnotations/Pods-defaults-PreSubmissionAnnotations.release.xcconfig"; sourceTree = "<group>"; };
 		6AD5E4D6FDF453975C625E3B /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		71D54F08318539FDBC0122EE /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
+		7D06113E2481A7E50014C8E4 /* Student-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Student-Bridging-Header.h"; sourceTree = "<group>"; };
 		7D0C4EC21FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D0C4EC41FE1CD3100AD3538 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D0E22B823A19E430075E879 /* SubmissionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -933,6 +934,7 @@
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
 				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
 				B5E212D51D88856B009D8C07 /* Localizable.strings */,
+				7D06113E2481A7E50014C8E4 /* Student-Bridging-Header.h */,
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
@@ -1973,7 +1975,7 @@
 					492704721CF4AF7100C631C6 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B6333T4PXQ;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -3042,6 +3044,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Student/Student-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -3072,6 +3075,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Student/Student-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

@@ -198,8 +198,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func update() {
         guard fixStudentGroupTopic() else { return }
-        if assignment?.useCase.assignmentID != topic.first?.assignmentID,
-            let courseID = context.contextType == .group ? group.first?.courseID : context.id {
+        let courseID = context.contextType == .group ? group.first?.courseID : context.id
+        if assignment?.useCase.assignmentID != topic.first?.assignmentID, let courseID = courseID {
             assignment = topic.first?.assignmentID.map {
                 env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0)) { [weak self] in
                     self?.update()
@@ -232,9 +232,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 dueSection.isHidden = false
             }
 
-            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
+            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden, let courseID = courseID {
                 let controller = SubmissionBreakdownViewController.create(
-                    context: context,
+                    courseID: courseID,
                     assignmentID: assignmentID,
                     submissionTypes: [.discussion_topic]
                 )

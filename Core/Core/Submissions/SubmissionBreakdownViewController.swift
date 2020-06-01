@@ -55,10 +55,10 @@ class SubmissionBreakdownViewController: UIViewController {
         self?.update()
     }
 
-    static func create(context: Context, assignmentID: String, submissionTypes: [SubmissionType]) -> SubmissionBreakdownViewController {
+    static func create(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) -> SubmissionBreakdownViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
-        controller.context = context
+        controller.context = ContextModel(.course, id: courseID)
         controller.submissionTypes = submissionTypes
         return controller
     }
@@ -95,8 +95,8 @@ class SubmissionBreakdownViewController: UIViewController {
         summary.refresh()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         didAppear = true
         update()
     }
@@ -156,15 +156,15 @@ class SubmissionBreakdownViewController: UIViewController {
         let total = animateTo.0 + animateTo.1 + animateTo.2
 
         let graded = animateFrom.0 + (t * (animateTo.0 - animateFrom.0))
-        gradedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: graded), number: .none)
+        gradedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: floor(graded)), number: .none)
         gradedProgress.progress = CGFloat(graded / total)
 
         let ungraded = animateFrom.1 + (t * (animateTo.1 - animateFrom.1))
-        ungradedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: ungraded), number: .none)
+        ungradedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: floor(ungraded)), number: .none)
         ungradedProgress.progress = CGFloat(ungraded / total)
 
         let unsubmitted = animateFrom.2 + (t * (animateTo.2 - animateFrom.2))
-        unsubmittedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: unsubmitted), number: .none)
+        unsubmittedCountLabel.text = NumberFormatter.localizedString(from: NSNumber(value: floor(unsubmitted)), number: .none)
         unsubmittedProgress.progress = CGFloat(unsubmitted / total)
     }
 

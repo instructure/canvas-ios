@@ -249,6 +249,7 @@ open class CoreWebView: WKWebView {
                 checkSize()
                 document.addEventListener('load', checkSize, true)
             })
+            window.addEventListener('error', checkSize, true)
             checkSize()
         """
     }
