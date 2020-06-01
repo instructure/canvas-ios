@@ -25,13 +25,11 @@ import { logEvent } from './CanvasAnalytics'
 // if the user has an invalid login, the promise will send `true`. Otherwise it will send `false`
 export default async function loginVerify (): Promise<boolean> {
   return new Promise((resolve, reject) => {
-    if (getSession() && getSession().isFakeStudent) {
-      return resolve(false)
-    }
     canvas.getUserProfile('self')
       .then(() => resolve(false))
       .catch((e) => {
-        if (e.response && e.response.status === 401) {
+        const isFakeStudent = getSession()?.isFakeStudent === true
+        if (e.response && e.response.status === 401 && !isFakeStudent) {
           resolve(true)
           logEvent('auto_logout_401')
           NativeModules.NativeLogin.logout()
