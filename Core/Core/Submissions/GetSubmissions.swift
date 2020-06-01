@@ -19,6 +19,25 @@
 import Foundation
 import CoreData
 
+public struct GetRecentlyGradedSubmissions: CollectionUseCase {
+    public typealias Model = SubmissionList
+
+    public let cacheKey: String? = "recently-graded-submissions"
+    public let request: GetRecentlyGradedSubmissionsRequest
+    public let scope: Scope
+
+    public init (userID: String) {
+        request = GetRecentlyGradedSubmissionsRequest(userID: userID)
+        scope = Scope.where(#keyPath(SubmissionList.id), equals: "recently-graded")
+    }
+
+    public func write(response: [APISubmission]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        let list: SubmissionList = client.fetch(scope: scope).first ?? client.insert()
+        list.id = "recently-graded"
+        list.submissions.append(contentsOf: Submission.save(response ?? [], in: client))
+    }
+}
+
 public class CreateSubmission: APIUseCase {
     let context: Context
     let assignmentID: String
@@ -26,14 +45,18 @@ public class CreateSubmission: APIUseCase {
     public let request: CreateSubmissionRequest
     public typealias Model = Submission
 
-    public init(context: Context, assignmentID: String, userID: String,
-                submissionType: SubmissionType,
-                textComment: String? = nil,
-                body: String? = nil,
-                url: URL? = nil,
-                fileIDs: [String]? = nil,
-                mediaCommentID: String? = nil,
-                mediaCommentType: MediaCommentType? = nil) {
+    public init(
+        context: Context,
+        assignmentID: String,
+        userID: String,
+        submissionType: SubmissionType,
+        textComment: String? = nil,
+        body: String? = nil,
+        url: URL? = nil,
+        fileIDs: [String]? = nil,
+        mediaCommentID: String? = nil,
+        mediaCommentType: MediaCommentType? = nil
+    ) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
@@ -72,6 +95,48 @@ public class CreateSubmission: APIUseCase {
             }
             completionHandler(response, urlResponse, error)
         }
+    }
+
+    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else {
+            return
+        }
+        Submission.save(item, in: client)
+    }
+}
+
+public class GetSubmission: APIUseCase {
+    public let context: Context
+    public let assignmentID: String
+    public let userID: String
+
+    public typealias Model = Submission
+
+    public init(context: Context, assignmentID: String, userID: String) {
+        self.assignmentID = assignmentID
+        self.userID = userID
+        self.context = context
+    }
+
+    public var cacheKey: String? {
+        return "get-\(context.id)-\(assignmentID)-\(userID)-submission"
+    }
+
+    public var request: GetSubmissionRequest {
+        return GetSubmissionRequest(context: context, assignmentID: assignmentID, userID: userID)
+    }
+
+    public var scope: Scope {
+        return Scope(
+            predicate: NSPredicate(
+                format: "%K == %@ AND %K == %@",
+                #keyPath(Submission.assignmentID),
+                assignmentID,
+                #keyPath(Submission.userID),
+                userID
+            ),
+            order: [NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)]
+        )
     }
 
     public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
