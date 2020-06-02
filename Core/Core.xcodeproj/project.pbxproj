@@ -47,11 +47,10 @@
 		3B4D893B2450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4D89392450A8FC004ED120 /* EditComposeRecipientsViewController.storyboard */; };
 		3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */; };
 		3B5369E4219D0FD000D3F62E /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */; };
-		3B5542462369F401007D3CE0 /* AssignmentListRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */; };
-		3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */; };
+		3B5542462369F401007D3CE0 /* APIAssignmentListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542452369F401007D3CE0 /* APIAssignmentListTests.swift */; };
+		3B6043A5232AB00700757B93 /* AssignmentGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A4232AB00700757B93 /* AssignmentGroupTests.swift */; };
 		3B635B2F225CD7B3001F353D /* APICalendarEventsRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */; };
 		3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */; };
-		3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */; };
 		3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */; };
 		3BA649CD2423E0080047D8DC /* APIPairingCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA649CC2423E0080047D8DC /* APIPairingCode.swift */; };
 		3BA649D12424351B0047D8DC /* APIPairingCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA649D02424351A0047D8DC /* APIPairingCodeTests.swift */; };
@@ -239,7 +238,7 @@
 		7DA25F9423F7212C005D2121 /* ActAsUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBFE6D422412BC0002B3796 /* ActAsUserViewController.swift */; };
 		7DA25F9523F7212C005D2121 /* ActAsUserWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410ED2280C345008FA345 /* ActAsUserWindow.swift */; };
 		7DA25F9623F7212E005D2121 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3E01C2315A0DE00E15C6D /* Analytics.swift */; };
-		7DA25F9723F72136005D2121 /* AssignmentListRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542432369F3EE007D3CE0 /* AssignmentListRequestable.swift */; };
+		7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5542432369F3EE007D3CE0 /* APIAssignmentList.swift */; };
 		7DA25F9823F72136005D2121 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC11212B4F8E00C40ECE /* API.swift */; };
 		7DA25F9923F72136005D2121 /* APIAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC22212B8A2100C40ECE /* APIAccount.swift */; };
 		7DA25F9A23F72136005D2121 /* APIAccountRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */; };
@@ -247,8 +246,6 @@
 		7DA25F9C23F72136005D2121 /* APIAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD721599C610071B41E /* APIAssignment.swift */; };
 		7DA25F9D23F72136005D2121 /* APIAssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */; };
 		7DA25F9E23F72136005D2121 /* APIAssignmentOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */; };
-		7DA25F9F23F72136005D2121 /* APIAssignmentOverride+Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */; };
-		7DA25FA023F72136005D2121 /* APIAssignmentRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BD921599C700071B41E /* APIAssignmentRequestable.swift */; };
 		7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */; };
 		7DA25FA223F72136005D2121 /* APIBrandVariablesRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F785215D3CE300151E49 /* APIBrandVariablesRequestable.swift */; };
 		7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B2A225CD298001F353D /* APICalendarEvent.swift */; };
@@ -292,7 +289,6 @@
 		7DA25FCF23F72136005D2121 /* APITab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC0B212B4C6F00C40ECE /* APITab.swift */; };
 		7DA25FD023F72136005D2121 /* APITabRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262F0212B28FE00BD268D /* APITabRequestable.swift */; };
 		7DA25FD123F72136005D2121 /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3C237A2428002BC41F /* APIURL.swift */; };
-		7DA25FD223F72136005D2121 /* AssignmentGroupRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */; };
 		7DA25FD323F72136005D2121 /* GradingPeriodRequestables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF712332B04400196A06 /* GradingPeriodRequestables.swift */; };
 		7DA25FD423F72136005D2121 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3467D32135B7B700F9BC2E /* ID.swift */; };
 		7DA25FD523F72148005D2121 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C96485D211E3723002C3255 /* AppEnvironment.swift */; };
@@ -492,7 +488,6 @@
 		7DA260A523F72352005D2121 /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */; };
 		7DA260A623F72352005D2121 /* GetActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FCA3023802B800011F11A /* GetActivities.swift */; };
 		7DA260A723F72352005D2121 /* GetArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C623229733C50096D58C /* GetArc.swift */; };
-		7DA260A823F72352005D2121 /* GetAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE5215A81350071B41E /* GetAssignment.swift */; };
 		7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C54E2187800B0081A858 /* GetAssignments.swift */; };
 		7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F789215D46AB00151E49 /* GetBrandVariables.swift */; };
 		7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */; };
@@ -762,10 +757,10 @@
 		B19792FD21769E280000369C /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FC21769E280000369C /* GroupTests.swift */; };
 		B19792FF2176A0F00000369C /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FE2176A0F00000369C /* TabTests.swift */; };
 		B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19797AA23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift */; };
-		B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */; };
+		B1A32BE22159A3100071B41E /* APIAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BE12159A3100071B41E /* APIAssignmentTests.swift */; };
 		B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */; };
 		B1A6BC762189F9AE000515E3 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */; };
+		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideTests.swift */; };
 		B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */; };
 		B1A6BC8C218A9843000515E3 /* APILatePolicyRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */; };
 		B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76ABF24227027000820A8 /* ScannerViewController.swift */; };
@@ -1057,12 +1052,11 @@
 		3B5369E1219CDD3500D3F62E /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		3B5369E3219D0FD000D3F62E /* URLExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
-		3B5542432369F3EE007D3CE0 /* AssignmentListRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListRequestable.swift; sourceTree = "<group>"; };
-		3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentListRequestableTests.swift; sourceTree = "<group>"; };
-		3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestable.swift; sourceTree = "<group>"; };
+		3B5542432369F3EE007D3CE0 /* APIAssignmentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentList.swift; sourceTree = "<group>"; };
+		3B5542452369F401007D3CE0 /* APIAssignmentListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentListTests.swift; sourceTree = "<group>"; };
 		3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroup.swift; sourceTree = "<group>"; };
 		3B6043A2232AADB600757B93 /* AssignmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentGroup.swift; sourceTree = "<group>"; };
-		3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupRequestableTests.swift; sourceTree = "<group>"; };
+		3B6043A4232AB00700757B93 /* AssignmentGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentGroupTests.swift; sourceTree = "<group>"; };
 		3B635B28225C13DD001F353D /* DiscussionTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopic.swift; sourceTree = "<group>"; };
 		3B635B2A225CD298001F353D /* APICalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B2C225CD377001F353D /* APICalendarRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarRequestable.swift; sourceTree = "<group>"; };
@@ -1075,7 +1069,6 @@
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
 		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
 		3B801BF92322F64900D143F0 /* AlertThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
-		3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesTests.swift; sourceTree = "<group>"; };
 		3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThresholdTests.swift; sourceTree = "<group>"; };
 		3BA649CC2423E0080047D8DC /* APIPairingCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPairingCode.swift; sourceTree = "<group>"; };
 		3BA649D02424351A0047D8DC /* APIPairingCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPairingCodeTests.swift; sourceTree = "<group>"; };
@@ -1843,19 +1836,16 @@
 		B1999AAE2305AAC300DA97A4 /* APIFeatureFlagsRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFeatureFlagsRequestable.swift; sourceTree = "<group>"; };
 		B1999AB02305AE3300DA97A4 /* FeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlag.swift; sourceTree = "<group>"; };
 		B1A32BD721599C610071B41E /* APIAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignment.swift; sourceTree = "<group>"; };
-		B1A32BD921599C700071B41E /* APIAssignmentRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestable.swift; sourceTree = "<group>"; };
 		B1A32BDB21599F1C0071B41E /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
-		B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentRequestableTests.swift; sourceTree = "<group>"; };
-		B1A32BE5215A81350071B41E /* GetAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignment.swift; sourceTree = "<group>"; };
+		B1A32BE12159A3100071B41E /* APIAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentTests.swift; sourceTree = "<group>"; };
 		B1A464BA225669140052F8DF /* DispatchExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensions.swift; sourceTree = "<group>"; };
 		B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensionsTests.swift; sourceTree = "<group>"; };
 		B1A6BC79218A062E000515E3 /* MediaCommentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentType.swift; sourceTree = "<group>"; };
 		B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverride.swift; sourceTree = "<group>"; };
-		B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIAssignmentOverride+Requestable.swift"; sourceTree = "<group>"; };
 		B1A6BC81218A5066000515E3 /* APILatePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicy.swift; sourceTree = "<group>"; };
 		B1A6BC83218A5135000515E3 /* APILatePolicyRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestable.swift; sourceTree = "<group>"; };
 		B1A6BC85218A5D07000515E3 /* LatePolicyInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatePolicyInterval.swift; sourceTree = "<group>"; };
-		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideRequestableTests.swift; sourceTree = "<group>"; };
+		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideTests.swift; sourceTree = "<group>"; };
 		B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestableTests.swift; sourceTree = "<group>"; };
 		B1A6BC8B218A9843000515E3 /* APILatePolicyRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyRequestableTests.swift; sourceTree = "<group>"; };
 		B1A76ABF24227027000820A8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -2087,6 +2077,7 @@
 				7D8262E9212B1A4F00BD268D /* API */,
 				2C96485C211E36FF002C3255 /* AppEnvironment */,
 				7D101948215E8E5F0058FDD1 /* Assets.xcassets */,
+				7DF4AACD2486A37400B07BB8 /* Assignments */,
 				7DDC81422242E269000DD25A /* AudioVideo */,
 				7D4F44F8241BF24200233B92 /* Conferences */,
 				3B3467C52134953800F9BC2E /* Constants */,
@@ -2142,6 +2133,7 @@
 				7D3A1EED227BEFB20094531E /* ActAsUser */,
 				7D80AC13212B659300C40ECE /* API */,
 				7D8B78F9215EC999005E08F1 /* AppEnvironment */,
+				7DF4AACE2486AC0E00B07BB8 /* Assignments */,
 				7D4F44FB241BFB0800233B92 /* Conferences */,
 				7D37BE8421C81C700063FAAC /* Constants */,
 				7D26B84523A8043900262380 /* Conversations */,
@@ -2431,9 +2423,8 @@
 			isa = PBXGroup;
 			children = (
 				7DCF1EC3216BE0C3003AF358 /* Viewable */,
+				3B3FCA29237F56210011F11A /* Activity.swift */,
 				3B801BF92322F64900D143F0 /* AlertThreshold.swift */,
-				3B6043A2232AADB600757B93 /* AssignmentGroup.swift */,
-				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
 				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
 				7D062AF3212496E600677F66 /* Context.swift */,
 				7DF4FFC4217113DA007E5F81 /* ContextColor.swift */,
@@ -2454,8 +2445,8 @@
 				B1A6BC79218A062E000515E3 /* MediaCommentType.swift */,
 				B15CA27D221DFA450014FB02 /* Module.swift */,
 				B1F1328D224BBBC7002C0555 /* ModuleItem.swift */,
-				B1128B572450CF96008EA17E /* ModuleItemSequence.swift */,
 				B1846D1022E8FEBD00BC4C4A /* ModuleItemCompletionRequirement.swift */,
+				B1128B572450CF96008EA17E /* ModuleItemSequence.swift */,
 				B1F13289224BAD43002C0555 /* ModuleItemType.swift */,
 				9FBE536C223C32E7001EC40C /* Permissions.swift */,
 				7DF4001C217509D6007E5F81 /* Quiz.swift */,
@@ -2473,7 +2464,6 @@
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				9F84595D228F34200031034E /* UserSettings.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
-				3B3FCA29237F56210011F11A /* Activity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2482,9 +2472,8 @@
 			isa = PBXGroup;
 			children = (
 				7DCF1ED2216C055B003AF358 /* Viewable */,
+				3B3FCA2C238026D00011F11A /* ActivityTests.swift */,
 				3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */,
-				3B84C38E218B9B51005946BA /* AssignmentDatesTests.swift */,
-				B19792F6217697E30000369C /* AssignmentTests.swift */,
 				3BD364AE225E36FC006CEBD8 /* CalendarEventItemTests.swift */,
 				B133A789221F59A3000E393E /* ContextColorTests.swift */,
 				7D062AF621249E7700677F66 /* ContextModelTests.swift */,
@@ -2502,15 +2491,14 @@
 				7DCE0C8D22B015DC00BA549F /* QuizSubmissionTests.swift */,
 				B19792FA21769B320000369C /* QuizTests.swift */,
 				7DCF2039216D5712003AF358 /* QuizTypeTests.swift */,
-				3B300C842277981100743C59 /* RubricTests.swift */,
 				B109249323CE81C400796903 /* RoleTests.swift */,
+				3B300C842277981100743C59 /* RubricTests.swift */,
 				9F62EDCF2326C23C00EA9F79 /* SearchRecipientTests.swift */,
 				B1EA933823F6FF6200A0231E /* SyllabusTests.swift */,
 				B19792FE2176A0F00000369C /* TabTests.swift */,
 				7DCF1EBF216BC97F003AF358 /* TabVisibilityTests.swift */,
 				9F10A66A2293191200E3360C /* UserSettingsTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
-				3B3FCA2C238026D00011F11A /* ActivityTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3086,14 +3074,10 @@
 		7D80AC13212B659300C40ECE /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3B5542452369F401007D3CE0 /* AssignmentListRequestableTests.swift */,
-				3BA9FF742332B05700196A06 /* GradingPeriodRequestableTests.swift */,
-				3B6043A4232AB00700757B93 /* AssignmentGroupRequestableTests.swift */,
+				B1EA5AF4212E66B100DABC5F /* Fixtures */,
 				7D80AC24212C61F100C40ECE /* APIAccountRequestableTests.swift */,
 				B164DC1E22DE2AB30037FA86 /* APIAccountResultTests.swift */,
 				3B383044237F178800B3DF05 /* APIActivityTests.swift */,
-				B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift */,
-				B1A32BE12159A3100071B41E /* APIAssignmentRequestableTests.swift */,
 				7D63F787215D44A600151E49 /* APIBrandVariablesRequestableTests.swift */,
 				3B635B2E225CD7B3001F353D /* APICalendarEventsRequestableTests.swift */,
 				7D7F71DB241FD90600D6F9CB /* APIDateTests.swift */,
@@ -3119,9 +3103,9 @@
 				7D80AC16212B689E00C40ECE /* APITabRequestableTests.swift */,
 				7D80AC1E212B738500C40ECE /* APITests.swift */,
 				B11AAC3A237A1EB4002BC41F /* APIURLTests.swift */,
-				3B3467D52135B99700F9BC2E /* IDTests.swift */,
-				B1EA5AF4212E66B100DABC5F /* Fixtures */,
 				970862C72419700300112A6A /* GetCoursesRequestTests.swift */,
+				3BA9FF742332B05700196A06 /* GradingPeriodRequestableTests.swift */,
+				3B3467D52135B99700F9BC2E /* IDTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -3164,16 +3148,10 @@
 		7D8262E9212B1A4F00BD268D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3B5542432369F3EE007D3CE0 /* AssignmentListRequestable.swift */,
 				7D80AC11212B4F8E00C40ECE /* API.swift */,
 				7D80AC22212B8A2100C40ECE /* APIAccount.swift */,
 				7D80AC20212B89C500C40ECE /* APIAccountRequestable.swift */,
 				7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */,
-				B1A32BD721599C610071B41E /* APIAssignment.swift */,
-				3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */,
-				B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */,
-				B1A6BC7F218A32F3000515E3 /* APIAssignmentOverride+Requestable.swift */,
-				B1A32BD921599C700071B41E /* APIAssignmentRequestable.swift */,
 				7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */,
 				7D63F785215D3CE300151E49 /* APIBrandVariablesRequestable.swift */,
 				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
@@ -3210,7 +3188,6 @@
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D8262F0212B28FE00BD268D /* APITabRequestable.swift */,
 				B11AAC3C237A2428002BC41F /* APIURL.swift */,
-				3B604398232AAC4E00757B93 /* AssignmentGroupRequestable.swift */,
 				3BA9FF712332B04400196A06 /* GradingPeriodRequestables.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
 			);
@@ -3418,6 +3395,33 @@
 			path = RichContentEditor;
 			sourceTree = "<group>";
 		};
+		7DF4AACD2486A37400B07BB8 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				B1A32BD721599C610071B41E /* APIAssignment.swift */,
+				3B604399232AAC4E00757B93 /* APIAssignmentGroup.swift */,
+				3B5542432369F3EE007D3CE0 /* APIAssignmentList.swift */,
+				B1A6BC7D218A317A000515E3 /* APIAssignmentOverride.swift */,
+				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
+				3B6043A2232AADB600757B93 /* AssignmentGroup.swift */,
+				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
+		7DF4AACE2486AC0E00B07BB8 /* Assignments */ = {
+			isa = PBXGroup;
+			children = (
+				3B5542452369F401007D3CE0 /* APIAssignmentListTests.swift */,
+				B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideTests.swift */,
+				B1A32BE12159A3100071B41E /* APIAssignmentTests.swift */,
+				3B6043A4232AB00700757B93 /* AssignmentGroupTests.swift */,
+				B19792F6217697E30000369C /* AssignmentTests.swift */,
+				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
+			);
+			path = Assignments;
+			sourceTree = "<group>";
+		};
 		7DFFAB18219DDAE1003E71F8 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -3580,8 +3584,6 @@
 				7DEB5C39224EB02A00F28404 /* CreateTextComment.swift */,
 				3B3FCA3023802B800011F11A /* GetActivities.swift */,
 				B150C623229733C50096D58C /* GetArc.swift */,
-				B1A32BE5215A81350071B41E /* GetAssignment.swift */,
-				3BF5C54E2187800B0081A858 /* GetAssignments.swift */,
 				7D63F789215D46AB00151E49 /* GetBrandVariables.swift */,
 				3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
@@ -3722,7 +3724,6 @@
 				3B3FCA3223802D680011F11A /* GetActivitiesTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				B150C63D2298E6410096D58C /* GetArcTests.swift */,
-				3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */,
 				7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */,
 				3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */,
 				9F1CEA6222401AF1000BB98F /* GetContextPermissionsTests.swift */,
@@ -4660,7 +4661,7 @@
 				7D86285B224C05BB003A37DC /* APIMediaCommentRequestableTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
-				3B5542462369F401007D3CE0 /* AssignmentListRequestableTests.swift in Sources */,
+				3B5542462369F401007D3CE0 /* APIAssignmentListTests.swift in Sources */,
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
@@ -4702,7 +4703,7 @@
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
 				7D724265242A5871007ED42F /* CourseListViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
-				B1A32BE22159A3100071B41E /* APIAssignmentRequestableTests.swift in Sources */,
+				B1A32BE22159A3100071B41E /* APIAssignmentTests.swift in Sources */,
 				7D4F44FD241BFB2300233B92 /* APIConferenceTests.swift in Sources */,
 				E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */,
 				3B8F23CD23274FC500788730 /* AlertThresholdTests.swift in Sources */,
@@ -4717,7 +4718,7 @@
 				7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */,
 				7DA2610C23FCD8E6005D2121 /* CircleRefreshControlTests.swift in Sources */,
 				B15CA284221E00870014FB02 /* ModuleTests.swift in Sources */,
-				3B6043A5232AB00700757B93 /* AssignmentGroupRequestableTests.swift in Sources */,
+				3B6043A5232AB00700757B93 /* AssignmentGroupTests.swift in Sources */,
 				3BD364AB225D3C02006CEBD8 /* DiscussionTopicTests.swift in Sources */,
 				7D80AC17212B689E00C40ECE /* APITabRequestableTests.swift in Sources */,
 				7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */,
@@ -4743,7 +4744,6 @@
 				7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */,
 				B195DC5521324DA600797FE4 /* GetUserGroupsTest.swift in Sources */,
 				B1F2F8A723F493A100F3B5F3 /* SyllabusSummaryViewControllerTests.swift in Sources */,
-				3B84C38F218B9B51005946BA /* AssignmentDatesTests.swift in Sources */,
 				3B158CB822E241130039A568 /* KeychainTests.swift in Sources */,
 				7D06113624800E240014C8E4 /* SubmissionBreakdownViewControllerTests.swift in Sources */,
 				3B1988B524256CE7004ADCC6 /* PairWithObserverViewControllerTests.swift in Sources */,
@@ -4783,7 +4783,7 @@
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
-				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideRequestableTests.swift in Sources */,
+				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
 				7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */,
 				7D8FDFB82187B92C0067557E /* UINavigationBarExtensionsTests.swift in Sources */,
@@ -4999,7 +4999,6 @@
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
-				7DA25F9F23F72136005D2121 /* APIAssignmentOverride+Requestable.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
@@ -5040,7 +5039,6 @@
 				7DA260CA23F72359005D2121 /* AvatarGroupView.swift in Sources */,
 				7DA2604523F722D9005D2121 /* Enrollment.swift in Sources */,
 				7DA25FD923F72148005D2121 /* ExperimentalFeature.swift in Sources */,
-				7DA25FA023F72136005D2121 /* APIAssignmentRequestable.swift in Sources */,
 				7DA2601023F7227A005D2121 /* UIColorExtensions.swift in Sources */,
 				7DA25FD123F72136005D2121 /* APIURL.swift in Sources */,
 				7DA2605E23F722D9005D2121 /* QuizType.swift in Sources */,
@@ -5148,13 +5146,12 @@
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
-				7DA25F9723F72136005D2121 /* AssignmentListRequestable.swift in Sources */,
+				7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */,
 				7DA260E923F72359005D2121 /* SwitchTableViewCell.swift in Sources */,
 				7DA2608723F72315005D2121 /* NotificationCategoriesViewController.swift in Sources */,
 				7DA25F9523F7212C005D2121 /* ActAsUserWindow.swift in Sources */,
 				7DA25FC023F72136005D2121 /* APIModuleRequestable.swift in Sources */,
 				7DA25FFC23F7226E005D2121 /* DocViewerPointAnnotation.swift in Sources */,
-				7DA25FD223F72136005D2121 /* AssignmentGroupRequestable.swift in Sources */,
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,
 				7DA2606A23F722D9005D2121 /* UserSettings.swift in Sources */,
 				7DA2600123F72272005D2121 /* APIErrorReport.swift in Sources */,
@@ -5228,7 +5225,6 @@
 				7DA260ED23F7235F005D2121 /* WrongAppViewController.swift in Sources */,
 				7DA260D923F72359005D2121 /* FilterHeaderView.swift in Sources */,
 				7DA2608123F72303005D2121 /* APIUser.swift in Sources */,
-				7DA260A823F72352005D2121 /* GetAssignment.swift in Sources */,
 				7DA260EF23F72391005D2121 /* File.swift in Sources */,
 				7DA2605C23F722D9005D2121 /* QuizSubmission.swift in Sources */,
 				7DA2609C23F72341005D2121 /* TermsOfServiceViewController.swift in Sources */,

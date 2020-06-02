@@ -111,3 +111,39 @@ public class GetSubmittableAssignments: GetAssignments {
         environment.api.exhaust(request, callback: completionHandler)
     }
 }
+
+public class GetAssignment: APIUseCase {
+    public typealias Model = Assignment
+
+    public let courseID: String
+    public let assignmentID: String
+    public let include: [GetAssignmentRequest.GetAssignmentInclude]
+
+    public init(courseID: String, assignmentID: String, include: [GetAssignmentRequest.GetAssignmentInclude] = []) {
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.include = include
+    }
+
+    public var cacheKey: String? {
+        return "get-\(courseID)-\(assignmentID)-assignment"
+    }
+
+    public var request: GetAssignmentRequest {
+        return GetAssignmentRequest(courseID: courseID, assignmentID: assignmentID, include: include)
+    }
+
+    public var scope: Scope {
+        return .where(#keyPath(Assignment.id), equals: assignmentID)
+    }
+
+    public func write(response: APIAssignment?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response = response else {
+            return
+        }
+
+        let model: Assignment = client.fetch(scope.predicate).first ?? client.insert()
+        let updateSubmission = include.contains(.submission)
+        model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
+    }
+}
