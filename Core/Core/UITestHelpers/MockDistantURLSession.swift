@@ -188,6 +188,11 @@ public class MockDistantURLSession: URLSession {
             super.init()
             taskData.session?.inFlightTasks.add(self)
         }
+        private var _taskDescription: String?
+        override var taskDescription: String? {
+            get { _taskDescription }
+            set { _taskDescription = newValue }
+        }
         override var taskIdentifier: Int { taskData.taskIdentifier }
         override var response: URLResponse? { taskData.response }
         override func resume() { session?.resume(task: self) }

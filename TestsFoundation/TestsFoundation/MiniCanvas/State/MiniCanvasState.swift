@@ -32,6 +32,9 @@ public class MiniCanvasState {
     public var customColors: [String: String] = [:]
     public var favoriteCourses: Set<String> = []
     public var liveConferences: [APIConference] = []
+    public var folders: [String: MiniFolder] = [:]
+    public var files: [String: MiniFile] = [:]
+
     public let idGenerator = IDGenerator()
     public let baseUrl: URL
 

@@ -27,8 +27,8 @@ class LoginE2ETests: CoreUITestCase {
     func testFindSchool() {
         XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
         LoginStart.findSchoolButton.tap()
-        LoginFindSchool.searchField.typeText("mtech")
-        LoginFindAccountResult.item(host: "mtec.instructure.com").waitToExist()
+        LoginFindSchool.searchField.typeText("iOS Auto")
+        LoginFindAccountResult.item(host: "iosauto.instructure.com").waitToExist()
     }
 
     func testCanvasLoginToDashboard() {

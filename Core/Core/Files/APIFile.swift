@@ -33,7 +33,7 @@ public struct APIFile: Codable, Equatable {
     let updated_at: Date
     let unlock_at: Date?
     let locked: Bool
-    let hidden: Bool
+    var hidden: Bool
     let lock_at: Date?
     let hidden_for_user: Bool
     let thumbnail_url: APIURL?
@@ -49,6 +49,7 @@ public struct APIFile: Codable, Equatable {
     // making the api call. Only included in submission endpoints.
     let preview_url: APIURL?
     let avatar: APIFileToken?
+    var usage_rights: APIUsageRights?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -74,6 +75,7 @@ public struct APIFile: Codable, Equatable {
         case lock_explanation = "lock_explanation"
         case preview_url = "preview_url"
         case avatar = "avatar"
+        case usage_rights = "usage_rights"
     }
 
     init(
@@ -99,7 +101,8 @@ public struct APIFile: Codable, Equatable {
         locked_for_user: Bool,
         lock_explanation: String?,
         preview_url: APIURL?,
-        avatar: APIFileToken?
+        avatar: APIFileToken?,
+        usage_rights: APIUsageRights?
     ) {
         self.id = id
         self.uuid = uuid
@@ -124,6 +127,7 @@ public struct APIFile: Codable, Equatable {
         self.lock_explanation = lock_explanation
         self.preview_url = preview_url
         self.avatar = avatar
+        self.usage_rights = usage_rights
     }
 
     public init(from decoder: Decoder) throws {
@@ -185,6 +189,12 @@ public struct APIFileFolder: Codable, Equatable {
     let locked: Bool
     let locked_for_user: Bool
     let for_submissions: Bool
+}
+
+// https://canvas.instructure.com/doc/api/files.html#UsageRights
+public struct APIUsageRights: Codable, Equatable {
+    public let legal_copyright: String?
+    public let use_justification: String?
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.files.api_show
@@ -257,7 +267,7 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         }
     }
 
-    public init(context: FileUploadContext, body: Body) {
+    public init(context: FileUploadContext, body: Body?) {
         self.context = context
         self.body = body
     }
@@ -370,9 +380,9 @@ public class GetFolderRequest: APIRequestable {
     public typealias Response = APIFileFolder
 
     let context: Context?
-    let id: ID
+    let id: String
 
-    init(context: Context?, id: ID) {
+    init(context: Context?, id: String) {
         self.context = context
         self.id = id
     }
@@ -398,4 +408,27 @@ struct DeleteFileRequest: APIRequestable {
 
     let method = APIMethod.delete
     var path: String { "files/\(fileID)" }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.usage_rights.set_usage_right
+public struct SetUsageRightsRequest: APIRequestable {
+    public struct Body: Codable {
+        let file_ids: [String]
+        let publish: Bool?
+        let usage_rights: APIUsageRights
+    }
+    public typealias Response = APIUsageRights
+
+    public let context: Context
+    public let body: Body?
+
+    public init(context: Context, body: Body? = nil) {
+        self.context = context
+        self.body = body
+    }
+
+    public let method = APIMethod.put
+    public var path: String {
+        return "\(context.pathComponent)/usage_rights"
+    }
 }

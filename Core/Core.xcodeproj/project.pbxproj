@@ -798,6 +798,7 @@
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
 		DFE1FF2F212F69B4003F27AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2E212F69B4003F27AA /* Assets.xcassets */; };
 		DFE1FF32212F69B4003F27AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF30212F69B4003F27AA /* LaunchScreen.storyboard */; };
+		E8012D25247846B4006CDB79 /* ViewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8012D24247846B4006CDB79 /* ViewFile.swift */; };
 		E81918E8230348440039616A /* CoreUITests.h in Headers */ = {isa = PBXBuildFile; fileRef = E81918E6230348440039616A /* CoreUITests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E81918F6230348820039616A /* DiscussionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81918F22303487C0039616A /* DiscussionList.swift */; };
 		E81918F7230348860039616A /* DiscussionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81918F32303487C0039616A /* DiscussionDetails.swift */; };
@@ -1915,6 +1916,7 @@
 		DFE1FF31212F69B4003F27AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFE1FF33212F69B4003F27AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
+		E8012D24247846B4006CDB79 /* ViewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFile.swift; sourceTree = "<group>"; };
 		E81918E4230348440039616A /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81918E6230348440039616A /* CoreUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUITests.h; sourceTree = "<group>"; };
 		E81918E7230348440039616A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3918,6 +3920,7 @@
 				E819193F23034C2D0039616A /* Profile.swift */,
 				E85B4917238875A0003E28DC /* UserFilesTests.swift */,
 				E85E7F82238C45C300BE61B3 /* FilesList.swift */,
+				E8012D24247846B4006CDB79 /* ViewFile.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -5305,6 +5308,7 @@
 				B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */,
 				E841D8C623D665D800685A63 /* DiscussionReplyTests.swift in Sources */,
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
+				E8012D25247846B4006CDB79 /* ViewFile.swift in Sources */,
 				E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */,
 				E8BB310823A038AA00B3B3B2 /* TextSubmission.swift in Sources */,
 				E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */,

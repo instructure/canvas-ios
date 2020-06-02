@@ -58,6 +58,25 @@ public class APIJSONDecoder: JSONDecoder {
         super.init()
         dateDecodingStrategy = .iso8601
     }
+
+    // Can decode dates like "2019-06-02T18:07:28.000Z" that RN generates
+    public static var extendedPrecisionDecoder: APIJSONDecoder {
+        let decoder = APIJSONDecoder()
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFractionalSeconds]
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            guard let date = formatter.date(from: dateString) else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Expected date string to be ISO8601-formatted"
+                )
+            }
+            return date
+        }
+        return decoder
+    }
 }
 
 public class APIJSONEncoder: JSONEncoder {
