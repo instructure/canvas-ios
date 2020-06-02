@@ -70,7 +70,7 @@ class UserFilesTests: CoreUITestCase {
         AudioRecorder.stopButton.tap()
 
         mockUpload {
-            app.find(id: "audio-recorder.done-btn").tap()
+            AudioRecorder.sendButton.tap()
         }
     }
 
