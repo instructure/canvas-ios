@@ -49,7 +49,7 @@ public struct APISubmission: Codable, Equatable {
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
     var user: APISubmissionUser? // include[]=user
-    let assignment: APIAssignmentNoSubmission? // include[]=assignment
+    let assignment: APIAssignment? // include[]=assignment
     var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
 }
 
@@ -123,7 +123,7 @@ extension APISubmission {
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
         user: APISubmissionUser? = nil,
-        assignment: APIAssignmentNoSubmission? = nil,
+        assignment: APIAssignment? = nil,
         rubric_assessment: APIRubricAssessmentMap? = nil,
         external_tool_url: APIURL? = nil
     ) -> APISubmission {

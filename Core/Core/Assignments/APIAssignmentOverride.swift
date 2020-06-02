@@ -32,3 +32,25 @@ public struct APIAssignmentOverride: Codable, Equatable {
     let unlock_at: Date?
     let lock_at: Date?
 }
+
+// https://canvas.instructure.com/doc/api/assignments.html#method.assignment_overrides.create
+struct CreateAssignmentOverrideRequest: APIRequestable {
+    typealias Response = APIAssignmentOverride
+    struct Body: Codable, Equatable {
+        struct AssignmentOverride: Codable, Equatable {
+            let title: String
+        }
+
+        let assignment_override: AssignmentOverride
+    }
+
+    let courseID: String
+    let assignmentID: String
+
+    let body: Body?
+    let method = APIMethod.post
+    var path: String {
+        let context = ContextModel(.course, id: courseID)
+        return "\(context.pathComponent)/assignments/\(assignmentID)/overrides"
+    }
+}

@@ -16,6 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
+public struct APIAssignmentGroup: Codable, Equatable {
+    let id: ID
+    let name: String
+    let position: Int
+    var assignments: [APIAssignment]?
+}
+
+#if DEBUG
+extension APIAssignmentGroup {
+    public static func make(
+        id: ID = "1",
+        name: String = "Assignment Group A",
+        position: Int = 1,
+        assignments: [APIAssignment]? = nil
+        ) -> APIAssignmentGroup {
+        return APIAssignmentGroup(
+            id: id,
+            name: name,
+            position: position,
+            assignments: assignments
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/assignment_groups.html#method.assignment_groups.index
 public struct GetAssignmentGroupsRequest: APIRequestable {
     public typealias Response = [APIAssignmentGroup]

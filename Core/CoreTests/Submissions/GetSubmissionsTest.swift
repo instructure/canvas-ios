@@ -29,7 +29,7 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
         let apiSubmission = APISubmission.make(
             id: "1",
             assignment_id: "2",
-            assignment: APIAssignmentNoSubmission.make(id: "2")
+            assignment: APIAssignment.make(id: "2", submission: nil)
         )
 
         let useCase = GetRecentlyGradedSubmissions(userID: "1")

@@ -18,6 +18,101 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/assignments.html#Assignment
+public struct APIAssignment: Codable, Equatable {
+    let id: ID
+    let course_id: ID
+    let quiz_id: ID?
+    let name: String
+    let description: String?
+    let points_possible: Double?
+    let due_at: Date?
+    let html_url: URL
+    let grade_group_students_individually: Bool?
+    let grading_type: GradingType
+    let submission_types: [SubmissionType]
+    let allowed_extensions: [String]?
+    let position: Int
+    let unlock_at: Date?
+    let lock_at: Date?
+    let locked_for_user: Bool?
+    let lock_explanation: String?
+    let url: URL?
+    let discussion_topic: APIDiscussionTopic?
+    let rubric: [APIRubric]?
+    var submission: APIList<APISubmission>?
+    let use_rubric_for_grading: Bool?
+    let rubric_settings: APIRubricSettings?
+    let assignment_group_id: ID?
+}
+
+#if DEBUG
+extension APIAssignment {
+    public static func make(
+        id: ID = "1",
+        course_id: ID = "1",
+        quiz_id: ID? = nil,
+        name: String = "some assignment",
+        description: String? = "<p>Do the following:</p>...",
+        points_possible: Double? = 10,
+        due_at: Date? = nil,
+        html_url: URL? = nil,
+        submission: APISubmission? = .make(submitted_at: nil, workflow_state: .unsubmitted),
+        submissions: [APISubmission]? = nil,
+        grade_group_students_individually: Bool? = nil,
+        grading_type: GradingType = .points,
+        submission_types: [SubmissionType] = [.online_text_entry],
+        allowed_extensions: [String]? = nil,
+        position: Int = 0,
+        unlock_at: Date? = nil,
+        lock_at: Date? = nil,
+        locked_for_user: Bool? = false,
+        lock_explanation: String? = nil,
+        url: URL? = nil,
+        discussion_topic: APIDiscussionTopic? = nil,
+        rubric: [APIRubric]? = nil,
+        use_rubric_for_grading: Bool? = nil,
+        rubric_settings: APIRubricSettings? = nil,
+        assignment_group_id: ID? = nil
+    ) -> APIAssignment {
+
+        var submissionList: APIList<APISubmission>?
+        if let submissions = submissions, submissions.count > 0 {
+            submissionList = APIList<APISubmission>(values: submissions)
+        } else if let submission = submission {
+            submissionList = APIList<APISubmission>( submission )
+        }
+
+        return APIAssignment(
+            id: id,
+            course_id: course_id,
+            quiz_id: quiz_id,
+            name: name,
+            description: description,
+            points_possible: points_possible,
+            due_at: due_at,
+            html_url: html_url ?? URL(string: "https://canvas.instructure.com/courses/\(course_id)/assignments/\(id)")!,
+            grade_group_students_individually: grade_group_students_individually,
+            grading_type: grading_type,
+            submission_types: submission_types,
+            allowed_extensions: allowed_extensions,
+            position: position,
+            unlock_at: unlock_at,
+            lock_at: lock_at,
+            locked_for_user: locked_for_user,
+            lock_explanation: lock_explanation,
+            url: url,
+            discussion_topic: discussion_topic,
+            rubric: rubric,
+            submission: submissionList,
+            use_rubric_for_grading: use_rubric_for_grading,
+            rubric_settings: rubric_settings,
+            assignment_group_id: assignment_group_id
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.show
 public struct GetAssignmentRequest: APIRequestable {
     public typealias Response = APIAssignment

@@ -216,6 +216,59 @@ extension APIAssignmentListAssignment {
 }
 
 #if DEBUG
+extension APIPageInfo {
+    public static func make(endCursor: String? = nil, hasNextPage: Bool = false) -> APIPageInfo {
+        return APIPageInfo(endCursor: endCursor, hasNextPage: hasNextPage)
+    }
+}
+
+extension APIAssignmentListGroup {
+    public static func make(
+        id: ID =  "1",
+        name: String = "GroupA",
+        assignments: [APIAssignmentListAssignment] = [APIAssignmentListAssignment.make()],
+        pageInfo: APIPageInfo? = APIPageInfo.make()
+    )
+        -> APIAssignmentListGroup {
+            return APIAssignmentListGroup(
+                id: id,
+                name: name,
+                assignmentNodes: APIAssignmentListGroup.Nodes(
+                    nodes: assignments,
+                    pageInfo: pageInfo
+                )
+            )
+    }
+}
+
+extension APIAssignmentListAssignment {
+    public static func make(
+        id: ID = "1", name: String = "A", inClosedGradingPeriod: Bool = false, dueAt: Date? = nil,
+        lockAt: Date? =  nil, unlockAt: Date? = nil, htmlUrl: String? = "/courses/1/assignments/1",
+        submissionTypes: [SubmissionType] = [.online_text_entry], quizID: ID? = nil
+    ) -> APIAssignmentListAssignment {
+        return APIAssignmentListAssignment(
+            id: id, name: name, inClosedGradingPeriod: inClosedGradingPeriod,
+            dueAt: dueAt, lockAt: lockAt, unlockAt: unlockAt, htmlUrl: htmlUrl,
+            submissionTypes: submissionTypes,
+            quiz: quizID != nil ? APIAssignmentListAssignment.Quiz(id: quizID!) : nil
+        )
+    }
+
+    public init(apiAssignment assignment: APIAssignment) {
+        self = APIAssignmentListAssignment.make(
+            id: assignment.id,
+            name: assignment.name,
+            dueAt: assignment.due_at,
+            lockAt: assignment.lock_at,
+            unlockAt: assignment.unlock_at,
+            htmlUrl: assignment.html_url.absoluteString,
+            submissionTypes: assignment.submission_types,
+            quizID: assignment.quiz_id
+        )
+    }
+}
+
 extension APIAssignmentListResponse {
     static func make(
         groups: [APIAssignmentListGroup]
