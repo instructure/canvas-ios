@@ -395,6 +395,7 @@ exports[`error occurs when done pressed 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -1208,6 +1209,7 @@ exports[`modal saving is shown on assignment update 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -2021,6 +2023,7 @@ exports[`renders 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -2834,6 +2837,7 @@ exports[`saving invalid dates displays banner 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -3682,6 +3686,7 @@ exports[`saving invalid name displays banner 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -4498,6 +4503,7 @@ exports[`saving invalid points possible displays banner 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
@@ -5342,6 +5348,7 @@ exports[`saving negative points possible displays banner 1`] = `
             "button",
           ]
         }
+        accessible={false}
         onPress={[Function]}
         style={
           Array [
