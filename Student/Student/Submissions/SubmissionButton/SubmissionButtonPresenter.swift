@@ -98,7 +98,7 @@ class SubmissionButtonPresenter: NSObject {
 
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
         Analytics.shared.logEvent("assignment_submit_selected")
-        guard let view = view as? UIViewController, let userID = assignment.submission?.userID else { return }
+        guard let view = view as? UIViewController else { return }
         let courseID = assignment.courseID
         switch type {
         case .basic_lti_launch, .external_tool:
@@ -118,6 +118,7 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_text_entry:
             Analytics.shared.logEvent("submit_textentry_selected")
+            guard let userID = assignment.submission?.userID else { return }
             env.router.show(TextSubmissionViewController.create(
                 courseID: courseID,
                 assignmentID: assignment.id,
@@ -132,6 +133,7 @@ class SubmissionButtonPresenter: NSObject {
             pickFiles(for: assignment, selectedSubmissionTypes: [type])
         case .online_url:
             Analytics.shared.logEvent("submit_url_selected")
+            guard let userID = assignment.submission?.userID else { return }
             env.router.show(UrlSubmissionViewController.create(
                 courseID: courseID,
                 assignmentID: assignment.id,
