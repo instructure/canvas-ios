@@ -30,6 +30,8 @@ public class MiniCourse {
     public var featureFlags: [String] = []
     public var conferences: [APIConference] = []
     public var pages: [APIPage] = []
+    public var courseFiles: MiniFolder?
+    public var contentLicenses: [Any] = []
 
     public var id: String { api.id.value }
 
@@ -107,6 +109,29 @@ public class MiniCourse {
                 url: "page-\(pageId)"
             ))
         }
+
+        let folderID = state.nextId()
+        let folder = MiniFolder(APIFileFolder.make(
+            context_type: "Course",
+            context_id: course.api.id,
+            folders_url: state.baseUrl.appendingPathExtension("/api/v1/folders/\(folderID)/folders"),
+            files_url: state.baseUrl.appendingPathExtension("/api/v1/folders/\(folderID)/files"),
+            full_name: "course files",
+            id: folderID,
+            name: "course files"
+        ))
+        state.folders[folder.id] = folder
+        course.courseFiles = folder
+
+        let file = MiniFile(APIFile.make(
+            id: state.nextId(),
+            folder_id: folderID,
+            display_name: "hamburger",
+            filename: "hamburger.jpg",
+            url: UIImage.icon(.hamburger).asDataUrl!
+        ))
+        state.files[file.id] = file
+        folder.fileIDs.append(file.id)
     }
 
     func createQuizAssignment(state: MiniCanvasState) {

@@ -32,8 +32,16 @@ extension HttpResponse {
         return .json(data: data)
     }
 
+    static func json(object: Any) throws -> HttpResponse {
+        try .json(data: JSONSerialization.data(withJSONObject: object))
+    }
+
     static func json(data: Data) -> HttpResponse {
-        .raw(200, "OK", [HttpHeader.contentType: "application/json"]) { writer in
+        .data(data, headers: [HttpHeader.contentType: "application/json"])
+    }
+
+    static func data(_ data: Data, headers: [String: String] = [:]) -> HttpResponse {
+        .raw(200, "OK", headers) { writer in
             try writer.write(data)
         }
     }

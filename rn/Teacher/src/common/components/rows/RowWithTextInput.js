@@ -58,7 +58,7 @@ export default class RowWithTextInput extends Component<Props, any> {
     const label = i18n('{value}, text field', {
       value: this.props.value || this.props.placeholder || i18n('Input'),
     })
-    return <Row {...this.props} children={this._renderTextInput()} accessibilityLabel={label} />
+    return <Row {...this.props} children={this._renderTextInput()} accessibilityLabel={label} accessible={false} />
   }
 
   _renderWithTitle () {
@@ -80,6 +80,7 @@ export default class RowWithTextInput extends Component<Props, any> {
         accessories={accessory}
         accessibilityLabel={i18n('{label}, text field', { label })}
         onPress={this.handlePress}
+        accessible={false}
       />
     )
   }

@@ -43,7 +43,8 @@ extension APIFile {
         locked_for_user: Bool = false,
         lock_explanation: String? = nil,
         preview_url: URL? = nil,
-        avatar: APIFileToken? = nil
+        avatar: APIFileToken? = nil,
+        usage_rights: APIUsageRights? = nil
     ) -> APIFile {
         return APIFile(
             id: id,
@@ -68,7 +69,8 @@ extension APIFile {
             locked_for_user: locked_for_user,
             lock_explanation: lock_explanation,
             preview_url: APIURL(rawValue: preview_url),
-            avatar: avatar
+            avatar: avatar,
+            usage_rights: usage_rights
         )
     }
 }
@@ -123,4 +125,16 @@ extension APIFileFolder {
 
 extension APIFileFolder: APIContext {
     public var contextType: ContextType { .folder }
+}
+
+extension APIUsageRights {
+    public static func make(
+        legal_copyright: String? = nil,
+        use_justification: String? = nil
+    ) -> APIUsageRights {
+        return APIUsageRights(
+            legal_copyright: legal_copyright,
+            use_justification: use_justification
+        )
+    }
 }
