@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="buS-hh-oq4">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jss-Wo-ZSs">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -104,8 +104,29 @@
                                                     </view>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvP-2W-eFt">
+                                                <rect key="frame" x="0.0" y="64" width="375" height="25"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Sections: Section A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPu-cr-6WE" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="8" width="343" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="wPu-cr-6WE" secondAttribute="bottom" id="Ewl-UA-WQY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="wPu-cr-6WE" secondAttribute="trailing" constant="16" id="Itl-Fd-Nfi"/>
+                                                    <constraint firstItem="wPu-cr-6WE" firstAttribute="leading" secondItem="YvP-2W-eFt" secondAttribute="leading" constant="16" id="NPq-d9-fKS"/>
+                                                    <constraint firstItem="wPu-cr-6WE" firstAttribute="top" secondItem="YvP-2W-eFt" secondAttribute="top" constant="8" id="eYj-dX-U7E"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhS-8O-7TX">
-                                                <rect key="frame" x="0.0" y="64" width="375" height="16"/>
+                                                <rect key="frame" x="0.0" y="89" width="375" height="16"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caY-IB-cCm" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="15" width="343" height="1"/>
@@ -125,7 +146,7 @@
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAH-NI-Ygz">
-                                                <rect key="frame" x="0.0" y="80" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="105" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dge-70-xPq" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="-1" width="343" height="1"/>
@@ -144,7 +165,7 @@
                                                 </constraints>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fm-Ke-3KQ">
-                                                <rect key="frame" x="0.0" y="80" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="105" width="375" height="0.0"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-Qi-FOo" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="-1" width="343" height="1"/>
@@ -165,7 +186,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BdY-dO-wTh">
-                                        <rect key="frame" x="0.0" y="80" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="105" width="375" height="500"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="500" placeholder="YES" id="np6-E2-G0Q"/>
                                         </constraints>
@@ -208,6 +229,8 @@
                         <viewLayoutGuide key="safeArea" id="Ppd-YY-E8R"/>
                     </view>
                     <connections>
+                        <outlet property="courseSectionsLabel" destination="wPu-cr-6WE" id="b8G-hA-6ee"/>
+                        <outlet property="courseSectionsView" destination="YvP-2W-eFt" id="Amb-yR-wDR"/>
                         <outlet property="dueSection" destination="TAH-NI-Ygz" id="rgd-KV-dHf"/>
                         <outlet property="pointsLabel" destination="9aX-wW-Ee5" id="HD9-ky-1K5"/>
                         <outlet property="pointsView" destination="N95-VH-4Pr" id="V0B-hw-zNo"/>
