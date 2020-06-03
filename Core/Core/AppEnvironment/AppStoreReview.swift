@@ -28,8 +28,8 @@ public class AppStoreReview: NSObject {
 
     @objc class func immediatelyRequestReview() {
         if UserDefaults.standard.bool(forKey: fakeRequestKey) {
-            let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
-            let alert = UIAlertController(title: "Enjoying \(appName)?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
+            let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
+            let alert = UIAlertController(title: "Enjoying \(appName ?? "")?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
             func dismiss(action: UIAlertAction) {
                 alert.presentingViewController?.dismiss(animated: true, completion: nil)
             }
@@ -94,9 +94,9 @@ public class AppStoreReview: NSObject {
             immediatelyRequestReview()
         }
     }
-    
+
     @objc
-    public class func getState() -> Dictionary<String, Int> {
+    public class func getState() -> [String: Int] {
         func getTime (forKey: String) -> Int {
             if let date = UserDefaults.standard.value(forKey: forKey) as? Date {
                 return Int(date.timeIntervalSince1970 * 1000)
@@ -115,18 +115,18 @@ public class AppStoreReview: NSObject {
     @objc
     public class func setState(_ key: String, withValue value: Int64) {
         switch (key) {
-            case "lastRequestDate":
-                UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: lastRequestDateKey)
-            case "viewAssignmentDate":
-                UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: viewAssignmentDateKey)
-            case "viewAssignmentCount":
-                UserDefaults.standard.set(value, forKey: viewAssignmentCountKey)
-            case "launchCount":
-                UserDefaults.standard.set(value, forKey: launchCountKey)
-            case "fakeRequest":
-                UserDefaults.standard.set(value, forKey: fakeRequestKey)
-            default:
-                break
+        case "lastRequestDate":
+            UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: lastRequestDateKey)
+        case "viewAssignmentDate":
+            UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: viewAssignmentDateKey)
+        case "viewAssignmentCount":
+            UserDefaults.standard.set(value, forKey: viewAssignmentCountKey)
+        case "launchCount":
+            UserDefaults.standard.set(value, forKey: launchCountKey)
+        case "fakeRequest":
+            UserDefaults.standard.set(value, forKey: fakeRequestKey)
+        default:
+            break
         }
         UserDefaults.standard.synchronize()
     }
