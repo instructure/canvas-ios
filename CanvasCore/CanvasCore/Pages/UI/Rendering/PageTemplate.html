@@ -102,7 +102,7 @@
             }
             if (/\/courses\/\d+\/external_tools\/retrieve/.test(iframe.src)) {
                 replace(iframe)
-            } else if (/\/media_objects_iframe\/m-\d+/.test(iframe.src)) {
+            } else if (/\/media_objects_iframe\/m-\w+/.test(iframe.src)) {
                 const match = iframe.src.match(/\/media_objects_iframe\/(m-\w+)/)
                 if (match.length == 2) {
                     const mediaID = match[1]
