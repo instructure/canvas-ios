@@ -52,6 +52,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var todo: Todo?
     @NSManaged public var syllabus: Syllabus?
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
+    @NSManaged public var allDates: Set<AssignmentDate>
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -180,6 +181,12 @@ extension Assignment {
                 self.submissions = nil
             }
         }
+
+        if let dates = item.all_dates {
+            allDates = Set(dates.map {
+                AssignmentDate.save($0, assignmentID: id, in: client)
+            })
+        }
     }
 
     public var canMakeSubmissions: Bool {
@@ -273,4 +280,26 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
 
 public enum LockStatus: String {
     case unlocked, before, after
+}
+
+public final class AssignmentDate: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var base: Bool
+    @NSManaged public var title: String?
+    @NSManaged public var dueAt: Date?
+    @NSManaged public var unlockAt: Date?
+    @NSManaged public var lockAt: Date?
+
+    @discardableResult
+    public static func save(_ item: APIAssignmentDate, assignmentID: String, in context: NSManagedObjectContext) -> AssignmentDate {
+        let id = item.id?.value ?? "base-\(assignmentID)"
+        let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
+        model.id = id
+        model.base = item.base == true
+        model.title = item.title
+        model.dueAt = item.due_at
+        model.unlockAt = item.unlock_at
+        model.lockAt = item.lock_at
+        return model
+    }
 }

@@ -51,6 +51,7 @@ const whitelist = [
   'bold',
   'box',
   'bullet-list',
+  'calendar-clock',
   'calendar-month',
   'check',
   'clock',

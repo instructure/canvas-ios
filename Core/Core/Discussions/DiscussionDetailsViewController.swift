@@ -227,12 +227,17 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         publishedLabel.textColor = .named(isPublished ? .textSuccess : .textDark)
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
-        if let assignmentID = topic.first?.assignmentID {
+        if env.app == .teacher, let courseID = courseID, let assignmentID = topic.first?.assignmentID {
             if dueSection.isHidden {
+                let controller = AssignmentDatesViewController.create(
+                    courseID: courseID,
+                    assignmentID: assignmentID
+                )
+                embed(controller, in: dueSection)
                 dueSection.isHidden = false
             }
 
-            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden, let courseID = courseID {
+            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
                 let controller = SubmissionBreakdownViewController.create(
                     courseID: courseID,
                     assignmentID: assignmentID,

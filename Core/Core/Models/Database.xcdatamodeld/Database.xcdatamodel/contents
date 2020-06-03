@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F96" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -47,6 +47,7 @@
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="allDates" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentDate" inverseName="assignment" inverseEntity="AssignmentDate"/>
         <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
@@ -55,6 +56,15 @@
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
         <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
+    </entity>
+    <entity name="AssignmentDate" representedClassName="Core.AssignmentDate" syncable="YES">
+        <attribute name="base" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="allDates" inverseEntity="Assignment"/>
     </entity>
     <entity name="AssignmentGroup" representedClassName="Core.AssignmentGroup" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -721,7 +731,7 @@
     <elements>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="598"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="613"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="163"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
@@ -769,6 +779,7 @@
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="433"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
+        <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
@@ -776,6 +787,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
+        <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
     </elements>
 </model>
