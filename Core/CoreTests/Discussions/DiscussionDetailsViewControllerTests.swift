@@ -314,5 +314,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(html.contains("each group has its own conversation"))
         XCTAssert(html.contains("Group One"))
         XCTAssert(html.contains("/groups/1/discussion_topics/2"))
+        XCTAssertEqual(controller.dueSection.isHidden, false)
+        XCTAssertEqual(controller.submissionsSection.isHidden, true)
     }
 }

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Assignment Dates View Controller-->
+        <scene sceneID="frG-U2-LVR">
+            <objects>
+                <viewController storyboardIdentifier="AssignmentDatesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="17R-xm-94N" customClass="AssignmentDatesViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXx-Bt-U2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="57.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowOpenRightSolid" translatesAutoresizingMaskIntoConstraints="NO" id="3cQ-bY-6RL" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="386" y="21" width="16" height="16"/>
+                                <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Hg6-k9-W9e"/>
+                                    <constraint firstAttribute="height" constant="16" id="J1B-q6-kiA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="borderMedium"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="arrowOpenRightSolid"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarClockLine" translatesAutoresizingMaskIntoConstraints="NO" id="88u-YR-kGq" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="14" y="14.5" width="23" height="23"/>
+                                <color key="tintColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="23" id="6LK-mo-1oo"/>
+                                    <constraint firstAttribute="height" constant="23" id="ChN-dO-8tc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDark"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="calendarClockLine"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tO-s6-Yg8" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="41" y="18" width="357" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="LDa-Zj-1fR">
+                                <rect key="frame" x="16" y="41.5" width="358" height="0.0"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UR6-AG-ARC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="57.5"/>
+                                <connections>
+                                    <action selector="route" destination="17R-xm-94N" eventType="primaryActionTriggered" id="oTU-W9-v0c"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LDa-Zj-1fR" firstAttribute="leading" secondItem="ZbH-er-qGe" secondAttribute="leading" constant="16" id="64r-II-NpR"/>
+                            <constraint firstItem="8tO-s6-Yg8" firstAttribute="top" secondItem="ZbH-er-qGe" secondAttribute="top" constant="18" id="6Bn-Pn-6E8"/>
+                            <constraint firstItem="ZbH-er-qGe" firstAttribute="bottom" secondItem="LDa-Zj-1fR" secondAttribute="bottom" constant="16" id="6Hx-53-DLY"/>
+                            <constraint firstItem="LDa-Zj-1fR" firstAttribute="top" secondItem="8tO-s6-Yg8" secondAttribute="bottom" constant="4" id="6v1-YH-PoO"/>
+                            <constraint firstItem="UR6-AG-ARC" firstAttribute="top" secondItem="ZbH-er-qGe" secondAttribute="top" id="C0Y-9X-US3"/>
+                            <constraint firstItem="ZbH-er-qGe" firstAttribute="trailing" secondItem="UR6-AG-ARC" secondAttribute="trailing" id="FGm-ZG-pkm"/>
+                            <constraint firstItem="UR6-AG-ARC" firstAttribute="leading" secondItem="ZbH-er-qGe" secondAttribute="leading" id="Ilf-ko-LI3"/>
+                            <constraint firstItem="3cQ-bY-6RL" firstAttribute="leading" secondItem="LDa-Zj-1fR" secondAttribute="trailing" constant="12" id="K7I-AB-cSD"/>
+                            <constraint firstItem="ZbH-er-qGe" firstAttribute="bottom" secondItem="UR6-AG-ARC" secondAttribute="bottom" id="PhG-PM-mlt"/>
+                            <constraint firstItem="ZbH-er-qGe" firstAttribute="trailing" secondItem="3cQ-bY-6RL" secondAttribute="trailing" constant="12" id="TEn-sp-SyB"/>
+                            <constraint firstItem="88u-YR-kGq" firstAttribute="top" secondItem="ZbH-er-qGe" secondAttribute="top" constant="14.5" id="VIM-Kx-yS4"/>
+                            <constraint firstItem="3cQ-bY-6RL" firstAttribute="centerY" secondItem="JXx-Bt-U2Z" secondAttribute="centerY" id="dR4-If-Qcy"/>
+                            <constraint firstAttribute="trailing" secondItem="8tO-s6-Yg8" secondAttribute="trailing" constant="16" id="i6t-N0-elY"/>
+                            <constraint firstItem="8tO-s6-Yg8" firstAttribute="leading" secondItem="88u-YR-kGq" secondAttribute="trailing" constant="4" id="w6J-Dq-2qD"/>
+                            <constraint firstItem="88u-YR-kGq" firstAttribute="leading" secondItem="ZbH-er-qGe" secondAttribute="leading" constant="14" id="xZL-wc-KJo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZbH-er-qGe"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="57.5"/>
+                    <connections>
+                        <outlet property="button" destination="UR6-AG-ARC" id="djy-pX-thp"/>
+                        <outlet property="headingLabel" destination="8tO-s6-Yg8" id="c2D-r3-OFP"/>
+                        <outlet property="linesView" destination="LDa-Zj-1fR" id="H7u-i6-18A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aFf-Sh-gtH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowOpenRightSolid" width="24" height="24"/>
+        <image name="calendarClockLine" width="24" height="24"/>
+    </resources>
+</document>

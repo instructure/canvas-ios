@@ -91,12 +91,11 @@ class SubmissionBreakdownViewController: UIViewController {
         onPaperLabel.isHidden = true
         noSubmissionsLabel.isHidden = true
         noSubmissionsLabel.text = NSLocalizedString("Tap to view submissions list.", bundle: .core, comment: "")
-
-        summary.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        summary.refresh(force: true)
         didAppear = true
         update()
     }

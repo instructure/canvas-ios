@@ -34,7 +34,6 @@ class APIAssignmentRequestableTests: XCTestCase {
         let notAllDates = GetAssignmentRequest(courseID: "1", assignmentID: "2", allDates: false, include: [])
         XCTAssertEqual(notAllDates.queryItems, [
             URLQueryItem(name: "include[]", value: "observed_users"),
-            URLQueryItem(name: "all_dates", value: "false"),
         ])
     }
 
