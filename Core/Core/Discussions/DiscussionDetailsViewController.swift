@@ -20,6 +20,8 @@ import UIKit
 import WebKit
 
 public class DiscussionDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+    @IBOutlet weak var courseSectionsView: UIView!
+    @IBOutlet weak var courseSectionsLabel: UILabel!
     @IBOutlet weak var dueSection: UIView!
     lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showTopicOptions))
     @IBOutlet weak var pointsLabel: UILabel!
@@ -100,6 +102,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
             : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
         )
+        courseSectionsView.isHidden = true
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
         optionsButton.isEnabled = false
@@ -206,6 +209,16 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 }
             }
             assignment?.refresh()
+        }
+
+        if let sections = topic.first?.sections, topic.first?.isSectionSpecific == true {
+            courseSectionsLabel.text = String.localizedStringWithFormat(
+                NSLocalizedString("Sections: %@", bundle: .core, comment: ""),
+                ListFormatter.localizedString(from: sections.map { $0.name })
+            )
+            courseSectionsView.isHidden = false
+        } else {
+            courseSectionsView.isHidden = true
         }
 
         optionsButton.isEnabled = topic.first != nil
