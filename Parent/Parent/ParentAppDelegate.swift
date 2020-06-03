@@ -36,6 +36,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         env.router = router
         env.loginDelegate = self
         env.app = .parent
+        env.window = window
         return env
     }()
 

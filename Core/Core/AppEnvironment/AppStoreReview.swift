@@ -20,43 +20,44 @@ import Foundation
 import StoreKit
 
 public class AppStoreReview: NSObject {
-    @objc static let lastRequestDateKey = "InstLastReviewRequestKey"
-    @objc static let viewAssignmentDateKey = "InstViewAssignmentDateKey"
-    @objc static let viewAssignmentCountKey = "InstViewAssignmentCountKey"
-    @objc static let launchCountKey = "InstLaunchCount"
-    @objc static let fakeRequestKey = "InstFakeReviewRequestKey"
+    static let lastRequestDateKey = "InstLastReviewRequestKey"
+    static let viewAssignmentDateKey = "InstViewAssignmentDateKey"
+    static let viewAssignmentCountKey = "InstViewAssignmentCountKey"
+    static let launchCountKey = "InstLaunchCount"
+    static let fakeRequestKey = "InstFakeReviewRequestKey"
 
-    @objc class func immediatelyRequestReview () {
-        if #available(iOS 10.3, *) {
-            if UserDefaults.standard.bool(forKey: fakeRequestKey) {
-                let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
-                let alert = UIAlertController(title: "Enjoying \(appName)?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
-                func dismiss(action: UIAlertAction) {
-                    alert.presentingViewController?.dismiss(animated: true, completion: nil)
-                }
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: dismiss))
-                alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: dismiss))
-                UIApplication.shared.delegate?.topViewController?.present(alert, animated: true, completion: nil)
-            } else {
-                #if RELEASE
-                SKStoreReviewController.requestReview()
-                #endif
+    @objc class func immediatelyRequestReview() {
+        if UserDefaults.standard.bool(forKey: fakeRequestKey) {
+            let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+            let alert = UIAlertController(title: "Enjoying \(appName)?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
+            func dismiss(action: UIAlertAction) {
+                alert.presentingViewController?.dismiss(animated: true, completion: nil)
             }
-            UserDefaults.standard.set(Date(), forKey: lastRequestDateKey)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: dismiss))
+            alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: dismiss))
+
+            if let top = AppEnvironment.shared.topViewController {
+                AppEnvironment.shared.router.show(alert, from: top, options: .modal())
+            }
+        } else {
+            #if RELEASE
+            SKStoreReviewController.requestReview()
+            #endif
         }
+        UserDefaults.standard.set(Date(), forKey: lastRequestDateKey)
     }
 
-    @objc class func shouldRequestReview () -> Bool {
+    @objc class func shouldRequestReview() -> Bool {
         let date = UserDefaults.standard.value(forKey: lastRequestDateKey) as? Date ?? Date.distantPast
         let calendar = Calendar.current
-        let comps = calendar.dateComponents([Calendar.Component.day], from: date, to: Date())
+        let comps = calendar.dateComponents([.day], from: date, to: Date())
         if let daysSince = comps.day, daysSince <= 30 {
             return false
         }
         return true
     }
 
-    @objc public class func handleLaunch () {
+    @objc public class func handleLaunch() {
         let count = UserDefaults.standard.integer(forKey: launchCountKey) + 1
         UserDefaults.standard.set(count, forKey: launchCountKey)
         if count >= 10 && shouldRequestReview() {
@@ -65,37 +66,37 @@ public class AppStoreReview: NSObject {
     }
 
     @objc
-    public class func handleSuccessfulSubmit () {
+    public class func handleSuccessfulSubmit() {
         if shouldRequestReview() {
             immediatelyRequestReview()
         }
     }
 
     @objc
-    public class func handleNavigateToAssignment () {
+    public class func handleNavigateToAssignment() {
         // or discussion, or announcement
         let date = UserDefaults.standard.value(forKey: viewAssignmentDateKey) as? Date ?? Date.distantPast
-        if date.addingTimeInterval(24 * 60 * 60).isTheSameDayAsDate(Date()) { // yesterday
+        if Calendar.current.isDateInYesterday(date) { // yesterday
             let count = UserDefaults.standard.integer(forKey: viewAssignmentCountKey)
             UserDefaults.standard.set(count + 1, forKey: viewAssignmentCountKey)
             UserDefaults.standard.set(Date(), forKey: viewAssignmentDateKey)
-        } else if !date.isTheSameDayAsDate(Date()) { // not today
+        } else if !Calendar.current.isDateInToday(date) { // not today
             UserDefaults.standard.set(1, forKey: viewAssignmentCountKey)
             UserDefaults.standard.set(Date(), forKey: viewAssignmentDateKey)
         } // else already updated today, do nothing
     }
 
     @objc
-    public class func handleNavigateFromAssignment () {
+    public class func handleNavigateFromAssignment() {
         let count = UserDefaults.standard.integer(forKey: viewAssignmentCountKey)
         let date = UserDefaults.standard.value(forKey: viewAssignmentDateKey) as? Date ?? Date.distantPast
-        if count >= 3 && date.isTheSameDayAsDate(Date()) && shouldRequestReview() {
+        if count >= 3 && Calendar.current.isDateInToday(date) && shouldRequestReview() {
             immediatelyRequestReview()
         }
     }
     
     @objc
-    public class func getState () -> Dictionary<String, Int> {
+    public class func getState() -> Dictionary<String, Int> {
         func getTime (forKey: String) -> Int {
             if let date = UserDefaults.standard.value(forKey: forKey) as? Date {
                 return Int(date.timeIntervalSince1970 * 1000)
@@ -112,7 +113,7 @@ public class AppStoreReview: NSObject {
     }
 
     @objc
-    public class func setState (_ key: String, withValue value: Int64) {
+    public class func setState(_ key: String, withValue value: Int64) {
         switch (key) {
             case "lastRequestDate":
                 UserDefaults.standard.set(Date(timeIntervalSince1970: Double(value) / 1000), forKey: lastRequestDateKey)

@@ -38,6 +38,7 @@ open class AppEnvironment {
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?
     public weak var loginDelegate: LoginDelegate?
+    public weak var window: UIWindow?
 
     public init() {
         self.database = globalDatabase
@@ -72,5 +73,13 @@ open class AppEnvironment {
     public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler) -> Store<LocalUseCase<Model>> {
         let useCase = LocalUseCase<Model>(scope: scope)
         return subscribe(useCase, callback)
+    }
+
+    public var topViewController: UIViewController? {
+        var controller = window?.rootViewController
+        while controller?.presentedViewController != nil {
+            controller = controller?.presentedViewController
+        }
+        return controller
     }
 }
