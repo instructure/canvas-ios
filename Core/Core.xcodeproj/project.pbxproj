@@ -637,6 +637,8 @@
 		7DF4AAD02486F3BF00B07BB8 /* AssignmentDatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4AACF2486F3BF00B07BB8 /* AssignmentDatesViewController.swift */; };
 		7DF4AAD42487F1EF00B07BB8 /* AssignmentDatesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF4AAD32487F1EF00B07BB8 /* AssignmentDatesViewController.storyboard */; };
 		7DF4AAD6248808A900B07BB8 /* AssignmentDatesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4AAD5248808A900B07BB8 /* AssignmentDatesViewControllerTests.swift */; };
+		7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4AAD7248833A300B07BB8 /* AppStoreReview.swift */; };
+		7DF4AADA2489430C00B07BB8 /* AppStoreReviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4AAD92489430C00B07BB8 /* AppStoreReviewTests.swift */; };
 		7DF4FFC121700BCE007E5F81 /* TabViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */; };
 		7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9BF072152AEF10099026B /* UIColorExtensionsTests.swift */; };
 		7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB2CF821C978D40077DEEE /* GetCustomColorsTests.swift */; };
@@ -1631,6 +1633,8 @@
 		7DF4AACF2486F3BF00B07BB8 /* AssignmentDatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesViewController.swift; sourceTree = "<group>"; };
 		7DF4AAD32487F1EF00B07BB8 /* AssignmentDatesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentDatesViewController.storyboard; sourceTree = "<group>"; };
 		7DF4AAD5248808A900B07BB8 /* AssignmentDatesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDatesViewControllerTests.swift; sourceTree = "<group>"; };
+		7DF4AAD7248833A300B07BB8 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
+		7DF4AAD92489430C00B07BB8 /* AppStoreReviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewTests.swift; sourceTree = "<group>"; };
 		7DF4FFBE21700133007E5F81 /* TabViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewable.swift; sourceTree = "<group>"; };
 		7DF4FFC021700BCE007E5F81 /* TabViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewableTests.swift; sourceTree = "<group>"; };
 		7DF4FFC4217113DA007E5F81 /* ContextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColor.swift; sourceTree = "<group>"; };
@@ -2209,6 +2213,7 @@
 			isa = PBXGroup;
 			children = (
 				2C96485D211E3723002C3255 /* AppEnvironment.swift */,
+				7DF4AAD7248833A300B07BB8 /* AppStoreReview.swift */,
 				B1A7848E24411F19001A2B50 /* BackgroundVideoPlayer.swift */,
 				7D63F78B215D4BD300151E49 /* Brand.swift */,
 				B191D5E5226E28E100D02948 /* CacheManager.swift */,
@@ -3223,6 +3228,7 @@
 			isa = PBXGroup;
 			children = (
 				7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */,
+				7DF4AAD92489430C00B07BB8 /* AppStoreReviewTests.swift */,
 				B1A7849024412101001A2B50 /* BackgroundVideoPlayerTests.swift */,
 				7D8B78FA215EC9BE005E08F1 /* BrandTests.swift */,
 				B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */,
@@ -4776,6 +4782,7 @@
 				7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */,
 				B1B6F078219A7D8B00C1575D /* UTITests.swift in Sources */,
 				3B3FCA2D238026D00011F11A /* ActivityTests.swift in Sources */,
+				7DF4AADA2489430C00B07BB8 /* AppStoreReviewTests.swift in Sources */,
 				7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */,
 				B1EF7AB721E7E41F00D653D7 /* StoreTests.swift in Sources */,
 				B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */,
@@ -5212,6 +5219,7 @@
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7D72425B2429BEE9007ED42F /* DashboardGroupCell.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
+				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
 				7DA2601123F7227A005D2121 /* UIColorInstColorsExtensions.swift in Sources */,
 				7DA25FF123F7225D005D2121 /* AccountNotificationIcon.swift in Sources */,
 				3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */,
@@ -5801,6 +5809,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 			};

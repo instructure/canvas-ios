@@ -46,6 +46,8 @@ class CoreTestCase: XCTestCase {
         return bundle.url(forResource: "fileupload", withExtension: "txt")!
     }()
 
+    let window = UIWindow()
+
     override func setUp() {
         super.setUp()
         MockURLSession.reset()
@@ -65,6 +67,8 @@ class CoreTestCase: XCTestCase {
         ExperimentalFeature.allEnabled = false
         Analytics.shared.handler = analytics
         environment.app = .student
+        environment.window = window
+        window.rootViewController = UIViewController()
     }
 
     override func tearDown() {

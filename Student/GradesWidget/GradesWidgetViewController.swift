@@ -125,6 +125,7 @@ class GradesWidgetViewController: UIViewController {
         guard let mostRecentKeyChain = LoginSession.mostRecent else {
             return showError(GradesWidgetError.notLoggedIn)
         }
+        env.window = view.window
         env.userDidLogin(session: mostRecentKeyChain)
 
         colors.refresh()

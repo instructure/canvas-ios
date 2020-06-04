@@ -169,6 +169,12 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)", attributes: [:])
     }
 
+    deinit {
+        if showRepliesToEntryID == nil {
+            AppStoreReview.handleNavigateFromAssignment()
+        }
+    }
+
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let depth: UInt = view.traitCollection.horizontalSizeClass == .compact ? 2 : 4
@@ -379,7 +385,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             }
         }
         if showRepliesToEntryID == nil {
-            // AppStoreReview.handleNavigateToAssignment()
+            AppStoreReview.handleNavigateToAssignment()
             MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
         }
         scrollViewDidScroll(scrollView) // read initial

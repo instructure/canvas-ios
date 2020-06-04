@@ -144,11 +144,16 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter?.viewDidAppear()
+        AppStoreReview.handleNavigateToAssignment()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter?.viewDidDisappear()
+    }
+
+    deinit {
+        AppStoreReview.handleNavigateFromAssignment()
     }
 
     @objc

@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CanvasCore/CanvasCore-Swift.h>
 @import React;
+@import Core;
 
 @interface AppStoreReviewReact : NSObject<RCTBridgeModule>
 @end
