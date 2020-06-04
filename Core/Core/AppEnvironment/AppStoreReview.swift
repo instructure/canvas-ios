@@ -26,15 +26,12 @@ public class AppStoreReview: NSObject {
     static let launchCountKey = "InstLaunchCount"
     static let fakeRequestKey = "InstFakeReviewRequestKey"
 
-    @objc class func immediatelyRequestReview() {
+    private class func requestReview() {
         if UserDefaults.standard.bool(forKey: fakeRequestKey) {
-            let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
-            let alert = UIAlertController(title: "Enjoying \(appName ?? "")?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
-            func dismiss(action: UIAlertAction) {
-                alert.presentingViewController?.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: dismiss))
-            alert.addAction(UIAlertAction(title: "Submit", style: .default, handler: dismiss))
+            let appName = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String ?? ""
+            let alert = UIAlertController(title: "Enjoying \(appName)?", message: "This is a fake request to rate it on the App Store.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Submit", style: .default))
 
             if let top = AppEnvironment.shared.topViewController {
                 AppEnvironment.shared.router.show(alert, from: top, options: .modal())
@@ -47,29 +44,26 @@ public class AppStoreReview: NSObject {
         UserDefaults.standard.set(Date(), forKey: lastRequestDateKey)
     }
 
-    @objc class func shouldRequestReview() -> Bool {
+    private class func requestReviewIfAppropriate() {
         let date = UserDefaults.standard.value(forKey: lastRequestDateKey) as? Date ?? Date.distantPast
         let calendar = Calendar.current
         let comps = calendar.dateComponents([.day], from: date, to: Date())
-        if let daysSince = comps.day, daysSince <= 30 {
-            return false
+        if let daysSince = comps.day, daysSince > 30 {
+            requestReview()
         }
-        return true
     }
 
-    @objc public class func handleLaunch() {
+    public class func handleLaunch() {
         let count = UserDefaults.standard.integer(forKey: launchCountKey) + 1
         UserDefaults.standard.set(count, forKey: launchCountKey)
-        if count >= 10 && shouldRequestReview() {
-            immediatelyRequestReview()
+        if count >= 10 {
+            requestReviewIfAppropriate()
         }
     }
 
     @objc
     public class func handleSuccessfulSubmit() {
-        if shouldRequestReview() {
-            immediatelyRequestReview()
-        }
+        requestReviewIfAppropriate()
     }
 
     @objc
@@ -90,8 +84,8 @@ public class AppStoreReview: NSObject {
     public class func handleNavigateFromAssignment() {
         let count = UserDefaults.standard.integer(forKey: viewAssignmentCountKey)
         let date = UserDefaults.standard.value(forKey: viewAssignmentDateKey) as? Date ?? Date.distantPast
-        if count >= 3 && Calendar.current.isDateInToday(date) && shouldRequestReview() {
-            immediatelyRequestReview()
+        if count >= 3 && Calendar.current.isDateInToday(date) {
+            requestReviewIfAppropriate()
         }
     }
 
