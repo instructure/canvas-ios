@@ -35,7 +35,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case qrLoginStudent = "qr_code_login_student"
     case nativeStudentInbox = "native_student_inbox"
     case nativeTeacherInbox = "native_teacher_inbox"
-    case htmlDiscussions = "html_discussions"
     case studentQRCodePairing = "student_qr_code_pairing"
     case parentQRCodePairing = "parent_qr_code_pairing"
 
