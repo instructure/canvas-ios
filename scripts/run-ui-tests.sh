@@ -66,7 +66,6 @@ while [[ $# -gt 0 ]]; do
             ;;
         --all-tests)
             [[ $# -eq 1 ]] || usage 1
-            only_testing+=($all_targets)
             only_build=no
             break
             ;;
@@ -153,7 +152,7 @@ function mergeResults {
     results=($results_directory/*.xcresult)
     if [[ ${#results} -gt 1 ]]; then
         xcrun xcresulttool merge $results --output-path $merged_result_path
-        rm -rf $merged_result_path
+        rm -rf $results
     else
         cp -r $results $merged_result_path
     fi

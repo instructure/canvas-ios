@@ -327,12 +327,12 @@ workflows:
   nightly:
     steps:
     - build-router-start:
-        title: Start nightly group A
+        title: Start nightly group B
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: nightly-a
+        - workflows: nightly-b
     after_run:
-    - nightly-b
+    - nightly-a
 
   nightly-a:
     steps:
@@ -427,7 +427,7 @@ workflows:
 
             if [[ $NIGHTLY_GROUP = A ]]; then
                 ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
-            else if [[ $NIGHTLY_GROUP = B ]]; then
+            elif [[ $NIGHTLY_GROUP = B ]]; then
                 (cd rn/Teacher; yarn test:ci)
 
                 ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
