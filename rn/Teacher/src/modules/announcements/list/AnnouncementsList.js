@@ -157,7 +157,8 @@ export class AnnouncementsList extends Component<Props, any> {
 
   selectAnnouncement (announcement: Discussion) {
     this.setState({ selectedRowID: announcement.id })
-    this.props.navigator.show(announcement.html_url, { modal: false }, {
+    const url = `/${this.props.context}/${this.props.contextID}/announcements/${announcement.id}`
+    this.props.navigator.show(url, { modal: false }, {
       isAnnouncement: true,
     })
   }

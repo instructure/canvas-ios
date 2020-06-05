@@ -154,7 +154,7 @@ describe('AnnouncementsList', () => {
     props.announcements = [announcement]
     let tree = shallow(<AnnouncementsList {...props} />)
     tree.find('FlatList').dive().find('Row').simulate('Press')
-    expect(props.navigator.show).toHaveBeenCalledWith(announcement.html_url, { modal: false }, {
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/1', { modal: false }, {
       isAnnouncement: true,
     })
   })
