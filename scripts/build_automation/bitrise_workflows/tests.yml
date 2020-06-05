@@ -326,6 +326,16 @@ workflows:
 
   nightly:
     steps:
+    - build-router-start:
+        title: Start nightly group A
+        inputs:
+        - access_token: "$BITRISE_CI_TOKEN"
+        - workflows: nightly-a
+    after_run:
+    - nightly-b
+
+  nightly-a:
+    steps:
     - script:
         title: Set up environment variables
         inputs:
@@ -333,6 +343,37 @@ workflows:
         - content: |-
             #!/bin/zsh
             set -exo pipefail
+            envman add --key NIGHTLY_GROUP --value A
+    after_run:
+    - nightly-runner
+
+  nightly-b:
+    steps:
+    - script:
+        title: Set up environment variables
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -exo pipefail
+            envman add --key NIGHTLY_GROUP --value B
+    after_run:
+    - nightly-runner
+
+  nightly-runner:
+    steps:
+    - script:
+        title: Set up environment variables
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -exo pipefail
+
+            if [[ -z $NIGHTLY_GROUP ]]; then
+                echo "NIGHTLY_GROUP must be set"
+                exit 1
+            fi
 
             sudo systemsetup -settimezone America/Denver
             case $BITRISE_GIT_BRANCH in
@@ -349,7 +390,7 @@ workflows:
         - pretext: ""
         - author_name: ""
         - message: ""
-        - title: 'Nightly build started... ${BITRISE_BUILD_URL}'
+        - title: 'Nightly (Group ${NIGHTLY_GROUP}) build started... ${BITRISE_BUILD_URL}'
         - fields: ""
         - color: warning
         - footer: ""
@@ -361,7 +402,7 @@ workflows:
         - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
-        - description: "In progress - Nightly Tests"
+        - description: "In progress - Nightly Tests (Group ${NIGHTLY_GROUP})"
     - &secrets
       git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
@@ -372,7 +413,6 @@ workflows:
     - *yarn-install-root
     - *yarn-install
     - *yarn-lint
-    - *yarn-test
     - *cocoapods
     - script:
         title: Run Nightly Tests
@@ -380,7 +420,25 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             set -euo pipefail
-            ./scripts/run-ui-tests.sh --all
+
+            all_targets=($(jq -r < TestPlans/NightlyTests.xctestplan '.testTargets[].target.name'))
+            group_A_targets=(StudentUITests StudentE2ETests)
+            group_B_targets=(${all_targets:|group_A_targets})
+
+            if [[ $NIGHTLY_GROUP = A ]]; then
+                ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
+            else if [[ $NIGHTLY_GROUP = B ]]; then
+                (cd rn/Teacher; yarn test:ci)
+
+                ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
+
+                SCHEME=IPadTests \
+                DEVICE_NAME='iPad Air (3rd generation)' \
+                ./scripts/run-ui-tests.sh --build --append-results --all-tests
+            else
+                echo "unknown nightly group '$NIGHTLY_GROUP'"
+                exit 1
+            fi
     - script:
         title: Export failed tests for blame bot
         is_always_run: true
@@ -415,7 +473,8 @@ workflows:
         is_always_run: true
     - script:
         title: Report Coverage
-        run_if: .IsCI
+        # run_if: .IsCI
+        run_if: false
         is_skippable: true
         inputs:
         - content: |-
@@ -430,7 +489,8 @@ workflows:
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
         title: Report tests
-        run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
+        # run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
+        run_if: false
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -447,6 +507,7 @@ workflows:
                     "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
     - codecov:
+        run_if: false
         inputs:
         - CODECOV_TOKEN: "$CODECOV_TOKEN"
         - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json"
@@ -456,7 +517,7 @@ workflows:
         - auth_token: $DANGER_GITHUB_API_TOKEN
         - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
         - commit_hash: $GIT_CLONE_COMMIT_HASH
-        - description: "Nightly Tests"
+        - description: "Nightly Tests (Group ${NIGHTLY_GROUP})"
     - slack:
         title: Send build result message to slack
         run_if: enveq "NOTIFY_SLACK" "YES"
@@ -469,7 +530,7 @@ workflows:
         - message: |-
             Failed tests:
             $FINAL_FAILED_TESTS
-        - pretext: "*Nightly Build Succeeded!*"
+        - pretext: "*Nightly Build (Group ${NIGHTLY_GROUP}) Succeeded!*"
 
   nightly-blame-bot:
     steps:
@@ -509,7 +570,7 @@ workflows:
             set -euo pipefail
             SCHEME=IPadTests \
             DEVICE_NAME='iPad Air (3rd generation)' \
-            ./scripts/run-ui-tests.sh --all
+            ./scripts/run-ui-tests.sh --build --all-tests
     - *save-xcresult
     - deploy-to-bitrise-io: {}
     - github-status:
@@ -546,7 +607,7 @@ workflows:
         - content: |-
             set -euo pipefail
             export SCHEME='Beta E2E'
-            ./scripts/run-ui-tests.sh --all
+            ./scripts/run-ui-tests.sh --build --all-tests
     - *save-xcresult
     - deploy-to-bitrise-io: {}
     - slack:
