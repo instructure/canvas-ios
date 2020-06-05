@@ -5,6 +5,7 @@ exports[`EditFolder passes the correct props to EditItem 1`] = `
   delete={[MockFunction]}
   getCourseEnabledFeatures={[MockFunction]}
   getCourseLicenses={[MockFunction]}
+  getCourseSettings={[MockFunction]}
   item={
     Object {
       "context_id": "1",
