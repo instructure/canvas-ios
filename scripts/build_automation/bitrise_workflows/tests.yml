@@ -399,7 +399,7 @@ workflows:
     - github-status:
         inputs:
         - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly-${NIGHTLY_GROUP}
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - set_specific_status: pending
         - description: "In progress - Nightly Tests (Group ${NIGHTLY_GROUP})"
@@ -515,7 +515,7 @@ workflows:
     - github-status:
         inputs:
         - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly
+        - status_identifier: ci/bitrise/${BITRISE_APP_SLUG}/nightly-${NIGHTLY_GROUP}
         - commit_hash: $GIT_CLONE_COMMIT_HASH
         - description: "Nightly Tests (Group ${NIGHTLY_GROUP})"
     - slack:
@@ -546,49 +546,6 @@ workflows:
         title: blame
         inputs:
         - content: ./scripts/nightly-blame-bot.sh --relocate-before-execute
-
-  ipad-tests:
-    steps:
-    - github-status:
-        inputs:
-        - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: bitrise-ipad-tests
-        - commit_hash: $GIT_CLONE_COMMIT_HASH
-        - set_specific_status: pending
-    - *secrets
-    - cache-pull: {}
-    - *set-mtime
-    - *install-tools
-    - *carthage
-    - *yarn-install-root
-    - *yarn-install
-    - *cocoapods
-    - script:
-        title: iPad tests
-        inputs:
-        - content: |-
-            set -euo pipefail
-            SCHEME=IPadTests \
-            DEVICE_NAME='iPad Air (3rd generation)' \
-            ./scripts/run-ui-tests.sh --build --all-tests
-    - *save-xcresult
-    - deploy-to-bitrise-io: {}
-    - github-status:
-        inputs:
-        - auth_token: $DANGER_GITHUB_API_TOKEN
-        - status_identifier: bitrise-ipad-tests
-        - commit_hash: $GIT_CLONE_COMMIT_HASH
-    - slack:
-        title: Send build result message to slack
-        run_if: enveq "BITRISE_GIT_BRANCH" "master"
-        inputs:
-        - pretext_on_error: "*iPad Tests Failed!*"
-        - webhook_url: "$SLACK_URL"
-        - channel: "#ios-bots"
-        - author_name: ''
-        - title: ''
-        - message: ''
-        - pretext: "*iPad Tests Succeeded!*"
 
   beta-tests:
     steps:
