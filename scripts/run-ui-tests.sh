@@ -28,9 +28,9 @@ set -euo pipefail
 function usage {
     echo "Runs a UI test suite, retrying failed ones."
     echo "usage:"
-    echo "  ./scripts/run-ui-tests.sh --all"
-    echo "  ./scripts/run-ui-tests.sh --only-build"
-    echo "  ./scripts/run-ui-tests.sh --only-testing testId ..."
+    echo "  ./scripts/run-ui-tests.sh --build"
+    echo "  ./scripts/run-ui-tests.sh [--build] [--append-results] --all-tests"
+    echo "  ./scripts/run-ui-tests.sh [--build] [--append-results] --only-testing <testId> ..."
     echo "  ./scripts/run-ui-tests.sh --help"
     echo
     echo "optional env variables:"
@@ -42,33 +42,46 @@ function usage {
 SCHEME=${SCHEME:-NightlyTests}
 DEVICE_NAME=${DEVICE_NAME:-iPhone 8}
 
-only_testing=()
-needs_build=yes
-only_build=no
-celebration=yes
+testrun_id=$(date +%s)
 
-case ${1-} in
-    --help|-h)
-        usage 0
-        ;;
-    --all)
-        if [[ $# -ne 1 ]]; then
+only_testing=()
+needs_build=no
+only_build=yes
+celebration=yes
+clobber_results=yes
+
+[[ $# -gt 0 ]] || usage 1
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --help|-h)
+            usage 0
+            ;;
+        --build)
+            shift
+            needs_build=yes
+            ;;
+        --append-results)
+            shift
+            clobber_results=no
+            ;;
+        --all-tests)
+            [[ $# -eq 1 ]] || usage 1
+            only_build=no
+            break
+            ;;
+        --only-testing)
+            shift
+            [[ $# -gt 0 ]] || usage 1
+            only_testing+=($@)
+            only_build=no
+            celebration=no
+            break
+            ;;
+        *)
             usage 1
-        fi
-        ;;
-    --only-build)
-        only_build=yes
-        ;;
-    --only-testing)
-        shift
-        only_testing+=($@)
-        needs_build=no
-        celebration=no
-        ;;
-    *)
-        usage 1
-        ;;
-esac
+            ;;
+    esac
+done
 
 function banner() (
     set +x
@@ -86,13 +99,15 @@ touch tmp/timestamp
 destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
 results_directory=ui-test-results
-rm -rf $results_directory
+if [[ $clobber_results = yes ]]; then
+    rm -rf $results_directory
+fi
 mkdir -p $results_directory
 
 if [[ $needs_build = yes ]]; then
     banner "Building $SCHEME"
     xcodebuild -workspace Canvas.xcworkspace -scheme $SCHEME $destination_flag build-for-testing 2>&1 |
-        tee ${BITRISE_DEPLOY_DIR-$results_directory}/build.log |
+        tee -a ${BITRISE_DEPLOY_DIR-$results_directory}/build.log |
         xcbeautify --quiet
 fi
 
@@ -130,10 +145,14 @@ tests_failed_this_run=()
 total_failures=0
 
 function mergeResults {
-    results=($results_directory/*.xcresult)
     merged_result_path=$results_directory/merged.xcresult
+    if [[ -e $merged_result_path ]]; then
+        mv $merged_result_path $results_directory/old-merged-$testrun_id.xcresult
+    fi
+    results=($results_directory/*.xcresult)
     if [[ ${#results} -gt 1 ]]; then
         xcrun xcresulttool merge $results --output-path $merged_result_path
+        rm -rf $results
     else
         cp -r $results $merged_result_path
     fi
@@ -146,7 +165,7 @@ function getTestResults {
     local result_path=$results_directory/$try.xcresult
     if [[ ! -d $result_path ]]; then
         echo "Couldn't find test results!"
-        echo > $results_directory/final-failed.txt
+        touch $results_directory/final-failed.txt
         envman add --key TESTS_FAILED --value yes
         exit 1
     fi
@@ -208,7 +227,7 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$try-xcodebuild.log | xcbeautify &
+    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$testrun_id-try-$try-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
     local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
@@ -227,7 +246,7 @@ function retry {
 
     local video_pid
     if [[ ${record_video:-NO} = YES ]]; then
-        video_file=${BITRISE_DEPLOY_DIR-$results_directory}/$try.mp4
+        video_file=${BITRISE_DEPLOY_DIR-$results_directory}/$testrun_id-$try.mp4
         echo "recording video to $video_file"
         xcrun simctl io booted recordVideo $video_file &
         video_pid=$!
@@ -265,7 +284,7 @@ else
     envman add --key TESTS_FAILED --value yes || true
 fi
 
-print ${(F)tests_failed_this_run} > $results_directory/final-failed.txt
+print ${(F)tests_failed_this_run} >> $results_directory/final-failed.txt
 
 mergeResults
 exit $ret
