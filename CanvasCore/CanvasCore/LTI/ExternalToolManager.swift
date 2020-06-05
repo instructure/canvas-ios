@@ -92,9 +92,7 @@ public class ExternalToolManager: NSObject {
 
     @objc func constructPageViewPath(url: URL) -> String? {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        let toolID = components?.queryItems?.findFirst({ (item) -> Bool in
-            return item.name == "id"
-        })
+        let toolID = components?.queryItems?.first { $0.name == "id" }
         if let path = url.pathComponents.pathTo(lastComponent: "external_tools"), let toolID = toolID, let id = toolID.value {
             
             let pageViewPath: NSString = path as NSString
@@ -172,7 +170,7 @@ public class ExternalToolManager: NSObject {
         if launchURL.path.hasSuffix("/external_tools/retrieve") {
             let components = URLComponents(url: launchURL, resolvingAgainstBaseURL: false)
             if let queryItems = components?.queryItems,
-                let urlQueryItem = queryItems.findFirst({ $0.name == "url" }),
+                let urlQueryItem = queryItems.first(where: { $0.name == "url" }),
                 let urlQuery = urlQueryItem.value {
                 let url: URL
                 if let courseID = extractCourseID(launchURL) {

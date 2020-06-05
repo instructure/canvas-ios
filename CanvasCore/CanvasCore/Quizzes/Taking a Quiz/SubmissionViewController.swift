@@ -319,7 +319,7 @@ extension SubmissionViewController {
                 answerHash = [:]
             }
             let answerID = pieces[1]
-            if let answer = question.question.answers.findFirst({ $0.id == answerID }), let blankID = answer.blankID {
+            if let answer = question.question.answers.first(where: { $0.id == answerID }), let blankID = answer.blankID {
                 answerHash[blankID] = answer.id
             }
             submissionInteractor?.selectAnswer(.idsHash(answerHash), forQuestionAtIndex: questionIndex, completed: {})
