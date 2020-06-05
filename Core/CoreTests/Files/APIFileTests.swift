@@ -70,13 +70,13 @@ class APIFileTests: XCTestCase {
     }
 
     func testGetFolderRequest() {
-        let request = GetFolderRequest(context: ContextModel(.course, id: "1"), id: 2)
+        let request = GetFolderRequest(context: ContextModel(.course, id: "1"), id: "2")
         XCTAssertEqual(request.path, "courses/1/folders/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
 
     func testListFilesRequestWithRootContext() {
-        let request = GetFolderRequest(context: nil, id: 2)
+        let request = GetFolderRequest(context: nil, id: "2")
         XCTAssertEqual(request.path, "folders/2")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
@@ -225,5 +225,13 @@ class PostFileUploadRequestTests: XCTestCase {
         ])
         XCTAssertEqual(requestable.form?.count, 2)
         XCTAssertEqual(requestable.form?.last?.key, "file")
+    }
+}
+
+class SetUsageRightsRequestTests: XCTestCase {
+//    func test
+    func testSetUsageRightsRequest() throws {
+        let request = SetUsageRightsRequest(context: ContextModel(.course, id: "1"))
+        XCTAssertEqual(request.path, "courses/1/usage_rights")
     }
 }

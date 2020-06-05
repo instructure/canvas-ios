@@ -44,6 +44,17 @@ public struct APIAssignment: Codable, Equatable {
     let use_rubric_for_grading: Bool?
     let rubric_settings: APIRubricSettings?
     let assignment_group_id: ID?
+    let all_dates: [APIAssignmentDate]?
+}
+
+// https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
+public struct APIAssignmentDate: Codable, Equatable {
+    let id: ID?
+    let base: Bool?
+    let title: String?
+    let due_at: Date?
+    let unlock_at: Date?
+    let lock_at: Date?
 }
 
 #if DEBUG
@@ -73,7 +84,8 @@ extension APIAssignment {
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
         rubric_settings: APIRubricSettings? = nil,
-        assignment_group_id: ID? = nil
+        assignment_group_id: ID? = nil,
+        all_dates: [APIAssignmentDate]? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -107,7 +119,28 @@ extension APIAssignment {
             submission: submissionList,
             use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
-            assignment_group_id: assignment_group_id
+            assignment_group_id: assignment_group_id,
+            all_dates: all_dates
+        )
+    }
+}
+
+extension APIAssignmentDate {
+    public static func make(
+        id: ID? = nil,
+        base: Bool? = true,
+        title: String? = nil,
+        due_at: Date? = nil,
+        unlock_at: Date? = nil,
+        lock_at: Date? = nil
+    ) -> APIAssignmentDate {
+        return APIAssignmentDate(
+            id: id,
+            base: base,
+            title: title,
+            due_at: due_at,
+            unlock_at: unlock_at,
+            lock_at: lock_at
         )
     }
 }
@@ -143,8 +176,8 @@ public struct GetAssignmentRequest: APIRequestable {
         var include = self.include.map { $0.rawValue }
         include.append("observed_users")
         query.append(.array("include", include))
-        if let allDates = allDates {
-            query.append(.value("all_dates", String(allDates)))
+        if AppEnvironment.shared.app == .teacher || allDates == true {
+            query.append(.value("all_dates", "true"))
         }
         return query
     }

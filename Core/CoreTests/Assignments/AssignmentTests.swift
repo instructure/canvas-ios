@@ -210,101 +210,49 @@ class AssignmentTests: CoreTestCase {
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithoutAttachment))
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineQuizWithAttachment))
     }
-}
 
-class AssignmentDatesTests: XCTestCase {
-
-    var df = ISO8601DateFormatter()
-    var a: Assignment!
-    override func setUp() {
-        df = ISO8601DateFormatter()
-        a = Assignment.make(from: .make(unlock_at: nil, lock_at: nil))
-
-        let now    = df.date(from: "2018-10-01T06:00:00Z")!
+    func testIsOpenForSubmissions() {
+        let df = ISO8601DateFormatter()
+        let a = Assignment.make(from: .make(unlock_at: nil, lock_at: nil))
+        let now = df.date(from: "2018-10-01T06:00:00Z")!
         Clock.mockNow(now)
-    }
 
-    func testAssignmentOpenForSubmissionsWithLockDate() {
-        //  given
         a.lockAt = df.date(from: "2018-10-01T06:00:00Z")
-
-        //  when
-        var result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertFalse(result)
-
+        XCTAssertFalse(a.isOpenForSubmissions())
         a.lockAt = df.date(from: "2018-10-01T05:59:59Z")
+        XCTAssertFalse(a.isOpenForSubmissions())
 
-        //  when
-        result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testAssignmentOpenForSubmissionsWithUnlockDate() {
-        //  given
+        a.lockAt = nil
         a.unlockAt = df.date(from: "2018-10-01T06:00:00Z")
-
-        //  when
-        var result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertTrue(result)
-
+        XCTAssertTrue(a.isOpenForSubmissions())
         a.unlockAt = df.date(from: "2018-10-01T06:00:01Z")
+        XCTAssertFalse(a.isOpenForSubmissions())
 
-        //  when
-        result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testAssignmentOpenForSubmissionsWithAvailabilityDates() {
-        //  given
         a.unlockAt = df.date(from: "2018-10-01T05:00:00Z")
         a.lockAt   = df.date(from: "2018-10-01T06:01:00Z")
-
-        //  when
-        var result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertTrue(result)
+        XCTAssertTrue(a.isOpenForSubmissions())
 
         Clock.mockNow(df.date(from: "2018-10-01T06:02:00Z")!)
+        XCTAssertFalse(a.isOpenForSubmissions())
 
-        //  when
-        result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testAssignmentOpenForSubmissionsWithGoodAvailabilityDatesLockedForUser() {
-        //  given
+        Clock.mockNow(now)
         a.lockedForUser = true
         a.unlockAt = df.date(from: "2018-10-01T05:00:00Z")
         a.lockAt   = df.date(from: "2018-10-01T06:01:00Z")
+        XCTAssertFalse(a.isOpenForSubmissions())
 
-        //  when
-        let result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertFalse(result)
-    }
-
-    func testAssignmentOpenForSubmissionsWithGoodAvailabilityDatesNotLockedForUser() {
-        //  given
         a.lockedForUser = false
         a.unlockAt = df.date(from: "2018-10-01T05:00:00Z")
         a.lockAt   = df.date(from: "2018-10-01T06:01:00Z")
+        XCTAssertTrue(a.isOpenForSubmissions())
+    }
 
-        //  when
-        let result = a.isOpenForSubmissions()
-
-        //  then
-        XCTAssertTrue(result)
+    func testAllDates() {
+        let a = Assignment.make(from: .make(all_dates: [
+            .make(
+                due_at: DateComponents(calendar: .current, year: 2020, month: 6, day: 1).date
+            ),
+        ]))
+        XCTAssertEqual(a.allDates.count, 1)
     }
 }

@@ -20,6 +20,8 @@ import UIKit
 import WebKit
 
 public class DiscussionDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+    @IBOutlet weak var courseSectionsView: UIView!
+    @IBOutlet weak var courseSectionsLabel: UILabel!
     @IBOutlet weak var dueSection: UIView!
     lazy var optionsButton = UIBarButtonItem(image: .icon(.more), style: .plain, target: self, action: #selector(showTopicOptions))
     @IBOutlet weak var pointsLabel: UILabel!
@@ -100,6 +102,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             ? NSLocalizedString("Announcement Details", bundle: .core, comment: "")
             : NSLocalizedString("Discussion Details", bundle: .core, comment: "")
         )
+        courseSectionsView.isHidden = true
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
         optionsButton.isEnabled = false
@@ -166,6 +169,12 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)", attributes: [:])
     }
 
+    deinit {
+        if showRepliesToEntryID == nil {
+            AppStoreReview.handleNavigateFromAssignment()
+        }
+    }
+
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let depth: UInt = view.traitCollection.horizontalSizeClass == .compact ? 2 : 4
@@ -208,6 +217,16 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             assignment?.refresh()
         }
 
+        if let sections = topic.first?.sections, topic.first?.isSectionSpecific == true {
+            courseSectionsLabel.text = String.localizedStringWithFormat(
+                NSLocalizedString("Sections: %@", bundle: .core, comment: ""),
+                ListFormatter.localizedString(from: sections.map { $0.name })
+            )
+            courseSectionsView.isHidden = false
+        } else {
+            courseSectionsView.isHidden = true
+        }
+
         optionsButton.isEnabled = topic.first != nil
 
         let pending = topic.pending || entries.pending
@@ -227,12 +246,17 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         publishedLabel.textColor = .named(isPublished ? .textSuccess : .textDark)
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
-        if let assignmentID = topic.first?.assignmentID {
+        if env.app == .teacher, let courseID = courseID, let assignmentID = topic.first?.assignmentID {
             if dueSection.isHidden {
+                let controller = AssignmentDatesViewController.create(
+                    courseID: courseID,
+                    assignmentID: assignmentID
+                )
+                embed(controller, in: dueSection)
                 dueSection.isHidden = false
             }
 
-            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden, let courseID = courseID {
+            if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
                 let controller = SubmissionBreakdownViewController.create(
                     courseID: courseID,
                     assignmentID: assignmentID,
@@ -361,7 +385,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             }
         }
         if showRepliesToEntryID == nil {
-            // AppStoreReview.handleNavigateToAssignment()
+            AppStoreReview.handleNavigateToAssignment()
             MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
         }
         scrollViewDidScroll(scrollView) // read initial

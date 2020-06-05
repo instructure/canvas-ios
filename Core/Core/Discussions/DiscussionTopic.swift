@@ -46,6 +46,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var groupTopicChildren: [String: String]?
     @NSManaged public var unreadCount: Int
+    @NSManaged public var isSectionSpecific: Bool
+    @NSManaged public var sections: Set<CourseSection>
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, in context: NSManagedObjectContext) -> DiscussionTopic {
@@ -85,6 +87,10 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
                 dict[child.group_id.value] = child.id.value
             }
             return dict
+        }
+        model.isSectionSpecific = item.is_section_specific
+        if let sections = item.sections {
+            model.sections = Set(sections.map { CourseSection.save($0, in: context) })
         }
         return model
     }

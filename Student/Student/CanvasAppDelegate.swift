@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         env.loginDelegate = self
         env.router = router
         env.app = .student
+        env.window = window
         return env
     }()
 

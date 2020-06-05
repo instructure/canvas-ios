@@ -110,7 +110,9 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             author: .make(display_name: "Instructor", pronouns: "she/her"),
             permissions: .make(attach: true, update: true, reply: true, delete: true),
             allow_rating: true,
-            sort_by_rating: true
+            sort_by_rating: true,
+            is_section_specific: true,
+            sections: [ .make() ]
         ))
     }
 
@@ -125,6 +127,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.pointsLabel.text, "95 pts")
         XCTAssertEqual(controller.pointsView.isHidden, false)
         XCTAssertEqual(controller.publishedView.isHidden, true)
+        XCTAssertEqual(controller.courseSectionsLabel.text, "Sections: section")
 
         XCTAssertEqual(controller.maxDepth, controller.view.traitCollection.horizontalSizeClass == .compact ? 2 : 4)
         let html = getBodyHTML()
@@ -314,5 +317,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(html.contains("each group has its own conversation"))
         XCTAssert(html.contains("Group One"))
         XCTAssert(html.contains("/groups/1/discussion_topics/2"))
+        XCTAssertEqual(controller.dueSection.isHidden, false)
+        XCTAssertEqual(controller.submissionsSection.isHidden, true)
     }
 }

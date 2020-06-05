@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         env.router = Teacher.router
         env.loginDelegate = self
         env.app = .teacher
+        env.window = window
         return env
     }()
 

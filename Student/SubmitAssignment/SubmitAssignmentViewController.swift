@@ -45,6 +45,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController {
 
     override func presentationAnimationDidFinish() {
         super.presentationAnimationDidFinish()
+        env.window = view.window
         if let courseID = env.userDefaults?.submitAssignmentCourseID, let assignmentID = env.userDefaults?.submitAssignmentID {
             courses = env.subscribe(GetCourse(courseID: courseID, include: [])) { [weak self] in
                 self?.update()

@@ -25,7 +25,10 @@ enum MiniCanvasEndpoints {
         static let assignmentID = ":assignmentID"
         static let quizID = ":quizID"
         static let userID = ":userID"
+        static let folderID = ":folderID"
+        static let fileID = ":fileID"
         static let courseContext = ContextModel(ContextType.course, id: courseID)
+        static let folderContext = ContextModel(ContextType.folder, id: folderID)
     }
 
     private static func lookupCourse<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniCourse {
@@ -67,6 +70,20 @@ enum MiniCanvasEndpoints {
         return user
     }
 
+    private static func lookupFolder<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniFolder {
+        guard let folder = request.state.folders[request[Pattern.folderID]!] else {
+            throw ServerError.notFound
+        }
+        return folder
+    }
+
+    private static func lookupFile<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniFile {
+        guard let file = request.state.files[request[Pattern.fileID]!] else {
+            throw ServerError.notFound
+        }
+        return file
+    }
+
     private static func parsePageUpdate(request: MiniCanvasServer.APIRequest<Data>) throws -> APIPage {
         let course = try lookupCourse(forRequest: request)
         let body = try XCTUnwrap(JSONSerialization.jsonObject(with: request.body) as? [String: Any])
@@ -82,6 +99,20 @@ enum MiniCanvasEndpoints {
             title: try XCTUnwrap(page["title"] as? String),
             url: id.value
         )
+    }
+
+    // replace any values in `old` with non-null values in `new`
+    private static func mergeJSONData<E: Codable>(old: E, new: Data) throws -> E {
+        guard let oldData = try? APIJSONEncoder().encode(old),
+            var oldJson = try? JSONSerialization.jsonObject(with: oldData) as? [String: Any?],
+            let newJson = try? JSONSerialization.jsonObject(with: new) as? [String: Any?] else {
+                throw ServerError.badRequest
+        }
+        oldJson.merge(newJson, uniquingKeysWith: { $1 ?? $0 })
+        guard let data = try? JSONSerialization.data(withJSONObject: oldJson) else {
+            throw ServerError.badRequest
+        }
+        return try APIJSONDecoder.extendedPrecisionDecoder.decode(E.self, from: data)
     }
 
     public static let endpoints: [MiniCanvasServer.Endpoint] = [
@@ -165,6 +196,116 @@ enum MiniCanvasEndpoints {
         // https://canvas.instructure.com/doc/api/feature_flags.html
         .apiRequest(GetEnabledFeatureFlagsRequest(context: Pattern.courseContext)) { request in
             try lookupCourse(forRequest: request).featureFlags
+        },
+
+        // MARK: Files
+        // https://canvas.instructure.com/doc/api/files.html
+        .apiRequest(ListFilesRequest(context: Pattern.folderContext)) { request in
+            try lookupFolder(forRequest: request).fileIDs.compactMap {
+                request.state.files[$0]?.api
+            }
+        },
+        .apiRequest(GetFileRequest(context: nil, fileID: Pattern.fileID, include: [])) { request in
+            try lookupFile(forRequest: request).api
+        },
+        .apiRequest(DeleteFileRequest(fileID: Pattern.fileID)) { request in
+            let file = try lookupFile(forRequest: request)
+            request.state.files[file.id] = nil
+            if let folder = request.state.folders[file.api.folder_id.value] {
+                folder.fileIDs.removeAll { $0 == file.id }
+            }
+            return file.api
+        },
+        .rest("/api/v1/files/\(Pattern.fileID)", method: .put) { request in
+           let file = try lookupFile(forRequest: request)
+            file.api = try mergeJSONData(old: file.api, new: request.body)
+            return .json(file.api)
+        },
+        .apiRequest(ListFoldersRequest(context: Pattern.folderContext)) { request in
+            try lookupFolder(forRequest: request).folderIDs.compactMap {
+                request.state.folders[$0]?.api
+            }
+        },
+        .apiRequest(GetFolderRequest(context: nil, id: Pattern.folderID)) { request in
+            try lookupFolder(forRequest: request).api
+        },
+        .apiRequest(GetContextFolderHierarchyRequest(context: Pattern.courseContext)) { request in
+            guard let folder = try lookupCourse(forRequest: request).courseFiles?.api else { return nil }
+            return [folder]
+        },
+        .rest("/api/v1/courses/\(Pattern.courseID)/folders", method: .post) { request in
+            guard let body = try? JSONSerialization.jsonObject(with: request.body) as? [String: Any],
+                let name = body["name"] as? String,
+                let parentID = body["parent_folder_id"] as? String,
+                let parent = request.state.folders[parentID] else {
+                    throw ServerError.badRequest
+            }
+            let course = try lookupCourse(forRequest: request)
+
+            let id = request.state.nextId()
+            let folder = APIFileFolder.make(
+                context_type: "Course",
+                context_id: course.api.id,
+                files_count: 0,
+                folders_url: request.baseUrl.appendingPathComponent("folders/\(id)/folders"),
+                files_url: request.baseUrl.appendingPathComponent("folders/\(id)/files"),
+                full_name: name,
+                id: id,
+                folders_count: 0,
+                name: name,
+                parent_folder_id: ID(parentID)
+            )
+            request.state.folders[id.value] = MiniFolder(folder)
+            parent.folderIDs.append(id.value)
+            return .json(folder)
+        },
+        .apiRequest(PostFileUploadTargetRequest(context: .context(Pattern.folderContext), body: nil)) { request in
+            let folder = try lookupFolder(forRequest: request)
+            return FileUploadTarget.make(
+                upload_url: request.baseUrl.appendingPathComponent("folders/\(folder.id)"),
+                upload_params: [ "name": request.body?.name ?? "file" ]
+            )
+        },
+        .rest("/folders/\(Pattern.folderID)", method: .post) { request in
+            let form = request.httpRequest.parseMultiPartFormData()
+            guard let namePart = form.first(where: { $0.name == "name" }),
+                let name = String(bytes: namePart.body, encoding: .utf8),
+                let filePart = form.first(where: { $0.name == "file" }) else {
+                    throw ServerError.badRequest
+            }
+
+            let folder = try lookupFolder(forRequest: request)
+            let fileID = request.state.nextId()
+            let file = APIFile.make(
+                id: fileID,
+                folder_id: folder.api.id,
+                display_name: name,
+                filename: name,
+                contentType: filePart.headers["content-type"] ?? "application/octet-stream",
+                url: request.baseUrl.appendingPathComponent("files/\(fileID)"),
+                size: filePart.body.count
+            )
+            folder.fileIDs.append(fileID.value)
+            request.state.files[fileID.value] = MiniFile(file, contents: Data(filePart.body))
+            return .json(file)
+        },
+        .rest("/files/\(Pattern.fileID)") { request in
+            let file = try lookupFile(forRequest: request)
+            return .data(
+                file.contents ?? Data(),
+                headers: [HttpHeader.contentType: file.api.contentType]
+            )
+        },
+
+        .rest("/api/v1/courses/\(Pattern.courseID)/content_licenses") { _ in .json([String]()) },
+        .apiRequest(SetUsageRightsRequest(context: Pattern.courseContext)) { request in
+            guard let body = request.body else {
+                throw ServerError.badRequest
+            }
+            for fileID in body.file_ids {
+                request.state.files[fileID]!.api.usage_rights = body.usage_rights
+            }
+            return body.usage_rights
         },
 
         // MARK: Grading Periods

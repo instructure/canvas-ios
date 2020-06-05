@@ -33,7 +33,7 @@ export function getAssignment (courseID: string, assignmentID: string): ApiPromi
   const options = {
     params: {
       include: ['overrides', 'observed_users'],
-      all_dates: true,
+      all_dates: 'true',
     },
   }
 

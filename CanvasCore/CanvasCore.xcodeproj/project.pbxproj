@@ -77,7 +77,6 @@
 		4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */; };
 		4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */; };
 		493020441F902364006BD777 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020271F902360006BD777 /* UIDevice+Model.swift */; };
-		493020451F902364006BD777 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020281F902360006BD777 /* AppStoreReview.swift */; };
 		493020461F902364006BD777 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020291F902360006BD777 /* NSError+Categorization.swift */; };
 		493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */; };
 		4930204A1F902364006BD777 /* Uncollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020301F902361006BD777 /* Uncollect.swift */; };
@@ -539,7 +538,6 @@
 		493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
 		493020271F902360006BD777 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
-		493020281F902360006BD777 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
 		493020291F902360006BD777 /* NSError+Categorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Categorization.swift"; sourceTree = "<group>"; };
 		4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
 		493020301F902361006BD777 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
@@ -1369,7 +1367,6 @@
 				2CD3B49A206AB38E006339D8 /* APIBridge.h */,
 				2CD3B49B206AB38E006339D8 /* APIBridge.m */,
 				7DD89E8A20AB626600650227 /* AppStoreReview.m */,
-				493020281F902360006BD777 /* AppStoreReview.swift */,
 				2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */,
 				2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */,
 				78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */,
@@ -2628,7 +2625,6 @@
 				49CE96DD1F8FFC4400121A43 /* ModuleItem+Collections.swift in Sources */,
 				49CE966F1F8FF41B00121A43 /* SubmissionConfirmationViewController.swift in Sources */,
 				49CE96E61F8FFC4400121A43 /* MasteryPathAssignment.swift in Sources */,
-				493020451F902364006BD777 /* AppStoreReview.swift in Sources */,
 				4961F53E1F8FAD9A0093EC86 /* WhizzyNeverScrollingTextView.swift in Sources */,
 				49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,

@@ -39,6 +39,8 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let group_category_id: ID?
     let group_topic_children: [APIDiscussionTopicChild]?
     let subscription_hold: String?
+    let is_section_specific: Bool
+    let sections: [APICourseSection]?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -107,7 +109,9 @@ extension APIDiscussionTopic {
         locked_for_user: Bool = false,
         group_category_id: ID? = nil,
         group_topic_children: [APIDiscussionTopicChild]? = nil,
-        subscription_hold: String? = nil
+        subscription_hold: String? = nil,
+        is_section_specific: Bool = false,
+        sections: [APICourseSection]? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
@@ -128,7 +132,9 @@ extension APIDiscussionTopic {
             locked_for_user: locked_for_user,
             group_category_id: group_category_id,
             group_topic_children: group_topic_children,
-            subscription_hold: subscription_hold
+            subscription_hold: subscription_hold,
+            is_section_specific: is_section_specific,
+            sections: sections
         )
     }
 }

@@ -125,41 +125,39 @@ extension AppDelegate {
             return PageDetailsViewController.create(context: ContextModel(.group, id: groupID), pageURL: pageURL, app: .teacher)
         })
 
-        if ExperimentalFeature.htmlDiscussions.isEnabled {
-            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/announcements/:announcementID", factory: { (props: Props) -> UIViewController? in
-                guard let contextType = props["context"] as? String else { return nil }
-                guard let contextID = props["contextID"] as? String else { return nil }
-                guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
-                guard let topicID = props["announcementID"] as? String else { return nil }
-                return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
-            })
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/announcements/:announcementID", factory: { (props: Props) -> UIViewController? in
+            guard let contextType = props["context"] as? String else { return nil }
+            guard let contextID = props["contextID"] as? String else { return nil }
+            guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+            guard let topicID = props["announcementID"] as? String else { return nil }
+            return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
+        })
 
-            let discussionDetails = { (props: Props) -> UIViewController? in
-                guard let contextType = props["context"] as? String else { return nil }
-                guard let contextID = props["contextID"] as? String else { return nil }
-                guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
-                guard let topicID = props["discussionID"] as? String else { return nil }
-                return DiscussionDetailsViewController.create(context: context, topicID: topicID)
-            }
-            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussions/:discussionID", factory: discussionDetails)
-            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID", factory: discussionDetails)
-
-            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID/reply", factory: { props in
-                guard let contextType = props["context"] as? String else { return nil }
-                guard let contextID = props["contextID"] as? String else { return nil }
-                guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
-                guard let topicID = props["discussionID"] as? String else { return nil }
-                return DiscussionReplyViewController.create(context: context, topicID: topicID)
-            })
-            HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies", factory: { props in
-                guard let contextType = props["context"] as? String else { return nil }
-                guard let contextID = props["contextID"] as? String else { return nil }
-                guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
-                guard let topicID = props["discussionID"] as? String else { return nil }
-                guard let entryID = props["entryID"] as? String else { return nil }
-                return DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entryID)
-            })
+        let discussionDetails = { (props: Props) -> UIViewController? in
+            guard let contextType = props["context"] as? String else { return nil }
+            guard let contextID = props["contextID"] as? String else { return nil }
+            guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+            guard let topicID = props["discussionID"] as? String else { return nil }
+            return DiscussionDetailsViewController.create(context: context, topicID: topicID)
         }
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussions/:discussionID", factory: discussionDetails)
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID", factory: discussionDetails)
+
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID/reply", factory: { props in
+            guard let contextType = props["context"] as? String else { return nil }
+            guard let contextID = props["contextID"] as? String else { return nil }
+            guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+            guard let topicID = props["discussionID"] as? String else { return nil }
+            return DiscussionReplyViewController.create(context: context, topicID: topicID)
+        })
+        HelmManager.shared.registerNativeViewController(for: "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies", factory: { props in
+            guard let contextType = props["context"] as? String else { return nil }
+            guard let contextID = props["contextID"] as? String else { return nil }
+            guard let context = ContextModel(path: "\(contextType)/\(contextID)") else { return nil }
+            guard let topicID = props["discussionID"] as? String else { return nil }
+            guard let entryID = props["entryID"] as? String else { return nil }
+            return DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entryID)
+        })
 
         HelmManager.shared.registerNativeViewController(for: "/act-as-user", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }

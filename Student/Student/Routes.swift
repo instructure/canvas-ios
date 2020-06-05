@@ -75,10 +75,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/announcements": nil,
 
-    "/:context/:contextID/announcements/:announcementID": ExperimentalFeature.htmlDiscussions.isEnabled ? ({ url, params in
+    "/:context/:contextID/announcements/:announcementID": { url, params in
         guard let context = ContextModel(path: url.path), let announcementID = params["announcementID"] else { return nil }
         return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
-    }) : nil,
+    },
 
     "/courses/:courseID/assignments": nil,
 
@@ -162,21 +162,21 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/:context/:contextID/discussion_topics/new": nil,
     "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
-    "/:context/:contextID/discussion_topics/:discussionID/reply": ExperimentalFeature.htmlDiscussions.isEnabled ? ({ url, params in
+    "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params in
         guard
             let context = ContextModel(path: url.path),
             let discussionID = params["discussionID"]
         else { return nil }
         return DiscussionReplyViewController.create(context: context, topicID: discussionID)
-    }) : nil,
-    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": ExperimentalFeature.htmlDiscussions.isEnabled ? ({ url, params in
+    },
+    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { url, params in
         guard
             let context = ContextModel(path: url.path),
             let discussionID = params["discussionID"],
             let entryID = params["entryID"]
         else { return nil }
         return DiscussionReplyViewController.create(context: context, topicID: discussionID, replyToEntryID: entryID)
-    }) : nil,
+    },
 
     "/:context/:contextID/discussions/:discussionID": discussionViewController,
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
@@ -519,13 +519,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
             url: url
         )
     }
-    if ExperimentalFeature.htmlDiscussions.isEnabled {
-        return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
-    }
-    return HelmViewController(
-        moduleName: "/:context/:contextID/discussion_topics/:discussionID",
-        props: makeProps(url, params: params)
-    )
+    return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
 }
 
 private func moduleItemController(for url: URLComponents, courseID: String) -> UIViewController? {
