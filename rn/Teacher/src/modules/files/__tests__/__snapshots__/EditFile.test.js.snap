@@ -5,6 +5,7 @@ exports[`EditFile passes the correct props to EditItem 1`] = `
   delete={[MockFunction]}
   getCourseEnabledFeatures={[MockFunction]}
   getCourseLicenses={[MockFunction]}
+  getCourseSettings={[MockFunction]}
   item={
     Object {
       "content-type": "application/document",
