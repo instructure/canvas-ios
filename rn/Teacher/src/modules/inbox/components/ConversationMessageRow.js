@@ -63,6 +63,7 @@ export default class ConversationMessageRow extends React.Component<Props, State
   }
 
   courseID () {
+    let [ contextType, contextID ] = (this.props.conversation.context_code || '').split('_')
     let { author_id } = this.props.message
     let target = this.props.conversation.participants.find(({ id }) => {
       if (author_id === getSession().user.id) {
@@ -71,7 +72,9 @@ export default class ConversationMessageRow extends React.Component<Props, State
       }
       return id === author_id
     })
-    return Object.keys(target?.common_courses ?? {})[0]
+    return Object.keys(target?.common_courses ?? {}).filter(id => (
+      contextType !== 'course' || id === contextID
+    ))[0]
   }
 
   handleAvatarPress = () => {
