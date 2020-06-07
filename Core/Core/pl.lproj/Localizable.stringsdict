@@ -322,5 +322,25 @@
 			<string>Punkty</string>
 		</dict>
 	</dict>
+	<key>there_are_d_assignees_without_grades</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@without_grades@</string>
+		<key>without_grades</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>There is %d assignee without a grade.</string>
+			<key>other</key>
+			<string>There are %d assignees without grades.</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
