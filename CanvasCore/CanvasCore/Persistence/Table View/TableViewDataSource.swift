@@ -138,3 +138,9 @@ open class CollectionTableViewDataSource<C: Collection, VM: TableViewCellViewMod
         return self.isEmpty
     }
 }
+
+extension CollectionTableViewDataSource where C.Object == VM {
+    public convenience init(collection: C) {
+        self.init(collection: collection, viewModelFactory: { $0 })
+    }
+}

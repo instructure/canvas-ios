@@ -20,19 +20,12 @@ import Foundation
 import UIKit
 import Core
 
-public class PageTemplateRenderer: NSObject {
-    
-    fileprivate override init() { }
-    
-    @objc static var templateUrl: URL {
-        return Bundle(for: Page.self).url(forResource: "PageTemplate", withExtension: "html")!
+extension CanvasWebView {
+    static var htmlTemplateURL: URL {
+        return Bundle.core.url(forResource: "CanvasWebView", withExtension: "html")!
     }
 
-    @objc static func htmlStringForPage(_ page: Page, viewportWidth: CGFloat) -> String {
-        return htmlString(title: page.title, body: page.body ?? "", viewportWidth: viewportWidth)
-    }
-    
-    @objc public class func htmlString(title: String? = nil, body: String, viewportWidth: CGFloat) -> String {
+    func htmlString(title: String? = nil, body: String) -> String {
         let htmlTitle = title
             .map { "<h1 id=\"title\">\($0)</h1>" }
             ?? ""
@@ -41,8 +34,7 @@ public class PageTemplateRenderer: NSObject {
         let buttonFore = Core.Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
         let link = Core.Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
 
-        var template = try! String(contentsOf: templateUrl, encoding: String.Encoding.utf8)
-        template = template.replacingOccurrences(of: "{$CONTENT_WIDTH$}", with: "\(Int(viewportWidth))")
+        var template = try! String(contentsOf: Self.htmlTemplateURL, encoding: .utf8)
         template = template.replacingOccurrences(of: "{$TITLE$}", with: htmlTitle)
         template = template.replacingOccurrences(of: "{$PAGE_BODY$}", with: body)
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_BACKGROUND$}", with: buttonBack.hexString)
@@ -54,7 +46,6 @@ public class PageTemplateRenderer: NSObject {
         template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
         template = template.replacingOccurrences(of: "{$CONTENT_DIRECTION$}", with: UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? "rtl" : "ltr")
 
-
         let jquery = (body.contains("$(") || body.contains("$."))
             ? "<script defer src=\"https://code.jquery.com/jquery-1.9.1.min.js\"></script>"
             : ""
@@ -62,5 +53,4 @@ public class PageTemplateRenderer: NSObject {
         
         return template
     }
-    
 }

@@ -29,7 +29,7 @@ extension Student {
     public static func getStudents(_ session: Session, parentID: String) throws -> SignalProducer<[JSONObject], NSError> {
         return try getEnrollments(session: session)
             .flatMap(.concat, { (enrollments) -> SignalProducer<[JSONObject], NSError> in
-                if (!enrollments.any(hasObserverEnrollment)) {
+                if (!enrollments.contains(where: hasObserverEnrollment)) {
                     let error = NSError(domain: "com.instructure.Enrollments", code: Error.NoObserverEnrollments, userInfo: [NSLocalizedDescriptionKey: "User has no observer enrollments"])
                     return SignalProducer<[JSONObject], NSError>(error: error)
                 } else {

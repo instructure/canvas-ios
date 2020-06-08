@@ -28,30 +28,6 @@ public extension Swift.Collection {
     }
 }
 
-public extension Swift.Collection {
-    func findFirst(_ test: (Iterator.Element) throws -> Bool) rethrows -> Iterator.Element? {
-        for (_, element) in enumerated() {
-            if try test(element) {
-                return element
-            }
-        }
-        return nil
-    }
-    
-    func any(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
-        return try findFirst(test) != nil
-    }
-    
-    func any() -> Bool {
-        return any { _ in true }
-    }
-    
-    func all(_ test: ((Iterator.Element) throws -> Bool)) rethrows -> Bool {
-        return try filter { !(try test($0)) }.isEmpty
-    }
-}
-
-
 public extension Array {
     /// Shuffle the elements of `self` in-place.
     mutating func shuffleInPlace() {

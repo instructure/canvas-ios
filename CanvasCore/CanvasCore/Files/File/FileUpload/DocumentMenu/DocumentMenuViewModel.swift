@@ -64,15 +64,15 @@ public class DocumentMenuViewModel: DocumentMenuViewModelType, DocumentMenuViewM
             .map { fileTypes in
                 var options: [DocumentOption] = []
                 let allowsAll = fileTypes.contains(kUTTypeItem as String)
-                let allowsPhotos = allowsAll || fileTypes.any(isUTIPhoto)
-                let allowsVideos = allowsAll || fileTypes.any(isUTIVideo)
+                let allowsPhotos = allowsAll || fileTypes.contains(where: isUTIPhoto)
+                let allowsVideos = allowsAll || fileTypes.contains(where: isUTIVideo)
 
                 if allowsPhotos || allowsVideos {
                     options.append(.camera(allowsPhotos: allowsPhotos, allowsVideos: allowsVideos))
                     options.append(.photoLibrary(allowsPhotos: allowsPhotos, allowsVideos: allowsVideos))
                 }
 
-                if allowsAll || fileTypes.any(isUTIAudio) {
+                if allowsAll || fileTypes.contains(where: isUTIAudio) {
                     options.append(.recordAudio)
                 }
 

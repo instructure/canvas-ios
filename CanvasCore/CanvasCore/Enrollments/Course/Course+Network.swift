@@ -51,7 +51,7 @@ extension Course {
             // filter out courses without any enrollments
             .filter { json in
                 let enrollments: [JSONObject] = (try? json <| "enrollments") ?? []
-                return enrollments.any()
+                return !enrollments.isEmpty
             }
     }
 
