@@ -203,7 +203,7 @@ describe('ConversationMessageRow', () => {
   it('navigates to own context card when avatar is pressed', () => {
     let session = getSession()
     props.conversation = template.conversation({
-      context_code: null,
+      context_code: 'group_17',
       participants: [
         {
           id: session.user.id,
