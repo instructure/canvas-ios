@@ -45,4 +45,34 @@ class APIURLTests: CoreTestCase {
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(1)))
         XCTAssertThrowsError(try decoder.decode(APIURL.self, from: try encoder.encode(true)))
     }
+
+    func testDecodeURLIfPresent() throws {
+        var json: [String: Any?] = ["maybeURL": ""]
+        var data = try JSONSerialization.data(withJSONObject: json, options: [])
+        var model = try decoder.decode(TestCodable.self, from: data)
+        XCTAssertNil(model.maybeURL)
+
+        json["maybeURL"] = "https://canvas.instructure.com"
+        data = try JSONSerialization.data(withJSONObject: json, options: [])
+        model = try decoder.decode(TestCodable.self, from: data)
+        XCTAssertEqual(model.maybeURL?.rawValue, URL(string: "https://canvas.instructure.com")!)
+
+        json["maybeURL"] = nil
+        data = try JSONSerialization.data(withJSONObject: json, options: [])
+        model = try decoder.decode(TestCodable.self, from: data)
+        XCTAssertNil(model.maybeURL)
+    }
+}
+
+private class TestCodable: Codable {
+    let maybeURL: APIURL?
+
+    enum CodingKeys: String, CodingKey {
+        case maybeURL
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        maybeURL = try container.decodeURLIfPresent(forKey: .maybeURL)
+    }
 }

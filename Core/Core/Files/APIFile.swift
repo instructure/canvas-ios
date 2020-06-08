@@ -138,12 +138,7 @@ public struct APIFile: Codable, Equatable {
         display_name = try container.decode(String.self, forKey: .display_name)
         filename = try container.decode(String.self, forKey: .filename)
         contentType = try container.decode(String.self, forKey: .contentType)
-        let urlRaw = try container.decodeIfPresent(String.self, forKey: .url)
-        if urlRaw == nil || urlRaw?.isEmpty == true {
-            url = nil
-        } else {
-            url = try container.decode(APIURL.self, forKey: .url)
-        }
+        url = try container.decodeURLIfPresent(forKey: .url)
         size = try container.decode(Int.self, forKey: .size)
         created_at = try container.decode(Date.self, forKey: .created_at)
         updated_at = try container.decode(Date.self, forKey: .updated_at)
@@ -152,13 +147,13 @@ public struct APIFile: Codable, Equatable {
         hidden = try container.decode(Bool.self, forKey: .hidden)
         lock_at = try container.decodeIfPresent(Date.self, forKey: .lock_at)
         hidden_for_user = try container.decode(Bool.self, forKey: .hidden_for_user)
-        thumbnail_url = try container.decodeIfPresent(APIURL.self, forKey: .thumbnail_url)
+        thumbnail_url = try container.decodeURLIfPresent(forKey: .thumbnail_url)
         modified_at = try container.decode(Date.self, forKey: .modified_at)
         mime_class = try container.decode(String.self, forKey: .mime_class)
         media_entry_id = try container.decodeIfPresent(String.self, forKey: .media_entry_id)
         locked_for_user = try container.decode(Bool.self, forKey: .locked_for_user)
         lock_explanation = try container.decodeIfPresent(String.self, forKey: .lock_explanation)
-        preview_url = try container.decodeIfPresent(APIURL.self, forKey: .preview_url)
+        preview_url = try container.decodeURLIfPresent(forKey: .preview_url)
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
     }
 }
