@@ -93,6 +93,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         controller.showEntryID = showEntryID
         controller.showRepliesToEntryID = showRepliesToEntryID
         controller.topicID = topicID
+        // needs to be set early for helm to correctly place done button
+        controller.navigationItem.rightBarButtonItem = controller.optionsButton
         return controller
     }
 
@@ -106,7 +108,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
         optionsButton.isEnabled = false
-        navigationItem.rightBarButtonItem = optionsButton
 
         pointsView.isHidden = true
         publishedView.isHidden = true
