@@ -22,7 +22,7 @@ import Core
 
 extension CanvasWebView {
     static var htmlTemplateURL: URL {
-        return Bundle(for: Page.self).url(forResource: "CanvasWebView", withExtension: "html")!
+        return Bundle.core.url(forResource: "CanvasWebView", withExtension: "html")!
     }
 
     func htmlString(title: String? = nil, body: String) -> String {
