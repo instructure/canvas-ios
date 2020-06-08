@@ -56,7 +56,7 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(p.icon(), UIImage.icon(.document, .line))
 
         p = Plannable.make(from: .make(plannable_type: "planner_note"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.document, .line))
+        XCTAssertEqual(p.icon(), UIImage.icon(.note, .line))
 
         p = Plannable.make(from: .make(plannable_type: "other"))
         XCTAssertEqual(p.icon(), UIImage.icon(.warning, .line))
