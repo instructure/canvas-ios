@@ -25,8 +25,6 @@
 		2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
-		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
-		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
 		3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */; };
@@ -519,9 +517,7 @@
 		494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
 		494AE0B01F843B58001A8F31 /* CanvadocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocView.swift; sourceTree = "<group>"; };
-		494AE0B11F843B58001A8F31 /* PSPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
 		494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
-		494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
 		4961F5161F8FAC3C0093EC86 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		4961F5171F8FAC3D0093EC86 /* UIImage+SoIconic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+SoIconic.swift"; sourceTree = "<group>"; };
 		4961F5181F8FAC3D0093EC86 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
@@ -1281,8 +1277,6 @@
 			children = (
 				494AE0B01F843B58001A8F31 /* CanvadocView.swift */,
 				494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */,
-				494AE0B11F843B58001A8F31 /* PSPDFView.swift */,
-				494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */,
 			);
 			path = PDF;
 			sourceTree = "<group>";
@@ -2307,7 +2301,6 @@
 				B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */,
 				4961F6261F8FB7010093EC86 /* Enrollment+Colors.swift in Sources */,
 				49CE96871F8FF41B00121A43 /* QuizSubmissionTimerController.swift in Sources */,
-				2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */,
 				493020501F902364006BD777 /* String+SoLazy.swift in Sources */,
 				49CE968A1F8FF41B00121A43 /* QuizSubmissionService.swift in Sources */,
 				2C68DCF32086786E00A1EBFA /* UIPickerView+Quiz.swift in Sources */,
@@ -2536,7 +2529,6 @@
 				B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */,
 				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,
 				7D52D87722FCC73100684932 /* AssignmentGroupAPI.swift in Sources */,
-				2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */,
 				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
 				4961F6391F8FB7110093EC86 /* Group.swift in Sources */,
 				4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */,

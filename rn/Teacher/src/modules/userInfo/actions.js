@@ -19,7 +19,7 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '@canvas-api'
+import canvas from '../../canvas-api'
 
 export let UserInfoActions = (api: CanvasApi): * => ({
   refreshAccountExternalTools: createAction('userInfo.refreshAccountExternalTools', () => {

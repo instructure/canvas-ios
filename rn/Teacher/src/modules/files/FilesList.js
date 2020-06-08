@@ -53,7 +53,7 @@ import { colors, createStyleSheet } from '../../common/stylesheet'
 import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
-import { logEvent } from '@common/CanvasAnalytics'
+import { logEvent } from '../../common/CanvasAnalytics'
 
 type FilesListProps = {
   data: any[], // The folders and files that are currently being shown

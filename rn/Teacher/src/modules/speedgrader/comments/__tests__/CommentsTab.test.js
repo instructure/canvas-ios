@@ -23,16 +23,16 @@ import { ActionSheetIOS, Alert, AppState, FlatList } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
-import { setSession } from '@canvas-api'
+import { setSession } from '../../../../canvas-api'
 import DrawerState from '../../utils/drawer-state'
-import explore from '@test/helpers/explore'
-import setProps from '@test/helpers/setProps'
-import Permissions from '@common/permissions'
+import explore from '../../../../../test/helpers/explore'
+import setProps from '../../../../../test/helpers/setProps'
+import Permissions from '../../../../common/permissions'
 import * as template from '../../../../__templates__'
 
 const templates = {
   ...template,
-  ...require('@redux/__templates__/app-state'),
+  ...require('../../../../redux/__templates__/app-state'),
 }
 
 jest

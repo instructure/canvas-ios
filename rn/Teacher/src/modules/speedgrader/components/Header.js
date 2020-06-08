@@ -33,7 +33,7 @@ import type {
 import OldSubmissionStatusLabel from '../../submissions/list/OldSubmissionStatusLabel'
 import Avatar from '../../../common/components/Avatar'
 import { isAssignmentAnonymous } from '../../../common/anonymous-grading'
-import { submissionTypeIsOnline } from '@common/submissionTypes'
+import { submissionTypeIsOnline } from '../../../common/submissionTypes'
 import icon from '../../../images/inst-icons'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
 import { personDisplayName } from '../../../common/formatters'

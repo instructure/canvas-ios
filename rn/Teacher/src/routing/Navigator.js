@@ -21,7 +21,7 @@ import { NativeModules, type PushNotificationIOS, Linking } from 'react-native'
 import { route } from './index'
 import { getAuthenticatedSessionURL } from '../canvas-api'
 import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
-import { logEvent } from '@common/CanvasAnalytics'
+import { logEvent } from '../common/CanvasAnalytics'
 import { isStudent } from '../modules/app'
 
 const { Helm } = NativeModules

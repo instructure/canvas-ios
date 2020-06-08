@@ -23,7 +23,8 @@ import { ActionSheetIOS, Alert } from 'react-native'
 import { shallow } from 'enzyme'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
-import app from '@modules/app'
+import app from '../../../app'
+import * as template from '../../../../__templates__'
 
 jest
   .mock('react-native/Libraries/Components/Button', () => 'Button')
@@ -38,12 +39,6 @@ jest
     isTeacher: jest.fn(),
     isStudent: jest.fn(),
   }))
-
-const template = {
-  ...require('@templates/helm'),
-  ...require('@templates/discussion'),
-  ...require('@redux/__templates__/app-state'),
-}
 
 describe('DiscussionsList', () => {
   let props: Props
