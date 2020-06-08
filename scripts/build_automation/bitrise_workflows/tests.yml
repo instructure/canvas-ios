@@ -522,15 +522,16 @@ workflows:
         title: Send build result message to slack
         run_if: enveq "NOTIFY_SLACK" "YES"
         inputs:
-        - pretext_on_error: "*Nightly Build Failed!*"
         - webhook_url: "$SLACK_URL"
         - channel: "#ios-bots"
         - author_name: ''
         - title: ''
-        - message: |-
+        - pretext: "*Nightly Build (Group ${NIGHTLY_GROUP}) Succeeded!*"
+        - message: ''
+        - pretext_on_error: "*Nightly (Group ${NIGHTLY_GROUP}) Failed!*"
+        - message_on_error: |-
             Failed tests:
             $FINAL_FAILED_TESTS
-        - pretext: "*Nightly Build (Group ${NIGHTLY_GROUP}) Succeeded!*"
 
   nightly-blame-bot:
     steps:
@@ -571,13 +572,16 @@ workflows:
         title: Send build result message to slack
         run_if: enveq "BITRISE_GIT_BRANCH" "master"
         inputs:
-        - pretext_on_error: "*Beta Tests Failed!*"
         - webhook_url: "$SLACK_URL"
         - channel: "#ios-bots"
         - author_name: ''
         - title: ''
-        - message: ''
         - pretext: "*Beta Tests Succeeded!*"
+        - message: ''
+        - pretext_on_error: "*Beta Tests Failed!*"
+        - message_on_error: |-
+            Failed tests:
+            $FINAL_FAILED_TESTS
 
   publish-pact-contracts:
     steps:
