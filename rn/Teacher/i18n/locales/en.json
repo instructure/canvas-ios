@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "?"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "A description is required"
   },
@@ -119,9 +116,6 @@
   "an_error_occurred_a4e1cda4": {
     "message": "An error occurred"
   },
-  "announcement_details_81b0bda2": {
-    "message": "Announcement Details"
-  },
   "announcements_a4b8ed4a": {
     "message": "Announcements"
   },
@@ -137,14 +131,8 @@
   "are_you_sure_you_want_to_delete_name_908230d3": {
     "message": "Are you sure you want to delete { name }?"
   },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Are you sure you want to delete this announcement?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Are you sure you want to delete this discussion?"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "Are you sure you want to delete this reply?"
   },
   "assign_to_95404a83": {
     "message": "Assign To"
@@ -232,9 +220,6 @@
   },
   "back_2900f52a": {
     "message": "Back"
-  },
-  "back_to_replies_94f3c127": {
-    "message": "Back to replies"
   },
   "black_8d713c75": {
     "message": "black"
@@ -347,9 +332,6 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# like}\n  other {# likes}\n}"
-  },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Needs Grading}\n  other {Need Grading}\n}"
   },
@@ -455,9 +437,6 @@
   "delete_recipient_recipient_22a1e3dd": {
     "message": "Delete recipient { recipient }"
   },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "Deleted this reply."
-  },
   "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
     "message": "Deleting this folder will also delete all of the files inside the folder."
   },
@@ -466,9 +445,6 @@
   },
   "details_98a31b68": {
     "message": "Details"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "Discussion Details"
   },
   "discussion_submission_781d5d33": {
     "message": "Discussion Submission"
@@ -845,9 +821,6 @@
   "light_blue_5374f600": {
     "message": "Light Blue"
   },
-  "like_e8ad74ae": {
-    "message": "Like"
-  },
   "loading_bde52856": {
     "message": "Loading"
   },
@@ -863,15 +836,6 @@
   "magenta_4a65993c": {
     "message": "Magenta"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "Mark All as Read"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "Mark as Read"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "Mark as Unread"
-  },
   "me_bf110f4d": {
     "message": "me"
   },
@@ -880,9 +844,6 @@
   },
   "media_submission_464829f0": {
     "message": "Media Submission"
-  },
-  "message_5c38209d": {
-    "message": "Message"
   },
   "message_details_342e931f": {
     "message": "Message Details"
@@ -1024,9 +985,6 @@
   },
   "nothing_more_to_do_b017e8bb": {
     "message": "Nothing more to do."
-  },
-  "number_of_likes_count_b5355a14": {
-    "message": "Number of likes: { count }"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
@@ -1247,12 +1205,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "Remove this attachment?"
   },
-  "replies_4a8577c8": {
-    "message": "Replies"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Replies are only visible to those who have posted at least one reply."
-  },
   "reply_389d6fb9": {
     "message": "Reply"
   },
@@ -1337,9 +1289,6 @@
   "sections_94731e51": {
     "message": "Sections"
   },
-  "sections_sections_70d64496": {
-    "message": "Sections: { sections }"
-  },
   "see_all_ffa422ef": {
     "message": "See All"
   },
@@ -1399,9 +1348,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Similarity Score"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to."
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Something went wrong on our end. Don''t worry, we''ve recorded this and will be taking care of it shortly."
@@ -1670,9 +1616,6 @@
   "ungraded_survey_ad7de790": {
     "message": "Ungraded Survey"
   },
-  "unknown_author_40d64455": {
-    "message": "Unknown Author"
-  },
   "unlimited_ff19e96d": {
     "message": "Unlimited"
   },
@@ -1757,9 +1700,6 @@
   },
   "view_long_description_2b592c0e": {
     "message": "View Long Description"
-  },
-  "view_more_replies_9fef9983": {
-    "message": "View more replies"
   },
   "view_responses_d2874266": {
     "message": "View Responses"

@@ -334,6 +334,7 @@ describe('EditItem file', () => {
         { id: 'cc_by', name: 'CC Attribution' },
         { id: 'cc_by_nc_sa', name: 'CC Attribution Non-Commercial Share Alike' },
       ] })),
+      getCourseSettings: jest.fn(() => Promise.resolve({ data: {} })),
     }
   })
 
@@ -375,8 +376,23 @@ describe('EditItem file', () => {
     await getting
     await updatedState(tree)
     expect(tree.state('features')).toEqual([ 'usage_rights_required' ])
+    expect(tree.state('usageRightsRequired')).toBe(true)
     expect(tree.find('EditUsageRights').prop('rights')).toBe(props.item.usage_rights)
-    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders usage rights editing when setting is enabled', async () => {
+    const getting = Promise.resolve({ data: { usage_rights_required: true } })
+    props.getCourseSettings = jest.fn(() => getting)
+    props.item.usage_rights = {
+      legal_copyright: '',
+      use_justification: 'creative_commons',
+      license: 'cc_by',
+    }
+    const tree = shallow(<EditItem {...props} />)
+    await getting
+    await updatedState(tree)
+    expect(tree.state('usageRightsRequired')).toBe(true)
+    expect(tree.find('EditUsageRights').prop('rights')).toBe(props.item.usage_rights)
   })
 
   it('validates usage_rights on done', async () => {

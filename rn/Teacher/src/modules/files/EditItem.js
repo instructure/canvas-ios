@@ -76,6 +76,7 @@ export default class EditItem extends Component<Props, State> {
   static defaultProps = {
     getCourseEnabledFeatures: api.getCourseEnabledFeatures,
     getCourseLicenses: api.getCourseLicenses,
+    getCourseSettings: api.getCourseSettings,
   }
 
   state: State = {
@@ -89,6 +90,7 @@ export default class EditItem extends Component<Props, State> {
     showUnlockedAt: false,
     licenses: [],
     features: [],
+    usageRightsRequired: false,
     validation: {
       name: '',
       unlock_at: '',
@@ -102,14 +104,16 @@ export default class EditItem extends Component<Props, State> {
   }
 
   async loadCourseLicenses () {
-    const { contextID, context, getCourseLicenses, getCourseEnabledFeatures } = this.props
+    const { contextID, context, getCourseLicenses, getCourseEnabledFeatures, getCourseSettings } = this.props
     if (!contextID || !this.isFile() || context !== 'courses') return
     try {
-      const [ { data: licenses }, { data: features } ] = await Promise.all([
+      const [ { data: licenses }, { data: features }, { data: settings } ] = await Promise.all([
         getCourseLicenses(contextID),
         getCourseEnabledFeatures(contextID),
+        getCourseSettings(contextID),
       ])
-      this.setState({ licenses, features })
+      const usageRightsRequired = features.includes('usage_rights_required') || settings.usage_rights_required === true
+      this.setState({ licenses, features, usageRightsRequired })
     } catch (e) {}
   }
 
@@ -120,7 +124,7 @@ export default class EditItem extends Component<Props, State> {
     const lockError = (lock_at && unlock_at && Date.parse(unlock_at) > Date.parse(lock_at)) // eslint-disable-line camelcase
       ? i18n('Available from must be before Available to') : ''
     const rightsError = (
-      this.state.features.includes('usage_rights_required') &&
+      this.state.usageRightsRequired &&
       (!rights || !rights.use_justification) &&
       !locked
     ) ? i18n('This file must have usage rights set before it can be published.') : ''
@@ -285,7 +289,7 @@ export default class EditItem extends Component<Props, State> {
     const {
       updated,
       pending,
-      features,
+      usageRightsRequired,
       licenses,
       showAvailability,
       showLockedAt,
@@ -390,7 +394,7 @@ export default class EditItem extends Component<Props, State> {
             }
 
             {/* Usage Rights */}
-            {features.includes('usage_rights_required') &&
+            {usageRightsRequired &&
               <View>
                 <EditUsageRights
                   licenses={licenses}
