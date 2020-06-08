@@ -63,15 +63,15 @@ export default class ConversationMessageRow extends React.Component<Props, State
   }
 
   courseID () {
+    let [ contextType, contextID ] = (this.props.conversation.context_code || '').split('_')
     let { author_id } = this.props.message
-    let target = this.props.conversation.participants.find(({ id }) => {
-      if (author_id === getSession().user.id) {
-        // current user doesn't have common courses so take from any other participant
-        return id !== getSession().user.id
-      }
-      return id === author_id
-    })
-    return Object.keys(target?.common_courses ?? {})[0]
+    const isCurrent = author_id === getSession().user.id
+    let target = this.props.conversation.participants.find(({ id }) =>
+      // current user doesn't have common courses so take from any other participant
+      isCurrent ? id !== author_id : id === author_id
+    )
+    const ids = Object.keys(target?.common_courses ?? {})
+    return contextType === 'course' && ids.includes(contextID) ? contextID : ids[0]
   }
 
   handleAvatarPress = () => {
