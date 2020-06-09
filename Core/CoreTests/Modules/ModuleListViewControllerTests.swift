@@ -151,13 +151,13 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(header(forSection: 0).accessibilityLabel, "A, unpublished, expanded")
         XCTAssert(header(forSection: 0).accessibilityTraits.contains(.button))
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).nameLabel.text, "A1")
-        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "A1, unpublished")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 0)).accessibilityLabel, "assignment, A1, unpublished")
         XCTAssertEqual(header(forSection: 1).titleLabel.text, "B")
         XCTAssertEqual(header(forSection: 1).publishedIconView.published, true)
         XCTAssertEqual(header(forSection: 1).accessibilityLabel, "B, published, expanded")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 0, section: 1)).nameLabel.text, "B1")
         XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).nameLabel.text, "B2")
-        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "B2, published")
+        XCTAssertEqual(moduleItemCell(at: IndexPath(row: 1, section: 1)).accessibilityLabel, "assignment, B2, published")
     }
 
     func testEmptyItems() {
