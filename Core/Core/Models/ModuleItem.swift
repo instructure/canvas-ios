@@ -67,6 +67,10 @@ public class ModuleItem: NSManagedObject {
         return false
     }
 
+    public var isLocked: Bool {
+        lockedForUser || masteryPath?.locked == true || module?.state == .locked
+    }
+
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
         set { pointsPossibleRaw = NSNumber(value: newValue) }

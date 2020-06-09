@@ -387,7 +387,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         if showRepliesToEntryID == nil {
             AppStoreReview.handleNavigateToAssignment()
-            MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
+            if !ExperimentalFeature.studentModules.isEnabled {
+                MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
+            }
         }
         scrollViewDidScroll(scrollView) // read initial
     }

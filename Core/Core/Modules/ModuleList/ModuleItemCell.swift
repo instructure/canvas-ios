@@ -30,11 +30,12 @@ class ModuleItemCell: UITableViewCell {
 
     let env = AppEnvironment.shared
 
-    func update(_ item: ModuleItem) {
+    func update(_ item: ModuleItem, indexPath: IndexPath) {
         backgroundColor = .named(.backgroundLightest)
-        isUserInteractionEnabled = env.app == .teacher || (!item.lockedForUser && item.masteryPath?.locked != true)
+        isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         nameLabel.text = item.title
-        nameLabel.isEnabled = env.app == .teacher || !item.lockedForUser
+        nameLabel.isEnabled = env.app == .teacher || !(item.lockedForUser || item.module?.state == .locked)
+        nameLabel.textColor = nameLabel.isEnabled ? .named(.textDarkest) : .named(.textLight)
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
         publishedIconView.published = item.published
@@ -58,14 +59,20 @@ class ModuleItemCell: UITableViewCell {
             accessoryView = nil
         }
         dueLabel.isHidden = dueLabel.text == nil
-        accessibilityLabel = [item.title, dueLabel.text].compactMap { $0 }.joined(separator: ",")
+        var a11yLabels = [item.type?.label, item.title, dueLabel.text]
+        if item.isLocked {
+            a11yLabels.append(NSLocalizedString("locked", bundle: .core, comment: ""))
+        }
+        accessibilityLabel = a11yLabels.compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: ", ")
         if !publishedIconView.isHidden {
             accessibilityLabel = [
+                item.type?.label,
                 item.title,
                 item.published == true
                     ? NSLocalizedString("published", bundle: .core, comment: "")
                     : NSLocalizedString("unpublished", bundle: .core, comment: ""),
-            ].joined(separator: ", ")
+            ].compactMap { $0 }.joined(separator: ", ")
         }
+        accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
     }
 }

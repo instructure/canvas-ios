@@ -202,7 +202,7 @@ extension ModuleListViewController: UITableViewDataSource {
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item)
+                cell.update(item, indexPath: indexPath)
             }
             return cell
         }
