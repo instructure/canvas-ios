@@ -183,6 +183,43 @@ class RubricPresenterTests: StudentTestCase {
         XCTAssertEqual(models.first, expected.first)
     }
 
+    func testCustomGradeAndFreeFormCriterionCommentsTrue() {
+        let ratings: [APIRubricRating] = [
+            .make(id: "1", points: 10, position: 1),
+            .make(id: "2", points: 25, position: 2),
+        ]
+
+        let rubric = Rubric.make(from: .make(id: "1", ratings: ratings))
+        Submission.make(from: .make(rubric_assessment: [
+            "1": .make(points: 1.0, comments: "this is custom", rating_id: "2"),
+        ]))
+        Course.make()
+        Assignment.make(from: .make(rubric_settings: .make(free_form_criterion_comments: true)))
+        ContextColor.make()
+        let expected: [RubricViewModel] = [
+            RubricViewModel(
+                id: "1",
+                title: "Effort",
+                longDescription: "Did you even try?",
+                selectedDesc: "Custom Grade",
+                selectedIndex: 2,
+                ratings: [10.0, 25.0, 1.0],
+                descriptions: ["Excellent", "Excellent", "Custom Grade"],
+                comment: "this is custom",
+                rubricRatings: Array(rubric.ratings!).sorted { $0.points < $1.points },
+                isCustomAssessment: true,
+                hideRubricPoints: false,
+                freeFormCriterionComments: true
+            ),
+        ]
+
+        presenter.update()
+
+        XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+        XCTAssertEqual(models.count, expected.count)
+        XCTAssertEqual(models.first, expected.first)
+    }
+
     func testRubricViewModelRatingBlurb() {
         let r = Rubric.make()
         let rating = RubricRating.make()
