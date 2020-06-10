@@ -92,6 +92,7 @@ const whitelist = [
   'module',
   'more',
   'no',
+  'note',
   'numbered-list',
   'off',
   'outcomes',

@@ -45,21 +45,6 @@ module.file_ext=.ios.js
 
 munge_underscores=true
 
-module.name_mapper='^@modules\/\(.*\)$' -> '<PROJECT_ROOT>/src/modules/\1'
-module.name_mapper='^@test\/\(.*\)$' -> '<PROJECT_ROOT>/test/\1'
-module.name_mapper='^@images\/\(.*\)$' -> '<PROJECT_ROOT>/src/images/\1'
-module.name_mapper='^@images$' -> '<PROJECT_ROOT>/src/images'
-module.name_mapper='^@common\/\(.*\)$' -> '<PROJECT_ROOT>/src/common/\1'
-module.name_mapper='^@templates\/\(.*\)$' -> '<PROJECT_ROOT>/src/__templates__/\1'
-module.name_mapper='^@templates$' -> '<PROJECT_ROOT>/src/__templates__'
-module.name_mapper='^@mocks\/\(.*\)$' -> '<PROJECT_ROOT>/src/__mocks__/\1'
-module.name_mapper='^@canvas-api\/\(.*\)$' -> '<PROJECT_ROOT>/src/canvas-api/\1'
-module.name_mapper='^@canvas-api$' -> '<PROJECT_ROOT>/src/canvas-api'
-module.name_mapper='^@canvas-api2\/\(.*\)$' -> '<PROJECT_ROOT>/src/canvas-api-v2/\1'
-module.name_mapper='^@utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
-module.name_mapper='^@redux\/\(.*\)$' -> '<PROJECT_ROOT>/src/redux/\1'
-module.name_mapper='^@routing\/\(.*\)$' -> '<PROJECT_ROOT>/src/routing/\1'
-module.name_mapper='^@routing$' -> '<PROJECT_ROOT>/src/routing'
 module.name_mapper='^react-native/\(.*\)$' -> '<PROJECT_ROOT>/node_modules/react-native/\1'
 module.name_mapper='^@?[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> '<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/RelativeImageStub'
 

@@ -710,6 +710,7 @@
 		B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBA240727AE00B736D6 /* GetPlannerCourses.swift */; };
 		B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */; };
 		B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */; };
+		B126BF73249020B10050D2A5 /* ExternalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B126BF72249020B10050D2A5 /* ExternalURL.swift */; };
 		B127C0EE245B2EE3008DB716 /* MasteryPathAssignmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B127C0ED245B2EE3008DB716 /* MasteryPathAssignmentCell.xib */; };
 		B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127C0EF245B56BE008DB716 /* MasteryPathViewControllerTests.swift */; };
 		B12A763821914059000693DE /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = B12A763721914059000693DE /* fileupload.txt */; };
@@ -1763,6 +1764,7 @@
 		B11AEBBC24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewControllerTests.swift; sourceTree = "<group>"; };
 		B11D321621E464AB00F37ABF /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B12151822447A78900D34BE4 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
+		B126BF72249020B10050D2A5 /* ExternalURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURL.swift; sourceTree = "<group>"; };
 		B127C0ED245B2EE3008DB716 /* MasteryPathAssignmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MasteryPathAssignmentCell.xib; sourceTree = "<group>"; };
 		B127C0EF245B56BE008DB716 /* MasteryPathViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPathViewControllerTests.swift; sourceTree = "<group>"; };
 		B12A763721914059000693DE /* fileupload.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fileupload.txt; sourceTree = "<group>"; };
@@ -3591,6 +3593,14 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		B126BF71249020960050D2A5 /* External URL */ = {
+			isa = PBXGroup;
+			children = (
+				B126BF72249020B10050D2A5 /* ExternalURL.swift */,
+			);
+			path = "External URL";
+			sourceTree = "<group>";
+		};
 		B1445309212E5B8E0009D848 /* Use Cases */ = {
 			isa = PBXGroup;
 			children = (
@@ -3822,6 +3832,7 @@
 				E8AD066E2303713300D498ED /* Dashboard */,
 				E81918F12303487C0039616A /* Discussions */,
 				E819192F23034C2D0039616A /* External Tool */,
+				B126BF71249020960050D2A5 /* External URL */,
 				E819193523034C2D0039616A /* Inbox */,
 				B107F6C9234BB81C000DAC83 /* ItemPicker */,
 				E8C6F52323D6363C0086B865 /* Modules */,
@@ -5318,6 +5329,7 @@
 			files = (
 				E841D8C323D6619B00685A63 /* AccountNotificationsE2ETests.swift in Sources */,
 				E819194D23034C2D0039616A /* ExternalTool.swift in Sources */,
+				B126BF73249020B10050D2A5 /* ExternalURL.swift in Sources */,
 				E8BB310C23A06B3B00B3B3B2 /* RichContentEditor.swift in Sources */,
 				B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */,
 				E841D8C623D665D800685A63 /* DiscussionReplyTests.swift in Sources */,

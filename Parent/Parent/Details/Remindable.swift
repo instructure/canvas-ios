@@ -63,7 +63,7 @@ extension Remindable {
     func getScheduledReminder(completionHandler: @escaping (UNNotificationRequest?) -> Void) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getPendingNotificationRequests { requests in
-            let request = requests.findFirst { $0.identifier == self.id }
+            let request = requests.first { $0.identifier == self.id }
             completionHandler(request)
         }
     }

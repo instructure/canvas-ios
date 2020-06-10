@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+import TestsFoundation
 
-extension UIColor {
-    @objc public class func prettyGray() -> UIColor {
-        return UIColor(white: 0.6667, alpha: 1.0)
-    }
-    
-    /// 92% (235/255)
-    @objc public class func prettyLightGray() -> UIColor {
-        return UIColor(white: 0.92, alpha: 1.0)
-    }
+enum ExternalURL: String, ElementWrapper {
+    case openInButton
 }

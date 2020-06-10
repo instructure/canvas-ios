@@ -55,6 +55,16 @@ public struct APIURL: Codable, Equatable {
     }
 }
 
+extension KeyedDecodingContainer {
+    public func decodeURLIfPresent(forKey key: Self.Key) throws -> APIURL? {
+        let rawValue = try decodeIfPresent(String.self, forKey: key)
+        if rawValue?.isEmpty == false {
+            return try decode(APIURL.self, forKey: key)
+        }
+        return nil
+    }
+}
+
 #if DEBUG
 extension APIURL {
     public static func make(

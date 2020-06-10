@@ -305,8 +305,6 @@ class ModuleItemViewModel: NSObject {
         locked = Property(initial: true, then: SignalProducer.combineLatest(lockedForUser, moduleLocked).map { $0 || $1 })
 
         super.init()
-
-        beginObservingLockedStatus()
     }
 
     @objc convenience init(session: Session, moduleItem: ModuleItem) throws {
@@ -327,30 +325,6 @@ class ModuleItemViewModel: NSObject {
     @objc func moduleItemBecameActive() {
         if let id = moduleItem.value?.id {
             NotificationCenter.default.post(name: .moduleItemBecameActive, object: nil, userInfo: ["moduleItemID": id])
-        }
-    }
-
-    fileprivate func beginObservingLockedStatus() {
-        locked.signal
-            .combinePrevious(true)
-            .observeValues { [weak self] previous, current in
-                if previous && !current {
-                    _ = try? self?.invalidateCaches()
-                }
-            }
-    }
-
-    fileprivate func invalidateCaches() throws {
-        guard let content = moduleItem.value?.content, let courseID = moduleItem.value?.courseID else {
-            return
-        }
-        switch content {
-        case let .page(url: url):
-            let contextID = ContextID(id: courseID, context: .course)
-            try Page.invalidateCache(session: session, contextID: contextID)
-            try Page.invalidateDetailCache(session: session, contextID: contextID, url: url)
-        default:
-            break
         }
     }
 }

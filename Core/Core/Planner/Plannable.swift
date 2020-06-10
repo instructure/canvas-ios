@@ -113,7 +113,7 @@ extension Plannable {
         case .wiki_page:
             return UIImage.icon(.document, .line)
         case .planner_note:
-            return UIImage.icon(.document, .line)
+            return UIImage.icon(.note, .line)
         case .calendar_event:
             return UIImage.icon(.calendarMonth, .line)
         case .assessment_request:

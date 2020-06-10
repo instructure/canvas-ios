@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F96" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -393,6 +393,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" optional="YES" attributeType="String"/>
         <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="ModuleItem" representedClassName="Core.ModuleItem" syncable="YES">
@@ -765,7 +766,7 @@
         <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
         <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="103"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="133"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="148"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="358"/>
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>

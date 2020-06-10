@@ -29,8 +29,13 @@ class APIFileTests: XCTestCase {
 
         fixture["url"] = ""
         data = try! serialize(json: fixture)
-        let file = try! decoder.decode(APIFile.self, from: data)
+        var file = try! decoder.decode(APIFile.self, from: data)
         XCTAssertNil(file.url)
+
+        fixture["thumbnail_url"] = ""
+        data = try! serialize(json: fixture)
+        file = try! decoder.decode(APIFile.self, from: data)
+        XCTAssertNil(file.thumbnail_url)
     }
 
     func testGetFileRequest() {

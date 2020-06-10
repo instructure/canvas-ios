@@ -104,27 +104,26 @@ class RubricPresenter {
         }
     }
 
-    func transformRubricsToViewModels(_ rubric: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
+    func transformRubricsToViewModels(_ rubrics: [Rubric], assessments: RubricAssessments?, hideRubricPoints: Bool, freeFormCriterionComments: Bool) -> [RubricViewModel] {
         var models = [RubricViewModel]()
-        for r in rubric {
-            guard let ratings = r.ratings else { continue }
-            let assessment = assessments?[r.id]
-
-            let sorted = Array(ratings).sorted { $0.points < $1.points }
+        for rubric in rubrics {
+            guard var ratings = rubric.ratings.flatMap(Array.init) else { continue }
+            let assessment = assessments?[rubric.id]
+            ratings = ratings.sorted { $0.points < $1.points }
             var selected: RubricRating?
             var selectedIndex: Int?
             var comments: String?
             var description = ""
             var isCustomAssessment = false
 
-            if let index = sorted.firstIndex(where: { rr in assessment?.ratingID == rr.id && ( freeFormCriterionComments || rr.points == assessment?.points) }) {
-                selected = sorted[index]
+            if let index = ratings.firstIndex(where: { rating in assessment?.ratingID == rating.id && rating.points == assessment?.points }) {
+                selected = ratings[index]
                 selectedIndex = index
                 comments = assessment?.comments
                 description = selected?.desc ?? ""
             }
-            var allRatings: [Double] = sorted.map { $0.points }
-            var allDescriptions: [String] = sorted.map { $0.desc }
+            var allRatings: [Double] = ratings.map { $0.points }
+            var allDescriptions: [String] = ratings.map { $0.desc }
             if selected == nil, let assessment = assessment, let points = assessment.points {
                 //  this is a custom assesment
                 allRatings.append(points)
@@ -136,15 +135,15 @@ class RubricPresenter {
             }
 
             let m = RubricViewModel(
-                id: r.id,
-                title: r.desc,
-                longDescription: r.longDesc,
+                id: rubric.id,
+                title: rubric.desc,
+                longDescription: rubric.longDesc,
                 selectedDesc: description,
                 selectedIndex: selectedIndex,
                 ratings: allRatings,
                 descriptions: allDescriptions,
                 comment: comments,
-                rubricRatings: sorted,
+                rubricRatings: ratings,
                 isCustomAssessment: isCustomAssessment,
                 hideRubricPoints: hideRubricPoints,
                 freeFormCriterionComments: freeFormCriterionComments

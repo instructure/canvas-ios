@@ -88,7 +88,6 @@ extension ModuleItem {
                 // invalidate all the caches that we can to show freed items
                 let contextID = ContextID(id: me.courseID, context: .course)
                 try Tab.invalidateCache(session: session, contextID: contextID)
-                try Page.invalidateCache(session: session, contextID: contextID)
             }
         }
         return remote.flatMap(.concat, local)

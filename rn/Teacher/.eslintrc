@@ -12,13 +12,9 @@
   "plugins": [
     "flowtype",
     "react",
-    "import",
     "format-message"
   ],
   "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    },
     "format-message": {
       "generateId": "underscored_crc32",
       "sourceLocale": "en",
@@ -35,7 +31,6 @@
   "rules": {
     "react/jsx-uses-vars": [2],
     "react/jsx-uses-react": [2],
-    "import/no-duplicates": [2],
     "no-duplicate-imports": [0],
     "object-curly-spacing": [2, "always"],
     "comma-dangle": ["error", {

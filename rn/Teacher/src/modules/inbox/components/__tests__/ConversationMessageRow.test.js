@@ -178,13 +178,14 @@ describe('ConversationMessageRow', () => {
 
   it('navigates to context card when the avatar is pressed', () => {
     props.conversation = template.conversation({
-      context_code: 'course_1',
+      context_code: 'course_2',
       participants: [
         { id: '1234', name: 'participant 1' },
         {
           id: '5678',
           name: 'participant 2',
           common_courses: {
+            '1': ['StudentEnrollment'],
             '2': ['StudentEnrollment'],
           },
         },
@@ -202,7 +203,7 @@ describe('ConversationMessageRow', () => {
   it('navigates to own context card when avatar is pressed', () => {
     let session = getSession()
     props.conversation = template.conversation({
-      context_code: 'course_1',
+      context_code: 'group_17',
       participants: [
         {
           id: session.user.id,

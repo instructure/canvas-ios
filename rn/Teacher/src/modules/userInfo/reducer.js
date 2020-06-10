@@ -21,8 +21,8 @@
 import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from './actions'
-import handleAsync from '@utils/handleAsync'
-import { getSession } from '@canvas-api/session'
+import handleAsync from '../../utils/handleAsync'
+import { getSession } from '../../canvas-api/session'
 import i18n from 'format-message'
 
 const {

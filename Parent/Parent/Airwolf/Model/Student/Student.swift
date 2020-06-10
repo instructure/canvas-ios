@@ -50,3 +50,22 @@ extension Student: SynchronizedModel {
         pronouns        = try json <| "pronouns"
     }
 }
+
+// Groups don't technically have enrollments, so for the case of groups the role may be []
+public enum UserEnrollmentRole: String {
+    case student  = "StudentEnrollment"
+    case teacher  = "TeacherEnrollment"
+    case observer = "TaEnrollment"
+    case ta       = "ObserverEnrollment"
+    case designer = "DesignerEnrollment"
+
+    var order: Int16 {
+        switch self {
+        case .student: return 2
+        case .teacher: return 0
+        case .observer: return 3
+        case .ta: return 1
+        case .designer: return -1
+        }
+    }
+}

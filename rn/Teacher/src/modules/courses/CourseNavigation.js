@@ -43,7 +43,7 @@ import currentWindowTraits from '../../utils/windowTraits'
 import { isTeacher, isStudent } from '../app'
 import * as LTITools from '../../common/LTITools'
 import TabsList from '../tabs/TabsList'
-import { logEvent } from '@common/CanvasAnalytics'
+import { logEvent } from '../../common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 import { getFakeStudent } from '../../canvas-api'
 
