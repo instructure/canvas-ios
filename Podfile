@@ -101,11 +101,13 @@ abstract_target 'defaults' do
   target 'Student' do
     project 'Student/Student.xcodeproj'
     firebase_pods
+    pod 'lottie-ios', '~> 3.1.8'
   end
   
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
     firebase_pods
+    pod 'lottie-ios', '~> 3.1.8'
   end
   
   target 'CanvasCore' do

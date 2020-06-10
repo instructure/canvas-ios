@@ -102,6 +102,11 @@ public class CreateSubmission: APIUseCase {
             return
         }
         Submission.save(item, in: client)
+        if !item.late {
+            NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
+                "assignmentID": assignmentID,
+            ])
+        }
     }
 }
 

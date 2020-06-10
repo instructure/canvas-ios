@@ -21,6 +21,7 @@ import SafariServices
 import UIKit
 import Core
 import WebKit
+import Lottie
 
 protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
 }
@@ -40,12 +41,16 @@ class SubmissionButtonPresenter: NSObject {
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
     var selectedSubmissionTypes: [SubmissionType] = []
+    lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: ContextModel.currentUser)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
         self.view = view
         self.assignmentID = assignmentID
         super.init()
+
+        flags.refresh()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCelebrate(_:)), name: .celebrateSubmission, object: nil)
     }
 
     func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
@@ -295,5 +300,25 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         }
         let upload = { mediaUploader.fetch(environment: env, createSubmission) }
         view?.present(uploading, animated: true, completion: upload)
+    }
+}
+
+extension SubmissionButtonPresenter {
+    @objc func handleCelebrate(_ notification: Notification) {
+        if
+            flags.first(where: { $0.name == "disable_celebrations" })?.enabled != true,
+            notification.userInfo?["assignmentID"] as? String == assignmentID
+        { performUIUpdate { self.showConfetti() } }
+    }
+
+    func showConfetti() {
+        guard let view = (view as? UIViewController)?.view.window else { return }
+        let animation = AnimationView(name: "confetti")
+        view.addSubview(animation)
+        animation.pin(inside: view)
+        animation.contentMode = .scaleAspectFill
+        animation.play() { _ in
+            animation.removeFromSuperview()
+        }
     }
 }
