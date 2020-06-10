@@ -22,34 +22,35 @@ import TestsFoundation
 @testable import Core
 
 class ModulesE2ETests: CoreUITestCase {
+    override var experimentalFeatures: [ExperimentalFeature] { [.studentModules] }
+
     func testLaunchIntoAssignmentsAndNavigateModuleItems() {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 0).tap()
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Assignment One. Type: Assignment")
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 1).label(), "Assignment Two. Type: Assignment")
-        ModulesDetail.moduleItem(index: 0).tap()
+        XCTAssertEqual(ModuleList.item(section: 0, row: 0).label(), "assignment, Assignment One, 10 pts")
+        XCTAssertEqual(ModuleList.item(section: 0, row: 1).label(), "assignment, Assignment Two, 10 pts")
+        ModuleList.item(section: 0, row: 0).tap()
 
         AssignmentDetails.description("Assignment One").waitToExist()
-        ModuleItemNavigation.nextButton.tap()
+        ModuleItemSequence.nextButton.tap()
         AssignmentDetails.description("Assignment Two").waitToExist()
-        ModuleItemNavigation.previousButton.tap()
+        ModuleItemSequence.previousButton.tap()
         AssignmentDetails.description("Assignment One").waitToExist()
 
-        ModuleItemNavigation.backButton.tap()
-        ModulesDetail.moduleItem(index: 0).waitToExist()
+        NavBar.backButton.tap()
+        ModuleList.item(section: 0, row: 0).waitToExist()
     }
 
     func testLockedModulesDisplayCorrectly() {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.modules.tap()
 
-        XCTAssertEqual(ModulesDetail.module(index: 8).label(),
-                       "Locked Module. Locked until January 1, 3000. Status: Locked")
-        XCTAssertEqual(ModulesDetail.module(index: 9).label(),
-                       "Previously Locked Module")
+        XCTAssertEqual(ModuleList.item(section: 8, row: 0).label(),
+                       "file, run.jpg, locked")
+        XCTAssertEqual(ModuleList.item(section: 9, row: 0).label(),
+                       "file, run.jpg")
     }
 
     func testLaunchIntoDiscussionModuleItem() {
@@ -57,11 +58,10 @@ class ModulesE2ETests: CoreUITestCase {
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 2).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 2, row: 0).tap()
 
         app.find(labelContaining: "Teacher One").waitToExist()
-        DiscussionDetails.replyButton.waitToExist()
+        XCTAssertEqual(NavBar.title.label(), "Discussion Details")
     }
 
     func testLaunchIntoPageModuleItem() {
@@ -69,8 +69,7 @@ class ModulesE2ETests: CoreUITestCase {
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 3).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 3, row: 0).tap()
 
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
@@ -79,9 +78,7 @@ class ModulesE2ETests: CoreUITestCase {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
-
-        ModulesDetail.module(index: 1).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 1, row: 0).tap()
 
         app.find(labelContaining: "This is the first quiz").waitToExist()
         Quiz.takeButton.waitToExist()
@@ -92,8 +89,7 @@ class ModulesE2ETests: CoreUITestCase {
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 7).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 7, row: 0).tap()
 
         app.find(type: .image).waitToExist()
     }
@@ -103,10 +99,9 @@ class ModulesE2ETests: CoreUITestCase {
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 4).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 4, row: 0).tap()
 
-        app.webViews.staticTexts.firstElement.waitToExist(60)
+        ExternalURL.openInButton.waitToExist()
     }
 
     func testLaunchIntoExternalToolModuleItem() {
@@ -114,20 +109,10 @@ class ModulesE2ETests: CoreUITestCase {
 
         CourseNavigation.modules.tap()
 
-        ModulesDetail.module(index: 5).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
+        ModuleList.item(section: 5, row: 0).tap()
 
         ExternalTool.launchButton.tap()
         ExternalTool.pageText("Instructure").waitToExist()
         ExternalTool.doneButton.tap()
-    }
-
-    func testLaunchIntoTextHeaderModuleItem() {
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.modules.tap()
-
-        ModulesDetail.module(index: 6).tap()
-        ModulesDetail.moduleItem(index: 0).waitToExist()
     }
 }

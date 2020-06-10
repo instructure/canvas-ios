@@ -21,8 +21,18 @@ import TestsFoundation
 
 enum Modules {
     static func module(index: Int) -> Element {
-        return app.find(id: "module_cell_0_\(index)")
+        app.find(id: "module_cell_0_\(index)")
     }
+}
+
+enum ModuleList {
+    static func item(section: Int, row: Int) -> Element {
+        app.find(id: "ModuleList.\(section).\(row)")
+    }
+}
+
+enum ModuleItemSequence: String, ElementWrapper {
+    case previousButton, nextButton
 }
 
 enum ModulesDetail {

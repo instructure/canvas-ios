@@ -29,6 +29,7 @@ public class Module: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
     @NSManaged public var publishedRaw: NSNumber?
+    @NSManaged public var stateRaw: String?
     @NSManaged public var itemsRaw: NSOrderedSet?
 
     public var published: Bool? {
@@ -39,6 +40,11 @@ public class Module: NSManagedObject {
     public var items: [ModuleItem] {
         get { return itemsRaw?.array as? [ModuleItem] ?? [] }
         set { itemsRaw = NSOrderedSet(array: newValue) }
+    }
+
+    public var state: ModuleState? {
+        get { stateRaw.flatMap(ModuleState.init(rawValue:)) }
+        set { stateRaw = newValue?.rawValue }
     }
 
     @discardableResult
@@ -55,6 +61,7 @@ public class Module: NSManagedObject {
         module.name = item.name
         module.position = item.position
         module.published = item.published
+        module.state = item.state
         module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
         return module
     }

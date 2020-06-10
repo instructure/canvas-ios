@@ -117,4 +117,25 @@ public enum ModuleItemType: Equatable, Codable {
             return .icon(.lti)
         }
     }
+
+    public var label: String? {
+        switch self {
+        case .subHeader:
+            return nil
+        case .file:
+            return NSLocalizedString("file", bundle: .core, comment: "")
+        case .page:
+            return NSLocalizedString("page", bundle: .core, comment: "")
+        case .discussion:
+            return NSLocalizedString("discussion", bundle: .core, comment: "")
+        case .assignment:
+            return NSLocalizedString("assignment", bundle: .core, comment: "")
+        case .quiz:
+            return NSLocalizedString("quiz", bundle: .core, comment: "")
+        case .externalURL:
+            return NSLocalizedString("external URL", bundle: .core, comment: "")
+        case .externalTool:
+            return NSLocalizedString("external tool", bundle: .core, comment: "")
+        }
+    }
 }
