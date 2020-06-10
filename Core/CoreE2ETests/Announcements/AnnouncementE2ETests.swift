@@ -50,14 +50,14 @@ class AnnouncementE2ETests: CoreUITestCase {
         app.find(label: "This is the third announcement").waitToExist()
     }
 
-    func testPreviewAnouncementAttachment() {
+    func testPreviewAnnouncementAttachment() {
         Dashboard.courseCard(id: "262").tapUntil {
             CourseNavigation.announcements.exists
         }
         CourseNavigation.announcements.tap()
 
         AnnouncementList.cell(index: 0).tap()
-        DiscussionDetails.attachmentButton.tap()
+        app.find(label: "run.jpg").tap()
         app.find(type: .image).waitToExist()
     }
 }

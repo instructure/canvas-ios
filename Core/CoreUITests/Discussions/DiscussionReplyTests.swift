@@ -37,38 +37,38 @@ class DiscussionReplyTests: CoreUITestCase {
         mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
         mockData(GetDiscussionTopicRequest(context: course, topicID: discussion.id.value), value: discussion)
         mockData(GetDiscussionViewRequest(context: course, topicID: discussion.id.value), value: fullTopic)
-        mockData(ListDiscussionEntriesRequest(context: course, topicID: discussion.id.value), value: fullTopic.view)
-        let readDiscussionUrl = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/read")!
-        mockURL(readDiscussionUrl, response: HTTPURLResponse(url: readDiscussionUrl, statusCode: 204, httpVersion: nil, headerFields: [:]))
+        mockData(GetGroupsRequest(context: course), value: [])
+        mockData(MarkDiscussionTopicReadRequest(context: course, topicID: discussion.id.value, isRead: true), value: APINoContent())
         fullTopic.unread_entries.forEach { entry in
-            let url = URL(string: "https://canvas.instructure.com/api/v1/courses/\(course.id)/discussion_topics/\(discussion.id)/entries/\(entry)/read")!
-            mockResponse(URLRequest(url: url)) { [weak self] _ in
+            mockData(MarkDiscussionEntryReadRequest(context: course, topicID: discussion.id.value, entryID: entry.value, isRead: true, isForcedRead: false)) { [weak self] request in
                 self?.markedAsRead[entry] = true
-                return MockHTTPResponse(http: HTTPURLResponse(url: url, statusCode: 204, httpVersion: nil, headerFields: [:]))
+                return MockHTTPResponse(http: HTTPURLResponse(url: request.url!, statusCode: 204, httpVersion: nil, headerFields: [:]))
             }
         }
         return discussion
     }
 
     func mockCoursePermission(allowPost: Bool = true) {
-        mockData(GetContextPermissionsRequest(context: course), value: .make(post_to_forum: allowPost))
+        mockData(GetContextPermissionsRequest(context: course, permissions: [.postToForum]), value: .make(post_to_forum: allowPost))
     }
 
-    func xtestUnreadMarkersCorrect() {
-        mockBaseRequests()
-        mockCoursePermission()
-        let discussion = mockDiscussion()
-        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+//    func xtestUnreadMarkersCorrect() {
+//        mockBaseRequests()
+//        mockCoursePermission()
+//        let discussion = mockDiscussion()
+//        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+//        app.swipeDown()
+//
+//        XCTAssertTrue(DiscussionReply.unread(id: "1").waitToExist(3).exists)
+//        XCTAssertFalse(DiscussionReply.unread(id: "2").exists)
+//        XCTAssertTrue(DiscussionReply.unread(id: "3").exists)
+//        XCTAssertTrue(DiscussionReply.unread(id: "5").exists)
+//    }
 
-        XCTAssertTrue(DiscussionReply.unread(id: "1").waitToExist(3).exists)
-        XCTAssertFalse(DiscussionReply.unread(id: "2").exists)
-        XCTAssertTrue(DiscussionReply.unread(id: "3").exists)
-        XCTAssertTrue(DiscussionReply.unread(id: "5").exists)
-    }
-
-    func helpTestViewReplies(expectReplyButtons: Bool) {
-        let discussion = mockDiscussion()
+    func helpTestViewReplies(repliesEnabled: Bool) {
+        let discussion = mockDiscussion(.make(permissions: .make(reply: repliesEnabled)))
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.swipeDown()
         app.find(label: discussion.message!).waitToExist()
 
         let messageLabels = ["m1", "m2", "m3", "m5"]
@@ -81,75 +81,78 @@ class DiscussionReplyTests: CoreUITestCase {
         XCTAssertLessThan(xs["m2"]!, xs["m3"]!)
         XCTAssertEqual(xs["m1"]!, xs["m5"]!)
 
+        app.swipeUp()
         XCTAssertFalse(app.find(label: "m4 (deep)").exists)
-        DiscussionReply.moreReplies(id: "3").tap()
+        app.find(label: "View more replies").tap()
         app.find(label: "m4 (deep)").waitToExist()
-        app.find(label: "Back to replies").tap()
+
+        app.find(label: "Back").tap()
         app.find(label: "m4 (deep)").waitToVanish()
 
-        XCTAssertEqual(DiscussionDetails.replyButton.exists, expectReplyButtons)
-        XCTAssertEqual(DiscussionReply.replyButton(id: "1").exists, expectReplyButtons)
-        XCTAssertEqual(DiscussionReply.replyButton(id: "2").exists, expectReplyButtons)
+        XCTAssertEqual(app.find(label: "Reply", type: .link).allElements.count, repliesEnabled ? 5 : 0)
     }
 
     func testViewReplies() {
         mockBaseRequests()
         mockCoursePermission(allowPost: true)
-        helpTestViewReplies(expectReplyButtons: true)
+        helpTestViewReplies(repliesEnabled: true)
     }
 
     func testViewRepliesWithPostDisallowed() {
         mockBaseRequests()
         mockCoursePermission(allowPost: false)
-        helpTestViewReplies(expectReplyButtons: false)
+        helpTestViewReplies(repliesEnabled: false)
     }
 
     func testReplyingWithoutAttachment() {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion()
+        let discussion = mockDiscussion(.make(permissions: .make(reply: true)))
         mockEncodableRequest("courses/\(course.id)/settings", value: ["allow_student_forum_attachments": false])
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.swipeDown()
         app.find(label: discussion.message!).waitToExist()
 
         mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
         mockData(PostDiscussionEntryRequest(context: course, topicID: "1", entryID: "2", message: ""), value: .make())
 
-        let undoButton = app.find(id: "rich-text-toolbar-item-undo")
-
-        DiscussionDetails.replyButton.tap()
-        undoButton.waitToExist()
+        app.find(label: "Reply", type: .link).tap()
+        DiscussionEditReply.sendButton.waitToExist()
         XCTAssertFalse(DiscussionEdit.attachmentButton.exists)
         NavBar.dismissButton.tap()
-        undoButton.waitToVanish()
+        DiscussionEditReply.sendButton.waitToVanish()
 
-        DiscussionDetails.replyButton.tap()
-        DiscussionEditReply.doneButton.tapUntil {
-            !DiscussionEditReply.doneButton.isVisible
+        app.find(label: "Reply", type: .link).tap()
+        RichContentEditor.webView.typeText("hello!")
+        DiscussionEditReply.sendButton.tapUntil {
+            !DiscussionEditReply.sendButton.isVisible
         }
 
-        DiscussionReply.replyButton(id: "2").tap()
-        undoButton.waitToExist()
+        app.find(label: "Reply", type: .link)[2].tap()
+        DiscussionEditReply.sendButton.waitToExist()
         XCTAssertFalse(DiscussionEditReply.attachmentButton.exists)
-        DiscussionEditReply.doneButton.tapUntil {
-            !DiscussionEditReply.doneButton.isVisible
+        RichContentEditor.webView.typeText("hello!")
+        DiscussionEditReply.sendButton.tapUntil {
+            !DiscussionEditReply.sendButton.isVisible
         }
     }
 
-    func testReplyingWithAttachment() {
+    // blocked on MBL-14459
+    func xtestReplyingWithAttachment() {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion(APIDiscussionTopic.make(permissions: .make(attach: true)))
+        let discussion = mockDiscussion(APIDiscussionTopic.make(permissions: .make(attach: true, reply: true)))
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.swipeDown()
         app.find(label: discussion.message!).waitToExist()
 
         mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
-        DiscussionDetails.replyButton.tap()
+        app.find(label: "Reply", type: .link).tap()
         DiscussionEditReply.attachmentButton.tap()
 
-        Attachments.addButton.tap()
+//        Attachments.addButton.tap()
         allowAccessToPhotos {
-            app.find(label: "Choose From Library").tap()
+            app.find(label: "Photo Library").tap()
         }
 
         let photo = app.find(labelContaining: "Photo, ")
@@ -164,50 +167,67 @@ class DiscussionReplyTests: CoreUITestCase {
         Attachments.dismissButton.tap()
 
         RichContentEditor.editor.typeText("Here's a nice picture I took")
-        DiscussionEditReply.doneButton.tapUntil {
-            !DiscussionEditReply.doneButton.isVisible
+        DiscussionEditReply.sendButton.tapUntil {
+            !DiscussionEditReply.sendButton.isVisible
         }
     }
 
-    func testLikeReply() {
+    func testLikeReply() throws {
         mockBaseRequests()
         mockCoursePermission()
-        let discussion = mockDiscussion(APIDiscussionTopic.make(allow_rating: true))
-        show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        let topic = APIDiscussionTopic.make(allow_rating: true)
+        var view = APIDiscussionView.make()
+        mockDiscussion(topic, fullTopic: view)
+        show("/courses/\(course.id)/discussion_topics/\(topic.id)")
+        app.swipeDown()
 
         for entry in 1...5 {
-            mockEncodableRequest("courses/\(course.id)/discussion_topics/\(discussion.id)/entries/\(entry)/rating", value: "")
+            mockData(PostDiscussionEntryRatingRequest(context: course, topicID: topic.id.value, entryID: "\(entry)", isLiked: true)) { [weak self] _ in
+                view.entry_ratings["\(entry)"] = 1 - (view.entry_ratings["\(entry)"] ?? 0)
+                self?.mockDiscussion(topic, fullTopic: view)
+                return MockHTTPResponse.noContent
+            }
         }
 
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "1").label(), "Number of likes: 1")
-        DiscussionReply.ratingCount(id: "2").waitToVanish()
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "3").label(), "Number of likes: 3")
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "5").label(), "Number of likes: 1")
+        func sliceFrom<S: Sequence>(_ sequence: S, start: S.Element, maxLength: Int) -> [S.Element]? where S.Element: Equatable {
+            let foo = sequence.drop { $0 != start }
+            return .init(foo.prefix(maxLength))
+        }
 
-        DiscussionReply.rateButton(id: "1").tap()
-        DiscussionReply.rateButton(id: "2").tap()
-        DiscussionReply.rateButton(id: "3").tap()
-        DiscussionReply.rateButton(id: "5").tap()
+        let webView = app.webViews.firstElement
+        waitUntil { webView.orderedLabels()?.contains("m5") == true }
+        webView.swipeUp()
+        XCTAssert(webView.containsLabelSequence(["m1", "Show more options", "1 like", "Like"]))
+        XCTAssert(webView.containsLabelSequence(["m2", "Show more options", "Like"]))
+        XCTAssert(webView.containsLabelSequence(["m3", "Show more options", "3 likes", "Like"]))
+        XCTAssert(webView.containsLabelSequence(["m5", "Show more options", "1 like", "Like"]))
 
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "1").label(), "Number of likes: 2")
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "2").label(), "Number of likes: 1")
-        XCTAssertEqual(DiscussionReply.ratingCount(id: "3").label(), "Number of likes: 2")
-        DiscussionReply.ratingCount(id: "5").waitToVanish()
+        webView.rawElement.find(label: "Like").allElements.forEach { $0.tap() }
+
+        waitUntil { webView.containsLabelSequence(["m1", "Show more options", "2 likes", "Like"]) }
+        waitUntil { webView.containsLabelSequence(["m2", "Show more options", "1 like", "Like"]) }
+        waitUntil { webView.containsLabelSequence(["m3", "Show more options", "2 likes", "Like"]) }
+        waitUntil { webView.containsLabelSequence(["m5", "Show more options", "Like"]) }
     }
 
     func testRepliesMarkedAsReadOnScroll() {
         mockBaseRequests()
         mockCoursePermission()
-        let messageIds = (10...20).map(ID.init)
-        let discussion = mockDiscussion(fullTopic: APIDiscussionView.make(
-            unread_entries: messageIds,
-            view: messageIds.map { APIDiscussionEntry.make(id: $0, message: "reply \($0)") }
-        ))
+        let messageIds = (10...15).map(ID.init)
+        let discussion = mockDiscussion(
+            APIDiscussionTopic.make(id: 42),
+            fullTopic: APIDiscussionView.make(
+                unread_entries: messageIds,
+                view: messageIds.map { APIDiscussionEntry.make(id: $0, message: "reply \($0)") }
+            )
+        )
         show("/courses/\(course.id)/discussion_topics/\(discussion.id)")
+        app.swipeDown()
 
         app.find(label: "reply 10").waitToExist()
 
         waitUntil {
+            sleep(2)
             app.swipeUp()
             return messageIds.allSatisfy { markedAsRead[$0] == true }
         }
