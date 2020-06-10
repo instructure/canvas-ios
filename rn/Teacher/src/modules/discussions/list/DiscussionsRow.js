@@ -25,15 +25,15 @@ import {
   Image,
 } from 'react-native'
 import i18n from 'format-message'
-import { createStyleSheet } from '@common/stylesheet'
+import { createStyleSheet } from '../../../common/stylesheet'
 
-import Row from '@common/components/rows/Row'
-import AccessIcon from '@common/components/AccessIcon'
-import { formattedDueDateWithStatus, formattedDueDate } from '@common/formatters'
-import { extractDateFromString } from '@utils/dateUtils'
-import instIcon from '@images/inst-icons'
-import { DotSeparated, Text } from '@common/text'
-import { isTeacher } from '@modules/app'
+import Row from '../../../common/components/rows/Row'
+import AccessIcon from '../../../common/components/AccessIcon'
+import { formattedDueDateWithStatus, formattedDueDate } from '../../../common/formatters'
+import { extractDateFromString } from '../../../utils/dateUtils'
+import instIcon from '../../../images/inst-icons'
+import { DotSeparated, Text } from '../../../common/text'
+import { isTeacher } from '../../app'
 
 export type Props = {
   discussion: Discussion,

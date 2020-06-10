@@ -29,9 +29,9 @@ import {
   TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
-import { Text } from '@common/text'
-import { createStyleSheet } from '@common/stylesheet'
-import Images from '@images/index'
+import { Text } from '../../../common/text'
+import { createStyleSheet } from '../../../common/stylesheet'
+import Images from '../../../images/index'
 
 const AdjustableView = requireNativeComponent('Adjustable')
 const AnimatedAdjustable = Animated.createAnimatedComponent(AdjustableView)

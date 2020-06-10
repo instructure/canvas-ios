@@ -16,26 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
 module.exports = {
   presets: [ 'module:metro-react-native-babel-preset' ],
-  plugins: [
-    [ 'module-resolver', {
-      root: [ './src' ],
-      alias: {
-        '@modules': './src/modules',
-        '@test': './test',
-        '@common': './src/common',
-        '@images': './src/images',
-        '@templates': './src/__templates__',
-        '@mocks': './src/__mocks__',
-        '@canvas-api': './src/canvas-api',
-        '@canvas-api2': './src/canvas-api-v2',
-        '@utils': './src/utils',
-        '@redux': './src/redux',
-        '@routing': './src/routing',
-      },
-    } ],
-  ],
   sourceMaps: true,
 }
