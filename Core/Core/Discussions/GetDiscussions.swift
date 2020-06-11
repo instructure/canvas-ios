@@ -80,7 +80,10 @@ class GetDiscussionView: CollectionUseCase {
         Scope.where(
             #keyPath(DiscussionEntry.topicID),
             equals: topicID,
-            orderBy: #keyPath(DiscussionEntry.createdAt)
+            sortDescriptors: [
+                NSSortDescriptor(key: #keyPath(DiscussionEntry.createdAt), ascending: true, naturally: false),
+                NSSortDescriptor(key: #keyPath(DiscussionEntry.id), ascending: true),
+            ]
         )
     }
 

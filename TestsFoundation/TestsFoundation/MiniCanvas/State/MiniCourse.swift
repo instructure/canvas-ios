@@ -32,6 +32,7 @@ public class MiniCourse {
     public var pages: [APIPage] = []
     public var courseFiles: MiniFolder?
     public var contentLicenses: [Any] = []
+    public var settings: [String: Bool] = [:]
 
     public var id: String { api.id.value }
 

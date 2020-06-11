@@ -409,6 +409,12 @@ open class CoreUITestCase: XCTestCase {
         return mockRequest(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    open func mockData<R: APIRequestable>(_ requestable: R, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
+        let api = URLSessionAPI()
+        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
+        return mockResponse(request, response: dynamicResponse)
+    }
+
     open func mockEncodableRequest<D: Codable>(
         _ path: String,
         value: D? = nil,
@@ -591,6 +597,7 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("conferences?state=live", value: [String]())
+        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel.currentUser), value: [])
         if Bundle.main.isTeacherApp {
             mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [])
         }

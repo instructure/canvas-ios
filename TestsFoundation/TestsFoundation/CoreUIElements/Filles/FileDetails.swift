@@ -19,5 +19,5 @@
 import Foundation
 
 public enum FileDetails: String, ElementWrapper {
-    case imageView, webView
+    case imageView, webView, shareButton
 }

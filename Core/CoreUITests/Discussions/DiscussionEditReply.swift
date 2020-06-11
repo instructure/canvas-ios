@@ -21,5 +21,5 @@ import TestsFoundation
 public enum DiscussionEditReply: String, ElementWrapper {
     case
         attachmentButton,
-        doneButton
+        sendButton
 }

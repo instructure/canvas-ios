@@ -18,6 +18,7 @@
 
 import XCTest
 import WebKit
+import QuickLook
 @testable import Core
 import TestsFoundation
 
@@ -107,12 +108,20 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
 
         (controller.attachButton.customView as? UIButton)?.sendActions(for: .primaryActionTriggered)
         let sheet = router.presented as? BottomSheetPickerViewController
-        XCTAssertEqual(sheet?.actions.count, 1)
-        XCTAssertEqual(sheet?.actions.first?.title, "Delete")
+        XCTAssertEqual(sheet?.actions.count, 2)
+        XCTAssertEqual(sheet?.actions.first?.title, "View")
         sheet?.actions.first?.action()
+        let preview = router.presented as? QLPreviewController
+        XCTAssert(preview?.dataSource === controller)
+        XCTAssertEqual(preview?.dataSource?.numberOfPreviewItems(in: preview!), 1)
+        XCTAssertNotNil(preview?.dataSource?.previewController(preview!, previewItemAt: 0))
+
+        XCTAssertEqual(sheet?.actions.last?.title, "Delete")
+        sheet?.actions.last?.action()
         XCTAssertEqual(controller.attachBadge.isHidden, true)
         XCTAssertEqual(controller.sendButton.isEnabled, false)
         XCTAssertEqual(controller.attachmentURL, nil)
+        XCTAssertEqual(preview?.dataSource?.numberOfPreviewItems(in: preview!), 0)
 
         api.mock(CreateDiscussionReply(context: context, topicID: "1", message: ""), error: NSError.internalError())
         _ = controller.sendButton.target?.perform(controller.sendButton.action)

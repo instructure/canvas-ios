@@ -182,6 +182,9 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetCourseRequest(courseID: Pattern.courseID)) { request in
             try lookupCourse(forRequest: request).api
         },
+        .apiRequest(GetCourseSettingsRequest(courseID: Pattern.courseID)) { request in
+            try lookupCourse(forRequest: request).settings
+        },
 
         // MARK: Enrollments
         // https://canvas.instructure.com/doc/api/enrollments.html

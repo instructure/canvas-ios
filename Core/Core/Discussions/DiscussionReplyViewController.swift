@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import QuickLook
 import UIKit
 
 public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDelegate, ErrorViewController, RichContentEditorDelegate {
@@ -122,8 +123,8 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
         addCancelButton(side: .left)
         attachButton.accessibilityLabel = NSLocalizedString("Attachment", bundle: .core, comment: "")
-        attachButton.accessibilityIdentifier = "DiscussionReply.attachButton"
-        sendButton.accessibilityIdentifier = "DiscussionReply.sendButton"
+        attachButton.accessibilityIdentifier = "DiscussionEditReply.attachmentButton"
+        sendButton.accessibilityIdentifier = "DiscussionEditReply.sendButton"
         sendButton.isEnabled = false
         navigationItem.rightBarButtonItem = sendButton
 
@@ -274,11 +275,17 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
     }
 }
 
-extension DiscussionReplyViewController: FilePickerDelegate {
+extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewControllerDataSource {
     @objc func attach() {
         guard attachmentURL != nil else { return filePicker.pick(from: self) }
 
         let sheet = BottomSheetPickerViewController.create()
+        sheet.addAction(image: .icon(.eye), title: NSLocalizedString("View", bundle: .core, comment: "")) { [weak self] in
+            guard let self = self else { return }
+            let controller = QLPreviewController()
+            controller.dataSource = self
+            self.env.router.show(controller, from: self, options: .modal())
+        }
         sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
             guard let self = self, let url = self.attachmentURL else { return }
             self.attachmentURL = nil
@@ -297,4 +304,12 @@ extension DiscussionReplyViewController: FilePickerDelegate {
 
     // Should not be needed since we don't filePicker.showOptions.
     public func filePicker(didRetry file: File) {}
+
+    public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return attachmentURL != nil ? 1 : 0
+    }
+
+    public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return attachmentURL! as NSURL
+    }
 }

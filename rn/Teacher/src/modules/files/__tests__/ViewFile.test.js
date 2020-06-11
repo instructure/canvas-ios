@@ -50,8 +50,8 @@ jest.mock('react-native-fs', () => ({
 }))
 
 const selectors = {
-  share: '[testID="view-file.share-btn"]',
-  copy: '[testID="view-file.copy-btn"]',
+  share: '[testID="FileDetails.shareButton"]',
+  copy: '[testID="FileDetails.copyButton"]',
 }
 
 const updatedState = (tree: ShallowWrapper) => new Promise(resolve => tree.setState({}, resolve))
