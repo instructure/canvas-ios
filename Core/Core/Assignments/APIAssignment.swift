@@ -57,6 +57,10 @@ public struct APIAssignmentDate: Codable, Equatable {
     let lock_at: Date?
 }
 
+public enum GradingType: String, Codable {
+    case pass_fail, percent, letter_grade, gpa_scale, points, not_graded
+}
+
 #if DEBUG
 extension APIAssignment {
     public static func make(

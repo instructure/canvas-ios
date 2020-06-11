@@ -34,6 +34,34 @@ public struct APITodo: Codable {
     let group_id: ID?
 }
 
+#if DEBUG
+extension APITodo {
+    public static func make(
+        type: TodoType = .submitting,
+        ignore: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
+        ignore_permanently: URL = URL(string: "https://canvas.instructure.com/api/v1/users/self/todo_ignore/1")!,
+        html_url: URL = URL(string: "https://canvas.instructure.com/api/v1/courses/1/assignments/1")!,
+        needs_grading_count: UInt? = nil,
+        assignment: APIAssignment = .make(),
+        context_type: String = "Course",
+        course_id: ID? = "1",
+        group_id: ID? = nil
+    ) -> APITodo {
+        return APITodo(
+            type: type,
+            ignore: ignore,
+            ignore_permanently: ignore_permanently,
+            html_url: html_url,
+            needs_grading_count: needs_grading_count,
+            assignment: assignment,
+            context_type: context_type,
+            course_id: course_id,
+            group_id: group_id
+        )
+    }
+}
+#endif
+
 struct GetTodosRequest: APIRequestable {
     typealias Response = [APITodo]
     let path = "users/self/todo"
