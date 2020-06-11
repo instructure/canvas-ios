@@ -41,7 +41,6 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         controller.editor.webView = MockWebView()
         controller.webView = webView
         api.mock(controller.course, value: .make())

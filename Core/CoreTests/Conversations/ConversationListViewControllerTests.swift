@@ -39,7 +39,6 @@ class ConversationListViewControllerTests: CoreTestCase {
     }
 
     func testLayout() {
-        environment.mockStore = false
         let navigation = UINavigationController(rootViewController: controller)
         loadView()
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
@@ -83,7 +82,6 @@ class ConversationListViewControllerTests: CoreTestCase {
     }
 
     func testErrorEmpty() {
-        environment.mockStore = false
         api.mock(GetConversations(scope: nil, filter: nil), error: NSError.instructureError("Doh!"))
 
         loadView()

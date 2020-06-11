@@ -26,11 +26,6 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
     lazy var controller = ModuleItemDetailsViewController.create(courseID: "1", moduleID: "2", itemID: "3")
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         router.mock("/courses/1/files/2?origin=module_item_details") {
             FileDetailsViewController.create(context: ContextModel(.course, id: "1"), fileID: "2")

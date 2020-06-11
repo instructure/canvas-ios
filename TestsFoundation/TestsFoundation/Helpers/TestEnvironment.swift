@@ -22,7 +22,7 @@ import CoreData
 import XCTest
 
 public class TestEnvironment: AppEnvironment {
-    public var mockStore = true
+    public var mockStore = false
 
     override public init() {
         super.init()

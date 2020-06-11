@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,39 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
+import Core
 import TestsFoundation
 import XCTest
-@testable import SubmitAssignment
 
-class AssignmentsViewControllerTests: SubmitAssignmentTestCase {
+class CoursesViewControllerTests: SubmitAssignmentTestCase {
     var courseID = "1"
-    var selectedAssignmentID: String?
-    var selectedAssignment: Assignment?
+    var selectedCourseID: String?
+    var selectedCourse: Course?
 
-    lazy var controller = AssignmentsViewController.create(
-        courseID: courseID,
-        selectedAssignmentID: selectedAssignmentID,
-        callback: { [weak self] in self?.selectedAssignment = $0 }
+    lazy var controller = CoursesViewController.create(
+        selectedCourseID: selectedCourseID,
+        callback: { [weak self] in self?.selectedCourse = $0 }
     )
 
     func testLayout() {
-        selectedAssignmentID = "1"
+        selectedCourseID = "1"
         api.mock(
-            controller.assignments.useCase.request,
+            controller.courses,
             value: [
                 .make(
                     id: "1",
-                    course_id: ID(courseID),
-                    name: "Assignment 1",
-                    submission_types: [.online_upload]
+                    name: "Course 1"
                 ),
                 .make(
                     id: "2",
-                    course_id: ID(courseID),
-                    name: "Assignment 2",
-                    submission_types: [.online_upload]
+                    name: "Course 2"
                 ),
             ]
         )
@@ -56,14 +49,14 @@ class AssignmentsViewControllerTests: SubmitAssignmentTestCase {
         let tableView = controller.tableView
         XCTAssertEqual(controller.tableView.dataSource?.tableView(tableView!, numberOfRowsInSection: 0), 2)
         let firstCell = controller.tableView.dataSource?.tableView(tableView!, cellForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(firstCell?.textLabel?.text, "Assignment 1")
+        XCTAssertEqual(firstCell?.textLabel?.text, "Course 1")
         XCTAssertEqual(firstCell?.accessoryType, .checkmark)
 
         let secondCell = controller.tableView.dataSource?.tableView(tableView!, cellForRowAt: IndexPath(row: 1, section: 0))
-        XCTAssertEqual(secondCell?.textLabel?.text, "Assignment 2")
+        XCTAssertEqual(secondCell?.textLabel?.text, "Course 2")
         XCTAssertEqual(secondCell?.accessoryType, UITableViewCell.AccessoryType.none)
 
         controller.tableView.delegate?.tableView?(tableView!, didSelectRowAt: IndexPath(row: 1, section: 0))
-        XCTAssertEqual(selectedAssignment?.name, "Assignment 2")
+        XCTAssertEqual(selectedCourse?.name, "Course 2")
     }
 }

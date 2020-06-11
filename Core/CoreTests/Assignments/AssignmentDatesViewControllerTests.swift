@@ -23,11 +23,6 @@ import TestsFoundation
 class AssignmentDatesViewControllerTests: CoreTestCase {
     lazy var controller = AssignmentDatesViewController.create(courseID: "1", assignmentID: "1")
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func getText() -> String {
         return controller.linesView.arrangedSubviews.compactMap { view in
             (view as? UILabel)?.attributedText?.string

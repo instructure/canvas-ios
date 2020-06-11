@@ -25,7 +25,6 @@ class TodoListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
             "group_1": "#0f0",

@@ -42,7 +42,6 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(GetEnabledFeatureFlagsRequest(context: context), value: ["rce_enhancements"])
         controller = RichContentEditorViewController.create(context: context, uploadTo: .myFiles)
         controller.delegate = self

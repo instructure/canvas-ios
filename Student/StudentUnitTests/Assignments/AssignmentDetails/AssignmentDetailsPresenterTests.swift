@@ -47,6 +47,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         pageViewLogger = MockPageViewLogger()
+        env.mockStore = true
         env.pageViewLogger = pageViewLogger
         presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton

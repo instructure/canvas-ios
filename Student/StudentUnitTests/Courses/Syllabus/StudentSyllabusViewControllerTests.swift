@@ -40,7 +40,6 @@ class StudentSyllabusViewControllerTests: StudentTestCase {
 
     func testRender() {
         //  given
-        env.mockStore = false
         api.mock(vc.presenter.courses, value: APICourse.make())
         api.mock(vc.presenter.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",

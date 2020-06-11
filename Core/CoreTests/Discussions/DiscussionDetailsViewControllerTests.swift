@@ -64,7 +64,6 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         controller.webView = webView
         api.mock(controller.colors, value: .init(custom_colors: [
             "course_1": "#008",

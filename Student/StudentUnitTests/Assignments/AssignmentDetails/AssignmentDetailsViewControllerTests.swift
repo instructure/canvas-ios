@@ -30,7 +30,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        env.mockStore = false
         viewController = AssignmentDetailsViewController.create(env: env, courseID: courseID, assignmentID: assignmentID)
         prevSpeed = UIApplication.shared.keyWindow?.layer.speed ?? 1
         UIApplication.shared.keyWindow?.layer.speed = 100

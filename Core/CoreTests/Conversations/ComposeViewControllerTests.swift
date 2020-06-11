@@ -31,11 +31,6 @@ class ComposeViewControllerTests: CoreTestCase {
         hiddenMessage: "hidden"
     )
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func loadView() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

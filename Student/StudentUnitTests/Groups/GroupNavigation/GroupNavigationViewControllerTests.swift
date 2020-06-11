@@ -27,7 +27,6 @@ class GroupNavigationViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        env.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ context.canvasContextID: "#f00" ]))
         api.mock(controller.groups, value: .make(name: "Tests"))
         api.mock(controller.tabs, value: [

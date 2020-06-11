@@ -54,7 +54,6 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(controller.helpLinks, value: nil)
         api.mock(controller.permissions, value: .make(become_user: true))
         api.mock(controller.tools, value: [])

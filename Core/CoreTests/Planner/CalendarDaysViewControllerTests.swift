@@ -48,7 +48,6 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
 
     func testDates() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
-        environment.mockStore = false
         api.mock(getPlannablesRequest(
             from: DateComponents(calendar: .current, year: 2020, month: 1, day: 26).date!,
             to: DateComponents(calendar: .current, year: 2020, month: 3, day: 1).date!

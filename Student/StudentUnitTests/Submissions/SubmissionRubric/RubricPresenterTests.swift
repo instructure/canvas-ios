@@ -32,6 +32,7 @@ class RubricPresenterTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        env.mockStore = true
         models = []
         showEmptyStateFlag = false
         presenter = RubricPresenter(env: env, view: self, courseID: courseID, assignmentID: assignmentID, userID: userID)

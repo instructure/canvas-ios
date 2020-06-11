@@ -41,7 +41,6 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         PublishedIconView.isAutohideEnabled = false
         api.mock(viewController.courses, value: .make(id: "1", name: "Course 1"))
         UIView.setAnimationsEnabled(false)

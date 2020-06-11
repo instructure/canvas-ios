@@ -32,7 +32,6 @@ class SyllabusViewControllerTests: CoreTestCase {
     lazy var controller = SyllabusViewController.create(courseID: "1")
 
     func testLayout() {
-        environment.mockStore = false
         let html = "<body>hello world</body>"
         let webView = MockWebView()
         api.mock(controller.courses, value: .make(syllabus_body: html))

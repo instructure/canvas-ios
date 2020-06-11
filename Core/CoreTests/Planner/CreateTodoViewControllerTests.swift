@@ -26,7 +26,6 @@ class CreateTodoViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         vc = CreateTodoViewController.create()
         Clock.mockNow(date)
     }
