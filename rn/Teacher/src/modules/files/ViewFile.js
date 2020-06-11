@@ -394,7 +394,7 @@ export default class ViewFile extends Component<Props, State> {
               style={styles.toolbarButton}
               underlayColor='transparent'
               accessibilityTraits='button'
-              testID='view-file.share-btn'
+              testID='FileDetails.shareButton'
               accessibilityLabel={i18n('Share')}
             >
               <Image source={Images.share} style={styles.toolbarIcon} />
@@ -404,7 +404,7 @@ export default class ViewFile extends Component<Props, State> {
               style={styles.toolbarButton}
               underlayColor='transparent'
               accessibilityTraits='button'
-              testID='view-file.copy-btn'
+              testID='FileDetails.copyButton'
               accessibilityLabel={i18n('Copy Link')}
             >
               <Image source={icon('link')} style={styles.toolbarIcon} />
