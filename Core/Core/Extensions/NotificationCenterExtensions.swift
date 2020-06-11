@@ -23,6 +23,8 @@ extension NSNotification.Name {
     public static let SplitViewControllerWillChangeDisplayModeNotification = Notification.Name( "com.instructure.core.notification.splitview.willChangeDisplayMode")
 
     public static let quizRefresh = Notification.Name( "com.instructure.core.notification.quizRefresh")
+
+    public static let celebrateSubmission = Notification.Name( "com.instructure.core.notification.celebrateSubmission")
 }
 
 extension NotificationCenter {
