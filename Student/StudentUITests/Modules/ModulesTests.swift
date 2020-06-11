@@ -21,33 +21,38 @@ import TestsFoundation
 @testable import CoreUITests
 
 class ModulesTests: StudentUITestCase {
+    override var experimentalFeatures: [ExperimentalFeature] { [.studentModules] }
+
     override func setUp() {
         super.setUp()
         mockBaseRequests()
     }
 
     func testUnlockModuleItemWithPrerequisiteModule() {
-        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 100), value: [
+        let item1 = APIModuleItem.make(
+            id: "1",
+            module_id: "1",
+            title: "Page 1",
+            content: .page("page-1"),
+            html_url: URL(string: "https://canvas.instructure.com/api/v1/courses/1/modules/items/1")!,
+            url: URL(string: "https://canvas.example.edu/api/v1/courses/1/pages/page-1"),
+            completion_requirement: .make(type: .must_view, completed: false)
+        )
+        mockData(GetUserProfileRequest(userID: "self"), value: APIProfile.make())
+        mockData(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .locked),
         ])
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths], perPage: 100), value: [
-            .make(
-                id: "1",
-                module_id: "1",
-                title: "Page 1",
-                content: .page("page-1"),
-                url: URL(string: "https://canvas.instructure.com/api/v1/courses/1/pages/page-1")!,
-                completion_requirement: .make(type: .must_view, completed: false)
-            ),
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            item1,
         ])
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 100), value: [
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [
             .make(
                 id: "2",
                 module_id: "2",
                 title: "Page 2",
                 content: .page("page-2"),
-                url: URL(string: "https://canvas.instructure.com/api/v1/courses/1/pages/page-2")!,
+                html_url: URL(string: "https://canvas.instructure.com/api/v1/courses/1/modules/items/2")!,
                 content_details: .make(locked_for_user: true, lock_explanation: "This item is part of a prereq module")
             ),
         ])
@@ -58,17 +63,14 @@ class ModulesTests: StudentUITestCase {
                 modules: []
             )
         )
-        mockData(GetPageRequest(context: ContextModel(.course, id: "1"), url: "page-1"), value: .make())
+        mockData(GetModuleItemRequest(courseID: "1", moduleID: "1", itemID: "1", include: [.content_details]), value: item1)
+        mockData(GetPageRequest(context: ContextModel(.course, id: "1"), url: "page-1"), value: .make(body: "hello"))
         mockData(PostMarkModuleItemRead(courseID: "1", moduleID: "1", moduleItemID: "1"))
         show("courses/1/modules")
-        XCTAssertEqual(Modules.module(index: 0).label(), "Module 1")
-        XCTAssertEqual(Modules.module(index: 1).label(), "Module 2. Status: Locked")
-        Modules.module(index: 1).tap()
-        app.find(labelContaining: "PREREQUISITE MODULES").waitToExist()
-        XCTAssertEqual(app.find(id: "module_cell_0_0").label(), "Module 1")
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page. Status: Locked")
-        XCTAssertFalse(ModulesDetail.moduleItem(index: 0).isEnabled)
-        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths], perPage: 100), value: [
+        ModuleList.module(section: 0).waitToExist()
+        ModuleList.module(section: 1).waitToExist()
+        XCTAssertEqual(ModuleList.item(section: 1, row: 0).label(), "page, Page 2, locked")
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [
             .make(
                 id: "2",
                 module_id: "2",
@@ -78,17 +80,13 @@ class ModulesTests: StudentUITestCase {
                 content_details: .make(locked_for_user: false)
             ),
         ])
-        mockData(GetModulesRequest(courseID: "1", include: [.items], perPage: 100), value: [
+        mockData(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 1, prerequisite_module_ids: [], state: .unlocked),
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .unlocked),
         ])
-        ModulesDetail.module(index: 0).tap()
-        ModulesDetail.moduleItem(index: 0).tap()
-        NavBar.backButton(label: "Module 1").waitToExist(60)
-        NavBar.backButton(label: "Module 1").tap()
-        NavBar.backButton(label: "Module 2").tap()
-        app.find(label: "Page 2. Type: Page").waitToExist()
-        XCTAssertEqual(ModulesDetail.moduleItem(index: 0).label(), "Page 2. Type: Page")
-        XCTAssertTrue(ModulesDetail.moduleItem(index: 0).isEnabled)
+        ModuleList.item(section: 0, row: 0).tap()
+        NavBar.backButton.tap()
+        XCTAssertEqual(ModuleList.item(section: 1, row: 0).label(), "page, Page 2")
+        XCTAssertTrue(ModuleList.item(section: 1, row: 0).isEnabled)
     }
 }
