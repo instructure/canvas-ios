@@ -44,7 +44,7 @@ public extension Element {
             tap(file: file, line: line)
             sleep(1)
         }
-        XCTAssertTrue(test())
+        waitUntil(file: file, line: line, predicate: test)
     }
 
     func toggleOn(file: StaticString = #file, line: UInt = #line) {
