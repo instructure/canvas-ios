@@ -75,7 +75,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
             "paddingTop": 10,
           }
         }
-        testID="view-file.share-btn"
+        testID="FileDetails.shareButton"
         underlayColor="transparent"
       >
         <Image
@@ -106,7 +106,7 @@ exports[`ViewFile renders loading while fetching the file 1`] = `
             "paddingTop": 10,
           }
         }
-        testID="view-file.copy-btn"
+        testID="FileDetails.copyButton"
         underlayColor="transparent"
       >
         <Image

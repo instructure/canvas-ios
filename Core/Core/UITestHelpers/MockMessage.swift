@@ -105,6 +105,10 @@ public class MockHTTPResponse: Codable {
         try root.encode(errorMessage, forKey: .errorMessage)
         try root.encode(noCallback, forKey: .noCallback)
     }
+
+    public static var noContent: MockHTTPResponse {
+        MockHTTPResponse(http: HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: [:]))
+    }
 }
 
 #endif

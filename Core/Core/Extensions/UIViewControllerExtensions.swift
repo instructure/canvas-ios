@@ -84,6 +84,7 @@ extension UIViewController {
 
     public func addDismissBarButton(_ barButtonSystemItem: UIBarButtonItem.SystemItem, side: NavigationItemSide) {
         let button = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: self, action: #selector(dismissDoneButton))
+        button.accessibilityIdentifier = "screen.dismiss"
         addNavigationButton(button, side: side)
     }
 

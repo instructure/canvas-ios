@@ -331,3 +331,14 @@ struct PostCourseRequest: APIRequestable {
         return "\(ContextModel(.account, id: accountID).pathComponent)/courses"
     }
 }
+
+// https://canvas.instructure.com/doc/api/courses.html#method.courses.api_settings
+struct GetCourseSettingsRequest: APIRequestable {
+    typealias Response = [String: Bool]
+
+    let courseID: String
+
+    var path: String {
+        return "courses/\(courseID)/settings"
+    }
+}

@@ -409,6 +409,12 @@ open class CoreUITestCase: XCTestCase {
         return mockRequest(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 
+    open func mockData<R: APIRequestable>(_ requestable: R, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
+        let api = URLSessionAPI()
+        let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
+        return mockResponse(request, response: dynamicResponse)
+    }
+
     open func mockEncodableRequest<D: Codable>(
         _ path: String,
         value: D? = nil,

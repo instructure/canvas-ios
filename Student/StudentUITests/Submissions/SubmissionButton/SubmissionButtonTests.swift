@@ -98,20 +98,15 @@ class SubmissionButtonTests: StudentUITestCase {
         mockBaseRequests()
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
-        mockData(GetContextPermissionsRequest(context: course), value: .make())
-        mockEncodableRequest("courses/\(course.id)/discussion_topics/1/read", value: "")
-        mockEncodableRequest("courses/\(course.id)/discussion_topics/1?include[]=sections", value: topic)
-        mockEncodableRequest("courses/\(course.id)/discussion_topics/1/view?include_new_entries=1", value: [
-            "unread_entries": [String](),
-            "participants": [String](),
-            "view": [String](),
-            "new_entries": [String](),
-            "entry_ratings": [String](),
-        ])
+        mockData(GetContextPermissionsRequest(context: course, permissions: [.postToForum]), value: .make())
+        mockData(GetGroupsRequest(context: course), value: [])
+        mockData(MarkDiscussionTopicReadRequest(context: course, topicID: "1", isRead: true), value: APINoContent())
+        mockData(GetDiscussionTopicRequest(context: course, topicID: "1"))
+        mockData(GetDiscussionViewRequest(context: course, topicID: "1", includeNewEntries: true), value: .make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
-        XCTAssertEqual(DiscussionDetails.titleLabel.label(), topic.title)
+        app.find(label: "my discussion topic").waitToExist()
         NavBar.backButton.tap()
     }
 

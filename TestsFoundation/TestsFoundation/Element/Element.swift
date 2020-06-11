@@ -34,26 +34,29 @@ public extension Element {
         return !app.windows.element(boundBy: 0).frame.contains(frame(file: file, line: line))
     }
 
-    @discardableResult
-    func tapUntil(file: StaticString = #file, line: UInt = #line, test: () -> Bool) -> Bool {
+    func tapUntil(file: StaticString = #file, line: UInt = #line, message: String? = nil, test: () -> Bool) {
         tap(file: file, line: line)
         sleep(1)
         for _ in 0..<5 where exists(file: file, line: line) {
             if test() {
-                return true
+                return
             }
             tap(file: file, line: line)
             sleep(1)
         }
-        return test()
+        waitUntil(file: file, line: line, predicate: test)
     }
 
     func toggleOn(file: StaticString = #file, line: UInt = #line) {
-        XCTAssertTrue(tapUntil { value(file: file, line: line) == "1" }, "failed to toggle on")
+        tapUntil(file: file, line: line, message: "failed to toggle on") {
+            value(file: file, line: line) == "1"
+        }
     }
 
     func toggleOff(file: StaticString = #file, line: UInt = #line) {
-        XCTAssertTrue(tapUntil { value(file: file, line: line) == "0" }, "failed to toggle off")
+        tapUntil(file: file, line: line, message: "failed to toggle off") {
+            value(file: file, line: line) == "0"
+        }
     }
 
     func exists(file: StaticString = #file, line: UInt = #line) -> Bool {
@@ -177,9 +180,46 @@ public extension Element {
         queryWrapper.rawElement
     }
 
+    var allElements: [Element] {
+        queryWrapper.allElements
+    }
+
     /// returns true if this element, or any of its children have keyboard focus
     func containsKeyboardFocusedElement(file: StaticString = #file, line: UInt = #line) -> Bool {
         queryWrapper.containsKeyboardFocusedElement(file: file, line: line)
+    }
+
+    func orderedLabels(file: StaticString = #file, line: UInt = #line) -> [String]? {
+        guard let elements = snapshot(file: file, line: line)?.dictionaryRepresentation else {
+            return nil
+        }
+
+        var labels: [String] = []
+        func traverse(_ element: [XCUIElement.AttributeName: Any]) {
+            if let label = element[.label] as? String, !label.isEmpty {
+                labels.append(label)
+            } else if let children = element[.children] as? [[XCUIElement.AttributeName: Any]] {
+                children.forEach(traverse)
+            }
+        }
+        traverse(elements)
+        return labels
+    }
+
+    func containsLabelSequence(_ subsequence: [String], file: StaticString = #file, line: UInt = #line) -> Bool {
+        guard let labels = orderedLabels(file: file, line: line) else {
+            return false
+        }
+        for i in labels.indices {
+            if labels.dropFirst(i).starts(with: subsequence) {
+                return true
+            }
+        }
+        return false
+    }
+
+    subscript(_ index: Int) -> Element {
+        XCUIElementQueryWrapper(queryWrapper.query, index: index)
     }
 }
 
@@ -231,6 +271,10 @@ public struct XCUIElementQueryWrapper: Element {
             rawIndex = index
         }
         return query.element(boundBy: rawIndex)
+    }
+
+    public var allElements: [Element] {
+        (0..<query.count).map { self[$0] }
     }
 
     /// returns true if this element, or any of its children have keyboard focus

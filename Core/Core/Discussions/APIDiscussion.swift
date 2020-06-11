@@ -82,7 +82,7 @@ public struct APIDiscussionPermissions: Codable, Equatable {
 public struct APIDiscussionView: Codable, Equatable {
     let participants: [APIDiscussionParticipant]
     let unread_entries: [ID]
-    let entry_ratings: [String: Int]
+    var entry_ratings: [String: Int]
     let forced_entries: [ID]
     let view: [APIDiscussionEntry]
     let new_entries: [APIDiscussionEntry]?
@@ -190,9 +190,9 @@ extension APIDiscussionView {
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
             .make(id: 1, message: "m1", rating_count: 1, replies: [
-                .make(id: 2, user_id: 2, message: "m2", rating_count: 0, replies: [
-                    .make(id: 3, message: "m3", rating_count: 3, replies: [
-                        .make(id: 4, message: "m4 (deep)"),
+                .make(id: 2, user_id: 2, parent_id: 1, message: "m2", rating_count: 0, replies: [
+                    .make(id: 3, parent_id: 2, message: "m3", rating_count: 3, replies: [
+                        .make(id: 4, parent_id: 3, message: "m4 (deep)"),
                     ]),
                 ]),
             ]),

@@ -33,12 +33,13 @@ class DiscussionDetailsE2ETests: CoreUITestCase {
     }
 
     func testPreviewAttachment() {
+        let attachmentLink = app.find(label: "xcode-black.png", type: .link)
         DiscussionListCell.graded.tapUntil {
-            DiscussionDetails.attachmentButton.exists
+            attachmentLink.exists
         }
 
-        DiscussionDetails.attachmentButton.tap()
-        app.find(id: "attachment-view.share-btn").waitToExist()
+        attachmentLink.tap()
+        FileDetails.shareButton.waitToExist()
     }
 
     func testLinks() {

@@ -123,8 +123,8 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
         addCancelButton(side: .left)
         attachButton.accessibilityLabel = NSLocalizedString("Attachment", bundle: .core, comment: "")
-        attachButton.accessibilityIdentifier = "DiscussionReply.attachButton"
-        sendButton.accessibilityIdentifier = "DiscussionReply.sendButton"
+        attachButton.accessibilityIdentifier = "DiscussionEditReply.attachmentButton"
+        sendButton.accessibilityIdentifier = "DiscussionEditReply.sendButton"
         sendButton.isEnabled = false
         navigationItem.rightBarButtonItem = sendButton
 
