@@ -9,7 +9,6 @@
     "TabBar.\\w+$",
     "\\/Views\\/",
     "CanvasCore\/",
-    "Core\/Use Cases\/SubmitFileSubmission",
     "Frameworks\/",
     "Parent\/",
     "Pods\\/",

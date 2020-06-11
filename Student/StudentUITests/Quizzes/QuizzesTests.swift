@@ -211,9 +211,9 @@ class QuizzesTests: StudentUITestCase {
 
         mockData(GetQuizRequest(courseID: "1", quizID: quiz.id.value), value: quiz)
         mockData(GetQuizSubmissionRequest(courseID: "1", quizID: quiz.id.value),
-                 value: .init(quiz_submissions: [ ]))
+                 value: .init(quiz_submissions: []))
         mockData(GetAllQuizSubmissionsRequest(courseID: "1", quizID: quiz.id.value),
-                 value: .init(quiz_submissions: [ ]))
+                 value: .init(quiz_submissions: [], submissions: nil))
 
         show("courses/1/quizzes/\(quiz.id)")
         app.swipeLeft()
