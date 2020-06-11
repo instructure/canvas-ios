@@ -305,10 +305,10 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
 
 extension SubmissionButtonPresenter {
     @objc func handleCelebrate(_ notification: Notification) {
-        if
-            flags.first(where: { $0.name == "disable_celebrations" })?.enabled != true,
-            notification.userInfo?["assignmentID"] as? String == assignmentID
-        { performUIUpdate { self.showConfetti() } }
+        if flags.first(where: { $0.name == "disable_celebrations" })?.enabled != true,
+            notification.userInfo?["assignmentID"] as? String == assignmentID {
+            performUIUpdate { self.showConfetti() }
+        }
     }
 
     func showConfetti() {
@@ -317,7 +317,7 @@ extension SubmissionButtonPresenter {
         view.addSubview(animation)
         animation.pin(inside: view)
         animation.contentMode = .scaleAspectFill
-        animation.play() { _ in
+        animation.play { _ in
             animation.removeFromSuperview()
         }
     }
