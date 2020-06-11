@@ -82,3 +82,15 @@ class APICourseTests: XCTestCase {
         XCTAssertEqual(request.body, body)
     }
 }
+
+class GetCoursesRequestTests: CoreTestCase {
+    func testPathWithUser() {
+        let r = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: "1")
+        XCTAssertEqual(r.path, "users/1/courses")
+    }
+
+    func testPath() {
+        let r = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: nil)
+        XCTAssertEqual(r.path, "courses")
+    }
+}

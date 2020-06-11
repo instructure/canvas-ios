@@ -55,6 +55,28 @@ public enum CommunicationChannelWorkflowState: String, Codable {
     case active, unconfirmed
 }
 
+#if DEBUG
+extension APICommunicationChannel {
+    public static func make(
+        address: String = "All Devices",
+        id: ID = "1",
+        position: Int = 1,
+        type: CommunicationChannelType = .push,
+        user_id: ID = "1",
+        workflow_state: CommunicationChannelWorkflowState = .active
+    ) -> APICommunicationChannel {
+        return APICommunicationChannel(
+            address: address,
+            id: id,
+            position: position,
+            type: type,
+            user_id: user_id,
+            workflow_state: workflow_state
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/communication_channels.html#method.communication_channels.index
 public struct GetCommunicationChannelsRequest: APIRequestable {
     public typealias Response = [APICommunicationChannel]

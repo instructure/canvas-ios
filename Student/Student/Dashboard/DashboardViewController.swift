@@ -41,7 +41,7 @@ public class DashboardViewController: UIViewController {
     lazy var courses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in
         self?.update()
     }
-    lazy var groups = env.subscribe(GetUserGroups()) { [weak self] in
+    lazy var groups = env.subscribe(GetDashboardGroups()) { [weak self] in
         self?.update()
     }
     lazy var settings = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in

@@ -55,6 +55,22 @@ public enum NotificationFrequency: String, CaseIterable, Codable {
     }
 }
 
+#if DEBUG
+extension APINotificationPreference {
+    public static func make(
+        notification: String = "notification",
+        category: String = "category",
+        frequency: NotificationFrequency = .never
+    ) -> APINotificationPreference {
+        return APINotificationPreference(
+            notification: notification,
+            category: category,
+            frequency: frequency
+        )
+    }
+}
+#endif
+
 // https://canvas.instructure.com/doc/api/notification_preferences.html#method.notification_preferences.index
 struct GetNotificationPreferencesRequest: APIRequestable {
     struct Response: Codable {
