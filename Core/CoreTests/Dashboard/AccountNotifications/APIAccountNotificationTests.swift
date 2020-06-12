@@ -20,6 +20,10 @@ import XCTest
 @testable import Core
 
 class APIAccountNotificationTests: XCTestCase {
+    func testMake() {
+        XCTAssertEqual(APIAccountNotification.make().id.value, "1")
+    }
+
     func testGetAccountNotificationsRequest() {
         XCTAssertEqual(GetAccountNotificationsRequest().path, "accounts/self/users/self/account_notifications")
         XCTAssertEqual(GetAccountNotificationsRequest().queryItems, [ URLQueryItem(name: "per_page", value: "100") ])

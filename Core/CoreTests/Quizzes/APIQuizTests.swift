@@ -20,6 +20,19 @@ import XCTest
 @testable import Core
 
 class APIQuizTests: XCTestCase {
+    func testQuizAnswerValue() {
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+        let recode = { (v: APIQuizAnswerValue) in
+            try! decoder.decode(APIQuizAnswerValue.self, from: try! encoder.encode(v))
+        }
+        XCTAssertEqual(recode(.double(2.2)), .double(2.2))
+        XCTAssertEqual(recode(.string("str")), .string("str"))
+        XCTAssertEqual(recode(.hash(["key": "value"])), .hash(["key": "value"]))
+        XCTAssertEqual(recode(.list(["a", "b"])), .list(["a", "b"]))
+        XCTAssertEqual(recode(.matching([["a": "b"], ["c": "d"]])), .matching([["a": "b"], ["c": "d"]]))
+    }
+
     func testGetQuizzesRequest() {
         XCTAssertEqual(GetQuizzesRequest(courseID: "7").path, "courses/7/quizzes?per_page=100")
     }
@@ -34,5 +47,17 @@ class APIQuizTests: XCTestCase {
 
     func testGetAllQuizSubmissionsRequest() {
         XCTAssertEqual(GetAllQuizSubmissionsRequest(courseID: "45", quizID: "17").path, "courses/45/quizzes/17/submissions")
+    }
+
+    func testPostQuizSubmissionRequest() {
+        let req = PostQuizSubmissionRequest(courseID: "45", quizID: "25", body: .init(access_code: "a", preview: true))
+        XCTAssertEqual(req.method, .post)
+        XCTAssertEqual(req.path, "courses/45/quizzes/25/submissions")
+    }
+
+    func testPostQuizSubmissionCompleteRequest() {
+        let req = PostQuizSubmissionCompleteRequest(courseID: "45", quizID: "25", quizSubmissionID: "2", body: .init(attempt: 2, validation_token: "t", access_code: nil))
+        XCTAssertEqual(req.method, .post)
+        XCTAssertEqual(req.path, "courses/45/quizzes/25/submissions/2/complete")
     }
 }
