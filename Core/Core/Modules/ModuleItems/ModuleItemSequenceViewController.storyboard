@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="338" y="16" width="60" height="24"/>
+                                        <rect key="frame" x="366" y="13" width="32" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ModuleItemSequence.nextButton"/>
                                         <state key="normal" title="Next"/>
                                         <userDefinedRuntimeAttributes>
@@ -38,7 +38,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="90" height="24"/>
+                                        <rect key="frame" x="16" y="13" width="59" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ModuleItemSequence.previousButton"/>
                                         <state key="normal" title="Previous"/>
                                         <userDefinedRuntimeAttributes>

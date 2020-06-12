@@ -36,7 +36,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         loadFromXib().backgroundColor = .named(.backgroundLight)
     }
 
-    func update(_ module: Module, isExpanded: Bool, onTap: @escaping () -> Void) {
+    func update(_ module: Module, section: Int, isExpanded: Bool, onTap: @escaping () -> Void) {
         self.isExpanded = isExpanded
         self.onTap = onTap
         titleLabel.text = module.name
@@ -53,6 +53,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
                 : NSLocalizedString("collapsed", bundle: .core, comment: ""),
         ].joined(separator: ", ")
         accessibilityTraits.insert(.button)
+        accessibilityIdentifier = "ModuleList.\(section)"
     }
 
     @IBAction func handleTap() {

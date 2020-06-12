@@ -165,7 +165,7 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
-        header.update(module, isExpanded: isSectionExpanded(section)) { [weak self] in
+        header.update(module, section: section, isExpanded: isSectionExpanded(section)) { [weak self] in
             self?.toggleSection(section)
         }
         return header
