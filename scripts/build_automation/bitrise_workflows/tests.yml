@@ -427,21 +427,17 @@ workflows:
             set -euo pipefail
 
             all_targets=($(jq -r < TestPlans/NightlyTests.xctestplan '.testTargets[].target.name'))
-            # group_B_targets=(StudentUITests StudentE2ETests)
-            # group_A_targets=(${all_targets:|group_B_targets})
-
-            # TODO: run all the tests
-            group_B_targets=(StudentUnitTests TeacherTests)
-            group_A_targets=(ParentUITests ParentUnitTests)
+            group_B_targets=(StudentUITests StudentE2ETests)
+            group_A_targets=(${all_targets:|group_B_targets})
 
             if [[ $NIGHTLY_GROUP = A ]]; then
                 (cd rn/Teacher; yarn test:ci)
 
                 ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
 
-                # SCHEME=IPadTests \
-                # DEVICE_NAME='iPad Air (3rd generation)' \
-                # ./scripts/run-ui-tests.sh --build --append-results --all-tests
+                SCHEME=IPadTests \
+                DEVICE_NAME='iPad Air (3rd generation)' \
+                ./scripts/run-ui-tests.sh --build --append-results --all-tests
             elif [[ $NIGHTLY_GROUP = B ]]; then
                 ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
             else
@@ -507,11 +503,13 @@ workflows:
     steps:
     - build-router-wait:
         title: Wait for nightly group B sub-build to succeed
+        run_if: .IsCI
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - buildslugs: "${NIGHTLY_B_ROUTER_SLUG}"
     - script:
         title: Get B results
+        run_if: .IsCI
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
@@ -547,8 +545,7 @@ workflows:
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
     - script:
         title: Report tests
-        # run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
-        run_if: .IsCI
+        run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
