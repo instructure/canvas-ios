@@ -174,7 +174,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
 
                 guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
-                if helmVC.moduleName == url.path {
+                let path = url.path.isEmpty ? "/" : url.path
+                if helmVC.moduleName == path {
                     rootView.selectedIndex = index
                     rootView.resetSelectedViewController()
                     return
