@@ -2,21 +2,13 @@
 app:
   envs:
   - HOMEBREW_NO_INSTALL_CLEANUP: 1
-    opts:
-      is_expand: false
   - BITRISE_PROJECT_PATH: "./Canvas.xcworkspace"
-    opts:
-      is_expand: false
   - BITRISE_SCHEME: NightlyTests
-    opts:
-      is_expand: false
   - SPLUNK_ENDPOINT_URL: https://http-inputs-inst.splunkcloud.com:443/services/collector
-    opts:
-      is_expand: false
   - RCT_NO_LAUNCH_PACKAGER: 1
-  - FORCE_BUNDLING: "1"
+  - FORCE_BUNDLING: 1
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
-format_version: '4'
+format_version: 4
 project_type: other
 workflows:
 
@@ -82,8 +74,15 @@ workflows:
 
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
+
             brew unlink carthage
-            brew install --HEAD carthage
+            carthage_head=(/usr/local/Cellar/carthage/HEAD-*(Y1N))
+            if [[ -n $carthage_head ]]; then
+                brew switch carthage $carthage_head
+            else
+                brew install --HEAD carthage
+            fi
+
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
             pip3 install awscli
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
@@ -303,6 +302,18 @@ workflows:
     - *cocoapods
     - *build-citests
     - script:
+        title: Build UI test schemes
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            ./scripts/run-ui-tests.sh --build
+            SCHEME=IPadTests \
+            DEVICE_NAME='iPad Air (3rd generation)' \
+            ./scripts/run-ui-tests.sh --build
+    - script:
         title: Prepare cache
         inputs:
         - runner_bin: "/bin/zsh"
@@ -322,6 +333,7 @@ workflows:
             rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
             Carthage/ -> cache-metadata/cache-fingerprint
             ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
+            /usr/local/Cellar/carthage -> cache-metadata/cache-fingerprint
             /usr/local/Homebrew -> cache-metadata/cache-fingerprint
 
   nightly:
@@ -331,8 +343,11 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: nightly-b
+        outputs:
+          - ROUTER_STARTED_BUILD_SLUGS: NIGHTLY_B_ROUTER_SLUG
     after_run:
     - nightly-a
+    - nightly-merge-coverage
 
   nightly-a:
     steps:
@@ -422,19 +437,23 @@ workflows:
             set -euo pipefail
 
             all_targets=($(jq -r < TestPlans/NightlyTests.xctestplan '.testTargets[].target.name'))
-            group_A_targets=(StudentUITests StudentE2ETests)
-            group_B_targets=(${all_targets:|group_A_targets})
+            # group_B_targets=(StudentUITests StudentE2ETests)
+            # group_A_targets=(${all_targets:|group_B_targets})
+
+            # TODO: run all the tests
+            group_B_targets=(StudentUnitTests TeacherTests)
+            group_A_targets=(ParentUITests ParentUnitTests)
 
             if [[ $NIGHTLY_GROUP = A ]]; then
-                ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
-            elif [[ $NIGHTLY_GROUP = B ]]; then
                 (cd rn/Teacher; yarn test:ci)
 
-                ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
+                ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
 
                 SCHEME=IPadTests \
                 DEVICE_NAME='iPad Air (3rd generation)' \
                 ./scripts/run-ui-tests.sh --build --append-results --all-tests
+            elif [[ $NIGHTLY_GROUP = B ]]; then
+                ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
             else
                 echo "unknown nightly group '$NIGHTLY_GROUP'"
                 exit 1
@@ -453,9 +472,10 @@ workflows:
         title: Release the blame bot
         run_if: and (enveq "BITRISE_GIT_BRANCH" "master") (enveq "TESTS_FAILED" "yes")
         is_always_run: true
+        is_skippable: true
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: nightly-blame-bot
+        - workflows: "${BITRISE_TRIGGERED_WORKFLOW_ID}-blame-bot"
         - environment_key_list: |-
             FINAL_FAILED_TESTS
             BUILD_LINK
@@ -471,46 +491,6 @@ workflows:
 
             zip --quiet -r "$BITRISE_DEPLOY_DIR/tests.xcresult.zip" merged.xcresult
         is_always_run: true
-    - script:
-        title: Report Coverage
-        # run_if: .IsCI
-        run_if: false
-        is_skippable: true
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            set -ex
-
-            rm -rf scripts/coverage/citests.xcresult
-            cp -r ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
-            yarn coverage
-            ./scripts/coverage/export-coverage.swift
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
-    - script:
-        title: Report tests
-        # run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
-        run_if: false
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euo pipefail
-
-            ./scripts/build_automation/summarize-test-results.swift ui-test-results/merged.xcresult 2>/dev/null |
-                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
-                curl -q -X POST \
-                    -H "Authorization: $SPLUNK_SECRET" \
-                    -H "Content-Type: application/json" \
-                    -H "Content-Encoding: gzip" \
-                    --data-binary @- \
-                    "$SPLUNK_ENDPOINT_URL"
-        is_always_run: true
-    - codecov:
-        run_if: false
-        inputs:
-        - CODECOV_TOKEN: "$CODECOV_TOKEN"
-        - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json"
     - deploy-to-bitrise-io: {}
     - github-status:
         inputs:
@@ -532,6 +512,77 @@ workflows:
         - message_on_error: |-
             Failed tests:
             $FINAL_FAILED_TESTS
+
+  nightly-merge-coverage:
+    steps:
+    - build-router-wait:
+        title: Wait for nightly group B sub-build to succeed
+        inputs:
+        - access_token: "$BITRISE_CI_TOKEN"
+        - buildslugs: "${NIGHTLY_B_ROUTER_SLUG}"
+    - script:
+        title: Get B results
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            mv ui-test-results/merged.xcresult ui-test-results/merged-a.xcresult
+
+            API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${NIGHTLY_B_ROUTER_SLUG}"
+
+            ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
+                jq -r '.data[] | select(.title == "results.tar.xz").slug')
+            ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
+                jq -r '.data.expiring_download_url')
+            curl -L $ARTIFACT_URL | tar xJf -
+
+            mv ui-test-results/merged.xcresult ui-test-results/merged-b.xcresult
+            xcrun xcresulttool merge ui-test-results/merged-{a,b}.xcresult --output-path ui-test-results/merged.xcresult
+    - script:
+        title: Report Coverage
+        run_if: .IsCI
+        is_skippable: true
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            # fail if any commands fails
+            set -ex
+
+            rm -rf scripts/coverage/citests.xcresult
+            mv ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
+            yarn coverage
+            ./scripts/coverage/export-coverage.swift
+            zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+    - script:
+        title: Report tests
+        # run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
+        run_if: .IsCI
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euo pipefail
+
+            ./scripts/build_automation/summarize-test-results.swift ui-test-results/merged.xcresult 2>/dev/null |
+                jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
+                curl -q -X POST \
+                    -H "Authorization: $SPLUNK_SECRET" \
+                    -H "Content-Type: application/json" \
+                    -H "Content-Encoding: gzip" \
+                    --data-binary @- \
+                    "$SPLUNK_ENDPOINT_URL"
+        is_always_run: true
+    - codecov:
+        run_if: .IsCI
+        inputs:
+        - CODECOV_TOKEN: "$CODECOV_TOKEN"
+        - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json"
+
+  nightly-b-blame-bot:
+    after_run:
+    - nightly-blame-bot
 
   nightly-blame-bot:
     steps:
