@@ -51,11 +51,6 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
     var contextCodes: [String]?
     lazy var controller = PlannerListViewController.create(start: start, end: end, delegate: self)
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         let date = Clock.now
         ContextColor.make()

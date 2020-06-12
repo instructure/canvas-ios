@@ -24,7 +24,6 @@ class PlannerViewControllerTests: CoreTestCase {
 
     func testLayout() {
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 2, day: 14).date!)
-        environment.mockStore = false
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)

@@ -31,7 +31,6 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
 
         let prev = APIModuleItem.make(id: "1", module_id: "1", html_url: URL(string: "/prev"))
         let current = APIModuleItem.make(id: "2", module_id: "1", html_url: URL(string: "/current"))

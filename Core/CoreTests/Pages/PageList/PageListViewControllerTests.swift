@@ -24,7 +24,6 @@ class PageListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(controller.colors, value: .init(custom_colors: [
             "course_42": "#000088",
             "group_1": "#facade",

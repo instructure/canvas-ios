@@ -79,7 +79,6 @@ class GradeListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(GetAssignmentsByGroup(courseID: "1"), value: groups)
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "1"), value: [ groups[0] ])
         api.mock(GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2"), value: [ groups[1] ])

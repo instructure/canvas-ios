@@ -39,8 +39,8 @@ class SubmitAssignmentViewController: SLComposeServiceViewController {
         if let session = LoginSession.mostRecent {
             env.userDidLogin(session: session)
         }
-        placeholder = NSLocalizedString("Comments...", bundle: .core, comment: "")
-        navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", bundle: .core, comment: "")
+        placeholder = NSLocalizedString("Comments...", comment: "")
+        navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = NSLocalizedString("Submit", comment: "")
     }
 
     override func presentationAnimationDidFinish() {
@@ -74,7 +74,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         var items: [Any] = []
         let courseItem = SLComposeSheetConfigurationItem()!
-        courseItem.title = NSLocalizedString("Course", bundle: .core, comment: "")
+        courseItem.title = NSLocalizedString("Course", comment: "")
         courseItem.value = self.course?.name
         courseItem.valuePending = courses?.pending == true
         courseItem.tapHandler = courseItem.valuePending ? nil : { [weak self] in
@@ -91,7 +91,7 @@ class SubmitAssignmentViewController: SLComposeServiceViewController {
         items.append(courseItem)
 
         let assignmentItem = SLComposeSheetConfigurationItem()!
-        assignmentItem.title = NSLocalizedString("Assignment", bundle: .core, comment: "")
+        assignmentItem.title = NSLocalizedString("Assignment", comment: "")
         assignmentItem.value = self.assignment?.name
         assignmentItem.valuePending = assignments?.pending == true
         if let course = self.course, !assignmentItem.valuePending {

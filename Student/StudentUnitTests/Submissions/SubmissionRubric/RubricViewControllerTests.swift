@@ -39,7 +39,6 @@ class RubricViewControllerTests: StudentTestCase {
     }
 
     func testRenderWithNoRubricSettings() {
-        env.mockStore = false
         api.mock(vc.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(vc.presenter!.courses, value: .make())
 
@@ -67,29 +66,28 @@ class RubricViewControllerTests: StudentTestCase {
     }
 
     func testRenderWithHidesPointsAndFreeformComments() {
-            env.mockStore = false
-            api.mock(vc.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
-            api.mock(vc.presenter!.courses, value: .make())
+        api.mock(vc.presenter!.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
+        api.mock(vc.presenter!.courses, value: .make())
 
-            let ratings: [APIRubricRating] = [
-                APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
-                APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
-                APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
-            ]
-            let rubric = APIRubric.make(ratings: ratings)
+        let ratings: [APIRubricRating] = [
+            APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
+            APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
+            APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
+        ]
+        let rubric = APIRubric.make(ratings: ratings)
 
-            let s = APISubmission.make()
-            let rubricSettings: APIRubricSettings = .make(hides_points: true, free_form_criterion_comments: true)
-            let a = APIAssignment.make(submission: s, rubric: [rubric], rubric_settings: rubricSettings)
+        let s = APISubmission.make()
+        let rubricSettings: APIRubricSettings = .make(hides_points: true, free_form_criterion_comments: true)
+        let a = APIAssignment.make(submission: s, rubric: [rubric], rubric_settings: rubricSettings)
 
-            api.mock(vc.presenter!.assignments, value: a)
+        api.mock(vc.presenter!.assignments, value: a)
 
-            loadView()
+        loadView()
 
-            let stack: UIStackView = vc.contentStackView
-            let ratingContainer = stack.viewWithTag(vc.ratingContainerTag)
-            let circleView = stack.viewWithTag(vc.circleViewTag) as? RubricCircleView
-            XCTAssertFalse(ratingContainer?.isHidden == false)
-            XCTAssertEqual(0, circleView?.subviews.count)
-        }
+        let stack: UIStackView = vc.contentStackView
+        let ratingContainer = stack.viewWithTag(vc.ratingContainerTag)
+        let circleView = stack.viewWithTag(vc.circleViewTag) as? RubricCircleView
+        XCTAssertFalse(ratingContainer?.isHidden == false)
+        XCTAssertEqual(0, circleView?.subviews.count)
+    }
 }

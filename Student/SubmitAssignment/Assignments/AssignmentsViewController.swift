@@ -20,7 +20,7 @@ import Core
 
 class AssignmentsViewController: UIViewController {
     let env = AppEnvironment.shared
-    var courseID: String!
+    var courseID = ""
     var selectedAssignmentID: String?
     var callback: ((Assignment) -> Void)?
 
@@ -41,47 +41,34 @@ class AssignmentsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NSLocalizedString("Assignments", bundle: .core, comment: "")
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clear
-        view.backgroundColor = .clear
+        title = NSLocalizedString("Assignments", comment: "")
 
         activityIndicator.hidesWhenStopped = true
         addNavigationButton(UIBarButtonItem(customView: activityIndicator), side: .right)
 
-        assignments.refresh(force: true)
+        assignments.exhaust(force: true)
     }
 
     func update() {
         tableView.reloadData()
-        assignments.pending == true ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        assignments.pending == true
+            ? activityIndicator.startAnimating()
+            : activityIndicator.stopAnimating()
     }
 }
 
 extension AssignmentsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = assignments.count
-        if assignments.hasNextPage == true {
-            count += 1
-        }
-        return count
+        return assignments.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == assignments.count {
-            assignments.getNextPage()
-            return LoadingCell(style: .default, reuseIdentifier: nil)
-        }
         let cell: UITableViewCell = tableView.dequeue(for: indexPath)
         let assignment = assignments[indexPath]
+        cell.isSelected = selectedAssignmentID != nil && assignment?.id == selectedAssignmentID
         cell.textLabel?.text = assignment?.name
         cell.textLabel?.numberOfLines = 2
-        cell.accessoryType = .none
-        if selectedAssignmentID != nil, assignment?.id == selectedAssignmentID {
-            cell.accessoryType = .checkmark
-        }
+        cell.accessoryType = cell.isSelected ? .checkmark : .none
         cell.contentView.backgroundColor = .clear
         cell.backgroundColor = .clear
         return cell

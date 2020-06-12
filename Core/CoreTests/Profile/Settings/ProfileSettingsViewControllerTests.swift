@@ -40,7 +40,6 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
             APICommunicationChannel.make(address: "a", id: ID(1), position: 1, type: .email, workflow_state: .active),
             APICommunicationChannel.make(address: "b", id: ID(2), position: 2, type: .push, workflow_state: .active),
         ]
-        environment.mockStore = false
         api.mock(vc.profile, value: APIProfile.make())
         api.mock(vc.channels, value: channels)
 

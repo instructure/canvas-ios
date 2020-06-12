@@ -103,7 +103,6 @@
 		7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D00F3472457776600C370D5 /* StudentDetailsViewController.storyboard */; };
 		7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F3492458A83900C370D5 /* GetAlertThresholdsTests.swift */; };
 		7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F34B2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift */; };
-		7D231BE123AC1E0A005BA31D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
 		7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D33976B24534CD30074ED71 /* StudentListViewController.swift */; };
 		7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D33976D24534D8C0074ED71 /* StudentListViewController.storyboard */; };
@@ -1347,7 +1346,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					3B36A2DE2322C26A00599A1E = {
@@ -1619,15 +1618,8 @@
 				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
 				3BC50CC5246B11C00023159F /* CreateAccountViewControllerTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
-				3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */,
 				7D00F34624574A9900C370D5 /* GetObservedStudentsTests.swift in Sources */,
-				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
-				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
-				7D231BE123AC1E0A005BA31D /* (null) in Sources */,
-				3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */,
-				97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */,
 				7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */,
-				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */,
 				97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */,
 				B18F80E423463A060001A666 /* RoutesTests.swift in Sources */,
@@ -1652,7 +1644,6 @@
 				7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */,
 				497C48E41F9153D100A3BC06 /* Student+Details.swift in Sources */,
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
-				3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */,
 				3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,

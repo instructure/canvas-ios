@@ -28,7 +28,6 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         Clock.mockNow(now)
-        environment.mockStore = false
         api.mock(controller.summary, value: .make(graded: 10, ungraded: 20, not_submitted: 30))
     }
 

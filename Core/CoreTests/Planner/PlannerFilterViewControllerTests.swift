@@ -40,11 +40,6 @@ class PlannerFilterViewControllerTests: CoreTestCase {
         ]
     )
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         api.mock(controller.courses.useCase.request, value: [course1])
         controller.view.layoutIfNeeded()

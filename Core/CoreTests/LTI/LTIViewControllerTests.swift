@@ -23,11 +23,6 @@ import XCTest
 import SafariServices
 
 class LTIViewControllerTests: CoreTestCase {
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         let tools = LTITools(id: "1")
         let controller = LTIViewController.create(tools: tools)

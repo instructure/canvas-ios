@@ -22,7 +22,7 @@ import XCTest
 import Social
 @testable import TestsFoundation
 
-class SubmitAssignmentViewControllerTests: SubmitAssignmentTests {
+class SubmitAssignmentViewControllerTests: SubmitAssignmentTestCase {
     var viewController: SubmitAssignmentViewController!
 
     var configurationItems: [SLComposeSheetConfigurationItem] {

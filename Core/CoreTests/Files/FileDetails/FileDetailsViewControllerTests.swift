@@ -34,7 +34,6 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         navigation = UINavigationController(rootViewController: controller)
         api.mock(controller.files, value: file)
         api.mockDownload(file.url!.rawValue)

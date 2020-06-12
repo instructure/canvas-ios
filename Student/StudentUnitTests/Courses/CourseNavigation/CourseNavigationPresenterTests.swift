@@ -38,6 +38,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        env.mockStore = true
         presenter = CourseNavigationPresenter(courseID: context.id, view: self, env: env)
     }
 

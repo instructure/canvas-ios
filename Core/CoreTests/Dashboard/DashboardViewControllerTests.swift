@@ -25,7 +25,6 @@ class DasboardViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        environment.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#880000",
             "group_1": "#008800",

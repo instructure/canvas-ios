@@ -43,11 +43,6 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
         return controller.tableView!
     }
 
-    override func setUp() {
-        super.setUp()
-        env.mockStore = false
-    }
-
     func testLayout() {
         Clock.mockNow(Date())
         api.mock(controller.presenter!.comments, value: .make(

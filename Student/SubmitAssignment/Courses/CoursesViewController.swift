@@ -18,69 +18,63 @@
 
 import Core
 
-class CoursesViewController: UIViewController, CoursesView {
-    var presenter: CoursesPresenter?
-
+class CoursesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let activityIndicator = UIActivityIndicatorView(style: .white)
 
-    static func create(environment: AppEnvironment = .shared, selectedCourseID: String?, callback: @escaping (Course) -> Void) -> CoursesViewController {
-        let view = loadFromStoryboard()
-        let presenter = CoursesPresenter(environment: environment, selectedCourseID: selectedCourseID, callback: callback)
-        view.presenter = presenter
-        presenter.view = view
-        return view
+    let env = AppEnvironment.shared
+    var selectedCourseID: String?
+    var callback: ((Course) -> Void)?
+
+    lazy var courses: Store<GetCourses> = env.subscribe(GetCourses()) { [weak self] in
+        self?.update()
+    }
+
+    static func create(selectedCourseID: String?, callback: @escaping (Course) -> Void) -> CoursesViewController {
+        let controller = loadFromStoryboard()
+        controller.selectedCourseID = selectedCourseID
+        controller.callback = callback
+        return controller
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = NSLocalizedString("Courses", bundle: .core, comment: "")
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = .clear
-        view.backgroundColor = .clear
+        title = NSLocalizedString("Courses", comment: "")
 
         activityIndicator.hidesWhenStopped = true
         addNavigationButton(UIBarButtonItem(customView: activityIndicator), side: .right)
 
-        presenter?.viewIsReady()
+        courses.exhaust(force: true)
     }
 
     func update() {
         tableView.reloadData()
-        presenter?.courses.pending == true ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        courses.pending == true
+            ? activityIndicator.startAnimating()
+            : activityIndicator.stopAnimating()
     }
 }
 
 extension CoursesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.courses.count ?? 0
+        return courses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "course-cell") ?? UITableViewCell(style: .default, reuseIdentifier: "course-cell")
-        let course = presenter?.courses[indexPath]
+        let cell: UITableViewCell = tableView.dequeue(for: indexPath)
+        let course = courses[indexPath]
+        cell.isSelected = selectedCourseID != nil && course?.id == selectedCourseID
         cell.textLabel?.text = course?.name
         cell.textLabel?.numberOfLines = 2
-        cell.accessoryType = .none
-        if presenter?.selectedCourseID != nil, course?.id == presenter?.selectedCourseID {
-            cell.accessoryType = .checkmark
-        }
+        cell.accessoryType = cell.isSelected ? .checkmark : .none
         cell.contentView.backgroundColor = .clear
         cell.backgroundColor = .clear
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.selectCourse(at: indexPath)
-    }
-}
-
-extension CoursesViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.isBottomReached() {
-            presenter?.getNextPage()
+        if let course = courses[indexPath] {
+            callback?(course)
         }
     }
 }

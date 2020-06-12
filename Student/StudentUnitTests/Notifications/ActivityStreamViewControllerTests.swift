@@ -27,7 +27,6 @@ class ActivityStreamViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        env.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
             "course_2": "#0f0",

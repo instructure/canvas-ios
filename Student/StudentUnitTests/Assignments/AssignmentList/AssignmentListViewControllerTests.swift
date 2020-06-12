@@ -32,7 +32,6 @@ class AssignmentListViewControllerTests: StudentTestCase {
     var groups: [APIAssignmentListGroup] = []
 
     override func setUp() {
-        env.mockStore = false
         vc = AssignmentListViewController.create(env: env, courseID: courseID)
         gradingPeriods = []
         groups = []

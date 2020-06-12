@@ -33,7 +33,6 @@ class ParentTestCase: XCTestCase {
         let env = TestEnvironment()
         env.router = router
         env.logger = logger
-        env.mockStore = false
         return env
     }()
     let logger = TestLogger()

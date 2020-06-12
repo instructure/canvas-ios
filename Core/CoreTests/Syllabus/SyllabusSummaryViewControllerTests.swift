@@ -25,11 +25,6 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
     let courseID = "1"
     lazy var controller = SyllabusSummaryViewController.create(courseID: courseID)
 
-    override func setUp() {
-        super.setUp()
-        environment.mockStore = false
-    }
-
     func testLayout() {
         let date = DateComponents(calendar: .current, timeZone: .current, year: 2020, month: 2, day: 12).date!
         let assignment = APICalendarEvent.make(

@@ -28,7 +28,6 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         Clock.mockNow(DateComponents(calendar: .current, year: 2020, month: 3, day: 14).date!)
-        environment.mockStore = false
         api.mock(controller.colors, value: APICustomColors(custom_colors: [ "course_1": "#f00" ]))
         api.mock(controller.course, value: .make())
         api.mock(controller.conferences, value: GetConferencesRequest.Response(conferences: [
