@@ -18,7 +18,9 @@
 
 import Foundation
 
-class CanvasTimedQuizSubmissionService: TimedQuizSubmissionService {
+typealias TimeRemainingResult = Result<Int, NSError>
+
+class CanvasTimedQuizSubmissionService {
     
     let auth: Session
     let submission: QuizSubmission

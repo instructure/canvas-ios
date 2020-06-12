@@ -17,8 +17,6 @@
 //
 
 import UIKit
-import ReactiveSwift
-import ReactiveCocoa
 import Core
 
 public func inboxTab() -> UIViewController {
@@ -39,7 +37,6 @@ public func inboxTab() -> UIViewController {
 
     let empty = HelmNavigationController()
     empty.navigationBar.useGlobalNavStyle()
-
 
     inboxSplit.viewControllers = [inboxNav, empty]
     let title = NSLocalizedString("Inbox", bundle: .core, comment: "Inbox tab title")

@@ -21,19 +21,19 @@ import WebKit
 import Core
 
 class NonNativeQuizTakingViewController: UIViewController {
-    @objc let session: Session
+    let session: Session
     let contextID: ContextID
-    let quiz: Quiz
-    @objc let baseURL: URL
+    let quizID: String
+    let url: URL
 
     let env = AppEnvironment.shared
     private let webView = CoreWebView()
 
-    init(session: Session, contextID: ContextID, quiz: Quiz, baseURL: URL) {
+    init(session: Session, contextID: ContextID, quizID: String, url: URL) {
         self.session = session
         self.contextID = contextID
-        self.quiz = quiz
-        self.baseURL = baseURL
+        self.quizID = quizID
+        self.url = url
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -53,12 +53,12 @@ class NonNativeQuizTakingViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: NSLocalizedString("Exit", bundle: .core, comment: "Exit button to leave the quiz"),
-            style: .plain, target: self, action: #selector(NonNativeQuizTakingViewController.exitQuiz(_:))
+            style: .plain, target: self, action: #selector(exitQuiz(_:))
         )
 
-        let url = quiz.mobileURL.appendingQueryItems(URLQueryItem(name: "platform", value: "ios"))
-        AppEnvironment.shared.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
-            DispatchQueue.main.async { self?.webView.load(URLRequest(url: response?.session_url ?? url)) }
+        let url = self.url.appendingQueryItems(URLQueryItem(name: "platform", value: "ios"))
+        env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
+            performUIUpdate { self?.webView.load(URLRequest(url: response?.session_url ?? url)) }
         }
     }
 
@@ -72,21 +72,21 @@ class NonNativeQuizTakingViewController: UIViewController {
             alert.addAction(UIAlertAction(title: stay, style: .cancel))
             alert.addAction(UIAlertAction(title: leave, style: .default) { _ in
                 self.refreshCoreQuiz()
-                self.dismiss(animated: true, completion: nil)
+                self.env.router.dismiss(self)
             })
-            present(alert, animated: true, completion: nil)
+            env.router.show(alert, from: self, options: .modal())
         } else {
             refreshCoreQuiz()
-            dismiss(animated: true, completion: nil)
+            env.router.dismiss(self)
         }
-        session.progressDispatcher.dispatch(Progress(kind: .submitted, contextID: contextID, itemType: .quiz, itemID: quiz.id))
-        session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: contextID, itemType: .quiz, itemID: quiz.id))
-        session.progressDispatcher.dispatch(Progress(kind: .minimumScore, contextID: contextID, itemType: .quiz, itemID: quiz.id))
+        session.progressDispatcher.dispatch(Progress(kind: .submitted, contextID: contextID, itemType: .quiz, itemID: quizID))
+        session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: contextID, itemType: .quiz, itemID: quizID))
+        session.progressDispatcher.dispatch(Progress(kind: .minimumScore, contextID: contextID, itemType: .quiz, itemID: quizID))
     }
 
     func refreshCoreQuiz() {
         NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
-            "quizID": quiz.id,
+            "quizID": quizID,
         ])
     }
 }
@@ -100,14 +100,14 @@ extension NonNativeQuizTakingViewController: WKUIDelegate {
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
             completionHandler(true)
         })
-        present(alert, animated: true, completion: nil)
+        env.router.show(alert, from: self, options: .modal())
     }
 }
 
 extension NonNativeQuizTakingViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         if let take = env.currentSession?.baseURL
-            .appendingPathComponent("\(contextID.htmlPath)/quizzes/\(quiz.id)/take"),
+            .appendingPathComponent("\(contextID.htmlPath)/quizzes/\(quizID)/take"),
             url.absoluteString.hasPrefix(take.absoluteString) {
             return false
         }

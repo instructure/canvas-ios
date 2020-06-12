@@ -209,7 +209,6 @@
 		E8C6F4FB23D626220086B865 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EF221492040083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C6F4FC23D626220086B865 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C6F50423D626CC0086B865 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F50323D626CC0086B865 /* ModulesTests.swift */; };
-		E8C6F50723D627260086B865 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F50623D627260086B865 /* QuizzesTests.swift */; };
 		E8C6F52923D638100086B865 /* LoginStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F52823D638100086B865 /* LoginStartTests.swift */; };
 		E8C6F52A23D63A1F0086B865 /* StudentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */; };
 		E8C6F52B23D63BCD0086B865 /* LoginFindSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4622F8A0A0000AACCE /* LoginFindSchoolTests.swift */; };
@@ -758,7 +757,6 @@
 		E8AD066723035B0900D498ED /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C6F50023D626220086B865 /* StudentE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8C6F50323D626CC0086B865 /* ModulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTests.swift; sourceTree = "<group>"; };
-		E8C6F50623D627260086B865 /* QuizzesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
 		E8C6F51F23D62FA80086B865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8C6F52823D638100086B865 /* LoginStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
 		E8C6F58C23D641A60086B865 /* UITestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsFromCore.swift; sourceTree = "<group>"; };
@@ -1720,7 +1718,6 @@
 				E8C6F52723D637FC0086B865 /* Login */,
 				E8C6F50223D626B80086B865 /* Modules */,
 				E8EA86092304974C00E4FD76 /* Notifications */,
-				E8C6F50523D627150086B865 /* Quizzes */,
 				E8C6F50823D627BC0086B865 /* Submissions */,
 				E8C6F51F23D62FA80086B865 /* Info.plist */,
 				7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */,
@@ -1735,14 +1732,6 @@
 				E8C6F50323D626CC0086B865 /* ModulesTests.swift */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		E8C6F50523D627150086B865 /* Quizzes */ = {
-			isa = PBXGroup;
-			children = (
-				E8C6F50623D627260086B865 /* QuizzesTests.swift */,
-			);
-			path = Quizzes;
 			sourceTree = "<group>";
 		};
 		E8C6F50823D627BC0086B865 /* Submissions */ = {
@@ -2427,7 +2416,6 @@
 				E8C6F52B23D63BCD0086B865 /* LoginFindSchoolTests.swift in Sources */,
 				7DC5717D22F8B1CB00F2E9BB /* Syllabus.swift in Sources */,
 				7DC5718E22F8B1CB00F2E9BB /* URLSubmission.swift in Sources */,
-				E8C6F50723D627260086B865 /* QuizzesTests.swift in Sources */,
 				E8C6F52A23D63A1F0086B865 /* StudentUITestCase.swift in Sources */,
 				7DC5718A22F8B1CB00F2E9BB /* SubmissionDetailsTests.swift in Sources */,
 				7DC5718C22F8B1CB00F2E9BB /* SubmissionFilesTests.swift in Sources */,

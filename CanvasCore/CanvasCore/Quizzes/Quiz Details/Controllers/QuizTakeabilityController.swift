@@ -21,20 +21,14 @@ import Foundation
 class QuizTakeabilityController {
     
     let quiz: Quiz
-    let service: QuizService
+    let service: CanvasQuizService
     lazy var quizController: QuizController = {
         return QuizController(service: self.service, quiz: self.quiz)
     }()
     
     fileprivate (set) var attempts: Int = 0 // NOTE: right now this is broken due to an api bug that is being worked on, so don't rely on this
     
-    /// This is the list of question types that is supported natively. 
-    /// This will change as we add support for more question types.
-    fileprivate var nativelySupportedQuestionTypes: [Question.Kind] {
-        return [ .TrueFalse, .MultipleChoice, .MultipleAnswers, .Matching, .Essay, .ShortAnswer, .TextOnly, .Numerical, .MultipleDropdowns ]
-    }
-    
-    init(quiz: Quiz, service: QuizService) {
+    init(quiz: Quiz, service: CanvasQuizService) {
         self.quiz = quiz
         self.service = service
         
@@ -87,7 +81,7 @@ class QuizTakeabilityController {
                 }
                 
                 if lastSubmission.workflowState == .Untaken && !quiz.lockedForUser {
-                    if(quiz.timed) {
+                    if case .minutes(_) = quiz.timeLimit {
                         let timedQuizSubmissionService = self.service.serviceForTimedQuizSubmission(lastSubmission)
                         timedQuizSubmissionService.getTimeRemaining { [weak self] result in
                             if let secondsLeft = result.value {
@@ -138,34 +132,10 @@ class QuizTakeabilityController {
         }
     }
     
-    func takeableNatively() -> Bool {
-        return takeability.takeable && quizQuestionsSupportedNatively(quiz) && !quiz.oneQuestionAtATime && !quiz.hasAccessCode && (quiz.ipFilter == nil) && !quiz.requiresLockdownBrowser
-    }
-    
     func takeableInWebView() -> Bool {
-        return takeability.takeable && !takeableNatively()
+        return takeability.takeable
     }
-    
-    fileprivate func quizQuestionsSupportedNatively(_ quiz: Quiz) -> Bool {
-        if quiz.questionTypes.count == 0 {
-            return false
-        }
-        
-        for questionType in quiz.questionTypes {
-            if !nativelySupportedQuestionTypes.contains(questionType) {
-                return false
-            }
-        }
-        
-        return true
-    }
-    
-    
     
     // MARK: taking a quiz
     fileprivate var unfinishedSubmission: QuizSubmission? = nil
-
-    func submissionControllerForTakingQuiz(_ quiz: Quiz) -> SubmissionController {
-        return SubmissionController(service: service, submission: unfinishedSubmission, quiz: quiz)
-    }
 }
