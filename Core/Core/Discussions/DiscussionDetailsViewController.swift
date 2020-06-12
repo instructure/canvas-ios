@@ -387,7 +387,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         if showRepliesToEntryID == nil {
             AppStoreReview.handleNavigateToAssignment()
-            if !ExperimentalFeature.studentModules.isEnabled {
+            if !ExperimentalFeature.studentModules.isEnabled, env.app == .student {
                 MarkDiscussionTopicRead(context: context, topicID: topicID, isRead: true).fetch()
             }
         }
