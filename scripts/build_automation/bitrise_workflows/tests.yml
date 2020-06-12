@@ -35,21 +35,12 @@ workflows:
             if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
-            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.ipad.tests\]"; then
-                envman add --key RUN_IPAD_TESTS --value YES
-            fi
     - build-router-start:
         title: Start nightly if requested
         run_if: enveq "RUN_NIGHTLY" "YES"
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: nightly
-    - build-router-start:
-        title: Start iPad tests if requested
-        run_if: enveq "RUN_IPAD_TESTS" "YES"
-        inputs:
-        - access_token: "$BITRISE_CI_TOKEN"
-        - workflows: ipad-tests
     - build-router-start:
         title: Start sub-build
         inputs:
@@ -155,7 +146,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" scripts/coverage/citests.xcresult
+            tar -cJf "$BITRISE_DEPLOY_DIR/citests.xcresult.tar.xz" scripts/coverage/citests.xcresult
         is_always_run: true
     - build-router-wait:
         title: Wait for danger-yarn sub-build to succeed
@@ -176,7 +167,7 @@ workflows:
                 jq -r '.data[] | select(.title == "results.tar.xz").slug')
             ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
                 jq -r '.data.expiring_download_url')
-            curl -L $ARTIFACT_URL | tar xJf -
+            curl -L $ARTIFACT_URL | tar -xJf -
             cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
     - script:
         title: Report Coverage
@@ -294,7 +285,6 @@ workflows:
 
   nightly-cache-gen:
     steps:
-    - cache-pull: {}
     - *install-tools
     - *carthage
     - *yarn-install-root
@@ -449,9 +439,9 @@ workflows:
 
                 ./scripts/run-ui-tests.sh --build --only-testing $group_A_targets
 
-                SCHEME=IPadTests \
-                DEVICE_NAME='iPad Air (3rd generation)' \
-                ./scripts/run-ui-tests.sh --build --append-results --all-tests
+                # SCHEME=IPadTests \
+                # DEVICE_NAME='iPad Air (3rd generation)' \
+                # ./scripts/run-ui-tests.sh --build --append-results --all-tests
             elif [[ $NIGHTLY_GROUP = B ]]; then
                 ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
             else
@@ -489,7 +479,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/tests.xcresult.zip" merged.xcresult
+            tar -cJf "$BITRISE_DEPLOY_DIR/tests.xcresult.tar.xz" merged.xcresult
         is_always_run: true
     - deploy-to-bitrise-io: {}
     - github-status:
@@ -533,12 +523,12 @@ workflows:
             API="https://api.bitrise.io/v0.1/apps/${BITRISE_APP_SLUG}/builds/${NIGHTLY_B_ROUTER_SLUG}"
 
             ARTIFACT_SLUG=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts" |
-                jq -r '.data[] | select(.title == "results.tar.xz").slug')
+                jq -r '.data[] | select(.title == "tests.xcresult.tar.xz").slug')
             ARTIFACT_URL=$(curl -H "Authorization: $BITRISE_CI_TOKEN" "$API/artifacts/${ARTIFACT_SLUG}" |
                 jq -r '.data.expiring_download_url')
-            curl -L $ARTIFACT_URL | tar xJf -
+            curl -L $ARTIFACT_URL | tar -xJf -
 
-            mv ui-test-results/merged.xcresult ui-test-results/merged-b.xcresult
+            mv merged.xcresult ui-test-results/merged-b.xcresult
             xcrun xcresulttool merge ui-test-results/merged-{a,b}.xcresult --output-path ui-test-results/merged.xcresult
     - script:
         title: Report Coverage
@@ -565,7 +555,7 @@ workflows:
             #!/bin/zsh
             set -euo pipefail
 
-            ./scripts/build_automation/summarize-test-results.swift ui-test-results/merged.xcresult 2>/dev/null |
+            ./scripts/build_automation/summarize-test-results.swift scripts/coverage/citests.xcresult 2>/dev/null |
                 jq -ac '{"sourcetype": "mobile-ios-testresult", "event": .}' | gzip |
                 curl -q -X POST \
                     -H "Authorization: $SPLUNK_SECRET" \
@@ -696,7 +686,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            zip --quiet -r "$BITRISE_DEPLOY_DIR/citests.xcresult.zip" tmp/pact.xcresult
+            tar -cJf "$BITRISE_DEPLOY_DIR/citests.xcresult.tar.xz" tmp/pact.xcresult
         is_always_run: true
     - script:
         title: Publish pact contracts
