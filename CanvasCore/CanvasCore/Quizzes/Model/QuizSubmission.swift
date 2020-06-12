@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Marshal
 
 struct QuizSubmission {
     init(id: String, dateStarted: Date?, dateFinished: Date?, endAt: Date?, attempt: Int, attemptsLeft: Int, validationToken: String, workflowState: WorkflowState, extraTime: Int) {

@@ -22,27 +22,15 @@ import XCTest
 @testable import Core
 
 class QuizzesE2ETests: CoreUITestCase {
-    func testQuizQuestionsOpenInNativeView() {
+    func testQuizQuestionsNoMoreNativeView() {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Quiz One").tap()
         Quiz.takeButton.tapUntil {
-            Quiz.text(string: "This is question A").exists()
+            app.find(label: "Instructions").exists
         }
-
-        Quiz.text(string: "True").waitToExist()
-
-        Quiz.text(string: "This is question B").waitToExist()
-        Quiz.text(string: "Answer B.1").waitToExist()
-
-        app.swipeUp()
-
-        Quiz.text(string: "This is question C").waitToExist()
-        Quiz.text(string: "Answer 1.A").waitToExist()
-
-        Quiz.text(string: "This is question D").waitToExist()
-        XCTAssertEqual(app.textFields.firstElement.value(), "42.000000")
+        app.find(label: "This is the first quiz.").waitToExist()
     }
 
     func testQuizQuestionsOpenInWebView() {
@@ -50,7 +38,9 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        Quiz.takeButton.tap()
+        Quiz.takeButton.tapUntil {
+            app.find(label: "Instructions").exists
+        }
         app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 

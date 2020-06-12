@@ -163,14 +163,8 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     @objc func takeTheQuiz(_ button: UIButton?) {
         Analytics.shared.logEvent("quiz_taken")
         if let takeabilityController = self.takeabilityController {
-            if takeabilityController.takeableNatively() {
-                let controller = takeabilityController.submissionControllerForTakingQuiz(quizController.quiz!)
-                let vc = QuizPresentingViewController(quizController: quizController, submissionController: controller)
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                present(nav, animated: true, completion: nil)
-            } else if takeabilityController.takeableInWebView() {
-                let vc = NonNativeQuizTakingViewController(session: takeabilityController.service.session, contextID: self.quizController.service.context, quiz: quizController.quiz!, baseURL: quizController.service.baseURL)
+            if takeabilityController.takeableInWebView() {
+                let vc = NonNativeQuizTakingViewController(session: takeabilityController.service.session, contextID: quizController.service.context, quizID: quizController.quiz!.id, url: quizController.quiz!.mobileURL)
                 vc.modalPresentationStyle = .fullScreen
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
@@ -235,48 +229,6 @@ extension QuizIntroViewController {
             let mobileURL = model.mobileURL else {
             return QuizIntroViewController(quizController: QuizController(service: service, quiz: nil))
         }
-        let quiz = Quiz(
-            id: model.id,
-            title: model.title,
-            description: model.details ?? "",
-            due: Quiz.Due(date: model.dueAt),
-            timeLimit: model.timeLimit.flatMap({ Quiz.TimeLimit(minutes: Int($0)) }) ?? Quiz.TimeLimit.noTimeLimit,
-            scoring: model.pointsPossible.flatMap({ Quiz.Scoring.pointsPossible(Int($0)) }) ?? Quiz.Scoring.ungraded,
-            questionCount: model.questionCount,
-            questionTypes: model.questionTypes.compactMap { Question.Kind(rawValue: $0.rawValue) },
-            attemptLimit: Quiz.AttemptLimit(allowed: model.allowedAttempts),
-            oneQuestionAtATime: model.oneQuestionAtATime,
-            cantGoBack: model.cantGoBack,
-            hideResults: Quiz.HideResults.fromJSON(model.hideResults?.rawValue)!,
-            lockAt: model.lockAt,
-            lockedForUser: model.lockedForUser,
-            lockExplanation: model.lockExplanation,
-            ipFilter: model.ipFilter,
-            mobileURL: mobileURL,
-            shuffleAnswers: model.shuffleAnswers,
-            hasAccessCode: model.hasAccessCode,
-            requiresLockdownBrowser: model.requireLockdownBrowser,
-            requiresLockdownBrowserForResults: model.requireLockdownBrowserForResults
-        )
-        if model.takeInWebOnly {
-            return NonNativeQuizTakingViewController(session: legacySession, contextID: contextID, quiz: quiz, baseURL: legacySession.baseURL)
-        } else {
-            var unfinishedSubmission: QuizSubmission?
-            if let submission = model.submission, submission.canResume {
-                unfinishedSubmission = QuizSubmission(
-                    id: submission.id,
-                    dateStarted: submission.startedAt,
-                    dateFinished: submission.finishedAt,
-                    endAt: submission.endAt,
-                    attempt: submission.attempt,
-                    attemptsLeft: submission.attemptsLeft,
-                    validationToken: submission.validationToken ?? "",
-                    workflowState: QuizSubmission.WorkflowState(rawValue: submission.workflowState.rawValue) ?? .Untaken,
-                    extraTime: Int(submission.extraTime)
-                )
-            }
-            let submissionController = SubmissionController(service: service, submission: unfinishedSubmission, quiz: quiz)
-            return QuizPresentingViewController(quizController: QuizController(service: service, quiz: quiz), submissionController: submissionController)
-        }
+        return NonNativeQuizTakingViewController(session: legacySession, contextID: contextID, quizID: model.id, url: mobileURL)
     }
 }

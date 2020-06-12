@@ -19,17 +19,19 @@
 import Foundation
 import CoreData
 
-class CanvasQuizService: QuizService {
+typealias QuizSubmissionsResult = Result<ResponsePage<[QuizSubmission]>, NSError>
+typealias QuizSubmissionResult = Result<ResponsePage<QuizSubmission>, NSError>
+typealias QuizResult = Result<ResponsePage<Quiz>, NSError>
+
+class CanvasQuizService {
     init(session: Session, context: ContextID, quizID: String) {
         self.session = session
         self.context = context
         self.quizID = quizID
-        self.fileUploader = Uploader(session: session, apiPath: "\(context.apiPath)/quizzes/\(quizID)/submissions/self/files")
     }
     
     let context: ContextID
     let quizID: String
-    let fileUploader: Uploader
     
     let session: Session
     var user: SessionUser {
@@ -41,6 +43,11 @@ class CanvasQuizService: QuizService {
     
     var baseURL: URL {
         return session.baseURL
+    }
+
+    func pageViewName() -> String {
+        let event: NSString = baseURL.absoluteString as NSString
+        return event.appendingPathComponent(context.apiPath.pruneApiVersionFromPath() + "/quizzes/" + quizID)
     }
     
     // MARK: Quiz Requests
@@ -54,10 +61,6 @@ class CanvasQuizService: QuizService {
     
     func getSubmissions(_ completed: @escaping (QuizSubmissionsResult)->()) {
         let _ = makeRequest(submissionsRequest(), completed: completed)
-    }
-    
-    func beginNewSubmission(_ completed: @escaping (QuizSubmissionResult)->()) {
-        let _ = makeRequest(postSubmissionRequest(), completed: completed)
     }
     
     func completeSubmission(_ submission: QuizSubmission, completed: @escaping (QuizSubmissionResult)->()) {
@@ -86,11 +89,6 @@ class CanvasQuizService: QuizService {
         return Request(auth: session, method: .GET, path: path, parameters: nil, parseResponse: extractFirstSubmission)
     }
     
-    func postSubmissionRequest() -> Request<QuizSubmission> {
-        let path = "\(apiPath)/submissions"
-        return Request(auth: session, method: .POST, path: path, parameters: nil, parseResponse: extractFirstSubmission)
-    }
-    
     func completeSubmissionRequest(_ submission: QuizSubmission) -> Request<QuizSubmission> {
         let path = "\(apiPath)/submissions/\(submission.id)/complete"
         let params: [String: Any] = [
@@ -109,39 +107,9 @@ class CanvasQuizService: QuizService {
             } ?? .failure(NSError.quizErrorWithMessage("Error parsing the quiz response"))
         }
     }
-
-    func uploadSubmissionFile(_ uploadable: Uploadable, completed: @escaping (QuizSubmissionFileResult) -> ()) {
-        do {
-            try self.fileUploader.upload(uploadable, completed: completed)
-        } catch let error as NSError {
-            completed(.failure(error))
-        }
-    }
-
-    func cancelUploadSubmissionFile() {
-        self.fileUploader.cancel()
-    }
-
-    func findFile(withID id: String) -> File? {
-        do {
-            let context = try self.session.filesManagedObjectContext()
-            let predicate = NSPredicate(format: "%K == %@", "id", id)
-            return try context.findOne(withPredicate: predicate)
-        } catch {
-            return nil
-        }
-    }
     
-    func serviceForSubmission(_ submission: QuizSubmission) -> QuizSubmissionService {
-        return CanvasQuizSubmissionService(auth: session, submission:submission)
-    }
-    
-    func serviceForTimedQuizSubmission(_ submission: QuizSubmission) -> TimedQuizSubmissionService {
+    func serviceForTimedQuizSubmission(_ submission: QuizSubmission) -> CanvasTimedQuizSubmissionService {
         return CanvasTimedQuizSubmissionService(auth: session, submission: submission, context: context, quizID: quizID)
-    }
-    
-    func serviceForAuditLoggingSubmission(_ submission: QuizSubmission) -> SubmissionAuditLoggingService {
-        return CanvasSubmissionAuditLoggingService(auth: session, apiPath: self.apiPath + "/submissions/\(submission.id)")
     }
 }
 
