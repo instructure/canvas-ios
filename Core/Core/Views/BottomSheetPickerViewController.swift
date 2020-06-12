@@ -75,7 +75,8 @@ public class BottomSheetPickerViewController: UIViewController {
     }
 
     @objc func didSelect(_ button: UIButton) {
-        dismiss(animated: true)
-        actions[button.tag].action()
+        dismiss(animated: true) {
+            self.actions[button.tag].action()
+        }
     }
 }
