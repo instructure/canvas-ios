@@ -1,35 +1,5 @@
-/* Error message component with the report id */
-" Error report ID: (reportID)" = " Virheraportin tunnus: (reportID)";
-
-/* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = " Epäonnistumisen syy: (syy).";
-
-/* Shows the number of flagged questions */
-"%@ Flagged" = "%@ Merkitty";
-
-/* Accessiblity hint for question drawer button */
-"%@ Questions Answered" = "%@ Vastaukset kysymyksiin";
-
-/* Question number in a quiz */
-"%@." = "%@.";
-
-/* Confirmations alerting user of unanswered questions */
-"%d questions not answered" = "%d kysymyksiä, joihin ei ole vastattu";
-
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Virhe sisällön latauksessa";
-
-/* Accessiblity hint for question drawer button */
-"0 Questions Answered" = "0 vastausta kysymyksiin";
-
-/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
-"5 minutes remaining" = "5 minuuttia jäljellä";
-
-/* Notification to alert the user that there is only 30 seconds left in the time quiz */
-"30 seconds remaining" = "30 sekuntia jäljellä";
-
-/* Shows the number questions */
-"All %@ Questions" = "Kaikki %@ kysymystä";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Kaikki arvosanojen antojaksot";
@@ -40,17 +10,11 @@
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ilmeni odottamaton virhe.";
 
-/* an unknown error's message */
-"An unknown error has occurred." = "Ilmeni tuntematon virhe.";
-
 /* No comment provided by engineer. */
 "Answers will not be submitted while offline." = "Vastauksia ei lähetetä, kun verkon ulkopuolella.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
 "Are you sure you want to leave this quiz?" = "Haluatko varmasti lähteä tästä kyselystä?";
-
-/* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "Haluatko varmasti lähettää vastauksesi?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
@@ -64,31 +28,9 @@
 /* stop record button a11y hint */
 "Begin recording" = "Aloita nauhoitus";
 
-/* Blue course color button */
-"Blue" = "Sininen";
-
-/* No comment provided by engineer. */
-"Browse" = "Selaa";
-
-/* Title for screen to build a panda avatar */
-"Build Your Panda!" = "Rakenna Pandasi!";
-
 /* Cancel Audio recording.
-   Cancel button title
-   Cancel upload */
+   Cancel button title */
 "Cancel" = "Peruuta";
-
-/* Choose a file */
-"Choose a File" = "Valitse tiedosto";
-
-/* Pick a photo from library */
-"Choose a Photo" = "Valitse valokuva";
-
-/* Pick a photo or video */
-"Choose a Photo or Video" = "Valitse valokuva tai video";
-
-/* Pick a video from library */
-"Choose a Video" = "Valitse video";
 
 /* No comment provided by engineer. */
 "Collapse" = "Kutista";
@@ -96,26 +38,8 @@
 /* No comment provided by engineer. */
 "Comments" = "Kommentit";
 
-/* Button for electing to be late on a quiz */
-"Continue Quiz" = "Jatka tietovisaa";
-
-/* Header label for a screen that customizes a course */
-"Customize" = "Mukauttaa";
-
-/* Cyan course color button */
-"Cyan" = "Syaani";
-
-/* name for upload data */
-"Data" = "Tiedot";
-
 /* Error title for a persistence related data failure */
 "Data Error" = "Tietovirhe";
-
-/* DeepOrange course color button */
-"DeepOrange" = "DeepOrange";
-
-/* DeepPurple course color button */
-"DeepPurple" = "DeepPurple";
 
 /* Delete button */
 "Delete" = "Poista";
@@ -137,8 +61,7 @@
    Dismiss button for error messages */
 "Dismiss" = "Ohita";
 
-/* Done button
-   Done recording button */
+/* No comment provided by engineer. */
 "Done" = "Valmis";
 
 /* due date label for quiz due date */
@@ -146,12 +69,6 @@
 
 /* Data encoding error title */
 "Encoding Error" = "Koodausvirhe";
-
-/* Default text for essay cell */
-"Enter answer..." = "Syötä vastaus...";
-
-/* Placeholder for URL */
-"Enter URL..." = "Kirjoita URL-osoite...";
 
 /* No comment provided by engineer. */
 "Error" = "Virhe";
@@ -189,38 +106,17 @@
 /* favorite courses or groups */
 "Favorites" = "Suosikit";
 
-/* title for file upload errors */
-"File Upload Error" = "Tiedoston latausvirhe";
-
-/* State of the flagged question */
-"Flagged" = "Merkitty";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Hae arvosanat kohteesta";
-
-/* navigate */
-"Go" = "Siirry";
 
 /* Title for grading periods picker */
 "Grading Periods" = "Arvosanojen antojaksot";
 
-/* Green course color button */
-"Green" = "Vihreä";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Piilotettu";
 
-/* Hides the question list */
-"Hide Question List" = "Piilota kysymysluettelo";
-
-/* No comment provided by engineer. */
-"Image %d" = "Kuva %d";
-
 /* Inbox tab title */
 "Inbox" = "Saapuneet";
-
-/* Indigo course color button */
-"Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
 "Internet Connection Offline" = "Internet-yhteys pois verkosta";
@@ -234,30 +130,12 @@
 /* Leave the quiz */
 "Leave" = "Lähtö";
 
-/* LightBlue course color button */
-"LightBlue" = "LightBlue";
-
-/* LightGreen course color button */
-"LightGreen" = "LightGreen";
-
-/* LightPink course color button */
-"LightPink" = "LightPink";
-
-/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached\nSubmitting" = "Lukituspäivämäärä saavutettu\nLähetetään";
-
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Vaaditaan Lockdown-selain tulostesi tarkasteluun. Avaa kysely Lockdown-selaimessa jatkaaksesi.";
-
-/* Title for when another tool called Lockdown Browser is required to take a quiz */
-"Lockdown Browser Required" = "Vaaditaan Lockdown-selain";
 
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Verkkovirhe";
-
-/* Next button for advancing a quiz */
-"Next" = "Seuraava";
 
 /* A quiz that has no due date */
 "No Due Date" = "Ei määräpäivää";
@@ -292,9 +170,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Avaa kohteessa...";
 
-/* Orange course color button */
-"Orange" = "Oranssi";
-
 /* Overdue assignmnets (not turned in) */
 "Overdue" = "Myöhässä";
 
@@ -306,15 +181,6 @@
 
 /* record button a11y hint */
 "Pause playback" = "Toiston keskeyttäminen";
-
-/* name for a photo just taken */
-"Photo" = "Valokuva";
-
-/* Photos backdrops */
-"Photos" = "Valokuvat";
-
-/* Pink course color button */
-"Pink" = "Vaaleanpunainen";
 
 /* Playback button */
 "Play" = "Toista";
@@ -331,21 +197,6 @@
 /* label for number of points in a quiz */
 "Points" = "Pisteitä";
 
-/* Purple course color button */
-"Purple" = "Purppura";
-
-/* accessibility label for a quiz question */
-"Question" = "Kysymys";
-
-/* state for a question that has been flagged */
-"Question (number) Flagged" = "Kysymys (numero) merkitty";
-
-/* state for unflagged question */
-"Question (number) Unflagged" = "Kysymyksen (numero) merkintä poistettu";
-
-/* Shows question position */
-"Question %@" = "Kysymys %@";
-
 /* label for the number of questions */
 "Questions" = "Kysymykset";
 
@@ -354,18 +205,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Tietovisan tiedot";
-
-/* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Tietovisan määräpäivä";
-
-/* Title for quiz error */
-"Quiz Error" = "Tietovisan virhe";
-
-/* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Tietovisa lähetetty";
-
-/* Label for indication that the quiz submission failed */
-"QuizSubmission Failure" = "QuizSubmission Vika";
 
 /* tile for error reading cache */
 "Read Error" = "Lukuvirhe";
@@ -376,23 +215,14 @@
 /* Record button a11y label */
 "Record" = "Nauhoita";
 
-/* Choose record audio submission */
-"Record Audio" = "Nauhoita ääni";
-
 /* permission denied button a11y label */
 "Record Permission Help" = "Nauhoituksen käyttöoikeuden ohje";
 
 /* title for a recording error */
 "Recording Error" = "Nauhoituksen virhe";
 
-/* red course color button */
-"Red" = "Punainen";
-
 /* No comment provided by engineer. */
 "Remove" = "Poista";
-
-/* Remove the formatting of the essay question text */
-"Remove Formatting" = "Poista muotoilu";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Poistettu %1$@";
@@ -418,30 +248,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Suorita tietovisa uudelleen";
 
-/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
-"Select all that apply" = "Valitse kaikki sopivat vaihtoehdot";
-
-/* Indicates that a matching quiz question needs to have an answer selected */
-"Select Answer" = "Valitse vastaus";
-
-/* when a button is selected */
-"Selected" = "Valittu";
-
-/* Shapes backdrops */
-"Shapes" = "Muotoilee";
-
-/* Hides the question list */
-"Show Question List" = "Näytä kysymysluettelo";
-
-/* Text for a button that toggles to show a timer for a timed quiz */
-"Show Timer" = "Näytä ajastin";
-
-/* Error message displayed when the file is unrecognized. */
-"Something went wrong. Check the file format and try again." = "Jotakin meni pieleen. Tarkista tiedoston muoto ja yritä uudelleen.";
-
-/* Text only quiz question label */
-"Spacer" = "Tyhjä väli";
-
 /* Stay on the quiz view */
 "Stay" = "Tuki";
 
@@ -451,39 +257,14 @@
 /* No comment provided by engineer. */
 "Style" = "Tyyli";
 
-/* Submit button title
-   Turn in this url button */
-"Submit" = "Lähetä";
-
-/* Label for indication of submitting quiz */
-"Submitting Quiz" = "Tietovisaa lähetetään";
-
-/* Take a photo submission choice */
-"Take a Photo" = "Ota valokuva";
-
-/* Take a video submission choice */
-"Take a Video" = "Ota video";
-
-/* Take a photo or video submission choice */
-"Take Photo or Video" = "Ota valokuva tai video";
-
 /* Button for taking the quiz */
 "Take Quiz" = "Suorita tietovisa";
-
-/* Teal course color button */
-"Teal" = "Sinivihreä";
 
 /* Error message for a file missing */
 "The file does not exist." = "Tiedostoa ei ole olemassa.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Sivut ovat hävinneet!? Miksi sivut ovat aina hävinneet?";
-
-/* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Tietovisan määräaika on 1 minuutin päästä. Haluatko lähettää nyt ja olla ajoissa ja jatka osallistumista kyselyyn ja ole mahdollisesti myöhässä?";
-
-/* bad url message */
-"The text you entered is not a valid URL" = "Teksti, jonka syötit, ei ole voimassa oleva URL";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "UTF8-tietojen koodauksessa ilmeni ongelma";
@@ -500,20 +281,8 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Tietokantatiedoston EnrollmentKit latauksessa tapahtui virhe.";
 
-/* FileKit Database Load Failure Message */
-"There was a problem loading the FileKit database file." = "Tietokantatiedoston FileKit latauksessa tapahtui virhe.";
-
-/* Page list fails */
-"There was a problem loading the Pages database file." = "Sivujen tietokantatiedoston  latauksessa tapahtui virhe.";
-
-/* PeepKit Database Load Failure Message */
-"There was a problem loading the PeepKit database file." = "Tietokantatiedoston PeepKit latauksessa tapahtui virhe.";
-
 /* SoEdventurous database load failure message */
 "There was a problem loading the SoEdventurous database file." = "Tietokantatiedoston SoEdventurous latauksessa tapahtui virhe.";
-
-/* File upload error message */
-"There was a problem preparing the file for upload" = "Tiedoston valmistelussa lataukseen tapahtui virhe.";
 
 /* Persistence error message */
 "There was a problem reading cached data" = "Välimuistitietojen lukemisessa esiintyi ongelma";
@@ -530,23 +299,14 @@
 /* Error message when parsing contextID for a course or group tab */
 "There was an error associating a tab with a course or group." = "Ilmeni virhe liitettäessä välilehteä kurssin tai ryhmän kanssa.";
 
-/* An error message shown when the Users cache file fails to load */
-"There was an error loading the Users cache." = "Käyttäjien välimuistin latauksessa ilmeni virhe.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Ilmeni virhe kommunikoitaessa palvelimen kanssa.";
 
 /* No comment provided by engineer. */
 "There was no data!" = "Tietoja ei ole!";
 
-/* Warning to users editing an essay question that was edited on the web. */
-"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Tätä avointa kysymystä on muokattu verkossa ja se saattaa sisältää muotoilua, linkkejä ja kuvia. Jotta tätä vastausta voidaan muokata mobiililaitteellasi, meidän täytyy tyhjentää muotoilu (mukaan lukien linkit ja kuvat). Muutoin voit jatkaa kysymyksen muokkausta verkkoselaimen kautta.";
-
 /* Body for alert when a module item doesn't have mastery paths configured */
 "This module item does not have mastery paths configured." = "Tällä moduulin kohteella ei ole hallintapolkuja määritettynä.";
-
-/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
-"This page is currently locked and not viewable." = "Tämä sivu on parhaillaan lukittu eikä se ole tarkasteltavissa.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Tällä tietovisalla on IP-osoitteen suodatusjoukko.";
@@ -562,9 +322,6 @@
 
 /* label for the time limit */
 "Time Limit" = "Aikaraja";
-
-/* Toggle flag accessiblity action */
-"Toggle Flag" = "Vaihda merkintää";
 
 /* Total grade label */
 "Total Grade" = "Kokonaisarvosana";
@@ -593,20 +350,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Tulossa";
 
-/* Message displayed while a file is being uploaded */
-"Uploading file..." = "Ladataan tiedostoa...";
-
 /* permission denied button a11y hint */
 "User has denied record permission" = "Käyttäjä on kieltänyt nauhoituksen käyttöoikeudet";
 
 /* button for viewing quiz results */
 "View Results" = "Näytä tulokset";
-
-/* a warning message */
-"Warning" = "Varoitus";
-
-/* Yellow course color button */
-"Yellow" = "Keltainen";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Olet käyttänyt kaikki tälle kyselylle saatavissa olevat yritykset.";

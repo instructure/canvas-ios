@@ -1,35 +1,5 @@
-/* Error message component with the report id */
-" Error report ID: (reportID)" = " Auðkenni villuskýrslu (reportID)";
-
-/* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = " Ástæða misbrests: (ástæða).";
-
-/* Shows the number of flagged questions */
-"%@ Flagged" = "%@ Merkt";
-
-/* Accessiblity hint for question drawer button */
-"%@ Questions Answered" = "%@ Svaraðar spurningar";
-
-/* Question number in a quiz */
-"%@." = "%@.";
-
-/* Confirmations alerting user of unanswered questions */
-"%d questions not answered" = "%d Ósvaraðar spurningar";
-
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️Villa við að sækja efni";
-
-/* Accessiblity hint for question drawer button */
-"0 Questions Answered" = "0 Svaraðar spurningar";
-
-/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
-"5 minutes remaining" = "5 mínútur eftir";
-
-/* Notification to alert the user that there is only 30 seconds left in the time quiz */
-"30 seconds remaining" = "30 sekúndur eftir";
-
-/* Shows the number questions */
-"All %@ Questions" = "Allar %@ spurningar";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Öll einkunnatímabil";
@@ -40,17 +10,11 @@
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Óvænt villa hefur komið upp.";
 
-/* an unknown error's message */
-"An unknown error has occurred." = "Óþekkt villa hefur komið upp.";
-
 /* No comment provided by engineer. */
 "Answers will not be submitted while offline." = "Svör verða ekki send inn nema með nettengingu.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
 "Are you sure you want to leave this quiz?" = "Viltu örugglega fara úr prófinu?";
-
-/* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "Viltu örugglega senda inn svörin?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
@@ -64,31 +28,9 @@
 /* stop record button a11y hint */
 "Begin recording" = "Hefja upptöku";
 
-/* Blue course color button */
-"Blue" = "Blár";
-
-/* No comment provided by engineer. */
-"Browse" = "Vafra";
-
-/* Title for screen to build a panda avatar */
-"Build Your Panda!" = "Settu pönduna þína saman!";
-
 /* Cancel Audio recording.
-   Cancel button title
-   Cancel upload */
+   Cancel button title */
 "Cancel" = "Hætta við";
-
-/* Choose a file */
-"Choose a File" = "Velja skrá";
-
-/* Pick a photo from library */
-"Choose a Photo" = "Veldu mynd";
-
-/* Pick a photo or video */
-"Choose a Photo or Video" = "Veldu mynd eða myndband";
-
-/* Pick a video from library */
-"Choose a Video" = "Veldu myndband";
 
 /* No comment provided by engineer. */
 "Collapse" = "Fella";
@@ -96,26 +38,8 @@
 /* No comment provided by engineer. */
 "Comments" = "Athugasemdir";
 
-/* Button for electing to be late on a quiz */
-"Continue Quiz" = "Halda prófi áfram";
-
-/* Header label for a screen that customizes a course */
-"Customize" = "Sérsníða";
-
-/* Cyan course color button */
-"Cyan" = "Blágrænn";
-
-/* name for upload data */
-"Data" = "Gögn";
-
 /* Error title for a persistence related data failure */
 "Data Error" = "Villa í gögnum";
-
-/* DeepOrange course color button */
-"DeepOrange" = "DeepOrange";
-
-/* DeepPurple course color button */
-"DeepPurple" = "DeepPurple";
 
 /* Delete button */
 "Delete" = "Eyða";
@@ -137,8 +61,7 @@
    Dismiss button for error messages */
 "Dismiss" = "Sleppa";
 
-/* Done button
-   Done recording button */
+/* No comment provided by engineer. */
 "Done" = "Lokið";
 
 /* due date label for quiz due date */
@@ -146,12 +69,6 @@
 
 /* Data encoding error title */
 "Encoding Error" = "Dulkóðunarvilla";
-
-/* Default text for essay cell */
-"Enter answer..." = "Settu inn svar…";
-
-/* Placeholder for URL */
-"Enter URL..." = "Settu inn vefslóð…";
 
 /* No comment provided by engineer. */
 "Error" = "Villa";
@@ -189,38 +106,17 @@
 /* favorite courses or groups */
 "Favorites" = "Eftirlæti";
 
-/* title for file upload errors */
-"File Upload Error" = "Villa við upphleðslu skrár";
-
-/* State of the flagged question */
-"Flagged" = "Merkt";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Fá einkunnir fyrir";
-
-/* navigate */
-"Go" = "Áfram";
 
 /* Title for grading periods picker */
 "Grading Periods" = "Einkunnatímabil";
 
-/* Green course color button */
-"Green" = "Grænn";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Falið";
 
-/* Hides the question list */
-"Hide Question List" = "Fela spurningalista";
-
-/* No comment provided by engineer. */
-"Image %d" = "Mynd %d";
-
 /* Inbox tab title */
 "Inbox" = "Innhólf";
-
-/* Indigo course color button */
-"Indigo" = "Dimmfjólublátt";
 
 /* No comment provided by engineer. */
 "Internet Connection Offline" = "Nettenging ótengd";
@@ -234,30 +130,12 @@
 /* Leave the quiz */
 "Leave" = "Hætta";
 
-/* LightBlue course color button */
-"LightBlue" = "LightBlue";
-
-/* LightGreen course color button */
-"LightGreen" = "LightGreen";
-
-/* LightPink course color button */
-"LightPink" = "LightPink";
-
-/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached\nSubmitting" = "Lokunardagsetning runnin upp\nSkila";
-
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown vafra þarf til að skoða niðurstöður prófsins. Opnaðu prófið í Lockdown vafra til að halda áfram.";
-
-/* Title for when another tool called Lockdown Browser is required to take a quiz */
-"Lockdown Browser Required" = "Lockdown vafra þarf";
 
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Netkerfisvilla";
-
-/* Next button for advancing a quiz */
-"Next" = "Næsti";
 
 /* A quiz that has no due date */
 "No Due Date" = "Enginn skiladagur";
@@ -292,9 +170,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Opna í…";
 
-/* Orange course color button */
-"Orange" = "Appelsínugulur";
-
 /* Overdue assignmnets (not turned in) */
 "Overdue" = "Vanskil";
 
@@ -306,15 +181,6 @@
 
 /* record button a11y hint */
 "Pause playback" = "Gera hlé á spilun";
-
-/* name for a photo just taken */
-"Photo" = "Ljósmynd";
-
-/* Photos backdrops */
-"Photos" = "Ljósmyndir";
-
-/* Pink course color button */
-"Pink" = "Bleikt";
 
 /* Playback button */
 "Play" = "Spila";
@@ -331,21 +197,6 @@
 /* label for number of points in a quiz */
 "Points" = "Punktar";
 
-/* Purple course color button */
-"Purple" = "Fjólublár";
-
-/* accessibility label for a quiz question */
-"Question" = "Spurning";
-
-/* state for a question that has been flagged */
-"Question (number) Flagged" = "Spurning (númer) merkt";
-
-/* state for unflagged question */
-"Question (number) Unflagged" = "Spurning (númer) ómerkt";
-
-/* Shows question position */
-"Question %@" = "Spurning %@";
-
 /* label for the number of questions */
 "Questions" = "Spurningar";
 
@@ -354,18 +205,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
-
-/* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Skiladagur prófs";
-
-/* Title for quiz error */
-"Quiz Error" = "Prófavilla";
-
-/* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Prófi skilað";
-
-/* Label for indication that the quiz submission failed */
-"QuizSubmission Failure" = "QuizSubmission Misbrestur";
 
 /* tile for error reading cache */
 "Read Error" = "Lesvilla";
@@ -376,23 +215,14 @@
 /* Record button a11y label */
 "Record" = "Upptaka";
 
-/* Choose record audio submission */
-"Record Audio" = "Taka upp hljóð";
-
 /* permission denied button a11y label */
 "Record Permission Help" = "Hjálp við upptökuleyfi";
 
 /* title for a recording error */
 "Recording Error" = "Upptökuvilla";
 
-/* red course color button */
-"Red" = "Rauður";
-
 /* No comment provided by engineer. */
 "Remove" = "Fjarlægja";
-
-/* Remove the formatting of the essay question text */
-"Remove Formatting" = "Fjarlægja forsnið";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Fjarlægt %1$@";
@@ -418,30 +248,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Endurtaka próf";
 
-/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
-"Select all that apply" = "Veldu allt sem við á";
-
-/* Indicates that a matching quiz question needs to have an answer selected */
-"Select Answer" = "Veldu svar";
-
-/* when a button is selected */
-"Selected" = "Valið";
-
-/* Shapes backdrops */
-"Shapes" = "Form";
-
-/* Hides the question list */
-"Show Question List" = "Sýna spurningalista";
-
-/* Text for a button that toggles to show a timer for a timed quiz */
-"Show Timer" = "Sýna tímamæli";
-
-/* Error message displayed when the file is unrecognized. */
-"Something went wrong. Check the file format and try again." = "Eitthvað fór úrskeiðis. Athugaðu skráarsniðið og reyndu aftur.";
-
-/* Text only quiz question label */
-"Spacer" = "Bil";
-
 /* Stay on the quiz view */
 "Stay" = "Dvöl";
 
@@ -451,39 +257,14 @@
 /* No comment provided by engineer. */
 "Style" = "Stíll";
 
-/* Submit button title
-   Turn in this url button */
-"Submit" = "Leggja fram";
-
-/* Label for indication of submitting quiz */
-"Submitting Quiz" = "Skila prófi";
-
-/* Take a photo submission choice */
-"Take a Photo" = "Taka mynd";
-
-/* Take a video submission choice */
-"Take a Video" = "Taka myndband";
-
-/* Take a photo or video submission choice */
-"Take Photo or Video" = "Taka mynd eða myndband";
-
 /* Button for taking the quiz */
 "Take Quiz" = "Taka próf";
-
-/* Teal course color button */
-"Teal" = "Blágrænn";
 
 /* Error message for a file missing */
 "The file does not exist." = "Skráin er ekki til.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Síðurnar eru farnar!? Af hverju eru síðurnar alltaf farnar?";
-
-/* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Prófinu þarf að skila eftir 1 mínútu. Viltu skila núna og vera á réttum tíma eða halda áfram að taka prófið og vera mögulega of sein(n)?";
-
-/* bad url message */
-"The text you entered is not a valid URL" = "Textinn sem þú settir inn er ekki gild vefslóð";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Villa kom upp við dulkóðun UTF8 gagna";
@@ -500,20 +281,8 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Vandamál kom upp við að sækja EnrollmentKit gagnagrunnsskránna.";
 
-/* FileKit Database Load Failure Message */
-"There was a problem loading the FileKit database file." = "Vandamál kom upp við að sækja FileKit gagnagrunnsskránna.";
-
-/* Page list fails */
-"There was a problem loading the Pages database file." = "Vandamál kom upp við að sækja síðu gagnagrunnsskránna.";
-
-/* PeepKit Database Load Failure Message */
-"There was a problem loading the PeepKit database file." = "Vandamál kom upp við að sækja PeepKit gagnagrunnsskránna.";
-
 /* SoEdventurous database load failure message */
 "There was a problem loading the SoEdventurous database file." = "Vandamál kom upp við að sækja SoEdventurous gagnagrunnsskránna.";
-
-/* File upload error message */
-"There was a problem preparing the file for upload" = "Vandamál kom upp við að undirbúa skránna fyrir upphleðslu";
 
 /* Persistence error message */
 "There was a problem reading cached data" = "Villa kom upp við að lesa gögn í flýtiminni";
@@ -530,23 +299,14 @@
 /* Error message when parsing contextID for a course or group tab */
 "There was an error associating a tab with a course or group." = "Villa kom upp við að tengja flipa við námskeið eða hóp.";
 
-/* An error message shown when the Users cache file fails to load */
-"There was an error loading the Users cache." = "Villa kom upp við að sækja notendaflýtiminni.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Villa kom upp við samskipti við miðlara.";
 
 /* No comment provided by engineer. */
 "There was no data!" = "Enginn gögn voru fyrir hendi!";
 
-/* Warning to users editing an essay question that was edited on the web. */
-"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Þessari ritgerðarspurningu var breytt á vefnum og gæti innihaldið forsnið, tengla eða myndir. Til þess að breyta þessu svari á snjalltækinu þínu þurfum við að hreinsa út forsniðið (þ.m.t. tengla og myndir). Annars getur þú haldið áfram að breyta spurningum á vafra.";
-
 /* Body for alert when a module item doesn't have mastery paths configured */
 "This module item does not have mastery paths configured." = "Þetta einingaratriði er ekki með tileinkunarslóðir stilltar inn.";
-
-/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
-"This page is currently locked and not viewable." = "Þessa síða er læst og ekki hægt að skoða hana.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Þetta próf er með IP-tölu síu.";
@@ -562,9 +322,6 @@
 
 /* label for the time limit */
 "Time Limit" = "Tímamörk";
-
-/* Toggle flag accessiblity action */
-"Toggle Flag" = "Víxla merki";
 
 /* Total grade label */
 "Total Grade" = "Heildareinkunn";
@@ -593,20 +350,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Væntanlegt";
 
-/* Message displayed while a file is being uploaded */
-"Uploading file..." = "Hleð upp skrá...";
-
 /* permission denied button a11y hint */
 "User has denied record permission" = "Notandi hefur hafnað upptökuleyfi";
 
 /* button for viewing quiz results */
 "View Results" = "Skoða niðurstöður";
-
-/* a warning message */
-"Warning" = "Viðvörun";
-
-/* Yellow course color button */
-"Yellow" = "Gulur";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Þú hefur notað allar tilraunir sem þú hefur á þessu prófi.";
