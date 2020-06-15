@@ -20,8 +20,8 @@ import XCTest
 @testable import Core
 
 class APIPageTests: XCTestCase {
-    let courseContext = ContextModel(.course, id: "42")
-    let groupContext = ContextModel(.group, id: "42")
+    let courseContext = Context(.course, id: "42")
+    let groupContext = Context(.group, id: "42")
 
     func testGetPagesRequest() {
         XCTAssertEqual(GetPagesRequest(context: courseContext).path, "courses/42/pages")

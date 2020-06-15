@@ -22,7 +22,7 @@ import TestsFoundation
 
 class SubmissionBreakdownViewControllerTests: CoreTestCase {
     let now = DateComponents(calendar: .current, year: 2020, month: 12, day: 5).date!
-    let course = ContextModel(.course, id: "1")
+    let course = Context(.course, id: "1")
     lazy var controller = SubmissionBreakdownViewController.create(courseID: course.id, assignmentID: "1", submissionTypes: [.discussion_topic])
 
     override func setUp() {

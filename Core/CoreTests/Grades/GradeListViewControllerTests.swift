@@ -57,7 +57,7 @@ class GradeListViewControllerTests: CoreTestCase {
 
     func mockGrades(gradingPeriodID: String?, score: Double?) {
         api.mock(GetEnrollments(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             userID: currentSession.userID,
             gradingPeriodID: gradingPeriodID,
             types: [ "StudentEnrollment" ],

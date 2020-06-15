@@ -54,6 +54,6 @@ extension Page: WriteableModel {
         self.published = item.published
         self.body = item.body ?? ""
         self.editingRoles = item.editing_roles?.split(separator: ",").map(String.init) ?? []
-        self.contextID = ContextModel(url: item.html_url)?.canvasContextID ?? ""
+        self.contextID = Context(url: item.html_url)?.canvasContextID ?? ""
     }
 }

@@ -307,12 +307,6 @@ NativeModules.NativeFileSystem = {
   convertToJPEG: jest.fn(() => Promise.resolve('/image.jpg')),
 }
 
-NativeModules.ModuleItemsProgress = {
-  viewedDiscussion: jest.fn(),
-  viewedPage: jest.fn(),
-  contributedDiscussion: jest.fn(),
-}
-
 NativeModules.UserDefaults = {
   didChangeNotification: 'NSUserDefaultsDidChangeNotification',
   getShowGradesOnDashboard: jest.fn(() => Promise.resolve(false)),

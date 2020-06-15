@@ -22,8 +22,8 @@ import XCTest
 
 class APISubmissionTests: CoreTestCase {
     func testGetSubmissionRequest() {
-        XCTAssertEqual(GetSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3").path, "courses/1/assignments/2/submissions/3")
-        XCTAssertEqual(GetSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3").query, [ APIQueryItem.array("include", [
+        XCTAssertEqual(GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3").path, "courses/1/assignments/2/submissions/3")
+        XCTAssertEqual(GetSubmissionRequest(context: .course("1"), assignmentID: "2", userID: "3").query, [ APIQueryItem.array("include", [
             "submission_comments",
             "submission_history",
             "user",
@@ -42,7 +42,7 @@ class APISubmissionTests: CoreTestCase {
             media_comment_type: nil
         )
         let body = CreateSubmissionRequest.Body(submission: submission)
-        let request = CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", body: body)
+        let request = CreateSubmissionRequest(context: .course("1"), assignmentID: "2", body: body)
 
         XCTAssertEqual(request.path, "courses/1/assignments/2/submissions")
         XCTAssertEqual(request.method, .post)
@@ -68,23 +68,23 @@ class APISubmissionTests: CoreTestCase {
 
     func testGetSubmissionsRequest() {
         XCTAssertEqual(
-            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: nil, include: []).path,
+            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: nil, include: []).path,
             "courses/1/assignments/2/submissions"
         )
         XCTAssertEqual(
-            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: false, include: []).queryItems,
+            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: false, include: []).queryItems,
             [
                 URLQueryItem(name: "grouped", value: "false"),
             ]
         )
         XCTAssertEqual(
-            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: true, include: []).queryItems,
+            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: []).queryItems,
             [
                 URLQueryItem(name: "grouped", value: "true"),
             ]
         )
         XCTAssertEqual(
-            GetSubmissionsRequest(context: ContextModel(.course, id: "1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).queryItems,
+            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).queryItems,
             [
                 URLQueryItem(name: "include[]", value: "rubric_assessment"),
                 URLQueryItem(name: "include[]", value: "submission_comments"),
@@ -108,7 +108,7 @@ class APISubmissionTests: CoreTestCase {
     }
 
     func testGetSubmissionSummaryRequest() {
-        let req = GetSubmissionSummaryRequest(context: ContextModel(.course, id: "1"), assignmentID: "2")
+        let req = GetSubmissionSummaryRequest(context: .course("1"), assignmentID: "2")
         XCTAssertEqual(req.path, "courses/1/assignments/2/submission_summary")
     }
 }

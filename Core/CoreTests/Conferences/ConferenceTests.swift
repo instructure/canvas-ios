@@ -23,9 +23,9 @@ class ConferenceTests: CoreTestCase {
     func testProperties() {
         let conference = Conference.make(from: .make(recordings: [.make()]))
         conference.canvasContextID = "bogus"
-        XCTAssertEqual(conference.context as! ContextModel, .currentUser)
-        conference.context = ContextModel(.course, id: "1")
-        XCTAssertEqual(conference.context as! ContextModel, ContextModel(.course, id: "1"))
+        XCTAssertEqual(conference.context, .currentUser)
+        conference.context = Context(.course, id: "1")
+        XCTAssertEqual(conference.context, Context(.course, id: "1"))
         XCTAssertEqual(conference.canvasContextID, "course_1")
 
         conference.duration = nil
@@ -55,7 +55,7 @@ class ConferenceTests: CoreTestCase {
     }
 
     func testGetConferences() {
-        let useCase = GetConferences(context: ContextModel(.group, id: "7"))
+        let useCase = GetConferences(context: .group("7"))
         XCTAssertEqual(useCase.cacheKey, "groups/7/conferences")
         XCTAssertEqual(useCase.scope, Scope(
             predicate: NSPredicate(format: "%K == %@", #keyPath(Conference.canvasContextID), "group_7"),

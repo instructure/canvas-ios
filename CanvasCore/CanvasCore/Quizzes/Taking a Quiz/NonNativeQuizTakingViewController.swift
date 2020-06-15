@@ -22,14 +22,14 @@ import Core
 
 class NonNativeQuizTakingViewController: UIViewController {
     let session: Session
-    let contextID: ContextID
+    let contextID: Context
     let quizID: String
     let url: URL
 
     let env = AppEnvironment.shared
     private let webView = CoreWebView()
 
-    init(session: Session, contextID: ContextID, quizID: String, url: URL) {
+    init(session: Session, contextID: Context, quizID: String, url: URL) {
         self.session = session
         self.contextID = contextID
         self.quizID = quizID
@@ -107,7 +107,7 @@ extension NonNativeQuizTakingViewController: WKUIDelegate {
 extension NonNativeQuizTakingViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         if let take = env.currentSession?.baseURL
-            .appendingPathComponent("\(contextID.htmlPath)/quizzes/\(quizID)/take"),
+            .appendingPathComponent("\(contextID.pathComponent)/quizzes/\(quizID)/take"),
             url.absoluteString.hasPrefix(take.absoluteString) {
             return false
         }

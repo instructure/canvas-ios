@@ -92,7 +92,7 @@
 		493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */; };
 		493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020691F902461006BD777 /* NSDate+Marshal.swift */; };
 		493020781F902462006BD777 /* SessionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206B1F902461006BD777 /* SessionUser.swift */; };
-		493020791F902462006BD777 /* ContextID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* ContextID.swift */; };
+		493020791F902462006BD777 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* Context.swift */; };
 		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
 		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
@@ -299,7 +299,6 @@
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
 		B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C316FE2463348700CA368C /* NativeUserDefaults.m */; };
 		B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C317002463371300CA368C /* NativeUserDefaults.swift */; };
-		B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
@@ -409,7 +408,7 @@
 		493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalProducer+SoPersistent.swift"; sourceTree = "<group>"; };
 		493020691F902461006BD777 /* NSDate+Marshal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Marshal.swift"; sourceTree = "<group>"; };
 		4930206B1F902461006BD777 /* SessionUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionUser.swift; sourceTree = "<group>"; };
-		4930206D1F902462006BD777 /* ContextID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextID.swift; sourceTree = "<group>"; };
+		4930206D1F902462006BD777 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
 		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
@@ -675,7 +674,6 @@
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		B1C316FE2463348700CA368C /* NativeUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUserDefaults.m; sourceTree = "<group>"; };
 		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
-		B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModuleItemsProgress.m; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
@@ -995,10 +993,9 @@
 			isa = PBXGroup;
 			children = (
 				493020601F902460006BD777 /* Ala Alamofire */,
-				4930206C1F902462006BD777 /* Context */,
+				493020671F902461006BD777 /* RAC+TooLegit */,
 				493020691F902461006BD777 /* NSDate+Marshal.swift */,
 				493020661F902461006BD777 /* NSURLSession+ThreeLegit.swift */,
-				493020671F902461006BD777 /* RAC+TooLegit */,
 				493020631F902460006BD777 /* Session.swift */,
 				493020651F902460006BD777 /* Session+NSURLRequest.swift */,
 				493020641F902460006BD777 /* Session+RejectNilParameters.swift */,
@@ -1023,14 +1020,6 @@
 				493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */,
 			);
 			path = "RAC+TooLegit";
-			sourceTree = "<group>";
-		};
-		4930206C1F902462006BD777 /* Context */ = {
-			isa = PBXGroup;
-			children = (
-				4930206D1F902462006BD777 /* ContextID.swift */,
-			);
-			path = Context;
 			sourceTree = "<group>";
 		};
 		49383CF41F849921009C8F8E /* Inbox */ = {
@@ -1077,7 +1066,6 @@
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
 				7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */,
 				B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */,
-				B1C3407720D1AD3B00D0554D /* ModuleItemsProgress.m */,
 				494AE0971F843A04001A8F31 /* NativeAccessibility.h */,
 				494AE0921F843A02001A8F31 /* NativeAccessibility.m */,
 				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
@@ -1291,7 +1279,6 @@
 		4961F5EF1F8FB6160093EC86 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
-				2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */,
 				4961F6171F8FB6C50093EC86 /* Color */,
 				4961F6001F8FB6C40093EC86 /* Course */,
 				4961F6051F8FB6C40093EC86 /* Enrollment */,
@@ -1300,8 +1287,10 @@
 				4961F60D1F8FB6C40093EC86 /* Group */,
 				4961F5F81F8FB6C30093EC86 /* Model */,
 				4961F60A1F8FB6C40093EC86 /* Network */,
-				4961F5FB1F8FB6C30093EC86 /* Session+Enrollment.swift */,
 				4961F5FC1F8FB6C40093EC86 /* Tab */,
+				4930206D1F902462006BD777 /* Context.swift */,
+				2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */,
+				4961F5FB1F8FB6C30093EC86 /* Session+Enrollment.swift */,
 			);
 			path = Enrollments;
 			sourceTree = "<group>";
@@ -1981,7 +1970,7 @@
 				4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */,
 				B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */,
 				7D52D87822FCC73100684932 /* SubmissionAPI.swift in Sources */,
-				493020791F902462006BD777 /* ContextID.swift in Sources */,
+				493020791F902462006BD777 /* Context.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				49CE96E11F8FFC4400121A43 /* MasteryPathAssignment+Collections.swift in Sources */,
 				497815311FCE14B800D57BBB /* Tab+Details.swift in Sources */,
@@ -2077,7 +2066,6 @@
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
 				4961F59D1F8FB2970093EC86 /* UIColor+Hex.swift in Sources */,
 				4961F5D91F8FB3EF0093EC86 /* ManagedObjectContextScheduler.swift in Sources */,
-				B1C3407820D1AD3B00D0554D /* ModuleItemsProgress.m in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */,
 				49CE96EC1F8FFC4500121A43 /* Session+SoEdventurous.swift in Sources */,

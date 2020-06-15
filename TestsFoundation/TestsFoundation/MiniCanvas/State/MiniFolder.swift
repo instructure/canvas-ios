@@ -24,7 +24,7 @@ public class MiniFolder {
     public var fileIDs: [String] = []
     public var folderIDs: [String] = []
 
-    public var id: String { api.id }
+    public var id: String { api.id.value }
 
     public init(_ file: APIFileFolder) {
         self.api = file

@@ -27,8 +27,8 @@ enum MiniCanvasEndpoints {
         static let userID = ":userID"
         static let folderID = ":folderID"
         static let fileID = ":fileID"
-        static let courseContext = ContextModel(ContextType.course, id: courseID)
-        static let folderContext = ContextModel(ContextType.folder, id: folderID)
+        static let courseContext = Context(ContextType.course, id: courseID)
+        static let folderContext = Context(ContextType.folder, id: folderID)
     }
 
     private static func lookupCourse<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniCourse {
@@ -188,7 +188,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Enrollments
         // https://canvas.instructure.com/doc/api/enrollments.html
-        .apiRequest(GetEnrollmentsRequest(context: ContextModel.currentUser)) { request in
+        .apiRequest(GetEnrollmentsRequest(context: .currentUser)) { request in
             request.state.userEnrollments()
         },
         .apiRequest(GetEnrollmentsRequest(context: Pattern.courseContext)) { request in
@@ -319,7 +319,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Groups
         // https://canvas.instructure.com/doc/api/groups.html
-        .apiRequest(GetGroupsRequest(context: ContextModel.currentUser)) { _ in [] },
+        .apiRequest(GetGroupsRequest(context: .currentUser)) { _ in [] },
         .apiRequest(GetGroupsRequest(context: Pattern.courseContext)) { _ in [] },
 
         // MARK: OAuth
@@ -475,21 +475,21 @@ enum MiniCanvasEndpoints {
                 guard let course = request.state.course(byId: enrollment.course_id!)?.api else {
                     throw ServerError.notFound
                 }
-                guard request.state.favoriteCourses.isEmpty || request.state.favoriteCourses.contains(course.id) else { return nil }
+                guard request.state.favoriteCourses.isEmpty || request.state.favoriteCourses.contains(course.id.value) else { return nil }
                 return APIDashboardCard.make(
-                    assetString: course.canvasContextID,
+                    assetString: Context(.course, id: course.id.value).canvasContextID,
                     courseCode: course.course_code!,
                     enrollmentType: enrollment.type,
                     href: "/courses/\(course.id)",
                     id: course.id,
                     longName: course.name!,
                     originalName: course.name!,
-                    position: Int(course.id),
+                    position: Int(course.id.value),
                     shortName: course.name!
                 )
             }
         },
-        .apiRequest(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"))) { _ in .make() },
+        .apiRequest(GetContextPermissionsRequest(context: .account("self"))) { _ in .make() },
         .apiRequest(GetContextPermissionsRequest(context: Pattern.courseContext)) { request in
             let permissions = try lookupCourse(forRequest: request).api.permissions ??
                 APICourse.Permissions(create_announcement: false, create_discussion_topic: false)

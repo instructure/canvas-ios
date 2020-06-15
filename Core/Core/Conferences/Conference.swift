@@ -37,7 +37,7 @@ final class Conference: NSManagedObject {
     @NSManaged var url: URL?
 
     var context: Context {
-        get { ContextModel(canvasContextID: canvasContextID) ?? .currentUser }
+        get { Context(canvasContextID: canvasContextID) ?? .currentUser }
         set { canvasContextID = newValue.canvasContextID }
     }
 

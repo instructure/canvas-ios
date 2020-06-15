@@ -33,7 +33,7 @@ public class GetArc: CollectionUseCase {
     }
 
     public var request: GetExternalToolsRequest {
-        return GetExternalToolsRequest(context: ContextModel(.course, id: courseID), includeParents: true, perPage: 100)
+        return GetExternalToolsRequest(context: .course(courseID), includeParents: true, perPage: 100)
     }
 
     public var cacheKey: String? {

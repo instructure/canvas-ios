@@ -23,7 +23,7 @@ import TestsFoundation
 
 class AttendanceStatusControllerTests: TeacherTestCase {
     func testUpdate() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let session = RollCallSession(context: context, toolID: "2")
         session.state = .active(MockURLSession())
 

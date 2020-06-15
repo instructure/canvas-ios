@@ -21,7 +21,7 @@ import UIKit
 public class SyllabusSummaryViewController: UITableViewController {
     let env = AppEnvironment.shared
     var courseID: String!
-    var context: Context { ContextModel(.course, id: courseID) }
+    var context: Context { Context(.course, id: courseID) }
     public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 

@@ -49,7 +49,7 @@ public final class Plannable: NSManagedObject {
     }
 
     public var context: Context? {
-        get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
+        get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
@@ -85,13 +85,13 @@ public final class Plannable: NSManagedObject {
 
         if let type = item.context_type.flatMap({ ContextType(rawValue: $0.lowercased()) }) {
             if type == .course, let id = item.course_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
             if type == .group, let id = item.group_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
             if type == .user, let id = item.user_id?.value {
-                model.context = ContextModel(type, id: id)
+                model.context = Context(type, id: id)
             }
         }
         return model

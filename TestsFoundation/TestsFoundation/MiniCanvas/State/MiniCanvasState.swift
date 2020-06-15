@@ -60,7 +60,7 @@ public class MiniCanvasState {
         observers = [APIUser.makeUser(role: "Parent", id: idGenerator.next())]
         accountNotifications = [.make(id: idGenerator.next())]
 
-        selfId = students[0].id
+        selfId = students[0].id.value
 
         [
             APICourse.make(id: nextId(), name: "Course One", course_code: "C1", workflow_state: .available, enrollments: []),
@@ -76,8 +76,8 @@ extension MiniCanvasState {
             id: nextId(),
             course_id: course.id,
             type: role,
-            user_id: user.id,
-            associated_user_id: observing?.id,
+            user_id: user.id.value,
+            associated_user_id: observing?.id.value,
             role: role,
             user: user,
             observed_user: observing
@@ -94,7 +94,7 @@ extension MiniCanvasState {
         courses.lazy.compactMap({ $0.assignment(byId: id) }).first
     }
     public func user(byId id: String) -> APIUser? {
-        (students + teachers + observers).first { $0.id == id }
+        (students + teachers + observers).first { $0.id.value == id }
     }
 
     public var selfUser: APIUser { user(byId: selfId)! }

@@ -17,10 +17,11 @@
 //
 
 import UIKit
-import CanvasCore
 import ReactiveSwift
+import CanvasCore
+import Core
 
-extension MasteryPathAssignment {
+extension CanvasCore.MasteryPathAssignment {
     func colorfulViewModel(_ session: Session, courseID: String) -> ColorfulViewModel {
         let vm = ColorfulViewModel(features: [.icon])
         vm.title.value = name
@@ -37,7 +38,7 @@ extension MasteryPathAssignment {
             vm.icon.value = .icon(.lti)
         }
 
-        vm.color <~ session.enrollmentsDataSource.color(for: .course(withID: courseID))
+        vm.color <~ session.enrollmentsDataSource.color(for: .course(courseID))
         vm.accessibilityLabel.value = String(format: NSLocalizedString("%@. Type: %@", comment: "Label to be read for visually impaired users. Name of assingment, then the type of assingment"), name, type.accessibilityLabel)
 
         return vm
@@ -47,12 +48,12 @@ extension MasteryPathAssignment {
 class MasteryPathSelectOptionViewController: UIViewController {
 
     @objc let session: Session
-    fileprivate let itemWithMasteryPaths: ModuleItem
+    fileprivate let itemWithMasteryPaths: CanvasCore.ModuleItem
     fileprivate let masteryPathsItem: MasteryPathsItem
     fileprivate let masteryPathsItemObserver: ManagedObjectObserver<MasteryPathsItem>
 
-    fileprivate let tableViewController = FetchedTableViewController<MasteryPathAssignment>(style: .grouped)
-    fileprivate let assignmentSets: [MasteryPathAssignmentSet]
+    fileprivate let tableViewController = FetchedTableViewController<CanvasCore.MasteryPathAssignment>(style: .grouped)
+    fileprivate let assignmentSets: [CanvasCore.MasteryPathAssignmentSet]
 
     fileprivate let optionSegmentedControl: UISegmentedControl
     fileprivate let selectOptionButton: UIButton
@@ -63,7 +64,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
         let context = try session.soEdventurousManagedObjectContext()
         if let
             masteryPathsItem: MasteryPathsItem = try context.findOne(withPredicate: MasteryPathsItem.predicateForMasteryPathsItem(inModule: moduleID, fromItemWithMasteryPaths: itemIDWithMasteryPaths)),
-            let itemWithMasteryPaths: ModuleItem = try context.findOne(withValue: masteryPathsItem.moduleItemID, forKey: "id")
+            let itemWithMasteryPaths: CanvasCore.ModuleItem = try context.findOne(withValue: masteryPathsItem.moduleItemID, forKey: "id")
         {
             self.masteryPathsItem = masteryPathsItem
             self.masteryPathsItemObserver = try ManagedObjectObserver(predicate: NSPredicate(format: "%K == %@", "id", masteryPathsItem.id), inContext: context)
@@ -72,7 +73,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
             throw NSError(subdomain: "Modules", code: 1001, title: NSLocalizedString("No Mastery Paths", comment: "Title for alert when a module item hasn't been set up with mastery paths"), description: NSLocalizedString("This module item doesn't have mastery paths set up.", comment: "Description for alert when a module item doesn't have mastery paths configured"))
         }
 
-        assignmentSets = Array(masteryPathsItem.assignmentSets.allObjects as? [MasteryPathAssignmentSet] ?? []).sorted { (s1, s2) in
+        assignmentSets = Array(masteryPathsItem.assignmentSets.allObjects as? [CanvasCore.MasteryPathAssignmentSet] ?? []).sorted { (s1, s2) in
             return s1.position < s2.position
         }
         let items = assignmentSets.map { String(format: NSLocalizedString("Option %d", comment: "Button title for selecting an option given a number"), $0.position) }
@@ -84,7 +85,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         if let firstAssignmentSet = assignmentSets.first {
-            let collection: FetchedCollection<MasteryPathAssignment> = try MasteryPathAssignment.allAssignmentsInSet(session, assignmentSetID: firstAssignmentSet.id)
+            let collection: FetchedCollection<CanvasCore.MasteryPathAssignment> = try MasteryPathAssignment.allAssignmentsInSet(session, assignmentSetID: firstAssignmentSet.id)
             tableViewController.prepare(collection, viewModelFactory: { $0.colorfulViewModel(session, courseID: self.masteryPathsItem.courseID) })
         }
     }
@@ -127,7 +128,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
         optionSegmentedControl.addTarget(self, action: #selector(optionChanged), for: .valueChanged)
         optionSegmentedControl.selectedSegmentIndex = 0
 
-        let contextID = ContextID(id: masteryPathsItem.courseID, context: .course)
+        let contextID = Context(.course, id: masteryPathsItem.courseID)
         let enrollment = session.enrollmentsDataSource[contextID]
         let isStudent = enrollment?.roles?.contains(EnrollmentRoles.Student) ?? false
         if isStudent && assignmentSets.count != 0 {
@@ -156,7 +157,7 @@ class MasteryPathSelectOptionViewController: UIViewController {
         let idx = optionSegmentedControl.selectedSegmentIndex
         let assignmentSet = assignmentSets[idx]
         do {
-            let collection: FetchedCollection<MasteryPathAssignment> = try MasteryPathAssignment.allAssignmentsInSet(session, assignmentSetID: assignmentSet.id)
+            let collection: FetchedCollection<CanvasCore.MasteryPathAssignment> = try MasteryPathAssignment.allAssignmentsInSet(session, assignmentSetID: assignmentSet.id)
             tableViewController.prepare(collection, viewModelFactory: { $0.colorfulViewModel(self.session, courseID: self.masteryPathsItem.courseID) })
         } catch {
             print("Error switching assignment sets: \(error)")

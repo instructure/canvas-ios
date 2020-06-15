@@ -22,7 +22,7 @@ import XCTest
 class APIExternalToolTests: XCTestCase {
     func testGetSessionlessLaunchURL() {
         let request = GetSessionlessLaunchURLRequest(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             id: "2",
             url: URL(string: "https://google.com")!,
             assignmentID: "3",
@@ -41,7 +41,7 @@ class APIExternalToolTests: XCTestCase {
     }
 
     func testGetExternalToolsRequest() {
-        let request = GetExternalToolsRequest(context: ContextModel(.course, id: "1"), includeParents: true, perPage: 100)
+        let request = GetExternalToolsRequest(context: .course("1"), includeParents: true, perPage: 100)
         XCTAssertEqual(request.path, "courses/1/external_tools")
         XCTAssertEqual(request.cacheKey, "course_1_external_tools")
         XCTAssertEqual(request.queryItems, [

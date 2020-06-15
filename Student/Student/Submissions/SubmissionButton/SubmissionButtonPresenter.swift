@@ -41,7 +41,7 @@ class SubmissionButtonPresenter: NSObject {
     var arcID: ArcID = .pending
     weak var view: SubmissionButtonViewProtocol?
     var selectedSubmissionTypes: [SubmissionType] = []
-    lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: ContextModel.currentUser)) {}
+    lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.env = env
@@ -110,7 +110,7 @@ class SubmissionButtonPresenter: NSObject {
             Analytics.shared.logEvent("assignment_launchlti_selected")
             LTITools(
                 env: env,
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 launchType: .assessment,
                 assignmentID: assignment.id
             ).presentTool(from: view, animated: true)
@@ -290,7 +290,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
         let createSubmission = { (mediaID: String?, error: Error?) -> Void in
             guard error == nil else { return doneUploading(error) }
             CreateSubmission(
-                context: ContextModel(.course, id: assignment.courseID),
+                context: .course(assignment.courseID),
                 assignmentID: assignment.id,
                 userID: userID,
                 submissionType: .media_recording,

@@ -51,7 +51,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     fileprivate var didShowOfflineAlert = false
     
     public convenience init(session: Session, courseID: String, quizID: String) {
-        let context = ContextID(id: courseID, context: .course)
+        let context = Context(.course, id: courseID)
         let service = CanvasQuizService(session: session, context: context, quizID: quizID)
         let controller = QuizController(service: service, quiz: nil)
 
@@ -222,7 +222,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
 
 extension QuizIntroViewController {
     // This should only be routed to from assignment details that already checked takability & stored the quiz in CoreData
-    public static func takeController(contextID: ContextID, quizID: String) -> UIViewController {
+    public static func takeController(contextID: Context, quizID: String) -> UIViewController {
         guard let legacySession = Session.current else { return UIViewController() }
         let service = CanvasQuizService(session: legacySession, context: contextID, quizID: quizID)
         guard let model: Core.Quiz = AppEnvironment.shared.database.viewContext.first(where: #keyPath(Core.Quiz.id), equals: quizID),

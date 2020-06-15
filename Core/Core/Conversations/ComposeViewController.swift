@@ -38,7 +38,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
     }
     lazy var filePicker = FilePicker(delegate: self)
 
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var observeeID: String?

@@ -36,7 +36,7 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
     func testQuizUpdateScores() {
         let quiz = firstCourse.quizzes[0]
         let student = mocked.students[0]
-        let submission = quiz.submission(byUserId: student.id)!
+        let submission = quiz.submission(byUserId: student.id.value)!
 
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.quizzes.tap()
@@ -50,7 +50,7 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
         let expectation = MiniCanvasServer.shared.expectationFor(request: PutSubmissionGradeRequest(
             courseID: firstCourse.id,
             assignmentID: quiz.api.assignment_id!.value,
-            userID: student.id
+            userID: student.id.value
         ))
         app.buttons["OK"].tap()
         wait(for: [expectation], timeout: 3)

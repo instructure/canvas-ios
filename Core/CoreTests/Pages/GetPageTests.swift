@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class GetPageTests: CoreTestCase {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     let pageURL = "page-test"
 
     func testEncodedString() {

@@ -30,7 +30,7 @@ public class GetAssignments: UseCase {
     let include: [GetAssignmentsRequest.Include]
     let perPage: Int?
     public var cacheKey: String? {
-        return "\(ContextModel(.course, id: courseID).pathComponent)/assignments"
+        return "\(Context(.course, id: courseID).pathComponent)/assignments"
     }
 
     public init(courseID: String, sort: Sort = .position, include: [GetAssignmentsRequest.Include] = [], perPage: Int? = nil) {

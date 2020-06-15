@@ -22,18 +22,18 @@ import XCTest
 
 class GetSearchRecipientsTests: CoreTestCase {
     func testCacheKey() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let useCase = GetSearchRecipients(context: context)
         XCTAssertEqual(useCase.cacheKey, "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user")
     }
 
     func testRequest() {
-        let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
+        let useCase = GetSearchRecipients(context: .course("1"))
         XCTAssertEqual(useCase.request.path, "search/recipients")
     }
 
     func testScope() {
-        let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
+        let useCase = GetSearchRecipients(context: .course("1"))
         XCTAssertEqual(useCase.scope, Scope.where(
             #keyPath(SearchRecipient.filter),
             equals: "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user",
@@ -42,7 +42,7 @@ class GetSearchRecipientsTests: CoreTestCase {
     }
 
     func testFilter() {
-        let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
+        let useCase = GetSearchRecipients(context: .course("1"))
         XCTAssertEqual(useCase.filter, "per_page=50&context=course_1&search=&synthetic_contexts=1&type=user")
     }
 
@@ -50,7 +50,7 @@ class GetSearchRecipientsTests: CoreTestCase {
         let one = APISearchRecipient.make(id: "1", name: "John")
         let two = APISearchRecipient.make(id: "2", name: "Jane")
 
-        let useCase = GetSearchRecipients(context: ContextModel(.course, id: "1"))
+        let useCase = GetSearchRecipients(context: .course("1"))
 
         useCase.write(response: [one, two], urlResponse: nil, to: databaseClient)
 

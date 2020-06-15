@@ -40,7 +40,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var webView = CoreWebView()
 
     public var color: UIColor?
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
     var isAnnouncementRoute = false
     var isAnnouncement: Bool { topic.first?.isAnnouncement ?? isAnnouncementRoute }
@@ -301,7 +301,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             let subs = topic.groupTopicChildren
         else { return true }
         if let groupID = groups?.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
-            context = ContextModel(.group, id: groupID)
+            context = Context(.group, id: groupID)
             topicID = childID
             isReady = false
             isRendered = false

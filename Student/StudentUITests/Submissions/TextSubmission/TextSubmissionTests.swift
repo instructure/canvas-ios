@@ -27,7 +27,7 @@ class TextSubmissionTests: StudentUITestCase {
         mockBaseRequests()
         let course = mock(course: APICourse.make())
         let assignment = APIAssignment.make(submission_types: [ .online_text_entry ])
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mockData(GetAssignmentRequest(courseID: course.id.value, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -48,7 +48,7 @@ class TextSubmissionTests: StudentUITestCase {
         RichContentToolbar.boldButton.tap()
         XCTAssertTrue(TextSubmission.submitButton.isEnabled)
 
-        let create = CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: nil)
+        let create = CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: nil)
         mockData(create, error: "Bad Network")
         TextSubmission.submitButton.tap()
         app.alerts.buttons.matching(label: "OK").firstElement.tap()

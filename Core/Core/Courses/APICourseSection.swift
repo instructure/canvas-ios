@@ -75,7 +75,7 @@ public struct GetCourseSectionsRequest: APIRequestable {
     }
 
     public var path: String {
-        return "\(ContextModel(.course, id: courseID).pathComponent)/sections"
+        return "\(Context(.course, id: courseID).pathComponent)/sections"
     }
 
     public var query: [APIQueryItem] {

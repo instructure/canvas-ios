@@ -310,7 +310,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
             size: 1
         )), value: .make())
         api.mock(PostFileUploadRequest(fileURL: Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png")!, target: .make()), value: .make())
-        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [ .avatar ]), value: .make(avatar: APIFileToken(token: "t")))
+        api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [ .avatar ]), value: .make(avatar: APIFileToken(token: "t")))
         api.mock(PutUserAvatarRequest(token: "t"), value: .make())
         picker?.delegate?.imagePickerController?(picker!, didFinishPickingMediaWithInfo: [
             .originalImage: UIImage.icon(.instructure),

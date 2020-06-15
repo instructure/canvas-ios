@@ -51,7 +51,7 @@ open class Enrollment: NSManagedObject {
         return DynamicProperty(object: self, keyPath: "color")
     }()
     
-    open var contextID: ContextID { fatalError("Enrollment is abstract, yo. This gots to be overrid") }
+    open var contextID: Context { fatalError("Enrollment is abstract, yo. This gots to be overrid") }
     
     @objc open var hasGrades: Bool { return false }
     
@@ -71,14 +71,14 @@ open class Enrollment: NSManagedObject {
     }
     
     @objc open var defaultViewPath: String {
-        return "\(contextID.htmlPath)/activity_stream"
+        return "\(contextID.pathComponent)/activity_stream"
     }
 }
 
 // MARK: fetching
 extension Enrollment {
-    public static func findOne(_ contextID: ContextID, inContext context: NSManagedObjectContext) throws -> Enrollment? {
-        switch contextID.context {
+    public static func findOne(_ contextID: Context, inContext context: NSManagedObjectContext) throws -> Enrollment? {
+        switch contextID.contextType {
         case .course:
             let course: Course? = try context.findOne(withValue: contextID.id, forKey: "id")
             return course

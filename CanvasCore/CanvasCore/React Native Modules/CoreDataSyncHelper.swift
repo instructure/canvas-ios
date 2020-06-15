@@ -109,7 +109,7 @@ private enum AsyncAction {
                 completion()
             }
         case .updateCourseColor(let courseID, let hex):
-            let contextID = ContextID(id: courseID, context: .course)
+            let contextID = Context(.course, id: courseID)
             guard let color = UIColor.colorFromHexString(hex) else { return completion() }
             do {
                 let context = try session.enrollmentManagedObjectContext()
@@ -124,7 +124,7 @@ private enum AsyncAction {
                 let context = try session.enrollmentManagedObjectContext()
                 context.perform() {
                     do {
-                        let contextID = ContextID(id: courseID, context: .course)
+                        let contextID = Context(.course, id: courseID)
                         let enrollment = try Course.findOne(contextID, inContext: context)
                         enrollment?.isFavorite = isFavorite
                         try context.save()
@@ -137,7 +137,7 @@ private enum AsyncAction {
                 completion()
             }
         case .refreshCourseTabs(let courseID, let tabs):
-            let contextID = ContextID(id: courseID, context: .course)
+            let contextID = Context(.course, id: courseID)
             let predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
             do {
                 let context = try session.enrollmentManagedObjectContext()

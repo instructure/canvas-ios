@@ -29,7 +29,7 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
     public let titleSubtitleView = TitleSubtitleView.create()
 
     public var color: UIColor?
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in

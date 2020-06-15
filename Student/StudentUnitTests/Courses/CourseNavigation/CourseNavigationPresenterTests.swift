@@ -22,7 +22,7 @@ import Core
 import TestsFoundation
 
 class CourseNavigationPresenterTests: StudentTestCase {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     var presenter: CourseNavigationPresenter!
     var resultingError: NSError?
     var navigationController: UINavigationController?

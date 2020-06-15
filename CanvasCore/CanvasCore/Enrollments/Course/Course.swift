@@ -126,11 +126,11 @@ public final class Course: Enrollment {
     }
     
     public override var defaultViewPath: String {
-        return "\(contextID.htmlPath)/\(defaultView.pathComponent)"
+        return "\(contextID.pathComponent)/\(defaultView.pathComponent)"
     }
 
-    public override var contextID: ContextID {
-        return ContextID(id: id, context: .course)
+    public override var contextID: Context {
+        return Context(.course, id: id)
     }
     
     public override var shortName: String {
@@ -215,7 +215,7 @@ extension Course: SynchronizedModel {
         self.roles = roles
         
         if let tabs: [JSONObject] = (try json <| "tabs") {
-            let contextID = ContextID.course(withID: id)
+            let contextID = Context.course(id)
             let request = NSFetchRequest<Tab>(entityName: "Tab")
             request.predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
             var currentTabs = try context.fetch(request)

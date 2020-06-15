@@ -76,7 +76,7 @@ public class CreateConversation: APIUseCase {
             // https://instructure.atlassian.net/browse/KNO-239
             guard conversation.contextName == nil,
                   let canvasContextID = canvasContextID,
-                  let context = ContextModel(canvasContextID: canvasContextID),
+                  let context = Context(canvasContextID: canvasContextID),
                   let course: Course = client.fetch(scope: .where("id", equals: context.id)).first
             else {
                 continue

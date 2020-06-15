@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 
 class GetFileTest: CoreTestCase {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
 
     func testProperties() {
         XCTAssertEqual(GetFile(context: context, fileID: "72").cacheKey, "get-file-72")

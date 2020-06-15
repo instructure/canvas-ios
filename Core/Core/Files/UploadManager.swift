@@ -286,7 +286,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         guard files.allSatisfy({ $0.isUploaded }) else { return }
         let fileIDs = files.compactMap { $0.id }
         let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
-        let requestable = CreateSubmissionRequest(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, body: .init(submission: submission))
+        let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
         var task: URLSessionTask?
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID

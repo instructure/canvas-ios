@@ -36,7 +36,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
         finished.fulfill()
     }
 
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     lazy var launchRequest = GetSessionlessLaunchURLRequest(context: context, id: "2", url: nil, assignmentID: nil, moduleItemID: nil, launchType: .course_navigation)
 
     lazy var session: RollCallSession = {

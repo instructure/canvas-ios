@@ -29,7 +29,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date
         let assignment = mock(assignment: .make(due_at: dueAt))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             workflow_state: .unsubmitted
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -42,7 +42,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make())
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             body: "hi",
             submission_type: .online_text_entry,
             submitted_at: submittedAt
@@ -66,7 +66,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         let assignment = mock(assignment: .make())
         let submittedAt1 = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
         let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             attempt: 2,
             submission_history: [
                 APISubmission.make(
@@ -104,7 +104,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     func testNotGraded() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [.not_graded]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value:
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value:
             APISubmission.make(workflow_state: .unsubmitted, attempt: nil
         ))
 
@@ -115,7 +115,7 @@ class SubmissionDetailsTests: StudentUITestCase {
     func testGradedButUnsubmitted() {
         mockBaseRequests()
         let assignment = mock(assignment: .make())
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value:
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value:
             APISubmission.make(
                 grade: "3",
                 workflow_state: .graded,
@@ -135,7 +135,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         let sessionURL = URL(string: "https://doc.viewer/session/123")!
         let downloadURL = URL(string: "https://doc.viewer/session/123/download")!
         let assignment = mock(assignment: .make(submission_types: [ .online_upload ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_upload,
             attachments: [ APIFile.make(
                 mime_class: "pdf",
@@ -175,7 +175,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         let sessionURL = URL(string: "https://canvas.instructure.com/session/123")!
         let downloadURL = URL(string: "https://canvas.instructure.com/session/123/download")!
         let assignment = mock(assignment: .make(submission_types: [ .online_upload ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_upload,
             attachments: [ APIFile.make(
                 mime_class: "pdf",
@@ -240,7 +240,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ]))
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .discussion_topic,
             submitted_at: submittedAt,
             discussion_entries: [
@@ -266,7 +266,7 @@ class SubmissionDetailsTests: StudentUITestCase {
             quiz_id: "1",
             submission_types: [ .online_quiz ]
         ))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_quiz
         ))
         mockData(GetQuizRequest(courseID: "1", quizID: "1"), value: APIQuiz.make())
@@ -283,7 +283,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         let url = URL(string: "https://www.instructure.com/")!
         let assignment = mock(assignment: .make(submission_types: [ .online_url ]))
         let attachment = APIFile.make()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .online_url,
             attachments: [ attachment ],
             url: url
@@ -303,10 +303,10 @@ class SubmissionDetailsTests: StudentUITestCase {
     func testExternalToolSubmission() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(
             GetSessionlessLaunchURLRequest(
-                context: ContextModel(.course, id: course.id.value),
+                context: .course(course.id.value),
                 id: nil,
                 url: nil,
                 assignmentID: assignment.id.value,
@@ -326,7 +326,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         mockBaseRequests()
         let url = Bundle(for: SubmissionDetailsTests.self).url(forResource: "test", withExtension: "m4a")!
         let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             submission_type: .media_recording,
             media_comment: APIMediaComment.make(
                 media_type: .audio,
@@ -349,7 +349,7 @@ class SubmissionDetailsTests: StudentUITestCase {
         let rubric = APIRubric.make(ratings: ratings)
         let assignment = mock(assignment: .make(id: "2", rubric: [rubric]))
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 31, hour: 22, minute: 0).date!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             assignment_id: assignment.id,
             body: "hi",
             submission_type: .online_text_entry,
@@ -357,7 +357,7 @@ class SubmissionDetailsTests: StudentUITestCase {
             rubric_assessment: ["1": APIRubricAssessment.make()]
         ))
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            course.canvasContextID: "#123456",
+            Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")

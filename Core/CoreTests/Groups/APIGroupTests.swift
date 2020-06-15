@@ -21,8 +21,8 @@ import XCTest
 
 class APIGroupTests: XCTestCase {
     func testGetGroupsRequest() {
-        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/groups")
-        XCTAssertEqual(GetGroupsRequest(context: ContextModel(.course, id: "2")).queryItems, [
+        XCTAssertEqual(GetGroupsRequest(context: .course("2")).path, "courses/2/groups")
+        XCTAssertEqual(GetGroupsRequest(context: .course("2")).queryItems, [
             URLQueryItem(name: "include[]", value: "users"),
         ])
     }

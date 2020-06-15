@@ -22,7 +22,7 @@ import WebKit
 import TestsFoundation
 
 class DiscussionDetailsViewControllerTests: CoreTestCase {
-    let course = ContextModel(.course, id: "1")
+    let course = Context(.course, id: "1")
     lazy var controller = DiscussionDetailsViewController.create(context: course, topicID: "1")
 
     let emptyResponse = HTTPURLResponse(url: URL(string: "/")!, statusCode: 204, httpVersion: nil, headerFields: nil)
@@ -250,7 +250,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
     func testStudentGroupTopic() {
         environment.app = .student
         let course = controller.context
-        let group = ContextModel(.group, id: "1")
+        let group = Context(.group, id: "1")
         api.mock(GetDiscussionView(context: course, topicID: "1"), value: .make(
             participants: [],
             unread_entries: [],
