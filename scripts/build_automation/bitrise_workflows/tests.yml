@@ -542,7 +542,13 @@ workflows:
             mv ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
             yarn coverage
             ./scripts/coverage/export-coverage.swift
+            echo
+            <scripts/coverage/xccov.json bzip2 | base64 -b 80
+            echo
+            ls -l scripts/coverage
+            cp scripts/coverage/xccov.json $BITRISE_DEPLOY_DIR/
             zip --quiet -r "$BITRISE_DEPLOY_DIR/coverage.zip" scripts/coverage/citests
+    - deploy-to-bitrise-io: {}
     - script:
         title: Report tests
         run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
