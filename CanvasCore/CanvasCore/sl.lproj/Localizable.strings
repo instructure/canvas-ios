@@ -1,35 +1,5 @@
-/* Error message component with the report id */
-" Error report ID: (reportID)" = " ID poročila o napaki: (reportID)";
-
-/* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = " Razlog napake: (razlog).";
-
-/* Shows the number of flagged questions */
-"%@ Flagged" = "%@ Označeno";
-
-/* Accessiblity hint for question drawer button */
-"%@ Questions Answered" = "%@ Vprašanja s podanimi odgovori";
-
-/* Question number in a quiz */
-"%@." = "%@.";
-
-/* Confirmations alerting user of unanswered questions */
-"%d questions not answered" = "%d vprašanj brez podanih odgovorov";
-
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Napaka pri nalaganju vsebine";
-
-/* Accessiblity hint for question drawer button */
-"0 Questions Answered" = "0 vprašanj s podanimi odgovori";
-
-/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
-"5 minutes remaining" = "Preostalo je še 5 minut.";
-
-/* Notification to alert the user that there is only 30 seconds left in the time quiz */
-"30 seconds remaining" = "Preostalo je še 30 sekund.";
-
-/* Shows the number questions */
-"All %@ Questions" = "Vseh %@ vprašanj";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Vsa ocenjevalna obdobja";
@@ -40,17 +10,11 @@
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
 
-/* an unknown error's message */
-"An unknown error has occurred." = "Prišlo je do neznane napake.";
-
 /* No comment provided by engineer. */
 "Answers will not be submitted while offline." = "Odgovori ne bodo poslani, dokler ste brez povezave.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
 "Are you sure you want to leave this quiz?" = "Ali ste prepričani, da želite zapustiti ta kviz?";
-
-/* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "Ali ste prepričani, da želite poslati odgovore?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
@@ -64,31 +28,9 @@
 /* stop record button a11y hint */
 "Begin recording" = "Začni snemanje";
 
-/* Blue course color button */
-"Blue" = "Modro";
-
-/* No comment provided by engineer. */
-"Browse" = "Prebrskaj";
-
-/* Title for screen to build a panda avatar */
-"Build Your Panda!" = "Ustvarite svojega pando.";
-
 /* Cancel Audio recording.
-   Cancel button title
-   Cancel upload */
+   Cancel button title */
 "Cancel" = "Prekliči";
-
-/* Choose a file */
-"Choose a File" = "Izberi datoteko";
-
-/* Pick a photo from library */
-"Choose a Photo" = "Izberi fotografijo";
-
-/* Pick a photo or video */
-"Choose a Photo or Video" = "Izberi fotografijo ali videoposnetek";
-
-/* Pick a video from library */
-"Choose a Video" = "Izberi videoposnetek";
 
 /* No comment provided by engineer. */
 "Collapse" = "Strni";
@@ -96,26 +38,8 @@
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
 
-/* Button for electing to be late on a quiz */
-"Continue Quiz" = "Nadaljuj s kvizom";
-
-/* Header label for a screen that customizes a course */
-"Customize" = "Prilagodi po meri";
-
-/* Cyan course color button */
-"Cyan" = "Cijan";
-
-/* name for upload data */
-"Data" = "Podatki";
-
 /* Error title for a persistence related data failure */
 "Data Error" = "Napaka pri podatkih";
-
-/* DeepOrange course color button */
-"DeepOrange" = "DeepOrange";
-
-/* DeepPurple course color button */
-"DeepPurple" = "DeepPurple";
 
 /* Delete button */
 "Delete" = "Odstrani";
@@ -137,8 +61,7 @@
    Dismiss button for error messages */
 "Dismiss" = "Opusti";
 
-/* Done button
-   Done recording button */
+/* No comment provided by engineer. */
 "Done" = "Dokončano";
 
 /* due date label for quiz due date */
@@ -146,12 +69,6 @@
 
 /* Data encoding error title */
 "Encoding Error" = "Napaka pri kodiranju";
-
-/* Default text for essay cell */
-"Enter answer..." = "Vnos odgovora ...";
-
-/* Placeholder for URL */
-"Enter URL..." = "Vnos naslova URL ...";
 
 /* No comment provided by engineer. */
 "Error" = "Napaka";
@@ -189,38 +106,17 @@
 /* favorite courses or groups */
 "Favorites" = "Priljubljene";
 
-/* title for file upload errors */
-"File Upload Error" = "Napaka pri nalaganju datoteke";
-
-/* State of the flagged question */
-"Flagged" = "Označeno";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Pridobi ocene za";
-
-/* navigate */
-"Go" = "Pojdi";
 
 /* Title for grading periods picker */
 "Grading Periods" = "Ocenjevalna obdobja";
 
-/* Green course color button */
-"Green" = "Zeleno";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Skrito";
 
-/* Hides the question list */
-"Hide Question List" = "Skrij seznam vprašanj";
-
-/* No comment provided by engineer. */
-"Image %d" = "Slika %d";
-
 /* Inbox tab title */
 "Inbox" = "Pošta";
-
-/* Indigo course color button */
-"Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
 "Internet Connection Offline" = "Brez internetne povezave";
@@ -234,30 +130,12 @@
 /* Leave the quiz */
 "Leave" = "Zapusti";
 
-/* LightBlue course color button */
-"LightBlue" = "LightBlue";
-
-/* LightGreen course color button */
-"LightGreen" = "LightGreen";
-
-/* LightPink course color button */
-"LightPink" = "LightPink";
-
-/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached\nSubmitting" = "Dosežen je datum zapore objave.\nPošiljanje";
-
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Za ogled rezultatov je potreben brskalnik Lockdown. Za nadaljevanje odprite kviz v brskalniku Lockdown.";
-
-/* Title for when another tool called Lockdown Browser is required to take a quiz */
-"Lockdown Browser Required" = "Zahtevan je brskalnik Lockdown.";
 
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Napaka v omrežju";
-
-/* Next button for advancing a quiz */
-"Next" = "Naprej";
 
 /* A quiz that has no due date */
 "No Due Date" = "Ni roka.";
@@ -292,9 +170,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Odpri v ...";
 
-/* Orange course color button */
-"Orange" = "Oranžno";
-
 /* Overdue assignmnets (not turned in) */
 "Overdue" = "Rok je potekel.";
 
@@ -306,15 +181,6 @@
 
 /* record button a11y hint */
 "Pause playback" = "Začasna zaustavitev predvajanja";
-
-/* name for a photo just taken */
-"Photo" = "Fotografija";
-
-/* Photos backdrops */
-"Photos" = "Fotografije";
-
-/* Pink course color button */
-"Pink" = "Rožnato";
 
 /* Playback button */
 "Play" = "Predvajaj";
@@ -331,21 +197,6 @@
 /* label for number of points in a quiz */
 "Points" = "Točke";
 
-/* Purple course color button */
-"Purple" = "Škrlatno";
-
-/* accessibility label for a quiz question */
-"Question" = "Vprašanje";
-
-/* state for a question that has been flagged */
-"Question (number) Flagged" = "Vprašanje (številka) je označeno.";
-
-/* state for unflagged question */
-"Question (number) Unflagged" = "Vprašanje (številka) ni označeno.";
-
-/* Shows question position */
-"Question %@" = "Vprašanje %@";
-
 /* label for the number of questions */
 "Questions" = "Vprašanja";
 
@@ -354,18 +205,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Podrobnosti o kvizu";
-
-/* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Rok kviza";
-
-/* Title for quiz error */
-"Quiz Error" = "Napaka pri kvizu";
-
-/* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Kviz je poslan.";
-
-/* Label for indication that the quiz submission failed */
-"QuizSubmission Failure" = "QuizSubmission Napaka";
 
 /* tile for error reading cache */
 "Read Error" = "Napaka pri branju";
@@ -376,23 +215,14 @@
 /* Record button a11y label */
 "Record" = "Posnemi";
 
-/* Choose record audio submission */
-"Record Audio" = "Posnemi zvok";
-
 /* permission denied button a11y label */
 "Record Permission Help" = "Pomoč pri dovoljenju za snemanje";
 
 /* title for a recording error */
 "Recording Error" = "Napaka pri snemanju";
 
-/* red course color button */
-"Red" = "Rdeče";
-
 /* No comment provided by engineer. */
 "Remove" = "Odstrani";
-
-/* Remove the formatting of the essay question text */
-"Remove Formatting" = "Odstrani oblikovanje";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Odstranjeno %1$@";
@@ -418,30 +248,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Ponovno opravljanje kviza";
 
-/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
-"Select all that apply" = "Izberi vse, ki veljajo.";
-
-/* Indicates that a matching quiz question needs to have an answer selected */
-"Select Answer" = "Izberi odgovor";
-
-/* when a button is selected */
-"Selected" = "Izbrano";
-
-/* Shapes backdrops */
-"Shapes" = "Oblike";
-
-/* Hides the question list */
-"Show Question List" = "Prikaži seznam vprašanj";
-
-/* Text for a button that toggles to show a timer for a timed quiz */
-"Show Timer" = "Prikaži časovnik";
-
-/* Error message displayed when the file is unrecognized. */
-"Something went wrong. Check the file format and try again." = "Prišlo je do težav. Preverite obliko zapisa datoteke in poskusite znova.";
-
-/* Text only quiz question label */
-"Spacer" = "Razmik";
-
 /* Stay on the quiz view */
 "Stay" = "Ostani";
 
@@ -451,39 +257,14 @@
 /* No comment provided by engineer. */
 "Style" = "Slog";
 
-/* Submit button title
-   Turn in this url button */
-"Submit" = "Pošlji";
-
-/* Label for indication of submitting quiz */
-"Submitting Quiz" = "Pošiljanje kviza";
-
-/* Take a photo submission choice */
-"Take a Photo" = "Posnemi fotografijo";
-
-/* Take a video submission choice */
-"Take a Video" = "Posnemi videoposnetek";
-
-/* Take a photo or video submission choice */
-"Take Photo or Video" = "Posnemi fotografijo ali videoposnetek";
-
 /* Button for taking the quiz */
 "Take Quiz" = "Opravi kviz";
-
-/* Teal course color button */
-"Teal" = "Zelenomodra";
 
 /* Error message for a file missing */
 "The file does not exist." = "Datoteka ne obstaja.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Strani so izginile! Zakaj strani vedno izginjajo?";
-
-/* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Rok kviza se izteče čez 1 minuto. Ali želite poslati zdaj in biti pravočasni ali pa želite nadaljevati kviz in morda zamuditi rok?";
-
-/* bad url message */
-"The text you entered is not a valid URL" = "Besedilo, ki ste ga vnesli, ni veljavni naslov URL.";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Prišlo je do težave pri kodiranju podatkov UTF-8.";
@@ -500,20 +281,8 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov EnrollmentKit.";
 
-/* FileKit Database Load Failure Message */
-"There was a problem loading the FileKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov FileKit.";
-
-/* Page list fails */
-"There was a problem loading the Pages database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov Strani.";
-
-/* PeepKit Database Load Failure Message */
-"There was a problem loading the PeepKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov PeepKit.";
-
 /* SoEdventurous database load failure message */
 "There was a problem loading the SoEdventurous database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov SoEdventurous.";
-
-/* File upload error message */
-"There was a problem preparing the file for upload" = "Prišlo je do težav pri pripravi zbirke podatkov na nalaganje.";
 
 /* Persistence error message */
 "There was a problem reading cached data" = "Prišlo je do težave pri branju predpomnjenih podatkov.";
@@ -530,23 +299,14 @@
 /* Error message when parsing contextID for a course or group tab */
 "There was an error associating a tab with a course or group." = "Prišlo je do napake pri povezavi zavihka s predmetom ali skupino.";
 
-/* An error message shown when the Users cache file fails to load */
-"There was an error loading the Users cache." = "Prišlo je do napake pri nalaganju predpomnilnika Uporabniki.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Med komunikacijo s strežnikom je prišlo do napake.";
 
 /* No comment provided by engineer. */
 "There was no data!" = "Ni bilo nobenih podatkov.";
 
-/* Warning to users editing an essay question that was edited on the web. */
-"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "To vprašanje iz eseja je bilo urejeno v spletu in lahko vsebuje oblikovanje, povezave ali slike. Za urejanje tega odziva na vaši mobilni napravi je treba počistiti oblikovanje (vključno s povezavami in slikami). Sicer lahko še naprej urejate vprašanje prek spletnega brskalnika.";
-
 /* Body for alert when a module item doesn't have mastery paths configured */
 "This module item does not have mastery paths configured." = "Pri tem modulu niso konfigurirana napredovanja v odličnosti.";
-
-/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
-"This page is currently locked and not viewable." = "Ta stran je trenutno zaklenjena in ogled ni mogoč.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Ta kviz ima nastavljeno filtriranje IP-naslovov.";
@@ -562,9 +322,6 @@
 
 /* label for the time limit */
 "Time Limit" = "Časovna omejitev";
-
-/* Toggle flag accessiblity action */
-"Toggle Flag" = "Preklop oznake";
 
 /* Total grade label */
 "Total Grade" = "Skupna ocena";
@@ -593,20 +350,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Prihodnje";
 
-/* Message displayed while a file is being uploaded */
-"Uploading file..." = "Nalaganje datoteke ...";
-
 /* permission denied button a11y hint */
 "User has denied record permission" = "Uporabnik je zavrnil dovoljenje za snemanje.";
 
 /* button for viewing quiz results */
 "View Results" = "Ogled rezultatov";
-
-/* a warning message */
-"Warning" = "Opozorilo";
-
-/* Yellow course color button */
-"Yellow" = "Rumeno";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Porabili ste vse poskuse, ki so na voljo pri tem kvizu.";

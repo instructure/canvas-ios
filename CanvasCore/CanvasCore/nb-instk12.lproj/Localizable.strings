@@ -1,35 +1,5 @@
-/* Error message component with the report id */
-" Error report ID: (reportID)" = " Feilrapportering-ID: (reportID)";
-
-/* Failure reason from the JSON payload from canvas */
-" Failure reason: (reason)." = " Grunnen til feilen: (grunn)";
-
-/* Shows the number of flagged questions */
-"%@ Flagged" = "%@ Flagget";
-
-/* Accessiblity hint for question drawer button */
-"%@ Questions Answered" = "%@ Spørsmål med svar";
-
-/* Question number in a quiz */
-"%@." = "%@.";
-
-/* Confirmations alerting user of unanswered questions */
-"%d questions not answered" = "%d spørsmål ikke besvart";
-
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Feil ved nedlasting av innhold";
-
-/* Accessiblity hint for question drawer button */
-"0 Questions Answered" = "0 spørsmål besvart";
-
-/* Notification to alert the user that there is only 5 minutes left in the timed quiz */
-"5 minutes remaining" = "5 minutter gjenstår";
-
-/* Notification to alert the user that there is only 30 seconds left in the time quiz */
-"30 seconds remaining" = "30 sekunder gjenstår";
-
-/* Shows the number questions */
-"All %@ Questions" = "Alle %@ spørsmål";
 
 /* option to view results for all grading periods */
 "All Grading Periods" = "Alle vurderingsperioder";
@@ -40,17 +10,11 @@
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "En uventet feil har oppstått.";
 
-/* an unknown error's message */
-"An unknown error has occurred." = "En ukjent feil har oppstått.";
-
 /* No comment provided by engineer. */
 "Answers will not be submitted while offline." = "Svar sendes ikke inn mens du er frakoblet.";
 
 /* Question to confirm user wants to navigate away from a quiz. */
 "Are you sure you want to leave this quiz?" = "Er du sikker på ut du vil gå ut av denne testen?";
-
-/* Confirmation before submitting a quiz */
-"Are you sure you want to submit your answers?" = "Er du sikker på at du ønsker å sende inn svarene dine?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker på at du vil slette denne kommentaren?";
@@ -64,31 +28,9 @@
 /* stop record button a11y hint */
 "Begin recording" = "Begynn opptak";
 
-/* Blue course color button */
-"Blue" = "Blå";
-
-/* No comment provided by engineer. */
-"Browse" = "Bla gjennom";
-
-/* Title for screen to build a panda avatar */
-"Build Your Panda!" = "Lag pandaen din!";
-
 /* Cancel Audio recording.
-   Cancel button title
-   Cancel upload */
+   Cancel button title */
 "Cancel" = "Avbryt";
-
-/* Choose a file */
-"Choose a File" = "Velg en fil";
-
-/* Pick a photo from library */
-"Choose a Photo" = "Velg et bilde";
-
-/* Pick a photo or video */
-"Choose a Photo or Video" = "Velg et bilde eller en video";
-
-/* Pick a video from library */
-"Choose a Video" = "Velg en video";
 
 /* No comment provided by engineer. */
 "Collapse" = "Kollaps";
@@ -96,26 +38,8 @@
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
 
-/* Button for electing to be late on a quiz */
-"Continue Quiz" = "Fortsett test";
-
-/* Header label for a screen that customizes a course */
-"Customize" = "Tilpass";
-
-/* Cyan course color button */
-"Cyan" = "Cyan";
-
-/* name for upload data */
-"Data" = "Data";
-
 /* Error title for a persistence related data failure */
 "Data Error" = "Datafeil";
-
-/* DeepOrange course color button */
-"DeepOrange" = "DeepOrange";
-
-/* DeepPurple course color button */
-"DeepPurple" = "DeepPurple";
 
 /* Delete button */
 "Delete" = "Slett";
@@ -137,8 +61,7 @@
    Dismiss button for error messages */
 "Dismiss" = "Avvise";
 
-/* Done button
-   Done recording button */
+/* No comment provided by engineer. */
 "Done" = "Ferdig";
 
 /* due date label for quiz due date */
@@ -146,12 +69,6 @@
 
 /* Data encoding error title */
 "Encoding Error" = "Kodefeil";
-
-/* Default text for essay cell */
-"Enter answer..." = "Skriv inn svar ...";
-
-/* Placeholder for URL */
-"Enter URL..." = "Skriv inn URL ...";
 
 /* No comment provided by engineer. */
 "Error" = "Avvik";
@@ -189,38 +106,17 @@
 /* favorite courses or groups */
 "Favorites" = "Favoritter";
 
-/* title for file upload errors */
-"File Upload Error" = "Filopplastingsfeil";
-
-/* State of the flagged question */
-"Flagged" = "Flagget";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Få vurderinger for";
-
-/* navigate */
-"Go" = "Gå";
 
 /* Title for grading periods picker */
 "Grading Periods" = "Vurderingsperioder";
 
-/* Green course color button */
-"Green" = "Grønn";
-
 /* Non favorite hidden courses or groups */
 "Hidden" = "Skjult";
 
-/* Hides the question list */
-"Hide Question List" = "Skjul spørsmålliste";
-
-/* No comment provided by engineer. */
-"Image %d" = "Bilde %d";
-
 /* Inbox tab title */
 "Inbox" = "Innboks";
-
-/* Indigo course color button */
-"Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
 "Internet Connection Offline" = "Internettilkobling frakoblet";
@@ -234,30 +130,12 @@
 /* Leave the quiz */
 "Leave" = "Forlate";
 
-/* LightBlue course color button */
-"LightBlue" = "LightBlue";
-
-/* LightGreen course color button */
-"LightGreen" = "LightGreen";
-
-/* LightPink course color button */
-"LightPink" = "LightPink";
-
-/* Label indicating that the quiz lock date was reached and the quiz is auto submitting */
-"Lock Date Reached\nSubmitting" = "Låsedato oppnådd\nSender inn";
-
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown-nettleser er påkrevd for å se dine resultater. Vennligst åpne testen i Lockdown-nettleser for å fortsette.";
-
-/* Title for when another tool called Lockdown Browser is required to take a quiz */
-"Lockdown Browser Required" = "Lockdown-nettleser påkrevd";
 
 /* Error alert title for network error
    Title for network errors */
 "Network Error" = "Nettverksfeil";
-
-/* Next button for advancing a quiz */
-"Next" = "Neste";
 
 /* A quiz that has no due date */
 "No Due Date" = "Ingen forfallsdato";
@@ -292,9 +170,6 @@
 /* No comment provided by engineer. */
 "Open in…" = "Åpne i...";
 
-/* Orange course color button */
-"Orange" = "Oransje";
-
 /* Overdue assignmnets (not turned in) */
 "Overdue" = "Forsinket";
 
@@ -306,15 +181,6 @@
 
 /* record button a11y hint */
 "Pause playback" = "Pause avspilling";
-
-/* name for a photo just taken */
-"Photo" = "Bilde";
-
-/* Photos backdrops */
-"Photos" = "Bilder";
-
-/* Pink course color button */
-"Pink" = "Rosa";
 
 /* Playback button */
 "Play" = "Avspille";
@@ -331,21 +197,6 @@
 /* label for number of points in a quiz */
 "Points" = "Poeng";
 
-/* Purple course color button */
-"Purple" = "Lilla";
-
-/* accessibility label for a quiz question */
-"Question" = "Spørsmål";
-
-/* state for a question that has been flagged */
-"Question (number) Flagged" = "Spørsmål (nummer) flagget";
-
-/* state for unflagged question */
-"Question (number) Unflagged" = "Spørsmål (nummer) ikke flagget";
-
-/* Shows question position */
-"Question %@" = "Spørsmål %@";
-
 /* label for the number of questions */
 "Questions" = "Spørsmål";
 
@@ -354,18 +205,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Testdetaljer";
-
-/* Title for alert that shows when a quiz hits the due date */
-"Quiz Due" = "Test forventet";
-
-/* Title for quiz error */
-"Quiz Error" = "Testfeil";
-
-/* Label for indication that the quiz submission was successful */
-"Quiz Submitted" = "Test innsendt";
-
-/* Label for indication that the quiz submission failed */
-"QuizSubmission Failure" = "QuizSubmission Svikt";
 
 /* tile for error reading cache */
 "Read Error" = "Les feil";
@@ -376,23 +215,14 @@
 /* Record button a11y label */
 "Record" = "Gjøre opptak";
 
-/* Choose record audio submission */
-"Record Audio" = "Lydopptak";
-
 /* permission denied button a11y label */
 "Record Permission Help" = "Hjelp til opptakstillatelse";
 
 /* title for a recording error */
 "Recording Error" = "Opptaksfeil";
 
-/* red course color button */
-"Red" = "Rød";
-
 /* No comment provided by engineer. */
 "Remove" = "Fjern";
-
-/* Remove the formatting of the essay question text */
-"Remove Formatting" = "Fjerne formatering";
 
 /* No comment provided by engineer. */
 "Removed %1$@" = "Fjernet %1$@";
@@ -418,30 +248,6 @@
 /* button for retaking quiz */
 "Retake Quiz" = "Ta testen på nytt";
 
-/* Label indicating that the question is a multiple answer question and more than 1 answer can be correct */
-"Select all that apply" = "Velg alt som passer";
-
-/* Indicates that a matching quiz question needs to have an answer selected */
-"Select Answer" = "Valg svar";
-
-/* when a button is selected */
-"Selected" = "Valgt";
-
-/* Shapes backdrops */
-"Shapes" = "Former";
-
-/* Hides the question list */
-"Show Question List" = "Vis spørsmålliste";
-
-/* Text for a button that toggles to show a timer for a timed quiz */
-"Show Timer" = "Vis tidtaker";
-
-/* Error message displayed when the file is unrecognized. */
-"Something went wrong. Check the file format and try again." = "Noe gikk galt. Sjekk filformatet og prøv på nytt.";
-
-/* Text only quiz question label */
-"Spacer" = "Mellomrom";
-
 /* Stay on the quiz view */
 "Stay" = "Bli";
 
@@ -451,39 +257,14 @@
 /* No comment provided by engineer. */
 "Style" = "Stil";
 
-/* Submit button title
-   Turn in this url button */
-"Submit" = "Send inn";
-
-/* Label for indication of submitting quiz */
-"Submitting Quiz" = "Sender inn test";
-
-/* Take a photo submission choice */
-"Take a Photo" = "Ta et bilde";
-
-/* Take a video submission choice */
-"Take a Video" = "Ta en video";
-
-/* Take a photo or video submission choice */
-"Take Photo or Video" = "Ta bilde eller video";
-
 /* Button for taking the quiz */
 "Take Quiz" = "Ta test";
-
-/* Teal course color button */
-"Teal" = "Blågrønn";
 
 /* Error message for a file missing */
 "The file does not exist." = "Filen eksisterer ikke";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Sidene er borte!? Hvorfor er sidene alltid borte?";
-
-/* Description for alert that shows when the quiz hits the due date */
-"The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?" = "Testen skal være ferdig om 1 minutt. Vil du sende inn nå og være i tide, eller fortsette å ta testen og muligens levere sent?";
-
-/* bad url message */
-"The text you entered is not a valid URL" = "Teksten du skrev inn er ikke en gyldig URL";
 
 /* Data encoding error message */
 "There was a problem encoding UTF8 Data" = "Det oppsto et problem med kodingen av UTF8-data";
@@ -500,20 +281,8 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Det oppstod et problem under lasting av EnrollmentKit databasefilen.";
 
-/* FileKit Database Load Failure Message */
-"There was a problem loading the FileKit database file." = "Det oppstod et problem under lasting av FileKit databasefilen.";
-
-/* Page list fails */
-"There was a problem loading the Pages database file." = "Det var et problem med lastingen av databasefilen Pages.";
-
-/* PeepKit Database Load Failure Message */
-"There was a problem loading the PeepKit database file." = "Det oppstod et problem under lasting av PeepKit databasefilen.";
-
 /* SoEdventurous database load failure message */
 "There was a problem loading the SoEdventurous database file." = "Det oppstod et problem under lasting av SoEdventurous databasefilen.";
-
-/* File upload error message */
-"There was a problem preparing the file for upload" = "Det oppsto et problem med å forberede filen til opplasting";
 
 /* Persistence error message */
 "There was a problem reading cached data" = "Det oppsto et problem med å lese hurtiglagret data";
@@ -530,23 +299,14 @@
 /* Error message when parsing contextID for a course or group tab */
 "There was an error associating a tab with a course or group." = "Det var en feil knyttet til en ark-fane med et fag eller en gruppe.";
 
-/* An error message shown when the Users cache file fails to load */
-"There was an error loading the Users cache." = "Det oppsto en feil under henting av brukerbuffer.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Det oppsto en feil under serverkommunikasjonen.";
 
 /* No comment provided by engineer. */
 "There was no data!" = "Det var ingen data!";
 
-/* Warning to users editing an essay question that was edited on the web. */
-"This essay question has been edited on the web and may contain formatting, links or images. In order to edit this response on your mobile device we will need to clear the formatting (including links and images). Otherwise you may continue editing the question via a web browser." = "Dette essayspørsmålet har blitt redigert på nettet, og kan inneholde formatering, lenker eller bilder. For å redigere dette svaret på mobilenheten må vi slette formateringen (inkludert lenker og bilder). Ellers kan du fortsette å redigere spørsmålet via en nettleser.";
-
 /* Body for alert when a module item doesn't have mastery paths configured */
 "This module item does not have mastery paths configured." = "Denne modulen har ingen overordnede baner konfigurert.";
-
-/* The HTML page is currently not viewable by the user because it has been locked by the teacher. */
-"This page is currently locked and not viewable." = "Denne siden er låst og ikke synlig.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Denne testen har satt et IP-adressefilter.";
@@ -562,9 +322,6 @@
 
 /* label for the time limit */
 "Time Limit" = "Tidsbegrensning";
-
-/* Toggle flag accessiblity action */
-"Toggle Flag" = "Veksle flagg";
 
 /* Total grade label */
 "Total Grade" = "Samlet vurdering";
@@ -593,20 +350,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Kommende";
 
-/* Message displayed while a file is being uploaded */
-"Uploading file..." = "Laster opp fil...";
-
 /* permission denied button a11y hint */
 "User has denied record permission" = "Bruker har nektet opptakstillatelse";
 
 /* button for viewing quiz results */
 "View Results" = "Se resultater";
-
-/* a warning message */
-"Warning" = "Advarsel";
-
-/* Yellow course color button */
-"Yellow" = "Gul";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Du har brukt alle forsøkene tilgjengelig på denne testen.";
