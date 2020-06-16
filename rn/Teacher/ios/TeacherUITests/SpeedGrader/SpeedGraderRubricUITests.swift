@@ -23,7 +23,7 @@ import TestsFoundation
 
 class SpeedGraderRubricUITests: MiniCanvasUITestCase {
     lazy var student = mocked.students.first!
-    lazy var submission = firstAssignment.submission(byUserId: student.id)!
+    lazy var submission = firstAssignment.submission(byUserId: student.id.value)!
 
     func showSubmission() {
         show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(submission.api.id)")
