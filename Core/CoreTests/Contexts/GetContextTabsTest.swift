@@ -22,7 +22,7 @@ import XCTest
 
 class GetContextTabsTest: CoreTestCase {
 
-    let context = ContextModel(.group, id: "1")
+    let context = Context(.group, id: "1")
 
     func testCacheKey() {
         let useCase = GetContextTabs(context: context)
@@ -55,8 +55,8 @@ class GetContextTabsTest: CoreTestCase {
     }
 
     func testItCreatesTabsMultipleRequests() {
-        let context1 = ContextModel(.group, id: Group.make(from: .make(id: "1")).id)
-        let context2 = ContextModel(.group, id: Group.make(from: .make(id: "2")).id)
+        let context1 = Context(.group, id: Group.make(from: .make(id: "1")).id)
+        let context2 = Context(.group, id: Group.make(from: .make(id: "2")).id)
 
         let groupTab1 = APITab.make(id: "home", html_url: URL(string: "https://twilson.instructure.com/groups/1")!)
         let groupTab2 = APITab.make(id: "assignments", html_url: URL(string: "https://twilson.instructure.com/groups/2")!)

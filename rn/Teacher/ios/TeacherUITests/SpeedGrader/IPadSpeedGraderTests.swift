@@ -36,12 +36,12 @@ class IPadSpeedGraderTests: MiniCanvasUITestCase {
         app.find(labelContaining: students[0].name).waitToExist()
         app.find(labelContaining: students[1].name).waitToExist()
         app.find(labelContaining: students[2].name).waitToExist()
-        SubmissionsList.row(contextID: students[1].id).tap()
+        SubmissionsList.row(contextID: students[1].id.value).tap()
         SpeedGrader.dismissTutorial()
         SpeedGrader.doneButton.waitToExist()
-        SpeedGrader.userName(userID: students[1].id).waitToExist()
-        XCTAssertFalse(SpeedGrader.userName(userID: students[0].id).isVisible)
-        XCTAssertTrue(SpeedGrader.userName(userID: students[1].id).isVisible)
-        XCTAssertFalse(SpeedGrader.userName(userID: students[2].id).isVisible)
+        SpeedGrader.userName(userID: students[1].id.value).waitToExist()
+        XCTAssertFalse(SpeedGrader.userName(userID: students[0].id.value).isVisible)
+        XCTAssertTrue(SpeedGrader.userName(userID: students[1].id.value).isVisible)
+        XCTAssertFalse(SpeedGrader.userName(userID: students[2].id.value).isVisible)
     }
 }

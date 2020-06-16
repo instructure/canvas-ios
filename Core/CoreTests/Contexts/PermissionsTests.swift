@@ -109,7 +109,7 @@ class PermissionsTests: CoreTestCase {
             read_reports: true, read_roster: true, read_sis: true, select_final_grade: true, send_messages: true, send_messages_all: true,
             view_all_grades: true, view_audit_trail: true, view_group_pages: true, view_user_logins: true
         )
-        let context = ContextModel(.account, id: "self")
+        let context = Context(.account, id: "self")
 
         Permissions.save(apiPermissions, for: context, in: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
@@ -192,7 +192,7 @@ class PermissionsTests: CoreTestCase {
 
         let permissions = Permissions.make(from: .make(manage_sis: true))
 
-        Permissions.save(apiPermissions, for: ContextModel(.account, id: "1"), in: databaseClient)
+        Permissions.save(apiPermissions, for: Context(.account, id: "1"), in: databaseClient)
         XCTAssertNoThrow(try databaseClient.save())
 
         databaseClient.refresh()

@@ -156,10 +156,6 @@ extension APICourse.Term {
         )
     }
 }
-
-extension APICourse: APIContext {
-    public var contextType: ContextType { return .course }
-}
 #endif
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.index
@@ -280,7 +276,7 @@ public struct GetCourseRequest: APIRequestable {
     }
 
     public var path: String {
-        return ContextModel(.course, id: courseID).pathComponent
+        return Context(.course, id: courseID).pathComponent
     }
 
     public var query: [APIQueryItem] {
@@ -308,7 +304,7 @@ struct PutCourseRequest: APIRequestable {
     ]
     let method = APIMethod.put
     var path: String {
-        return ContextModel(.course, id: courseID).pathComponent
+        return Context(.course, id: courseID).pathComponent
     }
 }
 
@@ -328,7 +324,7 @@ struct PostCourseRequest: APIRequestable {
     ]
     let method = APIMethod.post
     var path: String {
-        return "\(ContextModel(.account, id: accountID).pathComponent)/courses"
+        return "\(Context(.account, id: accountID).pathComponent)/courses"
     }
 }
 

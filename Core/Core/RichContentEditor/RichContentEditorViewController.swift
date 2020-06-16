@@ -38,7 +38,7 @@ public class RichContentEditorViewController: UIViewController {
         }
     }
     var selection: CGRect = .zero
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     var uploadContext = FileUploadContext.myFiles
     let uploadManager = UploadManager.shared
 

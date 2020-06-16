@@ -23,7 +23,7 @@ class GetGroups: CollectionUseCase {
     let cacheKey: String?
     let request: GetGroupsRequest
 
-    init(context: Context = ContextModel.currentUser) {
+    init(context: Context = Context.currentUser) {
         cacheKey = "\(context.pathComponent)/groups"
         request = GetGroupsRequest(context: context)
     }
@@ -56,7 +56,7 @@ public struct GetDashboardGroups: CollectionUseCase {
     public init() {}
 
     public var request: GetGroupsRequest {
-        return GetGroupsRequest(context: ContextModel.currentUser)
+        return GetGroupsRequest(context: .currentUser)
     }
 
     public var scope: Scope {

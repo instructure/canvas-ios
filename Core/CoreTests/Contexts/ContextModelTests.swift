@@ -21,33 +21,33 @@ import XCTest
 
 class ContextModelTests: XCTestCase {
     func testCurrentUser() {
-        XCTAssertEqual(ContextModel.currentUser, ContextModel(.user, id: "self"))
+        XCTAssertEqual(Context.currentUser, Context(.user, id: "self"))
     }
 
     func testInitContextTypeId() {
-        let context = ContextModel(.course, id: "5")
+        let context = Context(.course, id: "5")
         XCTAssertEqual(context.contextType, .course)
         XCTAssertEqual(context.id, "5")
     }
 
     func testInitContextID() {
-        XCTAssertEqual(ContextModel(canvasContextID: "group_42"), ContextModel(.group, id: "42"))
+        XCTAssertEqual(Context(canvasContextID: "group_42"), Context(.group, id: "42"))
 
-        XCTAssertNil(ContextModel(canvasContextID: "invalid"))
-        XCTAssertNil(ContextModel(canvasContextID: "invalid_1"))
+        XCTAssertNil(Context(canvasContextID: "invalid"))
+        XCTAssertNil(Context(canvasContextID: "invalid_1"))
     }
 
     func testInitPath() {
-        XCTAssertEqual(ContextModel(path: "groups/42"), ContextModel(.group, id: "42"))
-        XCTAssertEqual(ContextModel(path: "/api/v1/users/4"), ContextModel(.user, id: "4"))
+        XCTAssertEqual(Context(path: "groups/42"), Context(.group, id: "42"))
+        XCTAssertEqual(Context(path: "/api/v1/users/4"), Context(.user, id: "4"))
 
-        XCTAssertNil(ContextModel(path: "invalid"))
-        XCTAssertNil(ContextModel(path: "invalid/1"))
-        XCTAssertNil(ContextModel(path: "/api/v1/invalid/1"))
+        XCTAssertNil(Context(path: "invalid"))
+        XCTAssertNil(Context(path: "invalid/1"))
+        XCTAssertNil(Context(path: "/api/v1/invalid/1"))
     }
 
     func testInitUrl() {
-        XCTAssertEqual(ContextModel(url: URL(string: "api/v1/accounts/self")!), ContextModel(.account, id: "self"))
-        XCTAssertNil(ContextModel(url: URL(string: "/api/v1/")!))
+        XCTAssertEqual(Context(url: URL(string: "api/v1/accounts/self")!), Context(.account, id: "self"))
+        XCTAssertNil(Context(url: URL(string: "/api/v1/")!))
     }
 }

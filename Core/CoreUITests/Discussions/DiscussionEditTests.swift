@@ -34,17 +34,17 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCantCreateDiscussion() {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: noPermissionCourse), value: [])
+        mockData(ListDiscussionTopicsRequest(context: .course(noPermissionCourse.id.value)), value: [])
 
-        show("/courses/\(noPermissionCourse.id)/discussion_topics")
+        show("/courses/\(noPermissionCourse.id.value)/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
     func testCreateDiscussion() {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: course1), value: [])
-        mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
+        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
+        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": false])
 
         show("/courses/\(course1.id)/discussion_topics")
@@ -65,8 +65,8 @@ class DiscussionEditTests: CoreUITestCase {
 
     func testCreateDiscussionWithAttachment() {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: course1), value: [])
-        mockData(ListDiscussionTopicsRequest(context: course1, perPage: nil, include: []), value: [])
+        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
+        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
         mockEncodableRequest("conversations?include%5B%5D=participant_avatars&per_page=50", value: [String]())
 

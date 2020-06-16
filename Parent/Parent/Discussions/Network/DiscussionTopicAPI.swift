@@ -18,6 +18,7 @@
 
 import Foundation
 import CanvasCore
+import Core
 
 open class DiscussionTopicAPI {
 
@@ -31,8 +32,8 @@ open class DiscussionTopicAPI {
         return try session.GET(path)
     }
 
-    open class func getDiscussionTopicView(_ session: Session, contextID: ContextID, topicID: String) throws -> URLRequest {
-        let path = "\(contextID.apiPath)/discussion_topics/\(topicID)/view"
+    open class func getDiscussionTopicView(_ session: Session, contextID: Context, topicID: String) throws -> URLRequest {
+        let path = "/api/v1/\(contextID.pathComponent)/discussion_topics/\(topicID)/view"
         return try session.GET(path)
     }
 }

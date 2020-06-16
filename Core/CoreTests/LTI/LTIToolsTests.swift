@@ -61,14 +61,14 @@ class LTIToolsTests: CoreTestCase {
     func testGetSessionlessLaunchURL() {
         let tools = LTITools(
             env: environment,
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             id: nil,
             url: nil,
             launchType: nil,
             assignmentID: nil,
             moduleItemID: nil
         )
-        let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
         let actualURL = URL(string: "/someplace")!
 
         api.mock(request, value: nil)
@@ -103,14 +103,14 @@ class LTIToolsTests: CoreTestCase {
     func testPresentTool() throws {
         let tools = LTITools(
             env: environment,
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             id: nil,
             url: nil,
             launchType: nil,
             assignmentID: nil,
             moduleItemID: nil
         )
-        let request = GetSessionlessLaunchURLRequest(context: ContextModel(.course, id: "1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
+        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: nil, moduleItemID: nil, launchType: nil)
         let actualURL = URL(string: "https://canvas.instructure.com")!
 
         api.mock(request, value: nil)
@@ -169,7 +169,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testMarksModuleItemAsRead() {
         api.mock(PostMarkModuleItemRead(courseID: "1", moduleID: "2", moduleItemID: "3"))
-        let tools = LTITools(context: ContextModel(.course, id: "1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
+        let tools = LTITools(context: .course("1"), launchType: .module_item, moduleID: "2", moduleItemID: "3")
         let request = GetSessionlessLaunchURLRequest(context: tools.context, id: nil, url: nil, assignmentID: nil, moduleItemID: "3", launchType: .module_item)
         api.mock(request, value: .make())
         let expectation = XCTestExpectation(description: "notification was sent")

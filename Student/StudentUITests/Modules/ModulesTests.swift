@@ -64,7 +64,7 @@ class ModulesTests: StudentUITestCase {
             )
         )
         mockData(GetModuleItemRequest(courseID: "1", moduleID: "1", itemID: "1", include: [.content_details]), value: item1)
-        mockData(GetPageRequest(context: ContextModel(.course, id: "1"), url: "page-1"), value: .make(body: "hello"))
+        mockData(GetPageRequest(context: .course("1"), url: "page-1"), value: .make(body: "hello"))
         mockData(PostMarkModuleItemRead(courseID: "1", moduleID: "1", moduleItemID: "1"))
         show("courses/1/modules")
         ModuleList.module(section: 0).waitToExist()

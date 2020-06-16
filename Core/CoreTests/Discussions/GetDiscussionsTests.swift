@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 
 class GetDiscussionsTests: CoreTestCase {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
 
     func testGetDiscussionTopic() {
         let useCase = GetDiscussionTopic(context: context, topicID: "2")

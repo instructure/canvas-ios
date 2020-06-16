@@ -37,11 +37,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         case grades, syllabus, summary
     }
 
-    lazy var student = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: studentID)) { [weak self] in
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
         self?.messagingReady()
     }
 
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), qualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.messagingReady()
     }
 
@@ -49,11 +49,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.courseReady()
     }
 
-    lazy var frontPages = env.subscribe(GetFrontPage(context: ContextModel(.course, id: courseID))) { [weak self] in
+    lazy var frontPages = env.subscribe(GetFrontPage(context: .course(courseID))) { [weak self] in
         self?.courseReady()
     }
 
-    lazy var tabs = env.subscribe(GetContextTabs(context: ContextModel(.course, id: courseID))) { [weak self] in
+    lazy var tabs = env.subscribe(GetContextTabs(context: .course(courseID))) { [weak self] in
         self?.courseReady()
     }
 
@@ -166,7 +166,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
             template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
             let compose = ComposeViewController.create(
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 observeeID: studentID,
                 recipients: teachers.all,
                 subject: subject,

@@ -73,7 +73,7 @@ class UrlSubmissionPresenterTests: StudentTestCase {
 
     func submissionRequest(for url: URL?) -> CreateSubmissionRequest {
         return CreateSubmissionRequest(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             assignmentID: "1",
             body: .init(submission: .init(
                 text_comment: nil,

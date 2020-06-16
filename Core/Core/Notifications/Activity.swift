@@ -32,7 +32,7 @@ public final class Activity: NSManagedObject, WriteableModel {
     @NSManaged public var canvasContextIDRaw: String?
 
     public var context: Context? {
-        get { return ContextModel(canvasContextID: canvasContextIDRaw ?? "") }
+        get { return Context(canvasContextID: canvasContextIDRaw ?? "") }
         set { canvasContextIDRaw = newValue?.canvasContextID }
     }
 
@@ -54,15 +54,15 @@ public final class Activity: NSManagedObject, WriteableModel {
         model.updatedAt = item.updated_at
 
         if let rawValue = item.context_type, let contextType = ContextType(rawValue: rawValue.lowercased()) {
-            var context: ContextModel?
+            var context: Context?
             switch contextType {
             case .course:
                 if let id = item.course_id?.value {
-                    context = ContextModel(contextType, id: id)
+                    context = Context(contextType, id: id)
                 }
             case .group:
                 if let id = item.group_id?.value {
-                    context = ContextModel(contextType, id: id)
+                    context = Context(contextType, id: id)
                 }
             default: break
             }

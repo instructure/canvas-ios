@@ -27,7 +27,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     var app = App.student
     public var color: UIColor?
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
     var pageURL = ""
 

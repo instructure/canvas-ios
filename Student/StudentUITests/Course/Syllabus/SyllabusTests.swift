@@ -30,12 +30,12 @@ class SyllabusTests: StudentUITestCase {
         mockBaseRequests()
         let assignmentName = "Foobar"
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            course.canvasContextID: "#123456",
+            Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
 
         let assignment = APIAssignment.make(name: assignmentName, description: "hello world", submission: .make())
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
-        mockData(GetCalendarEventsRequest(contexts: [ContextModel(.course, id: course.id)], type: .event, allEvents: true), value: [
+        mockData(GetAssignmentRequest(courseID: course.id.value, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mockData(GetCalendarEventsRequest(contexts: [Context(.course, id: course.id.value)], type: .event, allEvents: true), value: [
             .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])
 

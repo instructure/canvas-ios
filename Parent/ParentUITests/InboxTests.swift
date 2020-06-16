@@ -45,7 +45,7 @@ class InboxTests: ParentUITestCase {
         let fileURL = URL(string: "data:text/plain,")!
         mockData(PostFileUploadRequest(fileURL: fileURL, target: target), value: file)
         mockData(URLRequest(url: file.url!.rawValue), value: try! Data(contentsOf: fileURL))
-        mockData(GetFileRequest(context: ContextModel(.user, id: "self"), fileID: file.id.value, include: []), value: file)
+        mockData(GetFileRequest(context: .user("self"), fileID: file.id.value, include: []), value: file)
         mockData(PostAddMessageRequest(conversationID: conversation.id.value, body: .init(
             attachment_ids: [file.id.value],
             body: newMessage.body,

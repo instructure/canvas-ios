@@ -29,7 +29,7 @@ class AssignmentDetailsTests: StudentUITestCase {
         // FLAKY: color cache doesn't always get updated
         mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            course.canvasContextID: "#123456",
+            Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
         let assignment = mock(assignment: .make(
             description: "A description",
@@ -210,7 +210,7 @@ class AssignmentDetailsTests: StudentUITestCase {
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
         mockBaseRequests()
-        mockData(GetCourseRequest(courseID: course.id), value: APICourse.make(enrollments: []))
+        mockData(GetCourseRequest(courseID: course.id.value), value: APICourse.make(enrollments: []))
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))

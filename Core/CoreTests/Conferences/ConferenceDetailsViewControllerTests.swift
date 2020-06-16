@@ -21,7 +21,7 @@ import XCTest
 @testable import TestsFoundation
 
 class ConferenceDetailsViewControllerTests: CoreTestCase {
-    let course1 = ContextModel(.course, id: "1")
+    let course1 = Context(.course, id: "1")
     var conferenceID = "1"
     lazy var controller = ConferenceDetailsViewController.create(context: course1, conferenceID: conferenceID)
 

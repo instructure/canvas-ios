@@ -61,11 +61,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/tabs": nil,
 
     "/groups/:groupID": { url, _ in
-        guard let context = ContextModel(path: url.path) else { return nil }
+        guard let context = Context(path: url.path) else { return nil }
         return GroupNavigationViewController.create(context: context)
     },
     "/groups/:groupID/tabs": { url, _ in
-        guard let context = ContextModel(path: url.path) else { return nil }
+        guard let context = Context(path: url.path) else { return nil }
         return GroupNavigationViewController.create(context: context)
     },
 
@@ -76,7 +76,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/announcements": nil,
 
     "/:context/:contextID/announcements/:announcementID": { url, params in
-        guard let context = ContextModel(path: url.path), let announcementID = params["announcementID"] else { return nil }
+        guard let context = Context(path: url.path), let announcementID = params["announcementID"] else { return nil }
         return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
     },
 
@@ -117,7 +117,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/assignments/:assignmentID/submissions": { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return SubmissionDetailsViewController.create(
-            context: ContextModel(.course, id: ID.expandTildeID(courseID)),
+            context: .course(ID.expandTildeID(courseID)),
             assignmentID: ID.expandTildeID(assignmentID),
             userID: "self"
         )
@@ -133,7 +133,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
             )
         } else {
             return SubmissionDetailsViewController.create(
-                context: ContextModel(.course, id: ID.expandTildeID(courseID)),
+                context: .course(ID.expandTildeID(courseID)),
                 assignmentID: ID.expandTildeID(assignmentID),
                 userID: ID.expandTildeID(userID)
             )
@@ -144,11 +144,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     // "/:context/:contextID/collaborations": { url, _ in },
 
     "/:context/:contextID/conferences": { url, _ in
-        guard let context = ContextModel(path: url.path) else { return nil }
+        guard let context = Context(path: url.path) else { return nil }
         return ConferenceListViewController.create(context: context)
     },
     "/:context/:contextID/conferences/:conferenceID": { url, params in
-        guard let context = ContextModel(path: url.path), let id = params["conferenceID"] else { return nil }
+        guard let context = Context(path: url.path), let id = params["conferenceID"] else { return nil }
         return ConferenceDetailsViewController.create(context: context, conferenceID: id)
     },
 
@@ -164,14 +164,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
     "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params in
         guard
-            let context = ContextModel(path: url.path),
+            let context = Context(path: url.path),
             let discussionID = params["discussionID"]
         else { return nil }
         return DiscussionReplyViewController.create(context: context, topicID: discussionID)
     },
     "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { url, params in
         guard
-            let context = ContextModel(path: url.path),
+            let context = Context(path: url.path),
             let discussionID = params["discussionID"],
             let entryID = params["entryID"]
         else { return nil }
@@ -222,7 +222,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/courses/:courseID/modules": { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let session = Session.current else { return nil }
-        let contextID = ContextID.course(withID: courseID)
+        let contextID = Context.course(courseID)
         // Restrict access to Modules tab if it's hidden (unless it is the home tab)
         let modulesTab = try? Tab.modulesTab(for: contextID, in: session)
         let modulesAreHome = session.enrollmentsDataSource[contextID]?.defaultViewPath.contains("/modules") == true
@@ -293,13 +293,13 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/pages": { _, params in
         guard let courseID = params["courseID"] else { return nil }
-        let context = ContextModel(.course, id: ID.expandTildeID(courseID))
+        let context = Context(.course, id: ID.expandTildeID(courseID))
         return PageListViewController.create(context: context, app: .student)
     },
 
     "/groups/:groupID/pages": { _, params in
         guard let groupID = params["groupID"] else { return nil }
-        let context = ContextModel(.group, id: ID.expandTildeID(groupID))
+        let context = Context(.group, id: ID.expandTildeID(groupID))
         return PageListViewController.create(context: context, app: .student)
     },
 
@@ -343,7 +343,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/quizzes/:quizID/take": { _, params in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        return QuizIntroViewController.takeController(contextID: ContextID(id: courseID, context: .course), quizID: quizID)
+        return QuizIntroViewController.takeController(contextID: .course(courseID), quizID: quizID)
     },
 
     // No native support, fall back to web
@@ -351,12 +351,12 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/users": { url, params in
         guard let courseID = params["courseID"] else { return nil }
-        return PeopleListViewController.create(context: ContextModel(.course, id: courseID))
+        return PeopleListViewController.create(context: .course(courseID))
     },
 
     "/groups/:groupID/users": { url, params in
         guard let groupID = params["groupID"] else { return nil }
-        return PeopleListViewController.create(context: ContextModel(.group, id: groupID))
+        return PeopleListViewController.create(context: .group(groupID))
     },
 
     "/courses/:courseID/users/:userID": nil,
@@ -458,9 +458,9 @@ private func previewFileViewController(url: URLComponents, params: [String: Stri
 
 private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    var context = ContextModel(path: url.path)
+    var context = Context(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
-        context = ContextModel(.course, id: courseID)
+        context = Context(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
     if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails, context?.contextType == .course {
@@ -480,7 +480,7 @@ private func fileViewController(url: URLComponents, params: [String: String]) ->
 }
 
 private func pageViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
-    guard let context = ContextModel(path: url.path), let pageURL = params["url"] else { return nil }
+    guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
     if ExperimentalFeature.studentModules.isEnabled, !url.originIsModuleItemDetails, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
@@ -496,7 +496,7 @@ private func pageViewController(url: URLComponents, params: [String: String]) ->
 }
 
 private func discussionViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
-    guard let context = ContextModel(path: url.path), let discussionID = params["discussionID"] else { return nil }
+    guard let context = Context(path: url.path), let discussionID = params["discussionID"] else { return nil }
     if ExperimentalFeature.studentModules.isEnabled, context.contextType == .course, !url.originIsModuleItemDetails {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,

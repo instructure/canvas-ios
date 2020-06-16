@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class PageListViewControllerTests: CoreTestCase {
-    lazy var controller = PageListViewController.create(context: ContextModel(.course, id: "42"), app: .teacher)
+    lazy var controller = PageListViewController.create(context: .course("42"), app: .teacher)
 
     override func setUp() {
         super.setUp()
@@ -104,7 +104,7 @@ class PageListViewControllerTests: CoreTestCase {
     }
 
     func testGroup() {
-        controller.context = ContextModel(.group, id: "1")
+        controller.context = Context(.group, id: "1")
         api.mock(controller.group, value: .make())
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()

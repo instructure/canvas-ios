@@ -31,7 +31,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
     var app = App.student
     var canCreatePage: Bool { app == .teacher || context.contextType == .group }
     public var color: UIColor?
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     let env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
 

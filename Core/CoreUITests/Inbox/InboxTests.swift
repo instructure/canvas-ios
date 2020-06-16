@@ -69,8 +69,8 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageEntireClass() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [])
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true, send_messages_all: true))
 
         logIn()
@@ -103,12 +103,12 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageMultiple() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
             .make(id: 1, name: "Recepient One"),
             .make(id: 2, name: "Recepient Two"),
             .make(id: 3, name: "Recepient Three"),
         ])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true))
 
         logIn()
@@ -140,8 +140,8 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageAttachment() {
-        mockData(GetSearchRecipientsRequest(context: baseCourse, skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
-        mockData(GetContextPermissionsRequest(context: baseCourse),
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [.make()])
+        mockData(GetContextPermissionsRequest(context: .course(baseCourse.id.value)),
                  value: APIPermissions.make(send_messages: true))
 
         let targetUrl = "https://canvas.s3.bucket.com/bucket/1"

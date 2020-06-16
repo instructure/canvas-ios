@@ -185,6 +185,6 @@ class EnrollmentTests: CoreTestCase {
     func testObservedUser() {
         let observedUser = APIUser.make()
         let enrollment = Enrollment.make(from: .make(observed_user: observedUser))
-        XCTAssertEqual(enrollment.observedUser?.id, observedUser.id)
+        XCTAssertEqual(enrollment.observedUser?.id, observedUser.id.value)
     }
 }

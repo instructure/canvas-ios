@@ -60,11 +60,11 @@ class SearchRecipientTests: CoreTestCase {
             "1": ["TeacherEnrollment"],
             "2": ["StudentEnrollment"],
         ]))
-        XCTAssertTrue(model.hasRole(.teacher, in: ContextModel(.course, id: "1")))
-        XCTAssertTrue(model.hasRole(.student, in: ContextModel(.course, id: "2")))
-        XCTAssertFalse(model.hasRole(.student, in: ContextModel(.course, id: "1")))
-        XCTAssertFalse(model.hasRole(.teacher, in: ContextModel(.course, id: "2")))
-        XCTAssertFalse(model.hasRole(.teacher, in: ContextModel(.group, id: "1")))
-        XCTAssertFalse(model.hasRole(.student, in: ContextModel(.course, id: "3")))
+        XCTAssertTrue(model.hasRole(.teacher, in: Context(.course, id: "1")))
+        XCTAssertTrue(model.hasRole(.student, in: Context(.course, id: "2")))
+        XCTAssertFalse(model.hasRole(.student, in: Context(.course, id: "1")))
+        XCTAssertFalse(model.hasRole(.teacher, in: Context(.course, id: "2")))
+        XCTAssertFalse(model.hasRole(.teacher, in: Context(.group, id: "1")))
+        XCTAssertFalse(model.hasRole(.student, in: Context(.course, id: "3")))
     }
 }

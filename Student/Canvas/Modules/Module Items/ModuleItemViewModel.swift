@@ -60,7 +60,7 @@ class ModuleItemViewModel: NSObject {
                 case let .externalTool(toolID, url):
                     guard let courseID = courseID else { return nil }
                     let tools = LTITools(
-                        context: ContextModel(.course, id: courseID),
+                        context: .course(courseID),
                         id: toolID,
                         url: url,
                         launchType: .module_item,
@@ -168,7 +168,7 @@ class ModuleItemViewModel: NSObject {
             .producer
             .map { $0?.courseID }
             .flatMap(.latest) { [weak self] in
-                $0.flatMap { self?.session.enrollmentsDataSource.color(for: .course(withID: $0)) }
+                $0.flatMap { self?.session.enrollmentsDataSource.color(for: .course($0)) }
                     ?? SignalProducer(value: .prettyGray())
             }
         vm.titleFontStyle <~ self.moduleItem

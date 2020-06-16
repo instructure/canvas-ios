@@ -22,17 +22,17 @@ import Foundation
 import CoreData
 
 extension Tab {
-    public static func collectionCacheKey(context: NSManagedObjectContext, contextID: ContextID) -> String {
-        return cacheKey(context, [contextID.description])
+    public static func collectionCacheKey(context: NSManagedObjectContext, contextID: Context) -> String {
+        return cacheKey(context, [contextID.canvasContextID])
     }
 
-    public static func invalidateCache(session: Session, contextID: ContextID) throws {
+    public static func invalidateCache(session: Session, contextID: Context) throws {
         let context = try session.enrollmentManagedObjectContext()
         let key = collectionCacheKey(context: context, contextID: contextID)
         session.refreshScope.invalidateCache(key)
     }
     
-    public static func collection(_ session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
+    public static func collection(_ session: Session, contextID: Context) throws -> FetchedCollection<Tab> {
         let predicate = NSPredicate(format: "%K == %@ AND %K == NO", "rawContextID", contextID.canvasContextID, "hidden")
         let context = try session.enrollmentManagedObjectContext()
         return try FetchedCollection(frc:
@@ -40,7 +40,7 @@ extension Tab {
         )
     }
     
-    public static func shortcuts(_ session: Session, contextID: ContextID) throws -> FetchedCollection<Tab> {
+    public static func shortcuts(_ session: Session, contextID: Context) throws -> FetchedCollection<Tab> {
         let predicate = NSPredicate(format: "%K == %@ AND %@ CONTAINS %K", "rawContextID", contextID.canvasContextID, ShortcutTabIDs, "id")
         let context = try session.enrollmentManagedObjectContext()
         return try FetchedCollection(frc:
@@ -48,7 +48,7 @@ extension Tab {
         )
     }
     
-    public static func refresher(_ session: Session, contextID: ContextID) throws -> Refresher {
+    public static func refresher(_ session: Session, contextID: Context) throws -> Refresher {
         
         let remote = Tab.get(session, contextID: contextID)
         let context = try session.enrollmentManagedObjectContext()

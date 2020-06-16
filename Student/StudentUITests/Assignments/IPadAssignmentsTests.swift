@@ -98,7 +98,7 @@ class IPadAssignmentsTest: CoreUITestCase {
         ))
 
         mockBaseRequests()
-        mockData(GetTabsRequest(context: course, perPage: nil), value: [
+        mockData(GetTabsRequest(context: .course(course.id.value), perPage: nil), value: [
             APITab.make(
                 id: ID("assignments"),
                 html_url: URL(string: "/courses/\(course.id)/assignments")!,
@@ -115,7 +115,7 @@ class IPadAssignmentsTest: CoreUITestCase {
         mockData(AssignmentListRequestable(courseID: course.id.value, filter: .allGradingPeriods),
                  value: APIAssignmentListResponse.make(groups: [group]))
         logIn()
-        Dashboard.courseCard(id: course.id).tap()
+        Dashboard.courseCard(id: course.id.value).tap()
         CourseNavigation.assignments.tap()
         assertHas(assignment: pointsTextAssignment)
         assertHas(assignment: letterGradeTextAssignment)
@@ -137,7 +137,7 @@ class IPadAssignmentsTest: CoreUITestCase {
         }
 
         RichContentEditor.webView.typeText("hello!")
-        mockData(CreateSubmissionRequest(context: course, assignmentID: pointsTextAssignment.id.value, body: nil), value: makeTextSubmission())
+        mockData(CreateSubmissionRequest(context: .course(course.id.value), assignmentID: pointsTextAssignment.id.value, body: nil), value: makeTextSubmission())
         TextSubmission.submitButton.tap()
         XCTAssertEqual(AssignmentDetails.submittedText.label(), "Successfully submitted!")
 

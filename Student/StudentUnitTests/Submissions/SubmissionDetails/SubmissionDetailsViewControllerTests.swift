@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class SubmissionDetailsViewControllerTests: StudentTestCase {
-    lazy var controller = SubmissionDetailsViewController.create(context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1")
+    lazy var controller = SubmissionDetailsViewController.create(context: .course("1"), assignmentID: "1", userID: "1")
 
     func testKeyboardShown() {
         controller.view.layoutIfNeeded()

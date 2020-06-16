@@ -19,9 +19,8 @@
 import Foundation
 import CoreData
 
-final public class Course: NSManagedObject, Context, WriteableModel {
+final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
-    public let contextType = ContextType.course
 
     @NSManaged public var courseCode: String?
     @NSManaged var defaultViewRaw: String?
@@ -39,6 +38,10 @@ final public class Course: NSManagedObject, Context, WriteableModel {
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
         set { defaultViewRaw = newValue?.rawValue }
+    }
+
+    public var canvasContextID: String {
+        Context(.course, id: id).canvasContextID
     }
 
     @discardableResult

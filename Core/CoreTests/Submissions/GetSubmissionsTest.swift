@@ -56,7 +56,7 @@ class CreateSubmissionTests: CoreTestCase {
     func testItCreatesAssignmentSubmission() {
         //  given
         let submissionType = SubmissionType.online_url
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let url = URL(string: "http://www.instructure.com")!
         let template: APISubmission = APISubmission.make(
             assignment_id: "2",
@@ -88,7 +88,7 @@ class CreateSubmissionTests: CoreTestCase {
     }
 
     func testItPostsModuleCompletedRequirement() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(submission_type: .online_text_entry)))
         api.mock(request, value: nil)
         let expectation = XCTestExpectation(description: "notification")
@@ -108,7 +108,7 @@ class CreateSubmissionTests: CoreTestCase {
     }
 
     func testItDoesNotPostModuleCompletedRequirementIfError() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let request = CreateSubmissionRequest(context: context, assignmentID: "2", body: .init(submission: .init(submission_type: .online_text_entry)))
         api.mock(request, error: NSError.instructureError("oops"))
         let expectation = XCTestExpectation(description: "notification")
@@ -125,7 +125,7 @@ class CreateSubmissionTests: CoreTestCase {
 
 class GetSubmissionTest: CoreTestCase {
     func testItCreatesSubmission() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
             user_id: "3"
@@ -142,7 +142,7 @@ class GetSubmissionTest: CoreTestCase {
     }
 
     func testItCreatesSubmissionHistory() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
             user_id: "3",
@@ -163,7 +163,7 @@ class GetSubmissionTest: CoreTestCase {
     }
 
     func testNoHistoryDoesntDelete() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         Submission.make(from: .make(assignment_id: "2", user_id: "3", late: false, attempt: 2))
         Submission.make(from: .make(assignment_id: "2", user_id: "3", attempt: 1))
         let apiSubmission = APISubmission.make(
@@ -185,17 +185,17 @@ class GetSubmissionTest: CoreTestCase {
     }
 
     func testCacheKey() {
-        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        let getSubmission = GetSubmission(context: .course("1"), assignmentID: "2", userID: "3")
         XCTAssertEqual(getSubmission.cacheKey, "get-1-2-3-submission")
     }
 
     func testRequest() {
-        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        let getSubmission = GetSubmission(context: .course("1"), assignmentID: "2", userID: "3")
         XCTAssertEqual(getSubmission.request.path, "courses/1/assignments/2/submissions/3")
     }
 
     func testScope() {
-        let getSubmission = GetSubmission(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3")
+        let getSubmission = GetSubmission(context: .course("1"), assignmentID: "2", userID: "3")
         let scope = Scope(
             predicate: NSPredicate(
                 format: "%K == %@ AND %K == %@",

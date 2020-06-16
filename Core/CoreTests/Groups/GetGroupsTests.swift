@@ -29,7 +29,7 @@ class GetGroupsTest: CoreTestCase {
 
         let groups: [Group] = databaseClient.fetch()
         XCTAssertEqual(groups.count, 1)
-        XCTAssertEqual(groups.first?.id, response.id)
+        XCTAssertEqual(groups.first?.id, response.id.value)
         XCTAssertEqual(groups.first?.name, response.name)
     }
 
@@ -61,14 +61,14 @@ class GetGroupsTest: CoreTestCase {
     func testGetGroups() {
         XCTAssertEqual(GetGroups().cacheKey, "users/self/groups")
         XCTAssertEqual(GetGroups().request.context.canvasContextID, "user_self")
-        XCTAssertEqual(GetGroups(context: ContextModel(.course, id: "2")).cacheKey, "courses/2/groups")
-        XCTAssertEqual(GetGroups(context: ContextModel(.account, id: "7")).request.context.canvasContextID, "account_7")
+        XCTAssertEqual(GetGroups(context: .course("2")).cacheKey, "courses/2/groups")
+        XCTAssertEqual(GetGroups(context: .account("7")).request.context.canvasContextID, "account_7")
     }
 }
 
 class GetDashboardGroupsTest: CoreTestCase {
     func testItSavesUserGroups() {
-        let request = GetGroupsRequest(context: ContextModel.currentUser)
+        let request = GetGroupsRequest(context: .currentUser)
         let group = APIGroup.make(id: "1", name: "Group One", members_count: 2)
         api.mock(request, value: [group])
 
@@ -83,7 +83,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDeletesOldUserGroups() {
         let old = Group.make(showOnDashboard: true)
-        let request = GetGroupsRequest(context: ContextModel.currentUser)
+        let request = GetGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")
@@ -101,7 +101,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDoesNotDeleteNonUserGroups() {
         let notMember = Group.make(showOnDashboard: false)
-        let request = GetGroupsRequest(context: ContextModel.currentUser)
+        let request = GetGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")

@@ -24,7 +24,7 @@ import TestsFoundation
 class ComposeViewControllerTests: CoreTestCase {
     lazy var controller = ComposeViewController.create(
         body: "body",
-        context: ContextModel(.course, id: "1"),
+        context: .course("1"),
         observeeID: "2",
         recipients: [ .make() ],
         subject: "subject",

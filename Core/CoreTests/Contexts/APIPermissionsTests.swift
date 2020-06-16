@@ -21,17 +21,17 @@ import XCTest
 
 class APIPermissionsTests: XCTestCase {
     func testPath() {
-        let request = GetContextPermissionsRequest(context: ContextModel(.account, id: "1"))
+        let request = GetContextPermissionsRequest(context: .account("1"))
         XCTAssertEqual(request.path, "accounts/1/permissions")
     }
 
     func testQueryWithNoPermissions() {
-        let request = GetContextPermissionsRequest(context: ContextModel(.account, id: "1"))
+        let request = GetContextPermissionsRequest(context: .account("1"))
         XCTAssertEqual(request.query, [])
     }
 
     func testQueryWithPermissions() {
-        let request = GetContextPermissionsRequest(context: ContextModel(.account, id: "1"), permissions: [.becomeUser, .importSis])
+        let request = GetContextPermissionsRequest(context: .account("1"), permissions: [.becomeUser, .importSis])
         XCTAssertEqual(request.query, [.array("permissions", [PermissionName.becomeUser.rawValue, PermissionName.importSis.rawValue])])
 
     }

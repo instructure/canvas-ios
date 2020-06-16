@@ -123,7 +123,7 @@ let router = Router(routes: [
 
     RouteHandler(.showFile(fileID: ":fileID")) { _, params in
         guard let fileID = params["fileID"] else { return nil }
-        let vc = FileDetailsViewController.create(context: ContextModel.currentUser, fileID: fileID)
+        let vc = FileDetailsViewController.create(context: .currentUser, fileID: fileID)
         return vc
     },
 

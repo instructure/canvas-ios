@@ -35,7 +35,7 @@ public class ConferenceDetailsViewController: UIViewController, ColoredNavViewPr
     let env = AppEnvironment.shared
     public var color: UIColor?
     var conferenceID: String = ""
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()

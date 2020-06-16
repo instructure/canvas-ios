@@ -312,7 +312,7 @@ public struct GetQuizzesRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/quizzes?per_page=100"
     }
 }
@@ -325,7 +325,7 @@ public struct GetQuizRequest: APIRequestable {
     let quizID: String
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)"
     }
 }
@@ -340,7 +340,7 @@ public struct GetQuizSubmissionRequest: APIRequestable {
     let quizID: String
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)/submission"
     }
 }
@@ -369,7 +369,7 @@ public struct GetAllQuizSubmissionsRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/quizzes/\(quizID)/submissions"
     }
 
@@ -396,7 +396,7 @@ struct PostQuizSubmissionRequest: APIRequestable {
     let body: Body?
 
     var path: String {
-        return "\(ContextModel(.course, id: courseID).pathComponent)/quizzes/\(quizID)/submissions"
+        return "\(Context(.course, id: courseID).pathComponent)/quizzes/\(quizID)/submissions"
     }
 
     let method = APIMethod.post
@@ -417,7 +417,7 @@ struct PostQuizSubmissionCompleteRequest: APIRequestable {
     let body: Body?
 
     var path: String {
-        return "\(ContextModel(.course, id: courseID).pathComponent)/quizzes/\(quizID)/submissions/\(quizSubmissionID)/complete"
+        return "\(Context(.course, id: courseID).pathComponent)/quizzes/\(quizID)/submissions/\(quizSubmissionID)/complete"
     }
 
     let method = APIMethod.post

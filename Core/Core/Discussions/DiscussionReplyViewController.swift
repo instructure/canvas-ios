@@ -72,7 +72,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
     var attachmentURL: URL?
     let collapsedHeight: CGFloat = 120
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     var editEntryID: String?
     var editHTML: String?
     lazy var editor = RichContentEditorViewController.create(context: context, uploadTo: env.app == .teacher ? .context(context) : .myFiles)

@@ -25,7 +25,7 @@ extension GradingPeriodItem {
     func colorfulViewModel(_ dataSource: EnrollmentsDataSource, courseID: String, selected: ReactiveSwift.Property<Bool>) -> ColorfulViewModel {
         let model = ColorfulViewModel()
         model.title.value = title
-        model.color <~ dataSource.color(for: .course(withID: courseID))
+        model.color <~ dataSource.color(for: .course(courseID))
         model.accessoryType <~ selected.map { $0 ? .checkmark : .none }
         return model
     }
@@ -146,7 +146,7 @@ extension GradingPeriod {
         }
 
         public init?(session: Session, courseID: String, viewController: UIViewController, includeGradingPeriods: Bool, grade: MutableProperty<String?> = MutableProperty(nil)) throws {
-            guard let course = session.enrollmentsDataSource[ContextID(id: courseID, context: .course)] as? Course else {
+            guard let course = session.enrollmentsDataSource[Context(.course, id: courseID)] as? Course else {
                 return nil
             }
 

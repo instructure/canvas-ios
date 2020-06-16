@@ -25,7 +25,7 @@ public class FeatureFlag: NSManagedObject {
     @NSManaged public var enabled: Bool
 
     public var context: Context? {
-        get { return canvasContextID.flatMap { ContextModel(canvasContextID: $0) } }
+        get { return canvasContextID.flatMap { Context(canvasContextID: $0) } }
         set { canvasContextID = newValue?.canvasContextID }
     }
 }

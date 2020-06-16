@@ -21,7 +21,7 @@ import XCTest
 @testable import TestsFoundation
 
 class ConferenceListViewControllerTests: CoreTestCase {
-    let course1 = ContextModel(.course, id: "1")
+    let course1 = Context(.course, id: "1")
     lazy var controller = ConferenceListViewController.create(context: course1)
 
     override func setUp() {

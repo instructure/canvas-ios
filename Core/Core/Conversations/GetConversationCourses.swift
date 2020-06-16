@@ -31,7 +31,7 @@ public class GetConversationCourses: APIUseCase {
     public var request: GetEnrollmentsRequest {
         let types: [String]? = role == .observer ? ["ObserverEnrollment"] : nil
         let includes: [GetEnrollmentsRequest.Include] = role == .observer ? [.observed_users] : []
-        return GetEnrollmentsRequest(context: ContextModel.currentUser, userID: nil, gradingPeriodID: nil, types: types, includes: includes)
+        return GetEnrollmentsRequest(context: .currentUser, userID: nil, gradingPeriodID: nil, types: types, includes: includes)
     }
 
     public var scope: Scope {

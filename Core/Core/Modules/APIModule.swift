@@ -313,7 +313,7 @@ public struct GetModulesRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules"
     }
 
@@ -347,7 +347,7 @@ public struct GetModuleItemsRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items"
     }
 
@@ -375,7 +375,7 @@ public struct GetModuleItemRequest: APIRequestable {
     public let include: [Include]
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(itemID)"
     }
 
@@ -404,7 +404,7 @@ public struct GetModuleItemSequenceRequest: APIRequestable {
     public let assetID: String
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/module_item_sequence"
     }
 
@@ -425,7 +425,7 @@ public struct PostMarkModuleItemRead: APIRequestable {
     public let moduleItemID: String
     public let method: APIMethod = .post
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/mark_read"
     }
 }
@@ -440,7 +440,7 @@ public struct PutMarkModuleItemDone: APIRequestable {
     public let done: Bool
     public var method: APIMethod { done ? .put : .delete }
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/done"
     }
 }
@@ -456,7 +456,7 @@ public struct PostSelectMasteryPath: APIRequestable {
 
     public let method = APIMethod.post
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/modules/\(moduleID)/items/\(moduleItemID)/select_mastery_path"
     }
     public var query: [APIQueryItem] {
