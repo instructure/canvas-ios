@@ -72,6 +72,7 @@
 		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
 		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
+		E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */; };
 		E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829684E24746C88007E7F23 /* PagesUITests.swift */; };
 		E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -376,6 +377,7 @@
 		B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../../../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditE2ETests.swift; sourceTree = "<group>"; };
 		E829684E24746C88007E7F23 /* PagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesUITests.swift; sourceTree = "<group>"; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 			children = (
 				E841D8BB23D6478000685A63 /* E2ETestsFromCore.swift */,
 				E841D8BA23D6472F00685A63 /* Info.plist */,
+				E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */,
 			);
 			path = TeacherE2ETests;
 			sourceTree = "<group>";
@@ -1118,6 +1121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */,
 				E841D8BC23D6478000685A63 /* E2ETestsFromCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
