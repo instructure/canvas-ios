@@ -141,3 +141,18 @@ extension Course {
         return enrollments?.first { $0.isStudent } != nil
     }
 }
+
+final public class CourseSettings: NSManagedObject {
+    @NSManaged public var courseID: String
+    @NSManaged public var syllabusCourseSummary: Bool
+    @NSManaged public var usageRightsRequired: Bool
+
+    @discardableResult
+    static func save(_ item: APICourseSettings, courseID: String, in context: NSManagedObjectContext) -> CourseSettings {
+        let model: CourseSettings = context.first(where: #keyPath(CourseSettings.courseID), equals: courseID) ?? context.insert()
+        model.courseID = courseID
+        model.syllabusCourseSummary = item.syllabus_course_summary
+        model.usageRightsRequired = item.usage_rights_required
+        return model
+    }
+}

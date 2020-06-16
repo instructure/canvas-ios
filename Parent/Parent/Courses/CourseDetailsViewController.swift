@@ -49,6 +49,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         self?.courseReady()
     }
 
+    lazy var settings = env.subscribe(GetCourseSettings(courseID: courseID)) { [weak self] in
+        self?.courseReady()
+    }
+
     lazy var frontPages = env.subscribe(GetFrontPage(context: .course(courseID))) { [weak self] in
         self?.courseReady()
     }
@@ -78,6 +82,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         tabs.refresh(force: true)
         student.refresh()
         teachers.refresh()
+        settings.refresh()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -131,10 +136,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     func courseReady() {
         title = courses.first?.name
-        let pending = courses.pending || frontPages.pending || tabs.pending
+        let pending = courses.pending || frontPages.pending || tabs.pending || settings.pending
         if !pending, readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
             didLayoutTabs = true
             configureGrades()
+            let showSummary = settings.first?.syllabusCourseSummary == true
             switch course.defaultView {
             case .wiki:
                 if let page = frontPages.first, !page.body.isEmpty {
@@ -142,12 +148,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                 }
             case .syllabus where course.syllabusBody?.isEmpty == false:
                 configureSyllabus()
-                configureSummary()
+                if showSummary { configureSummary() }
             default:
                 let syllabusTab = tabs.first { $0.id == "syllabus" }
                 if syllabusTab != nil, course.syllabusBody?.isEmpty == false {
                     configureSyllabus()
-                    configureSummary()
+                    if showSummary { configureSummary() }
                 }
             }
 

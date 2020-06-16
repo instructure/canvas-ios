@@ -474,7 +474,6 @@
 		7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */; };
 		7DA260AC23F72352005D2121 /* GetContextPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */; };
 		7DA260AD23F72352005D2121 /* GetContextTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE84DDD2150281300B95A68 /* GetContextTabs.swift */; };
-		7DA260AE23F72352005D2121 /* GetCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC502132257500797FE4 /* GetCourse.swift */; };
 		7DA260AF23F72352005D2121 /* GetCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA5AEA212E641900DABC5F /* GetCourses.swift */; };
 		7DA260B023F72352005D2121 /* GetCourseSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A974236759FA004EAEDF /* GetCourseSections.swift */; };
 		7DA260B123F72352005D2121 /* GetCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7851D9B22138264800E76EC3 /* GetCustomColors.swift */; };
@@ -732,7 +731,6 @@
 		B18E19BB2386216B00B03C73 /* GradeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18E19BA2386216B00B03C73 /* GradeFormatterTests.swift */; };
 		B1911CEC21C849BE00F42F91 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1911CEB21C849BE00F42F91 /* NotificationManagerTests.swift */; };
 		B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B191D5E7226E2CBA00D02948 /* CacheManagerTests.swift */; };
-		B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B195DC612133326900797FE4 /* GetCourseTest.swift */; };
 		B19792F7217697E30000369C /* AssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792F6217697E30000369C /* AssignmentTests.swift */; };
 		B19792F9217699B70000369C /* CourseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792F8217699B70000369C /* CourseTests.swift */; };
 		B19792FB21769B320000369C /* QuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19792FA21769B320000369C /* QuizTests.swift */; };
@@ -1789,8 +1787,6 @@
 		B192833721C07A4E008D1B9B /* LoggerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerExtensions.swift; sourceTree = "<group>"; };
 		B195DC44213201DE00797FE4 /* GetGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroups.swift; sourceTree = "<group>"; };
 		B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensions.swift; sourceTree = "<group>"; };
-		B195DC502132257500797FE4 /* GetCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourse.swift; sourceTree = "<group>"; };
-		B195DC612133326900797FE4 /* GetCourseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseTest.swift; sourceTree = "<group>"; };
 		B19792F2217634D30000369C /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		B19792F6217697E30000369C /* AssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTests.swift; sourceTree = "<group>"; };
 		B19792F8217699B70000369C /* CourseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTests.swift; sourceTree = "<group>"; };
@@ -2989,7 +2985,6 @@
 				7D5F10362429BA2500803324 /* CourseListViewController.storyboard */,
 				7D5F10392429BA2700803324 /* CourseListViewController.swift */,
 				7D64A9722363732D004EAEDF /* CourseSection.swift */,
-				B195DC502132257500797FE4 /* GetCourse.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
 			);
@@ -3056,7 +3051,6 @@
 				B19792F8217699B70000369C /* CourseTests.swift */,
 				7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */,
 				B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */,
-				B195DC612133326900797FE4 /* GetCourseTest.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -4609,7 +4603,6 @@
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
 				3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagTests.swift in Sources */,
-				B195DC622133326900797FE4 /* GetCourseTest.swift in Sources */,
 				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
@@ -4942,7 +4935,6 @@
 				7DA25FA823F72136005D2121 /* APIDashboard.swift in Sources */,
 				7DA2606F23F722E9005D2121 /* APINotificationPreferences.swift in Sources */,
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
-				7DA260AE23F72352005D2121 /* GetCourse.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
 				7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */,
