@@ -154,15 +154,5 @@ let router = Router(routes: [
     },
 
 ]) { url, _, _ in
-    var components = url
-    if components.scheme?.hasPrefix("http") == false {
-        components.scheme = "https"
-    }
-    guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
-    let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        performUIUpdate {
-            AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
-        }
-    }
+    Router.open(url: url)
 }

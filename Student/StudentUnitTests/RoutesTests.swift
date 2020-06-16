@@ -212,7 +212,7 @@ class RoutesTests: XCTestCase {
         AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.instructure.com")!)
         router.route(to: "not-a-native-route", from: UIViewController())
         wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened, expected)
+        XCTAssertEqual(loginDelegate.opened?.absoluteURL, expected)
     }
 
     func testFallbackAbsoluteHTTPs() {

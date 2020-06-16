@@ -390,4 +390,41 @@ class RouterTests: CoreTestCase {
         XCTAssertNotNil(mockView.navigationController)
         XCTAssertEqual(mockView.navigationController?.modalPresentationStyle, .fullScreen)
     }
+
+    func testOpen() {
+        var url = URL(string: "https://canvas.instructure.com/relative/url")!
+        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url))
+        Router.open(url: .parse("relative/url"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://canvas.instructure.com/root/relative/url")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse("/root/relative/url"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "http://insecure.protocol/")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse("http://insecure.protocol/"))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://absolute.com")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "tel:+18002036755")!
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "mailto:support@email.example")!
+        Router.open(url: .parse(url))
+        XCTAssertEqual(login.externalURL?.absoluteURL, url)
+
+        url = URL(string: "https://canvas.instructure.com/")!
+        api.mock(GetWebSessionRequest(to: url), value: nil)
+        for proto in [ "canvas-courses", "canvas-student", "canvas-teacher", "canvas-parent" ] {
+            Router.open(url: .parse("\(proto)://canvas.instructure.com/"))
+            XCTAssertEqual(login.externalURL?.absoluteURL, url)
+        }
+    }
 }

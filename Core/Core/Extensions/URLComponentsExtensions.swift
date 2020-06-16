@@ -23,6 +23,10 @@ public extension URLComponents {
     ///
     /// Unlike `init?(url: URL, resolvingAgainstBaseURL Bool)`, this never returns nil, though the components may not be convertable to a full URL.
     static func parse(_ url: URL) -> URLComponents {
+        // Needed to handle mailto: & tel: links correctly.
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: true) {
+            return components
+        }
         var components = URLComponents()
         components.scheme = url.scheme
         components.user = url.user

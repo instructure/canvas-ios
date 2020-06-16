@@ -153,7 +153,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     },
 
     "/:context/:contextID/conferences/:conferenceID/join": { url, params in
-        open(url: url)
+        Router.open(url: url)
         return nil
     },
 
@@ -433,23 +433,9 @@ HelmManager.shared.registerNativeViewController(for: "/native-route/*route", fac
 HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
 
 return Router(routes: routes) { url, _, _ in
-    open(url: url)
+    Router.open(url: url)
 }
 }()
-
-private func open(url: URLComponents) {
-    var components = url
-    if components.scheme?.hasPrefix("http") == false {
-        components.scheme = "https"
-    }
-    guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
-    let request = GetWebSessionRequest(to: url)
-    AppEnvironment.shared.api.makeRequest(request) { response, _, _ in
-        performUIUpdate {
-            AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
-        }
-    }
-}
 
 private func route(_ view: UIViewController, url: URL) {
     router.route(to: url, from: view)
