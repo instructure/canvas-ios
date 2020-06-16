@@ -426,6 +426,11 @@ enum MiniCanvasEndpoints {
                 submission.api.score = Double(newSubmission.posted_grade ?? "0") ?? 0
                 submission.api.graded_at = newSubmission.posted_grade.map { _ in Date() }
             }
+            for (criterionId, assessment) in body.rubric_assessment ?? [:] {
+                submission.api.rubric_assessment = submission.api.rubric_assessment ?? [:]
+                // probably not 100% right, but good enough for test work
+                submission.api.rubric_assessment![criterionId] = assessment
+            }
             return submission.api
         },
         .graphQLAny(operationName: "SubmissionList") { request in

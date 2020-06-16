@@ -47,6 +47,7 @@ public class MiniCanvasServer {
     public struct APIRequest<Body> {
         public let server: MiniCanvasServer
         public let httpRequest: HttpRequest
+        public let rawBody: Data
         public let body: Body
         public var state: MiniCanvasState { server.state }
         public var baseUrl: URL { server.baseUrl }
@@ -64,7 +65,7 @@ public class MiniCanvasServer {
         }
 
         public func mapBody<T>(_ transform: (Body) throws -> T) rethrows -> APIRequest<T> {
-            APIRequest<T>(server: server, httpRequest: httpRequest, body: try transform(body))
+            APIRequest<T>(server: server, httpRequest: httpRequest, rawBody: rawBody, body: try transform(body))
         }
     }
 
@@ -154,7 +155,8 @@ public class MiniCanvasServer {
             methodRoute[routeTemplate] = { [weak self] httpRequest in
                 guard let self = self else { return .internalServerError }
                 do {
-                    return try handler(APIRequest(server: self, httpRequest: httpRequest, body: Data(httpRequest.body)))
+                    let body = Data(httpRequest.body)
+                    return try handler(APIRequest(server: self, httpRequest: httpRequest, rawBody: body, body: body))
                 } catch ServerError.responseError(let response) {
                     return response
                 } catch let error {

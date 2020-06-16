@@ -35,11 +35,9 @@ public enum SpeedGrader: String, RawElementWrapper {
     }
 
     static func dismissTutorial() {
-        let button = app.find(id: "tutorial.button-swipe-tutorial")
-        let exists = button.rawElement.waitForExistence(timeout: 3)
-        if exists {
+        let button = app.find(idStartingWith: "tutorial.button")
+        while button.rawElement.waitForExistence(timeout: 3) {
             button.tap()
-            button.waitToVanish()
         }
     }
 }

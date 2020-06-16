@@ -421,6 +421,13 @@ struct PutSubmissionGradeRequest: APIRequestable {
 
         let comment: Comment?
         let submission: Submission?
+        let rubric_assessment: APIRubricAssessmentMap?
+
+        init(comment: Comment? = nil, submission: Submission? = nil, rubric_assessment: APIRubricAssessmentMap? = nil) {
+            self.comment = comment
+            self.submission = submission
+            self.rubric_assessment = rubric_assessment
+        }
     }
 
     let courseID: String

@@ -106,7 +106,7 @@ public class UploadFileComment {
     }
 
     func putComment(fileIDs: [String]) {
-        let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup), submission: nil)
+        let body = PutSubmissionGradeRequest.Body(comment: .init(fileIDs: fileIDs, forGroup: isGroup))
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {

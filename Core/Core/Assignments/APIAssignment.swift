@@ -39,10 +39,10 @@ public struct APIAssignment: Codable, Equatable {
     let lock_explanation: String?
     let url: URL?
     let discussion_topic: APIDiscussionTopic?
-    let rubric: [APIRubric]?
+    var rubric: [APIRubric]?
     var submission: APIList<APISubmission>?
     let use_rubric_for_grading: Bool?
-    let rubric_settings: APIRubricSettings?
+    var rubric_settings: APIRubricSettings?
     let assignment_group_id: ID?
     let all_dates: [APIAssignmentDate]?
 }
