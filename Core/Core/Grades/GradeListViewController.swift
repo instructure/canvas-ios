@@ -72,7 +72,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         self?.update()
     }
     lazy var enrollments = env.subscribe(GetEnrollments(
-        context: ContextModel(.course, id: courseID),
+        context: .course(courseID),
         userID: userID,
         gradingPeriodID: gradingPeriodID,
         types: [ "StudentEnrollment" ],
@@ -184,7 +184,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     func updateGradingPeriod(id: String?) {
         gradingPeriodID = id
         enrollments = env.subscribe(GetEnrollments(
-            context: ContextModel(.course, id: courseID),
+            context: .course(courseID),
             userID: userID,
             gradingPeriodID: gradingPeriodID,
             types: [ "StudentEnrollment" ],

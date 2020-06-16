@@ -35,7 +35,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.userID = userID
-        controller.editor = RichContentEditorViewController.create(context: ContextModel(.course, id: courseID), uploadTo: .myFiles)
+        controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
         return controller
     }
 
@@ -72,7 +72,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     @objc func submit() {
         editor.getHTML { (html: String) in
             CreateSubmission(
-                context: ContextModel(.course, id: self.courseID),
+                context: .course(self.courseID),
                 assignmentID: self.assignmentID,
                 userID: self.userID,
                 submissionType: .online_text_entry,

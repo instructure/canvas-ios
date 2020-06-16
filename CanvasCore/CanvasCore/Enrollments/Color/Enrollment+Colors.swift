@@ -21,15 +21,15 @@ import Marshal
 
 import CoreData
 
-typealias CustomColors = [ContextID: UIColor]
+typealias CustomColors = [Context: UIColor]
 
 extension Enrollment {
     static func parseColors(_ json: JSONObject) throws -> CustomColors {
         let customColors: JSONObject = try json <| "custom_colors"
-        var contexts: [ContextID: UIColor] = [:]
+        var contexts: [Context: UIColor] = [:]
         
         for (context, hex) in customColors {
-            guard let contextID = ContextID(canvasContext: context) else { continue }
+            guard let contextID = Context(canvasContextID: context) else { continue }
             guard let hex = hex as? String, let color = UIColor.colorFromHexString(hex) else { continue }
             
             contexts[contextID] = color

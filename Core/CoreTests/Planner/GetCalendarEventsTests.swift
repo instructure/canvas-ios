@@ -23,13 +23,13 @@ import TestsFoundation
 
 class GetCalendarEventsTests: CoreTestCase {
 
-    var ctx = ContextModel(.course, id: "1")
+    var ctx = Context(.course, id: "1")
     var useCase: GetCalendarEvents!
 
     override func setUp() {
         super.setUp()
 
-        ctx = ContextModel(.course, id: "1")
+        ctx = Context(.course, id: "1")
         useCase = GetCalendarEvents(context: ctx)
     }
 

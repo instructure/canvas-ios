@@ -23,7 +23,7 @@ class GetContextPermissionsTests: CoreTestCase {
     func testItCreatesPermissions() {
         let response = APIPermissions.make(become_user: true)
 
-        let context = ContextModel(.account, id: "1")
+        let context = Context(.account, id: "1")
 
         let getContextPermissions = GetContextPermissions(context: context, permissions: [.becomeUser])
         getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
@@ -38,7 +38,7 @@ class GetContextPermissionsTests: CoreTestCase {
         let permissions = Permissions.make(from: .make(become_user: true))
         let response = APIPermissions.make(become_user: false)
 
-        let context = ContextModel(.account, id: "1")
+        let context = Context(.account, id: "1")
 
         let getContextPermissions = GetContextPermissions(context: context, permissions: [.becomeUser])
         getContextPermissions.write(response: response, urlResponse: nil, to: databaseClient)
@@ -48,13 +48,13 @@ class GetContextPermissionsTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        let getContextPermissions = GetContextPermissions(context: ContextModel(.account, id: "1"), permissions: [.becomeUser, .manageSis])
+        let getContextPermissions = GetContextPermissions(context: .account("1"), permissions: [.becomeUser, .manageSis])
         XCTAssertEqual(getContextPermissions.cacheKey, "get-account_1-permissions-become_user,manage_sis")
     }
 
     func testScope() {
         let model = Permissions.make(from: .make(become_user: true))
-        let getContextPermissions = GetContextPermissions(context: ContextModel(.account, id: "1"), permissions: [.becomeUser])
+        let getContextPermissions = GetContextPermissions(context: .account("1"), permissions: [.becomeUser])
 
         let permissions: Permissions = databaseClient.fetch(getContextPermissions.scope.predicate, sortDescriptors: getContextPermissions.scope.order).first!
         XCTAssertEqual(permissions, model)

@@ -108,7 +108,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             perPage: 100
         ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: userID)])])
         api.mock(GetCalendarEventsRequest(
-            contexts: [ContextModel(.course, id: "1")],
+            contexts: [Context(.course, id: "1")],
             startDate: start,
             endDate: end,
             type: .event,
@@ -117,7 +117,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             userID: userID
         ), value: [.make(id: "1", title: "Event", start_at: Clock.now, type: .event)])
         api.mock(GetCalendarEventsRequest(
-            contexts: [ContextModel(.course, id: "1")],
+            contexts: [Context(.course, id: "1")],
             startDate: start,
             endDate: end,
             type: .assignment,

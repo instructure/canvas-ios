@@ -23,9 +23,9 @@ import TestsFoundation
 
 class GetEnabledFeatureFlagsTests: CoreTestCase {
     func testScope() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let yes = FeatureFlag.make(context: context)
-        let notContext = FeatureFlag.make(context: ContextModel(.course, id: "2"))
+        let notContext = FeatureFlag.make(context: .course("2"))
         let notEnabled = FeatureFlag.make(context: context, enabled: false)
         let useCase = GetEnabledFeatureFlags(context: context)
         XCTAssertTrue(useCase.scope.predicate.evaluate(with: yes))
@@ -34,16 +34,16 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        XCTAssertEqual(GetEnabledFeatureFlags(context: ContextModel(.course, id: "1")).cacheKey, "course_1-enabled-feature-flags")
+        XCTAssertEqual(GetEnabledFeatureFlags(context: .course("1")).cacheKey, "course_1-enabled-feature-flags")
     }
 
     func testRequest() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         XCTAssertEqual(GetEnabledFeatureFlags(context: context).request.path, GetEnabledFeatureFlagsRequest(context: context).path)
     }
 
     func testWriteCreates() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let response = ["new_discussions", "no_more_html"]
         let useCase = GetEnabledFeatureFlags(context: context)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
@@ -63,7 +63,7 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
     }
 
     func testWriteUpdates() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let existing = FeatureFlag.make(context: context, name: "new_discussions", enabled: false)
         let response = ["new_discussions", "no_more_html"]
         let useCase = GetEnabledFeatureFlags(context: context)
@@ -73,8 +73,8 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
     }
 
     func testWriteExclusivity() {
-        let context = ContextModel(.course, id: "1")
-        let other = FeatureFlag.make(context: ContextModel(.course, id: "2"), name: "no_more_html", enabled: false)
+        let context = Context(.course, id: "1")
+        let other = FeatureFlag.make(context: .course("2"), name: "no_more_html", enabled: false)
         let response = ["new_discussions", "no_more_html"]
         let useCase = GetEnabledFeatureFlags(context: context)
         useCase.write(response: response, urlResponse: nil, to: databaseClient)

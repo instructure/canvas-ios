@@ -24,7 +24,7 @@ extension Conference {
     @discardableResult
     public static func make(
         from api: APIConference = .make(),
-        context: Context = ContextModel(.course, id: "1"),
+        context: Context = Context(.course, id: "1"),
         in client: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Conference {
         let model = Conference.save(api, in: client, context: context)

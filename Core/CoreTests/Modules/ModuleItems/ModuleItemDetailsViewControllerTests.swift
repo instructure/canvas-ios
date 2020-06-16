@@ -28,7 +28,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
 
     func testLayout() {
         router.mock("/courses/1/files/2?origin=module_item_details") {
-            FileDetailsViewController.create(context: ContextModel(.course, id: "1"), fileID: "2")
+            FileDetailsViewController.create(context: .course("1"), fileID: "2")
         }
         api.mock(controller.store, value: .make(
             id: "3",

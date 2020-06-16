@@ -42,7 +42,7 @@ public class LTITools {
 
     public init(
         env: AppEnvironment = .shared,
-        context: Context = ContextModel(.account, id: "self"),
+        context: Context = Context(.account, id: "self"),
         id: String? = nil,
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
@@ -70,7 +70,7 @@ public class LTITools {
             let value = query.first(where: { $0.name == "url" })?.value,
             let url = URL(string: value)
         else { return nil }
-        let context = LTITools.context(forRetrieveURL: retrieve) ?? ContextModel(.account, id: "self")
+        let context = LTITools.context(forRetrieveURL: retrieve) ?? Context(.account, id: "self")
         self.init(env: env, context: context, url: url)
     }
 
@@ -119,7 +119,7 @@ public class LTITools {
             let contextTypeRaw = match["context"],
             let contextType = ContextType(pathComponent: contextTypeRaw),
             let contextID = match["contextID"] {
-            return ContextModel(contextType, id: contextID)
+            return Context(contextType, id: contextID)
         }
         return nil
     }

@@ -21,7 +21,7 @@ import XCTest
 
 class APIConferenceTests: CoreTestCase {
     func testGetConferencesRequest() {
-        let request = GetConferencesRequest(context: ContextModel(.course, id: "2"), perPage: 42)
+        let request = GetConferencesRequest(context: .course("2"), perPage: 42)
         XCTAssertEqual(request.path, "courses/2/conferences")
         XCTAssertEqual(request.query, [.perPage(42)])
     }

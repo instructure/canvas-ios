@@ -23,6 +23,6 @@ import XCTest
 
 class APIFeatureFlagTests: CoreTestCase {
     func testGetEnabledFeatureFlagsRequest() {
-        XCTAssertEqual(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: "1")).path, "courses/1/features/enabled")
+        XCTAssertEqual(GetEnabledFeatureFlagsRequest(context: .course("1")).path, "courses/1/features/enabled")
     }
 }

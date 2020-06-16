@@ -21,7 +21,7 @@ import XCTest
 
 class APISearchRecipientsTests: XCTestCase {
     func testGetSearchRecipientsRequest() {
-        let context = ContextModel(.course, id: "2")
+        let context = Context(.course, id: "2")
         XCTAssertEqual(GetSearchRecipientsRequest(context: context).path, "search/recipients")
         XCTAssertEqual(GetSearchRecipientsRequest(context: context).queryItems, [
             URLQueryItem(name: "per_page", value: "50"),

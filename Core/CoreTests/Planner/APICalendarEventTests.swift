@@ -20,13 +20,13 @@ import XCTest
 @testable import Core
 
 class APICalendarEventTests: XCTestCase {
-    var ctx = ContextModel(.course, id: "1")
+    var ctx = Context(.course, id: "1")
     let url = URL(string: "https://foo.instructure.com")!
     let mockDate = Date(fromISOString: "2019-12-25T14:24:37Z")!
 
     override func setUp() {
         super.setUp()
-        ctx = ContextModel(.course, id: "1")
+        ctx = Context(.course, id: "1")
         Clock.mockNow(mockDate)
     }
 

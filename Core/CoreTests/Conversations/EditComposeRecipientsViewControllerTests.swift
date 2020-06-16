@@ -24,7 +24,7 @@ class EditComposeRecipientsViewControllerTests: CoreTestCase {
     var courseID = "1"
     var observeeID = "2"
     lazy var controller = EditComposeRecipientsViewController.create(
-        context: ContextModel(.course, id: courseID),
+        context: .course(courseID),
         observeeID: observeeID,
         selectedRecipients: [.make(from: .make(id: "2", name: "B", full_name: "B", avatar_url: nil))]
     )

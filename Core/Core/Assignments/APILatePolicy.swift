@@ -48,7 +48,7 @@ struct PostLatePolicyRequest: APIRequestable {
     let body: Body?
     let method = APIMethod.post
     var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/late_policy"
     }
 }

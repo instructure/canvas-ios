@@ -41,7 +41,7 @@ class ArcSubmissionPresenter {
     }
 
     func viewIsReady() {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         let url = env.api.baseURL.appendingPathComponent("\(context.pathComponent)/external_tools/\(arcID)/resource_selection")
         view?.load(url)
     }
@@ -63,7 +63,7 @@ class ArcSubmissionPresenter {
 
     func submit(url: URL, callback: @escaping (Error?) -> Void) {
         CreateSubmission(
-            context: ContextModel(.course, id: courseID),
+            context: .course(courseID),
             assignmentID: assignmentID,
             userID: userID,
             submissionType: .basic_lti_launch,

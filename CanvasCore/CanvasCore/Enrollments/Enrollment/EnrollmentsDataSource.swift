@@ -21,7 +21,7 @@ import CoreData
 import ReactiveSwift
 
 open class EnrollmentsDataSource: NSObject {
-    public let enrollmentsObserver: ManagedObjectsObserver<Enrollment, ContextID>
+    public let enrollmentsObserver: ManagedObjectsObserver<Enrollment, Context>
     
     @objc init(context: NSManagedObjectContext) throws {
         let fetch = NSFetchRequest<Enrollment>(entityName: "Enrollment")
@@ -36,15 +36,15 @@ open class EnrollmentsDataSource: NSObject {
 
     }
     
-    open subscript(contextID: ContextID) -> Enrollment? {
+    open subscript(contextID: Context) -> Enrollment? {
         return enrollmentsObserver[contextID]
     }
     
-    open func producer(_ contextID: ContextID) -> SignalProducer<Enrollment?, Never> {
+    open func producer(_ contextID: Context) -> SignalProducer<Enrollment?, Never> {
         return enrollmentsObserver.producer(contextID)
     }
     
-    open func color(for contextID: ContextID) -> SignalProducer<UIColor, Never> {
+    open func color(for contextID: Context) -> SignalProducer<UIColor, Never> {
         let prettyGray = SignalProducer<UIColor, Never>(value: .prettyGray())
         
         return producer(contextID)
@@ -54,14 +54,14 @@ open class EnrollmentsDataSource: NSObject {
                     group.color.value == nil ||
                     group.color.value!.hex == UIColor.prettyGray().hex, // assumes gray is only ever default, never explicitly set
                     let courseID = group.courseID {
-                    course = self.enrollmentsObserver[ContextID.course(withID: courseID)]
+                    course = self.enrollmentsObserver[Context.course(courseID)]
                 }
                 return course?.color.producer.skipNil() ?? prettyGray
             }
     }
     
     @objc open func arcLTIToolId(forCanvasContext canvasContext: String) -> String? {
-        guard let contextID = ContextID(canvasContext: canvasContext) else { return nil }
+        guard let contextID = Context(canvasContextID: canvasContext) else { return nil }
         let enrollment = self.enrollmentsObserver[contextID]
         return enrollment?.arcLTIToolID
     }
@@ -73,7 +73,7 @@ open class EnrollmentsDataSource: NSObject {
     }
     
     // MARK: Changing things 
-    open func setColor(_ color: UIColor, inSession session: Session, forContextID contextID: ContextID) -> SignalProducer<(), NSError> {
+    open func setColor(_ color: UIColor, inSession session: Session, forContextID contextID: Context) -> SignalProducer<(), NSError> {
         
         let updateColorAndSave: ()->SignalProducer<(), NSError> = {
             let enrollment = self.enrollmentsObserver[contextID]

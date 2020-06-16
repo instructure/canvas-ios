@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class AttendanceViewControllerTests: TeacherTestCase {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     var controller: AttendanceViewController!
     var navigation: UINavigationController!
 

@@ -19,16 +19,16 @@
 import Foundation
 
 extension Tab {
-    private static func predicate(id: String, contextID: ContextID) -> NSPredicate {
+    private static func predicate(id: String, contextID: Context) -> NSPredicate {
         return NSPredicate(format: "%K == %@ && %K == %@", "id", id, "rawContextID", contextID.canvasContextID)
     }
 
-    public static func modulesTab(for context: ContextID, in session: Session) throws -> Tab? {
+    public static func modulesTab(for context: Context, in session: Session) throws -> Tab? {
         let moc = try session.enrollmentManagedObjectContext()
         return try moc.findOne(withPredicate: predicate(id: "modules", contextID: context))
     }
 
-    public static func homeTab(for context: ContextID, in session: Session) throws -> Tab? {
+    public static func homeTab(for context: Context, in session: Session) throws -> Tab? {
         let moc = try session.enrollmentManagedObjectContext()
         return try moc.findOne(withPredicate: predicate(id: "home", contextID: context))
     }

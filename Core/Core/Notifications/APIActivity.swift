@@ -81,7 +81,7 @@ public struct GetActivitiesRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.user, id: "self")
+        let context = Context(.user, id: "self")
         return "\(context.pathComponent)/activity_stream"
     }
 

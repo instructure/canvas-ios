@@ -21,7 +21,7 @@ import Core
 
 class GroupNavigationViewController: UITableViewController, ColoredNavViewProtocol, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
     let env = AppEnvironment.shared
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     var color: UIColor?
     let titleSubtitleView = TitleSubtitleView.create()
 

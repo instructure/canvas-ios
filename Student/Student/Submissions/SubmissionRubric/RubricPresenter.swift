@@ -53,7 +53,7 @@ class RubricPresenter {
         self?.update()
     }
 
-    lazy var submissions = env.subscribe(GetSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
+    lazy var submissions = env.subscribe(GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
         self?.update()
     }
 

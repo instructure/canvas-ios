@@ -52,10 +52,10 @@ class StoreTests: CoreTestCase {
                 return
             }
             for item in response {
-                let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id)
+                let predicate = NSPredicate(format: "%K == %@", #keyPath(Course.id), item.id.value)
                 let course: Course = client.fetch(predicate).first ?? client.insert()
                 course.name = item.name
-                course.id = item.id
+                course.id = item.id.value
                 course.isFavorite = item.is_favorite ?? false
             }
         }

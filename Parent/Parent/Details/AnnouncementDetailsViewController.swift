@@ -20,6 +20,7 @@ import Foundation
 import CanvasCore
 import ReactiveSwift
 import Marshal
+import Core
 
 private let TitleCellReuseIdentifier = "TitleCell"
 private let AttachmentCellReuseIdentifier = "AttachmentCell"
@@ -102,8 +103,8 @@ class AnnouncementDetailsViewController: DiscussionTopic.DetailViewController {
             .observeValues { _ in
         }
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
-            guard let course = next as? Course else { return }
+        session.enrollmentsDataSource(withScope: studentID).producer(Context(.course, id: courseID)).observe(on: UIScheduler()).startWithValues { next in
+            guard let course = next as? CanvasCore.Course else { return }
             self.title = course.name
         }
     }

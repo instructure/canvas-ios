@@ -48,7 +48,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
 
     func testSubmitForm() {
         let request = CreateSubmissionRequest(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             assignmentID: "1",
             body: .init(submission: .init(
                 text_comment: nil,
@@ -74,7 +74,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
 
     func testSubmitFormRequestError() {
         let request = CreateSubmissionRequest(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,
@@ -100,7 +100,7 @@ class ArcSubmissionPresenterTests: StudentTestCase {
 
     func testSubmitFormError() {
         let request = CreateSubmissionRequest(
-            context: ContextModel(.course, id: "1"),
+            context: .course("1"),
             assignmentID: "2",
             body: .init(submission: .init(
                 text_comment: nil,

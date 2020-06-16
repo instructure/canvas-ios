@@ -26,7 +26,7 @@ extension Assignment {
     
     // MARK: dispatching progress
     public func postProgress(_ session: Session, kind: Progress.Kind) {
-        let progress = Progress(kind: kind, contextID: .course(withID: courseID), itemType: .assignment, itemID: id)
+        let progress = Progress(kind: kind, contextID: .course(courseID), itemType: .assignment, itemID: id)
         session
             .progressDispatcher
             .dispatch(progress)
@@ -38,7 +38,7 @@ extension Assignment {
         let collection = Assignment.collectionCacheKey(context, courseID: progress.contextID.id)
         scope.invalidateCache(collection)
         
-        func invalidateDetail(_ course: ContextID, assignmentID: String) {
+        func invalidateDetail(_ course: Context, assignmentID: String) {
             let detail = Assignment.detailsCacheKey(context, courseID: progress.contextID.id, id: progress.itemID)
             scope.invalidateCache(detail)
         }

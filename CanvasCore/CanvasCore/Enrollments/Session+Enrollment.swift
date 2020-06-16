@@ -42,7 +42,7 @@ extension Session {
 // MARK: Colorful
 
 extension Session {
-    private func color(for contextID: ContextID) -> UIColor {
+    private func color(for contextID: Context) -> UIColor {
         let enrollment = enrollmentsDataSource[contextID]
         let color = enrollment?.color.value ?? .prettyGray()
         return color
@@ -50,20 +50,20 @@ extension Session {
     
     // for objc compatibility
     @objc public func colorForCourse(_ courseID: String) -> UIColor {
-        return color(for: .course(withID: courseID))
+        return color(for: .course(courseID))
     }
     
     // for objc compatibility
     @objc public func colorForGroup(_ groupID: String) -> UIColor {
-        return color(for: .group(withID: groupID))
+        return color(for: .group(groupID))
     }
     
     @objc public func course(id courseID: String) -> Course? {
-        return enrollmentsDataSource[.course(withID: courseID)] as? Course
+        return enrollmentsDataSource[.course(courseID)] as? Course
     }
     
     @objc public func group(id groupID: String) -> Group? {
-        return enrollmentsDataSource[.group(withID: groupID)] as? Group
+        return enrollmentsDataSource[.group(groupID)] as? Group
     }
 
 }

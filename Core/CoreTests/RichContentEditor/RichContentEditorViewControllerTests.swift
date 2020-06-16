@@ -24,7 +24,7 @@ import CoreData
 import TestsFoundation
 
 class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDelegate {
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     var controller: RichContentEditorViewController!
 
     var canSubmit = false

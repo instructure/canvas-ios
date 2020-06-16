@@ -26,29 +26,45 @@ public enum ContextType: String, Codable {
         self.init(rawValue: String(pathComponent.dropLast()))
     }
 
-    public var pathComponent: String {
-        return "\(self)s"
+    public var pathComponent: String { "\(self)s" }
+}
+
+public struct Context: Codable, Equatable, Hashable {
+    public let contextType: ContextType
+    public let id: String
+
+    public var canvasContextID: String { "\(contextType)_\(id)"  }
+    public var pathComponent: String { "\(contextType.pathComponent)/\(id)" }
+
+    public init(_ contextType: ContextType, id: String) {
+        self.contextType = contextType
+        self.id = ID.expandTildeID(id)
     }
-}
 
-public protocol Context {
-    var contextType: ContextType { get }
-    var id: String { get }
-}
+    public init?(url: URL) {
+        self.init(path: url.path)
+    }
 
-public protocol APIContext: Context {
-    var id: ID { get }
-}
-extension APIContext {
-    public var id: String { return id.value }
+    public init?(path: String) {
+        self.init(parts: path.split(separator: "/").filter({ (s: Substring) in s != "api" && s != "v1" }))
+    }
+
+    public init?(canvasContextID: String) {
+        self.init(parts: canvasContextID.split(separator: "_"))
+    }
+
+    private init?(parts: [Substring]) {
+        guard parts.count >= 2 else { return nil }
+        let rawValue = parts[0].lowercased().trimmingCharacters(in: CharacterSet(charactersIn: "s"))
+        guard let contextType = ContextType(rawValue: rawValue) else { return nil }
+        self.init(contextType, id: String(parts[1]))
+    }
 }
 
 public extension Context {
-    var canvasContextID: String {
-        return "\(contextType)_\(id)"
-    }
-
-    var pathComponent: String {
-        return "\(contextType.pathComponent)/\(id)"
-    }
+    static func account(_ id: String) -> Context { Context(.account, id: id) }
+    static func course(_ id: String) -> Context { Context(.course, id: id) }
+    static func group(_ id: String) -> Context { Context(.group, id: id) }
+    static func user(_ id: String) -> Context { Context(.user, id: id) }
+    static let currentUser = Context.user("self")
 }

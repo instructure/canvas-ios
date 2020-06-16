@@ -30,7 +30,7 @@ public class Tab: NSManagedObject {
     @NSManaged var visibilityRaw: String
 
     public var context: Context {
-        get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
+        get { return Context(canvasContextID: contextRaw) ?? .currentUser }
         set { contextRaw = newValue.canvasContextID }
     }
 

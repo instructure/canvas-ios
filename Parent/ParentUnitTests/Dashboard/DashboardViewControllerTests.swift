@@ -40,7 +40,7 @@ class DashboardViewControllerTests: ParentTestCase {
             .make(observed_user: .make(id: "2")),
         ]
         api.mock(GetObservedStudents(observerID: "1"), value: students)
-        api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
+        api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
         api.mock(GetConversationsUnreadCountRequest(), value: .init(unread_count: 3))
         env.userDefaults?.parentCurrentStudentID = nil
 
@@ -98,7 +98,7 @@ class DashboardViewControllerTests: ParentTestCase {
     func testAdmin() {
         env.currentSession = LoginSession.make(baseURL: URL(string: "https://siteadmin")!)
         api.mock(GetObservedStudents(observerID: "1"), value: [])
-        api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
+        api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
@@ -112,7 +112,7 @@ class DashboardViewControllerTests: ParentTestCase {
 
     func testShowNotAParentModal() {
         api.mock(GetObservedStudents(observerID: "1"), error: NSError.instructureError("error"))
-        api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
+        api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
@@ -122,7 +122,7 @@ class DashboardViewControllerTests: ParentTestCase {
 
     func testShowNotAParentModalNoStudentsToObserve() {
         api.mock(GetObservedStudents(observerID: "1"), value: [])
-        api.mock(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: APIPermissions.make())
+        api.mock(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: APIPermissions.make())
 
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)

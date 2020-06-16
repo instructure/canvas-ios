@@ -23,11 +23,11 @@ import TestsFoundation
 
 class GetContextUsersTests: CoreTestCase {
     func testCacheKey() {
-        XCTAssertEqual(GetContextUsers(context: ContextModel(.course, id: "1")).cacheKey, nil)
+        XCTAssertEqual(GetContextUsers(context: .course("1")).cacheKey, nil)
     }
 
     func testRequest() {
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
+        let useCase = GetContextUsers(context: .course("1"))
         XCTAssertEqual(useCase.request.path, "courses/1/users")
         XCTAssertEqual(useCase.request.queryItems, [
             URLQueryItem(name: "exclude_inactive", value: "true"),
@@ -36,7 +36,7 @@ class GetContextUsersTests: CoreTestCase {
             URLQueryItem(name: "include[]", value: "avatar_url"),
             URLQueryItem(name: "include[]", value: "enrollments"),
         ])
-        let useCase2 = GetContextUsers(context: ContextModel(.group, id: "1"), type: .ta, search: "fred")
+        let useCase2 = GetContextUsers(context: .group("1"), type: .ta, search: "fred")
         XCTAssertEqual(useCase2.request.path, "groups/1/users")
         XCTAssertEqual(useCase2.request.queryItems, [
             URLQueryItem(name: "exclude_inactive", value: "true"),
@@ -50,7 +50,7 @@ class GetContextUsersTests: CoreTestCase {
     }
 
     func testScopeCourse() {
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
+        let useCase = GetContextUsers(context: .course("1"))
         let one = User.make(from: .make(id: "1", sortable_name: "A"), courseID: "1")
         let two = User.make(from: .make(id: "2", sortable_name: "B"), courseID: "1")
         User.make(from: .make(id: "3"), courseID: nil)
@@ -60,7 +60,7 @@ class GetContextUsersTests: CoreTestCase {
     }
 
     func testScopeGroup() {
-        let useCase = GetContextUsers(context: ContextModel(.group, id: "1"))
+        let useCase = GetContextUsers(context: .group("1"))
         let one = User.make(from: .make(id: "1", sortable_name: "A"), groupID: "1")
         let two = User.make(from: .make(id: "2", sortable_name: "B"), groupID: "1")
         User.make(from: .make(id: "3"), groupID: nil)
@@ -70,7 +70,7 @@ class GetContextUsersTests: CoreTestCase {
     }
 
     func testWriteCourseUsers() {
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
+        let useCase = GetContextUsers(context: .course("1"))
         let response = [APIUser.make(id: "1"), APIUser.make(id: "2")]
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let user: [User] = databaseClient.fetch()
@@ -80,7 +80,7 @@ class GetContextUsersTests: CoreTestCase {
     }
 
     func testWriteGroupUsers() {
-        let useCase = GetContextUsers(context: ContextModel(.group, id: "1"))
+        let useCase = GetContextUsers(context: .group("1"))
         let response = [APIUser.make(id: "1"), APIUser.make(id: "2")]
         useCase.write(response: response, urlResponse: nil, to: databaseClient)
         let user: [User] = databaseClient.fetch()

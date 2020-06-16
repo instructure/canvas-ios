@@ -17,8 +17,9 @@
 //
 
 import UIKit
-import CanvasCore
 import ReactiveSwift
+import CanvasCore
+import Core
 
 fileprivate class EventRow: UIView {
     @objc let imageView = UIImageView()
@@ -113,8 +114,8 @@ class CalendarEventDetailViewController: UIViewController {
     
     private func update(for event: CalendarEvent?) {
         titleLabel.text = event?.title
-        let enrollment: Enrollment? = (event?.contextCode)
-            .flatMap { ContextID(canvasContext: $0) }
+        let enrollment: CanvasCore.Enrollment? = (event?.contextCode)
+            .flatMap { Context(canvasContextID: $0) }
             .flatMap { enrollments[$0] }
         
         courseRow.isHidden = enrollment == nil

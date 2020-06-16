@@ -46,15 +46,15 @@ extension APIPlannable: PlannableItem {
         switch type {
         case .course:
             if let id = course_id?.rawValue {
-                return ContextModel(.course, id: id)
+                return Context(.course, id: id)
             }
         case .group:
             if let id = group_id?.rawValue {
-                return ContextModel(.group, id: id)
+                return Context(.group, id: id)
             }
         case .user:
             if let id = user_id?.rawValue {
-                return ContextModel(.user, id: id)
+                return Context(.user, id: id)
             }
         default: return nil
         }
@@ -70,7 +70,7 @@ extension APICalendarEvent: PlannableItem {
     }
     public var plannableTitle: String? { title }
     public var htmlURL: URL? { html_url }
-    public var context: Context? { ContextModel(canvasContextID: context_code) }
+    public var context: Context? { Context(canvasContextID: context_code) }
     public var contextName: String? { nil }
     public var date: Date? { start_at }
     public var pointsPossible: Double? { assignment?.points_possible }
@@ -158,7 +158,7 @@ public class GetPlannables: UseCase {
 
     func getObserverCalendarEvents(env: AppEnvironment, callback: @escaping ([APICalendarEvent]?, URLResponse?, Error?) -> Void) {
         getObserverContextCodes(env: env) { contextCodes in
-            let contexts = contextCodes.compactMap(ContextModel.init(canvasContextID:))
+            let contexts = contextCodes.compactMap(Context.init(canvasContextID:))
             self.getCalendarEvents(env: env, contexts: contexts, type: .event) { response, urlResponse, error in
                 guard let events = response, error == nil else {
                     callback(nil, urlResponse, error)
@@ -194,7 +194,7 @@ public class GetPlannables: UseCase {
             for course in courses {
                 let enrollments = course.enrollments ?? []
                 for enrollment in enrollments where enrollment.associated_user_id == userID {
-                    codes.append(ContextModel(.course, id: course.id.value).canvasContextID)
+                    codes.append(Context(.course, id: course.id.value).canvasContextID)
                 }
             }
             callback(codes)

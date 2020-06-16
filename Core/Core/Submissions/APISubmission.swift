@@ -205,7 +205,7 @@ extension APISubmissionCommentAuthor {
 
     public static func make(from user: APIUser) -> APISubmissionCommentAuthor {
         APISubmissionCommentAuthor(
-            id: user.id,
+            id: user.id.value,
             display_name: user.name,
             avatar_image_url: user.avatar_url?.rawValue,
             html_url: URL(string: "/users/\(user.id)")!,
@@ -233,7 +233,7 @@ extension APISubmissionUser {
 
     public static func make(from user: APIUser) -> APISubmissionUser {
         APISubmissionUser(
-            id: user.id,
+            id: user.id.value,
             name: user.name,
             short_name: user.short_name,
             avatar_url: user.avatar_url?.rawValue,
@@ -437,7 +437,7 @@ struct PutSubmissionGradeRequest: APIRequestable {
     let body: Body?
     let method = APIMethod.put
     var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
     }
 }
@@ -448,7 +448,7 @@ public struct GetRecentlyGradedSubmissionsRequest: APIRequestable {
     let userID: String
 
     public var path: String {
-        let context = ContextModel(.user, id: userID)
+        let context = Context(.user, id: userID)
         return "\(context.pathComponent)/graded_submissions"
     }
 

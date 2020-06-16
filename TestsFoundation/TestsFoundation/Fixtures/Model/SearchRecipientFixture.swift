@@ -24,7 +24,7 @@ extension SearchRecipient {
     @discardableResult
     public static func make(
         from api: APISearchRecipient = .make(),
-        canvasContext: Context = ContextModel(.course, id: "1"),
+        canvasContext: Context = Context(.course, id: "1"),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
         ) -> SearchRecipient {
         let filter = GetSearchRecipients(context: canvasContext).filter

@@ -24,13 +24,13 @@ typealias QuizSubmissionResult = Result<ResponsePage<QuizSubmission>, NSError>
 typealias QuizResult = Result<ResponsePage<Quiz>, NSError>
 
 class CanvasQuizService {
-    init(session: Session, context: ContextID, quizID: String) {
+    init(session: Session, context: Context, quizID: String) {
         self.session = session
         self.context = context
         self.quizID = quizID
     }
     
-    let context: ContextID
+    let context: Context
     let quizID: String
     
     let session: Session
@@ -38,7 +38,7 @@ class CanvasQuizService {
         return session.user
     }
     var apiPath: String {
-        return "\(context.apiPath)/quizzes/\(quizID)"
+        return "/api/v1/\(context.pathComponent)/quizzes/\(quizID)"
     }
     
     var baseURL: URL {
@@ -46,8 +46,7 @@ class CanvasQuizService {
     }
 
     func pageViewName() -> String {
-        let event: NSString = baseURL.absoluteString as NSString
-        return event.appendingPathComponent(context.apiPath.pruneApiVersionFromPath() + "/quizzes/" + quizID)
+        return baseURL.appendingPathComponent("\(context.pathComponent)/quizzes/\(quizID)").absoluteString
     }
     
     // MARK: Quiz Requests
@@ -101,7 +100,7 @@ class CanvasQuizService {
     }
     
     func quizRequest() -> Request<Quiz> {
-        return Request(auth: session, method: .GET, path: apiPath as String, parameters: nil) { json in
+        return Request(auth: session, method: .GET, path: apiPath, parameters: nil) { json in
             return Quiz.fromJSON(json).map {
                 return .success($0)
             } ?? .failure(NSError.quizErrorWithMessage("Error parsing the quiz response"))

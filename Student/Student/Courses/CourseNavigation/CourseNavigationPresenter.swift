@@ -39,7 +39,7 @@ class CourseNavigationPresenter {
     }
 
     init(courseID: String, view: CourseNavigationViewProtocol, env: AppEnvironment = .shared) {
-        self.context = ContextModel(.course, id: courseID)
+        self.context = Context(.course, id: courseID)
         self.env = env
         self.view = view
     }

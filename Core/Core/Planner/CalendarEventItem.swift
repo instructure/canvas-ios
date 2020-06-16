@@ -40,7 +40,7 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     @NSManaged public var hasStartAt: Bool
 
     public var context: Context {
-        get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
+        get { return Context(canvasContextID: contextRaw) ?? .currentUser }
         set { contextRaw = newValue.canvasContextID }
     }
 

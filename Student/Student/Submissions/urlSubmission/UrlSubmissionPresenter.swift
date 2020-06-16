@@ -58,7 +58,7 @@ class UrlSubmissionPresenter {
 
     func submit(_ text: String?) {
         if let url = scrubUrl(text: text) {
-            let useCase = CreateSubmission(context: ContextModel(.course, id: courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
+            let useCase = CreateSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID, submissionType: .online_url, url: url)
             useCase.fetch(environment: env) { [weak self] (_, _, error) in
                 DispatchQueue.main.async {
                     if let error = error {

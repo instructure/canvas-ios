@@ -41,7 +41,7 @@ class APIUserRequestableTests: XCTestCase {
 
     func testUpdateCustomColorRequest() {
         let body = UpdateCustomColorRequest.Body(hexcode: "fffeee")
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let request = UpdateCustomColorRequest(userID: "1", context: context, body: body)
 
         XCTAssertEqual(request.path, "users/1/colors/course_1")

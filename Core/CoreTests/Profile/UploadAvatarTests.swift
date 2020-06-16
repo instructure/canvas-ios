@@ -71,14 +71,14 @@ class UploadAvatarTests: CoreTestCase {
     func testGetFileError() {
         api.mock(PostFileUploadTargetRequest(context: .myFiles, body: .init(name: "", on_duplicate: .rename, size: 0)), value: .make())
         api.mock(PostFileUploadRequest(fileURL: url, target: .make()), value: .make())
-        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [.avatar]), value: nil)
+        api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [.avatar]), value: nil)
         switch result() {
         case .success: XCTFail()
         case .failure(let found):
             XCTAssertEqual(found as NSError, NSError.internalError())
         }
 
-        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [.avatar]), error: error)
+        api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [.avatar]), error: error)
         switch result() {
         case .success: XCTFail()
         case .failure(let found):
@@ -89,7 +89,7 @@ class UploadAvatarTests: CoreTestCase {
     func testPutAvatarError() {
         api.mock(PostFileUploadTargetRequest(context: .myFiles, body: .init(name: "", on_duplicate: .rename, size: 0)), value: .make())
         api.mock(PostFileUploadRequest(fileURL: url, target: .make()), value: .make())
-        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [.avatar]), value: .make(avatar: .init(token: "t")))
+        api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [.avatar]), value: .make(avatar: .init(token: "t")))
         api.mock(PutUserAvatarRequest(token: "t"), value: nil)
         switch result() {
         case .success: XCTFail()
@@ -108,7 +108,7 @@ class UploadAvatarTests: CoreTestCase {
     func testSuccess() {
         api.mock(PostFileUploadTargetRequest(context: .myFiles, body: .init(name: "", on_duplicate: .rename, size: 0)), value: .make())
         api.mock(PostFileUploadRequest(fileURL: url, target: .make()), value: .make())
-        api.mock(GetFileRequest(context: ContextModel.currentUser, fileID: "1", include: [.avatar]), value: .make(avatar: .init(token: "t")))
+        api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [.avatar]), value: .make(avatar: .init(token: "t")))
         api.mock(PutUserAvatarRequest(token: "t"), value: .make(avatar_url: url))
         XCTAssertEqual(try result().get(), url)
         XCTAssertEqual(environment.currentSession?.userAvatarURL, url)

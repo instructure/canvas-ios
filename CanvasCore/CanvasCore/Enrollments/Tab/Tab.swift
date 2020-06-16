@@ -31,9 +31,9 @@ public final class Tab: NSManagedObject {
     @NSManaged internal (set) public var hidden: Bool
 
     @NSManaged var rawContextID: String
-    fileprivate (set) public var contextID: ContextID {
+    fileprivate (set) public var contextID: Context {
         get {
-            return ContextID(canvasContext: rawContextID)!
+            return Context(canvasContextID: rawContextID)!
         } set {
             rawContextID = newValue.canvasContextID
         }
@@ -103,7 +103,7 @@ private let contextIDFailureReason = "Could not parse context id from URL"
 extension Tab: SynchronizedModel {
     @objc public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
         let url: URL = try json <| "full_url"
-        guard let context = ContextID(url: url) else {
+        guard let context = Context(url: url) else {
             throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 
@@ -117,7 +117,7 @@ extension Tab: SynchronizedModel {
         url         = try (try json <| "url")
             ?? (try json <| "full_url")
 
-        guard let context = url.flatMap(ContextID.init) else {
+        guard let context = url.flatMap(Context.init) else {
             throw NSError(subdomain: "Enrollments", code: 0, sessionID: nil, apiURL: URL(string: "/api/v1/context/tabs"), title: nil, description: contextIDErrorMessage, failureReason: contextIDFailureReason)
         }
 

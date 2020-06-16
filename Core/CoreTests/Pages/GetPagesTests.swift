@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 
 class GetPagesTest: CoreTestCase {
-    let courseContext = ContextModel(.course, id: "42")
+    let courseContext = Context(.course, id: "42")
 
     func testProperties() {
         let useCase = GetPages(context: courseContext)
