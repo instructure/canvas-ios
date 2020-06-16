@@ -135,7 +135,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
             return ExternalURLViewController.create(name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 id: toolID,
                 url: url,
                 launchType: .module_item,

@@ -486,8 +486,8 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(course: APICourse) -> APICourse {
-        mockData(GetCourseRequest(courseID: course.id), value: course)
-        mockData(GetCourseRequest(courseID: course.id, include: [
+        mockData(GetCourseRequest(courseID: course.id.value), value: course)
+        mockData(GetCourseRequest(courseID: course.id.value, include: [
             .courseImage,
             .currentGradingPeriodScores,
             .favorites,
@@ -497,15 +497,15 @@ open class CoreUITestCase: XCTestCase {
             .term,
             .totalScores,
         ]), value: course)
-        mockData(GetCourseRequest(courseID: course.id, include: [
+        mockData(GetCourseRequest(courseID: course.id.value, include: [
             .courseImage,
             .favorites,
             .permissions,
             .sections,
             .term,
         ]), value: course)
-        mockData(GetContextPermissionsRequest(context: course), value: .make())
-        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel(.course, id: course.id)), value: [
+        mockData(GetContextPermissionsRequest(context: .course(course.id.value)), value: .make())
+        mockData(GetEnabledFeatureFlagsRequest(context: .course(course.id.value)), value: [
             "rce_enhancements",
             "new_gradebook",
         ])
@@ -537,7 +537,7 @@ open class CoreUITestCase: XCTestCase {
         for submission in assignment.submission?.values ?? [] {
             for userId in ["1", "self"] {
                 mockData(GetSubmissionRequest(
-                    context: ContextModel(.course, id: assignment.course_id.value),
+                    context: .course(assignment.course_id.value),
                     assignmentID: assignment.id.value, userID: userId),
                          value: submission)
             }
@@ -586,7 +586,7 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: ["course_1": "#5F4DCE"]))
         mockData(GetBrandVariablesRequest(), value: APIBrandVariables.make())
         mockData(GetUserSettingsRequest(userID: "self"), value: APIUserSettings.make())
-        mockData(GetContextPermissionsRequest(context: ContextModel(.account, id: "self"), permissions: [.becomeUser]), value: .make())
+        mockData(GetContextPermissionsRequest(context: .account("self"), permissions: [.becomeUser]), value: .make())
         mockData(GetAccountNotificationsRequest(), value: [])
         mock(courses: [ baseCourse ])
         mockData(GetDashboardCardsRequest(), value: [APIDashboardCard.make()])
@@ -597,7 +597,7 @@ open class CoreUITestCase: XCTestCase {
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])
         mockEncodableRequest("conferences?state=live", value: [String]())
-        mockData(GetEnabledFeatureFlagsRequest(context: ContextModel.currentUser), value: [])
+        mockData(GetEnabledFeatureFlagsRequest(context: .currentUser), value: [])
         if Bundle.main.isTeacherApp {
             mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [])
         }

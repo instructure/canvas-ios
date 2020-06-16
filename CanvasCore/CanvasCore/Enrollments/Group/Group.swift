@@ -25,8 +25,8 @@ import CoreData
 public final class Group: Enrollment {
     @NSManaged internal (set) public var courseID: String?
     
-    public override var contextID: ContextID {
-        return ContextID(id: id, context: .group)
+    public override var contextID: Context {
+        return Context(.group, id: id)
     }
 }
 

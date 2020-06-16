@@ -141,10 +141,6 @@ extension APIUser.Permissions {
     }
 }
 
-extension APIUser: APIContext {
-    public var contextType: ContextType { return .user }
-}
-
 extension APIUserSettings {
     public static func make(
         manual_mark_as_read: Bool = false,
@@ -206,7 +202,7 @@ public struct GetUserRequest: APIRequestable {
     }
 
     public var path: String {
-        return ContextModel(.user, id: userID).pathComponent
+        return Context(.user, id: userID).pathComponent
     }
 }
 
@@ -232,7 +228,7 @@ struct CreateUserRequest: APIRequestable {
     let body: Body?
     let method = APIMethod.post
     var path: String {
-        return "\(ContextModel(.account, id: accountID).pathComponent)/users"
+        return "\(Context(.account, id: accountID).pathComponent)/users"
     }
 }
 
@@ -318,7 +314,7 @@ public struct GetUserProfileRequest: APIRequestable {
     public let userID: String
 
     public var path: String {
-        let context = ContextModel(.user, id: userID)
+        let context = Context(.user, id: userID)
         return "\(context.pathComponent)/profile"
     }
 
@@ -342,7 +338,7 @@ public struct PostObserveesRequest: APIRequestable {
     public let method: APIMethod = .post
 
     public var path: String {
-        let context = ContextModel(.user, id: userID)
+        let context = Context(.user, id: userID)
         return "\(context.pathComponent)/observees"
     }
 

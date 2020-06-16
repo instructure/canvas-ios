@@ -24,7 +24,7 @@ extension Permissions {
     @discardableResult
     public static func make(
         from api: APIPermissions = .make(),
-        for context: Context = ContextModel(.account, id: "1"),
+        for context: Context = Context(.account, id: "1"),
         in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Permissions {
         let model = Permissions.save(api, for: context, in: db)

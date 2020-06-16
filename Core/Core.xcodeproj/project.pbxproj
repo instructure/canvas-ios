@@ -378,7 +378,6 @@
 		7DA2603B23F722D9005D2121 /* CalendarEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B32225CDC95001F353D /* CalendarEventItem.swift */; };
 		7DA2603C23F722D9005D2121 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
 		7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC4217113DA007E5F81 /* ContextColor.swift */; };
-		7DA2603E23F722D9005D2121 /* ContextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF82124A0F400677F66 /* ContextModel.swift */; };
 		7DA2603F23F722D9005D2121 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC8217116BC007E5F81 /* Course.swift */; };
 		7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9722363732D004EAEDF /* CourseSection.swift */; };
 		7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */; };
@@ -1241,7 +1240,6 @@
 		7D06113524800E240014C8E4 /* SubmissionBreakdownViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewControllerTests.swift; sourceTree = "<group>"; };
 		7D062AF3212496E600677F66 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		7D062AF621249E7700677F66 /* ContextModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModelTests.swift; sourceTree = "<group>"; };
-		7D062AF82124A0F400677F66 /* ContextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModel.swift; sourceTree = "<group>"; };
 		7D062AFA2124A14700677F66 /* ContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTests.swift; sourceTree = "<group>"; };
 		7D06A2B22469B7D100D76267 /* DiscussionReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionReplyViewController.swift; sourceTree = "<group>"; };
 		7D06A2B42469B7EF00D76267 /* DiscussionReplyViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiscussionReplyViewController.storyboard; sourceTree = "<group>"; };
@@ -2763,7 +2761,6 @@
 				7D80AC0B212B4C6F00C40ECE /* APITab.swift */,
 				7D062AF3212496E600677F66 /* Context.swift */,
 				7DF4FFC4217113DA007E5F81 /* ContextColor.swift */,
-				7D062AF82124A0F400677F66 /* ContextModel.swift */,
 				7D9BB1E722527F310058D9C6 /* GetContextPermissions.swift */,
 				9FE84DDD2150281300B95A68 /* GetContextTabs.swift */,
 				7851D9B22138264800E76EC3 /* GetCustomColors.swift */,
@@ -5025,7 +5022,6 @@
 				7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */,
 				7DA25FC523F72136005D2121 /* APIPermissions.swift in Sources */,
 				7DA25FF023F721DE005D2121 /* SearchRecipient.swift in Sources */,
-				7DA2603E23F722D9005D2121 /* ContextModel.swift in Sources */,
 				7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */,
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,

@@ -40,7 +40,7 @@ public struct Progress: Equatable, Hashable {
         case moduleItem
     }
     
-    public init(kind: Kind, contextID: ContextID, itemType: ItemType, itemID: String) {
+    public init(kind: Kind, contextID: Context, itemType: ItemType, itemID: String) {
         self.kind = kind
         self.contextID = contextID
         self.itemType = itemType
@@ -48,7 +48,7 @@ public struct Progress: Equatable, Hashable {
     }
     
     public let kind: Kind
-    public let contextID: ContextID
+    public let contextID: Context
     public let itemType: ItemType
     public let itemID: String
 }

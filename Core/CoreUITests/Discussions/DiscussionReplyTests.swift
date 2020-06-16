@@ -34,13 +34,13 @@ class DiscussionReplyTests: CoreUITestCase {
 
     @discardableResult
     func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionView = .make()) -> APIDiscussionTopic {
-        mockData(ListDiscussionTopicsRequest(context: course), value: [discussion])
-        mockData(GetDiscussionTopicRequest(context: course, topicID: discussion.id.value), value: discussion)
-        mockData(GetDiscussionViewRequest(context: course, topicID: discussion.id.value), value: fullTopic)
-        mockData(GetGroupsRequest(context: course), value: [])
-        mockData(MarkDiscussionTopicReadRequest(context: course, topicID: discussion.id.value, isRead: true), value: APINoContent())
+        mockData(ListDiscussionTopicsRequest(context: .course(course.id.value)), value: [discussion])
+        mockData(GetDiscussionTopicRequest(context: .course(course.id.value), topicID: discussion.id.value), value: discussion)
+        mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: discussion.id.value), value: fullTopic)
+        mockData(GetGroupsRequest(context: .course(course.id.value)), value: [])
+        mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: discussion.id.value, isRead: true), value: APINoContent())
         fullTopic.unread_entries.forEach { entry in
-            mockData(MarkDiscussionEntryReadRequest(context: course, topicID: discussion.id.value, entryID: entry.value, isRead: true, isForcedRead: false)) { [weak self] request in
+            mockData(MarkDiscussionEntryReadRequest(context: .course(course.id.value), topicID: discussion.id.value, entryID: entry.value, isRead: true, isForcedRead: false)) { [weak self] request in
                 self?.markedAsRead[entry] = true
                 return MockHTTPResponse(http: HTTPURLResponse(url: request.url!, statusCode: 204, httpVersion: nil, headerFields: [:]))
             }
@@ -49,7 +49,7 @@ class DiscussionReplyTests: CoreUITestCase {
     }
 
     func mockCoursePermission(allowPost: Bool = true) {
-        mockData(GetContextPermissionsRequest(context: course, permissions: [.postToForum]), value: .make(post_to_forum: allowPost))
+        mockData(GetContextPermissionsRequest(context: .course(course.id.value), permissions: [.postToForum]), value: .make(post_to_forum: allowPost))
     }
 
 //    func xtestUnreadMarkersCorrect() {
@@ -113,8 +113,8 @@ class DiscussionReplyTests: CoreUITestCase {
         app.swipeDown()
         app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", entryID: "2", message: ""), value: .make())
+        mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", message: ""), value: .make())
+        mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", entryID: "2", message: ""), value: .make())
 
         app.find(label: "Reply", type: .link).tap()
         DiscussionEditReply.sendButton.waitToExist()
@@ -146,7 +146,7 @@ class DiscussionReplyTests: CoreUITestCase {
         app.swipeDown()
         app.find(label: discussion.message!).waitToExist()
 
-        mockData(PostDiscussionEntryRequest(context: course, topicID: "1", message: ""), value: .make())
+        mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", message: ""), value: .make())
         app.find(label: "Reply", type: .link).tap()
         DiscussionEditReply.attachmentButton.tap()
 
@@ -182,7 +182,7 @@ class DiscussionReplyTests: CoreUITestCase {
         app.swipeDown()
 
         for entry in 1...5 {
-            mockData(PostDiscussionEntryRatingRequest(context: course, topicID: topic.id.value, entryID: "\(entry)", isLiked: true)) { [weak self] _ in
+            mockData(PostDiscussionEntryRatingRequest(context: .course(course.id.value), topicID: topic.id.value, entryID: "\(entry)", isLiked: true)) { [weak self] _ in
                 view.entry_ratings["\(entry)"] = 1 - (view.entry_ratings["\(entry)"] ?? 0)
                 self?.mockDiscussion(topic, fullTopic: view)
                 return MockHTTPResponse.noContent

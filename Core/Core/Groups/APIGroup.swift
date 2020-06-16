@@ -68,10 +68,6 @@ extension APIGroup {
         )
     }
 }
-
-extension APIGroup: APIContext {
-    public var contextType: ContextType { return .group }
-}
 #endif
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.index
@@ -99,7 +95,7 @@ struct GetGroupUsersRequest: APIRequestable {
     let groupID: String
 
     var path: String {
-        let context = ContextModel(.group, id: groupID)
+        let context = Context(.group, id: groupID)
         return "\(context.pathComponent)/users"
     }
 
@@ -117,6 +113,6 @@ public struct GetGroupRequest: APIRequestable {
     let id: String
 
     public var path: String {
-        return ContextModel(.group, id: id).pathComponent
+        return Context(.group, id: id).pathComponent
     }
 }

@@ -16,18 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-import ReactiveSwift
-import Marshal
-
-
-extension Tab {
-    public static func get(_ session: Session, contextID: Context) -> SignalProducer<[JSONObject], NSError> {
-        let path = "/api/v1/\(contextID.pathComponent)/tabs"
-        return attemptProducer { try session.GET(path) }
-            .flatMap(.merge) { request in
-                return session.paginatedJSONSignalProducer(request)
-            }
-    }
-}
+public typealias Context = Core.Context
+public typealias ContextType = Core.ContextType

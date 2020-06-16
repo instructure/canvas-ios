@@ -62,7 +62,7 @@ class DashboardViewController: UIViewController {
             self?.students.exhaust()
         }
     })
-    lazy var permissions = env.subscribe(GetContextPermissions(context: ContextModel(.account, id: "self"), permissions: [.becomeUser])) { [weak self] in
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .account("self"), permissions: [.becomeUser])) { [weak self] in
         self?.update()
     }
     lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in

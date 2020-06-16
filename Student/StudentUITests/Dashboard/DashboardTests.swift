@@ -40,7 +40,7 @@ class DashboardTests: StudentUITestCase {
 
     func checkCoursesEditMenu(_ courses: [APICourse]) {
         for course in courses {
-            XCTAssertEqual(DashboardEdit.courseFavorite(id: course.id, favorited: course.is_favorite ?? false).label(), course.name)
+            XCTAssertEqual(DashboardEdit.courseFavorite(id: course.id.value, favorited: course.is_favorite ?? false).label(), course.name)
         }
     }
 
@@ -48,9 +48,9 @@ class DashboardTests: StudentUITestCase {
         let noFavorites = courses.allSatisfy { $0.is_favorite != true }
         for course in courses {
             if course.is_favorite == true || noFavorites {
-                XCTAssertEqual(Dashboard.courseCard(id: course.id).label(), course.name)
+                XCTAssertEqual(Dashboard.courseCard(id: course.id.value).label(), course.name)
             } else {
-                Dashboard.courseCard(id: course.id).waitToVanish()
+                Dashboard.courseCard(id: course.id.value).waitToVanish()
             }
         }
     }
@@ -62,7 +62,7 @@ class DashboardTests: StudentUITestCase {
         // start with course 2 favorited
         var courses = mock(courses: [course(1), course(2, is_favorite: true), course(3)])
         for course in courses {
-            mockData(PostFavoriteRequest(context: course), value: APIFavorite(context_id: course.id, context_type: "course"))
+            mockData(PostFavoriteRequest(context: .course(course.id.value)), value: APIFavorite(context_id: course.id, context_type: "course"))
         }
 
         // TODO: figure out what's really going on with the never-appearing dashboard

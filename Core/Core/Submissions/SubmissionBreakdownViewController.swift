@@ -45,7 +45,7 @@ class SubmissionBreakdownViewController: UIViewController {
     @IBOutlet weak var noSubmissionsLabel: UILabel!
 
     var assignmentID = ""
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     var didAppear = false
     let env = AppEnvironment.shared
     var submissionsPath: String { "\(context.pathComponent)/assignments/\(assignmentID)/submissions" }
@@ -58,7 +58,7 @@ class SubmissionBreakdownViewController: UIViewController {
     static func create(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) -> SubmissionBreakdownViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
-        controller.context = ContextModel(.course, id: courseID)
+        controller.context = Context(.course, id: courseID)
         controller.submissionTypes = submissionTypes
         return controller
     }

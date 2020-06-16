@@ -39,7 +39,7 @@ public final class Todo: NSManagedObject, WriteableModel {
     @NSManaged var typeRaw: String
 
     public var context: Context {
-        get { return ContextModel(canvasContextID: contextRaw) ?? .currentUser }
+        get { return Context(canvasContextID: contextRaw) ?? .currentUser }
         set { contextRaw = newValue.canvasContextID }
     }
 
@@ -66,9 +66,9 @@ public final class Todo: NSManagedObject, WriteableModel {
         let model: Todo = context.first(where: #keyPath(Todo.id), equals: id) ?? context.insert()
         model.assignment = assignment
         if let id = item.course_id?.value {
-            model.context = ContextModel(.course, id: id)
+            model.context = Context(.course, id: id)
         } else if let id = item.group_id?.value {
-            model.context = ContextModel(.group, id: id)
+            model.context = Context(.group, id: id)
         }
         model.id = id
         model.ignoreURL = item.ignore

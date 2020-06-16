@@ -32,7 +32,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     public var color: UIColor?
     let env = AppEnvironment.shared
     public var titleSubtitleView = TitleSubtitleView.create()
-    var context: Context = ContextModel.currentUser
+    var context = Context.currentUser
     var enrollmentType: BaseEnrollmentType?
     var enrollmentTypes = BaseEnrollmentType.allCases.sorted {
         $0.name.localizedStandardCompare($1.name) == .orderedAscending

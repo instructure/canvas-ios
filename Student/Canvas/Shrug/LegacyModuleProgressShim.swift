@@ -18,6 +18,7 @@
 
 import Foundation
 import CanvasCore
+import Core
 
 /** Keeps Modules and Assignments UI up to date course progress
  */
@@ -29,14 +30,14 @@ open class LegacyModuleProgressShim: NSObject {
 
 extension Session {
     @objc func legacyModuleItemProgressUpdated(_ note: NSNotification) {
-        if let progress = Progress(contextID: ContextID(id: user.id, context: .user), notification: note) {
+        if let progress = Progress(contextID: .user(user.id), notification: note) {
             progressDispatcher.dispatch(progress)
         }
     }
 }
 
 extension CanvasCore.Progress {
-    init?(contextID: ContextID, notification: NSNotification) {
+    init?(contextID: Context, notification: NSNotification) {
         guard let
             id = notification.userInfo?["CBIUpdatedModuleItemIDStringKey"] as? String,
             let noteKind = notification.userInfo?["CBIUpdatedModuleItemTypeKey"] as? String

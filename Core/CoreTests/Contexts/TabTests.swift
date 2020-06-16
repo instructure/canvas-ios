@@ -24,10 +24,10 @@ class TabTests: CoreTestCase {
     func testProperties() {
         let tab = Tab.make()
 
-        tab.context = ContextModel(.group, id: "5")
-        XCTAssertEqual(tab.context as? ContextModel, ContextModel(.group, id: "5"))
+        tab.context = Context(.group, id: "5")
+        XCTAssertEqual(tab.context, Context(.group, id: "5"))
         tab.contextRaw = "bogus"
-        XCTAssertEqual(tab.context as? ContextModel, .currentUser)
+        XCTAssertEqual(tab.context, .currentUser)
 
         tab.hidden = nil
         XCTAssertNil(tab.hidden)

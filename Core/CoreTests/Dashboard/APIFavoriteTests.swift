@@ -21,12 +21,12 @@ import XCTest
 
 class APIFavoriteTests: XCTestCase {
     func testPostFavoriteRequest() {
-        XCTAssertEqual(PostFavoriteRequest(context: ContextModel(.course, id: "2")).method, .post)
-        XCTAssertEqual(PostFavoriteRequest(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
+        XCTAssertEqual(PostFavoriteRequest(context: .course("2")).method, .post)
+        XCTAssertEqual(PostFavoriteRequest(context: .course("2")).path, "users/self/favorites/courses/2")
     }
 
     func testDeleteFavoriteRequest() {
-        XCTAssertEqual(DeleteFavoriteRequest(context: ContextModel(.course, id: "2")).method, .delete)
-        XCTAssertEqual(DeleteFavoriteRequest(context: ContextModel(.course, id: "2")).path, "users/self/favorites/courses/2")
+        XCTAssertEqual(DeleteFavoriteRequest(context: .course("2")).method, .delete)
+        XCTAssertEqual(DeleteFavoriteRequest(context: .course("2")).path, "users/self/favorites/courses/2")
     }
 }

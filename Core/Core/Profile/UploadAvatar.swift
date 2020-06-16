@@ -63,7 +63,7 @@ public class UploadAvatar {
     }
 
     func getFile(id: String) {
-        task = env.api.makeRequest(GetFileRequest(context: ContextModel.currentUser, fileID: id, include: [ .avatar ])) { data, _, error in
+        task = env.api.makeRequest(GetFileRequest(context: .currentUser, fileID: id, include: [ .avatar ])) { data, _, error in
             guard let token = data?.avatar?.token, error == nil else {
                 return self.callback(.failure(error ?? NSError.internalError()))
             }

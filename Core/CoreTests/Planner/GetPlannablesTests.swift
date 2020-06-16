@@ -93,7 +93,7 @@ class GetPlannablesTests: CoreTestCase {
             perPage: 100
         ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: studentID)])])
         api.mock(GetCalendarEventsRequest(
-            contexts: [ContextModel(.course, id: "1")],
+            contexts: [Context(.course, id: "1")],
             startDate: start,
             endDate: end,
             type: .event,
@@ -102,7 +102,7 @@ class GetPlannablesTests: CoreTestCase {
             userID: userID
         ), value: [.make(id: "1", type: .event)])
         api.mock(GetCalendarEventsRequest(
-            contexts: [ContextModel(.course, id: "1")],
+            contexts: [Context(.course, id: "1")],
             startDate: start,
             endDate: end,
             type: .assignment,

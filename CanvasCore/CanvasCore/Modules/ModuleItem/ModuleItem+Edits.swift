@@ -86,7 +86,7 @@ extension ModuleItem {
                 try context.saveFRD()
 
                 // invalidate all the caches that we can to show freed items
-                let contextID = ContextID(id: me.courseID, context: .course)
+                let contextID = Context(.course, id: me.courseID)
                 try Tab.invalidateCache(session: session, contextID: contextID)
             }
         }

@@ -57,7 +57,7 @@ class ModuleViewModel {
         vm.accessibilityIdentifier.value = "module"
         vm.titleLineBreakMode = .byWordWrapping
 
-        vm.color <~ self.session.enrollmentsDataSource.color(for: .course(withID: self.courseID))
+        vm.color <~ self.session.enrollmentsDataSource.color(for: .course(self.courseID))
 
         let state = self.module.producer.map { $0?.state }
         vm.accessoryView <~ state.map { (state) -> UIView? in

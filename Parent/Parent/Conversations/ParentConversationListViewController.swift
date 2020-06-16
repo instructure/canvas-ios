@@ -96,7 +96,7 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
 
     func courseSelected(course: Course, user: User) {
         let compose = ComposeViewController.create(
-            context: ContextModel(.course, id: course.id),
+            context: .course(course.id),
             observeeID: user.id,
             subject: course.name,
             hiddenMessage: String.localizedStringWithFormat(

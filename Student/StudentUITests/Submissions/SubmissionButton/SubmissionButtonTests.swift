@@ -33,7 +33,7 @@ class SubmissionButtonTests: StudentUITestCase {
             body: .init(name: "", on_duplicate: .overwrite, parent_folder_id: nil, size: 0)
         ), value: target)
         mockData(PostFileUploadRequest(fileURL: URL(string: "data:text/plain,")!, target: target), value: .make())
-        mockData(CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: nil))
+        mockData(CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: nil))
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -49,7 +49,7 @@ class SubmissionButtonTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .external_tool ]))
         mockData(GetSessionlessLaunchURLRequest(
-            context: course,
+            context: .course(course.id.value),
             id: nil,
             url: nil,
             assignmentID: assignment.id.value,
@@ -66,7 +66,7 @@ class SubmissionButtonTests: StudentUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .basic_lti_launch ]))
         mockData(GetSessionlessLaunchURLRequest(
-            context: course,
+            context: .course(course.id.value),
             id: nil,
             url: nil,
             assignmentID: assignment.id.value,
@@ -98,11 +98,11 @@ class SubmissionButtonTests: StudentUITestCase {
         mockBaseRequests()
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
         let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
-        mockData(GetContextPermissionsRequest(context: course, permissions: [.postToForum]), value: .make())
-        mockData(GetGroupsRequest(context: course), value: [])
-        mockData(MarkDiscussionTopicReadRequest(context: course, topicID: "1", isRead: true), value: APINoContent())
-        mockData(GetDiscussionTopicRequest(context: course, topicID: "1"))
-        mockData(GetDiscussionViewRequest(context: course, topicID: "1", includeNewEntries: true), value: .make())
+        mockData(GetContextPermissionsRequest(context: .course(course.id.value), permissions: [.postToForum]), value: .make())
+        mockData(GetGroupsRequest(context: .course(course.id.value)), value: [])
+        mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: "1", isRead: true), value: APINoContent())
+        mockData(GetDiscussionTopicRequest(context: .course(course.id.value), topicID: "1"))
+        mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: "1", includeNewEntries: true), value: .make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
@@ -118,7 +118,7 @@ class SubmissionButtonTests: StudentUITestCase {
         mockEncodedData(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))
         mockData(PostMediaUploadRequest(fileURL: URL(string: "data:text/plain,")!, type: .audio, ks: "k", token: "t"))
         mockEncodedData(PostMediaIDRequest(ks: "k", token: "t", type: .audio), data: "<id>2</id>".data(using: .utf8))
-        mockData(CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: nil))
+        mockData(CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: nil))
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")

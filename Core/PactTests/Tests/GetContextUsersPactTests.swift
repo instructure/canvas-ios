@@ -24,7 +24,7 @@ import PactConsumerSwift
 class GetContextUsersPactTests: PactTestCase {
     func testGetCourseUsers() throws {
         let user = APIUser.make(locale: nil, permissions: nil)
-        let useCase = GetContextUsers(context: ContextModel(.course, id: "1"))
+        let useCase = GetContextUsers(context: .course("1"))
         try provider.uponReceiving(
             "List course users",
             with: useCase.request,

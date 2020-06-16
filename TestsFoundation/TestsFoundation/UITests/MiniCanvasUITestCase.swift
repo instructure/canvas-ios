@@ -31,9 +31,9 @@ open class MiniCanvasUITestCase: CoreUITestCase {
     open func setUpState() {
         let state = MiniCanvasServer.shared.state
         if Bundle.main.isStudentApp {
-            state.selfId = state.students[0].id
+            state.selfId = state.students[0].id.value
         } else if Bundle.main.isTeacherApp {
-            state.selfId = state.teachers[0].id
+            state.selfId = state.teachers[0].id.value
         }
     }
 

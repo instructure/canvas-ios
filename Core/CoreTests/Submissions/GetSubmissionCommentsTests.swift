@@ -21,7 +21,7 @@ import XCTest
 
 class GetSubmissionCommentsTests: CoreTestCase {
     func testItCreatesSubmission() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
             user_id: "3"
@@ -38,7 +38,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
     }
 
     func testItCreatesSubmissionComments() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
             user_id: "3",
@@ -61,17 +61,17 @@ class GetSubmissionCommentsTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        let getSubmission = GetSubmissionComments(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
         XCTAssertEqual(getSubmission.cacheKey, "get-1-2-3-submission")
     }
 
     func testRequest() {
-        let getSubmission = GetSubmissionComments(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
         XCTAssertEqual(getSubmission.request.path, "courses/1/assignments/2/submissions/3")
     }
 
     func testScope() {
-        let getSubmission = GetSubmissionComments(context: ContextModel(.course, id: "1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
         let scope = Scope(
             predicate: NSPredicate(
                 format: "%K == %@ AND %K == %@",

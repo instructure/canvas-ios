@@ -32,7 +32,7 @@ public enum FileUploadContext: Codable {
     case submissionComment(courseID: String, assignmentID: String)
 
     public static var myFiles: FileUploadContext {
-        return .context(ContextModel.currentUser)
+        return .context(Context.currentUser)
     }
 
     public init(from decoder: Decoder) throws {
@@ -40,7 +40,7 @@ public enum FileUploadContext: Codable {
         let type = try decoder.decode(Key.self, forKey: .type)
         switch type {
         case .context:
-            let context = try decoder.decode(ContextModel.self, forKey: .context)
+            let context = try decoder.decode(Context.self, forKey: .context)
             self = .context(context)
         case .submission:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
@@ -59,7 +59,7 @@ public enum FileUploadContext: Codable {
         switch self {
         case let .context(context):
             try container.encode(Key.context, forKey: .type)
-            try container.encode(ContextModel(context.contextType, id: context.id), forKey: .context)
+            try container.encode(Context(context.contextType, id: context.id), forKey: .context)
         case let .submission(courseID, assignmentID, comment):
             try container.encode(Key.submission, forKey: .type)
             try container.encode(courseID, forKey: .courseID)

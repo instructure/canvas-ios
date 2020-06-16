@@ -19,9 +19,8 @@
 import Foundation
 import CoreData
 
-public final class Group: NSManagedObject, Context, WriteableModel {
+public final class Group: NSManagedObject, WriteableModel {
     public typealias JSON = APIGroup
-    public let contextType = ContextType.group
 
     @NSManaged public var avatarURL: URL?
     @NSManaged public var concluded: Bool
@@ -29,6 +28,10 @@ public final class Group: NSManagedObject, Context, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
+
+    public var canvasContextID: String {
+        Context(.group, id: id).canvasContextID
+    }
 
     @discardableResult
     public static func save(_ item: APIGroup, in context: NSManagedObjectContext) -> Group {
@@ -53,7 +56,7 @@ extension Group {
             return color.color
         }
         if let courseID = courseID {
-            let course = ContextModel(.course, id: courseID)
+            let course = Context(.course, id: courseID)
             request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), course.canvasContextID)
             if let color = try? managedObjectContext?.fetch(request).first {
                 return color.color

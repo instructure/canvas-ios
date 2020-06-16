@@ -23,7 +23,7 @@ import WebKit
 class PageDetailsViewControllerTests: CoreTestCase {
     lazy var controller = PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
 
-    let context = ContextModel(.course, id: "1")
+    let context = Context(.course, id: "1")
     var htmlURL = URL(string: "/courses/1/pages/test-page")!
     var pageURL = "test-page"
 
@@ -93,7 +93,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
     }
 
     func testGroup() {
-        controller.context = ContextModel(.group, id: "1")
+        controller.context = Context(.group, id: "1")
         api.mock(GetPageRequest(context: controller.context, url: pageURL), value: .make(
             html_url: URL(string: "/groups/1/pages/test-page")!,
             title: "Test Page",

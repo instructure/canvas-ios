@@ -297,10 +297,6 @@ extension APIFileFolder {
     }
 }
 
-extension APIFileFolder: APIContext {
-    public var contextType: ContextType { .folder }
-}
-
 extension APIUsageRights {
     public static func make(
         legal_copyright: String? = nil,
@@ -376,10 +372,10 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         case let .context(context):
             return "\(context.pathComponent)/files"
         case let .submission(courseID, assignmentID, _):
-            let context = ContextModel(.course, id: courseID)
+            let context = Context(.course, id: courseID)
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/files"
         case let .submissionComment(courseID, assignmentID):
-            let context = ContextModel(.course, id: courseID)
+            let context = Context(.course, id: courseID)
             return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/self/comments/files"
         }
     }

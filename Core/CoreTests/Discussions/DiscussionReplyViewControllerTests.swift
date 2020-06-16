@@ -23,7 +23,7 @@ import QuickLook
 import TestsFoundation
 
 class DiscussionReplyViewControllerTests: CoreTestCase {
-    var context = ContextModel(.course, id: "1")
+    var context = Context(.course, id: "1")
     lazy var controller = DiscussionReplyViewController.create(context: context, topicID: "1")
 
     var baseURL: URL { environment.api.baseURL }
@@ -132,7 +132,7 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
 
     func testReplyTo() {
         controller.webView = CoreWebView() // unlink prev controller
-        context = ContextModel(.group, id: "1")
+        context = Context(.group, id: "1")
         controller = DiscussionReplyViewController.create(context: context, topicID: "1", replyToEntryID: "1")
         setUp()
         controller.view.layoutIfNeeded()

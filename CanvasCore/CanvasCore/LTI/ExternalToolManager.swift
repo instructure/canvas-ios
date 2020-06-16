@@ -206,7 +206,7 @@ public class ExternalToolManager: NSObject {
         session.progressDispatcher.dispatch(
             Progress(
                 kind: .viewed,
-                contextID: ContextID.currentUser, // not relevant but cant be nil
+                contextID: Context.currentUser, // not relevant but cant be nil
                 itemType: Progress.ItemType.legacyModuleProgressShim,
                 itemID: launchURL.absoluteString
             )

@@ -23,7 +23,7 @@ import CoreData
 extension FeatureFlag {
     @discardableResult
     public static func make(
-        context: Context = ContextModel(.course, id: "1"),
+        context: Context = Context(.course, id: "1"),
         name: String = "feature_flag",
         enabled: Bool = true,
         in managedContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext

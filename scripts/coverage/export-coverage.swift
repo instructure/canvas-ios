@@ -87,17 +87,20 @@ struct CoverageLine: Encodable {
 }
 
 let archiveIds = try! (
-  cmd("xcrun", "xcresulttool", "get", "--path", "ui-test-results/merged.xcresult", "--format", "json") |
+  cmd("xcrun", "xcresulttool", "get", "--path", "scripts/coverage/citests.xcresult", "--format", "json") |
     cmd("jq", "[.actions._values[].actionResult.coverage.archiveRef.id._value]")
-).runJson([String].self)
+).runJson([String?].self)
 
 var archivePaths: [String] = []
 for (index, id) in archiveIds.enumerated() {
+    guard let id = id else {
+        continue
+    }
     let archivePath = "tmp/cov-\(index).xccovarchive"
     archivePaths.append(archivePath)
     try! cmd(
       "xcrun", "xcresulttool", "export",
-      "--path", "ui-test-results/merged.xcresult",
+      "--path", "scripts/coverage/citests.xcresult",
       "--output-path", archivePath,
       "--type", "directory",
       "--id", id

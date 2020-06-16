@@ -26,7 +26,7 @@ class SubmissionFilesTests: StudentUITestCase {
 
     lazy var assignment: APIAssignment = {
         let assignment = APIAssignment.make()
-        mockData(GetAssignmentRequest(courseID: course.id, assignmentID: assignment.id.value, include: []), value: assignment)
+        mockData(GetAssignmentRequest(courseID: course.id.value, assignmentID: assignment.id.value, include: []), value: assignment)
         return assignment
     }()
 
@@ -36,7 +36,7 @@ class SubmissionFilesTests: StudentUITestCase {
             APIFile.make(id: "1", display_name: "File 1"),
             APIFile.make(id: "2", display_name: "File 2"),
         ]
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             user_id: "1",
             submission_type: .online_upload,
             attachments: attachments

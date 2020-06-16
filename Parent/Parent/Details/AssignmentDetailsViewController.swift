@@ -60,11 +60,11 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         self?.messagingReady()
     }
 
-    lazy var student = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: studentID)) { [weak self] in
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
         self?.messagingReady()
     }
 
-    lazy var teachers = env.subscribe(GetSearchRecipients(context: ContextModel(.course, id: courseID), qualifier: .teachers)) { [weak self] in
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.messagingReady()
     }
 
@@ -81,7 +81,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
         disposable = observer.signal.map { $0.1 }.observeValues { _ in
         }
 
-        session.enrollmentsDataSource(withScope: studentID).producer(ContextID(id: courseID, context: .course)).observe(on: UIScheduler()).startWithValues { next in
+        session.enrollmentsDataSource(withScope: studentID).producer(Context(.course, id: courseID)).observe(on: UIScheduler()).startWithValues { next in
             guard let course = next as? CanvasCore.Course else { return }
             self.title = course.name
         }
@@ -149,7 +149,7 @@ class AssignmentDetailsViewController: AssignmentDetailViewController {
                 a.htmlURL?.absoluteString ?? ""
             )
             let compose = ComposeViewController.create(
-                context: ContextModel(.course, id: courseID),
+                context: .course(courseID),
                 observeeID: studentID,
                 recipients: teachers.all,
                 subject: subject,

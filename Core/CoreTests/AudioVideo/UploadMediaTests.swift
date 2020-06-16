@@ -85,7 +85,7 @@ class UploadMediaTests: CoreTestCase {
     }
 
     func testCompleteUploadSuccess() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let expectation = XCTestExpectation(description: "callback was called")
         let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "10"))
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), value: response)
@@ -105,7 +105,7 @@ class UploadMediaTests: CoreTestCase {
     }
 
     func testCompleteUploadError() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let expectation = XCTestExpectation(description: "callback was called")
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), error: NSError.internalError())
         var error: Error?
@@ -124,7 +124,7 @@ class UploadMediaTests: CoreTestCase {
     }
 
     func testCompleteUploadNoContext() {
-        let context = ContextModel(.course, id: "1")
+        let context = Context(.course, id: "1")
         let expectation = XCTestExpectation(description: "callback was called")
         let response = PostCompleteMediaUploadRequest.Response(media_object: .init(media_id: "1"))
         api.mock(PostCompleteMediaUploadRequest(mediaID: "1", context: context, type: .audio), value: response)

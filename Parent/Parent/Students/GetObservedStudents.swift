@@ -39,7 +39,7 @@ public class GetObservedStudents: CollectionUseCase {
 
     public var request: GetEnrollmentsRequest {
         GetEnrollmentsRequest(
-            context: ContextModel.currentUser,
+            context: .currentUser,
             gradingPeriodID: nil,
             includes: [.observed_users, .avatar_url],
             states: GetEnrollmentsRequest.State.allForParentObserver,

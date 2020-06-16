@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class GroupNavigationViewControllerTests: StudentTestCase {
-    let context = ContextModel(.group, id: "1")
+    let context = Context(.group, id: "1")
     lazy var controller = GroupNavigationViewController.create(context: context)
 
     override func setUp() {

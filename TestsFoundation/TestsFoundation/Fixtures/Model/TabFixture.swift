@@ -24,7 +24,7 @@ extension Tab {
     @discardableResult
     public static func make(
         from api: APITab = .make(),
-        context: Context = ContextModel(.group, id: "1"),
+        context: Context = Context(.group, id: "1"),
         in db: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Tab {
         let model: Tab = db.insert()

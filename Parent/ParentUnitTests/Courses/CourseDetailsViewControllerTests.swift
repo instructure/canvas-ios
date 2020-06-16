@@ -35,9 +35,9 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     override func setUp() {
         super.setUp()
         vc = CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
-        api.mock(GetFrontPageRequest(context: ContextModel(.course, id: courseID)), value: APIPage.make())
+        api.mock(GetFrontPageRequest(context: .course(courseID)), value: APIPage.make())
         api.mock(
-            GetTabsRequest(context: ContextModel(.course, id: courseID)),
+            GetTabsRequest(context: .course(courseID)),
             value: [.make(id: "syllabus", html_url: URL(string: "/tabs")!)]
         )
     }
@@ -50,7 +50,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
     func testInboxReplyButton() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
-        api.mock(GetSearchRecipients(context: ContextModel(.course, id: courseID), userID: "1"), value: [.make()])
+        api.mock(GetSearchRecipients(context: .course(courseID), userID: "1"), value: [.make()])
 
         render()
 
@@ -86,14 +86,14 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     }
 
     func testHomeIsHiddenSyllabus() {
-        api.mock(GetTabsRequest(context: ContextModel(.course, id: courseID)), value: [])
+        api.mock(GetTabsRequest(context: .course(courseID)), value: [])
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
         render()
         XCTAssertTrue(isSyllabusShown)
     }
 
     func testHomeIsUnsupportedAndSyllabusPresentButNotInTabs() {
-        api.mock(GetTabsRequest(context: ContextModel(.course, id: courseID)), value: [])
+        api.mock(GetTabsRequest(context: .course(courseID)), value: [])
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
         render()
         XCTAssertFalse(isSyllabusShown)

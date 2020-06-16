@@ -171,7 +171,7 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/assignments/\(assignmentID)"
     }
 
@@ -212,7 +212,7 @@ struct PostAssignmentRequest: APIRequestable {
     let body: Body?
     let method = APIMethod.post
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/assignments"
     }
 }
@@ -257,7 +257,7 @@ public struct GetAssignmentsRequest: APIRequestable {
     }
 
     public var path: String {
-        let context = ContextModel(.course, id: courseID)
+        let context = Context(.course, id: courseID)
         if let assignmentGroupID = assignmentGroupID {
             return "\(context.pathComponent)/assignment_groups/\(assignmentGroupID)/assignments"
         }

@@ -40,7 +40,7 @@ extension ModuleItem {
             else {
                 return
             }
-            let contextID = ContextID(id: courseID, context: .course)
+            let contextID = Context(.course, id: courseID)
 
             let kind: Progress.Kind
             switch requirement {
@@ -132,7 +132,7 @@ extension ModuleItem {
             return
         }
 
-        let contextID = ContextID(id: courseID, context: .course)
+        let contextID = Context(.course, id: courseID)
         let progress = Progress(kind: kind, contextID: contextID, itemType: itemType, itemID: itemID)
 
         session.progressDispatcher.dispatch(progress)
@@ -144,7 +144,7 @@ extension ModuleItem {
         let externalURL = NSPredicate(format: "%K == %@", "externalURL", progress.itemID)
         let url = NSPredicate(format: "%K == %@", "url", progress.itemID)
         let type = contentType(progress).flatMap { NSPredicate(format: "%K == %@", "contentType", $0.rawValue) }
-        let course = progress.contextID.context == .course ? NSPredicate(format: "%K == %@", "courseID", progress.contextID.id) : NSPredicate(value: false)
+        let course = progress.contextID.contextType == .course ? NSPredicate(format: "%K == %@", "courseID", progress.contextID.id) : NSPredicate(value: false)
         let requirement = NSPredicate(format: "%K == %@", "completionRequirement", completionRequirement(progress).rawValue)
         let incomplete = NSPredicate(format: "%K == %@", "completed", NSNumber(value: false as Bool))
         let unlocked = NSPredicate(format: "%K == false", "lockedForUser", NSNumber(value: false as Bool))

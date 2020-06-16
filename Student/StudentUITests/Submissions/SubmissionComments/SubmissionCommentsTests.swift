@@ -36,7 +36,7 @@ class SubmissionCommentsTests: StudentUITestCase {
             APIFile.make(id: "1", display_name: "File 1"),
             APIFile.make(id: "2", display_name: "File 2"),
         ]
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_upload,
@@ -56,7 +56,7 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func testAttemptComments() {
         mockBaseRequests()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_quiz,
@@ -73,7 +73,7 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func testTextComments() {
         mockBaseRequests()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_upload,
@@ -104,7 +104,7 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func testCreateTextComment() {
         mockBaseRequests()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -116,7 +116,7 @@ class SubmissionCommentsTests: StudentUITestCase {
         SubmissionComments.commentTextView.typeText("First!")
         XCTAssertTrue(SubmissionComments.addCommentButton.isEnabled)
 
-        mockData(PutSubmissionGradeRequest(courseID: course.id, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make(
+        mockData(PutSubmissionGradeRequest(courseID: course.id.value, assignmentID: assignment.id.value, userID: "1", body: nil), value: APISubmission.make(
             submission_comments: [ APISubmissionComment.make(
                 id: "42",
                 author_id: "1",
@@ -131,7 +131,7 @@ class SubmissionCommentsTests: StudentUITestCase {
     func testAudioComments() {
         mockBaseRequests()
         let testm4a = Bundle(for: SubmissionCommentsTests.self).url(forResource: "test", withExtension: "m4a")!
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             id: "1",
             user_id: "1",
             submission_type: .online_upload,
@@ -171,14 +171,14 @@ class SubmissionCommentsTests: StudentUITestCase {
 
     func xtestAudioRecording() {
         mockBaseRequests()
-        mockData(GetSubmissionRequest(context: course, assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
+        mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))
         mockData(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
         mockEncodedData(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))
         mockData(PostMediaUploadRequest(fileURL: URL(string: "data:text/plain,")!, type: .audio, ks: "k", token: "t"))
         mockEncodedData(PostMediaIDRequest(ks: "k", token: "t", type: .audio), data: "<id>2</id>".data(using: .utf8))
         mockData(PutSubmissionGradeRequest(
-            courseID: course.id,
+            courseID: course.id.value,
             assignmentID: assignment.id.value,
             userID: "1",
             body: nil

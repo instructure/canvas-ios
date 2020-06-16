@@ -32,7 +32,7 @@ public class GetModules: UseCase {
     public let courseID: String
 
     public var cacheKey: String? {
-        "\(ContextModel(.course, id: courseID).pathComponent)/modules/items"
+        "\(Context(.course, id: courseID).pathComponent)/modules/items"
     }
 
     public var scope: Scope {

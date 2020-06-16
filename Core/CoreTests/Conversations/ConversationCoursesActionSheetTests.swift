@@ -49,7 +49,7 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
     func testActivityIndicator() {
         environment.mockStore = false
 
-        let enrollmentsTask = api.mock(GetEnrollmentsRequest(context: ContextModel.currentUser,
+        let enrollmentsTask = api.mock(GetEnrollmentsRequest(context: .currentUser,
                                                              userID: nil,
                                                              gradingPeriodID: nil,
                                                              types: ["ObserverEnrollment"],
@@ -72,7 +72,7 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
 
     func testShowError() {
         environment.mockStore = false
-        api.mock(GetEnrollmentsRequest(context: ContextModel.currentUser,
+        api.mock(GetEnrollmentsRequest(context: .currentUser,
                                        userID: nil,
                                        gradingPeriodID: nil,
                                        types: ["ObserverEnrollment"],

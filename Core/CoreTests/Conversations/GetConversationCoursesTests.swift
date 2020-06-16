@@ -22,7 +22,7 @@ import XCTest
 class GetConversationCoursesTests: CoreTestCase {
     func testMakesTheRequests() {
         let enrollment = APIEnrollment.make(course_id: "1", type: "ObserverEnrollment")
-        let enrollmentsRequest = GetEnrollmentsRequest(context: ContextModel.currentUser, userID: nil, gradingPeriodID: nil, types: ["ObserverEnrollment"], includes: [.observed_users])
+        let enrollmentsRequest = GetEnrollmentsRequest(context: .currentUser, userID: nil, gradingPeriodID: nil, types: ["ObserverEnrollment"], includes: [.observed_users])
         api.mock(enrollmentsRequest, value: [enrollment])
 
         let course = APICourse.make(id: ID("1"))

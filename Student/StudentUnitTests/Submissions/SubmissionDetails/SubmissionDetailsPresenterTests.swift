@@ -72,7 +72,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         env.pageViewLogger = pageViewLogger
 
         view = SubmissionDetailsView()
-        presenter = SubmissionDetailsPresenter(env: env, view: view, context: ContextModel(.course, id: "1"), assignmentID: "1", userID: "1")
+        presenter = SubmissionDetailsPresenter(env: env, view: view, context: .course("1"), assignmentID: "1", userID: "1")
     }
 
     func testViewIsReady() {

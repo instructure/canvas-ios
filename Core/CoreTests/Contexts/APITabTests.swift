@@ -21,10 +21,10 @@ import XCTest
 
 class APITabTests: XCTestCase {
     func testGetTabsRequest() {
-        XCTAssertEqual(GetTabsRequest(context: ContextModel(.course, id: "2")).path, "courses/2/tabs")
+        XCTAssertEqual(GetTabsRequest(context: .course("2")).path, "courses/2/tabs")
     }
 
     func testGetGroupTabsRequest() {
-        XCTAssertEqual(GetTabsRequest(context: ContextModel(.group, id: "3")).path, "groups/3/tabs")
+        XCTAssertEqual(GetTabsRequest(context: .group("3")).path, "groups/3/tabs")
     }
 }

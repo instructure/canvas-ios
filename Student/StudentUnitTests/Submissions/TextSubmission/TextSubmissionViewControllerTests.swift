@@ -25,7 +25,7 @@ class TextSubmissionViewControllerTests: StudentTestCase {
     var controller: TextSubmissionViewController!
     var navigation: UINavigationController!
 
-    let request = CreateSubmissionRequest(context: ContextModel(.course, id: "1"), assignmentID: "1", body: .init(submission: .init(
+    let request = CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: .init(submission: .init(
             submission_type: .online_text_entry,
             body: "<b>submission</b>"
     )))

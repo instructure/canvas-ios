@@ -76,7 +76,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
 
     public var path: String {
         if let userID = userID {
-            let context = ContextModel(.user, id: userID)
+            let context = Context(.user, id: userID)
             return "\(context.pathComponent)/calendar_events"
         }
         return "calendar_events"

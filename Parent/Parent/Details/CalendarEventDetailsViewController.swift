@@ -24,7 +24,7 @@ import CanvasCore
 extension EventDetailsViewModel {
     static func detailsForCalendarEvent(_ baseURL: URL, studentID: String, context: UIViewController, calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {
         var actionURL: URL = Route.courses.url.url!
-        if let courseID = ContextID(canvasContext: calendarEvent.contextCode)?.id {
+        if let courseID = Context(canvasContextID: calendarEvent.contextCode)?.id {
             actionURL = Route.courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id).url.url!
         }
 
@@ -76,7 +76,7 @@ class CalendarEventDetailsViewController: CalendarEventDetailViewController {
 
         if let courseID = courseID {
             session.enrollmentsDataSource(withScope: studentID)
-                .producer(ContextID(id: courseID, context: .course))
+                .producer(Context(.course, id: courseID))
                 .observe(on: UIScheduler())
                 .startWithValues { next in
                     guard let course = next as? CanvasCore.Course else { return }
