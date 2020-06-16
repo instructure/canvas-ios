@@ -28,7 +28,6 @@
 		3B55FED422FDE70F00FCB7B2 /* HideGradesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */; };
 		3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */; };
 		3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */; };
-		3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */; };
 		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
 		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
 		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
@@ -247,7 +246,6 @@
 		3B55FED222FDE70E00FCB7B2 /* HideGradesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HideGradesViewController.storyboard; sourceTree = "<group>"; };
 		3B55FED322FDE70F00FCB7B2 /* HideGradesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideGradesViewController.swift; sourceTree = "<group>"; };
 		3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPostPolicyTests.swift; sourceTree = "<group>"; };
-		3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherUITestCase.swift; sourceTree = "<group>"; };
 		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
 		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -667,7 +665,6 @@
 				E829684D24746C5C007E7F23 /* Pages */,
 				B17E1DB3238DA8290022EE0E /* SpeedGrader */,
 				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
-				3BFD1D422311E209003AE3AB /* TeacherUITestCase.swift */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
 				E8A2FCAA23048AF80070B732 /* UITestsFromCore.swift */,
 			);
@@ -1111,7 +1108,6 @@
 				E8D7EFE02476E5E7007BC5FD /* FilesUITests.swift in Sources */,
 				B17E1DB5238DA8550022EE0E /* SpeedGraderUITests.swift in Sources */,
 				B175D62623A96B0F00F8E696 /* IPadSpeedGraderTests.swift in Sources */,
-				3BFD1D432311E209003AE3AB /* TeacherUITestCase.swift in Sources */,
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 				E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */,

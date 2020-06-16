@@ -20,7 +20,7 @@ import TestsFoundation
 @testable import Core
 @testable import CoreUITests
 
-class ModulesTests: StudentUITestCase {
+class ModulesTests: CoreUITestCase {
     override var experimentalFeatures: [ExperimentalFeature] { [.studentModules] }
 
     override func setUp() {

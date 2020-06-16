@@ -21,7 +21,7 @@ import TestsFoundation
 import CoreUITests
 @testable import Core
 
-class DashboardTests: StudentUITestCase {
+class DashboardTests: CoreUITestCase {
     func course(_ id: ID, is_favorite: Bool? = nil) -> APICourse {
         APICourse.make(id: id, name: "Course \(id)", course_code: "C\(id)", is_favorite: is_favorite)
     }

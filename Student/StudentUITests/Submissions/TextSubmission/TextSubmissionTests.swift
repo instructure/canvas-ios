@@ -22,7 +22,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class TextSubmissionTests: StudentUITestCase {
+class TextSubmissionTests: CoreUITestCase {
     func testTextSubmission() {
         mockBaseRequests()
         let course = mock(course: APICourse.make())

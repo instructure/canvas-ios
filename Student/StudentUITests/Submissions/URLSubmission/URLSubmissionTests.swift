@@ -22,7 +22,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class URLSubmissionTests: StudentUITestCase {
+class URLSubmissionTests: CoreUITestCase {
     lazy var course = mock(course: .make())
     lazy var assignment = mock(assignment: .make(submission_types: [ .online_url ]))
 

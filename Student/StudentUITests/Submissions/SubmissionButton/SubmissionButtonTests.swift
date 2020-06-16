@@ -21,7 +21,7 @@
 import TestsFoundation
 import XCTest
 
-class SubmissionButtonTests: StudentUITestCase {
+class SubmissionButtonTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     func testOnlineUpload() {

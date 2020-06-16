@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class SubmissionFilesTests: StudentUITestCase {
+class SubmissionFilesTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     lazy var assignment: APIAssignment = {

@@ -22,7 +22,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class AssignmentDetailsTests: StudentUITestCase {
+class AssignmentDetailsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     func testUnsubmittedUpload() {
