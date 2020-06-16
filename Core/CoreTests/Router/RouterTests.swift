@@ -402,7 +402,7 @@ class RouterTests: CoreTestCase {
         Router.open(url: .parse("/root/relative/url"))
         XCTAssertEqual(login.externalURL?.absoluteURL, url)
 
-        url = URL(string: "https://insecure.protocol/")!
+        url = URL(string: "http://insecure.protocol/")!
         api.mock(GetWebSessionRequest(to: url), value: nil)
         Router.open(url: .parse("http://insecure.protocol/"))
         XCTAssertEqual(login.externalURL?.absoluteURL, url)

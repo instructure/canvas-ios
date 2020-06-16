@@ -196,7 +196,7 @@ public class Router: RouterProtocol {
         var components = url
         // Canonicalize relative & schemes we know about.
         switch components.scheme {
-        case "http", "canvas-courses", "canvas-student", "canvas-teacher", "canvas-parent":
+        case "canvas-courses", "canvas-student", "canvas-teacher", "canvas-parent":
             components.scheme = "https"
         default:
             break
@@ -204,7 +204,7 @@ public class Router: RouterProtocol {
         guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
 
         // Handle tel:, mailto:, or anything else that isn't https:
-        guard components.scheme == "https" else {
+        guard components.scheme?.hasPrefix("http") == true else {
             performUIUpdate {
                 AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             }
