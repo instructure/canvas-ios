@@ -32,7 +32,7 @@ workflows:
             #!/bin/zsh
             set -exo pipefail
 
-            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]"; then
+            if printf "%s\n" "$BITRISE_GIT_MESSAGE" | grep -iE "\[run.nightly\]" && [[ $BITRISE_GIT_BRANCH != master ]]; then
                 envman add --key RUN_NIGHTLY --value YES
             fi
     - build-router-start:
