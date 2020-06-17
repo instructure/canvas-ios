@@ -208,7 +208,6 @@
 		E8C6F4FC23D626220086B865 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C6F50423D626CC0086B865 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F50323D626CC0086B865 /* ModulesTests.swift */; };
 		E8C6F52923D638100086B865 /* LoginStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F52823D638100086B865 /* LoginStartTests.swift */; };
-		E8C6F52A23D63A1F0086B865 /* StudentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */; };
 		E8C6F52B23D63BCD0086B865 /* LoginFindSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4622F8A0A0000AACCE /* LoginFindSchoolTests.swift */; };
 		E8C6F58D23D641A70086B865 /* UITestsFromCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F58C23D641A60086B865 /* UITestsFromCore.swift */; };
 		E8C6F58F23D643720086B865 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8AD066723035B0900D498ED /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -636,7 +635,6 @@
 		7DCF0F5A22F8A0A0000AACCE /* URLSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmission.swift; sourceTree = "<group>"; };
 		7DCF0F5B22F8A0A0000AACCE /* URLSubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionTests.swift; sourceTree = "<group>"; };
 		7DCF0F5E22F8A0A0000AACCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentUITestCase.swift; sourceTree = "<group>"; };
 		7DCF0F7722F8A0CC000AACCE /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDebugViewController.swift; sourceTree = "<group>"; };
 		7DD2E3DE1FE1CD11004AE8DE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1714,7 +1712,6 @@
 				E8EA86092304974C00E4FD76 /* Notifications */,
 				E8C6F50823D627BC0086B865 /* Submissions */,
 				E8C6F51F23D62FA80086B865 /* Info.plist */,
-				7DCF0F7522F8A0A0000AACCE /* StudentUITestCase.swift */,
 				E8C6F58C23D641A60086B865 /* UITestsFromCore.swift */,
 			);
 			path = StudentUITests;
@@ -2409,7 +2406,6 @@
 				E8C6F52B23D63BCD0086B865 /* LoginFindSchoolTests.swift in Sources */,
 				7DC5717D22F8B1CB00F2E9BB /* Syllabus.swift in Sources */,
 				7DC5718E22F8B1CB00F2E9BB /* URLSubmission.swift in Sources */,
-				E8C6F52A23D63A1F0086B865 /* StudentUITestCase.swift in Sources */,
 				7DC5718A22F8B1CB00F2E9BB /* SubmissionDetailsTests.swift in Sources */,
 				7DC5718C22F8B1CB00F2E9BB /* SubmissionFilesTests.swift in Sources */,
 				E8C6F52923D638100086B865 /* LoginStartTests.swift in Sources */,

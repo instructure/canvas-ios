@@ -22,7 +22,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class SyllabusTests: StudentUITestCase {
+class SyllabusTests: CoreUITestCase {
     let html = "hello world"
     lazy var course = mock(course: .make(course_code: "abc", syllabus_body: html))
 
