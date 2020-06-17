@@ -72,6 +72,9 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
         webView.linkDelegate = self
+        if context.contextType == .course {
+            webView.addScript("window.ENV={COURSE:{id:\(CoreWebView.jsString(context.id))}}")
+        }
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         webView.scrollView.refreshControl = refreshControl
