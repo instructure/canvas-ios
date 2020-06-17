@@ -23,7 +23,7 @@
 # brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
 # brew install xcbeautify jq
 
-set -euo pipefail
+set -euxo pipefail
 
 function usage {
     echo "Runs a UI test suite, retrying failed ones."
