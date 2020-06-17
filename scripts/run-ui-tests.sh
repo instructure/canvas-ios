@@ -230,7 +230,11 @@ function doTest {
     < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$testrun_id-try-$try-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
     local ret=0
+    echo ${#flags}
+    set +x
+    echo $flags | wc
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
+    set -x
     wait $formatter_pid
     rm -rf $pipe_file
 
