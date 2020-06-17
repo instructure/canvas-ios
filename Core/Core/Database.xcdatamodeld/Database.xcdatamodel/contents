@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Activity" representedClassName=".Activity" syncable="YES">
         <attribute name="canvasContextIDRaw" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -185,6 +185,11 @@
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="totalStudentsRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="sections" inverseEntity="DiscussionTopic"/>
+    </entity>
+    <entity name="CourseSettings" representedClassName="Core.CourseSettings" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="syllabusCourseSummary" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -792,5 +797,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

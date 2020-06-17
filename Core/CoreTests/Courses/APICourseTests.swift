@@ -47,6 +47,10 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "state[]", value: "completed"),
             URLQueryItem(name: "state[]", value: "unpublished"),
         ])
+        let req = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: "1")
+        XCTAssertEqual(req.path, "users/1/courses")
+        let noStudent = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: nil)
+        XCTAssertEqual(noStudent.path, "courses")
     }
 
     func testGetCourseRequest() {
@@ -81,16 +85,8 @@ class APICourseTests: XCTestCase {
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
     }
-}
 
-class GetCoursesRequestTests: CoreTestCase {
-    func testPathWithUser() {
-        let r = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: "1")
-        XCTAssertEqual(r.path, "users/1/courses")
-    }
-
-    func testPath() {
-        let r = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: nil)
-        XCTAssertEqual(r.path, "courses")
+    func testGetCourseSettingsRequest() {
+        XCTAssertEqual(GetCourseSettingsRequest(courseID: "2").path, "courses/2/settings")
     }
 }
