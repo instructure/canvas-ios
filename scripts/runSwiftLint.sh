@@ -28,27 +28,28 @@ FIX=""
 STRICT="--strict"
 COMMAND="LINTING"
 
-if [ "$#" -eq 1 ]; then
-
-	if [ $1 = "fix" ]; then
-		FIX="autocorrect"
-		STRICT=""
-		COMMAND="FIXING"
-	fi
-
+if [[ "$#" -eq 1 && $1 = "fix" ]]; then
+    FIX="autocorrect"
+    STRICT=""
+    COMMAND="FIXING"
 fi
 
-declare -a names=("core" "student" "teacher" "parent" "TestsFoundation")
-declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent" "TestsFoundation")
+declare -a names=("core" "student" "teacher" "parent" "TestsFoundation" "scripts")
+declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent" "TestsFoundation" "scripts/swift")
 arraylength=${#paths[@]}
 
 echo "${COMMAND}"
 echo ""
 
-for (( i=0; i<${arraylength}; i++ ));
-do
-	echo "[${names[$i]}]"
-	pushd ${paths[$i]} > /dev/null 2>&1
-	swiftlint ${FIX} --config ${LINT_CONFIG_FILE_PATH} ${STRICT} 2>&1 #> /dev/null
-	popd > /dev/null 2>&1
+ret=0
+for (( i=0; i<${arraylength}; i++ )); do
+    echo "[${names[$i]}]"
+    pushd ${paths[$i]} > /dev/null 2>&1
+    CONFIG="$LINT_CONFIG_FILE_PATH"
+    if [[ -f .swiftlint.yml ]]; then
+       CONFIG=.swiftlint.yml
+    fi
+    swiftlint ${FIX} --config "${CONFIG}" ${STRICT} 2>/dev/null || ret=$?
+    popd > /dev/null 2>&1
 done
+exit $ret

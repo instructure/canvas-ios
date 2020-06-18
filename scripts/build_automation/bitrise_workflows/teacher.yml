@@ -114,8 +114,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             set -euo pipefail
-            brew install mxcl/made/swift-sh
-            ./scripts/build_automation/build-link.swift update-link teacher $BITRISE_GIT_BRANCH \
+            ./scripts/run-swift build-link update-link teacher $BITRISE_GIT_BRANCH \
                 $BITRISE_PUBLIC_INSTALL_PAGE_URL
 
   app-store:
