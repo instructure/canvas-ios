@@ -121,11 +121,10 @@ let router = Router(routes: [
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
-    RouteHandler(.showFile(fileID: ":fileID")) { _, params in
-        guard let fileID = params["fileID"] else { return nil }
-        let vc = FileDetailsViewController.create(context: .currentUser, fileID: fileID)
-        return vc
-    },
+    RouteHandler("/files/:fileID", factory: fileViewController),
+    RouteHandler("/files/:fileID/download", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileViewController),
 
     RouteHandler(.developerMenu) { _, _ in
         return DeveloperMenuViewController.create()
@@ -155,4 +154,10 @@ let router = Router(routes: [
 
 ]) { url, _, _ in
     Router.open(url: url)
+}
+
+private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    guard let fileID = params["fileID"] else { return nil }
+    let context = Context(path: url.path) ?? .currentUser
+    return FileDetailsViewController.create(context: context, fileID: fileID)
 }
