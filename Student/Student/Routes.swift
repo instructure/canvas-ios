@@ -419,7 +419,7 @@ for (template, handler) in routeMap {
 
 let nativeFactory: ([String: Any]) -> UIViewController? = { props in
     guard let route = props["route"] as? String else { return nil }
-    let controller = AppEnvironment.shared.router.match(.parse(route))
+    let controller = AppEnvironment.shared.router.match(route)
 
     // Work around all these controllers not setting the nav color
     DispatchQueue.main.async {

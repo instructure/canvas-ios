@@ -20,8 +20,8 @@ import Foundation
 import Core
 import CanvasCore
 
-class Router: RouterProtocol {
-    func match(_ url: URLComponents) -> UIViewController? {
+class TeacherRouter: Router {
+    override func match(_ url: URLComponents) -> UIViewController? {
         for template in HelmManager.shared.registeredRoutes {
             let route = RouteHandler(template) { _, params in
                 if let factory = HelmManager.shared.nativeViewControllerFactories[template] {
@@ -36,7 +36,7 @@ class Router: RouterProtocol {
         return nil
     }
 
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions) {
+    override func route(to url: URLComponents, from: UIViewController, options: RouteOptions) {
         guard let url = url.url else { return }
         let name = NSNotification.Name("route")
         let userInfo: [AnyHashable: Any] = [
@@ -48,4 +48,4 @@ class Router: RouterProtocol {
     }
 }
 
-let router = Router()
+let router = TeacherRouter(routes: []) { _, _, _ in }

@@ -101,11 +101,11 @@ public class DashboardViewController: UIViewController {
     }
 
     @objc func editFavorites() {
-        env.router.route(to: .parse("/course_favorites"), from: self, options: .modal(embedInNav: true))
+        env.router.route(to: "/course_favorites", from: self, options: .modal(embedInNav: true))
     }
 
     @objc func openProfile() {
-        env.router.route(to: .parse("/profile"), from: self, options: .modal())
+        env.router.route(to: "/profile", from: self, options: .modal())
     }
 }
 
@@ -136,7 +136,7 @@ extension DashboardViewController: UICollectionViewDataSource {
                 rightText: NSLocalizedString("See All", bundle: .core, comment: "")
             ) { [weak self] in
                 guard let self = self else { return }
-                self.env.router.route(to: .parse("/courses"), from: self, options: .push)
+                self.env.router.route(to: "/courses", from: self, options: .push)
             }
         }
         header.titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -155,7 +155,7 @@ extension DashboardViewController: UICollectionViewDataSource {
         let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
         cell.update(course, hideColorOverlay: hideColorOverlay) { [weak self] in
             guard let courseID = courseID, let self = self else { return }
-            self.env.router.route(to: .parse("/courses/\(courseID)/user_preferences"), from: self, options: .modal(embedInNav: true))
+            self.env.router.route(to: "/courses/\(courseID)/user_preferences", from: self, options: .modal(embedInNav: true))
         }
         return cell
     }
@@ -163,10 +163,10 @@ extension DashboardViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isGroup(indexPath.section) {
             guard let id = groups[indexPath.item]?.id else { return }
-            env.router.route(to: .parse("/groups/\(id)"), from: self, options: .detail)
+            env.router.route(to: "/groups/\(id)", from: self, options: .detail)
         } else {
             guard let id = courses[indexPath.item]?.id else { return }
-            env.router.route(to: .parse("/courses/\(id)"), from: self, options: .detail)
+            env.router.route(to: "/courses/\(id)", from: self, options: .detail)
         }
     }
 }

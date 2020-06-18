@@ -135,7 +135,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                 },
                 Row(NSLocalizedString("Terms of Use", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: .termsOfService(), from: self)
+                    self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
                 },
                 Row(NSLocalizedString("Canvas on GitHub", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }

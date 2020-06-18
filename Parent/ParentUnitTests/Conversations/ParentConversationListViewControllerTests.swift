@@ -60,7 +60,7 @@ class ParentConversationListViewControllerTests: ParentTestCase {
         XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on Dec 25, 2018 at 12:00 AM last")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssert(router.lastRoutedTo(.conversation("1")))
+        XCTAssert(router.lastRoutedTo("/conversations/1"))
     }
 
     func testTappingComposeRoutesToCourseActionSheet() {

@@ -87,7 +87,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         var cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Files")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        XCTAssertTrue(router.lastRoutedTo(Route.files()))
+        XCTAssertTrue(router.lastRoutedTo("/users/self/files"))
 
         index = IndexPath(row: 1, section: 0)
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
@@ -111,13 +111,13 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Settings")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        XCTAssertTrue(router.lastRoutedTo(Route.profileSettings))
+        XCTAssertTrue(router.lastRoutedTo("/profile/settings"))
 
         index = IndexPath(row: 4, section: 0)
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Act as User")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        XCTAssertTrue(router.lastRoutedTo(Route.actAsUser))
+        XCTAssertTrue(router.lastRoutedTo("/act-as-user"))
 
         index = IndexPath(row: 5, section: 0)
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
@@ -142,7 +142,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Developer Menu")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        XCTAssertTrue(router.lastRoutedTo(Route.developerMenu))
+        XCTAssertTrue(router.lastRoutedTo("/dev-menu"))
 
     }
 
@@ -219,9 +219,9 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         XCTAssertEqual(alert?.title, "Help")
         XCTAssertEqual(alert?.actions[0].title, "Ask Your Instructor a Question")
         (alert?.actions[0] as? AlertAction)?.handler?(AlertAction())
-        XCTAssert(router.lastRoutedTo(Route(
+        XCTAssert(router.lastRoutedTo(
             "/conversations/compose?instructorQuestion=1&canAddRecipients="
-        )))
+        ))
         XCTAssertEqual(alert?.actions[1].title, "Search the Canvas Guides")
         (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
         XCTAssert(router.lastRoutedTo(URL(string:
@@ -229,7 +229,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         )!))
         XCTAssertEqual(alert?.actions[2].title, "Report a Problem")
         (alert?.actions[2] as? AlertAction)?.handler?(AlertAction())
-        XCTAssert(router.lastRoutedTo(.errorReport(for: "problem")))
+        XCTAssert(router.lastRoutedTo("/support/problem"))
     }
 
     func testLTI() {
@@ -249,15 +249,15 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         controller.enrollment = .observer
         controller.view.layoutIfNeeded()
         controller.cells.first(where: { $0.id == "inbox" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.conversations))
+        XCTAssert(router.lastRoutedTo("/conversations"))
         controller.cells.first(where: { $0.id == "manageChildren" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.profileObservees()))
+        XCTAssert(router.lastRoutedTo("/profile/observees"))
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "files" }))
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "showGrades" }))
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "colorOverlay" }))
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "settings" }))
         controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+        XCTAssert(router.lastRoutedTo("/dev-menu"))
     }
 
     func testStudent() {
@@ -265,13 +265,13 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "manageChildren" }))
         controller.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.files()))
+        XCTAssert(router.lastRoutedTo("/users/self/files"))
         XCTAssertNoThrow(controller.cells.first(where: { $0.id == "showGrades" })?.block(UITableViewCell()))
         XCTAssertNoThrow(controller.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
         controller.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.profileSettings))
+        XCTAssert(router.lastRoutedTo("/profile/settings"))
         controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+        XCTAssert(router.lastRoutedTo("/dev-menu"))
     }
 
     func testTeacher() {
@@ -279,13 +279,13 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "manageChildren" }))
         controller.cells.first(where: { $0.id == "files" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.files()))
+        XCTAssert(router.lastRoutedTo("/users/self/files"))
         XCTAssertFalse(controller.cells.contains(where: { $0.id == "showGrades" }))
         XCTAssertNoThrow(controller.cells.first(where: { $0.id == "colorOverlay" })?.block(UITableViewCell()))
         controller.cells.first(where: { $0.id == "settings" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.profileSettings))
+        XCTAssert(router.lastRoutedTo("/profile/settings"))
         controller.cells.first(where: { $0.id == "developerMenu" })?.block(UITableViewCell())
-        XCTAssert(router.lastRoutedTo(Route.developerMenu))
+        XCTAssert(router.lastRoutedTo("/dev-menu"))
     }
 
     func testUpdateAvatar() {

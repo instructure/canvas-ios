@@ -84,7 +84,7 @@ class MasteryPathViewController: UIViewController {
         guard let id = notification.userInfo?["id"] as? String,
             let courseID = masteryPath.moduleItem?.courseID
         else { return }
-        env.router.route(to: .course(courseID, assignment: id), from: self, options: .detail)
+        env.router.route(to: "/courses/\(courseID)/assignments/\(id)", from: self, options: .detail)
     }
 }
 

@@ -95,7 +95,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     }
 
     @objc func openProfile() {
-        env.router.route(to: .profile, from: self, options: .modal())
+        env.router.route(to: "/profile", from: self, options: .modal())
     }
 }
 

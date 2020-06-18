@@ -112,7 +112,7 @@ class DashboardViewController: UIViewController {
     }
 
     @IBAction func showProfile() {
-        env.router.route(to: .profile, from: self, options: .modal())
+        env.router.route(to: "/profile", from: self, options: .modal())
     }
 
     func update() {
@@ -129,7 +129,7 @@ class DashboardViewController: UIViewController {
         )
         if students.error != nil || hasStudents == false, !isAdmin, !shownNotAParent {
             shownNotAParent = true
-            env.router.route(to: .wrongApp, from: self, options: .modal(isDismissable: false, embedInNav: true))
+            env.router.route(to: "/wrong-app", from: self, options: .modal(isDismissable: false, embedInNav: true))
         }
     }
 

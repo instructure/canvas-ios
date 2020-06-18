@@ -33,7 +33,7 @@ open class AppEnvironment {
     public var database: NSPersistentContainer
     public var globalDatabase: NSPersistentContainer = NSPersistentContainer.shared
     public var logger: LoggerProtocol
-    public var router: RouterProtocol
+    public var router: Router
     public var currentSession: LoginSession?
     public var pageViewLogger: PageViewEventViewControllerLoggingProtocol = PresenterPageViewLogger()
     public var userDefaults: SessionDefaults?

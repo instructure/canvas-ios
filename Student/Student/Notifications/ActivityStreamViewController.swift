@@ -122,7 +122,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     }
 
     @objc func openProfile() {
-        env.router.route(to: .profile, from: self, options: .modal())
+        env.router.route(to: "/profile", from: self, options: .modal())
     }
 }
 
