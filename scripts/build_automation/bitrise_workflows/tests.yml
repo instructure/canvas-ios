@@ -439,8 +439,9 @@ workflows:
                 DEVICE_NAME='iPad Air (3rd generation)' \
                 ./scripts/run-ui-tests.sh --build --all-tests || ret=$?
 
+                ./scripts/run-ui-tests.sh --build
                 for target in $group_A_targets; do
-                    ./scripts/run-ui-tests.sh --build --append-results --only-testing $target || ret=$?
+                    ./scripts/run-ui-tests.sh --append-results --only-testing $target || ret=$?
                 done
 
                 exit $ret
