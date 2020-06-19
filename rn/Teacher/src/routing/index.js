@@ -51,12 +51,12 @@ export type RouteOptions = {
 
 export function registerScreen (
   path: string,
-  componentGenerator?: ?((props: any) => any),
+  ScreenComponent,
   store?: Store,
   options: RouteConfig = { canBecomeMaster: false, checkRoles: false }
 ): void {
-  if (componentGenerator && store) {
-    const generator = wrapComponentInProviders(path, componentGenerator, store)
+  if (ScreenComponent && store) {
+    const generator = wrapComponentInProviders(path, ScreenComponent, store)
     AppRegistry.registerComponent(path, generator)
   }
   const route = new RouteHandler(path)
@@ -66,7 +66,7 @@ export function registerScreen (
   }
 }
 
-export function wrapComponentInProviders (moduleName: string, generator: (props: any) => any, store: Store): any {
+export function wrapComponentInProviders (moduleName: string, ScreenComponent, store: Store): any {
   class Scene extends React.Component<any, any> {
     static displayName = `Scene(${moduleName})`
 
@@ -111,7 +111,6 @@ export function wrapComponentInProviders (moduleName: string, generator: (props:
         return <ErrorScreen {...props} navigator={navigator} />
       }
 
-      const ScreenComponent = generator(props)
       const session = getSession()
 
       let client = getClient()

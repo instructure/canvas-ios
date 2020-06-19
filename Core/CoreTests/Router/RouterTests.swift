@@ -52,19 +52,19 @@ class RouterTests: CoreTestCase {
 
     func testRouter() {
         let router = Router(routes: [
-            RouteHandler("/courses") { _, _ in
+            RouteHandler("/courses") { _, _, _ in
                 return UIViewController()
             },
-            RouteHandler("/inbox") { _, _ in
+            RouteHandler("/inbox") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         XCTAssert(router.count == 2)
     }
 
     func testRouteNoMatch() {
         let mockView = MockViewController()
-        let router = Router(routes: []) { _, _, _ in }
+        let router = Router(routes: []) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/")!, from: mockView, options: .modal())
         XCTAssertNil(mockView.presented)
     }
@@ -72,10 +72,10 @@ class RouterTests: CoreTestCase {
     func testRouteModal() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/modal") { _, _ in
+            RouteHandler("/modal") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal())
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == false)
@@ -84,11 +84,11 @@ class RouterTests: CoreTestCase {
     func testRouteCleanURL() {
         var clean: URLComponents?
         let router = Router(routes: [
-            RouteHandler("/match") { components, _ in
+            RouteHandler("/match") { components, _, _ in
                 clean = components
                 return nil
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: .parse("/match?q=a+b&u=a%26b"), from: MockViewController())
         XCTAssertNotNil(clean)
         XCTAssertEqual(clean?.queryItems?[0], URLQueryItem(name: "q", value: "a b"))
@@ -98,10 +98,10 @@ class RouterTests: CoreTestCase {
     func testAddDoneButton() throws {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/modal") { _, _ in
+            RouteHandler("/modal") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal(embedInNav: true, addDoneButton: true))
         let nav = mockView.presented as? UINavigationController
         XCTAssertEqual(nav?.viewControllers.first?.navigationItem.leftBarButtonItems?.count, 1)
@@ -110,10 +110,10 @@ class RouterTests: CoreTestCase {
     func testRouteFormSheet() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/formSheet") { _, _ in
+            RouteHandler("/formSheet") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/formSheet")!, from: mockView, options: .modal(.formSheet))
         XCTAssertNotNil(mockView.presented)
         XCTAssertEqual(mockView.presented?.modalPresentationStyle, .formSheet)
@@ -122,10 +122,10 @@ class RouterTests: CoreTestCase {
     func testRouteModalEmbeddedInNav() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/modalEmbed") { _, _ in
+            RouteHandler("/modalEmbed") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modalEmbed")!, from: mockView, options: .modal(embedInNav: true))
         XCTAssertNotNil(mockView.presented)
         XCTAssert(mockView.presented?.isKind(of: UINavigationController.self) == true)
@@ -136,10 +136,10 @@ class RouterTests: CoreTestCase {
         let split = UISplitViewController()
         split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UIViewController.self) == true)
@@ -150,10 +150,10 @@ class RouterTests: CoreTestCase {
         let split = UISplitViewController()
         split.viewControllers = [UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.detail)
         XCTAssert(mockView.detail?.isKind(of: UINavigationController.self) == true)
@@ -162,10 +162,10 @@ class RouterTests: CoreTestCase {
     func testRouteDetailNotInSplitViewDoesAShow() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options: .detail)
         XCTAssertNotNil(mockView.shown)
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
@@ -175,10 +175,10 @@ class RouterTests: CoreTestCase {
     func testRouteDetailInCollapsedSplitViewDoesAShow() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         let split = MockSplitViewController()
         split.viewControllers = [UINavigationController(rootViewController: mockView)]
         split.mockCollapsed = true
@@ -193,10 +193,10 @@ class RouterTests: CoreTestCase {
         let split = UISplitViewController()
         split.viewControllers = [UINavigationController(), UINavigationController(rootViewController: mockView)]
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/detail")!, from: mockView, options:
             .detail)
         XCTAssertNil(mockView.detail)
@@ -209,10 +209,10 @@ class RouterTests: CoreTestCase {
         mockView.navigationItem.leftItemsSupplementBackButton = false
         mockView.navigationItem.leftBarButtonItems = nil
         let router = Router(routes: [
-            RouteHandler("/detail") { _, _ in
+            RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
 
         // not detail
         router.route(to: URLComponents(string: "/detail")!, from: mockView)
@@ -250,10 +250,10 @@ class RouterTests: CoreTestCase {
     func testRouteMatch() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/somewhere")!, from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
@@ -261,10 +261,10 @@ class RouterTests: CoreTestCase {
     func testRouteString() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: "/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
@@ -272,10 +272,10 @@ class RouterTests: CoreTestCase {
     func testRouteURL() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
         router.route(to: url, from: mockView)
         XCTAssertNotNil(mockView.shown)
@@ -289,32 +289,32 @@ class RouterTests: CoreTestCase {
     func testRouteApiV1() {
         let mockView = MockViewController()
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         router.route(to: "/api/v1/somewhere", from: mockView)
         XCTAssertNotNil(mockView.shown)
     }
 
     func testMatchNoFallback() {
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return nil
             },
-            RouteHandler("*path") { _, _ in
+            RouteHandler("*path") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         XCTAssertNil(router.match(URLComponents(string: "/somewhere")!))
     }
 
     func testMatch() {
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         var components = URLComponents()
         components.path = "/somewhere"
         XCTAssertNotNil(router.match(components))
@@ -322,24 +322,24 @@ class RouterTests: CoreTestCase {
 
     func testMatchAbsolute() {
         let router = Router(routes: [
-            RouteHandler("/somewhere") { _, _ in
+            RouteHandler("/somewhere") { _, _, _ in
                 return UIViewController()
             },
-        ]) { _, _, _ in }
+        ]) { _, _, _, _ in }
         let components = URLComponents(string: "https://canvas.instructure.com/somewhere")!
         XCTAssertNotNil(router.match(components))
     }
 
     func testShowAlertController() {
         let mockView = MockViewController()
-        let router = Router(routes: []) { _, _, _ in }
+        let router = Router(routes: []) { _, _, _, _ in }
         router.show(UIAlertController(title: nil, message: nil, preferredStyle: .alert), from: mockView)
         XCTAssertNil(mockView.shown)
         XCTAssert(mockView.presented is UIAlertController)
     }
 
     func testPopViewController() {
-        let router = Router(routes: []) { _, _, _ in }
+        let router = Router(routes: []) { _, _, _, _ in }
         let rootViewController = UIViewController()
         let navController = MockNavigationController(rootViewController: rootViewController)
 
@@ -358,7 +358,7 @@ class RouterTests: CoreTestCase {
     @available(iOS 13, *)
     func testIsDismissable() {
         let mockView = MockViewController()
-        let router = Router(routes: []) { _, _, _ in }
+        let router = Router(routes: []) { _, _, _, _ in }
         router.show(mockView, from: UIViewController(), options: .modal())
         XCTAssertFalse(mockView.isModalInPresentation)
         router.show(mockView, from: UIViewController(), options: .modal(isDismissable: false))
@@ -370,7 +370,7 @@ class RouterTests: CoreTestCase {
 
     func testFullScreen() {
         let mockView = MockViewController()
-        let router = Router(routes: []) { _, _, _ in }
+        let router = Router(routes: []) { _, _, _, _ in }
         router.show(mockView, from: UIViewController(), options: .modal())
         XCTAssertNotEqual(mockView.modalPresentationStyle, .fullScreen)
         router.show(mockView, from: UIViewController(), options: .modal(.fullScreen))

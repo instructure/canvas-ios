@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,9 +17,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zL8-8t-qkP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WsE-Un-X6y">
+                                <rect key="frame" x="0.0" y="530" width="375" height="44"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1Q-4p-nj4">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="action" id="3hL-AF-joa">
+                                                <connections>
+                                                    <action selector="share:" destination="ETJ-6C-5gn" id="2C8-cx-H4k"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="nao-ha-rOb"/>
+                                            <barButtonItem image="linkLine" style="plain" id="44X-y1-Sqe">
+                                                <connections>
+                                                    <action selector="copyLink" destination="ETJ-6C-5gn" id="imW-3M-qIg"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                            </stackView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UNl-BQ-NzC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
                             </progressView>
@@ -32,7 +53,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7rB-rn-nKm">
-                                <rect key="frame" x="0.0" y="65.5" width="375" height="443"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="441"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zta-Lt-JLk">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -41,7 +62,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF5-0i-tYn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="71" y="391" width="233" height="52"/>
+                                        <rect key="frame" x="77.5" y="391" width="220" height="50"/>
                                         <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                         <state key="normal" title="Augment Reality"/>
                                         <userDefinedRuntimeAttributes>
@@ -59,7 +80,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-aH-HV0">
-                                <rect key="frame" x="16" y="209.5" width="343" height="155.5"/>
+                                <rect key="frame" x="16" y="210" width="343" height="154.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lJs-Vl-I7M" customClass="IconView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="135.5" y="0.0" width="72" height="72"/>
@@ -73,7 +94,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="This content is locked." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-Z0-88i" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="90" y="88" width="163" height="19.5"/>
+                                        <rect key="frame" x="85.5" y="88" width="172" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -83,7 +104,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-Ct-o3R" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="118.5" y="123.5" width="106" height="32"/>
+                                        <rect key="frame" x="123.5" y="124.5" width="96" height="30"/>
                                         <state key="normal" title="View Modules"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
@@ -96,30 +117,66 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Zq-jRM">
+                                <rect key="frame" x="102.5" y="162" width="170" height="170"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copied!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45M-Tf-zvK" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16" width="138" height="138"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="22N-NK-gcY"/>
+                                    <constraint firstAttribute="trailing" secondItem="45M-Tf-zvK" secondAttribute="trailing" constant="16" id="DIW-eR-PXM"/>
+                                    <constraint firstAttribute="bottom" secondItem="45M-Tf-zvK" secondAttribute="bottom" constant="16" id="G2k-2d-7Nn"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="170" id="KBt-4o-bBt"/>
+                                    <constraint firstItem="45M-Tf-zvK" firstAttribute="top" secondItem="pMA-Zq-jRM" secondAttribute="top" constant="16" id="OjZ-gQ-YwT"/>
+                                    <constraint firstItem="45M-Tf-zvK" firstAttribute="leading" secondItem="pMA-Zq-jRM" secondAttribute="leading" constant="16" id="bat-RW-roX"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="UNl-BQ-NzC" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="1Jo-Iz-y51"/>
                             <constraint firstItem="tJy-aH-HV0" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" id="228-oS-nt0"/>
-                            <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" secondItem="zL8-8t-qkP" secondAttribute="bottom" id="3mv-3k-3h3"/>
                             <constraint firstItem="Zta-Lt-JLk" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="4i1-kH-MD1"/>
                             <constraint firstItem="0ye-Jq-BOi" firstAttribute="centerX" secondItem="ykC-3m-OWR" secondAttribute="centerX" id="6Pc-18-r2l"/>
                             <constraint firstItem="7rB-rn-nKm" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="7r9-Oa-t4r"/>
                             <constraint firstItem="zL8-8t-qkP" firstAttribute="top" secondItem="ykC-3m-OWR" secondAttribute="top" id="EES-Bn-ZVK"/>
+                            <constraint firstItem="pMA-Zq-jRM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ykC-3m-OWR" secondAttribute="leading" constant="16" id="Eq8-kH-KTx"/>
                             <constraint firstItem="7rB-rn-nKm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ykC-3m-OWR" secondAttribute="top" constant="16" id="FNU-kr-FPv"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sF5-0i-tYn" secondAttribute="trailing" constant="16" id="JXz-rD-PLr"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="tJy-aH-HV0" secondAttribute="trailing" constant="16" id="KK4-wu-0rw"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="zL8-8t-qkP" secondAttribute="trailing" id="M6Q-KE-kAH"/>
+                            <constraint firstItem="pMA-Zq-jRM" firstAttribute="centerX" secondItem="gmk-7b-oRC" secondAttribute="centerX" id="MWe-ZO-kvU"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7rB-rn-nKm" secondAttribute="bottom" constant="16" id="MoG-kw-PHO"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pMA-Zq-jRM" secondAttribute="trailing" constant="16" id="N6B-gK-V1j"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="WsE-Un-X6y" secondAttribute="trailing" id="NO8-h9-9o6"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="Zta-Lt-JLk" secondAttribute="trailing" id="P3j-Tn-toC"/>
                             <constraint firstItem="sF5-0i-tYn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ykC-3m-OWR" secondAttribute="leading" constant="16" id="QIu-gH-aNg"/>
+                            <constraint firstItem="WsE-Un-X6y" firstAttribute="top" secondItem="zL8-8t-qkP" secondAttribute="bottom" id="Un6-UK-hlE"/>
                             <constraint firstItem="UNl-BQ-NzC" firstAttribute="top" secondItem="ykC-3m-OWR" secondAttribute="top" id="V5j-Eb-xTR"/>
                             <constraint firstItem="7rB-rn-nKm" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" id="d38-em-2r6"/>
                             <constraint firstItem="tJy-aH-HV0" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" constant="16" id="dWz-un-VLR"/>
                             <constraint firstItem="0ye-Jq-BOi" firstAttribute="centerY" secondItem="ykC-3m-OWR" secondAttribute="centerY" id="dnf-dw-kxb"/>
                             <constraint firstItem="zL8-8t-qkP" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="ePN-1A-k3i"/>
+                            <constraint firstItem="pMA-Zq-jRM" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" constant="-40" id="o76-Pg-wmX"/>
+                            <constraint firstItem="WsE-Un-X6y" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="qVG-je-6JF"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="7rB-rn-nKm" secondAttribute="trailing" id="rJZ-o4-38r"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="UNl-BQ-NzC" secondAttribute="trailing" id="sBq-Y7-hmE"/>
+                            <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" secondItem="WsE-Un-X6y" secondAttribute="bottom" id="ynQ-hU-5XW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ykC-3m-OWR"/>
                     </view>
@@ -129,10 +186,15 @@
                         <outlet property="arButton" destination="sF5-0i-tYn" id="fOO-8K-jYb"/>
                         <outlet property="arImageView" destination="Zta-Lt-JLk" id="ThM-rs-Mm2"/>
                         <outlet property="contentView" destination="zL8-8t-qkP" id="FI6-s4-NAX"/>
+                        <outlet property="copiedLabel" destination="45M-Tf-zvK" id="juS-Hb-iW7"/>
+                        <outlet property="copiedView" destination="pMA-Zq-jRM" id="xFt-UR-yvV"/>
                         <outlet property="lockLabel" destination="l1Y-Z0-88i" id="YJf-Pc-T5z"/>
                         <outlet property="lockView" destination="tJy-aH-HV0" id="oFj-ey-Ui3"/>
                         <outlet property="progressView" destination="UNl-BQ-NzC" id="RkV-rW-hjQ"/>
                         <outlet property="spinnerView" destination="0ye-Jq-BOi" id="Mdg-P1-tw2"/>
+                        <outlet property="toolbar" destination="U1Q-4p-nj4" id="H4I-tm-AL6"/>
+                        <outlet property="toolbarLinkButton" destination="44X-y1-Sqe" id="fGi-lf-wcr"/>
+                        <outlet property="toolbarShareButton" destination="3hL-AF-joa" id="Qd2-nX-Lqk"/>
                         <outlet property="viewModulesButton" destination="bsZ-Ct-o3R" id="vfr-SM-eiq"/>
                     </connections>
                 </viewController>
@@ -141,4 +203,7 @@
             <point key="canvasLocation" x="-248" y="64"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="linkLine" width="24" height="24"/>
+    </resources>
 </document>

@@ -30,14 +30,11 @@ typealias HelmPreActionHandler = (HelmViewController) -> Void
 public struct HelmViewControllerFactory {
     public typealias Props = [String: Any]
     public typealias Builder = (Props) -> UIViewController?
-    public typealias Presenter = (UIViewController, UIViewController) -> ()
     
     public let builder: Builder
-    public let presenter: Presenter?
     
-    public init(builder: @escaping Builder, presenter: Presenter? = nil) {
+    public init(builder: @escaping Builder) {
         self.builder = builder
-        self.presenter = presenter
     }
 }
 
@@ -65,8 +62,6 @@ open class HelmManager: NSObject {
     @objc fileprivate(set) var masterModules = Set<ModuleName>()
     public var nativeViewControllerFactories: [ModuleName: HelmViewControllerFactory] = [:]
     public var registeredRoutes: Set<String> = []
-
-    fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
     //  MARK: - Init
 
@@ -96,8 +91,8 @@ open class HelmManager: NSObject {
 
     //  MARK: - Screen Configuration
 
-    @objc open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping HelmViewControllerFactory.Builder, withCustomPresentation presentation: HelmViewControllerFactory.Presenter? = nil) {
-        nativeViewControllerFactories[moduleName] = HelmViewControllerFactory(builder: factory, presenter: presentation)
+    @objc open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping HelmViewControllerFactory.Builder) {
+        nativeViewControllerFactories[moduleName] = HelmViewControllerFactory(builder: factory)
     }
 
     func register<T: HelmViewController>(screen: T) {
@@ -364,7 +359,6 @@ open class HelmManager: NSObject {
             let nav = toPresent as? UINavigationController
             if let embedInNavigationController = options["embedInNavigationController"] as? Bool,
                 embedInNavigationController,
-                factory.presenter == nil,
                 nav == nil {
                 toPresent = HelmNavigationController(rootViewController: viewController)
                 viewController.navigationController?.navigationBar.useModalStyle()
@@ -372,16 +366,11 @@ open class HelmManager: NSObject {
 
             configureModalProps(for: toPresent)
 
-            if let presenter = factory.presenter {
-                presenter(current, viewController)
-                callback?()
-            } else {
-                viewController.addModalDismissButton(buttonTitle: nil)
-                if options[PropKeys.disableDismissOnSwipe] as? Bool == true {
-                    toPresent.presentationController?.delegate = self
-                }
-                current.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
+            viewController.addModalDismissButton(buttonTitle: nil)
+            if options[PropKeys.disableDismissOnSwipe] as? Bool == true {
+                toPresent.presentationController?.delegate = self
             }
+            current.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: callback)
         } else {
             var toPresent: UIViewController
             var helmVC: HelmViewController
@@ -519,4 +508,29 @@ extension HelmManager: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
         return false
     }
+}
+
+public func makeProps(_ url: URLComponents, params: Props, userInfo: [String: Any]?) -> Props {
+    var props: Props = userInfo ?? [:]
+    for (key, value) in params {
+        props[key] = value
+    }
+    let location: [String: Any?] = [
+        "hash": url.fragment.flatMap { "#\($0)" },
+        "host": url.host.flatMap { host in
+            url.port.flatMap { "\(host):\($0)" } ?? host
+        },
+        "hostname": url.host,
+        "href": url.string,
+        "pathname": url.path,
+        "port": url.port.flatMap { String($0) },
+        "protocol": url.scheme.flatMap { "\($0):" },
+        "query": url.queryItems?.reduce(into: [String: String?]()) { query, item in
+            props[item.name] = item.value
+            query[item.name] = item.value
+        },
+        "search": url.query.flatMap { "?\($0)" },
+    ]
+    props["location"] = location
+    return props
 }

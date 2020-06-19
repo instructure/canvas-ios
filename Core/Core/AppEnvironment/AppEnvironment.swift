@@ -43,7 +43,7 @@ open class AppEnvironment {
     public init() {
         self.database = globalDatabase
         self.api = URLSessionAPI()
-        self.router = Router(routes: []) { _, _, _ in }
+        self.router = Router(routes: []) { _, _, _, _ in }
         self.logger = Logger.shared
     }
 

@@ -93,7 +93,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
         FilesList.file(id: firstFile!.id).tap()
-        ViewFile.edit.tap()
+        FileDetails.editButton.tap()
 
         FileEditItem.copyright.typeText("me")
         let picker = app.pickerWheels.firstElement
@@ -102,14 +102,14 @@ class FilesUITests: MiniCanvasUITestCase {
         FileEditItem.done.tap().waitToVanish()
 
         XCTAssertEqual(firstFile!.api.usage_rights?.legal_copyright, "me")
-        XCTAssertEqual(firstFile!.api.usage_rights?.use_justification, "public_domain")
+        XCTAssertEqual(firstFile!.api.usage_rights?.use_justification, .public_domain)
     }
 
     func testRestrictAccess() throws {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
         FilesList.file(id: firstFile!.id).tap()
-        ViewFile.edit.tap()
+        FileDetails.editButton.tap()
 
         FileEditItem.publish.tap()
         app.find(label: "Restricted Access").tap()
@@ -133,7 +133,7 @@ class FilesUITests: MiniCanvasUITestCase {
         let file = FilesList.file(id: firstFile!.id)
         XCTAssertEqual(file.label(), "Restricted hamburger 1 KB")
         file.tap()
-        ViewFile.edit.tap()
+        FileDetails.editButton.tap()
 
         FileEditItem.publish.tap()
         app.find(label: "Publish").tap()
@@ -151,7 +151,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
         FilesList.file(id: firstFile!.id).tap()
-        ViewFile.edit.tap()
+        FileDetails.editButton.tap()
 
         FileEditItem.delete.tap()
         app.find(label: "Delete").tap()

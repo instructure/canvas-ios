@@ -220,6 +220,7 @@
 		7D8B79032162B9E2005E08F1 /* CoreWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */; };
 		7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E20C92450A372000F826B /* TabBarBadgeCounts.swift */; };
 		7D8E20CC2450A41C000F826B /* TabBarBadgeCountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E20CB2450A41C000F826B /* TabBarBadgeCountsTests.swift */; };
+		7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E265A24A1026E00A678E7 /* UsageRights.swift */; };
 		7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */; };
 		7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D8E820A23C8E09500A8DA2C /* PeopleListViewController.storyboard */; };
 		7D8E821523C8E15A00A8DA2C /* PeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */; };
@@ -776,7 +777,6 @@
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
 		DFE1FF2F212F69B4003F27AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2E212F69B4003F27AA /* Assets.xcassets */; };
 		DFE1FF32212F69B4003F27AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF30212F69B4003F27AA /* LaunchScreen.storyboard */; };
-		E8012D25247846B4006CDB79 /* ViewFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8012D24247846B4006CDB79 /* ViewFile.swift */; };
 		E81918E8230348440039616A /* CoreUITests.h in Headers */ = {isa = PBXBuildFile; fileRef = E81918E6230348440039616A /* CoreUITests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E81918F6230348820039616A /* DiscussionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81918F22303487C0039616A /* DiscussionList.swift */; };
 		E81918FE230349530039616A /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
@@ -1457,6 +1457,7 @@
 		7D8B79022162B9E2005E08F1 /* CoreWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewTests.swift; sourceTree = "<group>"; };
 		7D8E20C92450A372000F826B /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		7D8E20CB2450A41C000F826B /* TabBarBadgeCountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCountsTests.swift; sourceTree = "<group>"; };
+		7D8E265A24A1026E00A678E7 /* UsageRights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRights.swift; sourceTree = "<group>"; };
 		7D8E820423C7892600A8DA2C /* AddMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessage.swift; sourceTree = "<group>"; };
 		7D8E820623C79B8700A8DA2C /* AddMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMessageTests.swift; sourceTree = "<group>"; };
 		7D8E820823C8E09500A8DA2C /* PeopleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewController.swift; sourceTree = "<group>"; };
@@ -1871,7 +1872,6 @@
 		DFE1FF31212F69B4003F27AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DFE1FF33212F69B4003F27AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
-		E8012D24247846B4006CDB79 /* ViewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFile.swift; sourceTree = "<group>"; };
 		E81918E4230348440039616A /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81918E6230348440039616A /* CoreUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUITests.h; sourceTree = "<group>"; };
 		E81918E7230348440039616A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2433,6 +2433,7 @@
 				7D08B1D6237207460075623A /* GetFile.swift */,
 				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
 				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
+				7D8E265A24A1026E00A678E7 /* UsageRights.swift */,
 				B1B6F070219A1F2800C1575D /* UTI.swift */,
 			);
 			path = Files;
@@ -3915,7 +3916,6 @@
 				E819193F23034C2D0039616A /* Profile.swift */,
 				E85B4917238875A0003E28DC /* UserFilesTests.swift */,
 				E85E7F82238C45C300BE61B3 /* FilesList.swift */,
-				E8012D24247846B4006CDB79 /* ViewFile.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -5233,6 +5233,7 @@
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,
 				7DA2602923F722C2005D2121 /* LoginManualOAuthViewController.swift in Sources */,
 				7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */,
+				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
@@ -5282,7 +5283,6 @@
 				B175D62023A9696200F8E696 /* SpringBoardTests.swift in Sources */,
 				E841D8C623D665D800685A63 /* DiscussionReplyTests.swift in Sources */,
 				E819194C23034C2D0039616A /* TodoListTests.swift in Sources */,
-				E8012D25247846B4006CDB79 /* ViewFile.swift in Sources */,
 				E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */,
 				E8BB310823A038AA00B3B3B2 /* TextSubmission.swift in Sources */,
 				E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */,

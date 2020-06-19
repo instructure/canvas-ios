@@ -189,7 +189,8 @@ public struct APIFileFolder: Codable, Equatable {
 // https://canvas.instructure.com/doc/api/files.html#UsageRights
 public struct APIUsageRights: Codable, Equatable {
     public let legal_copyright: String?
-    public let use_justification: String?
+    public let license: String?
+    public let use_justification: UseJustification?
 }
 
 #if DEBUG
@@ -300,10 +301,12 @@ extension APIFileFolder {
 extension APIUsageRights {
     public static func make(
         legal_copyright: String? = nil,
-        use_justification: String? = nil
+        license: String? = nil,
+        use_justification: UseJustification? = nil
     ) -> APIUsageRights {
         return APIUsageRights(
             legal_copyright: legal_copyright,
+            license: license,
             use_justification: use_justification
         )
     }
