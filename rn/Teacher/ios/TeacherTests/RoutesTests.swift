@@ -66,7 +66,7 @@ class RoutesTests: XCTestCase {
         appDelegate.registerNativeRoutes()
         HelmManager.shared.registerRoute("/courses/:courseID/pages/:url")
         HelmManager.shared.registerRoute("/courses/:courseID/assignments/:assignmentID")
-        XCTAssert(router.match(.parse("/courses/1/pages/page-1")) is PageDetailsViewController)
-        XCTAssert(router.match(.parse("/courses/1/assignments/2")) is HelmViewController)
+        XCTAssert(router.match("/courses/1/pages/page-1") is PageDetailsViewController)
+        XCTAssert(router.match("/courses/1/assignments/2") is HelmViewController)
     }
 }

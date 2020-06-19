@@ -50,7 +50,7 @@ class StudentListViewControllerTests: ParentTestCase {
 
         controller.tableView.selectRow(at: index0, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index0)
-        XCTAssert(router.lastRoutedTo(.observeeThresholds("2"), withOptions: .detail))
+        XCTAssert(router.lastRoutedTo("/profile/observees/2/thresholds", withOptions: .detail))
         controller.viewWillAppear(false)
         XCTAssertNil(controller.tableView.indexPathForSelectedRow)
 

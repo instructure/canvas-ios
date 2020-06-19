@@ -129,6 +129,6 @@ extension ParentConversationListViewController: UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversation = conversations[indexPath] else { return }
-        env.router.route(to: .conversation(conversation.id), from: self)
+        env.router.route(to: "/conversations/\(conversation.id)", from: self)
     }
 }

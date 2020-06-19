@@ -52,7 +52,7 @@ class MasteryPathViewControllerTests: CoreTestCase {
         XCTAssertTrue(assignment2.accessibilityTraits.contains(.button))
         XCTAssertFalse(assignment2.accessibilityTraits.contains(.selected))
         assignment2.onTap(assignment2.gestureRecognizers!.first as! UITapGestureRecognizer)
-        XCTAssertTrue(router.lastRoutedTo(.course("1", assignment: "2"), withOptions: .detail))
+        XCTAssertTrue(router.lastRoutedTo("/courses/1/assignments/2", withOptions: .detail))
         XCTAssertTrue(assignment2.accessibilityTraits.contains(.selected))
         controller.viewWillAppear(true)
         XCTAssertFalse(assignment2.accessibilityTraits.contains(.selected))

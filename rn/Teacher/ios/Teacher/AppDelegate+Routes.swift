@@ -169,7 +169,7 @@ extension AppDelegate {
             return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
         })
 
-        HelmManager.shared.registerNativeViewController(for: Route.wrongApp.url.path, factory: { _ in
+        HelmManager.shared.registerNativeViewController(for: "/wrong-app", factory: { _ in
             guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
             return WrongAppViewController.create(delegate: loginDelegate)
         })
@@ -206,5 +206,5 @@ extension ModuleListViewController: HelmModule {
 }
 
 extension WrongAppViewController: HelmModule {
-    public var moduleName: String { return Route.wrongApp.url.path }
+    public var moduleName: String { return "/wrong-app" }
 }

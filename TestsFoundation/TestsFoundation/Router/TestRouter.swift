@@ -19,8 +19,10 @@
 import XCTest
 import Core
 
-public class TestRouter: RouterProtocol {
-    public init() {}
+public class TestRouter: Router {
+    public init() {
+        super.init(routes: []) { _, _, _ in }
+    }
     public var calls = [(URLComponents?, UIViewController, RouteOptions)]()
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
     public var presented: UIViewController? {
@@ -45,18 +47,18 @@ public class TestRouter: RouterProtocol {
         return viewControllerCalls.popLast()?.0
     }
 
-    public func match(_ url: URLComponents) -> UIViewController? {
+    public override func match(_ url: URLComponents) -> UIViewController? {
         return routes[url]?()
     }
 
     public var routeExpectation = XCTestExpectation(description: "route")
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
+    public override func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
         calls.append((url, from, options))
         routeExpectation.fulfill()
     }
 
     public var showExpectation = XCTestExpectation(description: "show")
-    public func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?) {
+    public override func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)? = nil) {
         var options = options
         if view is UIAlertController { options = .modal() }
         viewControllerCalls.append((view, from, options))
@@ -65,20 +67,20 @@ public class TestRouter: RouterProtocol {
     }
 
     public var popExpectation = XCTestExpectation(description: "pop")
-    public func pop(from: UIViewController) {
+    public override func pop(from: UIViewController) {
         popExpectation.fulfill()
     }
 
-    public func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
+    public override func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
         dismiss()
         completion?()
     }
 
-    public func lastRoutedTo(_ route: Route) -> Bool {
-        return lastRoutedTo(route.url)
+    public func lastRoutedTo(_ route: String) -> Bool {
+        return lastRoutedTo(.parse(route))
     }
 
-    public func lastRoutedTo(_ route: Route, withOptions options: RouteOptions) -> Bool {
+    public func lastRoutedTo(_ route: String, withOptions options: RouteOptions) -> Bool {
         return lastRoutedTo(route) && calls.last?.2 == options
     }
 

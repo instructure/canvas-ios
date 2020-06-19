@@ -23,7 +23,7 @@ public class TestLogger: LoggerProtocol {
     public struct Notification {
         let title: String
         let body: String
-        let route: Route?
+        let route: String?
     }
 
     public var queue = OperationQueue()

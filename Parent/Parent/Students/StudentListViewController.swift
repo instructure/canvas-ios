@@ -123,7 +123,7 @@ extension StudentListViewController: UITableViewDataSource, UITableViewDelegate 
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let id = students[indexPath.row]?.id else { return }
-        env.router.route(to: .observeeThresholds(id), from: self, options: .detail)
+        env.router.route(to: "/profile/observees/\(id)/thresholds", from: self, options: .detail)
     }
 }
 

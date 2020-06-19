@@ -286,17 +286,6 @@ class RouterTests: CoreTestCase {
         )
     }
 
-    func testRouteRoute() {
-        let mockView = MockViewController()
-        let router = Router(routes: [
-            RouteHandler(.courses) { _, _ in
-                return UIViewController()
-            },
-        ]) { _, _, _ in }
-        router.route(to: .courses, from: mockView)
-        XCTAssertNotNil(mockView.shown)
-    }
-
     func testRouteApiV1() {
         let mockView = MockViewController()
         let router = Router(routes: [

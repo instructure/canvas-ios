@@ -23,9 +23,9 @@ import CanvasCore
 
 extension EventDetailsViewModel {
     static func detailsForCalendarEvent(_ baseURL: URL, studentID: String, context: UIViewController, calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {
-        var actionURL: URL = Route.courses.url.url!
+        var actionURL = URL(string: "/courses")!
         if let courseID = Context(canvasContextID: calendarEvent.contextCode)?.id {
-            actionURL = Route.courseCalendarEvent(courseID: courseID, eventID: calendarEvent.id).url.url!
+            actionURL = URL(string: "/courses/\(courseID)/calendar_events/\(calendarEvent.id)")!
         }
 
         // Pass along a `Reminder` struct because it's unsafe to pass around the managed object

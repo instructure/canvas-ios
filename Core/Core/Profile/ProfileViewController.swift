@@ -158,14 +158,14 @@ public class ProfileViewController: UIViewController {
 
         if enrollment == .observer {
             cells.append(ProfileViewCell("inbox", type: .badge(unreadCount), name: NSLocalizedString("Inbox", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .conversations)
+                self?.route(to: "/conversations")
             })
             cells.append(ProfileViewCell("manageChildren", name: NSLocalizedString("Manage Students", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .profileObservees())
+                self?.route(to: "/profile/observees")
             })
         } else {
             cells.append(ProfileViewCell("files", name: NSLocalizedString("Files", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .files())
+                self?.route(to: "/users/self/files")
             })
             for tool in tools {
                 cells.append(ProfileViewCell("lti.\(tool.domain ?? "").\(tool.definitionID)", name: tool.title) { [weak self] _ in
@@ -210,12 +210,12 @@ public class ProfileViewController: UIViewController {
         }
         if enrollment == .student || enrollment == .teacher {
             cells.append(ProfileViewCell("settings", name: NSLocalizedString("Settings", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .profileSettings, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+                self?.route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
             })
         }
         if canActAsUser {
             cells.append(ProfileViewCell("actAsUser", name: NSLocalizedString("Act as User", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .actAsUser, options: .modal(embedInNav: true))
+                self?.route(to: "/act-as-user", options: .modal(embedInNav: true))
             })
         }
         if env.currentSession?.isFakeStudent != true {
@@ -248,7 +248,7 @@ public class ProfileViewController: UIViewController {
         }
         if showDevMenu {
             cells.append(ProfileViewCell("developerMenu", name: NSLocalizedString("Developer Menu", bundle: .core, comment: "")) { [weak self] _ in
-                self?.route(to: .developerMenu, options: .modal(embedInNav: true))
+                self?.route(to: "/dev-menu", options: .modal(embedInNav: true))
             })
         }
         return cells
@@ -260,7 +260,7 @@ public class ProfileViewController: UIViewController {
         reload()
     }
 
-    public func route(to: Route, options: RouteOptions = .noOptions) {
+    public func route(to: String, options: RouteOptions = .noOptions) {
         let dashboard = self.dashboard
         env.router.dismiss(self) {
             self.env.router.route(to: to, from: dashboard, options: options)
@@ -282,12 +282,12 @@ public class ProfileViewController: UIViewController {
             helpMenu.addAction(AlertAction(link.text, style: .default) { [weak self] _ in
                 switch link.id {
                 case "instructor_question":
-                    self?.route(to: Route("/conversations/compose?instructorQuestion=1&canAddRecipients="), options: .modal(.formSheet, embedInNav: true))
+                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=", options: .modal(.formSheet, embedInNav: true))
                 case "report_a_problem":
-                    self?.route(to: .errorReport(for: "problem"), options: .modal(.formSheet, embedInNav: true))
+                    self?.route(to: "/support/problem", options: .modal(.formSheet, embedInNav: true))
                 default:
                     guard let url = link.url else { return }
-                    self?.route(to: Route(url.absoluteString), options: .modal(embedInNav: true))
+                    self?.route(to: url.absoluteString, options: .modal(embedInNav: true))
                 }
             })
         }

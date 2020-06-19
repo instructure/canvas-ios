@@ -116,14 +116,14 @@ extension CourseListViewController: UICollectionViewDataSource {
         let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
         cell.update(course, hideColorOverlay: hideColorOverlay) { [weak self] in
             guard let courseID = courseID, let self = self else { return }
-            self.env.router.route(to: .parse("/courses/\(courseID)/user_preferences"), from: self, options: .modal(embedInNav: true))
+            self.env.router.route(to: "/courses/\(courseID)/user_preferences", from: self, options: .modal(embedInNav: true))
         }
         return cell
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let courseID = courses[indexPath]?.id else { return }
-        env.router.route(to: .course(courseID), from: self, options: .detail)
+        env.router.route(to: "/courses/\(courseID)", from: self, options: .detail)
     }
 }
 

@@ -31,7 +31,7 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
 
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
-        XCTAssert(router.lastRoutedTo(.profile, withOptions: .modal()))
+        XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
         _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
         XCTAssert(router.presented is CreateTodoViewController)

@@ -58,7 +58,7 @@ class DashboardViewControllerTests: ParentTestCase {
 
         XCTAssertEqual(vc.profileButton.accessibilityLabel, "Settings. 3 unread conversations")
         vc.profileButton.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.lastRoutedTo(.profile, withOptions: .modal()))
+        XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
         XCTAssertEqual(vc.studentListHiddenHeight.isActive, true)
         vc.dropdownButton.sendActions(for: .primaryActionTriggered)
@@ -117,7 +117,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        XCTAssertTrue(router.lastRoutedTo(.wrongApp, withOptions: .modal(isDismissable: false, embedInNav: true)))
+        XCTAssertTrue(router.lastRoutedTo("/wrong-app", withOptions: .modal(isDismissable: false, embedInNav: true)))
     }
 
     func testShowNotAParentModalNoStudentsToObserve() {
@@ -127,7 +127,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        XCTAssertTrue(router.lastRoutedTo(.wrongApp, withOptions: .modal(isDismissable: false, embedInNav: true)))
+        XCTAssertTrue(router.lastRoutedTo("/wrong-app", withOptions: .modal(isDismissable: false, embedInNav: true)))
     }
 
     func testPersistedUserIsDefaultSelectedUser() {

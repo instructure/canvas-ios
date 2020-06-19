@@ -23,7 +23,7 @@ import UserNotifications
 
 class NotificationManagerTests: CoreTestCase {
     func testNotify() {
-        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: Route.courses)
+        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: "/courses")
         let request = notificationCenter.requests.last
         XCTAssertNotNil(request)
         XCTAssertEqual(request?.content.title, "Title")

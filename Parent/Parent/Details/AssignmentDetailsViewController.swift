@@ -29,7 +29,7 @@ extension EventDetailsViewModel {
             let remindable = Reminder(id: assignment.id, title: assignment.reminderTitle, body: assignment.reminderBody, date: assignment.defaultReminderDate)
             var deets: [EventDetailsViewModel] = [
                 .info(name: assignment.name, submissionInfo: assignment.submittedVerboseText, submissionColor: assignment.submittedColor),
-                .reminder(remindable: remindable, studentID: observeeID, actionURL: Route.course(assignment.courseID, assignment: assignment.id).url.url!, context: context),
+                .reminder(remindable: remindable, studentID: observeeID, actionURL: URL(string: "/courses/\(assignment.courseID)/assignments/(assignment.id)")!, context: context),
             ]
 
             if let dueDate = assignment.due {
