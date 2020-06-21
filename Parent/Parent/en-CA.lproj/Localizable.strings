@@ -1,4 +1,7 @@
 /* No comment provided by engineer. */
+"\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    " = "\n                    The student you are trying to add is at a different Canvas institution.\n                    Sign in or create an account with that institution to add this student.\n                    ";
+
+/* No comment provided by engineer. */
 "%@ is due at %@" = "%1$@ is due at %2$@";
 
 /* No comment provided by engineer. */
@@ -9,6 +12,9 @@
 
 /* No comment provided by engineer. */
 "Add Student" = "Add Student";
+
+/* No comment provided by engineer. */
+"Add student with..." = "Add student with...";
 
 /* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Add students at the top or visit the global menu to masquerade as a student.";
@@ -23,6 +29,9 @@
 "Alerts" = "Alerts";
 
 /* No comment provided by engineer. */
+"Already have an account? %@" = "Already have an account? %@";
+
+/* No comment provided by engineer. */
 "Announcement" = "Announcement";
 
 /* No comment provided by engineer. */
@@ -30,6 +39,9 @@
 
 /* No comment provided by engineer. */
 "Back" = "Back";
+
+/* No comment provided by engineer. */
+"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "By tapping ‘Create Account’, you agree to the %1$@ and acknowledge the %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendar";
@@ -52,14 +64,29 @@
 /* No comment provided by engineer. */
 "conversation_unread_messages" = "conversation_unread_messages";
 
+/* No comment provided by engineer. */
+"Could not parse QR code, QR code invalid" = "Could not parse QR code, QR code invalid";
+
 /* Courses Tab */
 "Courses" = "Courses";
+
+/* No comment provided by engineer. */
+"Create Account" = "Create Account";
 
 /* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Domain mismatch" = "Domain mismatch";
+
+/* No comment provided by engineer. */
+"Email address" = "Email address";
+
+/* No comment provided by engineer. */
+"Email..." = "Email...";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Event reminder";
@@ -75,6 +102,12 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Front Page";
+
+/* No comment provided by engineer. */
+"Full name" = "Full name";
+
+/* No comment provided by engineer. */
+"Full name..." = "Full name...";
 
 /* No comment provided by engineer. */
 "Grades" = "Grades";
@@ -95,6 +128,9 @@
 "Invalid Threshold" = "Invalid Threshold";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "It looks like you’re trying to add a student. Try adding this student after you’ve logged in";
+
+/* No comment provided by engineer. */
 "Late" = "Late";
 
 /* No comment provided by engineer. */
@@ -102,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Login required";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Manage Students";
@@ -137,7 +176,28 @@
 "Pairing Code" = "Pairing Code";
 
 /* No comment provided by engineer. */
+"Password" = "Password";
+
+/* No comment provided by engineer. */
+"Password is required" = "Password is required";
+
+/* No comment provided by engineer. */
+"Password..." = "Password...";
+
+/* No comment provided by engineer. */
 "Permission Needed" = "Permission Needed";
+
+/* No comment provided by engineer. */
+"Please enter an email address" = "Please enter an email address";
+
+/* No comment provided by engineer. */
+"Please enter full name" = "Please enter full name";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Privacy Policy" = "Privacy Policy";
+
+/* No comment provided by engineer. */
+"QR Code" = "QR Code";
 
 /* No comment provided by engineer. */
 "Regarding: %@" = "Regarding: %@";
@@ -159,6 +219,9 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Settings. %@";
 
+/* Link text in 'Already have an account? Sign In */
+"Sign In" = "Sign In";
+
 /* No comment provided by engineer. */
 "Submitted" = "Submitted";
 
@@ -173,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
+
+/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
+"Terms of Service" = "Terms of Service";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "The value must a number between 0 and 100";

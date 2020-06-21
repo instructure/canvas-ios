@@ -237,7 +237,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>有 %d 名沒有成績的獲配人。</string>
 		</dict>
 	</dict>
 </dict>

@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Autentiseringen misslyckades. Sannolikt avslog användaren åtkomstbegäran.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Tillgänglighet:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Tillgänglighet: Stängda";
+
+/* No comment provided by engineer. */
+"Available From:" = "Tillgänglig från och med:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Tillgänglig tills:";
 
 /* No comment provided by engineer. */
 "black" = "svart";
@@ -314,6 +323,9 @@
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
+"Create Account" = "Skapa konto";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Klar";
 
+/* No comment provided by engineer. */
+"Due" = "Inlämningsdatum";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Inlämningsdatum %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Sista inlämningsdatum";
+
+/* No comment provided by engineer. */
+"Due:" = "Förfallodatum:";
 
 /* No comment provided by engineer. */
 "Edit" = "Redigera";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Det gick inte att spara. Tryck för att försöka igen.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Alla";
 
 /* No comment provided by engineer. */
 "Excused" = "Ursäktad";
@@ -506,6 +527,9 @@
 "for %@" = "för %@";
 
 /* No comment provided by engineer. */
+"For:" = "Till:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Glöm %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå till i dag";
+
+/* No comment provided by engineer. */
+"Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
 "Grades" = "Omdömen";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Jag har inget Canvas-konto";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Jag har ett Canvas-konto";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Jag behöver hjälp men det är inte akut";
@@ -752,7 +785,13 @@
 "Modules" = "Moduler";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Flera inlämningsdatum";
+
+/* No comment provided by engineer. */
 "N/A" = "Ej tillämpligt";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Måste bedömas";
 
 /* No comment provided by engineer. */
 "Never" = "Aldrig";
@@ -773,6 +812,12 @@
 "No Assignments" = "Inga uppgifter";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Inget \"tillgänglig från\"-datum inställt.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Inget \"tillgänglig till\"-datum inställt.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Inga konferenser";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Inget inlämningsdatum";
+
+/* No comment provided by engineer. */
+"No due date set." = "Inget inlämningsdatum inställt";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Inga händelser idag!";
@@ -1004,6 +1052,9 @@
 "Search" = "Sök";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Sektioner: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Se alla";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Visa en månad åt gången";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Visa bedömda inlämningar";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Visa omdömen";
 
 /* No comment provided by engineer. */
 "Show more options" = "Visa fler alternativ";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Visa inlämningar som inte lämnats in";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Visa inlämningar som saknar bedömning";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Eftersom det här är en gruppdiskussion, har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Inlämningskommentar";
 
 /* No comment provided by engineer. */
+"Submissions" = "Inlämningar";
+
+/* No comment provided by engineer. */
 "Submit" = "Skicka in";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryck för att välja som kurser du vill se i kalendern.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tryck för att visa inlämningslista.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Lärare";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Ett oväntat fel uppstod. Försök igen.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Den här uppgiften ska lämnas in %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "till %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån. Om din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Visa";
+
+/* No comment provided by engineer. */
+"View all dates" = "Visa alla datum";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Visa alla inlämningar";
 
 /* No comment provided by engineer. */
 "View Less" = "Visa mindre";

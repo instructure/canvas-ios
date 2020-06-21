@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Godkendelse mislykkedes Brugeren har sandsynligvis nægtet adgang.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Tilgængelighed:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Tilgængelighed: Lukket";
+
+/* No comment provided by engineer. */
+"Available From:" = "Tilgængelig fra:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Tilgængelig Indtil:";
 
 /* No comment provided by engineer. */
 "black" = "sort";
@@ -314,6 +323,9 @@
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
+"Create Account" = "Opret konto";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuel position";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Udført";
 
+/* No comment provided by engineer. */
+"Due" = "Forfalder";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Forfalder %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Afleveringsdato";
+
+/* No comment provided by engineer. */
+"Due:" = "Forfalder:";
 
 /* No comment provided by engineer. */
 "Edit" = "Redigér";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Fejl da der skulle gemmes. Tryk for at prøve igen.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Alle";
 
 /* No comment provided by engineer. */
 "Excused" = "Undskyldt";
@@ -506,6 +527,9 @@
 "for %@" = "til %@";
 
 /* No comment provided by engineer. */
+"For:" = "Til:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Glem %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå til I dag";
+
+/* No comment provided by engineer. */
+"Graded" = "Bedømt";
 
 /* No comment provided by engineer. */
 "Grades" = "Vurderinger";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jeg kan ikke gøre noget, før jeg hører fra dig";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Jeg har ikke en Canvas-konto";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Jeg har en Canvas-konto";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Jeg behøver hjælp, men det er ikke en hastesag";
@@ -752,7 +785,13 @@
 "Modules" = "Forløb";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Flere forfaldsdatoer";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Mangler bedømmelse";
 
 /* No comment provided by engineer. */
 "Never" = "Aldrig";
@@ -773,6 +812,12 @@
 "No Assignments" = "Ingen opgaver";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Ingen tilgængelige fra dato indstillet.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Ikke tilgængelig, indtil dato er indstillet.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Ingen konferencer";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ingen afleveringsdato";
+
+/* No comment provided by engineer. */
+"No due date set." = "Ingen afleveringsdato angivet.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Ingen begivenheder i dag!";
@@ -1004,6 +1052,9 @@
 "Search" = "Søg";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Sektioner: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Se alle";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Vis en måned ad gangen";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Vis bedømte afleveringer";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Vis vurderinger";
 
 /* No comment provided by engineer. */
 "Show more options" = "Vis flere muligheder";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Vis afleveringer, der ikke er blevet sendt";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Vis afleveringer, der skal bedømmes";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Da dette er en gruppediskussion, har hver gruppe sin egen Diskussion for dette emne. Her er de diskussioner, du har adgang til.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Afleveringskommentar";
 
 /* No comment provided by engineer. */
+"Submissions" = "Afleveringer";
+
+/* No comment provided by engineer. */
 "Submit" = "Aflever";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryk for at vælge de fag, du vil se i kalenderen.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tryk for at se listen over afsendelser.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Lærer";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Der opstod en uventet fejl. Prøv igen.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Denne opgave skal afleveres d. %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "til %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For at oprette en konto skal din elev oprette en parringskode til dig fra sektionen Indstillinger i Canvas-appen for elev, som vist nedenfor, og derefter skal du scanne den kode herfra. Hvis din elev ikke kan se muligheden for at oprette en parringskode, skal du kontakte din skole for at oprette din konto.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opgaveliste";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Vis";
+
+/* No comment provided by engineer. */
+"View all dates" = "Se alle datoer";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Se alle afleveringer";
 
 /* No comment provided by engineer. */
 "View Less" = "Vis mindre";

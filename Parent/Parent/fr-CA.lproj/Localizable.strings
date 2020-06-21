@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Seuil invalide";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Il semble que vous essayiez d'ajouter un étudiant. Essayez d'ajouter cet étudiant après vous être connecté";
+
+/* No comment provided by engineer. */
 "Late" = "En retard";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "En retard : %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Connexion requise";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Gestion des participants";

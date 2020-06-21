@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Otantifikasyon echwe. Li pwobab pou itilizatè a refize demann aksè a.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Disponibilite:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Disponibilite: Fèmen";
+
+/* No comment provided by engineer. */
+"Available From:" = "Disponib Depi:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Disponib Jiska:";
 
 /* No comment provided by engineer. */
 "black" = "nwa";
@@ -314,6 +323,9 @@
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
+"Create Account" = "Kreye Kont";
+
+/* No comment provided by engineer. */
 "Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Fini";
 
+/* No comment provided by engineer. */
+"Due" = "Delè";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Delè %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Delè";
+
+/* No comment provided by engineer. */
+"Due:" = "Delè:";
 
 /* No comment provided by engineer. */
 "Edit" = "Modifye";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Erè Anrejistreman. Tape pou re eseye.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Tout Moun";
 
 /* No comment provided by engineer. */
 "Excused" = "Egzante";
@@ -506,6 +527,9 @@
 "for %@" = "pou %@";
 
 /* No comment provided by engineer. */
+"For:" = "Pou:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Bliye %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Ale nan jodi a";
+
+/* No comment provided by engineer. */
+"Graded" = "Klase";
 
 /* No comment provided by engineer. */
 "Grades" = "Nòt";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Mwen pa gen kont Canvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Mwen gen yon kont Canvas";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
@@ -752,7 +785,13 @@
 "Modules" = "Modil";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Plizyè Delè";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Bezwen Klasman";
 
 /* No comment provided by engineer. */
 "Never" = "Jamè";
@@ -773,6 +812,12 @@
 "No Assignments" = "Okenn Sesyon";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Pa disponib apadi de dat ki defini an.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Pa disponib jiska dat fikse.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Okenn Konferans";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "San Delè";
+
+/* No comment provided by engineer. */
+"No due date set." = "Pa gen delè ki defini";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Pa gen Aktivite Jodi a!";
@@ -1004,6 +1052,9 @@
 "Search" = "Chèche";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Seksyon: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Gade Tout";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Afiche pa mwa";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Afiche soumisyon ki evalye yo";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Afiche Klas";
 
 /* No comment provided by engineer. */
 "Show more options" = "Afiche plis opsyon";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Afiche soumisyon ki pa aktive yo";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Afiche soumisyon ki bezwen evalyasyon yo";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Lefèt ke sa a se yon gwoup diskisyon, chak gwoup gen pwòp konvèsasyon pa li pou sijè sa a. Men a ki diskisyon ou gen aksè.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Kòmantè Soumisyon";
 
 /* No comment provided by engineer. */
+"Submissions" = "Soumisyon";
+
+/* No comment provided by engineer. */
 "Submit" = "Soumèt";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "tape pou afiche lis soumisyon.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Pwofesè";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Yon erè fèt sanzatann. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Delè sesyon sa a se %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "pou %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la. Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Afiche";
+
+/* No comment provided by engineer. */
+"View all dates" = "Afiche tout dat yo";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Afiche Tout Soumisyon yo";
 
 /* No comment provided by engineer. */
 "View Less" = "Afiche Mwens";

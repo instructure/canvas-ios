@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Authentifizierung fehlgeschlagen. Wahrscheinlich hat der Benutzer den Zugriff verweigert.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Verfügbarkeit:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Verfügbarkeit: Geschlossen";
+
+/* No comment provided by engineer. */
+"Available From:" = "Verfügbar von:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Verfügbar bis:";
 
 /* No comment provided by engineer. */
 "black" = "schwarz";
@@ -314,6 +323,9 @@
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
+"Create Account" = "Konto erstellen";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuelle Position";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Fertig";
 
+/* No comment provided by engineer. */
+"Due" = "Fällig";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Fällig %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Abgabetermin";
+
+/* No comment provided by engineer. */
+"Due:" = "Fällig:";
 
 /* No comment provided by engineer. */
 "Edit" = "Ändern";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Fehler beim Speichern. Tippen Sie zum Wiederholen.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Jeder";
 
 /* No comment provided by engineer. */
 "Excused" = "Entschuldigt";
@@ -506,6 +527,9 @@
 "for %@" = "für %@";
 
 /* No comment provided by engineer. */
+"For:" = "Für:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Vergessen %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Zum heutigen Tag gehen";
+
+/* No comment provided by engineer. */
+"Graded" = "Benotet";
 
 /* No comment provided by engineer. */
 "Grades" = "Noten";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ich kann ohne eine Antwort nicht weitermachen.";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Ich besitze kein Canvas-Konto";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Ich besitze ein Canvas-Konto";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
@@ -752,7 +785,13 @@
 "Modules" = "Module";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Mehrere Abgabetermine";
+
+/* No comment provided by engineer. */
 "N/A" = "k. A.";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Muss benotet werden";
 
 /* No comment provided by engineer. */
 "Never" = "Nie";
@@ -773,6 +812,12 @@
 "No Assignments" = "Keine Aufgaben";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Keine verfügbar vom eingestellten Datum";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Keine verfügbar bis zum eingestellten Datum.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Keine Konferenzen";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Kein Abgabetermin";
+
+/* No comment provided by engineer. */
+"No due date set." = "Kein Fälligkeitsdatum festgelegt";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Heute keine Ereignisse!";
@@ -1004,6 +1052,9 @@
 "Search" = "Suchen";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Abschnitte: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Alle ansehen";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Jeweils einen Monat anzeigen";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Benotete Abgaben anzeigen";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Noten anzeigen";
 
 /* No comment provided by engineer. */
 "Show more options" = "Weitere Optionen anzeigen";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Nicht eingereichte Abgaben anzeigen";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Abgaben, die eine Benotung benötigen, anzeigen";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Da es sich um eine Gruppendiskussion handelt, hat jede Gruppe ihr eigenen Gespräch zu diesem Thema. Dies sind die Diskussionen, zu denen Sie Zugang haben.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Abgabekommentar";
 
 /* No comment provided by engineer. */
+"Submissions" = "Übermittlungen";
+
+/* No comment provided by engineer. */
 "Submit" = "Abgeben";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tippen Sie hier, um die Kurse auszuwählen, die Sie auf dem Kalender sehen möchten.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Zum Anzeigen der Abgabeliste tippen.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Lehrer";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Unerwarteter Fehler. Versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Diese Aufgabe ist fällig um %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "bis %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihren Studenten einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studenten-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus. Wenn Ihr Student die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
 
 /* No comment provided by engineer. */
 "To Do" = "Zu erledigen";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Anzeigen";
+
+/* No comment provided by engineer. */
+"View all dates" = "Alle Daten anzeigen";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Alle Abgaben anzeigen";
 
 /* No comment provided by engineer. */
 "View Less" = "Weniger anzeigen";
