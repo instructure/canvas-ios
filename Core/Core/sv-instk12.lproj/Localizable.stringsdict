@@ -401,9 +401,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>Det finns en %d tilldelad person som saknar en bedömning.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>Det finns %d tilldelade personer som saknar bedömningar.</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

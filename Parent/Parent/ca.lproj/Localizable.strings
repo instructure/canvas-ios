@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Llindar no vàlid";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Sembla que esteu provant d'afegir un estudiant. Proveu d'afegir aquest estudiant després d'iniciar la sessió";
+
+/* No comment provided by engineer. */
 "Late" = "Tardà";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Tardà: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Cal iniciar la sessió";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administra els estudiants";

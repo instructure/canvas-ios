@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Wedi methu dilysu. Mae’n bur debyg bod y defnyddiwr wedi gwrthod y cais am fynediad.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Argaeledd:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Argaeledd: Wedi cau";
+
+/* No comment provided by engineer. */
+"Available From:" = "Ar gael o:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Ar gael Tan:";
 
 /* No comment provided by engineer. */
 "black" = "du";
@@ -314,6 +323,9 @@
 "Courses" = "Cyrsiau";
 
 /* No comment provided by engineer. */
+"Create Account" = "Creu Cyfrif";
+
+/* No comment provided by engineer. */
 "Current position" = "Lleoliad presennol";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
 
+/* No comment provided by engineer. */
+"Due" = "Erbyn";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Erbyn %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Dyddiad Erbyn";
+
+/* No comment provided by engineer. */
+"Due:" = "Erbyn:";
 
 /* No comment provided by engineer. */
 "Edit" = "Golygu";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Gwall wrth gadw. Tapiwch i roi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Pawb";
 
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
@@ -506,6 +527,9 @@
 "for %@" = "ar gyfer %@";
 
 /* No comment provided by engineer. */
+"For:" = "Ar gyfer:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Anghofio %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Mynd i heddiw";
+
+/* No comment provided by engineer. */
+"Graded" = "Wedi graddio";
 
 /* No comment provided by engineer. */
 "Grades" = "Graddau";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Alla i ddim bwrw ymlaen nes bydda i wedi cael ateb gennych chi";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Does gen i ddim cyfrif Canvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Mae gen i gyfrif Canvas";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Mae angen help arna i, ond dydy’r mater ddim yn un brys";
@@ -752,7 +785,13 @@
 "Modules" = "Modiwlau";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Mwy nag un dyddiad erbyn";
+
+/* No comment provided by engineer. */
 "N/A" = "Amherthnasol";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Angen Graddio";
 
 /* No comment provided by engineer. */
 "Never" = "Byth";
@@ -773,6 +812,12 @@
 "No Assignments" = "Dim Aseiniadau";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Heb bennu dyddiad 'ar gael o'.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Heb bennu dyddiad 'ar gael tan'.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Dim Cynadleddau";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Dim Dyddiad Erbyn";
+
+/* No comment provided by engineer. */
+"No due date set." = "Heb bennu 'dyddiad erbyn'.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Dim Digwyddiadau Heddiw!";
@@ -1004,6 +1052,9 @@
 "Search" = "Chwilio";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Adrannau: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Gweld y cyfan";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Dangos un mis ar y tro";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Dangos cyflwyniadau wedi’u graddio";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Dangos Graddau";
 
 /* No comment provided by engineer. */
 "Show more options" = "Dangos mwy o ddewisiadau";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Dangos cyflwyniadau heb eu cyflwyno";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Dangos cyflwyniadau sydd angen eu graddio";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Gan fod hon yn drafodaeth grŵp, mae gan bob grŵp ei sgwrs ei hun ar gyfer y pwnc hwn. Dyma’r trafodaethau mae gennych chi fynediad atyn nhw.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Sylw ar y cyflwyniad";
 
 /* No comment provided by engineer. */
+"Submissions" = "Cyflwyniadau";
+
+/* No comment provided by engineer. */
 "Submit" = "Cyflwyno";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapiwch i ddewis y cyrsiau rydych chi am eu gweld ar y calendr.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tapiwch i weld y rhestr cyflwyniadau.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Athro";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Gwall annisgwyl. Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Mae’r aseiniad hwn i fod i gael ei gyflwyno erbyn %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "i %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn. Os nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Gweld";
+
+/* No comment provided by engineer. */
+"View all dates" = "Gweld pob dyddiad";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Gweld Pob Cyflwyniad";
 
 /* No comment provided by engineer. */
 "View Less" = "Gweld Llai";

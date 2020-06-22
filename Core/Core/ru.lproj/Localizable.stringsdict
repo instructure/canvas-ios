@@ -337,9 +337,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>Это получатель %d без оценки.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>Это получатели %d без оценок.</string>
 		</dict>
 	</dict>
 </dict>

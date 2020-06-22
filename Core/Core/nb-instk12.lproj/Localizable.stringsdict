@@ -401,9 +401,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>Det er %d oppgavetaker uten vurdering.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>Det er %d oppgavetakere uten vurderinger.</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

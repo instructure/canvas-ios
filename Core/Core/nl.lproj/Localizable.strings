@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Verificatie mislukt. Hoogstwaarschijnlijk heeft de gebruiker de aanvraag voor toegang geweigerd.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Beschikbaarheid:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Beschikbaarheid: Gesloten";
+
+/* No comment provided by engineer. */
+"Available From:" = "Beschikbaar vanaf:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Beschikbaar tot:";
 
 /* No comment provided by engineer. */
 "black" = "zwart";
@@ -314,6 +323,9 @@
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
+"Create Account" = "Account maken";
+
+/* No comment provided by engineer. */
 "Current position" = "Huidige positie";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Gereed";
 
+/* No comment provided by engineer. */
+"Due" = "Inleverdatum";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Inleverdatum %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Inleverdatum";
+
+/* No comment provided by engineer. */
+"Due:" = "Inleverdatum:";
 
 /* No comment provided by engineer. */
 "Edit" = "Bewerken";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Fout bij opslaan. Tik om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Iedereen";
 
 /* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
@@ -506,6 +527,9 @@
 "for %@" = "voor %@";
 
 /* No comment provided by engineer. */
+"For:" = "Voor:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Vergeten %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Ga naar vandaag";
+
+/* No comment provided by engineer. */
+"Graded" = "Beoordeeld";
 
 /* No comment provided by engineer. */
 "Grades" = "Cijfers";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ik kan niets doen tot ik een antwoord van je terugkrijg";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Ik heb geen Canvas-account";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Ik heb een Canvas-account";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
@@ -752,7 +785,13 @@
 "Modules" = "Modules";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Meerdere inleverdatums";
+
+/* No comment provided by engineer. */
 "N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Moet worden beoordeeld";
 
 /* No comment provided by engineer. */
 "Never" = "Nooit";
@@ -773,6 +812,12 @@
 "No Assignments" = "Geen opdrachten";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Geen datum ingesteld voor beschikbaar vanaf.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Geen datum ingesteld voor beschikbaar tot.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Geen vergaderingen";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Geen inleverdatum";
+
+/* No comment provided by engineer. */
+"No due date set." = "Geen inleverdatum ingesteld.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Vandaag geen gebeurtenissen!";
@@ -1004,6 +1052,9 @@
 "Search" = "Zoeken";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Secties: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Alles weergeven";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Een maand tegelijk tonen";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Beoordeelde inleveringen tonen";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Cijfers tonen";
 
 /* No comment provided by engineer. */
 "Show more options" = "Meer opties weergeven";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Niet ingezonden inleveringen tonen";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Inleveringen tonen die moeten worden beoordeeld";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Opmerking over inzending";
 
 /* No comment provided by engineer. */
+"Submissions" = "Inleveringen";
+
+/* No comment provided by engineer. */
 "Submit" = "Inleveren";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tik om de cursussen te selecteren die je in de kalender wilt zien.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tik om lijst met inleveringen weer te geven.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Docent";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Er is een onverwachte fout opgetreden. Probeer het nog eens.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Deze opdracht moet uiterlijk worden ingeleverd op %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "tot %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas-cursistenapp zoals hieronder aangegeven en daarna scan je die code hier. Als je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opdrachtenlijst";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Bekijken";
+
+/* No comment provided by engineer. */
+"View all dates" = "Alle datums bekijken";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Alle inleveringen bekijken";
 
 /* No comment provided by engineer. */
 "View Less" = "Minder weergeven";
