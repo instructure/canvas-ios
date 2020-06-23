@@ -93,6 +93,8 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
         viewModulesButton.isHidden = true
 
+        NotificationCenter.default.addObserver(self, selector: #selector(fileEdited(_:)), name: .init("file-edit"), object: nil)
+
         view.layoutIfNeeded()
         files.refresh()
     }
@@ -110,6 +112,11 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         downloadTask?.cancel()
         stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
         BackgroundVideoPlayer.shared.disconnect()
+    }
+
+    @objc func fileEdited(_ notification: NSNotification) {
+        guard notification.userInfo?["id"] as? String == fileID else { return }
+        files.refresh(force: true)
     }
 
     func update() {

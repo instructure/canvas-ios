@@ -17,7 +17,6 @@
 //
 
 // @flow
-import React from 'react'
 import AllCourseList from '../modules/courses/all/AllCourseList'
 import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseNavigation from '../modules/courses/CourseNavigation'
