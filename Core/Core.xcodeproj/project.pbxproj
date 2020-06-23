@@ -808,6 +808,7 @@
 		E841D8C723D6678500685A63 /* DiscussionListE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81918F42303487C0039616A /* DiscussionListE2ETests.swift */; };
 		E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B4917238875A0003E28DC /* UserFilesTests.swift */; };
 		E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E7F82238C45C300BE61B3 /* FilesList.swift */; };
+		E85F59FF24A27B6900DF6D1A /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
 		E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */; };
 		E8AD06712303713300D498ED /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD066F2303713300D498ED /* Dashboard.swift */; };
@@ -839,6 +840,7 @@
 		E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */; };
 		E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */; };
 		E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */; };
+		E8F2A96324A2764300DB7C18 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
 		E8F95353241FC8400023BDA6 /* DiscussionPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F95352241FC8400023BDA6 /* DiscussionPactTests.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
@@ -1941,6 +1943,8 @@
 			files = (
 				F9435B6B2216163500292D38 /* PSPDFKit.framework in Frameworks */,
 				F9435B6C2216163500292D38 /* PSPDFKitUI.framework in Frameworks */,
+				E85F59FF24A27B6900DF6D1A /* ReactiveCocoa in Frameworks */,
+				E8F2A96324A2764300DB7C18 /* ReactiveSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4170,6 +4174,10 @@
 			dependencies = (
 			);
 			name = Core;
+			packageProductDependencies = (
+				E8F2A96224A2764300DB7C18 /* ReactiveSwift */,
+				E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */,
+			);
 			productName = Core;
 			productReference = 2C96482E211E2F1A002C3255 /* Core.framework */;
 			productType = "com.apple.product-type.framework";
@@ -4364,6 +4372,10 @@
 				it,
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
+			packageReferences = (
+				E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
+				E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
+			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -6102,6 +6114,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+		E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
+			productName = ReactiveCocoa;
+		};
+		E8F2A96224A2764300DB7C18 /* ReactiveSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
+			productName = ReactiveSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B14452FF212E5B6E0009D848 /* Database.xcdatamodeld */ = {

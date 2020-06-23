@@ -190,8 +190,7 @@ class ModuleItemViewModel: NSObject {
         let becameActive = NotificationCenter.default.reactive
             .notifications(forName: .moduleItemBecameActive)
             .take(duringLifetimeOf: vm.setSelected)
-        vm.setSelected <~ self.moduleItem.producer
-            .combineLatest(with: becameActive)
+        vm.setSelected <~ SignalProducer.combineLatest(self.moduleItem.producer, becameActive)
             .map { moduleItem, notification in
                 if let moduleItem = moduleItem, let id = notification.userInfo?["moduleItemID"] as? String {
                     return moduleItem.id == id

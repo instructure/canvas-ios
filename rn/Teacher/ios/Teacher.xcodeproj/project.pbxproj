@@ -66,11 +66,6 @@
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE5239581E100BEA196 /* CanvadocsConstantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
-		B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */; };
-		B1F4060422E2444D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */; };
-		B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */; };
-		B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */; };
-		B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
 		E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */; };
 		E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829684E24746C88007E7F23 /* PagesUITests.swift */; };
@@ -370,11 +365,6 @@
 		B17E1DB4238DA8550022EE0E /* SpeedGraderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderUITests.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1A5CDE4239581E100BEA196 /* CanvadocsConstantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsConstantsTests.swift; sourceTree = "<group>"; };
-		B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../../../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
-		B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../../../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
-		B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../../../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
-		B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../../../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
-		B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../../../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditE2ETests.swift; sourceTree = "<group>"; };
@@ -399,11 +389,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F4060322E2444D008FAFE6 /* ReactiveObjC.framework in Frameworks */,
-				B1F4060422E2444D008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
-				B1F4060522E2444D008FAFE6 /* ReactiveSwift.framework in Frameworks */,
-				B1F4060622E2444D008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
-				B1F4060722E2444D008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
 				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
@@ -476,11 +461,6 @@
 			isa = PBXGroup;
 			children = (
 				E8F6CFFE23045A01004347D9 /* CoreUITests.framework */,
-				B1F4060022E2444D008FAFE6 /* ReactiveCocoa.framework */,
-				B1F4060122E2444D008FAFE6 /* ReactiveMapKit.framework */,
-				B1F405FD22E2444D008FAFE6 /* ReactiveObjC.framework */,
-				B1F405FE22E2444D008FAFE6 /* ReactiveObjCBridge.framework */,
-				B1F405FF22E2444D008FAFE6 /* ReactiveSwift.framework */,
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 				2C50EE021E735CBB0096592C /* AVFoundation.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
