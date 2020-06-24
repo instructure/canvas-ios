@@ -5,7 +5,6 @@ inhibit_all_warnings!
 platform :ios, '12.0'
 # require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-
 def firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
   pod 'Firebase/RemoteConfig', '~> 6.20.0'
@@ -14,6 +13,15 @@ end
 
 def canvas_crashlytics_rn_firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
+end
+
+def pspdfkit
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec'
+end
+
+
+def lottie
+  pod 'lottie-ios', '~> 3.1.8'
 end
 
 def react_native_pods
@@ -64,19 +72,28 @@ def react_native_pods
   pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
 end
 
+target 'PactTests' do
+  project 'Core/Core.xcodeproj'
+  use_frameworks!
+  pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
+end
+
+abstract_target 'needs-pspdfkit' do
+  use_frameworks!
+  pspdfkit
+  target 'Core' do project 'Core/Core.xcodeproj' end
+  target 'CoreTests' do project 'Core/Core.xcodeproj' end
+end
+
 abstract_target 'defaults' do
   use_frameworks!
 
   react_native_pods
+  pspdfkit
 
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
   pod 'GoogleUtilities', '~> 6.0'
-
-  target 'PactTests' do
-    project 'Core/Core.xcodeproj'
-    pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
-  end
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
@@ -92,27 +109,35 @@ abstract_target 'defaults' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     firebase_pods
   end
-  
+
   target 'TeacherTests' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     firebase_pods
   end
-  
+
   target 'Student' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    pod 'lottie-ios', '~> 3.1.8'
+    lottie
   end
-  
+
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    pod 'lottie-ios', '~> 3.1.8'
+    lottie
   end
-  
+
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
     canvas_crashlytics_rn_firebase_pods
+  end
+end
+
+pre_install do |installer|
+  # dSYMs cause problems, will be fixed in cocoapods 1.10
+  # https://github.com/CocoaPods/CocoaPods/pull/9547
+  installer.pod_targets.detect { |s| s.name == "PSPDFKit" }.framework_paths["PSPDFKit/Core"].map! do |framework_paths|
+    Xcode::FrameworkPaths.new(framework_paths.source_path)
   end
 end
 

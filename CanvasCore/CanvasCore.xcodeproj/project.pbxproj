@@ -310,8 +310,6 @@
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
 		B1F4E8CF206189010056074A /* video-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8CE206189010056074A /* video-preview.png */; };
 		B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */; };
-		F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EA221491F00083E660 /* PSPDFKit.framework */; };
-		F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EB221491F00083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -682,8 +680,6 @@
 		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
 		B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.release.xcconfig"; sourceTree = "<group>"; };
-		F9B946EA221491F00083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
-		F9B946EB221491F00083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -691,8 +687,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
@@ -707,8 +701,6 @@
 				7D0215A221BAE703009A8E69 /* Core.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
 				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,
-				F9B946EA221491F00083E660 /* PSPDFKit.framework */,
-				F9B946EB221491F00083E660 /* PSPDFKitUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2306,7 +2298,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -2340,7 +2331,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;

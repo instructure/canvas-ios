@@ -1,2 +1,0 @@
-$(SRCROOT)/../Carthage/Build/iOS/PSPDFKit.framework
-$(SRCROOT)/../Carthage/Build/iOS/PSPDFKitUI.framework

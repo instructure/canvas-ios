@@ -139,6 +139,9 @@ PODS:
     - Nimble (~> 8.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
+  - PSPDFKit (9.3.0):
+    - PSPDFKit/Core (= 9.3.0)
+  - PSPDFKit/Core (9.3.0)
   - RCTRequired (0.62.2)
   - RCTTypeSafety (0.62.2):
     - FBLazyVector (= 0.62.2)
@@ -419,6 +422,7 @@ DEPENDENCIES:
   - lottie-ios (~> 3.1.8)
   - Marshal (~> 1.2.7)
   - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
   - React (from `./rn/Teacher/node_modules/react-native/`)
@@ -496,6 +500,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PactConsumerSwift:
     :git: https://github.com/DiUS/pact-consumer-swift.git
+  PSPDFKit:
+    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec
   RCTRequired:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -594,6 +600,7 @@ SPEC CHECKSUMS:
   PactConsumerSwift: 162222e11d1edffdd1d9d16918f6db10f914dae7
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  PSPDFKit: 28cd40fba9aac0bb3ebce46562a57df5a6569d1c
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
   React: 29a8b1a02bd764fb7644ef04019270849b9a7ac3
@@ -625,6 +632,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 4d7e3343e11e15231502f2ce7481ed610aa0fbd2
+PODFILE CHECKSUM: 4d0acfbd0fb49fa6061de90b9e7ba3f1fc8c76f1
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

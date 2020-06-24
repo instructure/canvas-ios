@@ -128,8 +128,6 @@
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
-		E80763DF23E08EC80085DAFB /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E80763E023E08EC80085DAFB /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
 		E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradeListTests.swift */; };
 		E81B575023E23CC1002A0C38 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -137,10 +135,6 @@
 		E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E81B575A23E23EFD002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8E1BE4D23C6891F000E3A76 /* ParentUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E1BE4C23C6891F000E3A76 /* ParentUITestCase.swift */; };
-		E8E1BE5D23C68A89000E3A76 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E8E1BE5E23C68A89000E3A76 /* PSPDFKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F2221492400083E660 /* PSPDFKit.framework */; };
-		F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946F3221492400083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,8 +182,6 @@
 			files = (
 				E81B575A23E23EFD002A0C38 /* TestsFoundation.framework in Embed Frameworks */,
 				E81B575023E23CC1002A0C38 /* CoreUITests.framework in Embed Frameworks */,
-				E80763DF23E08EC80085DAFB /* PSPDFKit.framework in Embed Frameworks */,
-				E80763E023E08EC80085DAFB /* PSPDFKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,8 +194,6 @@
 			files = (
 				E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */,
 				E81B575123E23CC9002A0C38 /* CoreUITests.framework in Embed Frameworks */,
-				E8E1BE5D23C68A89000E3A76 /* PSPDFKit.framework in Embed Frameworks */,
-				E8E1BE5E23C68A89000E3A76 /* PSPDFKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,8 +672,6 @@
 		E8E1BE5823C68A14000E3A76 /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8E1BE5A23C68A2B000E3A76 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8877E061349202471F1B57A /* Pods-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.release.xcconfig"; sourceTree = "<group>"; };
-		F9B946F2221492400083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
-		F9B946F3221492400083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -710,8 +698,6 @@
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */,
-				F9B946F4221492400083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946F5221492400083E660 /* PSPDFKitUI.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -1027,8 +1013,6 @@
 				5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */,
 				B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */,
 				3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */,
-				F9B946F2221492400083E660 /* PSPDFKit.framework */,
-				F9B946F3221492400083E660 /* PSPDFKitUI.framework */,
 				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
 				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
 				542DCE84F15AD20740221847 /* Pods_defaults_ParentUnitTests.framework */,
@@ -1269,7 +1253,6 @@
 				5E6441851C3EE2E0003D7397 /* Resources */,
 				5E75B5FF1C4D4A7F00A44160 /* Embed Frameworks */,
 				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
-				F9B947062215E9CF0083E660 /* Carthage Copy Frameworks */,
 				3BA649CA242281970047D8DC /* FirebaseCrashlytics */,
 			);
 			buildRules = (
@@ -1538,26 +1521,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		F9B947062215E9CF0083E660 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/../scripts/carthage/input.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Carthage Copy Frameworks";
-			outputFileListPaths = (
-				"$(SRCROOT)/../scripts/carthage/output.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n";
 		};
 		FB24C3360B33F479305651E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2308,7 +2271,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2342,7 +2304,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

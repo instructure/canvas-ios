@@ -856,7 +856,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -892,7 +891,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
