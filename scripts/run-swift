@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+set -euo pipefail
+
+xcrun --sdk macosx swift run --package-path $(dirname $0) scripts-main $@

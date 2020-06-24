@@ -17,6 +17,31 @@
 //
 
 import Foundation
+import CoreData
+
+public class GetCourse: APIUseCase {
+    public typealias Model = Course
+
+    public let courseID: String
+    private let include: [GetCourseRequest.Include]
+
+    public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
+        self.courseID = courseID
+        self.include = include
+    }
+
+    public var cacheKey: String? {
+        return "get-course-\(courseID)"
+    }
+
+    public var scope: Scope {
+        return .where(#keyPath(Course.id), equals: courseID)
+    }
+
+    public var request: GetCourseRequest {
+        return GetCourseRequest(courseID: courseID, include: include)
+    }
+}
 
 public class GetCourses: CollectionUseCase {
     public typealias Model = Course
@@ -75,4 +100,25 @@ public class GetAllCourses: CollectionUseCase {
     ], sectionNameKeyPath: #keyPath(Course.isPastEnrollment))
 
     public init() {}
+}
+
+public class GetCourseSettings: APIUseCase {
+    public typealias Model = CourseSettings
+
+    let courseID: String
+    public var cacheKey: String? { "courses/\(courseID)/settings" }
+    public var request: GetCourseSettingsRequest {
+        GetCourseSettingsRequest(courseID: courseID)
+    }
+    public var scope: Scope { .where(#keyPath(CourseSettings.courseID), equals: courseID) }
+
+    public init(courseID: String) {
+        self.courseID = courseID
+    }
+
+    public func write(response: APICourseSettings?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        if let item = response {
+            CourseSettings.save(item, courseID: courseID, in: client)
+        }
+    }
 }

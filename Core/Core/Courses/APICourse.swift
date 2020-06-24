@@ -84,6 +84,12 @@ public struct APICourse: Codable, Equatable {
     }
 }
 
+public struct APICourseSettings: Codable {
+    let usage_rights_required: Bool
+    // let home_page_announcement_limit: Int
+    let syllabus_course_summary: Bool
+}
+
 public enum CourseDefaultView: String, Codable {
     case assignments, feed, modules, syllabus, wiki
 }
@@ -153,6 +159,18 @@ extension APICourse.Term {
             name: name,
             start_at: start_at,
             end_at: end_at
+        )
+    }
+}
+
+extension APICourseSettings {
+    static func make(
+        usage_rights_required: Bool = false,
+        syllabus_course_summary: Bool = true
+    ) -> APICourseSettings {
+        return APICourseSettings(
+            usage_rights_required: usage_rights_required,
+            syllabus_course_summary: syllabus_course_summary
         )
     }
 }
@@ -313,7 +331,7 @@ struct PostCourseRequest: APIRequestable {
     typealias Response = APICourse
     struct Body: Codable, Equatable {
         let course: APICourseParameters
-        let offer: Bool = true
+        var offer: Bool = true
     }
 
     let accountID: String
@@ -329,12 +347,10 @@ struct PostCourseRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.api_settings
-struct GetCourseSettingsRequest: APIRequestable {
-    typealias Response = [String: Bool]
+public struct GetCourseSettingsRequest: APIRequestable {
+    public typealias Response = APICourseSettings
 
     let courseID: String
 
-    var path: String {
-        return "courses/\(courseID)/settings"
-    }
+    public var path: String { "courses/\(courseID)/settings" }
 }

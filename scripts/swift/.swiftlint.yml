@@ -1,0 +1,33 @@
+disabled_rules: # rule identifiers to exclude from running
+  - control_statement
+  - class_delegate_protocol
+  - todo
+  - nesting
+  - cyclomatic_complexity
+  - file_length
+  - type_body_length
+  - identifier_name
+  - function_parameter_count
+  - large_tuple
+opt_in_rules: # some rules are only opt-in
+  - yoda_condition
+included: # paths to include during linting. `--path` is ignored if present.
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Canvas # Student/Canvas
+
+line_length: 200
+function_body_length: 100
+
+type_name:
+  min_length: 3
+  max_length: 50
+
+identifier_name:
+  allowed_symbols: "_"
+  min_length: 1 # only min_length
+  max_length: 50
+  excluded: # excluded via string array
+    - access_token
+trailing_comma:
+  mandatory_comma: true

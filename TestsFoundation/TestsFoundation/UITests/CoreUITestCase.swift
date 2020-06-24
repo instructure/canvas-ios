@@ -79,10 +79,17 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open class CoreUITestRun: XCTestCaseRun {
+        #if swift(>=5.3)
+        open override func record(_ issue: XCTIssue) {
+            CoreUITestCase.needsLaunch = true
+            super.record(issue)
+        }
+        #else
         override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
             CoreUITestCase.needsLaunch = true
             super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
         }
+        #endif
     }
 
     override open var testRunClass: AnyClass? { CoreUITestRun.self }
@@ -382,6 +389,19 @@ open class CoreUITestCase: XCTestCase {
             return false
         }
         return true
+    }
+
+    open func navBarColorHex() -> String? {
+        let image = app.navigationBars.firstMatch.screenshot().image
+        guard let pixelData = image.cgImage?.dataProvider?.data,
+            let data = CFDataGetBytePtr(pixelData) else {
+            return nil
+        }
+        // test bottom because of potential rounded corners at the top
+        let bottom = Int(image.size.width) * Int(image.size.height) * 4
+        let red = UInt(data[bottom + 0]), green = UInt(data[bottom + 1]), blue = UInt(data[bottom + 2]), alpha = UInt(data[bottom + 3])
+        let num = (alpha << 24) + (red << 16) + (green << 8) + blue
+        return "#\(String(num, radix: 16))".replacingOccurrences(of: "#ff", with: "#")
     }
 
     // MARK: mock (convenience)

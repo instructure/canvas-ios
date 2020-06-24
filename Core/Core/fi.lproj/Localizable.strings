@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Todennus epäonnistui. Mitä todennäköisimmin käyttäjä kielsi käyttöoikeuspyynnön.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Saatavuus:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Saatavuus: Suljettu";
+
+/* No comment provided by engineer. */
+"Available From:" = "Saatavissa alkaen:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Saatavissa asti:";
 
 /* No comment provided by engineer. */
 "black" = "musta";
@@ -314,6 +323,9 @@
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
+"Create Account" = "Luo tili";
+
+/* No comment provided by engineer. */
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Valmis";
 
+/* No comment provided by engineer. */
+"Due" = "Määräpäivä";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Määräpäivä %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Määräpäivä";
+
+/* No comment provided by engineer. */
+"Due:" = "Määräpäivä:";
 
 /* No comment provided by engineer. */
 "Edit" = "Muokkaa";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Virhe tallennettaessa. Yritä uudelleen napauttamalla.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Kaikki";
 
 /* No comment provided by engineer. */
 "Excused" = "Annettu anteeksi";
@@ -506,6 +527,9 @@
 "for %@" = "- %@";
 
 /* No comment provided by engineer. */
+"For:" = "Kenelle:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Unohda %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Siirry tähän päivään";
+
+/* No comment provided by engineer. */
+"Graded" = "Arvosteltu";
 
 /* No comment provided by engineer. */
 "Grades" = "Arvosanat";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "En saa asioita tehtyä, ennen kuin kuulen sinusta.";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Minulla ei ole Canvas-tiliä.";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Minulla on jo Canvas-tili";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Tarvitsen apua, mutta tämä ei ele kiireellistä";
@@ -752,7 +785,13 @@
 "Modules" = "Moduulit";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Useita määräpäiviä";
+
+/* No comment provided by engineer. */
 "N/A" = "Ei sovellettavissa";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Täytyy arvostella";
 
 /* No comment provided by engineer. */
 "Never" = "Ei koskaan";
@@ -773,6 +812,12 @@
 "No Assignments" = "Ei tehtäviä";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Ei käytettävissä päivämääräjaksoja";
+
+/* No comment provided by engineer. */
+"No available until date set." = "No available until date set.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Ei konferensseja";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
+
+/* No comment provided by engineer. */
+"No due date set." = "Määräpäivää ei ole määritetty.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Ei tapahtumia tänään!";
@@ -1004,6 +1052,9 @@
 "Search" = "Hae";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Osat: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Katso kaikki";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Näytä yksi kuukausi kerrallaan";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Näytä arvostellut lähetykset";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Näytä arvosanat";
 
 /* No comment provided by engineer. */
 "Show more options" = "Näytä lisäasetukset";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Näytä lähetykset, joita ei ole palautettu";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Näytä lähetykset, jotka täytyy arvostella";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Koska tämä on ryhmäkeskustelu, jokaisella ryhmällä on oma keskustelu tällä aiheelle. Täällä on ne keskustelut, joihin sinulla on käyttöoikeus:";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Lähetyksen kommentti";
 
 /* No comment provided by engineer. */
+"Submissions" = "Lähetykset";
+
+/* No comment provided by engineer. */
 "Submit" = "Lähetä";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Valitse napauttamalla kurssit, jotka haluat nähdä kalenterissa.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Napauta nähdäksesi lähetysluettelo.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Opettaja";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Ilmeni odottamaton virhe. Yritä uudelleen.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Tämän tehtävän määräpäivä %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "- %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.  Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Näytä";
+
+/* No comment provided by engineer. */
+"View all dates" = "Katso kaikkia päivämääriä";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Katso kaikkia lähetyksiä";
 
 /* No comment provided by engineer. */
 "View Less" = "Näytä vähemmän";

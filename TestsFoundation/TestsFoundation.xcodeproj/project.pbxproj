@@ -75,7 +75,6 @@
 		B1F13296224BFE03002C0555 /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */; };
 		B1F428DC228B5C3C00EC8C37 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */; };
 		E8104C492406F5EC0077D207 /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */; };
-		E8104C542406FB580077D207 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8104C532406FB580077D207 /* Swifter.framework */; };
 		E818EF21234652A20035613A /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E818EF20234652A20035613A /* XCTestCaseExtensions.swift */; };
 		E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575223E23DAA002A0C38 /* ConversationList.swift */; };
 		E81B575C23E243CA002A0C38 /* ConversationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575323E23DAA002A0C38 /* ConversationDetail.swift */; };
@@ -97,6 +96,7 @@
 		E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */; };
 		E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFDC2476E46F007BC5FD /* MiniFile.swift */; };
 		E8D7EFE22476E6CC007BC5FD /* MiniFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFE12476E6CC007BC5FD /* MiniFolder.swift */; };
+		E8F2A96624A2788B00DB7C18 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96524A2788B00DB7C18 /* Swifter */; };
 		EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3922E8E97100D083EE /* PageFixture.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,7 +172,6 @@
 		B1F13295224BFE03002C0555 /* ModuleItemFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemFixture.swift; sourceTree = "<group>"; };
 		B1F428DB228B5C3C00EC8C37 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		E8104C482406F5EC0077D207 /* MiniCanvasServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasServer.swift; sourceTree = "<group>"; };
-		E8104C532406FB580077D207 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = ../Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		E818EF20234652A20035613A /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		E81B575223E23DAA002A0C38 /* ConversationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationList.swift; sourceTree = "<group>"; };
 		E81B575323E23DAA002A0C38 /* ConversationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetail.swift; sourceTree = "<group>"; };
@@ -201,9 +200,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8104C542406FB580077D207 /* Swifter.framework in Frameworks */,
 				E839146523102F9200D772E0 /* XCTest.framework in Frameworks */,
 				3B0CEB6821503B5A00D07CFA /* Core.framework in Frameworks */,
+				E8F2A96624A2788B00DB7C18 /* Swifter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +264,6 @@
 		3B032D1E2150380200B570F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E8104C532406FB580077D207 /* Swifter.framework */,
 				7DAC287D22B19D5C00C0B692 /* XCTest.framework */,
 				3B0CEB6721503B5A00D07CFA /* Core.framework */,
 			);
@@ -563,13 +561,15 @@
 				3B032CF7215037AA00B570F7 /* Frameworks */,
 				3B032CF8215037AA00B570F7 /* Headers */,
 				3B032CF9215037AA00B570F7 /* Resources */,
-				E8B35A3C241994BF0053C7B2 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TestsFoundation;
+			packageProductDependencies = (
+				E8F2A96524A2788B00DB7C18 /* Swifter */,
+			);
 			productName = TestsFoundation;
 			productReference = 3B032CFB215037AA00B570F7 /* TestsFoundation.framework */;
 			productType = "com.apple.product-type.framework";
@@ -599,6 +599,9 @@
 				Base,
 			);
 			mainGroup = 3B032CF1215037AA00B570F7;
+			packageReferences = (
+				E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */,
+			);
 			productRefGroup = 3B032CFC215037AA00B570F7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -617,29 +620,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		E8B35A3C241994BF0053C7B2 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/iOS/Swifter.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Swifter.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#\"${SRCROOT}/../scripts/carthage-copy-frameworks.swift\"\n\"${SRCROOT}/../scripts/carthage-copy-frameworks\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B032CF6215037AA00B570F7 /* Sources */ = {
@@ -876,7 +856,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -912,7 +891,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
@@ -954,6 +932,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter";
+			requirement = {
+				branch = stable;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8F2A96524A2788B00DB7C18 /* Swifter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */;
+			productName = Swifter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3B032CF2215037AA00B570F7 /* Project object */;
 }

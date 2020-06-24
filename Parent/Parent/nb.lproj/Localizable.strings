@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Ugyldig terskel";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Det ser ut som du prøver å legge til en student. Prøv å legge til denne studenten etter at du har logget inn";
+
+/* No comment provided by engineer. */
 "Late" = "Seint";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Innlogging kreves";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administrer studenter";

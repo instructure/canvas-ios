@@ -57,9 +57,6 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:scripts">
-   </FileRef>
-   <FileRef
       location = "group:Student/Student.xcodeproj">
    </FileRef>
    <FileRef
@@ -81,9 +78,6 @@
          location = "group:IPadTests.xctestplan">
       </FileRef>
    </Group>
-   <FileRef
-      location = "group:Cartfile">
-   </FileRef>
    <FileRef
       location = "group:dangerfile.js">
    </FileRef>

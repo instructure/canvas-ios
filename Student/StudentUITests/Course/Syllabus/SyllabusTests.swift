@@ -22,9 +22,9 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class SyllabusTests: StudentUITestCase {
+class SyllabusTests: CoreUITestCase {
     let html = "hello world"
-    lazy var course = mock(course: .make(course_code: "abc", syllabus_body: html))
+    lazy var course = mock(course: .make(syllabus_body: html))
 
     func testSyllabusLoad() {
         mockBaseRequests()
@@ -38,13 +38,14 @@ class SyllabusTests: StudentUITestCase {
         mockData(GetCalendarEventsRequest(contexts: [Context(.course, id: course.id.value)], type: .event, allEvents: true), value: [
             .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])
+        mockData(GetCourseSettingsRequest(courseID: course.id.value), value: .make())
 
         show("/courses/\(course.id)/assignments/syllabus")
 
         app.find(label: "hello world").waitToExist()
 
         XCTAssertEqual(NavBar.title.label(), "Course Syllabus")
-        XCTAssertEqual(NavBar.subtitle.label(), course.course_code)
+        XCTAssertEqual(NavBar.subtitle.label(), course.name)
 
         app.find(label: "hello world").waitToExist()
 

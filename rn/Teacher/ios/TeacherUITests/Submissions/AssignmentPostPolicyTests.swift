@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class AssignmentPostPolicyTests: TeacherUITestCase {
+class AssignmentPostPolicyTests: CoreUITestCase {
     func testPostPolicySettings() {
         mockBaseRequests()
         mock(assignment: .make())

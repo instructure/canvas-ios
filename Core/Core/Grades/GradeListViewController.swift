@@ -246,7 +246,7 @@ extension GradeListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let assignment = assignments[indexPath] else { return }
-        env.router.route(to: .course(courseID, assignment: assignment.id), from: self, options: .detail)
+        env.router.route(to: "/courses/\(courseID)/assignments/\(assignment.id)", from: self, options: .detail)
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

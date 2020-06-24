@@ -137,6 +137,10 @@ class ActAsUserOverlay: UIView {
         } else {
             buttonContainer.frame = frame
         }
+        // Make the button go last in order, but still activate correctly
+        button.accessibilityActivationPoint = CGPoint(x: frame.midX, y: frame.midY)
+        frame.origin.y = UIScreen.main.bounds.maxY - frame.height
+        button.accessibilityFrame = frame
     }
 
     @objc func stopActing() {

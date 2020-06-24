@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,26 +18,17 @@
 
 import Foundation
 
-public class GetCourse: APIUseCase {
-    public typealias Model = Course
+enum Env {
+    static let env = ProcessInfo.processInfo.environment
 
-    public let courseID: String
-    private let include: [GetCourseRequest.Include]
-
-    public init(courseID: String, include: [GetCourseRequest.Include] = GetCourseRequest.defaultIncludes) {
-        self.courseID = courseID
-        self.include = include
+    static func error(_ name: String) -> Never {
+        print("environment variable \(name) must be set")
+        exit(1)
     }
 
-    public var cacheKey: String? {
-        return "get-course-\(courseID)"
-    }
-
-    public var scope: Scope {
-        return .where(#keyPath(Course.id), equals: courseID)
-    }
-
-    public var request: GetCourseRequest {
-        return GetCourseRequest(courseID: courseID, include: include)
+    // allows the use of `let x = y ?? error("")`
+    static func error<A>(_ name: String) -> A {
+        error(name)
+        ()
     }
 }

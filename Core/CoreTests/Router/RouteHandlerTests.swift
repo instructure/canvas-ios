@@ -65,7 +65,7 @@ class RouteHandlerTests: XCTestCase {
     }
 
     func testMatchRoute() {
-        let route = RouteHandler(.courses) { _, _ in return UIViewController() }
-        XCTAssertNotNil(route.match(Route.courses.url))
+        let route = RouteHandler("/courses") { _, _ in return UIViewController() }
+        XCTAssertNotNil(route.match(.parse("courses")))
     }
 }

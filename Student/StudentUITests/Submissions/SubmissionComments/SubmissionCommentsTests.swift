@@ -22,7 +22,7 @@ import XCTest
 @testable import CoreUITests
 import TestsFoundation
 
-class SubmissionCommentsTests: StudentUITestCase {
+class SubmissionCommentsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     lazy var assignment = mock(assignment: .make(

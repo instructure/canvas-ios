@@ -284,7 +284,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.lockView.isHidden)
         XCTAssertEqual(controller.lockLabel.text, "Locked, yo.")
         controller.viewModules() // not yet accessible from UI
-        XCTAssertTrue(router.lastRoutedTo(Route.modules(forCourse: context!.id)))
+        XCTAssertTrue(router.lastRoutedTo("/courses/\(context!.id)/modules"))
     }
 
     func testNilContext() {

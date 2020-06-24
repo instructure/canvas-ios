@@ -128,6 +128,9 @@
 "Invalid Threshold" = "无效的阈值";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "看起来您要添加学生。请在登录后尝试添加此学生";
+
+/* No comment provided by engineer. */
 "Late" = "迟到、迟交";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "迟交：%1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "要求登录";
 
 /* No comment provided by engineer. */
 "Manage Students" = "管理学生";

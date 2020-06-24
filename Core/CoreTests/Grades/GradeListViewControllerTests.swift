@@ -121,7 +121,7 @@ class GradeListViewControllerTests: CoreTestCase {
 
         controller.tableView.selectRow(at: index00, animated: false, scrollPosition: .none)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index00)
-        XCTAssert(router.lastRoutedTo(.course("1", assignment: "1"), withOptions: .detail))
+        XCTAssert(router.lastRoutedTo("/courses/1/assignments/1", withOptions: .detail))
 
         XCTAssertEqual(controller.tableView.indexPathForSelectedRow, index00)
         controller.viewWillAppear(false)

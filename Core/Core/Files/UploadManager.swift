@@ -373,7 +373,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     private func sendFailedNotification(courseID: String, assignmentID: String) {
         Logger.shared.log()
         let identifier = "failed-submission-\(courseID)-\(assignmentID)"
-        let route = Route.course(courseID, assignment: assignmentID)
+        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with an assignment submission.", arguments: nil)
         notificationManager.notify(identifier: identifier, title: title, body: body, route: route)
@@ -382,7 +382,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     private func sendCompletedNotification(courseID: String, assignmentID: String) {
         Logger.shared.log()
         let identifier = "completed-submission-\(courseID)-\(assignmentID)"
-        let route = Route.course(courseID, assignment: assignmentID)
+        let route = "/courses/\(courseID)/assignments/\(assignmentID)"
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
         notificationManager.notify(identifier: identifier, title: title, body: body, route: route)

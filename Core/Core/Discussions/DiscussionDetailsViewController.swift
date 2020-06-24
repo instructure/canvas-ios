@@ -107,6 +107,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         courseSectionsView.isHidden = true
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
+        optionsButton.accessibilityIdentifier = "DiscussionDetails.options"
         optionsButton.isEnabled = false
 
         pointsView.isHidden = true

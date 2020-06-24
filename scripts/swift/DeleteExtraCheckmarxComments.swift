@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,11 +17,23 @@
 //
 
 import Foundation
-import XCTest
-@testable import Core
-@testable import CoreUITests
-@testable import TestsFoundation
+import swsh
+import ArgumentParser
 
-class TeacherUITestCase: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return TeacherUITestCase.self }
+struct DeleteExtraCheckmarxComments: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        commandName: "delete-cx",
+        abstract: """
+            Remove all but last comment left by github user "instructure-cx" from a pull request
+            """
+    )
+
+    @Argument()
+    var prNumber: Int
+
+    func run() throws {
+        let annoyingComments = Array(try Github.listCheckmarxCommentIds(forPrNumber: prNumber).dropLast(1))
+        try Github.deleteComments(withIds: annoyingComments)
+        print("Done!")
+    }
 }

@@ -107,4 +107,21 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses[1], two)
         XCTAssertEqual(courses[2], three)
     }
+
+    func testGetCourse() {
+        XCTAssertEqual(GetCourse(courseID: "72").cacheKey, "get-course-72")
+        XCTAssertEqual(GetCourse(courseID: "5").scope, Scope.where(#keyPath(Course.id), equals: "5"))
+        XCTAssertEqual(GetCourse(courseID: "2").request.courseID, "2")
+    }
+
+    func testGetCourseSettings() {
+        let useCase = GetCourseSettings(courseID: "3")
+        XCTAssertEqual(useCase.cacheKey, "courses/3/settings")
+        XCTAssertEqual(useCase.request.courseID, "3")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(CourseSettings.courseID), equals: "3"))
+        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+        let settings: [CourseSettings] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(settings.count, 1)
+        XCTAssertEqual(settings.first?.courseID, "3")
+    }
 }

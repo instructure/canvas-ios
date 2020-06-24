@@ -54,38 +54,72 @@ public enum RouteOptions: Equatable {
     public static let noOptions = RouteOptions.push
 }
 
-public protocol RouterProtocol {
-    func match(_ url: URLComponents) -> UIViewController?
-    func route(to: Route, from: UIViewController, options: RouteOptions)
-    func route(to url: URL, from: UIViewController, options: RouteOptions)
-    func route(to url: String, from: UIViewController, options: RouteOptions)
-    func route(to url: URLComponents, from: UIViewController, options: RouteOptions)
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions, completion: (() -> Void)?)
-    func pop(from: UIViewController)
-    func dismiss(_ view: UIViewController, completion: (() -> Void)?)
-}
+// The Router stores all routes that can be routed to in the app
+open class Router {
+    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions) -> Void
 
-public extension RouterProtocol {
-    func route(to: Route, from: UIViewController, options: RouteOptions = .noOptions) {
-        return route(to: to.url, from: from, options: options)
+    private let handlers: [RouteHandler]
+    private let fallback: FallbackHandler
+
+    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler) {
+        self.handlers = routes
+        self.fallback = fallback
     }
 
-    func route(to url: URL, from: UIViewController, options: RouteOptions = .noOptions) {
+    public var count: Int {
+        return handlers.count
+    }
+
+    private func cleanURL(_ url: URLComponents) -> URLComponents {
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var url = url
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+        return url
+    }
+
+    public func match(_ url: URL) -> UIViewController? {
+        return match(.parse(url))
+    }
+    public func match(_ url: String) -> UIViewController? {
+        return match(.parse(url))
+    }
+    open func match(_ url: URLComponents) -> UIViewController? {
+        let url = cleanURL(url)
+        for route in handlers {
+            if let params = route.match(url) {
+                return route.factory(url, params)
+            }
+        }
+        return nil
+    }
+
+    public func route(to url: URL, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
-
-    func route(to url: String, from: UIViewController, options: RouteOptions = .noOptions) {
+    public func route(to url: String, from: UIViewController, options: RouteOptions = .noOptions) {
         return route(to: .parse(url), from: from, options: options)
     }
-
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions) {
-        show(view, from: from, options: options, completion: nil)
+    open func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
+        let url = cleanURL(url)
+        #if DEBUG
+        DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
+        #endif
+        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+        for route in handlers {
+            if let params = route.match(url) {
+                if let view = route.factory(url, params) {
+                    show(view, from: from, options: options)
+                }
+                return // don't fall back if a matched route returns no view
+            }
+        }
+        fallback(url, from, options)
     }
 
-    func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)?) {
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
-        if let displayModeButton = from.displayModeButtonItem,
+        if let displayModeButton = from.splitDisplayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
             options.isDetail || from.isInSplitViewDetail,
             !options.isModal {
@@ -122,7 +156,7 @@ public extension RouterProtocol {
         }
     }
 
-    func pop(from: UIViewController) {
+    open func pop(from: UIViewController) {
         guard let navController = from.navigationController else {
             return
         }
@@ -133,63 +167,8 @@ public extension RouterProtocol {
         }
     }
 
-    func dismiss(_ view: UIViewController) {
-        dismiss(view, completion: nil)
-    }
-
-    func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
+    open func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
         view.dismiss(animated: true, completion: completion)
-    }
-}
-
-// The Router stores all routes that can be routed to in the app
-public class Router: RouterProtocol {
-    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions) -> Void
-
-    private let handlers: [RouteHandler]
-    private let fallback: FallbackHandler
-
-    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler) {
-        self.handlers = routes
-        self.fallback = fallback
-    }
-
-    public var count: Int {
-        return handlers.count
-    }
-
-    private func cleanURL(_ url: URLComponents) -> URLComponents {
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var url = url
-        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
-        return url
-    }
-
-    public func match(_ url: URLComponents) -> UIViewController? {
-        let url = cleanURL(url)
-        for route in handlers {
-            if let params = route.match(url) {
-                return route.factory(url, params)
-            }
-        }
-        return nil
-    }
-
-    public func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
-        let url = cleanURL(url)
-        #if DEBUG
-        DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
-        #endif
-        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
-        for route in handlers {
-            if let params = route.match(url) {
-                if let view = route.factory(url, params) {
-                    show(view, from: from, options: options)
-                }
-                return // don't fall back if a matched route returns no view
-            }
-        }
-        fallback(url, from, options)
     }
 
     public static func open(url: URLComponents) {

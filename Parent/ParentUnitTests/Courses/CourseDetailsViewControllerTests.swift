@@ -28,8 +28,10 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     let studentID = "1"
 
     var isSyllabusShown: Bool {
-        return vc.viewControllers.first { $0 is SyllabusViewController } != nil &&
-            vc.viewControllers.first { $0 is SyllabusSummaryViewController } != nil
+        vc.viewControllers.contains { $0 is SyllabusViewController }
+    }
+    var isSummaryShown: Bool {
+        vc.viewControllers.contains { $0 is SyllabusSummaryViewController }
     }
 
     override func setUp() {
@@ -69,27 +71,35 @@ class CourseDetailsViewControllerTests: ParentTestCase {
 
     func testHomeIsSyllabus() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
+        api.mock(vc.settings, value: .make())
         render()
         XCTAssertTrue(isSyllabusShown)
+        XCTAssertTrue(isSummaryShown)
     }
 
     func testHomeIsNilSyllabus() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: nil))
+        api.mock(vc.settings, value: .make())
         render()
         XCTAssertFalse(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsEmptySyllabus() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: ""))
+        api.mock(vc.settings, value: .make())
         render()
         XCTAssertFalse(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsHiddenSyllabus() {
         api.mock(GetTabsRequest(context: .course(courseID)), value: [])
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
+        api.mock(vc.settings, value: .make(syllabus_course_summary: false))
         render()
         XCTAssertTrue(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsUnsupportedAndSyllabusPresentButNotInTabs() {
@@ -97,23 +107,27 @@ class CourseDetailsViewControllerTests: ParentTestCase {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
         render()
         XCTAssertFalse(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsUnsupportedAndSyllabusIsEmpty() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: ""))
         render()
         XCTAssertFalse(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsUnsupportedAndSyllabusIsNil() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: nil))
         render()
         XCTAssertFalse(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 
     func testHomeIsUnsupportedAndSyllabusIsPresent() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
         render()
         XCTAssertTrue(isSyllabusShown)
+        XCTAssertFalse(isSummaryShown)
     }
 }

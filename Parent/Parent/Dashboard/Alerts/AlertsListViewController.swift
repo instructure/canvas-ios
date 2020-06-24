@@ -82,11 +82,11 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
         self.tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
 
         if [.courseGradeLow, .courseGradeHigh].contains(alert.type) {
-            AppEnvironment.shared.router.route(to: .courseGrades(alert.courseID ?? alert.contextID ?? ""), from: self)
+            AppEnvironment.shared.router.route(to: "/courses/\(alert.courseID ?? alert.contextID ?? "")/grades", from: self)
         } else if let assetPath = alert.assetPath {
             AppEnvironment.shared.router.route(to: assetPath, from: self)
         } else if alert.type == .institutionAnnouncement, let announcementID = alert.contextID {
-            AppEnvironment.shared.router.route(to: .accountNotification(announcementID), from: self)
+            AppEnvironment.shared.router.route(to: "/accounts/self/users/self/account_notifications/\(announcementID)", from: self)
         }
     }
 }

@@ -22,7 +22,7 @@ import CoreData
 
 struct SubmissionAction: Equatable {
     let title: String
-    let route: Route
+    let route: String
     let options: RouteOptions
 }
 
@@ -192,7 +192,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         guard let userID = userID else {
             return
         }
-        env.router.route(to: .submission(forCourse: courseID, assignment: assignmentID, user: userID), from: view)
+        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)", from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {

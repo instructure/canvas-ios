@@ -23,7 +23,7 @@ import Core
 
 let router = Router(routes: [
 
-    RouteHandler(.accountNotification(":id")) { _, params in
+    RouteHandler("/accounts/self/users/self/account_notifications/:id") { _, params in
         guard let session = Session.current, let id = params["id"] else { return nil }
         return try? AccountNotificationViewController(session: session, announcementID: id)
     },
@@ -39,20 +39,20 @@ let router = Router(routes: [
         return controller
     },
 
-    RouteHandler(.conversations) { _, _ in
+    RouteHandler("/conversations") { _, _ in
         return ParentConversationListViewController.create()
     },
 
-    RouteHandler(.conversation(":conversationID")) { _, params in
+    RouteHandler("/conversations/:conversationID") { _, params in
         guard let conversationID = params["conversationID"] else { return nil }
         return ConversationDetailViewController.create(conversationID: conversationID)
     },
 
-    RouteHandler(.courses) { _, _ in
+    RouteHandler("/courses") { _, _ in
         return DashboardViewController.create()
     },
 
-    RouteHandler(.course(":courseID", assignment: ":assignmentID")) { _, params in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
@@ -61,86 +61,85 @@ let router = Router(routes: [
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
-    RouteHandler(.submission(forCourse: ":courseID", assignment: ":assignmentID", user: ":userID")) { _, params in
+    RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
         guard let session = Session.current else { return nil }
         return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
-    RouteHandler(.courseGrades(":courseID")) { _, params in
+    RouteHandler("/courses/:courseID/grades") { _, params in
         guard let courseID = params["courseID"] else { return nil }
         guard let studentID = currentStudentID else { return nil }
         return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 
-    RouteHandler(.courseCalendarEvent(courseID: ":courseID", eventID: ":eventID")) { _, params in
+    RouteHandler("/courses/:courseID/calendar_events/:eventID") { _, params in
         guard let courseID = params["courseID"], let eventID = params["eventID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID, calendarEventID: eventID)
     },
 
-    RouteHandler(.courseDiscussion(courseID: ":courseID", topicID: ":topicID")) { _, params in
+    RouteHandler("/courses/:courseID/discussion_topics/:topicID") { _, params in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
     },
 
-    RouteHandler(.actionableItemCalendarEvent(eventID: ":eventID")) { _, params in
+    RouteHandler("/calendar_events/:eventID") { _, params in
         guard let eventID = params["eventID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },
 
-    RouteHandler(.profile) { _, _ in
+    RouteHandler("/profile") { _, _ in
         return ProfileViewController.create(enrollment: .observer)
     },
 
-    RouteHandler(.profileObservees()) { url, _ in
+    RouteHandler("/profile/observees") { url, _ in
         let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
         let showPrompt = Bool(showPromptValue ?? "") ?? false
         return StudentListViewController.create(showAddStudentPrompt: showPrompt)
     },
 
-    RouteHandler(.observeeThresholds(":userID")) { _, params in
+    RouteHandler("/profile/observees/:userID/thresholds") { _, params in
         guard let userID = params["userID"] else { return nil }
         return StudentDetailsViewController.create(studentID: userID)
     },
 
-    RouteHandler(.errorReport(for: ":type")) { _, params in
+    RouteHandler("/support/:type") { _, params in
         guard let type = params["type"] else { return nil }
         return ErrorReportViewController.create(type: ErrorReportType(rawValue: type) ?? .problem)
     },
 
-    RouteHandler(.termsOfService(forAccount: ":accountID")) { _, params in
+    RouteHandler("/accounts/:accountID/terms_of_service") { _, params in
         guard let accountID = params["accountID"] else { return nil }
         return TermsOfServiceViewController()
     },
 
-    RouteHandler(.actAsUser) { _, _ in
+    RouteHandler("/act-as-user") { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
-    RouteHandler(.showFile(fileID: ":fileID")) { _, params in
-        guard let fileID = params["fileID"] else { return nil }
-        let vc = FileDetailsViewController.create(context: .currentUser, fileID: fileID)
-        return vc
-    },
+    RouteHandler("/files/:fileID", factory: fileViewController),
+    RouteHandler("/files/:fileID/download", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID", factory: fileViewController),
+    RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileViewController),
 
-    RouteHandler(.developerMenu) { _, _ in
+    RouteHandler("/dev-menu") { _, _ in
         return DeveloperMenuViewController.create()
     },
 
-    RouteHandler(.experimentalFeatures) { _, _ in
+    RouteHandler("/dev-menu/experimental-features") { _, _ in
         return ExperimentalFeaturesViewController()
     },
 
-    RouteHandler(.wrongApp) { _, _ in
+    RouteHandler("/wrong-app") { _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
-    RouteHandler(.createAccount(accountID: ":accountID", pairingCode: ":pairingCode")) { url, params in
+    RouteHandler("/create-account/:accountID/:pairingCode") { url, params in
         guard ExperimentalFeature.parentQRCodePairing.isEnabled else { return nil }
         guard
             let queryItem = url.queryItems?.first,
@@ -155,4 +154,10 @@ let router = Router(routes: [
 
 ]) { url, _, _ in
     Router.open(url: url)
+}
+
+private func fileViewController(url: URLComponents, params: [String: String]) -> UIViewController? {
+    guard let fileID = params["fileID"] else { return nil }
+    let context = Context(path: url.path) ?? .currentUser
+    return FileDetailsViewController.create(context: context, fileID: fileID)
 }

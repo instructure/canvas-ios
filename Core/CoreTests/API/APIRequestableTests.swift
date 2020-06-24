@@ -36,7 +36,7 @@ class APIRequestableTests: XCTestCase {
     let accessToken = "fhwdgads"
 
     struct DateHaver: Codable, Equatable {
-        let date = Date(timeIntervalSince1970: 0)
+        var date = Date(timeIntervalSince1970: 0)
     }
 
     struct GetDate: APIRequestable {

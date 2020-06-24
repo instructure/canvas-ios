@@ -60,6 +60,6 @@ class ModulesTableViewController: FetchedTableViewController<Module>, PageViewEv
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Analytics.shared.logEvent("module_item_selected")
         let module = collection[indexPath]
-        router.route(to: .module(forCourse: courseID, moduleID: module.id), from: self)
+        router.route(to: "/courses/\(courseID)/modules/\(module.id)", from: self)
     }
 }

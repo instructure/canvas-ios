@@ -190,7 +190,7 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conversation = conversations[indexPath] else { return }
-        env.router.route(to: .conversation(conversation.id), from: self, options: .detail)
+        env.router.route(to: "/conversations/\(conversation.id)", from: self, options: .detail)
         markConversation(conversation, workflowState: .read)
     }
 

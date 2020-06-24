@@ -1,6 +1,0 @@
-binary "https://customers.pspdfkit.com/carthage/rTqo6AXV42EZLAdXASrGZeckgKVbxZ/pspdfkit.json" == 9.3.0
-github "ReactiveCocoa/ReactiveSwift" ~> 6.1.0
-github "ReactiveCocoa/ReactiveCocoa" "7bbb79edc36bdd6d15041a3980f939b26b64aab5"
-github "ReactiveCocoa/ReactiveObjC" ~> 3.1.1
-github "ReactiveCocoa/ReactiveObjCBridge" "master"
-github "httpswift/swifter" "stable"

@@ -43,12 +43,12 @@ public class NotificationManager {
         self.logger = logger
     }
 
-    public func notify(identifier: String, title: String, body: String, route: Route?) {
+    public func notify(identifier: String, title: String, body: String, route: String?) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
         if let route = route {
-            content.userInfo[NotificationManager.RouteURLKey] = route.url.url?.absoluteString
+            content.userInfo[NotificationManager.RouteURLKey] = route
         }
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(
@@ -65,17 +65,13 @@ public class NotificationManager {
 }
 
 extension UNNotificationRequest {
-    public var route: Route? {
-        guard let path = content.userInfo[NotificationManager.RouteURLKey] as? String else {
-            return nil
-        }
-
-        return Route(path)
+    public var route: String? {
+        content.userInfo[NotificationManager.RouteURLKey] as? String
     }
 }
 
 extension UNNotification {
-    public var route: Route? {
+    public var route: String? {
         return request.route
     }
 }

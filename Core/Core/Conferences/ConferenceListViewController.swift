@@ -147,7 +147,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let conference = conferences[indexPath] else { return }
-        env.router.route(to: .parse("/\(context.pathComponent)/conferences/\(conference.id)"), from: self, options: .detail)
+        env.router.route(to: "/\(context.pathComponent)/conferences/\(conference.id)", from: self, options: .detail)
     }
 }
 

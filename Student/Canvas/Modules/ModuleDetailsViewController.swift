@@ -86,7 +86,7 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
         case 0:
             Analytics.shared.logEvent("module_item_selected")
             let module = dataSource.prerequisiteModulesCollection[IndexPath(row: indexPath.row, section: 0)]
-            router.route(to: Route.module(forCourse: courseID, moduleID: module.id), from: self)
+            router.route(to: "/courses/\(courseID)/modules/\(module.id)", from: self)
         case 1:
             let moduleItem = dataSource.itemsCollection[IndexPath(row: indexPath.row, section: 0)]
             guard let content = moduleItem.content, content != .subHeader else { return }
@@ -97,7 +97,7 @@ class ModuleDetailsViewController: CanvasCore.TableViewController, PageViewEvent
                 tableView.deselectRow(at: indexPath, animated: true)
                 return
             }
-            router.route(to: Route.moduleItem(forCourse: courseID, moduleID: moduleItem.moduleID, itemID: moduleItem.id), from: self, options: .detail)
+            router.route(to: "/courses/\(courseID)/modules/\(moduleItem.moduleID)/items/\(moduleItem.id)", from: self, options: .detail)
         default:
             return
         }

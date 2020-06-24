@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,19 +17,25 @@
 //
 
 import Foundation
-import XCTest
-@testable import Core
+import TestsFoundation
+@testable import CoreUITests
 
-class GetCourseTest: CoreTestCase {
-    func testCacheKey() {
-        XCTAssertEqual(GetCourse(courseID: "72").cacheKey, "get-course-72")
+class DiscussionEditE2ETests: CoreUITestCase {
+
+    override func setUp() {
+        super.setUp()
+        Dashboard.courseCard(id: "263").tapUntil {
+            CourseNavigation.discussions.exists
+        }
+        CourseNavigation.discussions.tap()
+        DiscussionListCell.graded.waitToExist()
     }
 
-    func testScope() {
-        XCTAssertEqual(GetCourse(courseID: "5").scope, Scope.where(#keyPath(Course.id), equals: "5"))
-    }
+    func testEditDiscussion() throws {
+        DiscussionListCell.cell(id: "14392").tap()
+        app.find(id: "DiscussionDetails.options").tap()
+        app.find(label: "Edit").tap()
 
-    func testRequest() {
-        XCTAssertEqual(GetCourse(courseID: "2").request.courseID, "2")
+        DiscussionEdit.titleField.waitToExist()
     }
 }

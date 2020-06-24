@@ -70,7 +70,7 @@ public class LTITools {
             let value = query.first(where: { $0.name == "url" })?.value,
             let url = URL(string: value)
         else { return nil }
-        let context = LTITools.context(forRetrieveURL: retrieve) ?? Context(.account, id: "self")
+        let context = Context(url: retrieve) ?? .account("self")
         self.init(env: env, context: context, url: url)
     }
 
@@ -111,17 +111,6 @@ public class LTITools {
 
     public func getSessionlessLaunchURL(completionBlock: @escaping (URL?) -> Void) {
         getSessionlessLaunch { completionBlock($0?.url) }
-    }
-
-    private static func context(forRetrieveURL url: URL) -> Context? {
-        let route = Route("/:context/:contextID/external_tools/retrieve")
-        if let match = RouteHandler(route, factory: { _, _ in nil }).match(.parse(url)),
-            let contextTypeRaw = match["context"],
-            let contextType = ContextType(pathComponent: contextTypeRaw),
-            let contextID = match["contextID"] {
-            return Context(contextType, id: contextID)
-        }
-        return nil
     }
 
     private func markModuleItemRead() {

@@ -36,18 +36,7 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            brew unlink carthage
-            carthage_head=(/usr/local/Cellar/carthage/HEAD-*(Y1N))
-            if [[ -n $carthage_head ]]; then
-                brew switch carthage $carthage_head
-            else
-                brew install --HEAD carthage
-            fi
-
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
-    - carthage:
-        inputs:
-        - carthage_options: "--platform ios"
     - yarn:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
@@ -109,11 +98,6 @@ workflows:
             set -e
             set -x
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
-    - cache-push:
-        inputs:
-        - cache_paths: |-
-            $BITRISE_SOURCE_DIR/Carthage/Build/iOS/
-            /usr/local/Cellar/carthage
     - deploy-to-bitrise-io: {}
 
   ad-hoc:
@@ -128,8 +112,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             set -euo pipefail
-            brew install mxcl/made/swift-sh
-            ./scripts/build_automation/build-link.swift update-link parent $BITRISE_GIT_BRANCH \
+            ./scripts/run-swift build-link update-link parent $BITRISE_GIT_BRANCH \
                 $BITRISE_PUBLIC_INSTALL_PAGE_URL
 
   app-store:

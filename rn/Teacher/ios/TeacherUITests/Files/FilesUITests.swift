@@ -88,7 +88,7 @@ class FilesUITests: MiniCanvasUITestCase {
     }
 
     func testEditUsageRights() throws {
-        firstCourse.settings["usage_rights_required"] = true
+        firstCourse.settings = .make(usage_rights_required: true)
 
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()

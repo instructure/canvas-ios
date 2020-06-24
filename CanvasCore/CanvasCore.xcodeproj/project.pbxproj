@@ -306,17 +306,10 @@
 		B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */; };
 		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
 		B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */; };
-		B1F405F622E23D28008FAFE6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */; };
-		B1F405F722E23D28008FAFE6 /* ReactiveMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */; };
-		B1F405F822E23D28008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */; };
-		B1F405F922E23D28008FAFE6 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */; };
-		B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */; };
 		B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */; };
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
 		B1F4E8CF206189010056074A /* video-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8CE206189010056074A /* video-preview.png */; };
 		B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */; };
-		F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EA221491F00083E660 /* PSPDFKit.framework */; };
-		F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B946EB221491F00083E660 /* PSPDFKitUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -681,19 +674,12 @@
 		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };
 		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
 		B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewContainer.m; sourceTree = "<group>"; };
-		B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
-		B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = ../Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
-		B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjCBridge.framework; path = ../Carthage/Build/iOS/ReactiveObjCBridge.framework; sourceTree = "<group>"; };
-		B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
-		B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = ../Carthage/Build/iOS/ReactiveObjC.framework; sourceTree = "<group>"; };
 		B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultExtensions.swift; sourceTree = "<group>"; };
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
 		B1F4E8CE206189010056074A /* video-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-preview.png"; sourceTree = "<group>"; };
 		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
 		B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.release.xcconfig"; sourceTree = "<group>"; };
-		F9B946EA221491F00083E660 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../Carthage/Build/iOS/PSPDFKit.framework; sourceTree = "<group>"; };
-		F9B946EB221491F00083E660 /* PSPDFKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKitUI.framework; path = ../Carthage/Build/iOS/PSPDFKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,13 +687,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1F405F622E23D28008FAFE6 /* ReactiveCocoa.framework in Frameworks */,
-				B1F405F722E23D28008FAFE6 /* ReactiveMapKit.framework in Frameworks */,
-				B1F405F822E23D28008FAFE6 /* ReactiveObjCBridge.framework in Frameworks */,
-				B1F405F922E23D28008FAFE6 /* ReactiveSwift.framework in Frameworks */,
-				B1F405FB22E23D28008FAFE6 /* ReactiveObjC.framework in Frameworks */,
-				F9B946EC221491F00083E660 /* PSPDFKit.framework in Frameworks */,
-				F9B946ED221491F00083E660 /* PSPDFKitUI.framework in Frameworks */,
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
@@ -719,16 +698,9 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1F405F022E23D27008FAFE6 /* ReactiveCocoa.framework */,
-				B1F405F122E23D27008FAFE6 /* ReactiveMapKit.framework */,
-				B1F405F522E23D28008FAFE6 /* ReactiveObjC.framework */,
-				B1F405F222E23D27008FAFE6 /* ReactiveObjCBridge.framework */,
-				B1F405F322E23D28008FAFE6 /* ReactiveSwift.framework */,
 				7D0215A221BAE703009A8E69 /* Core.framework */,
 				801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */,
 				0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */,
-				F9B946EA221491F00083E660 /* PSPDFKit.framework */,
-				F9B946EB221491F00083E660 /* PSPDFKitUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2326,7 +2298,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -2360,7 +2331,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS/**",
 				);
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;

@@ -21,7 +21,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class LoginFindSchoolTests: StudentUITestCase {
+class LoginFindSchoolTests: CoreUITestCase {
     func mockSearchAndPrefixes(searchTerm: String, results: [APIAccountResult]) {
         for index in searchTerm.indices {
             mockData(GetAccountsSearchRequest(searchTerm: String(searchTerm.prefix(through: index))), value: results)

@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Сбой авторизации. Скорее всего, пользователь отклонил запрос на доступ.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Доступность:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Доступность: Закрыто";
+
+/* No comment provided by engineer. */
+"Available From:" = "Доступно с:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Доступно до:";
 
 /* No comment provided by engineer. */
 "black" = "черный";
@@ -314,6 +323,9 @@
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
+"Create Account" = "Создать учетную запись";
+
+/* No comment provided by engineer. */
 "Current position" = "Текущая позиция";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Готово";
 
+/* No comment provided by engineer. */
+"Due" = "Срок";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Срок %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Срок выполнения";
+
+/* No comment provided by engineer. */
+"Due:" = "Срок:";
 
 /* No comment provided by engineer. */
 "Edit" = "Редактировать";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Ошибка при сохранении. Нажмите, чтобы повторить попытку.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Все";
 
 /* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
@@ -506,6 +527,9 @@
 "for %@" = "для %@";
 
 /* No comment provided by engineer. */
+"For:" = "Для:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Исключить %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Перейти к сегодня";
+
+/* No comment provided by engineer. */
+"Graded" = "С оценкой";
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "У меня нет учетной записи Canvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "У меня есть учетная запись Canvas";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Мне нужна помощь, но это не срочно";
@@ -752,7 +785,13 @@
 "Modules" = "Модули";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Множественные даты выполнения";
+
+/* No comment provided by engineer. */
 "N/A" = "Н/Д";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Требует оценки";
 
 /* No comment provided by engineer. */
 "Never" = "Никогда";
@@ -773,6 +812,12 @@
 "No Assignments" = "Задания отсутствуют";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Недоступно с заданной даты.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Недоступно до заданной даты.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Нет веб-конференций";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Срок выполнения не задан";
+
+/* No comment provided by engineer. */
+"No due date set." = "Не задан срок исполнения.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "На сегодня события отсутствуют!";
@@ -1004,6 +1052,9 @@
 "Search" = "Поиск";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Разделы: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Смотреть все";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Показывать месяц за раз";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Показать рассортированные отправки";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Показать оценки";
 
 /* No comment provided by engineer. */
 "Show more options" = "Показать больше вариантов";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Показать не включенные отправки";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Показать отправки, которые необходимо рассортировать";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Поскольку это групповое обсуждение, у каждой группы есть свой разговор на эту тему. Вот обсуждения, к которым у вас есть доступ.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Комментарий при отправке";
 
 /* No comment provided by engineer. */
+"Submissions" = "Отправки";
+
+/* No comment provided by engineer. */
 "Submit" = "Отправить";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Прикоснитесь для выбора курсов, которые вы хотите видеть в календаре.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Прикоснитесь для просмотра списка отправок.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Преподаватель";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Произошла непредвиденная ошибка. Попробуйте еще раз.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Данное задание необходимо выполнить до %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "к %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда. Если ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Просмотр";
+
+/* No comment provided by engineer. */
+"View all dates" = "Просмотреть все даты";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Просмотреть все отправки";
 
 /* No comment provided by engineer. */
 "View Less" = "Показать меньше";

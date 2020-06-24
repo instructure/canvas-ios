@@ -34,10 +34,6 @@ public struct RouteHandler {
     public let factory: ViewFactory
     public let segments: [Segment]
 
-    public init(_ route: Route, factory: @escaping ViewFactory) {
-        self.init(route.url.path, factory: factory)
-    }
-
     public init(_ template: String, factory: @escaping ViewFactory) {
         self.template = template
         self.factory = factory
