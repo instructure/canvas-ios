@@ -73,9 +73,11 @@ scripts/coverage/*.xcresult
 scripts/coverage/xccov.json
 scripts/translations/source
 scripts/translations/imports
-scripts/failing-test-pairs.txt
 scripts/apiModelCodegen/output
 scripts/apiModelCodegen/input.json
+scripts/.build
+scripts/.swiftpm
+scripts/Package.resolved
 
 # Secrets
 **/*.xcassets/Secrets/*.dataset

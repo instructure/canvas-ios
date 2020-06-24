@@ -401,9 +401,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>Mae %d aseinî heb radd.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>Mae %d aseinî heb radd.</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

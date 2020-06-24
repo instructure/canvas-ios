@@ -16,7 +16,5 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-carthage bootstrap --platform ios
-
 cd rn/Teacher
 yarn build

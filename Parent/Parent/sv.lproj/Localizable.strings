@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Ogiltig tröskel";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Det verkar som om du försöker lägga till en student. Försök lägga till den här studenten efter att du har loggat in.";
+
+/* No comment provided by engineer. */
 "Late" = "Sen";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Inloggning krävs";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hantera studenter";

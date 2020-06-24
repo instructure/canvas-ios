@@ -89,7 +89,7 @@ public struct PostAccountUserRequest: APIRequestable {
         public struct User: Codable, Equatable {
             let name: String
             let initial_enrollment_type: String
-            let terms_of_use: Bool = true
+            var terms_of_use: Bool = true
         }
         let pseudonym: Pseudonym
         let pairing_code: PairingCode

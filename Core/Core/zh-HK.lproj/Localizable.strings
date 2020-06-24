@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "驗證失敗。很可能是使用者拒絕了存取請求。";
 
 /* No comment provided by engineer. */
+"Availability:" = "可用性：";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "可用性：已關閉";
+
+/* No comment provided by engineer. */
+"Available From:" = "可用起始日期：";
+
+/* No comment provided by engineer. */
+"Available Until:" = "可用截止時間：";
 
 /* No comment provided by engineer. */
 "black" = "黑色";
@@ -314,6 +323,9 @@
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
+"Create Account" = "建立帳戶";
+
+/* No comment provided by engineer. */
 "Current position" = "目前位置";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "已完成";
 
+/* No comment provided by engineer. */
+"Due" = "截止";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "截止%@";
 
 /* No comment provided by engineer. */
 "Due Date" = "截止日期";
+
+/* No comment provided by engineer. */
+"Due:" = "截止日期：";
 
 /* No comment provided by engineer. */
 "Edit" = "編輯";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "儲存錯誤。點選以重試。";
+
+/* No comment provided by engineer. */
+"Everyone" = "所有人";
 
 /* No comment provided by engineer. */
 "Excused" = "已免除";
@@ -506,6 +527,9 @@
 "for %@" = "對象： %@";
 
 /* No comment provided by engineer. */
+"For:" = "對於：";
+
+/* No comment provided by engineer. */
 "Forget %@" = "忘記%@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "前往今天";
+
+/* No comment provided by engineer. */
+"Graded" = "已評分";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "在收到您的回覆之前，我無法把事情做好";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "我沒有 Canvas 帳戶";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "我有 Canvas 帳戶";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "我需要支援但情況並不緊急";
@@ -752,7 +785,13 @@
 "Modules" = "單元";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "多個截止日期";
+
+/* No comment provided by engineer. */
 "N/A" = "不適用";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "需要等級評分";
 
 /* No comment provided by engineer. */
 "Never" = "永不";
@@ -773,6 +812,12 @@
 "No Assignments" = "無作業";
 
 /* No comment provided by engineer. */
+"No available from date set." = "沒有可用的起始日期設定。";
+
+/* No comment provided by engineer. */
+"No available until date set." = "沒有可用的結束日期設定。";
+
+/* No comment provided by engineer. */
 "No Conferences" = "無會議";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "無截止日期";
+
+/* No comment provided by engineer. */
+"No due date set." = "沒有設置截止日期。";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "今天並無活動！";
@@ -1004,6 +1052,9 @@
 "Search" = "搜尋";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "分班：%@";
+
+/* No comment provided by engineer. */
 "See All" = "檢視所有";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "一次顯示一個月";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "顯示已評分的提交項目";
+
+/* No comment provided by engineer. */
 "Show Grades" = "顯示成績";
 
 /* No comment provided by engineer. */
 "Show more options" = "顯示更多選項";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "顯示尚未提交的提交項目";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "顯示需要評分的提交項目";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "提交項目評論";
 
 /* No comment provided by engineer. */
+"Submissions" = "提交項目";
+
+/* No comment provided by engineer. */
 "Submit" = "提交";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "點選以選擇您要在行事曆上看到的課程。";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "輕點以檢視提交件清單。";
 
 /* No comment provided by engineer. */
 "Teacher" = "教師";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "有意外錯誤。請再試一次。";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "作業截止日期為%@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "至%@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "如要創建帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您創建配對碼，然後在此處掃描該條碼。如果學生並未看見創建配對碼的選項，您需要聯絡所屬學校以創建帳戶。";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦事項";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "檢視";
+
+/* No comment provided by engineer. */
+"View all dates" = "檢視所有日期";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "檢視所有提交項目";
 
 /* No comment provided by engineer. */
 "View Less" = "檢視更少";

@@ -269,9 +269,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>Det finns en %d tilldelad person som saknar en omdöme.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>Det finns  %d uppdragsgivare utan betyg.</string>
 		</dict>
 	</dict>
 </dict>

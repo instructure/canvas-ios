@@ -401,9 +401,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>There is %d assignee without a grade.</string>
+			<string>يوجد %d معين دون درجة.</string>
 			<key>other</key>
-			<string>There are %d assignees without grades.</string>
+			<string>يوجد %d معينين دون درجات.</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

@@ -18,7 +18,7 @@
 
 import Foundation
 
-// https://canvas.instructure.com/doc/api/files.html#File
+// https://canvas.instructure.com/doc/api/files.html#filePath
 public struct APIFile: Codable, Equatable {
     let id: ID
     let uuid: String

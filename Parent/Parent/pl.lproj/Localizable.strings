@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Nieprawidłowy próg";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Wygląda na to, że próbujesz dodać uczestnika. Spróbuj dodać tego uczestnika po zalogowaniu się";
+
+/* No comment provided by engineer. */
 "Late" = "Spóźnione";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Spóźnione: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Wymagane zalogowanie";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Zarządzaj uczestnikami";

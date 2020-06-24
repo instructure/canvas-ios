@@ -1,7 +1,6 @@
-#!/usr/bin/xcrun --sdk macosx swift
 //
 // This file is part of Canvas.
-// Copyright (C) 2835-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,18 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// Wrap "carthage copy-frameworks" in a global lock to avoid build problems
-// see https://github.com/Carthage/Carthage/issues/2835
-
-
-//	https://bugs.swift.org/browse/SR-12403 
-//	with upgrade of xcode 11.4 (swift 5.2), ran into this bug and had to 
-//	use compiled version of script
-
 import Foundation
-import Darwin
 
-class FileLock {
+class FileLock: NSLocking {
     let path: String
     let fd: Int32
 
@@ -46,7 +36,7 @@ class FileLock {
     }
 }
 
-extension FileLock: NSLocking {
+extension FileLock {
     func tryLock() -> Bool {
         return flock(fd, LOCK_EX | LOCK_NB) == 0
     }
@@ -72,16 +62,3 @@ extension FileLock: NSLocking {
         flock(fd, LOCK_UN)
     }
 }
-
-let tempRoot = ProcessInfo.processInfo.environment["TEMP_ROOT"] ?? "/tmp"
-let lock = FileLock(path: "\(tempRoot)/carthage-build-lock")!
-lock.lock()
-
-let task = Process()
-task.executableURL = URL(fileURLWithPath: "/usr/local/bin/carthage")
-task.arguments = ["copy-frameworks"]
-task.launch()
-task.waitUntilExit()
-
-lock.unlock()
-exit(task.terminationStatus)

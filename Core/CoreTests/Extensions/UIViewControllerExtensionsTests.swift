@@ -89,9 +89,9 @@ class UIViewControllerExtensionsTests: XCTestCase {
 
     func testDisplayModeButtonItem() {
         let controller = UIViewController()
-        XCTAssertNil(controller.displayModeButtonItem)
+        XCTAssertNil(controller.splitDisplayModeButtonItem)
         let split = UISplitViewController()
         split.viewControllers = [controller]
-        XCTAssertNotNil(controller.displayModeButtonItem)
+        XCTAssertNotNil(controller.splitDisplayModeButtonItem)
     }
 }

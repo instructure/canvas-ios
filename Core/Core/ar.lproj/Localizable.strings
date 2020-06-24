@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "فشلت المصادقة. رفض المستخدم على الأغلب طلب الوصول.";
 
 /* No comment provided by engineer. */
+"Availability:" = "التوفر:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "الإتاحة: مغلق";
+
+/* No comment provided by engineer. */
+"Available From:" = "متوفر من:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "متوفر حتى:";
 
 /* No comment provided by engineer. */
 "black" = "أسود";
@@ -314,6 +323,9 @@
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
+"Create Account" = "إنشاء حساب";
+
+/* No comment provided by engineer. */
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "تم";
 
+/* No comment provided by engineer. */
+"Due" = "الاستحقاق";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "الاستحقاق %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "تاريخ الاستحقاق";
+
+/* No comment provided by engineer. */
+"Due:" = "تاريخ الاستحقاق:";
 
 /* No comment provided by engineer. */
 "Edit" = "تحرير";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "خطأ أثناء الحفظ. اضغط لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"Everyone" = "الجميع";
 
 /* No comment provided by engineer. */
 "Excused" = "معفى";
@@ -506,6 +527,9 @@
 "for %@" = "لـ %@";
 
 /* No comment provided by engineer. */
+"For:" = "لـ:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "نسيت %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "الذهاب إلى اليوم";
+
+/* No comment provided by engineer. */
+"Graded" = "تم تقييم الدرجة";
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "ليس لدي حساب Canvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "لدي حساب Canvas";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "أحتاج للمساعدة لكن الأمر ليس مستعجلاً";
@@ -752,7 +785,13 @@
 "Modules" = "الوحدات النمطية";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "تواريخ استحقاق متعددة";
+
+/* No comment provided by engineer. */
 "N/A" = "لا يوجد";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "بحاجة إلى تقدير الدرجات";
 
 /* No comment provided by engineer. */
 "Never" = "أبدًا";
@@ -773,6 +812,12 @@
 "No Assignments" = "لا توجد أي مهام";
 
 /* No comment provided by engineer. */
+"No available from date set." = "غير متوفر من مجموعة البيانات.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "لم يتم تعيين تاريخ \"متوفر حتى\".";
+
+/* No comment provided by engineer. */
 "No Conferences" = "لا توجد مؤتمرات";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
+
+/* No comment provided by engineer. */
+"No due date set." = "لم يتم تعيين تاريخ الاستحقاق.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "لا توجد أحداث اليوم!";
@@ -1004,6 +1052,9 @@
 "Search" = "بحث";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "الأقسام: %@";
+
+/* No comment provided by engineer. */
 "See All" = "عرض الكل";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "أظهر شهراً كل مرة";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "إظهار الإرسالات التي تم تقدير درجاتها";
+
+/* No comment provided by engineer. */
 "Show Grades" = "عرض التقديرات";
 
 /* No comment provided by engineer. */
 "Show more options" = "إظهار خيارات أكثر";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "إظهار الإرسالات التي لم يتم تسليمها";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "إظهار الإرسالات التي تحتاج إلى تقدير درجاتها";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "تعليق الإرسال";
 
 /* No comment provided by engineer. */
+"Submissions" = "الإرسالات";
+
+/* No comment provided by engineer. */
 "Submit" = "إرسال";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "اضغط لعرض قائمة الإرسالات.";
 
 /* No comment provided by engineer. */
 "Teacher" = "المعلم";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "هذه المهمة مستحقة بتاريخ %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "إلى %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا. إذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.";
 
 /* No comment provided by engineer. */
 "To Do" = "قائمة المهام";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "عرض";
+
+/* No comment provided by engineer. */
+"View all dates" = "عرض جميع التواريخ";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "عرض جميع الإرسالات";
 
 /* No comment provided by engineer. */
 "View Less" = "عرض أقل";

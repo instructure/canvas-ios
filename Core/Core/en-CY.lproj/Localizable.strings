@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Availability:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Availability: Closed";
+
+/* No comment provided by engineer. */
+"Available From:" = "Available From:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Available Until:";
 
 /* No comment provided by engineer. */
 "black" = "black";
@@ -314,6 +323,9 @@
 "Courses" = "Modules";
 
 /* No comment provided by engineer. */
+"Create Account" = "Create account";
+
+/* No comment provided by engineer. */
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Done";
 
+/* No comment provided by engineer. */
+"Due" = "Due";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Due %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Due date";
+
+/* No comment provided by engineer. */
+"Due:" = "Due:";
 
 /* No comment provided by engineer. */
 "Edit" = "Edit";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Error saving. Tap to retry.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Everyone";
 
 /* No comment provided by engineer. */
 "Excused" = "Excused";
@@ -506,6 +527,9 @@
 "for %@" = "for %@";
 
 /* No comment provided by engineer. */
+"For:" = "For:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Forget %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Go to today";
+
+/* No comment provided by engineer. */
+"Graded" = "Graded";
 
 /* No comment provided by engineer. */
 "Grades" = "Grades";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "I don’t have a Canvas account";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "I have a Canvas account";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "I need help but it's not urgent";
@@ -752,7 +785,13 @@
 "Modules" = "Units";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Multiple Due Dates";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Need grading";
 
 /* No comment provided by engineer. */
 "Never" = "Never";
@@ -773,6 +812,12 @@
 "No Assignments" = "No assignments";
 
 /* No comment provided by engineer. */
+"No available from date set." = "No available from date set.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "No available until date set.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "No Conferences";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "No due date";
+
+/* No comment provided by engineer. */
+"No due date set." = "No due date set.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "No events today!";
@@ -1004,6 +1052,9 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Sections: %@";
+
+/* No comment provided by engineer. */
 "See All" = "See all";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Show a month at a time";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Show graded submissions";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Show marks";
 
 /* No comment provided by engineer. */
 "Show more options" = "Show more options";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Show submissions not turned in";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Show submissions that need grading";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Submission comment";
 
 /* No comment provided by engineer. */
+"Submissions" = "Submissions";
+
+/* No comment provided by engineer. */
 "Submit" = "Submit";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tap to select the modules you want to see on the calendar.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tap to view submissions list.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Teacher";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "There was an unexpected error. Please try again.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "This assignment is due by %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "to %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.";
 
 /* No comment provided by engineer. */
 "To Do" = "To-do";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "View";
+
+/* No comment provided by engineer. */
+"View all dates" = "View all dates";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "View All Submissions";
 
 /* No comment provided by engineer. */
 "View Less" = "View Less";

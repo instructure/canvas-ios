@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Invalid Threshold";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "It looks like you’re trying to add a student. Try adding this student after you’ve logged in";
+
+/* No comment provided by engineer. */
 "Late" = "Late";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "Login required";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Manage Students";

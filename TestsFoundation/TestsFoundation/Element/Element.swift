@@ -232,7 +232,7 @@ public func waitUntil(
 ) {
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate() {
-        XCTAssertTrue(Date() < deadline, failureMessage(), file: file, line: line)
+        XCTAssertTrue(Date() < deadline, failureMessage(), file: (file), line: line)
         usleep(100000)
     }
 }

@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Staðfesting tókst ekki. Líklega neitaði notandi aðgangsbeiðninni.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Tiltækileiki:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Tiltækileiki: Lokað";
+
+/* No comment provided by engineer. */
+"Available From:" = "Tiltækt frá:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Tiltækt til:";
 
 /* No comment provided by engineer. */
 "black" = "svart";
@@ -314,6 +323,9 @@
 "Courses" = "Námskeið";
 
 /* No comment provided by engineer. */
+"Create Account" = "Stofna reikning";
+
+/* No comment provided by engineer. */
 "Current position" = "Núverandi staða";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Lokið";
 
+/* No comment provided by engineer. */
+"Due" = "Skilafrestur";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Skilafrestur %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Skiladagur";
+
+/* No comment provided by engineer. */
+"Due:" = "Skil:";
 
 /* No comment provided by engineer. */
 "Edit" = "Breyta";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Villa við að vista. Smelltu til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Allir";
 
 /* No comment provided by engineer. */
 "Excused" = "Undanþegið";
@@ -506,6 +527,9 @@
 "for %@" = "fyrir %@";
 
 /* No comment provided by engineer. */
+"For:" = "Fyrir:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Gleyma %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Fara í daginn í dag";
+
+/* No comment provided by engineer. */
+"Graded" = "Metið";
 
 /* No comment provided by engineer. */
 "Grades" = "Einkunnir";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ég get ekkert gert fyrr en þú svarar mér";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Ég er ekki með Canvas-reikning";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Ég er með Canvas-reikning";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ég þarf aðstoð en það liggur ekki á";
@@ -752,7 +785,13 @@
 "Modules" = "Námsefni";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Margir skiladagar";
+
+/* No comment provided by engineer. */
 "N/A" = "Á ekki við";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Þarfnast einkunnagjafar";
 
 /* No comment provided by engineer. */
 "Never" = "Aldrei";
@@ -773,6 +812,12 @@
 "No Assignments" = "Engin verkefni";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Nei tiltækt frá degi stillt inn.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Nei tiltækt fram að degi stillt inn.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Engar ráðstefnur";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Enginn skiladagur";
+
+/* No comment provided by engineer. */
+"No due date set." = "Enginn skiladagur ákveðinn.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Engir viðburðir í dag!";
@@ -1004,6 +1052,9 @@
 "Search" = "Leita";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Hlutar: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Sjá allt";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Sýna mánuð í einu";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Sýna skil sem hafa fengið einkunnagjöf";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Sýna einkunnir";
 
 /* No comment provided by engineer. */
 "Show more options" = "Sýna fleiri möguleika";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Sýna skil sem ekki hafa verið send inn";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Sýna skil sem þurfa einkunn";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Athugasemd með skilum";
 
 /* No comment provided by engineer. */
+"Submissions" = "Skil";
+
+/* No comment provided by engineer. */
 "Submit" = "Leggja fram";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Smelltu til að velja námskeiðin sem þú vilt sjá á dagatalinu.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Smelltu til að skoða skilalista.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Kennari";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Upp kom óvænt villa. Vinsamlegast reynið aftur.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Skiladagur þessa verkefnis er %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "til %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Til þess að stofna reikning skaltu biðja nemandann þinn um að búa til pörunarkóða fyrir þig úr hlutanum Stillingar í Canvas Student-forritinu, eins og sýnt er hér fyrir neðan, síðan er hægt að skanna kóðan héðan. Ef nemandinn finnur ekki valmöguleikann til að búa til pörunarkóða þarftu að hafa samband við skólann þinn til að stofna reikning fyrir þig.";
 
 /* No comment provided by engineer. */
 "To Do" = "Verkefni";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Skoða";
+
+/* No comment provided by engineer. */
+"View all dates" = "Skoða allar dagsetningar";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Skoða öll skil";
 
 /* No comment provided by engineer. */
 "View Less" = "Sjá minna";

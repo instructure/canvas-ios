@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "Overitev ni uspela. Najverjetneje je uporabnik zavrnil zahtevo za dostop.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Razpoložljivost:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Razpoložljivost: Zaprto";
+
+/* No comment provided by engineer. */
+"Available From:" = "Na voljo od:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Na voljo do:";
 
 /* No comment provided by engineer. */
 "black" = "črna";
@@ -314,6 +323,9 @@
 "Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
+"Create Account" = "Ustvari račun";
+
+/* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Dokončano";
 
+/* No comment provided by engineer. */
+"Due" = "Roki";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "Roki %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "Rok";
+
+/* No comment provided by engineer. */
+"Due:" = "Roki:";
 
 /* No comment provided by engineer. */
 "Edit" = "Uredi";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Napaka pri shranjevanju Tapnite za ponovni poskus.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Vsi";
 
 /* No comment provided by engineer. */
 "Excused" = "Opravičeno";
@@ -506,6 +527,9 @@
 "for %@" = "za %@";
 
 /* No comment provided by engineer. */
+"For:" = "Za:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Pozabi %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Pojdi na danes";
+
+/* No comment provided by engineer. */
+"Graded" = "Ocenjeno";
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ne morem dokončati zadev, dokler ne prejmem vašega odziva.";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Nimam računa Calvas";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "Imam račun Canvas";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
@@ -752,7 +785,13 @@
 "Modules" = "Moduli";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Več rokov";
+
+/* No comment provided by engineer. */
 "N/A" = "Ni na voljo";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "Je treba oceniti.";
 
 /* No comment provided by engineer. */
 "Never" = "Nikoli";
@@ -773,6 +812,12 @@
 "No Assignments" = "Ni nalog";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Ni na voljo od nastavljenega datuma.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Ni na voljo do nastavljenega datuma.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Ni konferenc";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Ni roka.";
+
+/* No comment provided by engineer. */
+"No due date set." = "Rok ni nastavljen.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Danes ni dogodkov.";
@@ -1004,6 +1052,9 @@
 "Search" = "Iskanje";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Sekcije: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Ogled vsega";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Prikaži po en mesec naenkrat";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Prikaži ocenjene oddaje";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Prikaži ocene";
 
 /* No comment provided by engineer. */
 "Show more options" = "Prikaži več možnosti";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Prikaži neooddane oddaje";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Prikaži oddaje, ki jih je treba oceniti";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Ker je to razprava skupine, ima za to temo vsaka skupina svoj pogovor. Tu so razprave, do katerih imate dostop.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Komentar k oddaji";
 
 /* No comment provided by engineer. */
+"Submissions" = "Oddaje";
+
+/* No comment provided by engineer. */
 "Submit" = "Pošlji";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapnite za izbiro predmetov, ki jih želite prikazane na koledarju.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Tapnite za ogled seznama oddaj.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Izvajalec";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "Prišlo je do nepričakovane napake. Poskusite znova pozneje.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Ta naloga ima rok do %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "naslovnik %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam. Če študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.";
 
 /* No comment provided by engineer. */
 "To Do" = "Čakajoča opravila";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Ogled";
+
+/* No comment provided by engineer. */
+"View all dates" = "Prikaži vse datume";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Prikaži vse oddaje";
 
 /* No comment provided by engineer. */
 "View Less" = "Prikaži manj";

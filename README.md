@@ -9,13 +9,12 @@
 
 You will need the following tools installed beforehand:
 
-- [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
 - [Cocoapods](https://cocoapods.org)
 - [SwiftLint](https://github.com/realm/SwiftLint#installation)
 - [yarn](https://yarnpkg.com/en/docs/install#mac-stable)
 
 ```sh
-brew install carthage swiftlint yarn
+brew install swiftlint yarn
 gem install cocoapods
 ```
 
@@ -27,14 +26,7 @@ cd canvas-ios
 ./setup.sh
 ```
 
-The `setup.sh` script should take care of installing additional dependencies from Carthage, Cocoapods, and yarn.
-
-### Carthage
-
-PSPDFKit is installed via Carthage.
-
-- `carthage update` Updates `Cartfile.resolved` with new dependencies
-- `carthage bootstrap` Fetches dependencies defined in `Cartfile.resolved`
+The `setup.sh` script should take care of installing additional dependencies from Cocoapods and yarn.
 
 ### Secrets
 

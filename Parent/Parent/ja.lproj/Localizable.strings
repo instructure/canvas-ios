@@ -128,6 +128,9 @@
 "Invalid Threshold" = "無効なしきい値";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "受講生を追加しようとしているようです。ログイン後にこの受講生を追加してみてください";
+
+/* No comment provided by engineer. */
 "Late" = "遅滞";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "遅滞: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "ログインが必要です";
 
 /* No comment provided by engineer. */
 "Manage Students" = "受講生を管理";
