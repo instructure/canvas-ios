@@ -331,7 +331,7 @@ struct PostCourseRequest: APIRequestable {
     typealias Response = APICourse
     struct Body: Codable, Equatable {
         let course: APICourseParameters
-        let offer: Bool = true
+        var offer: Bool = true
     }
 
     let accountID: String

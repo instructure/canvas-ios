@@ -66,14 +66,6 @@ workflows:
             brew tap mxcl/made
             brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
 
-            brew unlink carthage
-            carthage_head=(/usr/local/Cellar/carthage/HEAD-*(Y1N))
-            if [[ -n $carthage_head ]]; then
-                brew switch carthage $carthage_head
-            else
-                brew install --HEAD carthage
-            fi
-
             brew reinstall swiftlint jq xcbeautify mxcl/made/swift-sh
             pip3 install awscli
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
@@ -85,10 +77,6 @@ workflows:
         - content: |-
             set -euo pipefail
             ./scripts/build_automation/build-link.swift generate-temp-links $BITRISE_PULL_REQUEST
-    - &carthage
-      carthage:
-        inputs:
-        - carthage_options: "--platform ios"
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
@@ -286,7 +274,6 @@ workflows:
   nightly-cache-gen:
     steps:
     - *install-tools
-    - *carthage
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
@@ -321,9 +308,7 @@ workflows:
         - cache_paths: |-
             cache-metadata/ -> cache-metadata/cache-fingerprint
             rn/Teacher/node_modules/ -> cache-metadata/cache-fingerprint
-            Carthage/ -> cache-metadata/cache-fingerprint
             ~/Library/Developer/Xcode/DerivedData -> cache-metadata/cache-fingerprint
-            /usr/local/Cellar/carthage -> cache-metadata/cache-fingerprint
             /usr/local/Homebrew -> cache-metadata/cache-fingerprint
 
   nightly:
@@ -414,7 +399,6 @@ workflows:
     - cache-pull: {}
     - *set-mtime
     - *install-tools
-    - *carthage
     - *yarn-install-root
     - *yarn-install
     - *yarn-lint
@@ -576,7 +560,6 @@ workflows:
     - cache-pull: {}
     - *set-mtime
     - *install-tools
-    - *carthage
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
@@ -592,7 +575,6 @@ workflows:
     - cache-pull: {}
     - *set-mtime
     - *install-tools
-    - *carthage
     - *yarn-install-root
     - *yarn-install
     - *cocoapods
@@ -634,7 +616,6 @@ workflows:
             set -euxo pipefail
 
             gem install pact_broker-client pact-mock_service
-    - *carthage
     - *yarn-install-root
     - *yarn-install
     - *cocoapods

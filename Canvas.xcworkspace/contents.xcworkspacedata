@@ -82,9 +82,6 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Cartfile">
-   </FileRef>
-   <FileRef
       location = "group:dangerfile.js">
    </FileRef>
    <FileRef

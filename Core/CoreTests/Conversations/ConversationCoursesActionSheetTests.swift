@@ -131,7 +131,7 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
 
         loadView()
 
-        _ = controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        controller.tableView(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         wait(for: [selectedExpectation], timeout: 1)
         XCTAssertEqual(selectedCourse, enrollment.course)
         XCTAssertEqual(selectedUser, enrollment.observedUser)

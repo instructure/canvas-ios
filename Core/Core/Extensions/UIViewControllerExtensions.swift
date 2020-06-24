@@ -55,7 +55,7 @@ extension UIViewController {
         return false
     }
 
-    public var displayModeButtonItem: UIBarButtonItem? {
+    public var splitDisplayModeButtonItem: UIBarButtonItem? {
         guard let splitView = splitViewController else { return nil }
         let defaultButton = splitView.displayModeButtonItem
         let isExpanded = splitView.displayMode == .primaryOverlay || splitView.displayMode == .primaryHidden

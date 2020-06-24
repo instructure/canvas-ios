@@ -79,10 +79,17 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open class CoreUITestRun: XCTestCaseRun {
+        #if swift(>=5.3)
+        open override func record(_ issue: XCTIssue) {
+            CoreUITestCase.needsLaunch = true
+            super.record(issue)
+        }
+        #else
         override open func recordFailure(withDescription description: String, inFile filePath: String?, atLine lineNumber: Int, expected: Bool) {
             CoreUITestCase.needsLaunch = true
             super.recordFailure(withDescription: description, inFile: filePath, atLine: lineNumber, expected: expected)
         }
+        #endif
     }
 
     override open var testRunClass: AnyClass? { CoreUITestRun.self }
