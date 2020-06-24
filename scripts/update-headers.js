@@ -44,8 +44,8 @@ const ignoreExps = [
   /preact/i,
 ]
 
-//                   optional shebang   space    star block        hash or slash block       space
-const headerExp = /^(#!.*(?:\r?\n|\r))?[\s\r\n]*(\/\*.*?\*\/|(?:(?:#|\/\/).*(?:\r?\n|\r))+)?[\s\r\n]*/
+//                   optional header                                space    star block        hash or slash block       space
+const headerExp = /^((#!|\/\/ swift-tools-version:).*(?:\r?\n|\r))?[\s\r\n]*(\/\*.*?\*\/|(?:(?:#|\/\/).*(?:\r?\n|\r))+)?[\s\r\n]*/
 
 /*
  Returns the correct AGPL banner based on the file.
@@ -91,13 +91,13 @@ function check(files, skipWrite = true) {
       !existsSync(file)
     ) { continue }
     const text = readFileSync(file, 'utf8')
-    const [ , shebang = '', banner = '' ] = text.match(headerExp) || []
+    const [ , header = '', , banner = '' ] = text.match(headerExp) || []
     const hasCopyright = /copyright/i.test(banner)
     const hasInstructure = /instructure/i.test(banner)
 
     if (!hasCopyright) {
-      const noBang = text.replace(/^(#!.*(?:\r?\n|\r)+)/, '')
-      const updated = `${shebang}${newBanner(file, banner)}${noBang}`
+      const noHeader = text.replace(/^((#!|\/\/ swift-tools-version:).*(?:\r?\n|\r)+)/, '')
+      const updated = `${header}${newBanner(file, banner)}${noHeader}`
       if (!skipWrite) {
         writeFileSync(file, updated, 'utf8')
       }
