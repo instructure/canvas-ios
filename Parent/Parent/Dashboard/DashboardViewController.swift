@@ -18,7 +18,6 @@
 
 import UIKit
 import CoreData
-import ReactiveSwift
 import CanvasCore
 import Core
 
