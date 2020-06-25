@@ -99,7 +99,7 @@ public class UploadMediaComment {
     }
 
     func putComment(mediaID: String) {
-        let body = PutSubmissionGradeRequest.Body(comment: .init(mediaID: mediaID, type: type, forGroup: isGroup), submission: nil)
+        let body = PutSubmissionGradeRequest.Body(comment: .init(mediaID: mediaID, type: type, forGroup: isGroup))
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {

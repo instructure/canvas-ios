@@ -94,7 +94,6 @@ function banner() (
 
 mkdir -p tmp
 export NSUnbufferedIO=YES
-touch tmp/timestamp
 
 destination_flag=(-destination "platform=iOS Simulator,name=$DEVICE_NAME")
 
@@ -154,7 +153,7 @@ function mergeResults {
         xcrun xcresulttool merge $results --output-path $merged_result_path
         rm -rf $results
     else
-        cp -r $results $merged_result_path
+        mv $results $merged_result_path
     fi
 }
 
@@ -227,7 +226,7 @@ function doTest {
     rm -rf $pipe_file
     mkfifo $pipe_file
 
-    < $pipe_file tee ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-$testrun_id-try-$try-xcodebuild.log | xcbeautify &
+    < $pipe_file tee -a ${BITRISE_DEPLOY_DIR-$results_directory}/test-run-xcodebuild.log | xcbeautify &
     local formatter_pid=$!
     local ret=0
     xcodebuild test-without-building $flags > $pipe_file 2> $pipe_file || ret=$?
