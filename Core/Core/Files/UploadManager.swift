@@ -212,7 +212,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             guard let file = self.file(taskID: dataTask.taskDescription) else { return }
             do {
                 let response = try self.decoder.decode(APIFile.self, from: data)
-                file.update(fromAPIModel: response)
+                File.save(response, to: file, in: self.context)
                 try self.context.save()
             } catch {
                 self.complete(file: file, error: error)

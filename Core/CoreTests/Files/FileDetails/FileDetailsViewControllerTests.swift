@@ -26,7 +26,7 @@ import TestsFoundation
 
 class FileDetailsViewControllerTests: CoreTestCase {
     let file = APIFile.make()
-    var context: Context? = Context(.course, id: "2")
+    var context = Context(.course, id: "2")
     lazy var controller = FileDetailsViewController.create(context: context, fileID: "1", assignmentID: "3")
     var navigation: UINavigationController!
     var saveWasCalled = false
@@ -272,8 +272,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testShare() {
         controller.view.layoutIfNeeded()
-        let shareButton = controller.navigationItem.rightBarButtonItem!
-        _ = shareButton.target?.perform(shareButton.action, with: [shareButton])
+        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
         XCTAssert(router.presented is UIActivityViewController)
     }
 
@@ -284,17 +283,23 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.lockView.isHidden)
         XCTAssertEqual(controller.lockLabel.text, "Locked, yo.")
         controller.viewModules() // not yet accessible from UI
-        XCTAssertTrue(router.lastRoutedTo("/courses/\(context!.id)/modules"))
+        XCTAssertTrue(router.lastRoutedTo("/\(context.pathComponent)/modules"))
     }
 
-    func testNilContext() {
-        context = nil
-        let file = APIFile.make(filename: "File.heic", contentType: "image/heic", mime_class: "file")
-        mock(file)
+    func testTeacher() {
+        environment.app = .teacher
         controller.view.layoutIfNeeded()
-        XCTAssertTrue(controller.spinnerView.isHidden)
-        XCTAssertTrue(controller.progressView.isHidden)
-        XCTAssertEqual(controller.contentView.subviews[0].subviews[0].accessibilityLabel, file.display_name)
+
+        XCTAssert(controller.navigationItem.rightBarButtonItem == controller.editButton)
+        _ = controller.editButton.target?.perform(controller.editButton.action)
+        XCTAssert(router.lastRoutedTo("/\(context.pathComponent)/files/1/edit"))
+
+        _ = controller.toolbarLinkButton.target?.perform(controller.toolbarLinkButton.action)
+        XCTAssertEqual(controller.copiedView.isHidden, false)
+        XCTAssertEqual(UIPasteboard.general.url, URL(string: "https://canvas.instructure.com/files/1/download"))
+
+        _ = controller.toolbarShareButton.target?.perform(controller.toolbarShareButton.action, with: [controller.toolbarShareButton])
+        XCTAssert(router.presented is UIActivityViewController)
     }
 }
 

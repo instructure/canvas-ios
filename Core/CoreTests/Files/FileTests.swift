@@ -23,11 +23,12 @@ import TestsFoundation
 
 class FileTests: CoreTestCase {
     func testSave() {
-        let item = APIFile.make(id: "1")
+        let item = APIFile.make(id: "1", usage_rights: .make(use_justification: .fair_use))
         File.save(item, in: databaseClient)
         let files: [File] = databaseClient.fetch()
         XCTAssertEqual(files.count, 1)
         XCTAssertEqual(files.first?.filename, item.filename)
+        XCTAssertEqual(files.first?.usageRights?.useJustification, .fair_use)
     }
 
     func testIcon() {

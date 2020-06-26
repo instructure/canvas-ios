@@ -32,7 +32,7 @@
 		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
 		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
 		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
-		494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */; };
+		494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* Routes.swift */; };
 		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
@@ -57,7 +57,6 @@
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
-		B15CA240221DBA940014FB02 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA23F221DBA940014FB02 /* Routes.swift */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
 		B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA29C221F16C90014FB02 /* BundleExtensions.swift */; };
@@ -237,7 +236,7 @@
 		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
-		494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Routes.swift"; path = "Teacher/AppDelegate+Routes.swift"; sourceTree = "<group>"; };
+		494AE0B61F843CB4001A8F31 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53381C31DE1311D071C31B5E /* Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5641857260D9B45E5BEF297B /* Pods-defaults-TeacherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TeacherTests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -348,7 +347,6 @@
 		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
-		B15CA23F221DBA940014FB02 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Routes.swift; path = Teacher/Routes.swift; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -430,23 +428,22 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				7D64A95B2362092B004EAEDF /* Attendance */,
-				3B55FEC522FC861F00FCB7B2 /* Submissions */,
-				B15CA293221E0F890014FB02 /* IBDesignables */,
-				B15CA241221DC4DA0014FB02 /* Extensions */,
-				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
-				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
-				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
-				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
-				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
-				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				13B07FB51A68108700A75B9A /* Assets.xcassets */,
-				2C3DE5091F21494D00AE1D59 /* Info.plist */,
+				7D64A95B2362092B004EAEDF /* Attendance */,
+				B15CA241221DC4DA0014FB02 /* Extensions */,
+				B15CA293221E0F890014FB02 /* IBDesignables */,
+				3B55FEC522FC861F00FCB7B2 /* Submissions */,
+				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
+				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
+				2C3DE5091F21494D00AE1D59 /* Info.plist */,
+				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
-				B15CA23F221DBA940014FB02 /* Routes.swift */,
 				7D344E1D241160D100C052E6 /* Localizable.stringsdict */,
+				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
+				494AE0B61F843CB4001A8F31 /* Routes.swift */,
+				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -1102,12 +1099,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
-				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
+				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
-				B15CA240221DBA940014FB02 /* Routes.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,

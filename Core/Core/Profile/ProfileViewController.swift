@@ -260,7 +260,7 @@ public class ProfileViewController: UIViewController {
         reload()
     }
 
-    public func route(to: String, options: RouteOptions = .noOptions) {
+    public func route(to: String, options: RouteOptions = .push) {
         let dashboard = self.dashboard
         env.router.dismiss(self) {
             self.env.router.route(to: to, from: dashboard, options: options)

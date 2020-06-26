@@ -909,7 +909,7 @@ exports[`wrapComponentInProviders renders wrapped screen with store correctly 1`
       }
     }
   >
-    <Component
+    <generator
       apollo={
         ApolloClient {
           "cache": InMemoryCache {

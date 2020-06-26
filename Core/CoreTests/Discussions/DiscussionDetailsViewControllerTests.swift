@@ -143,7 +143,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         var link = baseURL.appendingPathComponent("courses/1/assignments/2")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
-        XCTAssert(router.lastRoutedTo(link, withOptions: .noOptions))
+        XCTAssert(router.lastRoutedTo(link, withOptions: .push))
 
         link = baseURL.appendingPathComponent("courses/1/discussion_topics/1/reply")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
@@ -155,7 +155,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         link = baseURL.appendingPathComponent("courses/1/discussion_topics/1/unknown")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
-        XCTAssert(router.lastRoutedTo(link, withOptions: .noOptions))
+        XCTAssert(router.lastRoutedTo(link, withOptions: .push))
 
         link = baseURL.appendingPathComponent("courses/1/discussion_topics/1/replies/3")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)

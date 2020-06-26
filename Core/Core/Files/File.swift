@@ -73,6 +73,7 @@ final public class File: NSManagedObject {
     @NSManaged public private(set) var userID: String?
     @NSManaged public var contextRaw: Data?
     @NSManaged public var userRaw: Data?
+    @NSManaged public var usageRights: UsageRights?
 
     /// Used to group together files being attached to the same content
     @NSManaged public var batchID: String?
@@ -131,36 +132,39 @@ final public class File: NSManagedObject {
 extension File: WriteableModel {
     public typealias JSON = APIFile
 
-    func update(fromAPIModel item: APIFile) {
-        id = item.id.value
-        uuid = item.uuid
-        folderID = item.folder_id.value
-        displayName = item.display_name
-        filename = item.filename
-        contentType = item.contentType
-        url = item.url?.rawValue
-        size = item.size
-        createdAt = item.created_at
-        updatedAt = item.updated_at
-        unlockAt = item.unlock_at
-        locked = item.locked
-        hidden = item.hidden
-        lockAt = item.lock_at
-        hiddenForUser = item.hidden_for_user
-        thumbnailURL = item.thumbnail_url?.rawValue
-        modifiedAt = item.modified_at
-        mimeClass = item.mime_class
-        mediaEntryID = item.media_entry_id
-        lockedForUser = item.locked_for_user
-        lockExplanation = item.lock_explanation
-        previewURL = item.preview_url?.rawValue
+    @discardableResult
+    public static func save(_ item: APIFile, in context: NSManagedObjectContext) -> File {
+        return save(item, to: nil, in: context)
     }
 
     @discardableResult
-    public static func save(_ item: APIFile, in client: NSManagedObjectContext) -> File {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(File.id), item.id.value)
-        let model: File = client.fetch(predicate).first ?? client.insert()
-        model.update(fromAPIModel: item)
+    public static func save(_ item: APIFile, to model: File?, in client: NSManagedObjectContext) -> File {
+        let model = model ?? client.first(where: #keyPath(File.id), equals: item.id.value) ?? client.insert()
+        model.id = item.id.value
+        model.uuid = item.uuid
+        model.folderID = item.folder_id.value
+        model.displayName = item.display_name
+        model.filename = item.filename
+        model.contentType = item.contentType
+        model.url = item.url?.rawValue
+        model.size = item.size
+        model.createdAt = item.created_at
+        model.updatedAt = item.updated_at
+        model.unlockAt = item.unlock_at
+        model.locked = item.locked
+        model.hidden = item.hidden
+        model.lockAt = item.lock_at
+        model.hiddenForUser = item.hidden_for_user
+        model.thumbnailURL = item.thumbnail_url?.rawValue
+        model.modifiedAt = item.modified_at
+        model.mimeClass = item.mime_class
+        model.mediaEntryID = item.media_entry_id
+        model.lockedForUser = item.locked_for_user
+        model.lockExplanation = item.lock_explanation
+        model.previewURL = item.preview_url?.rawValue
+        model.usageRights = item.usage_rights.map {
+            UsageRights.save($0, to: model.usageRights, in: client)
+        }
         return model
     }
 

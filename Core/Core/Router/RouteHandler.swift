@@ -22,7 +22,7 @@ import UIKit
 // A route is a place you can go in the app
 // Each app defines it's own routes when creating the Router
 public struct RouteHandler {
-    public typealias ViewFactory = (URLComponents, [String: String]) -> UIViewController?
+    public typealias ViewFactory = (URLComponents, [String: String], [String: Any]?) -> UIViewController?
 
     public enum Segment: Equatable {
         case literal(String)

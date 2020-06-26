@@ -50,13 +50,11 @@ public enum RouteOptions: Equatable {
             return false
         }
     }
-
-    public static let noOptions = RouteOptions.push
 }
 
 // The Router stores all routes that can be routed to in the app
 open class Router {
-    public typealias FallbackHandler = (URLComponents, UIViewController, RouteOptions) -> Void
+    public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
@@ -77,29 +75,29 @@ open class Router {
         return url
     }
 
-    public func match(_ url: URL) -> UIViewController? {
-        return match(.parse(url))
+    public func match(_ url: URL, userInfo: [String: Any]? = nil) -> UIViewController? {
+        return match(.parse(url), userInfo: userInfo)
     }
-    public func match(_ url: String) -> UIViewController? {
-        return match(.parse(url))
+    public func match(_ url: String, userInfo: [String: Any]? = nil) -> UIViewController? {
+        return match(.parse(url), userInfo: userInfo)
     }
-    open func match(_ url: URLComponents) -> UIViewController? {
+    open func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         let url = cleanURL(url)
         for route in handlers {
             if let params = route.match(url) {
-                return route.factory(url, params)
+                return route.factory(url, params, userInfo)
             }
         }
         return nil
     }
 
-    public func route(to url: URL, from: UIViewController, options: RouteOptions = .noOptions) {
-        return route(to: .parse(url), from: from, options: options)
+    public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
+        return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
-    public func route(to url: String, from: UIViewController, options: RouteOptions = .noOptions) {
-        return route(to: .parse(url), from: from, options: options)
+    public func route(to url: String, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
+        return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
-    open func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
+    open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
         let url = cleanURL(url)
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
@@ -107,16 +105,16 @@ open class Router {
         Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
         for route in handlers {
             if let params = route.match(url) {
-                if let view = route.factory(url, params) {
+                if let view = route.factory(url, params, userInfo) {
                     show(view, from: from, options: options)
                 }
                 return // don't fall back if a matched route returns no view
             }
         }
-        fallback(url, from, options)
+        fallback(url, userInfo, from, options)
     }
 
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .noOptions, completion: (() -> Void)? = nil) {
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .push, completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
         if let displayModeButton = from.splitDisplayModeButtonItem,

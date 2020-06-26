@@ -23,7 +23,7 @@ struct DebugRoute {
     let path: String
     let options: RouteOptions
 
-    init(_ path: String, _ options: RouteOptions = .noOptions) {
+    init(_ path: String, _ options: RouteOptions = .push) {
         self.path = path
         self.options = options
     }
