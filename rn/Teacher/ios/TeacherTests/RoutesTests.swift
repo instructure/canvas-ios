@@ -41,7 +41,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testRouteSendsNotification() {
-        let userInfo = userInfoFromRoute(options: .noOptions)
+        let userInfo = userInfoFromRoute(options: .push)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, false)
         XCTAssertEqual(userInfo?["detail"] as? Bool, false)
@@ -61,12 +61,46 @@ class RoutesTests: XCTestCase {
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)
     }
 
-    func testMatch() {
+    func testRoutes() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        ExperimentalFeature.nativeDashboard.isEnabled = true
         appDelegate.registerNativeRoutes()
-        HelmManager.shared.registerRoute("/courses/:courseID/pages/:url")
-        HelmManager.shared.registerRoute("/courses/:courseID/assignments/:assignmentID")
-        XCTAssert(router.match("/courses/1/pages/page-1") is PageDetailsViewController)
-        XCTAssert(router.match("/courses/1/assignments/2") is HelmViewController)
+        for (template, _) in HelmManager.shared.nativeViewControllerFactories {
+            HelmManager.shared.registerRoute(template)
+        }
+        XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
+        XCTAssert(router.match("/courses") is CourseListViewController)
+        XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)
+        XCTAssert(router.match("/courses/2/modules/2") is ModuleListViewController)
+        XCTAssert(router.match("/courses/3/pages") is PageListViewController)
+        XCTAssert(router.match("/courses/8/users") is PeopleListViewController)
+        XCTAssert(router.match("/groups/3/pages/page2") is PageDetailsViewController)
+        XCTAssert(router.match("/groups/3/wiki/page2") is PageDetailsViewController)
+        XCTAssert(router.match("/courses/7/modules/5/items/6") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/7/modules/items/6") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/9/module_item_redirect/8") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
+        XCTAssert(router.match("/files") is HelmViewController)
+        XCTAssert(router.match("/users/self/files") is HelmViewController)
+        XCTAssert(router.match("/files/folder/f1") is HelmViewController)
+        XCTAssert(router.match("/groups/2/files/folder/f1") is HelmViewController)
+        XCTAssert(router.match("/files?preview=7") is FileDetailsViewController)
+        XCTAssert(router.match("/files/1") is FileDetailsViewController)
+        XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
+        XCTAssert(router.match("/courses/1/files/1") is FileDetailsViewController)
+        XCTAssert(router.match("/courses/1/files/1/download") is FileDetailsViewController)
+        XCTAssert(router.match("/act-as-user") is ActAsUserViewController)
+        XCTAssert(router.match("/act-as-user/1") is ActAsUserViewController)
+        XCTAssert(router.match("/wrong-app") is WrongAppViewController)
+        XCTAssert(router.match("/courses/1/assignments/2/post_policy") is PostSettingsViewController)
+        XCTAssert(router.match("/profile") is ProfileViewController)
+        XCTAssert(router.match("/profile/settings") is ProfileSettingsViewController)
+        XCTAssert(router.match("/dev-menu/experimental-features") is ExperimentalFeaturesViewController)
+        XCTAssert(router.match("/support/problem") is ErrorReportViewController)
+        XCTAssert(router.match("/support/feature") is ErrorReportViewController)
     }
 }

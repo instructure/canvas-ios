@@ -28,13 +28,21 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     @IBOutlet weak var arButton: UIButton!
     @IBOutlet weak var arImageView: UIImageView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var copiedLabel: UILabel!
+    @IBOutlet weak var copiedView: UIView!
     @IBOutlet weak var lockLabel: UILabel!
     @IBOutlet weak var lockView: UIView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var toolbarLinkButton: UIBarButtonItem!
+    @IBOutlet weak var toolbarShareButton: UIBarButtonItem!
     @IBOutlet weak var viewModulesButton: UIButton!
 
+    lazy var editButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(edit))
+    lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
+
     var assignmentID: String?
-    var context: Context?
+    var context = Context.currentUser
     var downloadTask: URLSessionTask?
     let env = AppEnvironment.shared
     var fileID: String = ""
@@ -47,7 +55,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         self?.update()
     }
 
-    public static func create(context: Context?, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
+    public static func create(context: Context, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -64,17 +72,28 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         arButton.isHidden = true
         arImageView.isHidden = true
 
+        copiedLabel.text = NSLocalizedString("Copied!", bundle: .core, comment: "")
+
         lockView.isHidden = true
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
-        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FileDetails.shareButton"
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem = env.app == .teacher ? editButton : shareButton
+        editButton.accessibilityIdentifier = "FileDetails.editButton"
+        shareButton.accessibilityIdentifier = "FileDetails.shareButton"
+        shareButton.isEnabled = false
 
         progressView.progress = 0
         progressView.progressTintColor = Brand.shared.primary
 
+        toolbar.isHidden = env.app != .teacher
+        toolbar.tintColor = Brand.shared.linkColor
+        toolbarLinkButton.accessibilityIdentifier = "FileDetails.copyButton"
+        toolbarLinkButton.accessibilityLabel = NSLocalizedString("Copy Link", bundle: .core, comment: "")
+        toolbarShareButton.accessibilityIdentifier = "FileDetails.shareButton"
+
         viewModulesButton.setTitle(NSLocalizedString("View Modules", bundle: .core, comment: ""), for: .normal)
         viewModulesButton.isHidden = true
+
+        NotificationCenter.default.addObserver(self, selector: #selector(fileEdited(_:)), name: .init("file-edit"), object: nil)
 
         view.layoutIfNeeded()
         files.refresh()
@@ -83,7 +102,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
-        env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
+        env.userDefaults?.submitAssignmentCourseID = context.contextType == .course ? context.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
 
@@ -91,12 +110,13 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        if let context = context {
-            stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
-        } else {
-            stopTrackingTimeOnViewController(eventName: "/files/\(fileID)")
-        }
+        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
         BackgroundVideoPlayer.shared.disconnect()
+    }
+
+    @objc func fileEdited(_ notification: NSNotification) {
+        guard notification.userInfo?["id"] as? String == fileID else { return }
+        files.refresh(force: true)
     }
 
     func update() {
@@ -154,20 +174,76 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func doneLoading() {
         spinnerView.isHidden = true
         progressView.isHidden = true
-        let courseID = context?.contextType == .course ? context?.id : nil
+        let courseID = context.contextType == .course ? context.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
     }
 
     @IBAction func viewModules() {
-        guard let context = context else { return }
-        env.router.route(to: "/courses/\(context.id)/modules", from: self)
+        env.router.route(to: "/\(context.pathComponent)/modules", from: self)
     }
 
-    @objc func share(_ sender: UIBarButtonItem) {
+    @objc func edit() {
+        guard let file = files.first else { return }
+        let apiFile: [String: Any?] = [
+            "id": fileID,
+            "folder_id": file.folderID,
+            "display_name": file.displayName,
+            "filename": file.filename,
+            "content-type": file.contentType,
+            "url": file.url?.absoluteString,
+            "size": file.size,
+            "created_at": file.createdAt?.isoString(),
+            "updated_at": file.updatedAt?.isoString(),
+            "unlock_at": file.unlockAt?.isoString(),
+            "lock_at": file.lockAt?.isoString(),
+            "locked": file.locked,
+            "hidden": file.hidden,
+            "hidden_for_user": file.hiddenForUser,
+            "thumbnail_url": file.thumbnailURL?.absoluteString,
+            "modified_at": file.modifiedAt?.isoString(),
+            "mime_class": file.mimeClass,
+            "media_entry_id": file.mediaEntryID,
+            "locked_for_user": file.lockedForUser,
+            "lock_explanation": file.lockExplanation,
+            "preview_url": file.previewURL?.absoluteString,
+            "usage_rights": [
+                "legal_copyright": file.usageRights?.legalCopyright,
+                "use_justification": file.usageRights?.useJustification?.rawValue,
+                "license": file.usageRights?.license,
+            ],
+        ]
+        env.router.route(
+            to: "/\(context.pathComponent)/files/\(fileID)/edit",
+            userInfo: [ "file": apiFile ],
+            from: self,
+            options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+        )
+    }
+
+    @IBAction func share(_ sender: UIBarButtonItem) {
         guard let url = localURL else { return }
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
         env.router.show(controller, from: self, options: .modal())
+    }
+
+    @IBAction func copyLink() {
+        UIPasteboard.general.url = env.api.baseURL.appendingPathComponent("files/\(fileID)/download")
+        UIAccessibility.post(notification: .announcement, argument: copiedLabel.text)
+        copiedView.alpha = 0
+        copiedView.isHidden = false
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.copiedView.alpha = 1
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, delay: 1, animations: {
+                self.copiedView.alpha = 0
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.copiedView.isHidden = true
+            })
+        })
     }
 
     var filePathComponent: String? {
@@ -226,7 +302,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
 
     func downloadComplete() {
         guard let file = files.first, let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) else { return }
-        navigationItem.rightBarButtonItem?.isEnabled = true
+        shareButton.isEnabled = true
         switch (file.mimeClass, file.contentType) {
         case ("audio", _):
             embedAudioView(for: localURL)
@@ -358,7 +434,11 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         annotate.accessibilityIdentifier = "FileDetails.annotateButton"
         let search = controller.searchButtonItem
         search.accessibilityIdentifier = "FileDetails.searchButton"
-        navigationItem.rightBarButtonItems = [ share, annotate, search ]
+        navigationItem.rightBarButtonItems = [
+            env.app == .teacher ? editButton : shareButton,
+            annotate,
+            search,
+        ]
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()

@@ -24,6 +24,7 @@ import ReactNative, {
   Alert,
   DatePickerIOS,
   View,
+  NativeModules,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import api from '../../canvas-api'
@@ -39,6 +40,8 @@ import RowSeparator from '../../common/components/rows/RowSeparator'
 import SavingBanner from '../../common/components/SavingBanner'
 import { alertError } from '../../redux/middleware/error-handler'
 import EditUsageRights from './EditUsageRights'
+
+const { NativeNotificationCenter } = NativeModules
 
 type Props = {
   contextID?: string,
@@ -149,9 +152,6 @@ export default class EditItem extends Component<Props, State> {
           await this.props.updateUsageRights(updated.usage_rights)
         }
         await this.props.update(item.id, updated)
-        if (this.props.updateUsageRights && updated.usage_rights !== item.usage_rights) {
-          await this.props.updateUsageRights(updated.usage_rights)
-        }
       } catch (error) {
         this.setState({ pending: false })
         alertError(error)
@@ -161,6 +161,7 @@ export default class EditItem extends Component<Props, State> {
 
     await this.props.navigator.dismiss()
     if (this.props.onChange) this.props.onChange(updated)
+    NativeNotificationCenter.postNotification(this.isFile() ? 'file-edit' : 'folder-edit', updated)
   }
 
   handleDelete = () => {

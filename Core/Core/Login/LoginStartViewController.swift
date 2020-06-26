@@ -274,7 +274,7 @@ class LoginStartViewController: UIViewController {
             style: .cancel,
             handler: { _ in cancelled = true }
         ))
-        env.router.show(loading, from: self, options: .noOptions) {
+        env.router.show(loading, from: self) {
             login.fetch { [weak self, weak loading] session, error in
                 if cancelled { return }
                 guard let session = session, error == nil else {

@@ -21,7 +21,7 @@ import Core
 
 public class TestRouter: Router {
     public init() {
-        super.init(routes: []) { _, _, _ in }
+        super.init(routes: []) { _, _, _, _ in }
     }
     public var calls = [(URLComponents?, UIViewController, RouteOptions)]()
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
@@ -47,12 +47,12 @@ public class TestRouter: Router {
         return viewControllerCalls.popLast()?.0
     }
 
-    public override func match(_ url: URLComponents) -> UIViewController? {
+    public override func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
         return routes[url]?()
     }
 
     public var routeExpectation = XCTestExpectation(description: "route")
-    public override func route(to url: URLComponents, from: UIViewController, options: RouteOptions = .noOptions) {
+    public override func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
         calls.append((url, from, options))
         routeExpectation.fulfill()
     }

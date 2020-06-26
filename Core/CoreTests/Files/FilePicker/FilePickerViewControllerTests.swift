@@ -19,6 +19,7 @@
 import XCTest
 @testable import Core
 import TestsFoundation
+import VisionKit
 
 class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate {
     var cancelled = false
@@ -50,7 +51,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
         XCTAssertTrue(controller.progressView.isHidden)
-        XCTAssertEqual(controller.sourcesTabBar.items?.count, 3)
+        XCTAssertEqual(controller.sourcesTabBar.items?.count, 4)
         XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
     }
 
@@ -139,6 +140,15 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         let doneItem = controller.navigationItem.rightBarButtonItem
         XCTAssertEqual(doneItem?.title, "Done")
         XCTAssertNoThrow(doneItem?.target?.perform(doneItem?.action))
+    }
+
+    @available(iOS 13.0, *)
+    func testDocumentScan() {
+        controller.sources = [.documentScan]
+        controller.view.layoutIfNeeded()
+        let tabBar = controller.sourcesTabBar!
+        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
+        XCTAssertNil(router.presented, "document scanner not supported in simulator")
     }
 }
 

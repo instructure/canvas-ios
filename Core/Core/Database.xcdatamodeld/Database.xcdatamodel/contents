@@ -327,6 +327,7 @@
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
+        <relationship name="usageRights" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UsageRights" inverseName="file" inverseEntity="UsageRights"/>
     </entity>
     <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
         <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
@@ -709,6 +710,12 @@
         <attribute name="key" attributeType="String"/>
         <attribute name="lastRefresh" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="UsageRights" representedClassName="Core.UsageRights" syncable="YES">
+        <attribute name="legalCopyright" optional="YES" attributeType="String"/>
+        <attribute name="license" optional="YES" attributeType="String"/>
+        <attribute name="useJustificationRaw" optional="YES" attributeType="String"/>
+        <relationship name="file" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="usageRights" inverseEntity="File"/>
+    </entity>
     <entity name="User" representedClassName="Core.User" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -754,6 +761,7 @@
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="253"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
+        <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="433"/>
@@ -761,7 +769,7 @@
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="613"/>
+        <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="628"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
@@ -797,6 +805,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

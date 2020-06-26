@@ -169,6 +169,6 @@ notificationCenter.addListener('route', (notification) => {
     navigator.show(userInfo.url, {
       modal: userInfo.modal === true,
       detail: userInfo.detail === true,
-    })
+    }, userInfo.props)
   }
 })

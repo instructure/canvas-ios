@@ -21,7 +21,7 @@ import XCTest
 
 class RouteHandlerTests: XCTestCase {
     func testSegments() {
-        let route = RouteHandler("/a//b/:c/d/*e") { _, _ in return nil }
+        let route = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
         XCTAssertEqual(route.segments, [
             .literal("a"),
             .literal("b"),
@@ -32,40 +32,30 @@ class RouteHandlerTests: XCTestCase {
     }
 
     func testMatch() {
-        let route = RouteHandler("/a//b/:c/d/*e") { url, params in
-            XCTAssertEqual(params, [
-                "c": "c",
-                "e": "e/f/g",
-            ])
-            XCTAssertEqual(url.path, "/api/v1/a/b//c/d/e//f/g")
-            XCTAssertEqual(url.queryItems, [
-                URLQueryItem(name: "h", value: "i"),
-                URLQueryItem(name: "j", value: " k"),
-                URLQueryItem(name: "l", value: nil),
-            ])
-            XCTAssertEqual(url.fragment, "mnop")
-            return UIViewController()
-        }
-        XCTAssertNotNil(route.match(URLComponents(string: "/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")!))
+        let route = RouteHandler("/a//b/:c/d/*e") { _, _, _ in return nil }
+        XCTAssertEqual(route.match(.parse("/api/v1/a/b//c/d/e//f/g?h=%69&j=+k&l#mnop")), [
+            "c": "c",
+            "e": "e/f/g",
+        ])
     }
 
     func testMatchTooShort() {
-        let route = RouteHandler("/a//b/:c/d") { _, _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "a/b/c")!))
+        let route = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
+        XCTAssertNil(route.match(.parse("a/b/c")))
     }
 
     func testMatchTooLong() {
-        let route = RouteHandler("/a//b/:c/d") { _, _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "a/b/c/d/e")!))
+        let route = RouteHandler("/a//b/:c/d") { _, _, _ in return UIViewController() }
+        XCTAssertNil(route.match(.parse("a/b/c/d/e")))
     }
 
     func testMatchNone() {
-        let route = RouteHandler("a") { _, _ in return UIViewController() }
-        XCTAssertNil(route.match(URLComponents(string: "b")!))
+        let route = RouteHandler("a") { _, _, _ in return UIViewController() }
+        XCTAssertNil(route.match(.parse("b")))
     }
 
     func testMatchRoute() {
-        let route = RouteHandler("/courses") { _, _ in return UIViewController() }
+        let route = RouteHandler("/courses") { _, _, _ in return UIViewController() }
         XCTAssertNotNil(route.match(.parse("courses")))
     }
 }
