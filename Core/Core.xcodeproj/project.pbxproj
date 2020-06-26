@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -161,6 +161,10 @@
 		7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D627169245B422900FC1798 /* DiscussionParticipant.swift */; };
 		7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716B245B591E00FC1798 /* GetDiscussions.swift */; };
 		7D62716E245B735A00FC1798 /* DiscussionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */; };
+		7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
+		7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
+		7D630B6F24A511120039A45D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6E24A511120039A45D /* Folder.swift */; };
+		7D630B7124A52C050039A45D /* GetFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B7024A52C050039A45D /* GetFolders.swift */; };
 		7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F787215D44A600151E49 /* APIBrandVariablesTests.swift */; };
 		7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */; };
 		7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */; };
@@ -1359,6 +1363,8 @@
 		7D627169245B422900FC1798 /* DiscussionParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionParticipant.swift; sourceTree = "<group>"; };
 		7D62716B245B591E00FC1798 /* GetDiscussions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussions.swift; sourceTree = "<group>"; };
 		7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailsViewController.swift; sourceTree = "<group>"; };
+		7D630B6E24A511120039A45D /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		7D630B7024A52C050039A45D /* GetFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolders.swift; sourceTree = "<group>"; };
 		7D63F77C215D31A600151E49 /* DynamicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButton.swift; sourceTree = "<group>"; };
 		7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		7D63F787215D44A600151E49 /* APIBrandVariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariablesTests.swift; sourceTree = "<group>"; };
@@ -1951,6 +1957,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
+				7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */,
+				7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2451,7 +2459,9 @@
 				9FD504EB2180BF1A00B395BA /* File.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
+				7D630B6E24A511120039A45D /* Folder.swift */,
 				7D08B1D6237207460075623A /* GetFile.swift */,
+				7D630B7024A52C050039A45D /* GetFolders.swift */,
 				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
 				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
 				7D8E265A24A1026E00A678E7 /* UsageRights.swift */,
@@ -4193,8 +4203,8 @@
 			);
 			name = Core;
 			packageProductDependencies = (
-				E8F2A96224A2764300DB7C18 /* SwiftPackageProductDependency */,
-				E85F59FE24A27B6900DF6D1A /* SwiftPackageProductDependency */,
+				E8F2A96224A2764300DB7C18 /* ReactiveSwift */,
+				E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */,
 			);
 			productName = Core;
 			productReference = 2C96482E211E2F1A002C3255 /* Core.framework */;
@@ -4394,8 +4404,8 @@
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			packageReferences = (
-				E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */,
-				E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */,
+				E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
+				E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
 			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
@@ -5254,6 +5264,7 @@
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
+				7D630B6F24A511120039A45D /* Folder.swift in Sources */,
 				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
 				7DA2607223F722E9005D2121 /* NotificationManager.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
@@ -5338,6 +5349,7 @@
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
+				7D630B7124A52C050039A45D /* GetFolders.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
@@ -6190,7 +6202,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */ = {
+		E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
 			requirement = {
@@ -6198,7 +6210,7 @@
 				minimumVersion = 11.0.0;
 			};
 		};
-		E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */ = {
+		E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
 			requirement = {
@@ -6209,14 +6221,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E85F59FE24A27B6900DF6D1A /* SwiftPackageProductDependency */ = {
+		E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */;
+			package = E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
 			productName = ReactiveCocoa;
 		};
-		E8F2A96224A2764300DB7C18 /* SwiftPackageProductDependency */ = {
+		E8F2A96224A2764300DB7C18 /* ReactiveSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */;
+			package = E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
 			productName = ReactiveSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

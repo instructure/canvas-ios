@@ -20,13 +20,13 @@ import Foundation
 @testable import Core
 
 public class MiniFolder {
-    public var api: APIFileFolder
+    public var api: APIFolder
     public var fileIDs: [String] = []
     public var folderIDs: [String] = []
 
     public var id: String { api.id.value }
 
-    public init(_ file: APIFileFolder) {
+    public init(_ file: APIFolder) {
         self.api = file
     }
 }

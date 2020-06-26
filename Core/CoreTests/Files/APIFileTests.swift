@@ -57,7 +57,7 @@ class APIFileTests: XCTestCase {
     }
 
     func testListFoldersRequest() {
-        let request = ListFoldersRequest(context: .course("1"))
+        let request = GetFoldersRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/folders")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),
@@ -66,7 +66,7 @@ class APIFileTests: XCTestCase {
     }
 
     func testListFilesRequest() {
-        let request = ListFilesRequest(context: .course("1"))
+        let request = GetFilesRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/files")
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "include[]", value: "usage_rights"),

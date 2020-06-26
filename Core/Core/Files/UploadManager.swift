@@ -106,6 +106,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func add(url: URL, batchID: String? = nil) throws -> File {
         let file: File = viewContext.insert()
         let uploadURL = try self.uploadURL(url)
+        file.filename = url.lastPathComponent
         file.localFileURL = uploadURL
         file.batchID = batchID
         file.size = uploadURL.lookupFileSize()
