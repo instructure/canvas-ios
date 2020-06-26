@@ -89,9 +89,6 @@ class RoutesTests: XCTestCase {
     }
 
     func testCourseAssignment() {
-        ExperimentalFeature.studentModules.isEnabled = false
-        XCTAssert(router.match("/courses/2/assignments/3") is AssignmentDetailsViewController)
-        ExperimentalFeature.studentModules.isEnabled = true
         XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
     }
 
@@ -128,46 +125,11 @@ class RoutesTests: XCTestCase {
     }
 
     func testModules() {
-        ExperimentalFeature.studentModules.isEnabled = false
-        XCTAssert(router.match("/courses/1/modules") is ModulesTableViewController)
-        XCTAssert(router.match("/courses/1/modules/1") is ModuleDetailsViewController)
-        ExperimentalFeature.studentModules.isEnabled = true
         XCTAssert(router.match("/courses/1/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/1/modules/1") is ModuleListViewController)
     }
 
     func testModuleItems() {
-        ExperimentalFeature.studentModules.isEnabled = false
-        XCTAssert(router.match("/courses/1/assignments/syllabus") is StudentSyllabusViewController)
-        XCTAssert(router.match("/courses/1/assignments/2") is AssignmentDetailsViewController)
-        XCTAssert(router.match("/courses/1/assignments/2?module_item_id=3") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/discussions/2") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/groups/1/discussions/2") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/courses/1/discussion_topics/2") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/groups/1/discussion_topics/2") is DiscussionDetailsViewController)
-        XCTAssert(router.match("/files/1") is FileDetailsViewController)
-        XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
-        XCTAssert(router.match("/files/1/old") is FileDetailsViewController)
-        XCTAssert(router.match("/courses/1/files/2") is FileDetailsViewController)
-        XCTAssert(router.match("/courses/1/files/2/download") is FileDetailsViewController)
-        XCTAssert(router.match("/groups/1/files/2/download") is FileDetailsViewController)
-        XCTAssert(router.match("/courses/1/files/2?module_item_id=2") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/files/2/download?module_item_id=2") is ModuleItemDetailViewController)
-        XCTAssertNil(router.match("/courses/1/module_item_redirect/2"))
-        XCTAssert(router.match("/courses/1/modules/2/items/3") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/modules/items/2") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/pages/2") is PageDetailsViewController)
-        XCTAssert(router.match("/groups/1/pages/2") is PageDetailsViewController)
-        XCTAssert(router.match("/courses/1/wiki/2") is PageDetailsViewController)
-        XCTAssert(router.match("/groups/1/wiki/2") is PageDetailsViewController)
-        XCTAssert(router.match("/courses/1/pages/2?module_item_id=3") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/wiki/2?module_item_id=3") is ModuleItemDetailViewController)
-        XCTAssert(router.match("/courses/1/quizzes/2") is QuizIntroViewController)
-        XCTAssert(router.match("/courses/1/quizzes/2?module_item_id=3") is ModuleItemDetailViewController)
-    }
-
-    func testNewModuleItems() {
-        ExperimentalFeature.studentModules.isEnabled = true
         XCTAssert(router.match("/courses/1/assignments/syllabus") is StudentSyllabusViewController)
         XCTAssert(router.match("/courses/1/assignments/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/2?origin=module_item_details") is AssignmentDetailsViewController)

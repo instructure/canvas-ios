@@ -22,8 +22,6 @@ import TestsFoundation
 @testable import Core
 
 class ModulesE2ETests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.studentModules] }
-
     func testLaunchIntoAssignmentsAndNavigateModuleItems() {
         Dashboard.courseCard(id: "263").tap()
 

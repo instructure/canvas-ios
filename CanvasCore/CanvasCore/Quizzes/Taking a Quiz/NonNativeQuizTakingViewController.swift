@@ -79,9 +79,6 @@ class NonNativeQuizTakingViewController: UIViewController {
             refreshCoreQuiz()
             env.router.dismiss(self)
         }
-        session.progressDispatcher.dispatch(Progress(kind: .submitted, contextID: contextID, itemType: .quiz, itemID: quizID))
-        session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: contextID, itemType: .quiz, itemID: quizID))
-        session.progressDispatcher.dispatch(Progress(kind: .minimumScore, contextID: contextID, itemType: .quiz, itemID: quizID))
     }
 
     func refreshCoreQuiz() {

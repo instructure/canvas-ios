@@ -63,19 +63,7 @@ class CanvasQuizService {
     }
     
     func completeSubmission(_ submission: QuizSubmission, completed: @escaping (QuizSubmissionResult)->()) {
-        let completion: (QuizSubmissionResult) -> () = { [weak self] result in
-            if let _ = result.error {
-            } else {
-                if let me = self {
-                    let submitted = Progress(kind: .submitted, contextID: me.context, itemType: .quiz, itemID: me.quizID)
-                    me.session.progressDispatcher.dispatch(submitted)
-                    let scored = Progress(kind: .minimumScore, contextID: me.context, itemType: .quiz, itemID: me.quizID)
-                    me.session.progressDispatcher.dispatch(scored)
-                }
-            }
-            completed(result)
-        }
-        let _ = makeRequest(completeSubmissionRequest(submission), completed: completion)
+        let _ = makeRequest(completeSubmissionRequest(submission), completed: completed)
     }
     
     func submissionsRequest() -> Request<[QuizSubmission]> {
