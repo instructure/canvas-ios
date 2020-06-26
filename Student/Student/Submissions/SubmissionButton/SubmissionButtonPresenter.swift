@@ -179,7 +179,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         let mediaTypes = selectedSubmissionTypes.allowedMediaTypes
         filePicker.sources = [.files]
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
-            filePicker.sources.append(contentsOf: [.library, .camera])
+            filePicker.sources.append(contentsOf: [.library, .camera, .documentScan])
         }
         if isMediaRecording { filePicker.sources.append(.audio) }
         filePicker.utis = allowedUTIs
