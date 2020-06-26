@@ -18,11 +18,12 @@
 
 import UIKit
 import MobileCoreServices
+import VisionKit
 
 public enum FilePickerSource: Int, CaseIterable {
-    case camera, library, files, audio
+    case camera, library, files, audio, documentScan
 
-    static var defaults: [FilePickerSource] = [.camera, .library, .files]
+    static var defaults: [FilePickerSource] = [.camera, .library, .files, .documentScan]
 }
 
 public protocol FilePickerControllerDelegate: class {
@@ -102,6 +103,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 tag: FilePickerSource.files.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.filesButton"
+            tabBarItems.append(item)
+        }
+        if #available(iOS 13.0, *), sources.contains(.documentScan) {
+            let item = UITabBarItem(
+                title: NSLocalizedString("Scanner", bundle: .core, comment: ""),
+                image: UIImage(systemName: "doc.text.viewfinder"),
+                tag: FilePickerSource.documentScan.rawValue
+            )
+            item.accessibilityIdentifier = "FilePicker.scannerButton"
             tabBarItems.append(item)
         }
         sourcesTabBar.items = tabBarItems
@@ -260,6 +270,14 @@ extension FilePickerViewController: UITabBarDelegate {
             audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
             audioRecorder.modalPresentationStyle = .formSheet
             env.router.show(audioRecorder, from: self, options: .modal())
+        case .documentScan:
+            if #available(iOS 13.0, *), VNDocumentCameraViewController.isSupported {
+                let scanner = VNDocumentCameraViewController()
+                scanner.delegate = self
+                env.router.show(scanner, from: self, options: .modal())
+            } else {
+                break
+            }
         }
     }
 }
@@ -296,7 +314,7 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
         picker.dismiss(animated: true)
         do {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
-                add(try image.write())
+                add(try image.normalize().write())
             } else if let videoURL = info[.mediaURL] as? URL {
                 let destination = URL
                     .temporaryDirectory
@@ -329,5 +347,20 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
             showError(message: error)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+@available(iOS 13.0, *)
+extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
+    public func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+        controller.dismiss(animated: true)
+        for i in 0..<scan.pageCount {
+            do {
+                let image = scan.imageOfPage(at: i)
+                add(try image.write())
+            } catch {
+                showError(error)
+            }
+        }
     }
 }
