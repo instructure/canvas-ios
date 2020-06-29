@@ -128,6 +128,9 @@
 "Invalid Threshold" = "Paepae koremana";
 
 /* No comment provided by engineer. */
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Ko te kite kei te ngana koe i te tāpiri he ākonga. Ngana ki te tāpiri tēnei ākonga i muri i te wā e whakauru ai koe";
+
+/* No comment provided by engineer. */
 "Late" = "Tūreiti";
 
 /* No comment provided by engineer. */
@@ -135,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Late: %@ (%@/%@)" = "Tūreiti: %1$@ (%2$@/%3$@)";
+
+/* No comment provided by engineer. */
+"Login required" = "E hiahiatia ana te takiuru";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Whakahaere ngā ākonga";

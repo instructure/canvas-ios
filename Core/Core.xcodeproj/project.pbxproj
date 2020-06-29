@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,6 +79,8 @@
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
 		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
+		5B80945D24A8786E001871DB /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
+		5B80945E24A8786E001871DB /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
 		76C331C8F363ABC602A1B6DD /* Pods_needs_pspdfkit_CoreTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */; };
 		78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */; };
@@ -1883,7 +1885,6 @@
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
 		E14A7FC270275DE4A9E9263F /* Pods-needs-pspdfkit-CoreTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; sourceTree = "<group>"; };
 		E29063E525982565056FB9BD /* Pods-PactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PactTests.debug.xcconfig"; path = "Target Support Files/Pods-PactTests/Pods-PactTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E8012D24247846B4006CDB79 /* ViewFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFile.swift; sourceTree = "<group>"; };
 		E81918E4230348440039616A /* CoreUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81918E6230348440039616A /* CoreUITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUITests.h; sourceTree = "<group>"; };
 		E81918E7230348440039616A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1951,6 +1952,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
+				5B80945E24A8786E001871DB /* ReactiveCocoa in Frameworks */,
+				5B80945D24A8786E001871DB /* ReactiveSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4193,8 +4196,8 @@
 			);
 			name = Core;
 			packageProductDependencies = (
-				E8F2A96224A2764300DB7C18 /* SwiftPackageProductDependency */,
-				E85F59FE24A27B6900DF6D1A /* SwiftPackageProductDependency */,
+				E8F2A96224A2764300DB7C18 /* ReactiveSwift */,
+				E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */,
 			);
 			productName = Core;
 			productReference = 2C96482E211E2F1A002C3255 /* Core.framework */;
@@ -4394,8 +4397,8 @@
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			packageReferences = (
-				E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */,
-				E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */,
+				E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
+				E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
 			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
@@ -6190,7 +6193,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */ = {
+		E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
 			requirement = {
@@ -6198,7 +6201,7 @@
 				minimumVersion = 11.0.0;
 			};
 		};
-		E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */ = {
+		E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
 			requirement = {
@@ -6209,14 +6212,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E85F59FE24A27B6900DF6D1A /* SwiftPackageProductDependency */ = {
+		E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E85F59FD24A27B6900DF6D1A /* RemoteSwiftPackageReference */;
+			package = E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
 			productName = ReactiveCocoa;
 		};
-		E8F2A96224A2764300DB7C18 /* SwiftPackageProductDependency */ = {
+		E8F2A96224A2764300DB7C18 /* ReactiveSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E8F2A96124A2764300DB7C18 /* RemoteSwiftPackageReference */;
+			package = E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
 			productName = ReactiveSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
