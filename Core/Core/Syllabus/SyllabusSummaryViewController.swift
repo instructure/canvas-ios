@@ -106,7 +106,7 @@ public class SyllabusSummaryViewController: UITableViewController {
 
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = summary[indexPath]
-        if let url = item?.htmlUrl {
+        if let url = item?.htmlURL {
             env.router.route(to: url, from: self)
         }
     }

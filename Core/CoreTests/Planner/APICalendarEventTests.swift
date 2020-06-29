@@ -49,7 +49,7 @@ class APICalendarEventTests: XCTestCase {
     }
 
     func testGetCalendarEventRequest() {
-        let request = GetCalendarEventRequest(id: "1")
+        let request = GetCalendarEventRequest(eventID: "1")
         XCTAssertEqual(request.path, "calendar_events/1")
     }
 }

@@ -63,18 +63,11 @@ class RoutesTests: XCTestCase {
 
     func testCalendar() {
         XCTAssert(router.match("/calendar") is PlannerViewController)
-
-        // XCTAssert(router.match("/calendar?event_id=7") is CalendarEventDetailViewController)
-        XCTAssertNotNil(router.match("/calendar?event_id=7"))
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertNil(router.match("/calendar?event_id=7"))
+        XCTAssert(router.match("/calendar?event_id=7") is CalendarEventItemDetailsViewController)
     }
 
     func testCalendarEvents() {
-        // XCTAssert(router.match("/calendar_events/7") is CalendarEventDetailViewController)
-        XCTAssertNotNil(router.match("/calendar_events/7"))
-        AppEnvironment.shared.currentSession = nil
-        XCTAssertNil(router.match("/calendar_events/7"))
+        XCTAssert(router.match("/calendar_events/7") is CalendarEventItemDetailsViewController)
     }
 
     func testConversation() {

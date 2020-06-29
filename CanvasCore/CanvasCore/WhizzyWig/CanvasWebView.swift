@@ -17,7 +17,6 @@
 //
 
 import WebKit
-import ReactiveSwift
 import Core
 
 public class CanvasWebView: WKWebView {
@@ -99,8 +98,6 @@ public class CanvasWebView: WKWebView {
     
     @objc
     public weak var presentingViewController: UIViewController?
-
-    fileprivate var externalToolLaunchDisposable: Disposable?
 
     fileprivate var refreshControl: CircleRefreshControl?
 
