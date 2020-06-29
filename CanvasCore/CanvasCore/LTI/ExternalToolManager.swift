@@ -68,10 +68,7 @@ public class ExternalToolManager: NSObject {
         getSessionlessLaunchURL(forLaunchURL: launchURL.ensureHTTPS(), in: session) { [weak self, weak viewController] url, pageViewPath, error in
             guard let me = self, let vc = viewController else { return }
             if let url = url {
-                me.present(url, pageViewPath: pageViewPath, from: vc) { [weak self] in
-                    self?.markViewed(launchURL, session: session)
-                    completionHandler?()
-                }
+                me.present(url, pageViewPath: pageViewPath, from: vc, completionHandler: completionHandler)
                 return
             }
             if let error = error {
@@ -79,10 +76,7 @@ public class ExternalToolManager: NSObject {
                     // There's a bug with the API that is causing 401 errors which "should" never happen.
                     // So when this happens, load the Canvas Web version.
                     // Example: https://instructure.atlassian.net/browse/MBL-9506
-                    me.showAuthenticatedURL(fallbackURL, in: session, from: vc) { [weak self] in
-                        self?.markViewed(launchURL, session: session)
-                        completionHandler?()
-                    }
+                    me.showAuthenticatedURL(fallbackURL, in: session, from: vc, completionHandler: completionHandler)
                     return
                 }
                 me.fail(error, from: vc, completionHandler: completionHandler)
@@ -200,17 +194,6 @@ public class ExternalToolManager: NSObject {
             return nil
         }
         return String(retrieve[idRange])
-    }
-
-    private func markViewed(_ launchURL: URL, session: Session) {
-        session.progressDispatcher.dispatch(
-            Progress(
-                kind: .viewed,
-                contextID: Context.currentUser, // not relevant but cant be nil
-                itemType: Progress.ItemType.legacyModuleProgressShim,
-                itemID: launchURL.absoluteString
-            )
-        )
     }
 
     private func present(_ url: URL, pageViewPath: String?, from viewController: UIViewController, completionHandler: (() -> Void)?) {

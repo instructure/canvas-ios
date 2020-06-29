@@ -94,8 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
             }
             if let legacySession = Session.current {
                 self.session = legacySession
-                LegacyModuleProgressShim.observeProgress(legacySession)
-                ModuleItem.beginObservingProgress(legacySession)
             }
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }

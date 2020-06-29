@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import CoreUITests
 
 class ModulesTests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.studentModules] }
-
     override func setUp() {
         super.setUp()
         mockBaseRequests()

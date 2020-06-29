@@ -133,11 +133,6 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
     fileprivate func quizUpdated() {
         details.quizController = quizController
         updateTakeButtonAndPages()
-
-        if let quiz = quizController.quiz {
-            let service = quizController.service
-            service.session.progressDispatcher.dispatch(Progress(kind: .viewed, contextID: service.context, itemType: .quiz, itemID: quiz.id))
-        }
     }
     
     fileprivate func takeabilityUpdated() {
