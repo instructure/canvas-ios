@@ -211,6 +211,9 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetFileRequest(context: nil, fileID: Pattern.fileID, include: [])) { request in
             try lookupFile(forRequest: request).api
         },
+        .apiRequest(GetFileRequest(context: Pattern.courseContext, fileID: Pattern.fileID, include: [])) { request in
+            try lookupFile(forRequest: request).api
+        },
         .apiRequest(DeleteFileRequest(fileID: Pattern.fileID)) { request in
             let file = try lookupFile(forRequest: request)
             request.state.files[file.id] = nil
