@@ -18,31 +18,19 @@
 
 import WebKit
 import UIKit
-import ReactiveSwift
-import ReactiveCocoa
 import Core
 
 open class CanvasWebViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
-    @objc public let webView: CanvasWebView
-    @objc public var pageViewName: String?
+    public let webView: CanvasWebView
+    public var pageViewName: String?
     private let showDoneButton: Bool
     private let showShareButton: Bool
-    @objc public var showReloadButton: Bool = true
-    
-    let canBack: DynamicProperty<Bool>
-    let canForward: DynamicProperty<Bool>
-    let isLoading: DynamicProperty<Bool>
-    let webTitle: DynamicProperty<String>
-    
+    public var showReloadButton: Bool = true
+
     @objc public init(webView: CanvasWebView = CanvasWebView(), showDoneButton: Bool = false, showShareButton: Bool = false) {
         self.webView = webView
         self.showDoneButton = showDoneButton
         self.showShareButton = showShareButton
-        
-        canBack = DynamicProperty(object: webView, keyPath: "canGoBack")
-        canForward = DynamicProperty(object: webView, keyPath: "canGoForward")
-        isLoading = DynamicProperty(object: webView, keyPath: "loading")
-        webTitle = DynamicProperty(object: webView, keyPath: "title")
         
         super.init(nibName: nil, bundle: nil)
 
@@ -83,20 +71,15 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
         if self.showDoneButton {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         }
-        
-        navigationItem.reactive.title <~ webTitle
         updateToolbarItems()
     }
     
     @objc func updateToolbarItems() {
         let back = UIBarButtonItem(image: .icon(.backward), style: .plain, target: webView, action: #selector(WKWebView.goBack))
-        back.reactive.isEnabled <~ canBack.producer
         
         let forward = UIBarButtonItem(image: .icon(.forward), style: .plain, target: webView, action: #selector(WKWebView.goForward))
-        forward.reactive.isEnabled <~ canForward.producer
         
         let loadingActivity = UIActivityIndicatorView(style: .gray)
-        loadingActivity.reactive.isAnimating <~ isLoading.producer
 
         let loading = UIBarButtonItem(customView: loadingActivity)
         let space: () -> UIBarButtonItem = {

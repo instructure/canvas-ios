@@ -173,9 +173,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "Audio playback failed"
   },
-  "augment_reality_4d23e2df": {
-    "message": "Augment Reality"
-  },
   "availability_8942cde6": {
     "message": "Availability"
   },
@@ -310,15 +307,6 @@
   },
   "conversation_options_8be926f3": {
     "message": "Conversation options"
-  },
-  "copied_880dcb1b": {
-    "message": "Copied!"
-  },
-  "copied_c6518d41": {
-    "message": "Copied"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "Copy Link"
   },
   "copyright_holder_386cc8b8": {
     "message": "Copyright Holder"
@@ -1507,9 +1495,6 @@
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "There was an error loading the attachment."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "There was an error loading the file."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "There was an error loading the list of enrollments"

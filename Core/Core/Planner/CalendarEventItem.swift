@@ -34,14 +34,25 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     @NSManaged public var title: String
     @NSManaged public var startAt: Date?
     @NSManaged public var endAt: Date?
+    @NSManaged public var isAllDay: Bool
     @NSManaged public var typeRaw: String
-    @NSManaged public var htmlUrl: URL?
+    @NSManaged public var htmlURL: URL?
     @NSManaged public var contextRaw: String
+    @NSManaged public var effectiveContextRaw: String?
+    @NSManaged public var contextName: String
     @NSManaged public var hasStartAt: Bool
+    @NSManaged public var details: String?
+    @NSManaged public var locationName: String?
+    @NSManaged public var locationAddress: String?
 
     public var context: Context {
         get { return Context(canvasContextID: contextRaw) ?? .currentUser }
         set { contextRaw = newValue.canvasContextID }
+    }
+
+    public var effectiveContext: Context? {
+        get { effectiveContextRaw.flatMap { Context(canvasContextID: $0) } }
+        set { effectiveContextRaw = newValue?.canvasContextID }
     }
 
     public var type: CalendarEventType {
@@ -61,10 +72,16 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
         model.title = item.title
         model.startAt = item.start_at
         model.endAt = item.end_at
+        model.isAllDay = item.all_day
         model.type = item.type
-        model.htmlUrl = item.html_url
+        model.htmlURL = item.html_url
         model.contextRaw = item.context_code
+        model.effectiveContextRaw = item.effective_context_code
+        model.contextName = item.context_name
         model.hasStartAt = item.start_at != nil
+        model.details = item.description
+        model.locationName = item.location_name
+        model.locationAddress = item.location_address
         return model
     }
 }

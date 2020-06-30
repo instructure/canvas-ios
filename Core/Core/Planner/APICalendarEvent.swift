@@ -18,19 +18,25 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/calendar_events.html#CalendarEvent
 public struct APICalendarEvent: Codable, Equatable {
     let id: ID
     let html_url: URL
     let title: String
     let start_at: Date?
     let end_at: Date?
+    let all_day: Bool
     let type: CalendarEventType
     let context_code: String
+    let effective_context_code: String?
+    let context_name: String
     let created_at: Date
     let updated_at: Date
     let workflow_state: CalendarEventWorkflowState
     let assignment: APIAssignment?
     let description: String?
+    let location_name: String?
+    let location_address: String?
 }
 
 #if DEBUG
@@ -41,13 +47,18 @@ extension APICalendarEvent {
         title: String = "calendar event #1",
         start_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
         end_at: Date? = Date(fromISOString: "2018-05-18T06:00:00Z"),
+        all_day: Bool = false,
         type: CalendarEventType = .event,
         context_code: String = "course_1",
+        effective_context_code: String? = nil,
+        context_name: String = "Course One",
         created_at: Date = Clock.now,
         updated_at: Date = Clock.now,
         workflow_state: CalendarEventWorkflowState = .active,
         assignment: APIAssignment? = nil,
-        description: String? = nil
+        description: String? = nil,
+        location_name: String? = nil,
+        location_address: String? = nil
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,
@@ -55,19 +66,24 @@ extension APICalendarEvent {
             title: title,
             start_at: start_at,
             end_at: end_at,
+            all_day: all_day,
             type: type,
             context_code: context_code,
+            effective_context_code: effective_context_code,
+            context_name: context_name,
             created_at: created_at,
             updated_at: updated_at,
             workflow_state: workflow_state,
             assignment: assignment,
-            description: description
+            description: description,
+            location_name: location_name,
+            location_address: location_address
         )
     }
 }
 #endif
 
-// https://canvas.instructure.com/doc/api/all_resources.html#method.calendar_events_api.index
+// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.index
 public struct GetCalendarEventsRequest: APIRequestable {
     public typealias Response = [APICalendarEvent]
     public enum Include: String {
@@ -133,16 +149,9 @@ public struct GetCalendarEventsRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/calendar_events.html#method.calendar_events_api.show
 public struct GetCalendarEventRequest: APIRequestable {
     public typealias Response = APICalendarEvent
-
-    public let id: String
-
-    public init(id: String) {
-        self.id = id
-    }
-
-    public var path: String {
-        return "calendar_events/\(id)"
-    }
+    public let eventID: String
+    public var path: String { "calendar_events/\(eventID)" }
 }

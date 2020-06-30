@@ -29,7 +29,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case graphqlSpeedGrader = "graphql_speed_grader"
     case refreshTokens = "refresh_tokens"
     case nativeDashboard = "native_dashboard"
-    case studentModules = "student_modules"
     case qrLoginTeacher = "qr_code_login_teacher"
     case qrLoginParent = "qr_code_login_parent"
     case qrLoginStudent = "qr_code_login_student"

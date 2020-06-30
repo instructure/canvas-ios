@@ -42,3 +42,19 @@ public class GetCalendarEvents: CollectionUseCase {
         return Scope(predicate: predicate, order: [title])
     }
 }
+
+public class GetCalendarEventItem: APIUseCase {
+    public typealias Model = CalendarEventItem
+
+    public let eventID: String
+
+    public init(eventID: String) {
+        self.eventID = eventID
+    }
+
+    public var cacheKey: String? { "calendar_events/\(eventID)" }
+
+    public var request: GetCalendarEventRequest { GetCalendarEventRequest(eventID: eventID) }
+
+    public var scope: Scope { .where(#keyPath(CalendarEventItem.id), equals: eventID) }
+}

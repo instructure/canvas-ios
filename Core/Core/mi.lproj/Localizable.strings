@@ -131,7 +131,16 @@
 "Authentication failed. Most likely the user denied the request for access." = "I rahua te motuhēhēnga. Ko te nuinga kaore i whakāetia e te kaiwhakamahi te tono mo te uru.";
 
 /* No comment provided by engineer. */
+"Availability:" = "Wāteatanga:";
+
+/* No comment provided by engineer. */
 "Availability: Closed" = "Wāteatanga kua katia";
+
+/* No comment provided by engineer. */
+"Available From:" = "Wātea mai:";
+
+/* No comment provided by engineer. */
+"Available Until:" = "Wātea kī:";
 
 /* No comment provided by engineer. */
 "black" = "pango";
@@ -314,6 +323,9 @@
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
+"Create Account" = "Waihanga Pūkete";
+
+/* No comment provided by engineer. */
 "Current position" = "Te wāhanga o nāianei";
 
 /* No comment provided by engineer. */
@@ -400,11 +412,17 @@
 /* No comment provided by engineer. */
 "Done" = "Kua mahia";
 
+/* No comment provided by engineer. */
+"Due" = "E tika ana";
+
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
 "Due %@" = "E tika ana %@";
 
 /* No comment provided by engineer. */
 "Due Date" = "rā e tika ana";
+
+/* No comment provided by engineer. */
+"Due:" = "E tika ana:";
 
 /* No comment provided by engineer. */
 "Edit" = "Whakatika";
@@ -429,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Error Saving. Tap to retry." = "Hap i te wā e whakaora ana. Pātō ki te ngana anō.";
+
+/* No comment provided by engineer. */
+"Everyone" = "Tāngata katoa";
 
 /* No comment provided by engineer. */
 "Excused" = "Whakawātea";
@@ -506,6 +527,9 @@
 "for %@" = "hoki %@";
 
 /* No comment provided by engineer. */
+"For:" = "Mō:";
+
+/* No comment provided by engineer. */
 "Forget %@" = "Wareware %@";
 
 /* No comment provided by engineer. */
@@ -522,6 +546,9 @@
 
 /* No comment provided by engineer. */
 "Go to today" = "Haere ki te rā";
+
+/* No comment provided by engineer. */
+"Graded" = "Kōekehia";
 
 /* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ka taea e kore kia mea mahi ahau, kia hoki rongo ahau i a koutou";
+
+/* No comment provided by engineer. */
+"I don’t have a Canvas account" = "Kaore he pūkete Canvas tāku";
+
+/* No comment provided by engineer. */
+"I have a Canvas account" = "He Pūkete Canvas tāku";
 
 /* No comment provided by engineer. */
 "I need help but it's not urgent" = "E hiahia āwhina ahau ēngari kaore kōhukihuki";
@@ -752,7 +785,13 @@
 "Modules" = "Kōwae";
 
 /* No comment provided by engineer. */
+"Multiple Due Dates" = "Maha Rā e tika ana";
+
+/* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Needs Grading" = "E hiahiatia ana mo te kōeke";
 
 /* No comment provided by engineer. */
 "Never" = "Kaua rawa";
@@ -773,6 +812,12 @@
 "No Assignments" = "Kaore ngā whakataunga";
 
 /* No comment provided by engineer. */
+"No available from date set." = "Kāore e wātea mai te rā kua whakatautia.";
+
+/* No comment provided by engineer. */
+"No available until date set." = "Kaore i te wātea ki a tau ranō he rā.";
+
+/* No comment provided by engineer. */
 "No Conferences" = "Kaore ngā Hui";
 
 /* No comment provided by engineer. */
@@ -786,6 +831,9 @@
 
 /* No comment provided by engineer. */
 "No Due Date" = "Kaore he ra tika";
+
+/* No comment provided by engineer. */
+"No due date set." = "Kāore he rā tika kua whakatautia.";
 
 /* No comment provided by engineer. */
 "No Events Today!" = "Kaore he tauwhāinga i tēnei rā!";
@@ -1004,6 +1052,9 @@
 "Search" = "Rapu";
 
 /* No comment provided by engineer. */
+"Sections: %@" = "Wāhanga: %@";
+
+/* No comment provided by engineer. */
 "See All" = "Titiro ki te katoa";
 
 /* No comment provided by engineer. */
@@ -1058,10 +1109,19 @@
 "Show a month at a time" = "Whakāturia he marama i te wā";
 
 /* No comment provided by engineer. */
+"Show graded submissions" = "Kāore ngā tāpaetanga kōekehia";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Whakātu Ngā Kōeke";
 
 /* No comment provided by engineer. */
 "Show more options" = "Whakātu  kōwhiringa nui atu";
+
+/* No comment provided by engineer. */
+"Show submissions not turned in" = "Whakātu ngā tāpaetanga kaore i whakaurutia";
+
+/* No comment provided by engineer. */
+"Show submissions that need grading" = "Whakātu ngā tāpaetanga e hiahiatia na te kōeke";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Mai te mea he kōrero rōpū tēnei, kei ia rōpū ngā kōrerorero mō tēnei kaupapa. Anei ngā kōrero hei whakauru atu mau.";
@@ -1121,6 +1181,9 @@
 "Submission Comment" = "Tākupu Tāpaetanga";
 
 /* No comment provided by engineer. */
+"Submissions" = "Tukunga";
+
+/* No comment provided by engineer. */
 "Submit" = "Tuku";
 
 /* No comment provided by engineer. */
@@ -1149,6 +1212,9 @@
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Pātō ki te tīpako ngā akoranga e hiahia ana koe ki te kite i runga i te maramataka.";
+
+/* No comment provided by engineer. */
+"Tap to view submissions list." = "Pātō ki te tiro i te whārangi tāpaetanga.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Kaiako";
@@ -1217,6 +1283,9 @@
 "There was an unexpected error. Please try again." = "He hapa ohorere i puta Tēnā tarai anō.";
 
 /* No comment provided by engineer. */
+"there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
+
+/* No comment provided by engineer. */
 "This assignment is due by %@" = "Ko tenei whakatuanga e tika ana %@";
 
 /* No comment provided by engineer. */
@@ -1239,6 +1308,9 @@
 
 /* No comment provided by engineer. */
 "to %@" = "kī %@";
+
+/* No comment provided by engineer. */
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Canvas Ākonga Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei. Mehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";
@@ -1311,6 +1383,12 @@
 
 /* No comment provided by engineer. */
 "View" = "Tirohia";
+
+/* No comment provided by engineer. */
+"View all dates" = "Tirohia Ngā Rā Katoa";
+
+/* No comment provided by engineer. */
+"View All Submissions" = "Tiro ki ngā tāpaetanga katoa";
 
 /* No comment provided by engineer. */
 "View Less" = "Tirohia iti rawa";

@@ -17,8 +17,6 @@
 //
 
 import ReactiveSwift
-import ReactiveCocoa
-
 
 func colorfulFavoriteViewModel(_ enrollment: Enrollment) -> ColorfulViewModel {
     let vm = ColorfulViewModel(features: .subtitle)
