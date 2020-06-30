@@ -30,6 +30,16 @@ class AlertThresholdTests: CoreTestCase {
         XCTAssertEqual(AlertThresholdType.institutionAnnouncement.name, "Institution announcements")
     }
 
+    func testTypeTitle() {
+        XCTAssertEqual(AlertThresholdType.assignmentGradeHigh.title(for: 92), "Assignment Grade Above 92")
+        XCTAssertEqual(AlertThresholdType.assignmentGradeLow.title(for: nil), "Assignment Grade Below 0")
+        XCTAssertEqual(AlertThresholdType.assignmentMissing.title(for: nil), "Assignment Missing")
+        XCTAssertEqual(AlertThresholdType.courseAnnouncement.title(for: 7), "Course Announcement")
+        XCTAssertEqual(AlertThresholdType.courseGradeHigh.title(for: 80), "Course Grade Above 80")
+        XCTAssertEqual(AlertThresholdType.courseGradeLow.title(for: 30), "Course Grade Below 30")
+        XCTAssertEqual(AlertThresholdType.institutionAnnouncement.title(for: nil), "Institution Announcement")
+    }
+
     func testIsPercent() {
         XCTAssertEqual(AlertThresholdType.assignmentGradeHigh.isPercent, true)
         XCTAssertEqual(AlertThresholdType.assignmentGradeLow.isPercent, true)

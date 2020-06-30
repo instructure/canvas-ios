@@ -47,6 +47,27 @@ public enum AlertThresholdType: String, CaseIterable, Codable {
         }
     }
 
+    public func title(for value: UInt?) -> String {
+        let title: String
+        switch self {
+        case .courseGradeLow:
+            title = NSLocalizedString("Course Grade Below %d", bundle: .core, comment: "")
+        case .courseGradeHigh:
+            title = NSLocalizedString("Course Grade Above %d", bundle: .core, comment: "")
+        case .assignmentMissing:
+            title = NSLocalizedString("Assignment Missing", bundle: .core, comment: "")
+        case .assignmentGradeLow:
+            title = NSLocalizedString("Assignment Grade Below %d", bundle: .core, comment: "")
+        case .assignmentGradeHigh:
+            title = NSLocalizedString("Assignment Grade Above %d", bundle: .core, comment: "")
+        case .courseAnnouncement:
+            title = NSLocalizedString("Course Announcement", bundle: .core, comment: "")
+        case .institutionAnnouncement:
+            title = NSLocalizedString("Institution Announcement", bundle: .core, comment: "")
+        }
+        return String.localizedStringWithFormat(title, value ?? 0)
+    }
+
     public var isPercent: Bool {
         switch self {
         case .assignmentGradeLow, .assignmentGradeHigh, .courseGradeLow, .courseGradeHigh:
