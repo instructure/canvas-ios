@@ -43,7 +43,6 @@
 		7D630B6024A5003E0039A45D /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B5F24A5003E0039A45D /* FileProviderExtension.swift */; };
 		7D630B6224A5003E0039A45D /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6124A5003E0039A45D /* FileProviderItem.swift */; };
 		7D630B6424A5003E0039A45D /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6324A5003E0039A45D /* FileProviderEnumerator.swift */; };
-		7D630B6924A5003E0039A45D /* Teacher Files.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7D630B5D24A5003E0039A45D /* Teacher Files.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7D630B7324A53F7E0039A45D /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D630B7224A53F7E0039A45D /* Core.framework */; };
 		7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */; };
 		7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9542362092B004EAEDF /* AttendanceViewController.swift */; };
@@ -60,6 +59,7 @@
 		7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */; };
 		7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7DC7047A24ABFD4800CD1C46 /* GetRootFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
@@ -92,13 +92,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7D630B6724A5003E0039A45D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7D630B5C24A5003E0039A45D;
-			remoteInfo = TeacherFileProvider;
-		};
 		B15CA262221DDB820014FB02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -141,7 +134,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				7D630B6924A5003E0039A45D /* Teacher Files.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,12 +346,12 @@
 		7D3DA83821876142000D828F /* Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "Teacher/en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		7D630B5D24A5003E0039A45D /* Teacher Files.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Teacher Files.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D630B5D24A5003E0039A45D /* TeacherFiles.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TeacherFiles.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D630B5F24A5003E0039A45D /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
 		7D630B6124A5003E0039A45D /* FileProviderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderItem.swift; sourceTree = "<group>"; };
 		7D630B6324A5003E0039A45D /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
 		7D630B6524A5003E0039A45D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D630B6624A5003E0039A45D /* TeacherFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeacherFileProvider.entitlements; sourceTree = "<group>"; };
+		7D630B6624A5003E0039A45D /* TeacherFiles.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeacherFiles.entitlements; sourceTree = "<group>"; };
 		7D630B7224A53F7E0039A45D /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D64A9532362092B004EAEDF /* AttendanceStatusController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
 		7D64A9542362092B004EAEDF /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +367,7 @@
 		7D64A98423689DD4004EAEDF /* DatePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D64A9862368C6C0004EAEDF /* AttendanceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewControllerTests.swift; sourceTree = "<group>"; };
 		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
+		7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRootFolders.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -543,16 +536,17 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
-		7D630B5E24A5003E0039A45D /* TeacherFileProvider */ = {
+		7D630B5E24A5003E0039A45D /* TeacherFiles */ = {
 			isa = PBXGroup;
 			children = (
+				7D630B6324A5003E0039A45D /* FileProviderEnumerator.swift */,
 				7D630B5F24A5003E0039A45D /* FileProviderExtension.swift */,
 				7D630B6124A5003E0039A45D /* FileProviderItem.swift */,
-				7D630B6324A5003E0039A45D /* FileProviderEnumerator.swift */,
+				7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */,
 				7D630B6524A5003E0039A45D /* Info.plist */,
-				7D630B6624A5003E0039A45D /* TeacherFileProvider.entitlements */,
+				7D630B6624A5003E0039A45D /* TeacherFiles.entitlements */,
 			);
-			path = TeacherFileProvider;
+			path = TeacherFiles;
 			sourceTree = "<group>";
 		};
 		7D64A95B2362092B004EAEDF /* Attendance */ = {
@@ -590,7 +584,7 @@
 				B15CA25E221DDB820014FB02 /* TeacherTests */,
 				E8315D3722FC9E60003CD27C /* TeacherUITests */,
 				E841D8A123D6472200685A63 /* TeacherE2ETests */,
-				7D630B5E24A5003E0039A45D /* TeacherFileProvider */,
+				7D630B5E24A5003E0039A45D /* TeacherFiles */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
 				E3598DCFB2D0E7A9019957B2 /* Pods */,
@@ -606,7 +600,7 @@
 				B15CA25D221DDB820014FB02 /* TeacherTests.xctest */,
 				E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */,
 				E841D8B923D6472F00685A63 /* TeacherE2ETests.xctest */,
-				7D630B5D24A5003E0039A45D /* Teacher Files.appex */,
+				7D630B5D24A5003E0039A45D /* TeacherFiles.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -741,16 +735,15 @@
 			buildRules = (
 			);
 			dependencies = (
-				7D630B6824A5003E0039A45D /* PBXTargetDependency */,
 			);
 			name = Teacher;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Teacher.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7D630B5C24A5003E0039A45D /* TeacherFileProvider */ = {
+		7D630B5C24A5003E0039A45D /* TeacherFiles */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7D630B6D24A5003E0039A45D /* Build configuration list for PBXNativeTarget "TeacherFileProvider" */;
+			buildConfigurationList = 7D630B6D24A5003E0039A45D /* Build configuration list for PBXNativeTarget "TeacherFiles" */;
 			buildPhases = (
 				7D630B5924A5003E0039A45D /* Sources */,
 				7D630B5A24A5003E0039A45D /* Frameworks */,
@@ -760,9 +753,9 @@
 			);
 			dependencies = (
 			);
-			name = TeacherFileProvider;
-			productName = TeacherFileProvider;
-			productReference = 7D630B5D24A5003E0039A45D /* Teacher Files.appex */;
+			name = TeacherFiles;
+			productName = TeacherFiles;
+			productReference = 7D630B5D24A5003E0039A45D /* TeacherFiles.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		B15CA25C221DDB820014FB02 /* TeacherTests */ = {
@@ -920,7 +913,7 @@
 				B15CA25C221DDB820014FB02 /* TeacherTests */,
 				E8315D3522FC9E60003CD27C /* TeacherUITests */,
 				E841D8A223D6472F00685A63 /* TeacherE2ETests */,
-				7D630B5C24A5003E0039A45D /* TeacherFileProvider */,
+				7D630B5C24A5003E0039A45D /* TeacherFiles */,
 			);
 		};
 /* End PBXProject section */
@@ -1206,6 +1199,7 @@
 			files = (
 				7D630B6024A5003E0039A45D /* FileProviderExtension.swift in Sources */,
 				7D630B6224A5003E0039A45D /* FileProviderItem.swift in Sources */,
+				7DC7047A24ABFD4800CD1C46 /* GetRootFolders.swift in Sources */,
 				7D630B6424A5003E0039A45D /* FileProviderEnumerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1259,11 +1253,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7D630B6824A5003E0039A45D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7D630B5C24A5003E0039A45D /* TeacherFileProvider */;
-			targetProxy = 7D630B6724A5003E0039A45D /* PBXContainerItemProxy */;
-		};
 		B15CA263221DDB820014FB02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* Teacher */;
@@ -1574,12 +1563,12 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = TeacherFileProvider/TeacherFileProvider.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TeacherFiles/TeacherFiles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TeacherFileProvider/Info.plist;
+				INFOPLIST_FILE = TeacherFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1589,8 +1578,8 @@
 				MARKETING_VERSION = 0.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher.TeacherFileProvider;
-				PRODUCT_NAME = "Teacher Files";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher.TeacherFiles;
+				PRODUCT_NAME = TeacherFiles;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1608,13 +1597,13 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = TeacherFileProvider/TeacherFileProvider.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TeacherFiles/TeacherFiles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TeacherFileProvider/Info.plist;
+				INFOPLIST_FILE = TeacherFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1623,8 +1612,8 @@
 				);
 				MARKETING_VERSION = 0.0.1;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher.TeacherFileProvider;
-				PRODUCT_NAME = "Teacher Files";
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher.TeacherFiles;
+				PRODUCT_NAME = TeacherFiles;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1938,7 +1927,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7D630B6D24A5003E0039A45D /* Build configuration list for PBXNativeTarget "TeacherFileProvider" */ = {
+		7D630B6D24A5003E0039A45D /* Build configuration list for PBXNativeTarget "TeacherFiles" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7D630B6B24A5003E0039A45D /* Debug */,

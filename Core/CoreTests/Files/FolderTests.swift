@@ -16,30 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import CoreData
+import XCTest
+@testable import Core
+import TestsFoundation
 
-public class GetFolders: CollectionUseCase {
-    public typealias Model = Folder
-
-    let context: Context
-
-    public init(context: Context) {
-        self.context = context
-    }
-
-    public var cacheKey: String? {
-        "\(context.pathComponent)/folders"
-    }
-
-    public var request: GetFoldersRequest {
-        GetFoldersRequest(context: context)
-    }
-
-    public var scope: Scope {
-        if context.contextType == .folder {
-            return .where(#keyPath(Folder.parentFolderID), equals: context.id, orderBy: #keyPath(Folder.name), naturally: true)
-        }
-        return .where(#keyPath(Folder.canvasContextID), equals: context.canvasContextID, orderBy: #keyPath(Folder.name), naturally: true)
+class FolderTests: CoreTestCase {
+    func testProperties() {
+        let folder = Folder.save(.make(), in: databaseClient)
+        folder.canvasContextID = "bogus"
+        XCTAssertEqual(folder.context, .currentUser)
+        folder.context = .course("2")
+        XCTAssertEqual(folder.context, .course("2"))
     }
 }

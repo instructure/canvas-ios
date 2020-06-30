@@ -579,6 +579,8 @@
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
 		7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */; };
 		7DC5F49524097FCC000256E3 /* Planner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49424097FCC000256E3 /* Planner.swift */; };
+		7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047524ABF6D800CD1C46 /* FolderTests.swift */; };
+		7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */; };
 		7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */; };
 		7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */; };
 		7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */; };
@@ -1534,6 +1536,8 @@
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC5F49424097FCC000256E3 /* Planner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner.swift; sourceTree = "<group>"; };
+		7DC7047524ABF6D800CD1C46 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
+		7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolderTests.swift; sourceTree = "<group>"; };
 		7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummary.swift; sourceTree = "<group>"; };
 		7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
@@ -2480,7 +2484,9 @@
 				B1B42C1422403AE90087399A /* FilePicker */,
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
+				7DC7047524ABF6D800CD1C46 /* FolderTests.swift */,
 				7D08B1D82372084B0075623A /* GetFileTests.swift */,
+				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
 				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
 				B1B42C1522403AFD0087399A /* UploadManagerTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
@@ -4904,6 +4910,7 @@
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
+				7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
@@ -4975,6 +4982,7 @@
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
+				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,

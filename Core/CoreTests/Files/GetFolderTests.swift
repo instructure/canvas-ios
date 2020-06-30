@@ -16,30 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import CoreData
+import XCTest
+@testable import Core
 
-public class GetFolders: CollectionUseCase {
-    public typealias Model = Folder
-
-    let context: Context
-
-    public init(context: Context) {
-        self.context = context
-    }
-
-    public var cacheKey: String? {
-        "\(context.pathComponent)/folders"
-    }
-
-    public var request: GetFoldersRequest {
-        GetFoldersRequest(context: context)
-    }
-
-    public var scope: Scope {
-        if context.contextType == .folder {
-            return .where(#keyPath(Folder.parentFolderID), equals: context.id, orderBy: #keyPath(Folder.name), naturally: true)
-        }
-        return .where(#keyPath(Folder.canvasContextID), equals: context.canvasContextID, orderBy: #keyPath(Folder.name), naturally: true)
+class GetFolderTests: CoreTestCase {
+    func testGetFolders() {
+        XCTAssertEqual(GetFolders(context: .course("1")).cacheKey, "courses/1/folders")
+        XCTAssertEqual(GetFolders(context: .course("1")).request.context, .course("1"))
+        XCTAssertEqual(GetFolders(context: .course("1")).scope, .where(
+            #keyPath(Folder.canvasContextID), equals: "course_1",
+            orderBy: #keyPath(Folder.name), naturally: true)
+        )
+        XCTAssertEqual(GetFolders(context: Context(.folder, id: "2")).scope, .where(
+            #keyPath(Folder.parentFolderID), equals: "2",
+            orderBy: #keyPath(Folder.name), naturally: true)
+        )
     }
 }

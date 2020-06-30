@@ -68,7 +68,7 @@ class FileProviderExtension: NSFileProviderExtension {
         guard let id = persistentIdentifierForItem(at: url), let remoteURL = fileItem(for: id)?.url else {
             return completionHandler(NSFileProviderError(.noSuchItem))
         }
-        env.api.makeDownloadRequest(remoteURL) { (tmpURL, response, error) in
+        env.api.makeDownloadRequest(remoteURL) { (tmpURL, _, error) in
             guard let tmpURL = tmpURL, error == nil else {
                 return completionHandler(error)
             }
@@ -92,7 +92,12 @@ class FileProviderExtension: NSFileProviderExtension {
         return try FileProviderEnumerator(containerItemIdentifier)
     }
 
-    override func fetchThumbnails(for itemIdentifiers: [NSFileProviderItemIdentifier], requestedSize size: CGSize, perThumbnailCompletionHandler: @escaping (NSFileProviderItemIdentifier, Data?, Error?) -> Void, completionHandler: @escaping (Error?) -> Void) -> Progress {
+    override func fetchThumbnails(
+        for itemIdentifiers: [NSFileProviderItemIdentifier],
+        requestedSize size: CGSize,
+        perThumbnailCompletionHandler: @escaping (NSFileProviderItemIdentifier, Data?, Error?) -> Void,
+        completionHandler: @escaping (Error?) -> Void
+    ) -> Progress {
         let progress = Progress(totalUnitCount: Int64(itemIdentifiers.count))
         for identifier in itemIdentifiers {
             guard let file = fileItem(for: identifier) else {

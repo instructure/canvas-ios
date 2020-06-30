@@ -20,12 +20,18 @@ import Foundation
 import XCTest
 @testable import Core
 
-class GetFileTest: CoreTestCase {
-    let context = Context(.course, id: "1")
-
-    func testProperties() {
+class GetFileTests: CoreTestCase {
+    func testGetFile() {
+        let context = Context(.course, id: "1")
         XCTAssertEqual(GetFile(context: context, fileID: "72").cacheKey, "get-file-72")
         XCTAssertEqual(GetFile(context: context, fileID: "5").scope, Scope.where(#keyPath(File.id), equals: "5"))
         XCTAssertEqual(GetFile(context: context, fileID: "1").request.context?.canvasContextID, context.canvasContextID)
+    }
+
+    func testGetFolderFiles() {
+        let useCase = GetFolderFiles(folderID: "2")
+        XCTAssertEqual(useCase.cacheKey, "folders/2/files")
+        XCTAssertEqual(useCase.request.context, Context(.folder, id: "2"))
+        XCTAssertEqual(useCase.scope, .where(#keyPath(File.folderID), equals: "2", orderBy: #keyPath(File.displayName), naturally: true))
     }
 }

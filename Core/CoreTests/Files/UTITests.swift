@@ -22,19 +22,15 @@ import XCTest
 
 class UTITests: XCTestCase {
     func testInitInvalid() {
-        let empty = UTI(extension: "")
-        XCTAssertNil(empty)
+        XCTAssertNil(UTI(extension: ""))
+        XCTAssertNil(UTI(mime: ""))
     }
 
     func testInitValid() {
-        let png = UTI(extension: "png")
-        XCTAssertNotNil(png)
-
-        let jpg = UTI(extension: "jpg")
-        XCTAssertNotNil(jpg)
-
-        let psd = UTI(extension: "psd")
-        XCTAssertNotNil(psd)
+        XCTAssertNotNil(UTI(extension: "png"))
+        XCTAssertNotNil(UTI(extension: "jpg"))
+        XCTAssertNotNil(UTI(extension: "psd"))
+        XCTAssertNotNil(UTI(mime: "image/jpeg"))
     }
 
     func testAny() {
@@ -70,6 +66,10 @@ class UTITests: XCTestCase {
 
     func testFileURL() {
         XCTAssertEqual(UTI.fileURL.rawValue, "public.file-url")
+    }
+
+    func testFolder() {
+        XCTAssertEqual(UTI.folder.rawValue, "public.folder")
     }
 
     func testIWork() {

@@ -54,7 +54,7 @@ public class GetFolderFiles: CollectionUseCase {
     }
 
     public var cacheKey: String? {
-        "\(context.pathComponent)/files/"
+        "\(context.pathComponent)/files"
     }
 
     public var request: GetFilesRequest {
@@ -62,6 +62,6 @@ public class GetFolderFiles: CollectionUseCase {
     }
 
     public var scope: Scope {
-        Scope.where(#keyPath(File.folderID), equals: context.id, orderBy: #keyPath(File.displayName), naturally: true)
+        .where(#keyPath(File.folderID), equals: context.id, orderBy: #keyPath(File.displayName), naturally: true)
     }
 }
