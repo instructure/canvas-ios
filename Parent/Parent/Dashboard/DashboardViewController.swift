@@ -40,7 +40,6 @@ class DashboardViewController: UIViewController {
     let tabsController = UITabBarController()
     @IBOutlet weak var titleLabel: UILabel!
 
-    var alertTabBadgeCountCoordinator: AlertCountCoordinator?
     var badgeCount: UInt = 0 {
         didSet { updateBadgeCount() }
     }
@@ -248,11 +247,8 @@ class DashboardViewController: UIViewController {
         calendar.tabBarItem.selectedImage = UIImage.icon(.calendarTabActive)
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
 
-        let alerts = currentStudentID.flatMap { (id: String) -> UIViewController? in
-            guard let session = Session.current else { return nil }
-            let controller = try? AlertsListViewController(session: session, observeeID: id)
-            controller?.refresher?.refresh(false)
-            return controller
+        let alerts = currentStudentID.flatMap {
+            ObserverAlertListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
         alerts.tabBarItem.title = NSLocalizedString("Alerts", comment: "Alerts Tab")
         alerts.tabBarItem.image = UIImage.icon(.alertsTab)
@@ -260,20 +256,7 @@ class DashboardViewController: UIViewController {
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
         alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.named(.white) ], for: .normal)
-
-        // TODO: Use Store when the alerts list does
-        alertTabBadgeCountCoordinator = nil
-        if let observeeID = currentStudentID, let session = Session.current {
-            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-                Alert.unreadPredicate(),
-                Alert.undismissedPredicate(),
-                Alert.observeePredicate(observeeID),
-            ])
-            alertTabBadgeCountCoordinator = AlertCountCoordinator(session: session, studentID: observeeID, predicate: predicate) { [weak alerts] count in
-                alerts?.tabBarItem.badgeValue = count <= 0 ? nil :
-                    NumberFormatter.localizedString(from: NSNumber(value: count), number: .none)
-            }
-        }
+        alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
     }

@@ -452,6 +452,19 @@
         <attribute name="frequencyRaw" attributeType="String"/>
         <attribute name="notificationsRaw" attributeType="String" defaultValueString=""/>
     </entity>
+    <entity name="ObserverAlert" representedClassName="Core.ObserverAlert" syncable="YES">
+        <attribute name="actionDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="alertTypeRaw" attributeType="String"/>
+        <attribute name="contextID" optional="YES" attributeType="String"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="htmlURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="observerID" attributeType="String"/>
+        <attribute name="thresholdID" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="userID" attributeType="String"/>
+        <attribute name="workflowStateRaw" attributeType="String"/>
+    </entity>
     <entity name="Page" representedClassName="Core.Page" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="contextID" attributeType="String"/>
@@ -808,9 +821,10 @@
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
+        <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
+        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="208"/>
     </elements>
 </model>
