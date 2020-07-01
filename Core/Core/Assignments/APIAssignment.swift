@@ -45,6 +45,7 @@ public struct APIAssignment: Codable, Equatable {
     var rubric_settings: APIRubricSettings?
     let assignment_group_id: ID?
     let all_dates: [APIAssignmentDate]?
+    let allowed_attempts: Int?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -89,7 +90,8 @@ extension APIAssignment {
         use_rubric_for_grading: Bool? = nil,
         rubric_settings: APIRubricSettings? = nil,
         assignment_group_id: ID? = nil,
-        all_dates: [APIAssignmentDate]? = nil
+        all_dates: [APIAssignmentDate]? = nil,
+        allowed_attempts: Int? = -1
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -124,7 +126,8 @@ extension APIAssignment {
             use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
             assignment_group_id: assignment_group_id,
-            all_dates: all_dates
+            all_dates: all_dates,
+            allowed_attempts: allowed_attempts
         )
     }
 }
