@@ -55,8 +55,9 @@ extension URL {
     }
 
     public func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+        let names = items.map { $0.name }
         var components = URLComponents.parse(self)
-        components.queryItems = (components.queryItems ?? []) + items
+        components.queryItems = (components.queryItems ?? []).filter { !names.contains($0.name) } + items
         return components.url ?? self
     }
 
