@@ -78,15 +78,22 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     //  If any new views are added, make sure they are properly hidden/shown
     //  when assignment is locked in the various lockStatus states
 
+    var assignmentID = ""
+    var courseID = ""
+    let env = AppEnvironment.shared
+    var fragment: String?
     let scrollViewInsetPadding: CGFloat = 24.0
 
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
-    static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
+    static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.assignmentID = assignmentID
+        controller.courseID = courseID
+        controller.fragment = fragment
+        controller.presenter = AssignmentDetailsPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
         return controller
     }
 
@@ -287,11 +294,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         let showGradeSection = assignment.submission?.needsGrading == true ||
             assignment.submission?.isGraded == true ||
             presenter.onlineUploadState != nil
-        attemptsView.isHidden = (
-            assignment.allowedAttempts == 0 ||
-            assignment.lockStatus == .before ||
-            assignment.submissionTypes.contains(.online_quiz) // attempts show up elsewhere
-        )
+        attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())

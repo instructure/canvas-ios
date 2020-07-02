@@ -42,25 +42,25 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         return "/courses/\(courseID)/assignments/\(assignmentID)"
     }
 
+    lazy var arc = env.subscribe(GetArc(courseID: courseID)) { [weak self] in
+        self?.updateArc()
+    }
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: [.submission])) { [weak self] in
         self?.update()
     }
-
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-
     lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
     }
-
-    lazy var arc = env.subscribe(GetArc(courseID: courseID)) { [weak self] in
-        self?.updateArc()
+    lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) { [weak self] in
+        self?.update()
     }
 
     var quizzes: Store<GetQuiz>?
 
-    let env: AppEnvironment
+    let env = AppEnvironment.shared
     weak var view: AssignmentDetailsViewProtocol?
     let courseID: String
     let assignmentID: String
@@ -87,12 +87,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         }
     }
 
-    init(env: AppEnvironment = .shared,
-         view: AssignmentDetailsViewProtocol,
-         courseID: String,
-         assignmentID: String,
-         fragment: String? = nil) {
-        self.env = env
+    init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
         self.courseID = courseID
         self.assignmentID = assignmentID
@@ -151,6 +146,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         assignments.refresh(force: true)
         arc.refresh()
         onlineUpload.refresh()
+        features.refresh()
 
         NotificationCenter.default.addObserver(self, selector: #selector(quizRefresh(_:)), name: .quizRefresh, object: nil)
         NotificationCenter.default.addObserver(
@@ -165,6 +161,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         courses.refresh(force: true)
         assignments.refresh(force: true)
         quizzes?.refresh(force: true)
+        features.refresh(force: true)
 
         submissionButtonPresenter.arcID = .pending
         arc.refresh(force: true)
@@ -261,6 +258,15 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true ||
             assignment?.isMasteryPathAssignment == true
+    }
+
+    func attemptsIsHidden() -> Bool {
+        return (
+            features.first(where: { $0.name == "assignment_attempts" })?.enabled != true ||
+            assignment?.allowedAttempts == 0 ||
+            assignment?.lockStatus == .before ||
+            assignment?.submissionTypes.contains(.online_quiz) == true // attempts show up elsewhere
+        )
     }
 
     func assignmentDescription() -> String {
