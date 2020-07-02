@@ -95,19 +95,7 @@ enum DiscussionHTML {
             </p>
             """
         }
-        let message = entry.message ?? ""
-
-        // <script> tags are not supported by dangerouslySetInnerHTML
-        if let regex = try? NSRegularExpression(pattern: "<script(.+)</script>", options: .caseInsensitive) {
-            return regex.stringByReplacingMatches(
-                in: message,
-                options: [],
-                range: NSRange(location: 0, length: message.count),
-                withTemplate: ""
-            )
-        }
-
-        return message
+        return entry.message?.replacingOccurrences(of: "<script(.+)</script>", with: "", options: .regularExpression) ?? ""
     }
 
     // Preact-based rendering for updatable content
