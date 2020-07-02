@@ -79,6 +79,9 @@
       </FileRef>
    </Group>
    <FileRef
+      location = "group:scripts">
+   </FileRef>
+   <FileRef
       location = "group:dangerfile.js">
    </FileRef>
    <FileRef

@@ -17,19 +17,18 @@
 //
 
 import Foundation
-import Core
 
-class GetObserverAlerts: CollectionUseCase {
-    typealias Model = ObserverAlert
+public class GetObserverAlerts: CollectionUseCase {
+    public typealias Model = ObserverAlert
 
-    let studentID: String
-    init(studentID: String) {
+    public let studentID: String
+    public init(studentID: String) {
         self.studentID = studentID
     }
 
-    var cacheKey: String? { "users/self/observer_alerts/\(studentID)" }
-    var request: GetObserverAlertsRequest { GetObserverAlertsRequest(studentID: studentID) }
-    var scope: Scope { Scope(
+    public var cacheKey: String? { "users/self/observer_alerts/\(studentID)" }
+    public var request: GetObserverAlertsRequest { GetObserverAlertsRequest(studentID: studentID) }
+    public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ObserverAlert.userID), equals: studentID),
             NSPredicate(
@@ -42,28 +41,28 @@ class GetObserverAlerts: CollectionUseCase {
     ) }
 }
 
-class MarkObserverAlertRead: APIUseCase {
-    typealias Model = ObserverAlert
+public class MarkObserverAlertRead: APIUseCase {
+    public typealias Model = ObserverAlert
 
-    let alertID: String
-    init(alertID: String) {
+    public let alertID: String
+    public init(alertID: String) {
         self.alertID = alertID
     }
 
-    var cacheKey: String? { nil }
-    var request: MarkObserverAlertReadRequest { MarkObserverAlertReadRequest(alertID: alertID) }
-    var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
+    public var cacheKey: String? { nil }
+    public var request: MarkObserverAlertReadRequest { MarkObserverAlertReadRequest(alertID: alertID) }
+    public var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
 }
 
-class DismissObserverAlert: APIUseCase {
-    typealias Model = ObserverAlert
+public class DismissObserverAlert: APIUseCase {
+    public typealias Model = ObserverAlert
 
-    let alertID: String
-    init(alertID: String) {
+    public let alertID: String
+    public init(alertID: String) {
         self.alertID = alertID
     }
 
-    var cacheKey: String? { nil }
-    var request: DismissObserverAlertRequest { DismissObserverAlertRequest(alertID: alertID) }
-    var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
+    public var cacheKey: String? { nil }
+    public var request: DismissObserverAlertRequest { DismissObserverAlertRequest(alertID: alertID) }
+    public var scope: Scope { .where(#keyPath(ObserverAlert.id), equals: alertID) }
 }

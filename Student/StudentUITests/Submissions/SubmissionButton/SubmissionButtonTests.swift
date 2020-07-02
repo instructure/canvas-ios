@@ -103,6 +103,7 @@ class SubmissionButtonTests: CoreUITestCase {
         mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: "1", isRead: true), value: APINoContent())
         mockData(GetDiscussionTopicRequest(context: .course(course.id.value), topicID: "1"))
         mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: "1", includeNewEntries: true), value: .make())
+        mockData(GetModuleItemSequenceRequest(courseID: course.id.value, assetType: .discussion, assetID: "1"), value: .make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()

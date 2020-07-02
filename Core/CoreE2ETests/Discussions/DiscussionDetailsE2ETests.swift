@@ -43,6 +43,8 @@ class DiscussionDetailsE2ETests: CoreUITestCase {
     }
 
     func testLinks() {
+        setAnimationsEnabled(true)
+
         DiscussionListCell.simple.tapUntil {
             app.find(label: "Posted to All Sections").exists
         }
@@ -71,5 +73,7 @@ class DiscussionDetailsE2ETests: CoreUITestCase {
 
         app.find(label: "Quiz One", type: .link).tap()
         app.find(label: "This is the first quiz.").waitToExist()
+
+        setAnimationsEnabled(false)
     }
 }

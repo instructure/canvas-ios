@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import CoreData
 
 extension AlertThreshold: WriteableModel {
@@ -34,61 +33,61 @@ extension AlertThreshold: WriteableModel {
     }
 }
 
-class GetAlertThresholds: CollectionUseCase {
-    typealias Model = AlertThreshold
-    let studentID: String
+public class GetAlertThresholds: CollectionUseCase {
+    public typealias Model = AlertThreshold
+    public let studentID: String
 
-    init(studentID: String) {
+    public init(studentID: String) {
         self.studentID = studentID
     }
 
-    var cacheKey: String? { "get-alertthresholds-\(studentID)" }
+    public var cacheKey: String? { "get-alertthresholds-\(studentID)" }
 
-    var scope: Scope { .where(#keyPath(AlertThreshold.studentID), equals: studentID) }
+    public var scope: Scope { .where(#keyPath(AlertThreshold.studentID), equals: studentID) }
 
-    var request: GetAlertThresholdRequest {
+    public var request: GetAlertThresholdRequest {
         return GetAlertThresholdRequest(studentID: studentID)
     }
 }
 
-class RemoveAlertThreshold: CollectionUseCase {
-    typealias Model = AlertThreshold
-    let thresholdID: String
+public class RemoveAlertThreshold: CollectionUseCase {
+    public typealias Model = AlertThreshold
+    public let thresholdID: String
 
-    init(thresholdID: String) {
+    public init(thresholdID: String) {
         self.thresholdID = thresholdID
     }
 
-    var cacheKey: String?
+    public var cacheKey: String?
 
-    var request: DeleteAlertThresholdRequest {
+    public var request: DeleteAlertThresholdRequest {
         return DeleteAlertThresholdRequest(thresholdID: thresholdID)
     }
 
-    var scope: Scope { .where(#keyPath(AlertThreshold.id), equals: thresholdID) }
+    public var scope: Scope { .where(#keyPath(AlertThreshold.id), equals: thresholdID) }
 
-    func write(response: APIAlertThreshold?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: APIAlertThreshold?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
     }
 }
 
-class CreateAlertThreshold: APIUseCase {
-    typealias Model = AlertThreshold
+public class CreateAlertThreshold: APIUseCase {
+    public typealias Model = AlertThreshold
 
-    var cacheKey: String?
-    let request: PostAlertThresholdRequest
+    public var cacheKey: String?
+    public let request: PostAlertThresholdRequest
 
-    init(userID: String, value: UInt?, alertType: AlertThresholdType) {
+    public init(userID: String, value: UInt?, alertType: AlertThresholdType) {
         request = PostAlertThresholdRequest(userID: userID, alertType: alertType, value: value)
     }
 }
 
-class UpdateAlertThreshold: APIUseCase {
-    typealias Model = AlertThreshold
+public class UpdateAlertThreshold: APIUseCase {
+    public typealias Model = AlertThreshold
 
-    var cacheKey: String?
-    let request: PutAlertThresholdRequest
+    public var cacheKey: String?
+    public let request: PutAlertThresholdRequest
 
-    init(thresholdID: String, value: UInt, alertType: AlertThresholdType) {
+    public init(thresholdID: String, value: UInt, alertType: AlertThresholdType) {
         request = PutAlertThresholdRequest(thresholdID: thresholdID, alertType: alertType, value: value)
     }
 }

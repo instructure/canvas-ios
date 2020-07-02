@@ -39,6 +39,7 @@ class DiscussionReplyTests: CoreUITestCase {
         mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: discussion.id.value), value: fullTopic)
         mockData(GetGroupsRequest(context: .course(course.id.value)), value: [])
         mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: discussion.id.value, isRead: true), value: APINoContent())
+        mockData(GetModuleItemSequenceRequest(courseID: course.id.value, assetType: .discussion, assetID: discussion.id.value), value: .make())
         fullTopic.unread_entries.forEach { entry in
             mockData(MarkDiscussionEntryReadRequest(context: .course(course.id.value), topicID: discussion.id.value, entryID: entry.value, isRead: true, isForcedRead: false)) { [weak self] request in
                 self?.markedAsRead[entry] = true

@@ -18,7 +18,6 @@
 
 import Foundation
 import CoreData
-import Core
 
 public class GetObservedStudents: CollectionUseCase {
     public typealias Model = User

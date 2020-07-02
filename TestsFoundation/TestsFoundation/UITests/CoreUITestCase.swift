@@ -563,6 +563,12 @@ open class CoreUITestCase: XCTestCase {
             }
         }
 
+        mockData(GetModuleItemSequenceRequest(
+            courseID: assignment.course_id.value,
+            assetType: .assignment,
+            assetID: assignment.id.value
+        ), value: .make())
+
         return assignment
     }
 
