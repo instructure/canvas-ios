@@ -82,4 +82,13 @@ class URLComponentsExtensionsTests: XCTestCase {
         url.originIsNotification = false
         XCTAssertEqual(url.url?.absoluteString, "https://foobar.com/courses/165/assignments/900/submissions/1?")
     }
+
+    func testOriginIsModuleItemDetails() {
+        var url = URLComponents.parse("/courses/165/assignments/900")
+        XCTAssertFalse(url.originIsModuleItemDetails)
+
+        url = URLComponents.parse("/courses/165/assignments/900?origin=calendar&origin=module_item_details")
+        XCTAssertTrue(url.originIsModuleItemDetails)
+
+    }
 }
