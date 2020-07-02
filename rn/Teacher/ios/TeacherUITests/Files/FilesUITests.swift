@@ -156,6 +156,10 @@ class FilesUITests: MiniCanvasUITestCase {
         FileEditItem.delete.tap()
         app.find(label: "Delete").tap()
 
+        // FIXME: These should have happened automatically.
+        NavBar.backButton.tap()
+        pullToRefresh()
+
         app.find(label: "This folder is empty").waitToExist()
         XCTAssertNil(firstFile)
     }

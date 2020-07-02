@@ -54,7 +54,7 @@ class DashboardViewControllerTests: ParentTestCase {
 
         XCTAssert(vc.tabsController.viewControllers?[0] is Parent.CourseListViewController)
         XCTAssert(vc.tabsController.viewControllers?[1] is PlannerViewController)
-        XCTAssert(vc.tabsController.viewControllers?[2] is Parent.AlertsListViewController)
+        XCTAssert(vc.tabsController.viewControllers?[2] is ObserverAlertListViewController)
 
         XCTAssertEqual(vc.profileButton.accessibilityLabel, "Settings. 3 unread conversations")
         vc.profileButton.sendActions(for: .primaryActionTriggered)

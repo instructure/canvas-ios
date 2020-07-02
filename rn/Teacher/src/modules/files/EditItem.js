@@ -148,10 +148,10 @@ export default class EditItem extends Component<Props, State> {
     if (Object.keys(updated).some(p => updated[p] !== item[p])) {
       this.setState({ pending: true })
       try {
+        await this.props.update(item.id, updated)
         if (this.props.updateUsageRights && updated.usage_rights !== item.usage_rights) {
           await this.props.updateUsageRights(updated.usage_rights)
         }
-        await this.props.update(item.id, updated)
       } catch (error) {
         this.setState({ pending: false })
         alertError(error)

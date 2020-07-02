@@ -85,11 +85,11 @@ public class TestRouter: Router {
     }
 
     public func lastRoutedTo(_ url: URL) -> Bool {
-        return calls.last?.0 == URLComponents.parse(url)
+        return lastRoutedTo(.parse(url))
     }
 
     public func lastRoutedTo(_ url: URLComponents?) -> Bool {
-        return calls.last?.0 == url
+        return calls.last?.0?.path == url?.path
     }
 
     public func lastRoutedTo(_ url: URL, withOptions options: RouteOptions) -> Bool {

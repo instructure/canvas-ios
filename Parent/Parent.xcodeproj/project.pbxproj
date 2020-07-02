@@ -18,7 +18,6 @@
 		2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA01DDF62ED00650856 /* QuartzCore.framework */; };
 		2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */; };
 		2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BAA1D91CDE00059C5A5 /* CourseCell.xib */; };
-		2CB69BB11D91CDEC0059C5A5 /* AlertCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BB31D91CDEC0059C5A5 /* AlertCell.xib */; };
 		2CB69BB41D91CDF00059C5A5 /* DetailsInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BB61D91CDF00059C5A5 /* DetailsInfoCell.xib */; };
 		2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BB91D91CDF30059C5A5 /* DetailsReminderCell.xib */; };
 		2CB69BBA1D91CDF70059C5A5 /* DetailsDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BBC1D91CDF70059C5A5 /* DetailsDateCell.xib */; };
@@ -34,7 +33,6 @@
 		3B4C544E245E8C6100E1AE33 /* CreateAccountRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B4C544D245E8C6100E1AE33 /* CreateAccountRow.xib */; };
 		3B54E3572326F93300D8D1D2 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B54E3562326F93300D8D1D2 /* TestsFoundation.framework */; };
 		3B54E3592326F9B000D8D1D2 /* ParentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B54E3582326F9B000D8D1D2 /* ParentTestCase.swift */; };
-		3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B11F912BD100A3BC06 /* Alert.swift */; };
 		3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF6C2332999900196A06 /* CourseDetailsViewController.swift */; };
 		3BC50CC5246B11C00023159F /* CreateAccountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC4246B11C00023159F /* CreateAccountViewControllerTests.swift */; };
 		3BC50CCF24746FED0023159F /* SelectAddStudentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CCE24746FED0023159F /* SelectAddStudentMethodViewController.swift */; };
@@ -45,13 +43,6 @@
 		4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948BE681F915D330035BAFD /* BundleExtensions.swift */; };
 		4948BE6A1F915F4B0035BAFD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; };
 		4948BE6B1F915F4B0035BAFD /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49952C3B1F7477C300A11404 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48A71F912BD100A3BC06 /* AlertAPI.swift */; };
-		497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48A91F912BD100A3BC06 /* Session+Alert.swift */; };
-		497C48C01F912BD100A3BC06 /* Alert+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B21F912BD100A3BC06 /* Alert+Edits.swift */; };
-		497C48C11F912BD100A3BC06 /* Alert+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B31F912BD100A3BC06 /* Alert+Collections.swift */; };
-		497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B41F912BD100A3BC06 /* Alert+Network.swift */; };
-		497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B51F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld */; };
-		497C48C41F912BD100A3BC06 /* AlertCountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */; };
 		497C48E11F9153D100A3BC06 /* Session+Airwolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CC1F9153D000A3BC06 /* Session+Airwolf.swift */; };
 		497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 497C48CE1F9153D000A3BC06 /* Airwolf.xcdatamodeld */; };
 		497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D11F9153D000A3BC06 /* Student+Collections.swift */; };
@@ -64,8 +55,6 @@
 		497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DB1F9153D000A3BC06 /* Discussions.swift */; };
 		497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DC1F9153D000A3BC06 /* Courses.swift */; };
 		5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */; };
-		5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A501C739E6A00BB7707 /* AlertCell.swift */; };
-		5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */; };
 		5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A581C739E6A00BB7707 /* CourseCell.swift */; };
 		5E0F9A6F1C739E6A00BB7707 /* CourseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */; };
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
@@ -91,7 +80,6 @@
 		61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */; };
 		61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */; };
 		61BE87DF1C8E308600D79BF4 /* Remindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE87DE1C8E308600D79BF4 /* Remindable.swift */; };
-		61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */; };
 		61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */; };
 		785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 785AC17E20CEDAD300C28E46 /* Settings.bundle */; };
 		7893BDFD20D1A83F00231DF7 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */; };
@@ -116,6 +104,14 @@
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
 		7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49124097C12000256E3 /* PlannerTests.swift */; };
+		7DC7045D24AA8EE900CD1C46 /* ObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7045C24AA8EE900CD1C46 /* ObserverAlert.swift */; };
+		7DC7046124AA906100CD1C46 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046024AA906100CD1C46 /* APIObserverAlert.swift */; };
+		7DC7046324AA947200CD1C46 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046224AA947200CD1C46 /* GetObserverAlerts.swift */; };
+		7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */; };
+		7DC7046724AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */; };
+		7DC7046D24ABBB0400CD1C46 /* APIObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */; };
+		7DC7046F24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */; };
+		7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */; };
 		7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
@@ -210,7 +206,6 @@
 		2C0CAD901DEF6EC4008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		2C0CAD911DEF6EC4008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C0CAD921DEF6EC5008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		2C0CAD951DEF6EC7008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C0CAD981DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD991DEF6EC9008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C0CAD9E1DEF6ECD008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -221,7 +216,6 @@
 		2C61CD121D9311E500196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CD131D9311E600196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CD151D9311E600196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CD1B1D9311E700196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD291D9311EA00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD2D1D9311EB00196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD361D93122800196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -230,7 +224,6 @@
 		2C61CD3C1D93122D00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CD3D1D93122D00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CD3F1D93122E00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CD411D93122E00196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD471D93123000196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD4B1D93123100196C03 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD4F1D93124100196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -239,7 +232,6 @@
 		2C61CD551D93124300196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CD561D93124400196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CD581D93124400196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CD5A1D93124500196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CD601D93124600196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD641D93124800196C03 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CD681D93126700196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -248,7 +240,6 @@
 		2C61CD6E1D93126800196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C61CD6F1D93126900196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		2C61CD711D93126900196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		2C61CD731D93126A00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CD791D93126C00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CD7D1D93126D00196C03 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CD811D93128500196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -257,7 +248,6 @@
 		2C61CD871D93128700196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C61CD881D93128700196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		2C61CD8A1D93128800196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		2C61CD8C1D93128900196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CD921D93128B00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CD961D93128C00196C03 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CD9A1D9312AA00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -266,7 +256,6 @@
 		2C61CDA01D9312AC00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CDA11D9312AC00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CDA31D9312AD00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CDA51D9312AD00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDAB1D9312AF00196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDAF1D9312B100196C03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDB31D9312C200196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -275,7 +264,6 @@
 		2C61CDB91D9312C400196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CDBA1D9312C500196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CDBC1D9312C500196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CDBE1D9312C600196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDC41D9312C800196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDC81D9312C900196C03 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDCC1D9312E000196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -284,7 +272,6 @@
 		2C61CDD21D9312E200196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CDD31D9312E200196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CDD51D9312E300196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CDD71D9312E400196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDDD1D9312E600196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDE11D9312E700196C03 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDE51D9312FA00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -293,7 +280,6 @@
 		2C61CDEB1D9312FC00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CDEC1D9312FC00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CDEE1D9312FD00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CDF01D9312FD00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CDF61D9312FF00196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CDFA1D93130100196C03 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CDFE1D93131A00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -302,7 +288,6 @@
 		2C61CE041D93131C00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE051D93131C00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE071D93131D00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE091D93131E00196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE0F1D93132000196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE131D93132100196C03 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE171D9313B900196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -311,7 +296,6 @@
 		2C61CE1D1D9313BB00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE1E1D9313BB00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE201D9313BB00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE221D9313BC00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE281D9313BE00196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE2C1D9313C200196C03 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE301D9313EA00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -320,7 +304,6 @@
 		2C61CE361D9313EC00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE371D9313ED00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE391D9313ED00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE3B1D9313EE00196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE411D9313F000196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE451D9313F100196C03 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE491D93141800196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -329,7 +312,6 @@
 		2C61CE4F1D93141A00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE501D93141A00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE521D93141B00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE541D93141B00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE5A1D93141D00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE5E1D93141F00196C03 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE621D93143A00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -338,7 +320,6 @@
 		2C61CE681D93143C00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C61CE691D93143D00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		2C61CE6B1D93143D00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		2C61CE6D1D93143E00196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CE731D93144300196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CE771D93144600196C03 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CE7B1D93145B00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -347,7 +328,6 @@
 		2C61CE811D93145D00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE821D93145D00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE841D93145E00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE861D93145E00196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CE8C1D93146000196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CE901D93146200196C03 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CE941D93148000196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -356,7 +336,6 @@
 		2C61CE9A1D93148200196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CE9B1D93148200196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CE9D1D93148300196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CE9F1D93148300196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEA51D93148500196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEA91D93148700196C03 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CEAD1D9314A700196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -365,7 +344,6 @@
 		2C61CEB31D9314A900196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CEB41D9314A900196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CEB61D9314AA00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CEB81D9314AB00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEBE1D9314AD00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEC21D9314AE00196C03 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C61CEC61D9314C600196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -374,7 +352,6 @@
 		2C61CECC1D9314C800196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		2C61CECD1D9314C800196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		2C61CECF1D9314C900196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
-		2C61CED11D9314CA00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		2C61CED71D9314CC00196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2C61CEDB1D9314D000196C03 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
 		2C61CEDF1D9314E700196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -383,7 +360,6 @@
 		2C61CEE51D9314EA00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		2C61CEE61D9314EA00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		2C61CEE81D9314EB00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		2C61CEEA1D9314EB00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		2C61CEF01D9314EE00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CEF41D9314EF00196C03 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -395,7 +371,6 @@
 		2C75ABA01DDF62ED00650856 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2CB69BA91D91CDE00059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CourseCell.xib; sourceTree = "<group>"; };
-		2CB69BB21D91CDEC0059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AlertCell.xib; sourceTree = "<group>"; };
 		2CB69BB51D91CDF00059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailsInfoCell.xib; sourceTree = "<group>"; };
 		2CB69BB81D91CDF30059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailsReminderCell.xib; sourceTree = "<group>"; };
 		2CB69BBB1D91CDF70059C5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailsDateCell.xib; sourceTree = "<group>"; };
@@ -441,14 +416,6 @@
 		3BEA6CBF245887F000BE4589 /* ParentConversationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewController.swift; sourceTree = "<group>"; };
 		4948BE681F915D330035BAFD /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		4968E29E1DB977CF00A39703 /* Parent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Parent.entitlements; sourceTree = "<group>"; };
-		497C48A71F912BD100A3BC06 /* AlertAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertAPI.swift; sourceTree = "<group>"; };
-		497C48A91F912BD100A3BC06 /* Session+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Alert.swift"; sourceTree = "<group>"; };
-		497C48B11F912BD100A3BC06 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		497C48B21F912BD100A3BC06 /* Alert+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Edits.swift"; sourceTree = "<group>"; };
-		497C48B31F912BD100A3BC06 /* Alert+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Collections.swift"; sourceTree = "<group>"; };
-		497C48B41F912BD100A3BC06 /* Alert+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alert+Network.swift"; sourceTree = "<group>"; };
-		497C48B61F912BD100A3BC06 /* ObserverAlertKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ObserverAlertKit.xcdatamodel; sourceTree = "<group>"; };
-		497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCountCoordinator.swift; sourceTree = "<group>"; };
 		497C48CC1F9153D000A3BC06 /* Session+Airwolf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Airwolf.swift"; sourceTree = "<group>"; };
 		497C48CF1F9153D000A3BC06 /* Airwolf.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Airwolf.xcdatamodel; sourceTree = "<group>"; };
 		497C48D11F9153D000A3BC06 /* Student+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+Collections.swift"; sourceTree = "<group>"; };
@@ -466,7 +433,6 @@
 		542DCE84F15AD20740221847 /* Pods_defaults_ParentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_ParentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B1D4EFF22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B1D4F0022BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5B1D4F0222BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B1D4F0422BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B1D4F0522BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B1D4F0622BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
@@ -475,7 +441,6 @@
 		5B1D4F0E22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5B317B72240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B317B73240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5B317B76240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B317B77240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B317B78240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B317B79240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
@@ -484,7 +449,6 @@
 		5B317B81240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5B3F70CD243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B3F70CE243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5B3F70CF243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B3F70D0243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B3F70D1243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B3F70D2243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
@@ -493,7 +457,6 @@
 		5B3F70D9243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5B6A931D242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5B6A931E242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5B6A931F242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		5B6A9320242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		5B6A9321242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		5B6A9322242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
@@ -502,7 +465,6 @@
 		5B6A9329242746BE0062CC54 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		5B7BD3C222ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B7BD3C322ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5B7BD3C622ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B7BD3C722ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B7BD3C822ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5B7BD3C922ACE9C400FA371B /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
@@ -515,13 +477,11 @@
 		5B8461DD20DF7C3200EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5B8461DE20DF7C3300EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
 		5B8461DF20DF7C3300EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
-		5B8461E220DF7C3300EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5B8461E520DF7C3400EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B8461E720DF7C3400EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B8461EB20DF7C3500EE4100 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/DetailsDateCell.strings; sourceTree = "<group>"; };
 		5BBD136C243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5BBD136D243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5BBD136E243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/AlertCell.strings; sourceTree = "<group>"; };
 		5BBD136F243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsLocationCell.strings; sourceTree = "<group>"; };
 		5BBD1370243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsInfoCell.strings; sourceTree = "<group>"; };
 		5BBD1371243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/DetailsAttachmentCell.strings; sourceTree = "<group>"; };
@@ -530,7 +490,6 @@
 		5BBD1378243080DE00019BB7 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/CourseCell.strings; sourceTree = "<group>"; };
 		5BE924A421BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5BE924A521BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5BE924A721BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		5BE924A921BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
 		5BE924AA21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		5BE924AB21BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
@@ -538,8 +497,6 @@
 		5BE924B021BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		5BE924B321BCF8750007609A /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E0F9A501C739E6A00BB7707 /* AlertCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AlertCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A581C739E6A00BB7707 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		5E0F9A5A1C739E6A00BB7707 /* CourseCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCellViewModel.swift; sourceTree = "<group>"; };
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -568,7 +525,6 @@
 		61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		61BE87DE1C8E308600D79BF4 /* Remindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remindable.swift; sourceTree = "<group>"; };
-		61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AlertsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDescriptionCell.swift; sourceTree = "<group>"; };
 		6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -588,7 +544,6 @@
 		7D33976D24534D8C0074ED71 /* StudentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentListViewController.storyboard; sourceTree = "<group>"; };
 		7D349C7D21430D98004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C7F21430D99004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
-		7D349C8321430D9B004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349C8521430D9C004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		7D349C8621430D9D004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		7D349C8721430D9D004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -598,7 +553,6 @@
 		7D349C9121430DA2004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349C9521430DE1004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349C9721430DE2004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/CourseCell.strings"; sourceTree = "<group>"; };
-		7D349C9B21430DE5004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349C9D21430DE5004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		7D349C9E21430DE6004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		7D349C9F21430DE6004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -608,7 +562,6 @@
 		7D349CA921430DEA004C1074 /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CAD21430E20004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349CAF21430E22004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
-		7D349CB321430E24004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349CB521430E25004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		7D349CB621430E25004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		7D349CB721430E26004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -618,7 +571,6 @@
 		7D349CC121430E29004C1074 /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D349CC521430E5C004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D349CC721430E5D004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/CourseCell.strings"; sourceTree = "<group>"; };
-		7D349CCB21430E60004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7D349CCD21430E61004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		7D349CCE21430E61004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		7D349CCF21430E62004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/DetailsDateCell.strings"; sourceTree = "<group>"; };
@@ -630,10 +582,17 @@
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		7DC5F49124097C12000256E3 /* PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTests.swift; sourceTree = "<group>"; };
+		7DC7045C24AA8EE900CD1C46 /* ObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlert.swift; sourceTree = "<group>"; };
+		7DC7046024AA906100CD1C46 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
+		7DC7046224AA947200CD1C46 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
+		7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertListViewController.swift; sourceTree = "<group>"; };
+		7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ObserverAlertListViewController.storyboard; sourceTree = "<group>"; };
+		7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlertTests.swift; sourceTree = "<group>"; };
+		7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlertsTests.swift; sourceTree = "<group>"; };
+		7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertListViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
 		7DE74EFD22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7DE74EFE22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		7DE74F0022BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/AlertCell.strings"; sourceTree = "<group>"; };
 		7DE74F0222BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsAttachmentCell.strings"; sourceTree = "<group>"; };
 		7DE74F0322BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsInfoCell.strings"; sourceTree = "<group>"; };
 		7DE74F0622BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsLocationCell.strings"; sourceTree = "<group>"; };
@@ -746,6 +705,7 @@
 				97F0817223C43E09002B9F68 /* Courses */,
 				7DFDB43023A3EDE200B28DED /* Conversations */,
 				3B36A2EE2322C54900599A1E /* Fixtures */,
+				7DC7046B24ABBAD700CD1C46 /* ObserverAlerts */,
 				B1AA55CE2357857E00DFD184 /* Students */,
 				7D88EA2C23A9A1A000D5F8FD /* UserDefaults */,
 				3B36A2E32322C26B00599A1E /* Info.plist */,
@@ -797,45 +757,6 @@
 			path = CreateAccount;
 			sourceTree = "<group>";
 		};
-		497C48A51F912B7F00A3BC06 /* Observer Alerts */ = {
-			isa = PBXGroup;
-			children = (
-				497C48AA1F912BD100A3BC06 /* Model */,
-				497C48A61F912BD100A3BC06 /* Network */,
-				497C48A91F912BD100A3BC06 /* Session+Alert.swift */,
-			);
-			path = "Observer Alerts";
-			sourceTree = "<group>";
-		};
-		497C48A61F912BD100A3BC06 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				497C48A71F912BD100A3BC06 /* AlertAPI.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		497C48AA1F912BD100A3BC06 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				497C48B01F912BD100A3BC06 /* Alert */,
-				497C48B51F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld */,
-				497C48B71F912BD100A3BC06 /* AlertCountCoordinator.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		497C48B01F912BD100A3BC06 /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-				497C48B11F912BD100A3BC06 /* Alert.swift */,
-				497C48B21F912BD100A3BC06 /* Alert+Edits.swift */,
-				497C48B31F912BD100A3BC06 /* Alert+Collections.swift */,
-				497C48B41F912BD100A3BC06 /* Alert+Network.swift */,
-			);
-			path = Alert;
-			sourceTree = "<group>";
-		};
 		497C48C51F91539700A3BC06 /* Airwolf */ = {
 			isa = PBXGroup;
 			children = (
@@ -883,23 +804,11 @@
 			children = (
 				7893BDCE20D1A74700231DF7 /* Admin */,
 				5E0F9A571C739E6A00BB7707 /* Courses */,
-				5E0F9A4F1C739E6A00BB7707 /* Alerts */,
 				7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */,
 				5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */,
 				3BC50CCE24746FED0023159F /* SelectAddStudentMethodViewController.swift */,
 			);
 			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		5E0F9A4F1C739E6A00BB7707 /* Alerts */ = {
-			isa = PBXGroup;
-			children = (
-				5E0F9A501C739E6A00BB7707 /* AlertCell.swift */,
-				2CB69BB31D91CDEC0059C5A5 /* AlertCell.xib */,
-				5E0F9A521C739E6A00BB7707 /* AlertCellViewModel.swift */,
-				61D6A84C1C8F84E400370117 /* AlertsListViewController.swift */,
-			);
-			path = Alerts;
 			sourceTree = "<group>";
 		};
 		5E0F9A571C739E6A00BB7707 /* Courses */ = {
@@ -962,29 +871,29 @@
 		5E6441891C3EE2E0003D7397 /* Parent */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C5448245E837600E1AE33 /* Create Account */,
 				497C48C51F91539700A3BC06 /* Airwolf */,
 				5E6441911C3EE2E0003D7397 /* Assets.xcassets */,
 				7D111CFD23A2DDAD00C912C0 /* Conversations */,
 				3BA9FF6B2332997D00196A06 /* Courses */,
+				3B4C5448245E837600E1AE33 /* Create Account */,
 				5E0F9A4E1C739E6A00BB7707 /* Dashboard */,
 				6153FFFC1C80AA19002529CF /* Details */,
 				9F5A3D3C2048745B00F6EDCE /* Discussions */,
 				5E4104871C99E06D0021567C /* Extensions */,
 				7DEE3E3E2335793B0009D8DC /* IBDesignables */,
+				7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */,
 				7D33976A24534CA20074ED71 /* Students */,
+				5E4E204F1C927EB100E7D709 /* UserDefaults */,
+				5E64422E1C3F1C2D003D7397 /* View */,
 				78AD913221C8184F0075FBCF /* GoogleService-Info.plist */,
 				5E6441961C3EE2E0003D7397 /* Info.plist */,
 				2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */,
 				5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */,
 				2C61CD0B1D9311B400196C03 /* Localizable.strings */,
-				497C48A51F912B7F00A3BC06 /* Observer Alerts */,
 				5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */,
 				4968E29E1DB977CF00A39703 /* Parent.entitlements */,
 				7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */,
 				7DBED0092328282200392F3C /* Routes.swift */,
-				5E4E204F1C927EB100E7D709 /* UserDefaults */,
-				5E64422E1C3F1C2D003D7397 /* View */,
 			);
 			path = Parent;
 			sourceTree = "<group>";
@@ -1104,6 +1013,28 @@
 				7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */,
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				7DC7046024AA906100CD1C46 /* APIObserverAlert.swift */,
+				7DC7046224AA947200CD1C46 /* GetObserverAlerts.swift */,
+				7DC7045C24AA8EE900CD1C46 /* ObserverAlert.swift */,
+				7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */,
+				7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */,
+			);
+			path = ObserverAlerts;
+			sourceTree = "<group>";
+		};
+		7DC7046B24ABBAD700CD1C46 /* ObserverAlerts */ = {
+			isa = PBXGroup;
+			children = (
+				7DC7046C24ABBB0400CD1C46 /* APIObserverAlertTests.swift */,
+				7DC7046E24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift */,
+				7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */,
+			);
+			path = ObserverAlerts;
 			sourceTree = "<group>";
 		};
 		7DEE3E3E2335793B0009D8DC /* IBDesignables */ = {
@@ -1435,11 +1366,11 @@
 				2CB69BB71D91CDF30059C5A5 /* DetailsReminderCell.xib in Resources */,
 				7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */,
 				5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */,
+				7DC7046724AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard in Resources */,
 				2CB69BBA1D91CDF70059C5A5 /* DetailsDateCell.xib in Resources */,
 				2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */,
 				3B4C544C245E844200E1AE33 /* CreateAccountViewController.storyboard in Resources */,
 				2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */,
-				2CB69BB11D91CDEC0059C5A5 /* AlertCell.xib in Resources */,
 				78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */,
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
 				7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */,
@@ -1650,8 +1581,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */,
+				7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */,
 				97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */,
+				7DC7046D24ABBB0400CD1C46 /* APIObserverAlertTests.swift in Sources */,
 				3B36A2ED2322C2A000599A1E /* APIAlertThresholdTests.swift in Sources */,
 				7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */,
 				B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */,
@@ -1660,6 +1593,7 @@
 				3BC50CC5246B11C00023159F /* CreateAccountViewControllerTests.swift in Sources */,
 				3B36A2F12322C56F00599A1E /* APIAlertThresholdFixture.swift in Sources */,
 				7D00F34624574A9900C370D5 /* GetObservedStudentsTests.swift in Sources */,
+				7DC7046F24ABBD2D00CD1C46 /* GetObserverAlertsTests.swift in Sources */,
 				7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */,
 				7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */,
 				97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */,
@@ -1687,22 +1621,17 @@
 				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
 				3B36A2D92322C15200599A1E /* GetAlertThresholds.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
-				497C48BA1F912BD100A3BC06 /* Session+Alert.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
 				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
 				61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */,
-				5E0F9A671C739E6A00BB7707 /* AlertCell.swift in Sources */,
 				5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */,
 				97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */,
 				497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */,
-				497C48C11F912BD100A3BC06 /* Alert+Collections.swift in Sources */,
 				7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */,
 				61BE87DF1C8E308600D79BF4 /* Remindable.swift in Sources */,
-				497C48C01F912BD100A3BC06 /* Alert+Edits.swift in Sources */,
+				7DC7045D24AA8EE900CD1C46 /* ObserverAlert.swift in Sources */,
 				497C48E11F9153D100A3BC06 /* Session+Airwolf.swift in Sources */,
-				497C48C41F912BD100A3BC06 /* AlertCountCoordinator.swift in Sources */,
 				7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */,
-				3B801BFD2322FFB400D143F0 /* Alert.swift in Sources */,
 				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
 				7D00F34424574A6F00C370D5 /* GetObservedStudents.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
@@ -1710,25 +1639,23 @@
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
 				497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */,
 				6153000E1C863F0F002529CF /* DetailsReminderCell.swift in Sources */,
-				497C48B81F912BD100A3BC06 /* AlertAPI.swift in Sources */,
 				B11A2CF720E42D9500A2DBDD /* AccountNotificationViewController.swift in Sources */,
 				3BA9FF6D2332999900196A06 /* CourseDetailsViewController.swift in Sources */,
-				61D6A84D1C8F84E400370117 /* AlertsListViewController.swift in Sources */,
-				497C48C31F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld in Sources */,
 				3BC50CCF24746FED0023159F /* SelectAddStudentMethodViewController.swift in Sources */,
 				5EF946291CAD76C400D10247 /* TableEmptyView.swift in Sources */,
 				5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */,
-				497C48C21F912BD100A3BC06 /* Alert+Network.swift in Sources */,
 				4948BE691F915D330035BAFD /* BundleExtensions.swift in Sources */,
 				497C48E21F9153D100A3BC06 /* Airwolf.xcdatamodeld in Sources */,
 				497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */,
-				5E0F9A691C739E6A00BB7707 /* AlertCellViewModel.swift in Sources */,
+				7DC7046324AA947200CD1C46 /* GetObserverAlerts.swift in Sources */,
 				497C48E61F9153D100A3BC06 /* Student+Network.swift in Sources */,
 				497C48E31F9153D100A3BC06 /* Student+Collections.swift in Sources */,
 				7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */,
+				7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */,
 				3B36A2D82322C15200599A1E /* APIAlertThreshold.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,
 				497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */,
+				7DC7046124AA906100CD1C46 /* APIObserverAlert.swift in Sources */,
 				7D00F34024573B1600C370D5 /* StudentDetailsViewController.swift in Sources */,
 				5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */,
 				7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */,
@@ -1860,47 +1787,6 @@
 				5B3F70D9243083280088EF27 /* it */,
 			);
 			name = CourseCell.xib;
-			sourceTree = "<group>";
-		};
-		2CB69BB31D91CDEC0059C5A5 /* AlertCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2CB69BB21D91CDEC0059C5A5 /* Base */,
-				2C61CD1B1D9311E700196C03 /* ar */,
-				2C61CD411D93122E00196C03 /* da */,
-				2C61CD5A1D93124500196C03 /* de */,
-				2C61CD731D93126A00196C03 /* en-AU */,
-				2C61CD8C1D93128900196C03 /* en-GB */,
-				2C61CDA51D9312AD00196C03 /* es */,
-				2C61CDBE1D9312C600196C03 /* fr */,
-				2C61CDD71D9312E400196C03 /* ht */,
-				2C61CDF01D9312FD00196C03 /* ja */,
-				2C61CE091D93131E00196C03 /* mi */,
-				2C61CE221D9313BC00196C03 /* nb */,
-				2C61CE3B1D9313EE00196C03 /* nl */,
-				2C61CE541D93141B00196C03 /* pl */,
-				2C61CE6D1D93143E00196C03 /* pt-BR */,
-				2C61CE861D93145E00196C03 /* pt */,
-				2C61CE9F1D93148300196C03 /* ru */,
-				2C61CEB81D9314AB00196C03 /* sv */,
-				2C61CED11D9314CA00196C03 /* zh-HK */,
-				2C61CEEA1D9314EB00196C03 /* zh */,
-				2C0CAD951DEF6EC7008D90FA /* fr-CA */,
-				5B8461E220DF7C3300EE4100 /* cy */,
-				7D349C8321430D9B004C1074 /* da-instk12 */,
-				7D349C9B21430DE5004C1074 /* en-GB-instukhe */,
-				7D349CB321430E24004C1074 /* nb-instk12 */,
-				7D349CCB21430E60004C1074 /* sv-instk12 */,
-				5BE924A721BCF8750007609A /* en-CY */,
-				5B7BD3C622ACE9C400FA371B /* fi */,
-				5B1D4F0222BD6E560082F8F0 /* sl */,
-				7DE74F0022BD7942003C8B44 /* en-AU-unimelb */,
-				5B317B76240B98DF009EE2F9 /* is */,
-				5B6A931F242746BE0062CC54 /* en-CA */,
-				5BBD136E243080DE00019BB7 /* ca */,
-				5B3F70CF243083280088EF27 /* it */,
-			);
-			name = AlertCell.xib;
 			sourceTree = "<group>";
 		};
 		2CB69BB61D91CDF00059C5A5 /* DetailsInfoCell.xib */ = {
@@ -2594,16 +2480,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		497C48B51F912BD100A3BC06 /* ObserverAlertKit.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				497C48B61F912BD100A3BC06 /* ObserverAlertKit.xcdatamodel */,
-			);
-			currentVersion = 497C48B61F912BD100A3BC06 /* ObserverAlertKit.xcdatamodel */;
-			path = ObserverAlertKit.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		497C48CE1F9153D000A3BC06 /* Airwolf.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
