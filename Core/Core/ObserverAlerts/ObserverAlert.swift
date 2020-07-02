@@ -46,3 +46,22 @@ public final class ObserverAlert: NSManagedObject {
         set { workflowStateRaw = newValue.rawValue }
     }
 }
+
+extension ObserverAlert: WriteableModel {
+    @discardableResult
+    public static func save(_ item: APIObserverAlert, in context: NSManagedObjectContext) -> ObserverAlert {
+        let model: ObserverAlert = context.first(where: #keyPath(ObserverAlert.id), equals: item.id.value) ?? context.insert()
+        model.actionDate = item.action_date
+        model.alertType = item.alert_type
+        model.contextID = item.context_id?.value
+        model.courseID = item.course_id?.value
+        model.htmlURL = item.html_url?.rawValue
+        model.id = item.id.value
+        model.observerID = item.observer_id.value
+        model.thresholdID = item.observer_alert_threshold_id.value
+        model.title = item.title
+        model.userID = item.user_id.value
+        model.workflowState = item.workflow_state
+        return model
+    }
+}

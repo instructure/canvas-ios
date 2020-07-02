@@ -815,7 +815,12 @@
 		E85B4918238875A0003E28DC /* UserFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B4917238875A0003E28DC /* UserFilesTests.swift */; };
 		E85E7F83238C45C300BE61B3 /* FilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85E7F82238C45C300BE61B3 /* FilesList.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
+		E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */; };
+		E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */; };
 		E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */; };
+		E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */; };
+		E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */; };
+		E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */; };
 		E8AD06712303713300D498ED /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD066F2303713300D498ED /* Dashboard.swift */; };
 		E8AD06752303718800D498ED /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AD06742303718700D498ED /* CourseNavigation.swift */; };
 		E8BB310523A0372700B3B3B2 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BB310423A0372700B3B3B2 /* Assignments.swift */; };
@@ -1920,8 +1925,13 @@
 		E85E7F82238C45C300BE61B3 /* FilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesList.swift; sourceTree = "<group>"; };
 		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
+		E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
+		E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
 		E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseTests.swift; sourceTree = "<group>"; };
+		E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThreshold.swift; sourceTree = "<group>"; };
+		E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAlertThresholds.swift; sourceTree = "<group>"; };
+		E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
 		E8AD066F2303713300D498ED /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		E8AD06702303713300D498ED /* DashboardE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardE2ETests.swift; sourceTree = "<group>"; };
 		E8AD06742303718700D498ED /* CourseNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigation.swift; sourceTree = "<group>"; };
@@ -2081,6 +2091,7 @@
 				7D159CE9242E553900A77A15 /* Modules */,
 				B1911CE721C845E700F42F91 /* Notifications */,
 				7DC7045824AA8B0F00CD1C46 /* ObserverAlerts */,
+				E8AC2D3524AE3A3B0053AA8A /* ObservedStudents */,
 				EE584C7822F2043300D1E201 /* Pages */,
 				3B13D45922E1060300D23007 /* PageViewAnalytics */,
 				7D8E820C23C8E09500A8DA2C /* People */,
@@ -3364,6 +3375,8 @@
 			isa = PBXGroup;
 			children = (
 				7DC7045924AA8B2600CD1C46 /* ObserverAlert.swift */,
+				E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */,
+				E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */,
 			);
 			path = ObserverAlerts;
 			sourceTree = "<group>";
@@ -3991,6 +4004,16 @@
 				E8997905234F7E0600CA7D9B /* XCTestCaseTests.swift */,
 			);
 			path = MetaTests;
+			sourceTree = "<group>";
+		};
+		E8AC2D3524AE3A3B0053AA8A /* ObservedStudents */ = {
+			isa = PBXGroup;
+			children = (
+				E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */,
+				E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */,
+				E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */,
+			);
+			path = ObservedStudents;
 			sourceTree = "<group>";
 		};
 		E8AD066E2303713300D498ED /* Dashboard */ = {
@@ -5128,6 +5151,7 @@
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
+				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
@@ -5190,6 +5214,7 @@
 				7DA260E823F72359005D2121 /* SubtitleTableViewCell.swift in Sources */,
 				7DA2606E23F722E9005D2121 /* APICommunicationChannel.swift in Sources */,
 				7DA2602823F722C2005D2121 /* LoginFindSchoolViewController.swift in Sources */,
+				E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */,
 				7DA25FC423F72136005D2121 /* APIPandata.swift in Sources */,
 				7DA4DA2C2440C94D009CA964 /* GetPage.swift in Sources */,
 				7DA260D323F72359005D2121 /* DividerView.swift in Sources */,
@@ -5221,6 +5246,7 @@
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
 				7DA260CF23F72359005D2121 /* ChatBubbleView.swift in Sources */,
 				7DA260C823F72359005D2121 /* AccessIconView.swift in Sources */,
+				E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */,
 				7D62716E245B735A00FC1798 /* DiscussionDetailsViewController.swift in Sources */,
 				7DA260DB23F72359005D2121 /* GradeCircleView.swift in Sources */,
 				7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */,
@@ -5283,6 +5309,7 @@
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
 				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
 				7DA2607223F722E9005D2121 /* NotificationManager.swift in Sources */,
+				E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,
@@ -5301,6 +5328,7 @@
 				7DA260F823F723AB005D2121 /* FileDetailsViewController.swift in Sources */,
 				7DA25F9E23F72136005D2121 /* APIAssignmentOverride.swift in Sources */,
 				7DA2609223F72315005D2121 /* UploadAvatar.swift in Sources */,
+				E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */,
 				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,

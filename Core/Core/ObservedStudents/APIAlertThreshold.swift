@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 
 public struct APIAlertThreshold: Codable, Equatable {
     let id: ID
@@ -110,7 +109,7 @@ public struct PostAlertThresholdRequest: APIRequestable {
 public struct GetAlertThresholdRequest: APIRequestable {
     public typealias Response = [APIAlertThreshold]
 
-    let studentID: String
+    public let studentID: String
 
     public var path: String { "users/self/observer_alert_thresholds" }
 

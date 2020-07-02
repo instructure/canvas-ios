@@ -52,6 +52,7 @@ class ParentUITestCase: CoreUITestCase {
         mockData(GetUserSettingsRequest(userID: "self"), value: .make())
         mockData(GetUserProfileRequest(userID: "self"), value: .make())
         mockData(GetGlobalNavExternalToolsRequest(), value: [])
-        mockEncodableRequest("users/self/observer_alerts/1?per_page=100", value: [String]())
+        mockData(GetAlertThresholdRequest(studentID: "1"), value: [])
+        mockData(GetObserverAlertsRequest(studentID: "1"), value: [])
     }
 }

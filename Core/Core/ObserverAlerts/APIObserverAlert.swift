@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import Core
 
 // Not documented
 public struct APIObserverAlert: Codable {
@@ -67,28 +66,28 @@ extension APIObserverAlert {
 #endif
 
 // Not documented
-struct GetObserverAlertsRequest: APIRequestable {
-    typealias Response = [APIObserverAlert]
+public struct GetObserverAlertsRequest: APIRequestable {
+    public typealias Response = [APIObserverAlert]
 
-    let studentID: String
-    var path: String { "users/self/observer_alerts/\(studentID)" }
-    var query: [APIQueryItem] { [ .perPage(100) ] }
+    public let studentID: String
+    public var path: String { "users/self/observer_alerts/\(studentID)" }
+    public var query: [APIQueryItem] { [ .perPage(100) ] }
 }
 
 // Not documented
-struct MarkObserverAlertReadRequest: APIRequestable {
-    typealias Response = APIObserverAlert
+public struct MarkObserverAlertReadRequest: APIRequestable {
+    public typealias Response = APIObserverAlert
 
-    let alertID: String
-    var method: APIMethod { .put }
-    var path: String { "users/self/observer_alerts/\(alertID)/read" }
+    public let alertID: String
+    public var method: APIMethod { .put }
+    public var path: String { "users/self/observer_alerts/\(alertID)/read" }
 }
 
 // Not documented
-struct DismissObserverAlertRequest: APIRequestable {
-    typealias Response = APIObserverAlert
+public struct DismissObserverAlertRequest: APIRequestable {
+    public typealias Response = APIObserverAlert
 
-    let alertID: String
-    var method: APIMethod { .put }
-    var path: String { "users/self/observer_alerts/\(alertID)/dismissed" }
+    public let alertID: String
+    public var method: APIMethod { .put }
+    public var path: String { "users/self/observer_alerts/\(alertID)/dismissed" }
 }
