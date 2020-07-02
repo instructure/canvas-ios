@@ -95,7 +95,9 @@ enum DiscussionHTML {
             </p>
             """
         }
-        return entry.message?.replacingOccurrences(of: "<script(.+)</script>", with: "", options: .regularExpression) ?? ""
+        return entry.message?
+            .replacingOccurrences(of: "<script(.+)</script>", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "<link(.+)>", with: "", options: .regularExpression) ?? ""
     }
 
     // Preact-based rendering for updatable content

@@ -85,7 +85,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
                 <p>Oreos are sandwiches.</p>
                 """, replies: [
                     .make(id: 100, user_id: 3, parent_id: 1, deleted: true),
-                    .make(id: 2, user_id: 3, parent_id: 1, message: "<script src=\"\"></script>I disagree.", replies: [
+                    .make(id: 2, user_id: 3, parent_id: 1, message: "<link rel=\"stylesheet\">I disagree.<script src=\"foo.js\"></script>", replies: [
                         .make(id: 3, user_id: 2, parent_id: 2, message: "Why?"),
                     ]),
                 ]),
@@ -141,6 +141,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(html.contains("Why?"))
         XCTAssert(!html.contains("Hot Pockets"))
         XCTAssert(!html.contains("<script"))
+        XCTAssert(!html.contains("<link"))
 
         var link = baseURL.appendingPathComponent("courses/1/assignments/2")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)
