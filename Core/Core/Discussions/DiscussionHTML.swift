@@ -88,12 +88,26 @@ enum DiscussionHTML {
     }
 
     static func message(for entry: DiscussionEntry) -> String {
-        if !entry.isRemoved { return entry.message ?? "" }
-        return """
-        <p class="\(Styles.deleted)">
-            \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
-        </p>
-        """
+        if entry.isRemoved {
+            return """
+            <p class="\(Styles.deleted)">
+                \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
+            </p>
+            """
+        }
+        let message = entry.message ?? ""
+
+        // <script> tags are not supported by dangerouslySetInnerHTML
+        if let regex = try? NSRegularExpression(pattern: "<script(.+)</script>", options: .caseInsensitive) {
+            return regex.stringByReplacingMatches(
+                in: message,
+                options: [],
+                range: NSRange(location: 0, length: message.count),
+                withTemplate: ""
+            )
+        }
+
+        return message
     }
 
     // Preact-based rendering for updatable content
