@@ -88,12 +88,16 @@ enum DiscussionHTML {
     }
 
     static func message(for entry: DiscussionEntry) -> String {
-        if !entry.isRemoved { return entry.message ?? "" }
-        return """
-        <p class="\(Styles.deleted)">
-            \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
-        </p>
-        """
+        if entry.isRemoved {
+            return """
+            <p class="\(Styles.deleted)">
+                \(t(NSLocalizedString("Deleted this reply.", bundle: .core, comment: "")))
+            </p>
+            """
+        }
+        return entry.message?
+            .replacingOccurrences(of: "<script(.+)</script>", with: "", options: .regularExpression)
+            .replacingOccurrences(of: "<link(.+)>", with: "", options: .regularExpression) ?? ""
     }
 
     // Preact-based rendering for updatable content
