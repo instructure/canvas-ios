@@ -39,10 +39,8 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testAppendingQueryItems() {
-        var url = URL(string: "/api/v1/foo")?.appendingQueryItems(URLQueryItem(name: "a", value: "b"), URLQueryItem(name: "c", value: nil))
+        let url = URL(string: "/api/v1/foo")?.appendingQueryItems(URLQueryItem(name: "a", value: "b"), URLQueryItem(name: "c", value: nil))
         XCTAssertEqual(url?.absoluteString, "/api/v1/foo?a=b&c")
-        url = URL(string: "/api/v1/foo?a=b")?.appendingQueryItems(URLQueryItem(name: "a", value: "c"))
-        XCTAssertEqual(url?.absoluteString, "/api/v1/foo?a=c")
     }
 
     func testTemporaryDirectory() {
