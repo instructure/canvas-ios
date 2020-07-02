@@ -190,12 +190,11 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
             return controller
         case .some(.online_upload):
             if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }),
-                let filename = attachment.filename,
                 let url = attachment.url {
                 switch attachment.mimeClass {
                 case "doc", "image", "pdf":
                     return DocViewerViewController.create(
-                        filename: filename,
+                        filename: attachment.filename,
                         previewURL: attachment.previewURL,
                         fallbackURL: url,
                         navigationItem: view?.navigationItem

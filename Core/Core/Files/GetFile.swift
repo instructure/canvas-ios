@@ -43,3 +43,25 @@ class GetFile: APIUseCase {
         return GetFileRequest(context: context, fileID: fileID, include: include)
     }
 }
+
+public class GetFolderFiles: CollectionUseCase {
+    public typealias Model = File
+
+    let context: Context
+
+    public init(folderID: String) {
+        context = Context(.folder, id: folderID)
+    }
+
+    public var cacheKey: String? {
+        "\(context.pathComponent)/files"
+    }
+
+    public var request: GetFilesRequest {
+        GetFilesRequest(context: context)
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(File.folderID), equals: context.id, orderBy: #keyPath(File.displayName), naturally: true)
+    }
+}

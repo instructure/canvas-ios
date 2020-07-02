@@ -94,13 +94,16 @@ class UploadManagerTests: CoreTestCase {
 
     func testSubscribeScopedToBatchAndUser() {
         let good = context.insert() as File
+        good.filename = "good.file"
         good.displayName = "Good subscribe file"
         good.batchID = "1"
         good.setUser(session: currentSession)
         let badBatch = context.insert() as File
+        badBatch.filename = "badBatch.file"
         badBatch.batchID = "2"
         badBatch.user = good.user
         let badUser = context.insert() as File
+        badUser.filename = "badUser.file"
         badUser.batchID = good.batchID
         badUser.user = File.User(id: "bad", baseURL: currentSession.baseURL, masquerader: nil)
         try! context.save()
@@ -207,6 +210,7 @@ class UploadManagerTests: CoreTestCase {
 
     func testFailedSubmissionNotification() throws {
         let file = context.insert() as File
+        file.filename = "file"
         file.uploadError = nil
         file.taskID = "1"
         file.context = .submission(courseID: "1", assignmentID: "2", comment: nil)
@@ -232,9 +236,11 @@ class UploadManagerTests: CoreTestCase {
     func testCancelBatchID() throws {
         let batchID = "1"
         let one = context.insert() as File
+        one.filename = "one"
         one.batchID = batchID
         one.setUser(session: currentSession)
         let two = context.insert() as File
+        two.filename = "two"
         two.batchID = batchID
         two.setUser(session: currentSession)
         two.taskID = "2"
@@ -249,6 +255,7 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidSendBodyData() throws {
         let file = context.insert() as File
+        file.filename = "filename"
         file.taskID = "1"
         file.size = 101
         file.bytesSent = 0

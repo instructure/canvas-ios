@@ -16,17 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 @testable import Core
+import TestsFoundation
 
-public class MiniFolder {
-    public var api: APIFolder
-    public var fileIDs: [String] = []
-    public var folderIDs: [String] = []
-
-    public var id: String { api.id.value }
-
-    public init(_ file: APIFolder) {
-        self.api = file
+class FolderTests: CoreTestCase {
+    func testProperties() {
+        let folder = Folder.save(.make(), in: databaseClient)
+        folder.canvasContextID = "bogus"
+        XCTAssertEqual(folder.context, .currentUser)
+        folder.context = .course("2")
+        XCTAssertEqual(folder.context, .course("2"))
     }
 }

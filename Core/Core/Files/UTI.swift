@@ -41,12 +41,24 @@ public struct UTI: Equatable, Hashable {
         self.rawValue = value
     }
 
+    public init?(mime: String) {
+        let raw = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mime as CFString, nil)
+            .map { $0.takeRetainedValue() }
+            .map { $0 as String }
+
+        guard let value = raw, !value.isEmpty, !value.hasPrefix("dyn.") else {
+            return nil
+        }
+
+        self.rawValue = value
+    }
+
     private init(rawValue: String) {
         self.rawValue = rawValue
     }
 
     public static func from(extensions: [String]) -> Set<UTI> {
-        var utis = Set(extensions.compactMap(UTI.init))
+        var utis = Set(extensions.compactMap { UTI(extension: $0) })
 
         // iWork has types for bundles and single files
         // Make sure the single file equivalent to the bundles are included
@@ -108,6 +120,10 @@ public struct UTI: Equatable, Hashable {
 
     public static var numbersSingleFile: UTI {
         return UTI(rawValue: UTI.numbersSingleFileIdentifier)
+    }
+
+    public static var folder: UTI {
+        return UTI(rawValue: kUTTypeFolder as String)
     }
 
     public var isVideo: Bool {

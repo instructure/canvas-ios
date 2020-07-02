@@ -45,7 +45,7 @@ final public class File: NSManagedObject {
     @NSManaged public var uuid: String?
     @NSManaged public var folderID: String?
     @NSManaged public var displayName: String?
-    @NSManaged public var filename: String?
+    @NSManaged public var filename: String
     @NSManaged public var contentType: String?
     @NSManaged public var url: URL?
     /// file size in bytes
@@ -103,10 +103,12 @@ final public class File: NSManagedObject {
         }
     }
 
+    @objc // For NSFileProviderItem
     public var isUploading: Bool {
         return taskID != nil
     }
 
+    @objc // For NSFileProviderItem
     public var isUploaded: Bool {
         return id != nil
     }
@@ -168,7 +170,7 @@ extension File: WriteableModel {
         return model
     }
 
-    public var icon: UIImage? {
+    public var icon: UIImage {
         if mimeClass == "audio" || contentType?.hasPrefix("audio/") == true {
             return UIImage.icon(.audio)
         } else if mimeClass == "doc" {

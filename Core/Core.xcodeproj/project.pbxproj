@@ -163,6 +163,10 @@
 		7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D627169245B422900FC1798 /* DiscussionParticipant.swift */; };
 		7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716B245B591E00FC1798 /* GetDiscussions.swift */; };
 		7D62716E245B735A00FC1798 /* DiscussionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */; };
+		7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
+		7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
+		7D630B6F24A511120039A45D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6E24A511120039A45D /* Folder.swift */; };
+		7D630B7124A52C050039A45D /* GetFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B7024A52C050039A45D /* GetFolders.swift */; };
 		7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F787215D44A600151E49 /* APIBrandVariablesTests.swift */; };
 		7D63F78E215D7B8100151E49 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F78D215D7B8100151E49 /* DynamicButtonTests.swift */; };
 		7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F791215D8EEC00151E49 /* GetBrandVariablesTests.swift */; };
@@ -575,6 +579,8 @@
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
 		7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */; };
 		7DC5F49524097FCC000256E3 /* Planner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49424097FCC000256E3 /* Planner.swift */; };
+		7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047524ABF6D800CD1C46 /* FolderTests.swift */; };
+		7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */; };
 		7DC7045A24AA8B2600CD1C46 /* ObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7045924AA8B2600CD1C46 /* ObserverAlert.swift */; };
 		7DC7046A24ABA3C100CD1C46 /* ObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */; };
 		7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */; };
@@ -1363,6 +1369,8 @@
 		7D627169245B422900FC1798 /* DiscussionParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionParticipant.swift; sourceTree = "<group>"; };
 		7D62716B245B591E00FC1798 /* GetDiscussions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussions.swift; sourceTree = "<group>"; };
 		7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailsViewController.swift; sourceTree = "<group>"; };
+		7D630B6E24A511120039A45D /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		7D630B7024A52C050039A45D /* GetFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolders.swift; sourceTree = "<group>"; };
 		7D63F77C215D31A600151E49 /* DynamicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicButton.swift; sourceTree = "<group>"; };
 		7D63F783215D3C3D00151E49 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		7D63F787215D44A600151E49 /* APIBrandVariablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariablesTests.swift; sourceTree = "<group>"; };
@@ -1530,6 +1538,8 @@
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC5F49424097FCC000256E3 /* Planner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planner.swift; sourceTree = "<group>"; };
+		7DC7047524ABF6D800CD1C46 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
+		7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolderTests.swift; sourceTree = "<group>"; };
 		7DC7045924AA8B2600CD1C46 /* ObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlert.swift; sourceTree = "<group>"; };
 		7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertTests.swift; sourceTree = "<group>"; };
 		7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummary.swift; sourceTree = "<group>"; };
@@ -1956,6 +1966,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
+				7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */,
+				7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */,
 				5B80945E24A8786E001871DB /* ReactiveCocoa in Frameworks */,
 				5B80945D24A8786E001871DB /* ReactiveSwift in Frameworks */,
 			);
@@ -2460,7 +2472,9 @@
 				9FD504EB2180BF1A00B395BA /* File.swift */,
 				B1BB68F321B5F0C90079C78B /* FileUploadContext.swift */,
 				B1A8CD3622375D6400E2242D /* FileUploadTarget.swift */,
+				7D630B6E24A511120039A45D /* Folder.swift */,
 				7D08B1D6237207460075623A /* GetFile.swift */,
+				7D630B7024A52C050039A45D /* GetFolders.swift */,
 				B14B704C228F30A100B568D6 /* UploadFileComment.swift */,
 				B1A8CD39223766FA00E2242D /* UploadManager.swift */,
 				7D8E265A24A1026E00A678E7 /* UsageRights.swift */,
@@ -2476,7 +2490,9 @@
 				B1B42C1422403AE90087399A /* FilePicker */,
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
+				7DC7047524ABF6D800CD1C46 /* FolderTests.swift */,
 				7D08B1D82372084B0075623A /* GetFileTests.swift */,
+				7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */,
 				B14B70562294758600B568D6 /* UploadFileCommentTests.swift */,
 				B1B42C1522403AFD0087399A /* UploadManagerTests.swift */,
 				B1B6F077219A7D8B00C1575D /* UTITests.swift */,
@@ -4917,6 +4933,7 @@
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
 				7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */,
 				3B300C852277981100743C59 /* RubricTests.swift in Sources */,
+				7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */,
 				9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */,
 				B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideTests.swift in Sources */,
 				B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */,
@@ -4988,6 +5005,7 @@
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
+				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
@@ -5281,6 +5299,7 @@
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
 				7DA2606723F722D9005D2121 /* TabType.swift in Sources */,
 				3BA649D324251FE50047D8DC /* PairWithObserverViewController.swift in Sources */,
+				7D630B6F24A511120039A45D /* Folder.swift in Sources */,
 				7D75FF1824085E95000544E7 /* ListBackgroundView.swift in Sources */,
 				7DA2607223F722E9005D2121 /* NotificationManager.swift in Sources */,
 				7DA2602223F7227A005D2121 /* UIButtonExtensions.swift in Sources */,
@@ -5365,6 +5384,7 @@
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
+				7D630B7124A52C050039A45D /* GetFolders.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,

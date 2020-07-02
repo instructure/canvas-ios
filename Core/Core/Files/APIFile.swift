@@ -163,7 +163,7 @@ public struct APIFileToken: Codable, Equatable {
 }
 
 // https://canvas.instructure.com/doc/api/files.html#Folder
-public struct APIFileFolder: Codable, Equatable {
+public struct APIFolder: Codable, Equatable {
     let context_type: String
     let context_id: ID
     let files_count: Int
@@ -175,7 +175,7 @@ public struct APIFileFolder: Codable, Equatable {
     let lock_at: Date?
     public let id: ID
     let folders_count: Int
-    let name: String
+    var name: String
     let parent_folder_id: ID?
     let created_at: Date
     let unlock_at: Date?
@@ -250,7 +250,7 @@ extension APIFile {
     }
 }
 
-extension APIFileFolder {
+extension APIFolder {
     public static func make(
         context_type: String = "User",
         context_id: ID = 1,
@@ -272,8 +272,8 @@ extension APIFileFolder {
         locked: Bool = false,
         locked_for_user: Bool = false,
         for_submissions: Bool = false
-    ) -> APIFileFolder {
-        APIFileFolder(
+    ) -> APIFolder {
+        APIFolder(
             context_type: context_type,
             context_id: context_id,
             files_count: files_count,
@@ -424,7 +424,7 @@ public struct PostFileUploadRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.resolve_path
 public class GetContextFolderHierarchyRequest: APIRequestable {
-    public typealias Response = [APIFileFolder]
+    public typealias Response = [APIFolder]
 
     let context: Context
     let fullPath: String
@@ -444,8 +444,8 @@ public class GetContextFolderHierarchyRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.api_index
-public class ListFoldersRequest: APIRequestable {
-    public typealias Response = [APIFileFolder]
+public class GetFoldersRequest: APIRequestable {
+    public typealias Response = [APIFolder]
 
     let context: Context
     let perPage: Int?
@@ -468,7 +468,7 @@ public class ListFoldersRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.files.api_index
-public class ListFilesRequest: APIRequestable {
+public class GetFilesRequest: APIRequestable {
     public typealias Response = [APIFile]
 
     let context: Context
@@ -493,7 +493,7 @@ public class ListFilesRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.show
 public class GetFolderRequest: APIRequestable {
-    public typealias Response = APIFileFolder
+    public typealias Response = APIFolder
 
     let context: Context?
     let id: String

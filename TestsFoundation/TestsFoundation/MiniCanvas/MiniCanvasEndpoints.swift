@@ -203,7 +203,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Files
         // https://canvas.instructure.com/doc/api/files.html
-        .apiRequest(ListFilesRequest(context: Pattern.folderContext)) { request in
+        .apiRequest(GetFilesRequest(context: Pattern.folderContext)) { request in
             try lookupFolder(forRequest: request).fileIDs.compactMap {
                 request.state.files[$0]?.api
             }
@@ -227,7 +227,7 @@ enum MiniCanvasEndpoints {
             file.api = try mergeJSONData(old: file.api, new: request.body)
             return .json(file.api)
         },
-        .apiRequest(ListFoldersRequest(context: Pattern.folderContext)) { request in
+        .apiRequest(GetFoldersRequest(context: Pattern.folderContext)) { request in
             try lookupFolder(forRequest: request).folderIDs.compactMap {
                 request.state.folders[$0]?.api
             }
@@ -249,7 +249,7 @@ enum MiniCanvasEndpoints {
             let course = try lookupCourse(forRequest: request)
 
             let id = request.state.nextId()
-            let folder = APIFileFolder.make(
+            let folder = APIFolder.make(
                 context_type: "Course",
                 context_id: course.api.id,
                 files_count: 0,

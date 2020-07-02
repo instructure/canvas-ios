@@ -17,16 +17,29 @@
 //
 
 import Foundation
-@testable import Core
+import CoreData
 
-public class MiniFolder {
-    public var api: APIFolder
-    public var fileIDs: [String] = []
-    public var folderIDs: [String] = []
+public class GetFolders: CollectionUseCase {
+    public typealias Model = Folder
 
-    public var id: String { api.id.value }
+    let context: Context
 
-    public init(_ file: APIFolder) {
-        self.api = file
+    public init(context: Context) {
+        self.context = context
+    }
+
+    public var cacheKey: String? {
+        "\(context.pathComponent)/folders"
+    }
+
+    public var request: GetFoldersRequest {
+        GetFoldersRequest(context: context)
+    }
+
+    public var scope: Scope {
+        if context.contextType == .folder {
+            return .where(#keyPath(Folder.parentFolderID), equals: context.id, orderBy: #keyPath(Folder.name), naturally: true)
+        }
+        return .where(#keyPath(Folder.canvasContextID), equals: context.canvasContextID, orderBy: #keyPath(Folder.name), naturally: true)
     }
 }

@@ -23,7 +23,7 @@ import TestsFoundation
 class UserFilesTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { UserFilesTests.self }
 
-    lazy var root = APIFileFolder.make()
+    lazy var root = APIFolder.make()
 
     override func setUp() {
         super.setUp()
@@ -31,8 +31,8 @@ class UserFilesTests: CoreUITestCase {
         mockData(GetAccountHelpLinksRequest(), value: nil)
         mockData(GetGlobalNavExternalToolsRequest(), value: [])
         mockData(GetContextFolderHierarchyRequest(context: .user("self")), value: [root])
-        mockData(ListFoldersRequest(context: Context(.folder, id: root.id.value)), value: [])
-        mockData(ListFilesRequest(context: Context(.folder, id: root.id.value)), value: [])
+        mockData(GetFoldersRequest(context: Context(.folder, id: root.id.value)), value: [])
+        mockData(GetFilesRequest(context: Context(.folder, id: root.id.value)), value: [])
         mockData(GetFolderRequest(context: nil, id: root.id.value), value: root)
         sleep(1)
 

@@ -294,6 +294,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
             do {
                 let url = try self.uploadManager.uploadURL(url)
                 let file: File = context.insert()
+                file.filename = url.lastPathComponent
                 file.batchID = self.batchID
                 file.localFileURL = url
                 file.size = url.lookupFileSize()

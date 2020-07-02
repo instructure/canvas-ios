@@ -303,7 +303,7 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="displayName" optional="YES" attributeType="String"/>
-        <attribute name="filename" optional="YES" attributeType="String"/>
+        <attribute name="filename" attributeType="String"/>
         <attribute name="folderID" optional="YES" attributeType="String"/>
         <attribute name="hidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="hiddenForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -334,6 +334,25 @@
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
         <relationship name="usageRights" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UsageRights" inverseName="file" inverseEntity="UsageRights"/>
+    </entity>
+    <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
+        <attribute name="canvasContextID" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="filesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="foldersCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="forSubmissions" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fullName" attributeType="String"/>
+        <attribute name="hidden" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="hiddenForUser" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="locked" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="parentFolderID" optional="YES" attributeType="String"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Grade" representedClassName="Core.Grade" syncable="YES">
         <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
@@ -789,6 +808,7 @@
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="File" positionX="-162.1640625" positionY="69.79296875" width="128" height="628"/>
+        <element name="Folder" positionX="-540" positionY="-18" width="128" height="298"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
@@ -803,6 +823,7 @@
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="NotificationCategory" positionX="-522" positionY="0" width="128" height="103"/>
+        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="208"/>
         <element name="Page" positionX="-549" positionY="-27" width="128" height="193"/>
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
@@ -825,6 +846,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="ObserverAlert" positionX="-540" positionY="-18" width="128" height="208"/>
     </elements>
 </model>

@@ -112,7 +112,7 @@ public class MiniCourse {
         }
 
         let folderID = state.nextId()
-        let folder = MiniFolder(APIFileFolder.make(
+        let folder = MiniFolder(APIFolder.make(
             context_type: "Course",
             context_id: course.api.id,
             folders_url: state.baseUrl.appendingPathExtension("/api/v1/folders/\(folderID)/folders"),
