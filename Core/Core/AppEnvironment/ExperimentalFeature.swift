@@ -27,7 +27,6 @@ import Foundation
 public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
     case graphqlSpeedGrader = "graphql_speed_grader"
-    case refreshTokens = "refresh_tokens"
     case nativeDashboard = "native_dashboard"
     case qrLoginTeacher = "qr_code_login_teacher"
     case qrLoginParent = "qr_code_login_parent"

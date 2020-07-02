@@ -243,6 +243,7 @@ class APITests: XCTestCase {
     }
 
     func testRefreshToken() {
+        Clock.mockNow(Date())
         let session = LoginSession.make(
             accessToken: "expired-token",
             refreshToken: "refresh-token",
@@ -270,7 +271,7 @@ class APITests: XCTestCase {
                 ),
                 refreshToken: "refresh-token"
             ),
-            value: APIOAuthToken.make(accessToken: "new-token"),
+            value: APIOAuthToken.make(accessToken: "new-token", expiresIn: 3600),
             accessToken: session.accessToken
         )
         let expectation = XCTestExpectation(description: "request callback was called")
@@ -279,6 +280,7 @@ class APITests: XCTestCase {
             expectation.fulfill()
         }
         XCTAssertEqual(api.loginSession?.accessToken, "new-token")
+        XCTAssertEqual(api.loginSession?.expiresAt, Clock.now.addingTimeInterval(3600))
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
     }

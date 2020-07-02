@@ -50,5 +50,4 @@ export default class ExperimentalFeature {
 // and should be static.
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
 ExperimentalFeature.graphqlSpeedGrader = new ExperimentalFeature('graphql_speed_grader')
-ExperimentalFeature.refreshTokens = new ExperimentalFeature('refresh_tokens')
 ExperimentalFeature.nativeDashboard = new ExperimentalFeature('native_dashboard')

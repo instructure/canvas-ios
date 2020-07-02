@@ -114,7 +114,7 @@ public struct LoginSession: Codable, Hashable {
             accessToken: accessToken,
             baseURL: baseURL,
             expiresAt: expiresAt,
-            lastUsedAt: Date(),
+            lastUsedAt: Clock.now,
             locale: locale,
             masquerader: masquerader,
             refreshToken: refreshToken,
@@ -127,7 +127,7 @@ public struct LoginSession: Codable, Hashable {
         )
     }
 
-    public func refresh(accessToken: String) -> LoginSession {
+    public func refresh(accessToken: String, expiresAt: Date?) -> LoginSession {
         return LoginSession(
             accessToken: accessToken,
             baseURL: baseURL,
