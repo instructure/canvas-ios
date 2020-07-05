@@ -25,12 +25,6 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@採点が必要です";
 
-/* Shows points possible for an assignment */
-"%@ pts" = "%@ポイント";
-
-/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
-"%@. Type: %@" = "%1$@.タイプ:%2$@";
-
 /* Word and ellipses */
 "%@..." = "%@...";
 
@@ -292,9 +286,6 @@
 /* Calendar page title */
 "Calendar" = "予定表";
 
-/* No comment provided by engineer. */
-"Calendar Event" = "予定表のイベント";
-
 /* Invalid LTI tool error title */
 "Can't load tool" = "ツールの読み込みができません";
 
@@ -348,9 +339,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "ライブラリから選択...";
-
-/* Text for button to allow user to choose a set of assignments to do */
-"Choose option" = "オプションを選択する";
 
 /* Button label for choosing a photo */
 "Choose Photo" = "写真を選択する";
@@ -528,9 +516,6 @@
 /* No comment provided by engineer. */
 "Due" = "締切日";
 
-/* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "締切日%@";
-
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "%1$@日（）時が期限%2$@";
 
@@ -596,10 +581,10 @@
 /* Title for an external tool submission */
 "External Tool" = "外部ツール";
 
-/* External URL module item type */
+/* No comment provided by engineer. */
 "External URL" = "外部 URL";
 
-/* File module item type */
+/* No comment provided by engineer. */
 "File" = "ファイル";
 
 /* The file extension for a submission is not acceptable */
@@ -750,9 +735,6 @@
 /* No comment provided by engineer. */
 "Item %1$d of %2$d" = "%1$d の項目%2$d";
 
-/* table header for module items */
-"Items" = "項目";
-
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "カレンダーの現在の日付まで移動する";
 
@@ -774,9 +756,6 @@
 /* Title for legal section on the about page */
 "Legal" = "法務";
 
-/* Web URL link item label */
-"Link" = "リンク";
-
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "読み込み中・・・";
@@ -784,10 +763,7 @@
 /* No comment provided by engineer. */
 "Locked" = "ロックされています";
 
-/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
-"Locked until \"%@\" is graded" = "\"%@\" が採点されるまで、ロックされています";
-
-/* locked date */
+/* No comment provided by engineer. */
 "Locked until %@" = "ロック解除時間%@";
 
 /* Typically the email address correlated to the user */
@@ -809,9 +785,6 @@
 /* Button title for beginning masquerading
    try masquerading */
 "Masquerade" = "マスカレード";
-
-/* Master Path module item type */
-"Mastery Path" = "達成パス";
 
 /* No comment provided by engineer. */
 "Me" = "私";
@@ -847,9 +820,6 @@
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "モバイルクイズの注意";
-
-/* No comment provided by engineer. */
-"Module Item Not Found" = "モジュール項目が見つかりません";
 
 /* title for the modules tab */
 "Modules" = "モジュール";
@@ -896,9 +866,6 @@
 /* No comment provided by engineer. */
 "New Message" = "新しいメッセージ";
 
-/* Button title for next module item. */
-"Next" = "次";
-
 /* No comment provided by engineer. */
 "Next 7 Days" = "次の7日間";
 
@@ -928,9 +895,6 @@
 
 /* Error message */
 "No installed apps support opening this file" = "このファイルを開くことができるアプリがインストールされていません";
-
-/* Title for alert when a module item hasn't been set up with mastery paths */
-"No Mastery Paths" = "達成パスなし";
 
 /* No comment provided by engineer. */
 "No Notifications" = "通知なし";
@@ -1024,9 +988,6 @@
 /* Open file in another application */
 "Open in..." = "...で開く";
 
-/* Button title for selecting an option given a number */
-"Option %d" = "オプション%d";
-
 /* No comment provided by engineer. */
 "Other" = "その他";
 
@@ -1045,7 +1006,7 @@
 /* Title for Outcomes tab */
 "Outcomes" = "結果";
 
-/* Page module item type */
+/* No comment provided by engineer. */
 "Page" = "ページ";
 
 /* No comment provided by engineer. */
@@ -1084,12 +1045,6 @@
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "練習クイズ";
-
-/* Table header for prerequisite modules */
-"Prerequisite Modules" = "前提条件モジュール";
-
-/* Button title for previous module item. */
-"Previous" = "前";
 
 /* No comment provided by engineer. */
 "Previous item" = "前の項目";
@@ -1195,12 +1150,6 @@
 "Select file(s)" = "ファイルを選択する";
 
 /* No comment provided by engineer. */
-"Select Option" = "オプションを選択";
-
-/* Button title to select a certain assignment set option */
-"Select Option %d" = "オプションを選択%d";
-
-/* No comment provided by engineer. */
 "Select or deselect" = "選択または非選択にする";
 
 /* No comment provided by engineer. */
@@ -1255,20 +1204,6 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
 
-/* Label read aloud when item status is completed.
-   Module status label when completed */
-"Status: Completed" = "ステータス：完了済";
-
-/* Label read aloud when item status is incomplete. */
-"Status: Incomplete" = "ステータス：不完全";
-
-/* Label read aloud when item status is locked.
-   Module status label when locked */
-"Status: Locked" = "ステータス：ロックされています";
-
-/* Module status label when started */
-"Status: Started" = "ステータス：開始しました";
-
 /* button title for cancelling a logout. */
 "Stay Logged In" = "ログイン状態にしておく";
 
@@ -1290,7 +1225,7 @@
 /* No comment provided by engineer. */
 "Studio" = "Studio";
 
-/* Header item label */
+/* No comment provided by engineer. */
 "Sub Header" = "サブヘッダー";
 
 /* View previously submitted assignment */
@@ -1489,9 +1424,6 @@
 /* No comment provided by engineer. */
 "This is a media message." = "これはメディアメッセージです。";
 
-/* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "このモジュール項目には達成パスは設定されていません。";
-
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "追加の単位のために時間を費やすのなら今が最適です。";
 
@@ -1525,9 +1457,6 @@
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "再提出";
-
-/* Label read aloud to describe module item type */
-"Type: %@" = "タイプ:%@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "残念!インターネット接続なし";

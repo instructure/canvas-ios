@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "Oppgave";
-
 /* label for quiz availability date */
 "Available Until" = "Tilgjengelig Frem til";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Slett opptak?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "diskusjonstema";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskfeil";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Forventet et svar i området 200-299. Fikk %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "eksternt verktøy";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Kunne ikke finne bilde i sti";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Ingen forfallsdato";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Ingen overordnede baner";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Ingen push-kanal funnet";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Spørsmål";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "test";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Testdetaljer";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Det oppstod et problem under lasting av EnrollmentKit databasefilen.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Det oppstod et problem under lasting av SoEdventurous databasefilen.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Det oppsto et problem med å lese hurtiglagret data";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Det var ingen data!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Denne modulen har ingen overordnede baner konfigurert.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Denne testen har satt et IP-adressefilter.";

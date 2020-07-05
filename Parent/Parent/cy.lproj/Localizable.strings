@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "Wedi gweld y negeseuon hysbysu diweddaraf";
-
 /* No comment provided by engineer. */
 "Compose Message" = "Creu Neges";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Mae’n rhaid i’r gwerth fod yn rhif rhwng 0 a 100.";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AlertKit.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Problem wrth lwytho’r gronfa ddata.";

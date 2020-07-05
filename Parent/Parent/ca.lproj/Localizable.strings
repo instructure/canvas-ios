@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "Cancel·la";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "Esteu al dia amb els avisos";
-
 /* No comment provided by engineer. */
 "Compose Message" = "Redacta un missatge";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de AlertKit.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "S'ha produït un problema en carregar la base de dades.";

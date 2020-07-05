@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
 
 /* No comment provided by engineer. */
+"assignment" = "opdracht";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Opdrachtdetails";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Menu Ontwikkelaar";
 
 /* No comment provided by engineer. */
+"discussion" = "discussie";
+
+/* No comment provided by engineer. */
 "Discussion" = "Discussie";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Experimentele functies";
 
 /* No comment provided by engineer. */
+"external tool" = "externe tool";
+
+/* No comment provided by engineer. */
 "External Tool" = "Externe tool";
+
+/* No comment provided by engineer. */
+"external URL" = "externe URL";
 
 /* No comment provided by engineer. */
 "External URL" = "Externe URL's";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Mislukt. Tik voor opties";
+
+/* No comment provided by engineer. */
+"file" = "bestand";
 
 /* No comment provided by engineer. */
 "File" = "Bestand";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "QR-code zoeken";
 
 /* No comment provided by engineer. */
+"locked" = "vergrendeld";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Vergrendeld totdat \"%@\" is beoordeeld";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "pagina";
+
+/* No comment provided by engineer. */
 "Page" = "Pagina";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Push berichtgevingen";
+
+/* No comment provided by engineer. */
+"quiz" = "toets";
 
 /* No comment provided by engineer. */
 "Quiz" = "Toets";

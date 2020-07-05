@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "課題";
-
 /* label for quiz availability date */
 "Available Until" = "最終利用可能日";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "録音を消去しますか？";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "ディスカッション トピック";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "ディスクエラー";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "200-299の範囲で応答が期待されます。取得%@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "外部ツール";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "パスで画像を見つけることができませんでした";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "期日なし";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "達成パスなし";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "プッシュチャネルが見つかりません";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "質問";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "クイズ";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "クイズの詳細情報";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "EnrollmentKit データベースファイルを読み込み中、問題がありました。.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "SoEdventurous データベースファイルを読み込み中、問題がありました。.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "キャッシュデータの読み込み中に問題が発生しました";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "データがありません！";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "このモジュール項目には達成パスは設定されていません。";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "クイズにはIPアドレスフィルタセットがあります。";

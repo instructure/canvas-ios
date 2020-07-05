@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "задание";
-
 /* label for quiz availability date */
 "Available Until" = "Доступно до";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Удалить запись?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "тема обсуждения";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Ошибка диска";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Ожидался ответ в диапазоне 200-299. Получено %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "внешний инструмент";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Не удалось найти изображение по пути";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Срок выполнения не задан";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Пути достижения владения отсутствуют";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Не найдено ни одного push-канала";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Вопросы";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "тест";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Сведения о тесте";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Возникла проблема при загрузке файла базы данных EnrollmentKit.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Возникла проблема при загрузке файла базы данных SoEdventurous.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Возникла ошибка при чтении кэшированных данных";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Дата отсутствует!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Для этого элемента модуля не заданы параметры путей достижения владения.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Этот тест содержит набор фильтров IP-адреса.";

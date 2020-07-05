@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Tem a certeza de que deseja eliminar este comentário?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "tarefa";
-
 /* label for quiz availability date */
 "Available Until" = "Disponível até";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Apagar gravação?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "tópico de discussão";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Erro de disco";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Esperava uma resposta na faixa 200-299. Obteve %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "ferramenta externa";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Não foi possível encontrar a imagem no caminho";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Sem data de vencimento";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Nenhum caminho de domínio";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Não foi encontrado qualquer canal de pressão";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Perguntas";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "questionário";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Detalhes do teste";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Ocorreu um problema ao carregar o EnrollmentKit ficheiro de banco de dados.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Ocorreu um problema ao carregar o SoEdventurous arquivo de banco de dados.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Ocorreu um problema ao ler a base de cache.";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Não existiram dados!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Este item do módulo não possui caminhos de domínio configurados.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Este questionário tem um filtro Ip definido.";

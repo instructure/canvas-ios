@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Czy na pewno chcesz usunąć ten komentarz?";
 
 /* No comment provided by engineer. */
+"assignment" = "zadanie";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Szczegóły zadania";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Menu programisty";
 
 /* No comment provided by engineer. */
+"discussion" = "dyskusja";
+
+/* No comment provided by engineer. */
 "Discussion" = "Dyskusja";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Funkcje eksperymentalne";
 
 /* No comment provided by engineer. */
+"external tool" = "zewnętrzne narzędzia";
+
+/* No comment provided by engineer. */
 "External Tool" = "Narzędzie zewnętrzne";
+
+/* No comment provided by engineer. */
+"external URL" = "zewnętrzny adres URL";
 
 /* No comment provided by engineer. */
 "External URL" = "Zewnętrzny adres URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Nie powiodło się. Stuknij, aby wyświetlić opcje";
+
+/* No comment provided by engineer. */
+"file" = "plik";
 
 /* No comment provided by engineer. */
 "File" = "Plik";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Znajdź kod QR";
 
 /* No comment provided by engineer. */
+"locked" = "zblokowane";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Zablokowano do chwili oceny \"%@\"";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "strona";
+
+/* No comment provided by engineer. */
 "Page" = "Strona";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Powiadomienia push";
+
+/* No comment provided by engineer. */
+"quiz" = "test";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";

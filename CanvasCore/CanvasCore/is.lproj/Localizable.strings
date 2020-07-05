@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "verkefni";
-
 /* label for quiz availability date */
 "Available Until" = "Tiltækt til";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Eyða upptöku?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "umræðuefni";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskavilla";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Vænt svar á bilinu 200-299. Got %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "ytra tæki";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Ekki tókst að finna mynd á slóð";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Enginn skiladagur";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Engar tileinkunarslóðir";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Engar þrýstirásir fundust";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Spurningar";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "próf";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Vandamál kom upp við að sækja EnrollmentKit gagnagrunnsskránna.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Vandamál kom upp við að sækja SoEdventurous gagnagrunnsskránna.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Villa kom upp við að lesa gögn í flýtiminni";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Enginn gögn voru fyrir hendi!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Þetta einingaratriði er ekki með tileinkunarslóðir stilltar inn.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Þetta próf er með IP-tölu síu.";

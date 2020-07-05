@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
 
 /* No comment provided by engineer. */
+"assignment" = "uppgift";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Uppgiftens detaljer";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Meny för utvecklare";
 
 /* No comment provided by engineer. */
+"discussion" = "diskussion";
+
+/* No comment provided by engineer. */
 "Discussion" = "Diskussion";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Experimentella funktioner";
 
 /* No comment provided by engineer. */
+"external tool" = "externt verktyg";
+
+/* No comment provided by engineer. */
 "External Tool" = "Externt verktyg";
+
+/* No comment provided by engineer. */
+"external URL" = "extern URL";
 
 /* No comment provided by engineer. */
 "External URL" = "Extern URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Misslyckades. Flik för alternativ";
+
+/* No comment provided by engineer. */
+"file" = "fil";
 
 /* No comment provided by engineer. */
 "File" = "Fil";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Lokalisera QR-kod";
 
 /* No comment provided by engineer. */
+"locked" = "låst";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Låst tills ”%@” har bedömts";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "sida";
+
+/* No comment provided by engineer. */
 "Page" = "Sida";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Push-aviseringar";
+
+/* No comment provided by engineer. */
+"quiz" = "quiz";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";

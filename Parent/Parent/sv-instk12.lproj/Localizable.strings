@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "Du är uppdaterad när det gäller notiserna";
-
 /* No comment provided by engineer. */
 "Compose Message" = "Skriv meddelande";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Värdet måste vara mellan 0 och 100";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AlertKit.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Ett problem uppstod vid inläsning av databasen.";

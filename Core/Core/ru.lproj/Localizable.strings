@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
 
 /* No comment provided by engineer. */
+"assignment" = "задание";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Сведения о задании";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Меню программиста";
 
 /* No comment provided by engineer. */
+"discussion" = "обсуждение";
+
+/* No comment provided by engineer. */
 "Discussion" = "Обсуждение";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Экспериментальные функции";
 
 /* No comment provided by engineer. */
+"external tool" = "внешний инструмент";
+
+/* No comment provided by engineer. */
 "External Tool" = "Внешний инструмент";
+
+/* No comment provided by engineer. */
+"external URL" = "внешний URL-адрес";
 
 /* No comment provided by engineer. */
 "External URL" = "Внешний URL-адрес";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
+
+/* No comment provided by engineer. */
+"file" = "файл";
 
 /* No comment provided by engineer. */
 "File" = "Файл";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Определить местонахождение кода QR";
 
 /* No comment provided by engineer. */
+"locked" = "заблокировано";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Заблокировано до получения оценки \"%@\"";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "страница";
+
+/* No comment provided by engineer. */
 "Page" = "Страница";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Push-уведомления";
+
+/* No comment provided by engineer. */
+"quiz" = "тест";
 
 /* No comment provided by engineer. */
 "Quiz" = "Тест";

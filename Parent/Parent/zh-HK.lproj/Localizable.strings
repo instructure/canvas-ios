@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "趕上提示的進度";
-
 /* No comment provided by engineer. */
 "Compose Message" = "撰寫訊息";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "數值必須是一個介於 0 和 100 之間的數字";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "載入 AlertKit 資料庫檔案時出現問題。";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "載入資料庫時出現問題。";

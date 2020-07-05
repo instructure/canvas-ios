@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Wollen Sie diesen Kommentar wirklich löschen?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "Aufgabe";
-
 /* label for quiz availability date */
 "Available Until" = "Verfügbar bis";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Aufzeichnung löschen?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "Diskussionsthema";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Festplattenfehler";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Eine Antwort erwartet im Bereich 200-299. Erhalten %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "Externes Tool";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Bild mit dem Pfad konnte nicht gefunden werden.";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Kein Abgabetermin";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Keine Leistungsziel-Pfade";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Kein Push-Kanal gefunden";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Fragen";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "Quiz";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quizdetails";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Beim Laden der EnrollmentKit-Datenbankdatei ist ein Problem aufgetreten.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Beim Laden der SoEdventurous-Datenbankdatei ist ein Problem aufgetreten.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Beim Auslesen der Speicherdaten ist ein Problem aufgetreten.";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Es gab keine Daten!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Für dieses Modul wurden keine Leistungsziel-Pfade konfiguriert.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Das Quiz besitzt einen eingestellten IP-Adressen-Filter.";

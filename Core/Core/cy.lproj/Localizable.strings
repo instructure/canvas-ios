@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
 
 /* No comment provided by engineer. */
+"assignment" = "aseiniad";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Manylion Aseiniad";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Dewislen Datblygwr";
 
 /* No comment provided by engineer. */
+"discussion" = "trafodaeth";
+
+/* No comment provided by engineer. */
 "Discussion" = "Trafodaeth";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Nodweddion Arbrofol";
 
 /* No comment provided by engineer. */
+"external tool" = "adnodd allanol";
+
+/* No comment provided by engineer. */
 "External Tool" = "Adnodd Allanol";
+
+/* No comment provided by engineer. */
+"external URL" = "URL allanol";
 
 /* No comment provided by engineer. */
 "External URL" = "URL allanol";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
+
+/* No comment provided by engineer. */
+"file" = "ffeil";
 
 /* No comment provided by engineer. */
 "File" = "Ffeil";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Dod o hyd i God QR";
 
 /* No comment provided by engineer. */
+"locked" = "wedi'u cloi";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Ar glo nes bydd \"%@\" wedi’i raddio";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "tudalen";
+
+/* No comment provided by engineer. */
 "Page" = "Tudalen";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Hysbysiadau Marchnata";
+
+/* No comment provided by engineer. */
+"quiz" = "cwis";
 
 /* No comment provided by engineer. */
 "Quiz" = "Cwis";
