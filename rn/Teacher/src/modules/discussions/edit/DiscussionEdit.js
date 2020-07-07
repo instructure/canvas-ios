@@ -462,7 +462,7 @@ export class DiscussionEdit extends Component<Props, any> {
     return () => {
       const willShow = !this.state.showingDatePicker[dateField]
       if (willShow && !this.state[dateField]) {
-        this._valueChanged(dateField, null, false)(this.props.defaultDate || new Date())
+        this._valueChanged(dateField, d => d.toISOString(), false)(this.props.defaultDate || new Date())
       }
       this.setState({
         showingDatePicker: {

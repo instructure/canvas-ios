@@ -20,9 +20,20 @@ import Foundation
 @testable import Core
 
 public class MiniDiscussion {
+
+    // Mutable container
+    public class Entry {
+        public var api: APIDiscussionEntry
+        public var id: String { api.id.value }
+
+        public init(_ api: APIDiscussionEntry) {
+            self.api = api
+        }
+    }
+
     public var api: APIDiscussionTopic
     public var id: String { api.id.value }
-    public var entries: [APIDiscussionEntry] = []
+    public var entries: [Entry] = []
 
     public func view(state: MiniCanvasState) -> APIDiscussionView {
         .make(
@@ -30,7 +41,7 @@ public class MiniDiscussion {
             unread_entries: [],
             entry_ratings: [:],
             forced_entries: [],
-            view: entries
+            view: entries.map(\.api)
         )
     }
 

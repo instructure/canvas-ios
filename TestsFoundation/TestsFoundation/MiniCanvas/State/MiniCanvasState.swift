@@ -95,7 +95,7 @@ extension MiniCanvasState {
     }
     public var allUsers: [APIUser] { students + teachers + observers }
     public func user(byId id: String) -> APIUser? {
-        allUsers.first { $0.id == id }
+        allUsers.first { $0.id.value == id }
     }
 
     public var selfUser: APIUser { user(byId: selfId)! }

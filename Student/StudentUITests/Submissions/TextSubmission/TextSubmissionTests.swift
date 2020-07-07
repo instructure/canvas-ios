@@ -39,9 +39,8 @@ class TextSubmissionTests: CoreUITestCase {
         // app.find(label: "Enter submission").waitToExist()
         sleep(1)
 
-        let webView = app.find(id: "RichContentEditor.webView")
-        webView.typeText("     This is rich content.")
-        webView.tapAt(.zero).tapAt(.zero)
+        RichContentEditor.webView.typeText("     This is rich content.")
+        RichContentEditor.webView.tapAt(.zero).tapAt(.zero)
         app.find(label: "Select All").tap()
         RichContentToolbar.textColorButton.tap()
         RichContentToolbar.blueColorButton.tap()

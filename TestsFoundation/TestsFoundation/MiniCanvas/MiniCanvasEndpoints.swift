@@ -28,6 +28,7 @@ enum MiniCanvasEndpoints {
         static let folderID = ":folderID"
         static let fileID = ":fileID"
         static let topicID = ":topicID"
+        static let entryID = ":entryID"
         static let courseContext = Context(ContextType.course, id: courseID)
         static let folderContext = Context(ContextType.folder, id: folderID)
     }
@@ -94,6 +95,15 @@ enum MiniCanvasEndpoints {
         return topic
     }
 
+    private static func lookupDiscussionEntry<T>(forRequest request: MiniCanvasServer.APIRequest<T>) throws -> MiniDiscussion.Entry {
+        let entryID = request[Pattern.entryID]!
+        let discussion = try lookupDiscussion(forRequest: request)
+        guard let entry = discussion.entries.first(where: { $0.id == entryID }) else {
+            throw ServerError.notFound
+        }
+        return entry
+    }
+
     private static func parsePageUpdate(request: MiniCanvasServer.APIRequest<Data>) throws -> APIPage {
         let course = try lookupCourse(forRequest: request)
         let body = try XCTUnwrap(JSONSerialization.jsonObject(with: request.body) as? [String: Any])
@@ -111,17 +121,19 @@ enum MiniCanvasEndpoints {
         )
     }
 
-    // replace any values in `old` with non-null values in `new`
+    /// replace any values in `old` with non-null values in `new`
     private static func mergeJSONData<E: Codable>(old: E, new: Data) throws -> E {
         guard let oldData = try? APIJSONEncoder().encode(old),
-            var oldJson = try? JSONSerialization.jsonObject(with: oldData) as? [String: Any?],
-            let newJson = try? JSONSerialization.jsonObject(with: new) as? [String: Any?] else {
-                throw ServerError.badRequest
+            var oldJson = try? JSONSerialization.jsonObject(with: oldData) as? [String: Any?] else {
+                throw ServerError.internalServerError
         }
-        oldJson.merge(newJson, uniquingKeysWith: { $1 ?? $0 })
-        guard let data = try? JSONSerialization.data(withJSONObject: oldJson) else {
+        guard let newJson = try? JSONSerialization.jsonObject(with: new) as? [String: Any?] else {
+            print("couldn't decode data as [String: Any?]")
+            print(String(data: new, encoding: .utf8) ?? "??")
             throw ServerError.badRequest
         }
+        oldJson.merge(newJson, uniquingKeysWith: { $1 ?? $0 })
+        let data = try JSONSerialization.data(withJSONObject: oldJson)
         return try APIJSONDecoder.extendedPrecisionDecoder.decode(E.self, from: data)
     }
 
@@ -201,15 +213,27 @@ enum MiniCanvasEndpoints {
         .apiRequest(ListDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
             try lookupCourse(forRequest: request).discussions.map { $0.api }
         },
-
-        {
-            print(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID).path)
-            return .apiRequest(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
+        .apiRequest(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
                 try lookupDiscussion(forRequest: request).api
-            }
-        }(),
+        },
         .apiRequest(GetDiscussionViewRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
             try lookupDiscussion(forRequest: request).view(state: request.state)
+        },
+        .apiRequest(PutDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
+            let discussion = try lookupDiscussion(forRequest: request)
+            print(String(data: request.rawBody, encoding: .utf8)!)
+            if let title = request.firstMultiPartParam(named: "title") {
+                discussion.api.title = title
+            }
+            if let message = request.firstMultiPartParam(named: "message") {
+                discussion.api.message = message
+            }
+            return discussion.api
+        },
+        .apiRequest(PutDiscussionEntryRequest(context: Pattern.courseContext, topicID: Pattern.topicID, entryID: Pattern.entryID, message: "")) { request in
+            let entry = try lookupDiscussionEntry(forRequest: request)
+            entry.api.message = request.body?.message
+            return entry.api
         },
 
         // MARK: Enrollments
@@ -270,6 +294,7 @@ enum MiniCanvasEndpoints {
                 let name = body["name"] as? String,
                 let parentID = body["parent_folder_id"] as? String,
                 let parent = request.state.folders[parentID] else {
+                    print("couldn't find parent folder")
                     throw ServerError.badRequest
             }
             let course = try lookupCourse(forRequest: request)

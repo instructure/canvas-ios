@@ -138,7 +138,8 @@ public class MiniCourse {
         let topicID = state.nextId()
         let topic = APIDiscussionTopic.make(
             id: topicID,
-            html_url: state.baseUrl.appendingPathComponent("/course/\(course.id)/discussion_topics/\(topicID)")
+            html_url: state.baseUrl.appendingPathComponent("/course/\(course.id)/discussion_topics/\(topicID)"),
+            permissions: .make(attach: true, update: true, reply: true, delete: true)
         )
         course.discussions.append(MiniDiscussion.create(topic, populatingState: state))
     }

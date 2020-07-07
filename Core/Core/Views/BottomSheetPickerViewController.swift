@@ -50,7 +50,7 @@ public class BottomSheetPickerViewController: UIViewController {
         view.frame.size.height = 8
     }
 
-    func addAction(image: UIImage?, title: String, action: @escaping () -> Void = {}) {
+    func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
         loadViewIfNeeded()
         let button = UIButton(type: .system)
 
@@ -60,6 +60,7 @@ public class BottomSheetPickerViewController: UIViewController {
         button.tintColor = .named(.textDarkest)
         button.titleLabel?.font = .scaledNamedFont(.medium16)
         button.tag = actions.count
+        button.accessibilityIdentifier = accessibilityIdentifier
         button.addTarget(self, action: #selector(didSelect(_:)), for: .primaryActionTriggered)
         button.contentEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         if let image = image {
