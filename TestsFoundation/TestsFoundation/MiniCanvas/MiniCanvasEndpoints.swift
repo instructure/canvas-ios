@@ -221,7 +221,6 @@ enum MiniCanvasEndpoints {
         },
         .apiRequest(PutDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
             let discussion = try lookupDiscussion(forRequest: request)
-            print(String(data: request.rawBody, encoding: .utf8)!)
             if let title = request.firstMultiPartParam(named: "title") {
                 discussion.api.title = title
             }
