@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
 
 /* No comment provided by engineer. */
+"assignment" = "作业";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "作业详情";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "开发人员菜单";
 
 /* No comment provided by engineer. */
+"discussion" = "讨论";
+
+/* No comment provided by engineer. */
 "Discussion" = "讨论";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "试验功能";
 
 /* No comment provided by engineer. */
+"external tool" = "外部工具";
+
+/* No comment provided by engineer. */
 "External Tool" = "外部工具";
+
+/* No comment provided by engineer. */
+"external URL" = "外部网址";
 
 /* No comment provided by engineer. */
 "External URL" = "外部 URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失败。点击以获取选项";
+
+/* No comment provided by engineer. */
+"file" = "文件";
 
 /* No comment provided by engineer. */
 "File" = "文件";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "查找二维码";
 
 /* No comment provided by engineer. */
+"locked" = "已锁定";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "锁定至\"%@\"升级";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "页面";
+
+/* No comment provided by engineer. */
 "Page" = "页面";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "推送通知";
+
+/* No comment provided by engineer. */
+"quiz" = "测验";
 
 /* No comment provided by engineer. */
 "Quiz" = "测验";

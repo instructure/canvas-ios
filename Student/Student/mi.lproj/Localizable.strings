@@ -25,12 +25,6 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ e hiahiatia ana mo te koeke";
 
-/* Shows points possible for an assignment */
-"%@ pts" = "%@ ngā koinga";
-
-/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
-"%@. Type: %@" = "%1$@. Momo: %2$@";
-
 /* Word and ellipses */
 "%@..." = "%@...";
 
@@ -292,9 +286,6 @@
 /* Calendar page title */
 "Calendar" = "Maramataka";
 
-/* No comment provided by engineer. */
-"Calendar Event" = "Tauwhāinga Māramataka";
-
 /* Invalid LTI tool error title */
 "Can't load tool" = "e kore e taea te uta taputapu";
 
@@ -348,9 +339,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Kōwhiri mai i te whare Pukapuka";
-
-/* Text for button to allow user to choose a set of assignments to do */
-"Choose option" = "Whiriwhiri kōwhiringa";
 
 /* Button label for choosing a photo */
 "Choose Photo" = "Kōwhiri Whakāhua";
@@ -528,9 +516,6 @@
 /* No comment provided by engineer. */
 "Due" = "E tika ana";
 
-/* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "E tika ana %@";
-
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "tae mai i runga %1$@ i %2$@";
 
@@ -596,10 +581,10 @@
 /* Title for an external tool submission */
 "External Tool" = "Taputapu waho";
 
-/* External URL module item type */
+/* No comment provided by engineer. */
 "External URL" = "URL waho";
 
-/* File module item type */
+/* No comment provided by engineer. */
 "File" = "kōnae";
 
 /* The file extension for a submission is not acceptable */
@@ -750,9 +735,6 @@
 /* No comment provided by engineer. */
 "Item %1$d of %2$d" = "Tūemi %1$d o %2$d";
 
-/* table header for module items */
-"Items" = "Ngā Tūemi";
-
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Hūpeke ki te ra o nāianei i runga i te maramataka";
 
@@ -774,9 +756,6 @@
 /* Title for legal section on the about page */
 "Legal" = "Ture";
 
-/* Web URL link item label */
-"Link" = "Hono";
-
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "E uta ana ....";
@@ -784,10 +763,7 @@
 /* No comment provided by engineer. */
 "Locked" = "Kua rakaina";
 
-/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
-"Locked until \"%@\" is graded" = "Ka rakaina kī \"%@\" i kōeketia";
-
-/* locked date */
+/* No comment provided by engineer. */
 "Locked until %@" = "Rakaina tae noa ki %@";
 
 /* Typically the email address correlated to the user */
@@ -809,9 +785,6 @@
 /* Button title for beginning masquerading
    try masquerading */
 "Masquerade" = "Poupou pakoko";
-
-/* Master Path module item type */
-"Mastery Path" = "Ara Hinganga";
 
 /* No comment provided by engineer. */
 "Me" = "Ahau";
@@ -847,9 +820,6 @@
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Whakatūpato Quiz Pūkoro Haerere";
-
-/* No comment provided by engineer. */
-"Module Item Not Found" = "Kaore i kitea te Kōwae tūemi";
 
 /* title for the modules tab */
 "Modules" = "Kōwae";
@@ -896,9 +866,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Karere Hōu";
 
-/* Button title for next module item. */
-"Next" = "E haere ake nei";
-
 /* No comment provided by engineer. */
 "Next 7 Days" = "Panuku 7 ra";
 
@@ -928,9 +895,6 @@
 
 /* Error message */
 "No installed apps support opening this file" = "No taupānga tāutatia tautoko te whakatuwhera i tēnei kōnae";
-
-/* Title for alert when a module item hasn't been set up with mastery paths */
-"No Mastery Paths" = "Kaore he ara hinganga";
 
 /* No comment provided by engineer. */
 "No Notifications" = "Kaore he whakamōhiotanga";
@@ -1024,9 +988,6 @@
 /* Open file in another application */
 "Open in..." = "Tuwhera i roto i...";
 
-/* Button title for selecting an option given a number */
-"Option %d" = "Kōwhiringa %d";
-
 /* No comment provided by engineer. */
 "Other" = "Ētahi atu";
 
@@ -1045,7 +1006,7 @@
 /* Title for Outcomes tab */
 "Outcomes" = "Nga putanga";
 
-/* Page module item type */
+/* No comment provided by engineer. */
 "Page" = "Whārangi";
 
 /* No comment provided by engineer. */
@@ -1084,12 +1045,6 @@
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Mahi Quizzes";
-
-/* Table header for prerequisite modules */
-"Prerequisite Modules" = "Kōwae Tītauhia";
-
-/* Button title for previous module item. */
-"Previous" = "Ō muri";
 
 /* No comment provided by engineer. */
 "Previous item" = "Tūemi o mua";
@@ -1195,12 +1150,6 @@
 "Select file(s)" = "Tīpako ngā kōnae";
 
 /* No comment provided by engineer. */
-"Select Option" = "Tīpako kōwhiringa";
-
-/* Button title to select a certain assignment set option */
-"Select Option %d" = "Tīpako kōwhiringa %d";
-
-/* No comment provided by engineer. */
 "Select or deselect" = "Tīpakohia whakawātea rānei";
 
 /* No comment provided by engineer. */
@@ -1255,20 +1204,6 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Tīmata tāhopu he kōrero pāpāho";
 
-/* Label read aloud when item status is completed.
-   Module status label when completed */
-"Status: Completed" = "Tūnga: Kua oti";
-
-/* Label read aloud when item status is incomplete. */
-"Status: Incomplete" = "Tūnga: Kaore i te oti";
-
-/* Label read aloud when item status is locked.
-   Module status label when locked */
-"Status: Locked" = "Tūnga: Kua rakaina";
-
-/* Module status label when started */
-"Status: Started" = "Tūnga: Tīmata";
-
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Noho takiuru";
 
@@ -1290,7 +1225,7 @@
 /* No comment provided by engineer. */
 "Studio" = "Studio";
 
-/* Header item label */
+/* No comment provided by engineer. */
 "Sub Header" = "Subheader";
 
 /* View previously submitted assignment */
@@ -1489,9 +1424,6 @@
 /* No comment provided by engineer. */
 "This is a media message." = "Ko te karere pāpāho tēnei.";
 
-/* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "Kaore i whakatautia he ara hinganga mo tēnei kōwae tūemi.";
-
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "He wā nui tēnei ki te mahi i tētahi nama atu.";
 
@@ -1525,9 +1457,6 @@
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Tahuri I roto anō";
-
-/* Label read aloud to describe module item type */
-"Type: %@" = "Momo: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Aue! Kaore he hononga ipurangi";

@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "aseiniad";
-
 /* label for quiz availability date */
 "Available Until" = "Ar gael tan";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Dileu’r recordiad?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "pwnc trafod";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Gwall ar y Ddisg";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Disgwyl ymateb yn yr ystod 200-299. Wedi Cael %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "adnodd allanol";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Wedi methu dod o hyd i'r ddelwedd yn y llwybr";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Dim Dyddiad Erbyn";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Dim Llwybrau Meistroli";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Heb ddod o hyd sianel marchnata";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Cwestiynau";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "cwis";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Manylion Cwis";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata EnrollmentKit.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Problem wrth lwytho’r ffeil cronfa ddata SoEdventurous.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Problem wrth ddarllen y data wedi'i storio";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Doedd dim data!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Does dim llwybrau meistroli wedi'u ffurfweddu ar gyfer eitem y modiwl hwn.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Mae hidlydd cyfeiriad IP wedi'i bennu ar gyfer y cwis hwn.";

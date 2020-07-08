@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "您確定要刪除此評論嗎？";
 
 /* No comment provided by engineer. */
+"assignment" = "作業";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "作業詳細資料";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "開發人員選單";
 
 /* No comment provided by engineer. */
+"discussion" = "討論區";
+
+/* No comment provided by engineer. */
 "Discussion" = "討論";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "實驗功能";
 
 /* No comment provided by engineer. */
+"external tool" = "外部工具";
+
+/* No comment provided by engineer. */
 "External Tool" = "外部工具";
+
+/* No comment provided by engineer. */
+"external URL" = "外部 URL";
 
 /* No comment provided by engineer. */
 "External URL" = "外部 URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失敗。點選選項";
+
+/* No comment provided by engineer. */
+"file" = "檔案";
 
 /* No comment provided by engineer. */
 "File" = "檔案";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "尋找 QR 碼";
 
 /* No comment provided by engineer. */
+"locked" = "已鎖定";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "鎖定直至 \"%@\" 被評分";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "頁面";
+
+/* No comment provided by engineer. */
 "Page" = "頁面";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "推送通知";
+
+/* No comment provided by engineer. */
+"quiz" = "測驗";
 
 /* No comment provided by engineer. */
 "Quiz" = "測驗";

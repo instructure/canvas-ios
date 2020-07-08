@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
 
 /* No comment provided by engineer. */
+"assignment" = "naloga";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Podrobnosti o nalogi";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Meni razvijalca";
 
 /* No comment provided by engineer. */
+"discussion" = "razprava";
+
+/* No comment provided by engineer. */
 "Discussion" = "Razprava";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Eksperimentalne funkcionalnosti";
 
 /* No comment provided by engineer. */
+"external tool" = "zunanje orodje";
+
+/* No comment provided by engineer. */
 "External Tool" = "Zunanje orodje";
+
+/* No comment provided by engineer. */
+"external URL" = "zunanji naslov URL";
 
 /* No comment provided by engineer. */
 "External URL" = "Zunanji naslov URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
+
+/* No comment provided by engineer. */
+"file" = "datoteka";
 
 /* No comment provided by engineer. */
 "File" = "Datoteka";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Poiščite kodo QR";
 
 /* No comment provided by engineer. */
+"locked" = "zaklenjeno";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Zaklenjeno, dokler element »%@« ni ocenjen.";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "stran";
+
+/* No comment provided by engineer. */
 "Page" = "Stran";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Poslana obvestila";
+
+/* No comment provided by engineer. */
+"quiz" = "kviz";
 
 /* No comment provided by engineer. */
 "Quiz" = "Kviz";

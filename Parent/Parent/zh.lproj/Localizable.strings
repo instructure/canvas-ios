@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "取消";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "赶上了通知";
-
 /* No comment provided by engineer. */
 "Compose Message" = "撰写消息";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "值必须是介于 0 至 100 之间的数字";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "加载AlertKit数据库文件时出现问题。";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "加载数据库时出现问题。";

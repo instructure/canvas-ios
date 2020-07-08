@@ -25,12 +25,6 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ moeten beoordeeld worden";
 
-/* Shows points possible for an assignment */
-"%@ pts" = "%@ ptn";
-
-/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
-"%@. Type: %@" = "%1$@. Type: %2$@";
-
 /* Word and ellipses */
 "%@..." = "%@...";
 
@@ -292,9 +286,6 @@
 /* Calendar page title */
 "Calendar" = "Kalender";
 
-/* No comment provided by engineer. */
-"Calendar Event" = "Gebeurtenis op kalender";
-
 /* Invalid LTI tool error title */
 "Can't load tool" = "Kan hulpmiddel niet loaden";
 
@@ -348,9 +339,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Kiezen uit bibliotheek...";
-
-/* Text for button to allow user to choose a set of assignments to do */
-"Choose option" = "Kies een optie";
 
 /* Button label for choosing a photo */
 "Choose Photo" = "Foto kiezen";
@@ -528,9 +516,6 @@
 /* No comment provided by engineer. */
 "Due" = "Inleverdatum";
 
-/* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "Inleverdatum %@";
-
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "in te leveren op %1$@ om %2$@";
 
@@ -596,10 +581,10 @@
 /* Title for an external tool submission */
 "External Tool" = "Externe tool";
 
-/* External URL module item type */
+/* No comment provided by engineer. */
 "External URL" = "Externe URL's";
 
-/* File module item type */
+/* No comment provided by engineer. */
 "File" = "Bestand";
 
 /* The file extension for a submission is not acceptable */
@@ -750,9 +735,6 @@
 /* No comment provided by engineer. */
 "Item %1$d of %2$d" = "Item %1$d van %2$d";
 
-/* table header for module items */
-"Items" = "Items";
-
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Gaat naar huidige dag op kalender";
 
@@ -774,9 +756,6 @@
 /* Title for legal section on the about page */
 "Legal" = "Juridisch";
 
-/* Web URL link item label */
-"Link" = "Link";
-
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Bezig met laden...";
@@ -784,10 +763,7 @@
 /* No comment provided by engineer. */
 "Locked" = "Vergrendeld";
 
-/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
-"Locked until \"%@\" is graded" = "Vergrendeld totdat \"%@\" is beoordeeld";
-
-/* locked date */
+/* No comment provided by engineer. */
 "Locked until %@" = "Vergrendeld tot %@";
 
 /* Typically the email address correlated to the user */
@@ -809,9 +785,6 @@
 /* Button title for beginning masquerading
    try masquerading */
 "Masquerade" = "Masker toepassen";
-
-/* Master Path module item type */
-"Mastery Path" = "Leertraject";
 
 /* No comment provided by engineer. */
 "Me" = "Mij";
@@ -847,9 +820,6 @@
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Mobiele toets waarschuwing";
-
-/* No comment provided by engineer. */
-"Module Item Not Found" = "Module-item niet gevonden";
 
 /* title for the modules tab */
 "Modules" = "Modules";
@@ -896,9 +866,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nieuw bericht";
 
-/* Button title for next module item. */
-"Next" = "Volgende";
-
 /* No comment provided by engineer. */
 "Next 7 Days" = "Volgende 7 dagen";
 
@@ -928,9 +895,6 @@
 
 /* Error message */
 "No installed apps support opening this file" = "Geen geïnstalleerde apps die het openen van dit bestand ondersteunen";
-
-/* Title for alert when a module item hasn't been set up with mastery paths */
-"No Mastery Paths" = "Geen leertrajecten";
 
 /* No comment provided by engineer. */
 "No Notifications" = "Geen meldingen";
@@ -1024,9 +988,6 @@
 /* Open file in another application */
 "Open in..." = "Openen in...";
 
-/* Button title for selecting an option given a number */
-"Option %d" = "Optie %d";
-
 /* No comment provided by engineer. */
 "Other" = "Overige";
 
@@ -1045,7 +1006,7 @@
 /* Title for Outcomes tab */
 "Outcomes" = "Leerdoelen";
 
-/* Page module item type */
+/* No comment provided by engineer. */
 "Page" = "Pagina";
 
 /* No comment provided by engineer. */
@@ -1084,12 +1045,6 @@
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Oefentoetsen";
-
-/* Table header for prerequisite modules */
-"Prerequisite Modules" = "Vereiste modules";
-
-/* Button title for previous module item. */
-"Previous" = "Vorige";
 
 /* No comment provided by engineer. */
 "Previous item" = "Vorige item";
@@ -1195,12 +1150,6 @@
 "Select file(s)" = "Bestand(en) selecteren";
 
 /* No comment provided by engineer. */
-"Select Option" = "Optie selecteren";
-
-/* Button title to select a certain assignment set option */
-"Select Option %d" = "Optie selecteren %d";
-
-/* No comment provided by engineer. */
 "Select or deselect" = "Selecteren of selectie ongedaan maken";
 
 /* No comment provided by engineer. */
@@ -1255,20 +1204,6 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Een media opmerking wordt opgenomen";
 
-/* Label read aloud when item status is completed.
-   Module status label when completed */
-"Status: Completed" = "Status: Voltooid";
-
-/* Label read aloud when item status is incomplete. */
-"Status: Incomplete" = "Status: Incompleet";
-
-/* Label read aloud when item status is locked.
-   Module status label when locked */
-"Status: Locked" = "Status: Vergrendeld";
-
-/* Module status label when started */
-"Status: Started" = "Status: Gestart";
-
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Blijf ingelogd";
 
@@ -1290,7 +1225,7 @@
 /* No comment provided by engineer. */
 "Studio" = "Studio";
 
-/* Header item label */
+/* No comment provided by engineer. */
 "Sub Header" = "Sub Header";
 
 /* View previously submitted assignment */
@@ -1489,9 +1424,6 @@
 /* No comment provided by engineer. */
 "This is a media message." = "Dit is een media bericht.";
 
-/* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "Voor dit module-item zijn geen leertrajecten ingesteld.";
-
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Dit is een goede tijd voor wat extra punten.";
 
@@ -1525,9 +1457,6 @@
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Opnieuw inleveren";
-
-/* Label read aloud to describe module item type */
-"Type: %@" = "Type: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Let op! Geen internetverbinding";

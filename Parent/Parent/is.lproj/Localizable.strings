@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "Hætta við";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "Þú ert búin(n) að sinna öllum viðvörunum";
-
 /* No comment provided by engineer. */
 "Compose Message" = "Semja skilaboð";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Gildið þarf að vera á milli 0 og 100";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "Vandamál kom upp við að sækja AlertKit gagnagrunnsskránna.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "Vandamál kom upp við að sækja gagnagrunninn.";

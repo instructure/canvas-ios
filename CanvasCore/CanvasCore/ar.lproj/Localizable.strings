@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك تود حذف هذا التعليق؟";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "المهمة";
-
 /* label for quiz availability date */
 "Available Until" = "متاح حتى";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "حذف التسجيل؟";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "موضوع المناقشة";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "خطأ في القرص";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "توقع استجابة في النطاق 200-299. حصل %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "أداة خارجية";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "فشل العثور على صورة في المسار";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "لا توجد مسارات إجادة";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "لم يتم العثور على قناة دفع";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "الأسئلة";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "الاختبار";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "تفاصيل الاختبار الموجز";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات EnrollmentKit.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات SoEdventurous.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "حدثت مشكلة أثناء قراءة بيانات ذاكرة التخزين المؤقت";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "لم تكن هناك بيانات!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "لا يوجد مسارات إجادة تم تكوينها لعنصر الوحدة النمطية هذا.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "تم تعيين تصفية عناوين IP في هذا الاختبار.";

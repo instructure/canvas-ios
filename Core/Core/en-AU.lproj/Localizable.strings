@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
 
 /* No comment provided by engineer. */
+"assignment" = "assignment";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Assignment Details";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "Developer Menu";
 
 /* No comment provided by engineer. */
+"discussion" = "discussion";
+
+/* No comment provided by engineer. */
 "Discussion" = "Discussion";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "Experimental Features";
 
 /* No comment provided by engineer. */
+"external tool" = "external tool";
+
+/* No comment provided by engineer. */
 "External Tool" = "External Tool";
+
+/* No comment provided by engineer. */
+"external URL" = "external URL";
 
 /* No comment provided by engineer. */
 "External URL" = "External URL";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Failed. Tap for options";
+
+/* No comment provided by engineer. */
+"file" = "file";
 
 /* No comment provided by engineer. */
 "File" = "File";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "Locate QR Code";
 
 /* No comment provided by engineer. */
+"locked" = "locked";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Locked until \"%@\" is marked";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "page";
+
+/* No comment provided by engineer. */
 "Page" = "Page";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Push Notifications";
+
+/* No comment provided by engineer. */
+"quiz" = "quiz";
 
 /* No comment provided by engineer. */
 "Quiz" = "Quiz";

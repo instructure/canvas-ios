@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "Mau ake i runga i Matohi";
-
 /* No comment provided by engineer. */
 "Compose Message" = "Tito Karere";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Me waiho te wāriu i waenganui i te 0 me te 100 kaute";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "He raruraru i te wā e uta ana i te AlertKit Matāra kōnae pātengi rarunga.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "He raruraru i te wā e uta ana i te pātengi raraunga.";

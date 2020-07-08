@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "naloga";
-
 /* label for quiz availability date */
 "Available Until" = "Na voljo do";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Ali želite odstraniti posnetek?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "tema razprave";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Napaka na disku";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Pričakovan je bil odziv v razponu 200–299. Prejeto %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "zunanje orodje";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Iskanje slike pri poti ni uspelo.";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Ni roka.";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Ni napredovanj v odličnosti.";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Ni najdenega kanala potiska.";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Vprašanja";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "kviz";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Podrobnosti o kvizu";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov EnrollmentKit.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov SoEdventurous.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "Prišlo je do težave pri branju predpomnjenih podatkov.";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Ni bilo nobenih podatkov.";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Pri tem modulu niso konfigurirana napredovanja v odličnosti.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Ta kviz ima nastavljeno filtriranje IP-naslovov.";

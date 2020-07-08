@@ -52,9 +52,6 @@
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
-/* Empty Alerts Text */
-"Caught up on Alerts" = "لا توجد تنبيهات عالقة";
-
 /* No comment provided by engineer. */
 "Compose Message" = "إنشاء رسالة";
 
@@ -242,9 +239,6 @@
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "يجب أن تكون القيمة رقمًا بين 0 و100";
-
-/* AlertKit Database Load Failure Message */
-"There was a problem loading the AlertKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AlertKit.";
 
 /* Airwolf database error message */
 "There was a problem loading the database." = "حدثت مشكلة أثناء تحميل قاعدة البيانات.";

@@ -25,12 +25,6 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ wymagają oceny";
 
-/* Shows points possible for an assignment */
-"%@ pts" = "%@ pkt";
-
-/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
-"%@. Type: %@" = "%1$@. Typ: %2$@";
-
 /* Word and ellipses */
 "%@..." = "%@...";
 
@@ -292,9 +286,6 @@
 /* Calendar page title */
 "Calendar" = "Kalendarz";
 
-/* No comment provided by engineer. */
-"Calendar Event" = "Wydarzenie w kalendarzu";
-
 /* Invalid LTI tool error title */
 "Can't load tool" = "Nie można wgrać narzędzia";
 
@@ -348,9 +339,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Wybierz z Biblioteki...";
-
-/* Text for button to allow user to choose a set of assignments to do */
-"Choose option" = "Wybierz opcję";
 
 /* Button label for choosing a photo */
 "Choose Photo" = "Wybierz zdjęcie";
@@ -528,9 +516,6 @@
 /* No comment provided by engineer. */
 "Due" = "Termin";
 
-/* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "Termin %@";
-
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "Termin: %1$@ o godz. %2$@";
 
@@ -596,10 +581,10 @@
 /* Title for an external tool submission */
 "External Tool" = "Narzędzie zewnętrzne";
 
-/* External URL module item type */
+/* No comment provided by engineer. */
 "External URL" = "Zewnętrzny adres URL";
 
-/* File module item type */
+/* No comment provided by engineer. */
 "File" = "Plik";
 
 /* The file extension for a submission is not acceptable */
@@ -750,9 +735,6 @@
 /* No comment provided by engineer. */
 "Item %1$d of %2$d" = "Pozycja %1$d z %2$d";
 
-/* table header for module items */
-"Items" = "Pozycje";
-
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Przeskakuje do obecnego dnia w kalendarzu";
 
@@ -774,9 +756,6 @@
 /* Title for legal section on the about page */
 "Legal" = "Informacje prawne";
 
-/* Web URL link item label */
-"Link" = "Łącze";
-
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Wczytywanie...";
@@ -784,10 +763,7 @@
 /* No comment provided by engineer. */
 "Locked" = "Zablokowany";
 
-/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
-"Locked until \"%@\" is graded" = "Zablokowano do chwili oceny \"%@\"";
-
-/* locked date */
+/* No comment provided by engineer. */
 "Locked until %@" = "Zablokowane do %@";
 
 /* Typically the email address correlated to the user */
@@ -809,9 +785,6 @@
 /* Button title for beginning masquerading
    try masquerading */
 "Masquerade" = "Maskowanie";
-
-/* Master Path module item type */
-"Mastery Path" = "Ścieżka nauki";
 
 /* No comment provided by engineer. */
 "Me" = "Ja";
@@ -847,9 +820,6 @@
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Ostrzeżenie o teście mobilnym";
-
-/* No comment provided by engineer. */
-"Module Item Not Found" = "Nie odnaleziono elementu modułu";
 
 /* title for the modules tab */
 "Modules" = "Moduły";
@@ -896,9 +866,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Nowa wiadomość";
 
-/* Button title for next module item. */
-"Next" = "Następny";
-
 /* No comment provided by engineer. */
 "Next 7 Days" = "Następne 7 dni";
 
@@ -928,9 +895,6 @@
 
 /* Error message */
 "No installed apps support opening this file" = "Brak zainstalowanych aplikacji, które obsługują otwieranie tego pliku";
-
-/* Title for alert when a module item hasn't been set up with mastery paths */
-"No Mastery Paths" = "Brak ścieżek nauki";
 
 /* No comment provided by engineer. */
 "No Notifications" = "Brak powiadomień";
@@ -1024,9 +988,6 @@
 /* Open file in another application */
 "Open in..." = "Otwórz w...";
 
-/* Button title for selecting an option given a number */
-"Option %d" = "Opcja %d";
-
 /* No comment provided by engineer. */
 "Other" = "Inne";
 
@@ -1045,7 +1006,7 @@
 /* Title for Outcomes tab */
 "Outcomes" = "Wyniki";
 
-/* Page module item type */
+/* No comment provided by engineer. */
 "Page" = "Strona";
 
 /* No comment provided by engineer. */
@@ -1084,12 +1045,6 @@
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Testy próbne";
-
-/* Table header for prerequisite modules */
-"Prerequisite Modules" = "Wymagane moduły";
-
-/* Button title for previous module item. */
-"Previous" = "Poprzednie";
 
 /* No comment provided by engineer. */
 "Previous item" = "Poprzednia pozycja";
@@ -1195,12 +1150,6 @@
 "Select file(s)" = "Wybierz plik(i)";
 
 /* No comment provided by engineer. */
-"Select Option" = "Wybierz opcję";
-
-/* Button title to select a certain assignment set option */
-"Select Option %d" = "Wybierz opcję %d";
-
-/* No comment provided by engineer. */
 "Select or deselect" = "Wybierz lub odznacz";
 
 /* No comment provided by engineer. */
@@ -1255,20 +1204,6 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Rozpoczyna nagrywanie komentarza medialnego";
 
-/* Label read aloud when item status is completed.
-   Module status label when completed */
-"Status: Completed" = "Status: Ukończono";
-
-/* Label read aloud when item status is incomplete. */
-"Status: Incomplete" = "Status: Nie ukończono";
-
-/* Label read aloud when item status is locked.
-   Module status label when locked */
-"Status: Locked" = "Status: Zablokowany";
-
-/* Module status label when started */
-"Status: Started" = "Status: Rozpoczęto";
-
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Pozostań zalogowany";
 
@@ -1290,7 +1225,7 @@
 /* No comment provided by engineer. */
 "Studio" = "Studio";
 
-/* Header item label */
+/* No comment provided by engineer. */
 "Sub Header" = "Niższy nagłówek";
 
 /* View previously submitted assignment */
@@ -1489,9 +1424,6 @@
 /* No comment provided by engineer. */
 "This is a media message." = "To jest wiadomość medialna.";
 
-/* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "Nie skonfigurowano ścieżek nauki dla tego elementu modułu.";
-
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "To jest dobry moment na zarobienie dodatkowego kredytu.";
 
@@ -1525,9 +1457,6 @@
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Oddaj ponownie";
-
-/* Label read aloud to describe module item type */
-"Type: %@" = "Typ: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Oj! Brak połączenia internetowego";

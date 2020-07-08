@@ -104,6 +104,9 @@
 "Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
 
 /* No comment provided by engineer. */
+"assignment" = "المهمة";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "تفاصيل المهمة";
 
 /* No comment provided by engineer. */
@@ -383,6 +386,9 @@
 "Developer Menu" = "قائمة المطورين";
 
 /* No comment provided by engineer. */
+"discussion" = "النقاش";
+
+/* No comment provided by engineer. */
 "Discussion" = "النقاش";
 
 /* No comment provided by engineer. */
@@ -464,7 +470,13 @@
 "Experimental Features" = "ميزات تجريبية";
 
 /* No comment provided by engineer. */
+"external tool" = "أداة خارجية";
+
+/* No comment provided by engineer. */
 "External Tool" = "أداة خارجية";
+
+/* No comment provided by engineer. */
+"external URL" = "عنوان URL خارجي";
 
 /* No comment provided by engineer. */
 "External URL" = "عنوان URL خارجي";
@@ -483,6 +495,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
+
+/* No comment provided by engineer. */
+"file" = "ملف";
 
 /* No comment provided by engineer. */
 "File" = "الملف";
@@ -701,6 +716,9 @@
 "Locate QR Code" = "ابحث عن رمز QR";
 
 /* No comment provided by engineer. */
+"locked" = "مؤمّن";
+
+/* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "مؤمَّن حتى منح درجة لـ \"%@\"";
 
 /* No comment provided by engineer. */
@@ -908,6 +926,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "صفحة";
+
+/* No comment provided by engineer. */
 "Page" = "صفحة";
 
 /* No comment provided by engineer. */
@@ -975,6 +996,9 @@
 
 /* Description for Push Notification channel */
 "Push Notifications" = "الإعلامات الفورية";
+
+/* No comment provided by engineer. */
+"quiz" = "الاختبار";
 
 /* No comment provided by engineer. */
 "Quiz" = "الاختبار الموجز";

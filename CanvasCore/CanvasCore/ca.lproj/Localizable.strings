@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "tasca";
-
 /* label for quiz availability date */
 "Available Until" = "Disponible fins a";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Voleu suprimir l'enregistrament?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "tema de debat";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Error de disc";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "S'esperava una resposta en l'interval de 200 a 299. Té %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "eina externa";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "No s'ha pogut trobar la imatge al camí";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Sense data de venciment";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "No hi ha cap camí cap al domini";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "No s'ha trobat cap canal de notificacions d'inserció";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Preguntes";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "qüestionari";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Informació del qüestionari";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de EnrollmentKit.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de SoEdventurous.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "S'ha produït un problema en llegir les dades desades a la memòria cau";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "No hi havien dades.";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Aquest element de mòdul no té cap camí cap al domini configurat.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Aquest qüestionari té un conjunt de filtratge d'adreces IP.";

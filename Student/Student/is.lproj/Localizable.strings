@@ -25,12 +25,6 @@
 /* Label indicating multiple submissions need grading */
 "%@ need grading" = "%@ þarf einkunnargjöf";
 
-/* Shows points possible for an assignment */
-"%@ pts" = "%@ punktar";
-
-/* Label to be read for visually impaired users. Name of assingment, then the type of assingment */
-"%@. Type: %@" = "%1$@. Tegund: %2$@";
-
 /* Word and ellipses */
 "%@..." = "%@...";
 
@@ -292,9 +286,6 @@
 /* Calendar page title */
 "Calendar" = "Dagatal";
 
-/* No comment provided by engineer. */
-"Calendar Event" = "Dagatalsviðburður";
-
 /* Invalid LTI tool error title */
 "Can't load tool" = "Ekki er hægt að sækja verkfæri";
 
@@ -348,9 +339,6 @@
 
 /* Choose an existing picture or video to use in a comment. */
 "Choose from Library..." = "Veldu úr safni…";
-
-/* Text for button to allow user to choose a set of assignments to do */
-"Choose option" = "Veldu valkost";
 
 /* Button label for choosing a photo */
 "Choose Photo" = "Veldu mynd";
@@ -528,9 +516,6 @@
 /* No comment provided by engineer. */
 "Due" = "Skilafrestur";
 
-/* Formatted string for showing an assingment due date (date already localized by system) */
-"Due %@" = "Skilafrestur %@";
-
 /* Assignment is due on a date at a time */
 "due on %1$@ at %2$@" = "skiladagur þann %1$@ klukkan %2$@";
 
@@ -596,10 +581,10 @@
 /* Title for an external tool submission */
 "External Tool" = "Ytra tól";
 
-/* External URL module item type */
+/* No comment provided by engineer. */
 "External URL" = "Ytri vefslóð";
 
-/* File module item type */
+/* No comment provided by engineer. */
 "File" = "Skrá";
 
 /* The file extension for a submission is not acceptable */
@@ -750,9 +735,6 @@
 /* No comment provided by engineer. */
 "Item %1$d of %2$d" = "Atriði %1$d af %2$d";
 
-/* table header for module items */
-"Items" = "Hlutir";
-
 /* No comment provided by engineer. */
 "Jumps to current day on calendar" = "Fara í daginn í dag á dagatalinu";
 
@@ -774,9 +756,6 @@
 /* Title for legal section on the about page */
 "Legal" = "Lögfræði";
 
-/* Web URL link item label */
-"Link" = "Tengill";
-
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Hleð inn...";
@@ -784,10 +763,7 @@
 /* No comment provided by engineer. */
 "Locked" = "Læst";
 
-/* Displayed when next assignment is locked until current assignment is graded. Placeholder is an assignment's name. */
-"Locked until \"%@\" is graded" = "Læst þar til \"%@\" hefur verið metið";
-
-/* locked date */
+/* No comment provided by engineer. */
 "Locked until %@" = "Læst til  %@";
 
 /* Typically the email address correlated to the user */
@@ -809,9 +785,6 @@
 /* Button title for beginning masquerading
    try masquerading */
 "Masquerade" = "Dyljast";
-
-/* Master Path module item type */
-"Mastery Path" = "Tileinkunarslóð";
 
 /* No comment provided by engineer. */
 "Me" = "Ég";
@@ -847,9 +820,6 @@
 
 /* Warnging for taking quizzes on a mobile device */
 "Mobile Quiz Warning" = "Viðvörun vegna prófi í snjalltæki";
-
-/* No comment provided by engineer. */
-"Module Item Not Found" = "Einingahlutur fannst ekki";
 
 /* title for the modules tab */
 "Modules" = "Námsefni";
@@ -896,9 +866,6 @@
 /* No comment provided by engineer. */
 "New Message" = "Ný skilaboð";
 
-/* Button title for next module item. */
-"Next" = "Næsti";
-
 /* No comment provided by engineer. */
 "Next 7 Days" = "Næstu 7 dagar";
 
@@ -928,9 +895,6 @@
 
 /* Error message */
 "No installed apps support opening this file" = "Engin uppsett öpp styðja þessa skrá";
-
-/* Title for alert when a module item hasn't been set up with mastery paths */
-"No Mastery Paths" = "Engar tileinkunarslóðir";
 
 /* No comment provided by engineer. */
 "No Notifications" = "Engar tilkynningar";
@@ -1024,9 +988,6 @@
 /* Open file in another application */
 "Open in..." = "Opna í…";
 
-/* Button title for selecting an option given a number */
-"Option %d" = "Valkostur  %d";
-
 /* No comment provided by engineer. */
 "Other" = "Annað";
 
@@ -1045,7 +1006,7 @@
 /* Title for Outcomes tab */
 "Outcomes" = "Niðurstöður";
 
-/* Page module item type */
+/* No comment provided by engineer. */
 "Page" = "Síða";
 
 /* No comment provided by engineer. */
@@ -1084,12 +1045,6 @@
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Æfingapróf";
-
-/* Table header for prerequisite modules */
-"Prerequisite Modules" = "Forkröfu einingar";
-
-/* Button title for previous module item. */
-"Previous" = "Fyrri";
 
 /* No comment provided by engineer. */
 "Previous item" = "Fyrra atriði";
@@ -1195,12 +1150,6 @@
 "Select file(s)" = "Veldu skrá(r)";
 
 /* No comment provided by engineer. */
-"Select Option" = "Velja valkost";
-
-/* Button title to select a certain assignment set option */
-"Select Option %d" = "Velja valkost %d";
-
-/* No comment provided by engineer. */
 "Select or deselect" = "Veldu eða afveldu";
 
 /* No comment provided by engineer. */
@@ -1255,20 +1204,6 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Byrjar að taka upp miðlaathugasemd þína";
 
-/* Label read aloud when item status is completed.
-   Module status label when completed */
-"Status: Completed" = "Staða: Lokið";
-
-/* Label read aloud when item status is incomplete. */
-"Status: Incomplete" = "Staða: Ólokið";
-
-/* Label read aloud when item status is locked.
-   Module status label when locked */
-"Status: Locked" = "Staða: Læst";
-
-/* Module status label when started */
-"Status: Started" = "Staða: Byrjað";
-
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Halda þér innskráðri(um)";
 
@@ -1290,7 +1225,7 @@
 /* No comment provided by engineer. */
 "Studio" = "Stúdíó";
 
-/* Header item label */
+/* No comment provided by engineer. */
 "Sub Header" = "Undirfyrirsögn";
 
 /* View previously submitted assignment */
@@ -1489,9 +1424,6 @@
 /* No comment provided by engineer. */
 "This is a media message." = "Þetta er miðilsskilaboð.";
 
-/* Description for alert when a module item doesn't have mastery paths configured */
-"This module item doesn't have mastery paths set up." = "Þetta einingaratriði er ekki með tileinkunarslóðir uppsettar.";
-
 /* This would be a great time to do some extra credit. */
 "This would be a great time to do some extra credit." = "Þetta væri góður tími til að vinna sér í haginn.";
 
@@ -1525,9 +1457,6 @@
 
 /* title for re-submitting an assignment */
 "Turn In Again" = "Skila aftur";
-
-/* Label read aloud to describe module item type */
-"Type: %@" = "Tegund: %@";
 
 /* Notification over status bar that displays when not connected to the internet. */
 "Uh-oh! No Internet Connection" = "Æi! Engin nettenging";

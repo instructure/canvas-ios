@@ -19,9 +19,6 @@
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
 
-/* label to be read for visually impaired users with assignment types */
-"assignment" = "whakataunga";
-
 /* label for quiz availability date */
 "Available Until" = "wātea Kia";
 
@@ -49,9 +46,6 @@
 
 /* message for delete dialog of audio recorder */
 "Delete recording?" = "Mukua tāhopu?";
-
-/* label to be read for visually impaired users with discusstion topic assignment types */
-"discussion topic" = "kaupapa kōrero";
 
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Hapa kōpae";
@@ -93,9 +87,6 @@
 
 /* Error message when the server returns a invalid response */
 "Expected a response in the 200-299 range. Got %@" = "Te whakahoki i tūmanakohia i roto i te 200-299 tawhititanga. I whiwhia %@";
-
-/* label to be read for visually impaired users with external tool assignment types */
-"external tool" = "taputapu waho";
 
 /* No comment provided by engineer. */
 "Failed to find image at path" = "I rahua te kite i te āhua i te huarahi";
@@ -139,9 +130,6 @@
 
 /* A quiz that has no due date */
 "No Due Date" = "Kaore he rā tika";
-
-/* Title for alert when a module item doesn't have mastery paths configured */
-"No Mastery Paths" = "Kaore he ara hinganga";
 
 /* Error when push channel cannot be found in notificaitons */
 "No push channel found" = "Kaore he awakeri pana i kitea";
@@ -199,9 +187,6 @@
 
 /* label for the number of questions */
 "Questions" = "Ngā pātai";
-
-/* label to be read for visually impaired users with quiz assignment types */
-"quiz" = "quiz";
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Ngā Quiz Taipitopito";
@@ -281,9 +266,6 @@
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "He raruraru i te wā e uta ana i te EnrollmentKit kōnae pātengi rarunga.";
 
-/* SoEdventurous database load failure message */
-"There was a problem loading the SoEdventurous database file." = "He raruraru i te wā e uta ana i te SoEdventurous kōnae pātengi rarunga.";
-
 /* Persistence error message */
 "There was a problem reading cached data" = "He  raruraru i te wā e tai'orā i te raraunga keteroki";
 
@@ -304,9 +286,6 @@
 
 /* No comment provided by engineer. */
 "There was no data!" = "Kahore he raraunga!";
-
-/* Body for alert when a module item doesn't have mastery paths configured */
-"This module item does not have mastery paths configured." = "Kaore he ara hinganga i whirihoatia mo tēnei kowae tūemi.";
 
 /* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
 "This quiz has an IP address filter set." = "Tēnei quiz he huinga tātari wāhitau IP.";
