@@ -67,19 +67,33 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var lockedSubheaderWebView: CoreWebView!
     @IBOutlet weak var lockedSectionHeader: DynamicLabel!
 
+    @IBOutlet weak var attemptsHeadingLabel: UILabel!
+    @IBOutlet weak var attemptsAllowedLabel: UILabel!
+    @IBOutlet weak var attemptsAllowedValueLabel: UILabel!
+    @IBOutlet weak var attemptsUsedLabel: UILabel!
+    @IBOutlet weak var attemptsUsedValueLabel: UILabel!
+    @IBOutlet weak var attemptsView: UIView!
+
     //  Note to developer adding new views:
     //  If any new views are added, make sure they are properly hidden/shown
     //  when assignment is locked in the various lockStatus states
 
+    var assignmentID = ""
+    var courseID = ""
+    let env = AppEnvironment.shared
+    var fragment: String?
     let scrollViewInsetPadding: CGFloat = 24.0
 
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
 
-    static func create(env: AppEnvironment = .shared, courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
+    static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = AssignmentDetailsPresenter(env: env, view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.assignmentID = assignmentID
+        controller.courseID = courseID
+        controller.fragment = fragment
+        controller.presenter = AssignmentDetailsPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
         return controller
     }
 
@@ -121,6 +135,11 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
         submittedDetailsLabel?.text = NSLocalizedString("Your submission is now waiting to be graded.", bundle: .student, comment: "")
         submissionButton?.setTitle(NSLocalizedString("Submission & Rubric", bundle: .student, comment: ""), for: .normal)
+        attemptsHeadingLabel.text = NSLocalizedString("Attempts", comment: "")
+        attemptsAllowedLabel.text = NSLocalizedString("Attempts Allowed:", comment: "")
+        attemptsUsedLabel.text = NSLocalizedString("Attempts Used:", comment: "")
+        attemptsAllowedValueLabel.text = nil
+        attemptsUsedValueLabel.text = nil
 
         //  locked
         lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
@@ -255,6 +274,10 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         submissionTypesSection?.subHeader.text = assignment.submissionTypeText
         fileTypesSection?.subHeader.text = assignment.fileTypeText
         fileTypesSection?.isHidden = !assignment.hasFileTypes
+        attemptsAllowedValueLabel.text = assignment.allowedAttempts > 0
+            ? NumberFormatter.localizedString(from: NSNumber(value: assignment.allowedAttempts), number: .none)
+            : NSLocalizedString("Unlimited", comment: "")
+        attemptsUsedValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: assignment.submission?.attempt ?? 0), number: .none)
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
@@ -271,6 +294,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         let showGradeSection = assignment.submission?.needsGrading == true ||
             assignment.submission?.isGraded == true ||
             presenter.onlineUploadState != nil
+        attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())

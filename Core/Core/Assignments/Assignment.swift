@@ -53,6 +53,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var syllabus: Syllabus?
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var allDates: Set<AssignmentDate>
+    @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -138,6 +139,7 @@ extension Assignment {
         useRubricForGrading = item.use_rubric_for_grading ?? false
         lastUpdatedAt = Date()
         assignmentGroupID = item.assignment_group_id?.value
+        allowedAttempts = item.allowed_attempts ?? 0
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -209,13 +211,19 @@ extension Assignment {
         return submissionTypes.isOnline
     }
 
+    public var hasAttemptsLeft: Bool {
+        let latestAttempt = submission?.attempt ?? 0
+        return (
+            allowedAttempts <= 0 ||
+            latestAttempt < allowedAttempts
+        )
+    }
+
     public func isOpenForSubmissions(referenceDate: Date = Clock.now) -> Bool {
         var open = !lockedForUser
-
         if let lockAt = lockAt {
             open = open && lockAt > referenceDate
         }
-
         if let unlockAt = unlockAt {
             open = open && referenceDate >= unlockAt
         }

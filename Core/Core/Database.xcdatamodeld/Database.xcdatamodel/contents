@@ -18,6 +18,7 @@
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
+        <attribute name="allowedAttempts" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -785,7 +786,7 @@
     <elements>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="613"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="628"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="253"/>

@@ -18,6 +18,7 @@
 
 import UIKit
 
+@IBDesignable
 class AssignmentDetailsSectionContainerView: UIView {
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var header: DynamicLabel!

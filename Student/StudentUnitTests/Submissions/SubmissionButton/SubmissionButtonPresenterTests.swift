@@ -127,6 +127,11 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         a.submissionTypes = [ .online_upload ]
         a.lockedForUser = true
         XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+
+        a.lockedForUser = false
+        a.allowedAttempts = 1
+        a.submission = Submission.make(from: .make(attempt: 2))
+        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
     }
 
     func xtestSubmitAssignment() {

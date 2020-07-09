@@ -255,4 +255,18 @@ class AssignmentTests: CoreTestCase {
         ]))
         XCTAssertEqual(a.allDates.count, 1)
     }
+
+    func testHasAttemptsLeft() {
+        let a = Assignment.make(from: .make(submission: nil))
+        a.allowedAttempts = 3
+        XCTAssertEqual(a.hasAttemptsLeft, true)
+        a.submission = Submission.make(from: .make(attempt: 3))
+        XCTAssertEqual(a.hasAttemptsLeft, false)
+        a.allowedAttempts = 4
+        XCTAssertEqual(a.hasAttemptsLeft, true)
+        a.allowedAttempts = 0
+        XCTAssertEqual(a.hasAttemptsLeft, true)
+        a.allowedAttempts = -1
+        XCTAssertEqual(a.hasAttemptsLeft, true)
+    }
 }

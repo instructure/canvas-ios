@@ -49,7 +49,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         pageViewLogger = MockPageViewLogger()
         env.mockStore = true
         env.pageViewLogger = pageViewLogger
-        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: "target")
+        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
     }
 
@@ -122,7 +122,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(from: .make(html_url: expected))
 
-        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: nil)
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingBaseURL, expected)
@@ -135,7 +135,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
-        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -147,7 +147,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(from: .make(html_url: expected))
-        presenter = AssignmentDetailsPresenter(env: env, view: self, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)

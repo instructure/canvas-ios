@@ -30,7 +30,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        viewController = AssignmentDetailsViewController.create(env: env, courseID: courseID, assignmentID: assignmentID)
+        viewController = AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID)
         prevSpeed = UIApplication.shared.keyWindow?.layer.speed ?? 1
         UIApplication.shared.keyWindow?.layer.speed = 100
     }
@@ -53,6 +53,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.dueSection?.header.text, "Due")
         XCTAssertEqual(viewController.submissionTypesSection?.header.text, "Submission Types")
         XCTAssertEqual(viewController.fileTypesSection?.header.text, "File Types")
+        XCTAssertEqual(viewController.attemptsHeadingLabel.text, "Attempts")
         XCTAssertEqual(viewController.gradeHeadingLabel?.text, "Grade")
         XCTAssertEqual(viewController.descriptionHeadingLabel?.text, "Description")
         XCTAssertEqual(viewController.quizAttemptsLabel?.text, "Allowed Attempts:")
