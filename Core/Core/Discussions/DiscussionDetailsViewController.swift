@@ -230,7 +230,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             courseSectionsView.isHidden = true
         }
 
-        optionsButton.isEnabled = topic.first != nil
+        optionsButton.isEnabled = hasTopicOptions
 
         let pending = topic.pending || entries.pending
         let error = topic.error ?? entries.error
@@ -466,6 +466,12 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
 }
 
 extension DiscussionDetailsViewController {
+    var hasTopicOptions: Bool {
+        !entries.isEmpty ||
+        topic.first?.canUpdate == true ||
+        topic.first?.canDelete == true
+    }
+
     @objc func showTopicOptions() {
         guard let topic = topic.first else { return }
 

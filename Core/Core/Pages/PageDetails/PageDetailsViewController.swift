@@ -117,7 +117,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         titleSubtitleView.title = page.title
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
-        webView.loadHTMLString(page.body)
+        webView.loadHTMLString(page.body, baseURL: page.htmlURL)
     }
 
     @objc func showOptions(_ sender: UIBarButtonItem) {
