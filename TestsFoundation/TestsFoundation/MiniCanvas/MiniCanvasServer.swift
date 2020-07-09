@@ -40,7 +40,7 @@ public class MiniCanvasServer {
 
     public var state: MiniCanvasState
 
-    private var expectationHooks: [String: XCTestExpectation] = [:]
+    private var expectationHooks: [String: MiniCanvasExpectation] = [:]
 
     private var graphQLRequests: [String: (APIRequest<Data>) throws -> HttpResponse] = [:]
 
@@ -66,6 +66,13 @@ public class MiniCanvasServer {
 
         public func mapBody<T>(_ transform: (Body) throws -> T) rethrows -> APIRequest<T> {
             APIRequest<T>(server: server, httpRequest: httpRequest, rawBody: rawBody, body: try transform(body))
+        }
+
+        public func firstMultiPartParam(named name: String) -> String? {
+            if let part = httpRequest.parseMultiPartFormData().first(where: { $0.name == name }) {
+                return String(bytes: part.body, encoding: .utf8)
+            }
+            return nil
         }
     }
 
@@ -108,7 +115,10 @@ public class MiniCanvasServer {
             handler: @escaping (APIRequest<[String: Any]>) throws -> [String: Any]
         ) -> Endpoint {
             .graphQL(operationName: operationName) { request in
-                guard let body = try JSONSerialization.jsonObject(with: request.body) as? [String: Any] else { throw ServerError.badRequest }
+                guard let body = try JSONSerialization.jsonObject(with: request.body) as? [String: Any] else {
+                    print("body not valid JSON")
+                    throw ServerError.badRequest
+                }
                 let response = try handler(request.mapBody { _ in body })
                 return .json(data: try JSONSerialization.data(withJSONObject: response))
             }
@@ -124,13 +134,13 @@ public class MiniCanvasServer {
         }
     }
 
-    public func expectationForRequest(_ path: String, method: APIMethod = .get) -> XCTestExpectation {
-        let expectation = XCTestExpectation(description: "waiting for \(method) \(path)")
+    public func expectationForRequest(_ path: String, method: APIMethod = .get) -> MiniCanvasExpectation {
+        let expectation = MiniCanvasExpectation(description: "waiting for \(method) \(path)")
         expectationHooks[path] = expectation
         return expectation
     }
 
-    public func expectationFor<R: APIRequestable>(request: R) -> XCTestExpectation {
+    public func expectationFor<R: APIRequestable>(request: R) -> MiniCanvasExpectation {
         let urlRequest = try! request.urlRequest(relativeTo: URL(string: "/")!, accessToken: "", actAsUserID: "")
         return expectationForRequest(urlRequest.url!.path, method: request.method)
     }
@@ -158,6 +168,7 @@ public class MiniCanvasServer {
                     let body = Data(httpRequest.body)
                     return try handler(APIRequest(server: self, httpRequest: httpRequest, rawBody: body, body: body))
                 } catch ServerError.responseError(let response) {
+                    print("responseError: \(response)")
                     return response
                 } catch let error {
                     print("internal server error: \(error)")
@@ -195,7 +206,8 @@ public class MiniCanvasServer {
     private func handleGraphQL(request: APIRequest<Data>) throws -> HttpResponse {
         guard let body = try? JSONSerialization.jsonObject(with: request.body) as? [String: Any],
               let operationName = body["operationName"] as? String else {
-            throw ServerError.badRequest
+                print("expected field \"operationName\" to be present in JSON")
+                throw ServerError.badRequest
         }
         guard let handler = graphQLRequests[operationName] else {
             print("No handler for graphQL request \(operationName)")
@@ -203,10 +215,17 @@ public class MiniCanvasServer {
         }
         return try handler(request)
     }
+
+    open class MiniCanvasExpectation: XCTestExpectation {
+        public var lastRequest: HttpRequest?
+    }
 }
 
 extension MiniCanvasServer: LoggingHttpServerDelegate {
     public func didHandle(request: HttpRequest) {
-        expectationHooks[request.path]?.fulfill()
+        if let hook = expectationHooks[request.path] {
+            hook.lastRequest = request
+            hook.fulfill()
+        }
     }
 }

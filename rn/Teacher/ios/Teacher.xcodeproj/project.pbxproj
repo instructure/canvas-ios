@@ -75,6 +75,7 @@
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
 		E814FC032499273B00CD208A /* SpeedGraderRubricUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */; };
 		E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */; };
+		E801ED7C2475BADB00DF2CB9 /* DiscussionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */; };
 		E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829684E24746C88007E7F23 /* PagesUITests.swift */; };
 		E841D8B023D6472F00685A63 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -385,6 +386,7 @@
 		D082A88269C8C11CA67734AC /* Pods-needs-pspdfkit-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderRubricUITests.swift; sourceTree = "<group>"; };
 		E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditE2ETests.swift; sourceTree = "<group>"; };
+		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
 		E829684E24746C88007E7F23 /* PagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesUITests.swift; sourceTree = "<group>"; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -675,6 +677,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E801ED7A2475BAC400DF2CB9 /* Discussions */ = {
+			isa = PBXGroup;
+			children = (
+				E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */,
+			);
+			path = Discussions;
+			sourceTree = "<group>";
+		};
 		E829684D24746C5C007E7F23 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -687,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				E8D7EFDE2476E552007BC5FD /* Files */,
+				E801ED7A2475BAC400DF2CB9 /* Discussions */,
 				E829684D24746C5C007E7F23 /* Pages */,
 				B17E1DB3238DA8290022EE0E /* SpeedGrader */,
 				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
@@ -1238,6 +1249,7 @@
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 				E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */,
+				E801ED7C2475BADB00DF2CB9 /* DiscussionsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

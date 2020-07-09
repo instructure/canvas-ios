@@ -117,6 +117,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         scrollView.refreshControl = refreshControl
 
         titleLabel.text = nil
+        titleLabel.accessibilityIdentifier = "DiscussionDetails.title"
 
         // Can't put in storyboard because that breaks cookie sharing
         // & discussion view is cached without verifiers on images
@@ -470,22 +471,38 @@ extension DiscussionDetailsViewController {
 
         let sheet = BottomSheetPickerViewController.create()
         if entries.contains(where: { $0.isRead == false }) {
-            sheet.addAction(image: .icon(.check, .solid), title: NSLocalizedString("Mark All as Read", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.check, .solid),
+                title: NSLocalizedString("Mark All as Read", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.markAllRead"
+            ) { [weak self] in
                 self?.markAllRead(isRead: true)
             }
         }
         if entries.contains(where: { $0.isRead == true }) {
-            sheet.addAction(image: .icon(.no, .solid), title: NSLocalizedString("Mark All as Unread", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.no, .solid),
+                title: NSLocalizedString("Mark All as Unread", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.markAllUnread"
+            ) { [weak self] in
                 self?.markAllRead(isRead: false)
             }
         }
         if topic.canUpdate {
-            sheet.addAction(image: .icon(.edit), title: NSLocalizedString("Edit", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.edit),
+                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.edit"
+            ) { [weak self] in
                 self?.editTopic()
             }
         }
         if topic.canDelete {
-            sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.trash),
+                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.delete"
+            ) { [weak self] in
                 self?.deleteTopic()
             }
         }
@@ -569,19 +586,35 @@ extension DiscussionDetailsViewController {
 
         let sheet = BottomSheetPickerViewController.create()
         if entry.isRead == false {
-            sheet.addAction(image: .icon(.check, .solid), title: NSLocalizedString("Mark as Read", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.check, .solid),
+                title: NSLocalizedString("Mark as Read", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.markAsRead"
+            ) { [weak self] in
                 self?.markRead(entryID, isRead: true)
             }
         } else {
-            sheet.addAction(image: .icon(.no, .solid), title: NSLocalizedString("Mark as Unread", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.no, .solid),
+                title: NSLocalizedString("Mark as Unread", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.markAsUnread"
+            ) { [weak self] in
                 self?.markRead(entryID, isRead: false)
             }
         }
         if canEdit {
-            sheet.addAction(image: .icon(.edit), title: NSLocalizedString("Edit", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.edit),
+                title: NSLocalizedString("Edit", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.edit"
+            ) { [weak self] in
                 self?.editEntry(entryID)
             }
-            sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(
+                image: .icon(.trash),
+                title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+                accessibilityIdentifier: "DiscussionDetails.delete"
+            ) { [weak self] in
                 self?.deleteEntry(entryID)
             }
         }

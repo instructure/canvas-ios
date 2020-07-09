@@ -129,6 +129,15 @@ public extension Element {
     }
 
     @discardableResult
+    func cutText(file: StaticString = #file, line: UInt = #line) -> Element {
+        let selectAll = app.find(label: "Select All")
+        tapUntil { selectAll.exists }
+        selectAll.tap()
+        app.find(label: "Cut").tap()
+        return self
+    }
+
+    @discardableResult
     func swipeLeft(file: StaticString = #file, line: UInt = #line) -> Element {
         waitToExist(file: file, line: line)
         rawElement.swipeLeft()

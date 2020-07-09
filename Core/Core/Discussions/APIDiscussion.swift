@@ -22,8 +22,8 @@ import Foundation
 public struct APIDiscussionTopic: Codable, Equatable {
     let id: ID
     let assignment_id: ID?
-    let title: String?
-    let message: String?
+    var title: String?
+    var message: String?
     let html_url: URL?
     let posted_at: Date?
     let last_reply_at: Date?
@@ -36,6 +36,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let sort_by_rating: Bool
     let only_graders_can_rate: Bool?
     let locked_for_user: Bool
+    var locked: Bool?
     let group_category_id: ID?
     let group_topic_children: [APIDiscussionTopicChild]?
     let subscription_hold: String?
@@ -63,7 +64,7 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let parent_id: ID?
     let created_at: Date?
     let updated_at: Date?
-    let message: String?
+    var message: String?
     let rating_count: Int?
     let rating_sum: Int?
     let replies: [APIDiscussionEntry]?
@@ -107,6 +108,7 @@ extension APIDiscussionTopic {
         sort_by_rating: Bool = false,
         only_graders_can_rate: Bool? = nil,
         locked_for_user: Bool = false,
+        locked: Bool? = nil,
         group_category_id: ID? = nil,
         group_topic_children: [APIDiscussionTopicChild]? = nil,
         subscription_hold: String? = nil,
@@ -130,6 +132,7 @@ extension APIDiscussionTopic {
             sort_by_rating: sort_by_rating,
             only_graders_can_rate: only_graders_can_rate,
             locked_for_user: locked_for_user,
+            locked: locked,
             group_category_id: group_category_id,
             group_topic_children: group_topic_children,
             subscription_hold: subscription_hold,
@@ -153,6 +156,16 @@ extension APIDiscussionParticipant {
             avatar_image_url: APIURL(rawValue: avatar_image_url),
             html_url: html_url,
             pronouns: pronouns
+        )
+    }
+
+    public static func make(from user: APIUser) -> APIDiscussionParticipant {
+        APIDiscussionParticipant.make(
+            id: user.id,
+            display_name: user.name,
+            avatar_image_url: user.avatar_url?.rawValue,
+            html_url: URL(string: "/users/\(user.id)"),
+            pronouns: user.pronouns
         )
     }
 }
@@ -258,6 +271,19 @@ struct PostDiscussionTopicRequest: APIRequestable {
     let method = APIMethod.post
     public var path: String {
         "\(context.pathComponent)/discussion_topics"
+    }
+}
+
+struct PutDiscussionTopicRequest: APIRequestable {
+    typealias Response = APIDiscussionTopic
+
+    let context: Context
+    let topicID: String
+    // let body: Body? = nil
+    let method = APIMethod.put
+
+    public var path: String {
+        "\(context.pathComponent)/discussion_topics/\(topicID)"
     }
 }
 
