@@ -29,6 +29,10 @@ public class ModuleItemSequenceViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var spinnerView: UIView!
 
+    /// These should get set only once in viewDidLoad
+    var leftBarButtonItems: [UIBarButtonItem]?
+    var rightBarButtonItems: [UIBarButtonItem]?
+
     let env = AppEnvironment.shared
     var courseID: String!
     var assetType: AssetType!
@@ -54,6 +58,9 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        leftBarButtonItems = navigationItem.leftBarButtonItems
+        rightBarButtonItems = navigationItem.rightBarButtonItems
+
         showSequenceButtons(prev: false, next: false)
         pages.scrollView.isScrollEnabled = false
         embed(pages, in: pagesContainer)
@@ -117,8 +124,8 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
         pages.setCurrentPage(page, direction: direction)
-        navigationItem.rightBarButtonItems = []
-        navigationItem.leftBarButtonItems = []
+        navigationItem.rightBarButtonItems = rightBarButtonItems
+        navigationItem.leftBarButtonItems = leftBarButtonItems
         observations = syncNavigationBar(with: page)
     }
 
