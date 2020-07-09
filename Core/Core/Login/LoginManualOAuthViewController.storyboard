@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OAuth Client ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJv-l9-h0p" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="343" height="24"/>
+                                <rect key="frame" x="16" y="60" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,8 +26,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUJ-PA-JyQ" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="90" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUJ-PA-JyQ" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="86.5" width="375" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="RTR-Do-NPP"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ID" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OIC-Dy-yeC" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="91" width="343" height="50"/>
+                                <rect key="frame" x="16" y="87.5" width="343" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5lX-ro-nfI"/>
                                 </constraints>
@@ -47,8 +47,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwE-0N-PiW" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="141" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwE-0N-PiW" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="137.5" width="375" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mif-8k-Ugk"/>
                                 </constraints>
@@ -57,7 +57,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OAuth Client Secret" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-AM-HMh" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="165" width="343" height="24"/>
+                                <rect key="frame" x="16" y="161.5" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -66,8 +66,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold20"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mE-bm-cba" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="194" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mE-bm-cba" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="187" width="375" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="JyI-ju-iqM"/>
                                 </constraints>
@@ -76,7 +76,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Secret" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-GQ-FtL" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="195" width="343" height="50"/>
+                                <rect key="frame" x="16" y="188" width="343" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UJf-SY-KXh"/>
                                 </constraints>
@@ -87,8 +87,8 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRQ-ee-my2" customClass="DividerView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="245" width="375" height="1"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRQ-ee-my2" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="238" width="375" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="En0-Xk-WtV"/>
                                 </constraints>
@@ -97,7 +97,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wu5-SA-4Ne" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="102.5" y="269" width="170" height="50"/>
+                                <rect key="frame" x="102.5" y="262" width="170" height="50"/>
                                 <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                 <state key="normal" title="Continue"/>
                                 <userDefinedRuntimeAttributes>

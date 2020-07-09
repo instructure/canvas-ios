@@ -112,7 +112,7 @@ public class URLSessionAPI: API {
             }
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let task = urlSession.dataTask(with: request) { [weak self] data, response, error in
-                if response?.isUnauthorized == true, refreshToken, ExperimentalFeature.refreshTokens.isEnabled {
+                if response?.isUnauthorized == true, refreshToken {
                     self?.refreshQueue.append { [weak self] in
                         self?.makeRequest(requestable, refreshToken: false, callback: callback)
                     }
@@ -175,7 +175,10 @@ public class URLSessionAPI: API {
         let request = PostLoginOAuthRequest(client: client, refreshToken: refreshToken)
         refreshTask = makeRequest(request, refreshToken: false) { [weak self] response, _, error in
             if let response = response, error == nil {
-                let session = loginSession.refresh(accessToken: response.access_token)
+                let session = loginSession.refresh(
+                    accessToken: response.access_token,
+                    expiresAt: response.expires_in.flatMap { Clock.now + $0 }
+                )
                 LoginSession.add(session)
                 if loginSession == AppEnvironment.shared.currentSession {
                     AppEnvironment.shared.currentSession = session
