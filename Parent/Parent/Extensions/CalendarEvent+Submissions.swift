@@ -101,7 +101,7 @@ private struct Submission {
             if missing {
                 return NSLocalizedString("Missing", comment: "")
             } else if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
+                return NSLocalizedString("On Paper", comment: "")
             } else {
                 return ""
             }
@@ -127,7 +127,7 @@ private struct Submission {
                 guard let pointsPossible = pointsPossible else { return self.displayText }
                 return String(format: NSLocalizedString("Missing: (-/%@)", comment: ""), pointsPossible)
             } else if onPaper {
-                return NSLocalizedString("In-Class", comment: "")
+                return NSLocalizedString("On Paper", comment: "")
             } else {
                 return ""
             }
