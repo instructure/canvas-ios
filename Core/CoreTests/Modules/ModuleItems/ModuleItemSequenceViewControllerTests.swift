@@ -50,6 +50,8 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
     }
 
     func testLayout() throws {
+        let routerButton = UIBarButtonItem()
+        controller.addNavigationButton(routerButton, side: .left)
         controller.view.layoutIfNeeded()
         var details = controller.pages.currentPage as! ModuleItemDetailsViewController
         XCTAssertEqual(details.courseID, "1")
@@ -81,10 +83,12 @@ class ModuleItemSequenceViewControllerTests: CoreTestCase {
         details.navigationItem.title = "Title 2"
         details.navigationItem.leftBarButtonItems = [leftButton]
         details.navigationItem.rightBarButtonItems = [rightButton]
+        details.navigationItem.leftItemsSupplementBackButton = true
         XCTAssertEqual(controller.title, "Title 1")
         XCTAssertEqual(controller.navigationItem.title, "Title 2")
-        XCTAssertEqual(details.navigationItem.leftBarButtonItems, [leftButton])
-        XCTAssertEqual(details.navigationItem.rightBarButtonItems, [rightButton])
+        XCTAssertEqual(controller.navigationItem.leftBarButtonItems, [leftButton, routerButton])
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItems, [rightButton])
+        XCTAssertTrue(controller.navigationItem.leftItemsSupplementBackButton)
     }
 
     func testNotAModuleItem() {
