@@ -20,7 +20,7 @@ import Foundation
 
 public struct CompletionRequirement: Codable, Equatable {
     public let type: CompletionRequirementType
-    public let completed: Bool?
+    public var completed: Bool?
     public let min_score: Double?
 
     public var description: String? {

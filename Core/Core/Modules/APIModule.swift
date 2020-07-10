@@ -56,7 +56,7 @@ public struct APIModuleItem: Codable, Equatable {
     /// Only present if the caller has permission to view unpublished items
     public let published: Bool?
     public let content_details: ContentDetails? // include[]=content_details not available in sequence call
-    public let completion_requirement: CompletionRequirement? // not available in sequence call
+    public var completion_requirement: CompletionRequirement? // not available in sequence call
     public let mastery_paths: APIMasteryPath? // include[]=mastery_paths
 
     public init(
