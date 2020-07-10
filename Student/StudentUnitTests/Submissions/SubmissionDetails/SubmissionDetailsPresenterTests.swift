@@ -22,13 +22,10 @@ import XCTest
 import TestsFoundation
 import AVKit
 
-class SubmissionDetailsView: SubmissionDetailsViewProtocol {
-    func open(_ url: URL) {}
+class SubmissionDetailsView: UIViewController, SubmissionDetailsViewProtocol {
     func showAlert(title: String?, message: String?) {}
 
     var color: UIColor?
-    var navigationController: UINavigationController?
-    let navigationItem = UINavigationItem(title: "Test")
     var titleSubtitleView = TitleSubtitleView()
 
     var didEmbed = false
@@ -56,7 +53,7 @@ class SubmissionDetailsView: SubmissionDetailsViewProtocol {
     }
 
     var presented: UIViewController?
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
         presented = viewControllerToPresent
     }
 }
@@ -295,7 +292,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         presenter.update()
         presenter.submit(button: UIView())
 
-        XCTAssertNotNil(view.presented)
+        XCTAssertNotNil(router.presented)
     }
 
     func testArcIDNone() {

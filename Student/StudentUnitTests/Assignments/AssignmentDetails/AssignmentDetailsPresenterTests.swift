@@ -42,14 +42,19 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             submitted = true
         }
     }
-    lazy var mockButton = MockButton(view: self, assignmentID: "1")
+    lazy var mockButton = MockButton(view: mockView, assignmentID: "1")
+    lazy var mockView: MockView = {
+        let view = MockView()
+        view.test = self
+        return view
+    }()
 
     override func setUp() {
         super.setUp()
         pageViewLogger = MockPageViewLogger()
         env.mockStore = true
         env.pageViewLogger = pageViewLogger
-        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: "target")
+        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: "target")
         presenter.submissionButtonPresenter = mockButton
     }
 
@@ -122,7 +127,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         Assignment.make(from: .make(html_url: expected))
 
-        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: nil)
+        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingBaseURL, expected)
@@ -135,7 +140,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: url))
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1#fragment")!
 
-        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -147,7 +152,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let expected = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
         let fragment = ""
         Assignment.make(from: .make(html_url: expected))
-        presenter = AssignmentDetailsPresenter(view: self, courseID: "1", assignmentID: "1", fragment: fragment)
+        presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
         presenter.assignments.eventHandler()
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
@@ -194,12 +199,12 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
     func testViewFileSubmission() {
         presenter.viewFileSubmission()
-        XCTAssertNil(presentedView)
+        XCTAssertNil(router.presented)
 
         Assignment.make()
 
         presenter.viewFileSubmission()
-        XCTAssertNotNil(presentedView)
+        XCTAssertNotNil(router.presented)
     }
 
     func testArcIDNone() {
@@ -459,32 +464,32 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 }
 
-extension AssignmentDetailsPresenterTests: AssignmentDetailsViewProtocol {
-    func open(_ url: URL) {}
+class MockView: UIViewController, AssignmentDetailsViewProtocol {
+    weak var test: AssignmentDetailsPresenterTests?
 
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
-        presentedView = viewControllerToPresent
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
+        test?.presentedView = viewControllerToPresent
     }
 
     func showSubmitAssignmentButton(title: String?) {
-        resultingButtonTitle = title
+        test?.resultingButtonTitle = title
     }
 
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
-        resultingAssignment = assignment
-        resultingBaseURL = baseURL
-        resultingQuiz = quiz
-        onUpdate?()
+        test?.resultingAssignment = assignment
+        test?.resultingBaseURL = baseURL
+        test?.resultingQuiz = quiz
+        test?.onUpdate?()
     }
 
     func showAlert(title: String?, message: String?) {}
 
     func showError(_ error: Error) {
-        resultingError = error as NSError
+        test?.resultingError = error as NSError
     }
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
-        resultingSubtitle = subtitle
-        resultingBackgroundColor = backgroundColor
+        test?.resultingSubtitle = subtitle
+        test?.resultingBackgroundColor = backgroundColor
     }
 }

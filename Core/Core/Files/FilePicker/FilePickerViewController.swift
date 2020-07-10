@@ -50,8 +50,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var sources = FilePickerSource.defaults
     public var utis: [UTI] = [.any]
     public var mediaTypes: [String] = [kUTTypeMovie as String, kUTTypeImage as String]
-    public var batchID: String!
-    public var maxFileCount: Int = Int.max
+    public var batchID = ""
+    public var maxFileCount = Int.max
     public lazy var files = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.update()
     }

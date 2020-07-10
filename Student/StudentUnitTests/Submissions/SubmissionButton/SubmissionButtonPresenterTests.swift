@@ -24,12 +24,6 @@ import TestsFoundation
 
 class SubmissionButtonPresenterTests: StudentTestCase {
     class View: UIViewController, SubmissionButtonViewProtocol {
-        var presented: UIViewController?
-        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?) {
-            presented = viewControllerToPresent
-            completion?()
-        }
-
         var resultingError: NSError?
         func showError(_ error: Error) {
             resultingError = error as NSError
@@ -41,47 +35,24 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         }
     }
 
-    class MockFilePicker: FilePickerViewController {
-        var dismissed = false
-        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-            dismissed = true
-            completion?()
-        }
-    }
-
-    class MockAudioRecorder: AudioRecorderViewController {
-        var dismissed = false
-        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-            dismissed = true
-            completion?()
-        }
-    }
-
-    class MockImagePicker: UIImagePickerController {
-        var dismissed = false
-        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-            dismissed = true
-            completion?()
-        }
-    }
-
-    let audioRecorder = MockAudioRecorder()
-    let button = UIView()
-    let imagePicker = MockImagePicker()
-    var presenter: SubmissionButtonPresenter!
-    let filePicker = MockFilePicker()
-    var view: View!
+    lazy var audioRecorder = AudioRecorderViewController.create()
+    lazy var button = UIView()
+    lazy var imagePicker = UIImagePickerController()
+    lazy var presenter = SubmissionButtonPresenter(view: view, assignmentID: "1")
+    lazy var filePicker: FilePickerViewController = {
+        let picker = FilePickerViewController.create(batchID: presenter.batchID)
+        picker.loadViewIfNeeded()
+        return picker
+    }()
+    lazy var view = View()
 
     override func setUp() {
         super.setUp()
-        router.resetExpectations()
-        view = View()
-        presenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: "1")
         presenter.assignment = Assignment.make(from: .make(submission: .make()))
         presenter.arcID = .none
     }
 
-    func xtestButtonText() {
+    func testButtonText() {
         let a = Assignment.make(from: .make(
             submission: .make(workflow_state: .unsubmitted),
             submission_types: [ .online_upload ]
@@ -134,162 +105,150 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
     }
 
-    func xtestSubmitAssignment() {
+    func testSubmitAssignment() {
         let a = Assignment.make(from: .make(submission_types: [ .none ]))
         presenter.submitAssignment(a, button: button)
-        XCTAssertNil(view.presented)
-        XCTAssert(router.calls.isEmpty)
+        XCTAssertNil(router.presented)
 
         a.submissionTypes = [ .online_text_entry ]
         presenter.submitAssignment(a, button: button)
-        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
+        XCTAssert(router.presented is TextSubmissionViewController)
     }
 
-    func xtestSubmitAssignmentChoose() {
+    func testSubmitAssignmentChoose() {
         let a = Assignment.make(from: .make(submission_types: [ .online_text_entry, .online_url ]))
         presenter.submitAssignment(a, button: button)
-        XCTAssert(view.presented is UIAlertController)
-        XCTAssert(router.calls.isEmpty)
+        XCTAssert(router.presented is UIAlertController)
     }
 
-    func xtestSubmitAssignmentChooseArc() {
+    func testSubmitAssignmentChooseArc() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ]))
         presenter.arcID = .some("1")
         presenter.submitAssignment(a, button: button)
-        let alert = view.presented as? UIAlertController
-        drainMainQueue()
+        let alert = router.presented as? UIAlertController
         XCTAssertNotNil(alert)
         XCTAssertEqual(alert?.actions.count, 3)
     }
 
-    func xtestSubmitTypeMissingSubmission() {
+    func testSubmitTypeMissingSubmission() {
         let a = Assignment.make(from: .make(submission: nil))
         presenter.submitType(.online_text_entry, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssertNil(view.presented)
-        XCTAssert(router.calls.isEmpty)
+        XCTAssertNil(router.presented)
     }
 
-    func xtestSubmitTypeLTI() {
+    func testSubmitTypeLTI() {
         let a = Assignment.make(from: .make(
             discussion_topic: .make(html_url: URL(string: "/discussion"))
         ))
         presenter.submitType(.external_tool, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssert(router.viewControllerCalls.isEmpty)
+        XCTAssertNil(router.presented)
 
         let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
         api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())
         wait(for: [router.showExpectation], timeout: 5)
-        XCTAssert(router.viewControllerCalls.first?.0 is SFSafariViewController)
+        XCTAssert(router.presented is SFSafariViewController)
     }
 
-    func xtestSubmitTypeDiscussion() {
+    func testSubmitTypeDiscussion() {
         let url = URL(string: "/discussion")!
         let a = Assignment.make(from: .make(discussion_topic: .make()))
         presenter.submitType(.discussion_topic, for: a, button: UIView())
-        drainMainQueue()
         XCTAssert(router.calls.isEmpty)
 
         a.discussionTopic?.htmlURL = url
         presenter.submitType(.discussion_topic, for: a, button: UIView())
-        drainMainQueue()
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))
     }
 
-    func xtestSubmitTypeMedia() {
+    func testSubmitTypeMedia() {
         let a = Assignment.make()
         presenter.submitType(.media_recording, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssert(view.presented is UIAlertController)
+        let nav = router.presented as? UINavigationController
+        XCTAssertNotNil(nav)
+        XCTAssertNotNil(nav?.viewControllers.first as? FilePickerViewController)
     }
 
-    func xtestSubmitTypeText() {
+    func testSubmitTypeText() {
         let a = Assignment.make()
         presenter.submitType(.online_text_entry, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssert(router.viewControllerCalls.last?.0 is TextSubmissionViewController)
+        XCTAssert(router.presented is TextSubmissionViewController)
     }
 
-    func xtestSubmitTypeQuiz() {
+    func testSubmitTypeQuiz() {
         let a = Assignment.make()
         presenter.submitType(.online_quiz, for: a, button: UIView())
-        drainMainQueue()
         XCTAssert(router.calls.isEmpty)
         a.quizID = "1"
         presenter.submitType(.online_quiz, for: a, button: UIView())
-        drainMainQueue()
         XCTAssert(router.lastRoutedTo("/courses/1/quizzes/1/take"))
     }
 
-    func xtestSubmitTypeUpload() {
+    func testSubmitTypeUpload() {
         let a = Assignment.make()
         presenter.submitType(.online_upload, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssert(view.presented is UINavigationController)
+        let nav = router.presented as? UINavigationController
+        XCTAssertNotNil(nav)
+        XCTAssertNotNil(nav?.viewControllers.first as? FilePickerViewController)
     }
 
-    func xtestSubmitTypeURL() {
+    func testSubmitTypeURL() {
         let a = Assignment.make()
         presenter.submitType(.online_url, for: a, button: UIView())
-        drainMainQueue()
-        XCTAssert(router.viewControllerCalls.last?.0 is UrlSubmissionViewController)
+        XCTAssert(router.presented is UrlSubmissionViewController)
     }
 
-    func xtestSubmitArc() {
+    func testSubmitArc() {
         let a = Assignment.make()
         presenter.arcID = .some("4")
         presenter.submitArc(assignment: a)
-        drainMainQueue()
-        let nav = view.presented as? UINavigationController
+        let nav = router.presented as? UINavigationController
         XCTAssertNotNil(nav)
-        XCTAssertNotNil(nav?.topViewController as? ArcSubmissionViewController)
+        XCTAssertNotNil(nav?.viewControllers.first as? ArcSubmissionViewController)
     }
 
-    func xtestSubmitTypeBad() {
+    func testSubmitTypeBad() {
         let a = Assignment.make()
         presenter.submitType(.on_paper, for: a, button: UIView())
-        XCTAssertNil(view.presented)
-        XCTAssert(router.calls.isEmpty)
+        XCTAssertNil(router.presented)
     }
 
-    func xtestPickFilesEmptyExtensions() {
+    func testPickFilesEmptyExtensions() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: []))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [.online_upload])
-        let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
-        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
+        let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
+        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])
     }
 
-    func xtestPickFilesFilesOnly() {
+    func testPickFilesFilesOnly() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "txt" ]))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
-        let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
+        let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files])
     }
 
-    func xtestPickFilesImages() {
+    func testPickFilesImages() {
         let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "jpg" ]))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
-        let filePicker = (view.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
-        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera])
+        let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
+        XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])
     }
 
-    func xtestSubmitFiles() {
+    func testSubmitFiles() {
         presenter.submit(filePicker)
-        XCTAssert(filePicker.dismissed)
+        XCTAssert(filePicker == router.dismissed)
     }
 
-    func xtestRetryFileUpload() {
+    func testRetryFileUpload() {
         XCTAssertNoThrow(presenter.retry(filePicker))
     }
 
-    func xtestCancelFileUpload() {
+    func testCancelFileUpload() {
         presenter.cancel(filePicker)
         XCTAssertTrue(uploadManager.cancelWasCalled)
     }
 
-    func xtestCanSubmitFilePicker() throws {
+    func testCanSubmitFilePicker() throws {
         XCTAssertFalse(presenter.canSubmit(filePicker))
         let url = URL.temporaryDirectory.appendingPathComponent("SubmissionButtonPresenterTests-submit-files.txt")
         FileManager.default.createFile(atPath: url.path, contents: "test".data(using: .utf8), attributes: nil)
@@ -298,20 +257,20 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssertTrue(presenter.canSubmit(filePicker))
     }
 
-    func xtestCancelAudioRecording() {
+    func testCancelAudioRecording() {
         presenter.cancel(audioRecorder)
-        XCTAssert(audioRecorder.dismissed)
+        XCTAssert(audioRecorder == router.dismissed)
     }
 
-    func xtestSendAudioRecording() {
+    func testSendAudioRecording() {
         let url = URL(string: "data:audio/x-aac,")!
         presenter.send(audioRecorder, url: url)
-        XCTAssertNotNil(view.presented)
+        XCTAssertNotNil(router.presented)
     }
 
-    func xtestImagePickerControllerVideo() {
+    func testImagePickerControllerVideo() {
         let url = URL(string: "data:audio/x-aac,")!
         presenter.imagePickerController(imagePicker, didFinishPickingMediaWithInfo: [.mediaURL: url])
-        XCTAssert(imagePicker.dismissed)
+        XCTAssert(imagePicker == router.dismissed)
     }
 }
