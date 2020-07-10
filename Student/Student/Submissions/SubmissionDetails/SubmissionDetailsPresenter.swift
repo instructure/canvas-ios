@@ -79,7 +79,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         self.userID = userID
         self.env = env
         self.view = view
-        self.submissionButtonPresenter = SubmissionButtonPresenter(env: env, view: view, assignmentID: assignmentID)
+        self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
     }
 
     func viewIsReady() {

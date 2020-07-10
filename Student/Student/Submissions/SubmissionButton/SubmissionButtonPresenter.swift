@@ -35,7 +35,7 @@ enum ArcID: Equatable {
 class SubmissionButtonPresenter: NSObject {
     var assignment: Assignment?
     let assignmentID: String
-    let env: AppEnvironment
+    let env = AppEnvironment.shared
     lazy var batchID = "assignment-\(assignmentID)"
     lazy var files = UploadManager.shared.subscribe(batchID: batchID, eventHandler: {})
     var arcID: ArcID = .pending
@@ -43,14 +43,18 @@ class SubmissionButtonPresenter: NSObject {
     var selectedSubmissionTypes: [SubmissionType] = []
     lazy var flags = env.subscribe(GetEnabledFeatureFlags(context: .currentUser)) {}
 
-    init(env: AppEnvironment = .shared, view: SubmissionButtonViewProtocol, assignmentID: String) {
-        self.env = env
+    init(view: SubmissionButtonViewProtocol, assignmentID: String) {
         self.view = view
         self.assignmentID = assignmentID
         super.init()
 
         flags.refresh()
         NotificationCenter.default.addObserver(self, selector: #selector(handleCelebrate(_:)), name: .celebrateSubmission, object: nil)
+    }
+
+    func show(_ controller: UIViewController, completion: (() -> Void)? = nil) {
+        guard let view = view as? UIViewController else { return }
+        env.router.show(controller, from: view, options: .modal(), completion: completion)
     }
 
     func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
@@ -99,7 +103,7 @@ class SubmissionButtonPresenter: NSObject {
             return submitType(type, for: assignment, button: button)
         }
         let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, arc: arc, button: button)
-        view?.present(alert, animated: true, completion: nil)
+        show(alert)
     }
 
     func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
@@ -161,7 +165,7 @@ class SubmissionButtonPresenter: NSObject {
         } else {
             nav.modalPresentationStyle = .formSheet
         }
-        view?.present(nav, animated: true, completion: nil)
+        show(nav)
     }
 
     private var isMediaRecording: Bool {
@@ -189,7 +193,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         filePicker.maxFileCount = isMediaRecording ? 1 : Int.max
         let nav = UINavigationController(rootViewController: filePicker)
         nav.modalPresentationStyle = .formSheet
-        view?.present(nav, animated: true, completion: nil)
+        show(nav)
     }
 
     func submit(_ controller: FilePickerViewController) {
@@ -198,7 +202,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
             submitMediaRecording(controller)
         } else {
             let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-            controller.dismiss(animated: true) {
+            env.router.dismiss(controller) {
                 UploadManager.shared.upload(batch: self.batchID, to: context)
             }
         }
@@ -208,7 +212,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         guard let file = controller.files.first, let url = file.localFileURL, let uti = UTI(extension: url.pathExtension) else { return }
         let mediaType: MediaCommentType = uti.isAudio ? .audio : .video
         let objectID = file.objectID
-        controller.dismiss(animated: true) { [weak self] in
+        env.router.dismiss(controller) { [weak self] in
             self?.submitMediaType(mediaType, url: url, callback: { error in
                 guard let file = try? UploadManager.shared.viewContext.existingObject(with: objectID) as? File else { return }
                 UploadManager.shared.complete(file: file, error: error)
@@ -217,7 +221,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
     }
 
     func cancel(_ controller: FilePickerViewController) {
-        controller.dismiss(animated: true) {
+        env.router.dismiss(controller) {
             UploadManager.shared.cancel(batchID: self.batchID)
         }
     }
@@ -234,17 +238,17 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
 // MARK: - media_recording
 extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func cancel(_ controller: AudioRecorderViewController) {
-        controller.dismiss(animated: true, completion: nil)
+        env.router.dismiss(controller)
     }
 
     func send(_ controller: AudioRecorderViewController, url: URL) {
-        controller.dismiss(animated: true) {
+        env.router.dismiss(controller) {
             self.submitMediaType(.audio, url: url)
         }
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        picker.dismiss(animated: true) {
+        env.router.dismiss(picker) {
             do {
                 if let videoURL = info[.mediaURL] as? URL {
                     let destination = URL
@@ -272,18 +276,18 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
                 self?.submitMediaType(type, url: url, callback: callback)
             })
             failure.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
-            self?.view?.present(failure, animated: true, completion: nil)
+            self?.show(failure)
         }
         let reportSuccess = { [weak self] in
             let success = UIAlertController(title: NSLocalizedString("Successfully submitted!", bundle: .student, comment: ""), message: nil, preferredStyle: .alert)
-            self?.view?.present(success, animated: true) {
+            self?.show(success) {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                    success.dismiss(animated: true, completion: nil)
+                    self?.env.router.dismiss(success)
                 }
             }
         }
-        let doneUploading = { (error: Error?) -> Void in
-            DispatchQueue.main.async { uploading.dismiss(animated: true) {
+        let doneUploading = { [weak self] (error: Error?) -> Void in
+            performUIUpdate { self?.env.router.dismiss(uploading) {
                 if let error = error { return reportError(error) }
                 reportSuccess()
             } }
@@ -300,7 +304,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             ).fetch(environment: env) { _, _, error in doneUploading(error) }
         }
         let upload = { mediaUploader.fetch(environment: env, createSubmission) }
-        view?.present(uploading, animated: true, completion: upload)
+        show(uploading, completion: upload)
     }
 }
 

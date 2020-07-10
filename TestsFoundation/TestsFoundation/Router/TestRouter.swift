@@ -31,6 +31,7 @@ public class TestRouter: Router {
         }
         return nil
     }
+    public var dismissed: UIViewController?
     public var last: UIViewController? { viewControllerCalls.last?.0 }
     public var routes = [URLComponents: () -> UIViewController?]()
 
@@ -42,9 +43,9 @@ public class TestRouter: Router {
         mock(.parse(URL(string: string)!), factory: factory)
     }
 
-    @discardableResult
-    public func dismiss() -> UIViewController? {
-        return viewControllerCalls.popLast()?.0
+    public func dismiss() {
+        guard let view = viewControllerCalls.last?.0 else { return }
+        dismiss(view)
     }
 
     public override func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
@@ -71,8 +72,11 @@ public class TestRouter: Router {
         popExpectation.fulfill()
     }
 
-    public override func dismiss(_ view: UIViewController, completion: (() -> Void)?) {
-        dismiss()
+    public override func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
+        dismissed = view
+        if viewControllerCalls.last?.0 == view {
+            viewControllerCalls.removeLast()
+        }
         completion?()
     }
 
