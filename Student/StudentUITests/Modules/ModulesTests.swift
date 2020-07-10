@@ -27,7 +27,7 @@ class ModulesTests: CoreUITestCase {
     }
 
     func testUnlockModuleItemWithPrerequisiteModule() {
-        let item1 = APIModuleItem.make(
+        var item1 = APIModuleItem.make(
             id: "1",
             module_id: "1",
             title: "Page 1",
@@ -62,12 +62,16 @@ class ModulesTests: CoreUITestCase {
             )
         )
         mockData(GetModuleItemRequest(courseID: "1", moduleID: "1", itemID: "1", include: [.content_details]), value: item1)
-        mockData(GetPageRequest(context: .course("1"), url: "page-1"), value: .make(body: "hello"))
+        mockData(GetPageRequest(context: .course("1"), url: "page-1"), value: .make(body: "hello", html_url: URL(string: "/courses/1/pages/page-1")!, url: "page-1"))
         mockData(PostMarkModuleItemRead(courseID: "1", moduleID: "1", moduleItemID: "1"))
         show("courses/1/modules")
         ModuleList.module(section: 0).waitToExist()
         ModuleList.module(section: 1).waitToExist()
         XCTAssertEqual(ModuleList.item(section: 1, row: 0).label(), "page, Page 2, locked")
+        item1.completion_requirement?.completed = true
+        mockData(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            item1,
+        ])
         mockData(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [
             .make(
                 id: "2",
@@ -83,6 +87,7 @@ class ModulesTests: CoreUITestCase {
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .unlocked),
         ])
         ModuleList.item(section: 0, row: 0).tap()
+        app.webViews.staticTexts.matching(label: "hello").firstElement.waitToExist()
         NavBar.backButton.tap()
         XCTAssertEqual(ModuleList.item(section: 1, row: 0).label(), "page, Page 2")
         XCTAssertTrue(ModuleList.item(section: 1, row: 0).isEnabled)
