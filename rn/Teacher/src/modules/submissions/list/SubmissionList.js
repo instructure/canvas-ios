@@ -285,7 +285,7 @@ export function props (props) {
       let name1 = group1?.name ?? s1.user.name
 
       let group2 = groups.find(group => group.members.nodes.find(({ user }) => user.id === s2.user.id))
-      let name2 = group2?.name ?? s1.user.name
+      let name2 = group2?.name ?? s2.user.name
       return localeSort(name1, name2)
     }) ?? []
   return {
