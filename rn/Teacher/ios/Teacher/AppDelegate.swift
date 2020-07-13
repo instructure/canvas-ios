@@ -41,12 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         setupFirebase()
+        Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
         CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
-        Core.Analytics.shared.handler = self
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
