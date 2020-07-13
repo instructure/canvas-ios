@@ -54,7 +54,7 @@ import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubs
 import { extractDateFromString } from '../../../utils/dateUtils'
 import { isTeacher } from '../../app'
 
-const { NativeAccessibility } = NativeModules
+const { NativeAccessibility, NativeNotificationCenter } = NativeModules
 
 const {
   createDiscussion,
@@ -546,9 +546,11 @@ export class DiscussionEdit extends Component<Props, any> {
       params.remove_attachment = true
     }
 
-    this.props.discussionID
+    const action = this.props.discussionID
       ? this.props.updateDiscussion(this.props.context, this.props.contextID, params)
       : this.props.createDiscussion(this.props.context, this.props.contextID, params)
+    const updated = (await action.payload.promise).data
+    NativeNotificationCenter.postNotification('topic-edit', updated)
   }
 
   isGraded = () => Boolean(this.state.assignment)

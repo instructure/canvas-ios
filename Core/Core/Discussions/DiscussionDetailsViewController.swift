@@ -147,6 +147,8 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             navigationItem.rightBarButtonItem = nil
         }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(topicEdited(_:)), name: .init("topic-edit"), object: nil)
+
         colors.refresh()
         if context.contextType == .course {
             course.refresh()
@@ -285,6 +287,11 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         assignment?.refresh(force: true)
         permissions.refresh(force: true)
+    }
+
+    @objc func topicEdited(_ notification: NSNotification) {
+        guard notification.userInfo?["id"] as? String == topicID else { return }
+        topic.refresh(force: true)
     }
 
     var canLike: Bool {
