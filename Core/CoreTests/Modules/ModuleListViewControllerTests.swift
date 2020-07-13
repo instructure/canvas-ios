@@ -163,8 +163,9 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1")])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [])
         loadView()
-        XCTAssertEqual(viewController.emptyView.isHidden, true)
-        XCTAssertNotNil(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleListViewController.EmptyCell)
+        XCTAssert(viewController.emptyView.isHidden)
+        let emptyCell = viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ModuleListViewController.EmptyCell
+        XCTAssertFalse(emptyCell.isUserInteractionEnabled)
     }
 
     func testNoModules() {

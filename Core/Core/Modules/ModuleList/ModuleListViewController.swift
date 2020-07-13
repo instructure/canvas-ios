@@ -235,6 +235,7 @@ extension ModuleListViewController {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
+            isUserInteractionEnabled = false
             fullDivider = true
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
