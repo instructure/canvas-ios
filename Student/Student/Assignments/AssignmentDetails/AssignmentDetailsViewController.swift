@@ -38,6 +38,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var gradeCell: UIView?
     @IBOutlet weak var gradeCellDivider: DividerView?
     @IBOutlet weak var gradedView: GradeCircleView?
+    @IBOutlet weak var gradeStatisticGraphView: GradeStatisticGraphView?
     @IBOutlet weak var gradeCircleBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submittedView: UIView?
     @IBOutlet weak var submittedLabel: UILabel?
@@ -192,6 +193,15 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func updateGradeCell(_ assignment: Assignment) {
         self.gradedView?.update(assignment)
+        
+        // Update grade statistics view
+        if let presenter = presenter {
+            let shouldHide = presenter.statisticsIsHidden()
+            self.gradeStatisticGraphView?.isHidden = shouldHide
+            if !shouldHide {
+                self.gradeStatisticGraphView?.update(assignment)
+            }
+        }
 
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case

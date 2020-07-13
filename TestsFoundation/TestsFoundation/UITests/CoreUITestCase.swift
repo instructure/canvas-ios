@@ -544,6 +544,7 @@ open class CoreUITestCase: XCTestCase {
         }
         if Bundle.main.isStudentApp {
             mock(include: [ .submission ])
+            mock(include: [ .submission, .score_statistics ])
             mock(include: [])
         } else if Bundle.main.isTeacherApp {
             mock(include: [ .overrides ], allDates: true)

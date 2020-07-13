@@ -240,12 +240,12 @@ class GetAssignmentsTests: CoreTestCase {
         let a7 = Assignment.make(from: .make(id: "7"))
 
        //   must do this so dueAtSortNilsAtBottom property gets updated
-        a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false)
-        a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false)
-        a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false)
-        a5.update(fromApiModel: api5, in: databaseClient, updateSubmission: false)
-        a6.update(fromApiModel: api6, in: databaseClient, updateSubmission: false)
-        a7.update(fromApiModel: api7, in: databaseClient, updateSubmission: false)
+        a2.update(fromApiModel: api2, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        a3.update(fromApiModel: api3, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        a4.update(fromApiModel: api4, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        a5.update(fromApiModel: api5, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        a6.update(fromApiModel: api6, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        a7.update(fromApiModel: api7, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
 
         let useCase = GetAssignments(courseID: "1", sort: .dueAt)
 

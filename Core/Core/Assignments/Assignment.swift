@@ -55,6 +55,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
     @NSManaged public var externalToolContentID: String?
+    @NSManaged public var scoreStatistics: ScoreStatistics?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -109,15 +110,15 @@ public class Assignment: NSManagedObject {
     public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
 
     @discardableResult
-    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool) -> Assignment {
+    public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> Assignment {
         let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: item.id.value) ?? context.insert()
-        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission)
+        assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
         return assignment
     }
 }
 
 extension Assignment {
-    func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool) {
+    func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
         id = item.id.value
         name = item.name
         courseID = item.course_id.value
@@ -183,6 +184,17 @@ extension Assignment {
             } else if let submissions = submissions {
                 client.delete(Array(submissions))
                 self.submissions = nil
+            }
+        }
+        
+        if updateScoreStatistics {
+            if let newStatistics = item.score_statistics {
+                let replacementStats = scoreStatistics ?? client.insert()
+                replacementStats.update(fromApiModel: newStatistics, in: client)
+                self.scoreStatistics = replacementStats
+            } else if let scoreStatistics = scoreStatistics {
+                client.delete(scoreStatistics)
+                self.scoreStatistics = nil
             }
         }
 
@@ -315,5 +327,19 @@ public final class AssignmentDate: NSManagedObject {
         model.unlockAt = item.unlock_at
         model.lockAt = item.lock_at
         return model
+    }
+}
+
+public final class ScoreStatistics: NSManagedObject {
+    @NSManaged internal (set) public var mean: Double
+    @NSManaged internal (set) public var min: Double
+    @NSManaged internal (set) public var max: Double
+    @NSManaged internal (set) public var assignment: Assignment
+    
+    
+    public func update(fromApiModel item: APIAssignmentScoreStatistics, in client: NSManagedObjectContext) {
+        mean = item.mean
+        min = item.min
+        max = item.max
     }
 }

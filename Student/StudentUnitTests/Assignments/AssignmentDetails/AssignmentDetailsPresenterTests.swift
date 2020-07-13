@@ -63,7 +63,8 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         XCTAssertEqual(presenter.assignments.useCase.courseID, presenter.courseID)
         XCTAssertEqual(presenter.assignments.useCase.assignmentID, presenter.assignmentID)
-        XCTAssertEqual(presenter.assignments.useCase.include, [.submission])
+        
+        XCTAssertEqual(presenter.assignments.useCase.include, [.submission, .score_statistics])
 
         XCTAssertEqual(presenter.arc.useCase.courseID, presenter.courseID)
     }
@@ -303,6 +304,31 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     func testGradesSectionNotHidden() {
         Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
         XCTAssertFalse( presenter.gradesSectionIsHidden() )
+    }
+    
+    func testStatisticsSectionIsHiddenBeforeAvailability() {
+        setupIsHiddenTest(lockStatus: .before)
+        XCTAssertTrue( presenter.statisticsIsHidden() )
+    }
+
+    func testStatisticsSectionNotHiddenAfterAvailability() {
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked", score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0)))
+        XCTAssertFalse( presenter.statisticsIsHidden() )
+    }
+
+    func testStatisticsSectionNotHidden() {
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0)))
+        XCTAssertFalse( presenter.statisticsIsHidden() )
+    }
+    
+    func testStatisticsSectionHiddenWhenNoScoreStatistics() {
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded)))
+        XCTAssertTrue( presenter.statisticsIsHidden() )
+    }
+    
+    func testStatisticsSectionHiddenWhenInvalidScoreStatistics() {
+        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 2.1, max: 3.0)))
+        XCTAssertTrue( presenter.statisticsIsHidden() )
     }
 
     func testViewSubmissionButtonSectionIsHiddenBeforeAvailability() {

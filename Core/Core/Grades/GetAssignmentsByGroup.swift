@@ -24,6 +24,8 @@ public class GetAssignmentsByGroup: APIUseCase {
 
     let courseID: String
     let gradingPeriodID: String?
+    
+    private let include: [GetAssignmentGroupsRequest.Include] = [ .assignments, .observed_users, .submission, .score_statistics ]
 
     public init(courseID: String, gradingPeriodID: String? = nil) {
         self.courseID = courseID
@@ -37,7 +39,7 @@ public class GetAssignmentsByGroup: APIUseCase {
     public var request: GetAssignmentGroupsRequest { GetAssignmentGroupsRequest(
         courseID: courseID,
         gradingPeriodID: gradingPeriodID,
-        include: [ .assignments, .observed_users, .submission ],
+        include: include,
         perPage: 100
     ) }
 
@@ -58,7 +60,7 @@ public class GetAssignmentsByGroup: APIUseCase {
 
     public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
-            AssignmentGroup.save(item, courseID: courseID, in: client)
+            AssignmentGroup.save(item, courseID: courseID, in: client, updateSubmission: include.contains(.submission), updateScoreStatistics: include.contains(.score_statistics))
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
-import Foundation
-@testable import Core
-
-extension AssignmentGroup {
-    @discardableResult
-    public static func make(
-        from api: APIAssignmentGroup = .make(),
-        courseID: String = "1",
-        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> AssignmentGroup {
-        let model = AssignmentGroup.save(api, courseID: courseID, in: context, updateSubmission: false, updateScoreStatistics: false)
-        try! context.save()
-        return model
+extension ClosedRange {
+    func clamp(_ value : Bound) -> Bound {
+        return self.lowerBound > value ? self.lowerBound
+            : self.upperBound < value ? self.upperBound
+            : value
     }
 }

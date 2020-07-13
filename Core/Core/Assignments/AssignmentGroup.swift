@@ -28,7 +28,7 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var courseID: String
 
     @discardableResult
-    public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext) -> AssignmentGroup {
+    public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> AssignmentGroup {
         let model: AssignmentGroup = context.first(where: #keyPath(AssignmentGroup.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
         model.name = item.name
@@ -36,7 +36,7 @@ public final class AssignmentGroup: NSManagedObject {
         model.courseID = courseID
 
         for a in item.assignments ?? [] {
-            let assignment = Assignment.save(a, in: context, updateSubmission: true)
+            let assignment = Assignment.save(a, in: context, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
             assignment.assignmentGroupPosition = item.position
             assignment.assignmentGroup = model
         }

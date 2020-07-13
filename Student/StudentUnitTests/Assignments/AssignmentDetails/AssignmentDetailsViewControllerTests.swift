@@ -124,6 +124,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         load()
 
         XCTAssertEqual(viewController.gradeSection?.isHidden, true)
+        XCTAssertEqual(viewController.gradeStatisticGraphView?.isHidden, true)
     }
 
     func testUpdateQuizSettings() {
@@ -209,6 +210,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
         XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
+        XCTAssertEqual(viewController.gradeStatisticGraphView?.isHidden, true)
         XCTAssertEqual(viewController.submittedView?.isHidden, false)
         XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, false)
         XCTAssertEqual(viewController.submittedDetailsLabel?.isHidden, true)
@@ -228,6 +230,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
         XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
+        XCTAssertEqual(viewController.gradeStatisticGraphView?.isHidden, true)
         XCTAssertEqual(viewController.submittedView?.isHidden, false)
         XCTAssertEqual(viewController.fileSubmissionButton?.isHidden, false)
         XCTAssertEqual(viewController.submittedDetailsLabel?.isHidden, true)
@@ -334,6 +337,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         drainMainQueue()
         XCTAssertFalse(viewController.submittedView!.isHidden)
         XCTAssertFalse(viewController.gradeSection!.isHidden)
+        XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
         XCTAssertTrue(viewController.gradedView!.isHidden)
     }
 
@@ -374,6 +378,30 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         drainMainQueue()
         XCTAssertTrue(viewController.submittedView!.isHidden)
         XCTAssertFalse(viewController.gradeSection!.isHidden)
+        XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
+        XCTAssertFalse(viewController.gradedView!.isHidden)
+    }
+    
+    func testGradedWithScoreStatistics() {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
+        let assignment = APIAssignment.make(
+            id: ID(assignmentID),
+            course_id: ID(courseID),
+            submission: .make(
+                grade: "10",
+                score: 10,
+                submission_type: .discussion_topic,
+                workflow_state: .graded
+            ),
+            score_statistics: APIAssignmentScoreStatistics.make(mean: 5.0, min: 1.0, max: 10.0)
+        )
+        api.mock(viewController.presenter!.assignments, value: assignment)
+        load()
+        drainMainQueue()
+        XCTAssertTrue(viewController.submittedView!.isHidden)
+        XCTAssertFalse(viewController.gradeSection!.isHidden)
+        XCTAssertFalse(viewController.gradeStatisticGraphView!.isHidden)
         XCTAssertFalse(viewController.gradedView!.isHidden)
     }
 

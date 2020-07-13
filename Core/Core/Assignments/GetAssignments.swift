@@ -83,7 +83,7 @@ public class GetAssignments: UseCase {
         }
 
         for item in response {
-            Assignment.save(item, in: client, updateSubmission: include.contains(.submission))
+            Assignment.save(item, in: client, updateSubmission: include.contains(.submission), updateScoreStatistics: include.contains(.score_statistics))
         }
     }
 }
@@ -144,6 +144,7 @@ public class GetAssignment: APIUseCase {
 
         let model: Assignment = client.fetch(scope.predicate).first ?? client.insert()
         let updateSubmission = include.contains(.submission)
-        model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission)
+        let updateScoreStatistics = include.contains(.score_statistics)
+        model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
     }
 }

@@ -182,7 +182,7 @@ extension Submission: WriteableModel {
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)
         if let apiAssignment = item.assignment {
             let assignment: Assignment = client.fetch(assignmentPredicate).first ?? client.insert()
-            assignment.update(fromApiModel: apiAssignment, in: client, updateSubmission: false)
+            assignment.update(fromApiModel: apiAssignment, in: client, updateSubmission: false, updateScoreStatistics: false)
             assignment.submission = model
         } else if let assignment: Assignment = client.fetch(assignmentPredicate).first {
             assignment.submission = model
