@@ -21,17 +21,17 @@ import CoreServices
 import Core
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
-    @IBOutlet weak var addCommentBorderView: UIView?
-    @IBOutlet weak var addCommentButton: DynamicButton?
-    @IBOutlet weak var addCommentPlaceholder: DynamicLabel?
-    @IBOutlet weak var addCommentTextView: UITextView?
-    @IBOutlet weak var addCommentView: UIView?
-    @IBOutlet weak var addMediaButton: DynamicButton?
-    @IBOutlet weak var addMediaHeight: NSLayoutConstraint?
-    @IBOutlet weak var addMediaView: UIView?
-    @IBOutlet weak var emptyLabel: DynamicLabel?
-    @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
-    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var addCommentBorderView: UIView!
+    @IBOutlet weak var addCommentButton: UIButton!
+    @IBOutlet weak var addCommentPlaceholder: UILabel!
+    @IBOutlet weak var addCommentTextView: UITextView!
+    @IBOutlet weak var addCommentView: UIView!
+    @IBOutlet weak var addMediaButton: UIButton!
+    @IBOutlet weak var addMediaHeight: NSLayoutConstraint!
+    @IBOutlet weak var addMediaView: UIView!
+    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var emptyContainer: UIView!
 
@@ -58,23 +58,23 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
-        tableView?.backgroundColor = .named(.backgroundLightest)
-        addCommentBorderView?.backgroundColor = .named(.backgroundLightest)
-        addCommentBorderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
-        addCommentBorderView?.layer.borderWidth = 1 / UIScreen.main.scale
-        addCommentButton?.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
-        addCommentTextView?.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
-        addCommentTextView?.font = .scaledNamedFont(.regular14)
-        addCommentTextView?.adjustsFontForContentSizeCategory = true
-        addCommentTextView?.textColor = .named(.textDarkest)
-        emptyContainer?.isHidden = true
-        emptyLabel?.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
+        tableView.backgroundColor = .named(.backgroundLightest)
+        addCommentBorderView.backgroundColor = .named(.backgroundLightest)
+        addCommentBorderView.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
+        addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
+        addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
+        addCommentTextView.font = .scaledNamedFont(.regular14)
+        addCommentTextView.adjustsFontForContentSizeCategory = true
+        addCommentTextView.textColor = .named(.textDarkest)
+        addCommentView.backgroundColor = .named(.backgroundLight)
+        emptyContainer.isHidden = true
+        emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
         emptyImageView.image = UIImage(named: "emptyComments", in: .core, compatibleWith: nil)
-        tableView?.transform = CGAffineTransform(scaleX: 1, y: -1)
-        tableView?.keyboardDismissMode = .onDrag
-        addMediaButton?.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")
+        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        tableView.keyboardDismissMode = .onDrag
+        addMediaButton.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")
 
-        setInsets()
         presenter?.viewIsReady()
     }
 
@@ -83,22 +83,16 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
     }
 
-    func setInsets() {
-        // Remember top & bottom are flipped by the transform.
-        tableView?.contentInset = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
-        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: addCommentView?.frame.height ?? 0, left: 0, bottom: 0, right: 0)
-    }
-
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
-        guard let textView = addCommentTextView, let text = addCommentTextView?.text.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { return }
+        guard let text = addCommentTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty else { return }
         presenter?.addComment(text: text)
-        textView.text = ""
-        textViewDidChange(textView)
+        addCommentTextView.text = ""
+        textViewDidChange(addCommentTextView)
     }
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             AudioRecorderViewController.requestPermission { allowed in
                 if allowed {
                     let controller = AudioRecorderViewController.create()
@@ -109,7 +103,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                 }
             }
         })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             let picker = UIImagePickerController()
             picker.allowsEditing = true
             picker.delegate = self
@@ -118,7 +112,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             picker.cameraDevice = .front
             self?.present(picker, animated: true)
         })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             let picker = FilePickerViewController.create()
             picker.delegate = self
             picker.title = NSLocalizedString("Attachments", bundle: .student, comment: "")
@@ -126,7 +120,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
             let nav = UINavigationController(rootViewController: picker)
             self?.present(nav, animated: true, completion: nil)
         })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .student, comment: ""), style: .cancel))
         alert.popoverPresentationController?.sourceView = sender
         alert.popoverPresentationController?.sourceRect = sender.bounds
         present(alert, animated: true)
@@ -134,32 +128,30 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     func showMediaController(_ controller: UIViewController) {
         guard let container = addMediaView else { return }
-        addCommentTextView?.resignFirstResponder()
+        addCommentTextView.resignFirstResponder()
         controller.view.alpha = 0
         embed(controller, in: container)
         UIView.animate(withDuration: 0.275, animations: {
             controller.view.alpha = 1
-            self.addCommentBorderView?.alpha = 0
-            self.addMediaButton?.alpha = 0
-            self.addMediaHeight?.constant = 240
+            self.addCommentBorderView.alpha = 0
+            self.addMediaButton.alpha = 0
+            self.addMediaHeight.constant = 240
             self.view.layoutIfNeeded()
-            self.setInsets()
         }, completion: { _ in
-            self.addCommentBorderView?.isHidden = true
-            self.addMediaButton?.isHidden = true
+            self.addCommentBorderView.isHidden = true
+            self.addMediaButton.isHidden = true
         })
     }
 
     func hideMediaController(_ controller: UIViewController) {
-        addCommentBorderView?.isHidden = false
-        addMediaButton?.isHidden = false
+        addCommentBorderView.isHidden = false
+        addMediaButton.isHidden = false
         UIView.animate(withDuration: 0.275, animations: {
             controller.view.alpha = 0
-            self.addCommentBorderView?.alpha = 1
-            self.addMediaButton?.alpha = 1
-            self.addMediaHeight?.constant = 0
+            self.addCommentBorderView.alpha = 1
+            self.addMediaButton.alpha = 1
+            self.addMediaHeight.constant = 0
             self.view.layoutIfNeeded()
-            self.setInsets()
         }, completion: { _ in
             controller.unembed()
         })
@@ -191,24 +183,24 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
-        emptyContainer?.isHidden = presenter?.comments.isEmpty == false
+        emptyContainer.isHidden = presenter?.comments.isEmpty == false
         guard let changes = presenter?.comments.changes, changes.count == 1 else {
-            tableView?.reloadData()
+            tableView.reloadData()
             return
         }
         switch changes[0] {
         case .insertRow(let row):
-            tableView?.insertRows(at: [
+            tableView.insertRows(at: [
                 IndexPath(row: row.row * 2, section: row.section),
                 IndexPath(row: row.row * 2 + 1, section: row.section),
             ], with: .automatic)
         case .updateRow(let row):
-            tableView?.reloadRows(at: [
+            tableView.reloadRows(at: [
                 IndexPath(row: row.row * 2, section: row.section),
                 IndexPath(row: row.row * 2 + 1, section: row.section),
             ], with: .automatic)
         default:
-            tableView?.reloadData()
+            tableView.reloadData()
         }
     }
 }
@@ -269,9 +261,9 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
 
 extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        addCommentButton?.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-        addCommentPlaceholder?.isHidden = !textView.text.isEmpty
-        setInsets()
+        addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
+        addCommentPlaceholder.isHidden = !textView.text.isEmpty
     }
 }
 

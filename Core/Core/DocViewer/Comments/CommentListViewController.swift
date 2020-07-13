@@ -20,14 +20,14 @@ import UIKit
 import PSPDFKit
 
 class CommentListViewController: UIViewController {
-    @IBOutlet weak var keyboardSpace: NSLayoutConstraint?
-    @IBOutlet weak var replyBorderView: UIView?
-    @IBOutlet weak var replyButton: DynamicButton?
-    @IBOutlet weak var replyPlaceholder: DynamicLabel?
-    @IBOutlet weak var replyTextView: UITextView?
-    @IBOutlet weak var replyView: UIView?
-    @IBOutlet weak var replyViewHeight: NSLayoutConstraint?
-    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    @IBOutlet weak var replyBorderView: UIView!
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var replyPlaceholder: UILabel!
+    @IBOutlet weak var replyTextView: UITextView!
+    @IBOutlet weak var replyView: UIView!
+    @IBOutlet weak var replyViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
 
     var annotation = Annotation()
     var comments = [DocViewerCommentReplyAnnotation]()
@@ -53,20 +53,19 @@ class CommentListViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Comments", bundle: .core, comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed(_:)))
 
-        replyBorderView?.backgroundColor = .named(.backgroundLightest)
-        replyBorderView?.layer.borderWidth = 1 / UIScreen.main.scale
-        replyBorderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
-        replyTextView?.font = .scaledNamedFont(.regular14)
-        replyTextView?.adjustsFontForContentSizeCategory = true
-        replyTextView?.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
-        replyButton?.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
+        replyBorderView.backgroundColor = .named(.backgroundLightest)
+        replyBorderView.layer.borderWidth = 1 / UIScreen.main.scale
+        replyBorderView.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        replyTextView.font = .scaledNamedFont(.regular14)
+        replyTextView.adjustsFontForContentSizeCategory = true
+        replyTextView.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
+        replyButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
+        replyView.backgroundColor = .named(.backgroundLight)
 
         if (metadata?.permissions ?? APIDocViewerPermissions.none) == APIDocViewerPermissions.none {
-            replyView?.isHidden = true
-            replyViewHeight?.isActive = true
+            replyView.isHidden = true
+            replyViewHeight.isActive = true
         }
-
-        setInsets()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -77,24 +76,19 @@ class CommentListViewController: UIViewController {
             }
         }
 
-        if replyView?.isHidden == false {
-            replyTextView?.becomeFirstResponder()
+        if replyView.isHidden == false {
+            replyTextView.becomeFirstResponder()
         }
-    }
-
-    func setInsets() {
-        tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: replyView?.frame.height ?? 0, right: 0)
-        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: replyView?.frame.height ?? 0, right: 0)
     }
 
     @objc func donePressed(_ sender: UIBarButtonItem) {
         let deleted = comments.filter({ $0.isDeleted })
         if !deleted.isEmpty { document?.remove(annotations: deleted, options: nil) }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 
     @IBAction func replyButtonPressed(_ sender: UIButton) {
-        guard let textView = replyTextView, let contents = replyTextView?.text.trimmingCharacters(in: .whitespacesAndNewlines), !contents.isEmpty else { return }
+        guard let contents = replyTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !contents.isEmpty else { return }
         let reply = DocViewerCommentReplyAnnotation(contents: contents)
         reply.pageIndex = annotation.pageIndex
         reply.inReplyToName = annotation.name
@@ -102,9 +96,9 @@ class CommentListViewController: UIViewController {
         reply.userName = metadata?.user_name
         comments.append(reply)
         document?.add(annotations: [reply], options: nil)
-        textView.text = ""
-        textViewDidChange(textView)
-        tableView?.insertRows(at: [ IndexPath(row: comments.count - 1, section: 0) ], with: .automatic)
+        replyTextView.text = ""
+        textViewDidChange(replyTextView)
+        tableView.insertRows(at: [ IndexPath(row: comments.count - 1, section: 0) ], with: .automatic)
     }
 }
 
@@ -131,21 +125,21 @@ extension CommentListViewController: CommentListCellDelegate {
             message: NSLocalizedString("Are you sure you would like to delete this comment?", bundle: .core, comment: ""),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive, handler: { _ in
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .destructive) { _ in
             guard let index = self.comments.firstIndex(of: comment) else { return }
             self.document?.remove(annotations: [comment], options: nil)
             self.comments.remove(at: index)
-            self.tableView?.deleteRows(at: [ IndexPath(row: index, section: 0) ], with: .automatic)
-        }))
+            self.tableView.deleteRows(at: [ IndexPath(row: index, section: 0) ], with: .automatic)
+        })
         present(alert, animated: true, completion: nil)
     }
 }
 
 extension CommentListViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        replyButton?.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-        replyPlaceholder?.isHidden = !textView.text.isEmpty
-        setInsets()
+        replyButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        replyButton.alpha = replyButton.isEnabled ? 1 : 0.5
+        replyPlaceholder.isHidden = !textView.text.isEmpty
     }
 }
