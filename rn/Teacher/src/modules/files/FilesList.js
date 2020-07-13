@@ -25,6 +25,8 @@ import {
   Alert,
   LayoutAnimation,
   FlatList,
+  NativeModules,
+  NativeEventEmitter,
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -54,6 +56,12 @@ import { Text } from '../../common/text'
 import { isRegularDisplayMode } from '../../routing/utils'
 import type { TraitCollection } from '../../routing/Navigator'
 import { logEvent } from '../../common/CanvasAnalytics'
+
+const { NativeNotificationCenter } = NativeModules
+NativeNotificationCenter.addObserver('file-edit')
+NativeNotificationCenter.addObserver('folder-edit')
+NativeNotificationCenter.addObserver('file-delete')
+NativeNotificationCenter.addObserver('folder-delete')
 
 type FilesListProps = {
   data: any[], // The folders and files that are currently being shown
@@ -117,6 +125,7 @@ export class FilesList extends Component<Props, State> {
 
   attachmentPicker: AttachmentPicker
   search: ?TypeAheadSearch
+  notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
 
   state = {
     pending: false,
@@ -129,9 +138,13 @@ export class FilesList extends Component<Props, State> {
     searchPending: false,
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.onTraitCollectionChange()
     this.update()
+    this.notificationCenter.addListener('file-edit', () => { this.update() })
+    // this.notificationCenter.addListener('folder-edit', () => { this.update() }) // covered by onChange
+    this.notificationCenter.addListener('file-delete', () => { this.update() })
+    // this.notificationCenter.addListener('folder-delete', () => { this.update() }) // coverd by onDelete
   }
 
   update = async (showSpinner: boolean = false) => {

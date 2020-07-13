@@ -193,6 +193,7 @@ export default class EditItem extends Component<Props, State> {
     }
     await this.props.navigator.dismiss()
     if (this.props.onDelete) this.props.onDelete(this.props.item)
+    NativeNotificationCenter.postNotification(this.isFile() ? 'file-delete' : 'folder-delete', { id: itemID })
   }
 
   scrollView: KeyboardAwareScrollView
