@@ -951,7 +951,7 @@
 "Notifications" = "Notifications";
 
 /* Short name for observer enrollment */
-"Observer" = "Observer";
+"Observer" = "Auditor";
 
 /* No comment provided by engineer. */
 "Ok" = "Ok";

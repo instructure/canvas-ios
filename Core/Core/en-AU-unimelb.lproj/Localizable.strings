@@ -899,10 +899,10 @@
 "Notify me right away" = "Notify me right away";
 
 /* No comment provided by engineer. */
-"Observer" = "Observer";
+"Observer" = "Auditor";
 
 /* No comment provided by engineer. */
-"Observers" = "Observers";
+"Observers" = "Auditors";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -938,7 +938,7 @@
 "Pages" = "Pages";
 
 /* No comment provided by engineer. */
-"Pair with Observer" = "Pair with Observer";
+"Pair with Observer" = "Pair with Auditor";
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Pairing Code: ";
@@ -1127,7 +1127,7 @@
 "Settings" = "Settings";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.";
+"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Share the following pairing code with an auditor to allow them to connect with you. This code will expire in seven days, or after one use.";
 
 /* No comment provided by engineer. */
 "Show a month at a time" = "Show a month at a time";
