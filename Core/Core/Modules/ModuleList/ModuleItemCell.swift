@@ -27,6 +27,7 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var completedStatusView: UIImageView!
 
     let env = AppEnvironment.shared
 
@@ -39,6 +40,9 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
         publishedIconView.published = item.published
+        completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
+        completedStatusView.image = item.completed == true ? .icon(.check) : .icon(.empty)
+        completedStatusView.tintColor = item.completed == true ? .named(.backgroundSuccess) : .named(.borderMedium)
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
         let points = item.pointsPossible.flatMap {
