@@ -381,7 +381,7 @@
 		7DA2603823F722D9005D2121 /* AlertThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B801BF92322F64900D143F0 /* AlertThreshold.swift */; };
 		7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6043A2232AADB600757B93 /* AssignmentGroup.swift */; };
 		7DA2603A23F722D9005D2121 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFDA21713636007E5F81 /* Assignment.swift */; };
-		7DA2603B23F722D9005D2121 /* CalendarEventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B32225CDC95001F353D /* CalendarEventItem.swift */; };
+		7DA2603B23F722D9005D2121 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B635B32225CDC95001F353D /* CalendarEvent.swift */; };
 		7DA2603C23F722D9005D2121 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D062AF3212496E600677F66 /* Context.swift */; };
 		7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC4217113DA007E5F81 /* ContextColor.swift */; };
 		7DA2603F23F722D9005D2121 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF4FFC8217116BC007E5F81 /* Course.swift */; };
@@ -1055,7 +1055,7 @@
 		3B635B2A225CD298001F353D /* APICalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B2E225CD7B3001F353D /* APICalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventTests.swift; sourceTree = "<group>"; };
 		3B635B30225CDC2C001F353D /* GetCalendarEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEvents.swift; sourceTree = "<group>"; };
-		3B635B32225CDC95001F353D /* CalendarEventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventItem.swift; sourceTree = "<group>"; };
+		3B635B32225CDC95001F353D /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		3B635B36225CE59D001F353D /* GetCalendarEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEventsTests.swift; sourceTree = "<group>"; };
 		3B6386A42264F6AC002DEE72 /* APIRubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubric.swift; sourceTree = "<group>"; };
 		3B6386A82264FB17002DEE72 /* Rubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubric.swift; sourceTree = "<group>"; };
@@ -3566,7 +3566,7 @@
 				3B635B2A225CD298001F353D /* APICalendarEvent.swift */,
 				97F69BB623F1F286009622E3 /* APIPlannable.swift */,
 				7DFD5F7723FF158700D988E0 /* CalendarDaysViewController.swift */,
-				3B635B32225CDC95001F353D /* CalendarEventItem.swift */,
+				3B635B32225CDC95001F353D /* CalendarEvent.swift */,
 				7DFD5F7823FF158700D988E0 /* CalendarViewController.storyboard */,
 				7DFD5F7A23FF158700D988E0 /* CalendarViewController.swift */,
 				977EAC422412A2DC005E1290 /* CreatePlannerNote.swift */,
@@ -5115,7 +5115,7 @@
 				7DA2602A23F722C2005D2121 /* LoginNavigationController.swift in Sources */,
 				7DA260C423F72352005D2121 /* UploadMedia.swift in Sources */,
 				7DA25F9423F7212C005D2121 /* ActAsUserViewController.swift in Sources */,
-				7DA2603B23F722D9005D2121 /* CalendarEventItem.swift in Sources */,
+				7DA2603B23F722D9005D2121 /* CalendarEvent.swift in Sources */,
 				7DA2602D23F722C2005D2121 /* LoginStartMDMLoginCell.swift in Sources */,
 				7DA2607123F722E9005D2121 /* NotificationCategory.swift in Sources */,
 				97DDE0DA24119D6800A05B55 /* CreateTodoViewController.swift in Sources */,

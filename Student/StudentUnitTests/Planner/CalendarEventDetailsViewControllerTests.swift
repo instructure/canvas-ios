@@ -21,8 +21,8 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-class CalendarEventItemDetailsViewControllerTests: StudentTestCase {
-    lazy var controller = CalendarEventItemDetailsViewController.create(eventID: "1")
+class CalendarEventDetailsViewControllerTests: StudentTestCase {
+    lazy var controller = CalendarEventDetailsViewController.create(eventID: "1")
 
     override func setUp() {
         super.setUp()

@@ -49,7 +49,6 @@
 		497C48E71F9153D100A3BC06 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D51F9153D000A3BC06 /* Student.swift */; };
 		497C48E91F9153D100A3BC06 /* AirwolfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */; };
 		497C48EA1F9153D100A3BC06 /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48D91F9153D000A3BC06 /* Assignments.swift */; };
-		497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */; };
 		497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DB1F9153D000A3BC06 /* Discussions.swift */; };
 		497C48ED1F9153D100A3BC06 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C48DC1F9153D000A3BC06 /* Courses.swift */; };
 		5180FB980843FA6B1321EF5E /* Pods_defaults_Parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF4F6632250B1D4C9A25BC6 /* Pods_defaults_Parent.framework */; };
@@ -58,7 +57,7 @@
 		5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */; };
 		5E23FE4E1C991FF3005CC5A6 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E23FE4D1C991FF3005CC5A6 /* CourseListViewController.swift */; };
 		5E41048B1C99E08B0021567C /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41048A1C99E08B0021567C /* UIImage+Resize.swift */; };
-		5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */; };
+		5E41048D1C9B1F3E0021567C /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41048C1C9B1F3E0021567C /* Submission.swift */; };
 		5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E20501C927EB100E7D709 /* ColorScheme.swift */; };
 		5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441911C3EE2E0003D7397 /* Assets.xcassets */; };
 		5E6441951C3EE2E0003D7397 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E6441931C3EE2E0003D7397 /* LaunchScreen.storyboard */; };
@@ -75,7 +74,6 @@
 		617BE8751CA584EF008A6908 /* AnnouncementDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE8741CA584EF008A6908 /* AnnouncementDetailsViewController.swift */; };
 		6182D3B91D91D7EF00D516D5 /* DetailsAttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6182D3B71D91D7EF00D516D5 /* DetailsAttachmentCell.swift */; };
 		6196FC3A1CA1A47D0032B8EF /* EventDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6196FC391CA1A47D0032B8EF /* EventDetailsViewModel.swift */; };
-		61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */; };
 		61B536F51C99E58B0052B8CB /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */; };
 		61BE87DF1C8E308600D79BF4 /* Remindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BE87DE1C8E308600D79BF4 /* Remindable.swift */; };
 		61E94C611C873C1A00777B95 /* DetailsDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */; };
@@ -100,6 +98,7 @@
 		7D52D8A622FCC8C200684932 /* DiscussionKit.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9F5A3D372048745B00F6EDCE /* DiscussionKit.xcdatamodeld */; };
 		7D88EA2E23A9A1CB00D5F8FD /* ColorSchemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */; };
 		7DBED00A2328282200392F3C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0092328282200392F3C /* Routes.swift */; };
+		7DC4A0B924BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A0B824BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift */; };
 		7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5F49124097C12000256E3 /* PlannerTests.swift */; };
 		7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */; };
 		7DC7046724AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */; };
@@ -108,6 +107,8 @@
 		7DC7047124ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047024ABC07300CD1C46 /* ObserverAlertListViewControllerTests.swift */; };
 		7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC804D12444D01C001AB80C /* DashboardViewController.storyboard */; };
 		7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */; };
+		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
+		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
 		97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */; };
 		97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */; };
@@ -416,7 +417,6 @@
 		497C48D51F9153D000A3BC06 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		497C48D71F9153D000A3BC06 /* AirwolfAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirwolfAPI.swift; sourceTree = "<group>"; };
 		497C48D91F9153D000A3BC06 /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
-		497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvents.swift; sourceTree = "<group>"; };
 		497C48DB1F9153D000A3BC06 /* Discussions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussions.swift; sourceTree = "<group>"; };
 		497C48DC1F9153D000A3BC06 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		49952C3B1F7477C300A11404 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,7 +494,7 @@
 		5E0F9A5F1C739E6A00BB7707 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		5E23FE4D1C991FF3005CC5A6 /* CourseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CourseListViewController.swift; path = Parent/Dashboard/Courses/CourseListViewController.swift; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E41048A1C99E08B0021567C /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
-		5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Submissions.swift"; sourceTree = "<group>"; };
+		5E41048C1C9B1F3E0021567C /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		5E4E20501C927EB100E7D709 /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		5E6441871C3EE2E0003D7397 /* Parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E6441911C3EE2E0003D7397 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -514,7 +514,6 @@
 		617BE8741CA584EF008A6908 /* AnnouncementDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementDetailsViewController.swift; sourceTree = "<group>"; };
 		6182D3B71D91D7EF00D516D5 /* DetailsAttachmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsAttachmentCell.swift; sourceTree = "<group>"; };
 		6196FC391CA1A47D0032B8EF /* EventDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewModel.swift; sourceTree = "<group>"; };
-		61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		61BE87DE1C8E308600D79BF4 /* Remindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remindable.swift; sourceTree = "<group>"; };
 		61E94C5F1C873C1A00777B95 /* DetailsDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDescriptionCell.swift; sourceTree = "<group>"; };
@@ -572,6 +571,7 @@
 		7D4C6F34243BE098003C1728 /* AdminViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AdminViewController.storyboard; sourceTree = "<group>"; };
 		7D88EA2D23A9A1CB00D5F8FD /* ColorSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeTests.swift; sourceTree = "<group>"; };
 		7DBED0092328282200392F3C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		7DC4A0B824BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC5F49124097C12000256E3 /* PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTests.swift; sourceTree = "<group>"; };
 		7DC7046424AA96C500CD1C46 /* ObserverAlertListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertListViewController.swift; sourceTree = "<group>"; };
 		7DC7046624AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ObserverAlertListViewController.storyboard; sourceTree = "<group>"; };
@@ -588,6 +588,8 @@
 		7DE74F0922BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/DetailsReminderCell.strings"; sourceTree = "<group>"; };
 		7DE74F0C22BD7942003C8B44 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
+		7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
+		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -694,6 +696,7 @@
 				7DFDB43023A3EDE200B28DED /* Conversations */,
 				3B36A2EE2322C54900599A1E /* Fixtures */,
 				7DC7046B24ABBAD700CD1C46 /* ObserverAlerts */,
+				7DC4A0B724BE4B25007A7EAD /* Planner */,
 				B1AA55CE2357857E00DFD184 /* Students */,
 				7D88EA2C23A9A1A000D5F8FD /* UserDefaults */,
 				3B36A2E32322C26B00599A1E /* Info.plist */,
@@ -780,7 +783,6 @@
 			isa = PBXGroup;
 			children = (
 				497C48D91F9153D000A3BC06 /* Assignments.swift */,
-				497C48DA1F9153D000A3BC06 /* CalendarEvents.swift */,
 				497C48DB1F9153D000A3BC06 /* Discussions.swift */,
 				497C48DC1F9153D000A3BC06 /* Courses.swift */,
 			);
@@ -813,7 +815,7 @@
 		5E4104871C99E06D0021567C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				5E41048C1C9B1F3E0021567C /* CalendarEvent+Submissions.swift */,
+				5E41048C1C9B1F3E0021567C /* Submission.swift */,
 				5E41048A1C99E08B0021567C /* UIImage+Resize.swift */,
 				613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */,
 				4948BE681F915D330035BAFD /* BundleExtensions.swift */,
@@ -870,6 +872,7 @@
 				5E4104871C99E06D0021567C /* Extensions */,
 				7DEE3E3E2335793B0009D8DC /* IBDesignables */,
 				7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */,
+				7DF398C724BE16D4003FBA7F /* Planner */,
 				7D33976A24534CA20074ED71 /* Students */,
 				5E4E204F1C927EB100E7D709 /* UserDefaults */,
 				5E64422E1C3F1C2D003D7397 /* View */,
@@ -934,7 +937,6 @@
 			children = (
 				6196FC391CA1A47D0032B8EF /* EventDetailsViewModel.swift */,
 				6153FFFD1C80AAC4002529CF /* AssignmentDetailsViewController.swift */,
-				61B536E01C97C25A0052B8CB /* CalendarEventDetailsViewController.swift */,
 				617BE8741CA584EF008A6908 /* AnnouncementDetailsViewController.swift */,
 				61B536F41C99E58B0052B8CB /* DatePickerViewController.swift */,
 				61BE87DE1C8E308600D79BF4 /* Remindable.swift */,
@@ -1000,6 +1002,14 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		7DC4A0B724BE4B25007A7EAD /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				7DC4A0B824BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift */,
+			);
+			path = Planner;
+			sourceTree = "<group>";
+		};
 		7DC7045B24AA8EA400CD1C46 /* ObserverAlerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1035,15 @@
 				7DEE3E3C2335790A0009D8DC /* IBDesignables.swift */,
 			);
 			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		7DF398C724BE16D4003FBA7F /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */,
+				7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */,
+			);
+			path = Planner;
 			sourceTree = "<group>";
 		};
 		7DFDB43023A3EDE200B28DED /* Conversations */ = {
@@ -1363,6 +1382,7 @@
 				785AC17F20CEDAD300C28E46 /* Settings.bundle in Resources */,
 				2CB69BA81D91CDE00059C5A5 /* CourseCell.xib in Resources */,
 				2CB69BBD1D91CDFB0059C5A5 /* DetailsLocationCell.xib in Resources */,
+				7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,6 +1600,7 @@
 				7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */,
 				97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */,
 				B18F80E423463A060001A666 /* RoutesTests.swift in Sources */,
+				7DC4A0B924BE4B72007A7EAD /* CalendarEventDetailsViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1600,7 +1621,6 @@
 				78A84A0E209BB7A000921C9B /* ParentAppDelegate.swift in Sources */,
 				7D52D8A322FCC89F00684932 /* DiscussionTopic+Details.swift in Sources */,
 				497C48E41F9153D100A3BC06 /* Student+Details.swift in Sources */,
-				61B536E11C97C25A0052B8CB /* CalendarEventDetailsViewController.swift in Sources */,
 				612D64431C8794480045E03B /* DetailsInfoCell.swift in Sources */,
 				7DBED00A2328282200392F3C /* Routes.swift in Sources */,
 				3BEA6CC1245887F000BE4589 /* ParentConversationListViewController.swift in Sources */,
@@ -1608,11 +1628,12 @@
 				5E0F9A6D1C739E6A00BB7707 /* CourseCell.swift in Sources */,
 				97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */,
 				497C48EC1F9153D100A3BC06 /* Discussions.swift in Sources */,
+				7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */,
 				7DEE3E3D2335790A0009D8DC /* IBDesignables.swift in Sources */,
 				61BE87DF1C8E308600D79BF4 /* Remindable.swift in Sources */,
 				497C48E11F9153D100A3BC06 /* Session+Airwolf.swift in Sources */,
 				7D52D8A522FCC8A500684932 /* Session+DiscussionKit.swift in Sources */,
-				5E41048D1C9B1F3E0021567C /* CalendarEvent+Submissions.swift in Sources */,
+				5E41048D1C9B1F3E0021567C /* Submission.swift in Sources */,
 				5E4E20511C927EB100E7D709 /* ColorScheme.swift in Sources */,
 				3B4C544A245E841600E1AE33 /* CreateAccountViewController.swift in Sources */,
 				613E90E61D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift in Sources */,
@@ -1631,7 +1652,6 @@
 				7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */,
 				7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,
-				497C48EB1F9153D100A3BC06 /* CalendarEvents.swift in Sources */,
 				7D00F34024573B1600C370D5 /* StudentDetailsViewController.swift in Sources */,
 				5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */,
 				7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */,

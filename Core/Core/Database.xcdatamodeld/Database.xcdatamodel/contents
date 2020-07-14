@@ -74,7 +74,7 @@
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
     </entity>
-    <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
+    <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
         <attribute name="contextName" attributeType="String"/>
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
@@ -789,7 +789,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="628"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="253"/>
+        <element name="CalendarEvent" positionX="160" positionY="192" width="128" height="253"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>

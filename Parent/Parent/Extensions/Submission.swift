@@ -171,33 +171,6 @@ private struct Submission {
     }
 }
 
-extension CalendarEvent {
-
-    fileprivate var submission: Submission? {
-        guard type != .calendarEvent else { return nil }
-        return Submission(status: Submission.Status(rawValue: rawStatus),
-                          currentGrade: currentGrade,
-                          currentScore: currentScore,
-                          pointsPossible: pointsPossible,
-                          pastEndDate: pastEndDate,
-                          type: submissionTypes,
-                          gradePostedAt: gradePostedAt,
-                          missing: submissionMissing)
-    }
-
-    @objc var submittedText: String {
-        return submission?.displayText ?? ""
-    }
-
-    @objc var submittedVerboseText: String {
-        return submission?.displayVerboseText ?? ""
-    }
-
-    @objc var submittedColor: UIColor {
-        return submission?.displayColor ?? UIColor.named(.textDark)
-    }
-}
-
 extension CanvasCore.Assignment {
 
     fileprivate var overdue: Bool {

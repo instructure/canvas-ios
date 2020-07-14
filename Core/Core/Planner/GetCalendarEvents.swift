@@ -19,7 +19,7 @@
 import Foundation
 
 public class GetCalendarEvents: CollectionUseCase {
-    public typealias Model = CalendarEventItem
+    public typealias Model = CalendarEvent
     public var cacheKey: String? { "\(context.pathComponent)/calendar-events/\(type.rawValue)" }
     public let context: Context
     public let type: CalendarEventType
@@ -34,17 +34,17 @@ public class GetCalendarEvents: CollectionUseCase {
     }
 
     public var scope: Scope {
-        let context = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.contextRaw), self.context.canvasContextID)
-        let type = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.typeRaw), self.type.rawValue)
+        let context = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let type = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.typeRaw), self.type.rawValue)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [context, type])
-        let title = NSSortDescriptor(key: #keyPath(CalendarEventItem.title), ascending: true, naturally: true)
+        let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)
 
         return Scope(predicate: predicate, order: [title])
     }
 }
 
-public class GetCalendarEventItem: APIUseCase {
-    public typealias Model = CalendarEventItem
+public class GetCalendarEvent: APIUseCase {
+    public typealias Model = CalendarEvent
 
     public let eventID: String
 
@@ -56,5 +56,5 @@ public class GetCalendarEventItem: APIUseCase {
 
     public var request: GetCalendarEventRequest { GetCalendarEventRequest(eventID: eventID) }
 
-    public var scope: Scope { .where(#keyPath(CalendarEventItem.id), equals: eventID) }
+    public var scope: Scope { .where(#keyPath(CalendarEvent.id), equals: eventID) }
 }

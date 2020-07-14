@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Calendar Event Item Details View Controller-->
+        <!--Calendar Event Details View Controller-->
         <scene sceneID="cRI-yo-wak">
             <objects>
-                <viewController storyboardIdentifier="CalendarEventItemDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="42W-MC-r37" customClass="CalendarEventItemDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarEventDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="42W-MC-r37" customClass="CalendarEventDetailsViewController" customModule="Student" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Goh-yy-Wyc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fd-uO-emw">
                                                 <rect key="frame" x="0.0" y="33" width="343" height="85"/>
                                                 <subviews>
-                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-Yg-1B9" customClass="DividerView" customModule="Core" customModuleProvider="target">
+                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-Yg-1B9" customClass="DividerView" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="1"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="Jvq-yS-H2x"/>
@@ -54,7 +54,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XId-EE-PyK" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XId-EE-PyK" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="17" width="343" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                         <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

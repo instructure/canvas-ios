@@ -27,7 +27,7 @@ public enum CalendarEventWorkflowState: String, Codable {
     case active, deleted, locked, published
 }
 
-final public class CalendarEventItem: NSManagedObject, WriteableModel {
+final public class CalendarEvent: NSManagedObject, WriteableModel {
     public typealias JSON = APICalendarEvent
 
     @NSManaged public var id: String
@@ -65,9 +65,9 @@ final public class CalendarEventItem: NSManagedObject, WriteableModel {
     }
 
     @discardableResult
-    public static func save(_ item: APICalendarEvent, in context: NSManagedObjectContext) -> CalendarEventItem {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.id), item.id.value)
-        let model: CalendarEventItem = context.fetch(predicate).first ?? context.insert()
+    public static func save(_ item: APICalendarEvent, in context: NSManagedObjectContext) -> CalendarEvent {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.id), item.id.value)
+        let model: CalendarEvent = context.fetch(predicate).first ?? context.insert()
         model.id = item.id.value
         model.title = item.title
         model.startAt = item.start_at

@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var locationHeadingLabel: UILabel!
@@ -36,23 +36,16 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
     var color: UIColor?
     let env = AppEnvironment.shared
     var eventID = ""
-    lazy var intervalFormatter: DateIntervalFormatter = {
-        let formatter = DateIntervalFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
+    var studentID = ""
 
-    lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
-        self?.update()
-    }
-    lazy var events = env.subscribe(GetCalendarEventItem(eventID: eventID)) { [weak self] in
+    lazy var events = env.subscribe(GetCalendarEvent(eventID: eventID)) { [weak self] in
         self?.update()
     }
 
-    static func create(eventID: String) -> CalendarEventItemDetailsViewController {
+    static func create(studentID: String, eventID: String) -> CalendarEventDetailsViewController {
         let controller = loadFromStoryboard()
         controller.eventID = eventID
+        controller.studentID = studentID
         return controller
     }
 
@@ -60,6 +53,7 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
+        updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
         webView.autoresizesHeight = true
@@ -74,19 +68,16 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
         locationView.isHidden = true
         titleLabel.text = ""
 
-        colors.refresh()
         events.refresh()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        let color = ColorScheme.observee(studentID).color
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     @objc func refresh() {
-        colors.refresh(force: true)
         events.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -94,14 +85,13 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
 
     func update() {
         guard let event = events.first else { return }
-        let color = colors.first { $0.canvasContextID == event.contextRaw }
-        updateNavBar(subtitle: event.contextName, color: color?.color ?? .named(.ash))
+        titleSubtitleView.title = event.contextName
 
         titleLabel.text = event.title
         if event.isAllDay {
             dateLabel.text = event.startAt?.dateOnlyString
         } else if let start = event.startAt, let end = event.endAt {
-            dateLabel.text = intervalFormatter.string(from: start, to: end)
+            dateLabel.text = start.intervalStringTo(end)
         } else {
             dateLabel.text = event.startAt?.dateTimeString
         }

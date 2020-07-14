@@ -33,7 +33,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/calendar": { url, _, _ in
         if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
-           return CalendarEventItemDetailsViewController.create(eventID: eventID)
+           return CalendarEventDetailsViewController.create(eventID: eventID)
        }
        let controller = PlannerViewController.create()
        controller.view.tintColor = Brand.shared.primary
@@ -42,7 +42,12 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/calendar_events/:eventID": { _, params, _ in
         guard let eventID = params["eventID"] else { return nil }
-        return CalendarEventItemDetailsViewController.create(eventID: eventID)
+        return CalendarEventDetailsViewController.create(eventID: eventID)
+    },
+
+    "/:context/:contextID/calendar_events/:eventID": { _, params, _ in
+        guard let eventID = params["eventID"] else { return nil }
+        return CalendarEventDetailsViewController.create(eventID: eventID)
     },
 
     "/conversations/compose": nil,
