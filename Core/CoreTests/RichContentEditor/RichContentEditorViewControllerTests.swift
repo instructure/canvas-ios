@@ -145,7 +145,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         XCTAssertTrue(files().isEmpty)
 
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
-        waitUntil(30) { print(files()); return !files().isEmpty }
+        waitUntil(30) { !files().isEmpty }
     }
 
     func testBadMedia() {

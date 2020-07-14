@@ -70,7 +70,6 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
         }
     }
 
-    // FIXME: This fails in bitrise, but succeeds locally.
     func testLaunchError() {
         let data = "<pre>Error</pre>".data(using: .utf8)!
         let url = URL(string: "data:text/html;base64,\(data.base64EncodedString())")!
