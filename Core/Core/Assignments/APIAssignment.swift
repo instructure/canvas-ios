@@ -27,7 +27,7 @@ public struct APIAssignment: Codable, Equatable {
     let description: String?
     let points_possible: Double?
     let due_at: Date?
-    let html_url: URL
+    var html_url: URL
     let grade_group_students_individually: Bool?
     let grading_type: GradingType
     let submission_types: [SubmissionType]
@@ -109,7 +109,7 @@ extension APIAssignment {
             description: description,
             points_possible: points_possible,
             due_at: due_at,
-            html_url: html_url ?? URL(string: "https://canvas.instructure.com/courses/\(course_id)/assignments/\(id)")!,
+            html_url: html_url ?? URL(string: "/courses/\(course_id)/assignments/\(id)")!,
             grade_group_students_individually: grade_group_students_individually,
             grading_type: grading_type,
             submission_types: submission_types,

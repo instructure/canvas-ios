@@ -169,7 +169,7 @@ class SubmissionCommentsTests: CoreUITestCase {
         SubmissionComments.audioCellPlayPauseButton(commentID: "2").tap()
     }
 
-    func xtestAudioRecording() {
+    func testAudioRecording() {
         mockBaseRequests()
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make())
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))

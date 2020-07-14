@@ -234,7 +234,6 @@ class PostFileUploadRequestTests: XCTestCase {
 }
 
 class SetUsageRightsRequestTests: XCTestCase {
-//    func test
     func testSetUsageRightsRequest() throws {
         let request = SetUsageRightsRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/usage_rights")

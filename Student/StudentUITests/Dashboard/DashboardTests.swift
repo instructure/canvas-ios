@@ -21,89 +21,70 @@ import TestsFoundation
 import CoreUITests
 @testable import Core
 
-class DashboardTests: CoreUITestCase {
-    func course(_ id: ID, is_favorite: Bool? = nil) -> APICourse {
-        APICourse.make(id: id, name: "Course \(id)", course_code: "C\(id)", is_favorite: is_favorite)
+class DashboardTests: MiniCanvasUITestCase {
+    func editMenu(course: MiniCourse) -> Element {
+        DashboardEdit.courseFavorite(id: course.id, favorited: course.api.is_favorite ?? false)
     }
 
-    func card(_ id: ID) -> APIDashboardCard {
-        return APIDashboardCard.make(
-            assetString: "course_\(id)",
-            courseCode: "C\(id)",
-            href: "/courses/\(id)",
-            id: id,
-            longName: "Course \(id)",
-            originalName: "Course \(id)",
-            shortName: "Course \(id)"
-        )
-    }
-
-    func checkCoursesEditMenu(_ courses: [APICourse]) {
-        for course in courses {
-            XCTAssertEqual(DashboardEdit.courseFavorite(id: course.id.value, favorited: course.is_favorite ?? false).label(), course.name)
+    func checkCoursesEditMenu() {
+        for course in mocked.courses {
+            print(editMenu(course: course).queryWrapper.query)
+            XCTAssertEqual(editMenu(course: course).label(), course.api.name)
         }
     }
 
-    func checkDashboard(_ courses: [APICourse]) {
-        let noFavorites = courses.allSatisfy { $0.is_favorite != true }
-        for course in courses {
-            if course.is_favorite == true || noFavorites {
-                XCTAssertEqual(Dashboard.courseCard(id: course.id.value).label(), course.name)
+    func checkDashboard(seeAll: Bool = false) {
+        let noFavorites = mocked.courses.allSatisfy({ $0.api.is_favorite != true })
+        for course in mocked.courses {
+            if course.api.is_favorite == true || seeAll || noFavorites {
+                XCTAssertEqual(Dashboard.courseCard(id: course.id).label(), course.api.name)
             } else {
-                Dashboard.courseCard(id: course.id.value).waitToVanish()
+                Dashboard.courseCard(id: course.id).waitToVanish()
             }
         }
     }
 
+    func toggleFavorite(_ course: MiniCourse) {
+        let originalState = course.api.is_favorite
+        editMenu(course: course).tap()
+        waitUntil { course.api.is_favorite != originalState }
+    }
+
     func xtestEditFavorites() {
-        mockBaseRequests()
+        // start with course 1 favorited
+        mocked.courses[1].api.is_favorite = true
 
-        mockData(GetDashboardCardsRequest(), value: [card(2)])
-        // start with course 2 favorited
-        var courses = mock(courses: [course(1), course(2, is_favorite: true), course(3)])
-        for course in courses {
-            mockData(PostFavoriteRequest(context: .course(course.id.value)), value: APIFavorite(context_id: course.id, context_type: "course"))
-        }
+        pullToRefresh()
 
-        // TODO: figure out what's really going on with the never-appearing dashboard
-        sleep(1)
-        logIn()
-
-        // favorite 3
-        checkDashboard(courses)
+        // favorite 2
+        checkDashboard()
         Dashboard.editButton.tap()
-        checkCoursesEditMenu(courses)
-        mockData(GetDashboardCardsRequest(), value: [card(2), card(3)])
-        courses = mock(courses: [course(1), course(2, is_favorite: true), course(3, is_favorite: true)])
-        DashboardEdit.courseFavorite(id: "3", favorited: false).tap()
-        checkCoursesEditMenu(courses)
+        checkCoursesEditMenu()
+        toggleFavorite(mocked.courses[2])
+        checkCoursesEditMenu()
 
         NavBar.dismissButton.tap()
-        checkDashboard(courses)
+        checkDashboard()
 
         // unfavorite all
         Dashboard.editButton.tap()
-        mockData(GetDashboardCardsRequest(), value: [card(1), card(2), card(3)])
-        courses = mock(courses: [course(1), course(2), course(3)])
-        DashboardEdit.courseFavorite(id: "3", favorited: true).tap()
-        DashboardEdit.courseFavorite(id: "2", favorited: true).tap()
-        checkCoursesEditMenu(courses)
+        toggleFavorite(mocked.courses[1])
+        toggleFavorite(mocked.courses[2])
+        checkCoursesEditMenu()
 
         NavBar.dismissButton.tap()
-        checkDashboard(courses)
+        checkDashboard()
 
-        // favorite 1
+        // favorite 0
         Dashboard.editButton.tap()
-        checkCoursesEditMenu(courses)
-        mockData(GetDashboardCardsRequest(), value: [card(1)])
-        courses = mock(courses: [course(1, is_favorite: true), course(2), course(3)])
-        DashboardEdit.courseFavorite(id: "1", favorited: false).tap()
-        checkCoursesEditMenu(courses)
+        checkCoursesEditMenu()
+        toggleFavorite(mocked.courses[0])
+        checkCoursesEditMenu()
 
         NavBar.dismissButton.tap()
-        checkDashboard(courses)
+        checkDashboard()
 
         Dashboard.seeAllButton.tap()
-        checkDashboard([course(1), course(2), course(3)])
+        checkDashboard(seeAll: true)
     }
 }

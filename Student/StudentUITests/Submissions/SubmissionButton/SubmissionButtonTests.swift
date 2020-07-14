@@ -111,7 +111,7 @@ class SubmissionButtonTests: CoreUITestCase {
         NavBar.backButton.tap()
     }
 
-    func xtestMediaRecording() {
+    func testMediaRecording() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .media_recording ]))
         mockData(GetMediaServiceRequest(), value: APIMediaService(domain: "canvas.instructure.com"))

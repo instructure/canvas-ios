@@ -73,7 +73,7 @@ class ProfileE2ETests: CoreUITestCase {
         FileDetails.imageView.waitToExist()
     }
 
-    func xtestProfileLandingPage() {
+    func testProfileLandingPage() {
         guard let entry = user?.session else {
             return XCTFail("Couldn't get keychain entry")
         }

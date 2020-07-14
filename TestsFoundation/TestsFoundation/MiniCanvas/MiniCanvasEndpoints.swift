@@ -197,6 +197,7 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetConversationsUnreadCountRequest()) { request in
             .init(unread_count: request.state.unreadCount)
         },
+        .apiRequest(GetConversationsRequest(include: [], perPage: nil, scope: nil, filter: nil)) { _ in [] },
 
         // MARK: Courses
         // https://canvas.instructure.com/doc/api/conversations.html
@@ -242,6 +243,19 @@ enum MiniCanvasEndpoints {
         },
         .apiRequest(GetEnrollmentsRequest(context: Pattern.courseContext)) { request in
             request.state.enrollments.filter { $0.course_id == request[Pattern.courseID]! }
+        },
+
+        // MARK: Favorites
+        // https://canvas.instructure.com/doc/api/favorites.html
+        .apiRequest(PostFavoriteRequest(context: Pattern.courseContext)) { request in
+            let course = try lookupCourse(forRequest: request)
+            course.api.is_favorite = true
+            return APIFavorite(context_id: course.api.id, context_type: "course")
+        },
+        .apiRequest(DeleteFavoriteRequest(context: Pattern.courseContext)) { request in
+            let course = try lookupCourse(forRequest: request)
+            course.api.is_favorite = false
+            return APIFavorite(context_id: course.api.id, context_type: "course")
         },
 
         // MARK: Feature Flags
@@ -417,6 +431,10 @@ enum MiniCanvasEndpoints {
             return .json(page)
         },
 
+        // MARK: Planner
+        // https://canvas.instructure.com/doc/api/planner.html
+        .apiRequest(GetPlannablesRequest()) { _ in [] },
+
         // MARK: Quiz Submissions
         // https://canvas.instructure.com/doc/api/quiz_submissions.html
         .apiRequest(GetAllQuizSubmissionsRequest(courseID: Pattern.courseID, quizID: Pattern.quizID)) { request in
@@ -449,6 +467,23 @@ enum MiniCanvasEndpoints {
 
         // MARK: Submissions
         // https://canvas.instructure.com/doc/api/submissions.html
+        .apiRequest(CreateSubmissionRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID, body: nil)) { request in
+            let assignment = try lookupAssignment(forRequest: request)
+            guard let submission = request.body?.submission else {
+                throw ServerError.badRequest
+            }
+
+            let api = APISubmission.make(
+                id: request.state.nextId(),
+                assignment_id: assignment.api.id,
+                body: submission.body,
+                submission_type: submission.submission_type,
+                url: submission.url,
+                assignment: assignment.api
+            )
+            assignment.submissions.append(MiniSubmission(api))
+            return api
+        },
         .apiRequest(GetSubmissionSummaryRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { request in
             .init(graded: 42, ungraded: 42, not_submitted: 42)
         },
@@ -503,6 +538,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Users
         // https://canvas.instructure.com/doc/api/users.html
+        .apiRequest(GetActivitiesRequest()) { _ in [] },
         .apiRequest(GetUserProfileRequest(userID: Pattern.userID)) { request in
             let user = try lookupUser(forRequest: request)
             return APIProfile.make(
@@ -529,21 +565,25 @@ enum MiniCanvasEndpoints {
         },
         .rest("/users/self") { _ in .ok(.htmlBody("")) },
         .apiRequest(GetDashboardCardsRequest()) { request in
-            try request.state.userEnrollments().compactMap { enrollment in
-                guard let course = request.state.course(byId: enrollment.course_id!)?.api else {
+            let courses: [(MiniCourse, String)] = try request.state.userEnrollments().map { enrollment in
+                guard let course = request.state.course(byId: enrollment.course_id!) else {
                     throw ServerError.notFound
                 }
-                guard request.state.favoriteCourses.isEmpty || request.state.favoriteCourses.contains(course.id.value) else { return nil }
-                return APIDashboardCard.make(
-                    assetString: Context(.course, id: course.id.value).canvasContextID,
-                    courseCode: course.course_code!,
-                    enrollmentType: enrollment.type,
+                return (course, enrollment.type)
+            }
+
+            let favoriteCourses = courses.filter { $0.0.api.is_favorite == true }
+            return (favoriteCourses.isEmpty ? courses : favoriteCourses).map { (course, enrollmentType) in
+                APIDashboardCard.make(
+                    assetString: Context(.course, id: course.id).canvasContextID,
+                    courseCode: course.api.course_code!,
+                    enrollmentType: enrollmentType,
                     href: "/courses/\(course.id)",
-                    id: course.id,
-                    longName: course.name!,
-                    originalName: course.name!,
-                    position: Int(course.id.value),
-                    shortName: course.name!
+                    id: course.api.id,
+                    longName: course.api.name!,
+                    originalName: course.api.name!,
+                    position: Int(course.id),
+                    shortName: course.api.name!
                 )
             }
         },

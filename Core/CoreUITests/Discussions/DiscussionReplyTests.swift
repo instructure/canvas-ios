@@ -138,8 +138,7 @@ class DiscussionReplyTests: CoreUITestCase {
         }
     }
 
-    // blocked on MBL-14459
-    func xtestReplyingWithAttachment() {
+    func testReplyingWithAttachment() {
         mockBaseRequests()
         mockCoursePermission()
         let discussion = mockDiscussion(APIDiscussionTopic.make(permissions: .make(attach: true, reply: true)))
@@ -149,9 +148,9 @@ class DiscussionReplyTests: CoreUITestCase {
 
         mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", message: ""), value: .make())
         app.find(label: "Reply", type: .link).tap()
+        XCTAssertEqual(DiscussionEditReply.attachmentButton.label(), "Edit attachment (none)")
         DiscussionEditReply.attachmentButton.tap()
 
-//        Attachments.addButton.tap()
         allowAccessToPhotos {
             app.find(label: "Photo Library").tap()
         }
@@ -160,14 +159,13 @@ class DiscussionReplyTests: CoreUITestCase {
         app.find(label: "All Photos").tapUntil { photo.exists }
         photo.tap()
 
-        app.find(label: "Upload complete").waitToExist()
-        let img = app.find(id: "AttachmentView.image")
-        app.find(label: "Upload complete").tapUntil { img.exists == true }
-        NavBar.dismissButton.tap()
+        waitUntil { DiscussionEditReply.attachmentButton.label() == "Edit attachment (1)" }
 
-        Attachments.dismissButton.tap()
+        DiscussionEditReply.attachmentButton.tap()
+        DiscussionEditReply.viewMenuAction.tap()
+        app.find(id: "QLOverlayDoneButtonAccessibilityIdentifier").tap()
 
-        RichContentEditor.editor.typeText("Here's a nice picture I took")
+        RichContentEditor.webView.typeText("Here's a nice picture I took")
         DiscussionEditReply.sendButton.tapUntil {
             !DiscussionEditReply.sendButton.isVisible
         }

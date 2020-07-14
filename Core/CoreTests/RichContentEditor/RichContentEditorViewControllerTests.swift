@@ -58,42 +58,41 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     }
 
     func getHTML() -> String {
-        updated = expectation(description: "updated")
+        let updated = expectation(description: "updated")
         var html = ""
         controller.getHTML { value in
             html = value
-            self.updated?.fulfill()
+            updated.fulfill()
         }
-        wait(for: [updated!], timeout: 5)
-        updated = nil
+        wait(for: [updated], timeout: 5)
         return html
     }
 
-    // FIXME: This test is flaky on Bitrise
-    func xtestBasicCommands() {
+    func testBasicCommands() {
+        // poll instead of expectations to reduce flakiness
         update { controller.toolbar.unorderedButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.unorderedButton?.isSelected, true)
-        XCTAssertEqual(controller.toolbar.undoButton?.isEnabled, true)
+        waitUntil { controller.toolbar.unorderedButton?.isSelected == true }
+        waitUntil { controller.toolbar.undoButton?.isEnabled == true }
 
         update { controller.toolbar.orderedButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.orderedButton?.isSelected, true)
-        XCTAssertEqual(controller.toolbar.unorderedButton?.isSelected, false)
+        waitUntil { controller.toolbar.orderedButton?.isSelected == true }
+        waitUntil { controller.toolbar.unorderedButton?.isSelected == false }
 
         update { controller.toolbar.undoButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.orderedButton?.isSelected, false)
-        XCTAssertEqual(controller.toolbar.unorderedButton?.isSelected, true)
-        XCTAssertEqual(controller.toolbar.redoButton?.isEnabled, true)
+        waitUntil { controller.toolbar.orderedButton?.isSelected == false }
+        waitUntil { controller.toolbar.unorderedButton?.isSelected == true }
+        waitUntil { controller.toolbar.redoButton?.isEnabled == true }
 
         update { controller.toolbar.redoButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.orderedButton?.isSelected, true)
-        XCTAssertEqual(controller.toolbar.unorderedButton?.isSelected, false)
-        XCTAssertEqual(controller.toolbar.redoButton?.isEnabled, false)
+        waitUntil { controller.toolbar.orderedButton?.isSelected == true }
+        waitUntil { controller.toolbar.unorderedButton?.isSelected == false }
+        waitUntil { controller.toolbar.redoButton?.isEnabled == false }
 
         update { controller.toolbar.boldButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.boldButton?.isSelected, true)
+        waitUntil { controller.toolbar.boldButton?.isSelected == true }
 
         update { controller.toolbar.italicButton?.sendActions(for: .primaryActionTriggered) }
-        XCTAssertEqual(controller.toolbar.italicButton?.isSelected, true)
+        waitUntil { controller.toolbar.italicButton?.isSelected == true }
     }
 
     func testTextColor() {
@@ -117,20 +116,18 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         XCTAssertEqual(controller.toolbar.textColorView?.backgroundColor, UIColor(hexString: "#fff"))
     }
 
-    // FIXME: This test is flaky on Bitrise
-    func xtestLink() {
+    func testLink() {
         update { controller.setHTML("!") } // insertLink has trouble if there was nothing in tests
-        controller.toolbar.linkButton?.sendActions(for: .primaryActionTriggered)
+        controller.toolbar.linkButton!.sendActions(for: .primaryActionTriggered)
         let alert = router.presented as! UIAlertController
-        alert.textFields?[0].text = " Splatoon 2\n"
-        alert.textFields?[1].text = "splatoon.ink "
-        update { (alert.actions[1] as! AlertAction).handler?(alert.actions[1]) } // OK
-        XCTAssertEqual(getHTML(), "<a href=\"https://splatoon.ink\">Splatoon 2</a>!")
+        alert.textFields![0].text = " Splatoon 2\n"
+        alert.textFields![1].text = "splatoon.ink "
+        update { (alert.actions[1] as! AlertAction).handler!(alert.actions[1]) } // OK
+        waitUntil { getHTML() == "<a href=\"https://splatoon.ink\">Splatoon 2</a>!" }
     }
 
-    // FIXME: This test is flaky on Bitrise
-    func xtestImage() {
-        controller.toolbar.libraryButton?.sendActions(for: .primaryActionTriggered)
+    func testImage() {
+        controller.toolbar.libraryButton!.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .photoLibrary)
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [:])
         XCTAssertEqual(error?.localizedDescription, "No image found from image picker")
@@ -141,16 +138,14 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         context.performAndWait {
             let file: File? = databaseClient.fetch().first
             XCTAssertNotNil(file)
-            file?.uploadError = "Failure"
-            try? context.save()
+            file!.uploadError = "Failure"
+            try! context.save()
         }
-        let files: [File] = databaseClient.fetch()
-        XCTAssertTrue(files.isEmpty)
+        let files: () -> [File] = { self.databaseClient.fetch() }
+        XCTAssertTrue(files().isEmpty)
 
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
-        wait(for: [expectation(for: .all, evaluatedWith: self) { () -> Bool in
-            !(self.databaseClient.fetch() as [File]).isEmpty
-        }, ], timeout: 5)
+        waitUntil(30) { print(files()); return !files().isEmpty }
     }
 
     func testBadMedia() {

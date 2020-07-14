@@ -21,7 +21,7 @@ import Foundation
 
 public class MiniAssignment {
     public var api: APIAssignment
-    public var submissions: [MiniSubmission] = []
+    public var submissions: [MiniSubmission]
 
     public var id: String { api.id.value }
 
@@ -29,8 +29,14 @@ public class MiniAssignment {
         submissions.first { $0.api.user_id.value == id }
     }
 
-    init(_ assignment: APIAssignment) {
-        self.api = assignment
+    public init(_ assignment: APIAssignment, state: MiniCanvasState, submissions: [MiniSubmission] = []) {
+        api = assignment
+        self.submissions = submissions
+    }
+
+    public func add(submission: APISubmission) {
+        submissions.append(MiniSubmission(submission))
+        api.submission = APIList(values: submissions.map(\.api))
     }
 
     public func submissionList(state: MiniCanvasState) -> [String: Any] {
