@@ -57,7 +57,7 @@ class ProfileE2ETests: CoreUITestCase {
         LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
-    func testProfileLogsOut() {
+    func xtestProfileLogsOut() {
         Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()
@@ -73,7 +73,7 @@ class ProfileE2ETests: CoreUITestCase {
         FileDetails.imageView.waitToExist()
     }
 
-    func testProfileLandingPage() {
+    func xtestProfileLandingPage() {
         guard let entry = user?.session else {
             return XCTFail("Couldn't get keychain entry")
         }
