@@ -93,6 +93,7 @@
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
+        <relationship name="conversationParticipant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ConversationParticipant" inverseName="commonCourses" inverseEntity="ConversationParticipant"/>
         <relationship name="searchRecipient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchRecipient" inverseName="commonCourses" inverseEntity="SearchRecipient"/>
     </entity>
     <entity name="CommunicationChannel" representedClassName="Core.CommunicationChannel" syncable="YES">
@@ -166,6 +167,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <relationship name="commonCourses" toMany="YES" deletionRule="Nullify" destinationEntity="CommonCourse" inverseName="conversationParticipant" inverseEntity="CommonCourse"/>
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
@@ -790,14 +792,14 @@
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="253"/>
-        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>
         <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="148"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="73"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
-        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="118"/>
+        <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="253"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>

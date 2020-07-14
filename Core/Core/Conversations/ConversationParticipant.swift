@@ -24,6 +24,7 @@ public final class ConversationParticipant: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var pronouns: String?
+    @NSManaged public var commonCourses: Set<CommonCourse>
 
     public var displayName: String {
         User.displayName(name, pronouns: pronouns)
@@ -35,6 +36,16 @@ public final class ConversationParticipant: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.pronouns = item.pronouns
+        model.commonCourses = []
+        for (courseID, roles) in item.common_courses ?? [:] {
+            for role in roles {
+                let commonCourse: CommonCourse = context.insert()
+                commonCourse.courseID = courseID
+                commonCourse.role = role
+                model.commonCourses.insert(commonCourse)
+            }
+        }
+
         return model
     }
 }

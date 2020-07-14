@@ -55,6 +55,7 @@ public struct APIConversationParticipant: Codable, Equatable {
     let name: String
     let avatar_url: APIURL?
     let pronouns: String?
+    let common_courses: [String: [String]]?
 }
 
 public struct APIConversationMessage: Codable, Equatable {
@@ -121,13 +122,15 @@ extension APIConversationParticipant {
         id: String = "1",
         name: String = "Participant One",
         avatar_url: URL? = nil,
-        pronouns: String? = nil
+        pronouns: String? = nil,
+        common_courses: [String: [String]]? = nil
     ) -> APIConversationParticipant {
         return APIConversationParticipant(
             id: ID(id),
             name: name,
             avatar_url: APIURL(rawValue: avatar_url),
-            pronouns: pronouns
+            pronouns: pronouns,
+            common_courses: common_courses
         )
     }
 }

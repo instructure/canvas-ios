@@ -718,6 +718,7 @@
 		B14B7055229468BC00B568D6 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */; };
 		B14B70572294758600B568D6 /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B70562294758600B568D6 /* UploadFileCommentTests.swift */; };
 		B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D55602130B6740066D275 /* TestOperationQueue.swift */; };
+		B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14D993424BE65A9006DFF12 /* CommonCourse.swift */; };
 		B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14FE5D82134F68800328CD7 /* CoreTestCase.swift */; };
 		B150C63C2298DE590096D58C /* WKWebViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C63B2298DE590096D58C /* WKWebViewExtensionsTests.swift */; };
 		B150C63E2298E6410096D58C /* GetArcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B150C63D2298E6410096D58C /* GetArcTests.swift */; };
@@ -1769,6 +1770,7 @@
 		B14B7054229468BC00B568D6 /* FilePickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerViewControllerTests.swift; sourceTree = "<group>"; };
 		B14B70562294758600B568D6 /* UploadFileCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFileCommentTests.swift; sourceTree = "<group>"; };
 		B14D55602130B6740066D275 /* TestOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestOperationQueue.swift; sourceTree = "<group>"; };
+		B14D993424BE65A9006DFF12 /* CommonCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCourse.swift; sourceTree = "<group>"; };
 		B14FE5D82134F68800328CD7 /* CoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestCase.swift; sourceTree = "<group>"; };
 		B150C623229733C50096D58C /* GetArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArc.swift; sourceTree = "<group>"; };
 		B150C62C2297814E0096D58C /* ExternalTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalTool.swift; sourceTree = "<group>"; };
@@ -2858,6 +2860,7 @@
 				7D26B84223A7F24400262380 /* GetConversations.swift */,
 				9F87D07A2322F4C500EDA363 /* GetSearchRecipients.swift */,
 				9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */,
+				B14D993424BE65A9006DFF12 /* CommonCourse.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -5119,6 +5122,7 @@
 				7DA2602D23F722C2005D2121 /* LoginStartMDMLoginCell.swift in Sources */,
 				7DA2607123F722E9005D2121 /* NotificationCategory.swift in Sources */,
 				97DDE0DA24119D6800A05B55 /* CreateTodoViewController.swift in Sources */,
+				B14D993524BE65A9006DFF12 /* CommonCourse.swift in Sources */,
 				7DA260D123F72359005D2121 /* CoreWebView.swift in Sources */,
 				7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */,
 				7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */,
