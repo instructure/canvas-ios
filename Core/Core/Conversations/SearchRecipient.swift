@@ -60,9 +60,3 @@ public final class SearchRecipient: NSManagedObject {
         return commonCourses.first { $0.courseID == context.id && Role(rawValue: $0.role) == role } != nil
     }
 }
-
-public class CommonCourse: NSManagedObject {
-    @NSManaged public var courseID: String
-    @NSManaged public var role: String
-    @NSManaged public var searchRecipient: SearchRecipient?
-}

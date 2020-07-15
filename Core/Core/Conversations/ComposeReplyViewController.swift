@@ -38,6 +38,9 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     lazy var attachments = UploadManager.shared.subscribe(batchID: batchID) { [weak self] in
         self?.updateAttachments()
     }
+    lazy var students = env.subscribe(GetObservedStudents(observerID: env.currentSession?.userID ??  "")) { [weak self] in
+        self?.update()
+    }
     lazy var filePicker = FilePicker(delegate: self)
 
     var conversation: Conversation?
@@ -81,6 +84,9 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         bodyView.textColor = .named(.textDarkest)
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
         bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
+        if env.app == .parent {
+            students.refresh()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -138,19 +144,39 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         spinner.color = nil
         sendButton.customView = spinner
         updateSendButton()
-        let myID = env.currentSession?.userID ?? ""
-        let recipients = !all ? [ message.authorID ]
-            : message.participantIDs.filter { $0 != myID }
+        let recipients = all ? replyAllRecipientIDs : [ message.authorID ]
         let attachmentIDs = attachments.all.compactMap { $0.id }
         AddMessage(conversationID: conversation.id, attachmentIDs: attachmentIDs, body: body, recipientIDs: recipients).fetch { [weak self] _, _, error in performUIUpdate {
+            guard let self = self else { return }
             if let error = error {
-                self?.sendButton.customView = nil
-                self?.updateSendButton()
-                self?.showError(error)
+                self.sendButton.customView = nil
+                self.updateSendButton()
+                self.showError(error)
                 return
             }
-            self?.dismiss(animated: true)
+            self.env.router.dismiss(self)
         } }
+    }
+
+    var replyAllRecipientIDs: [String] {
+        guard let conversation = conversation, let message = message else { return [] }
+        let myID = env.currentSession?.userID ?? ""
+        return message.participantIDs.filter { participantID in
+            if participantID == myID {
+                return false
+            }
+            if env.app == .parent {
+                // Parents can only reply-all to their own students, teachers, and TAs
+                if students.contains(where: { $0.id == participantID }) {
+                    return true
+                }
+                let context = conversation.contextCode.flatMap { Context(canvasContextID: $0) }
+                let participant = conversation.participants.first { $0.id == participantID }
+                let role = participant?.commonCourses.first { $0.courseID == context?.id }.flatMap { Role(rawValue: $0.role) }
+                return [.teacher, .ta].contains(role)
+            }
+            return true
+        }
     }
 }
 
