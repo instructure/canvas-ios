@@ -108,7 +108,7 @@ class ComposeReplyViewControllerTests: CoreTestCase {
                 .make(id: "22", name: "my kid", common_courses: ["1": [ Role.student.rawValue ]]),
                 .make(id: "23", name: "other kid", common_courses: ["1": [ Role.student.rawValue ]]),
                 .make(id: "24", name: "other teacher", common_courses: ["2": [ Role.teacher.rawValue ]]),
-                .make(id: "25", name: "other observer", common_courses: ["2": [ Role.observer.rawValue ]])
+                .make(id: "25", name: "other observer", common_courses: ["2": [ Role.observer.rawValue ]]),
             ],
             context_code: "course_1",
             messages: [ .make(participating_user_ids: [ ID(currentSession.userID), "20", "21", "22", "23", "24", "25" ]) ]
