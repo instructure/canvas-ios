@@ -290,7 +290,7 @@ workflows:
             ./scripts/run-ui-tests.sh --build
             SCHEME=IPadTests \
             DEVICE_NAME='iPad Air (3rd generation)' \
-            ./scripts/run-ui-tests.sh --build
+            ./scripts/run-swift run-ui-tests --build
     - script:
         title: Prepare cache
         inputs:
@@ -422,16 +422,13 @@ workflows:
 
                 SCHEME=IPadTests \
                 DEVICE_NAME='iPad Air (3rd generation)' \
-                ./scripts/run-ui-tests.sh --build --all-tests || ret=$?
+                ./scripts/run-swift run-ui-tests --build --all-tests || ret=$?
 
-                ./scripts/run-ui-tests.sh --build
-                for target in $group_A_targets; do
-                    ./scripts/run-ui-tests.sh --append-results --only-testing $target || ret=$?
-                done
+                ./scripts/run-swift run-ui-tests --build --append-results $group_A_targets || ret=$?
 
                 exit $ret
             elif [[ $NIGHTLY_GROUP = B ]]; then
-                ./scripts/run-ui-tests.sh --build --only-testing $group_B_targets
+                ./scripts/run-swift run-ui-tests --build $group_B_targets
             else
                 echo "unknown nightly group '$NIGHTLY_GROUP'"
                 exit 1
@@ -592,7 +589,7 @@ workflows:
         - content: |-
             set -euo pipefail
             export SCHEME='Beta E2E'
-            ./scripts/run-ui-tests.sh --build --all-tests
+            ./scripts/run-swift run-ui-tests --build --all-tests
     - *save-xcresult
     - deploy-to-bitrise-io: {}
     - slack:
