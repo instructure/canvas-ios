@@ -49,6 +49,11 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(controller.locationView.isHidden, false)
         XCTAssertEqual(controller.locationNameLabel.text, "Instructure Inc")
         XCTAssertEqual(controller.locationAddressLabel.text, "6330 S 3000 E Unit 700\nSalt Lake City, UT 84121")
+        XCTAssertEqual(controller.reminderHeadingLabel.text, "Remind Me")
+        XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
+        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        XCTAssertEqual(controller.reminderDateButton.isHidden, true)
+        XCTAssertEqual(controller.reminderDatePicker.isHidden, true)
 
         api.mock(controller.events, value: .make(
             id: "1",
@@ -68,5 +73,52 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020 at 10:00 AM")
+    }
+
+    func testReminder() {
+        let prev = Clock.now.startOfDay()
+        notificationManager.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.reminderHeadingLabel.text, "Remind Me")
+        XCTAssertEqual(controller.reminderMessageLabel.text, "Set a date and time to be notified of this event.")
+        XCTAssertEqual(controller.reminderSwitch.isOn, true)
+        XCTAssertEqual(controller.reminderDateButton.isHidden, false)
+        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), prev.dateTimeString)
+        XCTAssertEqual(controller.reminderDatePicker.isHidden, true)
+
+        controller.reminderDateButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.reminderDatePicker.isHidden, false)
+        XCTAssertEqual(controller.reminderDatePicker.date, prev)
+
+        controller.reminderDatePicker.date = prev.addDays(1)
+        controller.reminderDatePicker.sendActions(for: .valueChanged)
+        notificationManager.getReminder("1") { request in
+            let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
+                Calendar.current.date(from: $0.dateComponents)
+            }
+            XCTAssertEqual(date, prev.addDays(1))
+        }
+        notificationCenter.error = NSError.internalError()
+        controller.reminderDatePicker.sendActions(for: .valueChanged)
+        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+
+        notificationCenter.authorized = false
+        controller.reminderSwitch.isOn = true
+        controller.reminderSwitch.sendActions(for: .valueChanged)
+        XCTAssertEqual(controller.reminderSwitch.isOn, false)
+        XCTAssertEqual((router.presented as? UIAlertController)?.title, "Permission Needed")
+
+        controller.reminderSwitch.isOn = false
+        controller.reminderSwitch.sendActions(for: .valueChanged)
+        XCTAssertEqual(controller.reminderDateButton.isHidden, true)
+        XCTAssertEqual(controller.reminderDatePicker.isHidden, true)
+
+        notificationCenter.authorized = true
+        notificationCenter.error = nil
+        controller.reminderSwitch.isOn = true
+        controller.reminderSwitch.sendActions(for: .valueChanged)
+        XCTAssertEqual(controller.reminderDateButton.isHidden, false)
+        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), "Jul 13, 2020 at 11:00 PM")
+        XCTAssertEqual(controller.reminderDatePicker.isHidden, false)
     }
 }

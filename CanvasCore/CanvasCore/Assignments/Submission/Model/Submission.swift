@@ -41,7 +41,7 @@ public final class Submission: SubmissionEvent {
     @NSManaged internal (set) public var submittedText: String?
     @NSManaged internal (set) public var submittedURL: URL?
     @NSManaged internal (set) public var submittedMediaID: String?
-    @NSManaged internal (set) public var submittedMedia: MediaComment?
+    // @NSManaged internal (set) public var submittedMedia: MediaComment?
     @NSManaged internal (set) public var assessments: Set<RubricAssessment>
 }
 

@@ -86,6 +86,7 @@
 		7D00F3482457776600C370D5 /* StudentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D00F3472457776600C370D5 /* StudentDetailsViewController.storyboard */; };
 		7D00F34A2458A83900C370D5 /* GetAlertThresholdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F3492458A83900C370D5 /* GetAlertThresholdsTests.swift */; };
 		7D00F34C2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D00F34B2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift */; };
+		7D1801B324BF9C0C00A7F023 /* UserNotificationReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1801B224BF9C0C00A7F023 /* UserNotificationReminder.swift */; };
 		7D32963923D6574B008ED385 /* TableEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D32963823D6574A008ED385 /* TableEmptyView.xib */; };
 		7D33976C24534CD30074ED71 /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D33976B24534CD30074ED71 /* StudentListViewController.swift */; };
 		7D33976E24534D8C0074ED71 /* StudentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D33976D24534D8C0074ED71 /* StudentListViewController.storyboard */; };
@@ -529,6 +530,7 @@
 		7D00F3492458A83900C370D5 /* GetAlertThresholdsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlertThresholdsTests.swift; sourceTree = "<group>"; };
 		7D00F34B2458AEC500C370D5 /* StudentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		7D0215A421BAE863009A8E69 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D1801B224BF9C0C00A7F023 /* UserNotificationReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationReminder.swift; sourceTree = "<group>"; };
 		7D32963823D6574A008ED385 /* TableEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableEmptyView.xib; sourceTree = "<group>"; };
 		7D33976B24534CD30074ED71 /* StudentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		7D33976D24534D8C0074ED71 /* StudentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StudentListViewController.storyboard; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 				5E41048A1C99E08B0021567C /* UIImage+Resize.swift */,
 				613E90E51D088DA600416EBE /* UITextField+ReturnKeyUpdate.swift */,
 				4948BE681F915D330035BAFD /* BundleExtensions.swift */,
+				7D1801B224BF9C0C00A7F023 /* UserNotificationReminder.swift */,
 			);
 			name = Extensions;
 			path = Parent/Extensions;
@@ -1653,6 +1656,7 @@
 				7DC7046524AA96C500CD1C46 /* ObserverAlertListViewController.swift in Sources */,
 				5E0F9A731C739E6A00BB7707 /* DashboardViewController.swift in Sources */,
 				7D00F34024573B1600C370D5 /* StudentDetailsViewController.swift in Sources */,
+				7D1801B324BF9C0C00A7F023 /* UserNotificationReminder.swift in Sources */,
 				5EF946251CACD83500D10247 /* TableSectionHeaderView.swift in Sources */,
 				7D52D8A222FCC89F00684932 /* DiscussionTopic+Network.swift in Sources */,
 				5EF946271CACD91B00D10247 /* TokenLabelView.swift in Sources */,

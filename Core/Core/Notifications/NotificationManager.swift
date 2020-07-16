@@ -19,8 +19,11 @@
 import Foundation
 import UserNotifications
 
-protocol UserNotificationCenterProtocol {
+public protocol UserNotificationCenterProtocol {
+    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
     func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
+    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)
+    func removePendingNotificationRequests(withIdentifiers identifiers: [String])
 }
 
 extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
@@ -28,8 +31,8 @@ extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
 public class NotificationManager {
     public static let RouteURLKey = "com.instructure.core.router.notification-url"
 
-    let notificationCenter: UserNotificationCenterProtocol
-    let logger: LoggerProtocol
+    public let notificationCenter: UserNotificationCenterProtocol
+    public let logger: LoggerProtocol
 
     public static var shared: NotificationManager = {
         return NotificationManager(
@@ -41,6 +44,10 @@ public class NotificationManager {
     init(notificationCenter: UserNotificationCenterProtocol, logger: LoggerProtocol) {
         self.notificationCenter = notificationCenter
         self.logger = logger
+    }
+
+    public func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
+        notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
     }
 
     public func notify(identifier: String, title: String, body: String, route: String?) {

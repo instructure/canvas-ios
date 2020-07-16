@@ -18,14 +18,23 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 import Core
 
 class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+    @IBOutlet weak var dateHeadingLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionHeadingLabel: UILabel!
+    @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var locationHeadingLabel: UILabel!
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var reminderDateButton: UIButton!
+    @IBOutlet weak var reminderDatePicker: UIDatePicker!
+    @IBOutlet weak var reminderHeadingLabel: UILabel!
+    @IBOutlet weak var reminderMessageLabel: UILabel!
+    @IBOutlet weak var reminderSwitch: UISwitch!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
@@ -63,12 +72,34 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
+        dateHeadingLabel.text = NSLocalizedString("Date", comment: "")
         dateLabel.text = ""
+        descriptionHeadingLabel.text = NSLocalizedString("Description", comment: "")
         locationHeadingLabel.text = NSLocalizedString("Location", comment: "")
         locationView.isHidden = true
         titleLabel.text = ""
 
+        reminderHeadingLabel.text = NSLocalizedString("Remind Me", comment: "")
+        reminderMessageLabel.text = NSLocalizedString("Set a date and time to be notified of this event.", comment: "")
+        reminderSwitch.accessibilityLabel = NSLocalizedString("Remind Me", comment: "")
+        reminderSwitch.isEnabled = false
+        reminderDateButton.isEnabled = false
+        reminderDateButton.isHidden = true
+        reminderDatePicker.isHidden = true
+
         events.refresh()
+        NotificationManager.shared.getReminder(eventID) { [weak self] request in performUIUpdate {
+            guard let self = self else { return }
+            let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
+                Calendar.current.date(from: $0.dateComponents)
+            }
+            if let date = date {
+                self.reminderSwitch.isOn = true
+                self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
+                self.reminderDateButton.isHidden = false
+                self.reminderDatePicker.date = date
+            }
+        } }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,8 +129,71 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         locationView.isHidden = event.locationName?.isEmpty != false && event.locationAddress?.isEmpty != false
         locationNameLabel.text = event.locationName
         locationAddressLabel.text = event.locationAddress
+        reminderSwitch.isEnabled = true
+        reminderDateButton.isEnabled = true
         if let html = event.details {
+            descriptionView.isHidden = false
             webView.loadHTMLString(html, baseURL: event.htmlURL)
+        } else {
+            descriptionView.isHidden = true
         }
+    }
+
+    @IBAction func reminderSwitchChanged() {
+        guard let event = events.first else { return }
+        if reminderSwitch.isOn {
+            let defaultDate = event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
+            NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
+                guard error == nil && success else {
+                    self.reminderSwitch.setOn(false, animated: true)
+                    return self.showPermissionError()
+                }
+                self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
+                self.reminderDatePicker.date = defaultDate
+                UIView.animate(withDuration: 0.2) {
+                    self.reminderDateButton.isHidden = false
+                    self.reminderDatePicker.isHidden = false
+                }
+                self.reminderDateChanged()
+            } }
+        } else {
+            NotificationManager.shared.removeReminder(eventID)
+            UIView.animate(withDuration: 0.2) {
+                self.reminderDateButton.isHidden = true
+                self.reminderDatePicker.isHidden = true
+            }
+        }
+    }
+
+    @IBAction func reminderButtonTapped() {
+        UIView.animate(withDuration: 0.2) {
+            self.reminderDatePicker.isHidden = !self.reminderDatePicker.isHidden
+        }
+    }
+
+    @IBAction func reminderDateChanged() {
+        guard let event = events.first else { return }
+        let date = reminderDatePicker.date
+        NotificationManager.shared.setReminder(for: event, at: date, studentID: studentID) { error in performUIUpdate {
+            if error == nil {
+                self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
+            } else {
+                self.reminderSwitch.setOn(false, animated: true)
+                self.reminderSwitchChanged()
+            }
+        } }
+    }
+
+    func showPermissionError() {
+        let title = NSLocalizedString("Permission Needed", comment: "")
+        let message = NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            alert.addAction(AlertAction(NSLocalizedString("Settings", comment: ""), style: .default) { _ in
+                UIApplication.shared.open(url)
+            })
+        }
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
+        env.router.show(alert, from: self, options: .modal())
     }
 }

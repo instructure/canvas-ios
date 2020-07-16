@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -13,14 +13,14 @@
             <objects>
                 <viewController storyboardIdentifier="CalendarEventDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zib-wx-dtu" customClass="CalendarEventDetailsViewController" customModule="Parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z7s-Ok-2sa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hyo-rn-2A7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f6-iO-8MH" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="382" height="24"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -29,24 +29,135 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-h3-mp7">
-                                        <rect key="frame" x="16" y="44" width="382" height="118"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-h3-mp7">
+                                        <rect key="frame" x="16" y="56" width="343" height="586.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 24, 2020, 11:00 AM – 1:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-lf-cID" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="17"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpa-SN-cPZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
+                                                <subviews>
+                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7N-a2-Wth" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="bDx-aE-flG"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zls-e3-L4X" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 24, 2020, 11:00 AM – 1:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-lf-cID" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="44.5" width="343" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="B4J-lf-cID" secondAttribute="bottom" constant="16" id="80w-We-pRr"/>
+                                                    <constraint firstItem="B4J-lf-cID" firstAttribute="top" secondItem="zls-e3-L4X" secondAttribute="bottom" constant="8" id="8Ku-4V-j2T"/>
+                                                    <constraint firstAttribute="trailing" secondItem="B4J-lf-cID" secondAttribute="trailing" id="O0r-uR-5S7"/>
+                                                    <constraint firstItem="g7N-a2-Wth" firstAttribute="leading" secondItem="jpa-SN-cPZ" secondAttribute="leading" id="Uky-GP-NVB"/>
+                                                    <constraint firstItem="zls-e3-L4X" firstAttribute="top" secondItem="g7N-a2-Wth" secondAttribute="bottom" constant="16" id="gEc-Xi-Yr0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="g7N-a2-Wth" secondAttribute="trailing" id="o8M-bE-W6U"/>
+                                                    <constraint firstItem="zls-e3-L4X" firstAttribute="leading" secondItem="jpa-SN-cPZ" secondAttribute="leading" id="rNm-Ct-9ta"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zls-e3-L4X" secondAttribute="trailing" id="wyv-GD-osW"/>
+                                                    <constraint firstItem="B4J-lf-cID" firstAttribute="leading" secondItem="jpa-SN-cPZ" secondAttribute="leading" id="x9V-OT-hnb"/>
+                                                    <constraint firstItem="g7N-a2-Wth" firstAttribute="top" secondItem="jpa-SN-cPZ" secondAttribute="top" id="z9O-45-37V"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hph-ER-TO2">
+                                                <rect key="frame" x="0.0" y="80" width="343" height="353"/>
+                                                <subviews>
+                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePF-Jv-H8Z" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="S6d-hQ-lnw"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0f-pq-sEv" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Set a date and time to be notified of this event." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-ow-onE" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="44.5" width="278" height="38.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d05-jm-OYr">
+                                                        <rect key="frame" x="294" y="44.5" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="reminderSwitchChanged" destination="zib-wx-dtu" eventType="valueChanged" id="gYc-cY-Ika"/>
+                                                        </connections>
+                                                    </switch>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-Tt-0mJ">
+                                                        <rect key="frame" x="0.0" y="91" width="343" height="246"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8be-Mu-kDU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                                <state key="normal" title="Jul 15 at 4:04 PM"/>
+                                                                <connections>
+                                                                    <action selector="reminderButtonTapped" destination="zib-wx-dtu" eventType="primaryActionTriggered" id="hzl-kN-061"/>
+                                                                </connections>
+                                                            </button>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vix-Cx-IzR">
+                                                                <rect key="frame" x="0.0" y="30" width="343" height="216"/>
+                                                                <connections>
+                                                                    <action selector="reminderDateChanged" destination="zib-wx-dtu" eventType="valueChanged" id="s8D-iD-nj8"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="AYt-Tt-0mJ" secondAttribute="bottom" constant="16" id="1uu-iH-Ec4"/>
+                                                    <constraint firstItem="D0f-pq-sEv" firstAttribute="leading" secondItem="hph-ER-TO2" secondAttribute="leading" id="87Q-Fb-waO"/>
+                                                    <constraint firstItem="ePF-Jv-H8Z" firstAttribute="leading" secondItem="hph-ER-TO2" secondAttribute="leading" id="BMX-IQ-dgc"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ePF-Jv-H8Z" secondAttribute="trailing" id="HDy-3K-Tjy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="d05-jm-OYr" secondAttribute="trailing" id="HmD-Cf-OI6"/>
+                                                    <constraint firstItem="AYt-Tt-0mJ" firstAttribute="leading" secondItem="hph-ER-TO2" secondAttribute="leading" id="Npk-JN-7ie"/>
+                                                    <constraint firstItem="d05-jm-OYr" firstAttribute="top" secondItem="D0f-pq-sEv" secondAttribute="bottom" constant="8" id="XpH-51-CRa"/>
+                                                    <constraint firstItem="DtU-ow-onE" firstAttribute="leading" secondItem="hph-ER-TO2" secondAttribute="leading" id="YK4-qS-uC9"/>
+                                                    <constraint firstItem="D0f-pq-sEv" firstAttribute="top" secondItem="ePF-Jv-H8Z" secondAttribute="bottom" constant="16" id="aA2-bt-zqe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AYt-Tt-0mJ" secondAttribute="trailing" id="cav-N5-MfG"/>
+                                                    <constraint firstItem="d05-jm-OYr" firstAttribute="leading" secondItem="DtU-ow-onE" secondAttribute="trailing" constant="16" id="h08-b4-KcL"/>
+                                                    <constraint firstItem="AYt-Tt-0mJ" firstAttribute="top" secondItem="DtU-ow-onE" secondAttribute="bottom" constant="8" id="mNa-i9-Es8"/>
+                                                    <constraint firstItem="ePF-Jv-H8Z" firstAttribute="top" secondItem="hph-ER-TO2" secondAttribute="top" id="tlN-kY-Yvu"/>
+                                                    <constraint firstItem="DtU-ow-onE" firstAttribute="top" secondItem="D0f-pq-sEv" secondAttribute="bottom" constant="8" id="tyg-vg-RQ1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="D0f-pq-sEv" secondAttribute="trailing" id="uvB-f5-QSn"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKT-yy-N8k">
-                                                <rect key="frame" x="0.0" y="33" width="382" height="85"/>
+                                                <rect key="frame" x="0.0" y="433" width="343" height="103.5"/>
                                                 <subviews>
                                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRt-8k-g9z" customClass="DividerView" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="cHl-Ki-Yj5"/>
                                                         </constraints>
@@ -55,36 +166,36 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DQ-Vc-NYU" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17" width="382" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold14"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FCJ-HA-H0v">
-                                                        <rect key="frame" x="0.0" y="42" width="382" height="43"/>
+                                                        <rect key="frame" x="0.0" y="44.5" width="343" height="43"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-Fc-KG8" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="19.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-5K-WoP" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="23.5" width="382" height="19.5"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <rect key="frame" x="0.0" y="23.5" width="343" height="19.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium16"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
@@ -100,13 +211,46 @@
                                                     <constraint firstAttribute="trailing" secondItem="2DQ-Vc-NYU" secondAttribute="trailing" id="bOd-KF-VNM"/>
                                                     <constraint firstItem="FCJ-HA-H0v" firstAttribute="leading" secondItem="xKT-yy-N8k" secondAttribute="leading" id="oOm-7k-akk"/>
                                                     <constraint firstAttribute="trailing" secondItem="FCJ-HA-H0v" secondAttribute="trailing" id="rHu-28-WlZ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="FCJ-HA-H0v" secondAttribute="bottom" id="v84-Ij-UTv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="FCJ-HA-H0v" secondAttribute="bottom" constant="16" id="v84-Ij-UTv"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pd6-9e-6It">
+                                                <rect key="frame" x="0.0" y="536.5" width="343" height="50"/>
+                                                <subviews>
+                                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eEc-NL-lqv" customClass="DividerView" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="Gp7-lf-bEm"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwO-iB-wFl" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="33"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="QwO-iB-wFl" secondAttribute="trailing" id="NC0-6r-rZt"/>
+                                                    <constraint firstAttribute="bottom" secondItem="QwO-iB-wFl" secondAttribute="bottom" id="TID-a6-Bgf"/>
+                                                    <constraint firstItem="eEc-NL-lqv" firstAttribute="top" secondItem="pd6-9e-6It" secondAttribute="top" id="ZcM-00-K5o"/>
+                                                    <constraint firstItem="QwO-iB-wFl" firstAttribute="top" secondItem="eEc-NL-lqv" secondAttribute="bottom" constant="16" id="dOE-KJ-h5t"/>
+                                                    <constraint firstItem="QwO-iB-wFl" firstAttribute="leading" secondItem="pd6-9e-6It" secondAttribute="leading" id="e2B-d8-v1K"/>
+                                                    <constraint firstAttribute="trailing" secondItem="eEc-NL-lqv" secondAttribute="trailing" id="mJP-rW-O1V"/>
+                                                    <constraint firstItem="eEc-NL-lqv" firstAttribute="leading" secondItem="pd6-9e-6It" secondAttribute="leading" id="zdr-ln-qYI"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-Ph-RAo">
-                                        <rect key="frame" x="0.0" y="162" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="642.5" width="375" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" placeholder="YES" id="AUZ-rN-iVN"/>
                                         </constraints>
@@ -118,7 +262,7 @@
                                     <constraint firstItem="WZ3-Ej-38E" firstAttribute="bottom" secondItem="BlL-Ph-RAo" secondAttribute="bottom" id="A1J-A4-nGj"/>
                                     <constraint firstItem="BlL-Ph-RAo" firstAttribute="leading" secondItem="DvW-nF-CfK" secondAttribute="leading" id="ODC-hB-THK"/>
                                     <constraint firstItem="BlL-Ph-RAo" firstAttribute="leading" secondItem="WZ3-Ej-38E" secondAttribute="leading" id="PBE-E2-MvW"/>
-                                    <constraint firstItem="b5W-h3-mp7" firstAttribute="top" secondItem="9f6-iO-8MH" secondAttribute="bottom" constant="4" id="QQ1-tp-iML"/>
+                                    <constraint firstItem="b5W-h3-mp7" firstAttribute="top" secondItem="9f6-iO-8MH" secondAttribute="bottom" constant="16" id="QQ1-tp-iML"/>
                                     <constraint firstItem="b5W-h3-mp7" firstAttribute="leading" secondItem="WZ3-Ej-38E" secondAttribute="leading" constant="16" id="WJy-tU-bFk"/>
                                     <constraint firstItem="9f6-iO-8MH" firstAttribute="top" secondItem="WZ3-Ej-38E" secondAttribute="top" constant="16" id="XKA-xu-nds"/>
                                     <constraint firstItem="BlL-Ph-RAo" firstAttribute="trailing" secondItem="DvW-nF-CfK" secondAttribute="trailing" id="Zbf-bS-vuV"/>
@@ -140,11 +284,19 @@
                         <viewLayoutGuide key="safeArea" id="H3m-y1-Xdg"/>
                     </view>
                     <connections>
+                        <outlet property="dateHeadingLabel" destination="zls-e3-L4X" id="d3G-fO-JdL"/>
                         <outlet property="dateLabel" destination="B4J-lf-cID" id="D9x-j7-lPy"/>
+                        <outlet property="descriptionHeadingLabel" destination="QwO-iB-wFl" id="ERL-7g-zwt"/>
+                        <outlet property="descriptionView" destination="pd6-9e-6It" id="GTM-il-qv3"/>
                         <outlet property="locationAddressLabel" destination="ksf-5K-WoP" id="zlH-Ya-Aut"/>
                         <outlet property="locationHeadingLabel" destination="2DQ-Vc-NYU" id="XVM-D2-h6Z"/>
                         <outlet property="locationNameLabel" destination="Itj-Fc-KG8" id="NwR-HQ-Uxv"/>
                         <outlet property="locationView" destination="xKT-yy-N8k" id="aSt-Ib-tbu"/>
+                        <outlet property="reminderDateButton" destination="8be-Mu-kDU" id="wjw-1X-dZz"/>
+                        <outlet property="reminderDatePicker" destination="vix-Cx-IzR" id="335-Kk-lZH"/>
+                        <outlet property="reminderHeadingLabel" destination="D0f-pq-sEv" id="303-JJ-nL1"/>
+                        <outlet property="reminderMessageLabel" destination="DtU-ow-onE" id="3zB-Xu-Htt"/>
+                        <outlet property="reminderSwitch" destination="d05-jm-OYr" id="EtO-66-4za"/>
                         <outlet property="scrollView" destination="Hyo-rn-2A7" id="IIt-wF-Cjl"/>
                         <outlet property="titleLabel" destination="9f6-iO-8MH" id="SjG-nA-LIx"/>
                         <outlet property="webViewContainer" destination="BlL-Ph-RAo" id="AJG-Ap-vii"/>
@@ -152,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJY-F7-zo0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="98"/>
+            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </scene>
     </scenes>
 </document>

@@ -21,8 +21,6 @@ import CanvasCore
 import UserNotifications
 
 let RemindableIDKey = "RemindableID"
-let RemindableStudentIDKey = "RemindableStudentID"
-let RemindableActionURLKey = "RemindableActionURL"
 
 // TODO: SoForgetful?
 // UIApplication is not accessible from SoLazy because that framework has been marked as safe for extensions
