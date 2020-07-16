@@ -27,11 +27,11 @@
 @implementation LTIToolsReact
 RCT_EXPORT_MODULE(LTITools);
 
-RCT_REMAP_METHOD(launchExternalTool, launchExternalTool:(NSString *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(launchExternalTool, launchExternalTool:(NSString *)url context:(NSString *)context toolID:(NSString *)toolID launchType:(NSString *)launchType assignmentID:(NSString *)assignmentID resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     UIViewController *current = [[HelmManager shared] topMostViewController];
-    NSURL *launchURL = [[NSURL alloc] initWithString:url];
+    NSURL *launchURL = url ? [[NSURL alloc] initWithString:url] : nil;
 
-    [LTITools launch:launchURL from:current animated:YES completionHandler:^(BOOL success) {
+    [LTITools launchWithContext:context id:toolID url:launchURL launchType:launchType assignmentID:assignmentID from:current animated:YES completionHandler:^(BOOL success) {
         resolve(nil);
     }];
 }

@@ -116,6 +116,7 @@ class SubmissionButtonPresenter: NSObject {
             LTITools(
                 env: env,
                 context: .course(courseID),
+                id: assignment.externalToolContentID,
                 launchType: .assessment,
                 assignmentID: assignment.id
             ).presentTool(from: view, animated: true)

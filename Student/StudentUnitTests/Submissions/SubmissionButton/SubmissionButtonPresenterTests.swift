@@ -138,12 +138,20 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testSubmitTypeLTI() {
         let a = Assignment.make(from: .make(
-            discussion_topic: .make(html_url: URL(string: "/discussion"))
+            discussion_topic: .make(html_url: URL(string: "/discussion")),
+            external_tool_tag_attributes: .make(content_id: "1")
         ))
         presenter.submitType(.external_tool, for: a, button: UIView())
         XCTAssertNil(router.presented)
 
-        let request = GetSessionlessLaunchURLRequest(context: .course("1"), id: nil, url: nil, assignmentID: "1", moduleItemID: nil, launchType: .assessment)
+        let request = GetSessionlessLaunchURLRequest(
+            context: .course("1"),
+            id: "1",
+            url: nil,
+            assignmentID: "1",
+            moduleItemID: nil,
+            launchType: .assessment
+        )
         api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
         presenter.submitType(.external_tool, for: a, button: UIView())
         wait(for: [router.showExpectation], timeout: 5)
