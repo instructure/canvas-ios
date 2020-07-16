@@ -86,6 +86,8 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
         reminderDatePicker.isHidden = true
+        reminderDatePicker.minimumDate = Clock.now.addMinutes(1)
+        reminderDatePicker.maximumDate = Clock.now.addYears(1)
 
         events.refresh()
         NotificationManager.shared.getReminder(eventID) { [weak self] request in performUIUpdate {
@@ -106,6 +108,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         super.viewWillAppear(animated)
         let color = ColorScheme.observee(studentID).color
         navigationController?.navigationBar.useContextColor(color)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
     @objc func refresh() {

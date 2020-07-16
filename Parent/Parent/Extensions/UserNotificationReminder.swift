@@ -57,12 +57,7 @@ extension NotificationManager {
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-        getReminder(id) { pending in
-            if let pending = pending {
-                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [pending.identifier])
-            }
-            self.notificationCenter.add(request, withCompletionHandler: callback)
-        }
+        notificationCenter.add(request, withCompletionHandler: callback)
     }
 
     func getReminder(_ id: String, callback: @escaping (UNNotificationRequest?) -> Void) {
@@ -72,10 +67,6 @@ extension NotificationManager {
     }
 
     func removeReminder(_ id: String) {
-        getReminder(id) { request in
-            if let request = request {
-                self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [request.identifier])
-            }
-        }
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [id])
     }
 }

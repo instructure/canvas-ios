@@ -42,6 +42,7 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     }
 
     public func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {
+        removePendingNotificationRequests(withIdentifiers: [request.identifier])
         requests.append(request)
         completionHandler?(error)
     }

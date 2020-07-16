@@ -76,7 +76,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
     }
 
     func testReminder() {
-        let prev = Clock.now.startOfDay()
+        let prev = Clock.now.startOfDay().addDays(1)
         notificationManager.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.reminderHeadingLabel.text, "Remind Me")
