@@ -57,7 +57,7 @@ class ProfileE2ETests: CoreUITestCase {
         LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
-    func testProfileLogsOut() {
+    func xtestProfileLogsOut() {
         Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()

@@ -30,7 +30,6 @@ public class MiniCanvasState {
     public var unreadCount: UInt = 3
     public var accountNotifications: [APIAccountNotification]
     public var customColors: [String: String] = [:]
-    public var favoriteCourses: Set<String> = []
     public var liveConferences: [APIConference] = []
     public var folders: [String: MiniFolder] = [:]
     public var files: [String: MiniFile] = [:]

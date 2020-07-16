@@ -44,12 +44,18 @@ public class MiniCourse {
         quizzes.first { $0.id == id }
     }
 
-    public func add(assignment: MiniAssignment, toGroupAtIndex index: Int) {
+    public func add(assignment: MiniAssignment, toGroupAtIndex index: Int = 0) {
         assignments.append(assignment)
         if assignmentGroups[index].assignments == nil {
             assignmentGroups[index].assignments = []
         }
         assignmentGroups[index].assignments!.append(assignment.api)
+    }
+    public func removeAllAssignments() {
+        assignments = []
+        for var group in assignmentGroups {
+            group.assignments = []
+        }
     }
 
     public static func create(_ api: APICourse, populatingState state: MiniCanvasState) {
@@ -57,13 +63,7 @@ public class MiniCourse {
         state.courses.append(course)
 
         func makeAssignment(name: String) -> MiniAssignment {
-            let assignmentId: ID = state.nextId()
-            return MiniAssignment(APIAssignment.make(
-                id: assignmentId,
-                course_id: api.id,
-                name: name,
-                html_url: URL(string: "\(state.baseUrl)/courses/\(course.id)/assignments/\(assignmentId)")!)
-            )
+            MiniAssignment(APIAssignment.make(id: state.nextId(), course_id: api.id, name: name), state: state)
         }
 
         course.gradingPeriods = [
@@ -150,7 +150,7 @@ public class MiniCourse {
             id: assignmentId,
             name: "quiz assignment \(assignmentId)",
             submission_types: [ .online_quiz ]
-        ))
+        ), state: state)
         add(assignment: assignment, toGroupAtIndex: 0)
 
         let quizId: ID = state.nextId()

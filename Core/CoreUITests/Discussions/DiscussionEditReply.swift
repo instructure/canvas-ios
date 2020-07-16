@@ -19,7 +19,6 @@
 import TestsFoundation
 
 public enum DiscussionEditReply: String, ElementWrapper {
-    case
-        attachmentButton,
-        sendButton
+    case attachmentButton, sendButton
+    case viewMenuAction, deleteMenuAction
 }

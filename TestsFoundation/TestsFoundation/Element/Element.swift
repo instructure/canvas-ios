@@ -167,7 +167,7 @@ public extension Element {
 
     @discardableResult
     func waitToExist(_ timeout: TimeInterval = 30, file: StaticString = #file, line: UInt = #line) -> Element {
-        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still doesn't exists") {
+        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(self) still doesn't exist") {
             exists(file: file, line: line)
         }
         return self
@@ -241,8 +241,11 @@ public func waitUntil(
 ) {
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate() {
-        XCTAssertTrue(Date() < deadline, failureMessage(), file: (file), line: line)
-        usleep(100000)
+        if Date() > deadline {
+            XCTFail(failureMessage(), file: (file), line: line)
+            break
+        }
+        RunLoop.current.run(until: Date() + 0.1)
     }
 }
 

@@ -42,7 +42,7 @@ class DiscussionDetailsE2ETests: CoreUITestCase {
         FileDetails.shareButton.waitToExist()
     }
 
-    func testLinks() {
+    func xtestLinks() {
         setAnimationsEnabled(true)
 
         DiscussionListCell.simple.tapUntil {

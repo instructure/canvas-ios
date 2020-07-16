@@ -42,7 +42,8 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
 
     func testInboxReplyButton() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
-        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID), value: .make())
+        let url = URL(string: "https://canvas.instructure.com/courses/1/assignments/1")!
+        api.mock(GetAssignment(courseID: courseID, assignmentID: assignmentID), value: .make(html_url: url))
         api.mock(GetSearchRecipients(context: .course(courseID), userID: "1"), value: [.make()])
 
         render()
@@ -52,6 +53,6 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         let compose = router.presented as? ComposeViewController
         XCTAssertEqual(compose?.context.id, courseID)
         XCTAssertEqual(compose?.subjectField.text, "Regarding: John Doe, Assignment - some assignment")
-        XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, https://canvas.instructure.com/courses/1/assignments/1")
+        XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, \(url)")
     }
 }
