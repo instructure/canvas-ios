@@ -95,7 +95,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             ]
         ))
         api.mock(controller.group, value: .make(course_id: 1))
-        api.mock(GetGroups(context: controller.context), value: [ .make(course_id: 1) ])
+        api.mock(GetGroups(context: .currentUser), value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             id: 1,
