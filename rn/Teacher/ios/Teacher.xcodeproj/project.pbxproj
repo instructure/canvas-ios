@@ -88,6 +88,7 @@
 		E8AA0A9322FCC83B002D0A87 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8AA0A9622FCC83B002D0A87 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8D7EFE02476E5E7007BC5FD /* FilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFDF2476E55F007BC5FD /* FilesUITests.swift */; };
+		E8F20FB924BFC27500F82129 /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F20FB824BFC27500F82129 /* TodoUITests.swift */; };
 		E8F6CFFF23045A01004347D9 /* CoreUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8F6CFFE23045A01004347D9 /* CoreUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
@@ -397,6 +398,7 @@
 		E87612EC245A21A700CBDEBC /* SpeedGraderCommentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderCommentUITests.swift; sourceTree = "<group>"; };
 		E8A2FCAA23048AF80070B732 /* UITestsFromCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsFromCore.swift; sourceTree = "<group>"; };
 		E8D7EFDF2476E55F007BC5FD /* FilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesUITests.swift; sourceTree = "<group>"; };
+		E8F20FB824BFC27500F82129 /* TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoUITests.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -696,6 +698,7 @@
 		E8315D3722FC9E60003CD27C /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				E8F20FB724BFC25A00F82129 /* Todo */,
 				E8D7EFDE2476E552007BC5FD /* Files */,
 				E801ED7A2475BAC400DF2CB9 /* Discussions */,
 				E829684D24746C5C007E7F23 /* Pages */,
@@ -723,6 +726,14 @@
 				E8D7EFDF2476E55F007BC5FD /* FilesUITests.swift */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		E8F20FB724BFC25A00F82129 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				E8F20FB824BFC27500F82129 /* TodoUITests.swift */,
+			);
+			path = Todo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1246,6 +1257,7 @@
 				E8D7EFE02476E5E7007BC5FD /* FilesUITests.swift in Sources */,
 				B17E1DB5238DA8550022EE0E /* SpeedGraderUITests.swift in Sources */,
 				B175D62623A96B0F00F8E696 /* IPadSpeedGraderTests.swift in Sources */,
+				E8F20FB924BFC27500F82129 /* TodoUITests.swift in Sources */,
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
 				E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */,

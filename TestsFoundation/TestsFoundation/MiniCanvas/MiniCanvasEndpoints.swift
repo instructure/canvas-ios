@@ -556,9 +556,15 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetExternalToolsRequest(context: Pattern.courseContext, includeParents: false)) { request in
             try lookupCourse(forRequest: request).externalTools
         },
-        .apiRequest(GetTodosRequest()) { _ in [] },
-        .rest("/api/v1/users/self/todo_item_count") { _ in
-            .json(["needs_grading_count": 0, "assignments_needing_submitting": 0])
+        .apiRequest(GetTodosRequest()) { request in
+            request.state.todos
+        },
+        .rest("/api/v1/users/self/todo_item_count") { request in
+            let todos = request.state.todos
+            return .json([
+                "needs_grading_count": todos.map({ $0.needs_grading_count ?? 0 }).reduce(0, +),
+                "assignments_needing_submitting": 0,
+            ])
         },
         .rest("/api/v1/courses/:courseID/lti_apps/launch_definitions") { _ in .json([String]()) },
 

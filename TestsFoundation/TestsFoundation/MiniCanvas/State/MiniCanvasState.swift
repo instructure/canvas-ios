@@ -34,6 +34,7 @@ public class MiniCanvasState {
     public var liveConferences: [APIConference] = []
     public var folders: [String: MiniFolder] = [:]
     public var files: [String: MiniFile] = [:]
+    public var todos: [APITodo] = []
 
     public let idGenerator = IDGenerator()
     public let baseUrl: URL
