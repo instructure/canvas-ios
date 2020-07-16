@@ -122,7 +122,6 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
             : NSLocalizedString("Reply", bundle: .core, comment: "")
 
         addCancelButton(side: .left)
-        attachButton.accessibilityLabel = NSLocalizedString("Attachment", bundle: .core, comment: "")
         attachButton.accessibilityIdentifier = "DiscussionEditReply.attachmentButton"
         sendButton.accessibilityIdentifier = "DiscussionEditReply.sendButton"
         sendButton.isEnabled = false
@@ -151,6 +150,8 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
             self?.heightChanged()
         }
         webView.pin(inside: webViewContainer)
+
+        updateButtons()
 
         if context.contextType == .course {
             course.refresh()
@@ -201,11 +202,19 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
         titleSubtitleView.subtitle = context.contextType == .course ? course.first?.name : group.first?.name
     }
 
-    func updateSendButton() {
+    func updateButtons() {
         sendButton.isEnabled = (
             sendButton.customView == nil &&
             (rceCanSubmit || attachmentURL != nil)
         )
+
+        if attachmentURL == nil {
+            attachButton.accessibilityLabel = NSLocalizedString("Edit attachment (none)", bundle: .core, comment: "")
+            attachBadge.isHidden = true
+        } else {
+            attachButton.accessibilityLabel = NSLocalizedString("Edit attachment (1)", bundle: .core, comment: "")
+            attachBadge.isHidden = false
+        }
     }
 
     @IBAction func toggleViewMore() {
@@ -223,7 +232,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
     public func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
         rceCanSubmit = canSubmit
-        updateSendButton()
+        updateButtons()
     }
 
     public func rce(_ editor: RichContentEditorViewController, didError error: Error) {
@@ -234,7 +243,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
         let spinner = CircleProgressView(frame: CGRect(x: 0, y: 0, width: 40, height: 24))
         spinner.color = nil
         sendButton.customView = spinner
-        updateSendButton()
+        updateButtons()
         editor.getHTML { (html: String) in
             self.saveReply(html)
         }
@@ -267,12 +276,13 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
     func saveReplyComplete(error: Error?) {
         if let error = error {
             sendButton.customView = nil
-            updateSendButton()
+            updateButtons()
             showError(error)
             return
         }
         env.router.dismiss(self)
     }
+
 }
 
 extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewControllerDataSource {
@@ -280,17 +290,24 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
         guard attachmentURL != nil else { return filePicker.pick(from: self) }
 
         let sheet = BottomSheetPickerViewController.create()
-        sheet.addAction(image: .icon(.eye), title: NSLocalizedString("View", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(
+            image: .icon(.eye),
+            title: NSLocalizedString("View", bundle: .core, comment: ""),
+            accessibilityIdentifier: "DiscussionEditReply.viewMenuAction"
+        ) { [weak self] in
             guard let self = self else { return }
             let controller = QLPreviewController()
             controller.dataSource = self
             self.env.router.show(controller, from: self, options: .modal())
         }
-        sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(
+            image: .icon(.trash),
+            title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+            accessibilityIdentifier: "DiscussionEditReply.deleteMenuAction"
+        ) { [weak self] in
             guard let self = self, let url = self.attachmentURL else { return }
             self.attachmentURL = nil
-            self.attachBadge.isHidden = true
-            self.updateSendButton()
+            self.updateButtons()
             try? FileManager.default.removeItem(at: url)
         }
         env.router.show(sheet, from: self, options: .modal())
@@ -298,8 +315,7 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
 
     public func filePicker(didPick url: URL) {
         attachmentURL = url
-        attachBadge.isHidden = false
-        updateSendButton()
+        updateButtons()
     }
 
     // Should not be needed since we don't filePicker.showOptions.

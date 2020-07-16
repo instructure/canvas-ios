@@ -56,7 +56,8 @@ class ComposeReplyViewControllerTests: CoreTestCase {
         task.paused = true
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
         XCTAssert(sendButton.customView is CircleProgressView)
-        task.resume()
+        task.paused = false
+        XCTAssertEqual(router.dismissed, controller)
     }
 
     func testAttachments() {
@@ -95,5 +96,33 @@ class ComposeReplyViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.toLabel.text, "to user 2 (She/Her)")
         XCTAssertEqual(controller.fromLabel.text, "user 1 (He/Him)")
+    }
+
+    func testParentReplyAll() {
+        environment.app = .parent
+        conversation = Conversation.make(from: .make(
+            participants: [
+                .make(id: currentSession.userID, name: "current user"),
+                .make(id: "20", name: "a teacher", common_courses: ["1": [ Role.teacher.rawValue ]]),
+                .make(id: "21", name: "a ta", common_courses: ["1": [ Role.ta.rawValue ]]),
+                .make(id: "22", name: "my kid", common_courses: ["1": [ Role.student.rawValue ]]),
+                .make(id: "23", name: "other kid", common_courses: ["1": [ Role.student.rawValue ]]),
+                .make(id: "24", name: "other teacher", common_courses: ["2": [ Role.teacher.rawValue ]]),
+                .make(id: "25", name: "other observer", common_courses: ["2": [ Role.observer.rawValue ]]),
+            ],
+            context_code: "course_1",
+            messages: [ .make(participating_user_ids: [ ID(currentSession.userID), "20", "21", "22", "23", "24", "25" ]) ]
+        ))
+        api.mock(GetObservedStudents(observerID: currentSession.userID), value: [ .make(observed_user: .make(id: "22")) ])
+        api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
+        controller.all = true
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        controller.bodyView.text = "Replying"
+        controller.bodyView.delegate?.textViewDidChange?(controller.bodyView)
+        XCTAssertEqual(controller.replyAllRecipientIDs, ["20", "21", "22"])
+        let sendButton = controller.sendButton
+        XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
+        XCTAssertEqual(router.dismissed, controller)
     }
 }
