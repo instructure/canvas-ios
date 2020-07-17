@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import TestsFoundation
 
 public enum RichContentEditor: String, CaseIterable, ElementWrapper {
     case webView

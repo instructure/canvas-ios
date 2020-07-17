@@ -18,7 +18,6 @@
 
 import XCTest
 @testable import TestsFoundation
-@testable import CoreUITests
 @testable import Core
 
 class QuizzesE2ETests: CoreUITestCase {
@@ -27,7 +26,7 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Quiz One").tap()
-        Quiz.takeButton.tapUntil {
+        QuizElement.takeButton.tapUntil {
             app.find(label: "Instructions").exists
         }
         app.find(label: "This is the first quiz.").waitToExist()
@@ -38,7 +37,7 @@ class QuizzesE2ETests: CoreUITestCase {
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        Quiz.takeButton.tapUntil {
+        QuizElement.takeButton.tapUntil {
             app.find(label: "Instructions").exists
         }
         app.find(label: "This quiz is for testing web view question types.").waitToExist()

@@ -18,7 +18,6 @@
 
 import Core
 import TestsFoundation
-@testable import CoreUITests
 
 class PlannerTests: CoreUITestCase {
     let calendar = Calendar.current

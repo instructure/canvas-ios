@@ -17,16 +17,15 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum Quiz: String, ElementWrapper {
+public enum QuizElement: String, ElementWrapper {
     case takeButton, timer
 
-    static var submitButton: Element {
+    public static var submitButton: Element {
         return app.buttons.matching(label: "Submit").firstElement
     }
 
-    static func text(string: String) -> Element {
+    public static func text(string: String) -> Element {
         return app.find(labelContaining: string)
     }
 }

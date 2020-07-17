@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 enum AnnouncementList {
     static func cell(index: Int) -> Element {

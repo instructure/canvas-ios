@@ -18,7 +18,7 @@
 
 import Foundation
 import XCTest
-@testable import TestsFoundation
+import TestsFoundation
 
 class SpringBoardTests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { SpringBoardTests.self }

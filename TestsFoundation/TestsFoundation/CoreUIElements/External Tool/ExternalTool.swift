@@ -17,18 +17,17 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum ExternalTool {
-    static var launchButton: Element {
+public enum ExternalToolElement {
+    public static var launchButton: Element {
         return app.find(labelContaining: "Open in Safari")
     }
 
-    static func pageText(_ string: String) -> Element {
+    public static func pageText(_ string: String) -> Element {
         return app.find(labelContaining: string)
     }
 
-    static var doneButton: Element {
+    public static var doneButton: Element {
         return app.find(labelContaining: "Done")
     }
 }

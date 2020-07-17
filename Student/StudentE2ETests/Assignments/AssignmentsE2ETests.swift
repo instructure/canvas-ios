@@ -18,7 +18,6 @@
 
 import XCTest
 @testable import TestsFoundation
-@testable import CoreUITests
 
 class AssignmentsE2ETests: CoreUITestCase {
     func testCourseGradeIsCorrect() {

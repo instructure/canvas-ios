@@ -18,7 +18,6 @@
 
 import Foundation
 import XCTest
-import TestsFoundation
 
 public class SpringBoard {
     private init() {}
@@ -43,7 +42,7 @@ public class SpringBoard {
         return sbApp.coordinate(withNormalizedOffset: offset)
     }
 
-    func moveSplit(toFraction fraction: CGFloat) {
+    public func moveSplit(toFraction fraction: CGFloat) {
         let divider = sbApp.find(id: "SideAppDivider")
         let dest = relativeCoordinate(x: fraction, y: 0.5)
         divider.center.press(forDuration: 0, thenDragTo: dest)
@@ -80,7 +79,7 @@ public class SpringBoard {
         button.tap()
     }
 
-    func setupSplitScreenWithSafariOnRight() {
+    public func setupSplitScreenWithSafariOnRight() {
         resetMultitasking()
 
         bringUpDock()

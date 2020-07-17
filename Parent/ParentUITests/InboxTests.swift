@@ -17,7 +17,6 @@
 //
 
 import Foundation
-@testable import CoreUITests
 @testable import Core
 @testable import TestsFoundation
 

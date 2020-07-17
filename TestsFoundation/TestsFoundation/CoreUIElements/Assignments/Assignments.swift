@@ -17,9 +17,8 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum AssignmentDetails: String, ElementWrapper {
+public enum AssignmentDetails: String, ElementWrapper {
     case allowedExtensions
     case due
     case gradeCell
@@ -40,45 +39,45 @@ enum AssignmentDetails: String, ElementWrapper {
     case lockSection
     case replyButton // parent
 
-    static func description(_ description: String) -> Element {
+    public static func description(_ description: String) -> Element {
         return app.find(label: description)
     }
 
-    static func link(_ description: String) -> Element {
+    public static func link(_ description: String) -> Element {
         return app.webViews.staticTexts.matching(label: description).firstElement
     }
 
-    static var viewAllSubmissionsButton: Element {
+    public static var viewAllSubmissionsButton: Element {
         return app.find(id: "assignment-details.assignment-section.submissions")
     }
 }
 
-enum AssignmentsList {
-    static func assignment(id: String) -> Element {
+public enum AssignmentsList {
+    public static func assignment(id: String) -> Element {
         return app.find(id: "assignment-list.assignment-list-row.cell-\(id)")
     }
 }
 
-enum GradeList {
-    static var title: Element {
+public enum GradeList {
+    public static var title: Element {
         return app.find(label: "Grades")
     }
 
-    static func cell(assignmentID: String) -> Element {
+    public static func cell(assignmentID: String) -> Element {
         return app.find(id: "GradeListCell.\(assignmentID)")
     }
 }
 
-enum QuizzesNext {
-    static func text(_ description: String) -> Element {
+public enum QuizzesNext {
+    public static func text(_ description: String) -> Element {
         return app.webViews.staticTexts.matching(label: description).firstElement
     }
 
-    static var beginButton: Element {
+    public static var beginButton: Element {
         return app.webViews.buttons.matching(label: "Begin").firstElement
     }
 
-    static var doneButton: Element {
+    public static var doneButton: Element {
         return app.buttons.matching(label: "Done").firstElement
     }
 }

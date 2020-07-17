@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum CourseNavigation: String, ElementWrapper, CaseIterable {
     case announcements

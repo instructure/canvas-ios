@@ -18,7 +18,6 @@
 
 import Foundation
 import XCTest
-import TestsFoundation
 
 public enum FilesList {
     public static func file(id: String) -> Element {

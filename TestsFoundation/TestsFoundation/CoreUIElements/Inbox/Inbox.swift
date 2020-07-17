@@ -17,23 +17,22 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum Inbox: String, RawElementWrapper {
+public enum Inbox: String, RawElementWrapper {
     case filterButton = "inbox.filterByCourse"
     case newMessageButton = "inbox.new-message"
     case sentButton = "inbox.filter-btn-sent"
 
-    static func filterOption(_ text: String) -> Element {
+    public static func filterOption(_ text: String) -> Element {
         return app.find(labelContaining: "Assignments")
     }
 
-    static func message(id: String) -> Element {
+    public static func message(id: String) -> Element {
         return app.find(id: "inbox.conversation-\(id)")
     }
 }
 
-enum NewMessage: String, RawElementWrapper {
+public enum NewMessage: String, RawElementWrapper {
     case selectCourseButton = "compose.course-select"
     case addRecipientButton = "compose.add-recipient"
     case replyButton = "inbox.conversation-message-row.reply-button"
@@ -43,35 +42,35 @@ enum NewMessage: String, RawElementWrapper {
     case attachButton = "compose-message.attach"
     case cancelButton = "compose-message.cancel"
 
-    static func recipientLabel(id: String) -> Element {
+    public static func recipientLabel(id: String) -> Element {
         return app.find(id: "message-recipient.\(id).label")
     }
 
-    static func recipientDeleteButton(id: String) -> Element {
+    public static func recipientDeleteButton(id: String) -> Element {
         return app.find(id: "message-recipient.\(id).delete-btn")
     }
 }
 
-enum MessageCourseSelection {
-    static func course(id: String) -> Element {
+public enum MessageCourseSelection {
+    public static func course(id: String) -> Element {
         return app.find(id: "inbox.course-select.course-\(id)")
     }
 }
 
-enum MessageRecipientsSelection {
-    static func messageAllInCourse(courseID: String) -> Element {
+public enum MessageRecipientsSelection {
+    public static func messageAllInCourse(courseID: String) -> Element {
         return app.find(id: "branch_course_\(courseID)")
     }
 
-    static func studentsInCourse(courseID: String) -> Element {
+    public static func studentsInCourse(courseID: String) -> Element {
         return app.find(id: "course_\(courseID)_students")
     }
 
-    static func messageAllStudents(courseID: String) -> Element {
+    public static func messageAllStudents(courseID: String) -> Element {
         return app.find(id: "branch_course_\(courseID)_students")
     }
 
-    static func student(studentID: String) -> Element {
+    public static func student(studentID: String) -> Element {
         return app.find(id: studentID)
     }
 }

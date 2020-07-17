@@ -17,8 +17,7 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum TextSubmission: String, CaseIterable, ElementWrapper {
+public enum TextSubmission: String, CaseIterable, ElementWrapper {
     case submitButton
 }

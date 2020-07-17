@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import TestsFoundation
-
 public enum DiscussionEditReply: String, ElementWrapper {
     case attachmentButton, sendButton
     case viewMenuAction, deleteMenuAction

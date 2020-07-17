@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum DiscussionList: String, ElementWrapper {
     case newButton

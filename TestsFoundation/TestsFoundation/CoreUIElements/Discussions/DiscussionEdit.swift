@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum DiscussionEdit: String, ElementWrapper {
     case

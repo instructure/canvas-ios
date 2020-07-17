@@ -19,7 +19,6 @@
 import XCTest
 import TestsFoundation
 @testable import Core
-@testable import CoreUITests
 
 class SpeedGraderCommentUITests: MiniCanvasUITestCase {
     lazy var student = mocked.students.first!

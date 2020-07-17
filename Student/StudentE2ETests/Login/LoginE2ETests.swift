@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 class LoginE2ETests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { LoginE2ETests.self }

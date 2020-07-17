@@ -17,7 +17,6 @@
 //
 
 import TestsFoundation
-@testable import CoreUITests
 
 class InboxE2ETests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { InboxE2ETests.self }

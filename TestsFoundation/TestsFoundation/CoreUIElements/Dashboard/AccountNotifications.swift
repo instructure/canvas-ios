@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum AccountNotifications {
     public static func toggleButton(id: String) -> Element {

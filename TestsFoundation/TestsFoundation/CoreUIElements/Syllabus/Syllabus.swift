@@ -17,9 +17,8 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum Syllabus: String, ElementWrapper {
+public enum SyllabusElement: String, ElementWrapper {
     case syllabusMenuItem
     case assignmentsMenuItem
 }

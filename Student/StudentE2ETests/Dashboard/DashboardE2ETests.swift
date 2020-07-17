@@ -17,7 +17,6 @@
 //
 
 import XCTest
-@testable import CoreUITests
 import TestsFoundation
 
 class DashboardE2ETests: CoreUITestCase {

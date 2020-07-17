@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 class PageE2ETests: CoreUITestCase {
     override var abstractTestClass: CoreUITestCase.Type { return PageE2ETests.self }

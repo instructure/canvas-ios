@@ -17,40 +17,39 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum SubmissionComments: String, CaseIterable, ElementWrapper {
+public enum SubmissionComments: String, CaseIterable, ElementWrapper {
     case addCommentButton
     case addMediaButton
     case commentTextView
 
     private static let className = String(describing: SubmissionComments.self)
 
-    static func attemptCell(submissionID: String, attempt: Int) -> Element {
+    public static func attemptCell(submissionID: String, attempt: Int) -> Element {
         return app.find(id: "\(className).attemptCell.submission-\(submissionID)-\(attempt)")
     }
 
-    static func attemptView(attempt: Int) -> Element {
+    public static func attemptView(attempt: Int) -> Element {
         return app.find(id: "\(className).attemptView.\(attempt)")
     }
 
-    static func audioCell(commentID: String) -> Element {
+    public static func audioCell(commentID: String) -> Element {
         return app.find(id: "\(className).audioCell.\(commentID)")
     }
 
-    static func audioCellPlayPauseButton(commentID: String) -> Element {
+    public static func audioCellPlayPauseButton(commentID: String) -> Element {
         return app.find(id: "\(className).audioCell.\(commentID).playPauseButton")
     }
 
-    static func fileView(fileID: String) -> Element {
+    public static func fileView(fileID: String) -> Element {
         return app.find(id: "\(className).fileView.\(fileID)")
     }
 
-    static func textCell(commentID: String) -> Element {
+    public static func textCell(commentID: String) -> Element {
         return app.find(id: "\(className).textCell.\(commentID)")
     }
 
-    static func videoCell(commentID: String) -> Element {
+    public static func videoCell(commentID: String) -> Element {
         return app.find(id: "\(className).videoCell.\(commentID)")
     }
 }

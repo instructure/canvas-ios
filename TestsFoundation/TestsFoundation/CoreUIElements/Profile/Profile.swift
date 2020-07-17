@@ -17,9 +17,8 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum Profile: String, ElementWrapper {
+public enum Profile: String, ElementWrapper {
     case
         actAsUserButton,
         changeUserButton,
@@ -35,51 +34,51 @@ enum Profile: String, ElementWrapper {
         versionLabel,
         inboxButton
 
-    static func ltiButton(domain: String, id: String) -> Element {
+    public static func ltiButton(domain: String, id: String) -> Element {
         return app.find(id: "Profile.lti.\(domain).\(id)")
     }
 
-    static func close(file: StaticString = #file, line: UInt = #line) {
+    public static func close(file: StaticString = #file, line: UInt = #line) {
         Dashboard.profileButton.tapAt(.zero, file: file, line: line)
     }
 
-    static func open(file: StaticString = #file, line: UInt = #line) {
+    public static func open(file: StaticString = #file, line: UInt = #line) {
         Dashboard.profileButton.tapUntil(file: file, line: line) {
             Profile.userNameLabel.exists
         }
     }
 }
 
-enum ProfileSettings {
-    static var profile: Element {
+public enum ProfileSettings {
+    public static var profile: Element {
         return app.find(label: "Profile")
     }
 
-    static var about: Element {
+    public static var about: Element {
         return app.find(label: "About")
     }
 
-    static var landingPage: Element {
+    public static var landingPage: Element {
         return app.find(label: "Landing Page")
     }
 
-    static var notificationPreferences: Element {
+    public static var notificationPreferences: Element {
         return app.find(label: "Notification Preferences")
     }
 }
 
-enum LandingPageCell: Int, ElementWrapper, CaseIterable {
+public enum LandingPageCell: Int, ElementWrapper, CaseIterable {
     case dashboard
     case calendar
     case todo
     case notifications
     case inbox
 
-    var element: Element {
+    public var element: Element {
         return ItemPickerItem(row: rawValue).element
     }
 
-    var relatedTab: TabBar {
+    public var relatedTab: TabBar {
         switch self {
         case .dashboard:
             return TabBar.dashboardTab

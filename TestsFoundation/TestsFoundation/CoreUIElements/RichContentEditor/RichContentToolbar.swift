@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum RichContentToolbar: String, ElementWrapper {
     case blackColorButton, blueColorButton, greenColorButton, greyColorButton, orangeColorButton,

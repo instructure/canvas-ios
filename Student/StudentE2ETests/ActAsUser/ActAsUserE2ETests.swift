@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 class ActAsUserE2ETests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }

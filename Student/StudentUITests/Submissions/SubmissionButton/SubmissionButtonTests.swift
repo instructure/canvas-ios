@@ -17,7 +17,6 @@
 //
 
 @testable import Core
-@testable import CoreUITests
 import TestsFoundation
 import XCTest
 
@@ -38,11 +37,11 @@ class SubmissionButtonTests: CoreUITestCase {
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
-        FilePicker.libraryButton.tap()
+        FilePickerElement.libraryButton.tap()
         app.find(label: "All Photos").tap()
-        app.find(labelContaining: "Photo, HDR").tapUntil { FilePicker.submitButton.isVisible }
-        FilePicker.submitButton.tap()
-        FilePicker.submitButton.waitToVanish()
+        app.find(labelContaining: "Photo, HDR").tapUntil { FilePickerElement.submitButton.isVisible }
+        FilePickerElement.submitButton.tap()
+        FilePickerElement.submitButton.waitToVanish()
     }
 
     func testExternalTool() {

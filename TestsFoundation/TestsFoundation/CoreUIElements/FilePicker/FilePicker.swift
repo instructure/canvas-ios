@@ -17,16 +17,15 @@
 //
 
 import Foundation
-import TestsFoundation
 
-enum FilePicker: String, ElementWrapper {
+public enum FilePickerElement: String, ElementWrapper {
     case emptyView
     case cameraButton, filesButton, libraryButton
     case cancelButton, closeButton, retryButton, submitButton
 }
 
-enum FilePickerListItem {
-    static func item(_ id: String) -> Element {
+public enum FilePickerListItem {
+    public static func item(_ id: String) -> Element {
         return app.find(id: "FilePickerListItem\(id)")
     }
 }

@@ -18,7 +18,6 @@
 
 import TestsFoundation
 @testable import Core
-import CoreUITests
 
 class LoginStartTests: CoreUITestCase {
     func testCanvasNetwork() {

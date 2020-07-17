@@ -17,35 +17,34 @@
 //
 
 import Foundation
-@testable import TestsFoundation
 
-enum PlannerCalendar: String, ElementWrapper {
+public enum PlannerCalendar: String, ElementWrapper {
     case profileButton, addNoteButton, todayButton
     case yearLabel, monthButton, filterButton
 
-    static func dayButton(for date: Date) -> Element {
+    public static func dayButton(for date: Date) -> Element {
         let year = Calendar.current.component(.year, from: date)
         let month = Calendar.current.component(.month, from: date)
         let day = Calendar.current.component(.day, from: date)
         return dayButton(year: year, month: month, day: day)
     }
-    static func dayButton(year: Int, month: Int, day: Int) -> Element {
+    public static func dayButton(year: Int, month: Int, day: Int) -> Element {
         return app.find(id: "PlannerCalendar.dayButton.\(year)-\(month)-\(day)")
     }
 }
 
-enum PlannerList: String, ElementWrapper {
+public enum PlannerList: String, ElementWrapper {
     case emptyTitle, emptyLabel
 
-    static func event(id: String) -> Element {
+    public static func event(id: String) -> Element {
         return app.find(id: "PlannerList.event.\(id)")
     }
 }
 
-enum PlannerFilter: String, ElementWrapper {
+public enum PlannerFilter: String, ElementWrapper {
     case headerLabel, emptyTitleLabel, emptyMessageLabel
 
-    static func cell(section: Int, row: Int) -> Element {
+    public static func cell(section: Int, row: Int) -> Element {
         return app.find(id: "PlannerFilter.section.\(section).row.\(row)")
     }
 }

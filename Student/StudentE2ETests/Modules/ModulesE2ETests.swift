@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 @testable import Core
 
 class ModulesE2ETests: CoreUITestCase {
@@ -32,9 +31,9 @@ class ModulesE2ETests: CoreUITestCase {
         ModuleList.item(section: 0, row: 0).tap()
 
         AssignmentDetails.description("Assignment One").waitToExist()
-        ModuleItemSequence.nextButton.tap()
+        ModuleItemSequenceElement.nextButton.tap()
         AssignmentDetails.description("Assignment Two").waitToExist()
-        ModuleItemSequence.previousButton.tap()
+        ModuleItemSequenceElement.previousButton.tap()
         AssignmentDetails.description("Assignment One").waitToExist()
 
         NavBar.backButton.tap()
@@ -79,7 +78,7 @@ class ModulesE2ETests: CoreUITestCase {
         ModuleList.item(section: 1, row: 0).tap()
 
         app.find(labelContaining: "This is the first quiz").waitToExist()
-        Quiz.takeButton.waitToExist()
+        QuizElement.takeButton.waitToExist()
     }
 
     func testLaunchIntoFileModuleItem() {
@@ -109,8 +108,8 @@ class ModulesE2ETests: CoreUITestCase {
 
         ModuleList.item(section: 5, row: 0).tap()
 
-        ExternalTool.launchButton.tap()
-        ExternalTool.pageText("Instructure").waitToExist()
-        ExternalTool.doneButton.tap()
+        ExternalToolElement.launchButton.tap()
+        ExternalToolElement.pageText("Instructure").waitToExist()
+        ExternalToolElement.doneButton.tap()
     }
 }

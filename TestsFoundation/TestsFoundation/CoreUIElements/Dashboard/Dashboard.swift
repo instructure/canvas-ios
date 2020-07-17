@@ -17,7 +17,6 @@
 //
 
 import XCTest
-import TestsFoundation
 
 public enum CourseInvitation {
     public static func acted(id: String) -> Element {

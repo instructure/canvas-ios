@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import TestsFoundation
 
 public struct ItemPickerItem: ElementWrapper {
     public let indexPath: IndexPath

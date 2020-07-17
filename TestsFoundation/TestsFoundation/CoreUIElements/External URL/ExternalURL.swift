@@ -17,8 +17,7 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum ExternalURL: String, ElementWrapper {
+public enum ExternalURL: String, ElementWrapper {
     case openInButton
 }

@@ -17,9 +17,8 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum Attachments: String, RawElementWrapper {
+public enum Attachments: String, RawElementWrapper {
     case addButton = "attachments.add-btn"
     case dismissButton = "attachments.dismiss-btn"
 }

@@ -20,7 +20,6 @@ import Foundation
 @testable import Core
 import TestsFoundation
 import XCTest
-@testable import CoreUITests
 
 class SubmissionDetailsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
@@ -317,8 +316,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         )
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
 
-        ExternalTool.launchButton.waitToExist(5)
-        XCTAssertTrue(ExternalTool.launchButton.isVisible)
+        ExternalToolElement.launchButton.waitToExist(5)
+        XCTAssertTrue(ExternalToolElement.launchButton.isVisible)
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
     }
 

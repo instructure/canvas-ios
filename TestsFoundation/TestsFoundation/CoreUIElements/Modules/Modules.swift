@@ -17,18 +17,17 @@
 //
 
 import XCTest
-import TestsFoundation
 
-enum ModuleList {
-    static func module(section: Int) -> Element {
+public enum ModuleList {
+    public static func module(section: Int) -> Element {
         app.find(id: "ModuleList.\(section)")
     }
 
-    static func item(section: Int, row: Int) -> Element {
+    public static func item(section: Int, row: Int) -> Element {
         app.find(id: "ModuleList.\(section).\(row)")
     }
 }
 
-enum ModuleItemSequence: String, ElementWrapper {
+public enum ModuleItemSequenceElement: String, ElementWrapper {
     case previousButton, nextButton
 }
