@@ -66,9 +66,9 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var groups = context.contextType == .course ? env.subscribe(GetGroups(context: context)) { [weak self] in
+    lazy var groups = env.subscribe(GetGroups(context: .currentUser)) { [weak self] in
         self?.update()
-    } : nil
+    }
     lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
         self?.update()
     }
@@ -158,7 +158,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         topic.refresh()
         entries.refresh()
         permissions.refresh()
-        groups?.exhaust(force: false)
+        groups.exhaust(force: false)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -287,6 +287,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         }
         assignment?.refresh(force: true)
         permissions.refresh(force: true)
+        groups.exhaust(force: true)
     }
 
     @objc func topicEdited(_ notification: NSNotification) {
@@ -309,7 +310,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             let topic = topic.first, topic.groupCategoryID != nil,
             let subs = topic.groupTopicChildren
         else { return true }
-        if let groupID = groups?.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
+        if let groupID = groups.first(where: { subs[$0.id] != nil })?.id, let childID = subs[groupID] {
             context = Context(.group, id: groupID)
             topicID = childID
             isReady = false
@@ -324,7 +325,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
                 self?.updateNavBar()
             }
-            groups = nil
             permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
                 self?.update()
             }
@@ -364,7 +364,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 entries: entries,
                 maxDepth: maxDepth,
                 canLike: canLike,
-                groups: groups?.all,
+                groups: groups.all,
                 contextColor: color
             )
         }

@@ -85,7 +85,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
                 <p>Oreos are sandwiches.</p>
                 """, replies: [
                     .make(id: 100, user_id: 3, parent_id: 1, deleted: true),
-                    .make(id: 2, user_id: 3, parent_id: 1, message: "<link rel=\"stylesheet\">I disagree.<script src=\"foo.js\"></script>", replies: [
+                    .make(id: 2, user_id: 3, parent_id: 1, message: "<link rel=\"stylesheet\"><script src=\"foo.js\"></script><p>I disagree.</p>", replies: [
                         .make(id: 3, user_id: 2, parent_id: 2, message: "Why?"),
                     ]),
                 ]),
@@ -95,7 +95,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             ]
         ))
         api.mock(controller.group, value: .make(course_id: 1))
-        api.mock(GetGroups(context: controller.context), value: [ .make(course_id: 1) ])
+        api.mock(controller.groups, value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             id: 1,
