@@ -21,10 +21,7 @@ import XCResultKit
 import swsh
 import ArgumentParser
 
-private let resultsDirectory = "ui-test-results"
-private func resultPath(for name: String) -> String {
-    "\(resultsDirectory)/\(name)"
-}
+private let maxTries = 5
 
 struct RunUITests: ParsableCommand {
     @Option(default: "NightlyTests")
@@ -54,285 +51,293 @@ struct RunUITests: ParsableCommand {
     func run() throws {
         try Runner(self).run()
     }
+}
 
-    class Runner {
-        let command: RunUITests
-        struct InternalError: Error, CustomStringConvertible {
-            var description: String
+private class Runner {
+    let command: RunUITests
+
+    var skipTest: [String: [String]] = [:]
+    var onlyTest: [String: [String]] = [:]
+    var baseTestRun: BaseTestRun!
+
+    init(_ command: RunUITests) {
+        self.command = command
+    }
+
+    func run() throws {
+        try setUp()
+        baseTestRun = try getBaseTestRun(build: command.build)
+        onlyTest = try enabledTests()
+
+        if onlyTest.isEmpty {
+            print("No tests requested")
+            return
         }
 
-        let testRunId = UUID()
+        // first try
+        var lastSummary = try doTest(try: 0)
 
-        var skipTest: [String: [String]] = [:]
-        var onlyTest: [String: [String]] = [:]
-
-        var deployDir: String {
-            Env.env["BITRISE_DEPLOY_DIR"] ?? resultsDirectory
+        // retries
+        for retryNumber in 1..<maxTries where !lastSummary.runSucceeded {
+            let lastTry = retryNumber == maxTries - 1
+            lastSummary = try retry(try: retryNumber, recordVideo: lastTry)
         }
 
-        struct BaseTestRun: Codable {
-            let buildDir: String
-            let testRun: String
+        if lastSummary.runSucceeded, lastSummary.try == 0 {
+            banner("\u{1F389} All tests passed ON THE FIRST TRY! \u{1F389}")
+        } else if lastSummary.runSucceeded {
+            banner("All tests passed after \(lastSummary.try) retries!")
+        } else {
+            banner("\(lastSummary.failures.count) tests still failing after \(lastSummary.try) tries!")
 
-            init(buildDir: String, testRun: String) {
-                self.buildDir = buildDir
-                self.testRun = testRun
+            // export for blame bot
+            try? cmd("envman", "add", "--key", "TESTS_FAILED", "--value", "yes").silent.run()
+            try cmd("echo", lastSummary.failures.joined(separator: "\n"))
+              .append(toFile: resultPath(for: "final-failed.txt"))
+              .run()
+        }
+
+        try mergeResults()
+
+        if !lastSummary.runSucceeded {
+            throw ExitCode.failure
+        }
+    }
+
+    func setUp() throws {
+        Darwin.setenv("NSUnbufferedIO", "YES", 1)
+        try cmd("mkdir", "-p", "tmp").run()
+        try cmd("touch", "tmp/timestamp").run()
+
+        // Launch the sim first to save time later
+        try? cmd("xcrun", "simctl", "boot", command.deviceName).silent.run()
+        try cmd("open", "-a", cmd("xcode-select", "-p").runString() + "/Applications/Simulator.app").run()
+
+        if !command.appendResults {
+            try cmd("rm", "-rf", resultsDirectory).run()
+        }
+        try cmd("mkdir", "-p", resultsDirectory).run()
+    }
+
+    func getBaseTestRun(build: Bool) throws -> BaseTestRun {
+        if build {
+            banner("Building \(command.scheme)")
+            try (xcodebuild("build-for-testing") | xcpretty(quiet: true)).run()
+        }
+
+        let buildDir = try (
+          xcodebuild("-showBuildSettings", "build-for-testing", "-json") |
+            cmd("jq", ".[0].buildSettings.BUILD_DIR")
+        ).runJSON(String.self)
+
+        let builtTestRuns = try FileManager.default.contentsOfDirectory(atPath: buildDir).filter {
+            $0.hasPrefix(command.scheme) &&
+              $0.range(of: #"_.*_iphonesimulator.*\.xctestrun"#, options: .regularExpression) != nil
+        }
+        if builtTestRuns.count < 1 {
+            throw InternalError(description: "couldn't find xctestrun product")
+        } else if builtTestRuns.count > 1 {
+            throw InternalError(description: "couldn't determine unique xctestrun product. try cleaning")
+        }
+        return BaseTestRun(buildDir: buildDir, testRun: builtTestRuns[0])
+    }
+
+    func enabledTests() throws -> [String: [String]] {
+        var tests: [String: [String]] = [:]
+        if command.allTests {
+            for configuration in try baseTestRun.load().TestConfigurations {
+                for target in configuration.TestTargets {
+                    tests[target.BlueprintName] = []
+                }
             }
-
-            func load() throws -> XCTestRun {
-                let data = try Data(contentsOf: URL(fileURLWithPath: "\(buildDir)/\(testRun)"))
-                return try PropertyListDecoder().decode(XCTestRun.self, from: data)
-            }
-        }
-        var baseTestRun: BaseTestRun!
-
-        func parse(testId: String) -> (String, String) {
-            let parts = testId.split(separator: "/")
-            return (String(parts[0]), parts.dropFirst().joined(separator: "/"))
-        }
-
-        init(_ command: RunUITests) {
-            self.command = command
-
+        } else {
             for test in command.tests {
                 let (suite, testName) = parse(testId: test)
-                onlyTest[suite] = onlyTest[suite] ?? []
+                tests[suite] = tests[suite] ?? []
                 if !testName.isEmpty {
-                    onlyTest[suite]!.append(testName)
+                    tests[suite]!.append(testName)
                 }
             }
         }
+        return tests
+    }
 
-        func run() throws {
-            ExternalCommand.verbose = true
+    func doTest(try retryNumber: Int) throws -> TestResultSummary {
+        let testRun = try baseTestRun.load()
 
-            try cmd("mkdir", "-p", "tmp").run()
-            try cmd("touch", "tmp/timestamp").run()
-            Darwin.setenv("NSUnbufferedIO", "YES", 1)
+        for configuration in testRun.TestConfigurations {
+            var targets: [XCTestRun.TestTarget] = []
+            let runName = "\(configuration.Name) (retry \(retryNumber))"
+            configuration.Name = runName
+            banner("Running \(runName)")
 
-            try? cmd("xcrun", "simctl", "boot", command.deviceName).run()
-            try cmd("open", "-a", cmd("xcode-select", "-p").runString() + "/Applications/Simulator.app").run()
-
-            if !command.appendResults {
-                try cmd("rm", "-rf", resultsDirectory).run()
-            }
-            try cmd("mkdir", "-p", resultsDirectory).run()
-
-            if command.build {
-                banner("Building \(command.scheme)")
-                try (xcodebuild("build-for-testing") | xcpretty(quiet: true)).run()
-            }
-
-            if command.tests.isEmpty && !command.allTests {
-                return
-            }
-
-            let buildDir = try (
-                xcodebuild("-showBuildSettings", "build-for-testing", "-json") |
-                    cmd("jq", ".[0].buildSettings.BUILD_DIR")
-                ).runJSON(String.self)
-
-            let builtTestRuns = try FileManager.default.contentsOfDirectory(atPath: buildDir).filter {
-                $0.hasPrefix(command.scheme) &&
-                    $0.range(of: #"_.*_iphonesimulator.*\.xctestrun"#, options: .regularExpression) != nil
-            }
-            if builtTestRuns.count < 1 {
-                throw InternalError(description: "couldn't find xctestrun product")
-            } else if builtTestRuns.count > 1 {
-                throw InternalError(description: "couldn't determine unique xctestrun product. try cleaning")
-            } else {
-                baseTestRun = BaseTestRun(buildDir: buildDir, testRun: builtTestRuns.first!)
-            }
-
-            if command.allTests {
-                for configuration in try baseTestRun.load().TestConfigurations {
-                    for target in configuration.TestTargets {
-                        onlyTest[target.BlueprintName] = []
-                    }
+            for target in configuration.TestTargets {
+                guard let testNames = onlyTest[target.BlueprintName] else { continue }
+                targets.append(target)
+                target.SkipTestIdentifiers = (target.SkipTestIdentifiers ?? []) + (skipTest[target.BlueprintName] ?? [])
+                target.OnlyTestIdentifiers = testNames.isEmpty ? nil : testNames
+                if retryNumber > 0 {
+                    target.EnvironmentVariables = target.EnvironmentVariables ?? [:]
+                    target.EnvironmentVariables!["CANVAS_TEST_IS_RETRY"] = "YES"
                 }
             }
-
-            // initial test
-            var lastSummary: TestResultSummary = try doTest(try: 0)
-
-            // retries
-            let maxTries = 5
-            for retryNumber in 1..<maxTries where !lastSummary.runSucceeded {
-                lastSummary = try retry(try: retryNumber, recordVideo: retryNumber == maxTries - 1)
-            }
-
-            if lastSummary.runSucceeded, lastSummary.try == 0 {
-                banner("\u{1F389} All tests passed ON THE FIRST TRY! \u{1F389}")
-            } else if lastSummary.runSucceeded {
-                banner("All tests passed after \(lastSummary.try) retries!")
-            } else {
-                banner("\(lastSummary.failures.count) tests still failing after \(lastSummary.try) tries!")
-
-                // export for blame bot
-                try? cmd("envman", "add", "--key", "TESTS_FAILED", "--value", "yes").run()
-                try cmd("echo", lastSummary.failures.joined(separator: "\n"))
-                  .append(toFile: resultPath(for: "final-failed.txt"))
-                  .run()
-            }
-
-            try mergeResults()
-
-            if !lastSummary.runSucceeded {
-                throw ExitCode.failure
-            }
+            configuration.TestTargets = targets
         }
 
-        func doTest(try retryNumber: Int) throws -> TestResultSummary {
-            let testRun = try baseTestRun.load()
+        let testRunPath = "\(baseTestRun.buildDir)/tmp.xctestrun"
+        try PropertyListEncoder().encode(testRun).write(to: URL(fileURLWithPath: testRunPath))
+        let xcresult = resultPath(for: "\(retryNumber).xcresult")
 
-            for configuration in testRun.TestConfigurations {
-                var targets: [XCTestRun.TestTarget] = []
-                let runName = "\(configuration.Name) (retry \(retryNumber))"
-                configuration.Name = runName
-                banner("Running \(runName)")
+        let success = Pipeline(
+          xcodebuild(
+            noScheme: true,
+            "-resultBundlePath", xcresult,
+            "-xctestrun", testRunPath,
+            "test-without-building"
+          ),
+          cmd("tee", "-a", "\(deployDir)/testrun.log"),
+          xcpretty()
+        ).runBool()
 
-                for target in configuration.TestTargets {
-                    guard let testNames = onlyTest[target.BlueprintName] else { continue }
-                    targets.append(target)
-                    target.SkipTestIdentifiers = (target.SkipTestIdentifiers ?? []) + (skipTest[target.BlueprintName] ?? [])
-                    target.OnlyTestIdentifiers = testNames.isEmpty ? nil : testNames
-                    if retryNumber > 0 {
-                        target.EnvironmentVariables = target.EnvironmentVariables ?? [:]
-                        target.EnvironmentVariables!["CANVAS_TEST_IS_RETRY"] = "YES"
-                    }
-                }
-                configuration.TestTargets = targets
-            }
-
-            let testRunPath = "\(baseTestRun.buildDir)/tmp.xctestrun"
-            try PropertyListEncoder().encode(testRun).write(to: URL(fileURLWithPath: testRunPath))
-            let xcresult = resultPath(for: "\(retryNumber).xcresult")
-
-            let success = Pipeline(
-                xcodebuild(
-                    noScheme: true,
-                    "-resultBundlePath", xcresult,
-                    "-xctestrun", testRunPath,
-                    "test-without-building"
-                ),
-                cmd("tee", "-a", "\(deployDir)/testrun.log"),
-                xcpretty()
-            ).runBool()
-
-            let summary = try TestResultSummary(try: retryNumber, xcresult: xcresult, runSucceeded: success)
-            banner("\(summary.successes.count) tests passed, \(summary.failures.count) failed)")
-            for test in summary.failures {
-                print(" \u{274C} \(test)")
-            }
-            for test in summary.successes {
-                let (suite, testName) = parse(testId: test)
-                skipTest[suite] = skipTest[suite] ?? []
-                skipTest[suite]!.append(testName)
-            }
-
-            return summary
+        let summary = try TestResultSummary(try: retryNumber, xcresult: xcresult, runSucceeded: success)
+        banner("\(summary.successes.count) tests passed, \(summary.failures.count) failed)")
+        for test in summary.failures {
+            print(" \u{274C} \(test)")
+        }
+        for test in summary.successes {
+            let (suite, testName) = parse(testId: test)
+            skipTest[suite] = skipTest[suite] ?? []
+            skipTest[suite]!.append(testName)
         }
 
-        struct TestResult: Codable {
-            let status: String
-            let id: String
+        return summary
+    }
+
+    func retry(`try` retryNumber: Int, recordVideo: Bool = false) throws -> TestResultSummary {
+        var videoProcess: CommandResult?
+        if recordVideo {
+            let videoFile = "\(deployDir)/\(testRunId).mp4"
+            print("recording video to \(videoFile)")
+            videoProcess = cmd("xcrun", "simctl", "io", "booted", "recordVideo", videoFile).async()
         }
+        defer {
+            try? videoProcess?.kill()
+            _ = videoProcess?.exitCode()
+        }
+        return try doTest(try: retryNumber)
+    }
 
-        struct TestResultSummary {
-            let successes: [String]
-            let failures: [String]
-            let runSucceeded: Bool
-            let `try`: Int
+    struct TestResultSummary {
+        let successes: [String]
+        let failures: [String]
+        let runSucceeded: Bool
+        let `try`: Int
 
-            init(try retryNumber: Int, xcresult: String, runSucceeded: Bool) throws {
-                if !FileManager.default.fileExists(atPath: xcresult) {
-                    try cmd("touch", resultPath(for: "final-failed.txt")).run()
-                    try? cmd("envman", "add", "--key", "TESTS_FAILED", "--value", "yes").run()
-                    throw InternalError(description: "Couldn't find test results!")
-                }
+        init(try retryNumber: Int, xcresult: String, runSucceeded: Bool) throws {
+            if !FileManager.default.fileExists(atPath: xcresult) {
+                try cmd("touch", resultPath(for: "final-failed.txt")).run()
+                try? cmd("envman", "add", "--key", "TESTS_FAILED", "--value", "yes").silent.run()
+                throw InternalError(description: "Couldn't find test results!")
+            }
 
-                let testResultId = try (
-                    cmd("xcrun", "xcresulttool", "get", "--format", "json", "--path", xcresult) |
-                        cmd("jq", ".actions._values[].actionResult.testsRef.id._value")
-                    ).runJSON(String.self)
+            let testResultId = try (
+              cmd("xcrun", "xcresulttool", "get", "--format", "json", "--path", xcresult) |
+                cmd("jq", ".actions._values[].actionResult.testsRef.id._value")
+            ).runJSON(String.self)
 
-                let allResults = try (
-                    cmd("xcrun", "xcresulttool", "get",
-                        "--format", "json",
-                        "--path", xcresult,
-                        "--id", testResultId
-                        ) | cmd("jq", """
+            struct TestResult: Codable {
+                let status: String
+                let id: String
+            }
+            let allResults = try (
+              cmd("xcrun", "xcresulttool", "get",
+                  "--format", "json",
+                  "--path", xcresult,
+                  "--id", testResultId
+              ) | cmd("jq", """
                               [.summaries._values[].testableSummaries._values[] |
-                                .name._value as $bundleName |
-                                .tests?._values[]? |
-                                recurse(.subtests?._values[]?) |
-                                select(._type._name == "ActionTestMetadata") |
-                                ($bundleName + "/" + .identifier._value | rtrimstr("()")) as $testId |
-                                {"status": .testStatus._value, "id": $testId}]
+                              .name._value as $bundleName |
+                              .tests?._values[]? |
+                              recurse(.subtests?._values[]?) |
+                              select(._type._name == "ActionTestMetadata") |
+                              ($bundleName + "/" + .identifier._value | rtrimstr("()")) as $testId |
+                              {"status": .testStatus._value, "id": $testId}]
                               """
-                    )
-                    ).runJSON([TestResult].self)
+              )
+            ).runJSON([TestResult].self)
 
-                successes = allResults.compactMap { $0.status == "Success" ? $0.id : nil }
-                failures = allResults.compactMap { $0.status == "Failure" ? $0.id : nil }
-                self.runSucceeded = runSucceeded
-                self.try = retryNumber
-            }
-        }
-
-        func retry(`try` retryNumber: Int, recordVideo: Bool = false) throws -> TestResultSummary {
-            var videoProcess: CommandResult?
-            if recordVideo {
-                let videoFile = "\(deployDir)/\(testRunId).mp4"
-                print("recording video to \(videoFile)")
-                videoProcess = cmd("xcrun", "simctl", "io", "booted", "recordVideo", videoFile).async()
-            }
-            defer {
-                try? videoProcess?.kill()
-                _ = videoProcess?.exitCode()
-            }
-            return try doTest(try: retryNumber)
-        }
-
-        func xcodebuild(noScheme: Bool = false, _ args: String...) -> Command {
-            var flags: [String] = ["-destination", "platform=iOS Simulator,name=\(command.deviceName)"]
-            if !noScheme {
-                flags.append(contentsOf: [
-                    "-workspace", "Canvas.xcworkspace",
-                    "-scheme", command.scheme,
-                ])
-            }
-            return cmd("xcodebuild", arguments: flags + args).output(overwritingFile: "/dev/null", fd: STDERR_FILENO)
-        }
-
-        func xcpretty(quiet: Bool = false) -> Command {
-            cmd("tee", "-a", "\(deployDir)/build.log") |
-              cmd("xcbeautify", arguments: quiet ? ["--quiet"] : [])
-        }
-
-        func mergeResults() throws {
-            let mergedResultPath = resultPath(for: "merged.xcresult")
-            try? cmd("mv", mergedResultPath, resultPath(for: "old-merged-\(testRunId).xcresult")).run()
-            let xcresults = try FileManager.default.contentsOfDirectory(atPath: resultsDirectory)
-              .filter { $0.hasSuffix(".xcresult") }
-              .map { resultPath(for: $0) }
-            if xcresults.count > 1 {
-                try cmd("xcrun", arguments: ["xcresulttool", "merge"] + xcresults + ["--output-path", mergedResultPath]).run()
-                try cmd("rm", arguments: ["-rf"] + xcresults).run()
-            } else if let xcresult = xcresults.first {
-                try cmd("mv", xcresult, mergedResultPath).run()
-            }
+            successes = allResults.compactMap { $0.status == "Success" ? $0.id : nil }
+            failures = allResults.compactMap { $0.status == "Failure" ? $0.id : nil }
+            self.runSucceeded = runSucceeded
+            self.try = retryNumber
         }
     }
 
-    static func banner(_ message: String) {
-        let termGreenBold = "\u{1b}[1m\u{1b}[32m"
-        let termReset = "\u{1b}[m"
-
-        print("\(termGreenBold)=\(String(repeating: "=", count: message.count))=\(termReset)")
-        print("\(termGreenBold) \(message) \(termReset)")
-        print("\(termGreenBold)=\(String(repeating: "=", count: message.count))=\(termReset)")
+    func xcodebuild(noScheme: Bool = false, _ args: String...) -> Command {
+        var flags: [String] = ["-destination", "platform=iOS Simulator,name=\(command.deviceName)"]
+        if !noScheme {
+            flags.append(contentsOf: [
+                           "-workspace", "Canvas.xcworkspace",
+                           "-scheme", command.scheme,
+                         ])
+        }
+        return cmd("xcodebuild", arguments: flags + args).output(overwritingFile: "/dev/null", fd: STDERR_FILENO)
     }
+
+    func xcpretty(quiet: Bool = false) -> Command {
+        cmd("tee", "-a", "\(deployDir)/build.log") |
+          cmd("xcbeautify", arguments: quiet ? ["--quiet"] : [])
+    }
+
+    func mergeResults() throws {
+        let mergedResultPath = resultPath(for: "merged.xcresult")
+        try? cmd("mv", mergedResultPath, resultPath(for: "old-merged-\(testRunId).xcresult")).silent.run()
+        let xcresults = try FileManager.default.contentsOfDirectory(atPath: resultsDirectory)
+          .filter { $0.hasSuffix(".xcresult") }
+          .map { resultPath(for: $0) }
+        if xcresults.count > 1 {
+            try cmd("xcrun", arguments: ["xcresulttool", "merge"] + xcresults + ["--output-path", mergedResultPath]).run()
+            try cmd("rm", arguments: ["-rf"] + xcresults).run()
+        } else if let xcresult = xcresults.first {
+            try cmd("mv", xcresult, mergedResultPath).run()
+        }
+    }
+}
+
+private struct InternalError: Error, CustomStringConvertible {
+    var description: String
+}
+
+private let testRunId = UUID()
+private var deployDir: String { Env.env["BITRISE_DEPLOY_DIR"] ?? resultsDirectory }
+
+private let resultsDirectory = "ui-test-results"
+private func resultPath(for name: String) -> String {
+    "\(resultsDirectory)/\(name)"
+}
+
+private struct BaseTestRun: Codable {
+    let buildDir: String
+    let testRun: String
+
+    func load() throws -> XCTestRun {
+        let data = try Data(contentsOf: URL(fileURLWithPath: "\(buildDir)/\(testRun)"))
+        return try PropertyListDecoder().decode(XCTestRun.self, from: data)
+    }
+}
+
+private func parse(testId: String) -> (String, String) {
+    let parts = testId.split(separator: "/")
+    return (String(parts[0]), parts.dropFirst().joined(separator: "/"))
+}
+
+private func banner(_ message: String) {
+    let termGreenBold = "\u{1b}[1m\u{1b}[32m"
+    let termReset = "\u{1b}[m"
+
+    print("\(termGreenBold)=\(String(repeating: "=", count: message.count))=\(termReset)")
+    print("\(termGreenBold) \(message) \(termReset)")
+    print("\(termGreenBold)=\(String(repeating: "=", count: message.count))=\(termReset)")
 }
 
 extension Command {
