@@ -35,13 +35,6 @@
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
-		49301FCF1F9014C6006BD777 /* CalendarEventAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FC51F9014C5006BD777 /* CalendarEventAPI.swift */; };
-		49301FD01F9014C6006BD777 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FC71F9014C5006BD777 /* CalendarEvent.swift */; };
-		49301FD11F9014C6006BD777 /* CalendarEvent+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FC81F9014C5006BD777 /* CalendarEvent+Collections.swift */; };
-		49301FD21F9014C6006BD777 /* CalendarEvent+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FC91F9014C5006BD777 /* CalendarEvent+Network.swift */; };
-		49301FD31F9014C6006BD777 /* CalendarEvent+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FCA1F9014C5006BD777 /* CalendarEvent+Details.swift */; };
-		49301FD41F9014C6006BD777 /* CalendarKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49301FCC1F9014C5006BD777 /* CalendarKit.xcdatamodeld */; };
-		49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FCE1F9014C6006BD777 /* Session+CalendarEvent.swift */; };
 		49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FD71F901853006BD777 /* NotificationKitController.swift */; };
 		49301FEA1F901854006BD777 /* SimpleErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */; };
 		49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */; };
@@ -117,18 +110,6 @@
 		4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */; };
 		4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */; };
 		4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5341F8FAD920093EC86 /* WhizzyWigViewController.swift */; };
-		4961F5521F8FAF280093EC86 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5451F8FAF200093EC86 /* AudioPlayer.swift */; };
-		4961F5531F8FAF280093EC86 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5481F8FAF220093EC86 /* AudioRecorder.swift */; };
-		4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F54B1F8FAF220093EC86 /* AudioRecorderView.swift */; };
-		4961F5551F8FAF280093EC86 /* AudioRecorderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4961F5471F8FAF210093EC86 /* AudioRecorderViewController.storyboard */; };
-		4961F5561F8FAF280093EC86 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5461F8FAF200093EC86 /* AudioRecorderViewController.swift */; };
-		4961F5571F8FAF280093EC86 /* MediaKitImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4961F5491F8FAF220093EC86 /* MediaKitImages.xcassets */; };
-		4961F5581F8FAF280093EC86 /* MeterTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F54A1F8FAF220093EC86 /* MeterTable.swift */; };
-		4961F5591F8FAF2D0093EC86 /* MediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F54D1F8FAF230093EC86 /* MediaComment.swift */; };
-		4961F55A1F8FAF310093EC86 /* NSTimeInterval+MediaKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F54E1F8FAF230093EC86 /* NSTimeInterval+MediaKit.swift */; };
-		4961F55B1F8FAF310093EC86 /* PlaybackScrubber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5511F8FAF250093EC86 /* PlaybackScrubber.swift */; };
-		4961F55C1F8FAF310093EC86 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F54F1F8FAF240093EC86 /* RecordButton.swift */; };
-		4961F55D1F8FAF310093EC86 /* VolumeLevelMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5501F8FAF240093EC86 /* VolumeLevelMeterView.swift */; };
 		4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5831F8FB2130093EC86 /* Brand.swift */; };
 		4961F59D1F8FB2970093EC86 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */; };
 		4961F59E1F8FB2970093EC86 /* UIColor+LightenUpOkay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */; };
@@ -317,13 +298,6 @@
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
-		49301FC51F9014C5006BD777 /* CalendarEventAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventAPI.swift; sourceTree = "<group>"; };
-		49301FC71F9014C5006BD777 /* CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
-		49301FC81F9014C5006BD777 /* CalendarEvent+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Collections.swift"; sourceTree = "<group>"; };
-		49301FC91F9014C5006BD777 /* CalendarEvent+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Network.swift"; sourceTree = "<group>"; };
-		49301FCA1F9014C5006BD777 /* CalendarEvent+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CalendarEvent+Details.swift"; sourceTree = "<group>"; };
-		49301FCD1F9014C5006BD777 /* CalendarKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalendarKit.xcdatamodel; sourceTree = "<group>"; };
-		49301FCE1F9014C6006BD777 /* Session+CalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CalendarEvent.swift"; sourceTree = "<group>"; };
 		49301FD71F901853006BD777 /* NotificationKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKitController.swift; sourceTree = "<group>"; };
 		49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleErrorExtension.swift; sourceTree = "<group>"; };
 		49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlertExtension.swift; sourceTree = "<group>"; };
@@ -401,18 +375,6 @@
 		4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = WhizzyWigTemplate.html; sourceTree = "<group>"; };
 		4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigView.swift; sourceTree = "<group>"; };
 		4961F53B1F8FAD940093EC86 /* WhizzyWigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigTableViewCell.swift; sourceTree = "<group>"; };
-		4961F5451F8FAF200093EC86 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		4961F5461F8FAF200093EC86 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
-		4961F5471F8FAF210093EC86 /* AudioRecorderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioRecorderViewController.storyboard; sourceTree = "<group>"; };
-		4961F5481F8FAF220093EC86 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
-		4961F5491F8FAF220093EC86 /* MediaKitImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MediaKitImages.xcassets; sourceTree = "<group>"; };
-		4961F54A1F8FAF220093EC86 /* MeterTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterTable.swift; sourceTree = "<group>"; };
-		4961F54B1F8FAF220093EC86 /* AudioRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderView.swift; sourceTree = "<group>"; };
-		4961F54D1F8FAF230093EC86 /* MediaComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaComment.swift; sourceTree = "<group>"; };
-		4961F54E1F8FAF230093EC86 /* NSTimeInterval+MediaKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTimeInterval+MediaKit.swift"; sourceTree = "<group>"; };
-		4961F54F1F8FAF240093EC86 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
-		4961F5501F8FAF240093EC86 /* VolumeLevelMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeLevelMeterView.swift; sourceTree = "<group>"; };
-		4961F5511F8FAF250093EC86 /* PlaybackScrubber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackScrubber.swift; sourceTree = "<group>"; };
 		4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LightenUpOkay.swift"; sourceTree = "<group>"; };
 		4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
@@ -676,7 +638,6 @@
 				B1F4E8CD206188DC0056074A /* RCE */,
 				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FF41F901CA0006BD777 /* Annotations */,
-				49301FC31F901480006BD777 /* Calendar */,
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
 				4961F5EF1F8FB6160093EC86 /* Enrollments */,
@@ -688,7 +649,6 @@
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				493BEFA81FB14560006E8EFC /* LTI */,
-				4961F5441F8FAEE70093EC86 /* Media */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				4961F5AA1F8FB37F0093EC86 /* Persistence */,
 				49301FD61F901826006BD777 /* Push Notifications */,
@@ -745,44 +705,6 @@
 				D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		49301FC31F901480006BD777 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				49301FC61F9014C5006BD777 /* CalendarEvent */,
-				49301FCB1F9014C5006BD777 /* Model */,
-				49301FC41F9014C5006BD777 /* Network */,
-				49301FCE1F9014C6006BD777 /* Session+CalendarEvent.swift */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		49301FC41F9014C5006BD777 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				49301FC51F9014C5006BD777 /* CalendarEventAPI.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		49301FC61F9014C5006BD777 /* CalendarEvent */ = {
-			isa = PBXGroup;
-			children = (
-				49301FC71F9014C5006BD777 /* CalendarEvent.swift */,
-				49301FC81F9014C5006BD777 /* CalendarEvent+Collections.swift */,
-				49301FC91F9014C5006BD777 /* CalendarEvent+Network.swift */,
-				49301FCA1F9014C5006BD777 /* CalendarEvent+Details.swift */,
-			);
-			path = CalendarEvent;
-			sourceTree = "<group>";
-		};
-		49301FCB1F9014C5006BD777 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				49301FCC1F9014C5006BD777 /* CalendarKit.xcdatamodeld */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		49301FD61F901826006BD777 /* Push Notifications */ = {
@@ -1043,33 +965,6 @@
 				7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */,
 			);
 			path = WhizzyWig;
-			sourceTree = "<group>";
-		};
-		4961F5441F8FAEE70093EC86 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5451F8FAF200093EC86 /* AudioPlayer.swift */,
-				4961F5481F8FAF220093EC86 /* AudioRecorder.swift */,
-				4961F54B1F8FAF220093EC86 /* AudioRecorderView.swift */,
-				4961F5471F8FAF210093EC86 /* AudioRecorderViewController.storyboard */,
-				4961F5461F8FAF200093EC86 /* AudioRecorderViewController.swift */,
-				4961F5491F8FAF220093EC86 /* MediaKitImages.xcassets */,
-				4961F54A1F8FAF220093EC86 /* MeterTable.swift */,
-				4961F54C1F8FAF230093EC86 /* Model */,
-				4961F54E1F8FAF230093EC86 /* NSTimeInterval+MediaKit.swift */,
-				4961F5511F8FAF250093EC86 /* PlaybackScrubber.swift */,
-				4961F54F1F8FAF240093EC86 /* RecordButton.swift */,
-				4961F5501F8FAF240093EC86 /* VolumeLevelMeterView.swift */,
-			);
-			path = Media;
-			sourceTree = "<group>";
-		};
-		4961F54C1F8FAF230093EC86 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4961F54D1F8FAF230093EC86 /* MediaComment.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		4961F5621F8FB1810093EC86 /* Views */ = {
@@ -1639,10 +1534,8 @@
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
 				B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */,
-				4961F5551F8FAF280093EC86 /* AudioRecorderViewController.storyboard in Resources */,
 				4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */,
 				493020141F901CF5006BD777 /* CommentReplyView.xib in Resources */,
-				4961F5571F8FAF280093EC86 /* MediaKitImages.xcassets in Resources */,
 				B1D59802202A607200855C95 /* CanvasWebView.js in Resources */,
 				493020131F901CF5006BD777 /* CommentTableViewCell.xib in Resources */,
 				B1F4E8CF206189010056074A /* video-preview.png in Resources */,
@@ -1682,7 +1575,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4961F5591F8FAF2D0093EC86 /* MediaComment.swift in Sources */,
 				4961F5E41F8FB3FC0093EC86 /* RefreshScope.swift in Sources */,
 				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
@@ -1704,7 +1596,6 @@
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
 				49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */,
 				7D52D89522FCC73100684932 /* Submission+Collections.swift in Sources */,
-				4961F5531F8FAF280093EC86 /* AudioRecorder.swift in Sources */,
 				4961F5E61F8FB3FC0093EC86 /* Refresher.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */,
@@ -1714,17 +1605,14 @@
 				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
 				4961F62B1F8FB7070093EC86 /* EnrollmentsDataSource.swift in Sources */,
 				494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */,
-				49301FCF1F9014C6006BD777 /* CalendarEventAPI.swift in Sources */,
 				4961F5DE1F8FB3EF0093EC86 /* NSSortDescriptor+SoPersistent.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
 				4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */,
 				4961F6301F8FB70A0093EC86 /* Grade+Collections.swift in Sources */,
-				4961F5561F8FAF280093EC86 /* AudioRecorderViewController.swift in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
 				7D52D87D22FCC73100684932 /* Assignment+Collections.swift in Sources */,
 				49CE965F1F8FF41B00121A43 /* QuizDetailsViewController.swift in Sources */,
-				4961F5521F8FAF280093EC86 /* AudioPlayer.swift in Sources */,
 				4961F5E01F8FB3EF0093EC86 /* ManagedObjectsObserver.swift in Sources */,
 				4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */,
 				4961F63C1F8FB7180093EC86 /* GradingPeriodAPI.swift in Sources */,
@@ -1734,7 +1622,6 @@
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				493020511F902364006BD777 /* ErrorReporter.swift in Sources */,
-				49301FD01F9014C6006BD777 /* CalendarEvent.swift in Sources */,
 				4930205A1F902364006BD777 /* UIFont+SoLazy.swift in Sources */,
 				7D52D88022FCC73100684932 /* AssignmentKit.xcdatamodeld in Sources */,
 				4961F5D71F8FB3EB0093EC86 /* FetchedDetailsCollection.swift in Sources */,
@@ -1749,7 +1636,6 @@
 				7D52D88522FCC73100684932 /* RubricCriterion.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
 				4961F62E1F8FB7070093EC86 /* Enrollment+Favorites.swift in Sources */,
-				49301FD41F9014C6006BD777 /* CalendarKit.xcdatamodeld in Sources */,
 				49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */,
 				4961F5EC1F8FB4070093EC86 /* TableViewController.swift in Sources */,
 				4961F5DB1F8FB3EF0093EC86 /* ManagedObjectObserver.swift in Sources */,
@@ -1758,7 +1644,6 @@
 				493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */,
 				4961F5E91F8FB4030093EC86 /* SyncOperation.swift in Sources */,
 				4961F5DA1F8FB3EF0093EC86 /* NSManagedObject+SoPersistent.swift in Sources */,
-				4961F55C1F8FAF310093EC86 /* RecordButton.swift in Sources */,
 				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				4961F6381F8FB7110093EC86 /* Group+Collections.swift in Sources */,
 				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
@@ -1772,7 +1657,6 @@
 				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
 				4961F6291F8FB7050093EC86 /* Course.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
-				49301FD51F9014C6006BD777 /* Session+CalendarEvent.swift in Sources */,
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				7D52D89422FCC73100684932 /* SubmissionEvent.swift in Sources */,
@@ -1818,7 +1702,6 @@
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				7D52D88422FCC73100684932 /* RubricCriterionRating.swift in Sources */,
-				49301FD31F9014C6006BD777 /* CalendarEvent+Details.swift in Sources */,
 				4961F63F1F8FB71B0093EC86 /* Tab+Network.swift in Sources */,
 				B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */,
 				49CE96961F8FF41B00121A43 /* Answer.swift in Sources */,
@@ -1826,7 +1709,6 @@
 				4930204B1F902364006BD777 /* Concat.swift in Sources */,
 				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
 				49CE965A1F8FF41B00121A43 /* QuizIntroFooterView.swift in Sources */,
-				4961F55B1F8FAF310093EC86 /* PlaybackScrubber.swift in Sources */,
 				4961F6311F8FB70A0093EC86 /* Grade+Network.swift in Sources */,
 				493020701F902462006BD777 /* HTTPHeaders.swift in Sources */,
 				7D52D89322FCC73100684932 /* Submission.swift in Sources */,
@@ -1836,7 +1718,6 @@
 				4961F62D1F8FB7070093EC86 /* Enrollment.swift in Sources */,
 				49CE96631F8FF41B00121A43 /* QuizController.swift in Sources */,
 				493020781F902462006BD777 /* SessionUser.swift in Sources */,
-				4961F5581F8FAF280093EC86 /* MeterTable.swift in Sources */,
 				4961F63A1F8FB7140093EC86 /* EnrollmentKit.xcdatamodeld in Sources */,
 				4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */,
 				493020581F902364006BD777 /* Temporal.swift in Sources */,
@@ -1855,7 +1736,6 @@
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */,
-				4961F55D1F8FAF310093EC86 /* VolumeLevelMeterView.swift in Sources */,
 				7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */,
 				49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */,
 				4961F5E51F8FB3FC0093EC86 /* Model+CacheKey.swift in Sources */,
@@ -1865,7 +1745,6 @@
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
 				4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */,
 				3BA0F9B620069CEB00E64448 /* UIView+AutoLayout.swift in Sources */,
-				49301FD11F9014C6006BD777 /* CalendarEvent+Collections.swift in Sources */,
 				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,
 				49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */,
 				B1411D5A1FE825ED00CD4967 /* CoreDataSyncHelper.swift in Sources */,
@@ -1873,7 +1752,6 @@
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
 				7D52D88122FCC73100684932 /* Session+AssignmentKit.swift in Sources */,
 				4961F59E1F8FB2970093EC86 /* UIColor+LightenUpOkay.swift in Sources */,
-				49301FD21F9014C6006BD777 /* CalendarEvent+Network.swift in Sources */,
 				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
 				493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */,
 				4961F6271F8FB7050093EC86 /* Course+Collections.swift in Sources */,
@@ -1897,7 +1775,6 @@
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				4961F5EB1F8FB4070093EC86 /* TableViewDataSource.swift in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
-				4961F55A1F8FAF310093EC86 /* NSTimeInterval+MediaKit.swift in Sources */,
 				49CE96BB1F8FF94B00121A43 /* CanvasWebViewHTML.swift in Sources */,
 				493020111F901CF5006BD777 /* CommentTableViewCell.swift in Sources */,
 				4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */,
@@ -1906,7 +1783,6 @@
 				7D52D87722FCC73100684932 /* AssignmentGroupAPI.swift in Sources */,
 				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
 				4961F6391F8FB7110093EC86 /* Group.swift in Sources */,
-				4961F5541F8FAF280093EC86 /* AudioRecorderView.swift in Sources */,
 				2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */,
 				49CE96701F8FF41B00121A43 /* NonNativeQuizTakingViewController.swift in Sources */,
 				4961F5E71F8FB3FC0093EC86 /* Session+RefreshScope.swift in Sources */,
@@ -2216,16 +2092,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		49301FCC1F9014C5006BD777 /* CalendarKit.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				49301FCD1F9014C5006BD777 /* CalendarKit.xcdatamodel */,
-			);
-			currentVersion = 49301FCD1F9014C5006BD777 /* CalendarKit.xcdatamodel */;
-			path = CalendarKit.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		4961F5CE1F8FB3D90093EC86 /* SoRefreshing.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

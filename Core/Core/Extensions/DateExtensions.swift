@@ -98,6 +98,12 @@ public extension Date {
         formatter.timeStyle = .short
         return formatter
     }()
+    static var intervalDateTimeFormatter: DateIntervalFormatter = {
+        let formatter = DateIntervalFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
 
     var dateOnlyString: String {
         DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .none)
@@ -110,5 +116,8 @@ public extension Date {
     }
     var relativeDateTimeString: String {
         Date.relativeDateTimeFormatter.string(from: self)
+    }
+    func intervalStringTo(_ to: Date) -> String {
+        return Date.intervalDateTimeFormatter.string(from: self, to: to)
     }
 }

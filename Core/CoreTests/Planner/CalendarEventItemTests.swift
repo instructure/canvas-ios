@@ -19,9 +19,9 @@
 import XCTest
 @testable import Core
 
-class CalendarEventItemTests: CoreTestCase {
+class CalendarEventTests: CoreTestCase {
     func testRoutingURL() {
-        let event = CalendarEventItem.make()
+        let event = CalendarEvent.make()
         let expected = URL(string: "calendar_events/1")
         XCTAssertEqual(event.routingURL, expected)
     }

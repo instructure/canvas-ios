@@ -129,7 +129,9 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         lockLabel.text = file.lockExplanation
         lockView.isHidden = !file.lockedForUser
         // TODO: viewModulesButton.isHidden = file.lockInfo.contextModule != nil
-        if let file = files.first, let url = file.url, remoteURL != url {
+        if file.lockedForUser {
+            doneLoading()
+        } else if let file = files.first, let url = file.url, remoteURL != url {
             remoteURL = url
             downloadFile(at: url)
         }

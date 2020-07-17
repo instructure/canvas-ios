@@ -20,13 +20,13 @@ import CoreData
 import Foundation
 @testable import Core
 
-extension CalendarEventItem {
+extension CalendarEvent {
     @discardableResult
     public static func make(
         from api: APICalendarEvent = .make(),
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> CalendarEventItem {
-        let model = CalendarEventItem.save(api, in: context)
+    ) -> CalendarEvent {
+        let model = CalendarEvent.save(api, in: context)
         try! context.save()
         return model
     }

@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var locationHeadingLabel: UILabel!
@@ -36,21 +36,15 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
     var color: UIColor?
     let env = AppEnvironment.shared
     var eventID = ""
-    lazy var intervalFormatter: DateIntervalFormatter = {
-        let formatter = DateIntervalFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
-    lazy var events = env.subscribe(GetCalendarEventItem(eventID: eventID)) { [weak self] in
+    lazy var events = env.subscribe(GetCalendarEvent(eventID: eventID)) { [weak self] in
         self?.update()
     }
 
-    static func create(eventID: String) -> CalendarEventItemDetailsViewController {
+    static func create(eventID: String) -> CalendarEventDetailsViewController {
         let controller = loadFromStoryboard()
         controller.eventID = eventID
         return controller
@@ -101,7 +95,7 @@ class CalendarEventItemDetailsViewController: UIViewController, ColoredNavViewPr
         if event.isAllDay {
             dateLabel.text = event.startAt?.dateOnlyString
         } else if let start = event.startAt, let end = event.endAt {
-            dateLabel.text = intervalFormatter.string(from: start, to: end)
+            dateLabel.text = start.intervalStringTo(end)
         } else {
             dateLabel.text = event.startAt?.dateTimeString
         }
