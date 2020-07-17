@@ -118,7 +118,8 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
         controller.reminderSwitch.isOn = true
         controller.reminderSwitch.sendActions(for: .valueChanged)
         XCTAssertEqual(controller.reminderDateButton.isHidden, false)
-        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), "Jul 13, 2020 at 11:00 PM")
+        XCTAssertEqual(controller.reminderDateButton.title(for: .normal), controller.reminderDatePicker.date.dateTimeString)
+        XCTAssertGreaterThan(controller.reminderDatePicker.date, Clock.now)
         XCTAssertEqual(controller.reminderDatePicker.isHidden, false)
     }
 }
