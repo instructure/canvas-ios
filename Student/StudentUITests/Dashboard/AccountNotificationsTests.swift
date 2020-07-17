@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class AccountNotificationsTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return AccountNotificationsTests.self }
-
     let announcement1 = APIAccountNotification.make(id: "1")
     let announcement2 = APIAccountNotification.make(id: "2")
 
