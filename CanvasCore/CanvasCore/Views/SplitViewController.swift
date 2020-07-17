@@ -17,12 +17,13 @@
 //
 
 import UIKit
+import Core
 
 extension UISplitViewController {
     @objc open func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
         let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
-        let icon: UIImage = collapse ? .icon(.collapse) : .icon(.expand)
+        let icon: UIImage = collapse ? .icon(.exitFullScreen) : .icon(.fullScreen)
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         prettyButton.accessibilityLabel = collapse ? NSLocalizedString("Collapse", comment: "") : NSLocalizedString("Expand", comment: "")
         return prettyButton
