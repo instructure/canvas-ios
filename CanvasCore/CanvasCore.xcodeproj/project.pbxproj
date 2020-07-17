@@ -116,7 +116,6 @@
 		4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */; };
 		4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */; };
 		4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58B1F8FB2140093EC86 /* SplitViewController.swift */; };
-		4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */; };
 		4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5801F8FB2120093EC86 /* HairlineView.swift */; };
 		4961F5D41F8FB3EB0093EC86 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5BB1F8FB3D70093EC86 /* Collection.swift */; };
 		4961F5D51F8FB3EB0093EC86 /* CollectionType+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5BC1F8FB3D70093EC86 /* CollectionType+Edits.swift */; };
@@ -233,7 +232,6 @@
 		7D52D89422FCC73100684932 /* SubmissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D86D22FCC73100684932 /* SubmissionEvent.swift */; };
 		7D52D89522FCC73100684932 /* Submission+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D86E22FCC73100684932 /* Submission+Collections.swift */; };
 		7D52D89622FCC73100684932 /* Submission+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D86F22FCC73100684932 /* Submission+Network.swift */; };
-		7D52D8A022FCC7FD00684932 /* Graphic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D89F22FCC7FC00684932 /* Graphic.swift */; };
 		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
 		7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
@@ -379,7 +377,6 @@
 		4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LightenUpOkay.swift"; sourceTree = "<group>"; };
 		4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ShadesOfGray.swift"; sourceTree = "<group>"; };
-		4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallModalNavigationController.swift; sourceTree = "<group>"; };
 		4961F5801F8FB2120093EC86 /* HairlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
 		4961F5831F8FB2130093EC86 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		4961F58B1F8FB2140093EC86 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -514,7 +511,6 @@
 		7D52D86D22FCC73100684932 /* SubmissionEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionEvent.swift; sourceTree = "<group>"; };
 		7D52D86E22FCC73100684932 /* Submission+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Collections.swift"; sourceTree = "<group>"; };
 		7D52D86F22FCC73100684932 /* Submission+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Network.swift"; sourceTree = "<group>"; };
-		7D52D89F22FCC7FC00684932 /* Graphic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graphic.swift; sourceTree = "<group>"; };
 		7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
 		7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestHandler.m; sourceTree = "<group>"; };
 		7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -941,7 +937,6 @@
 		4961F5141F8FABDC0093EC86 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				7D52D89F22FCC7FC00684932 /* Graphic.swift */,
 				4961F5161F8FAC3C0093EC86 /* Icon.swift */,
 				4961F5181F8FAC3D0093EC86 /* Icons.xcassets */,
 				4961F5171F8FAC3D0093EC86 /* UIImage+SoIconic.swift */,
@@ -992,7 +987,6 @@
 		4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */ = {
 			isa = PBXGroup;
 			children = (
-				4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */,
 				4961F5801F8FB2120093EC86 /* HairlineView.swift */,
 			);
 			path = "UIKit+SoPretty";
@@ -1654,7 +1648,6 @@
 				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				7D52D87B22FCC73100684932 /* Assignment+Details.swift in Sources */,
-				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
 				4961F6291F8FB7050093EC86 /* Course.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
@@ -1669,7 +1662,6 @@
 				493020711F902462006BD777 /* Session.swift in Sources */,
 				7D52D87022FCC73100684932 /* DueDateOverride.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
-				7D52D8A022FCC7FD00684932 /* Graphic.swift in Sources */,
 				4961F5E81F8FB3FF0093EC86 /* SoRefreshing.xcdatamodeld in Sources */,
 				B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */,
 				4961F5D61F8FB3EB0093EC86 /* FetchedCollection.swift in Sources */,
