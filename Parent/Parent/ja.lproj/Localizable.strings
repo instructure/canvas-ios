@@ -47,9 +47,6 @@
 "Calendar" = "予定表";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "予定表のイベント";
-
-/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "該当せず";
 
+/* No comment provided by engineer. */
+"No Alerts" = "アラートはありません";
+
 /* Empty Courses Text */
 "No Courses" = "コースなし";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "DiscussionKit データベースファイルを読み込み中、問題がありました。.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "アラートの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "まだ通知される事項がありません。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "この発表は終了しました。";

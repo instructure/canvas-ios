@@ -113,13 +113,19 @@
 "Assignment grade above" = "تقييم المهمة أعلاه";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "تقدير المهمة أعلاه %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "تقييم المهمة أدناه";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "تقييم المهمة أدناه %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "مهمة مفقودة";
 
 /* No comment provided by engineer. */
-"Attachment" = "المرفق";
+"Assignment Missing" = "مهمة مفقودة";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
@@ -302,6 +308,9 @@
 "Copied!" = "تم النسخ!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "نسخ الرابط";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "تعذر إطلاق الأداة. يرجى إعادة المحاولة.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "أنشطة المساق";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "إعلان المساق";
 
 /* No comment provided by engineer. */
 "Course announcements" = "إعلانات المساق";
@@ -320,7 +332,13 @@
 "Course grade above" = "تقييم المساق أعلاه";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "تقدير المساق أعلاه  %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "تقييم المساق أدناه";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "تقدير المساق أدناه  %d";
 
 /* No comment provided by engineer. */
 "Courses" = "المساقات";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "غير مكتمل";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "إعلان المؤسسة";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "إعلانات المؤسسة";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "جارٍ الحفظ...";
+
+/* No comment provided by engineer. */
+"Scanner" = "الماسح الضوئي";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "المسح الضوئي غير مدعوم";

@@ -47,9 +47,6 @@
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Kalenderbegivenhed";
-
-/* No comment provided by engineer. */
 "Cancel" = "Annuller";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "Gælder ikke";
 
+/* No comment provided by engineer. */
+"No Alerts" = "Ingen varslinger";
+
 /* Empty Courses Text */
 "No Courses" = "Ingen kurser";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "Der opstod et problem ved indlæsning af DiscussionKit database-fil.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af varslinger. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Der opstod en fejl under indlæsningen af studerende. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Der er ikke noget at blive underrettet om endnu.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Denne besked er udløbet.";

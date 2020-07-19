@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Available until";
 
-/* stop record button a11y hint */
-"Begin recording" = "Begin recording";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Data error";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Delete";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Delete comment";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Delete recording?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Disk error";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Dismiss";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "None";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Not permitted";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Not available.";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Past";
 
-/* Pause recording/playback */
-"Pause" = "Pause";
-
-/* record button a11y hint */
-"Pause playback" = "Pause playback";
-
-/* Playback button */
-"Play" = "Play";
-
-/* play button a11y hint */
-"Play back recording" = "Play back recording";
-
-/* Title for playback error messages */
-"Playback Error" = "Playback error";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Please check your network connection and try again";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Read more";
 
-/* Record button a11y label */
-"Record" = "Record";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Record permission help";
-
-/* title for a recording error */
-"Recording Error" = "Recording error";
-
 /* No comment provided by engineer. */
 "Remove" = "Remove";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Report";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Request audio recording permission";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Request permission to record audio";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Resume quiz";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Stay";
 
-/* stop recording button a11y label */
-"Stop" = "Stop";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Take Quiz";
-
-/* Error message for a file missing */
-"The file does not exist." = "The file does not exist.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "The pages are gone! Why are the pages always gone?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "There was a problem loading the AssignmentKit database file.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "There was a problem loading the CalendarKit database file.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "There was a problem loading the EnrollmentKit database file.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Upcoming";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "User has denied record permission";
-
 /* button for viewing quiz results */
 "View Results" = "View results";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "You have used all your available attempts for this quiz.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "You must grant (appName) microphone access in the settings app to record audio.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";

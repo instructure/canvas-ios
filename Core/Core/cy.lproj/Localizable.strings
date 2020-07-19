@@ -113,13 +113,19 @@
 "Assignment grade above" = "Gradd yr aseiniad yn uwch na";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Gradd yr Aseiniad yn Uwch na %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Gradd yr aseiniad yn is na";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Gradd yr Aseiniad yn Is na %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Aseiniad ar goll";
 
 /* No comment provided by engineer. */
-"Attachment" = "Atodiad";
+"Assignment Missing" = "Aseiniad ar Goll";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Ymgais %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Wedi copïo!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copïo Dolen";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Doedd dim modd lansio’r adnodd. Rhowch gynnig arall arni.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Gweithgareddau Cwrs";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Cyhoeddiad Cwrs";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Cyhoeddiadau cwrs";
@@ -320,7 +332,13 @@
 "Course grade above" = "Gradd y cwrs yn uwch na";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Gradd y Cwrs yn Uwch na %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Gradd y cwrs yn is na";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Gradd y Cwrs yn Is na %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Cyrsiau";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Cyhoeddiad Sefydliad";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Cyhoeddiadau sefydliadau";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Wrthi’n cadw...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Sganiwr";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Does dim modd delio â sganio";

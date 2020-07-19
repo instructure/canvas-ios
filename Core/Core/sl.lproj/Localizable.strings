@@ -113,13 +113,19 @@
 "Assignment grade above" = "Ocena pri nalogi višja od";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Ocena pri nalogi, višja od %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Ocena pri nalogi nižja od";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Ocena pri nalogi, nižja od %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Manjkajoča naloga";
 
 /* No comment provided by engineer. */
-"Attachment" = "Priloga";
+"Assignment Missing" = "Manjkajoča naloga";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poskus %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Kopirano.";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Kopiraj povezavo";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Orodja ni bilo mogoče zagnati. Poskusite znova.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Aktivnosti pri predmetu";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Obvestilo o predmetu";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Obvestila o predmetu";
@@ -320,7 +332,13 @@
 "Course grade above" = "Ocena pri predmetu višja od";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Ocena pri predmetu, višja od  %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Ocena pri predmetu nižja od";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Ocena pri predmetu, nižja od  %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Predmeti";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nezaključeno";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Obvestilo ustanove";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Obvestila ustanove";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Shranjevanje ...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Optično branje";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Optično branje ni podprto";

@@ -113,13 +113,19 @@
 "Assignment grade above" = "Uppgiftsomdöme över";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Uppgiftsomdöme Över %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Uppgiftsbetyg nedan";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Uppgiftsomdöme Under %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tilldelning saknas";
 
 /* No comment provided by engineer. */
-"Attachment" = "Bilaga";
+"Assignment Missing" = "Uppgift saknas";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Kopierad!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Kopiera länk";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Det gick inte att starta verktyget. Försök igen.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Kursaktiviteter";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Anslag";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anslag";
@@ -320,7 +332,13 @@
 "Course grade above" = "Kursbetyg över";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Kursomdöme Över %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Kursbetyg under";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Kursomdöme Under %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurser";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ej fullständig";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Institutionsmeddelande";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Institutionens anslag";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Sparar ...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Skanner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skanning stöds inte";

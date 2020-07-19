@@ -113,13 +113,19 @@
 "Assignment grade above" = "Opdrachtcijfer hoger dan";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Opdrachtcijfer hoger dan %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Opdrachtcijfer lager dan";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Opdrachtcijfer lager dan %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Opdracht ontbreekt";
 
 /* No comment provided by engineer. */
-"Attachment" = "Bijlage";
+"Assignment Missing" = "Opdracht ontbreekt";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Poging %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Gekopieerd!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Link kopieren";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Kan tool niet starten. Probeer het opnieuw.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Cursusactiviteiten";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Cursusaankondiging";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Cursusaankondigingen";
@@ -320,7 +332,13 @@
 "Course grade above" = "Cursuscijfer hoger dan";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Cursuscijfer hoger dan %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Cursuscijfer lager dan";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Cursuscijfer lager dan %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursussen";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleet";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Aankondiging organisatie";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Aankondigingen van de instelling";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Bezig met opslaan...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Scanner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scannen wordt niet ondersteund";
