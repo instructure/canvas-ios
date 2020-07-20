@@ -229,7 +229,7 @@ private class Runner {
             videoProcess = cmd("xcrun", "simctl", "io", "booted", "recordVideo", videoFile).async()
         }
         defer {
-            try? videoProcess?.kill()
+            try? videoProcess?.kill(signal: SIGINT)
             _ = videoProcess?.exitCode()
         }
         return try doTest(try: retryNumber)
