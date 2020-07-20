@@ -56,7 +56,7 @@ class PlannerTests: CoreUITestCase {
 
         PlannerList.event(id: "2904").tap()
         app.find(label: "first").waitToExist()
-        XCTAssert(app.find(label: "Instructure SLC\n6330 S 3000 E Salt Lake City, UT 84121").exists())
+        app.find(label: "Instructure SLC\n6330 S 3000 E Salt Lake City, UT 84121").waitToExist()
         NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
