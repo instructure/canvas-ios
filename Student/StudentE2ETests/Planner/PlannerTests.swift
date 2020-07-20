@@ -56,7 +56,7 @@ class PlannerTests: CoreUITestCase {
 
         PlannerList.event(id: "2233").tap()
         app.find(label: "first").waitToExist()
-        XCTAssert(app.find(label: "Instructure SLC").exists())
+        app.find(label: "Instructure SLC").waitToExist()
         XCTAssert(app.find(label: "6330 S 3000 E Salt Lake City, UT 84121").exists())
         NavBar.backButton.tap()
 
