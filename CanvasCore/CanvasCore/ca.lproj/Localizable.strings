@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Disponible fins a";
 
-/* stop record button a11y hint */
-"Begin recording" = "Comença a enregistrar";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Cancel·la";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Error a les dades";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Suprimeix";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Suprimeix el comentari";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Voleu suprimir l'enregistrament?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Error de disc";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Descarta";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Cap";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "No està permès";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "No es pot realitzar";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Passat";
 
-/* Pause recording/playback */
-"Pause" = "Fes una pausa";
-
-/* record button a11y hint */
-"Pause playback" = "Posa la reproducció en pausa";
-
-/* Playback button */
-"Play" = "Reprodueix";
-
-/* play button a11y hint */
-"Play back recording" = "Reprodueix l'enregistrament";
-
-/* Title for playback error messages */
-"Playback Error" = "Error de reproducció";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Reviseu la connexió de xarxa i torneu a provar-ho.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Obtén més informació";
 
-/* Record button a11y label */
-"Record" = "Enregistra";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Ajuda sobre el permís per enregistrar";
-
-/* title for a recording error */
-"Recording Error" = "Error en enregistrar";
-
 /* No comment provided by engineer. */
 "Remove" = "Elimina";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Informa";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Sol·licita permís per enregistrar so";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Sol·licita permís per enregistrar so";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Reprèn el qüestionari";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Roman";
 
-/* stop recording button a11y label */
-"Stop" = "Atura";
-
 /* No comment provided by engineer. */
 "Style" = "Estil";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Realitza el qüestionari";
-
-/* Error message for a file missing */
-"The file does not exist." = "El fitxer no existeix.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Les pàgines han desaparegut. Per què sempre desapareixen les pàgines?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de AssignmentKit.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de CalendarKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de EnrollmentKit.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Proper";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "L'usuari ha denegat el permís per enregistrar";
-
 /* button for viewing quiz results */
 "View Results" = "Mostra els resultats";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Ja heu utilitzat tots els intents disponibles en aquest qüestionari.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Per tal d'enregistrar so, heu de concedir (appName) accés al micròfon a l'aplicació Configuració.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "El dispositiu s'ha quedat sense espai d'emmagatzematge. Allibereu espai i torneu a provar-ho.";

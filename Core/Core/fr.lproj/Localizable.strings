@@ -113,13 +113,19 @@
 "Assignment grade above" = "Note du devoir au dessus de";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Note du travail supérieure à %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Note du devoir en dessous de";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Note du devoir inférieure à %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Devoir manquant";
 
 /* No comment provided by engineer. */
-"Attachment" = "Pièce jointe";
+"Assignment Missing" = "Travail manquant";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentative %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Copié !";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copier le lien";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Impossible de lancer l’outil. Veuillez réessayer.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Activités du cours";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Annonce de cours";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Annonces de cours";
@@ -320,7 +332,13 @@
 "Course grade above" = "Note du cours au dessus de";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Note de cours supérieure à  %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Note du cours en dessous de";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Note de cours inférieure à  %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Cours";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incomplet";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Annonce d'institution";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Annonces de l'institution";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Sauvegarde en cours...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Analyse";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Numérisation non prise en charge";

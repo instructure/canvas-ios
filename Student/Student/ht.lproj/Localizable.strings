@@ -576,6 +576,9 @@
 "Event" = "Aktivite";
 
 /* No comment provided by engineer. */
+"Event Details" = "Detay Aktivite";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Atachman ki Deja Egziste";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Chajman...";
+
+/* No comment provided by engineer. */
+"Location" = "Anplasman";
 
 /* No comment provided by engineer. */
 "Locked" = "Bloke";

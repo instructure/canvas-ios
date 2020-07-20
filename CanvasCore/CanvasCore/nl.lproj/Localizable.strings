@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Beschikbaar tot";
 
-/* stop record button a11y hint */
-"Begin recording" = "Beginnen met opnemen";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Annuleren";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Data Error";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Verwijderen";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Opmerking verwijderen";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Opname wissen?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Schijffout";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Afwijzen";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Geen";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Niet toegestaan";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Niet beschikbaar";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Vorige";
 
-/* Pause recording/playback */
-"Pause" = "Pauze";
-
-/* record button a11y hint */
-"Pause playback" = "Pauze afspelen";
-
-/* Playback button */
-"Play" = "Afspelen";
-
-/* play button a11y hint */
-"Play back recording" = "Opname afspelen";
-
-/* Title for playback error messages */
-"Playback Error" = "Fout bij afspelen";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Controleer je netwerkverbinding en probeer nogmaals.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Meer lezen";
 
-/* Record button a11y label */
-"Record" = "Opnemen";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Record Toestemming Help";
-
-/* title for a recording error */
-"Recording Error" = "Opnamefout";
-
 /* No comment provided by engineer. */
 "Remove" = "Verwijderen";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Rapport";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Toestemming aanvragen voor audio opname";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Toestemming aanvragen om audio op te nemen";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Toets hervatten";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Blijven";
 
-/* stop recording button a11y label */
-"Stop" = "Stoppen";
-
 /* No comment provided by engineer. */
 "Style" = "Stijl";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Toets doen";
-
-/* Error message for a file missing */
-"The file does not exist." = "Het bestand bestaat niet.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "De pagina's zijn verdwenen!? Waarom zijn die pagina's er nooit?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Er is een probleem met het laden van het AssignmentKit-databasebestand.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Er is een probleem met het laden van het CalendarKit-databasebestand.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Er is een probleem met het laden van het EnrollmentKit-databasebestand.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Aanstaand";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Gebruiker heeft toestemming om op te nemen geweigerd";
-
 /* button for viewing quiz results */
 "View Results" = "Resultaten weergeven";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Je hebt al je beschikbare pogingen gebruikt voor deze toets.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Je moet (appName) Microfoon-toegang verlenen in de app Instellingen om audio op te nemen.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Je apparaat beschikt over onvoldoende opslagruimte. Maak ruimte vrij en probeer het opnieuw.";

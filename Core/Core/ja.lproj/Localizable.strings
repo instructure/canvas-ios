@@ -113,13 +113,19 @@
 "Assignment grade above" = "未満の課題成績";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "以上の課題の成績 %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "を超える課題成績";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "以下の課題の成績 %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "課題がありません";
 
 /* No comment provided by engineer. */
-"Attachment" = "添付ファイル";
+"Assignment Missing" = "課題がありません";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -302,6 +308,9 @@
 "Copied!" = "コピーしました！";
 
 /* No comment provided by engineer. */
+"Copy Link" = "リンクをコピー";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "ツールを起動できませんでした。再度試してください。";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "コースアクティビティ";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "コースのお知らせ";
 
 /* No comment provided by engineer. */
 "Course announcements" = "コースのアナウンスメント";
@@ -320,7 +332,13 @@
 "Course grade above" = "未満のコース成績";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "以上のコース成績 %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "を超えるコース成績";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "以下のコース成績 %d";
 
 /* No comment provided by engineer. */
 "Courses" = "コース";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "不完全";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "学校のお知らせ";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "教育機関のアナウンスメント";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "保存しています…";
+
+/* No comment provided by engineer. */
+"Scanner" = "スキャナー";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "スキャンはサポートされていません";

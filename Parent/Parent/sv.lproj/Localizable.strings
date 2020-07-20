@@ -47,9 +47,6 @@
 "Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Kalenderhändelse";
-
-/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
+/* No comment provided by engineer. */
+"No Alerts" = "Inga notiser";
+
 /* Empty Courses Text */
 "No Courses" = "Inga kurser";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för DiscussionKit.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "Ett fel inträffade när notiser laddades. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Det gick inte att läsa in studenter. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Det finns inget att avisera om än.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Detta anslag har upphört att gälla.";

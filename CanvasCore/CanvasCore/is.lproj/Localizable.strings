@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Tiltækt til";
 
-/* stop record button a11y hint */
-"Begin recording" = "Hefja upptöku";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Hætta við";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Villa í gögnum";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Eyða";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Eyða athugasemd";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Eyða upptöku?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskavilla";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Sleppa";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Ekkert";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Ekki leyft";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ekki takanlegt";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Fyrri";
 
-/* Pause recording/playback */
-"Pause" = "Gera hlé";
-
-/* record button a11y hint */
-"Pause playback" = "Gera hlé á spilun";
-
-/* Playback button */
-"Play" = "Spila";
-
-/* play button a11y hint */
-"Play back recording" = "Spila upptöku aftur";
-
-/* Title for playback error messages */
-"Playback Error" = "Villa við spilun";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Athugaðu nettengingu þína og reyndu aftur.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Lesa meira";
 
-/* Record button a11y label */
-"Record" = "Upptaka";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Hjálp við upptökuleyfi";
-
-/* title for a recording error */
-"Recording Error" = "Upptökuvilla";
-
 /* No comment provided by engineer. */
 "Remove" = "Fjarlægja";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Skýrsla";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Biðja um hljóðupptökuleyfi";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Biðja um leyfi til að taka upp hljóð";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Halda áfram með próf";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Dvöl";
 
-/* stop recording button a11y label */
-"Stop" = "Stoppa";
-
 /* No comment provided by engineer. */
 "Style" = "Stíll";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Taka próf";
-
-/* Error message for a file missing */
-"The file does not exist." = "Skráin er ekki til.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Síðurnar eru farnar!? Af hverju eru síðurnar alltaf farnar?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Vandamál kom upp við að sækja AssignmentKit gagnagrunnsskránna.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Vandamál kom upp við að sækja CalendarKit gagnagrunnsskránna.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Vandamál kom upp við að sækja EnrollmentKit gagnagrunnsskránna.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Væntanlegt";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Notandi hefur hafnað upptökuleyfi";
-
 /* button for viewing quiz results */
 "View Results" = "Skoða niðurstöður";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Þú hefur notað allar tilraunir sem þú hefur á þessu prófi.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Þú verður að gefa (appName) hljóðnemaaðgang í stillingaappinu til þess að taka upp hljóð.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Tækið þitt er búið með geymslupláss. Losaðu pláss og reyndu aftur.";

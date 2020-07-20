@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "wātea Kia";
 
-/* stop record button a11y hint */
-"Begin recording" = "Timata tāhopu";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Whakakore";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Hapa Raraunga";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Muku";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Muku Kōrero";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Mukua tāhopu?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Hapa kōpae";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Pana";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Kaore";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "e kore e whakāetia";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "e kore e tāketia ana";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "O muri";
 
-/* Pause recording/playback */
-"Pause" = "Okioki";
-
-/* record button a11y hint */
-"Pause playback" = "purei okioki";
-
-/* Playback button */
-"Play" = "Tākaro";
-
-/* play button a11y hint */
-"Play back recording" = "Tākaro tāhopu anō";
-
-/* Title for playback error messages */
-"Playback Error" = "Tākaro tāhopu Hapa anō";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Tēnā koa tirohia tō hononga whatunga, me te ngana anō.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Pānuitia atu";
 
-/* Record button a11y label */
-"Record" = "Tāhopu";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Tāhopu Āwhina Whakaaetanga";
-
-/* title for a recording error */
-"Recording Error" = "Tāhopu Hapa";
-
 /* No comment provided by engineer. */
 "Remove" = "Tangohia";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Pūrongo";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Tono Ororongo Tuhi Whakāetanga";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Tono Whakāetanga ki te Tāhopu ororongo";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Tīmata Quiz";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Noho";
 
-/* stop recording button a11y label */
-"Stop" = "Kāti";
-
 /* No comment provided by engineer. */
 "Style" = "Kāhua";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Tangohia Quiz";
-
-/* Error message for a file missing */
-"The file does not exist." = "Kāore i te tīariari te kōnae.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Kua kore ngā Whārangii!? He aha e kore ana ngā whārangi i ngā wā katoa ?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "He raruraru i te wā e uta ana i te AssignmentKit kōnae pātengi rarunga.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "He raruraru i te wā e uta ana i te CalendarKit kōnae pātengi rarunga.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "He raruraru i te wā e uta ana i te EnrollmentKit kōnae pātengi rarunga.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "E haere mai ana";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Kua whakakahore te whakāetanga rekoata a te Kaiwhakamahi";
-
 /* button for viewing quiz results */
 "View Results" = "Tirohia Ngā Hua";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Kua whakamahia e koe ou nganatanga katoa e wātea ana i runga i tēnei quiz";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Me tuku e koe (appName) te uru ki te Hopuoro i te taupānga Tautuhinga hei rēkoata ororongo.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Kua kore te wāhi rokiroki i roto i tō pūrere. Tēnā koa whakawātea ake he wāhi, me te ngana anō";

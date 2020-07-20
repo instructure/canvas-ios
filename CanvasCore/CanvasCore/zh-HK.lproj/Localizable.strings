@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "可用截止時間";
 
-/* stop record button a11y hint */
-"Begin recording" = "開始錄製";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "資料錯誤";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "刪除";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "刪除評論";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "確定刪除錄製內容？";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "磁碟錯誤";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "解除";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "無";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "未經許可";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "不可用";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "歷史";
 
-/* Pause recording/playback */
-"Pause" = "暫停";
-
-/* record button a11y hint */
-"Pause playback" = "暫停播放";
-
-/* Playback button */
-"Play" = "播放";
-
-/* play button a11y hint */
-"Play back recording" = "播放錄製的內容";
-
-/* Title for playback error messages */
-"Playback Error" = "播放錯誤";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "請檢查您的網路連接，然後重試。";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "讀取更多";
 
-/* Record button a11y label */
-"Record" = "記錄";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "錄製許可支援";
-
-/* title for a recording error */
-"Recording Error" = "錄製錯誤";
-
 /* No comment provided by engineer. */
 "Remove" = "移除";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "報告";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "請求音頻錄製許可";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "請求許可以錄製音頻";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "繼續測驗";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "保持";
 
-/* stop recording button a11y label */
-"Stop" = "停止";
-
 /* No comment provided by engineer. */
 "Style" = "樣式";
 
 /* Button for taking the quiz */
 "Take Quiz" = "參加考試";
-
-/* Error message for a file missing */
-"The file does not exist." = "資料夾不存在。";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "內容頁消失了！？為甚麼內容頁經常消失？";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "載入 AssignmentKit 資料庫檔案時出現問題。";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "載入 CalendarKit 資料庫檔案時出現問題。";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "載入 EnrollmentKit 資料庫檔案時出現問題。";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "即將進行的";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "使用者已拒絕錄製許可請求";
-
 /* button for viewing quiz results */
 "View Results" = "檢視答案";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "您已用完在此測驗中的所有嘗試機會。";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "您必須在設定程式中批准 (appName) 使用麥克風的權限，以便錄製音頻。";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "您的設備沒有儲存空間了。請釋放空間，然後重試。";

@@ -47,9 +47,6 @@
 "Calendar" = "日历";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "日历事件";
-
-/* No comment provided by engineer. */
 "Cancel" = "取消";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "不适用";
 
+/* No comment provided by engineer. */
+"No Alerts" = "无警告";
+
 /* Empty Courses Text */
 "No Courses" = "没有课程";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "加载DiscussionKit数据库文件时出现问题。";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "加载警告时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "加载学生时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "目前没有通知。";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "此公告已过期。";

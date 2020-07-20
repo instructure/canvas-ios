@@ -576,6 +576,9 @@
 "Event" = "Tapahtuma";
 
 /* No comment provided by engineer. */
+"Event Details" = "Tapahtuman tiedot";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Olemassa olevat liitteet...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Ladataan...";
+
+/* No comment provided by engineer. */
+"Location" = "Sijainti";
 
 /* No comment provided by engineer. */
 "Locked" = "Lukittu";

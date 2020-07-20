@@ -47,9 +47,6 @@
 "Calendar" = "Calendari";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Esdeveniment al calendari";
-
-/* No comment provided by engineer. */
 "Cancel" = "Cancel·la";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
+/* No comment provided by engineer. */
+"No Alerts" = "Cap avís";
+
 /* Empty Courses Text */
 "No Courses" = "No hi ha cap curs";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de DiscussionKit.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "S'ha produït un error en carregar els avisos. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "S'ha produït un error en carregar els estudiants. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Encara no hi ha res que s'hagi de notificar.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Aquest anunci ha caducat.";

@@ -576,6 +576,9 @@
 "Event" = "Digwyddiad";
 
 /* No comment provided by engineer. */
+"Event Details" = "Manylion Digwyddiad";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Atodiadau Presennol...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Wrthi’n llwytho...";
+
+/* No comment provided by engineer. */
+"Location" = "Lleoliad";
 
 /* No comment provided by engineer. */
 "Locked" = "Wedi Cloi";

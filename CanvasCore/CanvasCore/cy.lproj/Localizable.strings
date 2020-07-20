@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Ar gael tan";
 
-/* stop record button a11y hint */
-"Begin recording" = "Dechrau'r recordiad";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Canslo";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Gwall Data";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Dileu";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Dileu Sylw";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Dileu’r recordiad?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Gwall ar y Ddisg";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Diystyru";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Dim";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Dim Hawl";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Dim modd ei gymryd";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Blaenorol";
 
-/* Pause recording/playback */
-"Pause" = "Rhewi";
-
-/* record button a11y hint */
-"Pause playback" = "Rhewi'r chwarae";
-
-/* Playback button */
-"Play" = "Chwarae";
-
-/* play button a11y hint */
-"Play back recording" = "Chwarae'r recordiad";
-
-/* Title for playback error messages */
-"Playback Error" = "Gwall wrth Chwarae";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Gwiriwch eich cysylltiad rhwydwaith a rhoi cynnig arall arni.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Darllen mwy";
 
-/* Record button a11y label */
-"Record" = "Recordio";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Cymorth â Hawliau Recordio";
-
-/* title for a recording error */
-"Recording Error" = "Gwall wrth Recordio";
-
 /* No comment provided by engineer. */
 "Remove" = "Dileu";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Adroddiad";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Gofyn am Hawl i Recordio Sain";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Gofyn am Hawl i Recordio Sain";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Parhau â'r Cwis";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Aros";
 
-/* stop recording button a11y label */
-"Stop" = "Stopio";
-
 /* No comment provided by engineer. */
 "Style" = "Arddull";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Gwnewch y Cwis";
-
-/* Error message for a file missing */
-"The file does not exist." = "Dydy’r ffeil ddim yn bodoli.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Mae'r Tudalennau wedi mynd!? Pam mae'r tudalennau wedi mynd bob amser?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AssignmentKit.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata CalendarKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata EnrollmentKit.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Ar y gweill";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Defnyddiwr wedi gwrthod hawl i recordio";
-
 /* button for viewing quiz results */
 "View Results" = "Gweld Canlyniadau";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Rydych chi wedi defnyddio pob ymgais sydd ar gael ar gyfer y cwis hwn.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Rhaid i chi alluogi hawliau mynediad y Microffonar gyfer (appName) yn yr ap Gosodiadau er mwyn recordio sain.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";

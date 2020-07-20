@@ -576,6 +576,9 @@
 "Event" = "Ereignis";
 
 /* No comment provided by engineer. */
+"Event Details" = "Eventdetails";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Vorhandene Anhänge...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Wird geladen ...";
+
+/* No comment provided by engineer. */
+"Location" = "Standort";
 
 /* No comment provided by engineer. */
 "Locked" = "Gesperrt";

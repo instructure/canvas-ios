@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "متاح حتى";
 
-/* stop record button a11y hint */
-"Begin recording" = "بدء التسجيل";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "خطأ في البيانات";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "حذف";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "حذف التعليق";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "حذف التسجيل؟";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "خطأ في القرص";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "تجاهل";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "بلا";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "غير مسموح به";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "لا يمكن إجراؤه";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "الماضي";
 
-/* Pause recording/playback */
-"Pause" = "إيقاف مؤقت";
-
-/* record button a11y hint */
-"Pause playback" = "إيقاف مؤقت للتشغيل";
-
-/* Playback button */
-"Play" = "تشغيل";
-
-/* play button a11y hint */
-"Play back recording" = "تشغيل تسجيل";
-
-/* Title for playback error messages */
-"Playback Error" = "خطأ في التشغيل";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "يرجى التحقق من اتصال الشبكة وإعادة المحاولة.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "قراءة المزيد";
 
-/* Record button a11y label */
-"Record" = "تسجيل";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "تعليمات أذونات التسجيل";
-
-/* title for a recording error */
-"Recording Error" = "خطأ في التسجيل";
-
 /* No comment provided by engineer. */
 "Remove" = "إزالة";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "إنشاء تقرير";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "طلب إذن لتسجيل الصوت";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "طلب إذن لتسجيل الصوت";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "استئناف الاختبار";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "البقاء";
 
-/* stop recording button a11y label */
-"Stop" = "إيقاف";
-
 /* No comment provided by engineer. */
 "Style" = "نمط";
 
 /* Button for taking the quiz */
 "Take Quiz" = "إجراء الاختبار";
-
-/* Error message for a file missing */
-"The file does not exist." = "الملف غير موجود.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "هل اختفت الصفحات!؟ لماذا تختفي الصفحات دائمًا؟";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AssignmentKit.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات CalendarKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات EnrollmentKit.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "القادمة";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "رفض المستخدم منح الإذن للتسجيل";
-
 /* button for viewing quiz results */
 "View Results" = "الاطلاع على النتائج";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "استعملت جميع المحاولات المتاحة في هذا الاختبار.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "يجب أن تمنح (appName) حق الوصول إلى الميكروفون عبر إعدادات التطبيق من أجل تسجيل الصوت.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";

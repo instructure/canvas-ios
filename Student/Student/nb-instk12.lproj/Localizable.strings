@@ -576,6 +576,9 @@
 "Event" = "Hendelse";
 
 /* No comment provided by engineer. */
+"Event Details" = "Detaljer for hendelse";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Eksisterende vedlegg...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Laster...";
+
+/* No comment provided by engineer. */
+"Location" = "Sted";
 
 /* No comment provided by engineer. */
 "Locked" = "Låst";

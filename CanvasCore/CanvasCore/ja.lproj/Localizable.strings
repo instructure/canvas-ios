@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "最終利用可能日";
 
-/* stop record button a11y hint */
-"Begin recording" = "録音を開始する";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "キャンセル";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "データエラー";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "削除";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "コメントを削除する";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "録音を消去しますか？";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "ディスクエラー";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "却下する";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "なし";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "未提出";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "受けられません";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "過去";
 
-/* Pause recording/playback */
-"Pause" = "一時停止";
-
-/* record button a11y hint */
-"Pause playback" = "再生を一時停止する";
-
-/* Playback button */
-"Play" = "再生";
-
-/* play button a11y hint */
-"Play back recording" = "録音を再生する";
-
-/* Title for playback error messages */
-"Playback Error" = "再生エラー";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "ネットワークの接続を確認して再度お試しください。";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "もっと読む";
 
-/* Record button a11y label */
-"Record" = "記録";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "録音許可のヘルプ";
-
-/* title for a recording error */
-"Recording Error" = "録音エラー";
-
 /* No comment provided by engineer. */
 "Remove" = "削除";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "報告";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "オーディオ録音許可をリクエストする";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "オーディオ録音の許可をリクエストする";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "クイズを再開する";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "留まる";
 
-/* stop recording button a11y label */
-"Stop" = "停止";
-
 /* No comment provided by engineer. */
 "Style" = "スタイル";
 
 /* Button for taking the quiz */
 "Take Quiz" = "クイズを受ける";
-
-/* Error message for a file missing */
-"The file does not exist." = "ファイルが存在しません。";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "ページがなくなった!?どうしていつもページが消えるのでしょうか？";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "AssignmentKit データベースファイルを読み込み中、問題がありました。.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "CalendarKit データベースファイルを読み込み中、問題がありました。.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "EnrollmentKit データベースファイルを読み込み中、問題がありました。.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "今後の";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "ユーザーが録音許可のリクエストを拒否しました";
-
 /* button for viewing quiz results */
 "View Results" = "結果を表示";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "このクイズですべての試行回数を使いました。";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "音声を録音するには、設定アプリ内で (appName) マイクのアクセスを取得しなければなりません。";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";

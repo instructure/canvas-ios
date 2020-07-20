@@ -47,9 +47,6 @@
 "Calendar" = "Calendar";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Calendar Event";
-
-/* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
+/* No comment provided by engineer. */
+"No Alerts" = "No Alerts";
+
 /* Empty Courses Text */
 "No Courses" = "No Subjects";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "There was a problem loading the DiscussionKit database file.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "There was an error loading alerts. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "There was an error loading students. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "There's nothing to be notified of yet.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "This announcement has expired.";

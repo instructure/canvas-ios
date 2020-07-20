@@ -113,13 +113,19 @@
 "Assignment grade above" = "Calificación de la tarea superior a";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Calificación de tarea mayor que %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Calificación de la tarea inferior a";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Calificación de tarea menor que %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tarea faltante";
 
 /* No comment provided by engineer. */
-"Attachment" = "Archivo adjunto";
+"Assignment Missing" = "Tarea faltante";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intento %d";
@@ -302,6 +308,9 @@
 "Copied!" = "¡Copiado!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copiar enlace";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "No se pudo iniciar la herramienta. Inténtelo de nuevo.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Actividades del curso";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Anuncio del curso";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anuncios del curso";
@@ -320,7 +332,13 @@
 "Course grade above" = "Calificación del curso superior a";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Calificación de curso mayor que %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Calificación del curso inferior a";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Calificación de curso menor que %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursos";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleta";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Anuncio de la institución";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Anuncios de la institución";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Guardando...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Escáner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "No se admite el escaneo";

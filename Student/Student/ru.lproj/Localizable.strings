@@ -576,6 +576,9 @@
 "Event" = "Событие";
 
 /* No comment provided by engineer. */
+"Event Details" = "Сведения о мероприятии";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Существующие вложения...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Выполняется загрузка...";
+
+/* No comment provided by engineer. */
+"Location" = "Местоположение";
 
 /* No comment provided by engineer. */
 "Locked" = "Заблокировано";

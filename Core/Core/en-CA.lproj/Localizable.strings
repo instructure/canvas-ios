@@ -104,19 +104,28 @@
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
 
 /* No comment provided by engineer. */
+"assignment" = "assignment";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Assignment Details";
 
 /* No comment provided by engineer. */
 "Assignment grade above" = "Assignment grade above";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Assignment Grade Above %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Assignment grade below";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Assignment Grade Below %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Assignment missing";
 
 /* No comment provided by engineer. */
-"Attachment" = "Attachment";
+"Assignment Missing" = "Assignment Missing";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -299,6 +308,9 @@
 "Copied!" = "Copied!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copy Link";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Could not launch tool. Please try again.";
 
 /* No comment provided by engineer. */
@@ -306,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Course Activities";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Course Announcement";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Course announcements";
@@ -317,7 +332,13 @@
 "Course grade above" = "Course grade above";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Course Grade Above %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Course grade below";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Course Grade Below %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Courses";
@@ -381,6 +402,9 @@
 
 /* No comment provided by engineer. */
 "Developer Menu" = "Developer Menu";
+
+/* No comment provided by engineer. */
+"discussion" = "discussion";
 
 /* No comment provided by engineer. */
 "Discussion" = "Discussion";
@@ -464,7 +488,13 @@
 "Experimental Features" = "Experimental Features";
 
 /* No comment provided by engineer. */
+"external tool" = "external tool";
+
+/* No comment provided by engineer. */
 "External Tool" = "External Tool";
+
+/* No comment provided by engineer. */
+"external URL" = "external URL";
 
 /* No comment provided by engineer. */
 "External URL" = "External URL";
@@ -483,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Failed. Tap for options";
+
+/* No comment provided by engineer. */
+"file" = "file";
 
 /* No comment provided by engineer. */
 "File" = "File";
@@ -614,6 +647,9 @@
 "Incomplete" = "Incomplete";
 
 /* No comment provided by engineer. */
+"Institution Announcement" = "Institution Announcement";
+
+/* No comment provided by engineer. */
 "Institution announcements" = "Institution announcements";
 
 /* No comment provided by engineer. */
@@ -699,6 +735,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Locate QR Code";
+
+/* No comment provided by engineer. */
+"locked" = "locked";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Locked until \"%@\" is graded";
@@ -908,6 +947,9 @@
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
+"page" = "page";
+
+/* No comment provided by engineer. */
 "Page" = "Page";
 
 /* No comment provided by engineer. */
@@ -977,6 +1019,9 @@
 "Push Notifications" = "Push Notifications";
 
 /* No comment provided by engineer. */
+"quiz" = "quiz";
+
+/* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
@@ -1035,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Saving...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Scanner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scanning not supported";
