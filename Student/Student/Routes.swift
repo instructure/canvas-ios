@@ -209,17 +209,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/modules": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        guard let session = Session.current else { return nil }
-        let contextID = Context.course(courseID)
-        // Restrict access to Modules tab if it's hidden (unless it is the home tab)
-        let modulesTab = try? Tab.modulesTab(for: contextID, in: session)
-        let modulesAreHome = session.enrollmentsDataSource[contextID]?.defaultViewPath.contains("/modules") == true
-        if !modulesAreHome, modulesTab?.hidden ?? false {
-            let message = NSLocalizedString("That page has been disabled for this course", comment: "")
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default))
-            return alert
-        }
         return ModuleListViewController.create(courseID: courseID)
     },
 

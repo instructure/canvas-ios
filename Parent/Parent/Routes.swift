@@ -18,7 +18,6 @@
 
 import Foundation
 import SafariServices
-import CanvasCore
 import Core
 
 let router = Router(routes: [

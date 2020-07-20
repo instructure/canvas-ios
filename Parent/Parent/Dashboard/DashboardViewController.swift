@@ -18,7 +18,6 @@
 
 import UIKit
 import CoreData
-import CanvasCore
 import Core
 
 /// Always uses the nav bar style to update status bar, even if hidden
@@ -224,11 +223,8 @@ class DashboardViewController: UIViewController {
     }
 
     func updateTabs() {
-        let courses = currentStudentID.flatMap { (id: String) -> UIViewController? in
-            guard let session = Session.current else { return nil }
-            let controller = try? CourseListViewController(session: session, studentID: id)
-            controller?.refresher?.refresh(false)
-            return controller
+        let courses = currentStudentID.flatMap {
+            CourseListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
         courses.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses Tab")
         courses.tabBarItem.image = UIImage.icon(.coursesTab)
@@ -239,8 +235,8 @@ class DashboardViewController: UIViewController {
         if let tabs = tabsController.viewControllers, tabs.count >= 2, let prevCal = tabs[1] as? PlannerViewController {
             selectedDate = prevCal.selectedDate
         }
-        let calendar = currentStudentID.flatMap { (id: String) -> UIViewController? in
-            PlannerViewController.create(studentID: id, selectedDate: selectedDate)
+        let calendar = currentStudentID.flatMap {
+            PlannerViewController.create(studentID: $0, selectedDate: selectedDate)
         } ?? AdminViewController.create()
         calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar Tab")
         calendar.tabBarItem.image = UIImage.icon(.calendarTab)

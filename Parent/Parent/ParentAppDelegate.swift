@@ -24,7 +24,6 @@ import UserNotifications
 import Core
 import SafariServices
 
-let ParentAppRefresherTTL: TimeInterval = 5.minutes
 var currentStudentID: String?
 
 @UIApplicationMain

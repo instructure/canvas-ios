@@ -91,7 +91,7 @@ extension Course {
         return color?.color ?? .named(.ash)
     }
 
-    static let scoreFormatter: NumberFormatter = {
+    public static let scoreFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
         formatter.decimalSeparator = "."

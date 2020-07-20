@@ -108,6 +108,18 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(courses[2], three)
     }
 
+    func testGetUserCourses() {
+        XCTAssertEqual(GetUserCourses(userID: "2").cacheKey, "users/2/courses")
+        XCTAssertEqual(GetUserCourses(userID: "2").request.path, "courses")
+        XCTAssertEqual(GetUserCourses(userID: "2").scope, Scope(
+            predicate: NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.userID), "2"),
+            order: [
+                NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
+                NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+            ]
+        ))
+    }
+
     func testGetCourse() {
         XCTAssertEqual(GetCourse(courseID: "72").cacheKey, "get-course-72")
         XCTAssertEqual(GetCourse(courseID: "5").scope, Scope.where(#keyPath(Course.id), equals: "5"))
