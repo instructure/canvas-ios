@@ -39,46 +39,6 @@ public final class Tab: NSManagedObject {
         }
     }
 
-    @objc public var icon: UIImage {
-        switch id {
-        case "announcements":   return .icon(.announcement)
-        case "application":     return .icon(.lti)
-        case "assignments":     return .icon(.assignment)
-        case "collaborations":  return .icon(.collaboration)
-        case "conferences":     return .icon(.conference)
-        case "discussions":     return .icon(.discussion)
-        case "files":           return .icon(.file)
-        case "grades":          return .icon(.grades)
-        case "home":            return .icon(.home)
-        case "link":            return .icon(.link)
-        case "modules":         return .icon(.module)
-        case "outcomes":        return .icon(.outcome)
-        case "pages":           return .icon(.page)
-        case "people":          return .icon(.people)
-        case "quizzes":         return .icon(.quiz)
-        case "settings":        return .icon(.settings)
-        case "syllabus":        return .icon(.syllabus)
-        case "tools":           return .icon(.lti)
-        case "user":            return .icon(.user)
-        default:                return .icon(.lti)
-        }
-    }
-
-    @objc public var shortcutIcon: UIImage {
-        guard ShortcutTabIDs.contains(id) else { fatalError("Not a valid shortcut!") }
-        // don't add new shortcuts without telling me
-        assert(ShortcutTabIDs.count == 4)
-        let shortcut: Icon
-        switch id {
-        case "discussions":     shortcut = .discussion
-        case "announcements":   shortcut = .announcement
-        case "files":           shortcut = .file
-        case "assignments":     shortcut = .assignment
-        default: fatalError("Not a valid shortcut")
-        }
-        return .icon(shortcut)
-    }
-
     @objc public var isPages: Bool {
         return id == "wiki" || id == "pages"
     }
