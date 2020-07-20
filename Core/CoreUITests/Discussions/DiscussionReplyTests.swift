@@ -37,7 +37,7 @@ class DiscussionReplyTests: CoreUITestCase {
         mockData(ListDiscussionTopicsRequest(context: .course(course.id.value)), value: [discussion])
         mockData(GetDiscussionTopicRequest(context: .course(course.id.value), topicID: discussion.id.value), value: discussion)
         mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: discussion.id.value), value: fullTopic)
-        mockData(GetGroupsRequest(context: .course(course.id.value)), value: [])
+        mockData(GetGroupsRequest(context: .currentUser), value: [])
         mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: discussion.id.value, isRead: true), value: APINoContent())
         mockData(GetModuleItemSequenceRequest(courseID: course.id.value, assetType: .discussion, assetID: discussion.id.value), value: .make())
         fullTopic.unread_entries.forEach { entry in
