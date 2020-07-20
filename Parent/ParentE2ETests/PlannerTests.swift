@@ -56,7 +56,8 @@ class PlannerTests: CoreUITestCase {
 
         PlannerList.event(id: "2904").tap()
         app.find(label: "first").waitToExist()
-        app.find(label: "Instructure SLC\n6330 S 3000 E Salt Lake City, UT 84121").waitToExist()
+        app.find(label: "Instructure SLC").waitToExist()
+        app.find(label: "6330 S 3000 E Salt Lake City, UT 84121").waitToExist()
         NavBar.backButton.tap()
 
         PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
