@@ -17,15 +17,27 @@
 //
 
 import Foundation
+import CoreData
 
 class GetGroups: CollectionUseCase {
     typealias Model = Group
+    let context: Context
     let cacheKey: String?
     let request: GetGroupsRequest
+    let scope: Scope
 
     init(context: Context = Context.currentUser) {
+        self.context = context
         cacheKey = "\(context.pathComponent)/groups"
         request = GetGroupsRequest(context: context)
+        scope = .where(#keyPath(Group.contextRaw), equals: context.canvasContextID)
+    }
+
+    func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.forEach { item in
+            let group = Group.save(item, in: client)
+            group.context = context
+        }
     }
 }
 

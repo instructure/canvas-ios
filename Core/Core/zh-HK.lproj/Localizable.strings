@@ -113,13 +113,19 @@
 "Assignment grade above" = "作業評分高於";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "作業評分高於%d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "作業評分低於";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "作業評分低於%d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "缺少作業";
 
 /* No comment provided by engineer. */
-"Attachment" = "附件";
+"Assignment Missing" = "缺少作業";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "嘗試%d";
@@ -302,6 +308,9 @@
 "Copied!" = "已複製！";
 
 /* No comment provided by engineer. */
+"Copy Link" = "複製連結";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "無法啟動工具。請重試。";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "課程活動";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "課程通告";
 
 /* No comment provided by engineer. */
 "Course announcements" = "課程通告";
@@ -320,7 +332,13 @@
 "Course grade above" = "課程評分高於";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "課程評分高於 %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "課程評分低於";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "課程評分低於 %d";
 
 /* No comment provided by engineer. */
 "Courses" = "課程";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "機構通告";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "機構通告";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "正在儲存...";
+
+/* No comment provided by engineer. */
+"Scanner" = "掃描器";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "不支援掃描";

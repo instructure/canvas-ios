@@ -373,6 +373,7 @@
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -814,7 +815,7 @@
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="298"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="148"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>

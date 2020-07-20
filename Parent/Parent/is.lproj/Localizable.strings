@@ -47,9 +47,6 @@
 "Calendar" = "Dagatal";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Dagatalsviðburður";
-
-/* No comment provided by engineer. */
 "Cancel" = "Hætta við";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "á ekki við";
 
+/* No comment provided by engineer. */
+"No Alerts" = "Engar viðvaranir";
+
 /* Empty Courses Text */
 "No Courses" = "Engin námskeið";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "Vandamál kom upp við að sækja DiscussionKit gagnagrunnsskránna.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "Upp kom villa við að hlaða viðvörunum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Villa kom upp við að sækja nemendur. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Það er ekkert tilkynningavert enn.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Þessi tilkynning er útrunnin.";

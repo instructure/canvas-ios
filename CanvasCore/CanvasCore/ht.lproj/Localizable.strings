@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Disponib Jiska";
 
-/* stop record button a11y hint */
-"Begin recording" = "Kòmanse Anrejistreman";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Anile";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Erè Data";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Efase";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Efase Kòmantè";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Efase Anrejistreman?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Erè Disk";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Rejte";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Okenn";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Pa Otorize";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Pa Prizab";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Pase";
 
-/* Pause recording/playback */
-"Pause" = "Poz";
-
-/* record button a11y hint */
-"Pause playback" = "Poz Lekti";
-
-/* Playback button */
-"Play" = "Jwe";
-
-/* play button a11y hint */
-"Play back recording" = "Jwe anrejistreman";
-
-/* Title for playback error messages */
-"Playback Error" = "Erè Lekti";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Tanpri verifye koneksyon entènèt ou a epi eseye ankò.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Li Plis";
 
-/* Record button a11y label */
-"Record" = "Anrejistre";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Ès Pèmisyon Anrejistreman";
-
-/* title for a recording error */
-"Recording Error" = "Erè Anrejistreman";
-
 /* No comment provided by engineer. */
 "Remove" = "Elimine";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Rapòte";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Demand Pèmisyon Anrejistreman Odyo";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Demand Pèmisyon pou anrejistre odyo";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Reprann Quiz";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Rete";
 
-/* stop recording button a11y label */
-"Stop" = "Kanpe";
-
 /* No comment provided by engineer. */
 "Style" = "Estil";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Pran Quiz";
-
-/* Error message for a file missing */
-"The file does not exist." = "Fichye a pa egziste";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Paj yo ale!? Poukisa paj yo toujou ap fèmen?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AssignmentKit a.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done CalendarKit a.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done EnrollmentKit a.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Pwochen";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Itilizatè a refize pèmisyon anrejistreman an";
-
 /* button for viewing quiz results */
 "View Results" = "Afiche Rezilta";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Ou itilize tout tantativ ki te disponib pou ou nan quiz sa a.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Ou dwe otorize (appName) aksè Mikwofòn nan Paramèt app la pou w ka anrejistre odyo.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";

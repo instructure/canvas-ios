@@ -113,13 +113,19 @@
 "Assignment grade above" = "Classificação de atribuição acima";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Classificação de atribuição acima %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Classificação de atribuição abaixo";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Classificação de atribuição abaixo %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Tarefa em falta";
 
 /* No comment provided by engineer. */
-"Attachment" = "Anexo";
+"Assignment Missing" = "Tarefa em falta";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativa %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Copiado!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copiar ligação";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Não foi possível lançar uma ferramenta. É favor tentar novamente.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Atividades da disciplina";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Anúncio da disciplina";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anúncios da disciplina";
@@ -320,7 +332,13 @@
 "Course grade above" = "Classificação da disciplina acima";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Classificação da disciplina acima %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Classificação da disciplina abaixo";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Classificação da disciplina abaixo %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Disciplinas";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Incompleto";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Anúncio da Instituição";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Anúncios da Instituição";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "A guardar...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Scanner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Digitalização não suportada";

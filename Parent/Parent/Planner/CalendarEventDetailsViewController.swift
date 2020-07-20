@@ -134,7 +134,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         locationAddressLabel.text = event.locationAddress
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
-        if let html = event.details {
+        if let html = event.details, !html.isEmpty {
             descriptionView.isHidden = false
             webView.loadHTMLString(html, baseURL: event.htmlURL)
         } else {

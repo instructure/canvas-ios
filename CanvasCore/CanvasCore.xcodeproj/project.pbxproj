@@ -113,7 +113,6 @@
 		4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */; };
 		4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */; };
 		4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58B1F8FB2140093EC86 /* SplitViewController.swift */; };
-		4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */; };
 		4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5801F8FB2120093EC86 /* HairlineView.swift */; };
 		4961F5D41F8FB3EB0093EC86 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5BB1F8FB3D70093EC86 /* Collection.swift */; };
 		4961F5D51F8FB3EB0093EC86 /* CollectionType+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5BC1F8FB3D70093EC86 /* CollectionType+Edits.swift */; };
@@ -371,7 +370,6 @@
 		4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LightenUpOkay.swift"; sourceTree = "<group>"; };
 		4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ShadesOfGray.swift"; sourceTree = "<group>"; };
-		4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallModalNavigationController.swift; sourceTree = "<group>"; };
 		4961F5801F8FB2120093EC86 /* HairlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
 		4961F5831F8FB2130093EC86 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		4961F58B1F8FB2140093EC86 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
@@ -970,7 +968,6 @@
 		4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */ = {
 			isa = PBXGroup;
 			children = (
-				4961F57F1F8FB2120093EC86 /* SmallModalNavigationController.swift */,
 				4961F5801F8FB2120093EC86 /* HairlineView.swift */,
 			);
 			path = "UIKit+SoPretty";
@@ -1628,7 +1625,6 @@
 				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				7D52D87B22FCC73100684932 /* Assignment+Details.swift in Sources */,
-				4961F5A81F8FB2A90093EC86 /* SmallModalNavigationController.swift in Sources */,
 				4961F6291F8FB7050093EC86 /* Course.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,

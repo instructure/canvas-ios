@@ -576,6 +576,9 @@
 "Event" = "الحدث";
 
 /* No comment provided by engineer. */
+"Event Details" = "تفاصيل الحدث";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "المرفقات الموجودة...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "جارٍ التحميل...";
+
+/* No comment provided by engineer. */
+"Location" = "الموقع";
 
 /* No comment provided by engineer. */
 "Locked" = "مؤمّن";

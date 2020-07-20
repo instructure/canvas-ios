@@ -576,6 +576,9 @@
 "Event" = "イベント";
 
 /* No comment provided by engineer. */
+"Event Details" = "イベントの詳細";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "既存の添付ファイル...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "読み込み中・・・";
+
+/* No comment provided by engineer. */
+"Location" = "場所";
 
 /* No comment provided by engineer. */
 "Locked" = "ロックされています";

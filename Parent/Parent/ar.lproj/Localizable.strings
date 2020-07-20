@@ -47,9 +47,6 @@
 "Calendar" = "التقويم";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "حدث التقويم";
-
-/* No comment provided by engineer. */
 "Cancel" = "إلغاء";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "لا يوجد";
 
+/* No comment provided by engineer. */
+"No Alerts" = "لا توجد تنبيهات";
+
 /* Empty Courses Text */
 "No Courses" = "لا يوجد أي مساق";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات DiscussionKit.";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "حدث خطأ أثناء تحميل التنبيهات. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الطلاب. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "لا يوجد شيء للإعلام عنه حتى الآن.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "انتهت صلاحية هذا الإعلان.";
