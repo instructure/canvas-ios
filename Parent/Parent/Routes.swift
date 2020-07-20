@@ -23,9 +23,9 @@ import Core
 
 let router = Router(routes: [
 
-    RouteHandler("/accounts/self/users/self/account_notifications/:id") { _, params, _ in
-        guard let session = Session.current, let id = params["id"] else { return nil }
-        return try? AccountNotificationViewController(session: session, announcementID: id)
+    RouteHandler("/accounts/self/account_notifications/:id") { _, params, _ in
+        guard let id = params["id"] else { return nil }
+        return AccountNotificationDetailsViewController.create(studentID: currentStudentID, notificationID: id)
     },
 
     RouteHandler("/calendar") { url, _, _ in
@@ -83,8 +83,8 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/discussion_topics/:topicID") { _, params, _ in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
-        guard let session = Session.current, let studentID = currentStudentID else { return nil }
-        return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
+        guard let studentID = currentStudentID else { return nil }
+        return DiscussionDetailsViewController.create(studentID: studentID, courseID: courseID, topicID: topicID)
     },
 
     RouteHandler("/profile") { _, _, _ in

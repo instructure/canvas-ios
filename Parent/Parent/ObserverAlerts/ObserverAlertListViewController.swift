@@ -115,7 +115,7 @@ extension ObserverAlertListViewController: UITableViewDataSource, UITableViewDel
         } else if let url = alert.htmlURL {
             env.router.route(to: url, from: self, options: .detail)
         } else if alert.alertType == .institutionAnnouncement, let announcementID = alert.contextID {
-            env.router.route(to: "/accounts/self/users/self/account_notifications/\(announcementID)", from: self, options: .detail)
+            env.router.route(to: "/accounts/self/account_notifications/\(announcementID)", from: self, options: .detail)
         }
     }
 
