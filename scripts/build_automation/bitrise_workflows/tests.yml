@@ -319,6 +319,8 @@ workflows:
         inputs:
         - access_token: "$BITRISE_CI_TOKEN"
         - workflows: nightly-b
+        - environment_key_list: |-
+            SLACK_URL
         outputs:
           - ROUTER_STARTED_BUILD_SLUGS: NIGHTLY_B_ROUTER_SLUG
     after_run:

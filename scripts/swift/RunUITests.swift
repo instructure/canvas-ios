@@ -105,13 +105,21 @@ private class Runner {
     }
 
     func setUp() throws {
+        // Launch the sim first to save time later
+        ExternalCommand.verbose = true
+        try cmd("open", "-a", cmd("xcode-select", "-p").runString() + "/Applications/Simulator.app").run()
+        sleep(3)
+
+        if let booted = try? (cmd("xcrun", "simctl", "list") | cmd("grep", "Booted")).runString(),
+           !booted.trimmingCharacters(in: .whitespaces).hasPrefix(command.deviceName) {
+            try? cmd("xcrun", "simctl", "shutdown", "booted").run()
+        }
+        try? cmd("xcrun", "simctl", "boot", command.deviceName).run()
+        ExternalCommand.verbose = false
+
         Darwin.setenv("NSUnbufferedIO", "YES", 1)
         try cmd("mkdir", "-p", "tmp").run()
         try cmd("touch", "tmp/timestamp").run()
-
-        // Launch the sim first to save time later
-        try? cmd("xcrun", "simctl", "boot", command.deviceName).silent.run()
-        try cmd("open", "-a", cmd("xcode-select", "-p").runString() + "/Applications/Simulator.app").run()
 
         if !command.appendResults {
             try cmd("rm", "-rf", resultsDirectory).run()
