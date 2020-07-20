@@ -21,39 +21,48 @@ import UIKit
 import UserNotifications
 import Core
 
-class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
+    @IBOutlet weak var composeButton: UIButton!
     @IBOutlet weak var dateHeadingLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionHeadingLabel: UILabel!
     @IBOutlet weak var descriptionView: UIView!
-    @IBOutlet weak var locationAddressLabel: UILabel!
-    @IBOutlet weak var locationHeadingLabel: UILabel!
-    @IBOutlet weak var locationNameLabel: UILabel!
-    @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var reminderDateButton: UIButton!
     @IBOutlet weak var reminderDatePicker: UIDatePicker!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
     @IBOutlet weak var reminderSwitch: UISwitch!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var statusIconView: UIImageView!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
-    let titleSubtitleView = TitleSubtitleView.create()
 
-    var color: UIColor?
+    var assignmentID = ""
+    var courseID = ""
     let env = AppEnvironment.shared
-    var eventID = ""
     var studentID = ""
 
-    lazy var events = env.subscribe(GetCalendarEvent(eventID: eventID)) { [weak self] in
+    lazy var assignment = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID)) {  [weak self] in
+        self?.update()
+    }
+    lazy var course = env.subscribe(GetCourse(courseID: courseID)) {  [weak self] in
+        self?.update()
+    }
+    lazy var student = env.subscribe(GetSearchRecipients(context: .course(courseID), userID: studentID)) { [weak self] in
+        self?.update()
+    }
+    lazy var teachers = env.subscribe(GetSearchRecipients(context: .course(courseID), qualifier: .teachers)) { [weak self] in
         self?.update()
     }
 
-    static func create(studentID: String, eventID: String) -> CalendarEventDetailsViewController {
+    static func create(studentID: String, courseID: String, assignmentID: String) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.eventID = eventID
+        controller.assignmentID = assignmentID
+        controller.courseID = courseID
         controller.studentID = studentID
         return controller
     }
@@ -61,8 +70,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .named(.backgroundLightest)
-        setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
-        updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
+        title = NSLocalizedString("Assignment Details", comment: "")
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
         webView.autoresizesHeight = true
@@ -72,12 +80,16 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
 
-        dateHeadingLabel.text = NSLocalizedString("Date", comment: "")
+        composeButton.accessibilityLabel = NSLocalizedString("Compose message to teachers", comment: "")
+        composeButton.backgroundColor = ColorScheme.observee(studentID).color
+        composeButton.isHidden = true
+
+        dateHeadingLabel.text = NSLocalizedString("Due", comment: "")
         dateLabel.text = ""
         descriptionHeadingLabel.text = NSLocalizedString("Description", comment: "")
-        locationHeadingLabel.text = NSLocalizedString("Location", comment: "")
-        locationView.isHidden = true
         titleLabel.text = ""
+
+        pointsLabel.text = ""
 
         reminderHeadingLabel.text = NSLocalizedString("Remind Me", comment: "")
         reminderMessageLabel.text = NSLocalizedString("Set a date and time to be notified of this event.", comment: "")
@@ -89,8 +101,13 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         reminderDatePicker.minimumDate = Clock.now.addMinutes(1)
         reminderDatePicker.maximumDate = Clock.now.addYears(1)
 
-        events.refresh()
-        NotificationManager.shared.getReminder(eventID) { [weak self] request in performUIUpdate {
+        statusLabel.text = ""
+
+        assignment.refresh()
+        course.refresh()
+        student.refresh()
+        teachers.refresh()
+        NotificationManager.shared.getReminder(assignmentID) { [weak self] request in performUIUpdate {
             guard let self = self else { return }
             let date = (request?.trigger as? UNCalendarNotificationTrigger).flatMap {
                 Calendar.current.date(from: $0.dateComponents)
@@ -112,45 +129,48 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     }
 
     @objc func refresh() {
-        events.refresh(force: true) { [weak self] _ in
+        assignment.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
+        course.refresh(force: true)
+        student.refresh(force: true)
+        teachers.refresh(force: true)
     }
 
     func update() {
-        guard let event = events.first else { return }
-        titleSubtitleView.title = event.contextName
+        guard let assignment = assignment.first else { return }
+        let status = assignment.submissions?.first(where: { $0.userID == studentID })?.status ?? .notSubmitted
+        title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
 
-        titleLabel.text = event.title
-        if event.isAllDay {
-            dateLabel.text = event.startAt?.dateOnlyString
-        } else if let start = event.startAt, let end = event.endAt {
-            dateLabel.text = start.intervalStringTo(end)
-        } else {
-            dateLabel.text = event.startAt?.dateTimeString
-        }
-        locationView.isHidden = event.locationName?.isEmpty != false && event.locationAddress?.isEmpty != false
-        locationNameLabel.text = event.locationName
-        locationAddressLabel.text = event.locationAddress
+        titleLabel.text = assignment.name
+        pointsLabel.text = assignment.pointsPossibleText
+        statusIconView.isHidden = assignment.submissionStatusIsHidden
+        statusIconView.image = status.icon
+        statusIconView.tintColor = status.color
+        statusLabel.isHidden = assignment.submissionStatusIsHidden
+        statusLabel.textColor = status.color
+        statusLabel.text = status.text
+        dateLabel.text = assignment.dueAt?.dateTimeString ?? NSLocalizedString("No Due Date", comment: "")
         reminderSwitch.isEnabled = true
         reminderDateButton.isEnabled = true
-        if let html = event.details, !html.isEmpty {
+        if let html = assignment.details, !html.isEmpty {
             descriptionView.isHidden = false
-            webView.loadHTMLString(html, baseURL: event.htmlURL)
+            webView.loadHTMLString(html, baseURL: assignment.htmlURL)
         } else {
             descriptionView.isHidden = true
         }
+        composeButton.isHidden = teachers.isEmpty || student.isEmpty
     }
 
     @IBAction func reminderSwitchChanged() {
-        guard let event = events.first else { return }
+        guard let assignment = assignment.first else { return }
         if reminderSwitch.isOn {
             let minDate = Clock.now.addMinutes(1)
             let maxDate = Clock.now.addYears(1)
             reminderDatePicker.minimumDate = minDate
             reminderDatePicker.maximumDate = maxDate
             let defaultDate = max(minDate, min(maxDate,
-                event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
+                assignment.dueAt?.addDays(-1) ?? Clock.now.addDays(1)
             ))
             NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
@@ -166,7 +186,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
                 self.reminderDateChanged()
             } }
         } else {
-            NotificationManager.shared.removeReminder(eventID)
+            NotificationManager.shared.removeReminder(assignmentID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
                 self.reminderDatePicker.isHidden = true
@@ -181,9 +201,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     }
 
     @IBAction func reminderDateChanged() {
-        guard let event = events.first else { return }
+        guard let assignment = assignment.first else { return }
         let date = reminderDatePicker.date
-        NotificationManager.shared.setReminder(for: event, at: date, studentID: studentID) { error in performUIUpdate {
+        NotificationManager.shared.setReminder(for: assignment, at: date, studentID: studentID) { error in performUIUpdate {
             if error == nil {
                 self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
             } else {
@@ -204,5 +224,27 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
+    }
+
+    @IBAction func compose() {
+        guard let assignment = assignment.first, let name = student.first?.fullName else { return }
+        let subject = String.localizedStringWithFormat(
+            NSLocalizedString("Regarding: %@, Assignment - %@", comment: "Regarding <Name>, Assignment - <Assignment Name>"),
+            name,
+            assignment.name
+        )
+        let hiddenMessage = String.localizedStringWithFormat(
+            NSLocalizedString("Regarding: %@, %@", comment: "Regarding <Name>, <URL>"),
+            name,
+            assignment.htmlURL?.absoluteString ?? ""
+        )
+        let compose = ComposeViewController.create(
+            context: .course(courseID),
+            observeeID: studentID,
+            recipients: teachers.all,
+            subject: subject,
+            hiddenMessage: hiddenMessage
+        )
+        env.router.show(compose, from: self, options: .modal(embedInNav: true))
     }
 }

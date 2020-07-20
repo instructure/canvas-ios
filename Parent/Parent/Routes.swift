@@ -53,17 +53,16 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        guard let session = Session.current, let studentID = currentStudentID else { return nil }
+        guard let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID)
         }
-        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in

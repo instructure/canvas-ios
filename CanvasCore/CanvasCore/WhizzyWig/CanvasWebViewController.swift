@@ -75,9 +75,9 @@ open class CanvasWebViewController: UIViewController, PageViewEventViewControlle
     }
     
     @objc func updateToolbarItems() {
-        let back = UIBarButtonItem(image: .icon(.backward), style: .plain, target: webView, action: #selector(WKWebView.goBack))
+        let back = UIBarButtonItem(image: .icon(.arrowOpenLeft, .solid), style: .plain, target: webView, action: #selector(WKWebView.goBack))
         
-        let forward = UIBarButtonItem(image: .icon(.forward), style: .plain, target: webView, action: #selector(WKWebView.goForward))
+        let forward = UIBarButtonItem(image: .icon(.arrowOpenRight, .solid), style: .plain, target: webView, action: #selector(WKWebView.goForward))
         
         let loadingActivity = UIActivityIndicatorView(style: .gray)
 
