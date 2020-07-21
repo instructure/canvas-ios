@@ -19,7 +19,6 @@
 // @flow
 
 import mockStore from '../../../../test/helpers/mockStore'
-import { NativeModules } from 'react-native'
 import app from '../../../modules/app'
 
 describe('promise middleware', () => {

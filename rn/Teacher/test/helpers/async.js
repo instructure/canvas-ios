@@ -17,7 +17,6 @@
 //
 
 /* @flow */
-import { NativeModules } from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import promiseMiddleware from '../../src/redux/middleware/redux-promise'
 import freeze from 'redux-freeze'

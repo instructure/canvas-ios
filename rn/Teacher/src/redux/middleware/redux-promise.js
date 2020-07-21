@@ -21,8 +21,6 @@
 import { isFSA } from 'flux-standard-action'
 import type { Middleware, MiddlewareAPI, Dispatch } from 'redux'
 import { AsyncActionTracker } from '../actions/async-tracker'
-import { NativeModules } from 'react-native'
-import { isStudent } from '../../modules/app'
 
 let { pending, resolved, rejected } = AsyncActionTracker
 
