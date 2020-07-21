@@ -26,8 +26,6 @@ enum AnnouncementList {
 }
 
 class AnnouncementE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return AnnouncementE2ETests.self }
-
     func testAnnouncementsMatchWebOrder() {
         Dashboard.courseCard(id: "262").tapUntil {
             CourseNavigation.announcements.exists

@@ -21,7 +21,6 @@ import TestsFoundation
 
 class ActAsUserE2ETests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }
-    override var abstractTestClass: CoreUITestCase.Type { return ActAsUserE2ETests.self }
 
     func testActAsUser() {
         Profile.open()

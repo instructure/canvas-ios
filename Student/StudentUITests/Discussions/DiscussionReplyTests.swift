@@ -21,7 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class DiscussionReplyTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { DiscussionReplyTests.self }
     override var user: UITestUser? { nil }
 
     lazy var course = mock(course: .make(

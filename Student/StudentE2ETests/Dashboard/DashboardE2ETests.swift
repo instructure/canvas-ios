@@ -20,8 +20,6 @@ import XCTest
 import TestsFoundation
 
 class DashboardE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return DashboardE2ETests.self }
-
     func testAnnouncementBelowInvite() {
         CourseInvitation.acceptButton(id: "998").waitToExist()
         AccountNotifications.toggleButton(id: "2").waitToExist()

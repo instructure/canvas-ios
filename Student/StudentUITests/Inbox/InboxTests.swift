@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class InboxTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { InboxTests.self }
-
     let conversation1 = APIConversation.make()
     var avatarURL: URL { conversation1.avatar_url.rawValue }
 

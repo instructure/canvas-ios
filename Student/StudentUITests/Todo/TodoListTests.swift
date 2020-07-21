@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class TodoListTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return TodoListTests.self }
-
     func testTodoItemsDisplayed() {
         mockBaseRequests()
         mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])

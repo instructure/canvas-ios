@@ -21,8 +21,6 @@ import XCTest
 import TestsFoundation
 
 class SpringBoardTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { SpringBoardTests.self }
-
     func testMultitaskingSetup() {
         XCUIDevice.shared.orientation = .landscapeLeft
         SpringBoard.shared.setupSplitScreenWithSafariOnRight()

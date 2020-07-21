@@ -20,7 +20,6 @@ import XCTest
 import TestsFoundation
 
 class LoginE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { LoginE2ETests.self }
     override var user: UITestUser? { nil }
 
     func testFindSchool() {

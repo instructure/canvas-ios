@@ -19,8 +19,6 @@
 import TestsFoundation
 
 class InboxE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { InboxE2ETests.self }
-
     func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
         Inbox.newMessageButton.tapUntil {

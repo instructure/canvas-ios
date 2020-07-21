@@ -20,8 +20,6 @@ import XCTest
 import TestsFoundation
 
 class DiscussionListE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return DiscussionListE2ETests.self }
-
     override func setUp() {
         super.setUp()
         Dashboard.courseCard(id: "263").tap()

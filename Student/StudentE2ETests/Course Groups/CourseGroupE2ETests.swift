@@ -20,8 +20,6 @@ import XCTest
 import TestsFoundation
 
 class CourseGroupE2ETests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { return CourseGroupE2ETests.self }
-
     func testGroupCardDisplaysAndShowsDetails() {
         Dashboard.groupCard(id: "35").waitToExist()
         app.find(labelContaining: "Group One").waitToExist()

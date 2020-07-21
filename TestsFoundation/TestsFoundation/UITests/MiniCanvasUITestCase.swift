@@ -20,7 +20,6 @@ import Foundation
 @testable import Core
 
 open class MiniCanvasUITestCase: CoreUITestCase {
-    override open var abstractTestClass: CoreUITestCase.Type { MiniCanvasUITestCase.self }
     override open var user: UITestUser? { nil }
     override open var useMocks: Bool { false }
 

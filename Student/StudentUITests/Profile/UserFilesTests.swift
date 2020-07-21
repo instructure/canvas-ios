@@ -21,8 +21,6 @@ import TestsFoundation
 @testable import Core
 
 class UserFilesTests: CoreUITestCase {
-    override var abstractTestClass: CoreUITestCase.Type { UserFilesTests.self }
-
     lazy var root = APIFolder.make()
 
     override func setUp() {
