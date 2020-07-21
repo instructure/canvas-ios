@@ -287,10 +287,11 @@ workflows:
             #!/bin/zsh
             set -euxo pipefail
 
-            ./scripts/run-ui-tests.sh --build
-            SCHEME=IPadTests \
-            DEVICE_NAME='iPad Air (3rd generation)' \
             ./scripts/run-swift run-ui-tests --build
+
+            ./scripts/run-swift run-ui-tests --build \
+                --scheme IPadTests \
+                --device-name 'iPad Air (3rd generation)'
     - script:
         title: Prepare cache
         inputs:
@@ -422,10 +423,10 @@ workflows:
 
                 ret=0
 
-                SCHEME=IPadTests \
-                DEVICE_NAME='iPad Air (3rd generation)' \
-                ./scripts/run-swift run-ui-tests --build --all-tests || ret=$?
-
+                ./scripts/run-swift run-ui-tests --build \
+                    --scheme IPadTests \
+                    --device-name 'iPad Air (3rd generation)' \
+                    --all-tests || ret=$?
                 ./scripts/run-swift run-ui-tests --build --append-results $group_A_targets || ret=$?
 
                 exit $ret
@@ -590,8 +591,7 @@ workflows:
         inputs:
         - content: |-
             set -euo pipefail
-            export SCHEME='Beta E2E'
-            ./scripts/run-swift run-ui-tests --build --all-tests
+            ./scripts/run-swift run-ui-tests --build --scheme 'Beta E2E' --all-tests
     - *save-xcresult
     - deploy-to-bitrise-io: {}
     - slack:

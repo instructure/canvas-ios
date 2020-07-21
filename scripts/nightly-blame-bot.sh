@@ -96,7 +96,7 @@ while (( ${#failures} > 0 )); do
     git checkout HEAD^
     build
     ret=0
-    $CANVAS_SCRIPTS/run-ui-tests.sh --only-testing $failures || ret=$?
+    $CANVAS_SCRIPTS/run-swift run-ui-tests $failures || ret=$?
     new_failures=("${(@f)$(cat ui-test-results/final-failed.txt)}")
 
     # subtract the 2 lists
