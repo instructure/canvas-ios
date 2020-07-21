@@ -113,13 +113,19 @@
 "Assignment grade above" = "Ocena za zadanie powyżej";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Ocena za zadanie powyżej %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Ocena za zadanie poniżej";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Ocena za zadanie poniżej %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Brak zadania";
 
 /* No comment provided by engineer. */
-"Attachment" = "Załącznik";
+"Assignment Missing" = "Brak zadania";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Próba %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Skopiowano!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Kopiuj łącze";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Nie udało się uruchomić narzędzia. Spróbuj ponownie.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Aktywności kursu";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Ogłoszenie kursu";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Ogłoszenia dotyczące kursu";
@@ -320,7 +332,13 @@
 "Course grade above" = "Ocena z kursu powyżej";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Ocena z kursu powyżej %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Ocena z kursu poniżej";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Ocena z kursu poniżej %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Kursy";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Nie ukończono";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Ogłoszenie instytucji";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Ogłoszenia instytucji";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Zapisywanie...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Skaner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skanowanie nie jest obsługiwane";

@@ -85,7 +85,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
                 <p>Oreos are sandwiches.</p>
                 """, replies: [
                     .make(id: 100, user_id: 3, parent_id: 1, deleted: true),
-                    .make(id: 2, user_id: 3, parent_id: 1, message: "<link rel=\"stylesheet\">I disagree.<script src=\"foo.js\"></script>", replies: [
+                    .make(id: 2, user_id: 3, parent_id: 1, message: "<link rel=\"stylesheet\"><script src=\"foo.js\"></script><p>I disagree.</p>", replies: [
                         .make(id: 3, user_id: 2, parent_id: 2, message: "Why?"),
                     ]),
                 ]),
@@ -95,7 +95,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             ]
         ))
         api.mock(controller.group, value: .make(course_id: 1))
-        api.mock(GetGroups(context: controller.context), value: [ .make(course_id: 1) ])
+        api.mock(controller.groups, value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             id: 1,
@@ -290,6 +290,38 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, group.canvasContextID)
         XCTAssertEqual(controller.topicID, "2")
+        let html = getBodyHTML()
+        XCTAssert(html.contains("Is the cube rule of food valid?"))
+        XCTAssert(html.contains("Bob"))
+        XCTAssert(html.contains("Oreos are sandwiches."))
+    }
+
+    func testStudentGroupTopicWhenUserNotInAGroup() {
+        environment.app = .student
+        api.mock(controller.groups, value: [])
+        let course = controller.context
+        api.mock(controller.entries, value: .make(
+            participants: [],
+            unread_entries: [],
+            forced_entries: [],
+            view: [
+                .make(id: 1, user_id: 2, message: """
+                <p>Cube rule all the way.</p>
+                <p>Oreos are sandwiches.</p>
+                """),
+            ]
+        ))
+        api.mock(controller.topic, value: .make(
+            id: 1,
+            assignment_id: 1,
+            title: "What is a sandwich?",
+            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            group_category_id: 7,
+            group_topic_children: [ .make(id: "2", group_id: "1") ]
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.context.canvasContextID, course.canvasContextID)
+        XCTAssertEqual(controller.topicID, "1")
         let html = getBodyHTML()
         XCTAssert(html.contains("Is the cube rule of food valid?"))
         XCTAssert(html.contains("Bob"))

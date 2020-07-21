@@ -576,6 +576,9 @@
 "Event" = "Viðburður";
 
 /* No comment provided by engineer. */
+"Event Details" = "Upplýsingar viðburðar";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Núverandi viðhengi…";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Hleð inn...";
+
+/* No comment provided by engineer. */
+"Location" = "Staðsetning";
 
 /* No comment provided by engineer. */
 "Locked" = "Læst";

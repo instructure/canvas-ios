@@ -28,6 +28,12 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
+    @NSManaged public var contextRaw: String?
+
+    public var context: Context? {
+        get { contextRaw.flatMap { Context(canvasContextID: $0) } }
+        set { contextRaw = newValue?.canvasContextID }
+    }
 
     public var canvasContextID: String {
         Context(.group, id: id).canvasContextID

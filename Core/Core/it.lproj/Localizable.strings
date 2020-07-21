@@ -113,13 +113,19 @@
 "Assignment grade above" = "Voto compito sopra";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Voto compito sopra %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Voto compito sotto";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Voto compito sotto %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Compito mancante";
 
 /* No comment provided by engineer. */
-"Attachment" = "Allegato";
+"Assignment Missing" = "Compito mancante";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tentativo %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Copiato.";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Copia link";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Impossibile avviare lo strumento. Riprova.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Attività corsi";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Annuncio corso";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Annunci corso";
@@ -320,7 +332,13 @@
 "Course grade above" = "Voto corso sopra";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Voto corso sopra %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Voto corso sotto";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Voto corso sotto %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Corsi";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Non completato";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Annuncio istituto";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Annunci istituto";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Salvataggio in corso...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Analizzatore";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scansione non supportata";

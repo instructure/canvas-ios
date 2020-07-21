@@ -47,9 +47,6 @@
 "Calendar" = "Kalandriye";
 
 /* No comment provided by engineer. */
-"Calendar Event" = "Kalandriye Aktivite";
-
-/* No comment provided by engineer. */
 "Cancel" = "Anile";
 
 /* No comment provided by engineer. */
@@ -154,6 +151,9 @@
 /* No comment provided by engineer. */
 "n/a" = "n/a";
 
+/* No comment provided by engineer. */
+"No Alerts" = "Pa gen Alèt";
+
 /* Empty Courses Text */
 "No Courses" = "Pa gen Kou";
 
@@ -244,7 +244,13 @@
 "There was a problem loading the DiscussionKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done DiscussionKit a,";
 
 /* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "Te gen erè nan chajman alèt yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Te gen yon erè nan chajman elèv yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There's nothing to be notified of yet." = "Poko gen anyen pou yo siyale.";
 
 /* No comment provided by engineer. */
 "This announcement has expired." = "Anons sa a ekspire.";

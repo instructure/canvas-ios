@@ -63,11 +63,11 @@ class RoutesTests: XCTestCase {
 
     func testCalendar() {
         XCTAssert(router.match("/calendar") is PlannerViewController)
-        XCTAssert(router.match("/calendar?event_id=7") is CalendarEventItemDetailsViewController)
+        XCTAssert(router.match("/calendar?event_id=7") is CalendarEventDetailsViewController)
     }
 
     func testCalendarEvents() {
-        XCTAssert(router.match("/calendar_events/7") is CalendarEventItemDetailsViewController)
+        XCTAssert(router.match("/calendar_events/7") is CalendarEventDetailsViewController)
     }
 
     func testConversation() {

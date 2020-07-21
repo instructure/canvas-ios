@@ -113,13 +113,19 @@
 "Assignment grade above" = "Verkefnaeinkunn fyrir ofan";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Verkefnaeinkunn að ofan %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Verkefnaeinkunn fyrir neðan";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Verkefnaeinkunn að neðan %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Verkefni vantar";
 
 /* No comment provided by engineer. */
-"Attachment" = "Viðhengi";
+"Assignment Missing" = "Verkefni vantar";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tilraun %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Afritað!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Afrita tengil";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Ekki tókst að opna verkfæri. Vinsamlegast reynið aftur.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Virkni námskeiðs";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Tilkynning námskeiðs";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Námskeiðs tilkynningar";
@@ -320,7 +332,13 @@
 "Course grade above" = "Námskeiðseinkunn fyrir ofan";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Námskeiðaeinkunn að ofan %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Námskeiðseinkunn fyrir neðan";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Námskeiðaeinkunn að neðan %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Námskeið";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ólokið";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Stofnana tilkynning";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Stofnana tilkynningar";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Vista...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Skanni";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Skönnun er ekki studd";

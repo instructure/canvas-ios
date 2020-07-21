@@ -113,13 +113,19 @@
 "Assignment grade above" = "Npot sesyon pi wo a";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Kou Devwa Siperyè %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Npot sesyon pi ba a";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Kou Devwa Enferyè %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Sesyon ki manke";
 
 /* No comment provided by engineer. */
-"Attachment" = "Atachman";
+"Assignment Missing" = "Devwa ki manke";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Kopye!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Kopye Lyen";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Paka lanse zouti. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Aktivite Kou";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Anons Kou";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anons kou";
@@ -320,7 +332,13 @@
 "Course grade above" = "Nòt kou pi wo a";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Kou Klas pi wo a %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Nòt kou pi ba a";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Kou Klas Pi Ba a %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Kou";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Enkonplè";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Anons Enstitisyon";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Anons Enstitisyon";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Anrejistreman...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Eskanè.";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Nimerizasyon an pa posib";

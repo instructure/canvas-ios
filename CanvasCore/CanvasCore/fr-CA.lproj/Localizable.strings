@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Disponible jusqu'à";
 
-/* stop record button a11y hint */
-"Begin recording" = "Lancer l'enregistrement";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Annuler";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Erreur de données";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Supprimer";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Supprimer le commentaire";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Supprimer l'enregistrement?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Erreur de disque";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Ignorer";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Aucun";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Non autorisé";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ne peut être pris";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "En retard";
 
-/* Pause recording/playback */
-"Pause" = "Mettre en pause";
-
-/* record button a11y hint */
-"Pause playback" = "Mettre la lecture en pause";
-
-/* Playback button */
-"Play" = "Lecture";
-
-/* play button a11y hint */
-"Play back recording" = "Lire un enregistrement";
-
-/* Title for playback error messages */
-"Playback Error" = "Erreur de lecture";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Veuillez vérifier votre connexion au réseau et réessayer.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Pour en lire davantage";
 
-/* Record button a11y label */
-"Record" = "Enregistrer";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Aide sur les autorisations d'enregistrement";
-
-/* title for a recording error */
-"Recording Error" = "Erreur d'enregistrement";
-
 /* No comment provided by engineer. */
 "Remove" = "Retirer";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Rapport";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Demander l’autorisation d'enregistrer de l'audio";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Demander l’autorisation d'enregistrer de l'audio";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Continuer le questionnaire";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Rester";
 
-/* stop recording button a11y label */
-"Stop" = "Arrêt";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Répondre au questionnaire";
-
-/* Error message for a file missing */
-"The file does not exist." = "Le fichier n'existe pas.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Les pages sont disparues!? Pourquoi les pages sont toujours disparues?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Un problème est survenu lors du téléchargement AssignmentKit du fichier de base de données.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Un problème est survenu lors du téléchargement CalendarKit du fichier de base de données.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Un problème est survenu lors du téléchargement EnrollmentKit du fichier de base de données.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Prochainement";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "L'utilisateur a rejeté l’autorisation d'enregistrement";
-
 /* button for viewing quiz results */
 "View Results" = "Voir les résultats";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Vous avez utilisé toutes vos tentatives possibles pour ce questionnaire.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Vous devez donner à (appName) l'accès à votre microphone dans l'application des Réglages pour pouvoir enregistrer de l'audio.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Espace de stockage de votre appareil insuffisant. Veuillez libérer de l'espace et essayez à nouveau.";

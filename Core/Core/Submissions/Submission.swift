@@ -284,7 +284,7 @@ public enum SubmissionStatus {
     case submitted
     case notSubmitted
 
-    var text: String {
+    public var text: String {
         switch self {
         case .late:
             return NSLocalizedString("Late", bundle: .core, comment: "")
@@ -297,7 +297,7 @@ public enum SubmissionStatus {
         }
     }
 
-    var color: UIColor {
+    public var color: UIColor {
         switch self {
         case .late:
             return .named(.textWarning)
@@ -307,6 +307,17 @@ public enum SubmissionStatus {
             return .named(.textSuccess)
         case .notSubmitted:
             return .named(.textDark)
+        }
+    }
+
+    public var icon: UIImage {
+        switch self {
+        case .submitted:
+            return .icon(.complete, .solid)
+        case .late:
+            return .icon(.clock, .solid)
+        case .missing, .notSubmitted:
+            return .icon(.no, .solid)
         }
     }
 }

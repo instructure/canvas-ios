@@ -113,13 +113,19 @@
 "Assignment grade above" = "Opgavekarakter over";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Opgavekarakter over %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Opgavekarakter under";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Opgavekarakter under %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Opgave mangler";
 
 /* No comment provided by engineer. */
-"Attachment" = "Vedhæftet fil";
+"Assignment Missing" = "Opgave mangler";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Forsøg %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Kopieret!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Kopier link";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Kunne ikke starte værktøjet. Prøv igen.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Fagets aktiviteter";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Besked til faget";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Kursusbekendtgørelser";
@@ -320,7 +332,13 @@
 "Course grade above" = "Kursuskarakter over";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Fagkarakter over %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Kursuskarakter under";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Fagkarakter under %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Fag";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Ufuldstændig";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Besked til institutionen";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Institutionsbekendtgørelse";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Gemmer ...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Scanner";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scanning understøttes ikke";

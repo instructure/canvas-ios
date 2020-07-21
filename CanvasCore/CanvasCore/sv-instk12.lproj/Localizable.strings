@@ -22,11 +22,7 @@
 /* label for quiz availability date */
 "Available Until" = "Tillgänglig tills";
 
-/* stop record button a11y hint */
-"Begin recording" = "Starta inspelning";
-
-/* Cancel Audio recording.
-   Cancel button title */
+/* No comment provided by engineer. */
 "Cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
@@ -38,20 +34,16 @@
 /* Error title for a persistence related data failure */
 "Data Error" = "Datafel";
 
-/* Delete button */
+/* No comment provided by engineer. */
 "Delete" = "Ta bort";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Ta bort kommentar";
 
-/* message for delete dialog of audio recorder */
-"Delete recording?" = "Ta bort inspelning?";
-
 /* Error title to alert user their device is out of storage space */
 "Disk Error" = "Diskfel";
 
-/* Dismiss an error dialog
-   Dismiss button for error alert
+/* Dismiss button for error alert
    Dismiss button for error messages */
 "Dismiss" = "Avvisa";
 
@@ -140,9 +132,6 @@
 /* Section header for assignments without an assignment group */
 "None" = "Inga";
 
-/* can't record because request for mic access was denied title */
-"Not Permitted" = "Inte tillåten";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Kan inte tas";
 
@@ -164,21 +153,6 @@
 /* Assignments that have been turned in and are past */
 "Past" = "Tidigare";
 
-/* Pause recording/playback */
-"Pause" = "Pausa";
-
-/* record button a11y hint */
-"Pause playback" = "Pausa uppspelning";
-
-/* Playback button */
-"Play" = "Spela upp";
-
-/* play button a11y hint */
-"Play back recording" = "Spela upp inspelning";
-
-/* Title for playback error messages */
-"Playback Error" = "Uppspelningsfel";
-
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Kontrollera din nätverksanslutning och försök igen.";
 
@@ -197,15 +171,6 @@
 /* button to read more of the description */
 "Read More" = "Läs mer";
 
-/* Record button a11y label */
-"Record" = "Spela in";
-
-/* permission denied button a11y label */
-"Record Permission Help" = "Hjälp med inspelningstillstånd";
-
-/* title for a recording error */
-"Recording Error" = "Inspelningsfel";
-
 /* No comment provided by engineer. */
 "Remove" = "Ta bort";
 
@@ -221,12 +186,6 @@
 /* Button to report an error */
 "Report" = "Rapportera";
 
-/* Record button a11y label */
-"Request Audio Recording Permission" = "Begär tillstånd för ljudinspelning";
-
-/* stop record button a11y hint */
-"Request Permission to record audio" = "Begär tillstånd för att spela in ljud";
-
 /* button for resuming a quiz */
 "Resume Quiz" = "Fortsätt quiz";
 
@@ -236,17 +195,11 @@
 /* Stay on the quiz view */
 "Stay" = "Stanna";
 
-/* stop recording button a11y label */
-"Stop" = "Stopp";
-
 /* No comment provided by engineer. */
 "Style" = "Stil";
 
 /* Button for taking the quiz */
 "Take Quiz" = "Gör quiz";
-
-/* Error message for a file missing */
-"The file does not exist." = "Filen finns inte.";
 
 /* This shouldn't ever happen. */
 "The Pages are gone!? Why are the pages always gone?" = "Är sidorna borta!? Varför är alltid sidorna borta?";
@@ -259,9 +212,6 @@
 
 /* AssignmentKit database load failure message */
 "There was a problem loading the AssignmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AssignmentKit.";
-
-/* CalendarKit Database Load Failure Message */
-"There was a problem loading the CalendarKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för CalendarKit.";
 
 /* EnrollmentKit Database Load Failure Message */
 "There was a problem loading the EnrollmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för EnrollmentKit.";
@@ -329,17 +279,11 @@
 /* Upcoming assignments */
 "Upcoming" = "Kommande";
 
-/* permission denied button a11y hint */
-"User has denied record permission" = "Användaren har nekat inspelningstillstånd";
-
 /* button for viewing quiz results */
 "View Results" = "Visa resultat";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Du har använt alla dina tillgängliga försök på det här quizzet.";
-
-/* permission was rejected */
-"You must grant (appName) Microphone access in the Settings app in order to record audio." = "Du måste ge (appName) mikrofonåtkomst i inställningarna för appen för att spela in ljud.";
 
 /* Error description for file out of space */
 "Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Frigör utrymme och försök igen.";

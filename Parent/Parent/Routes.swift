@@ -29,11 +29,10 @@ let router = Router(routes: [
     },
 
     RouteHandler("/calendar") { url, _, _ in
-        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
-            guard let session = Session.current, let studentID = currentStudentID else { return nil }
-            return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
-        }
         guard let studentID = currentStudentID else { return nil }
+        if let eventID = url.queryItems?.first(where: { $0.name == "event_id" })?.value {
+            return CalendarEventDetailsViewController.create(studentID: studentID, eventID: eventID)
+        }
         let controller = PlannerViewController.create(studentID: studentID)
         controller.view.tintColor = ColorScheme.observee(studentID).color
         return controller
@@ -54,17 +53,16 @@ let router = Router(routes: [
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID") { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
-        guard let session = Session.current, let studentID = currentStudentID else { return nil }
+        guard let studentID = currentStudentID else { return nil }
         if assignmentID == "syllabus" {
             return SyllabusViewController.create(courseID: courseID)
         }
-        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/assignments/:assignmentID/submissions/:userID") { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"], let studentID = params["userID"] else { return nil }
-        guard let session = Session.current else { return nil }
-        return try? AssignmentDetailsViewController(session: session, studentID: studentID, courseID: courseID, assignmentID: assignmentID)
+        return AssignmentDetailsViewController.create(studentID: studentID, courseID: courseID, assignmentID: assignmentID)
     },
 
     RouteHandler("/courses/:courseID/grades") { _, params, _ in
@@ -73,22 +71,20 @@ let router = Router(routes: [
         return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 
-    RouteHandler("/courses/:courseID/calendar_events/:eventID") { _, params, _ in
-        guard let courseID = params["courseID"], let eventID = params["eventID"] else { return nil }
-        guard let session = Session.current, let studentID = currentStudentID else { return nil }
-        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, courseID: courseID, calendarEventID: eventID)
+    RouteHandler("/:context/:contextID/calendar_events/:eventID") { _, params, _ in
+        guard let eventID = params["eventID"], let studentID = currentStudentID else { return nil }
+        return CalendarEventDetailsViewController.create(studentID: studentID, eventID: eventID)
+    },
+
+    RouteHandler("/calendar_events/:eventID") { _, params, _ in
+        guard let eventID = params["eventID"], let studentID = currentStudentID else { return nil }
+        return CalendarEventDetailsViewController.create(studentID: studentID, eventID: eventID)
     },
 
     RouteHandler("/courses/:courseID/discussion_topics/:topicID") { _, params, _ in
         guard let courseID = params["courseID"], let topicID = params["topicID"] else { return nil }
         guard let session = Session.current, let studentID = currentStudentID else { return nil }
         return try? AnnouncementDetailsViewController(session: session, studentID: studentID, courseID: courseID, announcementID: topicID)
-    },
-
-    RouteHandler("/calendar_events/:eventID") { _, params, _ in
-        guard let eventID = params["eventID"] else { return nil }
-        guard let session = Session.current, let studentID = currentStudentID else { return nil }
-        return try? CalendarEventDetailsViewController(session: session, studentID: studentID, calendarEventID: eventID)
     },
 
     RouteHandler("/profile") { _, _, _ in

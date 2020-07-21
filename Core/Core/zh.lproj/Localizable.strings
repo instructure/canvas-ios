@@ -113,13 +113,19 @@
 "Assignment grade above" = "作业评分高于";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "作业评分高于  %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "作业评分低于";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "作业评分低于%d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "缺少作业";
 
 /* No comment provided by engineer. */
-"Attachment" = "附件";
+"Assignment Missing" = "缺少作业";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -302,6 +308,9 @@
 "Copied!" = "已复制";
 
 /* No comment provided by engineer. */
+"Copy Link" = "复制链接";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "无法启动工具。请重试。";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "课程活动";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "课程公告";
 
 /* No comment provided by engineer. */
 "Course announcements" = "课程通告";
@@ -320,7 +332,13 @@
 "Course grade above" = "课程评分高于";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "课程评分高于%d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "课程评分低于";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "课程评分低于%d";
 
 /* No comment provided by engineer. */
 "Courses" = "课程";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "未完成";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "机构公告";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "机构通告";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "正在保存...";
+
+/* No comment provided by engineer. */
+"Scanner" = "扫描仪";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "不支持扫描";

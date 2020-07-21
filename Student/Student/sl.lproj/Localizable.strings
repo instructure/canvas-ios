@@ -576,6 +576,9 @@
 "Event" = "Dogodek";
 
 /* No comment provided by engineer. */
+"Event Details" = "Podrobnosti dogodka";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Obstoječe priloge ...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "Nalaganje ...";
+
+/* No comment provided by engineer. */
+"Location" = "Mesto";
 
 /* No comment provided by engineer. */
 "Locked" = "Zaklenjeno";

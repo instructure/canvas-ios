@@ -576,6 +576,9 @@
 "Event" = "活動";
 
 /* No comment provided by engineer. */
+"Event Details" = "事件詳細資料";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "現存的附件...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "正在載入……";
+
+/* No comment provided by engineer. */
+"Location" = "位置";
 
 /* No comment provided by engineer. */
 "Locked" = "已鎖定";

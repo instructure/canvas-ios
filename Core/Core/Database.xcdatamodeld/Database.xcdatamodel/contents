@@ -74,7 +74,7 @@
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
     </entity>
-    <entity name="CalendarEventItem" representedClassName="Core.CalendarEventItem" syncable="YES">
+    <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
         <attribute name="contextName" attributeType="String"/>
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
@@ -373,6 +373,7 @@
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -791,7 +792,7 @@
         <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="628"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
-        <element name="CalendarEventItem" positionX="-531" positionY="-18" width="128" height="253"/>
+        <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>
@@ -814,7 +815,7 @@
         <element name="Folder" positionX="-540" positionY="-18" width="128" height="298"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="135"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="148"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>

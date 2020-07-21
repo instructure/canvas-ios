@@ -36,11 +36,11 @@ public class SyllabusSummaryViewController: UITableViewController {
         self?.update()
     }
 
-    public lazy var summary: Store<LocalUseCase<CalendarEventItem>> = {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEventItem.contextRaw), self.context.canvasContextID)
-        let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEventItem.hasStartAt), ascending: false)
-        let startAt = NSSortDescriptor(key: #keyPath(CalendarEventItem.startAt), ascending: true)
-        let title = NSSortDescriptor(key: #keyPath(CalendarEventItem.title), ascending: true, naturally: true)
+    public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
+        let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
+        let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)
         let order = [hasStartAt, startAt, title]
         let scope = Scope(predicate: predicate, order: order)
         return env.subscribe(scope: scope) { [weak self] in

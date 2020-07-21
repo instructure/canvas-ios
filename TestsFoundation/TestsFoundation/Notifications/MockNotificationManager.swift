@@ -32,11 +32,26 @@ public class MockNotificationManager: NotificationManager {
 public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var requests: [UNNotificationRequest] = []
     public var error: Error?
+    public var authorized = true
+    public var authError: Error?
 
     public init() {}
 
+    public func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void) {
+        completionHandler(authorized, authError)
+    }
+
     public func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?) {
+        removePendingNotificationRequests(withIdentifiers: [request.identifier])
         requests.append(request)
         completionHandler?(error)
+    }
+
+    public func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void) {
+        completionHandler(requests)
+    }
+
+    public func removePendingNotificationRequests(withIdentifiers identifiers: [String]) {
+        requests = requests.filter { !identifiers.contains($0.identifier) }
     }
 }

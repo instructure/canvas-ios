@@ -113,13 +113,19 @@
 "Assignment grade above" = "Оценка за задание выше";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Оценка за задание выше %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Оценка за задание ниже";
+
+/* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Оценка за задание ниже %d";
 
 /* No comment provided by engineer. */
 "Assignment missing" = "Задание отсутствует";
 
 /* No comment provided by engineer. */
-"Attachment" = "Вложение";
+"Assignment Missing" = "Задание отсутствует";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -302,6 +308,9 @@
 "Copied!" = "Скопировано!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Копировать ссылку";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Не удалось запустить инструмент. Попробуйте еще раз.";
 
 /* No comment provided by engineer. */
@@ -309,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Активность в рамках курса";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Объявление о курсе";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Объявления курса";
@@ -320,7 +332,13 @@
 "Course grade above" = "Оценка за курс выше";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Оценка за курс выше %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Оценка за курс ниже";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Оценка за курс ниже %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
@@ -627,6 +645,9 @@
 
 /* No comment provided by engineer. */
 "Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
+"Institution Announcement" = "Объявление об учебном заведении";
 
 /* No comment provided by engineer. */
 "Institution announcements" = "Объявления заведения";
@@ -1059,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Выполняется сохранение...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Сканер";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Сканирование не поддерживается";
