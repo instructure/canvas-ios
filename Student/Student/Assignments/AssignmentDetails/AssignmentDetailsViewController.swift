@@ -277,7 +277,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         attemptsAllowedValueLabel.text = assignment.allowedAttempts > 0
             ? NumberFormatter.localizedString(from: NSNumber(value: assignment.allowedAttempts), number: .none)
             : NSLocalizedString("Unlimited", comment: "")
-        attemptsUsedValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: assignment.submission?.attempt ?? 0), number: .none)
+        attemptsUsedValueLabel.text = NumberFormatter.localizedString(from: NSNumber(value: assignment.usedAttempts), number: .none)
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
