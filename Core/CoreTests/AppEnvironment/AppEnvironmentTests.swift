@@ -36,4 +36,30 @@ class AppEnvironmentTests: CoreTestCase {
         XCTAssertNil(env.api.loginSession?.accessToken)
         XCTAssertNil(env.currentSession)
     }
+
+    func testStartup() {
+        let env = AppEnvironment()
+        var count = 0
+        env.performAfterStartup { count += 1 }
+        XCTAssertEqual(count, 0)
+        env.startupDidComplete()
+        XCTAssertEqual(count, 1)
+        env.performAfterStartup { count += 1 }
+        XCTAssertEqual(count, 2)
+    }
+
+    func testReportError() {
+        let env = AppEnvironment()
+        var error: Error?
+        var view: UIViewController?
+        env.errorHandler = { e, v in
+            error = e
+            view = v
+        }
+        env.reportError(nil)
+        XCTAssertNil(error)
+        env.reportError(NSError.internalError(), from: UIViewController())
+        XCTAssertEqual(error?.localizedDescription, "Internal Error")
+        XCTAssertNotNil(view)
+    }
 }

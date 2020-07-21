@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
-		2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB68A341FED6E0600468313 /* StartupManager.swift */; };
 		2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCBD44620C0943B0082E616 /* URL+Core.swift */; };
 		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
@@ -56,7 +55,6 @@
 		4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020081F901CF5006BD777 /* CanvadocsConstants.swift */; };
 		4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */; };
 		4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */; };
-		493020461F902364006BD777 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020291F902360006BD777 /* NSError+Categorization.swift */; };
 		493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */; };
 		4930204A1F902364006BD777 /* Uncollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020301F902361006BD777 /* Uncollect.swift */; };
 		4930204B1F902364006BD777 /* Concat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020311F902361006BD777 /* Concat.swift */; };
@@ -65,7 +63,6 @@
 		4930204E1F902364006BD777 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020341F902361006BD777 /* Values.swift */; };
 		4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020351F902361006BD777 /* IgnoreValues.swift */; };
 		493020501F902364006BD777 /* String+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020361F902361006BD777 /* String+SoLazy.swift */; };
-		493020511F902364006BD777 /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020371F902361006BD777 /* ErrorReporter.swift */; };
 		493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020381F902362006BD777 /* GCD+SoLazy.swift */; };
 		493020531F902364006BD777 /* Array+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020391F902362006BD777 /* Array+SoLazy.swift */; };
 		493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203A1F902362006BD777 /* Marshal+SoLazy.swift */; };
@@ -153,6 +150,8 @@
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
 		7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */; };
+		7D60608624C74DDA00BD0639 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D60608524C74DDA00BD0639 /* ReactiveSwift */; };
+		7D60608924C74DFC00BD0639 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7D60608824C74DFC00BD0639 /* ReactiveCocoa */; };
 		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
 		7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
@@ -192,7 +191,6 @@
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
-		2CB68A341FED6E0600468313 /* StartupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupManager.swift; sourceTree = "<group>"; };
 		2CCBD44620C0943B0082E616 /* URL+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Core.swift"; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 		493020081F901CF5006BD777 /* CanvadocsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsConstants.swift; sourceTree = "<group>"; };
 		493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
-		493020291F902360006BD777 /* NSError+Categorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Categorization.swift"; sourceTree = "<group>"; };
 		4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
 		493020301F902361006BD777 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
 		493020311F902361006BD777 /* Concat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concat.swift; sourceTree = "<group>"; };
@@ -244,7 +241,6 @@
 		493020341F902361006BD777 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		493020351F902361006BD777 /* IgnoreValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoreValues.swift; sourceTree = "<group>"; };
 		493020361F902361006BD777 /* String+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SoLazy.swift"; sourceTree = "<group>"; };
-		493020371F902361006BD777 /* ErrorReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		493020381F902362006BD777 /* GCD+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCD+SoLazy.swift"; sourceTree = "<group>"; };
 		493020391F902362006BD777 /* Array+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SoLazy.swift"; sourceTree = "<group>"; };
 		4930203A1F902362006BD777 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
@@ -428,6 +424,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
+				7D60608924C74DFC00BD0639 /* ReactiveCocoa in Frameworks */,
+				7D60608624C74DDA00BD0639 /* ReactiveSwift in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +479,6 @@
 				493BEFA81FB14560006E8EFC /* LTI */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				49301FD61F901826006BD777 /* Push Notifications */,
-				2CB68A331FED6DF300468313 /* Startup Manager */,
 				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				4930205E1F902413006BD777 /* Session */,
@@ -504,14 +501,6 @@
 				B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2CB68A331FED6DF300468313 /* Startup Manager */ = {
-			isa = PBXGroup;
-			children = (
-				2CB68A341FED6E0600468313 /* StartupManager.swift */,
-			);
-			path = "Startup Manager";
 			sourceTree = "<group>";
 		};
 		3BBEAA47204726E4004D334C /* Page View Analytics */ = {
@@ -615,11 +604,9 @@
 			isa = PBXGroup;
 			children = (
 				493020391F902362006BD777 /* Array+SoLazy.swift */,
-				493020371F902361006BD777 /* ErrorReporter.swift */,
 				493020381F902362006BD777 /* GCD+SoLazy.swift */,
 				4930203A1F902362006BD777 /* Marshal+SoLazy.swift */,
 				493020431F902364006BD777 /* NSData+SoLazy.swift */,
-				493020291F902360006BD777 /* NSError+Categorization.swift */,
 				493020421F902364006BD777 /* NSError+SoLazy.swift */,
 				4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */,
 				4930203D1F902363006BD777 /* RAC+SoLazy.swift */,
@@ -993,6 +980,10 @@
 			dependencies = (
 			);
 			name = CanvasCore;
+			packageProductDependencies = (
+				7D60608524C74DDA00BD0639 /* ReactiveSwift */,
+				7D60608824C74DFC00BD0639 /* ReactiveCocoa */,
+			);
 			productName = CanvasCore;
 			productReference = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1056,6 +1047,10 @@
 				it,
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
+			packageReferences = (
+				7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
+				7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
+			);
 			productRefGroup = 2CAF1B151F72AEDB007225DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1122,7 +1117,6 @@
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
 				49301FED1F901854006BD777 /* RemoteService.swift in Sources */,
 				4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */,
-				2CB68A351FED6E0600468313 /* StartupManager.swift in Sources */,
 				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
 				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
@@ -1146,7 +1140,6 @@
 				493020501F902364006BD777 /* String+SoLazy.swift in Sources */,
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
-				493020511F902364006BD777 /* ErrorReporter.swift in Sources */,
 				4930205A1F902364006BD777 /* UIFont+SoLazy.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */,
@@ -1168,7 +1161,6 @@
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
-				493020461F902364006BD777 /* NSError+Categorization.swift in Sources */,
 				4930205C1F902364006BD777 /* NSError+SoLazy.swift in Sources */,
 				7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */,
 				493020711F902462006BD777 /* Session.swift in Sources */,
@@ -1451,7 +1443,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1479,7 +1472,11 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1512,7 +1509,11 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1546,6 +1547,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+		7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7D60608524C74DDA00BD0639 /* ReactiveSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
+			productName = ReactiveSwift;
+		};
+		7D60608824C74DFC00BD0639 /* ReactiveCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
+			productName = ReactiveCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CAF1B0B1F72AEDB007225DF /* Project object */;
 }

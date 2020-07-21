@@ -26,7 +26,7 @@ import Core
 import React
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
 
     lazy var environment: AppEnvironment = {
@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
+        setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -102,7 +103,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
-            }, completion: nil)
+            }, completion: { _ in
+                self.environment.startupDidComplete()
+                NotificationKitController.registerForPushNotifications()
+            })
         }
         HelmManager.shared.onReactReload = {
             guard self.window?.rootViewController is RootTabBarController else { return }
@@ -116,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         NotificationKitController.didRegisterForRemoteNotifications(deviceToken) { [weak self] error in
-            ErrorReporter.reportError(error.addingInfo(), from: self?.window?.rootViewController)
+            self?.environment.reportError(error.addingInfo(), from: self?.window?.rootViewController)
         }
     }
 
@@ -134,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     private func handlePush(userInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
-        StartupManager.shared.enqueueTask {
+        environment.performAfterStartup {
             RCTPushNotificationManager.didReceiveRemoteNotification(userInfo) { _ in
                 completionHandler()
             }
@@ -163,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        StartupManager.shared.enqueueTask {
+        environment.performAfterStartup {
             guard let rootView = app.keyWindow?.rootViewController as? RootTabBarController, let tabViewControllers = rootView.viewControllers else { return }
             for (index, vc) in tabViewControllers.enumerated() {
                 let navigationController: UINavigationController?
@@ -208,20 +212,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 }
 
-extension AppDelegate: AnalyticsHandler {
+extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         Analytics.logEvent(name, parameters: parameters)
     }
 }
 
-extension AppDelegate: RCTBridgeDelegate {
+extension TeacherAppDelegate: RCTBridgeDelegate {
     func sourceURL(for bridge: RCTBridge!) -> URL! {
         let url = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index.ios", fallbackResource: nil)
         return url
     }
 }
 
-extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     var supportsQRCodeLogin: Bool {
         ExperimentalFeature.qrLoginTeacher.isEnabled
     }
@@ -298,8 +302,21 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 }
 
+// MARK: Error Handling
+extension TeacherAppDelegate {
+    func setupDefaultErrorHandling() {
+        environment.errorHandler = { error, controller in performUIUpdate {
+            let error = error as NSError
+            error.showAlert(from: controller)
+            if error.shouldRecordInCrashlytics {
+                Firebase.Crashlytics.crashlytics().record(error: error)
+            }
+        } }
+    }
+}
+
 // MARK: Crashlytics
-extension AppDelegate {
+extension TeacherAppDelegate {
     @objc func setupFirebase() {
         guard !testing else { return }
 
@@ -309,7 +326,7 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate {
+extension TeacherAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .teacher) {
             window?.rootViewController = LoadingViewController.create()
