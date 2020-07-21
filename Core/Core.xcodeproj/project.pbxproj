@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,8 +79,6 @@
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
 		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
 		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
-		5B80945D24A8786E001871DB /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
-		5B80945E24A8786E001871DB /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
 		76C331C8F363ABC602A1B6DD /* Pods_needs_pspdfkit_CoreTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */; };
 		78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */; };
@@ -163,8 +161,6 @@
 		7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D627169245B422900FC1798 /* DiscussionParticipant.swift */; };
 		7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716B245B591E00FC1798 /* GetDiscussions.swift */; };
 		7D62716E245B735A00FC1798 /* DiscussionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */; };
-		7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96224A2764300DB7C18 /* ReactiveSwift */; };
-		7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */; };
 		7D630B6F24A511120039A45D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6E24A511120039A45D /* Folder.swift */; };
 		7D630B7124A52C050039A45D /* GetFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B7024A52C050039A45D /* GetFolders.swift */; };
 		7D63F788215D44A600151E49 /* APIBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D63F787215D44A600151E49 /* APIBrandVariablesTests.swift */; };
@@ -308,7 +304,7 @@
 		7DA25FEE23F721DE005D2121 /* GetConversations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84223A7F24400262380 /* GetConversations.swift */; };
 		7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87D07A2322F4C500EDA363 /* GetSearchRecipients.swift */; };
 		7DA25FF023F721DE005D2121 /* SearchRecipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87D0782322EF5A00EDA363 /* SearchRecipient.swift */; };
-		7DA25FF123F7225D005D2121 /* AccountNotificationIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14863F230B4519003944A2 /* AccountNotificationIcon.swift */; };
+		7DA25FF123F7225D005D2121 /* AccountNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14863F230B4519003944A2 /* AccountNotification.swift */; };
 		7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D14863D230B43F8003944A2 /* APIAccountNotification.swift */; };
 		7DA25FF323F72260005D2121 /* DeveloperMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE5357223AD1AB001EC40C /* DeveloperMenuViewController.swift */; };
 		7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7C8B0823858DAB00E383BF /* ExperimentalFeaturesViewController.swift */; };
@@ -565,6 +561,7 @@
 		7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B721BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift */; };
 		7DB0A1BA21BF1904009ABB40 /* LoginStartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */; };
 		7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB3A9E524119C0800274EB8 /* PagesViewController.swift */; };
+		7DB92CA224C5F5ED004A6C16 /* GetAccountNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB92CA124C5F5ED004A6C16 /* GetAccountNotifications.swift */; };
 		7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB94972247DA160006FB025 /* GetSubmissionSummary.swift */; };
 		7DB94978247DC8E8006FB025 /* SubmissionBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */; };
 		7DB94979247DCC51006FB025 /* SubmissionBreakdownViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */; };
@@ -1274,7 +1271,7 @@
 		7D13C52D22B956C200345253 /* MockDistantURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDistantURLSession.swift; sourceTree = "<group>"; };
 		7D13C52F22B9570400345253 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		7D14863D230B43F8003944A2 /* APIAccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotification.swift; sourceTree = "<group>"; };
-		7D14863F230B4519003944A2 /* AccountNotificationIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationIcon.swift; sourceTree = "<group>"; };
+		7D14863F230B4519003944A2 /* AccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotification.swift; sourceTree = "<group>"; };
 		7D148644230B491C003944A2 /* APIAccountNotificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotificationTests.swift; sourceTree = "<group>"; };
 		7D148649230B4CD5003944A2 /* AccountNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotifications.swift; sourceTree = "<group>"; };
 		7D14864B230B4CEC003944A2 /* AccountNotificationsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationsE2ETests.swift; sourceTree = "<group>"; };
@@ -1526,6 +1523,7 @@
 		7DB0A1B921BF1904009ABB40 /* LoginStartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartViewControllerTests.swift; sourceTree = "<group>"; };
 		7DB3A9E524119C0800274EB8 /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
 		7DB3C6582285F0C700325B72 /* LoginStartMDMLoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartMDMLoginCell.swift; sourceTree = "<group>"; };
+		7DB92CA124C5F5ED004A6C16 /* GetAccountNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountNotifications.swift; sourceTree = "<group>"; };
 		7DB94972247DA160006FB025 /* GetSubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummary.swift; sourceTree = "<group>"; };
 		7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionBreakdownViewController.storyboard; sourceTree = "<group>"; };
 		7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewController.swift; sourceTree = "<group>"; };
@@ -1978,10 +1976,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
-				7D630B5824A5002E0039A45D /* ReactiveCocoa in Frameworks */,
-				7D630B5724A5002E0039A45D /* ReactiveSwift in Frameworks */,
-				5B80945E24A8786E001871DB /* ReactiveCocoa in Frameworks */,
-				5B80945D24A8786E001871DB /* ReactiveSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2069,6 +2063,7 @@
 		2C964830211E2F1A002C3255 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				7DB92CA824C5FD4A004A6C16 /* AccountNotifications */,
 				9FBFE6D122412B71002B3796 /* ActAsUser */,
 				3BC3E01B2315A0B300E15C6D /* Analytics */,
 				7D8262E9212B1A4F00BD268D /* API */,
@@ -2131,8 +2126,9 @@
 		2C96483B211E2F1A002C3255 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				3BC3E01E2315A2A700E15C6D /* Analytics */,
+				7D148643230B48F3003944A2 /* AccountNotifications */,
 				7D3A1EED227BEFB20094531E /* ActAsUser */,
+				3BC3E01E2315A2A700E15C6D /* Analytics */,
 				7D80AC13212B659300C40ECE /* API */,
 				7D8B78F9215EC999005E08F1 /* AppEnvironment */,
 				7DF4AACE2486AC0E00B07BB8 /* Assignments */,
@@ -2166,7 +2162,6 @@
 				7D8E820F23C8E0AE00A8DA2C /* People */,
 				97F69C3923F1FD78009622E3 /* Planner */,
 				3BE2C76D219335FA004B8E5E /* Presenter */,
-				3B22E4FA23469C4B000D9B91 /* Protocols */,
 				7DBED015232FDD8000392F3C /* Profile */,
 				7D1D5BE72492ABB7009EA317 /* Quizzes */,
 				7DEAD09C22790B1E0030C28A /* RichContentEditor */,
@@ -2263,13 +2258,6 @@
 				97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */,
 			);
 			path = Syllabus;
-			sourceTree = "<group>";
-		};
-		3B22E4FA23469C4B000D9B91 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		3B346747213051CC00F9BC2E /* Login */ = {
@@ -2535,7 +2523,6 @@
 		7D14863C230B43AE003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				7D148641230B487B003944A2 /* AccountNotifications */,
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
 				7D7242542429BEE8007ED42F /* DashboardGroupCell.swift */,
@@ -2546,19 +2533,9 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		7D148641230B487B003944A2 /* AccountNotifications */ = {
-			isa = PBXGroup;
-			children = (
-				7D14863F230B4519003944A2 /* AccountNotificationIcon.swift */,
-				7D14863D230B43F8003944A2 /* APIAccountNotification.swift */,
-			);
-			path = AccountNotifications;
-			sourceTree = "<group>";
-		};
 		7D148642230B48E7003944A2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				7D148643230B48F3003944A2 /* AccountNotifications */,
 				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
 				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
 				7D724266242A6EBA007ED42F /* DashboardViewControllerTests.swift */,
@@ -3367,6 +3344,16 @@
 				7DAFBE71231858E300E9A37D /* ErrorReportViewController.swift */,
 			);
 			path = ErrorReports;
+			sourceTree = "<group>";
+		};
+		7DB92CA824C5FD4A004A6C16 /* AccountNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				7D14863F230B4519003944A2 /* AccountNotification.swift */,
+				7D14863D230B43F8003944A2 /* APIAccountNotification.swift */,
+				7DB92CA124C5F5ED004A6C16 /* GetAccountNotifications.swift */,
+			);
+			path = AccountNotifications;
 			sourceTree = "<group>";
 		};
 		7DBED015232FDD8000392F3C /* Profile */ = {
@@ -4260,8 +4247,6 @@
 			);
 			name = Core;
 			packageProductDependencies = (
-				E8F2A96224A2764300DB7C18 /* ReactiveSwift */,
-				E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */,
 			);
 			productName = Core;
 			productReference = 2C96482E211E2F1A002C3255 /* Core.framework */;
@@ -4461,8 +4446,6 @@
 			);
 			mainGroup = 2C964824211E2F1A002C3255;
 			packageReferences = (
-				E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
-				E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
 			);
 			productRefGroup = 2C96482F211E2F1A002C3255 /* Products */;
 			projectDirPath = "";
@@ -5365,7 +5348,7 @@
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
 				7DA2601123F7227A005D2121 /* UIColorInstColorsExtensions.swift in Sources */,
-				7DA25FF123F7225D005D2121 /* AccountNotificationIcon.swift in Sources */,
+				7DA25FF123F7225D005D2121 /* AccountNotification.swift in Sources */,
 				3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */,
 				7DA2600B23F7227A005D2121 /* NSNumberExtensions.swift in Sources */,
 				7DA25FC223F72136005D2121 /* APIPage.swift in Sources */,
@@ -5429,6 +5412,7 @@
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
+				7DB92CA224C5F5ED004A6C16 /* GetAccountNotifications.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
 				7DA25F8A23F7211E005D2121 /* GetPlannables.swift in Sources */,
 				7DA2602C23F722C2005D2121 /* LoginStartSessionCell.swift in Sources */,
@@ -6267,38 +6251,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
-		E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 6.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E85F59FE24A27B6900DF6D1A /* ReactiveCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E85F59FD24A27B6900DF6D1A /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
-			productName = ReactiveCocoa;
-		};
-		E8F2A96224A2764300DB7C18 /* ReactiveSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E8F2A96124A2764300DB7C18 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
-			productName = ReactiveSwift;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		B14452FF212E5B6E0009D848 /* Database.xcdatamodeld */ = {

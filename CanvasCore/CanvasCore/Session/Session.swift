@@ -92,12 +92,3 @@ extension SessionUser {
         )
     }
 }
-
-#if DEBUG
-extension Session {
-    static func reset() {
-        current?.refreshScope.invalidateAllCaches()
-        _current = nil
-    }
-}
-#endif

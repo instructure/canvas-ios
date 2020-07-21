@@ -40,7 +40,7 @@ extension APIObserverAlert {
         alert_type: AlertThresholdType = .institutionAnnouncement,
         context_id: String? = "1",
         course_id: String? = nil,
-        html_url: URL? = URL(string: "/accounts/self/users/self/account_notifications/1"),
+        html_url: URL? = URL(string: "/accounts/self/account_notifications/1"),
         id: String = "1",
         observer_id: String = "1",
         observer_alert_threshold_id: String = "1",

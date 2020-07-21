@@ -24,23 +24,12 @@ import UserNotifications
 class RootTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTabs()
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            StartupManager.shared.markStartupFinished()
-        }
-
-        NotificationKitController.registerForPushNotifications()
-    }
-
-    @objc func configureTabs() {
         viewControllers = [coursesTab(), toDoTab(), inboxTab()]
         let paths = [ "/", "/to-do", "/conversations" ]
-        selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
-            .flatMap { paths.firstIndex(of: $0) } ?? 0
+        selectedIndex = AppEnvironment.shared.userDefaults?.landingPath.flatMap {
+            paths.firstIndex(of: $0)
+        } ?? 0
         tabBar.useGlobalNavStyle()
     }
 

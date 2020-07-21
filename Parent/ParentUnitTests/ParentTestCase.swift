@@ -20,7 +20,6 @@ import XCTest
 import Core
 import TestsFoundation
 import CoreData
-import CanvasCore
 @testable import Parent
 
 class ParentTestCase: XCTestCase {

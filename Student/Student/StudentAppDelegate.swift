@@ -209,7 +209,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func handlePush(userInfo: [AnyHashable: Any]) {
-        StartupManager.shared.enqueueTask { [weak self] in
+        environment.performAfterStartup { [weak self] in
             PushNotifications.recordUserInfo(userInfo)
             // Handle local notifications we know about first
             if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
@@ -230,39 +230,16 @@ extension AppDelegate: Core.AnalyticsHandler {
     }
 }
 
-// MARK: SoErroneous
+// MARK: Error Handling
 extension AppDelegate {
-
-    @objc func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
-        guard let presentFrom = presentingViewController else { return }
-
-        DispatchQueue.main.async {
-            let alertDetails = error.alertDetails(reportAction: {
-                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
-            })
-
-            if let deets = alertDetails {
-                let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
-                deets.actions.forEach(alert.addAction)
-                presentFrom.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-
-    @objc func setupDefaultErrorHandling() {
-        CanvasCore.ErrorReporter.setErrorHandler({ error, presentingViewController in
-            self.alertUser(of: error, from: presentingViewController)
-
+    func setupDefaultErrorHandling() {
+        environment.errorHandler = { error, controller in performUIUpdate {
+            let error = error as NSError
+            error.showAlert(from: controller)
             if error.shouldRecordInCrashlytics {
                 Firebase.Crashlytics.crashlytics().record(error: error)
             }
-        })
-    }
-
-    @objc func handleError(_ error: NSError) {
-        DispatchQueue.main.async {
-            ErrorReporter.reportError(error, from: self.window?.rootViewController)
-        }
+        } }
     }
 }
 
@@ -325,7 +302,7 @@ extension AppDelegate {
         // several views, does not have a route configured for them so for now we
         // will hard code until we move more things over to helm
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
-        StartupManager.shared.enqueueTask {
+        environment.performAfterStartup {
             let path = url.path
             var index: Int?
 

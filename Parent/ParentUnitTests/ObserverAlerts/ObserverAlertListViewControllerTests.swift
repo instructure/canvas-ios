@@ -94,7 +94,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.iconView.tintColor, .named(.textDark))
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
-        XCTAssert(router.lastRoutedTo("/accounts/self/users/self/account_notifications/1"))
+        XCTAssert(router.lastRoutedTo("/accounts/self/account_notifications/1"))
 
         index.row = 2
         cell = controller.tableView.cellForRow(at: index) as? ObserverAlertListCell

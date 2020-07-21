@@ -215,8 +215,8 @@ public class ExternalToolManager: NSObject {
     }
 
     private func fail(_ error: NSError, from viewController: UIViewController, completionHandler: (() -> Void)?) {
-        DispatchQueue.main.async {
-            ErrorReporter.reportError(error, from: viewController)
+        performUIUpdate {
+            AppEnvironment.shared.reportError(error, from: viewController)
             completionHandler?()
         }
     }

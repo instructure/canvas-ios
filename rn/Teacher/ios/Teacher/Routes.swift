@@ -20,7 +20,7 @@ import Foundation
 import CanvasCore
 import Core
 
-extension AppDelegate {
+extension TeacherAppDelegate {
     @objc func registerNativeRoutes() {
         for (template, factory) in nativeRoutes {
             guard let factory = factory else { continue }

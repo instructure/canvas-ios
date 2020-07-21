@@ -21,8 +21,6 @@
 import { isFSA } from 'flux-standard-action'
 import type { Middleware, MiddlewareAPI, Dispatch } from 'redux'
 import { AsyncActionTracker } from '../actions/async-tracker'
-import { NativeModules } from 'react-native'
-import { isStudent } from '../../modules/app'
 
 let { pending, resolved, rejected } = AsyncActionTracker
 
@@ -63,12 +61,6 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
         async (result) => {
           let payload = { ...action.payload, result }
           delete payload.promise
-          if (isStudent() && action.payload.syncToNative) {
-            await NativeModules.CoreDataSync.syncAction({
-              type: action.type,
-              payload,
-            })
-          }
           if (tracksAsyncActions) dispatch(resolved(action.type))
           return dispatch({ ...action, payload })
         },
