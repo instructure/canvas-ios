@@ -70,6 +70,7 @@ open class HorizontalMenuViewController: UIViewController {
     }
 
     public func layoutViewControllers() {
+        if itemCount == 0 { return }
         if menu != nil {
             updateFrames()
         } else {
@@ -93,7 +94,8 @@ open class HorizontalMenuViewController: UIViewController {
         assert(delegate != nil)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: view.bounds.size.width / CGFloat(itemCount), height: menuCellHeight)
+        let width = view.bounds.size.width / CGFloat(itemCount)
+        layout.itemSize = CGSize(width: width, height: menuCellHeight)
         layout.minimumLineSpacing = 0
 
         menu = UICollectionView(frame: .zero, collectionViewLayout: layout)
