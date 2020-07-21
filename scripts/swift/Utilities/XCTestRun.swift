@@ -230,7 +230,7 @@ class XCTestRun: Codable {
      /// targets for which code coverage information should be gathered while
      /// testing. Each entry is a dictionary containing metadata about the
      /// target. See the description of each field in the dictionary below.
-    var CodeCoverageBuildableInfos: [CodeCoverageBuildableInfo]
+    var CodeCoverageBuildableInfos: [CodeCoverageBuildableInfo]?
     class CodeCoverageBuildableInfo: Codable {
         /// The name of the target's product, including any file extension. For
         /// example, "AppTests.xctest".

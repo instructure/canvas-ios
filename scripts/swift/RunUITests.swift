@@ -143,7 +143,7 @@ private class Runner {
               $0.range(of: #"_.*_iphonesimulator.*\.xctestrun"#, options: .regularExpression) != nil
         }
         if builtTestRuns.count < 1 {
-            throw InternalError(description: "couldn't find xctestrun product")
+            throw InternalError(description: "couldn't find xctestrun product (possible fix: add the --build flag)")
         } else if builtTestRuns.count > 1 {
             throw InternalError(description: "couldn't determine unique xctestrun product. try cleaning")
         }
@@ -155,7 +155,7 @@ private class Runner {
         if command.allTests {
             for configuration in try baseTestRun.load().TestConfigurations {
                 for target in configuration.TestTargets {
-                    tests[target.BlueprintName] = []
+                    tests[target.BlueprintName] = target.OnlyTestIdentifiers ?? []
                 }
             }
         } else {
