@@ -50,7 +50,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
-        NotificationManager.shared.registerForRemoteNotifications(application: .shared, delegate: self)
+        NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         TabBarBadgeCounts.application = UIApplication.shared
@@ -76,6 +76,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
             Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
         }
+        NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
         environment.api.makeRequest(getProfile) { response, urlResponse, error in
@@ -90,7 +91,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 NativeLoginManager.login(as: session)
             }
         }
-        NotificationManager.shared.subscribeToPushChannel()
         Analytics.shared.logSession(session)
     }
 
@@ -106,6 +106,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
+                NotificationManager.shared.registerForRemoteNotifications(application: .shared)
             })
         }
         HelmManager.shared.onReactReload = {

@@ -74,8 +74,7 @@ public class NotificationManager {
 
 // MARK: Push Notifications
 extension NotificationManager {
-    public func registerForRemoteNotifications(application: UIApplication, delegate: UNUserNotificationCenterDelegate) {
-        notificationCenter.delegate = delegate
+    public func registerForRemoteNotifications(application: UIApplication) {
         guard !ProcessInfo.isUITest else { return }
         requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in performUIUpdate {
             guard granted, error == nil else { return }

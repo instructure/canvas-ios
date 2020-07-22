@@ -44,8 +44,7 @@ class NotificationManagerTests: CoreTestCase {
     }
 
     func testRemoteNotifications() {
-        notificationManager.registerForRemoteNotifications(application: .shared, delegate: self)
-        XCTAssert(notificationCenter.delegate === self)
+        notificationManager.registerForRemoteNotifications(application: .shared)
 
         let token = Data([1])
         api.mock(PostCommunicationChannelRequest(pushToken: token), value: .make())
@@ -111,5 +110,3 @@ class NotificationManagerTests: CoreTestCase {
         ]), URL(string: "https://canvas.beta.instructure.com/courses"))
     }
 }
-
-extension NotificationManagerTests: UNUserNotificationCenterDelegate {}

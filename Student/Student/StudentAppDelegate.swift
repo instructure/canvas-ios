@@ -52,7 +52,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
-        NotificationManager.shared.registerForRemoteNotifications(application: .shared, delegate: self)
+        NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
@@ -87,6 +87,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
         Analytics.setUserID(session.userID)
         Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
+        NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
         environment.api.makeRequest(getProfile) { _, urlResponse, _ in
@@ -105,7 +106,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 }
             }
         }
-        NotificationManager.shared.subscribeToPushChannel()
         Analytics.shared.logSession(session)
     }
 
