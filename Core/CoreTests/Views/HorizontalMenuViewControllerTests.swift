@@ -51,6 +51,11 @@ class HorizontalMenuViewControllerTests: XCTestCase {
         wait(for: [vc.expectation], timeout: 0.1)
     }
 
+    func testWithoutMenuItem() {
+        mock.viewControllers = []
+        XCTAssertNoThrow(mock.layoutViewControllers())
+    }
+
     class Mock: HorizontalMenuViewController, HorizontalPagedMenuDelegate {
         init() {
             super.init(nibName: nil, bundle: nil)
