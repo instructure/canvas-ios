@@ -25,7 +25,7 @@ import Firebase
 import Core
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
+class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
     @objc var session: Session?
 
@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
         setupDefaultErrorHandling()
         setupPageViewLogging()
         TabBarBadgeCounts.application = UIApplication.shared
+        NotificationManager.shared.registerForRemoteNotifications(application: .shared, delegate: self)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
@@ -104,6 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
                 }
             }
         }
+        NotificationManager.shared.subscribeToPushChannel()
         Analytics.shared.logSession(session)
     }
 
@@ -170,13 +172,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
 }
 
 // MARK: Push notifications
-extension AppDelegate: UNUserNotificationCenterDelegate {
+extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationKitController.didRegisterForRemoteNotifications(deviceToken, errorHandler: handlePushNotificationRegistrationError)
+        NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        handlePushNotificationRegistrationError((error as NSError).addingInfo())
+        environment.reportError((error as NSError).addingInfo())
     }
 
     func userNotificationCenter(
@@ -196,11 +198,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([.alert, .sound])
     }
 
-    @objc func handlePushNotificationRegistrationError(_ error: NSError) {
-        Firebase.Crashlytics.crashlytics().log("source: push_notification_registration")
-        Firebase.Crashlytics.crashlytics().record(error: error)
-    }
-
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
             notification["aps"] as? [String: AnyObject] != nil {
@@ -211,27 +208,23 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func handlePush(userInfo: [AnyHashable: Any]) {
         environment.performAfterStartup { [weak self] in
             PushNotifications.recordUserInfo(userInfo)
-            // Handle local notifications we know about first
-            if let routerURL = userInfo[NotificationManager.RouteURLKey] as? String,
-                let url = URL(string: routerURL) {
-                self?.openCanvasURL(url)
+            guard let self = self else { return }
+            if let url = NotificationManager.routeURL(from: userInfo) {
+                self.openCanvasURL(url)
                 return
             }
-
-            // Must be a push notification
-            self?.routeToPushNotificationPayloadURL(userInfo)
         }
     }
 }
 
-extension AppDelegate: Core.AnalyticsHandler {
+extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         Analytics.logEvent(name, parameters: parameters)
     }
 }
 
 // MARK: Error Handling
-extension AppDelegate {
+extension StudentAppDelegate {
     func setupDefaultErrorHandling() {
         environment.errorHandler = { error, controller in performUIUpdate {
             let error = error as NSError
@@ -244,7 +237,7 @@ extension AppDelegate {
 }
 
 // MARK: Crashlytics
-extension AppDelegate {
+extension StudentAppDelegate {
 
     @objc func setupFirebase() {
         guard !testing else {
@@ -269,7 +262,7 @@ extension AppDelegate {
 }
 
 // MARK: PageView Logging
-extension AppDelegate {
+extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
@@ -291,7 +284,7 @@ extension AppDelegate {
 }
 
 // MARK: Launching URLS
-extension AppDelegate {
+extension StudentAppDelegate {
     @objc @discardableResult func openCanvasURL(_ url: URL) -> Bool {
         if LoginSession.mostRecent == nil, let host = url.host {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
@@ -338,7 +331,7 @@ extension AppDelegate {
     }
 }
 
-extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
+extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     var supportsQRCodeLogin: Bool {
         ExperimentalFeature.qrLoginStudent.isEnabled
     }
@@ -377,7 +370,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationKitController.deregisterPushNotifications { _ in }
+        NotificationManager.shared.unsubscribeFromPushChannel()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
@@ -395,7 +388,7 @@ extension AppDelegate: LoginDelegate, NativeLoginManagerDelegate {
 }
 
 // MARK: - Handle siri notifications
-extension AppDelegate {
+extension StudentAppDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL, let login = GetSSOLogin(url: url, app: .student) {
             window?.rootViewController = LoadingViewController.create()
@@ -417,7 +410,7 @@ extension AppDelegate {
 }
 
 // MARK: - Tabs
-extension AppDelegate {
+extension StudentAppDelegate {
     func refreshNotificationTab() {
         if let tabs = window?.rootViewController as? UITabBarController,
             tabs.viewControllers?.count ?? 0 > 3,

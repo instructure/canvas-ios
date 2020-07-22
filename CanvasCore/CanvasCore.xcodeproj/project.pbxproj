@@ -33,13 +33,6 @@
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */; };
-		49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FD71F901853006BD777 /* NotificationKitController.swift */; };
-		49301FEA1F901854006BD777 /* SimpleErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */; };
-		49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */; };
-		49301FED1F901854006BD777 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FDF1F901853006BD777 /* RemoteService.swift */; };
-		49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE51F901853006BD777 /* CommunicationChannel.swift */; };
-		49301FF21F901854006BD777 /* PushState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE61F901853006BD777 /* PushState.swift */; };
-		49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FE71F901853006BD777 /* NotificationPreference.swift */; };
 		4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49301FF91F901CF5006BD777 /* Assets.xcassets */; };
 		4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49301FFC1F901CF5006BD777 /* CommentReplyView.swift */; };
 		4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 49301FFD1F901CF5006BD777 /* UITextView+Placeholder.m */; };
@@ -211,13 +204,6 @@
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		490F91F01FB0F94A00A7DA38 /* CanvasWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebViewController.swift; sourceTree = "<group>"; };
-		49301FD71F901853006BD777 /* NotificationKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKitController.swift; sourceTree = "<group>"; };
-		49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleErrorExtension.swift; sourceTree = "<group>"; };
-		49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlertExtension.swift; sourceTree = "<group>"; };
-		49301FDF1F901853006BD777 /* RemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
-		49301FE51F901853006BD777 /* CommunicationChannel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationChannel.swift; sourceTree = "<group>"; };
-		49301FE61F901853006BD777 /* PushState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushState.swift; sourceTree = "<group>"; };
-		49301FE71F901853006BD777 /* NotificationPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationPreference.swift; sourceTree = "<group>"; };
 		49301FF91F901CF5006BD777 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49301FFC1F901CF5006BD777 /* CommentReplyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentReplyView.swift; sourceTree = "<group>"; };
 		49301FFD1F901CF5006BD777 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
@@ -478,7 +464,6 @@
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				493BEFA81FB14560006E8EFC /* LTI */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
-				49301FD61F901826006BD777 /* Push Notifications */,
 				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				4930205E1F902413006BD777 /* Session */,
@@ -521,44 +506,6 @@
 				D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		49301FD61F901826006BD777 /* Push Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				49301FD81F901853006BD777 /* Extensions */,
-				49301FE41F901853006BD777 /* Model */,
-				49301FD71F901853006BD777 /* NotificationKitController.swift */,
-				49301FDE1F901853006BD777 /* Services */,
-			);
-			path = "Push Notifications";
-			sourceTree = "<group>";
-		};
-		49301FD81F901853006BD777 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				49301FDA1F901853006BD777 /* SimpleErrorExtension.swift */,
-				49301FDB1F901853006BD777 /* SimpleAlertExtension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		49301FDE1F901853006BD777 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				49301FDF1F901853006BD777 /* RemoteService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		49301FE41F901853006BD777 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				49301FE51F901853006BD777 /* CommunicationChannel.swift */,
-				49301FE61F901853006BD777 /* PushState.swift */,
-				49301FE71F901853006BD777 /* NotificationPreference.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		49301FF41F901CA0006BD777 /* Annotations */ = {
@@ -1115,18 +1062,15 @@
 				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
-				49301FED1F901854006BD777 /* RemoteService.swift in Sources */,
 				4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */,
 				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
 				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
-				49301FEB1F901854006BD777 /* SimpleAlertExtension.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */,
 				7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */,
-				49301FF11F901854006BD777 /* CommunicationChannel.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
 				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
 				494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */,
@@ -1146,7 +1090,6 @@
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
-				49301FF31F901854006BD777 /* NotificationPreference.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
 				49CE96621F8FF41B00121A43 /* QuizTakeabilityController.swift in Sources */,
 				493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */,
@@ -1154,7 +1097,6 @@
 				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
 				493020731F902462006BD777 /* Session+NSURLRequest.swift in Sources */,
 				4930205D1F902364006BD777 /* NSData+SoLazy.swift in Sources */,
-				49301FEA1F901854006BD777 /* SimpleErrorExtension.swift in Sources */,
 				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
@@ -1207,7 +1149,6 @@
 				4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */,
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
-				49301FE81F901854006BD777 /* NotificationKitController.swift in Sources */,
 				7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */,
 				49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */,
 				3B158CAC22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift in Sources */,
@@ -1229,7 +1170,6 @@
 				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,
 				4930204D1F902364006BD777 /* Errors.swift in Sources */,
 				493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */,
-				49301FF21F901854006BD777 /* PushState.swift in Sources */,
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
 				49CE96BB1F8FF94B00121A43 /* CanvasWebViewHTML.swift in Sources */,

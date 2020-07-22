@@ -50,6 +50,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
+        NotificationManager.shared.registerForRemoteNotifications(application: .shared, delegate: self)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         TabBarBadgeCounts.application = UIApplication.shared
@@ -89,6 +90,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 NativeLoginManager.login(as: session)
             }
         }
+        NotificationManager.shared.subscribeToPushChannel()
         Analytics.shared.logSession(session)
     }
 
@@ -97,7 +99,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         registerNativeRoutes()
         NativeLoginManager.shared().delegate = self
         HelmManager.shared.onReactLoginComplete = {
-            NotificationKitController.setupForPushNotifications(delegate: self)
             guard let window = self.window else { return }
             let controller = RootTabBarController()
             controller.view.layoutIfNeeded()
@@ -105,7 +106,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
-                NotificationKitController.registerForPushNotifications()
             })
         }
         HelmManager.shared.onReactReload = {
@@ -119,9 +119,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NotificationKitController.didRegisterForRemoteNotifications(deviceToken) { [weak self] error in
-            self?.environment.reportError(error.addingInfo(), from: self?.window?.rootViewController)
-        }
+        NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
     }
 
     func userNotificationCenter(
@@ -263,7 +261,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func userDidStopActing(as session: LoginSession) {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
-        NotificationKitController.deregisterPushNotifications { _ in }
+        NotificationManager.shared.unsubscribeFromPushChannel()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
