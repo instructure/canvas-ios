@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum DiscussionHTML {
+public enum DiscussionHTML {
     // shortcuts to encode text for html
     static func t(_ text: String?) -> String { CoreWebView.htmlString(text) }
     static func s(_ text: String?) -> String { CoreWebView.jsString(text) }
@@ -26,7 +26,7 @@ enum DiscussionHTML {
 
     // HTML string rendering for static content
 
-    static func string(for topic: DiscussionTopic) -> String {
+    public static func string(for topic: DiscussionTopic) -> String {
         """
         <style>\(css)</style>
         \(entryHeader(author: topic.author, date: topic.postedAt, attachment: topic.attachments?.first, isTopic: true))

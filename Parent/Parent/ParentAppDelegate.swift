@@ -18,13 +18,11 @@
 
 import AVKit
 import UIKit
-import CanvasCore
 import Firebase
 import UserNotifications
 import Core
 import SafariServices
 
-let ParentAppRefresherTTL: TimeInterval = 5.minutes
 var currentStudentID: String?
 
 @UIApplicationMain
@@ -48,7 +46,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         setupDefaultErrorHandling()
         Analytics.shared.handler = self
-        UNUserNotificationCenter.current().delegate = self
+        NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = LoginSession.mostRecent {
@@ -108,7 +106,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller
         }, completion: { _ in
-            StartupManager.shared.markStartupFinished()
+            self.environment.startupDidComplete()
         })
     }
 
@@ -239,37 +237,16 @@ extension ParentAppDelegate {
     }
 }
 
-// MARK: SoErroneous
+// MARK: Error Handling
 extension ParentAppDelegate {
-
-    @objc func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
-        guard let presentFrom = presentingViewController else { return }
-
-        DispatchQueue.main.async {
-            let alertDetails = error.alertDetails(reportAction: {
-                presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(error: error)), animated: true)
-            })
-
-            if let deets = alertDetails {
-                let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
-                deets.actions.forEach(alert.addAction)
-                presentFrom.present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-
-    @objc func setupDefaultErrorHandling() {
-        ErrorReporter.setErrorHandler({ error, presentingViewController in
-            self.alertUser(of: error, from: presentingViewController)
-
+    func setupDefaultErrorHandling() {
+        environment.errorHandler = { error, controller in performUIUpdate {
+            let error = error as NSError
+            error.showAlert(from: controller)
             if error.shouldRecordInCrashlytics {
                 Firebase.Crashlytics.crashlytics().record(error: error)
             }
-        })
-    }
-
-    @objc func handleError(_ error: NSError) {
-        ErrorReporter.reportError(error, from: window?.rootViewController)
+        } }
     }
 }
 
@@ -278,7 +255,6 @@ extension ParentAppDelegate {
     @objc func setupFirebase() {
         guard !testing else { return }
         if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
-        CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }
 }
@@ -292,7 +268,7 @@ extension ParentAppDelegate: AnalyticsHandler {
 // MARK: UNUserNotificationCenterDelegate
 extension ParentAppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        StartupManager.shared.enqueueTask { [weak self] in
+        environment.performAfterStartup { [weak self] in
             self?.routeToRemindable(from: response)
         }
     }

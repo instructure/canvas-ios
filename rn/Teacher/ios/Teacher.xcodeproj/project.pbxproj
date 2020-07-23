@@ -35,7 +35,7 @@
 		494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* Routes.swift */; };
 		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
+		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
 		7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D344E1D241160D100C052E6 /* Localizable.stringsdict */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
@@ -320,7 +320,7 @@
 		5BFC7C90203179F000E64F79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5BFCEFD62430856C0052AB92 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
-		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
 		62B3FB9CC060B4EB8A6FE5E8 /* Pods_needs_pspdfkit_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		7885D29505AE8F8A1B802844 /* Pods-needs-pspdfkit-TeacherE2ETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherE2ETests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherE2ETests/Pods-needs-pspdfkit-TeacherE2ETests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -460,7 +460,6 @@
 				B15CA241221DC4DA0014FB02 /* Extensions */,
 				B15CA293221E0F890014FB02 /* IBDesignables */,
 				3B55FEC522FC861F00FCB7B2 /* Submissions */,
-				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
 				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
 				2C3DE5091F21494D00AE1D59 /* Info.plist */,
@@ -471,6 +470,7 @@
 				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
 				494AE0B61F843CB4001A8F31 /* Routes.swift */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
+				61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -1196,7 +1196,7 @@
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
-				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
+				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
@@ -1445,7 +1445,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
@@ -1509,7 +1509,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;

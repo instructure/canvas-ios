@@ -82,4 +82,26 @@ open class AppEnvironment {
         }
         return controller
     }
+
+    private var startupIsCompleted = false
+    private var startupTasks: [() -> Void] = []
+
+    public func performAfterStartup(task: @escaping () -> Void) {
+        guard !startupIsCompleted else { return task() }
+        startupTasks.append(task)
+    }
+
+    public func startupDidComplete() {
+        guard !startupIsCompleted else { return }
+        startupIsCompleted = true
+        for task in startupTasks { task() }
+        startupTasks.removeAll()
+    }
+
+    public var errorHandler: ((Error, UIViewController?) -> Void)?
+
+    public func reportError(_ error: Error?, from controller: UIViewController? = nil) {
+        guard let error = error else { return }
+        errorHandler?(error, controller ?? topViewController)
+    }
 }

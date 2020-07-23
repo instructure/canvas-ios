@@ -107,10 +107,6 @@ NativeModules.PushNotifications = {
   scheduleLocalNotification: jest.fn(),
 }
 
-NativeModules.CoreDataSync = {
-  syncAction: jest.fn(() => Promise.resolve()),
-}
-
 NativeModules.HapticFeedback = {
   prepare: jest.fn(),
   generate: jest.fn(),

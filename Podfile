@@ -6,19 +6,20 @@ platform :ios, '12.0'
 # require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 def firebase_pods
+  pod 'GoogleUtilities', '~> 6.0'
   pod 'Firebase/Crashlytics', '~> 6.20.0'
   pod 'Firebase/RemoteConfig', '~> 6.20.0'
   pod 'Firebase/Analytics', '~> 6.20.0'
 end
 
 def canvas_crashlytics_rn_firebase_pods
+  pod 'GoogleUtilities', '~> 6.0'
   pod 'Firebase/Crashlytics', '~> 6.20.0'
 end
 
 def pspdfkit
   pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec'
 end
-
 
 def lottie
   pod 'lottie-ios', '~> 3.1.8'
@@ -100,17 +101,6 @@ abstract_target 'defaults' do
 
   pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
-  pod 'GoogleUtilities', '~> 6.0'
-
-  target 'Parent' do
-    project 'Parent/Parent.xcodeproj'
-    firebase_pods
-  end
-
-  target 'ParentUnitTests' do
-    project 'Parent/Parent.xcodeproj'
-    firebase_pods
-  end
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
@@ -137,6 +127,21 @@ abstract_target 'defaults' do
   target 'CanvasCore' do
     project 'CanvasCore/CanvasCore.xcodeproj'
     canvas_crashlytics_rn_firebase_pods
+  end
+end
+
+abstract_target 'parent_defaults' do
+  use_frameworks!
+
+  pspdfkit
+  firebase_pods
+
+  target 'Parent' do
+    project 'Parent/Parent.xcodeproj'
+  end
+
+  target 'ParentUnitTests' do
+    project 'Parent/Parent.xcodeproj'
   end
 end
 

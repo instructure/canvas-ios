@@ -19,10 +19,7 @@
 // @flow
 
 import mockStore from '../../../../test/helpers/mockStore'
-import { NativeModules } from 'react-native'
 import app from '../../../modules/app'
-
-const { CoreDataSync } = NativeModules
 
 describe('promise middleware', () => {
   beforeEach(() => {
@@ -94,28 +91,5 @@ describe('promise middleware', () => {
         error: true,
       },
     ])
-  })
-
-  it('syncs to core data on resolution in Student', async () => {
-    app.setCurrentApp('student')
-    let spy = jest.fn()
-    CoreDataSync.syncAction = spy
-    let _resolve = (v: any) => {}
-    let promise = new Promise((resolve) => { _resolve = resolve })
-
-    let store = mockStore()
-    store.dispatch({ type: 'test', payload: { promise, id: 1, syncToNative: true } })
-
-    _resolve('yay')
-    await promise // kick the event loop
-
-    expect(spy).toHaveBeenCalledWith({
-      type: 'test',
-      payload: {
-        id: 1,
-        syncToNative: true,
-        result: 'yay',
-      },
-    })
   })
 })
