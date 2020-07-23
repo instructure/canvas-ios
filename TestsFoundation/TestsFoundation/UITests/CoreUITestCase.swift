@@ -575,13 +575,11 @@ open class CoreUITestCase: XCTestCase {
             mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed, .unpublished]), value: courses)
         } else if Bundle.main.isParentApp {
             mockData(GetCoursesRequest(include: [
+                .course_image,
                 .current_grading_period_scores,
                 .favorites,
-                .needs_grading_count,
                 .observed_users,
-                .permissions,
-                .syllabus_body,
-                .tabs,
+                .sections,
                 .term,
                 .total_scores,
             ], perPage: 100), value: courses)
