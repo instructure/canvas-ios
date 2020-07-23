@@ -77,7 +77,9 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         CourseNavigation.discussions.tap()
         DiscussionListCell.cell(id: discussion.id).tap()
 
-        DiscussionDetails.options.tap()
+        DiscussionDetails.options.tapUntil {
+            DiscussionDetails.edit.exists()
+        }
         DiscussionDetails.edit.tap()
         DiscussionEdit.lockAtButton.tap()
 
