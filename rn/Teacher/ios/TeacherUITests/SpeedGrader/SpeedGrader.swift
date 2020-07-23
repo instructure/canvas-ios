@@ -19,7 +19,6 @@
 import Foundation
 import TestsFoundation
 import XCTest
-@testable import CoreUITests
 
 public enum SpeedGrader: String, RawElementWrapper {
     case doneButton = "header.navigation-done"

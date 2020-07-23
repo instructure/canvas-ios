@@ -20,7 +20,6 @@ import Foundation
 
 import XCTest
 @testable import TestsFoundation
-@testable import CoreUITests
 @testable import Core
 
 class ConferencesE2ETests: CoreUITestCase {

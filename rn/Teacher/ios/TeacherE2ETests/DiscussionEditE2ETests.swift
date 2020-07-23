@@ -18,7 +18,6 @@
 
 import Foundation
 import TestsFoundation
-@testable import CoreUITests
 
 class DiscussionEditE2ETests: CoreUITestCase {
 

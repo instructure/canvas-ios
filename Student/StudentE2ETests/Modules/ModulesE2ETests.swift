@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 @testable import Core
 
 class ModulesE2ETests: CoreUITestCase {
@@ -72,14 +71,14 @@ class ModulesE2ETests: CoreUITestCase {
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 
-    func testLaunchIntoQuizModuleItem() {
+    func xtestLaunchIntoQuizModuleItem() {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
         ModuleList.item(section: 1, row: 0).tap()
 
         app.find(labelContaining: "This is the first quiz").waitToExist()
-        Quiz.takeButton.waitToExist()
+        QuizElement.takeButton.waitToExist()
     }
 
     func testLaunchIntoFileModuleItem() {
@@ -109,8 +108,8 @@ class ModulesE2ETests: CoreUITestCase {
 
         ModuleList.item(section: 5, row: 0).tap()
 
-        ExternalTool.launchButton.tap()
-        ExternalTool.pageText("Instructure").waitToExist()
-        ExternalTool.doneButton.tap()
+        ExternalToolElement.launchButton.tap()
+        ExternalToolElement.pageText("Instructure").waitToExist()
+        ExternalToolElement.doneButton.tap()
     }
 }

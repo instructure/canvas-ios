@@ -63,12 +63,7 @@ open class CoreUITestCase: XCTestCase {
 
     open var experimentalFeatures: [ExperimentalFeature] { [] }
 
-    // The class in this variable will not have tests run for it, only for subclasses
-    open var abstractTestClass: CoreUITestCase.Type { CoreUITestCase.self }
-
     open override func perform(_ run: XCTestRun) {
-        guard type(of: self) != abstractTestClass else { return }
-
         CoreUITestCase.currentTestCase = self
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
             print("UI_TEST: \(Bundle(for: type(of: self)).bundleURL.deletingPathExtension().lastPathComponent) \(name)")

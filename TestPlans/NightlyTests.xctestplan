@@ -89,7 +89,7 @@
     {
       "skippedTests" : [
         "IPadAssignmentsTest",
-        "StudentSpringBoardTests"
+        "SpringBoardTests"
       ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",

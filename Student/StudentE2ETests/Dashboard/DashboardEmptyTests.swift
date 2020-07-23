@@ -19,7 +19,6 @@
 import Foundation
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 class DashboardEmptyE2ETests: CoreUITestCase {
     override var user: UITestUser { return .notEnrolled }

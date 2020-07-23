@@ -17,7 +17,6 @@
 //
 
 import TestsFoundation
-import CoreUITests
 @testable import Core
 
 class DiscussionsUITests: MiniCanvasUITestCase {
