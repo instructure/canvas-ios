@@ -10,6 +10,7 @@ exports[`ToDoListItem renders 1`] = `
   title="learn to write code"
 >
   <View
+    accessibilityLabel="Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,
@@ -84,6 +85,7 @@ exports[`ToDoListItem renders discussion 1`] = `
   title="Assignment 1"
 >
   <View
+    accessibilityLabel="Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,
@@ -158,6 +160,7 @@ exports[`ToDoListItem renders null due date 1`] = `
   title="learn to write code"
 >
   <View
+    accessibilityLabel="Course 1, No Due Date, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,
@@ -232,6 +235,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
   title="Assignment 1"
 >
   <View
+    accessibilityLabel="Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,
@@ -306,6 +310,7 @@ exports[`ToDoListItem renders quiz 1`] = `
   title="Quiz 1"
 >
   <View
+    accessibilityLabel="Course 1, Due Jan 23, 2013 at 11:59 PM, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,
@@ -380,6 +385,7 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
   title="Assignment 1"
 >
   <View
+    accessibilityLabel="Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
     style={
       Object {
         "flex": 1,

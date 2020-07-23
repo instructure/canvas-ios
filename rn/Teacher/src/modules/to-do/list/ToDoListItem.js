@@ -106,6 +106,8 @@ export class ToDoListItem extends Component<Props> {
       other {# Need Grading}
     }`, { count }).toUpperCase()
 
+    const a11yLabel = `${this.props.courseName}, ${dueLabel}, ${text}`
+
     return (
       <Row
         title={title}
@@ -115,7 +117,7 @@ export class ToDoListItem extends Component<Props> {
         disclosureIndicator
         accessible
       >
-        <View style={{ flex: 1, flexDirection: 'column' }}>
+        <View style={{ flex: 1, flexDirection: 'column' }} accessibilityLabel={a11yLabel}>
           <Text
             style={[styles.courseName, { color: this.props.courseColor || 'black' }]}
           >
