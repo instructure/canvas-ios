@@ -131,7 +131,7 @@ struct BuildLink: ParsableCommand {
             ).input(withJSONObject: [
                 "title": title,
                 "destination": url,
-            ]).runJson(ShortenResponse.self)
+            ]).runJSON(ShortenResponse.self)
         }
 
         static func getLinkDetails(id: String) throws -> ShortenResponse {
@@ -142,7 +142,7 @@ struct BuildLink: ParsableCommand {
             return try cmd(
                 "curl", "-sf", "https://api.rebrandly.com/v1/links/\(id)",
                 "-H", "apikey: \(apiKey)"
-            ).runJson(ShortenResponse.self)
+            ).runJSON(ShortenResponse.self)
         }
     }
 

@@ -51,7 +51,7 @@ enum Github {
                             map(select(.author.login == "instructure-cx") | .id)
                             """
             )).inputJSON(from: GraphQLRequest<String>(query: query))
-            .runJson([String].self)
+            .runJSON([String].self)
     }
 
     static func deleteComments(withIds ids: [String]) throws {
@@ -86,7 +86,7 @@ enum Github {
         return try cmd(
             "curl", "-sf", url,
             "-H", "Authorization: Bearer \(token)"
-        ).runJson([IssueComment].self)
+        ).runJSON([IssueComment].self)
     }
 
     static func postComment(prID: String, body: String) throws {
@@ -116,7 +116,7 @@ enum Github {
         ).input(withJSONObject: [
             "query": query,
             "variables": [ "branch": branch ],
-        ]).runJson()
+        ]).runJSON()
 
         let keyPath = "data.repository.ref.target.associatedPullRequests.nodes"
         guard let nodes = (result as? NSDictionary)?.value(forKeyPath: keyPath) as? [[String: Any]] else {

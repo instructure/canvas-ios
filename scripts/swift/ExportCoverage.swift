@@ -75,7 +75,7 @@ struct ExportCoverage: ParsableCommand {
         let archiveIds = try (
             cmd("xcrun", "xcresulttool", "get", "--path", "scripts/coverage/citests.xcresult", "--format", "json") |
                 cmd("jq", "[.actions._values[].actionResult.coverage.archiveRef.id._value]")
-            ).runJson([String?].self)
+            ).runJSON([String?].self)
 
         var archivePaths: [String] = []
         for (index, id) in archiveIds.enumerated() {

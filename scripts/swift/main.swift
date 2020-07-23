@@ -44,6 +44,7 @@ struct Scripts: ParsableCommand {
         BuildLink.self,
         DeleteExtraCheckmarxComments.self,
         ExportCoverage.self,
+        RunUITests.self,
         SuggestLintFix.self,
         SummarizeTestResults.self,
       ]
