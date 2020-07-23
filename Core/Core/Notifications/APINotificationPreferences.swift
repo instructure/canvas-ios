@@ -71,6 +71,35 @@ extension APINotificationPreference {
 }
 #endif
 
+struct GetNotificationDefaultsFlagRequest: APIRequestable {
+    struct Response: Codable {
+        let data: String
+    }
+
+    var path: String { "users/self/custom_data/data_sync" }
+    var query: [APIQueryItem] { [
+        .value("ns", "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP"),
+    ] }
+}
+
+struct PutNotificationDefaultsFlagRequest: APIRequestable {
+    struct Response: Codable {
+        let data: String
+    }
+
+    struct Body: Codable {
+        let ns: String
+        let data: String
+    }
+
+    var method: APIMethod { .put }
+    var path: String { "users/self/custom_data/data_sync" }
+    var body: Body? { Body(
+        ns: "MOBILE_CANVAS_USER_NOTIFICATION_STATUS_SETUP",
+        data: "true"
+    ) }
+}
+
 // https://canvas.instructure.com/doc/api/notification_preferences.html#method.notification_preferences.index
 struct GetNotificationPreferencesRequest: APIRequestable {
     struct Response: Codable {

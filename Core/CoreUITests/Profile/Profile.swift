@@ -43,8 +43,13 @@ enum Profile: String, ElementWrapper {
         Dashboard.profileButton.tapAt(.zero, file: file, line: line)
     }
 
-    static func open(file: StaticString = #file, line: UInt = #line) {
-        Dashboard.profileButton.tapUntil(file: file, line: line) {
+    static func open() {
+        // HACK: sometimes a11y stuff doesn't show up...
+        if !Dashboard.profileButton.exists() {
+            TabBar.calendarTab.tap()
+            TabBar.dashboardTab.tap()
+        }
+        Dashboard.profileButton.tapUntil {
             Profile.userNameLabel.exists
         }
     }

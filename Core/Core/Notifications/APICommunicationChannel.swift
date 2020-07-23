@@ -82,3 +82,45 @@ public struct GetCommunicationChannelsRequest: APIRequestable {
     public typealias Response = [APICommunicationChannel]
     public let path = "users/self/communication_channels"
 }
+
+// https://canvas.instructure.com/doc/api/communication_channels.html#method.communication_channels.create
+struct PostCommunicationChannelRequest: APIRequestable {
+    typealias Response = APICommunicationChannel
+
+    struct Body: Codable {
+        let communication_channel: Channel
+    }
+    struct Channel: Codable {
+        let address: String?
+        let type: CommunicationChannelType
+        let token: String?
+    }
+
+    var method: APIMethod { .post }
+    let path = "users/self/communication_channels"
+    let body: Body?
+
+    init(pushToken: Data) {
+        body = Body(communication_channel: Channel(
+            address: nil,
+            type: .push,
+            token: pushToken.map { String(format: "%02X", $0) } .joined()
+        ))
+    }
+}
+
+// https://canvas.instructure.com/doc/api/communication_channels.html#method.communication_channels.delete_push_token
+struct DeletePushChannelRequest: APIRequestable {
+    typealias Response = APINoContent
+    struct Body: Codable {
+        let push_token: String
+    }
+
+    var method: APIMethod { .delete }
+    let path = "users/self/communication_channels/push"
+    let body: Body?
+
+    init(pushToken: Data) {
+        body = Body(push_token: pushToken.map { String(format: "%02X", $0) } .joined())
+    }
+}

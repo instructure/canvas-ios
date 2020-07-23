@@ -19,22 +19,20 @@
 import CanvasCore
 import Core
 
-extension AppDelegate: RCTBridgeDelegate {
+extension StudentAppDelegate: RCTBridgeDelegate {
     @objc func prepareReactNative() {
         excludeHelmInBranding()
         NativeLoginManager.shared().delegate = self
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session, let window = self.window else { return }
-            NotificationKitController.setupForPushNotifications(delegate: self)
-
             let controller = rootViewController(session)
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
             }, completion: { _ in
                 self.environment.startupDidComplete()
-                NotificationKitController.registerForPushNotifications()
+                NotificationManager.shared.registerForRemoteNotifications(application: .shared)
             })
         }
 

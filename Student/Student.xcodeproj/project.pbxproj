@@ -30,7 +30,6 @@
 		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
 		49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Assets.xcassets */; };
-		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
 		5859544C501D5668C211D44C /* ConferencesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859582A0A55A6B557224C5F /* ConferencesE2ETests.swift */; };
 		58595DA7CA74254C40525061 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859563901FB886F8B21AD2A /* DashboardTests.swift */; };
 		5B57D3A322ED802B00DEA620 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B57D3A122ED802B00DEA620 /* InfoPlist.strings */; };
@@ -339,7 +338,6 @@
 		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		49F9FA4A1CF7B73100654758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
 		55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5859563901FB886F8B21AD2A /* DashboardTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		5859582A0A55A6B557224C5F /* ConferencesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesE2ETests.swift; sourceTree = "<group>"; };
@@ -850,7 +848,6 @@
 				7DCF0F3922F8A096000AACCE /* StudentUnitTests */,
 				E8C6F50123D6263F0086B865 /* StudentUITests */,
 				7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */,
-				7DC1140E22F9E276000B19AE /* Canvas */,
 				3B6DCCA81FB502CE005EE8D2 /* GradesWidget */,
 				B1BB7A8322BAC820006CA068 /* SubmitAssignment */,
 				B1CA092F22C4237C008AA352 /* SubmitAssignmentTests */,
@@ -903,14 +900,6 @@
 				7DCF0EA622F89FC2000AACCE /* Syllabus */,
 			);
 			path = Student;
-			sourceTree = "<group>";
-		};
-		49F9FA6D1CF8FC6A00654758 /* SoPushy */ = {
-			isa = PBXGroup;
-			children = (
-				49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */,
-			);
-			path = SoPushy;
 			sourceTree = "<group>";
 		};
 		5859590AD85157D503F2476A /* Conferences */ = {
@@ -977,14 +966,6 @@
 				7DB3C83D24AA613B00B85D35 /* CalendarEventDetailsViewController.swift */,
 			);
 			path = Planner;
-			sourceTree = "<group>";
-		};
-		7DC1140E22F9E276000B19AE /* Canvas */ = {
-			isa = PBXGroup;
-			children = (
-				49F9FA6D1CF8FC6A00654758 /* SoPushy */,
-			);
-			path = Canvas;
 			sourceTree = "<group>";
 		};
 		7DC4A0BB24BE5024007A7EAD /* Planner */ = {
@@ -2343,7 +2324,6 @@
 				7DCF0F7A22F8A0D2000AACCE /* RouterDebugViewController.swift in Sources */,
 				7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */,
 				7DCF0FB322F8A8D7000AACCE /* SubmissionCommentAudioCell.swift in Sources */,
-				49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */,
 				7DCF0FC222F8A8D7000AACCE /* SubmissionDetailsPresenter.swift in Sources */,
 				7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */,
 				7DCF0FB622F8A8D7000AACCE /* SubmissionCommentHeaderCell.swift in Sources */,
