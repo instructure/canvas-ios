@@ -71,7 +71,7 @@ class ModulesE2ETests: CoreUITestCase {
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 
-    func testLaunchIntoQuizModuleItem() {
+    func xtestLaunchIntoQuizModuleItem() {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
