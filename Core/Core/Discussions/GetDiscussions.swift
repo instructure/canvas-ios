@@ -58,7 +58,7 @@ class DeleteDiscussionTopic: APIUseCase {
         self.topicID = topicID
     }
 
-    func write(response: APIDiscussionTopic?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(response: DeleteDiscussionTopicRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard response != nil else { return }
         client.delete(client.fetch(scope: scope) as [DiscussionTopic])
     }

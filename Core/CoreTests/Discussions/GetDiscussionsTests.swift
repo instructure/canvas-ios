@@ -68,7 +68,7 @@ class GetDiscussionsTests: CoreTestCase {
         XCTAssertEqual(useCase.request.topicID, "1")
         XCTAssertEqual(useCase.scope, .where(#keyPath(DiscussionTopic.id), equals: "1"))
         XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
-        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+        useCase.write(response: .init(discussion_topic: .init(id: "1")), urlResponse: nil, to: databaseClient)
         let topics: [DiscussionTopic] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual(topics.count, 0)
     }

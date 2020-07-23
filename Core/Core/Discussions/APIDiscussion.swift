@@ -289,7 +289,14 @@ struct PutDiscussionTopicRequest: APIRequestable {
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.destroy
 struct DeleteDiscussionTopicRequest: APIRequestable {
-    typealias Response = APIDiscussionTopic
+    struct Response: Codable {
+        let discussion_topic: DeletedDiscussionTopic
+    }
+    // The response is missing lots of fields we usually expect,
+    // and we are deleting the object so we don't care much about its structure.
+    struct DeletedDiscussionTopic: Codable {
+        let id: ID
+    }
 
     let context: Context
     let topicID: String

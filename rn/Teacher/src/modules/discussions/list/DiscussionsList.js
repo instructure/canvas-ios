@@ -28,6 +28,8 @@ import {
   SectionList,
   ActionSheetIOS,
   Alert,
+  NativeModules,
+  NativeEventEmitter,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -45,6 +47,9 @@ import { isRegularDisplayMode } from '../../../routing/utils'
 import type { TraitCollection } from '../../../routing/Navigator'
 import { logEvent } from '../../../common/CanvasAnalytics'
 import { isStudent } from '../../app'
+
+const { NativeNotificationCenter } = NativeModules
+NativeNotificationCenter.addObserver('topic-delete')
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
@@ -75,8 +80,11 @@ export type Props = State & typeof Actions & OwnProps & {
 }
 
 export class DiscussionsList extends Component<Props, any> {
-  componentWillMount () {
+  notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
+
+  componentDidMount () {
     this.onTraitCollectionChange()
+    this.notificationCenter.addListener('topic-delete', () => { this.props.refresh() })
   }
 
   onTraitCollectionChange () {
