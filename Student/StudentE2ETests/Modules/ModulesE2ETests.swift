@@ -31,9 +31,9 @@ class ModulesE2ETests: CoreUITestCase {
         ModuleList.item(section: 0, row: 0).tap()
 
         AssignmentDetails.description("Assignment One").waitToExist()
-        ModuleItemSequenceElement.nextButton.tap()
+        ModuleItemSequence.nextButton.tap()
         AssignmentDetails.description("Assignment Two").waitToExist()
-        ModuleItemSequenceElement.previousButton.tap()
+        ModuleItemSequence.previousButton.tap()
         AssignmentDetails.description("Assignment One").waitToExist()
 
         NavBar.backButton.tap()

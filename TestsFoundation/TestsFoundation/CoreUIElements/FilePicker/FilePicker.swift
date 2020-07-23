@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum FilePickerElement: String, ElementWrapper {
+public enum FilePicker: String, ElementWrapper {
     case emptyView
     case cameraButton, filesButton, libraryButton
     case cancelButton, closeButton, retryButton, submitButton

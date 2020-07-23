@@ -28,6 +28,6 @@ public enum ModuleList {
     }
 }
 
-public enum ModuleItemSequenceElement: String, ElementWrapper {
+public enum ModuleItemSequence: String, ElementWrapper {
     case previousButton, nextButton
 }
