@@ -17,7 +17,6 @@
 //
 
 import CanvasCore
-import Marshal
 import Core
 
 extension AppDelegate: RCTBridgeDelegate {
@@ -33,7 +32,10 @@ extension AppDelegate: RCTBridgeDelegate {
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
-            }, completion: nil)
+            }, completion: { _ in
+                self.environment.startupDidComplete()
+                NotificationKitController.registerForPushNotifications()
+            })
         }
 
         HelmManager.shared.onReactReload = {

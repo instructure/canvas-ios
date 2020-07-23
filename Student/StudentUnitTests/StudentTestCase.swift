@@ -51,8 +51,6 @@ class StudentTestCase: XCTestCase {
         AppEnvironment.shared = env
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
-        Session.reset()
-        SyncContextConcurrencyType = .mainQueueConcurrencyType
     }
 
     override func tearDown() {

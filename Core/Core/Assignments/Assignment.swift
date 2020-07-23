@@ -211,6 +211,11 @@ extension Assignment {
         return submissionTypes.isOnline
     }
 
+    public var usedAttempts: Int {
+        guard let submission = submission, submission.submittedAt != nil else { return 0 }
+        return submission.attempt
+    }
+
     public var hasAttemptsLeft: Bool {
         let latestAttempt = submission?.attempt ?? 0
         return (

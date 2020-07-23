@@ -22,7 +22,7 @@ import httpClient from '../httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
 export function getAccountNotifications (): ApiPromise<AccountNotification[]> {
-  const groups = paginate(`accounts/self/users/self/account_notifications`, {
+  const groups = paginate(`accounts/self/account_notifications`, {
     params: {
       per_page: 100,
     },
@@ -31,7 +31,7 @@ export function getAccountNotifications (): ApiPromise<AccountNotification[]> {
 }
 
 export function deleteAccountNotification (id: string): ApiPromise<null> {
-  return httpClient.delete(`accounts/self/users/self/account_notifications/${id}`)
+  return httpClient.delete(`accounts/self/account_notifications/${id}`)
 }
 
 export function getLiveConferences () {

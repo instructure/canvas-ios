@@ -102,6 +102,29 @@ public class GetAllCourses: CollectionUseCase {
     public init() {}
 }
 
+public class GetUserCourses: CollectionUseCase {
+    public typealias Model = Course
+
+    let userID: String
+
+    public init(userID: String) {
+        self.userID = userID
+    }
+
+    public var cacheKey: String? { "users/\(userID)/courses" }
+    public var request: GetCoursesRequest {
+        GetCoursesRequest(perPage: 100)
+    }
+
+    public var scope: Scope { Scope(
+        predicate: NSPredicate(format: "ANY %K == %@", #keyPath(Course.enrollments.userID), userID),
+        order: [
+            NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Course.id), ascending: true),
+        ]
+    ) }
+}
+
 public class GetCourseSettings: APIUseCase {
     public typealias Model = CourseSettings
 

@@ -360,8 +360,8 @@ struct ListDiscussionEntriesRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.show
-struct GetDiscussionTopicRequest: APIRequestable {
-    typealias Response = APIDiscussionTopic
+public struct GetDiscussionTopicRequest: APIRequestable {
+    public typealias Response = APIDiscussionTopic
 
     public enum Include: String, CaseIterable {
         case allDates = "all_dates"

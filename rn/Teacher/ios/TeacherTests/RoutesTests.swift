@@ -62,7 +62,7 @@ class RoutesTests: XCTestCase {
     }
 
     func testRoutes() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! TeacherAppDelegate
         ExperimentalFeature.nativeDashboard.isEnabled = true
         appDelegate.registerNativeRoutes()
         for (template, _) in HelmManager.shared.nativeViewControllerFactories {

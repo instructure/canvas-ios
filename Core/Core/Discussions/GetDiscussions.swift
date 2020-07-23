@@ -19,23 +19,23 @@
 import Foundation
 import CoreData
 
-class GetDiscussionTopic: APIUseCase {
-    typealias Model = DiscussionTopic
+public class GetDiscussionTopic: APIUseCase {
+    public typealias Model = DiscussionTopic
 
     let context: Context
     let topicID: String
 
-    var cacheKey: String? {
+    public var cacheKey: String? {
         "\(context.pathComponent)/discussions/\(topicID)"
     }
-    var request: GetDiscussionTopicRequest {
+    public var request: GetDiscussionTopicRequest {
         GetDiscussionTopicRequest(context: context, topicID: topicID)
     }
-    var scope: Scope {
+    public var scope: Scope {
         .where(#keyPath(DiscussionTopic.id), equals: topicID)
     }
 
-    init(context: Context, topicID: String) {
+    public init(context: Context, topicID: String) {
         self.context = context
         self.topicID = topicID
     }
