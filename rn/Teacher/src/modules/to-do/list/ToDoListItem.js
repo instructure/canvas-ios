@@ -106,6 +106,15 @@ export class ToDoListItem extends Component<Props> {
       other {# Need Grading}
     }`, { count }).toUpperCase()
 
+    const { published, locked, hidden, lock_at, unlock_at } = entry
+    let status = i18n('Published')
+    if (published == null && (hidden || lock_at || unlock_at)) { // eslint-disable-line camelcase
+      status = i18n('Restricted')
+    } else if (published === false || (published == null && locked === true)) {
+      status = i18n('Not Published')
+    }
+    const a11yLabel = `${status}, ${title}, ${this.props.courseName}, ${dueLabel}, ${text}`
+
     return (
       <Row
         title={title}
@@ -113,7 +122,7 @@ export class ToDoListItem extends Component<Props> {
         testID={`to-do.list.${ToDoModel.keyExtractor(this.props.item)}.row`}
         onPress={this.handlePress}
         disclosureIndicator
-        accessible
+        accessibilityLabel={a11yLabel}
       >
         <View style={{ flex: 1, flexDirection: 'column' }}>
           <Text
