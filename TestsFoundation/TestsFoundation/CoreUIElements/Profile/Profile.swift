@@ -42,7 +42,7 @@ public enum Profile: String, ElementWrapper {
         Dashboard.profileButton.tapAt(.zero, file: file, line: line)
     }
 
-    static func open() {
+    public static func open() {
         // HACK: sometimes a11y stuff doesn't show up...
         if !Dashboard.profileButton.exists() {
             TabBar.calendarTab.tap()
