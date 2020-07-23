@@ -20,7 +20,7 @@ import UIKit
 import Cartography
 import Core
 
-open class QuizIntroViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+open class QuizIntroViewController: UIViewController, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
     
     // This class controls what pages are visible initially to the user
     // Based on the quiz setup, possible pages are:
@@ -178,9 +178,7 @@ open class QuizIntroViewController: UIViewController, PageViewEventViewControlle
                                 case .success(let url):
                                     UIApplication.shared.open(url)
                                 case .failure(let error):
-                                    let title = NSLocalizedString("Error", bundle: .core, comment: "")
-                                    let ok = NSLocalizedString("OK", bundle: .core, comment: "")
-                                    self?.showSimpleAlert(title, message: error.localizedDescription, actionText: ok)
+                                    self?.showError(error)
                                 }
                             }
                         }

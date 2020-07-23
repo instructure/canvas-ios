@@ -46,7 +46,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         setupDefaultErrorHandling()
         Analytics.shared.handler = self
-        UNUserNotificationCenter.current().delegate = self
+        NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
 
         if let session = LoginSession.mostRecent {

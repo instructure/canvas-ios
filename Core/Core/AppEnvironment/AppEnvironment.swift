@@ -102,6 +102,6 @@ open class AppEnvironment {
 
     public func reportError(_ error: Error?, from controller: UIViewController? = nil) {
         guard let error = error else { return }
-        errorHandler?(error, controller)
+        errorHandler?(error, controller ?? topViewController)
     }
 }

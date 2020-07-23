@@ -34,6 +34,7 @@ public class MockUserNotificationCenter: UserNotificationCenterProtocol {
     public var error: Error?
     public var authorized = true
     public var authError: Error?
+    public weak var delegate: UNUserNotificationCenterDelegate?
 
     public init() {}
 
