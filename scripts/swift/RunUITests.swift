@@ -140,7 +140,7 @@ private class Runner {
 
         let builtTestRuns = try FileManager.default.contentsOfDirectory(atPath: buildDir).filter {
             $0.hasPrefix(command.scheme) &&
-              $0.range(of: #"_.*_iphonesimulator.*\.xctestrun"#, options: .regularExpression) != nil
+              $0.range(of: #"_.*_iphonesimulator.*\.xctestrun$"#, options: .regularExpression) != nil
         }
         if builtTestRuns.count < 1 {
             throw InternalError(description: "couldn't find xctestrun product (possible fix: add the --build flag)")

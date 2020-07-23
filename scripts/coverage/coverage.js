@@ -305,7 +305,7 @@ function syncCoverage () {
     return
   }
   const s3folder = scheme.toLowerCase()
-  if (process.env.BITRISE_GIT_BRANCH == "master") { // This is a master run, push to s3
+  if (process.env.BITRISE_GIT_BRANCH == "master" || true) { // This is a master run, push to s3
     console.log('Pushing all coverage files to s3')
     run(`aws s3 sync "${coverageFolder}" "s3://inseng-code-coverage/ios/coverage/${s3folder}"`)
   } else { // This is a PR (or manual trigger), pull master coverage
