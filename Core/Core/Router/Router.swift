@@ -166,7 +166,12 @@ open class Router {
     }
 
     open func dismiss(_ view: UIViewController, completion: (() -> Void)? = nil) {
-        view.dismiss(animated: true, completion: completion)
+        if view.presentingViewController != nil {
+            view.dismiss(animated: true, completion: completion)
+        } else {
+            pop(from: view)
+            completion?()
+        }
     }
 
     public static func open(url: URLComponents) {

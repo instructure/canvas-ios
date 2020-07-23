@@ -544,6 +544,9 @@ extension DiscussionDetailsViewController {
         DeleteDiscussionTopic(context: context, topicID: topicID).fetch { [weak self] _, _, error in performUIUpdate {
             guard let self = self else { return }
             if let error = error { return self.showError(error) }
+            NotificationCenter.default.post(name: .init("topic-delete"), object: nil, userInfo: [
+                "id": self.topicID,
+            ])
             self.env.router.dismiss(self)
         } }
     }
