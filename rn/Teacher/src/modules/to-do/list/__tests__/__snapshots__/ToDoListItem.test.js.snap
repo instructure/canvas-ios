@@ -2,7 +2,7 @@
 
 exports[`ToDoListItem renders 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Published, learn to write code, Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}
@@ -76,7 +76,7 @@ exports[`ToDoListItem renders 1`] = `
 
 exports[`ToDoListItem renders discussion 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Published, Assignment 1, Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}
@@ -150,7 +150,7 @@ exports[`ToDoListItem renders discussion 1`] = `
 
 exports[`ToDoListItem renders null due date 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Published, learn to write code, Course 1, No Due Date, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}
@@ -224,7 +224,7 @@ exports[`ToDoListItem renders null due date 1`] = `
 
 exports[`ToDoListItem renders published assignment 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Published, Assignment 1, Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}
@@ -298,7 +298,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
 
 exports[`ToDoListItem renders quiz 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Published, Quiz 1, Course 1, Due Jan 23, 2013 at 11:59 PM, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}
@@ -372,7 +372,7 @@ exports[`ToDoListItem renders quiz 1`] = `
 
 exports[`ToDoListItem renders unpublished assignment 1`] = `
 <Row
-  accessible={true}
+  accessibilityLabel="Not Published, Assignment 1, Course 1, Due May 31, 2037 at 11:59 PM, 5 NEED GRADING"
   disclosureIndicator={true}
   onPress={[Function]}
   renderImage={[Function]}

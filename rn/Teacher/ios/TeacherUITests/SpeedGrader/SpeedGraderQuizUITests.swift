@@ -19,7 +19,6 @@
 import XCTest
 import TestsFoundation
 @testable import Core
-@testable import CoreUITests
 
 class SpeedGraderQuizUITests: MiniCanvasUITestCase {
     func testQuizLoadsWebView() {

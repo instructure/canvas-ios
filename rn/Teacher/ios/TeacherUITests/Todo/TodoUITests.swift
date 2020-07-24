@@ -17,7 +17,6 @@
 //
 
 import TestsFoundation
-import CoreUITests
 @testable import Core
 
 class TodoUITests: MiniCanvasUITestCase {
@@ -41,7 +40,7 @@ class TodoUITests: MiniCanvasUITestCase {
 
         let assignment = mocked.courses[0].assignments[0]
         let row = app.find(id: "to-do.list.\(assignment.api.html_url).row")
-        XCTAssertEqual(row.label(), "Published Assignment 1 Course One No Due Date 2 NEED GRADING")
+        XCTAssertEqual(row.label(), "Published, Assignment 1, Course One, No Due Date, 2 NEED GRADING")
 
         row.tap()
         SpeedGrader.dismissTutorial()

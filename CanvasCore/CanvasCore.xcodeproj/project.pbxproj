@@ -389,8 +389,8 @@
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		B1C316FE2463348700CA368C /* NativeUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUserDefaults.m; sourceTree = "<group>"; };
 		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
-		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeNotificationCenter.h; path = "CanvasCore/React Native Modules/NativeNotificationCenter.h"; sourceTree = SOURCE_ROOT; };
-		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = NativeNotificationCenter.m; path = "CanvasCore/React Native Modules/NativeNotificationCenter.m"; sourceTree = SOURCE_ROOT; };
+		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeNotificationCenter.h; sourceTree = "<group>"; };
+		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeNotificationCenter.m; sourceTree = "<group>"; };
 		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
 		B1D59801202A607200855C95 /* CanvasWebView.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = CanvasWebView.js; sourceTree = "<group>"; };
 		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };

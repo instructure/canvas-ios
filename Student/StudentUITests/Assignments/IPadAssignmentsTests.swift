@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 @testable import Core
 
 class IPadAssignmentsTest: MiniCanvasUITestCase {

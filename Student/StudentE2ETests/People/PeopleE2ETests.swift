@@ -18,7 +18,6 @@
 
 import XCTest
 import TestsFoundation
-@testable import CoreUITests
 
 enum CoursePeople {
     static func person(name: String) -> Element {

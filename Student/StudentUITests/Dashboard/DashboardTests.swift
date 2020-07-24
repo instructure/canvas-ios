@@ -18,7 +18,6 @@
 
 import Foundation
 import TestsFoundation
-import CoreUITests
 @testable import Core
 
 class DashboardTests: MiniCanvasUITestCase {

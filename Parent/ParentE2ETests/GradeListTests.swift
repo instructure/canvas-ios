@@ -18,7 +18,6 @@
 
 import Core
 import TestsFoundation
-@testable import CoreUITests
 
 class GradeListTests: CoreUITestCase {
     func testAssignmentDetailsCompose() {

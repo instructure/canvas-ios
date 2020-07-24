@@ -33,7 +33,7 @@ extension ModuleItem {
     }
 }
 
-extension ModuleItemSequence {
+extension Core.ModuleItemSequence {
     @discardableResult
     public static func make(
         from api: APIModuleItemSequence = .make(),
@@ -41,8 +41,8 @@ extension ModuleItemSequence {
         assetType: AssetType = .moduleItem,
         assetID: String = "1",
         in client: NSManagedObjectContext = singleSharedTestDatabase.viewContext
-    ) -> ModuleItemSequence {
-        let sequence: ModuleItemSequence = client.insert()
+    ) -> Core.ModuleItemSequence {
+        let sequence: Core.ModuleItemSequence = client.insert()
         sequence.update(api, courseID: courseID, assetType: assetType, assetID: assetID, in: client)
         return sequence
     }
