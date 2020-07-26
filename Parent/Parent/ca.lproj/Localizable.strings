@@ -86,12 +86,6 @@
 "Event reminder" = "Recordatori d'esdeveniment";
 
 /* No comment provided by engineer. */
-"Excused" = "Excusat";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "No s'ha pogut carregar (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Cerca una escola";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Sembla que esteu provant d'afegir un estudiant. Proveu d'afegir aquest estudiant després d'iniciar la sessió";
 
 /* No comment provided by engineer. */
-"Late" = "Tardà";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Tardà: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Tardà: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Cal iniciar la sessió";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administra els estudiants";
-
-/* No comment provided by engineer. */
-"Missing" = "Falta";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Falta: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Falta: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Falta: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n/a";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Cap avís";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "No hi ha cap curs";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Sense qualificació";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Inicia la sessió";
 
 /* No comment provided by engineer. */
-"Submitted" = "Enviat";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Enviat: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Enviat: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Resum";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "S'ha produït un problema en carregar la base de dades.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "S'ha produït un problema en carregar el fitxer de la base de dades de DiscussionKit.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "S'ha produït un error en carregar els avisos. Estireu per actualitzar per tornar-ho a provar.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Encara no hi ha res que s'hagi de notificar.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Aquest anunci ha caducat.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "És possible que encara no s'hagin publicat els cursos d'aquest estudiant.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Hi ha problemes per iniciar la sessió";

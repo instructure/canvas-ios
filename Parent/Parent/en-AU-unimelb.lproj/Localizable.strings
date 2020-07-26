@@ -86,12 +86,6 @@
 "Event reminder" = "Event reminder";
 
 /* No comment provided by engineer. */
-"Excused" = "Excused";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Failed to load (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Find School";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "It looks like you’re trying to add a student. Try adding this student after you’ve logged in";
 
 /* No comment provided by engineer. */
-"Late" = "Late";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Late: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Late: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Login required";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Manage Students";
-
-/* No comment provided by engineer. */
-"Missing" = "Missing";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Missing: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Missing: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Missing: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n/a";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "No Alerts";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "No Subjects";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "No Grade";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Sign In";
 
 /* No comment provided by engineer. */
-"Submitted" = "Submitted";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Submitted: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Submitted: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Summary";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "The value must a number between 0 and 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "There was a problem loading the database.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "There was a problem loading the DiscussionKit database file.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "There was an error loading alerts. Pull to refresh to try again.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "There's nothing to be notified of yet.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "This announcement has expired.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "This student's subjects may not be published yet.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Trouble logging in";

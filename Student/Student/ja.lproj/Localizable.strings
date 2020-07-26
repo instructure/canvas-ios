@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "テキストの提出";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "そのページは、このコースに対して無効になっています";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "受信者を追加できませんでした。再度試してください。(%@)";
 

@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "文字提交項目";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "已針對此課程停用該內容頁";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "無法添加收件人。請重試。(%@)";
 

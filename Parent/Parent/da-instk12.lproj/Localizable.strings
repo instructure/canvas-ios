@@ -86,12 +86,6 @@
 "Event reminder" = "Begivenhedspåmindelse";
 
 /* No comment provided by engineer. */
-"Excused" = "Undskyldt";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Kunne ikke indlæse (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Find skole";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Det ser ud til, at du prøver at tilføje en elev. Prøv at tilføje denne elev, når du er logget ind";
 
 /* No comment provided by engineer. */
-"Late" = "Sen";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Sen: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Sen: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Login påkrævet";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administrer elever";
-
-/* No comment provided by engineer. */
-"Missing" = "Mangler";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Mangler: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Mangler: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Mangler: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "Gælder ikke";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Ingen varslinger";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Ingen fag";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Ingen vurderinger";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Log på";
 
 /* No comment provided by engineer. */
-"Submitted" = "Afleveret";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Afleveret: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Afleveret: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Sammendrag";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Værdien skal være et tal mellem 0 og 100.";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Der opstod et problem ved indlæsning af databasen.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Der opstod et problem ved indlæsning af DiscussionKit database-fil.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af varslinger. Træk for at opdatere for at prøve igen.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Der er ikke noget at blive underrettet om endnu.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Denne besked er udløbet.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Denne elevs fag kan ikke offentliggøres endnu.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemer med at logge ind";

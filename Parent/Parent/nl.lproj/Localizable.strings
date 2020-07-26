@@ -86,12 +86,6 @@
 "Event reminder" = "Evenementherinnering";
 
 /* No comment provided by engineer. */
-"Excused" = "Verontschuldigd";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden van (discussionKitModelName) NSManagedObjectModel is mislukt";
-
-/* No comment provided by engineer. */
 "Find School" = "School zoeken";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Het lijkt alsof je een cursist probeert toe te voegen. Probeer deze cursist toe te voegen nadat je bent ingelogd";
 
 /* No comment provided by engineer. */
-"Late" = "Laat";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Laat: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Laat: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Inloggen vereist";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Cursisten beheren";
-
-/* No comment provided by engineer. */
-"Missing" = "Ontbrekend";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Ontbrekend: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Ontbreekt: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Ontbreekt: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n.v.t.";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Geen waarschuwingen";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Geen cursussen";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Geen beoordeling";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Aanmelden";
 
 /* No comment provided by engineer. */
-"Submitted" = "Ingediend";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Ingediend: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Ingediend: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Samenvatting";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "De waarde moet een getal zijn tussen 0 en 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Er is een probleem met het laden van de database.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Er is een probleem met het laden van het DiscussionKit databasebestand.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van waarschuwingen. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Er is nog niets om te melden.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Deze aankondiging is vervallen.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "De cursussen voor deze cursist zijn mogelijk nog niet gepubliceerd.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problemen met inloggen";

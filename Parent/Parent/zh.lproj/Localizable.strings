@@ -86,12 +86,6 @@
 "Event reminder" = "活动提醒";
 
 /* No comment provided by engineer. */
-"Excused" = "免除";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "无法加载 (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "查找学校";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "看起来您要添加学生。请在登录后尝试添加此学生";
 
 /* No comment provided by engineer. */
-"Late" = "迟到、迟交";
-
-/* No comment provided by engineer. */
-"Late: %@" = "迟交：%@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "迟交：%1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "要求登录";
 
 /* No comment provided by engineer. */
 "Manage Students" = "管理学生";
-
-/* No comment provided by engineer. */
-"Missing" = "丢失";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "丢失：(-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "漏读：%@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "漏读：%1$@(%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "不适用";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "无警告";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "没有课程";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "没有评分";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "登录";
 
 /* No comment provided by engineer. */
-"Submitted" = "提交";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "提交：%@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "提交：%1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "摘要";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "值必须是介于 0 至 100 之间的数字";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "加载数据库时出现问题。";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "加载DiscussionKit数据库文件时出现问题。";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "加载警告时发生错误。下拉刷新以重试。";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "目前没有通知。";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "此公告已过期。";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "此学生的课程可能尚未发布。";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "在登录时遇到问题";

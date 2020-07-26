@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Fout bij laden van inhoud";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Alle beoordelingsperioden";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Toegestaan aantal pogingen";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Opmerkingen";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Data Error";
-
 /* No comment provided by engineer. */
 "Delete" = "Verwijderen";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Opmerking verwijderen";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Schijffout";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Afwijzen";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Coderingsfout";
 
-/* No comment provided by engineer. */
-"Error" = "Fout";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Fout bij het laden van cache beheer gegevensbestand.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Fout bij laden van toets";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Fout bij ophalen van tool voor starten van URL";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Fout bij het bijwerken van opdracht";
 
 /* Exit button to leave the quiz */
 "Exit" = "Afsluiten";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Kan afbeelding niet schrijven";
 
-/* favorite courses or groups */
-"Favorites" = "Favorieten";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Cijfers ophalen voor";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Beoordelingsperioden";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Verborgen";
 
 /* Inbox tab title */
 "Inbox" = "Inbox";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "LockDown-browser is vereist om je resultaten te bekijken. Open de toets in de LockDown-browser om door te gaan.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Netwerkfout";
 
 /* A quiz that has no due date */
 "No Due Date" = "Geen inleverdatum";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Geen pushkanaal gevonden";
-
 /* when a quiz has no time limit */
 "No time limit" = "Geen tijdslimiet";
 
-/* Section header for assignments without an assignment group */
-"None" = "Geen";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Niet beschikbaar";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Meldingsfout";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Openen in...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Te laat";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Vorige";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Controleer je netwerkverbinding en probeer nogmaals.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Details over toets";
-
-/* tile for error reading cache */
-"Read Error" = "Fout lezen";
 
 /* button to read more of the description */
 "Read More" = "Meer lezen";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Antwoord";
-
-/* Button to report an error */
-"Report" = "Rapport";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Toets hervatten";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Er is een probleem met het interpreteren van een reactie van de server.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Er is een probleem met het laden van het AssignmentKit-databasebestand.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Er is een probleem met het laden van het EnrollmentKit-databasebestand.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Er was een probleem bij het lezen van gegevens in cache";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Er is een fout opgetreden bij het registreren van je apparaat voor pushberichten.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Er was een probleem bij het bijwerken van de Toets URL";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Er was een probleem met de Canvas aanvraag.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Er was een fout bij het associëren van een tabblad met een cursus of groep.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Er was een fout bij het communiceren met de server.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Tijdslimiet";
 
-/* Total grade label */
-"Total Grade" = "Totaalcijfer";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Kan JSON niet parseren voor communicatiekanalen";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Kan JSON niet parseren voor meldingsvoorkeuren";
-
-/* Assignments with no dates */
-"Undated" = "Zonder datum";
-
 /* Unexpected response type */
 "Unexpected response type" = "Onverwachte reactiesoort";
 
 /* Ungraded quiz */
 "Ungraded" = "Onbeoordeeld";
 
-/* An unknown error title */
-"Unknown Error" = "Onbekende fout";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Onbeperkt";
-
-/* Upcoming assignments */
-"Upcoming" = "Aanstaand";
 
 /* button for viewing quiz results */
 "View Results" = "Resultaten weergeven";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Je hebt al je beschikbare pogingen gebruikt voor deze toets.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Je apparaat beschikt over onvoldoende opslagruimte. Maak ruimte vrij en probeer het opnieuw.";
 

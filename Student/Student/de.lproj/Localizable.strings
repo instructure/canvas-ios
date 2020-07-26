@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "Textabgabe";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Diese Seite wurde für diesen Kurs deaktiviert.";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "Die Empfänger konnten nicht hinzugefügt werden. Bitte versuchen Sie es noch einmal. (%@)";
 

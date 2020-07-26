@@ -86,12 +86,6 @@
 "Event reminder" = "Áminning um viðburð";
 
 /* No comment provided by engineer. */
-"Excused" = "Undanþegið";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Mistókst að hlaða (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Finna skóla";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Þú virðist vera að reyna að bæta við nýjum nemanda. Prófaðu að bæta nemandanum við þegar þú hefur skráð þig inn";
 
 /* No comment provided by engineer. */
-"Late" = "Seint";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Seint: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Seint: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Þörf er á innskráningu";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Stjórna nemendum";
-
-/* No comment provided by engineer. */
-"Missing" = "Vantar";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Vantar: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Vantar: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Vantar: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "á ekki við";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Engar viðvaranir";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Engin námskeið";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Engin einkunn";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Innskráning";
 
 /* No comment provided by engineer. */
-"Submitted" = "Skilað";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Innsent: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Innsent: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Samantekt";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Gildið þarf að vera á milli 0 og 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Vandamál kom upp við að sækja gagnagrunninn.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Vandamál kom upp við að sækja DiscussionKit gagnagrunnsskránna.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Upp kom villa við að hlaða viðvörunum. Dragðu til að endurglæða til að reyna aftur.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Það er ekkert tilkynningavert enn.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Þessi tilkynning er útrunnin.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Námskeið þessa nemanda eru ef til vill ekki birt enn.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Vandamál við innskráningu";

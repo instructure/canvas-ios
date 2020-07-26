@@ -86,12 +86,6 @@
 "Event reminder" = "Lembrete do evento";
 
 /* No comment provided by engineer. */
-"Excused" = "Dispensado";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Falha ao carregar (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Encontrar Escola";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Parece que estás a tentar acrescentar um aluno. Tente adicionar este aluno depois de ter feito o login";
 
 /* No comment provided by engineer. */
-"Late" = "Atrasado";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Atrasado: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Atrasado: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Login necessário";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Gerir alunos";
-
-/* No comment provided by engineer. */
-"Missing" = "Em falta";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Em falta: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Em falta: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Em falta: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n/d";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Sem Alertas";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Sem Disicplinas";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Sem Nota";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Iniciar sessão";
 
 /* No comment provided by engineer. */
-"Submitted" = "Entregue";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Entregue: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Entregue: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Sumário";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "O valor deve ser um número entre 0 e 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Ocorreu um problema ao carregar o banco de dados.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Ocorreu um problema ao carregar o DiscussionKit arquivo de banco de dados.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Houve um erro ao carregar seus alertas. Puxe para refrescar para tentar novamente.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Não há nada para ser notificado ainda.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Este anúncio expirou.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "As disciplinas deste aluno podem não ser publicados ainda.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Problema no login";

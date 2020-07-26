@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️Villa við að sækja efni";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Öll einkunnatímabil";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Heimilaðar tilraunir";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Athugasemdir";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Villa í gögnum";
-
 /* No comment provided by engineer. */
 "Delete" = "Eyða";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Eyða athugasemd";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Diskavilla";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Dulkóðunarvilla";
 
-/* No comment provided by engineer. */
-"Error" = "Villa";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Villa við að sækja flýtiminni stjórnunargagnagrunns.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Villa við að hlaða inn prófi";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Villa við að endurheimta vefslóð verkfærisræsingar";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Villa við að uppfæra verkefni";
 
 /* Exit button to leave the quiz */
 "Exit" = "Hætta";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Ekki tókst að skrifa mynd";
 
-/* favorite courses or groups */
-"Favorites" = "Eftirlæti";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Fá einkunnir fyrir";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Einkunnatímabil";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Falið";
 
 /* Inbox tab title */
 "Inbox" = "Innhólf";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown vafra þarf til að skoða niðurstöður prófsins. Opnaðu prófið í Lockdown vafra til að halda áfram.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Netkerfisvilla";
 
 /* A quiz that has no due date */
 "No Due Date" = "Enginn skiladagur";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Engar þrýstirásir fundust";
-
 /* when a quiz has no time limit */
 "No time limit" = "Engin tímamörk";
 
-/* Section header for assignments without an assignment group */
-"None" = "Ekkert";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ekki takanlegt";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Tilkynningarvilla";
 
 /* OK Button Title */
 "OK" = "Í lagi";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Opna í…";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Vanskil";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Fyrri";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Athugaðu nettengingu þína og reyndu aftur.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
-
-/* tile for error reading cache */
-"Read Error" = "Lesvilla";
 
 /* button to read more of the description */
 "Read More" = "Lesa meira";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
-
-/* Button to report an error */
-"Report" = "Skýrsla";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Halda áfram með próf";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Villa kom upp við túlkun svars frá miðlara.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Vandamál kom upp við að sækja AssignmentKit gagnagrunnsskránna.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Vandamál kom upp við að sækja EnrollmentKit gagnagrunnsskránna.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Villa kom upp við að lesa gögn í flýtiminni";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Villa kom upp við skráningu tækisins þíns fyrir þrýstar tilkynningar.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Vandamál kom upp við að uppfæra vefslóð prófsins";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Vandamál kom upp við Canvas beiðnina.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Villa kom upp við að tengja flipa við námskeið eða hóp.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Villa kom upp við samskipti við miðlara.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Tímamörk";
 
-/* Total grade label */
-"Total Grade" = "Heildareinkunn";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Ekki er hægt að þátta JSON fyrir samskiptarásir";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Ekki er hægt að þátta JSON fyrir tilkynningakjörstillingar";
-
-/* Assignments with no dates */
-"Undated" = "Ódagsett";
-
 /* Unexpected response type */
 "Unexpected response type" = "Óvænt gerð svars";
 
 /* Ungraded quiz */
 "Ungraded" = "Einkunn ekki gefin";
 
-/* An unknown error title */
-"Unknown Error" = "Óþekkt villa";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Ótakmarkað";
-
-/* Upcoming assignments */
-"Upcoming" = "Væntanlegt";
 
 /* button for viewing quiz results */
 "View Results" = "Skoða niðurstöður";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Þú hefur notað allar tilraunir sem þú hefur á þessu prófi.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Tækið þitt er búið með geymslupláss. Losaðu pláss og reyndu aftur.";
 

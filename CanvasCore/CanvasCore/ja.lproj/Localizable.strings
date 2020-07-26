@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ コンテンツ読み込み中エラー";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "すべての採点期間";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "試行許可数";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "コメント";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "データエラー";
-
 /* No comment provided by engineer. */
 "Delete" = "削除";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "コメントを削除する";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "ディスクエラー";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "却下する";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "エンコードエラー";
 
-/* No comment provided by engineer. */
-"Error" = "エラー";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "キャッシュ管理データベースの読み込みエラー";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "クイズ読み込み中エラー";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "ツール起動 URL 取得中にエラーが発生しました";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "課題のアップロードエラー";
 
 /* Exit button to leave the quiz */
 "Exit" = "終了";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "画像の書き込みに失敗しました";
 
-/* favorite courses or groups */
-"Favorites" = "お気に入り";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "（）の成績を取得する";
-
-/* Title for grading periods picker */
-"Grading Periods" = "採点期間";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "非表示";
 
 /* Inbox tab title */
 "Inbox" = "受信トレイ";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "結果を見るにはロックダウンブラウザが必要です。ロックダウンブラウザでクイズを開くと続行します。";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "ネットワークエラー";
 
 /* A quiz that has no due date */
 "No Due Date" = "期日なし";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "プッシュチャネルが見つかりません";
-
 /* when a quiz has no time limit */
 "No time limit" = "時間制限なし";
 
-/* Section header for assignments without an assignment group */
-"None" = "なし";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "受けられません";
-
-/* Error title for push notification registration error */
-"Notification Error" = "通知エラー";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "...で開く";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "期限超過";
-
-/* Assignments that have been turned in and are past */
-"Past" = "過去";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "ネットワークの接続を確認して再度お試しください。";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "クイズの詳細情報";
-
-/* tile for error reading cache */
-"Read Error" = "読み込みエラー";
 
 /* button to read more of the description */
 "Read More" = "もっと読む";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "返信";
-
-/* Button to report an error */
-"Report" = "報告";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "クイズを再開する";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "サーバーからの応答の読み取り中にエラーが発生しました。";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "AssignmentKit データベースファイルを読み込み中、問題がありました。.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "EnrollmentKit データベースファイルを読み込み中、問題がありました。.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "キャッシュデータの読み込み中に問題が発生しました";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "クイズURLのアップデート中に問題が発生しました";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Canvasリクエストについての問題が発生しました。";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "コースまたはグループにタブを関連付ける際にエラーが発生しました。";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "サーバーとの通信中にエラーが発生しました。";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "時間制限";
 
-/* Total grade label */
-"Total Grade" = "合計成績";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "通信チャネル用に JSON をパースすることはできません";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "通知設定用に JSON をパースすることはできません";
-
-/* Assignments with no dates */
-"Undated" = "更新しました";
-
 /* Unexpected response type */
 "Unexpected response type" = "予期せぬ応答タイプ";
 
 /* Ungraded quiz */
 "Ungraded" = "未採点";
 
-/* An unknown error title */
-"Unknown Error" = "未知のエラー";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "無制限";
-
-/* Upcoming assignments */
-"Upcoming" = "今後の";
 
 /* button for viewing quiz results */
 "View Results" = "結果を表示";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "このクイズですべての試行回数を使いました。";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";
 

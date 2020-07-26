@@ -86,12 +86,6 @@
 "Event reminder" = "التذكير بالحدث";
 
 /* No comment provided by engineer. */
-"Excused" = "غير إجباري";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "تعذر تحميل (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "البحث عن مدرسة";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "يبدو أنك تحاول إضافة طالب. حاول إضافة  هذا الطالب بعد أن تسجل الدخول";
 
 /* No comment provided by engineer. */
-"Late" = "متأخر";
-
-/* No comment provided by engineer. */
-"Late: %@" = "متأخر: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "متأخر: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "تسجيل الدخول مطلوب";
 
 /* No comment provided by engineer. */
 "Manage Students" = "إدارة الطلاب";
-
-/* No comment provided by engineer. */
-"Missing" = "غير منجزة";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "غير منجزة: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "مفقود: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "مفقود: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "لا يوجد";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "لا توجد تنبيهات";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "لا توجد أي درجة";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "تسجيل الدخول";
 
 /* No comment provided by engineer. */
-"Submitted" = "تم الإرسال";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "تم الإرسال: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "تم الإرسال: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "ملخص";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "يجب أن تكون القيمة رقمًا بين 0 و100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "حدثت مشكلة أثناء تحميل قاعدة البيانات.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات DiscussionKit.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "حدث خطأ أثناء تحميل التنبيهات. اسحب للتحديث لإعادة المحاولة.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "لا يوجد شيء للإعلام عنه حتى الآن.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "انتهت صلاحية هذا الإعلان.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "مساقات هذا الطالب قد لا تكون قد نشرت بعد.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "مشكلة تسجيل الدخول";

@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ 加载内容时出错";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "所有评分周期";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "允许的尝试次数";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "评论";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "数据错误";
-
 /* No comment provided by engineer. */
 "Delete" = "删除";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "删除评论";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "磁盘错误";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "撤销";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "编码错误";
 
-/* No comment provided by engineer. */
-"Error" = "错误";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "加载缓存管理数据库出现错误。";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "加载测验时出现错误";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "检索工具启动URL时出错";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "更新作业错误";
 
 /* Exit button to leave the quiz */
 "Exit" = "退出";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "写入图像失败";
 
-/* favorite courses or groups */
-"Favorites" = "收藏夹";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "获取以下评分：";
-
-/* Title for grading periods picker */
-"Grading Periods" = "评分周期";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "隐藏";
 
 /* Inbox tab title */
 "Inbox" = "收件箱";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "必须使用锁定浏览器才能查看您的结果。请在锁定浏览器中打开测验以继续。";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "网络错误";
 
 /* A quiz that has no due date */
 "No Due Date" = "无截止日期";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "未找到推送渠道";
-
 /* when a quiz has no time limit */
 "No time limit" = "没有时间限制";
 
-/* Section header for assignments without an assignment group */
-"None" = "无";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "不能参加";
-
-/* Error title for push notification registration error */
-"Notification Error" = "通知错误";
 
 /* OK Button Title */
 "OK" = "确定";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "打开...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "过期";
-
-/* Assignments that have been turned in and are past */
-"Past" = "过去";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "请检查您的网络连接并再次尝试。";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "测验详情";
-
-/* tile for error reading cache */
-"Read Error" = "阅读错误";
 
 /* button to read more of the description */
 "Read More" = "阅读更多";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "回复";
-
-/* Button to report an error */
-"Report" = "报告";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "恢复测验";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "解读服务器的响应时出现问题。";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "加载AssignmentKit数据库文件时出现问题。";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "加载EnrollmentKit数据库文件时出现问题。";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "阅读缓存数据时出现问题";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "注册您的设备接收推送通知时出现问题。";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "更新测验URL时出现问题";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "带有Canvas请求出现问题。";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "选项卡与课程或小组相联时出现错误。";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "联系服务器时出现错误。";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "时间限制";
 
-/* Total grade label */
-"Total Grade" = "总分";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "无法解析 JSON 的信道";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "无法解析 JSON 的通知首选项";
-
-/* Assignments with no dates */
-"Undated" = "无限期";
-
 /* Unexpected response type */
 "Unexpected response type" = "意外的响应类型";
 
 /* Ungraded quiz */
 "Ungraded" = "未评分";
 
-/* An unknown error title */
-"Unknown Error" = "未知错误";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "无限制";
-
-/* Upcoming assignments */
-"Upcoming" = "即将到来";
 
 /* button for viewing quiz results */
 "View Results" = "查看结果";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "您已用尽此测验的全部可用的尝试。";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "您的设备的存储空间不足。请释放空间，然后重试。";
 

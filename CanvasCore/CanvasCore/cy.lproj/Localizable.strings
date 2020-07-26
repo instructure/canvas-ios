@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Gwall wrth lwytho cynnwys";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Pob Cyfnod Graddio";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ymgeisiau a ganiateir";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Sylwadau";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Gwall Data";
-
 /* No comment provided by engineer. */
 "Delete" = "Dileu";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Dileu Sylw";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Gwall ar y Ddisg";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Gwall Amgodio";
 
-/* No comment provided by engineer. */
-"Error" = "Gwall";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Gwall wrth lwytho storfa'r gronfa ddata rheoli.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Gwall wrth lwytho'r Cwis";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Gwall wrth adfer URL lansio adnodd";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Gwall wrth ddiweddaru'r Aseiniad";
 
 /* Exit button to leave the quiz */
 "Exit" = "Gadael";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Wedi methu ysgrifennu delwedd";
 
-/* favorite courses or groups */
-"Favorites" = "Ffefrynnau";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Nôl Graddau ar gyfer";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Cyfnodau Graddio";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Cudd";
 
 /* Inbox tab title */
 "Inbox" = "Blwch Derbyn";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Mae angen porwr Lockdown i weld eich canlyniadau. Agorwch y cwis yn y Porwr Lockdown i fwrw ymlaen.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Gwall ar y Rhwydwaith";
 
 /* A quiz that has no due date */
 "No Due Date" = "Dim Dyddiad Erbyn";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Heb ddod o hyd sianel marchnata";
-
 /* when a quiz has no time limit */
 "No time limit" = "Dim terfyn amser";
 
-/* Section header for assignments without an assignment group */
-"None" = "Dim";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Dim modd ei gymryd";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Gwall Hysbysu";
 
 /* OK Button Title */
 "OK" = "Iawn";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Agor yn...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Hwyr";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Blaenorol";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Gwiriwch eich cysylltiad rhwydwaith a rhoi cynnig arall arni.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Manylion Cwis";
-
-/* tile for error reading cache */
-"Read Error" = "Darllen y Gwall";
 
 /* button to read more of the description */
 "Read More" = "Darllen mwy";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Ateb";
-
-/* Button to report an error */
-"Report" = "Adroddiad";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Parhau â'r Cwis";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Problem wrth ddehongli ymateb gan y gweinydd.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata AssignmentKit.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata EnrollmentKit.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Problem wrth ddarllen y data wedi'i storio";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Problem wrth gofrestru'ch dyfais i dderbyn hysbysiadau marchnata.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Problem wrth ddiweddaru URL y Cwis";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Problem gyda’r cais i Canvas.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Gwall wrth gysylltu tab â chwrs neu grŵp.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Gwall wrth gyfathrebu â'r gweinydd.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Terfyn Amser";
 
-/* Total grade label */
-"Total Grade" = "Gradd Gyffredinol";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Methu dosrannu JSON ar gyfer sianeli cyfathrebu";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Methu dosrannu JSON ar gyfer dewisiadau hysbysiadau";
-
-/* Assignments with no dates */
-"Undated" = "Heb ddyddiad";
-
 /* Unexpected response type */
 "Unexpected response type" = "Math o ymateb annisgwyl";
 
 /* Ungraded quiz */
 "Ungraded" = "Heb raddio";
 
-/* An unknown error title */
-"Unknown Error" = "Gwall Anhysbys";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Diderfyn";
-
-/* Upcoming assignments */
-"Upcoming" = "Ar y gweill";
 
 /* button for viewing quiz results */
 "View Results" = "Gweld Canlyniadau";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Rydych chi wedi defnyddio pob ymgais sydd ar gael ar gyfer y cwis hwn.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";
 

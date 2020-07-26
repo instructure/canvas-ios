@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Virhe sisällön latauksessa";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Kaikki arvosanojen antojaksot";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Sallitut yritykset";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Kommentit";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Tietovirhe";
-
 /* No comment provided by engineer. */
 "Delete" = "Poista";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Poista kommentti";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Levyvirhe";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Ohita";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Koodausvirhe";
 
-/* No comment provided by engineer. */
-"Error" = "Virhe";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Virhe välimuistin hallintatietokannan latauksessa.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Virhe tietovisaa ladattaessa";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Virhe noudettaessa työnkalun käynnistys-URL:ää";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Virhe tehtävän päivityksissä";
 
 /* Exit button to leave the quiz */
 "Exit" = "Poistu";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Ei voi kirjoittaa kuvaa";
 
-/* favorite courses or groups */
-"Favorites" = "Suosikit";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Hae arvosanat kohteesta";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Arvosanojen antojaksot";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Piilotettu";
 
 /* Inbox tab title */
 "Inbox" = "Saapuneet";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Vaaditaan Lockdown-selain tulostesi tarkasteluun. Avaa kysely Lockdown-selaimessa jatkaaksesi.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Verkkovirhe";
 
 /* A quiz that has no due date */
 "No Due Date" = "Ei määräpäivää";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Push-kanavaa ei löydy";
-
 /* when a quiz has no time limit */
 "No time limit" = "Ei aikarajaa";
 
-/* Section header for assignments without an assignment group */
-"None" = "Ei mitään";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ei otettavissa";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Ilmoitusvirhe";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Avaa kohteessa...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Myöhässä";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Edelliset";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Tarkasta verkkoyhteys ja yritä uudelleen.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Tietovisan tiedot";
-
-/* tile for error reading cache */
-"Read Error" = "Lukuvirhe";
 
 /* button to read more of the description */
 "Read More" = "Lue lisää";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Vastaus";
-
-/* Button to report an error */
-"Report" = "Raportti";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Jatka tietovisaa";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Ilmeni ongelma tulkittaessa vastausta palvelimelta:";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Tietokantatiedoston AssignmentKit latauksessa tapahtui virhe.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Tietokantatiedoston EnrollmentKit latauksessa tapahtui virhe.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Välimuistitietojen lukemisessa esiintyi ongelma";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Laitteesi rekisteröinnissä push-ilmoituksia varten esiintyi ongelma.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Tietovisan URL:n päivittämisessä ilmeni ongelma.";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Ongelma käsiteltäessä Canvas-pyyntöä.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Ilmeni virhe liitettäessä välilehteä kurssin tai ryhmän kanssa.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Ilmeni virhe kommunikoitaessa palvelimen kanssa.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Aikaraja";
 
-/* Total grade label */
-"Total Grade" = "Kokonaisarvosana";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "JSON:n jäsentäminen kommunikointikanaville ei onnistunut";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "JSON:n paikkaaminen ilmoitusasetuksille ei onnistunut";
-
-/* Assignments with no dates */
-"Undated" = "Päivitetty";
-
 /* Unexpected response type */
 "Unexpected response type" = "Odottamaton vastaustyyppi";
 
 /* Ungraded quiz */
 "Ungraded" = "Arvostelematon";
 
-/* An unknown error title */
-"Unknown Error" = "Tuntematon virhe";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Rajoittamaton";
-
-/* Upcoming assignments */
-"Upcoming" = "Tulossa";
 
 /* button for viewing quiz results */
 "View Results" = "Näytä tulokset";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Olet käyttänyt kaikki tälle kyselylle saatavissa olevat yritykset.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Laitteesi tallennustila on lopussa. Vapauta tilaa ja yritä uudelleen.";
 

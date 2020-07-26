@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ He hapa i te wā e uta ana Ihirangi";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Ngā Kōeke Katoa o te Wā";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Ngā ngana e whakāetia ana";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Ngā Kōrerorero";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Hapa Raraunga";
-
 /* No comment provided by engineer. */
 "Delete" = "Muku";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Muku Kōrero";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Hapa kōpae";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Hapa Whakawaehere";
 
-/* No comment provided by engineer. */
-"Error" = "Hapa";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Hapa uta whakahaere keteroki pātengi raraunga.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "He hapa i te wā uta Quiz";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "He hapa i te wā e tiki ana i te taputapu whakarewatanga URL";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Hapa Whakahōu Whakataunga";
 
 /* Exit button to leave the quiz */
 "Exit" = "Puta ki waho";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "I rahua ki te tuhi āhua";
 
-/* favorite courses or groups */
-"Favorites" = "Makau";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Tikina ngā koeke mō";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Ngā Kōeke o ngā Wā";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Huna";
 
 /* Inbox tab title */
 "Inbox" = "Pouakauru";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "E hiahiatia ana te Maukati Iho Pūtirotiro ki te titiro i ō hua. Tēnā huaki te pātaitai i roto i te Maukati Iho Pūtirotiro kia haere tonu.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Hapa Whatunga";
 
 /* A quiz that has no due date */
 "No Due Date" = "Kaore he rā tika";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Kaore he awakeri pana i kitea";
-
 /* when a quiz has no time limit */
 "No time limit" = "Kāore he tepe wā";
 
-/* Section header for assignments without an assignment group */
-"None" = "Kaore";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "e kore e tāketia ana";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Hapa whakamōhiotanga";
 
 /* OK Button Title */
 "OK" = "Ae";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Huaki i roto ī…";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Tōmuri";
-
-/* Assignments that have been turned in and are past */
-"Past" = "O muri";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Tēnā koa tirohia tō hononga whatunga, me te ngana anō.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Ngā Quiz Taipitopito";
-
-/* tile for error reading cache */
-"Read Error" = "Hapa Pānui";
 
 /* button to read more of the description */
 "Read More" = "Pānuitia atu";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Whakautu";
-
-/* Button to report an error */
-"Report" = "Pūrongo";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Tīmata Quiz";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "He  raruraru i te wā e whakamāori i te whakautu mai i te tūmau.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "He raruraru i te wā e uta ana i te AssignmentKit kōnae pātengi rarunga.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "He raruraru i te wā e uta ana i te EnrollmentKit kōnae pātengi rarunga.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "He  raruraru i te wā e tai'orā i te raraunga keteroki";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "He raruraru i te wā e rēhita ana i tō pūrere mo ngā whakamōhiotanga pana";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "He raruraru i te wā e whakahōu ana i te URL Quiz";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "He raruraru wā ki te tono Canvas.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "He hapa e pā ana ki te ripa mi te akoranga rōpū rānei.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "He hapa i te wā e kōrero ana ki te tūmau.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Wā Whāiti";
 
-/* Total grade label */
-"Total Grade" = "Kōeke Tapeke";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Kaore i taea te poporo JSON mo ngā awakeri kōrero";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Kaore i taea te poporo JSON mo ngā manakohanga whakamōhiotanga";
-
-/* Assignments with no dates */
-"Undated" = "Kaore i rātia ";
-
 /* Unexpected response type */
 "Unexpected response type" = "Whakautu momo ohorere";
 
 /* Ungraded quiz */
 "Ungraded" = "Kaore i kōeketia";
 
-/* An unknown error title */
-"Unknown Error" = "Kaore i mōhiotia te hapa";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Kaore he mutunga";
-
-/* Upcoming assignments */
-"Upcoming" = "E haere mai ana";
 
 /* button for viewing quiz results */
 "View Results" = "Tirohia Ngā Hua";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Kua whakamahia e koe ou nganatanga katoa e wātea ana i runga i tēnei quiz";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Kua kore te wāhi rokiroki i roto i tō pūrere. Tēnā koa whakawātea ake he wāhi, me te ngana anō";
 

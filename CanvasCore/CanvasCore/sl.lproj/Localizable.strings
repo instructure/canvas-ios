@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Napaka pri nalaganju vsebine";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Vsa ocenjevalna obdobja";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Dovoljeni poskusi";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Komentarji";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Napaka pri podatkih";
-
 /* No comment provided by engineer. */
 "Delete" = "Odstrani";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Odstrani komentar";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Napaka na disku";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Napaka pri kodiranju";
 
-/* No comment provided by engineer. */
-"Error" = "Napaka";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Napaka pri nalaganju zbirke podatkov za urejanje predpomnilnika.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Napaka pri nalaganju kviza";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Napaka pri pridobivanju naslova URL za zagon orodja";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Napaka pri posodobitvi naloge";
 
 /* Exit button to leave the quiz */
 "Exit" = "Izhod";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Zapisovanje slike ni uspelo.";
 
-/* favorite courses or groups */
-"Favorites" = "Priljubljene";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Pridobi ocene za";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Ocenjevalna obdobja";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Skrito";
 
 /* Inbox tab title */
 "Inbox" = "Pošta";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Za ogled rezultatov je potreben brskalnik Lockdown. Za nadaljevanje odprite kviz v brskalniku Lockdown.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Napaka v omrežju";
 
 /* A quiz that has no due date */
 "No Due Date" = "Ni roka.";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Ni najdenega kanala potiska.";
-
 /* when a quiz has no time limit */
 "No time limit" = "Brez časovne omejitve";
 
-/* Section header for assignments without an assignment group */
-"None" = "Brez";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Ni mogoče vzeti.";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Napaka pri sporočilu";
 
 /* OK Button Title */
 "OK" = "V redu";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Odpri v ...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Rok je potekel.";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Preteklo";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Preverite svojo omrežno povezavo in poskusite znova.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Podrobnosti o kvizu";
-
-/* tile for error reading cache */
-"Read Error" = "Napaka pri branju";
 
 /* button to read more of the description */
 "Read More" = "Preberite več.";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Odgovori";
-
-/* Button to report an error */
-"Report" = "Poročilo";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Nadaljevanje kviza";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov AssignmentKit.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov EnrollmentKit.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Prišlo je do težave pri branju predpomnjenih podatkov.";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Prišlo je do težave pri registriranju naprave za poslana sporočila.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Prišlo je do težave pri posodabljanju naslova URL kviza.";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Prišlo je do težave z zahtevo sistema Canvas.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Prišlo je do napake pri povezavi zavihka s predmetom ali skupino.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Med komunikacijo s strežnikom je prišlo do napake.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Časovna omejitev";
 
-/* Total grade label */
-"Total Grade" = "Skupna ocena";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Datoteke JSON ni bilo mogoče razčleniti za komunikacijske kanale.";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Datoteke JSON ni bilo mogoče razčleniti za prednostne nastavitve.";
-
-/* Assignments with no dates */
-"Undated" = "Brez datuma";
-
 /* Unexpected response type */
 "Unexpected response type" = "Nepričakovana vrsta odziva";
 
 /* Ungraded quiz */
 "Ungraded" = "Neocenjeno";
 
-/* An unknown error title */
-"Unknown Error" = "Neznana napaka";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Neomejeno";
-
-/* Upcoming assignments */
-"Upcoming" = "Prihodnje";
 
 /* button for viewing quiz results */
 "View Results" = "Ogled rezultatov";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Porabili ste vse poskuse, ki so na voljo pri tem kvizu.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "V napravi je zmanjkalo prostora na disku. Počistite prostor na disku in poskusite znova.";
 

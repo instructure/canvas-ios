@@ -86,12 +86,6 @@
 "Event reminder" = "Ereigniserinnerung";
 
 /* No comment provided by engineer. */
-"Excused" = "Entschuldigt";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Laden von (discussionKitModelName) NS ManagedObjectModel fehlgeschlagen";
-
-/* No comment provided by engineer. */
 "Find School" = "Schule suchen";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Es sieht so aus, als wollten Sie einen Studenten hinzufügen. Versuchen Sie, diesen Studenten hinzuzufügen, nachdem Sie sich eingeloggt haben";
 
 /* No comment provided by engineer. */
-"Late" = "Zu spät";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Zu spät: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Zu spät: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Anmeldung erforderlich";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Teilnehmer verwalten";
-
-/* No comment provided by engineer. */
-"Missing" = "Fehlend";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Fehlend: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Fehlt: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Fehlt: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n/a";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Keine Benachrichtigungen";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Keine Kurse";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Keine Noten";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Anmelden";
 
 /* No comment provided by engineer. */
-"Submitted" = "Eingereicht";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Eingereicht: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Eingereicht: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Übersicht";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Der Wert muss eine Zahl zwischen 0 und 100. sein.";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Beim Laden der Datenbank ist ein Problem aufgetreten.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Beim Laden der DiscussionKit-Datenbankdatei ist ein Problem aufgetreten.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Fehler beim Laden der Alarme. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Es gibt noch nichts, worüber man benachrichtigt werden müsste.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Diese Ankündigung ist nicht mehr gültig.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Die Kurse dieses Studenten können jetzt nicht veröffentlicht werden.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Probleme beim Anmelden?";

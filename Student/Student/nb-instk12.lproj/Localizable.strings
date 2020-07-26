@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "Tekstinnsending";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Den siden er deaktivert for dette faget";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "Mottakere kunne ikke legges til. Vennligst prøv igjen. (%@)";
 

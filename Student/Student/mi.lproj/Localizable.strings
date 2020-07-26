@@ -576,6 +576,9 @@
 "Event" = "Tauwhāinga";
 
 /* No comment provided by engineer. */
+"Event Details" = "Ngā taipitopito tauwhāinga";
+
+/* No comment provided by engineer. */
 "Existing Attachments..." = "Ngā Āpitihanga ...";
 
 /* Title for an external tool submission */
@@ -759,6 +762,9 @@
 /* Generic loading title with ellipses
    Generic loading title with ellipsis */
 "Loading..." = "E uta ana ....";
+
+/* No comment provided by engineer. */
+"Location" = "Wāhi";
 
 /* No comment provided by engineer. */
 "Locked" = "Kua rakaina";
@@ -1348,9 +1354,6 @@
 
 /* Generic name for a submission entered online. */
 "Text Submission" = "Tāpaetanga Kuputuhi";
-
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Kua monokia te whārangi mō tēnei akoranga";
 
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "Kaore i taea te tāpiri i ngā kaiwhiwhi Tēnā koa ngana anō. (%@)";
