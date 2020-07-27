@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Erè Chajman Kontni";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Tout Peryòd Klasman";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tantativ Otorize";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Kòmantè";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Erè Data";
-
 /* No comment provided by engineer. */
 "Delete" = "Efase";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Efase Kòmantè";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Erè Disk";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Rejte";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Erè Kodaj";
 
-/* No comment provided by engineer. */
-"Error" = "Erè";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Erè nan chajman baz de done jesyon kache.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Erè nan Chajman Quiz";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Erè pandan rekiperasyon URL lansman enstriman";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Erè Pandan Aktyalizasyon Sesyon an";
 
 /* Exit button to leave the quiz */
 "Exit" = "Soti";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Echwe pou ekri imaj";
 
-/* favorite courses or groups */
-"Favorites" = "Prefere";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Jwenn Nòt pou";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Peryòd Klasman";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Kache";
 
 /* Inbox tab title */
 "Inbox" = "Bwat resepsyon";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Navigatè Lockdown nesesè pou ka wè rezilta ou yo. Tanpri ouvri quiz la nan Navigatè Lockdown pou ka kontinye.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Erè Rezo";
 
 /* A quiz that has no due date */
 "No Due Date" = "San Delè";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Kanal push entwouvab";
-
 /* when a quiz has no time limit */
 "No time limit" = "Pa gen limit tan";
 
-/* Section header for assignments without an assignment group */
-"None" = "Okenn";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Pa Prizab";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Erè Notifikasyon";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Ouvri nan...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "An reta";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Pase";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Tanpri verifye koneksyon entènèt ou a epi eseye ankò.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Detay Quiz";
-
-/* tile for error reading cache */
-"Read Error" = "Erè Lekti";
 
 /* button to read more of the description */
 "Read More" = "Li Plis";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Reponn";
-
-/* Button to report an error */
-"Report" = "Rapòte";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Reprann Quiz";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Te gen yon pwoblèm nan entèpretasyon repons de sèvè a.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done AssignmentKit a.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done EnrollmentKit a.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Te gen yon pwoblèm nan lekti done nan kache a";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Te gen yon pwoblèm pandan anrejistreman aparèy ou a pou ka resevwa notifikasyon push.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Te gen yon pwoblèm nan aktyalizasyon URL Quiz la.";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Te gen yon pwoblèm a demann Canvas la.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Te gen yon erè nan asosyasyon yon onglè ak yon kou oswa gwoup.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Te gen yon erè pandan kominikasyon ak sèvè a.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Limit Tan";
 
-/* Total grade label */
-"Total Grade" = "Klas Total";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Enposib pou analize JSON pou kanal kominikasyon yo";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Enposib pou analize JSON pou preferans notifikasyon yo";
-
-/* Assignments with no dates */
-"Undated" = "San dat";
-
 /* Unexpected response type */
 "Unexpected response type" = "Tip repons enprevi";
 
 /* Ungraded quiz */
 "Ungraded" = "Pa klase";
 
-/* An unknown error title */
-"Unknown Error" = "Erè Enkoni";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Ilimite";
-
-/* Upcoming assignments */
-"Upcoming" = "Pwochen";
 
 /* button for viewing quiz results */
 "View Results" = "Afiche Rezilta";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Ou itilize tout tantativ ki te disponib pou ou nan quiz sa a.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";
 

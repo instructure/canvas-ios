@@ -86,12 +86,6 @@
 "Event reminder" = "Opozorilo o dogodku";
 
 /* No comment provided by engineer. */
-"Excused" = "Opravičeno";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Nalaganje (discussionKitModelName) NSManagedObjectModel ni uspelo";
-
-/* No comment provided by engineer. */
 "Find School" = "Poišči šolo";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Kaže, da poskušate dodati študenta. Študenta poskusite dodati, ko boste prijavljeni.";
 
 /* No comment provided by engineer. */
-"Late" = "Zamuda";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Zamuda: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Zamuda: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Zahtevana je prijava";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Uredi študente";
-
-/* No comment provided by engineer. */
-"Missing" = "Manjkajoče";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Manjkajoče: (–/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Manjkajoče: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Manjkajoče: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "Ni na voljo";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Ni opozoril";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Ni predmetov.";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Ni ocen.";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Prijava";
 
 /* No comment provided by engineer. */
-"Submitted" = "Poslano";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Poslano: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Poslano: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Povzetek";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Vrednost mora biti število 0–100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Prišlo je do težav pri nalaganju zbirke podatkov.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Prišlo je do težav pri nalaganju datoteke zbirke podatkov DiscussionKit.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Pri nalaganju opozoril je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Ni ničesar, o čemer bi bilo treba sporočati.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Čas tega obvestila se je iztekel.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Predmeti tega študenta morda še niso objavljeni.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Težave pri prijavi";

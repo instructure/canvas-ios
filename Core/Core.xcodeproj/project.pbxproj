@@ -77,8 +77,6 @@
 		3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CC724588D1400BE4589 /* ConversationDetailViewControllerTests.swift */; };
 		3BEA6CCF2458A10700BE4589 /* ConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA6CCE2458A10700BE4589 /* ConversationListViewControllerTests.swift */; };
 		3BF5C55321879A430081A858 /* GetAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF5C55221879A430081A858 /* GetAssignmentsTests.swift */; };
-		58595B6A6EAAE22DA53C92C0 /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595EA114F4E468801AFEBE /* DiscussionEditReply.swift */; };
-		58595ECB6194A295709A98F7 /* Attachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585959ACAB816578B2B2ECC0 /* Attachments.swift */; };
 		5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BF786A8218599B600471A5F /* InfoPlist.strings */; };
 		76C331C8F363ABC602A1B6DD /* Pods_needs_pspdfkit_CoreTester.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */; };
 		78151DCF21AE7E0500692862 /* APIDiscussionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */; };

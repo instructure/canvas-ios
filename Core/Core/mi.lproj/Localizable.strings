@@ -104,16 +104,28 @@
 "Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
 
 /* No comment provided by engineer. */
+"assignment" = "whakataunga";
+
+/* No comment provided by engineer. */
 "Assignment Details" = "Taipitopito whakataunga";
 
 /* No comment provided by engineer. */
 "Assignment grade above" = "Kōeke whakataunga runga";
 
 /* No comment provided by engineer. */
+"Assignment Grade Above %d" = "Kōeke Whakataunga Runga %d";
+
+/* No comment provided by engineer. */
 "Assignment grade below" = "Kōeke whakataunga raro";
 
 /* No comment provided by engineer. */
+"Assignment Grade Below %d" = "Kōeke Whakataunga Raro %d";
+
+/* No comment provided by engineer. */
 "Assignment missing" = "E ngaro ana whakataunga";
+
+/* No comment provided by engineer. */
+"Assignment Missing" = "E ngaro ana Whakataunga";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Whakamātau %d";
@@ -296,6 +308,9 @@
 "Copied!" = "Tāruatia!";
 
 /* No comment provided by engineer. */
+"Copy Link" = "Tārua hononga";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Kaore i taea te tuku i te taputapu Tēnā koa ngana anō.";
 
 /* No comment provided by engineer. */
@@ -303,6 +318,9 @@
 
 /* No comment provided by engineer. */
 "Course Activities" = "Mahi akoranga";
+
+/* No comment provided by engineer. */
+"Course Announcement" = "Akoranga Pānuitanga";
 
 /* No comment provided by engineer. */
 "Course announcements" = "Kōrerorero akoranga";
@@ -314,7 +332,13 @@
 "Course grade above" = "Kōeke akoranga i runga";
 
 /* No comment provided by engineer. */
+"Course Grade Above %d" = "Kōeke Akoranga Runga  %d";
+
+/* No comment provided by engineer. */
 "Course grade below" = "Kōeke akoranga i raro";
+
+/* No comment provided by engineer. */
+"Course Grade Below %d" = "Kōeke Akoranga Raro  %d";
 
 /* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
@@ -380,6 +404,9 @@
 "Developer Menu" = "Tahua Whakawhanake";
 
 /* No comment provided by engineer. */
+"discussion" = "kōrerorero";
+
+/* No comment provided by engineer. */
 "Discussion" = "Kōrerorero";
 
 /* No comment provided by engineer. */
@@ -397,7 +424,7 @@
 /* No comment provided by engineer. */
 "Discussions" = "Ngā Kōrerorero";
 
-/* No comment provided by engineer. */
+/* Dismiss button for error messages */
 "Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
@@ -461,7 +488,13 @@
 "Experimental Features" = "Ngā Ahuatanga Whakamātautau";
 
 /* No comment provided by engineer. */
+"external tool" = "taputapu waho";
+
+/* No comment provided by engineer. */
 "External Tool" = "Taputapu waho";
+
+/* No comment provided by engineer. */
+"external URL" = "URL waho";
 
 /* No comment provided by engineer. */
 "External URL" = "URL waho";
@@ -480,6 +513,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
+
+/* No comment provided by engineer. */
+"file" = "kōnae";
 
 /* No comment provided by engineer. */
 "File" = "Kōnae";
@@ -611,6 +647,9 @@
 "Incomplete" = "Kaore i te oti";
 
 /* No comment provided by engineer. */
+"Institution Announcement" = "Pānuitanga o te Whakanōhanga";
+
+/* No comment provided by engineer. */
 "Institution announcements" = "Whare huinga kōrerorero";
 
 /* No comment provided by engineer. */
@@ -696,6 +735,9 @@
 
 /* No comment provided by engineer. */
 "Locate QR Code" = "Kimihia QR Waehere";
+
+/* No comment provided by engineer. */
+"locked" = " Kua rakaina";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Ka rakaina kī \"%@\" i kōeketia";
@@ -905,6 +947,9 @@
 "out_of_g_pts" = "out_of_g_pts i waho i g ngā koinga";
 
 /* No comment provided by engineer. */
+"page" = "Whārangi";
+
+/* No comment provided by engineer. */
 "Page" = "Whārangi";
 
 /* No comment provided by engineer. */
@@ -974,6 +1019,9 @@
 "Push Notifications" = "Pana ngā Whakamōhiotanga";
 
 /* No comment provided by engineer. */
+"quiz" = "quiz";
+
+/* No comment provided by engineer. */
 "Quiz" = "Quiz";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1080,9 @@
 
 /* No comment provided by engineer. */
 "Saving..." = "Kei te whakaoratia ...";
+
+/* No comment provided by engineer. */
+"Scanner" = "Matawai";
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "kaore i te tautokotia";

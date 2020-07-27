@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "Entrega de text";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "S'ha desactivat aquesta pàgina per a aquest curs";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "No s'han pogut afegir els destinataris. Torneu a provar-ho. (%@)";
 

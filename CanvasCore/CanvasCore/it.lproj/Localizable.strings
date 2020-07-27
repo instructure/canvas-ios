@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Errore di caricamento contenuto";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Tutti i periodi di valutazione";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tentativi consentiti";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Commenti";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Errore dati";
-
 /* No comment provided by engineer. */
 "Delete" = "Elimina";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Elimina commento";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Errore disco";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Ignora";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Errore di codifica";
 
-/* No comment provided by engineer. */
-"Error" = "Errore";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Errore durante il caricamento del database di gestione cache.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Errore durante il caricamento del quiz";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Errore di recupero URL di avvio strumento";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Errore durante l’aggiornamento del compito";
 
 /* Exit button to leave the quiz */
 "Exit" = "Esci";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Impossibile scrivere immagine";
 
-/* favorite courses or groups */
-"Favorites" = "Preferiti";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Richiedi voti per";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Periodi di valutazione";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Nascosto";
 
 /* Inbox tab title */
 "Inbox" = "Posta in arrivo";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Per visualizzare i tuoi risultati, è necessario Lockdown Browser. Aprire il quiz in Lockdown Browser per continuare.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Errore di rete";
 
 /* A quiz that has no due date */
 "No Due Date" = "Nessuna data di scadenza";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Nessun canale push trovato";
-
 /* when a quiz has no time limit */
 "No time limit" = "Nessun limite di tempo";
 
-/* Section header for assignments without an assignment group */
-"None" = "Nessuno";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Non prendibile";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Errore di notifica";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Apri in...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Scaduto";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Precedente";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Verificare la connessione di rete e riprovare.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Dettagli quiz";
-
-/* tile for error reading cache */
-"Read Error" = "Leggi errore";
 
 /* button to read more of the description */
 "Read More" = "Leggi di più";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Rispondi";
-
-/* Button to report an error */
-"Report" = "Segnala";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Riprendi quiz";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Si è verificato un problema durante l’interpretazione di una risposta dal server.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Si è verificato un problema durante il caricamento del file database AssignmentKit.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Si è verificato un problema durante il caricamento del file database EnrollmentKit.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Si è verificato un problema durante la lettura dati in cache";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Si è verificato un problema durante la registrazione del tuo dispositivo per le notifiche push.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Si è verificato un problema durante l'aggiornamento dell’URL del quiz";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Si è verificato un problema con la richiesta Canvas.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "Si è verificato un errore durante l’associazione di una scheda con un corso o un gruppo.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Si è verificato un errore durante la comunicazione con il server.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Limite di tempo";
 
-/* Total grade label */
-"Total Grade" = "Voto totale";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Impossibile analizzare JSON per canali di comunicazione";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Impossibile analizzare JSON per preferenze di notifica";
-
-/* Assignments with no dates */
-"Undated" = "Senza data";
-
 /* Unexpected response type */
 "Unexpected response type" = "Tipo di risposta imprevisto";
 
 /* Ungraded quiz */
 "Ungraded" = "Non valutato";
 
-/* An unknown error title */
-"Unknown Error" = "Errore sconosciuto";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Senza limiti";
-
-/* Upcoming assignments */
-"Upcoming" = "In programma";
 
 /* button for viewing quiz results */
 "View Results" = "Visualizza risultati";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Hai usato tutti i tentativi a tua disposizione disponibili su questo quiz.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Il tuo dispositivo ha esaurito lo spazio di archiviazione. Liberare dello spazio e riprovare.";
 

@@ -86,12 +86,6 @@
 "Event reminder" = "Tauwhāinga whakamaharatanga";
 
 /* No comment provided by engineer. */
-"Excused" = "Whakawātea";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "I rahua te uta (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Kimihia taku kura";
 
 /* No comment provided by engineer. */
@@ -122,39 +116,21 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Ko te kite kei te ngana koe i te tāpiri he ākonga. Ngana ki te tāpiri tēnei ākonga i muri i te wā e whakauru ai koe";
 
 /* No comment provided by engineer. */
-"Late" = "Tūreiti";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Te mutunga: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Tūreiti: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "E hiahiatia ana te takiuru";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Whakahaere ngā ākonga";
 
 /* No comment provided by engineer. */
-"Missing" = "Ngaro";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Ngaro: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Ngaro: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Ngaro: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "n/a" = "N/A";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
+"No Alerts" = "Kaore he whakamataara";
+
+/* No comment provided by engineer. */
 "No Courses" = "Kāore he Akoranga";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Kaore he Kōeke";
 
 /* No comment provided by engineer. */
@@ -214,15 +190,6 @@
 "Sign In" = "Waitohu I roto i";
 
 /* No comment provided by engineer. */
-"Submitted" = "Kua tukuna";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Kua tukuna %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Tukuna: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Whakarāpopototanga";
 
 /* No comment provided by engineer. */
@@ -234,20 +201,14 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Me waiho te wāriu i waenganui i te 0 me te 100 kaute";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "He raruraru i te wā e uta ana i te pātengi raraunga.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "He raruraru i te wā e uta ana i te DiscussionKit kōnae pātengi rarunga.";
+/* No comment provided by engineer. */
+"There was an error loading alerts. Pull to refresh to try again." = "He hapa i te wā e uta ana i ngā mātohi Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "He hapa i te wā e uta ana i ngā ākonga. Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
-"This announcement has expired." = "Kua pau te wā o tēnei pānuitanga";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Kaore e pānuitia ngā akoranga a tēnei ākonga i tēnei wā.";
+"There's nothing to be notified of yet." = "Kaore he mea hei whakamōhio i tēnei wā.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "He raruraru ki te takiuru?";

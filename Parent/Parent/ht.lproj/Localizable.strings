@@ -86,12 +86,6 @@
 "Event reminder" = "Rapèl aktivite";
 
 /* No comment provided by engineer. */
-"Excused" = "Eskize";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Echèk chajman (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Jwenn Lekòl";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Ta sanble w ap eseye ajoute yon elèv. Eseye ajoute elèv sa a lè w fin konekte";
 
 /* No comment provided by engineer. */
-"Late" = "Ta";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Ta: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Ta: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Koneksyon obligatwa";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Jere Elèv";
-
-/* No comment provided by engineer. */
-"Missing" = "Manke";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Manke: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Manke: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Manke: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "n/a";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Pa gen Alèt";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Pa gen Kou";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Pa gen Klas";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Konekte";
 
 /* No comment provided by engineer. */
-"Submitted" = "Soumèt";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Soumèt: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Soumèt: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Rezime";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Valè a dwe se yon nonb ant 0 a 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Te gen yon pwoblèm nan chajman baz de done a.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Te gen yon pwoblèm nan chajman fichye baz de done DiscussionKit a,";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Te gen erè nan chajman alèt yo. Rale pou aktyalize pou ka eseye ankò.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Poko gen anyen pou yo siyale.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Anons sa a ekspire.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Kou elèv sa a poko ka pibliye.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Difikilte pou konekte";

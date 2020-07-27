@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Det gick inte att läsa in innehållet";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "Alla bedömningsperioder";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "Tillåtna försök";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "Kommentarer";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "Datafel";
-
 /* No comment provided by engineer. */
 "Delete" = "Ta bort";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Ta bort kommentar";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "Diskfel";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "Kodningsfel";
 
-/* No comment provided by engineer. */
-"Error" = "Fel";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "Fel vid inläsning av databasen för cachehantering.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "Fel vid inläsning av quiz";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "Det gick inte att hämta URL:en för verktygsstart";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "Det gick inte att uppdatera uppgiften";
 
 /* Exit button to leave the quiz */
 "Exit" = "Avsluta";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "Det gick inte att skriva bilden";
 
-/* favorite courses or groups */
-"Favorites" = "Favoriter";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "Hämta omdömen för";
-
-/* Title for grading periods picker */
-"Grading Periods" = "Bedömningsperioder";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "Dold";
 
 /* Inbox tab title */
 "Inbox" = "Inkorg";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Webbläsaren Lockdown krävs för att se dina resultat. Öppna frågorna i webbläsaren Lockdown för att fortsätta.";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "Nätverksfel";
 
 /* A quiz that has no due date */
 "No Due Date" = "Inget inlämningsdatum";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "Ingen pushkanal hittades";
-
 /* when a quiz has no time limit */
 "No time limit" = "Ingen tidsgräns";
 
-/* Section header for assignments without an assignment group */
-"None" = "Inga";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "Kan inte tas";
-
-/* Error title for push notification registration error */
-"Notification Error" = "Aviseringsfel";
 
 /* OK Button Title */
 "OK" = "OK";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "Öppna i ...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "Försenad";
-
-/* Assignments that have been turned in and are past */
-"Past" = "Tidigare";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "Kontrollera din nätverksanslutning och försök igen.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quizdetaljer";
-
-/* tile for error reading cache */
-"Read Error" = "Läsfel";
 
 /* button to read more of the description */
 "Read More" = "Läs mer";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "Svara";
-
-/* Button to report an error */
-"Report" = "Rapportera";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "Fortsätt quiz";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Ett problem uppstod när ett svar från servern skulle tolkas.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för AssignmentKit.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "Ett problem uppstod vid inläsningen av databasfilen för EnrollmentKit.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "Ett problem uppstod vid inläsningen av cachelagrade data";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "Ett problem uppstod vid registreringen av din enhet för push-aviseringar.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "Ett problem uppstod vid uppdateringen av URL:en för quizzet.";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "Ett problem uppstod med Canvas begäran.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = " Ett fel uppstod vid kopplingen av en flik till en en kurs eller grupp.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Ett fel uppstod vid kommunikation med servern.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "Tidsgräns";
 
-/* Total grade label */
-"Total Grade" = "Totalt omdöme";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "Kan inte tolka JSON för kommunikationskanaler";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "Kan inte tolka JSON för aviseringsinställningar";
-
-/* Assignments with no dates */
-"Undated" = "Odaterade";
-
 /* Unexpected response type */
 "Unexpected response type" = "Oväntad svarstyp";
 
 /* Ungraded quiz */
 "Ungraded" = "Ej bedömd";
 
-/* An unknown error title */
-"Unknown Error" = "Okänt fel";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "Obegränsad";
-
-/* Upcoming assignments */
-"Upcoming" = "Kommande";
 
 /* button for viewing quiz results */
 "View Results" = "Visa resultat";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "Du har använt alla dina tillgängliga försök på det här quizzet.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Frigör utrymme och försök igen.";
 

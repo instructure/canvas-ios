@@ -86,12 +86,6 @@
 "Event reminder" = "Напоминание о событии";
 
 /* No comment provided by engineer. */
-"Excused" = "По уважительной причине";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Не удалось загрузить (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Найти школу";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Очевидно, вы пытаетесь добавить учащегося. Попробуйте добавить этого учащегося после того, как вы зарегистрируетесь";
 
 /* No comment provided by engineer. */
-"Late" = "Поздно";
-
-/* No comment provided by engineer. */
-"Late: %@" = "С опозданием: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "С опозданием: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Требуется зарегистрироваться в системе";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Управление студентами";
-
-/* No comment provided by engineer. */
-"Missing" = "Отсутствует";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Отсутствует: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Отсутствует: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Отсутствует: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "нет данных";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Нет оповещений";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Курсы отсутствуют";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Без оценки";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Войти в систему";
 
 /* No comment provided by engineer. */
-"Submitted" = "Отправлено";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Отправлено: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Отправлено: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Сводные данные";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Значение должно быть числом от 0 до 100";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Возникла проблема при загрузке базы данных.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Возникла проблема при загрузке файла базы данных DiscussionKit.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Произошла ошибка при загрузке оповещений. Потяните для обновления, чтобы попробовать еще раз.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "На данный момент оповещать не о чем.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Срок действия этого объявления истек.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Курсы этого студента пока еще не могут быть опубликованы.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Проблема со входом в систему";

@@ -1,9 +1,6 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ خطأ في تحميل المحتوى";
 
-/* option to view results for all grading periods */
-"All Grading Periods" = "جميع فترات تقييم الدرجات";
-
 /* label for number of attempts that are allowed */
 "Allowed Attempts" = "المحاولات المسموح بها";
 
@@ -31,20 +28,13 @@
 /* No comment provided by engineer. */
 "Comments" = "التعليقات";
 
-/* Error title for a persistence related data failure */
-"Data Error" = "خطأ في البيانات";
-
 /* No comment provided by engineer. */
 "Delete" = "حذف";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "حذف التعليق";
 
-/* Error title to alert user their device is out of storage space */
-"Disk Error" = "خطأ في القرص";
-
-/* Dismiss button for error alert
-   Dismiss button for error messages */
+/* Dismiss button for error alert */
 "Dismiss" = "تجاهل";
 
 /* No comment provided by engineer. */
@@ -56,20 +46,11 @@
 /* Data encoding error title */
 "Encoding Error" = "خطأ في الترميز";
 
-/* No comment provided by engineer. */
-"Error" = "خطأ";
-
-/* error message for when the cache management database fails to load */
-"Error loading cache management database." = "حدث خطأ أثناء تحميل قاعدة بيانات إدارة ذاكرة التخزين المؤقت.";
-
 /* Title for quiz loading error */
 "Error Loading Quiz" = "خطأ في تحميل الاختبار الموجز";
 
 /* No comment provided by engineer. */
 "Error retrieving tool launch URL" = "خطأ أثناء استرداد عنوان URL لتشغيل الأداة";
-
-/* Error title for parsing assignment data from server */
-"Error Updating Assignment" = "حدث خطأ أثناء تحديث المهمة";
 
 /* Exit button to leave the quiz */
 "Exit" = "خروج";
@@ -86,17 +67,8 @@
 /* No comment provided by engineer. */
 "Failed to write image" = "فشل كتابة صورة";
 
-/* favorite courses or groups */
-"Favorites" = "المفضلة";
-
 /* No comment provided by engineer. */
 "Get Grades for" = "احصل على درجات";
-
-/* Title for grading periods picker */
-"Grading Periods" = "فترات التقييم";
-
-/* Non favorite hidden courses or groups */
-"Hidden" = "مخفي";
 
 /* Inbox tab title */
 "Inbox" = "صندوق الوارد";
@@ -116,27 +88,17 @@
 /* Detail label for when a tool called Lockdown Browser is required to take the quiz */
 "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "مطلوب متصفح Lockdown لعرض النتائج الخاصة بك. يُرجى فتح الاختبار في متصفح Lockdown للمتابعة";
 
-/* Error alert title for network error
-   Title for network errors */
+/* Title for network errors */
 "Network Error" = "خطأ في الشبكة";
 
 /* A quiz that has no due date */
 "No Due Date" = "لا يوجد تاريخ استحقاق";
 
-/* Error when push channel cannot be found in notificaitons */
-"No push channel found" = "لم يتم العثور على قناة دفع";
-
 /* when a quiz has no time limit */
 "No time limit" = "لا يوجد حد زمني";
 
-/* Section header for assignments without an assignment group */
-"None" = "بلا";
-
 /* Title for alert showing when a quiz isn't takeable */
 "Not Takeable" = "لا يمكن إجراؤه";
-
-/* Error title for push notification registration error */
-"Notification Error" = "خطأ في الإخطارات";
 
 /* OK Button Title */
 "OK" = "موافق";
@@ -146,12 +108,6 @@
 
 /* No comment provided by engineer. */
 "Open in…" = "الفتح في...";
-
-/* Overdue assignmnets (not turned in) */
-"Overdue" = "مضى موعد الاستحقاق";
-
-/* Assignments that have been turned in and are past */
-"Past" = "الماضي";
 
 /* No comment provided by engineer. */
 "Please check your network connection and try again." = "يرجى التحقق من اتصال الشبكة وإعادة المحاولة.";
@@ -164,9 +120,6 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "تفاصيل الاختبار الموجز";
-
-/* tile for error reading cache */
-"Read Error" = "خطأ في القراءة";
 
 /* button to read more of the description */
 "Read More" = "قراءة المزيد";
@@ -182,9 +135,6 @@
 
 /* No comment provided by engineer. */
 "Reply" = "رد";
-
-/* Button to report an error */
-"Report" = "إنشاء تقرير";
 
 /* button for resuming a quiz */
 "Resume Quiz" = "استئناف الاختبار";
@@ -210,26 +160,8 @@
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "حدثت مشكلة أثناء تفسير إستجابة من الخادم.";
 
-/* AssignmentKit database load failure message */
-"There was a problem loading the AssignmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات AssignmentKit.";
-
-/* EnrollmentKit Database Load Failure Message */
-"There was a problem loading the EnrollmentKit database file." = "حدثت مشكلة أثناء تحميل ملف قاعدة البيانات EnrollmentKit.";
-
-/* Persistence error message */
-"There was a problem reading cached data" = "حدثت مشكلة أثناء قراءة بيانات ذاكرة التخزين المؤقت";
-
-/* Error description for Push Notifications registration error. */
-"There was a problem registering your device for push notifications." = "ظهرت مشكلة في تسجيل جهازك لإرسال الإخطارات.";
-
-/* Error description for failing to compute the URL to a quiz */
-"There was a problem updating the Quiz URL" = "حدثت مشكلة أثناء تحديث عنوان URL الاختبار";
-
 /* generic error message */
 "There was a problem with the Canvas request." = "حدثت مشكلة مع طلب Canvas.";
-
-/* Error message when parsing contextID for a course or group tab */
-"There was an error associating a tab with a course or group." = "حدثت مشكلة أثناء ربط علامة تبويب بمساق أو مجموعة.";
 
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "حدث خطأ أثناء الاتصال بالخادم.";
@@ -252,39 +184,18 @@
 /* label for the time limit */
 "Time Limit" = "الحد الزمني";
 
-/* Total grade label */
-"Total Grade" = "الدرجة الإجمالية";
-
-/* Error message when parsing communication preferences */
-"Unable to parse JSON for communication channels" = "تعذر تحليل JSON لقنوات الاتصالات";
-
-/* Error message when parsing notification preferences */
-"Unable to parse JSON for notification preferences" = "تعذر تحليل JSON لتفضيلات الإشعارات";
-
-/* Assignments with no dates */
-"Undated" = "دون تاريخ";
-
 /* Unexpected response type */
 "Unexpected response type" = "نوع استجابة غير متوقع";
 
 /* Ungraded quiz */
 "Ungraded" = "لم يتم تقييم الدرجة";
 
-/* An unknown error title */
-"Unknown Error" = "خطأ غير معروف";
-
 /* When a quiz has no limit on the number of attempts */
 "Unlimited" = "غير محدود";
-
-/* Upcoming assignments */
-"Upcoming" = "القادمة";
 
 /* button for viewing quiz results */
 "View Results" = "الاطلاع على النتائج";
 
 /* Message when telling the user they can't take the quiz because they used up all their attempts */
 "You have used all your attempts available on this quiz." = "استعملت جميع المحاولات المتاحة في هذا الاختبار.";
-
-/* Error description for file out of space */
-"Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";
 

@@ -86,12 +86,6 @@
 "Event reminder" = "Tapahtuman muistutus";
 
 /* No comment provided by engineer. */
-"Excused" = "Annettu anteeksi";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "(discussionKitModelName) NS:n lataus epäonnistuiManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Etsi koulu";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Näyttää siltä kuin yrittäisit lisätä opiskelijaa. Yritä lisätä tämä opiskelija sen jälkeen, kun olet kirjautunut sisään";
 
 /* No comment provided by engineer. */
-"Late" = "Myöhään";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Myöhään %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Myöhään %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Kirjautumistunnus on pakollinen";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hallitse opiskelijoita";
-
-/* No comment provided by engineer. */
-"Missing" = "Puuttuu";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Puuttuu (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Puuttuu %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Puuttuu %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "ei mitään";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Ei hälytyksiä";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Ei kursseja";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Ei arvosanaa";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Kirjaudu sisään";
 
 /* No comment provided by engineer. */
-"Submitted" = "Lähetetty";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Lähetetty: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Lähetetty: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Yhteenveto";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Arvon täytyy olla 0 ja 100 välillä";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Tietokantatiedoston latauksessa tapahtui virhe.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Tietokantatiedoston DiscussionKit latauksessa tapahtui virhe.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Hälytysten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Ei ole vielä mitään ilmoitettavaa.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Tämä ilmoitus on vanhentunut.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Tämän opiskelijan kursseja ei ehkä vielä julkaista.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Ongelmia sisään kirjautumisessa";

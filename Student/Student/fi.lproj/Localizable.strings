@@ -1355,9 +1355,6 @@
 /* Generic name for a submission entered online. */
 "Text Submission" = "Tekstin lähetys";
 
-/* No comment provided by engineer. */
-"That page has been disabled for this course" = "Kyseinen sivu on poistettu käytöstä tälle kurssille";
-
 /* Text explaining the error */
 "The recipients could not be added. Please try again. (%@)" = "Vastaanottajia ei voitu lisätä. Yritä uudelleen. (%@)";
 

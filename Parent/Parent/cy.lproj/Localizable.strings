@@ -86,12 +86,6 @@
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
 
 /* No comment provided by engineer. */
-"Excused" = "Wedi esgusodi";
-
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Wedi methu llwytho (discussionKitModelName) NSManagedObjectModel";
-
-/* No comment provided by engineer. */
 "Find School" = "Dod o hyd i Ysgol";
 
 /* No comment provided by engineer. */
@@ -122,31 +116,10 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Mae’n ymddangos eich bod chi’n ceisio ychwanegu myfyriwr, Ceisiwch ychwanegu’r myfyriwr hwn ar ôl i chi fewngofnodi.";
 
 /* No comment provided by engineer. */
-"Late" = "Yn Hwyr";
-
-/* No comment provided by engineer. */
-"Late: %@" = "Yn Hwyr: %@";
-
-/* No comment provided by engineer. */
-"Late: %@ (%@/%@)" = "Yn Hwyr: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Login required" = "Angen mewngofnodi";
 
 /* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
-
-/* No comment provided by engineer. */
-"Missing" = "Ar goll";
-
-/* No comment provided by engineer. */
-"Missing: (-/%@)" = "Ar goll: (-/%@)";
-
-/* No comment provided by engineer. */
-"Missing: %@" = "Ar goll: %@";
-
-/* No comment provided by engineer. */
-"Missing: %@ (%@/%@)" = "Ar goll: %1$@ (%2$@/%3$@)";
 
 /* No comment provided by engineer. */
 "n/a" = "Amherthnasol";
@@ -154,10 +127,10 @@
 /* No comment provided by engineer. */
 "No Alerts" = "Dim Negeseuon Hysbysu";
 
-/* Empty Courses Text */
+/* No comment provided by engineer. */
 "No Courses" = "Dim Cyrsiau";
 
-/* Title for label when no grade has been assigned to the course */
+/* No comment provided by engineer. */
 "No Grade" = "Dim Gradd";
 
 /* No comment provided by engineer. */
@@ -217,15 +190,6 @@
 "Sign In" = "Mewngofnodi";
 
 /* No comment provided by engineer. */
-"Submitted" = "Wedi cyflwyno";
-
-/* No comment provided by engineer. */
-"Submitted: %@" = "Wedi cyflwyno: %@";
-
-/* No comment provided by engineer. */
-"Submitted: %@ (%@/%@)" = "Wedi cyflwyno: %1$@ (%2$@/%3$@)";
-
-/* No comment provided by engineer. */
 "Summary" = "Crynodeb";
 
 /* No comment provided by engineer. */
@@ -237,12 +201,6 @@
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Mae’n rhaid i’r gwerth fod yn rhif rhwng 0 a 100.";
 
-/* Airwolf database error message */
-"There was a problem loading the database." = "Problem wrth lwytho’r gronfa ddata.";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Problem wrth lwytho’r ffeil cronfa ddata DiscussionKit.";
-
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Gwall wrth lwytho negeseuon hysbysu. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
@@ -251,12 +209,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Does dim byd i’w hysbysu eto.";
-
-/* No comment provided by engineer. */
-"This announcement has expired." = "Mae cyhoeddiad hwn wedi dod i ben.";
-
-/* No comment provided by engineer. */
-"This student's courses may not be published yet." = "Mae’n bosib nad yw cyrsiau’r myfyriwr hwn wedi’u cyhoeddi eto.";
 
 /* No comment provided by engineer. */
 "Trouble logging in" = "Trafferth yn mewngofnodi";
