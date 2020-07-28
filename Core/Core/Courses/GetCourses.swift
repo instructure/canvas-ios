@@ -145,3 +145,53 @@ public class GetCourseSettings: APIUseCase {
         }
     }
 }
+
+public class AddFavoriteCourse: APIUseCase {
+    let courseID: String
+
+    public var cacheKey: String? { nil }
+    public var request: PostFavoriteRequest {
+        PostFavoriteRequest(context: .course(courseID))
+    }
+
+    public init(courseID: String) {
+        self.courseID = courseID
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(Course.id), equals: courseID)
+    }
+
+    public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response,
+              let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
+            return
+        }
+        course.isFavorite = true
+    }
+}
+
+public class RemoveFavoriteCourse: APIUseCase {
+    let courseID: String
+
+    public var cacheKey: String? { nil }
+    public var request: DeleteFavoriteRequest {
+        DeleteFavoriteRequest(context: .course(courseID))
+    }
+
+    public init(courseID: String) {
+        self.courseID = courseID
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(Course.id), equals: courseID)
+    }
+
+    public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response,
+              let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
+            return
+        }
+        course.isFavorite = false
+    }
+}

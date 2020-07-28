@@ -20,13 +20,15 @@ import SwiftUI
 import Combine
 
 struct CourseViewModel: Hashable, Equatable {
+    let id: String
     let name: String
     let term: String
     let enrollment: String
     var isFavorite: Bool
     let isPublished: Bool
 
-    init(name: String, term: String, enrollment: String, isFavorite: Bool, isPublished: Bool) {
+    init(id: String, name: String, term: String, enrollment: String, isFavorite: Bool, isPublished: Bool) {
+        self.id = id
         self.name = name
         self.term = term
         self.enrollment = enrollment
@@ -36,6 +38,7 @@ struct CourseViewModel: Hashable, Equatable {
 
     init(course: Course) {
         self.init(
+            id: course.id,
             name: course.name ?? "",
             term: "Fall 2020",
             enrollment: "Teacher",
@@ -47,52 +50,56 @@ struct CourseViewModel: Hashable, Equatable {
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
-    @ObservedObject var source: PublishObserver<[CourseViewModel]>
-    var courses: [CourseViewModel] { source.model }
+    @ObservedObject var courses: PublishObserver<[CourseViewModel]>
+    let storeRef: Any?
 
     public static func create() -> CourseListView {
         let store = AppEnvironment.shared.subscribe(GetAllCourses(), {})
-        let source = store.observable(CourseViewModel.init(course:))
+        let courses = store.observable(transform: CourseViewModel.init(course:))
+        store.exhaust()
 
-        var tick: (() -> Void)!
-        tick = {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: tick)
-            guard let course = store.first else { return }
-            course.isFavorite = !course.isFavorite
-            course.name = "\(arc4random())"
-        }
-        tick()
-
-        return CourseListView(source: source)
+        return CourseListView(courses: courses, storeRef: store)
     }
 
     public var body: some View {
-        List {
-            ForEach(courses, id: \.self) {
-                Cell(course: $0)
-            }
+        List(courses.model, id: \.self) { course in
+            Cell(course: course)
         }
     }
 
     struct Cell: View {
-        let course: CourseViewModel
+        @State var course: CourseViewModel
+
+        func toggleFavorite() {
+            if course.isFavorite {
+                RemoveFavoriteCourse(courseID: course.id).fetch()
+            } else {
+                AddFavoriteCourse(courseID: course.id).fetch()
+            }
+            course.isFavorite = !course.isFavorite
+        }
 
         var body: some View {
-            HStack {
-                if course.isFavorite {
-                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
-                } else {
-                    Image.icon(.star, .line).foregroundColor(.named(.ash))
-                }
-                VStack(alignment: .leading) {
-                    Text(course.name).bold()
-                    Text("\(course.term) | \(course.enrollment)").foregroundColor(.named(.ash))
-                }
-                Spacer()
-                if course.isPublished {
-                    Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
-                } else {
-                    Image.icon(.complete)
+            ZStack {
+                NavigationLink(destination: Text(course.name)) { SwiftUI.EmptyView() }
+                HStack {
+                    Button(action: toggleFavorite) {
+                        if course.isFavorite {
+                            Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                        } else {
+                            Image.icon(.star, .line).foregroundColor(.named(.ash))
+                        }
+                    }.buttonStyle(PlainButtonStyle())
+                    VStack(alignment: .leading) {
+                        Text(course.name).bold()
+                        Text("\(course.term) | \(course.enrollment)").foregroundColor(.named(.ash))
+                    }
+                    Spacer()
+                    if course.isPublished {
+                        Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
+                    } else {
+                        Image.icon(.complete)
+                    }
                 }
             }
         }
@@ -102,9 +109,9 @@ public struct CourseListView: View {
 @available(iOSApplicationExtension 13.0.0, *)
 struct CourseListView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseListView(source: PublishObserver(staticContents: [
-            CourseViewModel(name: "BIO 101", term: "Fall 2020", enrollment: "Teacher", isFavorite: true, isPublished: true),
-            CourseViewModel(name: "BIO 102", term: "Fall 2020", enrollment: "Teacher", isFavorite: false, isPublished: false),
-        ]))
+        CourseListView(courses: PublishObserver(staticContents: [
+            CourseViewModel(id: "1", name: "BIO 101", term: "Fall 2020", enrollment: "Teacher", isFavorite: true, isPublished: true),
+            CourseViewModel(id: "2", name: "BIO 102", term: "Fall 2020", enrollment: "Teacher", isFavorite: false, isPublished: false),
+        ]), storeRef: nil)
     }
 }

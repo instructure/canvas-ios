@@ -107,9 +107,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         performUIUpdate {
             self.eventHandler()
             self.changes = []
-        }
-        if #available(iOSApplicationExtension 13.0, *) {
-            subject?.send(all)
+            if #available(iOSApplicationExtension 13.0, *) {
+                self.subject?.send(self.all)
+            }
         }
     }
 
@@ -259,10 +259,9 @@ extension Store {
         return subject.eraseToAnyPublisher()
     }
 
-    public func observable<ViewModel>(_ transform: @escaping (U.Model) -> ViewModel) -> PublishObserver<[ViewModel]> {
+    public func observable<ViewModel>(transform: @escaping (U.Model) -> ViewModel) -> PublishObserver<[ViewModel]> {
         let pub = publisher
-            .receive(on: RunLoop.main)
             .map { $0.map(transform) }
-        return PublishObserver(publisher: pub, initialModel: [])
+        return PublishObserver(publisher: pub, initialModel: all.map(transform))
     }
 }
