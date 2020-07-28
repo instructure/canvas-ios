@@ -149,7 +149,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/groups/1/wiki/2") is PageDetailsViewController)
         XCTAssert(router.match("/courses/1/pages/2?origin=module_item_details") is PageDetailsViewController)
         XCTAssert(router.match("/courses/1/wiki/2?origin=module_item_details") is PageDetailsViewController)
-        XCTAssert(router.match("/courses/1/quizzes/2?origin=module_item_details") is QuizIntroViewController)
+        XCTAssert(router.match("/courses/1/quizzes/2?origin=module_item_details") is QuizDetailsViewController)
     }
 
     func testFallbackNonHTTP() {

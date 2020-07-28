@@ -65,16 +65,6 @@ class QuizTests: CoreTestCase {
         XCTAssertEqual(Quiz.make(from: .make(time_limit: 10)).timeLimitText, "10min")
     }
 
-    func testTakeInWebOnly() {
-        XCTAssertFalse(Quiz.make(from: .make(question_types: [.text_only_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(question_types: [.calculated_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(question_types: [.fill_in_multiple_blanks_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(has_access_code: true, question_types: [.text_only_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(ip_filter: "a", question_types: [.text_only_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(one_question_at_a_time: true, question_types: [.text_only_question])).takeInWebOnly)
-        XCTAssertTrue(Quiz.make(from: .make(question_types: [.text_only_question], require_lockdown_browser: true)).takeInWebOnly)
-    }
-
     func testSave() {
         var quiz = Quiz.save(APIQuiz.make(), in: databaseClient)
         XCTAssertEqual(quiz.order, Date.distantFuture.isoString())

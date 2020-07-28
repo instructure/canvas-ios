@@ -22,6 +22,7 @@ import CoreData
 public class Quiz: NSManagedObject {
     @NSManaged public var accessCode: String?
     @NSManaged public var allowedAttempts: Int
+    @NSManaged public var assignmentID: String?
     @NSManaged public var cantGoBack: Bool
     @NSManaged public var courseID: String
     @NSManaged public var details: String?
@@ -40,6 +41,7 @@ public class Quiz: NSManagedObject {
     @NSManaged var pointsPossibleRaw: NSNumber?
     @NSManaged public var questionCount: Int
     @NSManaged var questionTypesRaw: [String]
+    @NSManaged var quizTypeOrder: Int
     @NSManaged var quizTypeRaw: String
     @NSManaged public var requireLockdownBrowser: Bool
     @NSManaged public var requireLockdownBrowserForResults: Bool
@@ -72,6 +74,32 @@ public class Quiz: NSManagedObject {
     public var timeLimit: Double? {
         get { return timeLimitRaw?.doubleValue }
         set { timeLimitRaw = NSNumber(value: newValue) }
+    }
+
+    public var canTake: Bool {
+        guard let submission = self.submission else { return !lockedForUser }
+        return !lockedForUser && (
+            submission.canResume ||
+            allowedAttempts < 1 || submission.attemptsLeft > 0
+        )
+    }
+
+    public var resultsURL: URL? {
+        guard let path = submission.flatMap({ resultsPath(for: $0.attempt) }) else {
+            return nil
+        }
+        return URL(string: path, relativeTo: AppEnvironment.shared.api.baseURL)
+    }
+
+    public func resultsPath(for attempt: Int) -> String? {
+        switch hideResults {
+        case .always:
+            return nil
+        case .until_after_last_attempt where allowedAttempts < 1 || attempt < allowedAttempts:
+            return nil
+        default:
+            return "/courses/\(courseID)/quizzes/\(id)/history?attempt=\(attempt)"
+        }
     }
 }
 
@@ -106,26 +134,15 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
         formatter.unitsStyle = .brief
         return formatter.string(from: TimeInterval(limit * 60))
     }
-
-    public var takeInWebOnly: Bool {
-        return (
-            questionTypes.isEmpty ||
-            questionTypes.contains(.calculated_question) || questionTypes.contains(.fill_in_multiple_blanks_question) ||
-            hasAccessCode ||
-            ipFilter != nil ||
-            oneQuestionAtATime ||
-            requireLockdownBrowser
-        )
-    }
 }
 
 extension Quiz {
     @discardableResult
     static func save(_ item: APIQuiz, in context: NSManagedObjectContext) -> Quiz {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Quiz.id), item.id.value)
-        let model: Quiz = context.fetch(predicate).first ?? context.insert()
+        let model: Quiz = context.first(where: #keyPath(Quiz.id), equals: item.id.value) ?? context.insert()
         model.accessCode = item.access_code
         model.allowedAttempts = item.allowed_attempts
+        model.assignmentID = item.assignment_id?.value
         model.cantGoBack = item.cant_go_back ?? false
         model.details = item.description
         model.dueAt = item.due_at
@@ -143,6 +160,7 @@ extension Quiz {
         model.questionCount = item.question_count
         model.questionTypes = item.question_types ?? []
         model.quizType = item.quiz_type
+        model.quizTypeOrder = QuizType.allCases.firstIndex(of: item.quiz_type) ?? QuizType.allCases.count
         model.requireLockdownBrowser = item.require_lockdown_browser
         model.requireLockdownBrowserForResults = item.require_lockdown_browser_for_results
         model.shuffleAnswers = item.shuffle_answers
@@ -152,5 +170,32 @@ extension Quiz {
         let orderDate = (item.quiz_type == .assignment ? item.due_at : item.lock_at) ?? Date.distantFuture
         model.order = orderDate.isoString()
         return model
+    }
+}
+
+public enum QuizQuestionType: String, Codable, CaseIterable {
+    case calculated_question, essay_question, file_upload_question, fill_in_multiple_blanks_question,
+        matching_question, multiple_answers_question, multiple_choice_question, multiple_dropdowns_question,
+        numerical_question, short_answer_question, text_only_question, true_false_question
+}
+
+public enum QuizHideResults: String, Codable, CaseIterable {
+    case always, until_after_last_attempt
+}
+
+public enum QuizType: String, Codable, CaseIterable {
+    case assignment, practice_quiz, graded_survey, survey
+
+    public var sectionTitle: String {
+        switch self {
+        case .assignment:
+            return NSLocalizedString("Assignments", bundle: .core, comment: "")
+        case .practice_quiz:
+            return NSLocalizedString("Practice Quizzes", bundle: .core, comment: "")
+        case .graded_survey:
+            return NSLocalizedString("Graded Surveys", bundle: .core, comment: "")
+        case .survey:
+            return NSLocalizedString("Surveys", bundle: .core, comment: "")
+        }
     }
 }

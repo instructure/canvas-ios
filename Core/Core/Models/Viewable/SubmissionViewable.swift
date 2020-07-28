@@ -48,7 +48,7 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusColor: UIColor {
-        return .named(isSubmitted ? .shamrock : .ash)
+        return .named(isSubmitted ? .textSuccess : .textDark)
     }
 
     public var submissionStatusIcon: UIImage {
@@ -63,8 +63,7 @@ extension SubmissionViewable {
             return NSLocalizedString("Submitted", bundle: .core, comment: "")
         }
         let format = NSLocalizedString("Submitted %@", bundle: .core, comment: "Submitted date")
-        let dateText = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
-        return String.localizedStringWithFormat(format, dateText)
+        return String.localizedStringWithFormat(format, date.dateTimeString)
     }
 
     public var hasLatePenalty: Bool {

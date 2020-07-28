@@ -137,7 +137,10 @@ class SubmissionButtonPresenter: NSObject {
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
-            env.router.route(to: "/courses/\(courseID)/quizzes/\(quizID)/take", from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
+            env.router.show(QuizWebViewController.create(
+                courseID: courseID,
+                quizID: quizID
+            ), from: view, options: .modal(.fullScreen, isDismissable: false, embedInNav: true))
         case .online_upload:
             Analytics.shared.logEvent("submit_fileupload_selected")
             pickFiles(for: assignment, selectedSubmissionTypes: [type])

@@ -40,7 +40,7 @@ public struct GetQuizzes: CollectionUseCase {
         return Scope(
             predicate: NSPredicate(format: "%K == %@", #keyPath(Quiz.courseID), courseID),
             order: [
-                NSSortDescriptor(key: #keyPath(Quiz.quizTypeRaw), ascending: true),
+                NSSortDescriptor(key: #keyPath(Quiz.quizTypeOrder), ascending: true),
                 NSSortDescriptor(key: #keyPath(Quiz.order), ascending: true),
                 NSSortDescriptor(key: #keyPath(Quiz.title), ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
             ],

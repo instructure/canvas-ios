@@ -31,14 +31,14 @@ private func renderHTML(_ html: String, fontColor: UIColor, backgroundColor: UIC
     let templateURL = bundle.url(forResource: "WhizzyWigTemplate", withExtension: "html")
     var template = try! String(contentsOf: templateURL!, encoding: String.Encoding.utf8)
 
-    template = template.replacingOccurrences(of: "{{fontColorDark}}", with: fontColor.hex)
+    template = template.replacingOccurrences(of: "{{fontColorDark}}", with: fontColor.hexString)
     template = template.replacingOccurrences(of: "{{fontSize}}", with: "\(UIFont.scaledNamedFont(.regular16).pointSize)")
-    template = template.replacingOccurrences(of: "{{backgroundColor}}", with: backgroundColor.hex)
+    template = template.replacingOccurrences(of: "{{backgroundColor}}", with: backgroundColor.hexString)
     let paddingString = "\(padding.top)px \(padding.right)px \(padding.bottom)px \(padding.left)px;"
     template = template.replacingOccurrences(of: "{{padding}}", with: paddingString)
-    template = template.replacingOccurrences(of: "{{linkColor}}", with: Brand.current.linkColor.hex)
-    template = template.replacingOccurrences(of: "{{buttonPrimaryText}}", with: Brand.current.primaryButtonTextColor.hex)
-    template = template.replacingOccurrences(of: "{{buttonPrimaryBackground}}", with: Brand.current.primaryButtonColor.hex)
+    template = template.replacingOccurrences(of: "{{linkColor}}", with: Brand.shared.linkColor.hexString)
+    template = template.replacingOccurrences(of: "{{buttonPrimaryText}}", with: Brand.shared.buttonPrimaryText.hexString)
+    template = template.replacingOccurrences(of: "{{buttonPrimaryBackground}}", with: Brand.shared.buttonPrimaryBackground.hexString)
     template = template.replacingOccurrences(of: "{{ltiLaunchText}}", with: NSLocalizedString("Launch External Tool", comment: ""))
 
     return template.replacingOccurrences(of: "{{content}}", with: html)
@@ -49,7 +49,7 @@ open class WhizzyWigView: WKWebView, WKNavigationDelegate {
     @objc open var didRecieveMessage: (String)->() = {_ in }
     @objc open private(set) var contentHeight: CGFloat = 43
     @objc open private(set) var contentWidth: CGFloat = 0
-    @objc open var contentFontColor = Brand.current.fontColorDark
+    @objc open var contentFontColor = Brand.shared.fontColorDark
     @objc open var contentBackgroundColor = UIColor.white
     @objc open var contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     @objc open var useAPISafeLinks: Bool = true
