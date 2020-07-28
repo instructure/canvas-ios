@@ -27,7 +27,9 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         super.setUp()
     }
 
-    func testEditTopic() {
+    func testEditTopic() throws {
+        try XCTSkipIf(true, "flaky. re-enable ticket: MBL-14583")
+
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.discussions.tap()
         DiscussionListCell.cell(id: discussion.id).tap()
