@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 public enum StoreChange: Equatable {
     case insertSection(Int)
@@ -35,6 +36,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public var changes = [StoreChange]()
     public let useCase: U
     public let eventHandler: EventHandler
+
+    @available(iOSApplicationExtension 13.0, *)
+    private lazy var subject: CurrentValueSubject<[U.Model], Never>? = nil
 
     public var count: Int {
         return frc.sections?.first?.numberOfObjects ?? 0
@@ -103,6 +107,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         performUIUpdate {
             self.eventHandler()
             self.changes = []
+        }
+        if #available(iOSApplicationExtension 13.0, *) {
+            subject?.send(all)
         }
     }
 
@@ -236,5 +243,26 @@ public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorPro
 extension Store: Sequence {
     public func makeIterator() -> FetchedResultsControllerGenerator<U.Model> {
         return FetchedResultsControllerGenerator<U.Model>(fetchedResultsController: frc)
+    }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension Store {
+    public var publisher: AnyPublisher<[U.Model], Never> {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        if let subject = self.subject {
+            return subject.eraseToAnyPublisher()
+        }
+        let subject = CurrentValueSubject<[U.Model], Never>(all)
+        self.subject = subject
+        return subject.eraseToAnyPublisher()
+    }
+
+    public func observable<ViewModel>(_ transform: @escaping (U.Model) -> ViewModel) -> PublishObserver<[ViewModel]> {
+        let pub = publisher
+            .receive(on: RunLoop.main)
+            .map { $0.map(transform) }
+        return PublishObserver(publisher: pub, initialModel: [])
     }
 }

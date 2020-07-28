@@ -69,7 +69,7 @@ class RoutesTests: XCTestCase {
             HelmManager.shared.registerRoute(template)
         }
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
-        XCTAssert(router.match("/courses") is CourseListViewController)
+        XCTAssert(false)
         XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/2/modules/2") is ModuleListViewController)
         XCTAssert(router.match("/courses/3/pages") is PageListViewController)

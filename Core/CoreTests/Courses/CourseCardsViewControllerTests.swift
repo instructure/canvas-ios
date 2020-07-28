@@ -20,8 +20,8 @@ import Foundation
 import XCTest
 @testable import Core
 
-class CourseListViewControllerTests: CoreTestCase {
-    lazy var controller = CourseListViewController.create()
+class CourseCardsViewControllerTests: CoreTestCase {
+    lazy var controller = CourseCardsViewController.create()
 
     override func setUp() {
         super.setUp()
@@ -44,8 +44,8 @@ class CourseListViewControllerTests: CoreTestCase {
         XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
 
         XCTAssertEqual(controller.collectionView.numberOfSections, 2)
-        XCTAssertFalse(controller.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) is CourseListSectionHeaderView)
-        let prevHeader = controller.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 1)) as? CourseListSectionHeaderView
+        XCTAssertFalse(controller.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) is CourseCardsSectionHeaderView)
+        let prevHeader = controller.collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 1)) as? CourseCardsSectionHeaderView
         XCTAssertEqual(prevHeader?.titleLabel.text, "Past Enrollments")
 
         let index00 = IndexPath(item: 0, section: 0)

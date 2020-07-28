@@ -19,6 +19,7 @@
 import Foundation
 import CanvasCore
 import Core
+import SwiftUI
 
 extension TeacherAppDelegate {
     @objc func registerNativeRoutes() {
@@ -68,9 +69,13 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         return AttendanceViewController(context: .course(courseID), toolID: toolID)
     },
 
-    "/courses": ExperimentalFeature.nativeDashboard.isEnabled == false ? nil : { _ in
-        return CourseListViewController.create()
-    },
+    "/courses": {
+        if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
+            return { _ in UIHostingController(rootView: CourseListView.create()) }
+        } else {
+            return nil
+        }
+    }(),
 
     "/courses/:courseID/modules": { props in
         guard let courseID = props["courseID"] as? String else { return nil }

@@ -203,7 +203,7 @@ export class Dashboard extends React.Component<Props, State> {
             testID={section.sectionID + '.see-all-btn'}
             onPress={section.seeAll}
           >
-            {i18n('See All')}
+            {i18n('All Courses')}
           </LinkButton>
           : undefined
         }
