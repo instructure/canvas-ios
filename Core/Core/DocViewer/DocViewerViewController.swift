@@ -247,18 +247,18 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
         annotationProvider?.syncAllAnnotations()
     }
 
-    func annotationDidFailToSave(error: Error) {
-        syncAnnotationsButton.isEnabled = true
-        syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
-        syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
-    }
+    func annotationDidFailToSave(error: Error) { performUIUpdate {
+        self.syncAnnotationsButton.isEnabled = true
+        self.syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
+        self.syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
+    } }
 
-    func annotationSaveStateChanges(saving: Bool) {
-        syncAnnotationsButton.isEnabled = false
-        syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
-        syncAnnotationsButton.setTitle(saving
+    func annotationSaveStateChanges(saving: Bool) { performUIUpdate {
+        self.syncAnnotationsButton.isEnabled = false
+        self.syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
+        self.syncAnnotationsButton.setTitle(saving
             ? NSLocalizedString("Saving...", bundle: .core, comment: "")
             : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),
         for: .normal)
-    }
+    } }
 }
