@@ -62,7 +62,9 @@ import { logEvent } from '../../common/CanvasAnalytics'
 
 const {
   UserDefaults,
+  NativeNotificationCenter
 } = NativeModules
+NativeNotificationCenter.addObserver('course-favorite-change')
 
 type ColorfulCourse = { color: string } & Course
 type Props = {
@@ -130,8 +132,13 @@ export class Dashboard extends React.Component<Props, State> {
     showGrades: false,
   }
 
+  notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
+
   componentDidMount () {
     this.observeShowGrades()
+    this.notificationCenter.addListener('course-favorite-change', () => {
+      this.props.getDashboardCards()
+    })
   }
 
   async componentWillReceiveProps (newProps: Props) {
@@ -203,7 +210,7 @@ export class Dashboard extends React.Component<Props, State> {
             testID={section.sectionID + '.see-all-btn'}
             onPress={section.seeAll}
           >
-            {i18n('See All')}
+            {i18n('All Courses')}
           </LinkButton>
           : undefined
         }

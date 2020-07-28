@@ -247,12 +247,12 @@ enum MiniCanvasEndpoints {
 
         // MARK: Favorites
         // https://canvas.instructure.com/doc/api/favorites.html
-        .apiRequest(PostFavoriteRequest(context: Pattern.courseContext)) { request in
+        .apiRequest(MarkFavoriteRequest(context: Pattern.courseContext, markAsFavorite: true)) { request in
             let course = try lookupCourse(forRequest: request)
             course.api.is_favorite = true
             return APIFavorite(context_id: course.api.id, context_type: "course")
         },
-        .apiRequest(DeleteFavoriteRequest(context: Pattern.courseContext)) { request in
+        .apiRequest(MarkFavoriteRequest(context: Pattern.courseContext, markAsFavorite: false)) { request in
             let course = try lookupCourse(forRequest: request)
             course.api.is_favorite = false
             return APIFavorite(context_id: course.api.id, context_type: "course")
