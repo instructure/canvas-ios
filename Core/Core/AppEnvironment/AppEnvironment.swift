@@ -70,11 +70,6 @@ open class AppEnvironment {
         return Store(env: self, useCase: useCase, eventHandler: callback)
     }
 
-    @available(iOSApplicationExtension 13.0, *)
-    public func published<U>(_ useCase: U) -> PublishedStore<U> where U: UseCase {
-        return PublishedStore(env: self, useCase: useCase) {}
-    }
-
     public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler) -> Store<LocalUseCase<Model>> {
         let useCase = LocalUseCase<Model>(scope: scope)
         return subscribe(useCase, callback)

@@ -19,45 +19,15 @@
 import SwiftUI
 import Combine
 
-// swiftlint:disable superfluous_disable_command
-// swiftlint:disable multiple_closures_with_trailing_closure
-
-struct CourseViewModel: Hashable, Equatable {
-    let id: String
-    let name: String
-    let term: String
-    let enrollment: String
-    let isFavorite: Bool
-    let isPublished: Bool
-
-    init(id: String, name: String, term: String, enrollment: String, isFavorite: Bool, isPublished: Bool) {
-        self.id = id
-        self.name = name
-        self.term = term
-        self.enrollment = enrollment
-        self.isFavorite = isFavorite
-        self.isPublished = isPublished
-    }
-
-    init(course: Course) {
-        self.init(
-            id: course.id,
-            name: course.name ?? "",
-            term: "Fall 2020",
-            enrollment: "Teacher",
-            isFavorite: course.isFavorite,
-            isPublished: true
-        )
-    }
-}
+// swiftlint:disable superfluous_disable_command multiple_closures_with_trailing_closure
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
     let env = AppEnvironment.shared
-    @ObservedObject var courses: PublishedStore<GetAllCourses>
+    @ObservedObject var courses: Store<GetAllCourses>
 
     init() {
-        courses = env.published(GetAllCourses())
+        courses = env.subscribe(GetAllCourses()) {}
         courses.exhaust()
     }
 
@@ -68,7 +38,7 @@ public struct CourseListView: View {
     public var body: some View {
         return Form {
             Section(header: Text("Current Enrollments")) {
-                ForEach(courses._all, id: \.self) { course in
+                ForEach(courses.all, id: \.self) { course in
                     Cell(course: course)
                 }
             }
@@ -123,12 +93,9 @@ public struct CourseListView: View {
     }
 }
 
-//@available(iOSApplicationExtension 13.0.0, *)
-//struct CourseListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CourseListView(courses: PublishObserver(staticContents: [
-//            CourseViewModel(id: "1", name: "BIO 101", term: "Fall 2020", enrollment: "Teacher", isFavorite: true, isPublished: true),
-//            CourseViewModel(id: "2", name: "BIO 102", term: "Fall 2020", enrollment: "Teacher", isFavorite: false, isPublished: false),
-//        ]), storeRef: nil)
-//    }
-//}
+@available(iOSApplicationExtension 13.0.0, *)
+struct CourseListView_Previews: PreviewProvider {
+    static var previews: some View {
+        CourseListView()
+    }
+}

@@ -791,7 +791,6 @@
 		E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */; };
 		E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
-		E87C90FE24D09E2100A62C2D /* PublishObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C90FD24D09E2100A62C2D /* PublishObserver.swift */; };
 		E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */; };
 		E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */; };
 		E890AF3024CF5C28000401FB /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E890AF2F24CF5C28000401FB /* CourseListView.swift */; };
@@ -1817,7 +1816,6 @@
 		E81ACBA423D9F469007AFDC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
-		E87C90FD24D09E2100A62C2D /* PublishObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishObserver.swift; sourceTree = "<group>"; };
 		E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
 		E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
@@ -3482,7 +3480,6 @@
 				B11D321621E464AB00F37ABF /* Store.swift */,
 				7DF4FFD02171322E007E5F81 /* TTL.swift */,
 				B1EF7ABA21E902DD00D653D7 /* UseCase.swift */,
-				E87C90FD24D09E2100A62C2D /* PublishObserver.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -4809,7 +4806,6 @@
 				7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */,
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
-				E87C90FE24D09E2100A62C2D /* PublishObserver.swift in Sources */,
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7D72425B2429BEE9007ED42F /* DashboardGroupCell.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,

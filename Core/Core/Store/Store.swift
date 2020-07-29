@@ -100,13 +100,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
 
-    open func onChange() {
-    }
-
     private func notify() {
         performUIUpdate {
             self.eventHandler()
-            self.onChange()
             self.changes = []
         }
     }
@@ -185,6 +181,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     @objc
+    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if #available(iOSApplicationExtension 13.0, *) {
+            objectWillChange.send()
+        }
+    }
+
+    @objc
     public func controller(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>,
         didChange sectionInfo: NSFetchedResultsSectionInfo,
@@ -245,14 +248,5 @@ extension Store: Sequence {
 }
 
 @available(iOSApplicationExtension 13.0, *)
-public class PublishedStore<U: UseCase>: Store<U>, ObservableObject {
-    @Published private(set) var _all: [U.Model] = []
-    override public var all: [U.Model] { _all }
-
-    override open func onChange() {
-        _all = super.all
-        if let x = _all as? [Course] {
-            print("ONCHANGE: changing _all: \(x.map { $0.isFavorite })")
-        }
-    }
+extension Store: ObservableObject {
 }
