@@ -19,6 +19,7 @@
 import SwiftUI
 import Combine
 
+// swiftlint:disable superfluous_disable_command
 // swiftlint:disable multiple_closures_with_trailing_closure
 
 struct CourseViewModel: Hashable, Equatable {
@@ -76,14 +77,29 @@ public struct CourseListView: View {
 
     struct Cell: View {
         let course: CourseViewModel
+        @State var pending = false
 
-        var favoriteButton: some View {
+        func toggleFavorite() {
+            guard !pending else { return }
+            pending = true
             if course.isFavorite {
-                return Button(action: { RemoveFavoriteCourse(courseID: course.id).fetch() }) {
-                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                RemoveFavoriteCourse(courseID: course.id).fetch { _, _, _ in
+                    pending = false
                 }
             } else {
-                return Button(action: { AddFavoriteCourse(courseID: course.id).fetch() }) {
+                AddFavoriteCourse(courseID: course.id).fetch { _, _, _ in
+                    pending = false
+                }
+            }
+        }
+
+        var favoriteButton: some View {
+            Button(action: toggleFavorite) {
+                if pending {
+                    Image.icon(.star, .solid).foregroundColor(.named(.ash))
+                } else if course.isFavorite {
+                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                } else {
                     Image.icon(.star, .line).foregroundColor(.named(.ash))
                 }
             }

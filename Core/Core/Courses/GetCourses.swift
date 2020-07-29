@@ -163,6 +163,7 @@ public class AddFavoriteCourse: APIUseCase {
     }
 
     public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        sleep(1)
         guard let item = response,
               let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
             return
@@ -188,6 +189,7 @@ public class RemoveFavoriteCourse: APIUseCase {
     }
 
     public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        sleep(1)
         guard let item = response,
               let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
             return
