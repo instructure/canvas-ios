@@ -27,7 +27,7 @@ struct CourseViewModel: Hashable, Equatable {
     let name: String
     let term: String
     let enrollment: String
-    var isFavorite: Bool
+    let isFavorite: Bool
     let isPublished: Bool
 
     init(id: String, name: String, term: String, enrollment: String, isFavorite: Bool, isPublished: Bool) {
