@@ -68,7 +68,7 @@ public struct CourseListView: View {
     }
 
     struct Cell: View {
-        @State var course: CourseViewModel
+        let course: CourseViewModel
 
         func toggleFavorite() {
             if course.isFavorite {
@@ -76,7 +76,6 @@ public struct CourseListView: View {
             } else {
                 AddFavoriteCourse(courseID: course.id).fetch()
             }
-            course.isFavorite = !course.isFavorite
         }
 
         var body: some View {
