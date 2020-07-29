@@ -67,7 +67,7 @@ class QuizWebViewController: UIViewController {
             let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", comment: "")
             let stay = NSLocalizedString("Stay", comment: "Stay on the quiz view")
             let leave = NSLocalizedString("Leave", comment: "Leave the quiz")
-            
+
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .alert)
             alert.addAction(AlertAction(stay, style: .cancel))
             alert.addAction(AlertAction(leave, style: .default) { _ in

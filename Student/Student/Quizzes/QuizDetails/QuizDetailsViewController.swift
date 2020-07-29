@@ -43,7 +43,6 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     @IBOutlet weak var titleLabel: UILabel!
     let titleSubtitleView = TitleSubtitleView.create()
 
-
     var color: UIColor?
     var courseID = ""
     let env = AppEnvironment.shared
