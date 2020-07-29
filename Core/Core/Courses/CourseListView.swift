@@ -64,10 +64,14 @@ public struct CourseListView: View {
     }
 
     public var body: some View {
-        navigationTitle("All Courses")
-        List(courses.model, id: \.self) { course in
-            Cell(course: course)
+        return Form {
+            Section(header: Text("Current Enrollments")) {
+                ForEach(courses.model, id: \.self) { course in
+                    Cell(course: course)
+                }
+            }
         }
+        .navigationBarTitle("All Courses")
     }
 
     struct Cell: View {
