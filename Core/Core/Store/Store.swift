@@ -251,17 +251,16 @@ extension Store {
     public var publisher: AnyPublisher<[U.Model], Never> {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
-        if let subject = self.subject {
-            return subject.eraseToAnyPublisher()
+        if subject == nil {
+            self.subject = CurrentValueSubject<[U.Model], Never>(all)
         }
-        let subject = CurrentValueSubject<[U.Model], Never>(all)
-        self.subject = subject
-        return subject.eraseToAnyPublisher()
+        return subject!.eraseToAnyPublisher()
     }
 
     public func observable<ViewModel>(transform: @escaping (U.Model) -> ViewModel) -> PublishObserver<[ViewModel]> {
-        let pub = publisher
-            .map { $0.map(transform) }
-        return PublishObserver(publisher: pub, initialModel: all.map(transform))
+        PublishObserver(
+            publisher: publisher.map { $0.map(transform) },
+            initialModel: all.map(transform)
+        )
     }
 }

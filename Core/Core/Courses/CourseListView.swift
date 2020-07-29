@@ -19,6 +19,8 @@
 import SwiftUI
 import Combine
 
+// swiftlint:disable multiple_closures_with_trailing_closure
+
 struct CourseViewModel: Hashable, Equatable {
     let id: String
     let name: String
@@ -70,11 +72,15 @@ public struct CourseListView: View {
     struct Cell: View {
         let course: CourseViewModel
 
-        func toggleFavorite() {
+        var favoriteButton: some View {
             if course.isFavorite {
-                RemoveFavoriteCourse(courseID: course.id).fetch()
+                return Button(action: { RemoveFavoriteCourse(courseID: course.id).fetch() }) {
+                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                }
             } else {
-                AddFavoriteCourse(courseID: course.id).fetch()
+                return Button(action: { AddFavoriteCourse(courseID: course.id).fetch() }) {
+                    Image.icon(.star, .line).foregroundColor(.named(.ash))
+                }
             }
         }
 
@@ -82,13 +88,7 @@ public struct CourseListView: View {
             ZStack {
                 NavigationLink(destination: Text(course.name)) { SwiftUI.EmptyView() }
                 HStack {
-                    Button(action: toggleFavorite) {
-                        if course.isFavorite {
-                            Image.icon(.star, .solid).foregroundColor(.named(.electric))
-                        } else {
-                            Image.icon(.star, .line).foregroundColor(.named(.ash))
-                        }
-                    }.buttonStyle(PlainButtonStyle())
+                    favoriteButton.buttonStyle(PlainButtonStyle())
                     VStack(alignment: .leading) {
                         Text(course.name).bold()
                         Text("\(course.term) | \(course.enrollment)").foregroundColor(.named(.ash))
