@@ -64,6 +64,7 @@ public struct CourseListView: View {
     }
 
     public var body: some View {
+        navigationTitle("All Courses")
         List(courses.model, id: \.self) { course in
             Cell(course: course)
         }

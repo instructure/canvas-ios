@@ -3788,8 +3788,8 @@
 				2C964833211E2F1A002C3255 /* Sources */,
 				2C964834211E2F1A002C3255 /* Frameworks */,
 				2C964835211E2F1A002C3255 /* Resources */,
-				B1A6BC742189F97D000515E3 /* Embed Frameworks */,
 				BD015C033B8EBDDD0E5EEACA /* [CP] Embed Pods Frameworks */,
+				B1A6BC742189F97D000515E3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
