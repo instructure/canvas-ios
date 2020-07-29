@@ -53,21 +53,22 @@ struct CourseViewModel: Hashable, Equatable {
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
-    @ObservedObject var courses: PublishObserver<[CourseViewModel]>
-    let storeRef: Any?
+    let env = AppEnvironment.shared
+    @ObservedObject var courses: PublishedStore<GetAllCourses>
+
+    init() {
+        courses = env.published(GetAllCourses())
+        courses.exhaust()
+    }
 
     public static func create() -> CourseListView {
-        let store = AppEnvironment.shared.subscribe(GetAllCourses(), {})
-        let courses = store.observable(transform: CourseViewModel.init(course:))
-        store.exhaust()
-
-        return CourseListView(courses: courses, storeRef: store)
+        return CourseListView()
     }
 
     public var body: some View {
         return Form {
             Section(header: Text("Current Enrollments")) {
-                ForEach(courses.model, id: \.self) { course in
+                ForEach(courses._all, id: \.self) { course in
                     Cell(course: course)
                 }
             }
@@ -76,7 +77,7 @@ public struct CourseListView: View {
     }
 
     struct Cell: View {
-        let course: CourseViewModel
+        let course: Course
         @State var pending = false
 
         func toggleFavorite() {
@@ -107,31 +108,27 @@ public struct CourseListView: View {
 
         var body: some View {
             ZStack {
-                NavigationLink(destination: Text(course.name)) { SwiftUI.EmptyView() }
+                NavigationLink(destination: Text(course.name ?? "")) { SwiftUI.EmptyView() }
                 HStack {
                     favoriteButton.buttonStyle(PlainButtonStyle())
                     VStack(alignment: .leading) {
-                        Text(course.name).bold()
-                        Text("\(course.term) | \(course.enrollment)").foregroundColor(.named(.ash))
+                        Text(course.name ?? "").bold()
+                        Text("FOO | BAR").foregroundColor(.named(.ash))
                     }
                     Spacer()
-                    if course.isPublished {
-                        Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
-                    } else {
-                        Image.icon(.complete)
-                    }
+                    Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
                 }
             }
         }
     }
 }
 
-@available(iOSApplicationExtension 13.0.0, *)
-struct CourseListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CourseListView(courses: PublishObserver(staticContents: [
-            CourseViewModel(id: "1", name: "BIO 101", term: "Fall 2020", enrollment: "Teacher", isFavorite: true, isPublished: true),
-            CourseViewModel(id: "2", name: "BIO 102", term: "Fall 2020", enrollment: "Teacher", isFavorite: false, isPublished: false),
-        ]), storeRef: nil)
-    }
-}
+//@available(iOSApplicationExtension 13.0.0, *)
+//struct CourseListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CourseListView(courses: PublishObserver(staticContents: [
+//            CourseViewModel(id: "1", name: "BIO 101", term: "Fall 2020", enrollment: "Teacher", isFavorite: true, isPublished: true),
+//            CourseViewModel(id: "2", name: "BIO 102", term: "Fall 2020", enrollment: "Teacher", isFavorite: false, isPublished: false),
+//        ]), storeRef: nil)
+//    }
+//}

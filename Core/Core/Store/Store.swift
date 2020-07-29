@@ -37,9 +37,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public let useCase: U
     public let eventHandler: EventHandler
 
-    @available(iOSApplicationExtension 13.0, *)
-    private lazy var subject: CurrentValueSubject<[U.Model], Never>? = nil
-
     public var count: Int {
         return frc.sections?.first?.numberOfObjects ?? 0
     }
@@ -103,13 +100,14 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
 
+    open func onChange() {
+    }
+
     private func notify() {
         performUIUpdate {
             self.eventHandler()
+            self.onChange()
             self.changes = []
-            if #available(iOSApplicationExtension 13.0, *) {
-                self.subject?.send(self.all)
-            }
         }
     }
 
@@ -247,20 +245,14 @@ extension Store: Sequence {
 }
 
 @available(iOSApplicationExtension 13.0, *)
-extension Store {
-    public var publisher: AnyPublisher<[U.Model], Never> {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-        if subject == nil {
-            self.subject = CurrentValueSubject<[U.Model], Never>(all)
-        }
-        return subject!.eraseToAnyPublisher()
-    }
+public class PublishedStore<U: UseCase>: Store<U>, ObservableObject {
+    @Published private(set) var _all: [U.Model] = []
+    override public var all: [U.Model] { _all }
 
-    public func observable<ViewModel>(transform: @escaping (U.Model) -> ViewModel) -> PublishObserver<[ViewModel]> {
-        PublishObserver(
-            publisher: publisher.map { $0.map(transform) },
-            initialModel: all.map(transform)
-        )
+    override open func onChange() {
+        _all = super.all
+        if let x = _all as? [Course] {
+            print("ONCHANGE: changing _all: \(x.map { $0.isFavorite })")
+        }
     }
 }
