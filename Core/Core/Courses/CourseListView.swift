@@ -77,7 +77,7 @@ public struct CourseListView: View {
     }
 
     struct Cell: View {
-        let course: Course
+        @ObservedObject var course: Course
         @State var pending = false
 
         func toggleFavorite() {
