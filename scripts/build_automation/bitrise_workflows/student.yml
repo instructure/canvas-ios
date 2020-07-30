@@ -38,6 +38,7 @@ workflows:
         - verbose: 'false'
     - ios-auto-provision:
         inputs:
+        - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
     - set-xcode-build-number:
