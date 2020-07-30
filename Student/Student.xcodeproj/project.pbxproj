@@ -1974,7 +1974,6 @@
 				TargetAttributes = {
 					3B6DCCA41FB502CD005EE8D2 = {
 						CreatedOnToolsVersion = 9.1;
-						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1988,9 +1987,7 @@
 					};
 					492704721CF4AF7100C631C6 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1140;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -2022,7 +2019,6 @@
 					};
 					B1BB7A8122BAC820006CA068 = {
 						CreatedOnToolsVersion = 10.2.1;
-						DevelopmentTeam = B6333T4PXQ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -2035,7 +2031,6 @@
 					};
 					B1CA092D22C4237C008AA352 = {
 						CreatedOnToolsVersion = 10.2.1;
-						DevelopmentTeam = B6333T4PXQ;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 492704721CF4AF7100C631C6;
 					};
@@ -3099,8 +3094,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Student/Student.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
@@ -3113,6 +3109,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Student/Student-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

@@ -40,7 +40,6 @@ workflows:
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
-        - team_id: B6333T4PXQ
         - configuration: "$BITRISE_CONFIGURATION"
     - set-xcode-build-number:
         inputs:
