@@ -70,28 +70,7 @@ workflows:
         - compile_bitcode: 'no'
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
-        - custom_export_options_plist_content: |-
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-                <dict>
-                <key>iCloudContainerEnvironment</key>
-                <string>Production</string>
-                <key>compileBitcode</key>
-                <false></false>
-                <key>method</key>
-                <string>$BITRISE_EXPORT_METHOD</string>
-                <key>provisioningProfiles</key>
-                <dict>
-                    <key>com.instructure.ios.teacher</key>
-                    <string>$BITRISE_PROFILE</string>
-                </dict>
-                <key>signingCertificate</key>
-                <string>$BITRISE_CODESIGN_IDENTITY</string>
-                <key>teamID</key>
-                <string>$BITRISE_DEVELOPER_TEAM</string>
-                </dict>
-            </plist>
+        - icloud_container_environment: "Production"
     - script:
         inputs:
         - content: |-
