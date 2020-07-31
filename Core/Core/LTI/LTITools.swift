@@ -19,7 +19,8 @@
 import Foundation
 import SafariServices
 
-public class LTITools {
+@objc
+public class LTITools: NSObject {
     let env: AppEnvironment
     let context: Context
     let id: String?
@@ -40,9 +41,15 @@ public class LTITools {
         )
     }
 
+    @objc
+    public static func launch(_ url: URL, from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
+        let tools = LTITools(url: url)
+        tools.presentTool(from: view, animated: animated, completionHandler: completionHandler)
+    }
+
     public init(
         env: AppEnvironment = .shared,
-        context: Context = Context(.account, id: "self"),
+        context: Context? = nil,
         id: String? = nil,
         url: URL? = nil,
         launchType: GetSessionlessLaunchURLRequest.LaunchType? = nil,
@@ -51,7 +58,7 @@ public class LTITools {
         moduleItemID: String? = nil
     ) {
         self.env = env
-        self.context = context
+        self.context = context ?? url.flatMap { Context(url: $0) } ?? .account("self")
         self.id = id
         self.url = url
         self.launchType = launchType
@@ -74,13 +81,14 @@ public class LTITools {
         self.init(env: env, context: context, url: url)
     }
 
-    public func presentTool(from view: UIViewController, animated: Bool, completionHandler: ((Bool) -> Void)? = nil) {
+    public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
         getSessionlessLaunch { [weak view] response in
             guard let view = view else { return }
             guard let response = response else {
                 completionHandler?(false)
                 return
             }
+            Analytics.shared.logEvent("external_tool_launched", parameters: ["launchUrl": response.url])
             let completionHandler = { [weak self] (success: Bool) in
                 self?.markModuleItemRead()
                 completionHandler?(success)
@@ -104,6 +112,15 @@ public class LTITools {
     }
 
     public func getSessionlessLaunch(completionBlock: @escaping (APIGetSessionlessLaunchResponse?) -> Void) {
+        if let url = url, url.path.hasSuffix("/external_tools/sessionless_launch") {
+            let request = URLRequest(url: url)
+            env.api.makeRequest(request) { data, _, _ in performUIUpdate {
+                guard let data = data else { return completionBlock(nil) }
+                let response = try? APIJSONDecoder().decode(APIGetSessionlessLaunchResponse.self, from: data)
+                completionBlock(response)
+            } }
+            return
+        }
         env.api.makeRequest(request) { response, _, _ in performUIUpdate {
             completionBlock(response)
         } }

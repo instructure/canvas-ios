@@ -129,7 +129,6 @@
 		B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C317002463371300CA368C /* NativeUserDefaults.swift */; };
 		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
-		B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CE74402020CE92003F2366 /* ExternalToolManager.swift */; };
 		B1D59802202A607200855C95 /* CanvasWebView.js in Resources */ = {isa = PBXBuildFile; fileRef = B1D59801202A607200855C95 /* CanvasWebView.js */; };
 		B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */; };
 		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
@@ -323,7 +322,6 @@
 		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
 		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeNotificationCenter.h; sourceTree = "<group>"; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeNotificationCenter.m; sourceTree = "<group>"; };
-		B1CE74402020CE92003F2366 /* ExternalToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolManager.swift; sourceTree = "<group>"; };
 		B1D59801202A607200855C95 /* CanvasWebView.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = CanvasWebView.js; sourceTree = "<group>"; };
 		B1ED11932040CD5F00C3C580 /* CanvasWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewManager.m; sourceTree = "<group>"; };
 		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
@@ -393,7 +391,6 @@
 				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
-				493BEFA81FB14560006E8EFC /* LTI */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				4930205E1F902413006BD777 /* Session */,
@@ -540,14 +537,6 @@
 				49383CF51F849933009C8F8E /* inboxTab.swift */,
 			);
 			path = Inbox;
-			sourceTree = "<group>";
-		};
-		493BEFA81FB14560006E8EFC /* LTI */ = {
-			isa = PBXGroup;
-			children = (
-				B1CE74402020CE92003F2366 /* ExternalToolManager.swift */,
-			);
-			path = LTI;
 			sourceTree = "<group>";
 		};
 		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
@@ -865,7 +854,6 @@
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
 				4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
-				B1CE74412020CE92003F2366 /* ExternalToolManager.swift in Sources */,
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
