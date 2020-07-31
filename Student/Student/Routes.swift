@@ -184,9 +184,9 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
     "/courses/:courseID/external_tools/:toolID": { url, params, _ in
-        guard let id = params["toolID"] else { return nil }
+        guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
         guard let vc = HelmManager.shared.topMostViewController() else { return nil }
-        let tools = LTITools(id: id)
+        let tools = LTITools(context: .course(courseID), id: toolID)
         tools.presentTool(from: vc, animated: true)
         return nil
     },
