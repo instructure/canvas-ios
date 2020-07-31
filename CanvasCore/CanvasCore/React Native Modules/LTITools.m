@@ -19,20 +19,19 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 #import <CanvasCore/CanvasCore-Swift.h>
+@import Core;
 
-@interface LTITools: NSObject<RCTBridgeModule>
-
+@interface LTIToolsReact: NSObject<RCTBridgeModule>
 @end
 
-@implementation LTITools
-
-RCT_EXPORT_MODULE();
+@implementation LTIToolsReact
+RCT_EXPORT_MODULE(LTITools);
 
 RCT_REMAP_METHOD(launchExternalTool, launchExternalTool:(NSString *)url resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     UIViewController *current = [[HelmManager shared] topMostViewController];
     NSURL *launchURL = [[NSURL alloc] initWithString:url];
 
-    [[ExternalToolManager shared] launch:launchURL in:Session.current from:current completionHandler:^{
+    [LTITools launch:launchURL from:current animated:YES completionHandler:^(BOOL success) {
         resolve(nil);
     }];
 }

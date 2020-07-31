@@ -180,4 +180,27 @@ class LTIToolsTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         NotificationCenter.default.removeObserver(observer)
     }
+
+    func testPresentWhenURLIsAlreadySessionlessLaunch() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/sessionless_launch")!
+        let tools = LTITools(
+            env: environment,
+            context: nil,
+            id: nil,
+            url: url,
+            launchType: nil,
+            assignmentID: nil,
+            moduleItemID: nil
+        )
+        let data = try! APIJSONEncoder().encode(APIGetSessionlessLaunchResponse.make())
+        api.mock(URLRequest(url: url), data: data)
+        var success = false
+        let done = XCTestExpectation(description: "present tool callback")
+        tools.presentTool(from: mockView, animated: false) { result in
+            success = result
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 1)
+        XCTAssertTrue(success)
+    }
 }

@@ -262,9 +262,9 @@ extension CanvasWebView: WKNavigationDelegate {
             customUserAgent = UserAgent.safari.description
         }
 
-        if action.navigationType == .linkActivated, let url = request.url, LTITools(link: url) != nil,
-            let from = presentingViewController, let session = Session.current {
-            ExternalToolManager.shared.launch(url, in: session, from: from)
+        if action.navigationType == .linkActivated, let url = request.url, let tools = LTITools(link: url),
+            let from = presentingViewController {
+            tools.presentTool(from: from)
             return decisionHandler(.cancel)
         }
 

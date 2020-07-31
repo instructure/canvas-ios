@@ -184,9 +184,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
     "/courses/:courseID/external_tools/:toolID": { url, params, _ in
-        guard let url = url.url, let session = Session.current else { return nil }
+        guard let id = params["toolID"] else { return nil }
         guard let vc = HelmManager.shared.topMostViewController() else { return nil }
-        ExternalToolManager.shared.launch(url, in: session, from: vc, fallbackURL: url)
+        let tools = LTITools(id: id)
+        tools.presentTool(from: vc, animated: true)
         return nil
     },
 
