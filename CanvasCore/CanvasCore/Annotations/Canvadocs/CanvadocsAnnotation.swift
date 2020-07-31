@@ -297,11 +297,11 @@ struct CanvadocsAnnotation: Codable {
         switch pspdfAnnotation.type {
         case .highlight:
             let boundingBoxes = pspdfAnnotation.rects ?? []
-            guard let color = pspdfAnnotation.color?.hex else { return nil }
+            guard let color = pspdfAnnotation.color?.hexString else { return nil }
             self.type = .highlight(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox)
         case .strikeOut:
             let boundingBoxes = pspdfAnnotation.rects ?? []
-            guard let color = pspdfAnnotation.color?.hex else { return nil }
+            guard let color = pspdfAnnotation.color?.hexString else { return nil }
             self.type = .strikeout(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox)
         case .freeText:
             guard let freeTextAnnot = pspdfAnnotation as? FreeTextAnnotation else { fallthrough }
@@ -310,11 +310,11 @@ struct CanvadocsAnnotation: Codable {
             let fontInfo = (family: fontFamily, size: size)
             let text = freeTextAnnot.contents ?? ""
             let rect = freeTextAnnot.boundingBox
-            let color = freeTextAnnot.color?.hex ?? "#000000"
+            let color = freeTextAnnot.color?.hexString ?? "#000000"
             self.type = .freeText(fontInfo: fontInfo, text: text, rect: rect, color: color)
         case .ink:
             guard let inkAnnot = pspdfAnnotation as? InkAnnotation else { fallthrough }
-            guard let color = pspdfAnnotation.color?.hex else { return nil }
+            guard let color = pspdfAnnotation.color?.hexString else { return nil }
             var gestures: [CanvadocsInkAnnotationGesture] = []
             for line in inkAnnot.lines ?? [] {
                 let points: [CanvadocsInkAnnotationGesturePoint] = line
@@ -332,16 +332,16 @@ struct CanvadocsAnnotation: Codable {
             width = Double(inkAnnot.lineWidth)
         case .square:
             guard let squareAnnot = pspdfAnnotation as? SquareAnnotation else { fallthrough }
-            guard let color = pspdfAnnotation.color?.hex else { return nil }
+            guard let color = pspdfAnnotation.color?.hexString else { return nil }
             self.type = .square(color: color, width: squareAnnot.lineWidth, rect: squareAnnot.boundingBox)
         default:
             if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
                 self.type = .commentReply(parent: commentReplyAnnot.inReplyToName ?? "", text: commentReplyAnnot.contents ?? "")
             } else if let pointAnnot = pspdfAnnotation as? CanvadocsPointAnnotation {
-                let color = pspdfAnnotation.color?.hex ?? DocViewerAnnotationColor.blue.rawValue
+                let color = pspdfAnnotation.color?.hexString ?? DocViewerAnnotationColor.blue.rawValue
                 self.type = .point(color: color, rect: pointAnnot.boundingBox)
             } else if let noteAnnot = pspdfAnnotation as? NoteAnnotation {
-                let color = pspdfAnnotation.color?.hex ?? DocViewerAnnotationColor.blue.rawValue
+                let color = pspdfAnnotation.color?.hexString ?? DocViewerAnnotationColor.blue.rawValue
                 self.type = .point(color: color, rect: noteAnnot.boundingBox)
             } else {
                 return nil
@@ -366,18 +366,18 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation?.pageIndex = page
             pspdfAnnotation?.rects = boundingBoxes
             pspdfAnnotation?.boundingBox = rect
-            pspdfAnnotation?.color = UIColor.colorFromHexString(color)
+            pspdfAnnotation?.color = UIColor(hexString: color)
         case .freeText(let fontInfo, let text, let rect, let color):
             let freeTextAnnotation = FreeTextAnnotation(contents: text)
             freeTextAnnotation.fontName = fontInfo.family
             freeTextAnnotation.fontSize = CGFloat(fontInfo.size)
             freeTextAnnotation.boundingBox = rect
             freeTextAnnotation.fillColor = .white
-            freeTextAnnotation.color = UIColor.colorFromHexString(color)
+            freeTextAnnotation.color = UIColor(hexString: color)
             pspdfAnnotation = freeTextAnnotation
         case .point(let color, let rect):
             let pointAnnotation = CanvadocsPointAnnotation()
-            pointAnnotation.color = UIColor.colorFromHexString(color)
+            pointAnnotation.color = UIColor(hexString: color)
             pointAnnotation.boundingBox = rect
             pspdfAnnotation = pointAnnotation
         case .commentReply(let parent, let text):
@@ -386,7 +386,7 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation = replyAnnot
         case .ink(let gestures, let color, let rect):
             let inkAnnotation = InkAnnotation()
-            inkAnnotation.color = .colorFromHexString(color)
+            inkAnnotation.color = UIColor(hexString: color)
             var lines = [PDFLine]()
             for gesture in gestures {
                 let line = gesture.map { (point: CanvadocsInkAnnotationGesturePoint) -> DrawingPoint in
@@ -404,7 +404,7 @@ struct CanvadocsAnnotation: Codable {
             pspdfAnnotation = inkAnnotation
         case .square(let color, let width, let rect):
             let squareAnnotation = SquareAnnotation()
-            squareAnnotation.color = .colorFromHexString(color)
+            squareAnnotation.color = UIColor(hexString: color)
             squareAnnotation.lineWidth = width
             squareAnnotation.boundingBox = rect
             pspdfAnnotation = squareAnnotation

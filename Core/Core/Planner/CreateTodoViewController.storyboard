@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,12 +42,14 @@
                                             <constraint firstItem="3te-NC-l05" firstAttribute="leading" secondItem="F6s-J1-nvD" secondAttribute="leading" constant="16" id="qK7-tK-omp"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz1-Zy-Tja" customClass="HairlineView" customModule="CanvasCore">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz1-Zy-Tja" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="62" width="414" height="1"/>
-                                        <color key="backgroundColor" name="borderMedium"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Chq-cM-854"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="d1j-P1-FbW">
                                         <rect key="frame" x="0.0" y="63" width="414" height="62"/>
@@ -57,7 +58,7 @@
                                                 <rect key="frame" x="20" y="0.0" width="374" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Course (optional)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-fF-7HV" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="62"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="197" height="62"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -66,7 +67,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="None" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-rV-aa6" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="114.5" y="0.0" width="35.5" height="62"/>
+                                                        <rect key="frame" x="197" y="0.0" width="61" height="62"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -75,7 +76,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLi-JN-Y2u">
-                                                        <rect key="frame" x="150" y="0.0" width="15" height="62"/>
+                                                        <rect key="frame" x="258" y="0.0" width="100" height="62"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="8" id="vZg-wO-Ycn"/>
@@ -83,7 +84,7 @@
                                                         </constraints>
                                                     </view>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="GvP-Wx-aid" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="165" y="0.0" width="209" height="62"/>
+                                                        <rect key="frame" x="358" y="0.0" width="16" height="62"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="16" id="4aM-SZ-XDj"/>
                                                             <constraint firstAttribute="height" constant="26" id="kuE-Xi-QlE"/>
@@ -119,12 +120,14 @@
                                             <constraint firstItem="cvb-Uh-8J9" firstAttribute="leading" secondItem="d1j-P1-FbW" secondAttribute="leading" constant="20" symbolic="YES" id="vQo-0B-UoE"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntk-0E-Ki1" customClass="HairlineView" customModule="CanvasCore">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntk-0E-Ki1" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="125" width="414" height="1"/>
-                                        <color key="backgroundColor" name="borderMedium"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="4hK-h1-SF5"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tes-FS-3Ha">
                                         <rect key="frame" x="0.0" y="126" width="414" height="62"/>
@@ -133,7 +136,7 @@
                                                 <rect key="frame" x="20" y="0.0" width="374" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3q-Tx-yWq" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="336.5" height="62"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="326.5" height="62"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -142,7 +145,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ghm-wD-jrE" customClass="DynamicTextField" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="336.5" y="0.0" width="37.5" height="62"/>
+                                                        <rect key="frame" x="326.5" y="0.0" width="47.5" height="62"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="62" id="0Kr-Zo-Mf0"/>
                                                         </constraints>
@@ -177,12 +180,14 @@
                                             <constraint firstAttribute="height" constant="62" id="i4K-gy-jR4"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-HJ-AnK" customClass="HairlineView" customModule="CanvasCore">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-HJ-AnK" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="188" width="414" height="1"/>
-                                        <color key="backgroundColor" name="borderMedium"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="LnN-Dp-zVs"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WCF-aN-35V">
                                         <rect key="frame" x="0.0" y="189" width="414" height="628"/>
@@ -207,12 +212,14 @@
                                             <constraint firstAttribute="trailing" secondItem="orM-JY-5ma" secondAttribute="trailing" constant="16" id="whz-ob-pWr"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbV-vW-zOD" customClass="HairlineView" customModule="CanvasCore">
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbV-vW-zOD" customClass="DividerView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="817" width="414" height="1"/>
-                                        <color key="backgroundColor" name="borderMedium"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="uYv-4o-X2y"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="1" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="YF8-Be-4AL">
                                         <rect key="frame" x="0.0" y="818" width="414" height="0.0"/>
@@ -250,9 +257,4 @@
             <point key="canvasLocation" x="-230" y="108"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

@@ -26,7 +26,6 @@
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
 		3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */; };
-		3B158CAC22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B158CAB22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift */; };
 		3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; };
 		3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
@@ -55,16 +54,10 @@
 		4930204D1F902364006BD777 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020331F902361006BD777 /* Errors.swift */; };
 		4930204E1F902364006BD777 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020341F902361006BD777 /* Values.swift */; };
 		4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020351F902361006BD777 /* IgnoreValues.swift */; };
-		493020501F902364006BD777 /* String+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020361F902361006BD777 /* String+SoLazy.swift */; };
-		493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020381F902362006BD777 /* GCD+SoLazy.swift */; };
-		493020531F902364006BD777 /* Array+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020391F902362006BD777 /* Array+SoLazy.swift */; };
 		493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203A1F902362006BD777 /* Marshal+SoLazy.swift */; };
 		493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203D1F902363006BD777 /* RAC+SoLazy.swift */; };
 		493020581F902364006BD777 /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203E1F902363006BD777 /* Temporal.swift */; };
-		493020591F902364006BD777 /* Tuple+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203F1F902363006BD777 /* Tuple+SoLazy.swift */; };
-		4930205A1F902364006BD777 /* UIFont+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020401F902363006BD777 /* UIFont+SoLazy.swift */; };
 		4930205C1F902364006BD777 /* NSError+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020421F902364006BD777 /* NSError+SoLazy.swift */; };
-		4930205D1F902364006BD777 /* NSData+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020431F902364006BD777 /* NSData+SoLazy.swift */; };
 		4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020611F902460006BD777 /* ParameterEncoding.swift */; };
 		493020701F902462006BD777 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020621F902460006BD777 /* HTTPHeaders.swift */; };
 		493020711F902462006BD777 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020631F902460006BD777 /* Session.swift */; };
@@ -96,13 +89,6 @@
 		4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */; };
 		4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */; };
 		4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5341F8FAD920093EC86 /* WhizzyWigViewController.swift */; };
-		4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5831F8FB2130093EC86 /* Brand.swift */; };
-		4961F59D1F8FB2970093EC86 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */; };
-		4961F59E1F8FB2970093EC86 /* UIColor+LightenUpOkay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */; };
-		4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */; };
-		4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */; };
-		4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F58B1F8FB2140093EC86 /* SplitViewController.swift */; };
-		4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F5801F8FB2120093EC86 /* HairlineView.swift */; };
 		496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */; };
 		497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497C0F891FACD0D200084032 /* CanvasWebView.swift */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
@@ -115,26 +101,6 @@
 		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
 		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
 		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE95F01F8FF41900121A43 /* Quizzes.xcassets */; };
-		49CE965A1F8FF41B00121A43 /* QuizIntroFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE95F91F8FF41900121A43 /* QuizIntroFooterView.swift */; };
-		49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96021F8FF41900121A43 /* QuizIntroViewController.swift */; };
-		49CE965E1F8FF41B00121A43 /* QuizDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96091F8FF41A00121A43 /* QuizDetailCell.swift */; };
-		49CE965F1F8FF41B00121A43 /* QuizDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE960A1F8FF41A00121A43 /* QuizDetailsViewController.swift */; };
-		49CE96621F8FF41B00121A43 /* QuizTakeabilityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96111F8FF41A00121A43 /* QuizTakeabilityController.swift */; };
-		49CE96631F8FF41B00121A43 /* QuizController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96121F8FF41A00121A43 /* QuizController.swift */; };
-		49CE96651F8FF41B00121A43 /* CanvasQuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96161F8FF41A00121A43 /* CanvasQuizService.swift */; };
-		49CE96671F8FF41B00121A43 /* QuizDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96181F8FF41A00121A43 /* QuizDetailCell.xib */; };
-		49CE96701F8FF41B00121A43 /* NonNativeQuizTakingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96241F8FF41A00121A43 /* NonNativeQuizTakingViewController.swift */; };
-		49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96431F8FF41A00121A43 /* CanvasTimedQuizSubmissionService.swift */; };
-		49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96481F8FF41A00121A43 /* JSONDecodable.swift */; };
-		49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96491F8FF41A00121A43 /* CanvasRequest.swift */; };
-		49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE964A1F8FF41A00121A43 /* ResponsePage.swift */; };
-		49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE964C1F8FF41A00121A43 /* QuizSubmission.swift */; };
-		49CE96931F8FF41B00121A43 /* Takeability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE964D1F8FF41A00121A43 /* Takeability.swift */; };
-		49CE96941F8FF41B00121A43 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE964E1F8FF41A00121A43 /* Question.swift */; };
-		49CE96961F8FF41B00121A43 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96501F8FF41A00121A43 /* Answer.swift */; };
-		49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96511F8FF41A00121A43 /* Quiz.swift */; };
-		49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */; };
 		49CE96BA1F8FF94B00121A43 /* CanvasWebView.html in Resources */ = {isa = PBXBuildFile; fileRef = 49CE96AE1F8FF94B00121A43 /* CanvasWebView.html */; };
 		49CE96BB1F8FF94B00121A43 /* CanvasWebViewHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE96AF1F8FF94B00121A43 /* CanvasWebViewHTML.swift */; };
 		585959D0165156B27BB92716 /* NativeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 58595B2045EC1806A88292D9 /* NativeUtils.m */; };
@@ -198,7 +164,6 @@
 		356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
 		3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
-		3B158CAB22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventLoggerLegacySupportProtocol.swift; sourceTree = "<group>"; };
 		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -225,16 +190,10 @@
 		493020331F902361006BD777 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		493020341F902361006BD777 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		493020351F902361006BD777 /* IgnoreValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoreValues.swift; sourceTree = "<group>"; };
-		493020361F902361006BD777 /* String+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SoLazy.swift"; sourceTree = "<group>"; };
-		493020381F902362006BD777 /* GCD+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCD+SoLazy.swift"; sourceTree = "<group>"; };
-		493020391F902362006BD777 /* Array+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SoLazy.swift"; sourceTree = "<group>"; };
 		4930203A1F902362006BD777 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
 		4930203D1F902363006BD777 /* RAC+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC+SoLazy.swift"; sourceTree = "<group>"; };
 		4930203E1F902363006BD777 /* Temporal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
-		4930203F1F902363006BD777 /* Tuple+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tuple+SoLazy.swift"; sourceTree = "<group>"; };
-		493020401F902363006BD777 /* UIFont+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+SoLazy.swift"; sourceTree = "<group>"; };
 		493020421F902364006BD777 /* NSError+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+SoLazy.swift"; sourceTree = "<group>"; };
-		493020431F902364006BD777 /* NSData+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+SoLazy.swift"; sourceTree = "<group>"; };
 		493020611F902460006BD777 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		493020621F902460006BD777 /* HTTPHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
 		493020631F902460006BD777 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -268,13 +227,6 @@
 		4961F5351F8FAD930093EC86 /* WhizzyWigTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = WhizzyWigTemplate.html; sourceTree = "<group>"; };
 		4961F5361F8FAD930093EC86 /* WhizzyWigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigView.swift; sourceTree = "<group>"; };
 		4961F53B1F8FAD940093EC86 /* WhizzyWigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhizzyWigTableViewCell.swift; sourceTree = "<group>"; };
-		4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+LightenUpOkay.swift"; sourceTree = "<group>"; };
-		4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
-		4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ShadesOfGray.swift"; sourceTree = "<group>"; };
-		4961F5801F8FB2120093EC86 /* HairlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
-		4961F5831F8FB2130093EC86 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
-		4961F58B1F8FB2140093EC86 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarBadgeCounts.m; sourceTree = "<group>"; };
 		497C0F891FACD0D200084032 /* CanvasWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasWebView.swift; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
@@ -287,26 +239,6 @@
 		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
 		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		49CE95F01F8FF41900121A43 /* Quizzes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Quizzes.xcassets; sourceTree = "<group>"; };
-		49CE95F91F8FF41900121A43 /* QuizIntroFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizIntroFooterView.swift; sourceTree = "<group>"; };
-		49CE96021F8FF41900121A43 /* QuizIntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizIntroViewController.swift; sourceTree = "<group>"; };
-		49CE96091F8FF41A00121A43 /* QuizDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailCell.swift; sourceTree = "<group>"; };
-		49CE960A1F8FF41A00121A43 /* QuizDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewController.swift; sourceTree = "<group>"; };
-		49CE96111F8FF41A00121A43 /* QuizTakeabilityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTakeabilityController.swift; sourceTree = "<group>"; };
-		49CE96121F8FF41A00121A43 /* QuizController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizController.swift; sourceTree = "<group>"; };
-		49CE96161F8FF41A00121A43 /* CanvasQuizService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasQuizService.swift; sourceTree = "<group>"; };
-		49CE96181F8FF41A00121A43 /* QuizDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizDetailCell.xib; sourceTree = "<group>"; };
-		49CE96241F8FF41A00121A43 /* NonNativeQuizTakingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonNativeQuizTakingViewController.swift; sourceTree = "<group>"; };
-		49CE96431F8FF41A00121A43 /* CanvasTimedQuizSubmissionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTimedQuizSubmissionService.swift; sourceTree = "<group>"; };
-		49CE96481F8FF41A00121A43 /* JSONDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONDecodable.swift; sourceTree = "<group>"; };
-		49CE96491F8FF41A00121A43 /* CanvasRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasRequest.swift; sourceTree = "<group>"; };
-		49CE964A1F8FF41A00121A43 /* ResponsePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsePage.swift; sourceTree = "<group>"; };
-		49CE964C1F8FF41A00121A43 /* QuizSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizSubmission.swift; sourceTree = "<group>"; };
-		49CE964D1F8FF41A00121A43 /* Takeability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Takeability.swift; sourceTree = "<group>"; };
-		49CE964E1F8FF41A00121A43 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		49CE96501F8FF41A00121A43 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
-		49CE96511F8FF41A00121A43 /* Quiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
-		49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+QuizKit.swift"; sourceTree = "<group>"; };
 		49CE96AE1F8FF94B00121A43 /* CanvasWebView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CanvasWebView.html; sourceTree = "<group>"; };
 		49CE96AF1F8FF94B00121A43 /* CanvasWebViewHTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasWebViewHTML.swift; sourceTree = "<group>"; };
 		58595B2045EC1806A88292D9 /* NativeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeUtils.m; sourceTree = "<group>"; };
@@ -449,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				B1F4E8CD206188DC0056074A /* RCE */,
-				3BBEAA47204726E4004D334C /* Page View Analytics */,
 				49301FF41F901CA0006BD777 /* Annotations */,
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
@@ -461,11 +392,9 @@
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
-				49CE95EF1F8FF3C800121A43 /* Quizzes */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 				4930205E1F902413006BD777 /* Session */,
 				493020261F9022FB006BD777 /* Utilities */,
-				4961F5621F8FB1810093EC86 /* Views */,
 				4961F5211F8FACD50093EC86 /* WhizzyWig */,
 			);
 			path = CanvasCore;
@@ -483,15 +412,6 @@
 				B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3BBEAA47204726E4004D334C /* Page View Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */,
-				3B158CAB22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift */,
-			);
-			path = "Page View Analytics";
 			sourceTree = "<group>";
 		};
 		46CE7459FE1EBD655A3B2214 /* Pods */ = {
@@ -547,18 +467,12 @@
 		493020261F9022FB006BD777 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				493020391F902362006BD777 /* Array+SoLazy.swift */,
-				493020381F902362006BD777 /* GCD+SoLazy.swift */,
 				4930203A1F902362006BD777 /* Marshal+SoLazy.swift */,
-				493020431F902364006BD777 /* NSData+SoLazy.swift */,
 				493020421F902364006BD777 /* NSError+SoLazy.swift */,
 				4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */,
 				4930203D1F902363006BD777 /* RAC+SoLazy.swift */,
 				4930202E1F902361006BD777 /* ReactiveExtensions */,
-				493020361F902361006BD777 /* String+SoLazy.swift */,
 				4930203E1F902363006BD777 /* Temporal.swift */,
-				4930203F1F902363006BD777 /* Tuple+SoLazy.swift */,
-				493020401F902363006BD777 /* UIFont+SoLazy.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -661,6 +575,7 @@
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
 				B1C317002463371300CA368C /* NativeUserDefaults.swift */,
 				B1C316FE2463348700CA368C /* NativeUserDefaults.m */,
+				3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */,
 				494AE0931F843A02001A8F31 /* PushNotifications.h */,
 				494AE0941F843A03001A8F31 /* PushNotifications.m */,
 				9FBD22DB2264D001007E48E6 /* QLPreviewManager.h */,
@@ -704,44 +619,6 @@
 			path = WhizzyWig;
 			sourceTree = "<group>";
 		};
-		4961F5621F8FB1810093EC86 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5821F8FB2130093EC86 /* Branding */,
-				4961F5761F8FB2110093EC86 /* So Colorful */,
-				4961F58B1F8FB2140093EC86 /* SplitViewController.swift */,
-				4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		4961F5761F8FB2110093EC86 /* So Colorful */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5771F8FB2110093EC86 /* UIColor+Hex.swift */,
-				4961F5781F8FB2110093EC86 /* UIColor+LightenUpOkay.swift */,
-				4961F5791F8FB2110093EC86 /* UIColor+RGB.swift */,
-				4961F57A1F8FB2110093EC86 /* UIColor+ShadesOfGray.swift */,
-			);
-			path = "So Colorful";
-			sourceTree = "<group>";
-		};
-		4961F57D1F8FB2120093EC86 /* UIKit+SoPretty */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5801F8FB2120093EC86 /* HairlineView.swift */,
-			);
-			path = "UIKit+SoPretty";
-			sourceTree = "<group>";
-		};
-		4961F5821F8FB2130093EC86 /* Branding */ = {
-			isa = PBXGroup;
-			children = (
-				4961F5831F8FB2130093EC86 /* Brand.swift */,
-			);
-			path = Branding;
-			sourceTree = "<group>";
-		};
 		4961F5EF1F8FB6160093EC86 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,89 +656,6 @@
 				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		49CE95EF1F8FF3C800121A43 /* Quizzes */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96471F8FF41A00121A43 /* Legacy */,
-				49CE964B1F8FF41A00121A43 /* Model */,
-				49CE95F31F8FF41900121A43 /* Quiz Details */,
-				49CE95F01F8FF41900121A43 /* Quizzes.xcassets */,
-				49CE961A1F8FF41A00121A43 /* Taking a Quiz */,
-				49CE96531F8FF41A00121A43 /* Utils */,
-			);
-			path = Quizzes;
-			sourceTree = "<group>";
-		};
-		49CE95F31F8FF41900121A43 /* Quiz Details */ = {
-			isa = PBXGroup;
-			children = (
-				49CE95F91F8FF41900121A43 /* QuizIntroFooterView.swift */,
-				49CE96021F8FF41900121A43 /* QuizIntroViewController.swift */,
-				49CE96091F8FF41A00121A43 /* QuizDetailCell.swift */,
-				49CE960A1F8FF41A00121A43 /* QuizDetailsViewController.swift */,
-				49CE96101F8FF41A00121A43 /* Controllers */,
-				49CE96151F8FF41A00121A43 /* Services */,
-				49CE96181F8FF41A00121A43 /* QuizDetailCell.xib */,
-			);
-			path = "Quiz Details";
-			sourceTree = "<group>";
-		};
-		49CE96101F8FF41A00121A43 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96111F8FF41A00121A43 /* QuizTakeabilityController.swift */,
-				49CE96121F8FF41A00121A43 /* QuizController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		49CE96151F8FF41A00121A43 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96161F8FF41A00121A43 /* CanvasQuizService.swift */,
-				49CE96431F8FF41A00121A43 /* CanvasTimedQuizSubmissionService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		49CE961A1F8FF41A00121A43 /* Taking a Quiz */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96241F8FF41A00121A43 /* NonNativeQuizTakingViewController.swift */,
-			);
-			path = "Taking a Quiz";
-			sourceTree = "<group>";
-		};
-		49CE96471F8FF41A00121A43 /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96481F8FF41A00121A43 /* JSONDecodable.swift */,
-				49CE96491F8FF41A00121A43 /* CanvasRequest.swift */,
-				49CE964A1F8FF41A00121A43 /* ResponsePage.swift */,
-			);
-			path = Legacy;
-			sourceTree = "<group>";
-		};
-		49CE964B1F8FF41A00121A43 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				49CE964C1F8FF41A00121A43 /* QuizSubmission.swift */,
-				49CE964D1F8FF41A00121A43 /* Takeability.swift */,
-				49CE964E1F8FF41A00121A43 /* Question.swift */,
-				49CE96501F8FF41A00121A43 /* Answer.swift */,
-				49CE96511F8FF41A00121A43 /* Quiz.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		49CE96531F8FF41A00121A43 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				49CE96541F8FF41A00121A43 /* NSError+QuizKit.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		B1F4E8CD206188DC0056074A /* RCE */ = {
@@ -1011,8 +805,6 @@
 				B1F4E8CF206189010056074A /* video-preview.png in Resources */,
 				49CE96BA1F8FF94B00121A43 /* CanvasWebView.html in Resources */,
 				4961F5411F8FAD9A0093EC86 /* WhizzyWigTemplate.html in Resources */,
-				49CE96671F8FF41B00121A43 /* QuizDetailCell.xib in Resources */,
-				49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,20 +836,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4961F5A91F8FB2A90093EC86 /* HairlineView.swift in Sources */,
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */,
 				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
-				4961F5A11F8FB29B0093EC86 /* SplitViewController.swift in Sources */,
 				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
-				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
 				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
-				49CE96911F8FF41B00121A43 /* ResponsePage.swift in Sources */,
 				7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
 				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
@@ -1066,24 +854,18 @@
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
 				4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
-				49CE965F1F8FF41B00121A43 /* QuizDetailsViewController.swift in Sources */,
-				4961F5A01F8FB2970093EC86 /* UIColor+ShadesOfGray.swift in Sources */,
-				493020501F902364006BD777 /* String+SoLazy.swift in Sources */,
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
-				4930205A1F902364006BD777 /* UIFont+SoLazy.swift in Sources */,
 				490F91F11FB0F94A00A7DA38 /* CanvasWebViewController.swift in Sources */,
 				B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
-				49CE96621F8FF41B00121A43 /* QuizTakeabilityController.swift in Sources */,
 				493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */,
 				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
 				493020731F902462006BD777 /* Session+NSURLRequest.swift in Sources */,
-				4930205D1F902364006BD777 /* NSData+SoLazy.swift in Sources */,
 				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
 				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
@@ -1099,62 +881,45 @@
 				B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */,
 				493020791F902462006BD777 /* Context.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
-				49CE968F1F8FF41B00121A43 /* JSONDecodable.swift in Sources */,
-				49CE96901F8FF41B00121A43 /* CanvasRequest.swift in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
 				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
 				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
-				49CE96651F8FF41B00121A43 /* CanvasQuizService.swift in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
-				49CE965E1F8FF41B00121A43 /* QuizDetailCell.swift in Sources */,
-				4961F59F1F8FB2970093EC86 /* UIColor+RGB.swift in Sources */,
 				4930204A1F902364006BD777 /* Uncollect.swift in Sources */,
 				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
-				49CE96941F8FF41B00121A43 /* Question.swift in Sources */,
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */,
-				49CE96961F8FF41B00121A43 /* Answer.swift in Sources */,
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
 				4930204B1F902364006BD777 /* Concat.swift in Sources */,
 				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
-				49CE965A1F8FF41B00121A43 /* QuizIntroFooterView.swift in Sources */,
 				493020701F902462006BD777 /* HTTPHeaders.swift in Sources */,
 				493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */,
 				497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */,
-				49CE96631F8FF41B00121A43 /* QuizController.swift in Sources */,
 				493020781F902462006BD777 /* SessionUser.swift in Sources */,
 				4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */,
 				493020581F902364006BD777 /* Temporal.swift in Sources */,
-				49CE965C1F8FF41B00121A43 /* QuizIntroViewController.swift in Sources */,
 				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
 				493020741F902462006BD777 /* NSURLSession+ThreeLegit.swift in Sources */,
-				493020531F902364006BD777 /* Array+SoLazy.swift in Sources */,
 				493020121F901CF5006BD777 /* CanvasCommentsViewController.swift in Sources */,
 				493020721F902462006BD777 /* Session+RejectNilParameters.swift in Sources */,
 				4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */,
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */,
-				49CE96971F8FF41B00121A43 /* Quiz.swift in Sources */,
-				3B158CAC22E14B900039A568 /* PageViewEventLoggerLegacySupportProtocol.swift in Sources */,
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
 				4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */,
 				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,
-				49CE96921F8FF41B00121A43 /* QuizSubmission.swift in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
-				4961F59E1F8FB2970093EC86 /* UIColor+LightenUpOkay.swift in Sources */,
 				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
 				493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */,
 				4961F5401F8FAD9A0093EC86 /* WhizzyWigTableViewCell.swift in Sources */,
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
-				4961F59D1F8FB2970093EC86 /* UIColor+Hex.swift in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */,
-				493020521F902364006BD777 /* GCD+SoLazy.swift in Sources */,
 				4930204D1F902364006BD777 /* Errors.swift in Sources */,
 				493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */,
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
@@ -1166,15 +931,10 @@
 				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,
 				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
 				2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */,
-				49CE96701F8FF41B00121A43 /* NonNativeQuizTakingViewController.swift in Sources */,
-				49CE96931F8FF41B00121A43 /* Takeability.swift in Sources */,
-				4961F58C1F8FB21F0093EC86 /* Brand.swift in Sources */,
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
-				49CE96991F8FF41B00121A43 /* NSError+QuizKit.swift in Sources */,
 				9FBD22DA2264CC9A007E48E6 /* QLPreviewManager.m in Sources */,
 				2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */,
 				493020161F901CF5006BD777 /* CanvadocsAnnotationProvider.swift in Sources */,
-				493020591F902364006BD777 /* Tuple+SoLazy.swift in Sources */,
 				585959D0165156B27BB92716 /* NativeUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

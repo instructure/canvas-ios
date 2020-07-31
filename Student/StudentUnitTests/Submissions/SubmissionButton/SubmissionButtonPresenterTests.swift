@@ -181,7 +181,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssert(router.calls.isEmpty)
         a.quizID = "1"
         presenter.submitType(.online_quiz, for: a, button: UIView())
-        XCTAssert(router.lastRoutedTo("/courses/1/quizzes/1/take"))
+        XCTAssert(router.presented is QuizWebViewController)
     }
 
     func testSubmitTypeUpload() {

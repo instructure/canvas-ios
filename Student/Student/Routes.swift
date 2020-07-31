@@ -282,7 +282,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/quizzes/:quizID": { url, params, _ in
         guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        guard let session = Session.current else { return nil }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
                 courseID: courseID,
@@ -291,12 +290,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
                 url: url
             )
         }
-        return QuizIntroViewController(session: session, courseID: courseID, quizID: quizID)
-    },
-
-    "/courses/:courseID/quizzes/:quizID/take": { _, params, _ in
-        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-        return QuizIntroViewController.takeController(contextID: .course(courseID), quizID: quizID)
+        return QuizDetailsViewController.create(courseID: courseID, quizID: quizID)
     },
 
     // No native support, fall back to web
