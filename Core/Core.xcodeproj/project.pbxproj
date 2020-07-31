@@ -791,6 +791,7 @@
 		E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */; };
 		E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
+		E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */; };
 		E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */; };
 		E890AF3024CF5C28000401FB /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E890AF2F24CF5C28000401FB /* CourseListView.swift */; };
@@ -1820,6 +1821,7 @@
 		E81ACBA423D9F469007AFDC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
+		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
 		E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
@@ -1855,6 +1857,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */,
 				EFDD68BFDD537830A59DAC8D /* Pods_needs_pspdfkit_Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2191,6 +2194,7 @@
 		3B47228F213798CA00BF6FF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */,
 				E81918FF2303495D0039616A /* TestsFoundation.framework */,
 				E81918FC230349400039616A /* XCTest.framework */,
 				3B0CEB762150408A00D07CFA /* TestsFoundation.framework */,
