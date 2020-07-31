@@ -85,7 +85,7 @@ class SubmissionButtonTests: CoreUITestCase {
         mockData(GetQuizRequest(courseID: course.id.value, quizID: quiz.id.value), value: quiz)
         let submission = APIQuizSubmission.make(quiz_id: quiz.id)
         mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: quiz.id.value), value: .init(quiz_submissions: [submission]))
-        mockData(GetWebSessionRequest(to: URL(string: "/courses/1/quizzes/\(quiz.id)?platform=ios")))
+        mockData(GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/courses/1/quizzes/\(quiz.id)?force_user=1&persist_headless=1&platform=ios")))
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")

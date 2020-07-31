@@ -18,8 +18,8 @@
 
 import XCTest
 
-public enum QuizElement: String, ElementWrapper {
-    case takeButton, timer
+public enum QuizDetails: String, ElementWrapper {
+    case takeButton
 
     public static var submitButton: Element {
         return app.buttons.matching(label: "Submit").firstElement

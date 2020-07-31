@@ -57,10 +57,12 @@ public final class QuizSubmission: NSManagedObject {
         model.workflowState = item.workflow_state
         return model
     }
+
+    public var canResume: Bool {
+        return startedAt != nil && finishedAt == nil && endAt ?? .distantFuture > Clock.now
+    }
 }
 
-extension QuizSubmission {
-    public var canResume: Bool {
-        return startedAt != nil && finishedAt == nil && endAt ?? Date.distantFuture > Date()
-    }
+public enum QuizSubmissionWorkflowState: String, Codable {
+    case untaken, pending_review, complete, settings_only, preview
 }

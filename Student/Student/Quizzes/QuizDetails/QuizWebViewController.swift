@@ -20,25 +20,18 @@ import UIKit
 import WebKit
 import Core
 
-class NonNativeQuizTakingViewController: UIViewController {
-    let session: Session
-    let contextID: Context
-    let quizID: String
-    let url: URL
+class QuizWebViewController: UIViewController {
+    var courseID = ""
+    var quizID = ""
 
     let env = AppEnvironment.shared
-    private let webView = CoreWebView()
+    let webView = CoreWebView()
 
-    init(session: Session, contextID: Context, quizID: String, url: URL) {
-        self.session = session
-        self.contextID = contextID
-        self.quizID = quizID
-        self.url = url
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    static func create(courseID: String, quizID: String) -> QuizWebViewController {
+        let controller = QuizWebViewController()
+        controller.courseID = courseID
+        controller.quizID = quizID
+        return controller
     }
 
     override func loadView() {
@@ -51,60 +44,67 @@ class NonNativeQuizTakingViewController: UIViewController {
         webView.linkDelegate = self
         webView.uiDelegate = self
 
+        title = NSLocalizedString("Take Quiz", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: NSLocalizedString("Exit", bundle: .core, comment: "Exit button to leave the quiz"),
-            style: .plain, target: self, action: #selector(exitQuiz(_:))
+            title: NSLocalizedString("Exit", comment: "Exit button to leave the quiz"),
+            style: .plain, target: self, action: #selector(exitQuiz)
         )
 
-        let url = self.url.appendingQueryItems(URLQueryItem(name: "platform", value: "ios"))
+        let url = env.api.baseURL
+            .appendingPathComponent("courses/\(courseID)/quizzes/\(quizID)")
+            .appendingQueryItems(
+                URLQueryItem(name: "force_user", value: "1"),
+                URLQueryItem(name: "persist_headless", value: "1"),
+                URLQueryItem(name: "platform", value: "ios")
+            )
         env.api.makeRequest(GetWebSessionRequest(to: url)) { [weak self] response, _, _ in
             performUIUpdate { self?.webView.load(URLRequest(url: response?.session_url ?? url)) }
         }
     }
 
-    @objc func exitQuiz(_ button: UIBarButtonItem?) {
+    @objc func exitQuiz() {
         if webView.url?.path.contains("/take") == true {
-            let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", bundle: .core, comment: "Question to confirm user wants to navigate away from a quiz.")
-            let stay = NSLocalizedString("Stay", bundle: .core, comment: "Stay on the quiz view")
-            let leave = NSLocalizedString("Leave", bundle: .core, comment: "Leave the quiz")
-            
+            let areYouSure = NSLocalizedString("Are you sure you want to leave this quiz?", comment: "")
+            let stay = NSLocalizedString("Stay", comment: "Stay on the quiz view")
+            let leave = NSLocalizedString("Leave", comment: "Leave the quiz")
+
             let alert = UIAlertController(title: nil, message: areYouSure, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: stay, style: .cancel))
-            alert.addAction(UIAlertAction(title: leave, style: .default) { _ in
-                self.refreshCoreQuiz()
+            alert.addAction(AlertAction(stay, style: .cancel))
+            alert.addAction(AlertAction(leave, style: .default) { _ in
+                self.refreshQuiz()
                 self.env.router.dismiss(self)
             })
             env.router.show(alert, from: self, options: .modal())
         } else {
-            refreshCoreQuiz()
+            refreshQuiz()
             env.router.dismiss(self)
         }
     }
 
-    func refreshCoreQuiz() {
+    func refreshQuiz() {
         NotificationCenter.default.post(name: .quizRefresh, object: nil, userInfo: [
             "quizID": quizID,
         ])
     }
 }
 
-extension NonNativeQuizTakingViewController: WKUIDelegate {
+extension QuizWebViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
             completionHandler(false)
         })
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
             completionHandler(true)
         })
         env.router.show(alert, from: self, options: .modal())
     }
 }
 
-extension NonNativeQuizTakingViewController: CoreWebViewLinkDelegate {
+extension QuizWebViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         if let take = env.currentSession?.baseURL
-            .appendingPathComponent("\(contextID.pathComponent)/quizzes/\(quizID)/take"),
+            .appendingPathComponent("courses/\(courseID)/quizzes/\(quizID)/take"),
             url.absoluteString.hasPrefix(take.absoluteString) {
             return false
         }

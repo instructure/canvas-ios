@@ -100,10 +100,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                DispatchQueue.main.async {
-                    Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
-                    NativeLoginManager.login(as: session)
-                }
+                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
             }
         }
         Analytics.shared.logSession(session)

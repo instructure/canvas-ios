@@ -22,31 +22,28 @@ import XCTest
 
 class QuizzesE2ETests: CoreUITestCase {
     func testQuizQuestionsNoMoreNativeView() throws {
-        try XCTSkipIf(true, "Broke unnoticed at some point")
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Quiz One").tap()
-        QuizElement.takeButton.tapUntil {
-            app.find(label: "Instructions").exists
+        QuizDetails.takeButton.tapUntil {
+            app.find(label: "Attempt History").exists
         }
         app.find(label: "This is the first quiz.").waitToExist()
     }
 
     func testQuizQuestionsOpenInWebView() throws {
-        try XCTSkipIf(true, "Broke unnoticed at some point")
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.quizzes.tap()
 
         app.find(labelContaining: "Web Quiz").tap()
-        QuizElement.takeButton.tapUntil {
-            app.find(label: "Instructions").exists
+        QuizDetails.takeButton.tapUntil {
+            app.find(label: "No due date").exists
         }
         app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 
     func testQuizzesShowEmptyState() throws {
-        try XCTSkipIf(true, "Broke unnoticed at some point")
         Dashboard.courseCard(id: "262").tap()
         CourseNavigation.announcements.waitToExist()
         CourseNavigation.quizzes.waitToVanish()

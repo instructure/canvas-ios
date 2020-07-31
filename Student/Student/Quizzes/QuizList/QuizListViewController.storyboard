@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,32 +19,103 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RK6-jg-XnT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="gk8-WY-rZ1">
-                                    <rect key="frame" x="0.0" y="138" width="375" height="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="XRZ-oN-are" customClass="ListBackgroundView" customModule="Core">
+                                    <rect key="frame" x="0.0" y="150" width="375" height="272.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHP-Vu-xTn" customClass="CircleProgressView" customModule="Core">
+                                            <rect key="frame" x="167.5" y="116.5" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="rZh-Ed-0Ma"/>
+                                                <constraint firstAttribute="height" constant="40" id="vd0-u7-NLZ"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5i3-HJ-b2P">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="272.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaSpace" translatesAutoresizingMaskIntoConstraints="NO" id="NUN-A6-PMf" customClass="IconView" customModule="Core" customModuleProvider="target">
+                                                    <rect key="frame" x="77.5" y="0.0" width="220" height="170"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="PandaSpace"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Quizzes" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRd-jH-a7T" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="202" width="311" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold20"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It looks like quizzes haven’t been created in this space yet." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOP-Kj-y6G" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="32" y="234" width="311" height="38.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NUN-A6-PMf" firstAttribute="centerX" secondItem="5i3-HJ-b2P" secondAttribute="centerX" id="21y-Sz-ec5"/>
+                                                <constraint firstItem="BRd-jH-a7T" firstAttribute="leading" secondItem="5i3-HJ-b2P" secondAttribute="leading" constant="32" id="AkZ-Ir-xH5"/>
+                                                <constraint firstAttribute="bottom" secondItem="iOP-Kj-y6G" secondAttribute="bottom" id="IOb-sd-WoO"/>
+                                                <constraint firstItem="BRd-jH-a7T" firstAttribute="top" secondItem="NUN-A6-PMf" secondAttribute="bottom" constant="32" id="QQV-NL-2XH"/>
+                                                <constraint firstItem="iOP-Kj-y6G" firstAttribute="top" secondItem="BRd-jH-a7T" secondAttribute="bottom" constant="8" id="TOW-SU-S6h"/>
+                                                <constraint firstItem="NUN-A6-PMf" firstAttribute="top" secondItem="5i3-HJ-b2P" secondAttribute="top" id="aVt-3t-cJl"/>
+                                                <constraint firstItem="iOP-Kj-y6G" firstAttribute="leading" secondItem="5i3-HJ-b2P" secondAttribute="leading" constant="32" id="oKE-Ej-Ruk"/>
+                                                <constraint firstAttribute="trailing" secondItem="iOP-Kj-y6G" secondAttribute="trailing" constant="32" id="r4o-D6-eur"/>
+                                                <constraint firstAttribute="trailing" secondItem="BRd-jH-a7T" secondAttribute="trailing" constant="32" id="rYU-h7-pPV"/>
+                                            </constraints>
+                                        </view>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iDI-Fp-iBP" customClass="ListErrorView" customModule="Core">
+                                            <rect key="frame" x="0.0" y="39" width="375" height="195"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="195" placeholder="YES" id="3IQ-fH-ylZ"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uHP-Vu-xTn" firstAttribute="centerY" secondItem="XRZ-oN-are" secondAttribute="centerY" id="0su-kt-uyx"/>
+                                        <constraint firstItem="uHP-Vu-xTn" firstAttribute="centerX" secondItem="XRZ-oN-are" secondAttribute="centerX" id="Bkd-qQ-Tz2"/>
+                                        <constraint firstItem="iDI-Fp-iBP" firstAttribute="leading" secondItem="XRZ-oN-are" secondAttribute="leading" id="DNd-Ic-af1"/>
+                                        <constraint firstItem="iDI-Fp-iBP" firstAttribute="centerY" secondItem="XRZ-oN-are" secondAttribute="centerY" priority="250" id="Lci-cW-TMX"/>
+                                        <constraint firstAttribute="trailing" secondItem="iDI-Fp-iBP" secondAttribute="trailing" id="PyL-wC-ho1"/>
+                                        <constraint firstItem="iDI-Fp-iBP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XRZ-oN-are" secondAttribute="top" id="Sk4-DV-Gpq"/>
+                                        <constraint firstItem="5i3-HJ-b2P" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XRZ-oN-are" secondAttribute="top" id="haT-XG-hux"/>
+                                        <constraint firstItem="5i3-HJ-b2P" firstAttribute="leading" secondItem="XRZ-oN-are" secondAttribute="leading" id="hoH-Fr-36i"/>
+                                        <constraint firstAttribute="trailing" secondItem="5i3-HJ-b2P" secondAttribute="trailing" id="nf6-Na-Z8S"/>
+                                        <constraint firstItem="5i3-HJ-b2P" firstAttribute="centerY" secondItem="XRZ-oN-are" secondAttribute="centerY" priority="250" id="yfR-U4-zCX"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QuizListCell" rowHeight="82" id="dWK-P7-acP" customClass="QuizListCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="82"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="QuizListCell" id="dWK-P7-acP" customClass="QuizListCell" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dWK-P7-acP" id="5W1-KN-Uta">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AkV-vg-YJy" userLabel="iconImageView">
-                                                    <rect key="frame" x="16" y="12" width="24" height="24"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AkV-vg-YJy" userLabel="iconImageView" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="2Cd-xH-QBq"/>
                                                         <constraint firstAttribute="height" constant="24" id="Uxt-a6-qLy"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="quizLine"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JdI-W3-Z1b">
-                                                    <rect key="frame" x="56" y="16" width="293" height="50"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="JdI-W3-Z1b">
+                                                    <rect key="frame" x="56" y="16" width="293" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoC-Dp-8AX" userLabel="titleLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="84.5" height="12.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="82.5" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.1764705882352941" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
@@ -53,20 +124,20 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUb-Hp-M8r">
-                                                            <rect key="frame" x="0.0" y="12.5" width="210.5" height="17"/>
+                                                            <rect key="frame" x="0.0" y="24" width="215" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpP-0e-BbY" userLabel="statusLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="17"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="46" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zim-hH-cAf" userLabel="statusDot" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="45" y="0.0" width="16.5" height="17"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="16.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -76,32 +147,32 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aug 2, 2018 at 1:57 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3D8-Qy-LXr" userLabel="dateLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="61.5" y="0.0" width="149" height="17"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="62.5" y="0.0" width="152.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBl-nw-hUx">
-                                                            <rect key="frame" x="0.0" y="29.5" width="173.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="45" width="152.5" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-gp-sFi" userLabel="pointsLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="49.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="  •  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J33-jM-YV4" userLabel="pointsDot" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="57" y="0.0" width="16.5" height="20.5"/>
+                                                                    <rect key="frame" x="49.5" y="0.0" width="16.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                     <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -111,12 +182,12 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0o-jz-H6g" userLabel="questionsLabel" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                                    <rect key="frame" x="73.5" y="0.0" width="100" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <rect key="frame" x="66" y="0.0" width="86.5" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                     <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium14"/>
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
@@ -127,10 +198,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="JdI-W3-Z1b" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="16" id="5F0-Zw-soi"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="AkV-vg-YJy" secondAttribute="bottom" constant="12" id="UeY-gV-8Xt"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="AkV-vg-YJy" secondAttribute="bottom" constant="16" id="UeY-gV-8Xt"/>
                                                 <constraint firstAttribute="trailing" secondItem="JdI-W3-Z1b" secondAttribute="trailing" id="ZnO-kc-X4d"/>
                                                 <constraint firstItem="AkV-vg-YJy" firstAttribute="leading" secondItem="5W1-KN-Uta" secondAttribute="leading" constant="16" id="k1q-B3-qt5"/>
-                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="12" id="n05-4c-I6u"/>
+                                                <constraint firstItem="AkV-vg-YJy" firstAttribute="top" secondItem="5W1-KN-Uta" secondAttribute="top" constant="16" id="n05-4c-I6u"/>
                                                 <constraint firstItem="JdI-W3-Z1b" firstAttribute="leading" secondItem="AkV-vg-YJy" secondAttribute="trailing" constant="16" id="t1d-8G-eer"/>
                                                 <constraint firstAttribute="bottom" secondItem="JdI-W3-Z1b" secondAttribute="bottom" constant="16" id="wtk-rN-DQw"/>
                                             </constraints>
@@ -140,7 +211,6 @@
                                         <connections>
                                             <outlet property="dateLabel" destination="3D8-Qy-LXr" id="PwE-o6-Cl1"/>
                                             <outlet property="iconImageView" destination="AkV-vg-YJy" id="Glm-Bm-SCg"/>
-                                            <outlet property="pointsDot" destination="J33-jM-YV4" id="1C6-a5-yaL"/>
                                             <outlet property="pointsLabel" destination="RdQ-gp-sFi" id="GnO-rf-bZb"/>
                                             <outlet property="questionsLabel" destination="k0o-jz-H6g" id="41X-tW-KuG"/>
                                             <outlet property="statusDot" destination="Zim-hH-cAf" id="MEs-Lv-chy"/>
@@ -154,44 +224,24 @@
                                     <outlet property="delegate" destination="ZFT-tI-d6M" id="g5T-uy-5Ld"/>
                                 </connections>
                             </tableView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="There are no quizzes to display." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-yk-vgB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                <rect key="frame" x="67" y="277" width="241" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNN-OW-jn5" customClass="CircleProgressView" customModule="Core">
-                                <rect key="frame" x="167.5" y="267" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="80N-EI-HH9"/>
-                                    <constraint firstAttribute="height" constant="40" id="kMk-G1-EkU"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vNN-OW-jn5" firstAttribute="centerX" secondItem="dUR-A2-chg" secondAttribute="centerX" id="2sm-LE-GRf"/>
-                            <constraint firstItem="gMV-QL-l2d" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WIe-yk-vgB" secondAttribute="trailing" constant="16" id="3NW-nn-bDb"/>
-                            <constraint firstItem="vNN-OW-jn5" firstAttribute="centerY" secondItem="dUR-A2-chg" secondAttribute="centerY" id="8bM-aa-rrl"/>
-                            <constraint firstItem="WIe-yk-vgB" firstAttribute="centerY" secondItem="dUR-A2-chg" secondAttribute="centerY" id="SX5-ze-Wxs"/>
                             <constraint firstItem="gMV-QL-l2d" firstAttribute="bottom" secondItem="RK6-jg-XnT" secondAttribute="bottom" id="W6P-oW-H9S"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="trailing" secondItem="gMV-QL-l2d" secondAttribute="trailing" id="gGz-wr-jgb"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="leading" secondItem="gMV-QL-l2d" secondAttribute="leading" id="lSo-2D-NtI"/>
-                            <constraint firstItem="WIe-yk-vgB" firstAttribute="centerX" secondItem="dUR-A2-chg" secondAttribute="centerX" id="pZo-p3-uiB"/>
                             <constraint firstItem="RK6-jg-XnT" firstAttribute="top" secondItem="dUR-A2-chg" secondAttribute="top" id="qCZ-IV-gdD"/>
-                            <constraint firstItem="WIe-yk-vgB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gMV-QL-l2d" secondAttribute="leading" constant="16" id="tTQ-0L-68q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gMV-QL-l2d"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="emptyLabel" destination="WIe-yk-vgB" id="zxt-Mt-vre"/>
-                        <outlet property="loadingView" destination="vNN-OW-jn5" id="hMf-jJ-FJ7"/>
+                        <outlet property="emptyMessageLabel" destination="iOP-Kj-y6G" id="fy2-Ku-VTk"/>
+                        <outlet property="emptyTitleLabel" destination="BRd-jH-a7T" id="xXW-3F-YLi"/>
+                        <outlet property="emptyView" destination="5i3-HJ-b2P" id="2vo-g8-e0f"/>
+                        <outlet property="errorView" destination="iDI-Fp-iBP" id="aUb-Je-PKf"/>
+                        <outlet property="loadingView" destination="uHP-Vu-xTn" id="GTv-86-e1E"/>
                         <outlet property="tableView" destination="RK6-jg-XnT" id="qFx-Fs-2hP"/>
                     </connections>
                 </viewController>
@@ -200,4 +250,7 @@
             <point key="canvasLocation" x="138" y="127"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PandaSpace" width="220" height="170"/>
+    </resources>
 </document>

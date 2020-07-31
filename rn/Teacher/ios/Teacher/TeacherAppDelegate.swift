@@ -87,7 +87,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 return
             }
             GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                Brand.setCurrent(Brand(core: Core.Brand.shared), applyInWindow: self.window)
                 NativeLoginManager.login(as: session)
             }
         }
