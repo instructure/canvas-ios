@@ -71,7 +71,7 @@ class RoutesTests: XCTestCase {
         }
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
         if #available(iOS 13.0, *) {
-            XCTAssert(router.match("/courses") is UIHostingController<CourseListView>)
+            XCTAssert(router.match("/courses") is HostingController<CourseListView>)
         } else {
             XCTAssert(router.match("/courses") is HelmViewController)
         }

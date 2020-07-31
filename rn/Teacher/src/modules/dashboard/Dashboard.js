@@ -62,7 +62,7 @@ import { logEvent } from '../../common/CanvasAnalytics'
 
 const {
   UserDefaults,
-  NativeNotificationCenter
+  NativeNotificationCenter,
 } = NativeModules
 NativeNotificationCenter.addObserver('course-favorite-change')
 

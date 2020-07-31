@@ -24,12 +24,12 @@ import Combine
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
-    @Environment(\.viewController) var controller: UIViewController?
+    @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
     @State var filter: String = ""
 
     func configureAppearance() {
-        guard let controller = controller else { return }
+        guard let controller = controller() else { return }
         UITableView.appearance(whenContainedInInstancesOf: [type(of: controller)]).backgroundColor = .white
     }
 
@@ -85,7 +85,7 @@ public struct CourseListView: View {
             Section(header: header) {
                 ForEach(courses, id: \.self) { course in
                     Cell(course: course) {
-                        guard let controller = controller else { return }
+                        guard let controller = controller() else { return }
                         env.router.route(to: "/courses/\(course.id)", from: controller)
                     }
                     .listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
@@ -114,17 +114,15 @@ public struct CourseListView: View {
 
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
-                VStack {
-                    if pending {
-                        Image.icon(.star, .solid).foregroundColor(.named(.ash))
-                    } else if course.isFavorite {
-                        Image.icon(.star, .solid).foregroundColor(.named(.electric))
-                    } else {
-                        Image.icon(.star, .line).foregroundColor(.named(.ash))
-                    }
-                    Spacer()
-                }.buttonStyle(PlainButtonStyle())
-            }
+                if pending {
+                    Image.icon(.star, .solid).foregroundColor(.named(.ash))
+                } else if course.isFavorite {
+                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                } else {
+                    Image.icon(.star, .line).foregroundColor(.named(.ash))
+                }
+            }.frame(maxHeight: .infinity, alignment: .top)
+            .buttonStyle(PlainButtonStyle())
         }
 
         var label: some View {

@@ -22,8 +22,8 @@ private struct IsTeacherKey: EnvironmentKey {
     static var defaultValue: Bool { Bundle.main.isTeacherApp }
 }
 
-private struct ViewControllerKey: EnvironmentKey {
-    static var defaultValue: UIViewController? { nil }
+private class ViewControllerKey: EnvironmentKey {
+    static var defaultValue: () -> UIViewController? = { nil }
 }
 
 @available(iOSApplicationExtension 13.0, *)
@@ -36,7 +36,7 @@ extension EnvironmentValues {
         get { self[AppEnvironment.self] }
         set { self[AppEnvironment.self] = newValue }
     }
-    var viewController: UIViewController? {
+    var viewController: () -> UIViewController? {
         get { self[ViewControllerKey.self] }
         set { self[ViewControllerKey.self] = newValue }
     }

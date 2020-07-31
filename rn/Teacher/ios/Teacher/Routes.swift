@@ -71,7 +71,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
 
     "/courses": {
         if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
-            return { _ in CourseListView.create().hostingController() }
+            return { _ in HostingController(rootView: CourseListView.create()) }
         } else {
             return nil
         }
