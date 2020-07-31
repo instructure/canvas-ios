@@ -99,7 +99,6 @@ abstract_target 'defaults' do
   react_native_pods
   pspdfkit
 
-  pod 'Marshal', '~> 1.2.7'
   pod 'Cartography', '~> 3.1'
 
   target 'Teacher' do

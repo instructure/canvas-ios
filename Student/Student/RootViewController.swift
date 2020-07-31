@@ -21,11 +21,11 @@ import UIKit
 import CanvasCore
 import Core
 
-func rootViewController(_ session: Session) -> UIViewController {
+func rootViewController() -> UIViewController {
     let tabs = CanvasTabBarController()
     tabs.viewControllers = [
-        dashboardTab(session: session),
-        calendarTab(session: session),
+        dashboardTab(),
+        calendarTab(),
         todoTab(),
         notificationsTab(),
     ]
@@ -40,7 +40,7 @@ func rootViewController(_ session: Session) -> UIViewController {
     return tabs
 }
 
-func dashboardTab(session: Session) -> UIViewController {
+func dashboardTab() -> UIViewController {
     let dashboardVC = HelmViewController(moduleName: "/", props: [:])
     let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
     let dashboardSplit = EnrollmentSplitViewController()
@@ -56,7 +56,7 @@ func dashboardTab(session: Session) -> UIViewController {
     return dashboardSplit
 }
 
-func calendarTab(session: Session) -> UIViewController {
+func calendarTab() -> UIViewController {
     let split = HelmSplitViewController()
     split.viewControllers = [
         UINavigationController(rootViewController: PlannerViewController.create()),

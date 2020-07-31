@@ -220,7 +220,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/modules/items/:itemID": { url, params, _ in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-        guard let session = Session.current else { return nil }
         return ModuleItemSequenceViewController.create(
             courseID: courseID,
             assetType: .moduleItem,
@@ -231,7 +230,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses/:courseID/modules/:moduleID/items/:itemID": { url, params, _ in
         guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
-        guard let session = Session.current else { return nil }
         return ModuleItemSequenceViewController.create(
             courseID: courseID,
             assetType: .moduleItem,

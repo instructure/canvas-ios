@@ -76,11 +76,6 @@ PODS:
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
-    - Folly/Default (= 2018.10.22.00)
-    - glog
-  - Folly/Default (2018.10.22.00):
-    - boost-for-react-native
-    - DoubleConversion
     - glog
   - glog (0.3.5)
   - GoogleAppMeasurement (6.3.1):
@@ -128,7 +123,6 @@ PODS:
   - Interactable (0.0.9):
     - React
   - lottie-ios (3.1.8)
-  - Marshal (1.2.7)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -420,7 +414,6 @@ DEPENDENCIES:
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - lottie-ios (~> 3.1.8)
-  - Marshal (~> 1.2.7)
   - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
   - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
@@ -477,7 +470,6 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - lottie-ios
-    - Marshal
     - nanopb
     - Nimble
     - PromisesObjC
@@ -572,7 +564,7 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
-  DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
   Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
@@ -586,15 +578,14 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
   FirebaseRemoteConfig: 47abf7a04a9082091955ea555aa79cfdd249b19c
-  Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
-  glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
+  glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   GoogleAppMeasurement: c29d405ff76e18551b5d158eaba6753fda8c7542
   GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
   GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
-  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   PactConsumerSwift: 162222e11d1edffdd1d9d16918f6db10f914dae7
@@ -632,6 +623,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 5ac7201bd6242128497c6817f819834494f3c4b6
+PODFILE CHECKSUM: 6776a4e97ed83b0605486aa4afc6cfd245007ee5
 
 COCOAPODS: 1.9.3

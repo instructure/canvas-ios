@@ -27,7 +27,6 @@ import Core
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
     lazy var window: UIWindow? = ActAsUserWindow(frame: UIScreen.main.bounds, loginDelegate: self)
-    @objc var session: Session?
 
     lazy var environment: AppEnvironment = {
         let env = AppEnvironment.shared
@@ -93,9 +92,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         environment.api.makeRequest(getProfile) { _, urlResponse, _ in
             if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
                 DispatchQueue.main.async { self.userDidLogout(session: session) }
-            }
-            if let legacySession = Session.current {
-                self.session = legacySession
             }
             PageViewEventController.instance.userDidChange()
             DispatchQueue.main.async { self.refreshNotificationTab() }
@@ -175,7 +171,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        environment.reportError((error as NSError).addingInfo())
+        environment.reportError(error)
     }
 
     func userNotificationCenter(

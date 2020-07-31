@@ -25,8 +25,8 @@ extension StudentAppDelegate: RCTBridgeDelegate {
         NativeLoginManager.shared().delegate = self
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
-            guard let session = self.session, let window = self.window else { return }
-            let controller = rootViewController(session)
+            guard let window = self.window else { return }
+            let controller = rootViewController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
