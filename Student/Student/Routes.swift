@@ -54,10 +54,11 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/conversations/:conversationID": nil,
 
     "/courses": { url, params, userInfo in
-        guard ExperimentalFeature.nativeDashboard.isEnabled else {
+        if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
+            return HostingController(rootView: CourseListView.create())
+        } else {
             return HelmViewController(moduleName: "/courses", props: makeProps(url, params: params, userInfo: userInfo))
         }
-        return CourseListViewController.create()
     },
 
     "/courses/:courseID": nil,
