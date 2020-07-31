@@ -58,7 +58,7 @@ public class LTITools: NSObject {
         moduleItemID: String? = nil
     ) {
         self.env = env
-        self.context = url.flatMap { Context(url: $0) } ?? Context.account("self")
+        self.context = context ?? url.flatMap { Context(url: $0) } ?? Context.account("self")
         self.id = id
         self.url = url
         self.launchType = launchType
