@@ -19,7 +19,14 @@
 import XCTest
 @testable import Core
 
-class LocalizationManagerTests: XCTestCase {
+class LocalizationManagerTests: CoreTestCase {
+    class Present: UIViewController {
+        var presented: UIViewController?
+        override var presentedViewController: UIViewController? {
+            return presented
+        }
+    }
+
     let appleLanguages = UserDefaults.standard.object(forKey: "AppleLanguages")
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: "InstUserLocale")
@@ -65,10 +72,28 @@ class LocalizationManagerTests: XCTestCase {
         var called = false
         LocalizationManager.localizeForApp(.shared, locale: nil) { called = true }
         XCTAssertTrue(called)
+
         called = false
+        let present = Present()
+        present.presented = UIAlertController(title: "test", message: nil, preferredStyle: .alert)
+        environment.window?.rootViewController = present
         LocalizationManager.localizeForApp(.shared, locale: "zh") { called = true }
-        XCTAssert(UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController is UIAlertController)
-        UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController?.dismiss(animated: false)
+        XCTAssertEqual(router.dismissed, present.presentedViewController)
+        XCTAssert(router.presented is UIAlertController)
+        XCTAssertFalse(called)
+
+        called = false
+        present.presented = nil
+        router.dismissed = nil
+        LocalizationManager.localizeForApp(.shared, locale: "zh") { called = true }
+        XCTAssert(router.presented is UIAlertController)
+        XCTAssertNil(router.dismissed)
+        XCTAssertFalse(called)
+
+        LocalizationManager.suspend = #selector(UIApplication.accessibilityActivate)
+        let action = ((router.presented as? UIAlertController)?.actions.first as? AlertAction)!
+        XCTAssertEqual(action.title, "Close App")
+        action.handler?(action)
         XCTAssertFalse(called)
     }
 }

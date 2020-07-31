@@ -20,6 +20,7 @@ import Foundation
 
 public class LocalizationManager {
     private static let instUserLocale = "InstUserLocale"
+    static var suspend = #selector(NSXPCConnection.suspend)
 
     private static var effectiveLocale: String? {
         return Bundle.main.preferredLocalizations.first
@@ -53,15 +54,22 @@ public class LocalizationManager {
 
     public static func localizeForApp(_ app: UIApplication, locale: String?, then: () -> Void) {
         setCurrentLocale(locale)
-        guard needsRestart else { return then() }
+        let env = AppEnvironment.shared
+        guard needsRestart, let root = env.window?.rootViewController else { return then() }
         let alert = UIAlertController(
             title: NSLocalizedString("Updated Language Settings", bundle: .core, comment: ""),
             message: NSLocalizedString("The app needs to restart to use the new language settings. Please relaunch the app.", bundle: .core, comment: ""),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close App", bundle: .core, comment: ""), style: .default) { _ in
-            UIControl().sendAction(#selector(NSXPCConnection.suspend), to: app, for: nil)
+        alert.addAction(AlertAction(NSLocalizedString("Close App", bundle: .core, comment: ""), style: .default) { _ in
+            UIControl().sendAction(suspend, to: app, for: nil)
         })
-        app.delegate?.window??.rootViewController?.present(alert, animated: true)
+        if let presented = root.presentedViewController { // QR login alert
+            env.router.dismiss(presented) {
+                env.router.show(alert, from: root, options: .modal())
+            }
+        } else {
+            env.router.show(alert, from: root, options: .modal())
+        }
     }
 }
