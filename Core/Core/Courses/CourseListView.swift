@@ -40,6 +40,7 @@ public struct CourseListView: View {
         return CourseListView(allCourses: allCourses)
     }
 
+    @ViewBuilder
     public var body: some View {
         if allCourses.isEmpty {
             empty.navigationBarTitle("All Courses")
@@ -72,9 +73,7 @@ public struct CourseListView: View {
                     enrollmentSection(Text("Past Enrollments"), courses: pastEnrollments)
                     enrollmentSection(Text("Future Enrollments"), courses: futureEnrollments)
                 }
-                .onAppear {
-                    configureAppearance()
-                }
+                .onAppear(perform: configureAppearance)
             }
         }
     }
@@ -85,8 +84,8 @@ public struct CourseListView: View {
             Section(header: header) {
                 ForEach(courses, id: \.self) { course in
                     Cell(course: course) {
-                        guard let controller = controller() else { return }
-                        env.router.route(to: "/courses/\(course.id)", from: controller)
+                        guard let controller = self.controller() else { return }
+                        self.env.router.route(to: "/courses/\(course.id)", from: controller)
                     }
                     .listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
                 }
@@ -102,7 +101,7 @@ public struct CourseListView: View {
 
         var body: some View {
             ZStack {
-                Button(action: didSelect) {}
+                Button(action: didSelect) { SwiftUI.EmptyView() }
                 HStack {
                     favoriteButton
                     label
@@ -126,15 +125,17 @@ public struct CourseListView: View {
         }
 
         var label: some View {
-            VStack(alignment: .leading) {
+            let enrollment = course.enrollments?.first
+            let term = course.termName
+            return VStack(alignment: .leading) {
                 Text(course.name ?? "").fontWeight(.semibold)
-                if let enrollment = course.enrollments?.first {
+                if enrollment != nil {
                     HStack {
-                        if let term = course.termName {
-                            Text(term)
+                        if term != nil {
+                            Text(term!)
                             Text(verbatim: "|")
                         }
-                        Text(enrollment.formattedRole ?? "")
+                        Text(enrollment!.formattedRole ?? "")
                     }.foregroundColor(.named(.ash))
                 }
             }
@@ -153,7 +154,7 @@ public struct CourseListView: View {
             guard !pending else { return }
             pending = true
             MarkFavoriteCourse(courseID: course.id, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
-                pending = false
+                self.pending = false
             }
         }
     }
