@@ -20,29 +20,39 @@ import TestsFoundation
 import SwiftUI
 import Core
 
-@available(iOS 13.0, *)
 class EnvironmentValuesExtensionsTests: CoreTestCase {
-    var env = EnvironmentValues()
+    func testAmIEvenRun() {
+        XCTFail("I live!")
+    }
+
+@available(iOS 13.0, *)
     func testIsTeacher() {
+        var env = EnvironmentValues()
         XCTAssertFalse(env.isTeacher)
         env.isTeacher = true
         XCTAssertTrue(env.isTeacher)
     }
 
+@available(iOS 13.0, *)
     func testAppEnvironment() {
+        var env = EnvironmentValues()
         XCTAssert(env.appEnvironment === AppEnvironment.shared)
         let testEnv = TestEnvironment()
         env.appEnvironment = testEnv
         XCTAssert(env.appEnvironment === testEnv)
     }
 
+@available(iOS 13.0, *)
     func testViewController() {
+        var env = EnvironmentValues()
         XCTAssertNil(env.viewController())
         env.viewController = { UIViewController() }
         XCTAssertNotNil(env.viewController())
     }
 
+@available(iOS 13.0, *)
     func testViewControllerIsWeak() {
+        var env = EnvironmentValues()
         XCTAssertNil(env.viewController())
         ({
             let viewController = UIViewController()
