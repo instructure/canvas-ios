@@ -296,7 +296,8 @@ extension CoreWebView: WKNavigationDelegate {
         guard autoresizesHeight else { return }
         let script = """
             (() => {
-                let target = document.querySelector('a[name=\"\(fragment)\"],#\(fragment)')
+                let fragment = CSS.escape(\(CoreWebView.jsString(fragment)))
+                let target = document.querySelector(`a[name=${fragment}],#${fragment}`)
                 return target && target.getBoundingClientRect().y
             })()
         """

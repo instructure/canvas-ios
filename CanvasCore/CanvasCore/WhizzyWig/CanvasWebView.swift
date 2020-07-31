@@ -176,12 +176,23 @@ public class CanvasWebView: WKWebView {
     }
     
     fileprivate func scroll(to url: URL, elseDo failBlock: @escaping () -> Void) {
-        guard let f = url.fragment, isSamePage(url) else {
+        guard let fragment = url.fragment, isSamePage(url) else {
             failBlock()
             return
         }
         
-        let scroll = "(function () { let e = document.querySelector('a[name=\"\(f)\"],#\(f)'); if (e) { e.scrollIntoView(); return true; } else { return false } })()"
+        let scroll = """
+            (() => {
+                let fragment = CSS.escape(\(CoreWebView.jsString(fragment)))
+                let target = document.querySelector(`a[name=${fragment}],#${fragment}`)
+                if (target) {
+                    target.scrollIntoView()
+                    return true
+                } else {
+                    return false
+                }
+            })()
+        """
         evaluateJavaScript(scroll) { result, error in
             let success = ((result as? NSNumber)?.boolValue == true)
                 || (result as? String == "true")

@@ -121,15 +121,6 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(results?[0], menuItems[0])
     }
 
-    class MockPDFViewController: PDFViewController {
-        var presented: UIViewController?
-
-        override func present(_ controller: UIViewController, options: [PresentationOption: Any]? = nil, animated: Bool, sender: Any?, completion: (() -> Void)? = nil) -> Bool {
-            presented = controller
-            return false
-        }
-    }
-
     class MockPDFDocument: Document {
         var added: [Annotation]?
         override func add(annotations: [Annotation], options: [AnnotationManager.ChangeBehaviorKey: Any]? = nil) -> Bool {
@@ -157,7 +148,8 @@ class DocViewerViewControllerTests: CoreTestCase {
             MenuItem(title: "", block: {}, identifier: TextMenu.annotationMenuOpacity.rawValue),
         ]
         controller.view.layoutIfNeeded()
-        let results = controller.pdf.delegate?.pdfViewController?(
+        environment.app = .teacher
+        var results = controller.pdf.delegate?.pdfViewController?(
             PDFViewController(document: Document(url: url)),
             shouldShow: menuItems,
             atSuggestedTargetRect: .zero,
@@ -166,6 +158,17 @@ class DocViewerViewControllerTests: CoreTestCase {
             on: PDFPageView(frame: .zero)
         )
         XCTAssertEqual(results, [ menuItems[0] ])
+
+        environment.app = .student
+        results = controller.pdf.delegate?.pdfViewController?(
+            PDFViewController(document: Document(url: url)),
+            shouldShow: menuItems,
+            atSuggestedTargetRect: .zero,
+            for: nil,
+            in: .zero,
+            on: PDFPageView(frame: .zero)
+        )
+        XCTAssertEqual(results, [])
     }
 
     func testShouldShowForAnnotations() {
@@ -176,7 +179,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         ]
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
-        let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
+        let viewController = PDFViewController(document: MockPDFDocument(url: url))
         let annotation = NoteAnnotation(contents: "note")
         annotation.isEditable = false
         let results = controller.pdf.delegate?.pdfViewController?(
@@ -193,7 +196,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertEqual(results?[3].identifier, TextMenu.annotationMenuRemove.rawValue)
 
         results?[0].performBlock()
-        XCTAssert(viewController.presented is UINavigationController)
+        XCTAssert(router.presented is CommentListViewController)
 
         results?[3].performBlock()
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.removed, [annotation])
@@ -207,7 +210,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         ]
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
-        let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
+        let viewController = PDFViewController(document: MockPDFDocument(url: url))
         let annotation = FreeTextAnnotation(contents: "text")
         let pageView = MockPDFPageView(frame: .zero)
         let annotationView = FreeTextAnnotationView()
@@ -235,10 +238,10 @@ class DocViewerViewControllerTests: CoreTestCase {
 
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
-        let viewController = MockPDFViewController(document: MockPDFDocument(url: url))
+        let viewController = PDFViewController(document: MockPDFDocument(url: url))
         viewController.annotationStateManager.state = .stamp
         XCTAssertTrue(controller.pdfViewController(viewController, didTapOn: PDFPageView(frame: .zero), at: .zero))
-        XCTAssert(viewController.presented is UINavigationController)
+        XCTAssert(router.presented is CommentListViewController)
         XCTAssertEqual((viewController.document as? MockPDFDocument)?.added?.count, 1)
     }
 

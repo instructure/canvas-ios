@@ -531,9 +531,8 @@ workflows:
             set -ex
 
             rm -rf scripts/coverage/citests.xcresult
-            mv ui-test-results/merged.xcresult scripts/coverage/citests.xcresult
-            yarn coverage
-            ./scripts/run-swift export-coverage
+            mv ui-test-results/merged.xcresult scripts/coverage/nightlytests.xcresult
+            yarn coverage --scheme NightlyTests
     - script:
         title: Report tests
         run_if: and .IsCI (enveq "BITRISE_GIT_BRANCH" "master")
@@ -552,11 +551,6 @@ workflows:
                     --data-binary @- \
                     "$SPLUNK_ENDPOINT_URL"
         is_always_run: true
-    - codecov:
-        run_if: .IsCI
-        inputs:
-        - CODECOV_TOKEN: "$CODECOV_TOKEN"
-        - other_options: "-C $GIT_CLONE_COMMIT_HASH -f scripts/coverage/xccov.json -f scripts/coverage/react-native/coverage-final.json"
 
   nightly-b-blame-bot:
     after_run:

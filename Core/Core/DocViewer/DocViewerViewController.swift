@@ -149,12 +149,16 @@ private let disabledMenuItems: [String] = [
 
 extension DocViewerViewController: PDFViewControllerDelegate {
     // swiftlint:disable function_parameter_count
-    public func pdfViewController(_ pdfController: PDFViewController,
-                                  shouldShow menuItems: [MenuItem],
-                                  atSuggestedTargetRect rect: CGRect,
-                                  forSelectedText selectedText: String,
-                                  in textRect: CGRect, on pageView: PDFPageView) -> [MenuItem] {
-        return menuItems.filter { $0.identifier != TextMenu.annotationMenuHighlight.rawValue }
+    public func pdfViewController(
+        _ pdfController: PDFViewController,
+        shouldShow menuItems: [MenuItem],
+        atSuggestedTargetRect rect: CGRect,
+        forSelectedText selectedText: String,
+        in textRect: CGRect, on pageView: PDFPageView
+    ) -> [MenuItem] {
+        return menuItems.filter {
+            $0.identifier != TextMenu.annotationMenuHighlight.rawValue
+        }
     }
 
     public func pdfViewController(
@@ -165,13 +169,19 @@ extension DocViewerViewController: PDFViewControllerDelegate {
         in annotationRect: CGRect,
         on pageView: PDFPageView
     ) -> [MenuItem] {
-        annotations?.forEach { (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false }
+        guard env.app == .teacher || annotations?.isEmpty == false else {
+            return [] // no items for adding new annotations in Student
+        }
+
+        annotations?.forEach {
+            (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false
+        }
         if annotations?.count == 1, let annotation = annotations?.first, let document = pdfController.document, let metadata = metadata?.annotations {
             var realMenuItems = [MenuItem]()
             realMenuItems.append(MenuItem(title: NSLocalizedString("Comments", bundle: .core, comment: "")) { [weak self] in
                 let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
                 let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
-                pdfController.present(UINavigationController(rootViewController: view), options: nil, animated: true, sender: nil, completion: nil)
+                self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
             })
 
             realMenuItems.append(contentsOf: menuItems.filter {
@@ -219,7 +229,7 @@ extension DocViewerViewController: PDFViewControllerDelegate {
         document.add(annotations: [ pointAnnotation ], options: nil)
 
         let view = CommentListViewController.create(comments: [], inReplyTo: pointAnnotation, document: document, metadata: metadata)
-        pdfController.present(UINavigationController(rootViewController: view), options: nil, animated: true, sender: nil, completion: nil)
+        env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
 
         return true
     }
@@ -237,18 +247,18 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
         annotationProvider?.syncAllAnnotations()
     }
 
-    func annotationDidFailToSave(error: Error) {
-        syncAnnotationsButton.isEnabled = true
-        syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
-        syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
-    }
+    func annotationDidFailToSave(error: Error) { performUIUpdate {
+        self.syncAnnotationsButton.isEnabled = true
+        self.syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
+        self.syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
+    } }
 
-    func annotationSaveStateChanges(saving: Bool) {
-        syncAnnotationsButton.isEnabled = false
-        syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
-        syncAnnotationsButton.setTitle(saving
+    func annotationSaveStateChanges(saving: Bool) { performUIUpdate {
+        self.syncAnnotationsButton.isEnabled = false
+        self.syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
+        self.syncAnnotationsButton.setTitle(saving
             ? NSLocalizedString("Saving...", bundle: .core, comment: "")
             : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),
         for: .normal)
-    }
+    } }
 }
