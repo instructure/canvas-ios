@@ -26,7 +26,7 @@ private func resetSingleSharedPreviewDatabase() -> NSPersistentContainer {
     let bundle = Bundle.core
     let modelURL = bundle.url(forResource: "Database", withExtension: "momd")!
     let model = NSManagedObjectModel(contentsOf: modelURL)!
-    let container = PreviewDatabase(name: "Database", managedObjectModel: model)
+    let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
     let description = NSPersistentStoreDescription()
     description.type = NSInMemoryStoreType
     description.shouldAddStoreAsynchronously = false
@@ -45,22 +45,6 @@ private func resetSingleSharedPreviewDatabase() -> NSPersistentContainer {
     return container
 }
 
-private class PreviewDatabase: NSPersistentContainer {
-    override func newBackgroundContext() -> NSManagedObjectContext {
-        // create a new view context to avoid recursive saves
-        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.parent = viewContext
-        context.automaticallyMergesChangesFromParent = true
-        return context
-    }
-
-    override  func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        self.viewContext.performAndWait {
-            block(self.viewContext)
-        }
-    }
-}
-
 public class PreviewEnvironment: AppEnvironment {
     override public init() {
         super.init()
@@ -73,11 +57,6 @@ public class PreviewStore<U: APIUseCase>: Store<U> {
     required public init(env: AppEnvironment = PreviewEnvironment(), useCase: U, contents: U.Response) {
         super.init(env: env, database: singleSharedPreviewDatabase, useCase: useCase) {}
         useCase.write(response: contents, urlResponse: nil, to: singleSharedPreviewDatabase.viewContext)
-    }
-
-    override public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
-    }
-    override public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) {
     }
 }
 #endif

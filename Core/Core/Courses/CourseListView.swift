@@ -28,15 +28,17 @@ public struct CourseListView: View {
     @ObservedObject var allCourses: Store<GetAllCourses>
     @State var filter: String = ""
 
-    func configureAppearance() {
-        guard let controller = controller() else { return }
-        UITableView.appearance(whenContainedInInstancesOf: [type(of: controller)]).backgroundColor = .white
-    }
+    static var configureAppearance: () -> Void = {
+        // This will only run once
+        UITableView.appearance(whenContainedInInstancesOf: [HostingController<Self>.self]).backgroundColor = .white
+        return { }
+    }()
 
     public static func create() -> CourseListView {
         let env = AppEnvironment.shared
         let allCourses = env.subscribe(GetAllCourses()) {}
         allCourses.exhaust()
+        configureAppearance()
         return CourseListView(allCourses: allCourses)
     }
 
@@ -73,7 +75,6 @@ public struct CourseListView: View {
                     enrollmentSection(Text("Past Enrollments"), courses: pastEnrollments)
                     enrollmentSection(Text("Future Enrollments"), courses: futureEnrollments)
                 }
-                .onAppear(perform: configureAppearance)
             }
         }
     }

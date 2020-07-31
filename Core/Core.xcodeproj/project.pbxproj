@@ -792,6 +792,9 @@
 		E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
 		E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E87A5E4224D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */; };
+		E87A5E4424D4BF930065B2AA /* PreviewStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */; };
+		E87A5E4624D4C61C0065B2AA /* ImageExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4524D4C61B0065B2AA /* ImageExtensionsTests.swift */; };
 		E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */; };
 		E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */; };
 		E890AF3024CF5C28000401FB /* CourseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E890AF2F24CF5C28000401FB /* CourseListView.swift */; };
@@ -1822,6 +1825,9 @@
 		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensionsTests.swift; sourceTree = "<group>"; };
+		E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStoreTests.swift; sourceTree = "<group>"; };
+		E87A5E4524D4C61B0065B2AA /* ImageExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensionsTests.swift; sourceTree = "<group>"; };
 		E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
 		E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		E88EA0182385B0B4008A587A /* APIDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboard.swift; sourceTree = "<group>"; };
@@ -3031,6 +3037,7 @@
 				7DF9BF072152AEF10099026B /* UIColorExtensionsTests.swift */,
 				7DDC450E215BF4AA003F3209 /* UIFontExtensionsTests.swift */,
 				7D8B78F7215EC74A005E08F1 /* UIImageExtensionsTests.swift */,
+				E87A5E4524D4C61B0065B2AA /* ImageExtensionsTests.swift */,
 				7DA20E922168128400F5FD19 /* UIImageInstIconsExtensionsTests.swift */,
 				7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */,
 				7D8FDFB72187B92C0067557E /* UINavigationBarExtensionsTests.swift */,
@@ -3047,6 +3054,7 @@
 				9F09A4CE22CA6F5E003CD4EF /* ProcessInfoExtensionsTests.swift */,
 				3BDB8F3422E63676003D81C3 /* StringExtensionTests.swift */,
 				977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */,
+				E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3625,6 +3633,7 @@
 			children = (
 				B1EF7AB621E7E41F00D653D7 /* StoreTests.swift */,
 				B15CA22C221CA2EE0014FB02 /* UseCaseTests.swift */,
+				E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -4308,6 +4317,7 @@
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
 				3B5542462369F401007D3CE0 /* APIAssignmentListTests.swift in Sources */,
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
+				E87A5E4224D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift in Sources */,
 				7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
@@ -4339,6 +4349,7 @@
 				3BEA6CCD24588D1400BE4589 /* ConversationDetailViewControllerTests.swift in Sources */,
 				7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				3B35F073230F01F600674FF5 /* APIGraphQLRequestableTests.swift in Sources */,
+				E87A5E4624D4C61C0065B2AA /* ImageExtensionsTests.swift in Sources */,
 				B1A6BC8C218A9843000515E3 /* APILatePolicyTests.swift in Sources */,
 				977EAC452412AA26005E1290 /* CreateTodoViewControllerTests.swift in Sources */,
 				7D70DEA4233EB07300F5C3D4 /* NotificationCategoryTests.swift in Sources */,
@@ -4449,6 +4460,7 @@
 				B1A890BA224ED6A300CEE000 /* UIScrollViewExtensionsTests.swift in Sources */,
 				7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */,
 				9FAE410321B6C88000FE7F58 /* APIExternalToolTests.swift in Sources */,
+				E87A5E4424D4BF930065B2AA /* PreviewStoreTests.swift in Sources */,
 				B1CA33462339434A0015CBB4 /* GetContextUsersTests.swift in Sources */,
 				7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */,
 				7D016B6123E89B7F00C6E0CA /* CircleProgressViewTests.swift in Sources */,

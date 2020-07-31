@@ -16,28 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import TestsFoundation
+@testable import Core
 
-private struct IsTeacherKey: EnvironmentKey {
-    static var defaultValue: Bool { Bundle.main.isTeacherApp }
-}
-
-private class ViewControllerKey: EnvironmentKey {
-    static var defaultValue: () -> UIViewController? = { nil }
-}
-
-@available(iOSApplicationExtension 13.0, *)
-extension EnvironmentValues {
-    public var isTeacher: Bool {
-        get { self[IsTeacherKey.self] }
-        set { self[IsTeacherKey.self] = newValue }
-    }
-    public var appEnvironment: AppEnvironment {
-        get { self[AppEnvironment.self] }
-        set { self[AppEnvironment.self] = newValue }
-    }
-    public var viewController: () -> UIViewController? {
-        get { self[ViewControllerKey.self] }
-        set { self[ViewControllerKey.self] = newValue }
+class PreviewStoreTests: CoreTestCase {
+    func testPreviewStore() {
+        let store = PreviewStore(useCase: GetAllCourses(), contents: [APICourse.make()])
+        drainMainQueue()
+        XCTAssertEqual(store.all.count, 1)
     }
 }
