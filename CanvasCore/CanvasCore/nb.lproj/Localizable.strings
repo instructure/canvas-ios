@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Feil ved nedlasting av innhold";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Tillatte forsøk";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "En uventet feil har oppstått.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Svar sendes ikke inn mens du er frakoblet.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Er du sikker på ut du vil gå ut av denne testen?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
-
-/* label for quiz availability date */
-"Available Until" = "Tilgjengelig Frem til";
 
 /* No comment provided by engineer. */
 "Cancel" = "Avbryt";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Slett kommentar";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
 "Done" = "Ferdig";
-
-/* due date label for quiz due date */
-"Due Date" = "Forfallsdato";
-
-/* Data encoding error title */
-"Encoding Error" = "Kodefeil";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Feil under lasting av quiz";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Feil i pålogging av URL";
-
-/* Exit button to leave the quiz */
-"Exit" = "Avslutt";
 
 /* No comment provided by engineer. */
 "Expand" = "Utvid";
@@ -74,52 +47,19 @@
 "Inbox" = "Innboks";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Internettilkoblingen er frakoblet";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Ugyldig data mottatt fra API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Åpne eksternt verktøy";
 
-/* Leave the quiz */
-"Leave" = "Forlate";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown-nettleser er påkrevd for å se dine resultater. Vennligst åpne quizzen i Lockdown-nettleser for å fortsette.";
-
 /* Title for network errors */
 "Network Error" = "Nettverksfeil";
-
-/* A quiz that has no due date */
-"No Due Date" = "Ingen forfallsdato";
-
-/* when a quiz has no time limit */
-"No time limit" = "Ingen tidsbegrensning";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Ikke tagbar";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Åpne i Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Åpne i...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Sjekk nettverkstilkoblingen din og forsøk igjen.";
-
-/* label for number of points in a quiz */
-"Points" = "Poeng";
-
-/* label for the number of questions */
-"Questions" = "Spørsmål";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Testdetaljer";
 
 /* button to read more of the description */
 "Read More" = "Les mer";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Svar";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Fortsett test";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Ta testen på nytt";
-
-/* Stay on the quiz view */
-"Stay" = "Bli";
-
 /* No comment provided by engineer. */
 "Style" = "Stil";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Ta test";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Sidene er borte!? Hvorfor er sidene alltid borte?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Det oppsto et problem med kodingen av UTF8-data";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Det var et problem med tolkningen av svaret fra serveren.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Det oppsto et problem med Canvas-forespørselen.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Det oppsto en feil under serverkommunikasjonen.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Det var ingen data!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Denne testen har satt et IP-adressefilter.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Denne testen er for øyeblikket utilgjengelig.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Denne testen er låst.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Denne testen er ikke tilgjengelig i frakoblet modus.";
-
-/* label for the time limit */
-"Time Limit" = "Tidsbegrensning";
-
 /* Unexpected response type */
 "Unexpected response type" = "Ikke forventet responstype";
-
-/* Ungraded quiz */
-"Ungraded" = "Ikke karaktersatt";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Ubegrenset";
-
-/* button for viewing quiz results */
-"View Results" = "Se resultater";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Du har brukt alle forsøkene tilgjengelig på denne testen.";
 

@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Viðhengi";
 
+/* No comment provided by engineer. */
+"Attempts" = "Tilraunir";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Tilraunir leyfðar:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Tilraunir notaðar:";
+
 /* Label for a discussion */
 "Attendance" = "Mæting";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Metin umræða. %g mögulegir punktar.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Kannanir með einkunn";
-
 /* Title for Grades view controller */
 "Grades" = "Einkunnir";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Birtir athugasemdina þína";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Æfingapróf";
-
-/* No comment provided by engineer. */
 "Previous item" = "Fyrra atriði";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Sumar valdar möppur eru ekki tómar. Viltu örugglega eyða þeim?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Eitthvað fór úrskeiðis. við að sækja prófin.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Því miður fundum við ekki verkefnið. Verið getur að þessu verkefni hafi verið eytt.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Auðvitað!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Kannanir";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Skiptir miðilsinntaki frá hljóði yfir á myndband og öfugt. Núverandi stilling %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Það eru engin atriði til að sýna";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Það eru engir próf til að sýna.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Það eru engin matsviðmið fyrir þetta verkefni";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Óþekkt";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Ótakmarkað";
 
 /* No comment provided by engineer. */
 "Unread" = "Ólesið";

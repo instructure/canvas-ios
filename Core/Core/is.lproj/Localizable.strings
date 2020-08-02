@@ -452,6 +452,12 @@
 "Edit" = "Breyta";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Breyta viðhengi (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Breyta viðtakendum";
 
 /* Description for email communication channel */

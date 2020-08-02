@@ -452,6 +452,12 @@
 "Edit" = "Ändern";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Anhang bearbeiten (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Anhang bearbeiten (0)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Empfänger bearbeiten";
 
 /* Description for email communication channel */

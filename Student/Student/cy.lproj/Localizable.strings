@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Atodiadau";
 
+/* No comment provided by engineer. */
+"Attempts" = "Ymgais";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Nifer y ceisiadau a ganiateir:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Nifer y ceisiadau wedi’u defnyddio:";
+
 /* Label for a discussion */
 "Attendance" = "Presenoldeb";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Trafodaeth wedi’i graddio. %g pwynt yn bosib.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Arolygon wedi’u Graddio";
-
 /* Title for Grades view controller */
 "Grades" = "Graddau";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Mae'n postio eich sylw";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Cwisiau Ymarfer";
-
-/* No comment provided by engineer. */
 "Previous item" = "Eitem flaenorol";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Dydy rhai o'r ffeiliau sydd wedi'u dewis ddim yn wag. Ydych chi’n siŵr eich bod am eu dileu?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Aeth rhywbeth o’i le wrth lwytho’r cwisiau.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Yn anffodus, doedd dim modd dod o hyd i’r aseiniad. Efallai fod yr aseiniad hwn wedi’i ddileu.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Iawn!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Arolygon";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Mae'n newid yn ôl ac ymlaen rhwng cyfryngau sain a fideo. Wedi’i osod ar hyn o bryd – %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Does dim eitemau i’w dangos";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Does dim cwisiau i’w dangos.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Does dim cyfarwyddyd sgorio ar gyfer yr aseiniad hwn";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Dieithr";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Diderfyn";
 
 /* No comment provided by engineer. */
 "Unread" = "Heb ddarllen";

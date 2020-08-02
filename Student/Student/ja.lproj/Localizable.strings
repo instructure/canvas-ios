@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "添付ファイル";
 
+/* No comment provided by engineer. */
+"Attempts" = "回数";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "許可されている回数：";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "実行回数：";
+
 /* Label for a discussion */
 "Attendance" = "出席状況";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "採点されたディスカッション。%g可能なポイント。";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "採点されたアンケート";
-
 /* Title for Grades view controller */
 "Grades" = "成績";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "コメントをポストする";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "練習クイズ";
-
-/* No comment provided by engineer. */
 "Previous item" = "前の項目";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "選択されたフォルダの一部が空ではありません。削除してもよろしいですか？";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "クイズをロード中に問題が発生しました。.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "申し訳ありません。課題を見つけることができませんでした。この課題は削除された可能性があります。";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "もちろん！";
-
-/* No comment provided by engineer. */
-"Surveys" = "調査";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "オーディオとビデオ間でメディア入力を切り替えます。現在の設定は%@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "表示する項目はりません";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "表示するクイズはありません。";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "この課題に説明はありません";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "不明";
+
+/* No comment provided by engineer. */
+"Unlimited" = "無制限";
 
 /* No comment provided by engineer. */
 "Unread" = "未読";

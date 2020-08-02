@@ -452,6 +452,12 @@
 "Edit" = "Rediger";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Legg til vedlegg (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Legg til vedlegg (ingen)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Rediger mottakere";
 
 /* Description for email communication channel */

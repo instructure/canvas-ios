@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Archivos adjuntos";
 
+/* No comment provided by engineer. */
+"Attempts" = "Intentos";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Intentos permitidos:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Intentos usados:";
+
 /* Label for a discussion */
 "Attendance" = "Asistencia";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Discusión calificada. %g puntos posibles.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Encuestas calificadas";
-
 /* Title for Grades view controller */
 "Grades" = "Calificaciones";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Publicar su comentario";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Exámenes de práctica";
-
-/* No comment provided by engineer. */
 "Previous item" = "Item anterior";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Algunas carpetas seleccionadas no están vacías. ¿Está seguro de que desea eliminarlas?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Se produjo un error al cargar los exámenes.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Lo sentimos, no pudimos encontrar la tarea. Es posible que esta tarea haya sido eliminada.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "¡Seguro!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Encuestas";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Cambia la entrada multimedia entre audio y video. Actualmente configurado en %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "No hay items para mostrar";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "No hay exámenes para mostrar.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "No hay ninguna rúbrica para esta tarea";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Desconocido";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Ilimitados";
 
 /* No comment provided by engineer. */
 "Unread" = "No leído";

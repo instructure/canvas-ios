@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Erreur pendant le chargement du contenu";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Tentatives autorisées";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Une erreur inattendue est survenue.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Les réponses ne peuvent pas envoyées hors connexion.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Êtes-vous certain de vouloir quitter ce questionnaire ?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Êtes-vous sûr de vouloir supprimer ce commentaire ?";
-
-/* label for quiz availability date */
-"Available Until" = "Disponible jusqu’à";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annuler";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Supprimer le commentaire";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Rejeter";
 
 /* No comment provided by engineer. */
 "Done" = "Terminé";
-
-/* due date label for quiz due date */
-"Due Date" = "Date limite de rendu";
-
-/* Data encoding error title */
-"Encoding Error" = "Erreur d'encodage";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Erreur lors du chargement du quiz";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Erreur lors de la récupération de l’URL de lancement de l’outil";
-
-/* Exit button to leave the quiz */
-"Exit" = "Sortir";
 
 /* No comment provided by engineer. */
 "Expand" = "Développer";
@@ -74,52 +47,19 @@
 "Inbox" = "Boîte de réception";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Connexion Internet hors ligne";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Date invalide reçue depuis l’API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lancer l'outil externe";
 
-/* Leave the quiz */
-"Leave" = "Quitter";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Vous devez utiliser Lockdown Browser pour voir vos résultats. Veuillez ouvrir le questionnaire sous Lockdown Browser pour continuer.";
-
 /* Title for network errors */
 "Network Error" = "Erreur de réseau";
-
-/* A quiz that has no due date */
-"No Due Date" = "Pas de date limite de rendu";
-
-/* when a quiz has no time limit */
-"No time limit" = "Aucune limite de temps";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Ne peut être pris";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Ouvrir avec Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Ouvrir avec...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Veuillez vérifier votre connexion au réseau et réessayer.";
-
-/* label for number of points in a quiz */
-"Points" = "Points";
-
-/* label for the number of questions */
-"Questions" = "Questions";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Détails sur le questionnaire";
 
 /* button to read more of the description */
 "Read More" = "Pour en lire davantage";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Répondre";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Reprendre le questionnaire";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Recommencer le questionnaire";
-
-/* Stay on the quiz view */
-"Stay" = "Rester";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Répondre au questionnaire";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Les pages ont disparu !? Mais pourquoi les pages disparaissent-elles à chaque fois ?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Un problème est survenu lors de l'encodage des données UTF8";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Un problème est survenu lors de l'interprétation d'une réponse du serveur.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Un problème est survenu avec la requête Canvas.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Une erreur est survenue pendant la communication avec le serveur.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Il n'y avait aucune donnée !";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Ce questionnaire possède un filtre d'adresses IP actif.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Ce questionnaire est actuellement indisponible.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Ce questionnaire est verrouillé.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Ce quiz n’est pas disponible hors connexion.";
-
-/* label for the time limit */
-"Time Limit" = "Limite de temps";
-
 /* Unexpected response type */
 "Unexpected response type" = "Type de réponse inattendu";
-
-/* Ungraded quiz */
-"Ungraded" = "Non noté";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Illimité";
-
-/* button for viewing quiz results */
-"View Results" = "Voir les résultats";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Vous avez utilisé toutes vos tentatives possibles pour ce questionnaire.";
 

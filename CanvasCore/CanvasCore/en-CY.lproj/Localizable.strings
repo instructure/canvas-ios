@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Error Loading Content";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Allowed attempts";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "An unexpected error has occurred.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Answers will not be submitted while offline.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Are you sure you want to leave this quiz?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
-
-/* label for quiz availability date */
-"Available Until" = "Available until";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cancel";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Delete comment";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
 
 /* No comment provided by engineer. */
 "Done" = "Done";
-
-/* due date label for quiz due date */
-"Due Date" = "Due Date";
-
-/* Data encoding error title */
-"Encoding Error" = "Encoding error";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Error loading quiz";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Error retrieving tool launch URL";
-
-/* Exit button to leave the quiz */
-"Exit" = "Exit";
 
 /* No comment provided by engineer. */
 "Expand" = "Expand";
@@ -74,52 +47,19 @@
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Internet Connection Offline";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Invalid date received from API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Launch external tool";
 
-/* Leave the quiz */
-"Leave" = "Leave";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue.";
-
 /* Title for network errors */
 "Network Error" = "Network error";
-
-/* A quiz that has no due date */
-"No Due Date" = "No due date";
-
-/* when a quiz has no time limit */
-"No time limit" = "No time limit";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Not available.";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Open in Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Open in…";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Please check your network connection and try again";
-
-/* label for number of points in a quiz */
-"Points" = "Points";
-
-/* label for the number of questions */
-"Questions" = "Questions";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Quiz details";
 
 /* button to read more of the description */
 "Read More" = "Read more";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Reply";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Resume quiz";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Retake quiz";
-
-/* Stay on the quiz view */
-"Stay" = "Stay";
-
 /* No comment provided by engineer. */
 "Style" = "Style";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Take Quiz";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "The pages are gone! Why are the pages always gone?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "There was a problem encoding UTF8 data";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "There was a problem interpreting a response from the server.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "There was a problem with the Canvas request.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "There was an error while communicating with the server.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "There was no data!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "This quiz has an IP address filter set.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "This quiz is currently unavailable.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "This quiz is locked.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "This quiz is not available offline.";
-
-/* label for the time limit */
-"Time Limit" = "Time limit";
-
 /* Unexpected response type */
 "Unexpected response type" = "Unexpected response type";
-
-/* Ungraded quiz */
-"Ungraded" = "Ungraded";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Unlimited";
-
-/* button for viewing quiz results */
-"View Results" = "View results";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "You have used all your available attempts for this quiz.";
 

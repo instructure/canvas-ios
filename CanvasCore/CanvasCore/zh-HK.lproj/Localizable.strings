@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ 載入內容時發生錯誤";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "允許的嘗試";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "出現意外錯誤。";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "離線時不會提交答案。";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "您確定要離開這次測驗嗎？";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "您確定要刪除此評論嗎？";
-
-/* label for quiz availability date */
-"Available Until" = "可用截止時間";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "刪除評論";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "解除";
 
 /* No comment provided by engineer. */
 "Done" = "已完成";
-
-/* due date label for quiz due date */
-"Due Date" = "截止日期";
-
-/* Data encoding error title */
-"Encoding Error" = "編碼錯誤";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "載入測驗時發生錯誤";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "檢索工具啟動 URL 時發生錯誤";
-
-/* Exit button to leave the quiz */
-"Exit" = "退出";
 
 /* No comment provided by engineer. */
 "Expand" = "展開";
@@ -74,52 +47,19 @@
 "Inbox" = "收件匣";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "網絡連線離線";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "API 發出無效日期。";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "啟動外部工具";
 
-/* Leave the quiz */
-"Leave" = "離開";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "必須使用鎖定瀏覽器來查看您的成績。請於鎖定瀏覽器中打開測驗，以繼續操作。";
-
 /* Title for network errors */
 "Network Error" = "網路錯誤";
-
-/* A quiz that has no due date */
-"No Due Date" = "無截止日期";
-
-/* when a quiz has no time limit */
-"No time limit" = "沒有時間限制";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "不可用";
-
-/* OK Button Title */
-"OK" = "確定";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "在 Safari 中打開";
 
 /* No comment provided by engineer. */
 "Open in…" = "打開方式...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "請檢查您的網路連接，然後重試。";
-
-/* label for number of points in a quiz */
-"Points" = "分數";
-
-/* label for the number of questions */
-"Questions" = "問題";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "測驗詳細資料";
 
 /* button to read more of the description */
 "Read More" = "讀取更多";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "回覆";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "繼續測驗";
-
-/* button for retaking quiz */
-"Retake Quiz" = "再次考試";
-
-/* Stay on the quiz view */
-"Stay" = "保持";
-
 /* No comment provided by engineer. */
 "Style" = "樣式";
-
-/* Button for taking the quiz */
-"Take Quiz" = "參加考試";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "內容頁消失了！？為甚麼內容頁經常消失？";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "對 UTF8 資料編碼時出錯";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "對伺服器應答內容解讀時出現問題。";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Canvas 請求出現故障。";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "在與伺服器通訊時出現問題。";
 
-/* No comment provided by engineer. */
-"There was no data!" = "沒有資料！";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "此考試設置了 IP 地址過濾器。";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "此考試目前不可用。";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "此考試已被鎖定";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "此測驗無法離線查看。";
-
-/* label for the time limit */
-"Time Limit" = "時間限制";
-
 /* Unexpected response type */
 "Unexpected response type" = "未知回應類型";
-
-/* Ungraded quiz */
-"Ungraded" = "未評分";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "無限制";
-
-/* button for viewing quiz results */
-"View Results" = "檢視答案";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "您已用完在此測驗中的所有嘗試機會。";
 
