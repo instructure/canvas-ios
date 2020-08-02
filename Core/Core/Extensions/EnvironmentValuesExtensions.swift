@@ -18,20 +18,12 @@
 
 import SwiftUI
 
-private struct IsTeacherKey: EnvironmentKey {
-    static var defaultValue: Bool { Bundle.main.isTeacherApp }
-}
-
 private class ViewControllerKey: EnvironmentKey {
     static var defaultValue: () -> UIViewController? = { nil }
 }
 
 @available(iOSApplicationExtension 13.0, *)
 extension EnvironmentValues {
-    public var isTeacher: Bool {
-        get { self[IsTeacherKey.self] }
-        set { self[IsTeacherKey.self] = newValue }
-    }
     public var appEnvironment: AppEnvironment {
         get { self[AppEnvironment.self] }
         set { self[AppEnvironment.self] = newValue }

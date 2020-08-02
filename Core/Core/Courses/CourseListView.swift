@@ -95,7 +95,7 @@ public struct CourseListView: View {
     }
 
     struct Cell: View {
-        @Environment(\.isTeacher) var isTeacher: Bool
+        @Environment(\.appEnvironment) var env: AppEnvironment
         @ObservedObject var course: Course
         @State var pending = false
         let didSelect: () -> Void
@@ -144,10 +144,12 @@ public struct CourseListView: View {
 
         @ViewBuilder
         var publishedIcon: some View {
-            if isTeacher && course.isPublished {
-                Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
-            } else if isTeacher {
-                Image.icon(.no, .solid).foregroundColor(.named(.ash))
+            if env.app == .teacher {
+                if course.isPublished {
+                    Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
+                } else {
+                    Image.icon(.no, .solid).foregroundColor(.named(.ash))
+                }
             }
         }
 
@@ -170,7 +172,7 @@ struct CourseListView_Previews: PreviewProvider {
             APICourse.make(id: "2", workflow_state: .available),
             APICourse.make(id: "3", workflow_state: .completed, start_at: .distantPast, end_at: .distantPast),
             APICourse.make(id: "4", start_at: .distantFuture, end_at: .distantFuture),
-        ])).environment(\.isTeacher, true)
+        ])).environment(\.appEnvironment.app, .teacher)
     }
 }
 #endif
