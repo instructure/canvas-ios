@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
-		2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCBD44620C0943B0082E616 /* URL+Core.swift */; };
 		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
 		2CD3B49C206AB38E006339D8 /* APIBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD3B49A206AB38E006339D8 /* APIBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,7 +23,6 @@
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
-		3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B10AC0A206D8838007EFC2F /* Array+Core.swift */; };
 		3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */; };
 		3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; };
 		3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
@@ -48,25 +46,6 @@
 		4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */; };
 		4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */; };
 		493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */; };
-		4930204A1F902364006BD777 /* Uncollect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020301F902361006BD777 /* Uncollect.swift */; };
-		4930204B1F902364006BD777 /* Concat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020311F902361006BD777 /* Concat.swift */; };
-		4930204C1F902364006BD777 /* Accumulate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020321F902361006BD777 /* Accumulate.swift */; };
-		4930204D1F902364006BD777 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020331F902361006BD777 /* Errors.swift */; };
-		4930204E1F902364006BD777 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020341F902361006BD777 /* Values.swift */; };
-		4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020351F902361006BD777 /* IgnoreValues.swift */; };
-		493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203A1F902362006BD777 /* Marshal+SoLazy.swift */; };
-		493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203D1F902363006BD777 /* RAC+SoLazy.swift */; };
-		493020581F902364006BD777 /* Temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930203E1F902363006BD777 /* Temporal.swift */; };
-		4930205C1F902364006BD777 /* NSError+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020421F902364006BD777 /* NSError+SoLazy.swift */; };
-		4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020611F902460006BD777 /* ParameterEncoding.swift */; };
-		493020701F902462006BD777 /* HTTPHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020621F902460006BD777 /* HTTPHeaders.swift */; };
-		493020711F902462006BD777 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020631F902460006BD777 /* Session.swift */; };
-		493020721F902462006BD777 /* Session+RejectNilParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020641F902460006BD777 /* Session+RejectNilParameters.swift */; };
-		493020731F902462006BD777 /* Session+NSURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020651F902460006BD777 /* Session+NSURLRequest.swift */; };
-		493020741F902462006BD777 /* NSURLSession+ThreeLegit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020661F902461006BD777 /* NSURLSession+ThreeLegit.swift */; };
-		493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */; };
-		493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020691F902461006BD777 /* NSDate+Marshal.swift */; };
-		493020781F902462006BD777 /* SessionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206B1F902461006BD777 /* SessionUser.swift */; };
 		493020791F902462006BD777 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* Context.swift */; };
 		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
 		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
@@ -109,8 +88,6 @@
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
 		7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2F33A82370DDBB002236DB /* WKWebView+PostProcessing.swift */; };
-		7D60608624C74DDA00BD0639 /* ReactiveSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D60608524C74DDA00BD0639 /* ReactiveSwift */; };
-		7D60608924C74DFC00BD0639 /* ReactiveCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7D60608824C74DFC00BD0639 /* ReactiveCocoa */; };
 		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
 		7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
@@ -123,7 +100,6 @@
 		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */; };
-		B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC93218CAB51000515E3 /* SessionToken.swift */; };
 		B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BE249620AB13FE00C521C3 /* SafariActivity.swift */; };
 		B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C316FE2463348700CA368C /* NativeUserDefaults.m */; };
 		B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C317002463371300CA368C /* NativeUserDefaults.swift */; };
@@ -149,7 +125,6 @@
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
-		2CCBD44620C0943B0082E616 /* URL+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Core.swift"; sourceTree = "<group>"; };
 		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
 		2CD3B49A206AB38E006339D8 /* APIBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIBridge.h; sourceTree = "<group>"; };
@@ -162,7 +137,6 @@
 		2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasAnalytics.m; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3B10AC0A206D8838007EFC2F /* Array+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Core.swift"; sourceTree = "<group>"; };
 		3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewEventLogger.m; sourceTree = "<group>"; };
 		3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiriShortcutManager.swift; sourceTree = "<group>"; };
 		3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiriShortcutManager.m; sourceTree = "<group>"; };
@@ -184,25 +158,6 @@
 		493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
 		4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+AssociatedObject.swift"; sourceTree = "<group>"; };
-		493020301F902361006BD777 /* Uncollect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uncollect.swift; sourceTree = "<group>"; };
-		493020311F902361006BD777 /* Concat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concat.swift; sourceTree = "<group>"; };
-		493020321F902361006BD777 /* Accumulate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accumulate.swift; sourceTree = "<group>"; };
-		493020331F902361006BD777 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		493020341F902361006BD777 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
-		493020351F902361006BD777 /* IgnoreValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IgnoreValues.swift; sourceTree = "<group>"; };
-		4930203A1F902362006BD777 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
-		4930203D1F902363006BD777 /* RAC+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC+SoLazy.swift"; sourceTree = "<group>"; };
-		4930203E1F902363006BD777 /* Temporal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Temporal.swift; sourceTree = "<group>"; };
-		493020421F902364006BD777 /* NSError+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+SoLazy.swift"; sourceTree = "<group>"; };
-		493020611F902460006BD777 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
-		493020621F902460006BD777 /* HTTPHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPHeaders.swift; sourceTree = "<group>"; };
-		493020631F902460006BD777 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		493020641F902460006BD777 /* Session+RejectNilParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+RejectNilParameters.swift"; sourceTree = "<group>"; };
-		493020651F902460006BD777 /* Session+NSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+NSURLRequest.swift"; sourceTree = "<group>"; };
-		493020661F902461006BD777 /* NSURLSession+ThreeLegit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+ThreeLegit.swift"; sourceTree = "<group>"; };
-		493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalProducer+SoPersistent.swift"; sourceTree = "<group>"; };
-		493020691F902461006BD777 /* NSDate+Marshal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Marshal.swift"; sourceTree = "<group>"; };
-		4930206B1F902461006BD777 /* SessionUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionUser.swift; sourceTree = "<group>"; };
 		4930206D1F902462006BD777 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
 		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
@@ -316,7 +271,6 @@
 		9FFBF1B01FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FFBF1B11FBB7687005AC85C /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
-		B1A6BC93218CAB51000515E3 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		B1BE249620AB13FE00C521C3 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		B1C316FE2463348700CA368C /* NativeUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUserDefaults.m; sourceTree = "<group>"; };
 		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
@@ -340,8 +294,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */,
-				7D60608924C74DFC00BD0639 /* ReactiveCocoa in Frameworks */,
-				7D60608624C74DDA00BD0639 /* ReactiveSwift in Frameworks */,
 				7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,7 +345,6 @@
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
 				494AE0AF1F843B1F001A8F31 /* PDF */,
 				494AE08C1F8439A8001A8F31 /* React Native Modules */,
-				4930205E1F902413006BD777 /* Session */,
 				493020261F9022FB006BD777 /* Utilities */,
 				4961F5211F8FACD50093EC86 /* WhizzyWig */,
 			);
@@ -407,8 +358,6 @@
 				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
 				2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */,
 				2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */,
-				3B10AC0A206D8838007EFC2F /* Array+Core.swift */,
-				2CCBD44620C0943B0082E616 /* URL+Core.swift */,
 				B1F4060E22E63203008FAFE6 /* ResultExtensions.swift */,
 			);
 			path = Extensions;
@@ -467,68 +416,9 @@
 		493020261F9022FB006BD777 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4930203A1F902362006BD777 /* Marshal+SoLazy.swift */,
-				493020421F902364006BD777 /* NSError+SoLazy.swift */,
 				4930202B1F902361006BD777 /* NSObject+AssociatedObject.swift */,
-				4930203D1F902363006BD777 /* RAC+SoLazy.swift */,
-				4930202E1F902361006BD777 /* ReactiveExtensions */,
-				4930203E1F902363006BD777 /* Temporal.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		4930202E1F902361006BD777 /* ReactiveExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				4930202F1F902361006BD777 /* operators */,
-			);
-			path = ReactiveExtensions;
-			sourceTree = "<group>";
-		};
-		4930202F1F902361006BD777 /* operators */ = {
-			isa = PBXGroup;
-			children = (
-				493020301F902361006BD777 /* Uncollect.swift */,
-				493020311F902361006BD777 /* Concat.swift */,
-				493020321F902361006BD777 /* Accumulate.swift */,
-				493020331F902361006BD777 /* Errors.swift */,
-				493020341F902361006BD777 /* Values.swift */,
-				493020351F902361006BD777 /* IgnoreValues.swift */,
-			);
-			path = operators;
-			sourceTree = "<group>";
-		};
-		4930205E1F902413006BD777 /* Session */ = {
-			isa = PBXGroup;
-			children = (
-				493020601F902460006BD777 /* Ala Alamofire */,
-				493020671F902461006BD777 /* RAC+TooLegit */,
-				493020691F902461006BD777 /* NSDate+Marshal.swift */,
-				493020661F902461006BD777 /* NSURLSession+ThreeLegit.swift */,
-				493020631F902460006BD777 /* Session.swift */,
-				493020651F902460006BD777 /* Session+NSURLRequest.swift */,
-				493020641F902460006BD777 /* Session+RejectNilParameters.swift */,
-				4930206B1F902461006BD777 /* SessionUser.swift */,
-				B1A6BC93218CAB51000515E3 /* SessionToken.swift */,
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
-		493020601F902460006BD777 /* Ala Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				493020611F902460006BD777 /* ParameterEncoding.swift */,
-				493020621F902460006BD777 /* HTTPHeaders.swift */,
-			);
-			path = "Ala Alamofire";
-			sourceTree = "<group>";
-		};
-		493020671F902461006BD777 /* RAC+TooLegit */ = {
-			isa = PBXGroup;
-			children = (
-				493020681F902461006BD777 /* SignalProducer+SoPersistent.swift */,
-			);
-			path = "RAC+TooLegit";
 			sourceTree = "<group>";
 		};
 		49383CF41F849921009C8F8E /* Inbox */ = {
@@ -711,8 +601,6 @@
 			);
 			name = CanvasCore;
 			packageProductDependencies = (
-				7D60608524C74DDA00BD0639 /* ReactiveSwift */,
-				7D60608824C74DFC00BD0639 /* ReactiveCocoa */,
 			);
 			productName = CanvasCore;
 			productReference = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */;
@@ -731,6 +619,7 @@
 					2CAF1B131F72AEDB007225DF = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -777,8 +666,6 @@
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			packageReferences = (
-				7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */,
-				7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */,
 			);
 			productRefGroup = 2CAF1B151F72AEDB007225DF /* Products */;
 			projectDirPath = "";
@@ -838,21 +725,17 @@
 			files = (
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */,
-				4930204E1F902364006BD777 /* Values.swift in Sources */,
 				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
 				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
-				2CCBD44720C0943B0082E616 /* URL+Core.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
-				3B10AC0B206D8838007EFC2F /* Array+Core.swift in Sources */,
 				494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
 				4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */,
-				4930206F1F902462006BD777 /* ParameterEncoding.swift in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
 				493020471F902364006BD777 /* NSObject+AssociatedObject.swift in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
@@ -862,19 +745,14 @@
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
-				493020541F902364006BD777 /* Marshal+SoLazy.swift in Sources */,
 				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
-				493020731F902462006BD777 /* Session+NSURLRequest.swift in Sources */,
 				3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */,
-				4930204C1F902364006BD777 /* Accumulate.swift in Sources */,
 				2CD3B49D206AB38E006339D8 /* APIBridge.m in Sources */,
 				3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
-				4930205C1F902364006BD777 /* NSError+SoLazy.swift in Sources */,
 				7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */,
-				493020711F902462006BD777 /* Session.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */,
 				4961F5431F8FAD9A0093EC86 /* WhizzyWigViewController.swift in Sources */,
@@ -886,48 +764,35 @@
 				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
-				4930204A1F902364006BD777 /* Uncollect.swift in Sources */,
 				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */,
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
-				4930204B1F902364006BD777 /* Concat.swift in Sources */,
 				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
-				493020701F902462006BD777 /* HTTPHeaders.swift in Sources */,
 				493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */,
 				497C0F8A1FACD0D200084032 /* CanvasWebView.swift in Sources */,
-				493020781F902462006BD777 /* SessionUser.swift in Sources */,
-				4930204F1F902364006BD777 /* IgnoreValues.swift in Sources */,
-				493020581F902364006BD777 /* Temporal.swift in Sources */,
 				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
-				493020741F902462006BD777 /* NSURLSession+ThreeLegit.swift in Sources */,
 				493020121F901CF5006BD777 /* CanvasCommentsViewController.swift in Sources */,
-				493020721F902462006BD777 /* Session+RejectNilParameters.swift in Sources */,
 				4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */,
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				7D2F33A92370DDBC002236DB /* WKWebView+PostProcessing.swift in Sources */,
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
 				4961F5421F8FAD9A0093EC86 /* WhizzyWigView.swift in Sources */,
-				493020761F902462006BD777 /* NSDate+Marshal.swift in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
 				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
 				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
-				493020571F902364006BD777 /* RAC+SoLazy.swift in Sources */,
 				4961F5401F8FAD9A0093EC86 /* WhizzyWigTableViewCell.swift in Sources */,
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				B1F4060F22E63203008FAFE6 /* ResultExtensions.swift in Sources */,
-				4930204D1F902364006BD777 /* Errors.swift in Sources */,
-				493020751F902462006BD777 /* SignalProducer+SoPersistent.swift in Sources */,
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
 				49CE96BB1F8FF94B00121A43 /* CanvasWebViewHTML.swift in Sources */,
 				493020111F901CF5006BD777 /* CommentTableViewCell.swift in Sources */,
 				4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */,
-				B1A6BC94218CAB51000515E3 /* SessionToken.swift in Sources */,
 				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,
 				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
 				2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */,
@@ -1130,8 +995,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1159,11 +1023,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1197,11 +1057,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1236,38 +1092,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveSwift";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 6.2.0;
-			};
-		};
-		7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveCocoa/ReactiveCocoa";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7D60608524C74DDA00BD0639 /* ReactiveSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D60608424C74DDA00BD0639 /* XCRemoteSwiftPackageReference "ReactiveSwift" */;
-			productName = ReactiveSwift;
-		};
-		7D60608824C74DFC00BD0639 /* ReactiveCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7D60608724C74DFC00BD0639 /* XCRemoteSwiftPackageReference "ReactiveCocoa" */;
-			productName = ReactiveCocoa;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CAF1B0B1F72AEDB007225DF /* Project object */;
 }

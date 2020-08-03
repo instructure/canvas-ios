@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import ReactiveSwift
 
 public class SiriShortcutManager: NSObject {
     enum ShortcutType: String {
