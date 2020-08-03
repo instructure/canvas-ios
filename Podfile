@@ -99,8 +99,6 @@ abstract_target 'defaults' do
   react_native_pods
   pspdfkit
 
-  pod 'Cartography', '~> 3.1'
-
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
     firebase_pods

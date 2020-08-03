@@ -2,7 +2,6 @@ PODS:
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
     - React
-  - Cartography (3.1.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.62.2)
   - FBReactNativeSpec (0.62.2):
@@ -402,7 +401,6 @@ PODS:
 
 DEPENDENCIES:
   - BVLinearGradient (from `./rn/Teacher/node_modules/react-native-linear-gradient`)
-  - Cartography (~> 3.1)
   - DoubleConversion (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `./rn/Teacher/node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `./rn/Teacher/node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -453,7 +451,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
-    - Cartography
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -563,7 +560,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
-  Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
@@ -623,6 +619,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 6776a4e97ed83b0605486aa4afc6cfd245007ee5
+PODFILE CHECKSUM: 01dd11b7c84f86c36a4e27e7354a1cec2ee12698
 
 COCOAPODS: 1.9.3
