@@ -452,6 +452,12 @@
 "Edit" = "Golygu";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Golygu atodiad (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Golygu atodiad (dim)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Golygu Derbynwyr";
 
 /* Description for email communication channel */

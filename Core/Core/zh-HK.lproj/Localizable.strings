@@ -452,6 +452,12 @@
 "Edit" = "編輯";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "編輯附件 (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "編輯附件 (無)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "編輯收件人";
 
 /* Description for email communication channel */

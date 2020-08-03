@@ -452,6 +452,12 @@
 "Edit" = "Muokkaa";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Muokkaa liitettä (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Muokkaa liitettä (ei mitään)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Muokkaa vastaanottajia";
 
 /* Description for email communication channel */

@@ -19,33 +19,23 @@
 import Foundation
 
 // https://canvas.instructure.com/doc/api/favorites.html#Favorite
-struct APIFavorite: Codable, Equatable {
-    let context_id: ID
-    let context_type: String
+public struct APIFavorite: Codable, Equatable {
+    public let context_id: ID
+    public let context_type: String
 }
 
 // https://canvas.instructure.com/doc/api/favorites.html#method.favorites.add_favorite_course
-// https://canvas.instructure.com/doc/api/favorites.html#method.favorites.add_favorite_groups
-struct PostFavoriteRequest: APIRequestable {
-    typealias Response = APIFavorite
-
-    let context: Context
-
-    let method = APIMethod.post
-    var path: String {
-        return "users/self/favorites/\(context.pathComponent)"
-    }
-}
-
 // https://canvas.instructure.com/doc/api/favorites.html#method.favorites.remove_favorite_course
+// https://canvas.instructure.com/doc/api/favorites.html#method.favorites.add_favorite_groups
 // https://canvas.instructure.com/doc/api/favorites.html#method.favorites.remove_favorite_groups
-struct DeleteFavoriteRequest: APIRequestable {
-    typealias Response = APIFavorite
+public struct MarkFavoriteRequest: APIRequestable {
+    public typealias Response = APIFavorite
 
-    let context: Context
+    public let context: Context
+    public let markAsFavorite: Bool
 
-    let method = APIMethod.delete
-    var path: String {
+    public var method: APIMethod { markAsFavorite ? .post : .delete }
+    public var path: String {
         return "users/self/favorites/\(context.pathComponent)"
     }
 }

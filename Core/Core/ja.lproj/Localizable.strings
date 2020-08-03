@@ -452,6 +452,12 @@
 "Edit" = "編集";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "添付 (1) を編集する";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "添付 (なし) を編集する";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "受信者を編集する";
 
 /* Description for email communication channel */

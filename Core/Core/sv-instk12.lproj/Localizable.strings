@@ -452,6 +452,12 @@
 "Edit" = "Redigera";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Redigera bilaga (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Redigera bilaga (ingen)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Redigera mottagare";
 
 /* Description for email communication channel */

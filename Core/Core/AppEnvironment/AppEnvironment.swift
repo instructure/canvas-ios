@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public protocol AppEnvironmentDelegate {
     var environment: AppEnvironment { get }
@@ -104,4 +105,8 @@ open class AppEnvironment {
         guard let error = error else { return }
         errorHandler?(error, controller ?? topViewController)
     }
+}
+
+extension AppEnvironment: EnvironmentKey {
+    public static var defaultValue: AppEnvironment { AppEnvironment.shared }
 }

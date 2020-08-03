@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class CourseListViewController: UIViewController, ErrorViewController {
+public class CourseCardsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     // TODO: @IBOutlet weak var emptyView: UIView!
     // TODO: @IBOutlet weak var errorView: UIView!
@@ -43,7 +43,7 @@ public class CourseListViewController: UIViewController, ErrorViewController {
         self?.update()
     }
 
-    public static func create() -> CourseListViewController {
+    public static func create() -> CourseCardsViewController {
         return loadFromStoryboard()
     }
 
@@ -90,7 +90,7 @@ public class CourseListViewController: UIViewController, ErrorViewController {
     }
 }
 
-extension CourseListViewController: UICollectionViewDataSource {
+extension CourseCardsViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return courses.sections?.count ?? 1
     }
@@ -104,7 +104,7 @@ extension CourseListViewController: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header: CourseListSectionHeaderView = collectionView.dequeue(ofKind: kind, for: indexPath)
+        let header: CourseCardsSectionHeaderView = collectionView.dequeue(ofKind: kind, for: indexPath)
         header.titleLabel.text = NSLocalizedString("Past Enrollments", bundle: .core, comment: "")
         return header
     }
@@ -127,7 +127,7 @@ extension CourseListViewController: UICollectionViewDataSource {
     }
 }
 
-extension CourseListViewController: UICollectionViewDelegateFlowLayout {
+extension CourseCardsViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.bounds.width - ((cardColumns+1) * gutterWidth)) / cardColumns + shadowMargin * 2, height: cellHeight)
     }
@@ -154,6 +154,6 @@ extension CourseListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-class CourseListSectionHeaderView: UICollectionReusableView {
+class CourseCardsSectionHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
 }

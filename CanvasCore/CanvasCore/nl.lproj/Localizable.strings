@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Fout bij laden van inhoud";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Toegestaan aantal pogingen";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Antwoorden worden niet verzonden wanneer je offline bent.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Weet je zeker dat je deze toets wilt verlaten?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
-
-/* label for quiz availability date */
-"Available Until" = "Beschikbaar tot";
 
 /* No comment provided by engineer. */
 "Cancel" = "Annuleren";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Opmerking verwijderen";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Afwijzen";
 
 /* No comment provided by engineer. */
 "Done" = "Gereed";
-
-/* due date label for quiz due date */
-"Due Date" = "Inleverdatum";
-
-/* Data encoding error title */
-"Encoding Error" = "Coderingsfout";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Fout bij laden van toets";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Fout bij ophalen van tool voor starten van URL";
-
-/* Exit button to leave the quiz */
-"Exit" = "Afsluiten";
 
 /* No comment provided by engineer. */
 "Expand" = "Uitvouwen";
@@ -74,52 +47,19 @@
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Internetverbinding offline";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Ongeldige gegevens ontvangen van API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
 
-/* Leave the quiz */
-"Leave" = "Verlaten";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "LockDown-browser is vereist om je resultaten te bekijken. Open de toets in de LockDown-browser om door te gaan.";
-
 /* Title for network errors */
 "Network Error" = "Netwerkfout";
-
-/* A quiz that has no due date */
-"No Due Date" = "Geen inleverdatum";
-
-/* when a quiz has no time limit */
-"No time limit" = "Geen tijdslimiet";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Niet beschikbaar";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Openen in Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Openen in...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Controleer je netwerkverbinding en probeer nogmaals.";
-
-/* label for number of points in a quiz */
-"Points" = "Punten";
-
-/* label for the number of questions */
-"Questions" = "Vragen";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Details over toets";
 
 /* button to read more of the description */
 "Read More" = "Meer lezen";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Antwoord";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Toets hervatten";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Toets hervatten";
-
-/* Stay on the quiz view */
-"Stay" = "Blijven";
-
 /* No comment provided by engineer. */
 "Style" = "Stijl";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Toets doen";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "De pagina's zijn verdwenen!? Waarom zijn die pagina's er nooit?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Er is een probleem met het coderen van UTF8 Data";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Er is een probleem met het interpreteren van een reactie van de server.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Er was een probleem met de Canvas aanvraag.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Er was een fout bij het communiceren met de server.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Er waren geen gegevens!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Deze toets heeft een IP adres ingesteld met filter.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Deze toets is momenteel niet beschikbaar.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Deze toets is vergrendeld.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Deze toets is niet offline beschikbaar.";
-
-/* label for the time limit */
-"Time Limit" = "Tijdslimiet";
-
 /* Unexpected response type */
 "Unexpected response type" = "Onverwachte reactiesoort";
-
-/* Ungraded quiz */
-"Ungraded" = "Onbeoordeeld";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Onbeperkt";
-
-/* button for viewing quiz results */
-"View Results" = "Resultaten weergeven";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Je hebt al je beschikbare pogingen gebruikt voor deze toets.";
 

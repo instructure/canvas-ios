@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "المرفقات";
 
+/* No comment provided by engineer. */
+"Attempts" = "المحاولات";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "المحاولات المسموح بها:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "المحاولات المستخدمة:";
+
 /* Label for a discussion */
 "Attendance" = "الحضور";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "مناقشة مقيمة. %g نقاط ممكنة.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "استطلاعات تم تقييمها";
-
 /* Title for Grades view controller */
 "Grades" = "الدرجات";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "ينشر تعليقك";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "التدريب على اختبارات موجزة";
-
-/* No comment provided by engineer. */
 "Previous item" = "العنصر السابق";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "بعض المجلدات المحددة فارغة. هل ترغب بالتأكيد في حذفها؟";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "حدث خطأ ما أثناء تحميل الاختبارات الموجزة.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "عذرًا، تعذر علينا العثور على المهمة. تم حذف هذه المهمة.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "بالتأكيد!";
-
-/* No comment provided by engineer. */
-"Surveys" = "الاستطلاعات";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "تغيير إدخال الوسائط بين الصوت والفيديو. تم التعيين حاليًا إلى %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "لا توجد أي عناصر لعرضها";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "لا توجد أي اختبارات موجزة للعرض.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "لا يوجد أي مقياس تقييم لهذه المهمة";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "غير معروف";
+
+/* No comment provided by engineer. */
+"Unlimited" = "غير محدود";
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";

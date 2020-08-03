@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Ошибка при загрузке содержания";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Разрешенные попытки";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Произошла непредвиденная ошибка.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Ответы не будут отправлены в автономном режиме.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Вы уверены, что хотите выйти из этого теста?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
-
-/* label for quiz availability date */
-"Available Until" = "Доступно до";
 
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Удалить комментарий";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Отказаться";
 
 /* No comment provided by engineer. */
 "Done" = "Готово";
-
-/* due date label for quiz due date */
-"Due Date" = "Срок выполнения";
-
-/* Data encoding error title */
-"Encoding Error" = "Ошибка при кодировании";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Ошибка при загрузке контрольной работы";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Ошибка при запросе URL запуска инструмента";
-
-/* Exit button to leave the quiz */
-"Exit" = "Выход";
 
 /* No comment provided by engineer. */
 "Expand" = "Развернуть";
@@ -74,52 +47,19 @@
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Нет подключения к Интернету";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Получены недопустимые данные от API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Запуск внешнего инструмента";
 
-/* Leave the quiz */
-"Leave" = "Оставить";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Для просмотра ваших результатов требуется браузер LockDown Чтобы продолжить, пожалуйста, откройте контрольную работу в браузере LockDown.";
-
 /* Title for network errors */
 "Network Error" = "Ошибка сети";
-
-/* A quiz that has no due date */
-"No Due Date" = "Срок выполнения не задан";
-
-/* when a quiz has no time limit */
-"No time limit" = "Без ограничения по времени";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Невозможно пройти";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Открыть в Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Открыть в...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Пожалуйста, проверьте подключение к сети и повторите попытку.";
-
-/* label for number of points in a quiz */
-"Points" = "Баллы";
-
-/* label for the number of questions */
-"Questions" = "Вопросы";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Сведения о тесте";
 
 /* button to read more of the description */
 "Read More" = "Читать еще";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Ответить";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Возобновить тест";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Пересдать тест";
-
-/* Stay on the quiz view */
-"Stay" = "Остаться";
-
 /* No comment provided by engineer. */
 "Style" = "Стиль";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Сдать тест";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Страницы исчезли!? Почему страницы постоянно исчезают?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Возникла проблема при кодировке UTF8 данных";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Возникла проблема при интерпретации ответа от сервера.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Возникла проблема с запросом Canvas.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Возникла ошибка при обмене данными с сервером.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Дата отсутствует!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Этот тест содержит набор фильтров IP-адреса.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Этот тест в настоящее время недоступен.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Этот тест заблокирован.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Данный тест недоступен в автономном режиме.";
-
-/* label for the time limit */
-"Time Limit" = "Ограничение по времени";
-
 /* Unexpected response type */
 "Unexpected response type" = "Неожиданный тип ответа";
-
-/* Ungraded quiz */
-"Ungraded" = "Без оценки";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Неограниченно";
-
-/* button for viewing quiz results */
-"View Results" = "Посмотреть результаты";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Вы использовали все свои попытки, доступные в этом тесте.";
 

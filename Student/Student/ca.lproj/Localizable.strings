@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Fitxers adjunts";
 
+/* No comment provided by engineer. */
+"Attempts" = "Intents";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Intents permesos:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Intents utilitzats:";
+
 /* Label for a discussion */
 "Attendance" = "Assistència";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Debat qualificat. %g punts possibles.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Estudis qualificats";
-
 /* Title for Grades view controller */
 "Grades" = "Qualificacions";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Publica el comentari";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Practica els qüestionaris";
-
-/* No comment provided by engineer. */
 "Previous item" = "L'element anterior";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Algunes carpetes seleccionades no estan buides. Segur que voleu suprimir-les?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Alguna cosa no ha anat bé en carregar els qüestionaris.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "No s'ha pogut trobar la tasca. És possible que s'hagi suprimit aquesta tasca.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "I tant!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Estudis";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Canvia l'entrada d'elements multimèdia entre so i vídeo. En aquest moment, està establert en %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "No hi ha cap element que es pugui mostrar";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "No hi ha cap qüestionari que es pugui mostrar.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "No hi ha cap rúbrica per a aquesta tasca";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Desconegut";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Il·limitat";
 
 /* No comment provided by engineer. */
 "Unread" = "Sense llegir";

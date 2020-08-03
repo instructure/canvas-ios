@@ -152,7 +152,7 @@ extension AudioRecorderViewController: AVAudioRecorderDelegate {
 }
 
 extension AudioRecorderViewController {
-    public static func requestPermission(callback: @escaping PermissionBlock) {
+    public static func requestPermission(callback: @escaping (Bool) -> Void) {
         switch AVAudioSession.sharedInstance().recordPermission {
         case .granted:
             callback(true)

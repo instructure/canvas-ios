@@ -452,6 +452,12 @@
 "Edit" = "Uredi";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "Uredi prilogo (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "Uredi prilogo (brez)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "Uredi prejemnike";
 
 /* Description for email communication channel */

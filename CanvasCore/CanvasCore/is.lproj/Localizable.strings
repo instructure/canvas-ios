@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️Villa við að sækja efni";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Heimilaðar tilraunir";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Óvænt villa hefur komið upp.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Svör verða ekki send inn nema með nettengingu.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Viltu örugglega fara úr prófinu?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
-
-/* label for quiz availability date */
-"Available Until" = "Tiltækt til";
 
 /* No comment provided by engineer. */
 "Cancel" = "Hætta við";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Eyða athugasemd";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
 "Done" = "Lokið";
-
-/* due date label for quiz due date */
-"Due Date" = "Skiladagur";
-
-/* Data encoding error title */
-"Encoding Error" = "Dulkóðunarvilla";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Villa við að hlaða inn prófi";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Villa við að endurheimta vefslóð verkfærisræsingar";
-
-/* Exit button to leave the quiz */
-"Exit" = "Hætta";
 
 /* No comment provided by engineer. */
 "Expand" = "Víkka";
@@ -74,52 +47,19 @@
 "Inbox" = "Innhólf";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Nettenging ótengd";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Ógild gögn móttekin frá API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Nota ytra verkfæri";
 
-/* Leave the quiz */
-"Leave" = "Hætta";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Lockdown vafra þarf til að skoða niðurstöður prófsins. Opnaðu prófið í Lockdown vafra til að halda áfram.";
-
 /* Title for network errors */
 "Network Error" = "Netkerfisvilla";
-
-/* A quiz that has no due date */
-"No Due Date" = "Enginn skiladagur";
-
-/* when a quiz has no time limit */
-"No time limit" = "Engin tímamörk";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Ekki takanlegt";
-
-/* OK Button Title */
-"OK" = "Í lagi";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Opna í Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Opna í…";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Athugaðu nettengingu þína og reyndu aftur.";
-
-/* label for number of points in a quiz */
-"Points" = "Punktar";
-
-/* label for the number of questions */
-"Questions" = "Spurningar";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Prófupplýsingar";
 
 /* button to read more of the description */
 "Read More" = "Lesa meira";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Svara";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Halda áfram með próf";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Endurtaka próf";
-
-/* Stay on the quiz view */
-"Stay" = "Dvöl";
-
 /* No comment provided by engineer. */
 "Style" = "Stíll";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Taka próf";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Síðurnar eru farnar!? Af hverju eru síðurnar alltaf farnar?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Villa kom upp við dulkóðun UTF8 gagna";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Villa kom upp við túlkun svars frá miðlara.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Vandamál kom upp við Canvas beiðnina.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Villa kom upp við samskipti við miðlara.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Enginn gögn voru fyrir hendi!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Þetta próf er með IP-tölu síu.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Þetta próf er ekki tiltækt eins og er.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Þetta próf er læst.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Þetta próf er ekki tiltækt nema á netinu.";
-
-/* label for the time limit */
-"Time Limit" = "Tímamörk";
-
 /* Unexpected response type */
 "Unexpected response type" = "Óvænt gerð svars";
-
-/* Ungraded quiz */
-"Ungraded" = "Einkunn ekki gefin";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Ótakmarkað";
-
-/* button for viewing quiz results */
-"View Results" = "Skoða niðurstöður";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Þú hefur notað allar tilraunir sem þú hefur á þessu prófi.";
 

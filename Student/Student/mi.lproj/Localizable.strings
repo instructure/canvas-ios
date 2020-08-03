@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Āpitihanga";
 
+/* No comment provided by engineer. */
+"Attempts" = "Ngā whakamātau";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Ngā whakamātau e whakāetia ana";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Ngā whakamatau i mahia";
+
 /* Label for a discussion */
 "Attendance" = "Taenga mai";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Kōeke kōrero %g ngā koinga e taea";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Ngā Rangahau Kua Kōeketia";
-
 /* Title for Grades view controller */
 "Grades" = "Ngā Kōeke";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Whakairi ō kōrero";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Mahi Quizzes";
-
-/* No comment provided by engineer. */
 "Previous item" = "Tūemi o mua";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Ētahi o ngā kōnae kua tīpakotia kaore i te wātea E tino hiahia ana koe ki te muku i tēnei?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "He hapa i te wā e uta ana ngā quizzes.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Aroha mai, kaore i kitea e mātou te whakataunga Kua mukua pea tēnei whakataunga";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Pono!";
-
-/* No comment provided by engineer. */
-"Surveys" = "rangahau";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Whakawhiti ai i te whakauru pāpāho ki waenganui i te orooro me te ataata. Kua tautuhia ki tēnei %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Kāore he tūemi ki te whakātu";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Kaore ngā quizzes hei whakāu.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Kaore he rubric mo tēnei whakataunga";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Kaore e mōhiotia";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Kaore he mutunga";
 
 /* No comment provided by engineer. */
 "Unread" = "kia pānuitia";

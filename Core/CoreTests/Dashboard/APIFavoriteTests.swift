@@ -20,13 +20,10 @@ import XCTest
 @testable import Core
 
 class APIFavoriteTests: XCTestCase {
-    func testPostFavoriteRequest() {
-        XCTAssertEqual(PostFavoriteRequest(context: .course("2")).method, .post)
-        XCTAssertEqual(PostFavoriteRequest(context: .course("2")).path, "users/self/favorites/courses/2")
-    }
-
-    func testDeleteFavoriteRequest() {
-        XCTAssertEqual(DeleteFavoriteRequest(context: .course("2")).method, .delete)
-        XCTAssertEqual(DeleteFavoriteRequest(context: .course("2")).path, "users/self/favorites/courses/2")
+    func testMarkFavoriteRequest() {
+        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).method, .post)
+        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).path, "users/self/favorites/courses/2")
+        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).method, .delete)
+        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).path, "users/self/favorites/courses/2")
     }
 }

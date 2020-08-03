@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Atachman";
 
+/* No comment provided by engineer. */
+"Attempts" = "Tantativ";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Tantativ Otorize:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Tantativ Itilize:";
+
 /* Label for a discussion */
 "Attendance" = "Prezans";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Diskisyon klase. %g pwe posib.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Ankèt Klase";
-
 /* Title for Grades view controller */
 "Grades" = "Nòt";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Poste Kòmantè ou a";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Quiz Pratik";
-
-/* No comment provided by engineer. */
 "Previous item" = "Atik pase";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Kèk dosye ki seleksyone pa vid. Èske vrèman ou vle efase yo?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Gen yon bagay ki pase mal pandan chajman quiz yo.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Nou regrèt, nou paka jwenn devwa a. Ta sanble devwa a te elimine.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Tout bon!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Ankèt";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Chanje antre medya ant odyo e videyo. Kounye a regle sou %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Pa gen atik pou afiche";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Pa gen quiz pou afiche.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Pa gen ribrik pou devwa sa a";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Enkoni";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Ilimite";
 
 /* No comment provided by engineer. */
 "Unread" = "Poko li";

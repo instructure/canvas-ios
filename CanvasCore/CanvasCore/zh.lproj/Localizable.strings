@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ 加载内容时出错";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "允许的尝试次数";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "发生意外错误。";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "无法离线提交回答。";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "您确认想离开测验吗？";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
-
-/* label for quiz availability date */
-"Available Until" = "截止时间";
 
 /* No comment provided by engineer. */
 "Cancel" = "取消";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "删除评论";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "撤销";
 
 /* No comment provided by engineer. */
 "Done" = "完成";
-
-/* due date label for quiz due date */
-"Due Date" = "截止日期";
-
-/* Data encoding error title */
-"Encoding Error" = "编码错误";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "加载测验时出现错误";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "检索工具启动URL时出错";
-
-/* Exit button to leave the quiz */
-"Exit" = "退出";
 
 /* No comment provided by engineer. */
 "Expand" = "展开";
@@ -74,52 +47,19 @@
 "Inbox" = "收件箱";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "网络连接断开";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "从API收到的日期无效。";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "启动外部工具";
 
-/* Leave the quiz */
-"Leave" = "离开";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "必须使用锁定浏览器才能查看您的结果。请在锁定浏览器中打开测验以继续。";
-
 /* Title for network errors */
 "Network Error" = "网络错误";
-
-/* A quiz that has no due date */
-"No Due Date" = "无截止日期";
-
-/* when a quiz has no time limit */
-"No time limit" = "没有时间限制";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "不能参加";
-
-/* OK Button Title */
-"OK" = "确定";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "在Safari中打开";
 
 /* No comment provided by engineer. */
 "Open in…" = "打开...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "请检查您的网络连接并再次尝试。";
-
-/* label for number of points in a quiz */
-"Points" = "得分";
-
-/* label for the number of questions */
-"Questions" = "问题";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "测验详情";
 
 /* button to read more of the description */
 "Read More" = "阅读更多";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "回复";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "恢复测验";
-
-/* button for retaking quiz */
-"Retake Quiz" = "重考测验";
-
-/* Stay on the quiz view */
-"Stay" = "留下";
-
 /* No comment provided by engineer. */
 "Style" = "样式";
-
-/* Button for taking the quiz */
-"Take Quiz" = "参加测验";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "页面丢失？为什么总是丢失页面？";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "编码UTF8数据时出现问题";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "解读服务器的响应时出现问题。";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "带有Canvas请求出现问题。";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "联系服务器时出现错误。";
 
-/* No comment provided by engineer. */
-"There was no data!" = "没有数据！";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "此测验设置了一个IP地址过滤器。";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "此测验目前不可用。";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "此测验被锁定。";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "此测验无法离线使用。";
-
-/* label for the time limit */
-"Time Limit" = "时间限制";
-
 /* Unexpected response type */
 "Unexpected response type" = "意外的响应类型";
-
-/* Ungraded quiz */
-"Ungraded" = "未评分";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "无限制";
-
-/* button for viewing quiz results */
-"View Results" = "查看结果";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "您已用尽此测验的全部可用的尝试。";
 

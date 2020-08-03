@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Fehler beim Laden von Content";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Zulässige Versuche";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ein unerwarteter Fehler ist aufgetreten.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Antworten werden nicht gesendet, während Sie offline sind.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Sind Sie sicher, dass Sie dieses Quiz wirklich verlassen wollen?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Wollen Sie diesen Kommentar wirklich löschen?";
-
-/* label for quiz availability date */
-"Available Until" = "Verfügbar bis";
 
 /* No comment provided by engineer. */
 "Cancel" = "Abbrechen";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Kommentar löschen";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Verwerfen";
 
 /* No comment provided by engineer. */
 "Done" = "Fertig";
-
-/* due date label for quiz due date */
-"Due Date" = "Abgabefrist";
-
-/* Data encoding error title */
-"Encoding Error" = "Verschlüsselungsfehler";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Fehler beim Laden des Tests";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Fehler beim Abrufen des URL zum Starten des Tools";
-
-/* Exit button to leave the quiz */
-"Exit" = "Beenden";
 
 /* No comment provided by engineer. */
 "Expand" = "Erweitern";
@@ -74,52 +47,19 @@
 "Inbox" = "Posteingang";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Internet-Verbindung offline";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Ungültiges Datum von API empfangen.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Externes Tool starten";
 
-/* Leave the quiz */
-"Leave" = "Verlassen";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Der Lockdown-Browser ist für die Anzeige Ihrer Ergebnisse erforderlich. Bitte öffnen Sie den Test im Lockdown-Browser, um fortzufahren.";
-
 /* Title for network errors */
 "Network Error" = "Netzwerkfehler";
-
-/* A quiz that has no due date */
-"No Due Date" = "Kein Abgabetermin";
-
-/* when a quiz has no time limit */
-"No time limit" = "Kein Zeitlimit";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Kann nicht wiederholt werden";
-
-/* OK Button Title */
-"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "In Safari öffnen";
 
 /* No comment provided by engineer. */
 "Open in…" = "Öffnen in ...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Bitte überprüfen Sie Ihre Netzwerkanbindung.";
-
-/* label for number of points in a quiz */
-"Points" = "Punkte";
-
-/* label for the number of questions */
-"Questions" = "Fragen";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Quizdetails";
 
 /* button to read more of the description */
 "Read More" = "Erfahren Sie mehr";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Antwort";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Quiz fortsetzen";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Quiz wiederholen";
-
-/* Stay on the quiz view */
-"Stay" = "Bleiben";
-
 /* No comment provided by engineer. */
 "Style" = "Stil";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Sich dem Quiz stellen";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Die Seiten sind weg!? Warum werden die Seiten immer weg?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Beim Codieren von UTF8-Daten ist ein Problem aufgetreten";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Beim Interpretieren einer Antwort des Servers ist ein Problem aufgetreten.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Infolge der Canvas-Anfrage ist ein Problem aufgetreten.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Beim Kommunizieren mit dem Server ist ein Fehler aufgetreten.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Es gab keine Daten!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Das Quiz besitzt einen eingestellten IP-Adressen-Filter.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Das Quiz ist momentan nicht verfügbar.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Das Quiz ist gesperrt.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Dieses Quiz ist offline nicht verfügbar.";
-
-/* label for the time limit */
-"Time Limit" = "Zeitbeschränkung";
-
 /* Unexpected response type */
 "Unexpected response type" = "Unerwarteter Antworttyp";
-
-/* Ungraded quiz */
-"Ungraded" = "Nicht benotet";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Unbegrenzt";
-
-/* button for viewing quiz results */
-"View Results" = "Ergebnisse ansehen";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Sie haben bereits alle zulässigen Versuche für dieses Quiz aufgebraucht.";
 
