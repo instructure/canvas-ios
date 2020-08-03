@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import TestsFoundation
 @testable import Core
 
-class APIFavoriteTests: XCTestCase {
-    func testMarkFavoriteRequest() {
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).method, .post)
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).path, "users/self/favorites/courses/2")
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).method, .delete)
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).path, "users/self/favorites/courses/2")
+class PreviewStoreTests: CoreTestCase {
+    func testPreviewStore() {
+        let store = PreviewStore(useCase: GetAllCourses(), contents: [APICourse.make()])
+        drainMainQueue()
+        XCTAssertEqual(store.all.count, 1)
     }
 }

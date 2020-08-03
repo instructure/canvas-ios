@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 public enum StoreChange: Equatable {
     case insertSection(Int)
@@ -180,6 +181,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     @objc
+    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if #available(iOSApplicationExtension 13.0, *) {
+            objectWillChange.send()
+        }
+    }
+
+    @objc
     public func controller(
         _ controller: NSFetchedResultsController<NSFetchRequestResult>,
         didChange sectionInfo: NSFetchedResultsSectionInfo,
@@ -237,4 +245,8 @@ extension Store: Sequence {
     public func makeIterator() -> FetchedResultsControllerGenerator<U.Model> {
         return FetchedResultsControllerGenerator<U.Model>(fetchedResultsController: frc)
     }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension Store: ObservableObject {
 }

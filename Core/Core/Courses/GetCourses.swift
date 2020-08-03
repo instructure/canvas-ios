@@ -90,7 +90,7 @@ public class GetAllCourses: CollectionUseCase {
     public let cacheKey: String? = "courses"
 
     public var request: GetCoursesRequest {
-        return GetCoursesRequest(enrollmentState: nil, state: [ .available, .completed ], perPage: 100)
+        return GetCoursesRequest(enrollmentState: nil, state: [ .available, .completed, .unpublished ], perPage: 100)
     }
 
     public let scope = Scope(predicate: .all, order: [
@@ -143,5 +143,33 @@ public class GetCourseSettings: APIUseCase {
         if let item = response {
             CourseSettings.save(item, courseID: courseID, in: client)
         }
+    }
+}
+
+public class MarkFavoriteCourse: APIUseCase {
+    let courseID: String
+    let markAsFavorite: Bool
+
+    public var cacheKey: String? { nil }
+    public var request: MarkFavoriteRequest {
+        MarkFavoriteRequest(context: .course(courseID), markAsFavorite: markAsFavorite)
+    }
+
+    public init(courseID: String, markAsFavorite: Bool) {
+        self.courseID = courseID
+        self.markAsFavorite = markAsFavorite
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(Course.id), equals: courseID)
+    }
+
+    public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response,
+              let course: Course = client.first(where: #keyPath(Course.id), equals: item.context_id.value) else {
+            return
+        }
+        course.isFavorite = markAsFavorite
+        NotificationCenter.default.post(name: NSNotification.Name("course-favorite-change"), object: nil, userInfo: [:])
     }
 }

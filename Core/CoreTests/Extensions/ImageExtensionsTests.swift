@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,12 +18,19 @@
 
 import XCTest
 @testable import Core
+import SwiftUI
 
-class APIFavoriteTests: XCTestCase {
-    func testMarkFavoriteRequest() {
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).method, .post)
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: true).path, "users/self/favorites/courses/2")
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).method, .delete)
-        XCTAssertEqual(MarkFavoriteRequest(context: .course("2"), markAsFavorite: false).path, "users/self/favorites/courses/2")
+@available(iOS 13.0, *)
+class ImageExtensionsTests: XCTestCase {
+    func testIconNamed() {
+        for name in Image.IconName.allCases {
+            XCTAssertEqual(Image.icon(name), Image("\(name)", bundle: .core))
+        }
+    }
+
+    func testInstIconNamed() {
+        for name in Image.InstIconName.allCases {
+            XCTAssertEqual(Image.icon(name), Image("\(name)Line", bundle: .core))
+        }
     }
 }

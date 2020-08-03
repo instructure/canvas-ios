@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "GitDiffSwift",
-        "repositoryURL": "https://github.com/cobbal/GitDiffSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "e6e972b4bc993d77ada2bbc667ce7a98674a237a",
-          "version": "0.0.2"
-        }
-      },
-      {
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
@@ -47,39 +38,12 @@
         }
       },
       {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser",
-        "state": {
-          "branch": null,
-          "revision": "3d79b2b5a2e5af52c14e462044702ea7728f5770",
-          "version": "0.1.0"
-        }
-      },
-      {
         "package": "Swifter",
         "repositoryURL": "https://github.com/httpswift/swifter",
         "state": {
           "branch": "stable",
           "revision": "e9b1d5ef5a8683babe4265007779a87c324abf8a",
           "version": null
-        }
-      },
-      {
-        "package": "swsh",
-        "repositoryURL": "https://github.com/cobbal/swsh.git",
-        "state": {
-          "branch": null,
-          "revision": "ecd849451a093e013aba0b88a5be63fc3e83a559",
-          "version": "1.0.1"
-        }
-      },
-      {
-        "package": "XCResultKit",
-        "repositoryURL": "https://github.com/davidahouse/XCResultKit",
-        "state": {
-          "branch": null,
-          "revision": "d3f386b1c2ead98f19e1fe9fd605c7efcec21ca2",
-          "version": "0.7.0"
         }
       }
     ]

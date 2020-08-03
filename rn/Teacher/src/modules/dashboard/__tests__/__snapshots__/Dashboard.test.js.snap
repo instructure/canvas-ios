@@ -100,7 +100,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
@@ -1519,7 +1519,7 @@ exports[`Dashboard render 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
@@ -2169,7 +2169,7 @@ exports[`Dashboard render while pending 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
@@ -2819,7 +2819,7 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
@@ -3048,7 +3048,7 @@ exports[`Dashboard render without favorite courses 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
@@ -3761,7 +3761,7 @@ exports[`Dashboard renders course invites 1`] = `
                 ]
               }
             >
-              See All
+              All Courses
             </Text>
           </View>
         </TouchableOpacity>
