@@ -22,14 +22,6 @@ import Core
 
 class EnvironmentValuesExtensionsTests: CoreTestCase {
     @available(iOS 13.0, *)
-    func testIsTeacher() {
-        var env = EnvironmentValues()
-        XCTAssertFalse(env.isTeacher)
-        env.isTeacher = true
-        XCTAssertTrue(env.isTeacher)
-    }
-
-    @available(iOS 13.0, *)
     func testAppEnvironment() {
         var env = EnvironmentValues()
         XCTAssert(env.appEnvironment === AppEnvironment.shared)
