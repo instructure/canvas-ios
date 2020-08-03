@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Vedhæftede filer";
 
+/* No comment provided by engineer. */
+"Attempts" = "Forsøg";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Forsøg tilladt:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Brugte forsøg:";
+
 /* Label for a discussion */
 "Attendance" = "Tilstedeværelse";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Bedømt diskussion. %g point mulige.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Bedømte spørgeundersøgelse";
-
 /* Title for Grades view controller */
 "Grades" = "Karakterer";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Poster din komentar";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Øvelsestest";
-
-/* No comment provided by engineer. */
 "Previous item" = "Forrige element";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Nogle af de valgte mapper er ikke tomme. Er du sikker på, at du vil slette dem?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Noget gik galt under indlæsning af testene.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Beklager, vi kunne ikke finde opgaven. Denne opgave er muligvis blevet slettet.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Ok!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Spørgeundersøgelser";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Skifter medieindgang mellem lyd og video. I øjeblikket indstillet til %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Der er ingen elementer at vise";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Der er ikke nogen test at vise.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Der er ingen rubrik til denne opgave";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Ukendt";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Ubegrænset";
 
 /* No comment provided by engineer. */
 "Unread" = "Ulæst";

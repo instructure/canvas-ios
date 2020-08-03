@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ S'ha produït un error en carregar el contingut";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Intents permesos";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "S'ha produït un error inesperat.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "No s'entregarà cap resposta mentre l'usuari estigui fora de línia.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Segur que voleu marxar d'aquest qüestionari?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
-
-/* label for quiz availability date */
-"Available Until" = "Disponible fins a";
 
 /* No comment provided by engineer. */
 "Cancel" = "Cancel·la";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Suprimeix el comentari";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Descarta";
 
 /* No comment provided by engineer. */
 "Done" = "Fet";
-
-/* due date label for quiz due date */
-"Due Date" = "Data de venciment";
-
-/* Data encoding error title */
-"Encoding Error" = "Error de codificació";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "S'ha produït un error en carregar el qüestionari";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "S'ha produït un error en recuperar l'URL d'inici de l'eina";
-
-/* Exit button to leave the quiz */
-"Exit" = "Surt";
 
 /* No comment provided by engineer. */
 "Expand" = "Desplega";
@@ -74,52 +47,19 @@
 "Inbox" = "Safata d'entrada";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "La connexió a Internet està desconnectada";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "S'ha rebut una data no vàlida de l'API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Inicieu l'eina externa";
 
-/* Leave the quiz */
-"Leave" = "Marxa";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Cal bloquejar l'explorador per veure els resultats. Per continuar, obriu el qüestionari en mode explorador bloquejat.";
-
 /* Title for network errors */
 "Network Error" = "Error de xarxa";
-
-/* A quiz that has no due date */
-"No Due Date" = "Sense data de venciment";
-
-/* when a quiz has no time limit */
-"No time limit" = "Sense límit de temps";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "No es pot realitzar";
-
-/* OK Button Title */
-"OK" = "D'acord";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Obre'l a Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Obre'l a…";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Reviseu la connexió de xarxa i torneu a provar-ho.";
-
-/* label for number of points in a quiz */
-"Points" = "Punts";
-
-/* label for the number of questions */
-"Questions" = "Preguntes";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Informació del qüestionari";
 
 /* button to read more of the description */
 "Read More" = "Obtén més informació";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Respon";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Reprèn el qüestionari";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Torna a realitzar el qüestionari";
-
-/* Stay on the quiz view */
-"Stay" = "Roman";
-
 /* No comment provided by engineer. */
 "Style" = "Estil";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Realitza el qüestionari";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Les pàgines han desaparegut. Per què sempre desapareixen les pàgines?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "S'ha produït un problema en codificar les dades UTF-8";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "S'ha produït un problema en interpretar una resposta del servidor.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "S'ha produït un problema amb la sol·licitud de Canvas.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "S'ha produït un error en comunicar-se amb el servidor.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "No hi havien dades.";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Aquest qüestionari té un conjunt de filtratge d'adreces IP.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "En aquest moment, aquest qüestionari no està disponible.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Aquest qüestionari està bloquejat.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Aquest qüestionari no està disponible fora de línia.";
-
-/* label for the time limit */
-"Time Limit" = "Límit de temps";
-
 /* Unexpected response type */
 "Unexpected response type" = "Tipus de resposta inesperada";
-
-/* Ungraded quiz */
-"Ungraded" = "Sense qualificació";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Il·limitat";
-
-/* button for viewing quiz results */
-"View Results" = "Mostra els resultats";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Ja heu utilitzat tots els intents disponibles en aquest qüestionari.";
 

@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Pièces jointes";
 
+/* No comment provided by engineer. */
+"Attempts" = "Tentatives";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Tentatives permises :";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Tentatives utilisées :";
+
 /* Label for a discussion */
 "Attendance" = "Présence";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Discussion notée. %g points possibles.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Enquêtes notées";
-
 /* Title for Grades view controller */
 "Grades" = "Notes";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Publie votre commentaire";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Quiz d’entraînement";
-
-/* No comment provided by engineer. */
 "Previous item" = "Élément précédent";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Certains dossiers sélectionnés ne sont pas vides. Êtes-vous sûr de vouloir les supprimer ?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Un problème est survenu pendant le chargement des questionnaires.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Désolé, nous n’avons pas pu trouver le travail. Ce travail a peut-être été supprimé.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Bien sûr !";
-
-/* No comment provided by engineer. */
-"Surveys" = "Sondages";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Sélectionne l’entrée multimédia entre son et vidéo. Actuellement réglé sur %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Il n'y a aucun élément à afficher";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Aucune questionnaire à afficher.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Il n’existe aucun barème pour ce travail";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Inconnu";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Illimité";
 
 /* No comment provided by engineer. */
 "Unread" = "Non lu";

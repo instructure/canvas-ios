@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Bilagor";
 
+/* No comment provided by engineer. */
+"Attempts" = "Försök";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Tillåtna försök:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Använda försök:";
+
 /* Label for a discussion */
 "Attendance" = "Närvaro";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Bedömd diskussion. %g möjliga poäng.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Bedömda enkäter";
-
 /* Title for Grades view controller */
 "Grades" = "Omdömen";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Publicerar din kommentar";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Övningsquiz";
-
-/* No comment provided by engineer. */
 "Previous item" = "Föregående objekt";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Vissa valda mappar är inte tomma. Är du säker på att du vill ta bort dem?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Något gick fel vid inläsning av quizzet.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Vi hittade inte uppgiften. Den här uppgiften kan ha tagits bort.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Absolut!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Enkäter";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Växlar medieindata mellan ljud och video. För närvarande inställt på %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Det finns inga objekt att visa";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Det finns inga quiz att visa.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Det finns ingen matris för den här uppgiften";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Okänd";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Obegränsat";
 
 /* No comment provided by engineer. */
 "Unread" = "Olästa";

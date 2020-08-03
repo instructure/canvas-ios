@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Вложения";
 
+/* No comment provided by engineer. */
+"Attempts" = "Попытки";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Разрешенное число попыток:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Использовано попыток:";
+
 /* Label for a discussion */
 "Attendance" = "Посещаемость";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Оцениваемая дискуссия. %g баллов возможно.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Оцениваемые опросы";
-
 /* Title for Grades view controller */
 "Grades" = "Оценки";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Оставляет ваш комментарий";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Практические тесты";
-
-/* No comment provided by engineer. */
 "Previous item" = "Предыдущий элемент";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Некоторые выбранные папки не пусты. Вы действительно хотите удалить их?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "При загрузке тестов что-то пошло не так.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "К сожалению, не удалось найти задание. Это задание, возможно, было удалено.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Конечно!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Опросы";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Переключает медиа-вход между аудио и видео. В настоящее время установлено %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Нет элементов для отображения";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Нет доступных для отображения тестов.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Нет раздела для этого задания";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Неизвестно";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Неограниченно";
 
 /* No comment provided by engineer. */
 "Unread" = "Не прочитано";

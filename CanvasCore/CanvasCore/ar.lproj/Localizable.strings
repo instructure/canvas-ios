@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ خطأ في تحميل المحتوى";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "المحاولات المسموح بها";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "حدث خطأ غير متوقع.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "لن يتم إرسال الأجوبة أثناء عدم الاتصال بالإنترنت.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "هل تريد حقاً الخروج من هذا الاختبار؟";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك تود حذف هذا التعليق؟";
-
-/* label for quiz availability date */
-"Available Until" = "متاح حتى";
 
 /* No comment provided by engineer. */
 "Cancel" = "إلغاء";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "حذف التعليق";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "تجاهل";
 
 /* No comment provided by engineer. */
 "Done" = "تم";
-
-/* due date label for quiz due date */
-"Due Date" = "تاريخ الاستحقاق";
-
-/* Data encoding error title */
-"Encoding Error" = "خطأ في الترميز";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "خطأ في تحميل الاختبار الموجز";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "خطأ أثناء استرداد عنوان URL لتشغيل الأداة";
-
-/* Exit button to leave the quiz */
-"Exit" = "خروج";
 
 /* No comment provided by engineer. */
 "Expand" = "توسيع";
@@ -74,52 +47,19 @@
 "Inbox" = "صندوق الوارد";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "الإنترنت غير متصل";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "تم تلقي تاريخ غير صالح من API.";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "تشغيل الأداة الخارجية";
 
-/* Leave the quiz */
-"Leave" = "مغادرة";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "مطلوب متصفح Lockdown لعرض النتائج الخاصة بك. يُرجى فتح الاختبار في متصفح Lockdown للمتابعة";
-
 /* Title for network errors */
 "Network Error" = "خطأ في الشبكة";
-
-/* A quiz that has no due date */
-"No Due Date" = "لا يوجد تاريخ استحقاق";
-
-/* when a quiz has no time limit */
-"No time limit" = "لا يوجد حد زمني";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "لا يمكن إجراؤه";
-
-/* OK Button Title */
-"OK" = "موافق";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "الفتح في Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "الفتح في...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "يرجى التحقق من اتصال الشبكة وإعادة المحاولة.";
-
-/* label for number of points in a quiz */
-"Points" = "نقاط";
-
-/* label for the number of questions */
-"Questions" = "الأسئلة";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "تفاصيل الاختبار الموجز";
 
 /* button to read more of the description */
 "Read More" = "قراءة المزيد";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "رد";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "استئناف الاختبار";
-
-/* button for retaking quiz */
-"Retake Quiz" = "إعادة الاختبار";
-
-/* Stay on the quiz view */
-"Stay" = "البقاء";
-
 /* No comment provided by engineer. */
 "Style" = "نمط";
-
-/* Button for taking the quiz */
-"Take Quiz" = "إجراء الاختبار";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "هل اختفت الصفحات!؟ لماذا تختفي الصفحات دائمًا؟";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "حدثت مشكلة أثناء ترميز البيانات UTF8";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "حدثت مشكلة أثناء تفسير إستجابة من الخادم.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "حدثت مشكلة مع طلب Canvas.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "حدث خطأ أثناء الاتصال بالخادم.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "لم تكن هناك بيانات!";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "تم تعيين تصفية عناوين IP في هذا الاختبار.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "هذا الاختبار غير متوفر حاليًا.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "هذا الاختبار مؤمّن.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "هذا الاختبار الموجز غير متاح دون اتصال بالإنترنت.";
-
-/* label for the time limit */
-"Time Limit" = "الحد الزمني";
-
 /* Unexpected response type */
 "Unexpected response type" = "نوع استجابة غير متوقع";
-
-/* Ungraded quiz */
-"Ungraded" = "لم يتم تقييم الدرجة";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "غير محدود";
-
-/* button for viewing quiz results */
-"View Results" = "الاطلاع على النتائج";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "استعملت جميع المحاولات المتاحة في هذا الاختبار.";
 

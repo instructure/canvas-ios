@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Priloge";
 
+/* No comment provided by engineer. */
+"Attempts" = "Poskusi";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Število dovoljenih poskusov:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Število poskusov:";
+
 /* Label for a discussion */
 "Attendance" = "Prisotnost";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Ocenjena razprava. %g možnih točk.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Ocenjene ankete";
-
 /* Title for Grades view controller */
 "Grades" = "Ocene";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Objavite svoj komentar.";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Kvizi za vajo";
-
-/* No comment provided by engineer. */
 "Previous item" = "Prejšnji element";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Nekatere izbrane mape niso prazne. Ali ste prepričani, da jih želite odstraniti?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Pri nalaganju kvizov je prišlo je do težav.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Žal naloge ni mogoče najti. Ta naloga je morda odstranjena.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Seveda.";
-
-/* No comment provided by engineer. */
-"Surveys" = "Ankete";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Preklaplja vnos medijev med zvokom in videom. Trenutno nastavljeno na %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "Ni nobenih elementov za prikaz.";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "Ni nobenih kvizov za prikaz.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "Za to nalogo ni ocenjevalnega vodnika";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Neznano";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Neomejeno";
 
 /* No comment provided by engineer. */
 "Unread" = "Neprebrano";

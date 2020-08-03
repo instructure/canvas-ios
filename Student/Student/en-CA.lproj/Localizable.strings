@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "Attachments";
 
+/* No comment provided by engineer. */
+"Attempts" = "Attempts";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "Attempts Allowed:";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "Attempts Used:";
+
 /* Label for a discussion */
 "Attendance" = "Attendance";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "Graded discussion. %g points possible.";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "Graded Surveys";
-
 /* Title for Grades view controller */
 "Grades" = "Grades";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "Posts your comment";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Practice Quizzes";
-
-/* No comment provided by engineer. */
 "Previous item" = "Previous item";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "Some selected folders are not empty. Are you sure you want to delete them?";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "Something went wrong while loading the quizzes.";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "Sorry, we couldn't find the assignment. This assignment may have been deleted.";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "Sure!";
-
-/* No comment provided by engineer. */
-"Surveys" = "Surveys";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "Switches media input between audio and video. Currently set to %@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "There are no items to display";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "There are no quizzes to display.";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "There is no rubric for this assignment";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "Unknown";
+
+/* No comment provided by engineer. */
+"Unlimited" = "Unlimited";
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";

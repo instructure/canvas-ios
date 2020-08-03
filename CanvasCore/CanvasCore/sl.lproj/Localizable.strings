@@ -1,23 +1,11 @@
 /* web content failed to load */
 "⚠️ Error Loading Content" = "⚠️ Napaka pri nalaganju vsebine";
 
-/* label for number of attempts that are allowed */
-"Allowed Attempts" = "Dovoljeni poskusi";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
 
 /* No comment provided by engineer. */
-"Answers will not be submitted while offline." = "Odgovori ne bodo poslani, dokler ste brez povezave.";
-
-/* Question to confirm user wants to navigate away from a quiz. */
-"Are you sure you want to leave this quiz?" = "Ali ste prepričani, da želite zapustiti ta kviz?";
-
-/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
-
-/* label for quiz availability date */
-"Available Until" = "Na voljo do";
 
 /* No comment provided by engineer. */
 "Cancel" = "Prekliči";
@@ -34,26 +22,11 @@
 /* No comment provided by engineer. */
 "Delete Comment" = "Odstrani komentar";
 
-/* Dismiss button for error alert */
+/* No comment provided by engineer. */
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
 "Done" = "Dokončano";
-
-/* due date label for quiz due date */
-"Due Date" = "Rok";
-
-/* Data encoding error title */
-"Encoding Error" = "Napaka pri kodiranju";
-
-/* Title for quiz loading error */
-"Error Loading Quiz" = "Napaka pri nalaganju kviza";
-
-/* No comment provided by engineer. */
-"Error retrieving tool launch URL" = "Napaka pri pridobivanju naslova URL za zagon orodja";
-
-/* Exit button to leave the quiz */
-"Exit" = "Izhod";
 
 /* No comment provided by engineer. */
 "Expand" = "Razširi";
@@ -74,52 +47,19 @@
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
-"Internet Connection Offline" = "Brez internetne povezave";
-
-/* No comment provided by engineer. */
 "Invalid date received from API." = "Neveljaven datum, prejet od API";
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
 
-/* Leave the quiz */
-"Leave" = "Zapusti";
-
-/* Detail label for when a tool called Lockdown Browser is required to take the quiz */
-"Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue." = "Za ogled rezultatov je potreben brskalnik Lockdown. Za nadaljevanje odprite kviz v brskalniku Lockdown.";
-
 /* Title for network errors */
 "Network Error" = "Napaka v omrežju";
-
-/* A quiz that has no due date */
-"No Due Date" = "Ni roka.";
-
-/* when a quiz has no time limit */
-"No time limit" = "Brez časovne omejitve";
-
-/* Title for alert showing when a quiz isn't takeable */
-"Not Takeable" = "Ni mogoče vzeti.";
-
-/* OK Button Title */
-"OK" = "V redu";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Odpri v brskalniku Safari";
 
 /* No comment provided by engineer. */
 "Open in…" = "Odpri v ...";
-
-/* No comment provided by engineer. */
-"Please check your network connection and try again." = "Preverite svojo omrežno povezavo in poskusite znova.";
-
-/* label for number of points in a quiz */
-"Points" = "Točke";
-
-/* label for the number of questions */
-"Questions" = "Vprašanja";
-
-/* No comment provided by engineer. */
-"Quiz Details" = "Podrobnosti o kvizu";
 
 /* button to read more of the description */
 "Read More" = "Preberite več.";
@@ -136,66 +76,15 @@
 /* No comment provided by engineer. */
 "Reply" = "Odgovori";
 
-/* button for resuming a quiz */
-"Resume Quiz" = "Nadaljevanje kviza";
-
-/* button for retaking quiz */
-"Retake Quiz" = "Ponovno opravljanje kviza";
-
-/* Stay on the quiz view */
-"Stay" = "Ostani";
-
 /* No comment provided by engineer. */
 "Style" = "Slog";
-
-/* Button for taking the quiz */
-"Take Quiz" = "Opravi kviz";
-
-/* This shouldn't ever happen. */
-"The Pages are gone!? Why are the pages always gone?" = "Strani so izginile! Zakaj strani vedno izginjajo?";
-
-/* Data encoding error message */
-"There was a problem encoding UTF8 Data" = "Prišlo je do težave pri kodiranju podatkov UTF-8.";
 
 /* JSON Parsing error description */
 "There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
 
-/* generic error message */
-"There was a problem with the Canvas request." = "Prišlo je do težave z zahtevo sistema Canvas.";
-
 /* Error message for a network fail */
 "There was an error while communicating with the server." = "Med komunikacijo s strežnikom je prišlo do napake.";
 
-/* No comment provided by engineer. */
-"There was no data!" = "Ni bilo nobenih podatkov.";
-
-/* Message when telling the user they can't take the quiz because the quiz has an IP address filter set */
-"This quiz has an IP address filter set." = "Ta kviz ima nastavljeno filtriranje IP-naslovov.";
-
-/* Message when telling the user they can't take the quiz for some weird reason */
-"This quiz is currently unavailable." = "Ta kviz trenutno ni na voljo.";
-
-/* Message when telling the user they can't take the quiz because the quiz is locked */
-"This quiz is locked." = "Ta kviz je zaklenjen.";
-
-/* No comment provided by engineer. */
-"This quiz is not available offline." = "Ta kviz ni na voljo brez povezave.";
-
-/* label for the time limit */
-"Time Limit" = "Časovna omejitev";
-
 /* Unexpected response type */
 "Unexpected response type" = "Nepričakovana vrsta odziva";
-
-/* Ungraded quiz */
-"Ungraded" = "Neocenjeno";
-
-/* When a quiz has no limit on the number of attempts */
-"Unlimited" = "Neomejeno";
-
-/* button for viewing quiz results */
-"View Results" = "Ogled rezultatov";
-
-/* Message when telling the user they can't take the quiz because they used up all their attempts */
-"You have used all your attempts available on this quiz." = "Porabili ste vse poskuse, ki so na voljo pri tem kvizu.";
 

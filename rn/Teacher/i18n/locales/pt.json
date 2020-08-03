@@ -381,13 +381,13 @@
     "message": "Módulos da disciplina"
   },
   "course_sections_380358a5": {
-    "message": "Seções da disciplina"
+    "message": "Secções da disciplina"
   },
   "course_settings_f6d0bbf8": {
-    "message": "Definições da disciplina"
+    "message": "Configurações da disciplina"
   },
   "coursename_sections_faeee6fc": {
-    "message": "{ courseName } Seções"
+    "message": "{ courseName } Secções"
   },
   "courses_43204aae": {
     "message": "Disciplinas"
@@ -1335,7 +1335,7 @@
     "message": "Seção: { sectionName }"
   },
   "sections_94731e51": {
-    "message": "Seções"
+    "message": "Secções"
   },
   "sections_sections_70d64496": {
     "message": "Secções: { sections }"
@@ -1377,7 +1377,7 @@
     "message": "Definir cor do texto para { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
-    "message": "Definições"
+    "message": "Configurações"
   },
   "share_2a333403": {
     "message": "Partilhar"
@@ -1440,7 +1440,7 @@
     "message": "comentários de envio"
   },
   "submission_settings_f57b0cf8": {
-    "message": "Definições de submissão"
+    "message": "Configurações de submissão"
   },
   "submission_types_af57bf0": {
     "message": "Tipos de submissão"
@@ -1783,13 +1783,13 @@
     "message": "Você foi convidado"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
-    "message": "Você deve habilitar as permissões de câmera e microfone em Definições para usar a câmera."
+    "message": "Você deve habilitar as permissões de câmera e microfone em Configurações para usar a câmera."
   },
   "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
-    "message": "Você deve habilitar as permissões do microfone em Definições para gravar áudio."
+    "message": "Você deve habilitar as permissões do microfone em Configurações para gravar áudio."
   },
   "you_must_enable_photos_permissions_in_settings_26faf052": {
-    "message": "Você deve habilitar as permissões das Fotos nas Definições."
+    "message": "Você deve habilitar as permissões das Fotos nas Configurações."
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "Tem de introduzir um código de acesso"

@@ -452,6 +452,12 @@
 "Edit" = "تحرير";
 
 /* No comment provided by engineer. */
+"Edit attachment (1)" = "تحرير المرفق (1)";
+
+/* No comment provided by engineer. */
+"Edit attachment (none)" = "تحرير المرفق (بلا)";
+
+/* No comment provided by engineer. */
 "Edit Recipients" = "تحرير المستلمين";
 
 /* Description for email communication channel */

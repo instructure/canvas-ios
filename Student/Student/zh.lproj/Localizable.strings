@@ -265,6 +265,15 @@
 /* Table View Controller for Attachments */
 "Attachments" = "附件";
 
+/* No comment provided by engineer. */
+"Attempts" = "尝试次数";
+
+/* No comment provided by engineer. */
+"Attempts Allowed:" = "允许的尝试次数：";
+
+/* No comment provided by engineer. */
+"Attempts Used:" = "已使用的尝试次数：";
+
 /* Label for a discussion */
 "Attendance" = "出勤";
 
@@ -674,9 +683,6 @@
 /* Graded discussion. 25 points possible */
 "Graded discussion. %g points possible." = "评分讨论%g满分。";
 
-/* No comment provided by engineer. */
-"Graded Surveys" = "评分调查";
-
 /* Title for Grades view controller */
 "Grades" = "评分";
 
@@ -1050,9 +1056,6 @@
 "Posts your comment" = "发布您的评论";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "练习测验";
-
-/* No comment provided by engineer. */
 "Previous item" = "先前的项目";
 
 /* Link to the privacy policy */
@@ -1198,9 +1201,6 @@
 /* Message for a warning popup */
 "Some selected folders are not empty. Are you sure you want to delete them?" = "一些所选文件夹不为空。是否确定要将其删除？";
 
-/* No comment provided by engineer. */
-"Something went wrong while loading the quizzes." = "加载测验时出了些问题。";
-
 /* 404 Error for missing assignment */
 "Sorry, we couldn't find the assignment. This assignment may have been deleted." = "很遗憾，我们找不到作业。此作业可能已经删除。";
 
@@ -1284,9 +1284,6 @@
 
 /* No comment provided by engineer. */
 "Sure!" = "肯定！";
-
-/* No comment provided by engineer. */
-"Surveys" = "调查";
 
 /* Hint about media input selection */
 "Switches media input between audio and video. Currently set to %@" = "在音频和视频间切换媒体输出。当前设置为%@";
@@ -1375,9 +1372,6 @@
 
 /* No comment provided by engineer. */
 "There are no items to display" = "没有项目显示";
-
-/* No comment provided by engineer. */
-"There are no quizzes to display." = "没有要显示的测验。";
 
 /* No comment provided by engineer. */
 "There is no rubric for this assignment" = "此作业没有评估表格";
@@ -1484,6 +1478,9 @@
 
 /* Unknown file type */
 "Unknown" = "未知";
+
+/* No comment provided by engineer. */
+"Unlimited" = "无限制";
 
 /* No comment provided by engineer. */
 "Unread" = "未读";
