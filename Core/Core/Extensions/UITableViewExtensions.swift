@@ -48,3 +48,45 @@ extension UITableView {
         }
     }
 }
+
+@available(iOSApplicationExtension 13.0.0, *)
+extension UITableViewHeaderFooterView {
+    @objc dynamic var hasBorderShadow: Bool {
+        get {
+            subviews.contains { $0 is BorderView }
+        }
+        set {
+            guard hasBorderShadow != newValue else {
+                return
+            }
+            if newValue {
+                addSubview(BorderView(frame: bounds, topEdge: true))
+                addSubview(BorderView(frame: bounds, topEdge: false))
+            } else {
+                for view in subviews where view is BorderView {
+                    view.removeFromSuperview()
+                }
+            }
+        }
+    }
+
+    class BorderView: UIView {
+        required init(frame: CGRect, topEdge: Bool = true) {
+            var newFrame = frame
+            if !topEdge {
+                newFrame.origin.y += frame.height
+            }
+            // stick out from top edge for that pixel-perfect overlap
+            newFrame.origin.y -= 0.5
+            newFrame.size.height = 0.5
+            super.init(frame: newFrame)
+
+            backgroundColor = .opaqueSeparator
+            autoresizingMask = [.flexibleWidth, topEdge ? .flexibleBottomMargin : .flexibleTopMargin]
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+}

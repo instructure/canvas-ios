@@ -20,34 +20,14 @@ import UIKit
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0, *)
-public struct SearchBarView: UIViewRepresentable {
-    @Binding var text: String
-    let placeholder: String
-
-    public func makeUIView(context: Self.Context) -> UISearchBar {
-        let bar = UISearchBar()
-        bar.delegate = context.coordinator
-        bar.placeholder = placeholder
-        return bar
+public struct ActivityIndicatorView: UIViewRepresentable {
+    let style = UIActivityIndicatorView.Style.large
+    public func makeUIView(context: Self.Context) -> UIActivityIndicatorView {
+        let view = UIActivityIndicatorView(style: style)
+        view.startAnimating()
+        return view
     }
 
-    public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
-        uiView.text = text
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
-    }
-
-    public class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
-        }
-
-        public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
+    public func updateUIView(_ uiView: UIActivityIndicatorView, context: Self.Context) {
     }
 }

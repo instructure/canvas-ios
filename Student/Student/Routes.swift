@@ -55,7 +55,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/courses": { url, params, userInfo in
         if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
-            return HostingController(rootView: CourseListView.create())
+            return CoreHostingController(CourseListView.create())
         } else {
             return HelmViewController(moduleName: "/courses", props: makeProps(url, params: params, userInfo: userInfo))
         }

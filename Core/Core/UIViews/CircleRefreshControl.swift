@@ -17,12 +17,14 @@
 //
 
 import UIKit
+import SwiftUI
 
 public class CircleRefreshControl: UIRefreshControl {
     var offsetObservation: NSKeyValueObservation?
     let progressView = CircleProgressView()
     let snappingPoint: CGFloat = -64
     var refreshState = RefreshState.ready
+    var selfAdding = false
     public override var isRefreshing: Bool { refreshState == .refreshing }
 
     enum RefreshState {
@@ -35,6 +37,13 @@ public class CircleRefreshControl: UIRefreshControl {
             tintColor = newValue
             progressView.color = newValue
         }
+    }
+
+    public override func didMoveToWindow() {
+        if selfAdding {
+            insertSelf()
+        }
+        super.didMoveToWindow()
     }
 
     public override func didMoveToSuperview() {
@@ -101,5 +110,56 @@ public class CircleRefreshControl: UIRefreshControl {
         guard refreshState == .refreshing else { return }
         refreshState = .complete
         UIView.animate(withDuration: 0.3, animations: { self.progressView.alpha = 0 })
+    }
+
+    func insertSelf() {
+        var parent = superview
+        while parent != nil {
+            if let scrollview = parent as? UIScrollView {
+                scrollview.refreshControl = self
+                selfAdding = false
+                return
+            }
+            parent = parent?.superview
+        }
+    }
+
+    @available(iOSApplicationExtension 13.0, *)
+    public struct AsView: UIViewRepresentable {
+        typealias Callback = (_ control: CircleRefreshControl) -> Void
+        let action: Callback
+
+        public func makeUIView(context: Self.Context) -> CircleRefreshControl {
+            let control = CircleRefreshControl()
+            control.selfAdding = true
+            context.coordinator.bindToControl(control)
+            return control
+        }
+
+        public func updateUIView(_ uiView: CircleRefreshControl, context: Self.Context) {
+        }
+
+        public func makeCoordinator() -> Coordinator {
+            Coordinator(action: action)
+        }
+
+        public class Coordinator: NSObject {
+            let action: AsView.Callback
+            weak var control: CircleRefreshControl?
+
+            init(action: @escaping Callback) {
+                self.action = action
+            }
+
+            func bindToControl(_ control: CircleRefreshControl) {
+                control.addTarget(self, action: #selector(controlRefreshed), for: .primaryActionTriggered)
+                self.control = control
+            }
+
+            @objc func controlRefreshed() {
+                guard let control = control else { return }
+                action(control)
+            }
+        }
     }
 }

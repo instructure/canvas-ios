@@ -16,38 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
-import SwiftUI
+import Combine
 
 @available(iOSApplicationExtension 13.0, *)
-public struct SearchBarView: UIViewRepresentable {
-    @Binding var text: String
-    let placeholder: String
-
-    public func makeUIView(context: Self.Context) -> UISearchBar {
-        let bar = UISearchBar()
-        bar.delegate = context.coordinator
-        bar.placeholder = placeholder
-        return bar
-    }
-
-    public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
-        uiView.text = text
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
-    }
-
-    public class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
+extension Publishers {
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).map { notification in
+            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
         }
-
-        public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification).map { _ in
+            CGFloat(0)
         }
+        return MergeMany(willShow, willHide).eraseToAnyPublisher()
     }
 }

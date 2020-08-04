@@ -16,38 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import SwiftUI
+import Combine
 
 @available(iOSApplicationExtension 13.0, *)
-public struct SearchBarView: UIViewRepresentable {
-    @Binding var text: String
-    let placeholder: String
+struct AvoidKeyboardArea: ViewModifier {
+    @State var height = CGFloat(0)
 
-    public func makeUIView(context: Self.Context) -> UISearchBar {
-        let bar = UISearchBar()
-        bar.delegate = context.coordinator
-        bar.placeholder = placeholder
-        return bar
-    }
-
-    public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
-        uiView.text = text
-    }
-
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
-    }
-
-    public class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
+    func body(content: Content) -> some View {
+        GeometryReader { geometry in
+            content
+                .padding(.bottom, height)
+                .onReceive(Publishers.keyboardHeight) { height in
+                    let maxY = geometry.frame(in: .global).maxY
+                    let distanceToBottom = UIScreen.main.bounds.height - maxY
+                    self.height = height - distanceToBottom
+                }
         }
+    }
+}
 
-        public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
+@available(iOSApplicationExtension 13.0, *)
+extension View {
+    func avoidKeyboardArea() -> some View {
+        modifier(AvoidKeyboardArea())
     }
 }

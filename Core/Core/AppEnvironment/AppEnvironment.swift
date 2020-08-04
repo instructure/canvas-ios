@@ -67,7 +67,7 @@ open class AppEnvironment {
 
     public static var shared = AppEnvironment()
 
-    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
+    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = {}) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
     }
 

@@ -19,10 +19,13 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
-public class HostingController<InnerContent: View>: UIHostingController<HostingControllerBaseView<InnerContent>> {
-    public init(rootView: InnerContent) {
+public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
+
+    public init(_ rootView: InnerContent, env: AppEnvironment = .shared) {
         let selfBox = Box()
-        super.init(rootView: HostingControllerBaseView(rootView: rootView, controller: { selfBox.value }))
+        super.init(rootView: CoreHostingBaseView(rootView: rootView, env: env) {
+            selfBox.value
+        })
         selfBox.value = self
     }
 
@@ -37,11 +40,14 @@ public class HostingController<InnerContent: View>: UIHostingController<HostingC
 }
 
 @available(iOSApplicationExtension 13.0.0, *)
-public struct HostingControllerBaseView<Content: View>: View {
-    public let rootView: Content
+public struct CoreHostingBaseView<Content: View>: View {
+    var rootView: Content
+    let env: AppEnvironment
     let controller: () -> UIViewController?
 
     public var body: some View {
-        rootView.environment(\.viewController, controller)
+        rootView
+            .environment(\.appEnvironment, env)
+            .environment(\.viewController, controller)
     }
 }

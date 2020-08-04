@@ -115,11 +115,13 @@
 		E81B575D23E243CA002A0C38 /* ComposeReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575423E23DAA002A0C38 /* ComposeReply.swift */; };
 		E81B575E23E243CA002A0C38 /* Compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575523E23DAA002A0C38 /* Compose.swift */; };
 		E81B575F23E243CA002A0C38 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575723E23DAA002A0C38 /* Courses.swift */; };
+		E82AC48024D8D51300E999BF /* ErasedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82AC47F24D8D51300E999BF /* ErasedView.swift */; };
 		E839146523102F9200D772E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC287D22B19D5C00C0B692 /* XCTest.framework */; };
 		E871745423BEC1B500525E67 /* SubmissionListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745323BEC1B500525E67 /* SubmissionListFixture.swift */; };
 		E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */; };
 		E8A4887D23AD2E9700671BB6 /* UITestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A4887C23AD2E9700671BB6 /* UITestUser.swift */; };
 		E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */; };
+		E8C752E124D8D92B0099549D /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = E8C752E024D8D92B0099549D /* ViewInspector */; };
 		E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFDC2476E46F007BC5FD /* MiniFile.swift */; };
 		E8D7EFE22476E6CC007BC5FD /* MiniFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFE12476E6CC007BC5FD /* MiniFolder.swift */; };
 		E8F2A96624A2788B00DB7C18 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96524A2788B00DB7C18 /* Swifter */; };
@@ -238,6 +240,7 @@
 		E81B575423E23DAA002A0C38 /* ComposeReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReply.swift; sourceTree = "<group>"; };
 		E81B575523E23DAA002A0C38 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		E81B575723E23DAA002A0C38 /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		E82AC47F24D8D51300E999BF /* ErasedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErasedView.swift; sourceTree = "<group>"; };
 		E871745323BEC1B500525E67 /* SubmissionListFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListFixture.swift; sourceTree = "<group>"; };
 		E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITestCase.swift; sourceTree = "<group>"; };
 		E8A4887C23AD2E9700671BB6 /* UITestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestUser.swift; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 				E839146523102F9200D772E0 /* XCTest.framework in Frameworks */,
 				3B0CEB6821503B5A00D07CFA /* Core.framework in Frameworks */,
 				E8F2A96624A2788B00DB7C18 /* Swifter in Frameworks */,
+				E8C752E124D8D92B0099549D /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				9F5C92FD237302CA005105BB /* TestEnvironment.swift */,
+				E82AC47F24D8D51300E999BF /* ErasedView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 			name = TestsFoundation;
 			packageProductDependencies = (
 				E8F2A96524A2788B00DB7C18 /* Swifter */,
+				E8C752E024D8D92B0099549D /* ViewInspector */,
 			);
 			productName = TestsFoundation;
 			productReference = 3B032CFB215037AA00B570F7 /* TestsFoundation.framework */;
@@ -823,6 +829,7 @@
 			mainGroup = 3B032CF1215037AA00B570F7;
 			packageReferences = (
 				E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */,
+				E8C752DF24D8D92B0099549D /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 3B032CFC215037AA00B570F7 /* Products */;
 			projectDirPath = "";
@@ -926,6 +933,7 @@
 				97F69C4223F2101C009622E3 /* PlannableFixture.swift in Sources */,
 				3B635B35225CDFB1001F353D /* CalendarEventFixture.swift in Sources */,
 				B15DCD57224121FA0044A8A2 /* MockUploadManager.swift in Sources */,
+				E82AC48024D8D51300E999BF /* ErasedView.swift in Sources */,
 				E80936C724C2480B00D15E9A /* CourseNavigation.swift in Sources */,
 				3B0CEB752150406400D07CFA /* TTLFixture.swift in Sources */,
 				E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */,
@@ -1182,6 +1190,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E8C752DF24D8D92B0099549D /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.3;
+			};
+		};
 		E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/httpswift/swifter";
@@ -1193,6 +1209,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E8C752E024D8D92B0099549D /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8C752DF24D8D92B0099549D /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
 		E8F2A96524A2788B00DB7C18 /* Swifter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8F2A96424A2788B00DB7C18 /* XCRemoteSwiftPackageReference "swifter" */;

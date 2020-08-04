@@ -21,6 +21,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 import CoreData
+import SwiftUI
 
 class CoreTestCase: XCTestCase {
     var database: NSPersistentContainer {
@@ -92,5 +93,18 @@ class TestAnalyticsHandler: AnalyticsHandler {
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
         events.append(.init(name: name, parameters: parameters))
+    }
+}
+
+@available(iOS 13.0.0, *)
+extension CoreTestCase {
+    open func hostSwiftUI<V: View>(_ view: V, debug: Bool = false) -> V {
+        let controller = CoreHostingController(view, env: environment)
+        window.rootViewController = controller
+        if debug {
+            window.screen = UIScreen.main
+            window.makeKeyAndVisible()
+        }
+        return controller.rootView.rootView
     }
 }

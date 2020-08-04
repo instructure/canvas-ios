@@ -89,6 +89,12 @@ public struct EmptyViewRepresentable: UIViewRepresentable {
     public func updateUIView(_ uiView: EmptyView, context: Self.Context) {
         uiView.titleLabel?.text = title
         uiView.bodyLabel?.text = body
+
+        uiView.titleLabel?.font = UIFont.scaledNamedFont(.bold20)
+        uiView.titleLabel?.textColor = UIColor.named(.textDarkest)
+        uiView.bodyLabel?.font = UIFont.scaledNamedFont(.medium16)
+        uiView.bodyLabel?.textColor = UIColor.named(.textDarkest)
+
         uiView.imageView?.contentMode = .scaleAspectFill
         let image = UIImage(named: imageName, in: .core, compatibleWith: nil)
         uiView.imageView?.image = image
