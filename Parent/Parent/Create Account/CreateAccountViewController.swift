@@ -75,7 +75,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         createAccountButton.setTitle(NSLocalizedString("Create Account", comment: ""), for: .normal)
         termsAndConditionsTextView.attributedText = termsOfServicePrivacyPolicyAttributedString()
         termsAndConditionsTextView.delegate = self
-        termsAndConditionsTextView.tintColor = .named(.electric)
+        termsAndConditionsTextView.tintColor = .electric
 
         alreadyHaveAccountLabel.attributedText = footerAttributedString()
 
@@ -149,7 +149,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
 
     func rowInvalidShowError(row: CreateAccountRow) {
         resetRowErrors()
-        row.textField.layer.borderColor = UIColor.named(.borderDanger).cgColor
+        row.textField.layer.borderColor = UIColor.borderDanger.cgColor
 
         switch row {
         case name: return
@@ -167,7 +167,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         rows.forEach {
             $0?.textField.layer.borderWidth = 1
             $0?.textField.layer.cornerRadius = 4
-            $0?.textField.layer.borderColor = UIColor.named(.borderMedium).cgColor
+            $0?.textField.layer.borderColor = UIColor.borderMedium.cgColor
             $0?.errorLabel.text = nil
         }
     }
@@ -189,7 +189,7 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         let message = String.localizedStringWithFormat(str, terms, privacyPolicy)
         let attributes = [
             NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
-            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+            NSAttributedString.Key.foregroundColor: UIColor.textDark,
         ]
         let attributed = NSMutableAttributedString(string: message, attributes: attributes)
         attributed.addAttribute(
@@ -210,10 +210,10 @@ class CreateAccountViewController: UIViewController, ErrorViewController {
         let message = String.localizedStringWithFormat(NSLocalizedString("Already have an account? %@", comment: ""), link)
         let attributes = [
             NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14),
-            NSAttributedString.Key.foregroundColor: UIColor.named(.textDark),
+            NSAttributedString.Key.foregroundColor: UIColor.textDark,
         ]
         let attributed = NSMutableAttributedString(string: message, attributes: attributes)
-        attributed.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (message as NSString).range(of: link))
+        attributed.addAttribute(.foregroundColor, value: UIColor.electric, range: (message as NSString).range(of: link))
         return attributed
     }
 

@@ -52,7 +52,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testLayout() {
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertFalse(controller.spinnerView.isHidden)
         XCTAssertFalse(controller.progressView.isHidden)
 

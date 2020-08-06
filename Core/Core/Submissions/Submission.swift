@@ -300,13 +300,13 @@ public enum SubmissionStatus {
     public var color: UIColor {
         switch self {
         case .late:
-            return .named(.textWarning)
+            return .textWarning
         case .missing:
-            return .named(.textDanger)
+            return .textDanger
         case .submitted:
-            return .named(.textSuccess)
+            return .textSuccess
         case .notSubmitted:
-            return .named(.textDark)
+            return .textDark
         }
     }
 

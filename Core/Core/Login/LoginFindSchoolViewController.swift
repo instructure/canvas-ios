@@ -39,16 +39,16 @@ class LoginFindSchoolViewController: UIViewController {
         let link = NSLocalizedString("Tap here for help.", bundle: .core, comment: "")
         let combined = "\(text) \(link)"
         let attributedText = NSMutableAttributedString(string: combined, attributes: [
-            .foregroundColor: UIColor.named(.textDark),
+            .foregroundColor: UIColor.textDark,
             .font: UIFont.scaledNamedFont(.regular14),
         ])
-        attributedText.addAttribute(.foregroundColor, value: UIColor.named(.electric), range: (combined as NSString).range(of: link))
+        attributedText.addAttribute(.foregroundColor, value: UIColor.electric, range: (combined as NSString).range(of: link))
         return attributedText
     }()
 
     var helpAttributedText = NSAttributedString(
         string: NSLocalizedString("How do I find my school?", bundle: .core, comment: ""),
-        attributes: [.foregroundColor: UIColor.named(.electric)]
+        attributes: [.foregroundColor: UIColor.electric]
     )
 
     static func create(loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginFindSchoolViewController {
@@ -60,7 +60,7 @@ class LoginFindSchoolViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         logoView.image = .icon(.instructure, .solid)
         logoView.tintColor = .currentLogoColor()
@@ -71,7 +71,7 @@ class LoginFindSchoolViewController: UIViewController {
         promptLabel.text = NSLocalizedString("What’s your school’s name?", bundle: .core, comment: "")
         searchField.attributedPlaceholder = NSAttributedString(
             string: NSLocalizedString("Find your school or district", bundle: .core, comment: ""),
-            attributes: [.foregroundColor: UIColor.named(.textDark)]
+            attributes: [.foregroundColor: UIColor.textDark]
         )
     }
 
@@ -151,9 +151,9 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
-        cell.backgroundColor = .named(.backgroundLightest)
+        cell.backgroundColor = .backgroundLightest
         cell.textLabel?.font = .scaledNamedFont(.regular16)
-        cell.textLabel?.textColor = .named(.textDarkest)
+        cell.textLabel?.textColor = .textDarkest
         if accounts.isEmpty {
             cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.emptyCell"
             cell.textLabel?.attributedText = searchField?.text?.isEmpty == true ? helpAttributedText : notFoundAttributedText

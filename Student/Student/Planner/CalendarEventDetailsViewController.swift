@@ -52,7 +52,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
@@ -89,7 +89,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     func update() {
         guard let event = events.first else { return }
         let color = colors.first { $0.canvasContextID == event.contextRaw }
-        updateNavBar(subtitle: event.contextName, color: color?.color ?? .named(.ash))
+        updateNavBar(subtitle: event.contextName, color: color?.color ?? .ash)
 
         titleLabel.text = event.title
         if event.isAllDay {

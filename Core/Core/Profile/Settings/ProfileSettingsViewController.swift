@@ -50,7 +50,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", bundle: .core, comment: "")
 
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = CircleRefreshControl()
@@ -58,7 +58,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.sectionFooterHeight = 0
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
     }
 
@@ -168,7 +168,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = sections[indexPath.section].rows[indexPath.row]
         let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
-        cell.backgroundColor = .named(.backgroundGroupedCell)
+        cell.backgroundColor = .backgroundGroupedCell
         cell.textLabel?.text = row.title
         cell.detailTextLabel?.text = row.detail
         cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none

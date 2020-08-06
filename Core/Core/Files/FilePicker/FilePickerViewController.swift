@@ -64,8 +64,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        sourcesTabBar.barTintColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
+        sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []
@@ -115,7 +115,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             tabBarItems.append(item)
         }
         sourcesTabBar.items = tabBarItems
-        let linkColor = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let linkColor = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
         sourcesTabBar.tintColor = linkColor
         sourcesTabBar.unselectedItemTintColor = linkColor
         update()
@@ -267,7 +267,7 @@ extension FilePickerViewController: UITabBarDelegate {
         case .audio:
             let audioRecorder = AudioRecorderViewController.create()
             audioRecorder.delegate = self
-            audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
+            audioRecorder.view.backgroundColor = UIColor.backgroundLightest
             audioRecorder.modalPresentationStyle = .formSheet
             env.router.show(audioRecorder, from: self, options: .modal())
         case .documentScan:

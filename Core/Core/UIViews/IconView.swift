@@ -23,7 +23,7 @@ open class IconView: UIImageView {
     @IBInspectable
     public var iconColorName: String = "electric" {
         didSet {
-            tintColor = Brand.shared.color(iconColorName) ?? .named(.electric)
+            tintColor = Brand.shared.color(iconColorName) ?? .electric
         }
     }
 

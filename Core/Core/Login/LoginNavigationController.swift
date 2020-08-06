@@ -33,7 +33,7 @@ public class LoginNavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.tintColor = nil // use platform default
-        navigationBar.barTintColor = .named(.backgroundLightest)
+        navigationBar.barTintColor = .backgroundLightest
         navigationBar.barStyle = .default
         navigationBar.isTranslucent = true
         isNavigationBarHidden = true

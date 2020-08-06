@@ -105,7 +105,7 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.getCard(1).fileStackView?.isHidden, false)
         XCTAssertEqual(controller.getCard(1).button?.accessibilityLabel, "Failed. Tap for options")
         XCTAssertEqual(controller.getCard(1).iconView?.image, UIImage.icon(.warning))
-        XCTAssertEqual(controller.getCard(1).iconView?.tintColor, .named(.textDanger))
+        XCTAssertEqual(controller.getCard(1).iconView?.tintColor, .textDanger)
         XCTAssertEqual(controller.getCard(1).nameLabel?.text, "Failed. Tap for options")
         controller.getCard(1).button?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(shownOptions, errorFile)

@@ -23,7 +23,7 @@ class FloatingButtonTests: XCTestCase {
     func testBackgroundColorName() {
         let view = FloatingButton()
         view.backgroundColorName = "not a color name"
-        XCTAssertEqual(view.backgroundColor, .named(.backgroundInfo))
+        XCTAssertEqual(view.backgroundColor, .backgroundInfo)
         view.backgroundColorName = "buttonSecondaryBackground"
         XCTAssertEqual(view.backgroundColor, Brand.shared.buttonSecondaryBackground)
     }
@@ -40,7 +40,7 @@ class FloatingButtonTests: XCTestCase {
         let view = FloatingButton()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.iconColorName = "not a color name"
-        tinter.tintColor = .named(.white)
+        tinter.tintColor = .white
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "buttonSecondaryText"
         tinter.tintColor = Brand.shared.buttonSecondaryText

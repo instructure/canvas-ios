@@ -60,7 +60,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Module Item", bundle: .core, comment: ""))
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true

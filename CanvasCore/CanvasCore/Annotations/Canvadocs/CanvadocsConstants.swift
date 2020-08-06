@@ -68,7 +68,7 @@ public func teacherAppConfiguration(bottomInset: CGFloat) -> PDFConfiguration {
     return PDFConfiguration { (builder) -> Void in
         applySharedAppConfiguration(to: builder)
         builder.additionalScrollViewFrameInsets.bottom = bottomInset
-        builder.backgroundColor = .named(.backgroundMedium)
+        builder.backgroundColor = .backgroundMedium
         builder.userInterfaceViewMode = .never
         builder.naturalDrawingAnnotationEnabled = false
     }

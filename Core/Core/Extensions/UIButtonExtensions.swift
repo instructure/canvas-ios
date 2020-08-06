@@ -28,7 +28,7 @@ public extension UIButton {
         }
     }
 
-    func addBadge(number: UInt, withOffset offset: CGPoint = CGPoint.zero, color: UIColor = UIColor.named(.electric)) {
+    func addBadge(number: UInt, withOffset offset: CGPoint = CGPoint.zero, color: UIColor = UIColor.electric) {
         badgeLayer?.removeFromSuperlayer()
 
         if number == 0 { return }

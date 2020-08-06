@@ -46,12 +46,12 @@ public class ConversationCoursesActionSheet: UIViewController, ErrorViewControll
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         view.frame.size.height = 294
 
         let titleLabel = UILabel()
         titleLabel.text = NSLocalizedString("Choose a course to message", bundle: .core, comment: "")
-        titleLabel.textColor = .named(.textDark)
+        titleLabel.textColor = .textDark
         titleLabel.font = .scaledNamedFont(.semibold14)
         view.addSubview(titleLabel)
         titleLabel.pin(inside: view, leading: 16, trailing: 16, top: 20, bottom: nil)

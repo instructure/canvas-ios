@@ -50,7 +50,7 @@ class RubricViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
@@ -89,7 +89,7 @@ class RubricViewController: UIViewController {
 
             let divider = DividerView(frame: CGRect.zero)
             contentStackView.addArrangedSubview(divider)
-            divider.tintColor = UIColor.named(.borderDark)
+            divider.tintColor = UIColor.borderDark
             divider.addConstraintsWithVFL("V:[view(\(1.0 / UIScreen.main.scale))]")
             divider.pinToLeftAndRightOfSuperview()
 
@@ -201,7 +201,7 @@ class RubricViewController: UIViewController {
 
         let divider = DividerView(frame: CGRect.zero)
         contentStackView.addArrangedSubview(divider)
-        divider.tintColor = UIColor.named(.borderDark)
+        divider.tintColor = UIColor.borderDark
         divider.addConstraintsWithVFL("V:[view(\(1.0 / UIScreen.main.scale))]")
         divider.pinToLeftAndRightOfSuperview()
 

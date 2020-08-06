@@ -42,7 +42,7 @@ public class BottomSheetPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         view.addSubview(stackView)
         stackView.axis = .vertical
         stackView.pin(inside: view, top: 8, bottom: nil)
@@ -57,7 +57,7 @@ public class BottomSheetPickerViewController: UIViewController {
         button.setTitle(title, for: .normal)
         button.contentHorizontalAlignment = .leading
         button.contentVerticalAlignment = .center
-        button.tintColor = .named(.textDarkest)
+        button.tintColor = .textDarkest
         button.titleLabel?.font = .scaledNamedFont(.medium16)
         button.tag = actions.count
         button.accessibilityIdentifier = accessibilityIdentifier

@@ -80,7 +80,7 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(panRecognizer)
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         let isRTL = view.effectiveUserInterfaceLayoutDirection == .rightToLeft
         monthButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: isRTL ? 28 : 0, bottom: 0, right: isRTL ? 0 : 28)
@@ -97,7 +97,7 @@ class CalendarViewController: UIViewController {
             let label = UILabel()
             label.font = .scaledNamedFont(.semibold12)
             label.text = weekdayFormatter.string(from: date)
-            label.textColor = .named(calendar.isDateInWeekend(date) ? .textDark : .textDarkest)
+            label.textColor = calendar.isDateInWeekend(date) ? .textDark : .textDarkest
             label.textAlignment = .center
             label.isAccessibilityElement = false
             weekdayRow.addArrangedSubview(label)

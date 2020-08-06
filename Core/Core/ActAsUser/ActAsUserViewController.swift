@@ -41,7 +41,7 @@ public class ActAsUserViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         addCancelButton(side: .left)
         title = NSLocalizedString("Act as User", bundle: .core, comment: "")
         navigationItem.rightBarButtonItem = nil // remove Done added by Helm

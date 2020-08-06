@@ -38,7 +38,7 @@ class LoginManualOAuthViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
     }
 
     override func viewWillAppear(_ animated: Bool) {

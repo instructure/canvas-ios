@@ -47,9 +47,9 @@ class TextSubmissionViewControllerTests: StudentTestCase {
 
     func testLayout() {
         controller.viewDidAppear(false)
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.title, "Text Entry")
-        XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
         XCTAssertNotNil(controller.keyboard)
     }
 

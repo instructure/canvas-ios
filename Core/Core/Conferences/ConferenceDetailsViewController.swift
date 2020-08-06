@@ -66,8 +66,8 @@ public class ConferenceDetailsViewController: UIViewController, ColoredNavViewPr
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        tableView.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
+        tableView.backgroundColor = .backgroundLightest
 
         setupTitleViewInNavbar(title: NSLocalizedString("Conference Details", bundle: .core, comment: ""))
 

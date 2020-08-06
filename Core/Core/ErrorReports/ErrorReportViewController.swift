@@ -94,7 +94,7 @@ public class ErrorReportViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Send", bundle: .core, comment: ""), style: .done, target: self, action: #selector(send))
         navigationItem.rightBarButtonItem?.isEnabled = false
 
-        backgroundColorView?.backgroundColor = .named(.backgroundLightest)
+        backgroundColorView?.backgroundColor = .backgroundLightest
 
         emailField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
         emailLabel?.text = NSLocalizedString("Your Email", bundle: .core, comment: "")
@@ -110,7 +110,7 @@ public class ErrorReportViewController: UIViewController {
         impactButton?.setTitle(NSLocalizedString("Select One", bundle: .core, comment: ""), for: .normal)
         impactLabel?.text = NSLocalizedString("Impact", bundle: .core, comment: "")
 
-        commentsField?.textColor = .named(.textDarkest)
+        commentsField?.textColor = .textDarkest
         commentsField?.textContainerInset = UIEdgeInsets(top: 11.5, left: 11, bottom: 11, right: 11)
 
         commentsMinHeight = commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor)

@@ -38,7 +38,7 @@ public class ActivityIndicatorButton: DynamicButton {
         spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         spinner.isHidden = true
         spinner.hidesWhenStopped = true
-        spinner.tintColor = .named(.backgroundLightest)
+        spinner.tintColor = .backgroundLightest
     }
 
     public func showSpinner(_ show: Bool) {

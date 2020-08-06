@@ -238,7 +238,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
             super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
             textLabel?.font = UIFont.scaledNamedFont(.semibold16)
             detailTextLabel?.font = UIFont.scaledNamedFont(.medium14)
-            detailTextLabel?.textColor = UIColor.named(.textDark)
+            detailTextLabel?.textColor = UIColor.textDark
             accessoryType = .disclosureIndicator
         }
 

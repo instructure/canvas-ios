@@ -63,7 +63,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor, UIColor(hexString: "#008EE2"))
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
 
         // Assert state from mock data

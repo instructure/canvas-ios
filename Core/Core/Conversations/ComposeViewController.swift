@@ -78,10 +78,10 @@ public class ComposeViewController: UIViewController, ErrorViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
-        titleSubtitleView.titleLabel?.textColor = .named(.textDarkest)
-        titleSubtitleView.subtitleLabel?.textColor = .named(.textDark)
+        titleSubtitleView.titleLabel?.textColor = .textDarkest
+        titleSubtitleView.subtitleLabel?.textColor = .textDark
         navigationItem.titleView = titleSubtitleView
         titleSubtitleView.title = NSLocalizedString("New Message", comment: "")
 
@@ -96,15 +96,15 @@ public class ComposeViewController: UIViewController, ErrorViewController {
 
         bodyMinHeight.isActive = true
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
-        bodyView.placeholderColor = UIColor.named(.textDark)
+        bodyView.placeholderColor = UIColor.textDark
         bodyView.font = .scaledNamedFont(.medium16)
-        bodyView.textColor = .named(.textDarkest)
+        bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
         bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
 
         subjectField.attributedPlaceholder = NSAttributedString(
             string: NSLocalizedString("Subject", comment: ""),
-            attributes: [ .foregroundColor: UIColor.named(.textDark) ]
+            attributes: [ .foregroundColor: UIColor.textDark ]
         )
         subjectField.accessibilityLabel = NSLocalizedString("Subject", comment: "")
 

@@ -26,7 +26,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
     }
 
     func update(comment: SubmissionComment, submission: Submission?, onFileTap: @escaping (Submission?, File?) -> Void) {

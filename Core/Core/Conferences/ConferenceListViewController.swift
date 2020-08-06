@@ -53,7 +53,7 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Conferences", bundle: .core, comment: ""))
 
         emptyMessageLabel.text = NSLocalizedString("There are no conferences to display yet.", bundle: .core, comment: "")
@@ -61,11 +61,11 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
         errorView.messageLabel.text = NSLocalizedString("There was an error loading conferences. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         if context.contextType == .course {
@@ -158,7 +158,7 @@ class ConferenceListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ conference: Conference?) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         iconView.icon = .icon(.conferences)
         if Bundle.main.isTeacherApp {
             iconView.state = conference?.isConcluded == true ? .unpublished : .published

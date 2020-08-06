@@ -46,7 +46,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         instructionsLabel.text = NSLocalizedString("Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.", comment: "")
         if ExperimentalFeature.studentQRCodePairing.isEnabled {
             instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
-            codeContainer.backgroundColor = .named(.backgroundLightest)
+            codeContainer.backgroundColor = .backgroundLightest
             codeContainer.setNeedsDisplay()
         }
 
@@ -124,7 +124,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: NSLocalizedString("Pairing Code: ", comment: ""),
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+                NSAttributedString.Key.foregroundColor: UIColor.textDarkest,
             ]
         )
 
@@ -132,7 +132,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
             string: pairingCode ?? "",
             attributes: [
                 NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold20),
-                NSAttributedString.Key.foregroundColor: UIColor.named(.textDarkest),
+                NSAttributedString.Key.foregroundColor: UIColor.textDarkest,
             ]
         )
         let mutableAttributedString = NSMutableAttributedString()
@@ -141,7 +141,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
 
         qrCodePairingCodeLabel.attributedText = mutableAttributedString
         qrCodeContainer.layer.borderWidth = 1
-        qrCodeContainer.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        qrCodeContainer.layer.borderColor = UIColor.borderMedium.cgColor
         qrCodeContainer.layer.cornerRadius = 4
         tapToCopyButton.isHidden = true
     }

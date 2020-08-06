@@ -36,9 +36,9 @@ class SubmissionFilesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        tableView?.separatorColor = .named(.borderMedium)
-        tableView?.tintColor = .named(.textInfo)
+        view.backgroundColor = .backgroundLightest
+        tableView?.separatorColor = .borderMedium
+        tableView?.tintColor = .textInfo
         emptyLabel?.text = NSLocalizedString("There are no files for this assignment.", bundle: .student, comment: "")
         emptyContainer?.isHidden = !files.isEmpty
         emptyImageView?.image = UIImage(named: "PandaPapers", in: .core, compatibleWith: nil)
@@ -53,7 +53,7 @@ extension SubmissionFilesViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let file = files[indexPath.row]
         let cell = tableView.dequeue(SubmissionFilesCell.self, for: indexPath)
-        cell.backgroundColor = .named(.backgroundLightest)
+        cell.backgroundColor = .backgroundLightest
         cell.titleLabel?.text = file.displayName
         if let url = file.thumbnailURL {
             cell.iconView?.load(url: url)

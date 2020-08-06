@@ -30,9 +30,9 @@ extension Loggable {
     var iconTintColor: UIColor {
         switch type {
         case .error:
-            return .named(.backgroundDanger)
+            return .backgroundDanger
         case .log:
-            return .named(.backgroundSuccess)
+            return .backgroundSuccess
         }
     }
 }

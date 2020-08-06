@@ -61,7 +61,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("People", bundle: .core, comment: ""))
 
         emptyMessageLabel.text = NSLocalizedString("We couldn’t find somebody like that.", bundle: .core, comment: "")
@@ -70,13 +70,13 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
-        searchBar.backgroundColor = .named(.backgroundLightest)
+        searchBar.backgroundColor = .backgroundLightest
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
@@ -243,7 +243,7 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var rolesLabel: UILabel!
 
     func update(user: User?) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
         nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }

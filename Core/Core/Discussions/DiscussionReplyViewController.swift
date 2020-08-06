@@ -42,7 +42,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
         attachBadge.isHidden = true
         attachBadge.isUserInteractionEnabled = false
         attachBadge.translatesAutoresizingMaskIntoConstraints = false
-        attachBadge.backgroundColor = .named(.backgroundLightest)
+        attachBadge.backgroundColor = .backgroundLightest
         attachBadge.layer.cornerRadius = 8
         NSLayoutConstraint.activate([
             attachBadge.centerXAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
@@ -52,12 +52,12 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
         ])
 
         let label = UILabel()
-        label.backgroundColor = .named(.electric)
+        label.backgroundColor = .electric
         label.clipsToBounds = true
         label.layer.cornerRadius = 6
         label.font = .systemFont(ofSize: 10, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = .named(.white)
+        label.textColor = .white
         label.text = NumberFormatter.localizedString(from: 1, number: .none)
         attachBadge.addSubview(label)
         label.pin(inside: attachBadge, leading: 2, trailing: 2, top: 2, bottom: 2)
@@ -115,7 +115,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         navigationItem.titleView = titleSubtitleView
         titleSubtitleView.title = editEntryID != nil
             ? NSLocalizedString("Edit", bundle: .core, comment: "")
@@ -136,12 +136,12 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
         viewMoreButton.isHidden = true
         viewMoreButton.setTitle(NSLocalizedString("View More", bundle: .core, comment: ""), for: .normal)
-        viewMoreButton.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        viewMoreButton.layer.borderColor = UIColor.borderMedium.cgColor
         viewMoreButton.layer.borderWidth = 1 / UIScreen.main.scale
 
         webViewContainer.addSubview(webView)
         webView.autoresizesHeight = true
-        webView.backgroundColor = .named(.backgroundLightest)
+        webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
         webView.scrollView.isScrollEnabled = false
         contentHeight.priority = .defaultHigh // webViewHeight will win

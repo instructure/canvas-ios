@@ -124,10 +124,10 @@ extension Plannable {
     }
 
     public var color: UIColor {
-        guard let canvasContextID = canvasContextIDRaw else { return .named(.ash) }
+        guard let canvasContextID = canvasContextIDRaw else { return .ash }
         if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
             return color.color
         }
-        return .named(.ash)
+        return .ash
     }
 }

@@ -31,7 +31,7 @@ class HideGradesViewController: UIViewController {
     @IBOutlet weak var allHiddenSubHeader: DynamicLabel!
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
-    var color: UIColor = .named(.electric)
+    var color: UIColor = .electric
 
     static func create(courseID: String, assignmentID: String) -> HideGradesViewController {
         let controller = loadFromStoryboard()
@@ -44,7 +44,7 @@ class HideGradesViewController: UIViewController {
         setupTableView()
         setupSections()
 
-        allGradesHiddenView.backgroundColor = .named(.backgroundLightest)
+        allGradesHiddenView.backgroundColor = .backgroundLightest
         allGradesHiddenView.isHidden = true
         allHiddenLabel.text = NSLocalizedString("All Hidden", comment: "")
         allHiddenSubHeader.text = NSLocalizedString("All grades are currently hidden.", comment: "")
@@ -55,7 +55,7 @@ class HideGradesViewController: UIViewController {
     }
 
     func setupTableView() {
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(PostGradesViewController.SectionCell.self)
     }
 

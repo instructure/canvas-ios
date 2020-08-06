@@ -23,7 +23,7 @@ public class LoadingCell: UITableViewCell {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let indicator = CircleProgressView()
-        indicator.color = .named(.textDark)
+        indicator.color = .textDark
         indicator.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(indicator)
         NSLayoutConstraint.activate([

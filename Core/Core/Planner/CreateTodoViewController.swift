@@ -59,7 +59,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         descTextView.font = UIFont.scaledNamedFont(.regular16)
         dateTextField.text = formattedDate
         courseSelectionLabel.text = selectedCourseName
-        courseSelectionLabel.textColor = UIColor.named(.textDark)
+        courseSelectionLabel.textColor = UIColor.textDark
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
@@ -127,14 +127,14 @@ extension CreateTodoViewController: SelectCourseProtocol {
     func userDidSelect(course: Course) {
         selectedCourse = course
         courseSelectionLabel.text = selectedCourseName
-        courseSelectionLabel.textColor = UIColor.named(.textDarkest)
+        courseSelectionLabel.textColor = UIColor.textDarkest
         env.router.pop(from: self)
     }
 
     func userDidUnselectCourse() {
         selectedCourse = nil
         courseSelectionLabel.text = selectedCourseName
-        courseSelectionLabel.textColor = UIColor.named(.textDark)
+        courseSelectionLabel.textColor = UIColor.textDark
         env.router.pop(from: self)
     }
 }
@@ -154,7 +154,7 @@ class SelectCourseViewController: UITableViewController {
         super.viewDidLoad()
         title = NSLocalizedString("Select Course", bundle: .core, comment: "")
         tableView.registerCell(RightDetailTableViewCell.self)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView()
         courses.exhaust()

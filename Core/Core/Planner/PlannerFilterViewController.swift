@@ -156,7 +156,7 @@ class PlannerFilterCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkboxView.layer.borderColor = UIColor.named(.borderDark).cgColor
-        checkmark.tintColor = .named(.backgroundInfo)
+        checkboxView.layer.borderColor = UIColor.borderDark.cgColor
+        checkmark.tintColor = .backgroundInfo
     }
 }

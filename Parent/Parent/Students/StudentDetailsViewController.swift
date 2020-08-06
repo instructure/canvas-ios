@@ -64,7 +64,7 @@ class StudentDetailsViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundGrouped)
+        view.backgroundColor = .backgroundGrouped
 
         alertHeaderLabel.text = NSLocalizedString("Alert me when:", comment: "")
         for label in alertLabels {

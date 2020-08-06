@@ -33,9 +33,9 @@ public class FilterHeaderView: UITableViewHeaderFooterView {
     }
 
     func setup() {
-        contentView.backgroundColor = .named(.backgroundLightest)
+        contentView.backgroundColor = .backgroundLightest
         contentView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
-        titleLabel.textColor = .named(.textDarkest)
+        titleLabel.textColor = .textDarkest
         titleLabel.font = .scaledNamedFont(.heavy24)
         contentView.addSubview(titleLabel)
         titleLabel.pin(inside: contentView, leading: 16, trailing: nil, top: 16, bottom: 8)

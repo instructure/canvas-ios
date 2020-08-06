@@ -25,7 +25,7 @@ class DynamicButtonTests: XCTestCase {
         view.backgroundColorName = "not a color name"
         XCTAssertNil(view.backgroundColor)
         view.backgroundColorName = "electric"
-        XCTAssertEqual(view.backgroundColor, .named(.electric))
+        XCTAssertEqual(view.backgroundColor, .electric)
     }
 
     func testIconName() {
@@ -40,10 +40,10 @@ class DynamicButtonTests: XCTestCase {
         let view = DynamicButton()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.textColorName = "not a color name"
-        tinter.tintColor = .named(.electric)
+        tinter.tintColor = .electric
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.textColorName = "ash"
-        tinter.tintColor = .named(.ash)
+        tinter.tintColor = .ash
         XCTAssertEqual(view.tintColor, tinter.tintColor)
     }
 

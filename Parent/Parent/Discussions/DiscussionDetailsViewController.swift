@@ -49,7 +49,7 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
         webView.autoresizesHeight = true

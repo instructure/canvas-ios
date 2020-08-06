@@ -69,7 +69,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Assignment Details", comment: "")
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)

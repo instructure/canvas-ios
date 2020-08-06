@@ -27,7 +27,7 @@ class SubmissionCommentAudioCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
     }
 
     func update(comment: SubmissionComment, parent: UIViewController) {
