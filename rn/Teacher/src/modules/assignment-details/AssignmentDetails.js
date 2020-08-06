@@ -287,7 +287,21 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
   }
 
   launchExternalTool = () => {
-    LTITools.launchExternalTool(this.props.assignmentDetails.url)
+    let {
+      assignmentDetails: {
+        external_tool_tag_attributes,
+      },
+      assignmentID,
+      courseID,
+    } = this.props
+    let contentID = external_tool_tag_attributes?.content_id
+    LTITools.launchExternalTool(
+      null,
+      `course_${courseID}`,
+      contentID,
+      'assessment',
+      assignmentID,
+    )
   }
 }
 

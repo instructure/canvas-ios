@@ -16,10 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
-
 import { NativeModules } from 'react-native'
 
-export function launchExternalTool (url: string): Promise<*> {
-  return NativeModules.LTITools.launchExternalTool(url)
+export function launchExternalTool (url, context, toolID, launchType, assignmentID) {
+  return NativeModules.LTITools.launchExternalTool(url, context, toolID, launchType, assignmentID)
 }

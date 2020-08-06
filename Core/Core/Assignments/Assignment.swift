@@ -54,6 +54,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
+    @NSManaged public var externalToolContentID: String?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -140,6 +141,7 @@ extension Assignment {
         lastUpdatedAt = Date()
         assignmentGroupID = item.assignment_group_id?.value
         allowedAttempts = item.allowed_attempts ?? 0
+        externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)

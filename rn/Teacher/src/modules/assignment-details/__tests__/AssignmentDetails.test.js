@@ -18,9 +18,9 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
+import { shallow } from 'enzyme'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
-import explore from '../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 import * as LTITools from '../../../common/LTITools'
 
@@ -174,32 +174,58 @@ test('routes to the right place when submissions dial is tapped', () => {
 
 describe('external tool', () => {
   describe('happy path', () => {
+    const url = 'https://canvas.instructure.com/external_tool'
+    let props
     beforeEach(() => {
       LTITools.launchExternalTool = jest.fn()
+      props = {
+        ...defaultProps,
+        assignmentDetails: template.assignment({
+          url,
+          submission_types: ['external_tool'],
+        }),
+      }
     })
 
-    const url = 'https://canvas.instructure.com/external_tool'
-    const props = {
-      ...defaultProps,
-      assignmentDetails: template.assignment({
-        url,
-        submission_types: ['external_tool'],
-      }),
-    }
-    const tree = renderer.create(
-      <AssignmentDetails {...props} />
-    ).toJSON()
-
     it('launches from submission types', () => {
-      const submissionTypes: any = explore(tree).selectByID('assignment-details.assignment-section.submission-type')
-      submissionTypes.props.onPress()
-      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(url)
+      let view = shallow(<AssignmentDetails {...props} />)
+      const submissionTypes = view.find('[testID="assignment-details.assignment-section.submission-type"]')
+      submissionTypes.simulate('press')
+      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(
+        null,
+        `course_${course.id}`,
+        undefined,
+        'assessment',
+        assignment.id
+      )
     })
 
     it('launches from button', () => {
-      const button: any = explore(tree).selectByID('assignment-details.launch-external-tool.button')
-      button.props.onPress()
-      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(url)
+      let view = shallow(<AssignmentDetails {...props} />)
+      const button = view.find('[testID="assignment-details.launch-external-tool.button"]')
+      button.simulate('press')
+      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(
+        null,
+        `course_${course.id}`,
+        undefined,
+        'assessment',
+        assignment.id
+      )
+    })
+
+    it('launches with tool id', () => {
+      props.courseID = '1'
+      props.assignmentID = '2'
+      props.assignmentDetails.external_tool_tag_attributes = { content_id: '3' }
+      let view = shallow(<AssignmentDetails {...props} />)
+      view.find('[testID="assignment-details.launch-external-tool.button"]').simulate('press')
+      expect(LTITools.launchExternalTool).toHaveBeenCalledWith(
+        null,
+        'course_1',
+        '3',
+        'assessment',
+        '2'
+      )
     })
   })
 })
