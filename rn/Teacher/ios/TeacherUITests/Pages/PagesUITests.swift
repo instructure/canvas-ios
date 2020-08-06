@@ -35,16 +35,16 @@ class PagesUITests: MiniCanvasUITestCase {
         CourseNavigation.pages.tap()
         PageList.add.tap()
 
-        PageEdit.title.typeText("Paaaage")
+        PageEditor.titleField.typeText("Paaaage")
         app.webViews.firstElement.typeText("Content")
-        PageEdit.published.tap()
-        PageEdit.frontPage.waitToExist()
+        PageEditor.publishedToggle.tap()
+        PageEditor.frontPageToggle.waitToExist()
 
         let expectation = MiniCanvasServer.shared.expectationForRequest(
             "/api/v1/courses/\(firstCourse.id)/pages",
             method: .post
         )
-        PageEdit.done.tap()
+        PageEditor.doneButton.tap()
         wait(for: [expectation], timeout: 3)
     }
 
@@ -54,13 +54,13 @@ class PagesUITests: MiniCanvasUITestCase {
         PageList.page(index: 0).tap()
         PageDetails.options.tap()
         app.find(label: "Edit").tap()
-        PageEdit.published.tap()
+        PageEditor.publishedToggle.tap()
 
         let expectation = MiniCanvasServer.shared.expectationForRequest(
             "/api/v1/courses/\(firstCourse.id)/pages/\(firstCourse.pages[1].url)",
             method: .put
         )
-        PageEdit.done.tap()
+        PageEditor.doneButton.tap()
         wait(for: [expectation], timeout: 3)
         XCTAssertTrue(firstCourse.pages[1].published)
     }

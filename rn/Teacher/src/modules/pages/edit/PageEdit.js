@@ -110,7 +110,7 @@ export class PageEdit extends Component<Props, State> {
         rightBarButtons={[
           {
             title: i18n('Done'),
-            testID: 'pages.edit.doneButton',
+            testID: 'PageEditor.doneButton',
             style: 'done',
             action: this.done,
           },
@@ -133,12 +133,12 @@ export class PageEdit extends Component<Props, State> {
                   defaultValue={this.state.title}
                   border='both'
                   onChangeText={this.handleTitleChange}
-                  identifier='pages.edit.titleInput'
+                  identifier='PageEditor.titleField'
                   placeholder={i18n('Add title')}
                   onFocus={this._scrollToInput}
                 />
               </View>
-              : <Heading1 style={style.studentTitle}>{this.state.title}</Heading1>
+              : <Heading1 style={style.studentTitle} testID="PageEditor.titleText">{this.state.title}</Heading1>
             }
             <FormLabel>{i18n('Description')}</FormLabel>
             <View
@@ -168,36 +168,32 @@ export class PageEdit extends Component<Props, State> {
                     border='bottom'
                     value={this.state.published}
                     onValueChange={this.handlePublishedChange}
-                    testID='pages.edit.published.row'
-                    identifier='pages.edit.published.switch'
+                    testID='PageEditor.publishedToggle'
                   />
                 }
-                { (isTeacher() || this.props.context === 'groups') && !(page && page.isFrontPage) && this.state.published &&
+                { !(page && page.isFrontPage) && this.state.published &&
                   <RowWithSwitch
                     title={i18n('Set as Front Page')}
                     border='both'
                     value={this.state.isFrontPage}
                     onValueChange={this.handleIsFrontPageChange}
-                    testID='pages.edit.front_page.row'
-                    identifier='pages.edit.front_page.switch'
+                    testID='PageEditor.frontPageToggle'
                   />
                 }
-                {(isTeacher() || this.props.context === 'groups') &&
-                  <RowWithDetail
-                    title={i18n('Can Edit')}
-                    detailSelected={this.state.editingRolesPickerShown}
-                    detail={possibleRoles[editingRole]}
-                    disclosureIndicator
-                    border='bottom'
-                    onPress={this.toggleEditingRoles}
-                    testID='pages.edit.editing_roles.row'
-                  />
-                }
+                <RowWithDetail
+                  title={i18n('Can Edit')}
+                  detailSelected={this.state.editingRolesPickerShown}
+                  detail={possibleRoles[editingRole]}
+                  disclosureIndicator
+                  border='bottom'
+                  onPress={this.toggleEditingRoles}
+                  testID='PageEditor.editorsButton'
+                />
                 {this.state.editingRolesPickerShown &&
                   <PickerIOS
                     selectedValue={editingRole}
                     onValueChange={this.handleEditingRolesChange}
-                    testID='pages.edit.editing_roles.picker'
+                    testID='PageEditor.editorsPicker'
                   >
                     {Object.keys(possibleRoles).map(key => (
                       <PickerItem
