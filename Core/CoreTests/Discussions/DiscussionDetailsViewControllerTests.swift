@@ -140,8 +140,9 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(html.contains("I disagree"))
         XCTAssert(html.contains("Why?"))
         XCTAssert(!html.contains("Hot Pockets"))
-        XCTAssert(!html.contains("<script"))
+        XCTAssert(!html.contains("foo.js"))
         XCTAssert(!html.contains("<link"))
+        XCTAssert(html.contains("Launch External Tool")) // lti javascript
 
         var link = baseURL.appendingPathComponent("courses/1/assignments/2")
         XCTAssertEqual(webView.linkDelegate?.handleLink(link), true)

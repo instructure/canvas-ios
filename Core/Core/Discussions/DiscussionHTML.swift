@@ -238,7 +238,8 @@ public enum DiscussionHTML {
             entries.length > 0 && h('h2', { class: \(s(.heading)) },
                 \(s(NSLocalizedString("Replies", bundle: .core, comment: "")))
             ),
-            entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike }))
+            entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike })),
+            h('script', { dangerouslySetInnerHTML: { __html: \(s(CoreWebView.ltiJavaScript)) } })
         )
     }
 
