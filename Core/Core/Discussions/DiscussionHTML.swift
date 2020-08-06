@@ -120,6 +120,7 @@ public enum DiscussionHTML {
             canLike: \(canLike),
             contextColor: \(s(contextColor?.hexString))
         }), document.body)
+        fixLTITools()
         """
     }
 
@@ -238,8 +239,7 @@ public enum DiscussionHTML {
             entries.length > 0 && h('h2', { class: \(s(.heading)) },
                 \(s(NSLocalizedString("Replies", bundle: .core, comment: "")))
             ),
-            entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike })),
-            h('script', { dangerouslySetInnerHTML: { __html: \(s(CoreWebView.ltiJavaScript)) } })
+            entries.map(entry => h(Discussion.Entry, { key: entry.id, topic, entry, depth: 0, maxDepth, canLike }))
         )
     }
 
