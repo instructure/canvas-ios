@@ -24,12 +24,12 @@ struct SetBinding<Element> where Element: Hashable {
 
     subscript(_ element: Element) -> Binding<Bool> {
         Binding(get: {
-            set.contains(element)
+            self.set.contains(element)
         }, set: { newValue in
             if newValue {
-                set.insert(element)
+                self.set.insert(element)
             } else {
-                set.remove(element)
+                self.set.remove(element)
             }
         })
     }

@@ -104,6 +104,7 @@ extension CoreTestCase {
         if debug {
             window.screen = UIScreen.main
             window.makeKeyAndVisible()
+            RunLoop.current.run(until: Date() + 0.1)
         }
         return controller.rootView.rootView
     }

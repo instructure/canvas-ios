@@ -36,6 +36,11 @@ public struct ErasedView {
         self.init(view, subViews: [ErasedView(body)])
     }
 
+    public init?(_ view: Any?) {
+        guard let view = view else { return nil }
+        self.init(view)
+    }
+
     public init(_ view: Any) {
         if let view = view as? CustomErasable {
             self = view.erased
@@ -86,6 +91,10 @@ public struct ErasedView {
 
     public func first<V: View>(_: V.Type = V.self) -> V? {
         compactMap { $0.view as? V }.first
+    }
+
+    public func first<V: KnownViewType>(_ type: V.Type) -> ErasedView? {
+        filter { $0.viewType == type }.first
     }
 
     public var allTexts: [String?] {
@@ -169,6 +178,13 @@ extension ZStack: CustomErasable {
 }
 
 @available(iOS 13.0, *)
+extension List: CustomErasable {
+    public var erased: ErasedView {
+        ErasedView(self, ViewType.List.self)
+    }
+}
+
+@available(iOS 13.0, *)
 extension Form: CustomErasable {
     public var erased: ErasedView {
         ErasedView(self, ViewType.Form.self)
@@ -178,7 +194,9 @@ extension Form: CustomErasable {
 @available(iOS 13.0, *)
 extension Section: CustomErasable {
     public var erased: ErasedView {
-        ErasedView(self, ViewType.Section.self)
+        let header = [Mirror(reflecting: self).descendant("header")].compactMap { ErasedView($0) }
+        let contents = ErasedView(self, ViewType.Section.self)
+        return ErasedView(contents.view, viewType: contents.viewType, subViews: header + (contents.subViews ?? []))
     }
 }
 
@@ -193,6 +211,20 @@ extension ForEach: CustomErasable {
 extension Button: CustomErasable {
     public var erased: ErasedView {
         ErasedView(self, ViewType.Button.self)
+    }
+}
+
+@available(iOS 13.0, *)
+extension AnyView: CustomErasable {
+    public var erased: ErasedView {
+        ErasedView(self, ViewType.AnyView.self)
+    }
+}
+
+@available(iOS 13.0, *)
+extension Group: CustomErasable {
+    public var erased: ErasedView {
+        ErasedView(self, ViewType.Group.self)
     }
 }
 

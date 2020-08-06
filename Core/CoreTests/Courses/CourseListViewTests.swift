@@ -46,7 +46,7 @@ class CourseListViewTests: CoreTestCase {
     lazy var view: CourseListView = {
         let allCourses = environment.subscribe(GetAllCourses())
         api.mock(allCourses, value: courses)
-        return CourseListView(allCourses: allCourses.exhaust(), state: .init())
+        return hostSwiftUI(CourseListView(allCourses: allCourses.exhaust(), state: .init()))
     }()
 
     var searchBar: SearchBarView? { view.erased.first() }
@@ -54,8 +54,7 @@ class CourseListViewTests: CoreTestCase {
     var cells: [[CourseListView.Cell]] { sections.map { $0.findAll() } }
     var headers: [String?] {
         sections.map { erased -> String? in
-            let text = Mirror(reflecting: erased.view).descendant("header") as? Text
-            return try? text?.inspect().text().string()
+            try? erased.first(Text.self).inspect().text().string()
         }
     }
 

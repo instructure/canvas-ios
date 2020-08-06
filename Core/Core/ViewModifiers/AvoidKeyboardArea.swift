@@ -26,7 +26,7 @@ struct AvoidKeyboardArea: ViewModifier {
     func body(content: Content) -> some View {
         GeometryReader { geometry in
             content
-                .padding(.bottom, height)
+                .padding(.bottom, self.height)
                 .onReceive(Publishers.keyboardHeight) { height in
                     let maxY = geometry.frame(in: .global).maxY
                     let distanceToBottom = UIScreen.main.bounds.height - maxY
