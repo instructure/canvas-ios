@@ -132,7 +132,7 @@ extension Submission: WriteableModel {
         model.workflowState = item.workflow_state
         model.latePolicyStatus = item.late_policy_status
         model.pointsDeducted = item.points_deducted
-        model.attempt = item.attempt ?? 1
+        model.attempt = item.attempt ?? 0
         model.type = item.submission_type
         model.url = item.url
         model.previewUrl = item.preview_url
