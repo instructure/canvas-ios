@@ -40,9 +40,9 @@ public enum Attendance: String, Codable {
 
     var tintColor: UIColor {
         switch self {
-        case .present: return UIColor.named(.backgroundSuccess)
-        case .late: return UIColor.named(.backgroundWarning)
-        case .absent: return UIColor.named(.backgroundDanger)
+        case .present: return UIColor.backgroundSuccess
+        case .late: return UIColor.backgroundWarning
+        case .absent: return UIColor.backgroundDanger
         }
     }
 }

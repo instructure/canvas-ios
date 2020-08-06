@@ -66,8 +66,8 @@ class SubmissionViewableTests: XCTestCase {
     }
 
     func testStatusColor() {
-        XCTAssertEqual(Model(submission: nil).submissionStatusColor, UIColor.named(.textDark))
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusColor, UIColor.named(.textSuccess))
+        XCTAssertEqual(Model(submission: nil).submissionStatusColor, UIColor.textDark)
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: Date()))).submissionStatusColor, UIColor.textSuccess)
     }
 
     func testStatusIcon() {

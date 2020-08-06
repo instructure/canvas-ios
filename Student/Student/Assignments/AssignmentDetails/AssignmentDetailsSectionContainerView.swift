@@ -62,7 +62,7 @@ class AssignmentDetailsSectionContainerView: UIView {
 
     func commonInit() {
         contentView = loadFromXib()
-        backgroundColor = UIColor.named(.backgroundLightest)
-        contentView.backgroundColor = UIColor.named(.backgroundLightest)
+        backgroundColor = UIColor.backgroundLightest
+        contentView.backgroundColor = UIColor.backgroundLightest
     }
 }

@@ -37,7 +37,7 @@ class ConversationDetailCell: UITableViewCell {
         self.parent = parent
         messageLabel.text = m.body
         messageLabel.font = UIFont.scaledNamedFont(.medium14)
-        messageLabel.textColor = UIColor.named(.textDarkest)
+        messageLabel.textColor = UIColor.textDarkest
         messageLabel.sizeToFit()
         messageLabel.isScrollEnabled = false
 

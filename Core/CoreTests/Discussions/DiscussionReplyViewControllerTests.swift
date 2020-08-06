@@ -76,7 +76,7 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(nav.navigationBar.barTintColor, .backgroundLightest)
         XCTAssertEqual(controller.titleSubtitleView.title, "Reply")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
         XCTAssert(webView.html.contains("Is the cube rule of food valid? What's your take?"))

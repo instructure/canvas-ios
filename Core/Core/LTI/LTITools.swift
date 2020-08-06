@@ -42,8 +42,23 @@ public class LTITools: NSObject {
     }
 
     @objc
-    public static func launch(_ url: URL, from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
-        let tools = LTITools(url: url)
+    public static func launch(
+        context: String?,
+        id: String?,
+        url: URL?,
+        launchType: String?,
+        assignmentID: String?,
+        from view: UIViewController,
+        animated: Bool = true,
+        completionHandler: ((Bool) -> Void)? = nil
+    ) {
+        let tools = LTITools(
+            context: context.flatMap { Context(canvasContextID: $0) },
+            id: id,
+            url: url,
+            launchType: launchType.flatMap { GetSessionlessLaunchURLRequest.LaunchType(rawValue: $0) },
+            assignmentID: assignmentID
+        )
         tools.presentTool(from: view, animated: animated, completionHandler: completionHandler)
     }
 

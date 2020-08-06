@@ -62,7 +62,7 @@ func calendarTab() -> UIViewController {
         UINavigationController(rootViewController: PlannerViewController.create()),
         UINavigationController(rootViewController: EmptyViewController()),
     ]
-    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
     split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
     split.tabBarItem.image = .icon(.calendarTab)
     split.tabBarItem.selectedImage = .icon(.calendarTabActive)

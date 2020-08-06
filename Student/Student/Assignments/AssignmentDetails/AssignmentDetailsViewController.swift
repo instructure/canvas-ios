@@ -101,7 +101,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         // Navigation Bar
         navigationItem.titleView = titleSubtitleView
@@ -109,8 +109,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
         // Loading
         scrollView?.isHidden = true
-        scrollView?.backgroundColor = .named(.backgroundLightest)
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+        scrollView?.backgroundColor = .backgroundLightest
+        loadingView?.color = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
@@ -200,7 +200,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
             return
         }
 
-        submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+        submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         fileSubmissionButton?.isHidden = true
@@ -238,17 +238,17 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         switch state {
         case .failed:
             submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
-            submittedLabel?.textColor = UIColor.named(.textDanger).ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
             return
         case .uploading:
             submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             return
         case .staged:
             submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
-            submittedLabel?.textColor = UIColor.named(.textSuccess).ensureContrast(against: .white)
+            submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             return
         case .completed:

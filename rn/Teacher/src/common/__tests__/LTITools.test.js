@@ -25,6 +25,12 @@ describe('LTITools', () => {
   it('defers to native on launchExternalTool', () => {
     const url = 'https://arc.instructure.com/login'
     launchExternalTool(url)
-    expect(NativeModules.LTITools.launchExternalTool).toHaveBeenCalledWith(url)
+    expect(NativeModules.LTITools.launchExternalTool).toHaveBeenCalledWith(
+      url,
+      undefined,
+      undefined,
+      undefined,
+      undefined
+    )
   })
 })

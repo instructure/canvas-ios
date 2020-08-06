@@ -57,7 +57,7 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     func testLayout() {
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertEqual(environment.currentSession?.userName, "Bob") // set from refresh
 
         let first = controller.previousLoginsTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? LoginStartSessionCell

@@ -49,10 +49,10 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertTrue(controller.progressView.isHidden)
         XCTAssertEqual(controller.sourcesTabBar.items?.count, 4)
-        XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
     }
 
     func testDocument() {

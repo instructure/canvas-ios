@@ -66,7 +66,7 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         course.refresh()

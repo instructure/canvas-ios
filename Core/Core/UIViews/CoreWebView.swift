@@ -111,14 +111,14 @@ open class CoreWebView: WKWebView {
     }
 
     var css: String {
-        let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
+        let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
-        let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
 
         return """
             html {
-                background: \(UIColor.named(.backgroundLightest).hexString);
-                color: \(UIColor.named(.textDarkest).hexString);
+                background: \(UIColor.backgroundLightest.hexString);
+                color: \(UIColor.textDarkest.hexString);
                 font-family: system-ui;
                 font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
                 -webkit-tap-highlight-color: transparent;

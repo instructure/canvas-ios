@@ -79,7 +79,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "Course grade: 95% in C1")
         XCTAssertEqual(cell?.dateLabel.text, "Jun 30, 2020 at 12:00 AM")
         XCTAssertEqual(cell?.iconView.image, .icon(.info, .line))
-        XCTAssertEqual(cell?.iconView.tintColor, .named(.textInfo))
+        XCTAssertEqual(cell?.iconView.tintColor, .textInfo)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
         XCTAssert(router.lastRoutedTo("/courses/1/grades"))
@@ -91,7 +91,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "Institution announcement: \"Finals will be cancelled\"")
         XCTAssertEqual(cell?.dateLabel.text, "Jun 25, 2020 at 12:00 AM")
         XCTAssertEqual(cell?.iconView.image, .icon(.info, .line))
-        XCTAssertEqual(cell?.iconView.tintColor, .named(.textDark))
+        XCTAssertEqual(cell?.iconView.tintColor, .textDark)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
         XCTAssert(router.lastRoutedTo("/accounts/self/account_notifications/1"))
@@ -103,7 +103,7 @@ class ObserverAlertListViewControllerTests: ParentTestCase {
         XCTAssertEqual(cell?.titleLabel.text, "Assignment graded: 46% on Practice Worksheet 3 in C1")
         XCTAssertEqual(cell?.dateLabel.text, "Jun 15, 2020 at 12:00 AM")
         XCTAssertEqual(cell?.iconView.image, .icon(.warning, .line))
-        XCTAssertEqual(cell?.iconView.tintColor, .named(.textDanger))
+        XCTAssertEqual(cell?.iconView.tintColor, .textDanger)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index)
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/1"))

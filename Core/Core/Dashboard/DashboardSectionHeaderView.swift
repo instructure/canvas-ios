@@ -27,7 +27,7 @@ class DashboardSectionHeaderView: UICollectionReusableView {
     func update(title: String, rightText: String? = nil, rightAction: (() -> Void)? = nil) {
         titleLabel.text = title
         rightButton.setTitle(rightText, for: .normal)
-        rightButton.tintColor = Brand.shared.primary.ensureContrast(against: .named(.white))
+        rightButton.tintColor = Brand.shared.primary.ensureContrast(against: .white)
         rightActionCallback = rightAction
         if rightActionCallback != nil {
             rightButton.isHidden = false

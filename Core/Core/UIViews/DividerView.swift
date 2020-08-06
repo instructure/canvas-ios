@@ -23,7 +23,7 @@ open class DividerView: UIView {
     @IBInspectable
     public var tintColorName: String = "borderMedium" {
         didSet {
-            tintColor = Brand.shared.color(tintColorName) ?? .named(.borderMedium)
+            tintColor = Brand.shared.color(tintColorName) ?? .borderMedium
         }
     }
 

@@ -100,7 +100,7 @@ class DatePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         navigationItem.title = NSLocalizedString("Choose Date", comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(_:)))
@@ -117,7 +117,7 @@ class DatePickerViewController: UIViewController {
             withReuseIdentifier: String(describing: DatePickerMonthHeaderView.self)
         )
 
-        collectionView.backgroundColor = .named(.backgroundLightest)
+        collectionView.backgroundColor = .backgroundLightest
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.scrollsToTop = false

@@ -60,7 +60,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
         updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)

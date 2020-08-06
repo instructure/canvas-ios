@@ -113,12 +113,12 @@ public class ProfileViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         avatarButton.accessibilityLabel = NSLocalizedString("Change Profile Image", bundle: .core, comment: "")
         avatarLoading.isHidden = true
 
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionLabel.text = "v. \(version)"
@@ -304,7 +304,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: ProfileTableViewCell = tableView.dequeue(for: indexPath)
         let item = cells[indexPath.row]
         cell.accessibilityIdentifier = "Profile.\(item.id)Button"
-        cell.backgroundColor = .named(.backgroundLightest)
+        cell.backgroundColor = .backgroundLightest
         cell.nameLabel.text = item.name
         switch item.type {
         case .toggle(let isOn):

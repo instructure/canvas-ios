@@ -31,7 +31,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         controller.viewDidAppear(false)
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         let cell = controller.resultsTableView.cellForRow(at: first)
         XCTAssertEqual(cell?.textLabel?.text, "How do I find my school?")
         controller.resultsTableView.delegate?.tableView?(controller.resultsTableView, didSelectRowAt: first)

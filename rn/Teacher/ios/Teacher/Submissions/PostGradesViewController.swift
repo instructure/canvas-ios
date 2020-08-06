@@ -35,7 +35,7 @@ class PostGradesViewController: UIViewController {
     private var postPolicy: PostGradePolicy = .everyone
     var presenter: PostGradesPresenter!
     var viewModel: APIPostPolicyInfo?
-    var color: UIColor = .named(.electric)
+    var color: UIColor = .electric
 
     static func create(courseID: String, assignmentID: String) -> PostGradesViewController {
         let controller = loadFromStoryboard()
@@ -50,7 +50,7 @@ class PostGradesViewController: UIViewController {
 
         postGradesButton.setTitle(NSLocalizedString("Post Grades", comment: ""), for: .normal)
 
-        allGradesPostedView.backgroundColor = .named(.backgroundLightest)
+        allGradesPostedView.backgroundColor = .backgroundLightest
         allGradesPostedView.isHidden = true
         allGradesPostedLabel.text = NSLocalizedString("All Posted", comment: "")
         allGradesPostedSubheader.text = NSLocalizedString("All grades are currently posted.", comment: "")
@@ -58,7 +58,7 @@ class PostGradesViewController: UIViewController {
     }
 
     func setupTableView() {
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         tableView.registerCell(SectionCell.self)
         tableView.registerCell(PostToCell.self)
     }
@@ -165,8 +165,8 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             toggle = UISwitch(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
             super.init(style: style, reuseIdentifier: reuseIdentifier)
-            backgroundColor = .named(.backgroundLightest)
-            textLabel?.textColor = .named(.textDarkest)
+            backgroundColor = .backgroundLightest
+            textLabel?.textColor = .textDarkest
             textLabel?.font = .scaledNamedFont(.semibold16)
             accessoryView = toggle
         }
@@ -179,8 +179,8 @@ extension PostGradesViewController: UITableViewDelegate, UITableViewDataSource {
     class PostToCell: UITableViewCell {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: .value1, reuseIdentifier: reuseIdentifier)
-            backgroundColor = .named(.backgroundLightest)
-            textLabel?.textColor = .named(.textDarkest)
+            backgroundColor = .backgroundLightest
+            textLabel?.textColor = .textDarkest
             textLabel?.font = .scaledNamedFont(.semibold16)
             detailTextLabel?.font = .scaledNamedFont(.medium16)
         }

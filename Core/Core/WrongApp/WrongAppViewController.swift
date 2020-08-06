@@ -36,7 +36,7 @@ public class WrongAppViewController: UIViewController {
     }
 
     public override func viewDidLoad() {
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         navigationController?.setNavigationBarHidden(true, animated: false)
         messageTitle?.text = NSLocalizedString("Whoops!", bundle: .core, comment: "")
         messageDescription?.text = String.localizedStringWithFormat(

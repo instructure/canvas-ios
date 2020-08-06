@@ -53,14 +53,14 @@ class CommentListViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Comments", bundle: .core, comment: "")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed(_:)))
 
-        replyBorderView.backgroundColor = .named(.backgroundLightest)
+        replyBorderView.backgroundColor = .backgroundLightest
         replyBorderView.layer.borderWidth = 1 / UIScreen.main.scale
-        replyBorderView.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        replyBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         replyTextView.font = .scaledNamedFont(.regular14)
         replyTextView.adjustsFontForContentSizeCategory = true
         replyTextView.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
         replyButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .core, comment: "")
-        replyView.backgroundColor = .named(.backgroundLight)
+        replyView.backgroundColor = .backgroundLight
 
         if (metadata?.permissions ?? APIDocViewerPermissions.none) == APIDocViewerPermissions.none {
             replyView.isHidden = true

@@ -78,6 +78,6 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, .blue)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
-        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .named(.ash))
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .ash)
     }
 }

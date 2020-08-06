@@ -27,10 +27,10 @@ class StatusCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         selectionStyle = .none
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
 
         nameLabel.font = .scaledNamedFont(.semibold16)
-        nameLabel.textColor = .named(.textDarkest)
+        nameLabel.textColor = .textDarkest
 
         let horizontalStack = UIStackView()
         horizontalStack.alignment = .center

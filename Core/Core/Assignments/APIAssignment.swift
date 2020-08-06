@@ -46,6 +46,7 @@ public struct APIAssignment: Codable, Equatable {
     let assignment_group_id: ID?
     let all_dates: [APIAssignmentDate]?
     let allowed_attempts: Int?
+    let external_tool_tag_attributes: APIExternalToolTagAttributes?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -56,6 +57,11 @@ public struct APIAssignmentDate: Codable, Equatable {
     let due_at: Date?
     let unlock_at: Date?
     let lock_at: Date?
+}
+
+// https://canvas.instructure.com/doc/api/assignments.html#ExternalToolTagAttributes
+public struct APIExternalToolTagAttributes: Codable, Equatable {
+    let content_id: ID? // undocumented
 }
 
 public enum GradingType: String, Codable {
@@ -91,7 +97,8 @@ extension APIAssignment {
         rubric_settings: APIRubricSettings? = nil,
         assignment_group_id: ID? = nil,
         all_dates: [APIAssignmentDate]? = nil,
-        allowed_attempts: Int? = -1
+        allowed_attempts: Int? = -1,
+        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -127,7 +134,8 @@ extension APIAssignment {
             rubric_settings: rubric_settings,
             assignment_group_id: assignment_group_id,
             all_dates: all_dates,
-            allowed_attempts: allowed_attempts
+            allowed_attempts: allowed_attempts,
+            external_tool_tag_attributes: external_tool_tag_attributes
         )
     }
 }
@@ -149,6 +157,12 @@ extension APIAssignmentDate {
             unlock_at: unlock_at,
             lock_at: lock_at
         )
+    }
+}
+
+extension APIExternalToolTagAttributes {
+    public static func make(content_id: ID? = nil) -> Self {
+        return Self(content_id: content_id)
     }
 }
 #endif

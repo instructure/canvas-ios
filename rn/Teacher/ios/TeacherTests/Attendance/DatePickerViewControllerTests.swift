@@ -40,7 +40,7 @@ class DatePickerViewControllerTests: TeacherTestCase, DatePickerDelegate {
         let controller = DatePickerViewController(selected: Clock.now, delegate: self)
         controller.view.frame = CGRect(x: 0, y: 0, width: 375, height: 812)
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertTrue(controller.hasScrolledToInitialDate)
         XCTAssertEqual(controller.layout.itemSize, CGSize(width: 49, height: 49))
 

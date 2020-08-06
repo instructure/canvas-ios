@@ -39,11 +39,11 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Inbox", comment: "")
 
         composeButton.accessibilityLabel = NSLocalizedString("Compose new message", comment: "")
-        composeButton.layer.shadowColor = UIColor.named(.backgroundDarkest).cgColor
+        composeButton.layer.shadowColor = UIColor.backgroundDarkest.cgColor
 
         emptyView.titleText = NSLocalizedString("Inbox Zero", comment: "")
         emptyView.bodyText = NSLocalizedString("You’re all caught up", comment: "")
@@ -51,12 +51,12 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
 
         errorView.isHidden = true
         retryButton.setTitle(NSLocalizedString("Retry", comment: ""), for: .normal)
-        retryButton.layer.borderColor = UIColor.named(.borderDark).cgColor
+        retryButton.layer.borderColor = UIColor.borderDark.cgColor
 
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.refreshControl?.tintColor = Brand.shared.primary
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         conversations.refresh()
     }

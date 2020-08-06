@@ -58,9 +58,9 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.tableFooterView = UIView()
         tableView.registerCell(SyllabusSummaryItemCell.self)
 
@@ -96,7 +96,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusSummaryItemCell.self, for: indexPath)
         let item = summary[indexPath.row]
-        cell.backgroundColor = .named(.backgroundLightest)
+        cell.backgroundColor = .backgroundLightest
         cell.itemNameLabel?.text = item?.title
         cell.iconImageView?.image = item?.type == .assignment ? .icon(.assignment, .line) : .icon(.calendarMonth, .line)
         cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? course.first?.color

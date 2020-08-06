@@ -48,7 +48,7 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusColor: UIColor {
-        return .named(isSubmitted ? .textSuccess : .textDark)
+        return isSubmitted ? .textSuccess : .textDark
     }
 
     public var submissionStatusIcon: UIImage {

@@ -30,9 +30,9 @@ extension CanvasWebView {
             .map { "<h1 id=\"title\">\($0)</h1>" }
             ?? ""
 
-        let buttonBack = Core.Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
+        let buttonBack = Core.Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonFore = Core.Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
-        let link = Core.Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let link = Core.Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
 
         var template = try! String(contentsOf: Self.htmlTemplateURL, encoding: .utf8)
         template = template.replacingOccurrences(of: "{$TITLE$}", with: htmlTitle)
@@ -40,9 +40,9 @@ extension CanvasWebView {
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_BACKGROUND$}", with: buttonBack.hexString)
         template = template.replacingOccurrences(of: "{$PRIMARY_BUTTON_TEXT$}", with: buttonFore.hexString)
         template = template.replacingOccurrences(of: "{$LINK_COLOR$}", with: link.hexString)
-        template = template.replacingOccurrences(of: "{$TEXT_COLOR$}", with: UIColor.named(.textDarkest).hexString)
+        template = template.replacingOccurrences(of: "{$TEXT_COLOR$}", with: UIColor.textDarkest.hexString)
         template = template.replacingOccurrences(of: "{$FONT_SIZE$}", with: "\(UIFont.scaledNamedFont(.regular16).pointSize)")
-        template = template.replacingOccurrences(of: "{$BACKGROUND_COLOR$}", with: UIColor.named(.backgroundLightest).hexString)
+        template = template.replacingOccurrences(of: "{$BACKGROUND_COLOR$}", with: UIColor.backgroundLightest.hexString)
         template = template.replacingOccurrences(of: "{$LTI_LAUNCH_TEXT$}", with: NSLocalizedString("Launch External Tool", comment: ""))
         template = template.replacingOccurrences(of: "{$CONTENT_DIRECTION$}", with: UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? "rtl" : "ltr")
 

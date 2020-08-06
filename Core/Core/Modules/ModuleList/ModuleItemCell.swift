@@ -32,17 +32,17 @@ class ModuleItemCell: UITableViewCell {
     let env = AppEnvironment.shared
 
     func update(_ item: ModuleItem, indexPath: IndexPath) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         nameLabel.text = item.title
         nameLabel.isEnabled = env.app == .teacher || !(item.lockedForUser || item.module?.state == .locked)
-        nameLabel.textColor = nameLabel.isEnabled ? .named(.textDarkest) : .named(.textLight)
+        nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
         publishedIconView.published = item.published
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
         completedStatusView.image = item.completed == true ? .icon(.check) : .icon(.empty)
-        completedStatusView.tintColor = item.completed == true ? .named(.backgroundSuccess) : .named(.borderMedium)
+        completedStatusView.tintColor = item.completed == true ? .backgroundSuccess : .borderMedium
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
         let points = item.pointsPossible.flatMap {
@@ -59,7 +59,7 @@ class ModuleItemCell: UITableViewCell {
             accessoryView = UIImageView(image: .icon(.masteryPaths))
         } else {
             dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
-            dueLabel.textColor = .named(.textDark)
+            dueLabel.textColor = .textDark
             accessoryView = nil
         }
         dueLabel.isHidden = dueLabel.text == nil

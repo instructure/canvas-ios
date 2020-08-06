@@ -38,7 +38,7 @@ public class FilePicker: NSObject {
         sheet.addAction(image: .icon(.audio), title: NSLocalizedString("Record Audio", bundle: .core, comment: "")) { [weak self] in
             let controller = AudioRecorderViewController.create()
             controller.delegate = self
-            controller.view.backgroundColor = UIColor.named(.backgroundLightest)
+            controller.view.backgroundColor = UIColor.backgroundLightest
             controller.modalPresentationStyle = .formSheet
             self?.env.router.show(controller, from: from, options: .modal())
         }

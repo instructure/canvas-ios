@@ -73,9 +73,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         frontPage.refresh()

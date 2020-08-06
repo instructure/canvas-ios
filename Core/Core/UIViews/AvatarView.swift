@@ -28,23 +28,23 @@ open class AvatarView: UIView {
         if imageView.superview == nil {
             addSubview(imageView)
             imageView.pin(inside: self)
-            imageView.backgroundColor = .named(.backgroundLight)
+            imageView.backgroundColor = .backgroundLight
             imageView.clipsToBounds = true
             imageView.contentMode = .scaleAspectFill
             imageView.isAccessibilityElement = false
-            imageView.tintColor = .named(.textDark)
+            imageView.tintColor = .textDark
 
             addSubview(label)
             label.pin(inside: self)
             label.allowsDefaultTighteningForTruncation = true
-            label.backgroundColor = .named(.backgroundLightest)
+            label.backgroundColor = .backgroundLightest
             label.clipsToBounds = true
             label.isAccessibilityElement = false
-            label.layer.borderColor = UIColor.named(.borderMedium).cgColor
+            label.layer.borderColor = UIColor.borderMedium.cgColor
             label.layer.borderWidth = 1 / UIScreen.main.scale
             label.lineBreakMode = .byClipping
             label.textAlignment = .center
-            label.textColor = .named(.textDark)
+            label.textColor = .textDark
         }
 
         // Size dependent layout needs to happen every time.

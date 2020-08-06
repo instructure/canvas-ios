@@ -67,7 +67,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Page Details", bundle: .core, comment: ""))
         webViewContainer.addSubview(webView)
         webView.pin(inside: webViewContainer)
