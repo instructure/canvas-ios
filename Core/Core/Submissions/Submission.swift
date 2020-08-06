@@ -116,7 +116,7 @@ extension Submission: WriteableModel {
             #keyPath(Submission.userID),
             item.user_id.value,
             #keyPath(Submission.attempt),
-            item.attempt ?? 1
+            item.attempt ?? 0
         )
         let model: Submission = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
@@ -132,7 +132,7 @@ extension Submission: WriteableModel {
         model.workflowState = item.workflow_state
         model.latePolicyStatus = item.late_policy_status
         model.pointsDeducted = item.points_deducted
-        model.attempt = item.attempt ?? 1
+        model.attempt = item.attempt ?? 0
         model.type = item.submission_type
         model.url = item.url
         model.previewUrl = item.preview_url

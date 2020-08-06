@@ -214,8 +214,7 @@ extension Assignment {
     }
 
     public var usedAttempts: Int {
-        guard let submission = submission, submission.submittedAt != nil else { return 0 }
-        return submission.attempt
+        return submission?.attempt ?? 0
     }
 
     public var hasAttemptsLeft: Bool {

@@ -268,16 +268,17 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.hasAttemptsLeft, true)
         a.allowedAttempts = -1
         XCTAssertEqual(a.hasAttemptsLeft, true)
+        a.submission = Submission.make(from: .make(attempt: nil))
+        a.allowedAttempts = 1
+        XCTAssertEqual(a.hasAttemptsLeft, true)
     }
 
     func testUsedAttempts() {
         let a = Assignment.make(from: .make(submission: nil))
         XCTAssertEqual(a.usedAttempts, 0)
         a.submission = Submission.make(from: .make(submitted_at: nil, attempt: 1))
-        XCTAssertEqual(a.usedAttempts, 0)
-        a.submission?.submittedAt = Clock.now
         XCTAssertEqual(a.usedAttempts, 1)
-        a.submission?.attempt = 5
-        XCTAssertEqual(a.usedAttempts, 5)
+        a.submission = Submission.make(from: .make(attempt: nil))
+        XCTAssertEqual(a.usedAttempts, 0)
     }
 }
