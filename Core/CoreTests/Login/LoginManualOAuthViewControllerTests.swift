@@ -26,7 +26,7 @@ class LoginManualOAuthViewControllerTests: CoreTestCase {
     func testSubmit() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
 
         controller.continueButton.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.viewControllerCalls.isEmpty)

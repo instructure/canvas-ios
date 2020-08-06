@@ -55,7 +55,7 @@ class EditComposeRecipientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         view.frame.size.height = 304
         titleLabel.text = NSLocalizedString("Recipients", bundle: .core, comment: "")
         teachers.exhaust(force: false)
@@ -133,10 +133,10 @@ class RecipientCell: UITableViewCell {
     lazy var selectedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.named(.electric).withAlphaComponent(0.8)
+        view.backgroundColor = UIColor.electric.withAlphaComponent(0.8)
         self.contentView.addSubview(view)
         let check = UIImageView(image: UIImage.icon(.check))
-        check.tintColor = UIColor.named(.backgroundLightest)
+        check.tintColor = UIColor.backgroundLightest
         check.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(check)
         NSLayoutConstraint.activate([
@@ -161,7 +161,7 @@ class RecipientCell: UITableViewCell {
     }
 
     func initialize() {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
     }
 
     override func layoutSubviews() {

@@ -128,7 +128,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         webView.autoresizesHeight = true // will update the height constraint
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.alwaysBounceVertical = false
-        webView.backgroundColor = .named(.backgroundLightest)
+        webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
         webView.addScript(DiscussionHTML.preact)
         webView.addScript(DiscussionHTML.js)
@@ -244,11 +244,11 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
         let isPublished = topic.first?.published == true
         publishedIcon.image = .icon(isPublished ? .publish : .no, .solid)
-        publishedIcon.tintColor = .named(isPublished ? .textSuccess : .textDark)
+        publishedIcon.tintColor = isPublished ? .textSuccess : .textDark
         publishedLabel.text = isPublished
             ? NSLocalizedString("Published", bundle: .core, comment: "")
             : NSLocalizedString("Unpublished", bundle: .core, comment: "")
-        publishedLabel.textColor = .named(isPublished ? .textSuccess : .textDark)
+        publishedLabel.textColor = isPublished ? .textSuccess : .textDark
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
         if env.app == .teacher, let courseID = courseID, let assignmentID = topic.first?.assignmentID {

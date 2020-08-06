@@ -47,17 +47,17 @@ class ObserverAlertListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         emptyMessageLabel.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Alerts", comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading alerts. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         alerts.exhaust() // so the badge number can be accurate
         thresholds.exhaust()
@@ -139,7 +139,7 @@ class ObserverAlertListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
 
     func update(alert: ObserverAlert?, threshold: UInt?) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         unreadView.isHidden = alert?.workflowState != .unread
         unreadView.accessibilityLabel = NSLocalizedString("Unread", comment: "")
         typeLabel.text = alert?.alertType.title(for: threshold)
@@ -147,16 +147,16 @@ class ObserverAlertListCell: UITableViewCell {
         dateLabel.text = alert?.actionDate?.dateTimeString
         switch alert?.alertType {
         case .assignmentGradeHigh, .courseGradeHigh:
-            typeLabel.textColor = .named(.textInfo)
-            iconView.tintColor = .named(.textInfo)
+            typeLabel.textColor = .textInfo
+            iconView.tintColor = .textInfo
             iconView.image = .icon(.info, .line)
         case .assignmentGradeLow, .assignmentMissing, .courseGradeLow:
-            typeLabel.textColor = .named(.textDanger)
-            iconView.tintColor = .named(.textDanger)
+            typeLabel.textColor = .textDanger
+            iconView.tintColor = .textDanger
             iconView.image = .icon(.warning, .line)
         case .courseAnnouncement, .institutionAnnouncement, .none:
-            typeLabel.textColor = .named(.textDark)
-            iconView.tintColor = .named(.textDark)
+            typeLabel.textColor = .textDark
+            iconView.tintColor = .textDark
             iconView.image = .icon(.info, .line)
         }
     }

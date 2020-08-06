@@ -51,7 +51,7 @@ public class ConversationDetailViewController: UIViewController {
 
     private func configureTableView() {
         tableView.refreshControl = refreshControl
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.registerHeaderFooterView(UITableViewHeaderFooterView.self, fromNib: false)
     }
@@ -119,7 +119,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: false)
                 success(true)
             }
-            reply.backgroundColor = .named(.electric)
+            reply.backgroundColor = .electric
             reply.image = .icon(.reply, .solid)
             actions.append(reply)
         }
@@ -129,7 +129,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: true)
                 success(true)
             }
-            replyAll.backgroundColor = .named(.oxford)
+            replyAll.backgroundColor = .oxford
             replyAll.image = .icon(.replyAll, .solid)
             actions.append(replyAll)
         }

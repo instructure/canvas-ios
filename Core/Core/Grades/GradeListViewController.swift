@@ -95,7 +95,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Grades", bundle: .core, comment: ""))
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         emptyMessageLabel.text = NSLocalizedString("It looks like assignments haven’t been created in this space yet.", bundle: .core, comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Assignments", bundle: .core, comment: "")
@@ -111,7 +111,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
 
@@ -150,7 +150,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
     func updateNavBar() {
         guard let course = courses.first else { return }
-        color = colorDelegate?.iconColor ?? course.color.ensureContrast(against: .named(.white))
+        color = colorDelegate?.iconColor ?? course.color.ensureContrast(against: .white)
         titleSubtitleView.subtitle = course.name
         navigationController?.navigationBar.useContextColor(color)
         view.tintColor = color

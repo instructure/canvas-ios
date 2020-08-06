@@ -39,7 +39,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        webView.backgroundColor = .named(.backgroundLightest)
+        webView.backgroundColor = .backgroundLightest
         webView.scrollView.refreshControl = refreshControl
         webView.linkDelegate = self
 

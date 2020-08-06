@@ -68,12 +68,12 @@ public class ItemPickerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SubtitleTableViewCell.self)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
         tableView.tintColor = Brand.shared.primary
     }
@@ -101,7 +101,7 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             cell = tableView.dequeue(for: indexPath) as RightDetailTableViewCell
         }
-        cell.backgroundColor = .named(.backgroundGroupedCell)
+        cell.backgroundColor = .backgroundGroupedCell
         cell.imageView?.image = item.image
         cell.textLabel?.text = item.title
         cell.accessibilityTraits.insert(.button)

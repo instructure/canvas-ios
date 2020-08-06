@@ -72,7 +72,7 @@ class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         addStudentView.layer.addDropShadow()
         addStudentView.isHidden = true
@@ -251,7 +251,7 @@ class DashboardViewController: UIViewController {
         alerts.tabBarItem.selectedImage = UIImage.icon(.alertsTabActive)
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
-        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.named(.white) ], for: .normal)
+        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.white ], for: .normal)
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
@@ -322,7 +322,7 @@ class StudentButton: UIButton {
         contentEdgeInsets.top = 16 + 48 + 8
         contentEdgeInsets.bottom = 16
         setTitle(Core.User.displayName(student.shortName, pronouns: student.pronouns), for: .normal)
-        setTitleColor(.named(.textDarkest), for: .normal)
+        setTitleColor(.textDarkest, for: .normal)
         titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
         titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
@@ -351,16 +351,16 @@ class AddStudentButton: UIButton {
         contentEdgeInsets.top = 16 + 48 + 8
         contentEdgeInsets.bottom = 16
         setTitle(NSLocalizedString("Add Student", comment: ""), for: .normal)
-        setTitleColor(.named(.textDarkest), for: .normal)
+        setTitleColor(.textDarkest, for: .normal)
         titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
         titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
 
         let circle = UIView()
-        circle.backgroundColor = .named(.white)
+        circle.backgroundColor = .white
         circle.layer.addDropShadow()
         circle.layer.cornerRadius = 24
-        circle.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        circle.layer.borderColor = UIColor.borderMedium.cgColor
         circle.layer.borderWidth = 1 / UIScreen.main.scale
         circle.isUserInteractionEnabled = false
         circle.translatesAutoresizingMaskIntoConstraints = false

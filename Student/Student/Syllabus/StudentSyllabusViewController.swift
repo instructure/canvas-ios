@@ -50,7 +50,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavVie
         super.viewDidLoad()
         delegate = self
         setupTitleViewInNavbar(title: NSLocalizedString("Course Syllabus", comment: ""))
-        view.backgroundColor = UIColor.named(.backgroundLightest)
+        view.backgroundColor = UIColor.backgroundLightest
 
         settings.refresh()
         colors.refresh()

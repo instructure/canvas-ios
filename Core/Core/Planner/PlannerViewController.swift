@@ -75,7 +75,7 @@ public class PlannerViewController: UIViewController {
         }
 
         let divider = DividerView()
-        divider.tintColor = .named(.borderMedium)
+        divider.tintColor = .borderMedium
         divider.isOpaque = false
         view.addSubview(divider)
         divider.pinToLeftAndRightOfSuperview()

@@ -64,7 +64,7 @@ class LoginWebViewController: UIViewController, ErrorViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.accessibilityIdentifier = "LoginWeb.webView"
-        webView.backgroundColor = .named(.backgroundLightest)
+        webView.backgroundColor = .backgroundLightest
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self

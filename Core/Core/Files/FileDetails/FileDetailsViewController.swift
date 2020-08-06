@@ -65,8 +65,8 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        contentView.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
+        contentView.backgroundColor = .backgroundLightest
 
         arButton.setTitle(NSLocalizedString("Augment Reality", bundle: .core, comment: ""), for: .normal)
         arButton.isHidden = true

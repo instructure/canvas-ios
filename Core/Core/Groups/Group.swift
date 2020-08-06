@@ -68,6 +68,6 @@ extension Group {
                 return color.color
             }
         }
-        return .named(.ash)
+        return .ash
     }
 }

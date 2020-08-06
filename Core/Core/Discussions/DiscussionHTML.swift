@@ -446,8 +446,8 @@ public enum DiscussionHTML {
         static func color(_ path: KeyPath<Brand, UIColor>) -> String {
             Brand.shared[keyPath: path].hexString
         }
-        static func color(_ name: InstColorName) -> String {
-            UIColor.named(name).hexString
+        static func color(_ color: UIColor) -> String {
+            color.hexString
         }
 
         enum Weight: String {

@@ -46,7 +46,7 @@ class ComposeViewControllerTests: CoreTestCase {
         let titleView = try XCTUnwrap(controller.navigationItem.titleView as? TitleSubtitleView)
         XCTAssertEqual(titleView.title, "New Message")
         XCTAssertEqual(titleView.subtitle, "course-1")
-        XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.isEnabled, true)
 

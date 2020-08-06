@@ -36,7 +36,7 @@ class BrandTests: XCTestCase {
         XCTAssertEqual(Brand.shared.color("navTextColor"), Brand.shared.navTextColor)
         XCTAssertEqual(Brand.shared.color("navTextColorActive"), Brand.shared.navTextColorActive)
         XCTAssertEqual(Brand.shared.color("primary"), Brand.shared.primary)
-        XCTAssertEqual(Brand.shared.color("ash"), .named(.ash))
+        XCTAssertEqual(Brand.shared.color("ash"), .ash)
         XCTAssertNil(Brand.shared.color("not a real name"))
     }
 

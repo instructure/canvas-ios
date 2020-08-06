@@ -38,8 +38,8 @@ class UrlSubmissionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        loadingView?.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
+        loadingView?.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Website Address", comment: "")
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .plain, target: self, action: #selector(submit))

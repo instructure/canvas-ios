@@ -46,7 +46,7 @@ class WrongAppLinkView: UIButton {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         contentView?.isUserInteractionEnabled = false
         logoView?.tintColor = color
         nameLabel?.textColor = color

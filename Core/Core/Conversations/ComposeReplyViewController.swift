@@ -65,7 +65,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         addCancelButton(side: .left)
         attachButton.accessibilityLabel = NSLocalizedString("Add Attachments", comment: "")
@@ -79,9 +79,9 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
         attachmentsController.showOptions = { [weak self] in self?.showOptions(for: $0) }
 
         bodyView.placeholder = NSLocalizedString("Message", comment: "")
-        bodyView.placeholderColor = UIColor.named(.textDark)
+        bodyView.placeholderColor = UIColor.textDark
         bodyView.font = .scaledNamedFont(.medium16)
-        bodyView.textColor = .named(.textDarkest)
+        bodyView.textColor = .textDarkest
         bodyView.textContainerInset = UIEdgeInsets(top: 15.5, left: 11, bottom: 15, right: 11)
         bodyView.accessibilityLabel = NSLocalizedString("Message", comment: "")
         if env.app == .parent {

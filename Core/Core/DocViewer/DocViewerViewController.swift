@@ -69,8 +69,8 @@ public class DocViewerViewController: UIViewController {
         pdf.delegate = self
 
         syncAnnotationsButton.isHidden = true
-        syncAnnotationsButton.setTitleColor(.named(.white), for: .normal)
-        syncAnnotationsButton.setTitleColor(.named(.textDark), for: .disabled)
+        syncAnnotationsButton.setTitleColor(.white, for: .normal)
+        syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 
         if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
@@ -249,13 +249,13 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
 
     func annotationDidFailToSave(error: Error) { performUIUpdate {
         self.syncAnnotationsButton.isEnabled = true
-        self.syncAnnotationsButton.backgroundColor = .named(.backgroundDanger)
+        self.syncAnnotationsButton.backgroundColor = .backgroundDanger
         self.syncAnnotationsButton.setTitle(NSLocalizedString("Error Saving. Tap to retry.", bundle: .core, comment: ""), for: .normal)
     } }
 
     func annotationSaveStateChanges(saving: Bool) { performUIUpdate {
         self.syncAnnotationsButton.isEnabled = false
-        self.syncAnnotationsButton.backgroundColor = .named(.backgroundLight)
+        self.syncAnnotationsButton.backgroundColor = .backgroundLight
         self.syncAnnotationsButton.setTitle(saving
             ? NSLocalizedString("Saving...", bundle: .core, comment: "")
             : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),

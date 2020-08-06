@@ -71,7 +71,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         spinnerView.color = color
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.registerCell(EmptyCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
@@ -242,7 +242,7 @@ extension ModuleListViewController {
             label.text = NSLocalizedString("This module is empty.", bundle: .core, comment: "")
             label.textAlignment = .center
             label.font = .scaledNamedFont(.medium12)
-            label.textColor = .named(.textDark)
+            label.textColor = .textDark
             contentView.addSubview(label)
             label.pin(inside: contentView, leading: 8, trailing: -8, top: 12, bottom: 12)
         }

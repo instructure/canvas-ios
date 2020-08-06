@@ -29,7 +29,7 @@ class AdminViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         directionsLabel.text = NSLocalizedString("Add students at the top or visit the global menu to masquerade as a student.", comment: "")
         welcomeLabel.text = NSLocalizedString("Welcome, Admin!", comment: "")

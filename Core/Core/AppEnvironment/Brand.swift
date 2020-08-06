@@ -54,22 +54,22 @@ public struct Brand: Equatable {
         navTextColorActive: UIColor?,
         primary: UIColor?
     ) {
-        self.buttonPrimaryBackground = buttonPrimaryBackground ?? .named(.electric)
-        self.buttonPrimaryText = buttonPrimaryText ?? .named(.white)
-        self.buttonSecondaryBackground = buttonSecondaryBackground ?? .named(.licorice)
-        self.buttonSecondaryText = buttonSecondaryText ?? .named(.white)
-        self.fontColorDark = fontColorDark ?? .named(.licorice)
-        self.headerImageBackground = headerImageBackground ?? .named(.oxford)
+        self.buttonPrimaryBackground = buttonPrimaryBackground ?? .electric
+        self.buttonPrimaryText = buttonPrimaryText ?? .white
+        self.buttonSecondaryBackground = buttonSecondaryBackground ?? .licorice
+        self.buttonSecondaryText = buttonSecondaryText ?? .white
+        self.fontColorDark = fontColorDark ?? .licorice
+        self.headerImageBackground = headerImageBackground ?? .oxford
         self.headerImageUrl = headerImageUrl ?? Bundle.core.url(forResource: "defaultHeaderImage", withExtension: "png")
-        self.linkColor = linkColor ?? .named(.electric)
-        self.navBackground = navBackground ?? .named(.oxford)
-        self.navBadgeBackground = navBadgeBackground ?? .named(.electric)
-        self.navBadgeText = navBadgeText ?? .named(.white)
-        self.navIconFill = navIconFill ?? .named(.white)
-        self.navIconFillActive = navIconFillActive ?? .named(.electric)
-        self.navTextColor = navTextColor ?? .named(.white)
-        self.navTextColorActive = navTextColorActive ?? .named(.electric)
-        self.primary = primary ?? .named(.electric)
+        self.linkColor = linkColor ?? .electric
+        self.navBackground = navBackground ?? .oxford
+        self.navBadgeBackground = navBadgeBackground ?? .electric
+        self.navBadgeText = navBadgeText ?? .white
+        self.navIconFill = navIconFill ?? .white
+        self.navIconFillActive = navIconFillActive ?? .electric
+        self.navTextColor = navTextColor ?? .white
+        self.navTextColorActive = navTextColorActive ?? .electric
+        self.primary = primary ?? .electric
     }
 
     public init(response: APIBrandVariables, baseURL: URL) {
@@ -145,7 +145,7 @@ public struct Brand: Equatable {
         case "primary":
             return primary
         default:
-            return InstColorName(rawValue: name).flatMap { UIColor.named($0) }
+            return UIColor(named: name, in: .core, compatibleWith: nil)
         }
     }
 

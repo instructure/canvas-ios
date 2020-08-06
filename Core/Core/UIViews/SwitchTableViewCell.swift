@@ -37,10 +37,10 @@ public class SwitchTableViewCell: UITableViewCell {
         toggle.onTintColor = Brand.shared.primary
         toggle.addTarget(self, action: #selector(toggleChanged(_:)), for: .valueChanged)
         accessoryView = toggle
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         directionalLayoutMargins = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
         heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
-        textLabel?.textColor = .named(.textDarkest)
+        textLabel?.textColor = .textDarkest
         textLabel?.font = .scaledNamedFont(.semibold16)
     }
 

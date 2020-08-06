@@ -21,21 +21,21 @@ import UIKit
 extension UITabBar {
     /// Styles the `UITabBar` to use some elements of the organizations branding colors
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
-        let hasEnoughContrast = brand.primary.contrast(against: UIColor.named(.backgroundLightest)) >= 3
+        let hasEnoughContrast = brand.primary.contrast(against: UIColor.backgroundLightest) >= 3
         let activeColor = hasEnoughContrast ? brand.primary : brand.navTextColor
-        tintColor = activeColor.ensureContrast(against: .named(.backgroundLightest))
+        tintColor = activeColor.ensureContrast(against: .backgroundLightest)
 
         barStyle = .default
-        barTintColor = .named(.backgroundLightest)
-        unselectedItemTintColor = .named(.textDark)
+        barTintColor = .backgroundLightest
+        unselectedItemTintColor = .textDark
 
         // There are weird RN view sizing issues with opaque tabBars, so emulate with backgroundColor.
         isTranslucent = true
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
 
         for item in items ?? [] {
-            item.badgeColor = .named(.crimson)
-            item.setBadgeTextAttributes([.foregroundColor: UIColor.named(.white)], for: .normal)
+            item.badgeColor = .crimson
+            item.setBadgeTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         }
     }
 }

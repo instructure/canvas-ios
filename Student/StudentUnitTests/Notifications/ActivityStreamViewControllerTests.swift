@@ -50,8 +50,8 @@ class ActivityStreamViewControllerTests: StudentTestCase {
         _ = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewDidLoad()
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
-        XCTAssertEqual(controller.tableView.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
+        XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
         let expectedDateCell0 = ActivityStreamViewController.dateFormatter.string(from: mockNow.addDays(-2))

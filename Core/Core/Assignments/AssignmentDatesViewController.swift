@@ -101,7 +101,7 @@ class AssignmentDatesViewController: UIViewController {
         let label = UILabel()
         label.font = .scaledNamedFont(.regular16)
         label.accessibilityLabel = a11y
-        label.textColor = .named(.textDarkest)
+        label.textColor = .textDarkest
         if let title = title {
             let aText = NSMutableAttributedString(string: "\(title) \(text)")
             aText.addAttribute(.font, value: UIFont.scaledNamedFont(.semibold16), range: (title as NSString).range(of: title))

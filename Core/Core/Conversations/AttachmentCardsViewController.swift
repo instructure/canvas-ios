@@ -60,7 +60,7 @@ class AttachmentCardsViewController: UIViewController {
             let card = getCard(cardIndex)
             if a.uploadError != nil {
                 card.updateFile(name: NSLocalizedString("Failed. Tap for options", comment: ""), icon: .icon(.warning, .line))
-                card.iconView?.tintColor = .named(.textDanger)
+                card.iconView?.tintColor = .textDanger
             } else if a.isUploading, a.size > 0 {
                 card.updateProgress(name: a.displayName ?? a.localFileURL?.lastPathComponent, sent: a.bytesSent, of: a.size)
             } else if a.mimeClass == "image", let c = a.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
@@ -130,7 +130,7 @@ class AttachmentCardsViewController: UIViewController {
 class AttachmentCardView: UIView {
     static func create() -> AttachmentCardView {
         let view = AttachmentCardView()
-        view.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        view.layer.borderColor = UIColor.borderMedium.cgColor
         view.layer.cornerRadius = 4.0
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -170,7 +170,7 @@ class AttachmentCardView: UIView {
             nameLabel.lineBreakMode = .byTruncatingTail
             nameLabel.numberOfLines = 2
             nameLabel.textAlignment = .center
-            nameLabel.textColor = .named(.textDarkest)
+            nameLabel.textColor = .textDarkest
             self.nameLabel = nameLabel
             let stack = UIStackView(arrangedSubviews: [ iconView, nameLabel ])
             stack.alignment = .center
@@ -190,7 +190,7 @@ class AttachmentCardView: UIView {
         button.accessibilityLabel = name
         stack.isHidden = false
         iconView?.image = icon
-        iconView?.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+        iconView?.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
         nameLabel?.text = name
     }
 
@@ -236,7 +236,7 @@ class AttachmentCardView: UIView {
             progressLabel.font = .scaledNamedFont(.semibold14)
             progressLabel.lineBreakMode = .byClipping
             progressLabel.textAlignment = .center
-            progressLabel.textColor = .named(.textDarkest)
+            progressLabel.textColor = .textDarkest
             progressLabel.translatesAutoresizingMaskIntoConstraints = false
             progressView.addSubview(progressLabel)
             progressLabel.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true

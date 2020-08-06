@@ -86,12 +86,12 @@ class RubricCircleView: UIView {
 
             if selected {
                 font = UIFont.scaledNamedFont(.semibold20)
-                color = UIColor.named(.backgroundLightest)
+                color = UIColor.backgroundLightest
                 bgColor = courseColor
             } else {
                 font = UIFont.scaledNamedFont(.regular20Monodigit)
-                color = UIColor.named(.borderDark)
-                bgColor = UIColor.named(.backgroundLightest)
+                color = UIColor.borderDark
+                bgColor = UIColor.backgroundLightest
             }
 
             let title = (rubric?.hideRubricPoints ?? false) ? (rubric?.rubricRatings[i].desc ?? "-") + RubricCircleView.stringPadding : RubricCircleView.formatter.string(for: r) ?? ""
@@ -215,8 +215,8 @@ class RubricCircleView: UIView {
 
         if !showAsSelected { button.transform = CGAffineTransform.identity }
 
-        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(rubricCircleViewAlphaColor) : UIColor.named(.backgroundLightest)
-        let color = selected ? UIColor.named(.backgroundLightest) : showAsSelected ? courseColor : UIColor.named(.borderDark)
+        let bgColor = selected ? courseColor : showAsSelected ? courseColor.withAlphaComponent(rubricCircleViewAlphaColor) : UIColor.backgroundLightest
+        let color = selected ? UIColor.backgroundLightest : showAsSelected ? courseColor : UIColor.borderDark
 
         button.backgroundColor = bgColor
         button.setTitleColor(color, for: .normal)

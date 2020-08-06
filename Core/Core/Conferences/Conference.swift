@@ -80,9 +80,9 @@ final class Conference: NSManagedObject {
 
     var statusColor: UIColor {
         if startedAt != nil, endedAt == nil {
-            return .named(.textSuccess)
+            return .textSuccess
         }
-        return .named(.textDark)
+        return .textDark
     }
 
     @discardableResult

@@ -38,16 +38,6 @@ class UIColorExtensionsTests: XCTestCase {
         XCTAssertEqual(UIColor(intValue: 0x12345678).intValue, 0x12345678)
     }
 
-    func testNamed() {
-        for name in InstColorName.allCases {
-            XCTAssertNotNil(UIColor.named(name, inHighContrast: false))
-            XCTAssertNotNil(UIColor.named(name, inHighContrast: true))
-            if #available(iOS 13, *) {
-                XCTAssertNotNil(Color.named(name))
-            }
-        }
-    }
-
     func testLuminance() {
         XCTAssertEqual(UIColor.white.luminance, 1.0)
         XCTAssertEqual(UIColor.black.luminance, 0.0)

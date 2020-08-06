@@ -31,7 +31,7 @@ public class GradeCircleReusableView: UICollectionReusableView {
         gradeCircleView.pin(inside: self)
 
         let border = UIView(frame: CGRect.zero)
-        border.backgroundColor = UIColor.named(.borderMedium)
+        border.backgroundColor = UIColor.borderMedium
         addSubview(border)
         let margin: CGFloat = 16
         border.pin(inside: self, leading: margin, trailing: margin, top: nil, bottom: 0)

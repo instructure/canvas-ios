@@ -67,7 +67,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         setupTitleViewInNavbar(title: NSLocalizedString("Attendance", comment: ""))
         titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
@@ -81,15 +81,15 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickerButton)
 
         header.translatesAutoresizingMaskIntoConstraints = false
-        header.backgroundColor = .named(.backgroundLightest)
+        header.backgroundColor = .backgroundLightest
 
         let divider = UIView()
-        divider.backgroundColor = .named(.borderMedium)
+        divider.backgroundColor = .borderMedium
         divider.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(divider)
 
         sectionLabel.font = UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.semibold)
-        sectionLabel.textColor = .named(.textDarkest)
+        sectionLabel.textColor = .textDarkest
         sectionLabel.text = currentSection?.name
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         header.addSubview(sectionLabel)
@@ -104,9 +104,9 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
         changeSectionButton.tintColor = Core.Brand.shared.linkColor
         header.addSubview(changeSectionButton)
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.registerCell(StatusCell.self)
@@ -298,7 +298,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.updateMarkAllButton()
                 done(true)
             }
-            action.backgroundColor = value?.tintColor ?? .named(.oxford)
+            action.backgroundColor = value?.tintColor ?? .oxford
             return action
         })
     }

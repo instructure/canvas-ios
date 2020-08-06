@@ -79,7 +79,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
 
         let promptContainer = UIView()
         promptContainer.translatesAutoresizingMaskIntoConstraints = false
-        promptContainer.backgroundColor = UIColor.named(.backgroundDarkest).withAlphaComponent(0.9)
+        promptContainer.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
         promptContainer.layer.cornerRadius = 8
         view.addSubview(promptContainer)
         NSLayoutConstraint.activate([
@@ -90,15 +90,15 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         let prompt = UILabel()
         prompt.text = NSLocalizedString("Find a code to scan", bundle: .core, comment: "")
         prompt.font = .scaledNamedFont(.semibold16)
-        prompt.textColor = .named(.textLightest)
+        prompt.textColor = .textLightest
         promptContainer.addSubview(prompt)
         prompt.pin(inside: promptContainer, leading: 16, trailing: 16, top: 16, bottom: 16)
 
         let cancel = UIButton()
         cancel.translatesAutoresizingMaskIntoConstraints = false
-        cancel.backgroundColor = UIColor.named(.backgroundDarkest).withAlphaComponent(0.9)
+        cancel.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
         cancel.setImage(UIImage.icon(.x), for: .normal)
-        cancel.tintColor = .named(.textLightest)
+        cancel.tintColor = .textLightest
         cancel.addTarget(self, action: #selector(cancelTapped(_:)), for: .primaryActionTriggered)
         cancel.layer.cornerRadius = 25
         view.addSubview(cancel)
@@ -175,7 +175,7 @@ class QROverlayView: UIView {
         super.init(frame: frame)
         arc.lineWidth = 8
         arc.fillColor = UIColor.clear.cgColor
-        arc.strokeColor = UIColor.named(.borderLightest).cgColor
+        arc.strokeColor = UIColor.borderLightest.cgColor
         arc.lineCap = .round
         layer.addSublayer(arc)
     }

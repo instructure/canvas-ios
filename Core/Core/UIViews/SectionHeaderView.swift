@@ -25,7 +25,7 @@ public class SectionHeaderView: UITableViewHeaderFooterView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        bgView.backgroundColor = .named(.backgroundLightest)
+        bgView.backgroundColor = .backgroundLightest
     }
 
     public static func create(title: String, section: Int) -> SectionHeaderView {

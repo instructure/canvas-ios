@@ -43,7 +43,7 @@ class CourseListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         emptyMessageLabel.text = NSLocalizedString("Your child’s courses might not be published yet.", comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Courses", comment: "")
@@ -51,11 +51,11 @@ class CourseListViewController: UIViewController {
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         spinnerView.color = nil
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         refreshControl.color = nil
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         courses.exhaust()
     }
@@ -107,7 +107,7 @@ class CourseListCell: UITableViewCell {
     @IBOutlet weak var gradeLabel: UILabel!
 
     func update(_ course: Course?, studentID: String) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         let id = course?.id ?? ""
         accessibilityIdentifier = "course_cell_\(id)"
 
