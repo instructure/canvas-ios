@@ -224,6 +224,8 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     @IBAction func share(_ sender: UIBarButtonItem) {
         guard let url = localURL else { return }
+        let pdf = children.first { $0 is PDFViewController } as? PDFViewController
+        try? pdf?.document?.save()
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
         env.router.show(controller, from: self, options: .modal())
@@ -429,8 +431,6 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         embed(controller, in: contentView)
         addPDFAnnotationChangeNotifications()
 
-        let share = UIBarButtonItem(barButtonSystemItem: .action, target: controller.activityButtonItem.target, action: controller.activityButtonItem.action)
-        share.accessibilityIdentifier = "FileDetails.shareButton"
         let annotate = controller.annotationButtonItem
         annotate.image = .icon(.highlighter, .line)
         annotate.accessibilityIdentifier = "FileDetails.annotateButton"
