@@ -20,6 +20,7 @@ import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
 public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
+    public var navBarStyle = NavBarStyle.global
 
     public init(_ rootView: InnerContent, env: AppEnvironment = .shared) {
         let selfBox = Box()
@@ -29,25 +30,44 @@ public class CoreHostingController<InnerContent: View>: UIHostingController<Core
         selfBox.value = self
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavBarStyle()
+    }
+
+    func applyNavBarStyle(_ style: NavBarStyle? = nil) {
+        navBarStyle = style ?? navBarStyle
+        switch navBarStyle {
+        case .global:
+            self.navigationController?.navigationBar.useGlobalNavStyle()
+        case .color(let color):
+            self.navigationController?.navigationBar.useContextColor(color)
+        }
+    }
+
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
     private class Box {
-        weak var value: UIViewController?
+        weak var value: CoreHostingController<InnerContent>?
         init() { }
     }
+
 }
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CoreHostingBaseView<Content: View>: View {
     var rootView: Content
     let env: AppEnvironment
-    let controller: () -> UIViewController?
+    let controller: () -> CoreHostingController<Content>?
 
     public var body: some View {
         rootView
             .environment(\.appEnvironment, env)
             .environment(\.viewController, controller)
+            .onPreferenceChange(NavBarStyle.self) { pref in
+                self.controller()?.applyNavBarStyle(pref)
+        }
     }
 }

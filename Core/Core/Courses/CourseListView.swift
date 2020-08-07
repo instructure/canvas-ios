@@ -79,8 +79,12 @@ public struct CourseListView: View {
     }
 
     var courseList: some View {
-        // TODO: better searching
-        let filteredCourses = allCourses.filter { state.filter.isEmpty || $0.name?.lowercased().contains(state.filter.lowercased()) == true }
+        let filter = state.filter.lowercased()
+        let filteredCourses = allCourses.filter { course in
+            state.filter.isEmpty ||
+                course.name?.lowercased().contains(filter) == true ||
+                course.courseCode?.lowercased().contains(filter) == true
+        }
         let currentEnrollments = filteredCourses.filter { !$0.isPastEnrollment && !$0.isFutureEnrollment }
         let pastEnrollments = filteredCourses.filter { $0.isPastEnrollment }
         let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
