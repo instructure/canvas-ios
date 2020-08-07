@@ -71,7 +71,7 @@ open class AppEnvironment {
         return Store(env: self, useCase: useCase, eventHandler: callback)
     }
 
-    public func subscribe<U>(_ useCase: U, _ callback: @escaping () -> Void = {}) -> Store<U> where U: UseCase {
+    public func subscribe<U>(_ useCase: U, _ callback: @escaping () -> Void) -> Store<U> where U: UseCase {
         return subscribe(useCase) { _ in callback() }
     }
 
