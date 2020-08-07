@@ -229,9 +229,26 @@ extension Group: CustomErasable {
 }
 
 @available(iOS 13.0, *)
+extension GeometryReader: CustomErasable {
+    public var erased: ErasedView {
+        ErasedView(self, ViewType.GeometryReader.self)
+    }
+}
+
+@available(iOS 13.0, *)
 extension ModifiedContent: CustomErasable {
     public var erased: ErasedView {
         ErasedView(content)
+    }
+}
+
+@available(iOS 13.0, *)
+extension Optional: CustomErasable where Wrapped: CustomErasable {
+    public var erased: ErasedView {
+        if let wrapped = self {
+            return wrapped.erased
+        }
+        return ErasedView(NSNull())
     }
 }
 
