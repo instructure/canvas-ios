@@ -71,7 +71,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     func testLoadCourse() {
         let c = Course.make()
         Assignment.make()
-        presenter.courses.eventHandler()
+        presenter.courses.eventHandler(env.subscribe(.init(courseID: "")))
         XCTAssertEqual(resultingSubtitle, c.name)
     }
 
@@ -80,7 +80,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         ContextColor.make(canvasContextID: c.canvasContextID)
 
-        presenter.colors.eventHandler()
+        presenter.colors.eventHandler(env.subscribe(.init()))
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }
 
@@ -88,7 +88,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Course.make()
         let expected = Assignment.make()
 
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
 
         XCTAssertEqual(resultingAssignment, expected)
         XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
@@ -106,7 +106,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         wait(for: [quizStore.refreshExpectation], timeout: 0.1)
 
-        presenter.quizzes?.eventHandler()
+        presenter.quizzes?.eventHandler(env.subscribe(.init(courseID: "", quizID: "")))
         XCTAssertEqual(resultingQuiz, quiz)
         XCTAssertEqual(resultingQuiz?.submission, quiz.submission)
     }
@@ -128,7 +128,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: expected))
 
         presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: nil)
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
 
         XCTAssertEqual(resultingBaseURL, expected)
     }
@@ -142,7 +142,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
@@ -154,7 +154,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(html_url: expected))
         presenter = AssignmentDetailsPresenter(view: mockView, courseID: "1", assignmentID: "1", fragment: fragment)
 
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
         XCTAssertEqual(resultingBaseURL?.absoluteString, expected.absoluteString)
     }
 
@@ -164,7 +164,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
         // must go through the update method in order to set the userID to the user id
         // from the submission
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
         let router = env.router as? TestRouter
 
         presenter.routeToSubmission(view: UIViewController())
@@ -210,7 +210,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     func testArcIDNone() {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
 
-        presenter.arc.eventHandler()
+        presenter.arc.eventHandler(env.subscribe(.init(courseID: "")))
 
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .none)
     }
@@ -219,7 +219,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .pending)
 
         ExternalTool.make(from: .make(id: "4", domain: "arc.instructure.com"))
-        presenter.arc.eventHandler()
+        presenter.arc.eventHandler(env.subscribe(.init(courseID: "")))
 
         XCTAssertEqual(presenter.submissionButtonPresenter.arcID, .some("4"))
     }
@@ -454,7 +454,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
             expectation.fulfill()
         }
 
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
 
         file.uploadError = "it failed"
         try UploadManager.shared.viewContext.save()

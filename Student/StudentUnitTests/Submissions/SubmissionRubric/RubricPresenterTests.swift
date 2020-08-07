@@ -83,46 +83,46 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadAssignments() {
         let expected = setupData()
 
-        presenter.assignments.eventHandler()
+        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
     }
 
     func testLoadSubmissions() {
-         let expected = setupData()
+        let expected = setupData()
 
-         presenter.submissions.eventHandler()
-         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
-         XCTAssertEqual(models.count, expected.count)
-         XCTAssertEqual(models.first, expected.first)
+        presenter.submissions.eventHandler(env.subscribe(.init(context: .course(""), assignmentID: "", userID: "")))
+        XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+        XCTAssertEqual(models.count, expected.count)
+        XCTAssertEqual(models.first, expected.first)
     }
 
     func testLoadRubrics() {
-         let expected = setupData()
+        let expected = setupData()
 
-         presenter.rubrics.eventHandler()
-         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
-         XCTAssertEqual(models.count, expected.count)
-         XCTAssertEqual(models.first, expected.first)
+        presenter.rubrics.eventHandler(env.subscribe(scope: Rubric.scope(assignmentID: "")) {})
+        XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+        XCTAssertEqual(models.count, expected.count)
+        XCTAssertEqual(models.first, expected.first)
     }
 
     func testLoadColors() {
-         let expected = setupData()
+        let expected = setupData()
 
-         presenter.colors.eventHandler()
-         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
-         XCTAssertEqual(models.count, expected.count)
-         XCTAssertEqual(models.first, expected.first)
+        presenter.colors.eventHandler(env.subscribe(.init()))
+        XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+        XCTAssertEqual(models.count, expected.count)
+        XCTAssertEqual(models.first, expected.first)
     }
 
     func testLoadCourses() {
-         let expected = setupData()
+        let expected = setupData()
 
-         presenter.courses.eventHandler()
-         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
-         XCTAssertEqual(models.count, expected.count)
-         XCTAssertEqual(models.first, expected.first)
+        presenter.courses.eventHandler(env.subscribe(.init(courseID: "")))
+        XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
+        XCTAssertEqual(models.count, expected.count)
+        XCTAssertEqual(models.first, expected.first)
     }
 
     func testViewIsReady() {

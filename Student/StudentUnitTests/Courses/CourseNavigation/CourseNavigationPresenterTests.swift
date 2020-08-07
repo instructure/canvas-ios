@@ -51,19 +51,19 @@ class CourseNavigationPresenterTests: StudentTestCase {
         Course.make()
         ContextColor.make()
 
-        presenter.color.eventHandler()
+        presenter.color.eventHandler(env.subscribe(.init()))
         XCTAssertEqual(resultingBackgroundColor, UIColor.red)
     }
 
     func testLoadCourse() {
         let course = Course.make()
-        presenter.courses.eventHandler()
+        presenter.courses.eventHandler(env.subscribe(.init(courseID: "")))
         XCTAssertEqual(resultingTitle, course.name)
     }
 
     func testLoadTabs() {
         let tab = Tab.make(from: .make(label: "tab"), context: context)
-        presenter.tabs.eventHandler()
+        presenter.tabs.eventHandler(env.subscribe(.init(context: context)))
         wait(for: [expectUpdate], timeout: 0.1)
         XCTAssertEqual(presenter.tabs.first?.label, tab.label)
     }
@@ -81,7 +81,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
         Tab.make(from: .make(id: "c", html_url: URL(string: "https://google.com/c")!, position: 3), context: context)
         Tab.make(from: .make(id: "a", html_url: URL(string: "https://google.com/a")!, position: 1), context: context)
 
-        presenter.tabs.eventHandler()
+        presenter.tabs.eventHandler(env.subscribe(.init(context: context)))
         wait(for: [expectUpdate], timeout: 0.1)
         XCTAssertEqual(presenter.tabs.count, 3)
         XCTAssertEqual(presenter.tabs.first?.id, "a")
