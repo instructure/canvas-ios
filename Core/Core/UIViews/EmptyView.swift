@@ -91,9 +91,9 @@ public struct EmptyViewRepresentable: UIViewRepresentable {
         uiView.bodyLabel?.text = body
 
         uiView.titleLabel?.font = UIFont.scaledNamedFont(.bold20)
-        uiView.titleLabel?.textColor = UIColor.named(.textDarkest)
+        uiView.titleLabel?.textColor = UIColor.textDarkest
         uiView.bodyLabel?.font = UIFont.scaledNamedFont(.medium16)
-        uiView.bodyLabel?.textColor = UIColor.named(.textDarkest)
+        uiView.bodyLabel?.textColor = UIColor.textDarkest
 
         uiView.imageView?.contentMode = .scaleAspectFill
         let image = UIImage(named: imageName, in: .core, compatibleWith: nil)

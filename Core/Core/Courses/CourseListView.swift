@@ -37,7 +37,7 @@ public struct CourseListView: View {
     static var configureAppearance: () -> Void = {
         // This will only run once
         let appearance = UITableViewHeaderFooterView.appearance(whenContainedInInstancesOf: [CoreHostingController<Self>.self])
-        appearance.tintColor = UIColor.named(.backgroundLightest)
+        appearance.tintColor = UIColor.backgroundLightest
         appearance.hasBorderShadow = true
         return { }
     }()
@@ -116,7 +116,7 @@ public struct CourseListView: View {
         let formattedHeader =
             header
             .font(Font(UIFont.scaledNamedFont(.medium12)))
-            .foregroundColor(.named(.textDark))
+            .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
 
         return SwiftUI.Group {
@@ -154,11 +154,11 @@ public struct CourseListView: View {
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.icon(.star, .solid).foregroundColor(.named(.textDark))
+                    Image.icon(.star, .solid).foregroundColor(.textDark)
                 } else if course.isFavorite {
-                    Image.icon(.star, .solid).foregroundColor(.named(.textInfo))
+                    Image.icon(.star, .solid).foregroundColor(.textInfo)
                 } else {
-                    Image.icon(.star, .line).foregroundColor(.named(.textDark))
+                    Image.icon(.star, .line).foregroundColor(.textDark)
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
             .buttonStyle(PlainButtonStyle())
@@ -176,7 +176,7 @@ public struct CourseListView: View {
                             Text(verbatim: "|")
                         }
                         Text(enrollment!.formattedRole ?? "")
-                    }.foregroundColor(.named(.textDark))
+                    }.foregroundColor(.textDark)
                     .font(Font(UIFont.scaledNamedFont(.medium14)))
                 }
             }
@@ -186,9 +186,9 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.icon(.complete, .solid).foregroundColor(.named(.textSuccess))
+                    Image.icon(.complete, .solid).foregroundColor(.textSuccess)
                 } else {
-                    Image.icon(.no, .solid).foregroundColor(.named(.textDark))
+                    Image.icon(.no, .solid).foregroundColor(.textDark)
                 }
             }
         }
