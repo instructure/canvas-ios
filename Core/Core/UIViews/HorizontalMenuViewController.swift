@@ -41,7 +41,8 @@ open class HorizontalMenuViewController: UIViewController {
     }
 
     private var menuCellWidth: CGFloat {
-        view.bounds.size.width / CGFloat(itemCount)
+        guard itemCount > 0 else { return 0 }
+        return view.bounds.size.width / CGFloat(itemCount)
     }
 
     override open func viewDidLoad() {
