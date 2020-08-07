@@ -24,6 +24,7 @@ import UIKit
 @testable import Core
 
 class InstIconExtensionTests: XCTestCase {
+    // swiftlint:disable function_body_length
     func testUIImage() {
         XCTAssertEqual(UIImage.addLine, UIImage(named: "addLine", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIImage.addSolid, UIImage(named: "addSolid", in: .core, compatibleWith: nil))
@@ -422,4 +423,5 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(Image.todoTab, Image("todoTab", bundle: .core))
         XCTAssertEqual(Image.todoTabActive, Image("todoTabActive", bundle: .core))
     }
+    // swiftlint:enable function_body_length
 }

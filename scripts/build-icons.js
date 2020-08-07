@@ -287,6 +287,7 @@ import UIKit
 @testable import Core
 
 class InstIconExtensionTests: XCTestCase {
+    // swiftlint:disable function_body_length
     func testUIImage() {
         ${Array.from(icons).sort().map(name =>
           `XCTAssertEqual(UIImage.${name}Line, UIImage(named: "${name}Line", in: .core, compatibleWith: nil))
@@ -309,6 +310,7 @@ class InstIconExtensionTests: XCTestCase {
           `XCTAssertEqual(Image.${name}, Image("${name}", bundle: .core))`
         ).join('\n        ')}
     }
+    // swiftlint:enable function_body_length
 }
 `)
 
