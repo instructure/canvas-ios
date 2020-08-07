@@ -23,7 +23,7 @@ import Combine
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
-    public class State: ObservableObject {
+    public class Props: ObservableObject {
         @Published var filter: String = ""
         @Published var pendingFavorites: Set<String> = []
         @Published var loading = false
@@ -32,7 +32,7 @@ public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
-    @ObservedObject var state = State()
+    @ObservedObject var props = Props()
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -42,25 +42,27 @@ public struct CourseListView: View {
         return { }
     }()
 
+    static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
+
     public static func create() -> CourseListView {
         let env = AppEnvironment.shared
-        let state = State()
-        state.loading = true
+        let props = Props()
+        props.loading = true
 
         let allCourses = env.subscribe(GetAllCourses()) { store in
             if !store.pending {
-                state.loading = false
+                props.loading = false
             }
         }
 
         allCourses.exhaust()
         configureAppearance()
-        return CourseListView(allCourses: allCourses, state: state)
+        return CourseListView(allCourses: allCourses, props: props)
     }
 
     public var body: some View {
         let view: AnyView
-        if state.loading {
+        if props.loading {
             view = AnyView(ActivityIndicatorView())
         } else if allCourses.isEmpty {
             view = AnyView(empty)
@@ -79,31 +81,38 @@ public struct CourseListView: View {
     }
 
     var courseList: some View {
-        let filter = state.filter.lowercased()
+        let filter = props.filter.lowercased()
         let filteredCourses = allCourses.filter { course in
-            state.filter.isEmpty ||
+            props.filter.isEmpty ||
                 course.name?.lowercased().contains(filter) == true ||
                 course.courseCode?.lowercased().contains(filter) == true
         }
         let currentEnrollments = filteredCourses.filter { !$0.isPastEnrollment && !$0.isFutureEnrollment }
         let pastEnrollments = filteredCourses.filter { $0.isPastEnrollment }
         let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
-        return List {
-            ZStack {
-                CircleRefreshControl.AsView { control in
-                    control.beginRefreshing()
-                    self.allCourses.refresh(force: true) { _ in
-                        control.endRefreshing()
-                    }
-                }.frame(height: 0)
-                SearchBarView(text: $state.filter, placeholder: NSLocalizedString("Search", comment: ""))
-            }.listRowInsets(EdgeInsets())
-            if filteredCourses.isEmpty {
-                Text("No matching courses", bundle: .core).frame(maxHeight: .infinity)
-            } else {
-                enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
-                enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
-                enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
+
+        return GeometryReader { outerGeometry in
+            List {
+                Section {
+                    ZStack {
+                        CircleRefreshControl.AsView { control in
+                            control.beginRefreshing()
+                            self.allCourses.refresh(force: true) { _ in
+                                control.endRefreshing()
+                            }
+                        }.frame(height: 0)
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
+                    }.listRowInsets(EdgeInsets())
+                }
+                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
+                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
+                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
+                if filteredCourses.isEmpty {
+                    Text("No matching courses", bundle: .core)
+                        .frame(height: outerGeometry.frame(in: .local).height - Self.searchBarHeight)
+                        .frame(maxWidth: .infinity)
+                        .listRowInsets(EdgeInsets())
+                }
             }
         }.avoidKeyboardArea()
         // Truncate everything to one line. Can't decide if I like it better with or without this.
@@ -112,23 +121,17 @@ public struct CourseListView: View {
     }
 
     func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
-        let pending = SetBinding(set: $state.pendingFavorites)
-        let formattedHeader =
-            header
+        let formattedHeader = courses.isEmpty ? nil : header
             .font(Font(UIFont.scaledNamedFont(.medium12)))
             .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-
-        return SwiftUI.Group {
-            if !courses.isEmpty {
-                Section(header: formattedHeader) {
-                    ForEach(courses, id: \.self) { course in
-                        Cell(course: course, pending: pending[course.id]) {
-                            guard let controller = self.controller() else { return }
-                            self.env.router.route(to: "/courses/\(course.id)", from: controller)
-                        }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
-                    }
-                }
+        let pending = SetBinding(set: $props.pendingFavorites)
+        return Section(header: formattedHeader) {
+            ForEach(courses, id: \.id) { course in
+                Cell(course: course, pending: pending[course.id]) {
+                    guard let controller = self.controller() else { return }
+                    self.env.router.route(to: "/courses/\(course.id)", from: controller)
+                }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
             }
         }
     }
@@ -140,15 +143,32 @@ public struct CourseListView: View {
         let didSelect: () -> Void
 
         var body: some View {
-            ZStack {
-                Button(action: didSelect) { SwiftUI.EmptyView() }
-                HStack {
-                    favoriteButton
-                    label
-                    Spacer()
-                    publishedIcon
-                }
+            HStack {
+                favoriteButton
+                Button(action: didSelect) {
+                    HStack {
+                        label
+                        Spacer()
+                        publishedIcon
+                    }
+                }.accessibilityElement(children: .ignore)
+                    .accessibility(label: accessibilityLabel)
+                    .accessibility(addTraits: .isButton)
             }
+        }
+
+        var accessibilityLabel: Text {
+            var texts = [
+                course.name,
+                course.termName,
+                course.enrollments?.first?.formattedRole,
+            ]
+            if env.app == .teacher {
+                texts.append(course.isPublished ?
+                    NSLocalizedString("published", bundle: .core, comment: "") :
+                    NSLocalizedString("unpublished", bundle: .core, comment: ""))
+            }
+            return Text(texts.compactMap { $0 }.joined(separator: ", "))
         }
 
         var favoriteButton: some View {
@@ -156,28 +176,28 @@ public struct CourseListView: View {
                 if pending {
                     Image.icon(.star, .solid).foregroundColor(.textDark)
                 } else if course.isFavorite {
-                    Image.icon(.star, .solid).foregroundColor(.textInfo)
+                    Image.icon(.star, .solid).foregroundColor(.textInfo).accessibility(addTraits: .isSelected)
                 } else {
                     Image.icon(.star, .line).foregroundColor(.textDark)
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
-            .buttonStyle(PlainButtonStyle())
+                .buttonStyle(PlainButtonStyle())
+                .accessibility(label: Text("favorite", bundle: .core))
+        }
+
+        var enrollmentStrings: [String] {
+            [course.termName, course.enrollments?.first?.formattedRole].compactMap { $0 }
         }
 
         var label: some View {
-            let enrollment = course.enrollments?.first
-            let term = course.termName
-            return VStack(alignment: .leading) {
+            VStack(alignment: .leading) {
                 Text(course.name ?? "").font(Font(UIFont.scaledNamedFont(.semibold16)))
-                if enrollment != nil {
-                    HStack {
-                        if term != nil {
-                            Text(term!)
-                            Text(verbatim: "|")
-                        }
-                        Text(enrollment!.formattedRole ?? "")
-                    }.foregroundColor(.textDark)
-                    .font(Font(UIFont.scaledNamedFont(.medium14)))
+                HStack {
+                    ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
+                        Text($0)
+                            .foregroundColor(.textDark)
+                            .font(Font(UIFont.scaledNamedFont(.medium14)))
+                    }
                 }
             }
         }

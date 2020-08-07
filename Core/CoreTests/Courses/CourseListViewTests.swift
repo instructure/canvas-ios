@@ -41,12 +41,12 @@ class CourseListViewTests: CoreTestCase {
         .make(id: "7", name: "Future Course", term: .make(start_at: Clock.now.addDays(2))),
     ]
 
-    lazy var state = CourseListView.State()
+    lazy var props = CourseListView.Props()
 
     lazy var view: CourseListView = {
         let allCourses = environment.subscribe(GetAllCourses())
         api.mock(allCourses, value: courses)
-        return hostSwiftUI(CourseListView(allCourses: allCourses.exhaust(), state: .init()))
+        return hostSwiftUI(CourseListView(allCourses: allCourses.exhaust(), props: .init()))
     }()
 
     var searchBar: SearchBarView? { view.erased.first() }
@@ -80,10 +80,10 @@ class CourseListViewTests: CoreTestCase {
     }
 
     func testFilter() throws {
-        view.state.filter = "hello"
+        props.filter = "hello"
         XCTAssertEqual(searchBar?.text, "hello")
         XCTAssert(sections.isEmpty)
-        view.state.filter = "course"
+        props.filter = "course"
         XCTAssertEqual(headers, ["Current Enrollments", "Future Enrollments"])
         XCTAssertEqual(cells[0].map { $0.course.id }, ["1", "2", "3"])
         XCTAssertEqual(cells[1].map { $0.course.id }, ["7"])

@@ -16,29 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import Combine
+import Foundation
 
-@available(iOSApplicationExtension 13.0, *)
-struct AvoidKeyboardArea: ViewModifier {
-    @State var padding = CGFloat(0)
-
-    func body(content: Content) -> some View {
-        GeometryReader { geometry in
-            content
-                .padding(.bottom, self.padding)
-                .onReceive(Publishers.keyboardHeight) { height in
-                    let maxY = geometry.frame(in: .global).maxY
-                    let distanceToBottom = UIScreen.main.bounds.height - maxY
-                    self.padding = max(0, height - distanceToBottom)
-                }
+extension Sequence {
+    /// Gives a new sequence with `separator` placed between every element
+    func interleave(separator: Element) -> [Element] {
+        var result = [Element]()
+        result.reserveCapacity(underestimatedCount * 2)
+        for element in self {
+            if !result.isEmpty {
+                result.append(separator)
+            }
+            result.append(element)
         }
-    }
-}
-
-@available(iOSApplicationExtension 13.0, *)
-extension View {
-    func avoidKeyboardArea() -> some View {
-        modifier(AvoidKeyboardArea())
+        return result
     }
 }
