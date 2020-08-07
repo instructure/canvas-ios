@@ -227,7 +227,7 @@ import SwiftUI
 import UIKit
 @testable import Core
 
-class InstColorsExtensionTests: XCTestCase {
+class InstColorExtensionTests: XCTestCase {
     func testUIColor() {
         ${colorArray.filter(color => color != 'white').map(name =>
           `XCTAssertEqual(UIColor.${name}, UIColor(named: "${name}", in: .core, compatibleWith: nil))`
