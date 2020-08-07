@@ -63,7 +63,7 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTestCase {
         XCTAssertNoThrow(configurationItems[1].tapHandler)
         let data = NSItemProvider(item: Data() as NSSecureCoding, typeIdentifier: UTI.any.rawValue)
         let file = NSItemProvider(item: fileURL as NSSecureCoding, typeIdentifier: UTI.fileURL.rawValue)
-        let image = NSItemProvider(item: UIImage.icon(.addImageLine), typeIdentifier: UTI.image.rawValue)
+        let image = NSItemProvider(item: UIImage.addImageLine, typeIdentifier: UTI.image.rawValue)
         let item = TestExtensionItem(mockAttachments: [data, file, image])
         viewController.load(items: [item])
         drainMainQueue()

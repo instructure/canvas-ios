@@ -31,7 +31,7 @@ class ComposeReplyViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var toLabel: UILabel!
 
-    lazy var attachButton = UIBarButtonItem(image: .icon(.paperclip), style: .plain, target: self, action: #selector(attach))
+    lazy var attachButton = UIBarButtonItem(image: .paperclipLine, style: .plain, target: self, action: #selector(attach))
     lazy var sendButton = UIBarButtonItem(title: NSLocalizedString("Send", comment: ""), style: .done, target: self, action: #selector(send))
 
     let batchID = UUID.string

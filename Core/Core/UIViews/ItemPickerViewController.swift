@@ -112,7 +112,7 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
         }
         if indexPath == selected {
             let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
-            image.image = .icon(.check, .solid)
+            image.image = .checkSolid
             cell.accessoryView = image
             cell.accessibilityTraits.insert(.selected)
         } else {

@@ -33,7 +33,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         let attachment = APIFile.make(
             id: "1",
             display_name: "screenshot.png",
-            url: UIImage.icon(.paperclip).asDataUrl!
+            url: UIImage.paperclipLine.asDataUrl!
         )
         submission.api.submission_comments = [ .make(attachments: [attachment]) ]
 

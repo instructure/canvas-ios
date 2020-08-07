@@ -149,15 +149,15 @@ class ObserverAlertListCell: UITableViewCell {
         case .assignmentGradeHigh, .courseGradeHigh:
             typeLabel.textColor = .textInfo
             iconView.tintColor = .textInfo
-            iconView.image = .icon(.info, .line)
+            iconView.image = .infoLine
         case .assignmentGradeLow, .assignmentMissing, .courseGradeLow:
             typeLabel.textColor = .textDanger
             iconView.tintColor = .textDanger
-            iconView.image = .icon(.warning, .line)
+            iconView.image = .warningLine
         case .courseAnnouncement, .institutionAnnouncement, .none:
             typeLabel.textColor = .textDark
             iconView.tintColor = .textDark
-            iconView.image = .icon(.info, .line)
+            iconView.image = .infoLine
         }
     }
 }

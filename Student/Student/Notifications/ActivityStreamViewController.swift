@@ -45,7 +45,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     @IBOutlet weak var emptyStateHeader: DynamicLabel!
     @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
 
-    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()

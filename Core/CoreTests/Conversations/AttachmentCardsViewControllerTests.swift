@@ -94,7 +94,7 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.getCard(0).fileStackView?.isHidden, false)
         XCTAssertEqual(controller.getCard(0).button?.accessibilityLabel, "PDF File")
-        XCTAssertEqual(controller.getCard(0).iconView?.image, UIImage.icon(.pdf))
+        XCTAssertEqual(controller.getCard(0).iconView?.image, UIImage.pdfLine)
         XCTAssertEqual(controller.getCard(0).nameLabel?.text, "PDF File")
         controller.getCard(0).button?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.lastRoutedTo(.parse("/files/d?download=1")))
@@ -104,7 +104,7 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.getCard(1).fileStackView?.isHidden, false)
         XCTAssertEqual(controller.getCard(1).button?.accessibilityLabel, "Failed. Tap for options")
-        XCTAssertEqual(controller.getCard(1).iconView?.image, UIImage.icon(.warning))
+        XCTAssertEqual(controller.getCard(1).iconView?.image, UIImage.warningLine)
         XCTAssertEqual(controller.getCard(1).iconView?.tintColor, .textDanger)
         XCTAssertEqual(controller.getCard(1).nameLabel?.text, "Failed. Tap for options")
         controller.getCard(1).button?.sendActions(for: .primaryActionTriggered)
@@ -127,14 +127,14 @@ class AttachmentCardsViewControllerTests: CoreTestCase {
 
         XCTAssertEqual(controller.getCard(0).fileStackView?.isHidden, false)
         XCTAssertEqual(controller.getCard(0).button?.accessibilityLabel, "Audio Comment")
-        XCTAssertEqual(controller.getCard(0).iconView?.image, UIImage.icon(.audio))
+        XCTAssertEqual(controller.getCard(0).iconView?.image, UIImage.audioLine)
         XCTAssertEqual(controller.getCard(0).nameLabel?.text, "Audio Comment")
         controller.getCard(0).button?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.presented is AVPlayerViewController)
 
         XCTAssertEqual(controller.getCard(1).fileStackView?.isHidden, false)
         XCTAssertEqual(controller.getCard(1).button?.accessibilityLabel, "Audio File")
-        XCTAssertEqual(controller.getCard(1).iconView?.image, UIImage.icon(.audio))
+        XCTAssertEqual(controller.getCard(1).iconView?.image, UIImage.audioLine)
         XCTAssertEqual(controller.getCard(1).nameLabel?.text, "Audio File")
         controller.getCard(1).button?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(router.presented is AVPlayerViewController)

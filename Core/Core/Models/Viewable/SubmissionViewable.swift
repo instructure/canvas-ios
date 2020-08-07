@@ -52,7 +52,7 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusIcon: UIImage {
-        return .icon(isSubmitted ? .complete : .no, .solid)
+        return isSubmitted ? .completeSolid : .noSolid
     }
 
     public var submissionStatusText: String {

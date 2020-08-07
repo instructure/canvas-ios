@@ -72,7 +72,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.audio) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Audio", bundle: .core, comment: ""),
-                image: .icon(.addAudioLine),
+                image: .addAudioLine,
                 tag: FilePickerSource.audio.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.audioButton"
@@ -81,7 +81,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.camera) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
-                image: .icon(.addCameraLine),
+                image: .addCameraLine,
                 tag: FilePickerSource.camera.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.cameraButton"
@@ -90,7 +90,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.library) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Library", bundle: .core, comment: ""),
-                image: .icon(.addImageLine),
+                image: .addImageLine,
                 tag: FilePickerSource.library.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.libraryButton"
@@ -99,7 +99,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.files) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Files", bundle: .core, comment: ""),
-                image: .icon(.addDocumentLine),
+                image: .addDocumentLine,
                 tag: FilePickerSource.files.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.filesButton"

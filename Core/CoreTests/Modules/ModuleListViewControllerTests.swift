@@ -97,7 +97,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item1.nameLabel.text, "Item 1")
         XCTAssertEqual(item1.dueLabel.text, "Dec 25, 2019 | 10 pts | Score at least 8")
         XCTAssertFalse(item1.completedStatusView.isHidden)
-        XCTAssertEqual(item1.completedStatusView.image, .icon(.empty))
+        XCTAssertEqual(item1.completedStatusView.image, .emptyLine)
         let item2 = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(item2.dueLabel.text, "10 pts")
         XCTAssertFalse(item2.isUserInteractionEnabled)
@@ -108,7 +108,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         let item4 = moduleItemCell(at: IndexPath(row: 3, section: 0))
         XCTAssertEqual(item4.dueLabel.text, "Submitted")
         XCTAssertFalse(item4.completedStatusView.isHidden)
-        XCTAssertEqual(item4.completedStatusView.image, .icon(.check))
+        XCTAssertEqual(item4.completedStatusView.image, .checkLine)
         XCTAssertNotNil(nav.viewControllers.first)
         XCTAssertEqual(viewController.titleSubtitleView.title, "Modules")
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "Course 1")
@@ -403,7 +403,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         let path = moduleItemCell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(path.nameLabel.text, "Select a Path")
         XCTAssertEqual(path.dueLabel.text, "1 Option")
-        XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.icon(.masteryPaths))
+        XCTAssertEqual((path.accessoryView as? UIImageView)?.image, UIImage.masteryPathsLine)
         viewController.tableView(viewController.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
             .make(id: "1", title: "Unlocked", mastery_paths: nil),

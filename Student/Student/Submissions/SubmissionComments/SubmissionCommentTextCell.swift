@@ -51,7 +51,7 @@ class SubmissionCommentTextCell: UITableViewCell {
         comment.attachments?.sorted(by: File.idCompare).enumerated().forEach { index, attachment in
             let color = Brand.shared.linkColor.ensureContrast(against: .white)
             let button = UIButton(type: .system)
-            button.setImage(UIImage.icon(.paperclip).withRenderingMode(.alwaysTemplate), for: .normal)
+            button.setImage(UIImage.paperclipLine.withRenderingMode(.alwaysTemplate), for: .normal)
             button.tintColor = color
             button.imageView?.contentMode = .scaleAspectFit
             button.setTitle(attachment.displayName, for: .normal)

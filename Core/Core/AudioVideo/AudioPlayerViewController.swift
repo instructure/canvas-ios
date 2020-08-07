@@ -132,7 +132,7 @@ public class AudioPlayerViewController: UIViewController {
             try session.setCategory(.playback, mode: .default)
             try session.setActive(true)
             if player.play() {
-                playPauseButton?.setImage(.icon(.pause, .solid), for: .normal)
+                playPauseButton?.setImage(.pauseSolid, for: .normal)
                 playPauseButton?.accessibilityLabel = NSLocalizedString("Pause", bundle: .core, comment: "")
                 timer = CADisplayLink(target: self, selector: #selector(tick))
                 timer?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
@@ -163,7 +163,7 @@ public class AudioPlayerViewController: UIViewController {
         timer?.invalidate()
         timer = nil
         player.stop()
-        playPauseButton?.setImage(.icon(.play, .solid), for: .normal)
+        playPauseButton?.setImage(.playSolid, for: .normal)
         playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
         try? AVAudioSession.sharedInstance().setActive(false)
     }

@@ -102,19 +102,19 @@ public enum ModuleItemType: Equatable, Codable {
         case .subHeader:
             return nil
         case .file:
-            return .icon(.folder)
+            return .folderLine
         case .page:
-            return .icon(.document)
+            return .documentLine
         case .discussion:
-            return .icon(.discussion)
+            return .discussionLine
         case .assignment:
-            return .icon(.assignment)
+            return .assignmentLine
         case .quiz:
-            return .icon(.quiz)
+            return .quizLine
         case .externalURL:
-            return .icon(.link)
+            return .linkLine
         case .externalTool:
-            return .icon(.lti)
+            return .ltiLine
         }
     }
 

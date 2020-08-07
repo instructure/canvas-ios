@@ -26,7 +26,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @IBOutlet var emptyView: UIView!
     @IBOutlet var tableView: UITableView!
 
-    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     let env = AppEnvironment.shared
 

@@ -135,7 +135,7 @@ class RecipientCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.electric.withAlphaComponent(0.8)
         self.contentView.addSubview(view)
-        let check = UIImageView(image: UIImage.icon(.check))
+        let check = UIImageView(image: UIImage.checkLine)
         check.tintColor = UIColor.backgroundLightest
         check.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(check)
