@@ -32,9 +32,9 @@ public enum Attendance: String, Codable {
 
     var icon: UIImage {
         switch self {
-        case .present: return UIImage.icon(.complete, .line)
-        case .late: return UIImage.icon(.clock, .line)
-        case .absent: return UIImage.icon(.trouble, .line)
+        case .present: return UIImage.completeLine
+        case .late: return UIImage.clockLine
+        case .absent: return UIImage.troubleLine
         }
     }
 

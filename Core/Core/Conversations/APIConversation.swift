@@ -87,7 +87,7 @@ extension APIConversation {
         starred: Bool = false,
         properties: [ConversationProperties]? = nil,
         audience: [String]? = [ "1" ],
-        avatar_url: URL = UIImage.icon(.trash).asDataUrl!,
+        avatar_url: URL = UIImage.trashLine.asDataUrl!,
         visible: Bool = true,
         context_name: String? = "Canvas 101",
         context_code: String? = "course_1",

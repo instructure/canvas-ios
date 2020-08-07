@@ -25,7 +25,7 @@ class IconViewTests: XCTestCase {
         view.iconName = "not an icon name"
         XCTAssertNil(view.image)
         view.iconName = "instructureSolid"
-        XCTAssertEqual(view.image, .icon(.instructure, .solid))
+        XCTAssertEqual(view.image, .instructureSolid)
     }
 
     func testIconColorName() {

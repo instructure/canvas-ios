@@ -23,7 +23,7 @@ import SwiftUI
 import UIKit
 @testable import Core
 
-class InstColorsExtensionTests: XCTestCase {
+class InstColorExtensionTests: XCTestCase {
     func testUIColor() {
         XCTAssertEqual(UIColor.ash, UIColor(named: "ash", in: .core, compatibleWith: nil))
         XCTAssertEqual(UIColor.backgroundAlert, UIColor(named: "backgroundAlert", in: .core, compatibleWith: nil))

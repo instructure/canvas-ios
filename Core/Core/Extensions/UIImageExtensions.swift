@@ -17,21 +17,8 @@
 //
 
 import UIKit
-import Foundation
 
 extension UIImage {
-    public enum IconName: String, CaseIterable {
-        case attendance, cameraLine, cameraSolid, collaborations, conferences, dropdown
-        case calendarEmptyLine, calendarEmptySolid, calendarTodayLine
-        case addAudioLine, addCameraLine, addDocumentLine, addImageLine, addVideoCameraLine
-        case alertsTab, alertsTabActive, calendarTab, calendarTabActive, coursesTab, coursesTabActive, dashboardTab, dashboardTabActive
-        case inboxTab, inboxTabActive, todoTab, todoTabActive
-    }
-
-    public static func icon(_ name: IconName) -> UIImage {
-        return UIImage(named: name.rawValue, in: .core, compatibleWith: nil)!
-    }
-
     /**
      Writes the image to the specified URL
 

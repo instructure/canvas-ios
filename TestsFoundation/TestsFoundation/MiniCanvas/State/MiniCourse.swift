@@ -130,7 +130,7 @@ public class MiniCourse {
             folder_id: folderID,
             display_name: "hamburger",
             filename: "hamburger.jpg",
-            url: UIImage.icon(.hamburger).asDataUrl!
+            url: UIImage.hamburgerLine.asDataUrl!
         ))
         state.files[file.id] = file
         folder.fileIDs.append(file.id)

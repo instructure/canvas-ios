@@ -98,7 +98,7 @@ public class SyllabusSummaryViewController: UITableViewController {
         let item = summary[indexPath.row]
         cell.backgroundColor = .backgroundLightest
         cell.itemNameLabel?.text = item?.title
-        cell.iconImageView?.image = item?.type == .assignment ? .icon(.assignment, .line) : .icon(.calendarMonth, .line)
+        cell.iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
         cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? course.first?.color
         cell.dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
         return cell

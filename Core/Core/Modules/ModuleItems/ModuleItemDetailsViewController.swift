@@ -32,7 +32,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     @IBOutlet weak var lockedTitleLabel: UILabel!
     @IBOutlet weak var spinnerView: CircleProgressView!
 
-    lazy var optionsButton = UIBarButtonItem(image: UIImage.icon(.more), style: .plain, target: self, action: #selector(optionsButtonPressed))
+    lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()

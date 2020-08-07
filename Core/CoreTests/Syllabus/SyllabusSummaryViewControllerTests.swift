@@ -59,17 +59,17 @@ class SyllabusSummaryViewControllerTests: CoreTestCase {
 
         let assignmentCell = cell(at: IndexPath(row: 0, section: 0))
         XCTAssertEqual(assignmentCell.itemNameLabel.text, "assignment")
-        XCTAssertEqual(assignmentCell.iconImageView?.image, .icon(.assignment, .line))
+        XCTAssertEqual(assignmentCell.iconImageView?.image, .assignmentLine)
         XCTAssertEqual(assignmentCell.dateLabel.text, "Feb 12, 2020 at 12:00 AM")
 
         let eventCell = cell(at: IndexPath(row: 1, section: 0))
         XCTAssertEqual(eventCell.itemNameLabel.text, "event")
-        XCTAssertEqual(eventCell.iconImageView?.image, .icon(.calendarMonth, .line))
+        XCTAssertEqual(eventCell.iconImageView?.image, .calendarMonthLine)
         XCTAssertEqual(eventCell.dateLabel.text, "Feb 13, 2020 at 12:00 AM")
 
         let nilDateCell = cell(at: IndexPath(row: 2, section: 0))
         XCTAssertEqual(nilDateCell.itemNameLabel.text, "nil date")
-        XCTAssertEqual(nilDateCell.iconImageView?.image, .icon(.assignment, .line))
+        XCTAssertEqual(nilDateCell.iconImageView?.image, .assignmentLine)
         XCTAssertEqual(nilDateCell.dateLabel.text, "No Due Date")
 
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: 0, section: 0))

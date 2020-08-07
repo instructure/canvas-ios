@@ -172,16 +172,16 @@ extension File: WriteableModel {
 
     public var icon: UIImage {
         if mimeClass == "audio" || contentType?.hasPrefix("audio/") == true {
-            return UIImage.icon(.audio)
+            return UIImage.audioLine
         } else if mimeClass == "doc" {
-            return UIImage.icon(.document)
+            return UIImage.documentLine
         } else if mimeClass == "image" || contentType?.hasPrefix("image/") == true {
-            return UIImage.icon(.image)
+            return UIImage.imageLine
         } else if mimeClass == "pdf" {
-            return UIImage.icon(.pdf)
+            return UIImage.pdfLine
         } else if mimeClass == "video" || contentType?.hasPrefix("video/") == true {
-            return UIImage.icon(.video)
+            return UIImage.videoLine
         }
-        return UIImage.icon(.document)
+        return UIImage.documentLine
     }
 }

@@ -154,35 +154,35 @@ class AssignmentTests: CoreTestCase {
     func testIconForDiscussion() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .discussion_topic ]))
         let icon = a.icon
-        let expected = UIImage.icon(.discussion, .line)
+        let expected = UIImage.discussionLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForAssignment() {
         let a = Assignment.make(from: .make(id: "1"))
         let icon = a.icon
-        let expected = UIImage.icon(.assignment, .line)
+        let expected = UIImage.assignmentLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForQuiz() {
         let a = Assignment.make(from: .make(id: "1", quiz_id: "1"))
         let icon = a.icon
-        let expected = UIImage.icon(.quiz, .line)
+        let expected = UIImage.quizLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForExternalTool() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
         let icon = a.icon
-        let expected = UIImage.icon(.lti, .line)
+        let expected = UIImage.ltiLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForLocked() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
         let icon = a.icon
-        let expected = UIImage.icon(.lock, .line)
+        let expected = UIImage.lockLine
         XCTAssertEqual(icon, expected)
     }
 

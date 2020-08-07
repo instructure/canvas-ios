@@ -34,12 +34,6 @@ class UIImageExtensionsTests: XCTestCase {
         }
     }
 
-    func testIconNamed() {
-        for name in UIImage.IconName.allCases {
-            XCTAssertEqual(UIImage.icon(name), UIImage(named: "\(name)", in: .core, compatibleWith: nil))
-        }
-    }
-
     func testWriteDefaults() {
         let now = Date.isoDateFromString("2018-11-15T17:44:54Z")!
         Clock.mockNow(now)

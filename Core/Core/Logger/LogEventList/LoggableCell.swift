@@ -23,7 +23,7 @@ extension Loggable {
     var icon: UIImage {
         switch type {
         case .log, .error:
-            return UIImage.icon(.empty, .solid)
+            return UIImage.emptySolid
         }
     }
 

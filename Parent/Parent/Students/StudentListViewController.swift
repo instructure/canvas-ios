@@ -21,7 +21,7 @@ import Core
 
 class StudentListViewController: UIViewController {
     lazy var addStudentButton = UIBarButtonItem(
-        image: .icon(.add, .solid),
+        image: .addSolid,
         style: .plain,
         target: addStudentController,
         action: #selector(addStudentController.actionAddStudent)

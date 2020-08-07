@@ -134,7 +134,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         titleLabel.text = quiz?.title
         pointsLabel.text = quiz?.pointsPossibleText
         if let finishedAt = submission?.finishedAt {
-            statusIconView.image = .icon(.complete, .solid)
+            statusIconView.image = .completeSolid
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
             statusLabel.text = String.localizedStringWithFormat(
@@ -142,12 +142,12 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
                 finishedAt.dateTimeString
             )
         } else if submission?.attempt ?? 0 > 1 {
-            statusIconView.image = .icon(.complete, .solid)
+            statusIconView.image = .completeSolid
             statusIconView.tintColor = .textSuccess
             statusLabel.textColor = .textSuccess
             statusLabel.text = NSLocalizedString("Submitted", comment: "")
         } else {
-            statusIconView.image = .icon(.no, .solid)
+            statusIconView.image = .noSolid
             statusIconView.tintColor = .textDark
             statusLabel.textColor = .textDark
             statusLabel.text = NSLocalizedString("Not Submitted", comment: "")

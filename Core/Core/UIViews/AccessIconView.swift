@@ -39,13 +39,13 @@ open class AccessIconView: UIView {
             statusIconView.backgroundColor = .backgroundLightest
             switch state {
             case .published:
-                statusIconView.image = .icon(.publish, .solid)
+                statusIconView.image = .publishSolid
                 statusIconView.tintColor = UIColor.textSuccess
             case .restricted:
-                statusIconView.image = .icon(.cloudLock, .line)
+                statusIconView.image = .cloudLockLine
                 statusIconView.tintColor = UIColor.textDark
             case .unpublished:
-                statusIconView.image = .icon(.no, .solid)
+                statusIconView.image = .noSolid
                 statusIconView.tintColor = UIColor.textDark
             case .none:
                 statusIconView.isHidden = true

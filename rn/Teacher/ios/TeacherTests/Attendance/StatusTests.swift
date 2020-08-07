@@ -87,13 +87,13 @@ extension Stats {
 class StatusTests: TeacherTestCase {
     func testAttendanceProperties() {
         XCTAssertEqual(Attendance.present.label, "Present")
-        XCTAssertEqual(Attendance.present.icon, UIImage.icon(.complete, .line))
+        XCTAssertEqual(Attendance.present.icon, UIImage.completeLine)
         XCTAssertEqual(Attendance.present.tintColor, UIColor.backgroundSuccess)
         XCTAssertEqual(Attendance.late.label, "Late")
-        XCTAssertEqual(Attendance.late.icon, UIImage.icon(.clock, .line))
+        XCTAssertEqual(Attendance.late.icon, UIImage.clockLine)
         XCTAssertEqual(Attendance.late.tintColor, UIColor.backgroundWarning)
         XCTAssertEqual(Attendance.absent.label, "Absent")
-        XCTAssertEqual(Attendance.absent.icon, UIImage.icon(.trouble, .line))
+        XCTAssertEqual(Attendance.absent.icon, UIImage.troubleLine)
         XCTAssertEqual(Attendance.absent.tintColor, UIColor.backgroundDanger)
     }
 

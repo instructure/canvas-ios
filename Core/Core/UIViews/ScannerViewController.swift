@@ -97,7 +97,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         let cancel = UIButton()
         cancel.translatesAutoresizingMaskIntoConstraints = false
         cancel.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
-        cancel.setImage(UIImage.icon(.x), for: .normal)
+        cancel.setImage(UIImage.xLine, for: .normal)
         cancel.tintColor = .textLightest
         cancel.addTarget(self, action: #selector(cancelTapped(_:)), for: .primaryActionTriggered)
         cancel.layer.cornerRadius = 25

@@ -117,7 +117,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage.icon(.instructure),
+            .originalImage: UIImage.instructureLine,
         ])
 
         let index = IndexPath(row: 0, section: 0)

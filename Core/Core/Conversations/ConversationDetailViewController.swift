@@ -69,10 +69,10 @@ public class ConversationDetailViewController: UIViewController {
             let lastMessage = conversations.first?.messages.first
             let lastParticipantCount = lastMessage?.participantIDs.count ?? 0
             if lastMessage?.authorID == myID || lastParticipantCount > 2 {
-                replyButton.setImage(.icon(.replyAll, .solid), for: .normal)
+                replyButton.setImage(.replyAllSolid, for: .normal)
                 replyButton.accessibilityLabel = NSLocalizedString("Reply All", comment: "")
             } else {
-                replyButton.setImage(.icon(.reply, .solid), for: .normal)
+                replyButton.setImage(.replySolid, for: .normal)
                 replyButton.accessibilityLabel = NSLocalizedString("Reply", comment: "")
             }
         }
@@ -120,7 +120,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 success(true)
             }
             reply.backgroundColor = .electric
-            reply.image = .icon(.reply, .solid)
+            reply.image = .replySolid
             actions.append(reply)
         }
 
@@ -130,7 +130,7 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 success(true)
             }
             replyAll.backgroundColor = .oxford
-            replyAll.image = .icon(.replyAll, .solid)
+            replyAll.image = .replyAllSolid
             actions.append(replyAll)
         }
 

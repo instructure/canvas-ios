@@ -76,14 +76,14 @@ public final class Activity: NSManagedObject, WriteableModel {
 extension Activity {
     public var icon: UIImage? {
         switch type {
-        case .discussion:       return .icon(.discussion)
-        case .announcement:     return .icon(.announcement)
-        case .conversation:     return .icon(.email)
-        case .message:          return .icon(.assignment)
-        case .submission:       return .icon(.assignment)
-        case .conference:       return .icon(.conferences)
-        case .collaboration:    return .icon(.collaborations)
-        case .assessmentRequest:return .icon(.quiz)
+        case .discussion:       return .discussionLine
+        case .announcement:     return .announcementLine
+        case .conversation:     return .emailLine
+        case .message:          return .assignmentLine
+        case .submission:       return .assignmentLine
+        case .conference:       return .conferences
+        case .collaboration:    return .collaborations
+        case .assessmentRequest:return .quizLine
         }
     }
 }

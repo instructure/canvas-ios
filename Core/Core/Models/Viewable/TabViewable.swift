@@ -26,33 +26,33 @@ extension TabViewable {
     public var icon: UIImage {
         // FIXME: We will need the course-specific attendance tool id for this to work for Teachers
         // if id == attendanceToolID {
-        //     return .icon(.attendance)
+        //     return .attendanceLine
         // }
         if id.contains("external_tool") {
-            return .icon(.lti, .line)
+            return .ltiLine
         }
         switch id {
-        case "announcements":  return .icon(.announcement, .line)
-        case "application":    return .icon(.lti, .line)
-        case "assignments":    return .icon(.assignment, .line)
-        case "attendance":     return .icon(.attendance)
-        case "collaborations": return .icon(.collaborations)
-        case "conferences":    return .icon(.conferences)
-        case "discussions":    return .icon(.discussion, .line)
-        case "files":          return .icon(.folder, .line)
-        case "grades":         return .icon(.gradebook, .line)
-        case "home":           return .icon(.home, .line)
-        case "link":           return .icon(.link, .line)
-        case "modules":        return .icon(.module, .line)
-        case "outcomes":       return .icon(.outcomes, .line)
-        case "pages":          return .icon(.document, .line)
-        case "people":         return .icon(.group, .line)
-        case "quizzes":        return .icon(.quiz, .line)
-        case "settings":       return .icon(.settings, .line)
-        case "syllabus":       return .icon(.rubric, .line)
-        case "tools":          return .icon(.lti, .line)
-        case "user":           return .icon(.user, .line)
-        default:               return .icon(.courses, .line)
+        case "announcements":  return .announcementLine
+        case "application":    return .ltiLine
+        case "assignments":    return .assignmentLine
+        case "attendance":     return .attendance
+        case "collaborations": return .collaborations
+        case "conferences":    return .conferences
+        case "discussions":    return .discussionLine
+        case "files":          return .folderLine
+        case "grades":         return .gradebookLine
+        case "home":           return .homeLine
+        case "link":           return .linkLine
+        case "modules":        return .moduleLine
+        case "outcomes":       return .outcomesLine
+        case "pages":          return .documentLine
+        case "people":         return .groupLine
+        case "quizzes":        return .quizLine
+        case "settings":       return .settingsLine
+        case "syllabus":       return .rubricLine
+        case "tools":          return .ltiLine
+        case "user":           return .userLine
+        default:               return .coursesLine
         }
     }
 }
