@@ -102,6 +102,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return Store(env: environment, database: database, useCase: useCase, eventHandler: eventHandler)
     }
 
+    public func subscribe(batchID: String, eventHandler: @escaping () -> Void) -> Store {
+        subscribe(batchID: batchID) { _ in eventHandler() }
+    }
+
     @discardableResult
     public func add(url: URL, batchID: String? = nil) throws -> File {
         let file: File = viewContext.insert()

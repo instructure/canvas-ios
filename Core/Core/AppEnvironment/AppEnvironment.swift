@@ -67,13 +67,21 @@ open class AppEnvironment {
 
     public static var shared = AppEnvironment()
 
-    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = {}) -> Store<U> where U: UseCase {
+    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { _ in }) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
+    }
+
+    public func subscribe<U>(_ useCase: U, _ callback: @escaping () -> Void = {}) -> Store<U> where U: UseCase {
+        return subscribe(useCase) { _ in callback() }
     }
 
     public func subscribe<Model>(scope: Scope, _ callback: @escaping Store<LocalUseCase<Model>>.EventHandler) -> Store<LocalUseCase<Model>> {
         let useCase = LocalUseCase<Model>(scope: scope)
         return subscribe(useCase, callback)
+    }
+
+    public func subscribe<Model>(scope: Scope, _ callback: @escaping () -> Void) -> Store<LocalUseCase<Model>> {
+        return subscribe(scope: scope) { _ in callback() }
     }
 
     public var topViewController: UIViewController? {

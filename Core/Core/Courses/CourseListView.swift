@@ -46,9 +46,13 @@ public struct CourseListView: View {
         let env = AppEnvironment.shared
         let state = State()
         state.loading = true
-        let allCourses = env.subscribe(GetAllCourses()) {
-            state.loading = false
+
+        let allCourses = env.subscribe(GetAllCourses()) { store in
+            if !store.pending {
+                state.loading = false
+            }
         }
+
         allCourses.exhaust()
         configureAppearance()
         return CourseListView(allCourses: allCourses, state: state)
@@ -68,8 +72,8 @@ public struct CourseListView: View {
 
     var empty: some View {
         EmptyViewRepresentable(
-            title: NSLocalizedString("No Courses", comment: ""),
-            body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", comment: ""),
+            title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
+            body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
         )
     }
@@ -91,11 +95,11 @@ public struct CourseListView: View {
                 SearchBarView(text: $state.filter, placeholder: NSLocalizedString("Search", comment: ""))
             }.listRowInsets(EdgeInsets())
             if filteredCourses.isEmpty {
-                Text("No matching courses").frame(maxHeight: .infinity)
+                Text("No matching courses", bundle: .core).frame(maxHeight: .infinity)
             } else {
-                enrollmentSection(Text("Current Enrollments"), courses: currentEnrollments)
-                enrollmentSection(Text("Past Enrollments"), courses: pastEnrollments)
-                enrollmentSection(Text("Future Enrollments"), courses: futureEnrollments)
+                enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
+                enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
+                enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
             }
         }.avoidKeyboardArea()
         // Truncate everything to one line. Can't decide if I like it better with or without this.

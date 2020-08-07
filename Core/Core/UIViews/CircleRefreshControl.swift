@@ -116,8 +116,8 @@ public class CircleRefreshControl: UIRefreshControl {
         var parent = superview
         while parent != nil {
             if let scrollview = parent as? UIScrollView {
-                scrollview.refreshControl = self
                 selfAdding = false
+                scrollview.refreshControl = self
                 return
             }
             parent = parent?.superview
