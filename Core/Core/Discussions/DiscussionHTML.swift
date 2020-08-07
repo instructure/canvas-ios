@@ -120,6 +120,7 @@ public enum DiscussionHTML {
             canLike: \(canLike),
             contextColor: \(s(contextColor?.hexString))
         }), document.body)
+        fixLTITools()
         """
     }
 

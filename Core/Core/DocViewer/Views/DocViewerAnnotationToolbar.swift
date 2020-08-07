@@ -31,32 +31,32 @@ public class DocViewerAnnotationToolbar: AnnotationToolbar {
         super.init(annotationStateManager: annotationStateManager)
 
         let commentGroupItem = AnnotationToolConfiguration.ToolItem(type: .stamp, variant: nil) { (_, _, _) in
-            return UIImage.icon(.marker, .solid)
+            return UIImage.markerSolid
         }
         let commentGroup = AnnotationToolConfiguration.ToolGroup(items: [commentGroupItem])
 
         let highlightGroupItem = AnnotationToolConfiguration.ToolItem(type: .highlight, variant: nil, configurationBlock: { (_, _, _) in
-            return UIImage.icon(.highlighter, .solid)
+            return UIImage.highlighterSolid
         })
         let highlightGroup = AnnotationToolConfiguration.ToolGroup(items: [highlightGroupItem])
 
         let freeTextGroupItem = AnnotationToolConfiguration.ToolItem(type: .freeText, variant: nil) { (_, _, _) in
-            return UIImage.icon(.text, .line)
+            return UIImage.textLine
         }
         let freeTextGroup = AnnotationToolConfiguration.ToolGroup(items: [freeTextGroupItem])
 
         let strikeoutGroupItem = AnnotationToolConfiguration.ToolItem(type: .strikeOut, variant: nil, configurationBlock: { (_, _, _) in
-            return UIImage.icon(.strikethrough, .solid)
+            return UIImage.strikethroughSolid
         })
         let strikeoutGroup = AnnotationToolConfiguration.ToolGroup(items: [strikeoutGroupItem])
 
         let inkGroupItem = AnnotationToolConfiguration.ToolItem(type: .ink, variant: nil) { (_, _, _) in
-            return UIImage.icon(.paint, .solid)
+            return UIImage.paintSolid
         }
         let inkGroup = AnnotationToolConfiguration.ToolGroup(items: [inkGroupItem])
 
         let boxGroupItem = AnnotationToolConfiguration.ToolItem(type: .square, variant: nil) { (_, _, _) in
-            return UIImage.icon(.box, .solid)
+            return UIImage.boxSolid
         }
         let boxGroup = AnnotationToolConfiguration.ToolGroup(items: [boxGroupItem])
 

@@ -26,7 +26,7 @@ public class DashboardViewController: UIViewController {
     let refreshControl = CircleRefreshControl()
 
     lazy var editFavoritesButton = UIBarButtonItem(title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(editFavorites))
-    lazy var openProfileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var openProfileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     let env = AppEnvironment.shared
 

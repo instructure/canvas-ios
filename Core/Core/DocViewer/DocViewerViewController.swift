@@ -198,7 +198,7 @@ extension DocViewerViewController: PDFViewControllerDelegate {
             })
 
             if annotation.isEditable || metadata.permissions == .readwritemanage {
-                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .icon(.trash, .line), block: {
+                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .trashLine, block: {
                     pdfController.document?.remove(annotations: [annotation], options: nil)
                 }, identifier: TextMenu.annotationMenuRemove.rawValue))
             }

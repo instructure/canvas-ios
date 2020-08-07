@@ -38,10 +38,10 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.isEnabled = env.app == .teacher || !(item.lockedForUser || item.module?.state == .locked)
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
-        iconView.image = item.masteryPath?.locked == true ? UIImage.icon(.lock) : item.type?.icon
+        iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
         publishedIconView.published = item.published
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil
-        completedStatusView.image = item.completed == true ? .icon(.check) : .icon(.empty)
+        completedStatusView.image = item.completed == true ? .checkLine : .emptyLine
         completedStatusView.tintColor = item.completed == true ? .backgroundSuccess : .borderMedium
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
@@ -56,7 +56,7 @@ class ModuleItemCell: UITableViewCell {
             let format = NSLocalizedString("d_options", bundle: .core, comment: "")
             dueLabel.text = String.localizedStringWithFormat(format, masteryPath.numberOfOptions)
             dueLabel.textColor = tintColor
-            accessoryView = UIImageView(image: .icon(.masteryPaths))
+            accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
             dueLabel.text = [dueAt, points, requirement].compactMap { $0 }.joined(separator: " | ")
             dueLabel.textColor = .textDark

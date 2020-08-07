@@ -62,7 +62,7 @@ class LoginFindSchoolViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        logoView.image = .icon(.instructure, .solid)
+        logoView.image = .instructureSolid
         logoView.tintColor = .currentLogoColor()
         logoView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 32).isActive = true

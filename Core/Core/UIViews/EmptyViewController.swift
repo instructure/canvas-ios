@@ -19,7 +19,7 @@
 import UIKit
 
 public class EmptyViewController: UIViewController {
-    let logoImageView = UIImageView(image: .icon(.instructure))
+    let logoImageView = UIImageView(image: .instructureLine)
 
     public override func viewDidLoad() {
         super.viewDidLoad()

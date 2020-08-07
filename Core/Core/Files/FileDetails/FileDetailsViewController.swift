@@ -432,7 +432,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
         addPDFAnnotationChangeNotifications()
 
         let annotate = controller.annotationButtonItem
-        annotate.image = .icon(.highlighter, .line)
+        annotate.image = .highlighterLine
         annotate.accessibilityIdentifier = "FileDetails.annotateButton"
         let search = controller.searchButtonItem
         search.accessibilityIdentifier = "FileDetails.searchButton"
@@ -488,7 +488,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
                 item.title = NSLocalizedString("Style", bundle: .core, comment: "")
             }
             if item.identifier == TextMenu.annotationMenuRemove.rawValue {
-                return MenuItem(title: item.title, image: .icon(.trash), block: item.actionBlock, identifier: item.identifier)
+                return MenuItem(title: item.title, image: .trashLine, block: item.actionBlock, identifier: item.identifier)
             }
             return item
         }

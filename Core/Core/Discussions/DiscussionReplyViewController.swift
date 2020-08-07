@@ -35,7 +35,7 @@ public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDel
 
     lazy var attachButton: UIBarButtonItem = {
         let button = UIButton(type: .system)
-        button.setImage(.icon(.paperclip), for: .normal)
+        button.setImage(.paperclipLine, for: .normal)
         button.addTarget(self, action: #selector(attach), for: .primaryActionTriggered)
         button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         button.addSubview(attachBadge)
@@ -291,7 +291,7 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
 
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
-            image: .icon(.eye),
+            image: .eyeLine,
             title: NSLocalizedString("View", bundle: .core, comment: ""),
             accessibilityIdentifier: "DiscussionEditReply.viewMenuAction"
         ) { [weak self] in
@@ -301,7 +301,7 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
             self.env.router.show(controller, from: self, options: .modal())
         }
         sheet.addAction(
-            image: .icon(.trash),
+            image: .trashLine,
             title: NSLocalizedString("Delete", bundle: .core, comment: ""),
             accessibilityIdentifier: "DiscussionEditReply.deleteMenuAction"
         ) { [weak self] in

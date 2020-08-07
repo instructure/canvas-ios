@@ -56,7 +56,7 @@ class ComposeRecipientsView: UIView {
     func addEditButton() {
         editButton = UIButton(type: .system)
         editButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        editButton.setImage(.icon(.addressBook), for: .normal)
+        editButton.setImage(.addressBookLine, for: .normal)
         editButton.tintColor = .textDark
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")

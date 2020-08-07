@@ -75,27 +75,27 @@ class SubmissionTests: CoreTestCase {
 
     func testIcon() {
         let submission = Submission.make()
-        let map: [SubmissionType: UIImage.InstIconName] = [
-            .basic_lti_launch: .lti,
-            .external_tool: .lti,
-            .discussion_topic: .discussion,
-            .online_quiz: .quiz,
-            .online_text_entry: .text,
-            .online_url: .link,
+        let map: [SubmissionType: UIImage] = [
+            .basic_lti_launch: .ltiLine,
+            .external_tool: .ltiLine,
+            .discussion_topic: .discussionLine,
+            .online_quiz: .quizLine,
+            .online_text_entry: .textLine,
+            .online_url: .linkLine,
         ]
         for (type, icon) in map {
             submission.type = type
-            XCTAssertEqual(submission.icon, UIImage.icon(icon))
+            XCTAssertEqual(submission.icon, icon)
         }
         submission.type = .media_recording
         submission.mediaComment = MediaComment.make(from: .make(media_type: .audio))
-        XCTAssertEqual(submission.icon, UIImage.icon(.audio))
+        XCTAssertEqual(submission.icon, UIImage.audioLine)
         submission.mediaComment?.mediaType = .video
-        XCTAssertEqual(submission.icon, UIImage.icon(.video))
+        XCTAssertEqual(submission.icon, UIImage.videoLine)
 
         submission.type = .online_upload
         submission.attachments = Set([ File.make(from: .make(contentType: "application/pdf", mime_class: "pdf")) ])
-        XCTAssertEqual(submission.icon, UIImage.icon(.pdf))
+        XCTAssertEqual(submission.icon, UIImage.pdfLine)
 
         submission.type = .on_paper
         XCTAssertNil(submission.icon)

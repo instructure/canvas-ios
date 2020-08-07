@@ -33,7 +33,7 @@ class FloatingButtonTests: XCTestCase {
         view.iconName = "not an icon name"
         XCTAssertNil(view.image(for: .normal))
         view.iconName = "instructureSolid"
-        XCTAssertEqual(view.image(for: .normal), .icon(.instructure, .solid))
+        XCTAssertEqual(view.image(for: .normal), .instructureSolid)
     }
 
     func testIconColorName() {

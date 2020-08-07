@@ -159,7 +159,7 @@ class ConferenceListCell: UITableViewCell {
 
     func update(_ conference: Conference?) {
         backgroundColor = .backgroundLightest
-        iconView.icon = .icon(.conferences)
+        iconView.icon = .conferences
         if Bundle.main.isTeacherApp {
             iconView.state = conference?.isConcluded == true ? .unpublished : .published
         }

@@ -162,11 +162,11 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         if picker?.isHidden == true {
             pickerButton?.tintColor = .textDark
             pickerButtonArrow?.tintColor = .textDark
-            pickerButtonArrow?.image = .icon(.miniArrowDown, .solid)
+            pickerButtonArrow?.image = .miniArrowDownSolid
         } else {
             pickerButton?.tintColor = Brand.shared.buttonPrimaryBackground
             pickerButtonArrow?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.image = .icon(.miniArrowUp, .solid)
+            pickerButtonArrow?.image = .miniArrowUpSolid
         }
     }
 }

@@ -196,19 +196,19 @@ extension APIAssignmentListAssignment {
     }
 
     public var icon: UIImage? {
-        var image: UIImage? = .icon(.assignment, .line)
+        var image: UIImage? = .assignmentLine
         if quizID != nil {
-            image = .icon(.quiz, .line)
+            image = .quizLine
         } else if submissionTypes.contains(.discussion_topic) {
-            image = .icon(.discussion, .line)
+            image = .discussionLine
         } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            image = .icon(.lti, .line)
+            image = .ltiLine
         } else if submissionTypes.contains(.wiki_page) {
-            image = .icon(.document, .line)
+            image = .documentLine
         }
 
         if let lockAt = lockAt, Clock.now > lockAt {
-            image = .icon(.lock, .line)
+            image = .lockLine
         }
 
         return image

@@ -40,7 +40,7 @@ public func inboxTab() -> UIViewController {
 
     inboxSplit.viewControllers = [inboxNav, empty]
     let title = NSLocalizedString("Inbox", bundle: .core, comment: "Inbox tab title")
-    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .icon(.inboxTab), selectedImage: .icon(.inboxTabActive))
+    inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
     inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
     TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem

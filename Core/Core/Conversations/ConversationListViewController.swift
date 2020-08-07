@@ -204,7 +204,7 @@ extension ConversationListViewController: UITableViewDataSource, UITableViewDele
             success(true)
         }
         markAsUnread.backgroundColor = .electric
-        markAsUnread.image = .icon(.email, .solid)
+        markAsUnread.image = .emailSolid
         actions.append(markAsUnread)
 
         return UISwipeActionsConfiguration(actions: actions)

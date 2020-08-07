@@ -49,7 +49,7 @@ class AttachmentCardsViewController: UIViewController {
             if mediaComment?.mediaType == .video {
                 card.updateVideo(url, parent: self)
             } else {
-                card.updateFile(name: mediaComment?.displayName, icon: .icon(.audio))
+                card.updateFile(name: mediaComment?.displayName, icon: .audioLine)
             }
             card.button?.addTarget(self, action: #selector(tapAttachment(sender:)), for: .primaryActionTriggered)
             card.tag = -1
@@ -59,7 +59,7 @@ class AttachmentCardsViewController: UIViewController {
         for (index, a) in self.attachments.enumerated() {
             let card = getCard(cardIndex)
             if a.uploadError != nil {
-                card.updateFile(name: NSLocalizedString("Failed. Tap for options", comment: ""), icon: .icon(.warning, .line))
+                card.updateFile(name: NSLocalizedString("Failed. Tap for options", comment: ""), icon: .warningLine)
                 card.iconView?.tintColor = .textDanger
             } else if a.isUploading, a.size > 0 {
                 card.updateProgress(name: a.displayName ?? a.localFileURL?.lastPathComponent, sent: a.bytesSent, of: a.size)

@@ -209,21 +209,21 @@ extension Submission {
         guard let type = type else { return nil }
         switch type {
         case .basic_lti_launch, .external_tool:
-            return UIImage.icon(.lti)
+            return UIImage.ltiLine
         case .discussion_topic:
-            return UIImage.icon(.discussion)
+            return UIImage.discussionLine
         case .media_recording:
-            return UIImage.icon(mediaComment?.mediaType == .audio ? .audio : .video)
+            return mediaComment?.mediaType == .audio ? UIImage.audioLine : UIImage.videoLine
         case .online_quiz:
-            return UIImage.icon(.quiz)
+            return UIImage.quizLine
         case .online_text_entry:
-            return UIImage.icon(.text)
+            return UIImage.textLine
         case .online_upload:
             return attachments?.first?.icon
         case .online_url:
-            return UIImage.icon(.link)
+            return UIImage.linkLine
         case .wiki_page:
-            return UIImage.icon(.document)
+            return UIImage.documentLine
         case .none, .not_graded, .on_paper:
             return nil
         }
@@ -313,11 +313,11 @@ public enum SubmissionStatus {
     public var icon: UIImage {
         switch self {
         case .submitted:
-            return .icon(.complete, .solid)
+            return .completeSolid
         case .late:
-            return .icon(.clock, .solid)
+            return .clockSolid
         case .missing, .notSubmitted:
-            return .icon(.no, .solid)
+            return .noSolid
         }
     }
 }
