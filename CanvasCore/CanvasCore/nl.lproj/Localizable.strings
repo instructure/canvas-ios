@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Uitvouwen";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Een reactie verwacht in het bereik 200-299. Werd %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Kan afbeelding niet vinden op pad";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
-
-/* Title for network errors */
-"Network Error" = "Netwerkfout";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Openen in Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Stijl";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Er is een probleem met het interpreteren van een reactie van de server.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Er was een fout bij het communiceren met de server.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Onverwachte reactiesoort";
 

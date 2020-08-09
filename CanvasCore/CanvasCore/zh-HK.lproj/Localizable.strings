@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "展開";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "回應應在 200-299 範圍內。得到%@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "無法在路徑中找到圖像";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "啟動外部工具";
-
-/* Title for network errors */
-"Network Error" = "網路錯誤";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "在 Safari 中打開";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "樣式";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "對伺服器應答內容解讀時出現問題。";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "在與伺服器通訊時出現問題。";
-
-/* Unexpected response type */
-"Unexpected response type" = "未知回應類型";
 
