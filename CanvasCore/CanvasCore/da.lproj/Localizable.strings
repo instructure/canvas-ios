@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Udvid";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Forventet et svar i området 200-299. Fik %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Kunne ikke finde billedet på stien";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Start eksternt værktøj";
-
-/* Title for network errors */
-"Network Error" = "Netværk fejl";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Åbn i Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Type";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Der var et problemmed fortolkningen af et svar fra serveren.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Der opstod en fejl mens der blev kommunikeret med serveren.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Uventet svartype";
 

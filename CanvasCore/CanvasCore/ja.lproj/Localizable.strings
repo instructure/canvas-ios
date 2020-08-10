@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "展開";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "200-299の範囲で応答が期待されます。取得%@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "パスで画像を見つけることができませんでした";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "外部ツールを起動する";
-
-/* Title for network errors */
-"Network Error" = "ネットワークエラー";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Safariで開く";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "スタイル";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "サーバーからの応答の読み取り中にエラーが発生しました。";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "サーバーとの通信中にエラーが発生しました。";
-
-/* Unexpected response type */
-"Unexpected response type" = "予期せぬ応答タイプ";
 

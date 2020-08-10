@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "whakawhānui";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Te whakahoki i tūmanakohia i roto i te 200-299 tawhititanga. I whiwhia %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "I rahua te kite i te āhua i te huarahi";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Neke Taputapu Waho";
-
-/* Title for network errors */
-"Network Error" = "Hapa Whatunga";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Tuwhera i roto i te Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Kāhua";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "He  raruraru i te wā e whakamāori i te whakautu mai i te tūmau.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "He hapa i te wā e kōrero ana ki te tūmau.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Whakautu momo ohorere";
 

@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Razširi";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Pričakovan je bil odziv v razponu 200–299. Prejeto %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Iskanje slike pri poti ni uspelo.";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Zaženi zunanje orodje";
-
-/* Title for network errors */
-"Network Error" = "Napaka v omrežju";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Odpri v brskalniku Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Slog";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Prišlo je do težav pri tolmačenju odziva strežnika.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Med komunikacijo s strežnikom je prišlo do napake.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Nepričakovana vrsta odziva";
 

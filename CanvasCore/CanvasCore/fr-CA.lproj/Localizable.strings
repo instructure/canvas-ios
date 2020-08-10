@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Développer";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Réponse attendue dans la fourchette 200-299. Indiqué : %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Impossible de trouver l'image au chemin d'accès";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lancer l'outil externe";
-
-/* Title for network errors */
-"Network Error" = "Erreur de réseau";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Ouvrir avec Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Style";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Un problème est survenu lors de l'interprétation d'une réponse du serveur.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Une erreur est survenue pendant la communication avec le serveur.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Type de réponse inattendu";
 

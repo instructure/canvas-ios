@@ -181,10 +181,10 @@
 "Retry" = "Tentar novamente";
 
 /* No comment provided by engineer. */
-"Settings" = "Definições";
+"Settings" = "Configurações";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Definições. %@";
+"Settings. %@" = "Configurações. %@";
 
 /* Link text in 'Already have an account? Sign In */
 "Sign In" = "Iniciar sessão";
@@ -226,7 +226,7 @@
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Não é possível definir um limiar baixo que seja superior ou igual a um limiar alto previamente definido.";
 
 /* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Você deve permitir notificações em Definições para definir lembretes.";
+"You must allow notifications in Settings to set reminders." = "Você deve permitir notificações em Configurações para definir lembretes.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Você é pego!";

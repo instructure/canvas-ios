@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Víkka";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Vænt svar á bilinu 200-299. Got %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Ekki tókst að finna mynd á slóð";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Nota ytra verkfæri";
-
-/* Title for network errors */
-"Network Error" = "Netkerfisvilla";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Opna í Safari";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Stíll";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Villa kom upp við túlkun svars frá miðlara.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Villa kom upp við samskipti við miðlara.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Óvænt gerð svars";
 
