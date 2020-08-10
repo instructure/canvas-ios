@@ -80,7 +80,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
         @State var html: String = "Edit Me!"
         @State var height: CGFloat = 200
         @State var canSubmit: Bool = false
-        @State var error: Error? = nil
+        @State var error: Error?
         var body: some View {
             RichContentEditor(
                 placeholder: "Placeholder",

@@ -53,19 +53,19 @@ public struct PageEditorView: View {
                     .frame(width: 40, height: 40)
             }
         }
-            .background(Color.named(.backgroundGrouped))
+            .background(Color.backgroundGrouped)
             .navigationBarTitle(url == nil ? Text("New Page") : Text("Edit Page"), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
                     guard let controller = self.viewController() else { return }
                     self.env.router.dismiss(controller)
-                }) {
+                }, label: {
                     Text("Cancel")
-                }
+                })
                     .accessibility(identifier: "screen.dismiss"),
-                trailing: Button(action: save) {
+                trailing: Button(action: save, label: {
                     Text("Done").bold()
-                }
+                })
                     .accessibility(identifier: "PageEditor.doneButton")
                     .disabled(isLoading || isSaving)
             )
@@ -76,25 +76,25 @@ public struct PageEditorView: View {
         ScrollView { VStack(alignment: .leading, spacing: 0) {
             if env.app == .teacher {
                 Text("Title")
-                    .font(.semibold14).foregroundColor(.named(.textDark))
+                    .font(.semibold14).foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
                 Divider()
                 TextField("Add Title", text: $title)
-                    .foregroundColor(.named(.textDarkest))
+                    .foregroundColor(.textDarkest)
                     .padding(16)
-                    .background(Color.named(.backgroundLightest))
+                    .background(Color.backgroundLightest)
                     .accessibility(identifier: "PageEditor.titleField")
                 Divider()
             } else {
                 Text(title)
                     .font(.bold20)
-                    .foregroundColor(Color.named(.textDarkest))
+                    .foregroundColor(.textDarkest)
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
                     .accessibility(identifier: "PageEditor.titleText")
             }
 
             Text("Content")
-                .font(.semibold14).foregroundColor(.named(.textDark))
+                .font(.semibold14).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             Divider()
             RichContentEditor(
@@ -111,26 +111,26 @@ public struct PageEditorView: View {
 
             if env.app == .teacher || context.contextType == .group {
                 Text("Details")
-                    .font(.semibold14).foregroundColor(.named(.textDark))
+                    .font(.semibold14).foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
                 Divider()
                 if !isFrontPage && env.app == .teacher {
                     Toggle("Publish", isOn: $published)
-                        .font(.semibold16).foregroundColor(.named(.textDarkest))
+                        .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(16)
-                        .background(Color.named(.backgroundLightest))
+                        .background(Color.backgroundLightest)
                         .accessibility(identifier: "PageEditor.publishedToggle")
                     Divider()
                 }
                 if published && url != "front_page" && env.app == .teacher {
                     Toggle("Set as Front Page", isOn: $isFrontPage)
-                        .font(.semibold16).foregroundColor(.named(.textDarkest))
+                        .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(16)
-                        .background(Color.named(.backgroundLightest))
+                        .background(Color.backgroundLightest)
                         .accessibility(identifier: "PageEditor.frontPageToggle")
                     Divider()
                 }
-                Button(action: { self.editingRolesPickerShown.toggle() }) {
+                Button(action: { self.editingRolesPickerShown.toggle() }, label: {
                     Text("Can Edit").font(.semibold16)
                     Spacer()
                     if editingRoles == "members" {
@@ -142,11 +142,11 @@ public struct PageEditorView: View {
                     } else if editingRoles == "public" {
                         Text("Anyone")
                     }
-                    Image(systemName: "chevron.right").accentColor(.named(.borderMedium))
-                }
+                    Image(systemName: "chevron.right").accentColor(.borderMedium)
+                })
                     .padding(16)
-                    .accentColor(.named(.textDarkest))
-                    .background(Color.named(.backgroundLightest))
+                    .accentColor(.textDarkest)
+                    .background(Color.backgroundLightest)
                     .accessibility(identifier: "PageEditor.editorsButton")
                 Divider()
                 if editingRolesPickerShown {
@@ -170,7 +170,7 @@ public struct PageEditorView: View {
             return
         }
         let useCase = GetPage(context: context, url: url)
-        useCase.fetch { _, _, error in performUIUpdate {
+        useCase.fetch { _, _, _ in performUIUpdate {
             let page: Page? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             var editingRoles = "public"
             if page?.editingRoles.contains("teachers") == true { editingRoles = "teachers" }
