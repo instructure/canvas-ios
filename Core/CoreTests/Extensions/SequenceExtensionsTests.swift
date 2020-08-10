@@ -16,19 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import TestsFoundation
 
-extension Sequence {
-    /// Gives a new sequence with `separator` placed between every element
-    public func interleave(separator: Element) -> [Element] {
-        var result = [Element]()
-        result.reserveCapacity(underestimatedCount * 2)
-        for element in self {
-            if !result.isEmpty {
-                result.append(separator)
-            }
-            result.append(element)
-        }
-        return result
+class SequenceExtensionsTests: XCTestCase {
+    func testInterleaveEmpty() {
+        XCTAssertEqual([].interleave(separator: 2), [])
+    }
+
+    func testInterleaveNonEmpty() {
+        XCTAssertEqual("abcde".interleave(separator: ","), Array("a,b,c,d,e"))
     }
 }
