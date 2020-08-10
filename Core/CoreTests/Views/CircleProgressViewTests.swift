@@ -33,6 +33,7 @@ class CircleProgressViewTests: CoreTestCase {
             clockwise: true
         ).cgPath)
         view.bounds = CGRect(x: 0, y: 0, width: 64, height: 64)
+        view.layoutSubviews()
         XCTAssertEqual(view.track.path, UIBezierPath(
             arcCenter: CGPoint(x: 32, y: 32),
             radius: 61.0 / 2,
