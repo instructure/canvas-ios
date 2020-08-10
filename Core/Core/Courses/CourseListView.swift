@@ -23,16 +23,12 @@ import Combine
 
 @available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
-    public class Props: ObservableObject {
-        @Published var filter: String = ""
-        @Published var pendingFavorites: Set<String> = []
-        @Published var loading = false
-    }
-
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
-    @ObservedObject var props = Props()
+    @State private var filter = ""
+    @State private var loading = true
+    let loadingPublisher: AnyPublisher<Bool, Never>
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -44,32 +40,34 @@ public struct CourseListView: View {
 
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
-    public static func create() -> CourseListView {
-        let env = AppEnvironment.shared
-        let props = Props()
-        props.loading = true
-
-        let allCourses = env.subscribe(GetAllCourses()) { store in
-            if !store.pending {
-                props.loading = false
-            }
+    public init(allCourses: Store<GetAllCourses>? = nil) {
+        let loadingSubject = CurrentValueSubject<Bool, Never>(true)
+        if let allCourses = allCourses {
+            self.allCourses = allCourses
+            loadingSubject.send(false)
+        } else {
+            self.allCourses = AppEnvironment.shared.subscribe(GetAllCourses()) { store in
+                if !store.pending {
+                    loadingSubject.send(false)
+                }
+            }.exhaust()
         }
-
-        allCourses.exhaust()
-        configureAppearance()
-        return CourseListView(allCourses: allCourses, props: props)
+        loadingPublisher = loadingSubject.eraseToAnyPublisher()
+        Self.configureAppearance()
     }
 
     public var body: some View {
         let view: AnyView
-        if props.loading {
-            view = AnyView(ActivityIndicatorView())
+        if loading {
+            view = AnyView(CircleProgressView.AsView.create())
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
             view = AnyView(courseList)
         }
-        return view.navigationBarTitle("All Courses")
+        return view
+            .navigationBarTitle("All Courses")
+            .onReceive(loadingPublisher) { self.loading = $0 }
     }
 
     var empty: some View {
@@ -81,11 +79,11 @@ public struct CourseListView: View {
     }
 
     var courseList: some View {
-        let filter = props.filter.lowercased()
+        let filterString = filter.lowercased()
         let filteredCourses = allCourses.filter { course in
-            props.filter.isEmpty ||
-                course.name?.lowercased().contains(filter) == true ||
-                course.courseCode?.lowercased().contains(filter) == true
+            filterString.isEmpty ||
+                course.name?.lowercased().contains(filterString) == true ||
+                course.courseCode?.lowercased().contains(filterString) == true
         }
         let currentEnrollments = filteredCourses.filter { !$0.isPastEnrollment && !$0.isFutureEnrollment }
         let pastEnrollments = filteredCourses.filter { $0.isPastEnrollment }
@@ -101,7 +99,7 @@ public struct CourseListView: View {
                                 control.endRefreshing()
                             }
                         }.frame(height: 0)
-                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
+                        SearchBarView(text: self.$filter, placeholder: NSLocalizedString("Search", comment: ""))
                     }.listRowInsets(EdgeInsets())
                 }
                 self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
@@ -115,20 +113,17 @@ public struct CourseListView: View {
                 }
             }
         }.avoidKeyboardArea()
-        // Truncate everything to one line. Can't decide if I like it better with or without this.
-        // TODO: decide
-         .lineLimit(1)
+         .lineLimit(2)
     }
 
     func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
         let formattedHeader = courses.isEmpty ? nil : header
-            .font(Font(UIFont.scaledNamedFont(.medium12)))
+            .font(.medium12)
             .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-        let pending = SetBinding(set: $props.pendingFavorites)
         return Section(header: formattedHeader) {
             ForEach(courses, id: \.id) { course in
-                Cell(course: course, pending: pending[course.id]) {
+                Cell(course: course) {
                     guard let controller = self.controller() else { return }
                     self.env.router.route(to: "/courses/\(course.id)", from: controller)
                 }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
@@ -139,7 +134,7 @@ public struct CourseListView: View {
     struct Cell: View {
         @Environment(\.appEnvironment) var env: AppEnvironment
         @ObservedObject var course: Course
-        @Binding var pending: Bool
+        @State private var pending: Bool = false
         let didSelect: () -> Void
 
         var body: some View {
@@ -176,13 +171,14 @@ public struct CourseListView: View {
                 if pending {
                     Image.starSolid.foregroundColor(.textDark)
                 } else if course.isFavorite {
-                    Image.starSolid.foregroundColor(.textInfo).accessibility(addTraits: .isSelected)
+                    Image.starSolid.foregroundColor(.textInfo)
                 } else {
                     Image.starLine.foregroundColor(.textDark)
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: Text("favorite", bundle: .core))
+                .accessibility(addTraits: course.isFavorite ? .isSelected : [])
         }
 
         var enrollmentStrings: [String] {
@@ -191,12 +187,12 @@ public struct CourseListView: View {
 
         var label: some View {
             VStack(alignment: .leading) {
-                Text(course.name ?? "").font(Font(UIFont.scaledNamedFont(.semibold16)))
+                Text(course.name ?? "").font(.semibold16)
                 HStack {
                     ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
                         Text($0)
                             .foregroundColor(.textDark)
-                            .font(Font(UIFont.scaledNamedFont(.medium14)))
+                            .font(.medium14)
                     }
                 }
             }
