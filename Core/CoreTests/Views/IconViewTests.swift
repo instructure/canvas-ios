@@ -25,14 +25,14 @@ class IconViewTests: XCTestCase {
         view.iconName = "not an icon name"
         XCTAssertNil(view.image)
         view.iconName = "instructureSolid"
-        XCTAssertEqual(view.image, .icon(.instructure, .solid))
+        XCTAssertEqual(view.image, .instructureSolid)
     }
 
     func testIconColorName() {
         let view = IconView()
         let tinter = UIView() // tintColor gets adjusted, so apply same with this
         view.iconColorName = "not a color name"
-        tinter.tintColor = .named(.electric)
+        tinter.tintColor = .electric
         XCTAssertEqual(view.tintColor, tinter.tintColor)
         view.iconColorName = "primary"
         tinter.tintColor = Brand.shared.primary

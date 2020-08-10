@@ -28,7 +28,7 @@ class DatePickerDateCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        highlightView.backgroundColor = .named(.electric)
+        highlightView.backgroundColor = .electric
         highlightView.layer.cornerRadius = 4.0
         highlightView.clipsToBounds = true
         highlightView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,10 +52,10 @@ class DatePickerDateCell: UICollectionViewCell {
     func setIsHighlighted(_ highlighted: Bool) {
         if highlighted {
             highlightView.isHidden = false
-            label.textColor = .named(.white)
+            label.textColor = .white
         } else {
             highlightView.isHidden = true
-            label.textColor = .named(isToday ? .electric : .textDarkest)
+            label.textColor = isToday ? .electric : .textDarkest
         }
     }
 
@@ -82,11 +82,11 @@ class DatePickerMonthHeaderView: UICollectionReusableView {
         stack.addArrangedSubview(monthLabel)
 
         yearLabel.font = .scaledNamedFont(.heavy24)
-        yearLabel.textColor = .named(.textDarkest)
+        yearLabel.textColor = .textDarkest
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
 
         monthLabel.font = .scaledNamedFont(.semibold20)
-        monthLabel.textColor = .named(.textDarkest)
+        monthLabel.textColor = .textDarkest
         monthLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([

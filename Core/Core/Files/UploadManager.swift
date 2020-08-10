@@ -89,7 +89,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             .appendingPathComponent("uploads", isDirectory: true)
             .appendingPathComponent(UUID.string, isDirectory: true)
             .appendingPathComponent(url.lastPathComponent)
-        try url.move(to: newURL)
+        try url.copy(to: newURL)
         return newURL
     }
 

@@ -72,7 +72,7 @@ class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         addStudentView.layer.addDropShadow()
         addStudentView.isHidden = true
@@ -227,8 +227,8 @@ class DashboardViewController: UIViewController {
             CourseListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
         courses.tabBarItem.title = NSLocalizedString("Courses", comment: "Courses Tab")
-        courses.tabBarItem.image = UIImage.icon(.coursesTab)
-        courses.tabBarItem.selectedImage = UIImage.icon(.coursesTabActive)
+        courses.tabBarItem.image = .coursesTab
+        courses.tabBarItem.selectedImage = .coursesTabActive
         courses.tabBarItem.accessibilityIdentifier = "TabBar.coursesTab"
 
         var selectedDate = Clock.now
@@ -239,19 +239,19 @@ class DashboardViewController: UIViewController {
             PlannerViewController.create(studentID: $0, selectedDate: selectedDate)
         } ?? AdminViewController.create()
         calendar.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar Tab")
-        calendar.tabBarItem.image = UIImage.icon(.calendarTab)
-        calendar.tabBarItem.selectedImage = UIImage.icon(.calendarTabActive)
+        calendar.tabBarItem.image = .calendarTab
+        calendar.tabBarItem.selectedImage = .calendarTabActive
         calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
 
         let alerts = currentStudentID.flatMap {
             ObserverAlertListViewController.create(studentID: $0)
         } ?? AdminViewController.create()
         alerts.tabBarItem.title = NSLocalizedString("Alerts", comment: "Alerts Tab")
-        alerts.tabBarItem.image = UIImage.icon(.alertsTab)
-        alerts.tabBarItem.selectedImage = UIImage.icon(.alertsTabActive)
+        alerts.tabBarItem.image = .alertsTab
+        alerts.tabBarItem.selectedImage = .alertsTabActive
         alerts.tabBarItem.accessibilityIdentifier = "TabBar.alertsTab"
         alerts.tabBarItem.badgeColor = currentColor
-        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.named(.white) ], for: .normal)
+        alerts.tabBarItem.setBadgeTextAttributes([ .foregroundColor: UIColor.white ], for: .normal)
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
@@ -322,7 +322,7 @@ class StudentButton: UIButton {
         contentEdgeInsets.top = 16 + 48 + 8
         contentEdgeInsets.bottom = 16
         setTitle(Core.User.displayName(student.shortName, pronouns: student.pronouns), for: .normal)
-        setTitleColor(.named(.textDarkest), for: .normal)
+        setTitleColor(.textDarkest, for: .normal)
         titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
         titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
@@ -351,22 +351,22 @@ class AddStudentButton: UIButton {
         contentEdgeInsets.top = 16 + 48 + 8
         contentEdgeInsets.bottom = 16
         setTitle(NSLocalizedString("Add Student", comment: ""), for: .normal)
-        setTitleColor(.named(.textDarkest), for: .normal)
+        setTitleColor(.textDarkest, for: .normal)
         titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
         titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
 
         let circle = UIView()
-        circle.backgroundColor = .named(.white)
+        circle.backgroundColor = .white
         circle.layer.addDropShadow()
         circle.layer.cornerRadius = 24
-        circle.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        circle.layer.borderColor = UIColor.borderMedium.cgColor
         circle.layer.borderWidth = 1 / UIScreen.main.scale
         circle.isUserInteractionEnabled = false
         circle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(circle)
 
-        let icon = UIImageView(image: UIImage.icon(.add, .solid))
+        let icon = UIImageView(image: UIImage.addSolid)
         icon.isUserInteractionEnabled = false
         icon.translatesAutoresizingMaskIntoConstraints = false
         addSubview(icon)

@@ -54,6 +54,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
+    @NSManaged public var externalToolContentID: String?
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -140,6 +141,7 @@ extension Assignment {
         lastUpdatedAt = Date()
         assignmentGroupID = item.assignment_group_id?.value
         allowedAttempts = item.allowed_attempts ?? 0
+        externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -212,8 +214,7 @@ extension Assignment {
     }
 
     public var usedAttempts: Int {
-        guard let submission = submission, submission.submittedAt != nil else { return 0 }
-        return submission.attempt
+        return submission?.attempt ?? 0
     }
 
     public var hasAttemptsLeft: Bool {
@@ -250,17 +251,17 @@ extension Assignment {
     }
 
     public var icon: UIImage? {
-        var image: UIImage? = .icon(.assignment, .line)
+        var image: UIImage? = .assignmentLine
         if quizID != nil {
-            image = .icon(.quiz, .line)
+            image = .quizLine
         } else if submissionTypes.contains(.discussion_topic) {
-            image = .icon(.discussion, .line)
+            image = .discussionLine
         } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            image = .icon(.lti, .line)
+            image = .ltiLine
         }
 
         if lockedForUser {
-            image = .icon(.lock, .line)
+            image = .lockLine
         }
 
         return image

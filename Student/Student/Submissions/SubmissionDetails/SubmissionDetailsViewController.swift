@@ -50,7 +50,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         setupTitleViewInNavbar(title: NSLocalizedString("Submission", bundle: .student, comment: ""))
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
@@ -59,8 +59,8 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         }
         picker?.dataSource = self
         picker?.delegate = self
-        picker?.backgroundColor = .named(.backgroundLightest)
-        pickerButton?.setTitleColor(.named(.textDark), for: .disabled)
+        picker?.backgroundColor = .backgroundLightest
+        pickerButton?.setTitleColor(.textDark, for: .disabled)
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -160,13 +160,13 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     @IBAction func pickerButtonTapped(_ sender: Any) {
         picker?.isHidden = picker?.isHidden == false
         if picker?.isHidden == true {
-            pickerButton?.tintColor = .named(.textDark)
-            pickerButtonArrow?.tintColor = .named(.textDark)
-            pickerButtonArrow?.image = .icon(.miniArrowDown, .solid)
+            pickerButton?.tintColor = .textDark
+            pickerButtonArrow?.tintColor = .textDark
+            pickerButtonArrow?.image = .miniArrowDownSolid
         } else {
             pickerButton?.tintColor = Brand.shared.buttonPrimaryBackground
             pickerButtonArrow?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.image = .icon(.miniArrowUp, .solid)
+            pickerButtonArrow?.image = .miniArrowUpSolid
         }
     }
 }

@@ -44,7 +44,7 @@ public class AudioPlayerViewController: UIViewController {
     public static func create() -> AudioPlayerViewController {
         let controller = loadFromStoryboard()
         controller.loadViewIfNeeded() // So the didSets work correctly.
-        controller.color = .named(.textLightest) // trigger didSet
+        controller.color = .textLightest // trigger didSet
         return controller
     }
 
@@ -63,7 +63,7 @@ public class AudioPlayerViewController: UIViewController {
         set { backgroundView?.backgroundColor = newValue }
     }
 
-    public var color: UIColor = .named(.textLightest) {
+    public var color: UIColor = .textLightest {
         didSet {
             currentTimeLabel?.textColor = color
             loadingView?.color = color
@@ -77,7 +77,7 @@ public class AudioPlayerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        backgroundColor = .named(.backgroundDarkest)
+        backgroundColor = .backgroundDarkest
         playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
         currentTimeLabel?.accessibilityLabel = NSLocalizedString("Time elapsed", bundle: .core, comment: "")
         loadingView?.accessibilityIdentifier = "AudioPlayer.loadingView"
@@ -132,7 +132,7 @@ public class AudioPlayerViewController: UIViewController {
             try session.setCategory(.playback, mode: .default)
             try session.setActive(true)
             if player.play() {
-                playPauseButton?.setImage(.icon(.pause, .solid), for: .normal)
+                playPauseButton?.setImage(.pauseSolid, for: .normal)
                 playPauseButton?.accessibilityLabel = NSLocalizedString("Pause", bundle: .core, comment: "")
                 timer = CADisplayLink(target: self, selector: #selector(tick))
                 timer?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
@@ -163,7 +163,7 @@ public class AudioPlayerViewController: UIViewController {
         timer?.invalidate()
         timer = nil
         player.stop()
-        playPauseButton?.setImage(.icon(.play, .solid), for: .normal)
+        playPauseButton?.setImage(.playSolid, for: .normal)
         playPauseButton?.accessibilityLabel = NSLocalizedString("Play", bundle: .core, comment: "")
         try? AVAudioSession.sharedInstance().setActive(false)
     }

@@ -23,16 +23,16 @@ extension Loggable {
     var icon: UIImage {
         switch type {
         case .log, .error:
-            return UIImage.icon(.empty, .solid)
+            return UIImage.emptySolid
         }
     }
 
     var iconTintColor: UIColor {
         switch type {
         case .error:
-            return .named(.backgroundDanger)
+            return .backgroundDanger
         case .log:
-            return .named(.backgroundSuccess)
+            return .backgroundSuccess
         }
     }
 }

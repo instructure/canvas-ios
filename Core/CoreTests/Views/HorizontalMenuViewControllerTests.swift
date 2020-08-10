@@ -54,6 +54,7 @@ class HorizontalMenuViewControllerTests: XCTestCase {
     func testWithoutMenuItem() {
         mock.viewControllers = []
         XCTAssertNoThrow(mock.layoutViewControllers())
+        XCTAssertNoThrow(mock.viewWillLayoutSubviews())
     }
 
     class Mock: HorizontalMenuViewController, HorizontalPagedMenuDelegate {

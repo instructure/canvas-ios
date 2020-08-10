@@ -116,14 +116,14 @@ open class CoreWebView: WKWebView {
     }
 
     var css: String {
-        let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .named(.backgroundLightest))
+        let buttonBack = Brand.shared.buttonPrimaryBackground.ensureContrast(against: .backgroundLightest)
         let buttonText = Brand.shared.buttonPrimaryText.ensureContrast(against: buttonBack)
-        let link = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let link = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
 
         return """
             html {
-                background: \(UIColor.named(.backgroundLightest).hexString);
-                color: \(UIColor.named(.textDarkest).hexString);
+                background: \(UIColor.backgroundLightest.hexString);
+                color: \(UIColor.textDarkest.hexString);
                 font-family: system-ui;
                 font-size: \(UIFont.scaledNamedFont(.regular16).pointSize)px;
                 -webkit-tap-highlight-color: transparent;
@@ -174,7 +174,6 @@ open class CoreWebView: WKWebView {
 
     var js: String {
         let buttonText = NSLocalizedString("Launch External Tool", bundle: .core, comment: "")
-
         return """
             // Handle Math Equations
             let foundMath = !!document.querySelector('math')
@@ -194,32 +193,35 @@ open class CoreWebView: WKWebView {
               document.body.appendChild(script)
             }
 
-            // Replace all iframes with a button to launch in SFSafariViewController
-            document.querySelectorAll('iframe').forEach(iframe => {
-                const replace = iframe => {
-                    const a = document.createElement('a')
-                    a.textContent = \(CoreWebView.jsString(buttonText))
-                    a.classList.add('canvas-ios-lti-launch-button')
-                    a.href = iframe.src
-                    iframe.parentNode.replaceChild(a, iframe)
-                }
-                if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
-                    replace(iframe)
-                } else if (/\\/media_objects_iframe\\/m-\\w+/.test(iframe.src)) {
-                    const match = iframe.src.match(/\\/media_objects_iframe\\/(m-\\w+)/)
-                    if (match.length == 2) {
-                        const mediaID = match[1]
-                        const video = document.createElement('video')
-                        video.src = '/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
-                        video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
-                        video.setAttribute('controls', '')
-                        video.setAttribute('preload', 'none')
-                        iframe.parentNode.parentNode.replaceChild(video, iframe.parentNode)
+            function fixLTITools() {
+                // Replace all iframes with a button to launch in SFSafariViewController
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    const replace = iframe => {
+                        const a = document.createElement('a')
+                        a.textContent = \(CoreWebView.jsString(buttonText))
+                        a.classList.add('canvas-ios-lti-launch-button')
+                        a.href = iframe.src
+                        iframe.parentNode.replaceChild(a, iframe)
                     }
-                } else {
-                    iframe.addEventListener('error', event => replace(event.target))
-                }
-            })
+                    if (/\\/(courses|accounts)\\/[^\\/]+\\/external_tools\\/retrieve/.test(iframe.src)) {
+                        replace(iframe)
+                    } else if (/\\/media_objects_iframe\\/m-\\w+/.test(iframe.src)) {
+                        const match = iframe.src.match(/\\/media_objects_iframe\\/(m-\\w+)/)
+                        if (match.length == 2) {
+                            const mediaID = match[1]
+                            const video = document.createElement('video')
+                            video.src = '/users/self/media_download?entryId='+mediaID+'&media_type=video&redirect=1'
+                            video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
+                            video.setAttribute('controls', '')
+                            video.setAttribute('preload', 'none')
+                            iframe.parentNode.parentNode.replaceChild(video, iframe.parentNode)
+                        }
+                    } else {
+                        iframe.addEventListener('error', event => replace(event.target))
+                    }
+                })
+            }
+            fixLTITools()
 
             // If there is only one iframe
             // and id="cnvs_content"

@@ -26,7 +26,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     @IBOutlet var emptyView: UIView!
     @IBOutlet var tableView: UITableView!
 
-    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     let env = AppEnvironment.shared
 
@@ -49,7 +49,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         navigationItem.title = NSLocalizedString("To Do", bundle: .core, comment: "")
         navigationItem.leftBarButtonItem = profileButton
 
@@ -57,10 +57,10 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         emptyTitleLabel.text = NSLocalizedString("Well Done!", bundle: .core, comment: "")
         emptyView.isHidden = true
 
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         courses.exhaust()
@@ -132,7 +132,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
             self?.ignoreTodo(at: indexPath)
             done(true)
         }
-        ignore.backgroundColor = .named(.backgroundDanger)
+        ignore.backgroundColor = .backgroundDanger
         return UISwipeActionsConfiguration(actions: [ ignore ])
     }
 

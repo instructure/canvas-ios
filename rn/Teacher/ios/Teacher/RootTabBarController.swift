@@ -48,7 +48,7 @@ class RootTabBarController: UITabBarController {
         emptyNav.navigationBar.useGlobalNavStyle()
         split.viewControllers = [masterNav, emptyNav]
         split.view.accessibilityIdentifier = "favorited-course-list.view2"
-        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .icon(.coursesTab), selectedImage: .icon(.coursesTabActive))
+        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .coursesTab, selectedImage: .coursesTabActive)
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         split.preferredDisplayMode = .allVisible
         return split
@@ -57,7 +57,7 @@ class RootTabBarController: UITabBarController {
     @objc func toDoTab() -> UIViewController {
         let toDoVC = HelmViewController(moduleName: "/to-do", props: [:])
         toDoVC.view.accessibilityIdentifier = "to-do-list.view"
-        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .icon(.todoTab), selectedImage: .icon(.todoTabActive))
+        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .todoTab, selectedImage: .todoTabActive)
         toDoVC.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
         TabBarBadgeCounts.todoItem = toDoVC.tabBarItem
         toDoVC.navigationItem.titleView = Brand.shared.headerImageView()

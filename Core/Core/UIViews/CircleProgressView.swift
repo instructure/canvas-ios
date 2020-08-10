@@ -32,7 +32,7 @@ public class CircleProgressView: UIView {
     }
 
     @IBInspectable
-    public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest)) {
+    public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .backgroundLightest) {
         didSet { tintColorDidChange() }
     }
 
@@ -76,7 +76,7 @@ public class CircleProgressView: UIView {
 
     func commonInit() {
         track.fillColor = UIColor.clear.cgColor
-        track.strokeColor = UIColor.named(.borderLight).cgColor
+        track.strokeColor = UIColor.borderLight.cgColor
         layer.addSublayer(track)
 
         fill.fillColor = UIColor.clear.cgColor

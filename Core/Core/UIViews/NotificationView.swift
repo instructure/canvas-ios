@@ -50,18 +50,18 @@ public class NotificationView: UIView {
 
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .named(.backgroundLightest)
+        container.backgroundColor = .backgroundLightest
         container.layer.cornerRadius = 8
         container.layer.borderWidth = 1
-        container.layer.borderColor = UIColor.named(.backgroundInfo).cgColor
+        container.layer.borderColor = UIColor.backgroundInfo.cgColor
         container.layer.masksToBounds = true
         background.addSubview(container)
 
-        let icon = UIImageView(image: .icon(.info, .solid))
+        let icon = UIImageView(image: .infoSolid)
         icon.translatesAutoresizingMaskIntoConstraints = false
         icon.contentMode = .center
-        icon.backgroundColor = .named(.backgroundInfo)
-        icon.tintColor = .named(.textLightest)
+        icon.backgroundColor = .backgroundInfo
+        icon.tintColor = .textLightest
         container.addSubview(icon)
 
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +71,8 @@ public class NotificationView: UIView {
 
         dismiss.translatesAutoresizingMaskIntoConstraints = false
         dismiss.addTarget(self, action: #selector(handleCloseButtonAction), for: .primaryActionTriggered)
-        dismiss.setImage(.icon(.x), for: .normal)
-        dismiss.tintColor = .named(.textDark)
+        dismiss.setImage(.xLine, for: .normal)
+        dismiss.tintColor = .textDark
         dismiss.contentMode = .center
         dismiss.isHidden = true
         dismiss.isUserInteractionEnabled = true

@@ -41,7 +41,7 @@ class CourseCardCell: UICollectionViewCell {
         )
         accessibilityElements = [ cardView as Any, optionsButton as Any ]
 
-        let color = course?.color.ensureContrast(against: .named(.backgroundLightest))
+        let color = course?.color.ensureContrast(against: .backgroundLightest)
         imageView.load(url: course?.imageDownloadURL)
         titleLabel.text = course?.name
         titleLabel.textColor = color

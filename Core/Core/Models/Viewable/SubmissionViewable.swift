@@ -48,11 +48,11 @@ extension SubmissionViewable {
     }
 
     public var submissionStatusColor: UIColor {
-        return .named(isSubmitted ? .textSuccess : .textDark)
+        return isSubmitted ? .textSuccess : .textDark
     }
 
     public var submissionStatusIcon: UIImage {
-        return .icon(isSubmitted ? .complete : .no, .solid)
+        return isSubmitted ? .completeSolid : .noSolid
     }
 
     public var submissionStatusText: String {

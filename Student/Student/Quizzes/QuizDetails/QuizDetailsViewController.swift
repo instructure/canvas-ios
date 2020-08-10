@@ -82,7 +82,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         instructionsWebView.autoresizesHeight = true
         instructionsWebView.scrollView.showsVerticalScrollIndicator = false
         instructionsWebView.scrollView.alwaysBounceVertical = false
-        instructionsWebView.backgroundColor = .named(.backgroundLightest)
+        instructionsWebView.backgroundColor = .backgroundLightest
         instructionsWebView.linkDelegate = self
 
         loadingView.color = nil
@@ -134,22 +134,22 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         titleLabel.text = quiz?.title
         pointsLabel.text = quiz?.pointsPossibleText
         if let finishedAt = submission?.finishedAt {
-            statusIconView.image = .icon(.complete, .solid)
-            statusIconView.tintColor = .named(.textSuccess)
-            statusLabel.textColor = .named(.textSuccess)
+            statusIconView.image = .completeSolid
+            statusIconView.tintColor = .textSuccess
+            statusLabel.textColor = .textSuccess
             statusLabel.text = String.localizedStringWithFormat(
                 NSLocalizedString("Submitted %@", comment: "Submitted date"),
                 finishedAt.dateTimeString
             )
         } else if submission?.attempt ?? 0 > 1 {
-            statusIconView.image = .icon(.complete, .solid)
-            statusIconView.tintColor = .named(.textSuccess)
-            statusLabel.textColor = .named(.textSuccess)
+            statusIconView.image = .completeSolid
+            statusIconView.tintColor = .textSuccess
+            statusLabel.textColor = .textSuccess
             statusLabel.text = NSLocalizedString("Submitted", comment: "")
         } else {
-            statusIconView.image = .icon(.no, .solid)
-            statusIconView.tintColor = .named(.textDark)
-            statusLabel.textColor = .named(.textDark)
+            statusIconView.image = .noSolid
+            statusIconView.tintColor = .textDark
+            statusLabel.textColor = .textDark
             statusLabel.text = NSLocalizedString("Not Submitted", comment: "")
         }
         dueLabel.text = quiz?.dueText

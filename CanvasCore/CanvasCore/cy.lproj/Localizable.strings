@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 "Expand" = "Ehangu";
 
-/* Error message when the server returns a invalid response */
-"Expected a response in the 200-299 range. Got %@" = "Disgwyl ymateb yn yr ystod 200-299. Wedi Cael %@";
-
 /* No comment provided by engineer. */
 "Failed to find image at path" = "Wedi methu dod o hyd i'r ddelwedd yn y llwybr";
 
@@ -51,9 +48,6 @@
 
 /* No comment provided by engineer. */
 "Launch External Tool" = "Lansio Adnodd Allanol";
-
-/* Title for network errors */
-"Network Error" = "Gwall ar y Rhwydwaith";
 
 /* No comment provided by engineer. */
 "Open in Safari" = "Agor yn y Porwr";
@@ -78,13 +72,4 @@
 
 /* No comment provided by engineer. */
 "Style" = "Arddull";
-
-/* JSON Parsing error description */
-"There was a problem interpreting a response from the server." = "Problem wrth ddehongli ymateb gan y gweinydd.";
-
-/* Error message for a network fail */
-"There was an error while communicating with the server." = "Gwall wrth gyfathrebu â'r gweinydd.";
-
-/* Unexpected response type */
-"Unexpected response type" = "Math o ymateb annisgwyl";
 

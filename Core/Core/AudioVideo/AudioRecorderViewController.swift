@@ -54,7 +54,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        borderView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        borderView?.layer.borderColor = UIColor.borderMedium.cgColor
         cancelButton?.accessibilityLabel = NSLocalizedString("Cancel", bundle: .core, comment: "")
         clearButton?.accessibilityLabel = NSLocalizedString("Clear recording", bundle: .core, comment: "")
         player.accessibilityPrefix = "AudioRecorder."

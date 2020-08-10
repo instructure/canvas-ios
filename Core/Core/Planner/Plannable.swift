@@ -103,31 +103,31 @@ extension Plannable {
     func icon() -> UIImage? {
         switch(self.plannableType) {
         case .assignment:
-            return UIImage.icon(.assignment, .line)
+            return UIImage.assignmentLine
         case .quiz:
-            return UIImage.icon(.quiz, .line)
+            return UIImage.quizLine
         case .discussion_topic:
-            return UIImage.icon(.discussion, .line)
+            return UIImage.discussionLine
         case .announcement:
-            return UIImage.icon(.announcement, .line)
+            return UIImage.announcementLine
         case .wiki_page:
-            return UIImage.icon(.document, .line)
+            return UIImage.documentLine
         case .planner_note:
-            return UIImage.icon(.note, .line)
+            return UIImage.noteLine
         case .calendar_event:
-            return UIImage.icon(.calendarMonth, .line)
+            return UIImage.calendarMonthLine
         case .assessment_request:
-            return UIImage.icon(.peerReview, .line)
+            return UIImage.peerReviewLine
         case .other:
-            return UIImage.icon(.warning, .line)
+            return UIImage.warningLine
         }
     }
 
     public var color: UIColor {
-        guard let canvasContextID = canvasContextIDRaw else { return .named(.ash) }
+        guard let canvasContextID = canvasContextIDRaw else { return .ash }
         if let color: ContextColor = managedObjectContext?.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID) {
             return color.color
         }
-        return .named(.ash)
+        return .ash
     }
 }

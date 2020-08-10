@@ -313,13 +313,13 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         api.mock(GetFileRequest(context: .currentUser, fileID: "1", include: [ .avatar ]), value: .make(avatar: APIFileToken(token: "t")))
         api.mock(PutUserAvatarRequest(token: "t"), value: .make())
         picker?.delegate?.imagePickerController?(picker!, didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage.icon(.instructure),
+            .originalImage: UIImage.instructureLine,
         ])
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
 
         api.mock(PutUserAvatarRequest(token: "t"), value: .make(avatar_url: URL(string: "https://c.i.com/newone")))
         picker?.delegate?.imagePickerController?(picker!, didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage.icon(.instructure),
+            .originalImage: UIImage.instructureLine,
         ])
         XCTAssertEqual(controller.avatarView.url?.absoluteString, "https://c.i.com/newone")
 

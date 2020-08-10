@@ -20,7 +20,7 @@ import UIKit
 
 extension UINavigationBar {
     public func useContextColor(_ color: UIColor?) {
-        let foreground = UIColor.named(.white) // always white, even in dark mode
+        let foreground = UIColor.white // always white, even in dark mode
         let background = color?.ensureContrast(against: foreground)
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
@@ -40,10 +40,10 @@ extension UINavigationBar {
     }
 
     public func useModalStyle(brand: Brand = Brand.shared) {
-        let foreground = brand.linkColor.ensureContrast(against: .named(.backgroundLightest))
-        titleTextAttributes = [.foregroundColor: UIColor.named(.textDarkest)]
+        let foreground = brand.linkColor.ensureContrast(against: .backgroundLightest)
+        titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
         tintColor = foreground
-        barTintColor = .named(.backgroundLightest)
+        barTintColor = .backgroundLightest
         barStyle = .default
         isTranslucent = false
     }

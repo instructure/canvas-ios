@@ -49,7 +49,7 @@ class SelectAddStudentMethodViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         view.frame.size.height = 175
         tableView.registerCell(UITableViewCell.self)
         tableView.estimatedRowHeight = 62
@@ -58,7 +58,7 @@ class SelectAddStudentMethodViewController: UITableViewController {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 50))
         let headerLabel = UILabel()
         headerLabel.font = UIFont.scaledNamedFont(.semibold14)
-        headerLabel.textColor = .named(.textDark)
+        headerLabel.textColor = .textDark
         headerLabel.text = NSLocalizedString("Add student with...", comment: "")
         headerLabel.sizeToFit()
         headerLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 25).isActive = true
@@ -77,7 +77,7 @@ class SelectAddStudentMethodViewController: UITableViewController {
         guard let row = AddObserveeMethod(rawValue: indexPath.row) else { fatalError("Invalid row") }
         cell.textLabel?.text = row.description
         cell.textLabel?.font = .scaledNamedFont(.medium16)
-        cell.textLabel?.textColor = .named(.textDarkest)
+        cell.textLabel?.textColor = .textDarkest
         return cell
     }
 

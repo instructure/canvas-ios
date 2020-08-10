@@ -53,16 +53,16 @@ class ConferenceListViewControllerTests: CoreTestCase {
         var cell = controller.tableView.cellForRow(at: index0) as? ConferenceListCell
         XCTAssertEqual(cell?.titleLabel.text, "test conference")
         XCTAssertEqual(cell?.statusLabel.text, "In Progress")
-        XCTAssertEqual(cell?.statusLabel.textColor, .named(.textSuccess))
+        XCTAssertEqual(cell?.statusLabel.textColor, .textSuccess)
         XCTAssertEqual(cell?.detailsLabel.text, "test description")
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ConferenceListCell
         XCTAssertEqual(cell?.statusLabel.text, "Not Started")
-        XCTAssertEqual(cell?.statusLabel.textColor, .named(.textDark))
+        XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConferenceListCell
         XCTAssertEqual(cell?.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
-        XCTAssertEqual(cell?.statusLabel.textColor, .named(.textDark))
+        XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         api.mock(controller.conferences, value: .init(conferences: [ .make(title: "Pandemic playthrough") ]))
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)

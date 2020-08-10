@@ -70,7 +70,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.useContextColor(colorScheme?.color)
@@ -122,9 +122,9 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         replyButton?.accessibilityLabel = NSLocalizedString("Compose Message", comment: "")
         replyButton?.accessibilityIdentifier = "Grades.composeMessageButton"
         replyButton?.accessibilityTraits.insert(.header)
-        replyButton?.setImage(UIImage.icon(.comment, .solid), for: .normal)
+        replyButton?.setImage(UIImage.commentSolid, for: .normal)
         replyButton?.imageEdgeInsets = UIEdgeInsets(top: 17, left: 17, bottom: 15, right: 15)
-        replyButton?.tintColor = .named(.white)
+        replyButton?.tintColor = .white
         replyButton?.backgroundColor = colorScheme?.color
         if let replyButton = replyButton { view.addSubview(replyButton) }
 
@@ -256,7 +256,7 @@ extension CourseDetailsViewController: GradeListCellIconDelegate {
         //  all quizzes in parent come back as `lockedForUser` so it's always
         //  showing the lock icon rather than the quiz icon
         if assignment?.quizID != nil {
-            return .icon(.quiz, .line)
+            return .quizLine
         } else {
             return assignment?.icon
         }

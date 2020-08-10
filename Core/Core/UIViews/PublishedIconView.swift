@@ -30,11 +30,11 @@ public class PublishedIconView: UIImageView {
         didSet {
             switch published {
             case .some(true):
-                image = .icon(.publish, .solid)
-                tintColor = UIColor.named(.backgroundSuccess)
+                image = .publishSolid
+                tintColor = UIColor.backgroundSuccess
             case .some(false):
-                image = .icon(.no, .solid)
-                tintColor = UIColor.named(.ash)
+                image = .noSolid
+                tintColor = UIColor.ash
             case .none:
                 image = nil
             }

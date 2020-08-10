@@ -30,7 +30,7 @@ class ComposeReplyViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(navigation.navigationBar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
         XCTAssertEqual(controller.bodyMinHeight.constant, -controller.bodyView.frame.minY)
         XCTAssertEqual(controller.title, "Reply All")
 

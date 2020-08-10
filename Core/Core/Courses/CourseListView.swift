@@ -115,11 +115,11 @@ public struct CourseListView: View {
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.icon(.star, .solid).foregroundColor(.named(.ash))
+                    Image.starSolid.foregroundColor(.ash)
                 } else if course.isFavorite {
-                    Image.icon(.star, .solid).foregroundColor(.named(.electric))
+                    Image.starSolid.foregroundColor(.electric)
                 } else {
-                    Image.icon(.star, .line).foregroundColor(.named(.ash))
+                    Image.starLine.foregroundColor(.ash)
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
             .buttonStyle(PlainButtonStyle())
@@ -137,7 +137,7 @@ public struct CourseListView: View {
                             Text(verbatim: "|")
                         }
                         Text(enrollment!.formattedRole ?? "")
-                    }.foregroundColor(.named(.ash))
+                    }.foregroundColor(.ash)
                 }
             }
         }
@@ -146,9 +146,9 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.icon(.complete, .solid).foregroundColor(.named(.shamrock))
+                    Image.completeSolid.foregroundColor(.shamrock)
                 } else {
-                    Image.icon(.no, .solid).foregroundColor(.named(.ash))
+                    Image.noSolid.foregroundColor(.ash)
                 }
             }
         }

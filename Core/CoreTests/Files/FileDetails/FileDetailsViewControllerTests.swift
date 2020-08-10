@@ -52,7 +52,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testLayout() {
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertFalse(controller.spinnerView.isHidden)
         XCTAssertFalse(controller.progressView.isHidden)
 
@@ -202,6 +202,10 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(results[0].title, "Style")
         XCTAssertNotNil(results[1].ps_image)
         pdf.document?.delegate = self
+        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
+        XCTAssert(router.presented is UIActivityViewController)
+        XCTAssertTrue(saveWasCalled)
+        saveWasCalled = false
         controller.viewWillDisappear(false)
         XCTAssertTrue(saveWasCalled)
     }

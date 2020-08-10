@@ -116,7 +116,7 @@ extension Submission: WriteableModel {
             #keyPath(Submission.userID),
             item.user_id.value,
             #keyPath(Submission.attempt),
-            item.attempt ?? 1
+            item.attempt ?? 0
         )
         let model: Submission = client.fetch(predicate).first ?? client.insert()
         model.id = item.id.value
@@ -132,7 +132,7 @@ extension Submission: WriteableModel {
         model.workflowState = item.workflow_state
         model.latePolicyStatus = item.late_policy_status
         model.pointsDeducted = item.points_deducted
-        model.attempt = item.attempt ?? 1
+        model.attempt = item.attempt ?? 0
         model.type = item.submission_type
         model.url = item.url
         model.previewUrl = item.preview_url
@@ -209,21 +209,21 @@ extension Submission {
         guard let type = type else { return nil }
         switch type {
         case .basic_lti_launch, .external_tool:
-            return UIImage.icon(.lti)
+            return UIImage.ltiLine
         case .discussion_topic:
-            return UIImage.icon(.discussion)
+            return UIImage.discussionLine
         case .media_recording:
-            return UIImage.icon(mediaComment?.mediaType == .audio ? .audio : .video)
+            return mediaComment?.mediaType == .audio ? UIImage.audioLine : UIImage.videoLine
         case .online_quiz:
-            return UIImage.icon(.quiz)
+            return UIImage.quizLine
         case .online_text_entry:
-            return UIImage.icon(.text)
+            return UIImage.textLine
         case .online_upload:
             return attachments?.first?.icon
         case .online_url:
-            return UIImage.icon(.link)
+            return UIImage.linkLine
         case .wiki_page:
-            return UIImage.icon(.document)
+            return UIImage.documentLine
         case .none, .not_graded, .on_paper:
             return nil
         }
@@ -300,24 +300,24 @@ public enum SubmissionStatus {
     public var color: UIColor {
         switch self {
         case .late:
-            return .named(.textWarning)
+            return .textWarning
         case .missing:
-            return .named(.textDanger)
+            return .textDanger
         case .submitted:
-            return .named(.textSuccess)
+            return .textSuccess
         case .notSubmitted:
-            return .named(.textDark)
+            return .textDark
         }
     }
 
     public var icon: UIImage {
         switch self {
         case .submitted:
-            return .icon(.complete, .solid)
+            return .completeSolid
         case .late:
-            return .icon(.clock, .solid)
+            return .clockSolid
         case .missing, .notSubmitted:
-            return .icon(.no, .solid)
+            return .noSolid
         }
     }
 }

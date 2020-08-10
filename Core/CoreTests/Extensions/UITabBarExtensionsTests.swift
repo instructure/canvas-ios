@@ -30,9 +30,9 @@ class UITabBarExtensionsTests: XCTestCase {
         tabBar.items = [ UITabBarItem(title: "", image: nil, selectedImage: nil) ]
         tabBar.useGlobalNavStyle()
         XCTAssertEqual(tabBar.tintColor, Brand.shared.primary)
-        XCTAssertEqual(tabBar.barTintColor, UIColor.named(.backgroundLightest))
-        XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.named(.textDark))
-        XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.named(.crimson))
+        XCTAssertEqual(tabBar.barTintColor, UIColor.backgroundLightest)
+        XCTAssertEqual(tabBar.unselectedItemTintColor, UIColor.textDark)
+        XCTAssertEqual(tabBar.items?.first?.badgeColor, UIColor.crimson)
         XCTAssertEqual(tabBar.barStyle, .default)
 
         let shiny = Brand(response: APIBrandVariables.make(

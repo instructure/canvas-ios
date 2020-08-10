@@ -45,7 +45,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     @IBOutlet weak var emptyStateHeader: DynamicLabel!
     @IBOutlet weak var emptyStateSubHeader: DynamicLabel!
 
-    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
+    lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -64,7 +64,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         super.viewDidLoad()
         title = NSLocalizedString("Notifications", comment: "Notifications tab title")
         navigationItem.leftBarButtonItem = profileButton
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
         setupTableView()
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")
         emptyStateSubHeader.text = NSLocalizedString("There's nothing to be notified of yet.", comment: "")
@@ -92,8 +92,8 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
         let refresh = CircleRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         tableView?.refreshControl = refresh
-        tableView.separatorColor = .named(.borderMedium)
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
     }
 
     @objc func refresh(_ control: CircleRefreshControl) {

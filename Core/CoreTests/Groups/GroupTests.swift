@@ -25,7 +25,7 @@ class GroupTests: CoreTestCase {
         let a = Group.make()
         ContextColor.make()
 
-        XCTAssertEqual(a.color, .named(.ash))
+        XCTAssertEqual(a.color, .ash)
     }
 
     func testColor() {

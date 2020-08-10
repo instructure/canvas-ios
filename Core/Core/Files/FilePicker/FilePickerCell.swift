@@ -22,18 +22,18 @@ import UIKit
 class FilePickerCell: UITableViewCell {
     var file: File? {
         didSet {
-            backgroundColor = .named(.backgroundLightest)
+            backgroundColor = .backgroundLightest
             nameLabel.text = file?.localFileURL?.lastPathComponent
             if file?.uploadError != nil {
                 isUserInteractionEnabled = true
                 errorIcon.isHidden = false
                 subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, comment: "")
-                subtitleLabel.textColor = .named(.textDanger)
+                subtitleLabel.textColor = .textDanger
             } else {
                 isUserInteractionEnabled = false
                 errorIcon.isHidden = true
                 subtitleLabel.text = file?.size.humanReadableFileSize
-                subtitleLabel.textColor = UIColor.named(.ash)
+                subtitleLabel.textColor = UIColor.ash
             }
         }
     }

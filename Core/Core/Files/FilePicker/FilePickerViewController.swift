@@ -64,15 +64,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        sourcesTabBar.barTintColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
+        sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
 
         var tabBarItems: [UITabBarItem] = []
         if sources.contains(.audio) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Audio", bundle: .core, comment: ""),
-                image: .icon(.addAudioLine),
+                image: .addAudioLine,
                 tag: FilePickerSource.audio.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.audioButton"
@@ -81,7 +81,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.camera) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Camera", bundle: .core, comment: ""),
-                image: .icon(.addCameraLine),
+                image: .addCameraLine,
                 tag: FilePickerSource.camera.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.cameraButton"
@@ -90,7 +90,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.library) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Library", bundle: .core, comment: ""),
-                image: .icon(.addImageLine),
+                image: .addImageLine,
                 tag: FilePickerSource.library.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.libraryButton"
@@ -99,7 +99,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.files) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Files", bundle: .core, comment: ""),
-                image: .icon(.addDocumentLine),
+                image: .addDocumentLine,
                 tag: FilePickerSource.files.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.filesButton"
@@ -115,7 +115,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             tabBarItems.append(item)
         }
         sourcesTabBar.items = tabBarItems
-        let linkColor = Brand.shared.linkColor.ensureContrast(against: .named(.backgroundLightest))
+        let linkColor = Brand.shared.linkColor.ensureContrast(against: .backgroundLightest)
         sourcesTabBar.tintColor = linkColor
         sourcesTabBar.unselectedItemTintColor = linkColor
         update()
@@ -267,7 +267,7 @@ extension FilePickerViewController: UITabBarDelegate {
         case .audio:
             let audioRecorder = AudioRecorderViewController.create()
             audioRecorder.delegate = self
-            audioRecorder.view.backgroundColor = UIColor.named(.backgroundLightest)
+            audioRecorder.view.backgroundColor = UIColor.backgroundLightest
             audioRecorder.modalPresentationStyle = .formSheet
             env.router.show(audioRecorder, from: self, options: .modal())
         case .documentScan:

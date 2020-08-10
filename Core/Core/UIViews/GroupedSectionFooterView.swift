@@ -33,7 +33,7 @@ public class GroupedSectionFooterView: UITableViewHeaderFooterView {
     }
 
     func setup() {
-        titleLabel.textColor = .named(.textDarkest)
+        titleLabel.textColor = .textDarkest
         titleLabel.font = .scaledNamedFont(.regular12)
         titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel)

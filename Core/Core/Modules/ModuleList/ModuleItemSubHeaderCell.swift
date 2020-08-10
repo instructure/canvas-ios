@@ -25,7 +25,7 @@ class ModuleItemSubHeaderCell: UITableViewCell {
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
 
     func update(_ item: ModuleItem) {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         label.text = item.title
         publishedIconView.published = item.published
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier

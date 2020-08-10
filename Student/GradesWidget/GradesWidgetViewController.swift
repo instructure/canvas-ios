@@ -188,13 +188,13 @@ extension GradesWidgetViewController: UITableViewDataSource {
         let sectionFont = UIFont.scaledNamedFont(.bold20)
         let title = UILabel(frame: CGRect(x: 16, y: 16, width: tableView.frame.size.width, height: sectionFont.lineHeight))
         title.font = sectionFont
-        title.textColor = UIColor.named(.textDarkest)
+        title.textColor = UIColor.textDarkest
         title.text = section == 0
             ? NSLocalizedString("Recently Graded Assignments", comment: "")
             : NSLocalizedString("Course Grades", comment: "")
 
         let bottomBorder = UIView()
-        bottomBorder.backgroundColor = UIColor.named(.borderDark).withAlphaComponent(0.25)
+        bottomBorder.backgroundColor = UIColor.borderDark.withAlphaComponent(0.25)
         bottomBorder.frame = CGRect(x: 16, y: self.sectionHeaderHeight, width: tableView.frame.size.width - 32, height: 1)
 
         view.addSubview(title)

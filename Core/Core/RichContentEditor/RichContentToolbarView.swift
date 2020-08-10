@@ -42,7 +42,7 @@ public class RichContentToolbarView: UIView {
 
     weak var controller: RichContentEditorViewController?
 
-    var foreColor: UIColor = UIColor.named(.textDarkest)
+    var foreColor: UIColor = UIColor.textDarkest
     var linkHref: String?
     var linkText: String?
     var imageSrc: String?
@@ -65,7 +65,7 @@ public class RichContentToolbarView: UIView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         translatesAutoresizingMaskIntoConstraints = false
         undoButton.accessibilityLabel = NSLocalizedString("Undo", bundle: .core, comment: "")
         redoButton.accessibilityLabel = NSLocalizedString("Redo", bundle: .core, comment: "")
@@ -77,7 +77,7 @@ public class RichContentToolbarView: UIView {
         linkButton.accessibilityLabel = NSLocalizedString("Link", bundle: .core, comment: "")
         cameraButton.accessibilityLabel = NSLocalizedString("Camera", bundle: .core, comment: "")
         libraryButton.accessibilityLabel = NSLocalizedString("Image", bundle: .core, comment: "")
-        toolsView.backgroundColor = .named(.backgroundLightest)
+        toolsView.backgroundColor = .backgroundLightest
 
         let colors = colorPickerStack.arrangedSubviews
         colors[0].accessibilityValue = NSLocalizedString("white", bundle: .core, comment: "")
@@ -94,19 +94,19 @@ public class RichContentToolbarView: UIView {
         }
 
         colorPickerHeight.constant = 0
-        colorPickerView.backgroundColor = .named(.backgroundLightest)
+        colorPickerView.backgroundColor = .backgroundLightest
         colorPickerView.alpha = 0
         colorPickerView.transform = CGAffineTransform(translationX: 0, y: 45)
 
         let whiteColorBorder = UIView(frame: CGRect(x: 7, y: 7, width: 30, height: 30))
-        whiteColorBorder.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        whiteColorBorder.layer.borderColor = UIColor.borderMedium.cgColor
         whiteColorBorder.layer.borderWidth = 1
         whiteColorBorder.layer.cornerRadius = 15
         whiteColorBorder.isUserInteractionEnabled = false
         whiteColorButton.addSubview(whiteColorBorder)
 
         let textColorView = UIView(frame: CGRect(x: 15.5, y: 27, width: 19, height: 5))
-        textColorView.layer.borderColor = UIColor.named(.textDarkest).cgColor
+        textColorView.layer.borderColor = UIColor.textDarkest.cgColor
         textColorView.layer.borderWidth = 1
         textColorView.isUserInteractionEnabled = false
         textColorButton.addSubview(textColorView)
@@ -116,14 +116,14 @@ public class RichContentToolbarView: UIView {
     }
 
     func updateState(_ state: [String: Any?]?) {
-        foreColor = UIColor(hexString: state?["foreColor"] as? String) ?? UIColor.named(.textDarkest)
+        foreColor = UIColor(hexString: state?["foreColor"] as? String) ?? UIColor.textDarkest
         let foreColorHex = foreColor.hexString
         linkHref = state?["linkHref"] as? String
         linkText = state?["linkText"] as? String
         imageSrc = state?["imageSrc"] as? String
         imageAlt = state?["imageAlt"] as? String
         let active = Brand.shared.linkColor
-        let inactive = UIColor.named(.textDarkest)
+        let inactive = UIColor.textDarkest
         undoButton.isEnabled = (state?["undo"] as? Bool) == true
         redoButton.isEnabled = (state?["redo"] as? Bool) == true
         boldButton.isSelected = (state?["bold"] as? Bool) == true
@@ -142,7 +142,7 @@ public class RichContentToolbarView: UIView {
 
         textColorView?.backgroundColor = foreColor
         if foreColorHex == UIColor.white.hexString {
-            textColorView?.layer.borderColor = UIColor.named(.borderMedium).cgColor
+            textColorView?.layer.borderColor = UIColor.borderMedium.cgColor
         } else {
             textColorView?.layer.borderColor = foreColor.cgColor
         }

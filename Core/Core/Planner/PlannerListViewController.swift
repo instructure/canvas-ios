@@ -59,7 +59,7 @@ public class PlannerListViewController: UIViewController {
         refreshControl.color = nil
         spinnerView.color = nil
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         refresh()
     }
@@ -154,7 +154,7 @@ class PlannerListCell: UITableViewCell {
             return String.localizedStringWithFormat(format, $0)
         }
         pointsDivider.isHidden = dueDate.text == nil || points.text == nil
-        if !Bundle.main.isParentApp, let color = p?.color.ensureContrast(against: .named(.backgroundLightest)) {
+        if !Bundle.main.isParentApp, let color = p?.color.ensureContrast(against: .backgroundLightest) {
             courseCode.textColor = color
             icon.tintColor = color
         }

@@ -52,7 +52,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = CircleRefreshControl()
@@ -61,7 +61,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SwitchTableViewCell.self)
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
 
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -191,7 +191,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
         case .email:
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Cell"
-            cell.backgroundColor = .named(.backgroundGroupedCell)
+            cell.backgroundColor = .backgroundGroupedCell
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.detailTextLabel?.text = row.frequency.name
             cell.accessoryType = .disclosureIndicator
@@ -199,7 +199,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
         default:
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Toggle"
-            cell.backgroundColor = .named(.backgroundGroupedCell)
+            cell.backgroundColor = .backgroundGroupedCell
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.toggle.isOn = row.frequency != .never
             cell.onToggleChange = { [weak self] toggle in

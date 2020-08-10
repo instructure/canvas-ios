@@ -29,7 +29,7 @@ class SubmissionCommentTextCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
     }
 
     func update(comment: SubmissionComment) {
@@ -51,7 +51,7 @@ class SubmissionCommentTextCell: UITableViewCell {
         comment.attachments?.sorted(by: File.idCompare).enumerated().forEach { index, attachment in
             let color = Brand.shared.linkColor.ensureContrast(against: .white)
             let button = UIButton(type: .system)
-            button.setImage(UIImage.icon(.paperclip).withRenderingMode(.alwaysTemplate), for: .normal)
+            button.setImage(UIImage.paperclipLine.withRenderingMode(.alwaysTemplate), for: .normal)
             button.tintColor = color
             button.imageView?.contentMode = .scaleAspectFit
             button.setTitle(attachment.displayName, for: .normal)
@@ -61,7 +61,7 @@ class SubmissionCommentTextCell: UITableViewCell {
             button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 8)
             button.imageEdgeInsets = UIEdgeInsets(top: 4, left: -8, bottom: 4, right: 0)
             button.layer.cornerRadius = 4
-            button.layer.borderColor = UIColor.named(.borderMedium).ensureContrast(against: .white).cgColor
+            button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .white).cgColor
             button.layer.borderWidth = 1
             button.tag = index
             button.addTarget(self, action: #selector(tapAttachment(sender:)), for: .touchUpInside)

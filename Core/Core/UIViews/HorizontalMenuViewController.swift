@@ -41,13 +41,14 @@ open class HorizontalMenuViewController: UIViewController {
     }
 
     private var menuCellWidth: CGFloat {
-        view.bounds.size.width / CGFloat(itemCount)
+        guard itemCount > 0 else { return 0 }
+        return view.bounds.size.width / CGFloat(itemCount)
     }
 
     override open func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        view.backgroundColor = UIColor.named(.backgroundLightest)
+        view.backgroundColor = UIColor.backgroundLightest
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(splitViewControllerWillChangeDisplayModes),
@@ -100,7 +101,7 @@ open class HorizontalMenuViewController: UIViewController {
 
         menu = UICollectionView(frame: .zero, collectionViewLayout: layout)
         guard let menu = menu else { return }
-        menu.backgroundColor = UIColor.named(.backgroundLightest)
+        menu.backgroundColor = UIColor.backgroundLightest
         menu.register(MenuCell.self, forCellWithReuseIdentifier: String(describing: MenuCell.self))
         menu.showsHorizontalScrollIndicator = false
         menu.dataSource = self
@@ -122,7 +123,7 @@ open class HorizontalMenuViewController: UIViewController {
 
         pages = UICollectionView(frame: .zero, collectionViewLayout: layout)
         guard let pages = pages, let menu = menu else { return }
-        pages.backgroundColor = UIColor.named(.backgroundLightest)
+        pages.backgroundColor = UIColor.backgroundLightest
         pages.isPagingEnabled = true
         pages.showsHorizontalScrollIndicator = false
         pages.dataSource = self
@@ -154,7 +155,7 @@ open class HorizontalMenuViewController: UIViewController {
     func setupBottomBorder() {
         bottomBorder = UIView()
         guard let bottomBorder = bottomBorder, let underlineView = underlineView else { return }
-        bottomBorder.backgroundColor = UIColor.named(.borderMedium)
+        bottomBorder.backgroundColor = UIColor.borderMedium
         view.insertSubview(bottomBorder, belowSubview: underlineView)
         bottomBorder.pinToLeftAndRightOfSuperview()
         let bottoms = NSLayoutConstraint(item: bottomBorder, attribute: .bottom, relatedBy: .equal, toItem: menu, attribute: .bottom, multiplier: 1.0, constant: -1)
@@ -270,7 +271,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
 
     public class MenuCell: UICollectionViewCell {
         public var title: UILabel?
-        public var selectionColor: UIColor? = UIColor.named(.borderDarkest)
+        public var selectionColor: UIColor? = UIColor.borderDarkest
 
         override init(frame: CGRect) {
             super.init(frame: frame)
@@ -289,15 +290,15 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             contentView.addSubview(title)
             title.pin(inside: contentView)
             title.textColor = .systemBlue
-            backgroundColor = .named(.backgroundLightest)
+            backgroundColor = .backgroundLightest
         }
 
         override public var isSelected: Bool {
             didSet {
                 UIView.animate(withDuration: 0.2) { [weak self] in
                     let selected = self?.isSelected ?? false
-                    let selectedColor = self?.selectionColor?.ensureContrast(against: UIColor.named(.backgroundLightest))
-                    let deSelectedColor = UIColor.named(.textDark).ensureContrast(against: UIColor.named(.backgroundLightest))
+                    let selectedColor = self?.selectionColor?.ensureContrast(against: UIColor.backgroundLightest)
+                    let deSelectedColor = UIColor.textDark.ensureContrast(against: UIColor.backgroundLightest)
                     self?.title?.textColor = selected ? selectedColor : deSelectedColor
                 }
             }
@@ -330,7 +331,7 @@ public extension HorizontalPagedMenuDelegate {
         HorizontalMenuViewController.defaultMenuHeight
     }
 
-    var menuItemDefaultColor: UIColor? { UIColor.named(.textDark) }
+    var menuItemDefaultColor: UIColor? { UIColor.textDark }
 
     var menuItemFont: UIFont { .scaledNamedFont(.semibold16) }
 

@@ -65,9 +65,9 @@ class Drawer: UIView {
 
         backgroundColor = UIColor.clear
         drawer?.backgroundColor = UIColor.clear
-        drawerControls?.backgroundColor = .named(.backgroundLightest)
-        contentView?.backgroundColor = .named(.backgroundLightest)
-        gripper?.backgroundColor = .named(.backgroundMedium)
+        drawerControls?.backgroundColor = .backgroundLightest
+        contentView?.backgroundColor = .backgroundLightest
+        gripper?.backgroundColor = .backgroundMedium
 
         gripper?.layer.cornerRadius = 2
         updateGripperLabel(height: height)

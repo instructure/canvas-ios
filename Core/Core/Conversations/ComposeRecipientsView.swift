@@ -56,8 +56,8 @@ class ComposeRecipientsView: UIView {
     func addEditButton() {
         editButton = UIButton(type: .system)
         editButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        editButton.setImage(.icon(.addressBook), for: .normal)
-        editButton.tintColor = .named(.textDark)
+        editButton.setImage(.addressBookLine, for: .normal)
+        editButton.tintColor = .textDark
         editButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.accessibilityLabel = NSLocalizedString("Edit Recipients", comment: "")
         addSubview(editButton)
@@ -73,7 +73,7 @@ class ComposeRecipientsView: UIView {
         placeholder = UILabel()
         placeholder.translatesAutoresizingMaskIntoConstraints = false
         placeholder.text = NSLocalizedString("To", comment: "")
-        placeholder.textColor = .named(.ash)
+        placeholder.textColor = .ash
         placeholder.font = .scaledNamedFont(.medium16)
         addSubview(placeholder)
         NSLayoutConstraint.activate([
@@ -86,7 +86,7 @@ class ComposeRecipientsView: UIView {
     func addAdditionalRecipients() {
         additionalRecipients = UILabel()
         additionalRecipients.translatesAutoresizingMaskIntoConstraints = false
-        additionalRecipients.textColor = .named(.textDarkest)
+        additionalRecipients.textColor = .textDarkest
         additionalRecipients.font = .scaledNamedFont(.semibold16)
         addSubview(additionalRecipients)
         NSLayoutConstraint.activate([
@@ -157,7 +157,7 @@ class ComposeRecipientView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = .named(.backgroundLight)
+        backgroundColor = .backgroundLight
         layer.cornerRadius = 20
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(avatarView)
@@ -165,11 +165,11 @@ class ComposeRecipientView: UIView {
         addSubview(nameLabel)
         nameLabel.pin(inside: self, leading: nil, trailing: 16, top: 5, bottom: nil)
         nameLabel.font = .scaledNamedFont(.semibold14)
-        nameLabel.textColor = .named(.textDarkest)
+        nameLabel.textColor = .textDarkest
         addSubview(roleLabel)
         roleLabel.pin(inside: self, leading: nil, trailing: 16, top: nil, bottom: 5)
         roleLabel.font = .scaledNamedFont(.semibold11)
-        roleLabel.textColor = .named(.textDarkest)
+        roleLabel.textColor = .textDarkest
         NSLayoutConstraint.activate([
             avatarView.widthAnchor.constraint(equalToConstant: 32),
             avatarView.heightAnchor.constraint(equalToConstant: 32),

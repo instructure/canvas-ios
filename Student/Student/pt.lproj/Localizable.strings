@@ -1181,7 +1181,7 @@
 
 /* settings button
    Title for Settings tab */
-"Settings" = "Definições";
+"Settings" = "Configurações";
 
 /* Title for button confirming showing a file */
 "Show file" = "Mostrar Ficheiro";

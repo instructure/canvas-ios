@@ -57,17 +57,17 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
-        tableView.backgroundColor = .named(.backgroundLightest)
-        addCommentBorderView.backgroundColor = .named(.backgroundLightest)
-        addCommentBorderView.layer.borderColor = UIColor.named(.borderMedium).cgColor
+        view.backgroundColor = .backgroundLightest
+        tableView.backgroundColor = .backgroundLightest
+        addCommentBorderView.backgroundColor = .backgroundLightest
+        addCommentBorderView.layer.borderColor = UIColor.borderMedium.cgColor
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
         addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
         addCommentTextView.font = .scaledNamedFont(.regular14)
         addCommentTextView.adjustsFontForContentSizeCategory = true
-        addCommentTextView.textColor = .named(.textDarkest)
-        addCommentView.backgroundColor = .named(.backgroundLight)
+        addCommentTextView.textColor = .textDarkest
+        addCommentView.backgroundColor = .backgroundLight
         emptyContainer.isHidden = true
         emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
         emptyImageView.image = UIImage(named: "emptyComments", in: .core, compatibleWith: nil)

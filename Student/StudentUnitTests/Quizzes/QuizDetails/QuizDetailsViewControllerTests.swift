@@ -45,7 +45,7 @@ class QuizDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(controller.titleLabel.text, "What kind of pokemon are you?")
         XCTAssertEqual(controller.pointsLabel.text, "11.1 pts")
         XCTAssertEqual(controller.statusLabel.text, "Not Submitted")
-        XCTAssertEqual(controller.statusIconView.image, .icon(.no, .solid))
+        XCTAssertEqual(controller.statusIconView.image, .noSolid)
         XCTAssertEqual(controller.dueLabel.text, "No Due Date")
         XCTAssertEqual(controller.attemptsValueLabel.text, "2")
         XCTAssertEqual(controller.questionsValueLabel.text, "5")

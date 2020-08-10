@@ -162,7 +162,7 @@ public struct APIMasteryPath: Codable, Equatable {
     public struct AssignmentSet: Codable, Equatable {
         public let id: ID
         public let position: Int?
-        public let assignments: [Assignment]
+        public let assignments: [Assignment]?
     }
 
     public struct Assignment: Codable, Equatable {

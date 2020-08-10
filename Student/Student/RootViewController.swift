@@ -49,8 +49,8 @@ func dashboardTab() -> UIViewController {
     dashboardNav.navigationBar.useGlobalNavStyle()
     dashboardSplit.viewControllers = [dashboardNav, emptyNav]
     dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
-    dashboardSplit.tabBarItem.image = .icon(.dashboardTab)
-    dashboardSplit.tabBarItem.selectedImage = .icon(.dashboardTabActive)
+    dashboardSplit.tabBarItem.image = .dashboardTab
+    dashboardSplit.tabBarItem.selectedImage = .dashboardTabActive
     dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
     dashboardSplit.navigationItem.titleView = Brand.shared.headerImageView()
     return dashboardSplit
@@ -62,10 +62,10 @@ func calendarTab() -> UIViewController {
         UINavigationController(rootViewController: PlannerViewController.create()),
         UINavigationController(rootViewController: EmptyViewController()),
     ]
-    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .named(.backgroundLightest))
+    split.view.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
     split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
-    split.tabBarItem.image = .icon(.calendarTab)
-    split.tabBarItem.selectedImage = .icon(.calendarTabActive)
+    split.tabBarItem.image = .calendarTab
+    split.tabBarItem.selectedImage = .calendarTabActive
     split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
     return split
 }
@@ -77,8 +77,8 @@ func todoTab() -> UIViewController {
         UINavigationController(rootViewController: EmptyViewController()),
     ]
     todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
-    todo.tabBarItem.image = .icon(.todoTab)
-    todo.tabBarItem.selectedImage = .icon(.todoTabActive)
+    todo.tabBarItem.image = .todoTab
+    todo.tabBarItem.selectedImage = .todoTabActive
     todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
     return todo
 }
@@ -90,8 +90,8 @@ func notificationsTab() -> UIViewController {
         UINavigationController(rootViewController: EmptyViewController()),
     ]
     split.tabBarItem.title = NSLocalizedString("Notifications", comment: "Notifications tab title")
-    split.tabBarItem.image = .icon(.alertsTab)
-    split.tabBarItem.selectedImage = .icon(.alertsTabActive)
+    split.tabBarItem.image = .alertsTab
+    split.tabBarItem.selectedImage = .alertsTabActive
     split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
     return split
 }

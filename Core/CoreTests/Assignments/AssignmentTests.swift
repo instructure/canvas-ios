@@ -154,35 +154,35 @@ class AssignmentTests: CoreTestCase {
     func testIconForDiscussion() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .discussion_topic ]))
         let icon = a.icon
-        let expected = UIImage.icon(.discussion, .line)
+        let expected = UIImage.discussionLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForAssignment() {
         let a = Assignment.make(from: .make(id: "1"))
         let icon = a.icon
-        let expected = UIImage.icon(.assignment, .line)
+        let expected = UIImage.assignmentLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForQuiz() {
         let a = Assignment.make(from: .make(id: "1", quiz_id: "1"))
         let icon = a.icon
-        let expected = UIImage.icon(.quiz, .line)
+        let expected = UIImage.quizLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForExternalTool() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ]))
         let icon = a.icon
-        let expected = UIImage.icon(.lti, .line)
+        let expected = UIImage.ltiLine
         XCTAssertEqual(icon, expected)
     }
 
     func testIconForLocked() {
         let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
         let icon = a.icon
-        let expected = UIImage.icon(.lock, .line)
+        let expected = UIImage.lockLine
         XCTAssertEqual(icon, expected)
     }
 
@@ -268,16 +268,17 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(a.hasAttemptsLeft, true)
         a.allowedAttempts = -1
         XCTAssertEqual(a.hasAttemptsLeft, true)
+        a.submission = Submission.make(from: .make(attempt: nil))
+        a.allowedAttempts = 1
+        XCTAssertEqual(a.hasAttemptsLeft, true)
     }
 
     func testUsedAttempts() {
         let a = Assignment.make(from: .make(submission: nil))
         XCTAssertEqual(a.usedAttempts, 0)
         a.submission = Submission.make(from: .make(submitted_at: nil, attempt: 1))
-        XCTAssertEqual(a.usedAttempts, 0)
-        a.submission?.submittedAt = Clock.now
         XCTAssertEqual(a.usedAttempts, 1)
-        a.submission?.attempt = 5
-        XCTAssertEqual(a.usedAttempts, 5)
+        a.submission = Submission.make(from: .make(attempt: nil))
+        XCTAssertEqual(a.usedAttempts, 0)
     }
 }

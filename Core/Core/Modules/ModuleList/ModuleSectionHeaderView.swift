@@ -28,12 +28,12 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        loadFromXib().backgroundColor = .named(.backgroundLight)
+        loadFromXib().backgroundColor = .backgroundLight
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        loadFromXib().backgroundColor = .named(.backgroundLight)
+        loadFromXib().backgroundColor = .backgroundLight
     }
 
     func update(_ module: Module, section: Int, isExpanded: Bool, onTap: @escaping () -> Void) {

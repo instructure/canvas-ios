@@ -91,7 +91,7 @@ public class DrawerPresentationController: UIPresentationController {
         super.presentationTransitionWillBegin()
         guard let containerView = containerView else { return }
 
-        dimmer.backgroundColor = UIColor.named(.backgroundDarkest).withAlphaComponent(0.9)
+        dimmer.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
         dimmer.alpha = 0
         dimmer.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(dimmer)

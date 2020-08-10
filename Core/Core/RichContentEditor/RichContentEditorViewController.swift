@@ -83,11 +83,11 @@ public class RichContentEditorViewController: UIViewController {
             :root {
                 --brand-linkColor: \(Brand.shared.linkColor.ensureContrast(against: .white).hexString);
                 --brand-primary: \(Brand.shared.primary.ensureContrast(against: .white).hexString);
-                --color-backgroundDanger: \(UIColor.named(.backgroundDanger).hexString);
-                --color-backgroundDarkest: \(UIColor.named(.backgroundDarkest).hexString);
-                --color-backgroundLightest: \(UIColor.named(.backgroundLightest).hexString);
-                --color-textDark: \(UIColor.named(.textDark).hexString);
-                --color-textDarkest: \(UIColor.named(.textDarkest).hexString);
+                --color-backgroundDanger: \(UIColor.backgroundDanger.hexString);
+                --color-backgroundDarkest: \(UIColor.backgroundDarkest.hexString);
+                --color-backgroundLightest: \(UIColor.backgroundLightest.hexString);
+                --color-textDark: \(UIColor.textDark.hexString);
+                --color-textDarkest: \(UIColor.textDarkest.hexString);
 
                 font-size: \(UIFont.scaledNamedFont(.medium16).pointSize)px;
             }

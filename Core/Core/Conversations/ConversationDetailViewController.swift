@@ -51,7 +51,7 @@ public class ConversationDetailViewController: UIViewController {
 
     private func configureTableView() {
         tableView.refreshControl = refreshControl
-        tableView.backgroundColor = .named(.backgroundGrouped)
+        tableView.backgroundColor = .backgroundGrouped
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.registerHeaderFooterView(UITableViewHeaderFooterView.self, fromNib: false)
     }
@@ -69,10 +69,10 @@ public class ConversationDetailViewController: UIViewController {
             let lastMessage = conversations.first?.messages.first
             let lastParticipantCount = lastMessage?.participantIDs.count ?? 0
             if lastMessage?.authorID == myID || lastParticipantCount > 2 {
-                replyButton.setImage(.icon(.replyAll, .solid), for: .normal)
+                replyButton.setImage(.replyAllSolid, for: .normal)
                 replyButton.accessibilityLabel = NSLocalizedString("Reply All", comment: "")
             } else {
-                replyButton.setImage(.icon(.reply, .solid), for: .normal)
+                replyButton.setImage(.replySolid, for: .normal)
                 replyButton.accessibilityLabel = NSLocalizedString("Reply", comment: "")
             }
         }
@@ -119,8 +119,8 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: false)
                 success(true)
             }
-            reply.backgroundColor = .named(.electric)
-            reply.image = .icon(.reply, .solid)
+            reply.backgroundColor = .electric
+            reply.image = .replySolid
             actions.append(reply)
         }
 
@@ -129,8 +129,8 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
                 self?.showReplyFor(indexPath, all: true)
                 success(true)
             }
-            replyAll.backgroundColor = .named(.oxford)
-            replyAll.image = .icon(.replyAll, .solid)
+            replyAll.backgroundColor = .oxford
+            replyAll.image = .replyAllSolid
             actions.append(replyAll)
         }
 

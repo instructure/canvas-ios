@@ -61,7 +61,7 @@ extension CourseNavigationViewController: CourseNavigationViewProtocol {
     func updateNavBar(title: String?, backgroundColor: UIColor?) {
         navigationItem.title = title
         navigationController?.navigationBar.useContextColor(backgroundColor)
-        color = backgroundColor?.ensureContrast(against: .named(.white))
+        color = backgroundColor?.ensureContrast(against: .white)
     }
 }
 

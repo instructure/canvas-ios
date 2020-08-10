@@ -94,6 +94,6 @@ class CalendarDaysViewControllerTests: CoreTestCase, CalendarViewControllerDeleg
     func testToday() {
         let button = CalendarDayButton(date: Date(), selectedDate: Date(), calendar: .current)
         XCTAssertEqual(button.circleView.backgroundColor?.hexString, button.tintColor.hexString)
-        XCTAssertEqual(button.label.textColor, .named(.white))
+        XCTAssertEqual(button.label.textColor, .white)
     }
 }

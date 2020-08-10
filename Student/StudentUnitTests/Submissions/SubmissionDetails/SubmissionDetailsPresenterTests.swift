@@ -174,7 +174,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testEmbedQuiz() throws {
         Assignment.make(from: .make(quiz_id: "1"))
-        Submission.make(from: .make(submission_type: .online_quiz, attempt: 2))
+        Submission.make(from: .make(submission_type: .online_quiz))
         presenter.update()
 
         let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)

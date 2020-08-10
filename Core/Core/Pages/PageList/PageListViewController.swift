@@ -62,7 +62,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         super.viewDidLoad()
         setupTitleViewInNavbar(title: NSLocalizedString("Pages", bundle: .core, comment: ""))
         if canCreatePage {
-            let item = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(createPage))
+            let item = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(createPage))
             item.accessibilityIdentifier = "PageList.add"
             navigationItem.rightBarButtonItem = item
         }
@@ -73,9 +73,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        tableView.backgroundColor = .named(.backgroundLightest)
+        tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .named(.borderMedium)
+        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         frontPage.refresh()
@@ -219,7 +219,7 @@ class PageListCell: UITableViewCell {
 
     func update(_ page: Page?, indexPath: IndexPath) {
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
-        accessIconView.icon = UIImage.icon(.document, .line)
+        accessIconView.icon = UIImage.documentLine
         accessIconView.published = page?.published == true
         dateLabel.text = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)

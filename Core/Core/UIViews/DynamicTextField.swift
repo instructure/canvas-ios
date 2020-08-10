@@ -23,7 +23,7 @@ open class DynamicTextField: UITextField {
     @IBInspectable
     public var textColorName: String = "textDarkest" {
         didSet {
-            textColor = Brand.shared.color(textColorName) ?? .named(.textDarkest)
+            textColor = Brand.shared.color(textColorName) ?? .textDarkest
         }
     }
 

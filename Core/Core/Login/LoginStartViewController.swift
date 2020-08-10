@@ -55,7 +55,7 @@ class LoginStartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)

@@ -36,17 +36,17 @@ open class AccessIconView: UIView {
     public var state: State? {
         didSet {
             statusIconView.isHidden = PublishedIconView.isAutohideEnabled
-            statusIconView.backgroundColor = .named(.backgroundLightest)
+            statusIconView.backgroundColor = .backgroundLightest
             switch state {
             case .published:
-                statusIconView.image = .icon(.publish, .solid)
-                statusIconView.tintColor = UIColor.named(.textSuccess)
+                statusIconView.image = .publishSolid
+                statusIconView.tintColor = UIColor.textSuccess
             case .restricted:
-                statusIconView.image = .icon(.cloudLock, .line)
-                statusIconView.tintColor = UIColor.named(.textDark)
+                statusIconView.image = .cloudLockLine
+                statusIconView.tintColor = UIColor.textDark
             case .unpublished:
-                statusIconView.image = .icon(.no, .solid)
-                statusIconView.tintColor = UIColor.named(.textDark)
+                statusIconView.image = .noSolid
+                statusIconView.tintColor = UIColor.textDark
             case .none:
                 statusIconView.isHidden = true
             }

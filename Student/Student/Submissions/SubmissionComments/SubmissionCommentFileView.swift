@@ -27,9 +27,9 @@ class SubmissionCommentFileView: UIControl {
     var onTap: () -> Void = {}
 
     override func awakeFromNib() {
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         widthAnchor.constraint(equalToConstant: 300).isActive = true
-        layer.borderColor = UIColor.named(.borderMedium).cgColor
+        layer.borderColor = UIColor.borderMedium.cgColor
         layer.borderWidth = 1.0
         addTarget(self, action: #selector(didTapFile), for: .touchUpInside)
     }

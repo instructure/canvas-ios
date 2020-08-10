@@ -96,9 +96,9 @@ class MasteryPathAssignmentSetView: UIView {
         self.set = set
         super.init(frame: .zero)
         layer.borderWidth = 1
-        layer.borderColor = UIColor.named(.borderMedium).cgColor
+        layer.borderColor = UIColor.borderMedium.cgColor
         layer.cornerRadius = 12
-        backgroundColor = .named(.borderMedium)
+        backgroundColor = .borderMedium
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.pin(inside: self)
@@ -129,7 +129,7 @@ class MasteryPathAssignmentCell: UIView {
         self.assignment = assignment
         super.init(frame: .zero)
         loadFromXib()
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         addGestureRecognizer(tap)
         accessibilityTraits.insert(.button)
@@ -161,10 +161,10 @@ class MasteryPathAssignmentCell: UIView {
 
     func setSelected(_ selected: Bool) {
         if selected {
-            backgroundColor = .named(.backgroundLight)
+            backgroundColor = .backgroundLight
             accessibilityTraits.insert(.selected)
         } else {
-            UIView.animate(withDuration: 0.25) { self.backgroundColor = .named(.backgroundLightest) }
+            UIView.animate(withDuration: 0.25) { self.backgroundColor = .backgroundLightest }
             accessibilityTraits.remove(.selected)
         }
     }
@@ -177,7 +177,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
     init(id: String) {
         self.id = id
         super.init(frame: .zero)
-        backgroundColor = .named(.backgroundLightest)
+        backgroundColor = .backgroundLightest
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.pin(inside: self, leading: 16, trailing: 16, top: 16, bottom: 16)
@@ -195,10 +195,10 @@ class MasteryPathAssignmentSetSelectCell: UIView {
     }
 
     func update(selected: Bool) {
-        button.layer.borderColor = selected ? UIColor.named(.borderMedium).cgColor : Brand.shared.buttonPrimaryBackground.cgColor
+        button.layer.borderColor = selected ? UIColor.borderMedium.cgColor : Brand.shared.buttonPrimaryBackground.cgColor
         button.layer.borderWidth = selected ? 1 : 0
         button.backgroundColor = selected ? .clear : Brand.shared.buttonPrimaryBackground
-        button.setTitleColor(selected ? .named(.textDark) : Brand.shared.buttonPrimaryText, for: .normal)
+        button.setTitleColor(selected ? .textDark : Brand.shared.buttonPrimaryText, for: .normal)
         let title = selected ? NSLocalizedString("Selected!", bundle: .core, comment: "") : NSLocalizedString("Select", bundle: .core, comment: "")
         button.setTitle(title, for: .normal)
     }
@@ -215,12 +215,12 @@ class MasteryPathAssignmentSetSelectCell: UIView {
 class MasteryPathAssignmentSetDivider: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadFromXib().backgroundColor = .named(.backgroundLightest)
+        loadFromXib().backgroundColor = .backgroundLightest
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        loadFromXib().backgroundColor = .named(.backgroundLightest)
+        loadFromXib().backgroundColor = .backgroundLightest
     }
 }
 

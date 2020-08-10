@@ -19,9 +19,9 @@
 import UIKit
 
 public class PlannerViewController: UIViewController {
-    lazy var profileButton = UIBarButtonItem(image: .icon(.hamburger, .solid), style: .plain, target: self, action: #selector(openProfile))
-    lazy var addNoteButton = UIBarButtonItem(image: .icon(.add, .solid), style: .plain, target: self, action: #selector(addNote))
-    lazy var todayButton = UIBarButtonItem(image: .icon(.calendarTodayLine), style: .plain, target: self, action: #selector(selectToday))
+    lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
+    lazy var addNoteButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(addNote))
+    lazy var todayButton = UIBarButtonItem(image: .calendarTodayLine, style: .plain, target: self, action: #selector(selectToday))
 
     lazy var calendar = CalendarViewController.create(delegate: self, selectedDate: selectedDate)
     let listPageController = PagesViewController()
@@ -75,7 +75,7 @@ public class PlannerViewController: UIViewController {
         }
 
         let divider = DividerView()
-        divider.tintColor = .named(.borderMedium)
+        divider.tintColor = .borderMedium
         divider.isOpaque = false
         view.addSubview(divider)
         divider.pinToLeftAndRightOfSuperview()

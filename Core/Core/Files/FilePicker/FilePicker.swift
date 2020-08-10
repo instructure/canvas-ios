@@ -35,16 +35,16 @@ public class FilePicker: NSObject {
     public func pick(from: UIViewController) {
         let sheet = BottomSheetPickerViewController.create()
 
-        sheet.addAction(image: .icon(.audio), title: NSLocalizedString("Record Audio", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .audioLine, title: NSLocalizedString("Record Audio", bundle: .core, comment: "")) { [weak self] in
             let controller = AudioRecorderViewController.create()
             controller.delegate = self
-            controller.view.backgroundColor = UIColor.named(.backgroundLightest)
+            controller.view.backgroundColor = UIColor.backgroundLightest
             controller.modalPresentationStyle = .formSheet
             self?.env.router.show(controller, from: from, options: .modal())
         }
 
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            sheet.addAction(image: .icon(.cameraLine), title: NSLocalizedString("Use Camera", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .cameraLine, title: NSLocalizedString("Use Camera", bundle: .core, comment: "")) { [weak self] in
                 let controller = UIImagePickerController()
                 controller.delegate = self
                 controller.sourceType = .camera
@@ -53,14 +53,14 @@ public class FilePicker: NSObject {
             }
         }
 
-        sheet.addAction(image: .icon(.paperclip), title: NSLocalizedString("Upload File", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .paperclipLine, title: NSLocalizedString("Upload File", bundle: .core, comment: "")) { [weak self] in
             let controller = UIDocumentPickerViewController(documentTypes: [UTI.any.rawValue], in: .import)
             controller.delegate = self
             self?.env.router.show(controller, from: from, options: .modal())
         }
 
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            sheet.addAction(image: .icon(.image), title: NSLocalizedString("Photo Library", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .imageLine, title: NSLocalizedString("Photo Library", bundle: .core, comment: "")) { [weak self] in
                 let controller = UIImagePickerController()
                 controller.delegate = self
                 controller.sourceType = .photoLibrary
@@ -77,12 +77,12 @@ public class FilePicker: NSObject {
         let sheet = BottomSheetPickerViewController.create()
 
         if file.uploadError != nil {
-            sheet.addAction(image: .icon(.refresh), title: NSLocalizedString("Retry", bundle: .core, comment: "")) { [weak self] in
+            sheet.addAction(image: .refreshLine, title: NSLocalizedString("Retry", bundle: .core, comment: "")) { [weak self] in
                 self?.delegate?.filePicker(didRetry: file)
             }
         }
 
-        sheet.addAction(image: .icon(.trash), title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
+        sheet.addAction(image: .trashLine, title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] in
             if let id = file.id {
                 self?.env.api.makeRequest(DeleteFileRequest(fileID: id)) { _, _, error in performUIUpdate {
                     if let error = error {

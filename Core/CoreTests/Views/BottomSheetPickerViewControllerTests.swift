@@ -25,10 +25,10 @@ class BottomSheetPickerViewControllerTests: CoreTestCase {
 
     func testSelect() {
         var addCalled = false
-        controller.addAction(image: .icon(.add), title: "Add") {
+        controller.addAction(image: .addLine, title: "Add") {
             addCalled = true
         }
-        controller.addAction(image: .icon(.x), title: "Cancel")
+        controller.addAction(image: .xLine, title: "Cancel")
 
         (controller.stackView.arrangedSubviews[1] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertFalse(addCalled)

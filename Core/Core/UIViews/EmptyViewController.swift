@@ -19,14 +19,14 @@
 import UIKit
 
 public class EmptyViewController: UIViewController {
-    let logoImageView = UIImageView(image: .icon(.instructure))
+    let logoImageView = UIImageView(image: .instructureLine)
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .named(.backgroundLightest)
+        view.backgroundColor = .backgroundLightest
 
         view.addSubview(logoImageView)
-        logoImageView.tintColor = .named(.textDark)
+        logoImageView.tintColor = .textDark
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

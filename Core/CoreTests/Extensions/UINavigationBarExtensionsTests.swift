@@ -23,10 +23,10 @@ import UIKit
 class UINavigationBarExtensionsTests: XCTestCase {
     func testUseContextColor() {
         let bar = UINavigationBar(frame: .zero)
-        bar.useContextColor(.named(.licorice))
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .named(.white))
-        XCTAssertEqual(bar.tintColor, .named(.white))
-        XCTAssertEqual(bar.barTintColor, .named(.licorice))
+        bar.useContextColor(.licorice)
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .white)
+        XCTAssertEqual(bar.tintColor, .white)
+        XCTAssertEqual(bar.barTintColor, .licorice)
         XCTAssertEqual(bar.barStyle, .black)
         XCTAssertFalse(bar.isTranslucent)
     }
@@ -65,9 +65,9 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseModalStyle() {
         let bar = UINavigationBar(frame: .zero)
         bar.useModalStyle()
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .named(.textDarkest))
+        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .textDarkest)
         XCTAssertEqual(bar.tintColor, Brand.shared.linkColor)
-        XCTAssertEqual(bar.barTintColor, .named(.backgroundLightest))
+        XCTAssertEqual(bar.barTintColor, .backgroundLightest)
         XCTAssertEqual(bar.barStyle, .default)
         XCTAssertFalse(bar.isTranslucent)
     }

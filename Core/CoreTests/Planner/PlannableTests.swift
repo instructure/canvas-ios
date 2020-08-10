@@ -44,30 +44,30 @@ class PlannableTests: CoreTestCase {
 
     func testIcon() {
         var p = Plannable.make(from: .make(plannable_type: "assignment"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.assignment, .line))
+        XCTAssertEqual(p.icon(), UIImage.assignmentLine)
 
         p = Plannable.make(from: .make(plannable_type: "quiz"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.quiz, .line))
+        XCTAssertEqual(p.icon(), UIImage.quizLine)
 
         p = Plannable.make(from: .make(plannable_type: "discussion_topic"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.discussion, .line))
+        XCTAssertEqual(p.icon(), UIImage.discussionLine)
 
         p = Plannable.make(from: .make(plannable_type: "wiki_page"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.document, .line))
+        XCTAssertEqual(p.icon(), UIImage.documentLine)
 
         p = Plannable.make(from: .make(plannable_type: "planner_note"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.note, .line))
+        XCTAssertEqual(p.icon(), UIImage.noteLine)
 
         p = Plannable.make(from: .make(plannable_type: "other"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.warning, .line))
+        XCTAssertEqual(p.icon(), UIImage.warningLine)
 
         p = Plannable.make(from: .make(plannable_type: "announcement"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.announcement, .line))
+        XCTAssertEqual(p.icon(), UIImage.announcementLine)
 
         p = Plannable.make(from: .make(plannable_type: "calendar_event"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.calendarMonth, .line))
+        XCTAssertEqual(p.icon(), UIImage.calendarMonthLine)
         p = Plannable.make(from: .make(plannable_type: "assessment_request"))
-        XCTAssertEqual(p.icon(), UIImage.icon(.peerReview, .line))
+        XCTAssertEqual(p.icon(), UIImage.peerReviewLine)
     }
 
     func testColor() {
@@ -78,6 +78,6 @@ class PlannableTests: CoreTestCase {
         XCTAssertEqual(Plannable.make(from: .make(course_id: "2", context_type: "Course")).color, .blue)
         XCTAssertEqual(Plannable.make(from: .make(group_id: "7", context_type: "Group")).color, .red)
         XCTAssertEqual(Plannable.make(from: .make(user_id: "3", context_type: "User")).color, .brown)
-        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .named(.ash))
+        XCTAssertEqual(Plannable.make(from: .make(course_id: "0", context_type: "Course")).color, .ash)
     }
 }

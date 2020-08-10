@@ -29,7 +29,7 @@ class DashboardGroupCell: UICollectionViewCell {
         cardView.accessibilityIdentifier = "DashboardGroupCell.\(group?.id ?? "")"
         cardView.accessibilityLabel = group?.name
         accessibilityElements = [ cardView as Any ]
-        let color = group?.color.ensureContrast(against: .named(.white))
+        let color = group?.color.ensureContrast(against: .white)
         groupNameLabel.text = group?.name
         // courseNameLabel.text = group?.course?.name
         courseNameLabel.textColor = color
