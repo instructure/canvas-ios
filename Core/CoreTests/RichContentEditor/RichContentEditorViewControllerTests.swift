@@ -159,6 +159,7 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
     }
 
     func testMediaRetry() {
+        UUID.mock("abc")
         let originalUrl = Bundle(for: type(of: self)).url(forResource: "instructure", withExtension: "pdf")!
         // File will get deleted after upload, so use a copy instead
         let url = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
@@ -167,6 +168,12 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
 
         api.mock(GetMediaServiceRequest(), error: NSError.internalError())
         controller.imagePickerController(MockPicker(), didFinishPickingMediaWithInfo: [ .mediaURL: url ])
+        let copiedTo = URL.temporaryDirectory
+            .appendingPathComponent("uploads", isDirectory: true)
+            .appendingPathComponent(UUID.string, isDirectory: true)
+            .appendingPathComponent("instructure.pdf")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedTo.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path))
         XCTAssertTrue((self.databaseClient.fetch() as [File]).isEmpty)
 
         controller.webView.evaluateJavaScript("document.querySelector('.retry-upload').onclick()")
