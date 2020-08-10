@@ -38,7 +38,7 @@ public struct CourseListView: View {
         // This will only run once
         let appearance = UITableViewHeaderFooterView.appearance(whenContainedInInstancesOf: [CoreHostingController<Self>.self])
         appearance.tintColor = UIColor.backgroundLightest
-        appearance.hasBorderShadow = true
+        appearance.hasBorderSeparators = true
         return { }
     }()
 

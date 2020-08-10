@@ -21,13 +21,23 @@ import Combine
 
 @available(iOSApplicationExtension 13.0, *)
 struct AvoidKeyboardArea: ViewModifier {
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).map { notification in
+            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+        }
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification).map { _ in
+            CGFloat(0)
+        }
+        return Publishers.MergeMany(willShow, willHide).eraseToAnyPublisher()
+    }
+
     @State var padding = CGFloat(0)
 
     func body(content: Content) -> some View {
         GeometryReader { geometry in
             content
                 .padding(.bottom, self.padding)
-                .onReceive(Publishers.keyboardHeight) { height in
+                .onReceive(AvoidKeyboardArea.keyboardHeight) { height in
                     let maxY = geometry.frame(in: .global).maxY
                     let distanceToBottom = UIScreen.main.bounds.height - maxY
                     self.padding = max(0, height - distanceToBottom)

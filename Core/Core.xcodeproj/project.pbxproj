@@ -810,9 +810,12 @@
 		E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */; };
 		E8D6949424D4635B0080D883 /* EnvironmentValuesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */; };
 		E8D6949824D46B1E0080D883 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* HostingController.swift */; };
-		E8D7E6E624D9CC9000D6CCD0 /* PublishersExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6E524D9CC9000D6CCD0 /* PublishersExtensions.swift */; };
 		E8D7E6E724D9CD8200D6CCD0 /* SetBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6E324D9CC2A00D6CCD0 /* SetBindings.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
+		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
+		E8E070F024E18B3000B37176 /* NavBarStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EF24E18B3000B37176 /* NavBarStyleTests.swift */; };
+		E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */; };
+		E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */; };
 		E8EC0C4823D9F980007583F3 /* APIPactExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */; };
 		E8EC0C4A23DA1F72007583F3 /* PactCaseEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */; };
 		E8F95353241FC8400023BDA6 /* DiscussionPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F95352241FC8400023BDA6 /* DiscussionPactTests.swift */; };
@@ -1849,8 +1852,11 @@
 		E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensions.swift; sourceTree = "<group>"; };
 		E8D6949724D46B1E0080D883 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		E8D7E6E324D9CC2A00D6CCD0 /* SetBindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBindings.swift; sourceTree = "<group>"; };
-		E8D7E6E524D9CC9000D6CCD0 /* PublishersExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishersExtensions.swift; sourceTree = "<group>"; };
 		E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardArea.swift; sourceTree = "<group>"; };
+		E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardAreaTests.swift; sourceTree = "<group>"; };
+		E8E070EF24E18B3000B37176 /* NavBarStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarStyleTests.swift; sourceTree = "<group>"; };
+		E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensions.swift; sourceTree = "<group>"; };
+		E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
 		E8EC0C4723D9F980007583F3 /* APIPactExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIPactExtensions.swift; sourceTree = "<group>"; };
 		E8EC0C4923DA1F72007583F3 /* PactCaseEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactCaseEncodable.swift; sourceTree = "<group>"; };
 		E8F95352241FC8400023BDA6 /* DiscussionPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionPactTests.swift; sourceTree = "<group>"; };
@@ -2042,6 +2048,7 @@
 				3B1669DB233DAF2300B2EFAB /* Syllabus */,
 				7D57629D23849CF7001F980D /* Todos */,
 				B14D555F2130B6630066D275 /* Utils */,
+				E8E070EE24E1843C00B37176 /* ViewModifiers */,
 				7D1758C2215A993100F88613 /* Views */,
 				B14FE5D82134F68800328CD7 /* CoreTestCase.swift */,
 				2C96483E211E2F1A002C3255 /* Info.plist */,
@@ -2975,7 +2982,6 @@
 				7DF9BF03215191840099026B /* BundleExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
-				E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */,
 				7D7BA23C24DC58E800B1A68B /* FontExtensions.swift */,
 				7DF2F5FA2347DAE900C1802C /* InstColorExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* InstIconExtensions.swift */,
@@ -3000,6 +3006,7 @@
 				7D02159E21B88B19009A8E69 /* UITabBarExtensions.swift */,
 				B10D776F21C2E27200BCE822 /* UITableViewCellExtensions.swift */,
 				7DCF202C216D461B003AF358 /* UITableViewExtensions.swift */,
+				E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */,
 				3B4D89402450AD58004ED120 /* UITextViewExtensions.swift */,
 				3B5425FB21B074500009D069 /* UIViewControllerExtensions.swift */,
 				7DD6948421951FD700BA4984 /* UIViewExtensions.swift */,
@@ -3007,9 +3014,7 @@
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
 				B150C6392298DAB90096D58C /* WKWebViewExtensions.swift */,
-				E890AF3324CF6713000401FB /* ImageExtensions.swift */,
 				E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */,
-				E8D7E6E524D9CC9000D6CCD0 /* PublishersExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 			);
 			path = Extensions;
@@ -3058,6 +3063,7 @@
 				7D0215A021B88BDC009A8E69 /* UITabBarExtensionsTests.swift */,
 				B1AAFFFD226988440088BC20 /* UITableViewCellExtensionsTests.swift */,
 				7DF4001A2174FA24007E5F81 /* UITableViewExtensionsTests.swift */,
+				E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */,
 				7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */,
 				7D2DC2FC219A001E008FE29A /* UIViewExtensionsTests.swift */,
 				7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */,
@@ -3722,6 +3728,15 @@
 			children = (
 				E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */,
 				E888382424DDB82800DDF691 /* NavBarStyle.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		E8E070EE24E1843C00B37176 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */,
+				E8E070EF24E18B3000B37176 /* NavBarStyleTests.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -4438,6 +4453,7 @@
 				7D2DC2FD219A001E008FE29A /* UIViewExtensionsTests.swift in Sources */,
 				9F6878B722397E8F00E559CE /* MediaCommentTests.swift in Sources */,
 				7D82DB382374A82800C699B8 /* FileDetailsViewControllerTests.swift in Sources */,
+				E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */,
 				B150C63C2298DE590096D58C /* WKWebViewExtensionsTests.swift in Sources */,
 				7D80AC1F212B738500C40ECE /* APITests.swift in Sources */,
 				7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */,
@@ -4459,6 +4475,7 @@
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,
+				E8E070F024E18B3000B37176 /* NavBarStyleTests.swift in Sources */,
 				97A486CB239AB2ED00084499 /* SyllabusViewControllerTests.swift in Sources */,
 				7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */,
 				7D062AFB2124A14700677F66 /* ContextTests.swift in Sources */,
@@ -4500,6 +4517,7 @@
 				9F1CEA6322401AF1000BB98F /* GetContextPermissionsTests.swift in Sources */,
 				7DB0A1B821BF175E009ABB40 /* LoginFindSchoolViewControllerTests.swift in Sources */,
 				7D63F792215D8EEC00151E49 /* GetBrandVariablesTests.swift in Sources */,
+				E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */,
 				EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */,
 				7D5425D2246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift in Sources */,
 				7D54D6B124646C8500409520 /* GetDiscussionsTests.swift in Sources */,
@@ -4822,6 +4840,7 @@
 				7DA25FAC23F72136005D2121 /* APIDocViewer.swift in Sources */,
 				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
+				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
 				7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */,
@@ -4958,7 +4977,6 @@
 				7DA260BA23F72352005D2121 /* GetQuizzes.swift in Sources */,
 				3B4D89342450A8F4004ED120 /* ConversationDetailViewController.swift in Sources */,
 				7DA2603623F722D9005D2121 /* SubmissionViewable.swift in Sources */,
-				E8D7E6E624D9CC9000D6CCD0 /* PublishersExtensions.swift in Sources */,
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,

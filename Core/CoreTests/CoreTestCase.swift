@@ -98,14 +98,15 @@ class TestAnalyticsHandler: AnalyticsHandler {
 
 @available(iOS 13.0.0, *)
 extension CoreTestCase {
-    open func hostSwiftUI<V: View>(_ view: V, debug: Bool = false) -> V {
+    open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view, env: environment)
         window.rootViewController = controller
-        if debug {
-            window.screen = UIScreen.main
-            window.makeKeyAndVisible()
-            RunLoop.current.run(until: Date() + 0.1)
-        }
-        return controller.rootView.rootView
+        window.screen = UIScreen.main
+        window.makeKeyAndVisible()
+        RunLoop.current.run(until: Date() + 0.01)
+        return controller
+    }
+    open func hostSwiftUI<V: View>(_ view: V) -> V {
+        return hostSwiftUIController(view).rootView.rootView
     }
 }

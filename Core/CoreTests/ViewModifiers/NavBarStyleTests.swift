@@ -16,17 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
+import XCTest
+@testable import Core
+import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
-extension Publishers {
-    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
-        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).map { notification in
-            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
-        }
-        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification).map { _ in
-            CGFloat(0)
-        }
-        return MergeMany(willShow, willHide).eraseToAnyPublisher()
+@available(iOS 13.0, *)
+class NavBarStyleTests: CoreTestCase {
+    func testReduce() {
+        var style = NavBarStyle.global
+        NavBarStyle.reduce(value: &style, nextValue: { .color(.green) })
+        XCTAssertEqual(style, .color(.green))
+    }
+
+    func testViewExtension() throws {
+        let controller = hostSwiftUIController(Text(verbatim: "SwiftUI!").navBarStyle(.color(.red)))
+        XCTAssertEqual(controller.navBarStyle, .color(.red))
     }
 }
