@@ -27,8 +27,6 @@ public struct CourseListView: View {
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
     @State private var filter = ""
-    @State private var loading = true
-    let loadingPublisher: AnyPublisher<Bool, Never>
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -41,33 +39,20 @@ public struct CourseListView: View {
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
     public init(allCourses: Store<GetAllCourses>? = nil) {
-        let loadingSubject = CurrentValueSubject<Bool, Never>(true)
-        if let allCourses = allCourses {
-            self.allCourses = allCourses
-            loadingSubject.send(false)
-        } else {
-            self.allCourses = AppEnvironment.shared.subscribe(GetAllCourses()) { store in
-                if !store.pending {
-                    loadingSubject.send(false)
-                }
-            }.exhaust()
-        }
-        loadingPublisher = loadingSubject.eraseToAnyPublisher()
+        self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses())
         Self.configureAppearance()
     }
 
     public var body: some View {
         let view: AnyView
-        if loading {
+        if allCourses.pending && allCourses.isEmpty {
             view = AnyView(CircleProgressView.AsView.create())
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
             view = AnyView(courseList)
         }
-        return view
-            .navigationBarTitle("All Courses")
-            .onReceive(loadingPublisher) { self.loading = $0 }
+        return view.navigationBarTitle("All Courses")
     }
 
     var empty: some View {

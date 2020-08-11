@@ -73,6 +73,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
+    // The default implementation of objectWillChange requires at least one
+    // @Published property, but we can't have stored properties that are iOS 13+
+    private var _objectWillChange: Any?
+    @available(iOSApplicationExtension 13.0, *)
+    public var objectWillChange: ObservableObjectPublisher {
+        if let publisher = _objectWillChange as? ObservableObjectPublisher {
+            return publisher
+        }
+        let publisher = ObservableObjectPublisher()
+        _objectWillChange = publisher
+        return publisher
+    }
+
     public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
         self.useCase = useCase
@@ -166,10 +179,16 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
+        if #available(iOSApplicationExtension 13.0, *) {
+            objectWillChange.send()
+        }
         requested = true
         pending = true
         notify()
         useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+            if #available(iOSApplicationExtension 13.0, *) {
+                self?.objectWillChange.send()
+            }
             self?.error = error
             self?.pending = false
             if let urlResponse = urlResponse {
