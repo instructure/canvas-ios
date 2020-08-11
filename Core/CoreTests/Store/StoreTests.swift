@@ -228,7 +228,7 @@ class StoreTests: CoreTestCase {
         Course.make(from: .make(id: "1"))
         Course.make(from: .make(id: "2"))
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
 
         let ids = store.map { $0.id }
         XCTAssertEqual(ids.count, 2)
@@ -240,7 +240,7 @@ class StoreTests: CoreTestCase {
         let one = Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(one, store[0])
         XCTAssertEqual(two, store[1])
@@ -248,13 +248,13 @@ class StoreTests: CoreTestCase {
 
     func testSubscriptIntObjectNotPresent() {
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
         XCTAssertNil(store[1])
     }
 
     func testSubscriptSectionNotPresent() {
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
         XCTAssertNil(store[IndexPath(row: 1, section: 1)])
     }
 
@@ -262,7 +262,7 @@ class StoreTests: CoreTestCase {
         let one = Course.make(from: .make(id: "1", name: "A"))
         Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.first, one)
     }
@@ -271,7 +271,7 @@ class StoreTests: CoreTestCase {
         Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.last, two)
     }
@@ -280,7 +280,7 @@ class StoreTests: CoreTestCase {
         let one = Course.make(from: .make(id: "1", name: "A"))
         let two = Course.make(from: .make(id: "2", name: "B"))
         let useCase = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
-        let store = Store(env: environment, useCase: useCase) { _ in }
+        let store = Store(env: environment, useCase: useCase) { }
 
         XCTAssertEqual(store.all, [one, two])
     }
@@ -288,7 +288,7 @@ class StoreTests: CoreTestCase {
     func testChanges() {
         let use = TestUseCase(courses: nil, requestError: nil, urlResponse: nil)
         let notified = expectation(description: "notified")
-        let store = Store(env: environment, useCase: use) { _ in notified.fulfill() }
+        let store = Store(env: environment, useCase: use) { notified.fulfill() }
         let request = NSFetchRequest<Course>(entityName: String(describing: Course.self))
         request.predicate = use.scope.predicate
         request.sortDescriptors = use.scope.order

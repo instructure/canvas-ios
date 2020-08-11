@@ -29,7 +29,7 @@ public enum StoreChange: Equatable {
 }
 
 public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
-    public typealias EventHandler = (Store<U>) -> Void
+    public typealias EventHandler = () -> Void
 
     public let env: AppEnvironment
     private let frc: NSFetchedResultsController<U.Model>
@@ -115,7 +115,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     private func notify() {
         performUIUpdate {
-            self.eventHandler(self)
+            self.eventHandler()
             self.changes = []
         }
     }
