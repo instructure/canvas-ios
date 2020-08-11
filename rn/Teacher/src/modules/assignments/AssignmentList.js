@@ -105,11 +105,11 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
     if (index >= 0) this.updateFilter(index)
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.onTraitCollectionChange()
   }
 
-  componentWillReceiveProps (nextProps: AssignmentListProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: AssignmentListProps) {
     if (nextProps.assignmentGroups.length && nextProps.gradingPeriods.length) {
       NativeAccessibility.refresh()
     }

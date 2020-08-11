@@ -111,7 +111,7 @@ export class AnnouncementEdit extends Component<Props, any> {
     }
   }
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     const error = props.error
     if (error) {
       this.setState({ pending: false })

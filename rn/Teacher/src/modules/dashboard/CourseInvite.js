@@ -47,7 +47,7 @@ type Props = {
 }
 
 export default class CourseInvite extends React.Component<Props> {
-  componentWillReceiveProps = (newProps: Props) => {
+  UNSAFE_componentWillReceiveProps = (newProps: Props) => {
     const { invite } = newProps
     if (invite.hidden) return
     if (invite.displayState && invite.displayState === 'acted') {

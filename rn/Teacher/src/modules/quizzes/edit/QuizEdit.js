@@ -26,10 +26,10 @@ import {
   Image,
   Text,
   LayoutAnimation,
-  PickerIOS,
   DatePickerIOS,
   NativeModules,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { FormLabel } from '../../../common/text'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
@@ -89,8 +89,6 @@ function booleanTransformer<T> (truthy: T, falsey: T): (b: boolean) => T {
   return (b) => b ? truthy : falsey
 }
 
-const PickerItem = PickerIOS.Item
-
 export class QuizEdit extends Component<Props, any> {
   static defaultProps = {
     updateQuiz: canvas.updateQuiz,
@@ -112,7 +110,7 @@ export class QuizEdit extends Component<Props, any> {
     },
   }
 
-  componentWillReceiveProps ({ quiz, pending, error, assignment }: Props) {
+  UNSAFE_componentWillReceiveProps ({ quiz, pending, error, assignment }: Props) {
     this.setState({
       quiz: {
         ...quiz,
@@ -195,18 +193,18 @@ export class QuizEdit extends Component<Props, any> {
               onPress={this._togglePicker('quiz_type')}
             />
             { this.state.pickers.quiz_type &&
-              <PickerIOS
+              <Picker
                 selectedValue={quiz.quiz_type}
                 onValueChange={this._updateQuiz('quiz_type', null, false)}
                 testID='quizzes.edit.quiz-type-picker'>
                 {Object.keys(QUIZ_TYPES()).map((type) => (
-                  <PickerItem
+                  <Picker.Item
                     key={type}
                     value={type}
                     label={QUIZ_TYPES()[type]}
                   />
                 ))}
-              </PickerIOS>
+              </Picker>
             }
             { (!quiz.published || quiz.can_unpublish) &&
               <RowWithSwitch
@@ -229,18 +227,18 @@ export class QuizEdit extends Component<Props, any> {
                   onPress={this._togglePicker('assignment_group_id')}
                 />
                 { this.state.pickers.assignment_group_id &&
-                  <PickerIOS
+                  <Picker
                     selectedValue={quiz.assignment_group_id}
                     onValueChange={this._updateQuiz('assignment_group_id', null, false)}
                     testID='quizzes.edit.assignment-group-picker'>
                     {Object.keys(this.props.assignmentGroups).map((id) => (
-                      <PickerItem
+                      <Picker.Item
                         key={id}
                         value={id}
                         label={this.props.assignmentGroups[id].name}
                       />
                     ))}
-                  </PickerIOS>
+                  </Picker>
                 }
               </View>
             }
@@ -290,18 +288,18 @@ export class QuizEdit extends Component<Props, any> {
                   onPress={this._togglePicker('scoring_policy')}
                 />
                 { this.state.pickers.scoring_policy &&
-                  <PickerIOS
+                  <Picker
                     selectedValue={quiz.scoring_policy}
                     onValueChange={this._updateQuiz('scoring_policy', null, false)}
                     testID='quizzes.edit.scoring-policy-picker'>
                     {Object.keys(SCORING_POLICIES()).map((key) => (
-                      <PickerItem
+                      <Picker.Item
                         key={key}
                         value={key}
                         label={SCORING_POLICIES()[key]}
                       />
                     ))}
-                  </PickerIOS>
+                  </Picker>
                 }
                 <RowWithTextInput
                   title={i18n('Allowed Attempts')}

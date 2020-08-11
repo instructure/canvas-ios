@@ -102,7 +102,7 @@ export default class EditItem extends Component<Props, State> {
     },
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.loadCourseLicenses()
   }
 

@@ -120,7 +120,7 @@ export default class CanvasWebView extends Component<Props, State> {
     this.setState({ webViewHeight })
   }
 
-  componentWillReceiveProps (newProps: Props) {
+  UNSAFE_componentWillReceiveProps (newProps: Props) {
     if (newProps.html !== this.props.html ||
         !isEqual(newProps.source, this.props.source)) {
       this.setHeight(null)

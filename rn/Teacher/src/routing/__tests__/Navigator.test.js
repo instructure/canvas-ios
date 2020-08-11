@@ -113,52 +113,6 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.traitCollection).toHaveBeenCalledWith('traitCollection', handler)
   })
 
-  it('shows push notifications', () => {
-    const notification = {
-      getAlert: () => 'New Submission',
-      getData: () => ({
-        html_url: '/courses/1/assignments/2/submissions/3',
-      }),
-    }
-    new Navigator('new submission notification').showNotification(notification)
-    expect(NativeModules.Helm.present).toHaveBeenCalledWith(
-      '/courses/:courseID/assignments/:assignmentID/submissions/:userID',
-      {
-        courseID: '1',
-        assignmentID: '2',
-        userID: '3',
-        screenInstanceID: expect.any(String),
-        forceRefresh: true,
-        pushNotification: {
-          alert: 'New Submission',
-          data: {
-            html_url: '/courses/1/assignments/2/submissions/3',
-          },
-        },
-        location: expect.any(Object),
-      },
-      {
-        embedInNavigationController: true,
-        modal: true,
-        modalPresentationStyle: 'fullscreen',
-        canBecomeMaster: false,
-        disableSwipeDownToDismissModal: false,
-      },
-    )
-  })
-
-  it('should not throw if we cant handle notification', () => {
-    const notification = {
-      getAlert: () => 'Web team forgot to tell you about this one',
-      getData: () => ({
-        html_url: '/something/you/dont/know/about',
-      }),
-    }
-    expect(() => {
-      new Navigator('dont throw').showNotification(notification)
-    }).not.toThrow()
-  })
-
   it('shows as a modal if modal config is true', () => {
     new Navigator('deepLink').show('/courses/1/announcements/3', {
       modal: true,

@@ -209,7 +209,8 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
       />
     </View>
   </TouchableHighlight>
-  <PickerIOS
+  <Picker
+    mode="dialog"
     onValueChange={[Function]}
     selectedValue={0}
     testID="header.picker"
@@ -222,7 +223,7 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
       label="Dec 31, 2015 at 5:01 PM"
       value={1}
     />
-  </PickerIOS>
+  </Picker>
 </View>
 `;
 
@@ -299,7 +300,8 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
       />
     </View>
   </TouchableHighlight>
-  <PickerIOS
+  <Picker
+    mode="dialog"
     onValueChange={[Function]}
     selectedValue={1}
     testID="header.picker"
@@ -312,7 +314,7 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
       label="Dec 31, 2015 at 5:01 PM"
       value={1}
     />
-  </PickerIOS>
+  </Picker>
 </View>
 `;
 

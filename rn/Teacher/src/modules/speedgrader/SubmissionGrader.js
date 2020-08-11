@@ -108,7 +108,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
     )
   }
 
-  componentWillReceiveProps (newProps: SubmissionGraderProps) {
+  UNSAFE_componentWillReceiveProps (newProps: SubmissionGraderProps) {
     if (this.props.isCurrentStudent && !newProps.isCurrentStudent && this.state.unsavedChanges) {
       this.saveUnsavedChanges()
     }

@@ -24,11 +24,11 @@ import {
   Alert,
   Image,
   ActivityIndicator,
-  PickerIOS,
   Animated,
   TouchableOpacity,
   NativeModules,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../../common/text'
 import { connect } from 'react-redux'
@@ -66,7 +66,7 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
     this.state = state
   }
 
-  componentWillReceiveProps (nextProps: GradePickerProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: GradePickerProps) {
     if (this.state.originalRubricScore !== nextProps.rubricScore) {
       this.setState({ useCustomGrade: false, originalRubricScore: nextProps.rubricScore })
     }
@@ -349,31 +349,31 @@ export class GradePicker extends Component<GradePickerProps, GradePickerState> {
           <Animated.View
             style={{ height: this.state.easeAnimation, overflow: 'hidden' }}
           >
-            <PickerIOS
+            <Picker
               selectedValue={this.state.passFailValue}
               onValueChange={this.changePassFailValue}
             >
-              <PickerIOS.Item
+              <Picker.Item
                 key='none'
                 value=''
                 label='---'
               />
-              <PickerIOS.Item
+              <Picker.Item
                 key='pass'
                 value='complete'
                 label={i18n('Complete')}
               />
-              <PickerIOS.Item
+              <Picker.Item
                 key='fail'
                 value='incomplete'
                 label={i18n('Incomplete')}
               />
-              <PickerIOS.Item
+              <Picker.Item
                 key='excuse'
                 value='ex'
                 label={i18n('Excuse Student')}
               />
-            </PickerIOS>
+            </Picker>
           </Animated.View>
         }
       </View>

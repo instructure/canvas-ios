@@ -71,7 +71,7 @@ export default class BottomDrawer extends Component<Props, State> {
     return true
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (nextProps.containerHeight !== this.props.containerHeight || nextProps.containerWidth !== this.props.containerWidth) {
       this.setState({ height: nextProps.containerHeight, width: nextProps.containerWidth }, () => {
         if (this.drawer) {
@@ -81,7 +81,7 @@ export default class BottomDrawer extends Component<Props, State> {
     }
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.drawerState.registerDrawer(this)
   }
 
@@ -165,6 +165,7 @@ export default class BottomDrawer extends Component<Props, State> {
           snapPoints={this.getSnapPoints()}
           initialPosition={this.getSnapPoints()[this.props.drawerState.currentSnap]}
           animatedValueY={this._deltaY}
+          animatedValueX={new Animated.Value(0)}
           style={styles.handle}
           onDrag={this.onDrag}
         />

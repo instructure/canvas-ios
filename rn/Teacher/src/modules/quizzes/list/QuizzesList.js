@@ -63,11 +63,11 @@ export class QuizzesList extends Component<Props, any> {
   didSelectFirstItem = false
   data: any = []
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.onTraitCollectionChange()
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (nextProps.quizzes.length) {
       NativeAccessibility.refresh()
     }

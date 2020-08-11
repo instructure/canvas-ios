@@ -24,5 +24,4 @@ extern void RCTRegisterModule(Class);
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTConvert.h>
-#import <React/RCTPushNotificationManager.h>
 #import <React/RCTScrollView.h>

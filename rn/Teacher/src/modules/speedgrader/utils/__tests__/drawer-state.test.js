@@ -39,7 +39,7 @@ describe('DrawerState', () => {
   })
 
   beforeEach(() => {
-    drawer.componentWillMount()
+    drawer.UNSAFE_componentWillMount()
   })
 
   it('registers drawers', () => {

@@ -63,7 +63,7 @@ export default class SubmissionGraph extends Component<SubmissionGraphProps, any
     }
   }
 
-  componentWillReceiveProps (nextProps: SubmissionGraphProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: SubmissionGraphProps) {
     if (!nextProps.pending) {
       this.setState({
         current: nextProps.current,

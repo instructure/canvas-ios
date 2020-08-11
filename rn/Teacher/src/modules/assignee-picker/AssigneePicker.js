@@ -51,7 +51,7 @@ export class AssigneePicker extends Component<AssigneePickerProps, any> {
     }
   }
 
-  componentWillReceiveProps = (props: AssigneePickerProps) => {
+  UNSAFE_componentWillReceiveProps = (props: AssigneePickerProps) => {
     const assignees = props.assignees || []
     const selected = this.state.selected.map((item) => {
       const previous = find(assignees, { id: item.id })

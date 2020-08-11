@@ -22,6 +22,7 @@ exports[`BottomDrawer renders any children 1`] = `
   }
 >
   <Interactable.View
+    animatedValueX={0}
     animatedValueY={0}
     initialPosition={
       Object {

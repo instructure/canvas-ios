@@ -80,7 +80,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
     this.debouncedUpdateSaveState = debounce(this.updateSaveState, 2000, { 'leading': true })
   }
 
-  componentWillReceiveProps (newProps: SubmissionViewerProps) {
+  UNSAFE_componentWillReceiveProps (newProps: SubmissionViewerProps) {
     if (this.videoPlayer && !newProps.isCurrentStudent) {
       this.videoPlayer.pause()
     }

@@ -44,7 +44,7 @@ export class GradeTab extends Component<GradeTabProps, GradeTabState> {
     scrollEnabled: true,
   }
 
-  componentWillReceiveProps (nextProps: GradeTabProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: GradeTabProps) {
     if (this.props.rubricGradePending && !nextProps.rubricGradePending) {
       this.setState({
         criterionCommentInput: null,

@@ -23,11 +23,11 @@ import { connect } from 'react-redux'
 import ReactNative, {
   View,
   LayoutAnimation,
-  PickerIOS,
   DatePickerIOS,
   NativeModules,
   processColor,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -80,8 +80,6 @@ const Actions = {
   getCourseSettings,
   refreshGroup,
 }
-
-const PickerItem = PickerIOS.Item
 
 type OwnProps = {
   discussionID: ?string,
@@ -158,7 +156,7 @@ export class DiscussionEdit extends Component<Props, any> {
     }
   }
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     const error = props.error
     if (error) {
       this.setState({ pending: false })
@@ -330,18 +328,18 @@ export class DiscussionEdit extends Component<Props, any> {
                   testID='DiscussionEdit.gradeAsButton'
                 />
                 { this.state.gradingTypePickerShown &&
-                  <PickerIOS
+                  <Picker
                     selectedValue={this.state.grading_type}
                     onValueChange={this._valueChanged('grading_type', null, false)}
                     testID='DiscussionEdit.gradeTypePicker'>
                     {Array.from(gradeDisplayOpts.keys()).map((key) => (
-                      <PickerItem
+                      <Picker.Item
                         key={key}
                         value={key}
                         label={gradeDisplayOpts.get(key)}
                       />
                     ))}
-                  </PickerIOS>
+                  </Picker>
                 }
                 <RequiredFieldSubscript
                   title={this.state.errors.points_possible}

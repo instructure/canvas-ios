@@ -693,7 +693,8 @@ exports[`QuizEdit changes assignment group 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <PickerIOS
+        <Picker
+          mode="dialog"
           onValueChange={[Function]}
           selectedValue="2"
           testID="quizzes.edit.assignment-group-picker"
@@ -706,7 +707,7 @@ exports[`QuizEdit changes assignment group 1`] = `
             label="Changed"
             value="2"
           />
-        </PickerIOS>
+        </Picker>
       </View>
       <TouchableHighlight
         accessibilityLabel="Shuffle Answers, Off"
@@ -2399,7 +2400,8 @@ exports[`QuizEdit changes quiz type 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <PickerIOS
+      <Picker
+        mode="dialog"
         onValueChange={[Function]}
         selectedValue="graded_survey"
         testID="quizzes.edit.quiz-type-picker"
@@ -2420,7 +2422,7 @@ exports[`QuizEdit changes quiz type 1`] = `
           label="Ungraded Survey"
           value="survey"
         />
-      </PickerIOS>
+      </Picker>
       <TouchableHighlight
         accessibilityLabel="Publish, On"
         accessibilityTraits={
@@ -21277,7 +21279,8 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <PickerIOS
+        <Picker
+          mode="dialog"
           onValueChange={[Function]}
           selectedValue={null}
           testID="quizzes.edit.assignment-group-picker"
@@ -21286,7 +21289,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             label="Group Item 1"
             value="1"
           />
-        </PickerIOS>
+        </Picker>
       </View>
       <TouchableHighlight
         accessibilityLabel="Shuffle Answers, Off"
@@ -24953,7 +24956,8 @@ exports[`QuizEdit shows quiz time picker 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <PickerIOS
+      <Picker
+        mode="dialog"
         onValueChange={[Function]}
         selectedValue="assignment"
         testID="quizzes.edit.quiz-type-picker"
@@ -24974,7 +24978,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
           label="Ungraded Survey"
           value="survey"
         />
-      </PickerIOS>
+      </Picker>
       <TouchableHighlight
         accessibilityLabel="Publish, On"
         accessibilityTraits={

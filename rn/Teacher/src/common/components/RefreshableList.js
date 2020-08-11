@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
 
 import React from 'react'
 import {
@@ -24,26 +23,16 @@ import {
   RefreshControl,
 } from 'react-native'
 
-type Props = {
-  refreshing: boolean,
-  onRefresh: Function,
-}
-
-// $FlowFixMe
-export class RefreshableScrollView extends ScrollView {
-  props: Props & React$ElementProps<typeof ScrollView>
-
-  render () {
-    return (
-      <ScrollView
-        {...this.props}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.props.refreshing}
-            onRefresh={this.props.onRefresh}
-          />
-        }
-      />
-    )
-  }
+export function RefreshableScrollView (props) {
+  return (
+    <ScrollView
+      {...props}
+      refreshControl={
+        <RefreshControl
+          refreshing={props.refreshing}
+          onRefresh={props.onRefresh}
+        />
+      }
+    />
+  )
 }

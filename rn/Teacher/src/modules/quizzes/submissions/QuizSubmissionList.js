@@ -119,7 +119,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
     ]).start()
   }
 
-  componentWillReceiveProps = (newProps: QuizSubmissionListProps) => {
+  UNSAFE_componentWillReceiveProps = (newProps: QuizSubmissionListProps) => {
     if (this.props.sections.length !== newProps.sections.length) {
       let filterOptions = [ ...this.state.filterOptions, ...newProps.sections.map(createFilterFromSection) ]
       let filter = createFilter(filterOptions)

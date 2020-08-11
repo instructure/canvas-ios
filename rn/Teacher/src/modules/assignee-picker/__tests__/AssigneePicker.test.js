@@ -25,11 +25,8 @@ import React from 'react'
 import { AssigneePicker } from '../AssigneePicker'
 import { type AssigneePickerProps } from '../map-state-to-props'
 import renderer from 'react-test-renderer'
-import { registerScreens } from '../../../../src/routing/register-screens'
 import setProps from '../../../../test/helpers/setProps'
 import { cloneDeep } from 'lodash'
-
-registerScreens({})
 
 const template = {
   ...require('../__template__/Assignee.js'),

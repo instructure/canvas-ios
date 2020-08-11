@@ -107,6 +107,6 @@ it('gets the dashboard cards again when a course is favorited or unfavorited', (
   defaultProps.getDashboardCards = jest.fn()
   defaultProps.pending = 1
   let tree = shallow(<FavoritesList {...defaultProps} />)
-  tree.instance().componentWillReceiveProps({ ...defaultProps, pending: 0 })
+  tree.instance().UNSAFE_componentWillReceiveProps({ ...defaultProps, pending: 0 })
   expect(defaultProps.getDashboardCards).toHaveBeenCalled()
 })

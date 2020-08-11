@@ -88,7 +88,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
     return data?.id
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.props.navigator.traitCollection((traits) => {
       this.setState({ windowTraits: traits.window })
     })

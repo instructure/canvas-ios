@@ -35,7 +35,7 @@ type Props = {
 }
 
 export default class RequiredFieldSubscript extends React.Component<Props> {
-  componentWillUpdate () {
+  UNSAFE_componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
   }
 

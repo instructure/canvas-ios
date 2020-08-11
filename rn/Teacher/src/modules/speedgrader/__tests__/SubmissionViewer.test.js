@@ -306,7 +306,6 @@ describe('SubmissionViewer', () => {
     }
 
     let tree = shallow(<SubmissionViewer {...props} />)
-    console.log(tree.debug())
     let viewer = tree.find('ImageSubmissionViewer')
     expect(viewer.prop('attachment').url).toEqual(url)
   })

@@ -90,7 +90,7 @@ export default class Screen extends React.Component<ScreenProps, State> {
     this.setState({ hasRendered: true })
   }
 
-  componentWillReceiveProps (nextProps: Object, nextContext: ScreenContext) {
+  UNSAFE_componentWillReceiveProps (nextProps: Object, nextContext: ScreenContext) {
     this.handleProps(nextProps, nextContext.screenInstanceID, this.state.hasRendered)
   }
 

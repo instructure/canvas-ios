@@ -327,7 +327,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     )
 
-    tree.getInstance().componentWillReceiveProps(props)
+    tree.getInstance().UNSAFE_componentWillReceiveProps(props)
     expect(navigator.show).toHaveBeenCalledWith('/wrong-app', {
       modal: true,
       disableSwipeDownToDismissModal: true,
@@ -350,7 +350,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     )
 
-    tree.getInstance().componentWillReceiveProps(props)
+    tree.getInstance().UNSAFE_componentWillReceiveProps(props)
     expect(navigator.show).not.toHaveBeenCalled()
   })
 
@@ -370,7 +370,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} navigator={navigator} />
     )
 
-    tree.getInstance().componentWillReceiveProps(props)
+    tree.getInstance().UNSAFE_componentWillReceiveProps(props)
     expect(navigator.show).not.toHaveBeenCalled()
 
     App.setCurrentApp(currentApp)

@@ -106,7 +106,7 @@ export default class LinkModal extends Component<Props, any> {
     )
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (!this.props.visible) {
       this.setState({
         title: nextProps.title,
