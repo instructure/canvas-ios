@@ -19,11 +19,30 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
-public class HostingController<InnerContent: View>: UIHostingController<HostingControllerBaseView<InnerContent>> {
-    public init(rootView: InnerContent) {
+public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
+    public var navBarStyle = NavBarStyle.global
+
+    public init(_ rootView: InnerContent, env: AppEnvironment = .shared) {
         let selfBox = Box()
-        super.init(rootView: HostingControllerBaseView(rootView: rootView, controller: { selfBox.value }))
+        super.init(rootView: CoreHostingBaseView(rootView: rootView, env: env) {
+            selfBox.value
+        })
         selfBox.value = self
+    }
+
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavBarStyle()
+    }
+
+    func applyNavBarStyle(_ style: NavBarStyle? = nil) {
+        navBarStyle = style ?? navBarStyle
+        switch navBarStyle {
+        case .global:
+            self.navigationController?.navigationBar.useGlobalNavStyle()
+        case .color(let color):
+            self.navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -31,17 +50,24 @@ public class HostingController<InnerContent: View>: UIHostingController<HostingC
     }
 
     private class Box {
-        weak var value: UIViewController?
+        weak var value: CoreHostingController<InnerContent>?
         init() { }
     }
+
 }
 
 @available(iOSApplicationExtension 13.0.0, *)
-public struct HostingControllerBaseView<Content: View>: View {
-    public let rootView: Content
-    let controller: () -> UIViewController?
+public struct CoreHostingBaseView<Content: View>: View {
+    var rootView: Content
+    let env: AppEnvironment
+    let controller: () -> CoreHostingController<Content>?
 
     public var body: some View {
-        rootView.environment(\.viewController, controller)
+        rootView
+            .environment(\.appEnvironment, env)
+            .environment(\.viewController, controller)
+            .onPreferenceChange(NavBarStyle.self) { pref in
+                self.controller()?.applyNavBarStyle(pref)
+        }
     }
 }

@@ -75,7 +75,6 @@ final public class Course: NSManagedObject, WriteableModel {
             (item.start_at ?? .distantPast) > Clock.now ||
             (item.term?.start_at ?? .distantPast) > Clock.now
         )
-        // TODO: is this the right logic?
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed
         model.termName = item.term?.name
 

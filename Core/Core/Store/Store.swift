@@ -29,7 +29,7 @@ public enum StoreChange: Equatable {
 }
 
 public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
-    public typealias EventHandler = () -> Void
+    public typealias EventHandler = (Store<U>) -> Void
 
     public let env: AppEnvironment
     private let frc: NSFetchedResultsController<U.Model>
@@ -102,7 +102,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     private func notify() {
         performUIUpdate {
-            self.eventHandler()
+            self.eventHandler(self)
             self.changes = []
         }
     }
@@ -135,12 +135,14 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         request(useCase, force: force, callback: callback)
     }
 
-    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) {
+    @discardableResult
+    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) -> Self {
         refresh(force: force) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)
             }
         }
+        return self
     }
 
     private func exhaustNext(while condition: @escaping (U.Response) -> Bool) {
