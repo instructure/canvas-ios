@@ -20,7 +20,6 @@ import {
   NativeModules,
   NativeEventEmitter,
   AppState,
-  AppRegistry,
   LogBox,
 } from 'react-native'
 import store from './src/redux/store'
