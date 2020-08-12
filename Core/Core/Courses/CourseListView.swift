@@ -139,7 +139,7 @@ public struct CourseListView: View {
                     shown: filteredCourses.isEmpty,
                     height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
                 )
-            }.animation(.default, value: self.filter)
+            }.animation(.default, value: self.props.filter)
                 .animation(.default, value: self.allCourses)
         }.avoidKeyboardArea()
             .lineLimit(2)
