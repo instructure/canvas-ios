@@ -91,15 +91,14 @@ public struct CourseListView: View {
                 self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
                 self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
                 self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
-                if filteredCourses.isEmpty {
-                    Text("No matching courses", bundle: .core)
-                        .frame(height: outerGeometry.frame(in: .local).height - Self.searchBarHeight)
-                        .frame(maxWidth: .infinity)
-                        .listRowInsets(EdgeInsets())
-                }
-            }
+                self.notFound(
+                    shown: filteredCourses.isEmpty,
+                    height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
+                )
+            }.animation(.default, value: self.filter)
+                .animation(.default, value: self.allCourses)
         }.avoidKeyboardArea()
-         .lineLimit(2)
+            .lineLimit(2)
     }
 
     func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
@@ -115,6 +114,17 @@ public struct CourseListView: View {
                 }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
             }
         }
+    }
+
+    func notFound(shown: Bool, height: CGFloat) -> some View {
+        // All this for pretty animations
+        let footer = Text("No matching courses", bundle: .core)
+            .frame(height: shown ? height : 0)
+            .animation(shown ? nil : .default, value: filter)
+            .opacity(shown ? 1 : 0)
+            .frame(maxWidth: .infinity)
+            .listRowInsets(EdgeInsets())
+        return Section(footer: footer) { SwiftUI.EmptyView() }
     }
 
     struct Cell: View {
@@ -163,6 +173,7 @@ public struct CourseListView: View {
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
+                .animation(.default, value: pending)
                 .accessibility(label: Text("favorite", bundle: .core))
                 .accessibility(addTraits: course.isFavorite ? .isSelected : [])
         }
