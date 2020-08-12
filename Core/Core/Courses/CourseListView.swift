@@ -39,7 +39,7 @@ public struct CourseListView: View {
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
     public init(allCourses: Store<GetAllCourses>? = nil) {
-        self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses())
+        self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses()).exhaust()
         Self.configureAppearance()
     }
 
@@ -66,7 +66,8 @@ public struct CourseListView: View {
     var courseList: some View {
         let filterString = filter.lowercased()
         let filteredCourses = allCourses.filter { course in
-            filterString.isEmpty ||
+            guard !course.accessRestrictedByDate else { return false }
+            return filterString.isEmpty ||
                 course.name?.lowercased().contains(filterString) == true ||
                 course.courseCode?.lowercased().contains(filterString) == true
         }
