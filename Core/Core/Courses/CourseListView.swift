@@ -26,7 +26,16 @@ public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
-    @State private var filter = ""
+
+    public class Props: ObservableObject {
+        @Published public var filter: String
+
+        public init(filter: String = "") {
+            self.filter = filter
+        }
+    }
+    @ObservedObject var props: Props
+    let useList: Bool
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -38,21 +47,23 @@ public struct CourseListView: View {
 
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
-    public init(allCourses: Store<GetAllCourses>? = nil) {
+    public init(allCourses: Store<GetAllCourses>? = nil, props: Props = Props(), useList: Bool = true) {
         self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses()).exhaust()
+        self.useList = useList
+        self.props = props
         Self.configureAppearance()
     }
 
     public var body: some View {
         let view: AnyView
         if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgressView.AsView.create())
+            view = AnyView(CircleProgressView.AsView.create().tag("loading"))
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
             view = AnyView(courseList)
         }
-        return view.navigationBarTitle("All Courses")
+        return view.navigationBarTitle("All Courses").testID("CourseListView(filter = '\(props.filter)')")
     }
 
     var empty: some View {
@@ -60,11 +71,41 @@ public struct CourseListView: View {
             title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
             body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
-        )
+        ).tag("empty")
+    }
+
+    @ViewBuilder
+    func list<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            List(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+
+    @ViewBuilder
+    func section<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+
+    @ViewBuilder
+    func section<Header: View, Content: View>(header: Header, @ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(header: header, content: content)
+        } else {
+            VStack {
+                header
+                content()
+            }
+        }
     }
 
     var courseList: some View {
-        let filterString = filter.lowercased()
+        let filterString = props.filter.lowercased()
         let filteredCourses = allCourses.filter { course in
             guard !course.accessRestrictedByDate else { return false }
             return filterString.isEmpty ||
@@ -76,8 +117,8 @@ public struct CourseListView: View {
         let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
 
         return GeometryReader { outerGeometry in
-            List {
-                Section {
+            self.list {
+                self.section {
                     ZStack {
                         CircleRefreshControl.AsView { control in
                             control.beginRefreshing()
@@ -85,12 +126,15 @@ public struct CourseListView: View {
                                 control.endRefreshing()
                             }
                         }.frame(height: 0)
-                        SearchBarView(text: self.$filter, placeholder: NSLocalizedString("Search", comment: ""))
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: "")).testID("searchBar")
                     }.listRowInsets(EdgeInsets())
-                }
+                }.testID("header")
                 self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
+                    .testID("current")
                 self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
+                    .testID("past")
                 self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
+                    .testID("future")
                 self.notFound(
                     shown: filteredCourses.isEmpty,
                     height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
@@ -106,7 +150,7 @@ public struct CourseListView: View {
             .font(.medium12)
             .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-        return Section(header: formattedHeader) {
+        return section(header: formattedHeader) {
             ForEach(courses, id: \.id) { course in
                 Cell(course: course) {
                     guard let controller = self.controller() else { return }
@@ -120,7 +164,7 @@ public struct CourseListView: View {
         // All this for pretty animations
         let footer = Text("No matching courses", bundle: .core)
             .frame(height: shown ? height : 0)
-            .animation(shown ? nil : .default, value: filter)
+            .animation(shown ? nil : .default, value: props.filter)
             .opacity(shown ? 1 : 0)
             .frame(maxWidth: .infinity)
             .listRowInsets(EdgeInsets())
@@ -145,7 +189,7 @@ public struct CourseListView: View {
                 }.accessibilityElement(children: .ignore)
                     .accessibility(label: accessibilityLabel)
                     .accessibility(addTraits: .isButton)
-            }
+            }.testID("cell-\(course.id)")
         }
 
         var accessibilityLabel: Text {
@@ -208,9 +252,13 @@ public struct CourseListView: View {
 
         func toggleFavorite() {
             guard !pending else { return }
-            pending = true
+            withAnimation {
+                pending = true
+            }
             MarkFavoriteCourse(courseID: course.id, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
-                self.pending = false
+                withAnimation {
+                    self.pending = false
+                }
             }
         }
     }
@@ -229,3 +277,58 @@ struct CourseListView_Previews: PreviewProvider {
     }
 }
 #endif
+
+@available(iOSApplicationExtension 13.0, *)
+struct TagPrefKey: PreferenceKey, Equatable {
+    struct Tag: Equatable, CustomStringConvertible {
+        var name: String
+        let id: Foundation.UUID
+        var subtags: [Foundation.UUID: Tag]
+
+        var description: String { description().joined(separator: "\n") }
+        private func description(_ indent: String = "") -> [String] {
+            ["\(indent)\(name)"] + subtags.values.sorted { $0.name < $1.name }.flatMap {
+                $0.description("\(indent)  ")
+            }
+        }
+    }
+
+    typealias Value = [Foundation.UUID: Tag]
+    static let defaultValue: Value = [:]
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        for next in nextValue().values {
+            if value[next.id] != nil {
+                value[next.id]!.name = next.name
+                reduce(value: &value[next.id]!.subtags) { next.subtags }
+            } else {
+                value[next.id] = next
+            }
+        }
+    }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+struct TestID: ViewModifier {
+    // This really doesn't have to be string, and could be a more useful type
+    let name: String
+    let id = Foundation.UUID()
+
+    func body(content: Content) -> some View {
+        content.transformPreference(TagPrefKey.self) { tags in
+            tags = [self.id: TagPrefKey.Tag(name: self.name, id: self.id, subtags: tags)]
+        }
+    }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension View {
+    #if DEBUG
+    func testID(_ name: @escaping @autoclosure () -> Any? = nil) -> some View {
+        self.modifier(TestID(name: "\(name() ?? type(of: self))"))
+    }
+    #else
+    @inlinable func testID(_ tag: @autoclosure () -> Any? = nil) -> some View {
+        self
+    }
+    #endif
+}

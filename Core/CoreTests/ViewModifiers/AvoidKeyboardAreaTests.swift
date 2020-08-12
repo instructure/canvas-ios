@@ -20,6 +20,7 @@ import Foundation
 import XCTest
 @testable import Core
 import SwiftUI
+import Combine
 
 @available(iOS 13.0, *)
 class AvoidKeyboardAreaTests: CoreTestCase {
