@@ -27,8 +27,6 @@ public struct CourseListView: View {
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
     @State private var filter = ""
-    @State private var loading = true
-    let loadingPublisher: AnyPublisher<Bool, Never>
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -41,33 +39,20 @@ public struct CourseListView: View {
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
     public init(allCourses: Store<GetAllCourses>? = nil) {
-        let loadingSubject = CurrentValueSubject<Bool, Never>(true)
-        if let allCourses = allCourses {
-            self.allCourses = allCourses
-            loadingSubject.send(false)
-        } else {
-            self.allCourses = AppEnvironment.shared.subscribe(GetAllCourses()) { store in
-                if !store.pending {
-                    loadingSubject.send(false)
-                }
-            }.exhaust()
-        }
-        loadingPublisher = loadingSubject.eraseToAnyPublisher()
+        self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses()).exhaust()
         Self.configureAppearance()
     }
 
     public var body: some View {
         let view: AnyView
-        if loading {
+        if allCourses.pending && allCourses.isEmpty {
             view = AnyView(CircleProgressView.AsView.create())
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
             view = AnyView(courseList)
         }
-        return view
-            .navigationBarTitle("All Courses")
-            .onReceive(loadingPublisher) { self.loading = $0 }
+        return view.navigationBarTitle("All Courses")
     }
 
     var empty: some View {
@@ -81,7 +66,8 @@ public struct CourseListView: View {
     var courseList: some View {
         let filterString = filter.lowercased()
         let filteredCourses = allCourses.filter { course in
-            filterString.isEmpty ||
+            guard !course.accessRestrictedByDate else { return false }
+            return filterString.isEmpty ||
                 course.name?.lowercased().contains(filterString) == true ||
                 course.courseCode?.lowercased().contains(filterString) == true
         }
@@ -105,15 +91,14 @@ public struct CourseListView: View {
                 self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
                 self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
                 self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
-                if filteredCourses.isEmpty {
-                    Text("No matching courses", bundle: .core)
-                        .frame(height: outerGeometry.frame(in: .local).height - Self.searchBarHeight)
-                        .frame(maxWidth: .infinity)
-                        .listRowInsets(EdgeInsets())
-                }
-            }
+                self.notFound(
+                    shown: filteredCourses.isEmpty,
+                    height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
+                )
+            }.animation(.default, value: self.filter)
+                .animation(.default, value: self.allCourses)
         }.avoidKeyboardArea()
-         .lineLimit(2)
+            .lineLimit(2)
     }
 
     func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
@@ -129,6 +114,17 @@ public struct CourseListView: View {
                 }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
             }
         }
+    }
+
+    func notFound(shown: Bool, height: CGFloat) -> some View {
+        // All this for pretty animations
+        let footer = Text("No matching courses", bundle: .core)
+            .frame(height: shown ? height : 0)
+            .animation(shown ? nil : .default, value: filter)
+            .opacity(shown ? 1 : 0)
+            .frame(maxWidth: .infinity)
+            .listRowInsets(EdgeInsets())
+        return Section(footer: footer) { SwiftUI.EmptyView() }
     }
 
     struct Cell: View {
@@ -177,6 +173,7 @@ public struct CourseListView: View {
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
+                .animation(.default, value: pending)
                 .accessibility(label: Text("favorite", bundle: .core))
                 .accessibility(addTraits: course.isFavorite ? .isSelected : [])
         }

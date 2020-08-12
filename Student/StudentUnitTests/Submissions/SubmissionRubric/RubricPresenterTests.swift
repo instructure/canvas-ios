@@ -83,7 +83,7 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadAssignments() {
         let expected = setupData()
 
-        presenter.assignments.eventHandler(env.subscribe(.init(courseID: "", assignmentID: "")))
+        presenter.assignments.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
@@ -92,7 +92,7 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadSubmissions() {
         let expected = setupData()
 
-        presenter.submissions.eventHandler(env.subscribe(.init(context: .course(""), assignmentID: "", userID: "")))
+        presenter.submissions.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
@@ -101,7 +101,7 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadRubrics() {
         let expected = setupData()
 
-        presenter.rubrics.eventHandler(env.subscribe(scope: Rubric.scope(assignmentID: "")) {})
+        presenter.rubrics.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
@@ -110,7 +110,7 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadColors() {
         let expected = setupData()
 
-        presenter.colors.eventHandler(env.subscribe(.init()))
+        presenter.colors.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)
@@ -119,7 +119,7 @@ class RubricPresenterTests: StudentTestCase {
     func testLoadCourses() {
         let expected = setupData()
 
-        presenter.courses.eventHandler(env.subscribe(.init(courseID: "")))
+        presenter.courses.eventHandler()
         XCTAssertEqual(presenter.rubrics.first?.ratings?.count, 2)
         XCTAssertEqual(models.count, expected.count)
         XCTAssertEqual(models.first, expected.first)

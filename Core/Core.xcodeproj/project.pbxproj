@@ -808,7 +808,7 @@
 		E8CA4D3923F7312600A3CA3C /* QuizPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */; };
 		E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */; };
 		E8D6949424D4635B0080D883 /* EnvironmentValuesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */; };
-		E8D6949824D46B1E0080D883 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* HostingController.swift */; };
+		E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* CoreHostingController.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
 		E8E070F024E18B3000B37176 /* NavBarStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EF24E18B3000B37176 /* NavBarStyleTests.swift */; };
@@ -1847,7 +1847,7 @@
 		E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPactTests.swift; sourceTree = "<group>"; };
 		E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersPactTests.swift; sourceTree = "<group>"; };
 		E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensions.swift; sourceTree = "<group>"; };
-		E8D6949724D46B1E0080D883 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		E8D6949724D46B1E0080D883 /* CoreHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreHostingController.swift; sourceTree = "<group>"; };
 		E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardArea.swift; sourceTree = "<group>"; };
 		E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardAreaTests.swift; sourceTree = "<group>"; };
 		E8E070EF24E18B3000B37176 /* NavBarStyleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarStyleTests.swift; sourceTree = "<group>"; };
@@ -3694,7 +3694,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
-				E8D6949724D46B1E0080D883 /* HostingController.swift */,
+				E8D6949724D46B1E0080D883 /* CoreHostingController.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4967,7 +4967,7 @@
 				7DA25FF823F7226E005D2121 /* DocViewerAnnotationToolbar.swift in Sources */,
 				7DA260E723F72359005D2121 /* SectionHeaderView.swift in Sources */,
 				7DA260CC23F72359005D2121 /* BottomSheetPickerViewController.swift in Sources */,
-				E8D6949824D46B1E0080D883 /* HostingController.swift in Sources */,
+				E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */,
 				7D5F103D2429BA5D00803324 /* CardView.swift in Sources */,
 				7DA2609423F72327005D2121 /* RichContentEditorViewController.swift in Sources */,
 			);

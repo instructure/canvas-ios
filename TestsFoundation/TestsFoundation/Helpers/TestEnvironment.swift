@@ -35,7 +35,7 @@ public class TestEnvironment: AppEnvironment {
         self.userDefaults = SessionDefaults(sessionID: self.currentSession! .uniqueID)
     }
 
-    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { _ in }) -> Store<U> where U: UseCase {
+    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {
         if mockStore {
             return TestStore(env: self, useCase: useCase, eventHandler: callback)
         }

@@ -29,7 +29,7 @@ public enum StoreChange: Equatable {
 }
 
 public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
-    public typealias EventHandler = (Store<U>) -> Void
+    public typealias EventHandler = () -> Void
 
     public let env: AppEnvironment
     private let frc: NSFetchedResultsController<U.Model>
@@ -73,6 +73,27 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
 
+    // The default implementation of objectWillChange requires at least one
+    // @Published property, but we can't have stored properties that are iOS 13+
+    private let _objectWillChange: Any? = {
+        if #available(iOS 13.0, *) {
+            return ObservableObjectPublisher()
+        } else {
+            return nil
+        }
+    }()
+    @available(iOS 13.0, *)
+    public var objectWillChange: ObservableObjectPublisher {
+        (_objectWillChange as? ObservableObjectPublisher)!
+    }
+    private func willChange() {
+        if #available(iOS 13.0, *) {
+            performUIUpdate {
+                self.objectWillChange.send()
+            }
+        }
+    }
+
     public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
         self.env = env
         self.useCase = useCase
@@ -102,7 +123,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     private func notify() {
         performUIUpdate {
-            self.eventHandler(self)
+            self.eventHandler()
             self.changes = []
         }
     }
@@ -166,10 +187,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
+        willChange()
         requested = true
         pending = true
         notify()
         useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+            self?.willChange()
             self?.error = error
             self?.pending = false
             if let urlResponse = urlResponse {
@@ -184,9 +207,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
 
     @objc
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        if #available(iOSApplicationExtension 13.0, *) {
-            objectWillChange.send()
-        }
+        willChange()
     }
 
     @objc
@@ -249,6 +270,6 @@ extension Store: Sequence {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
+@available(iOS 13.0, *)
 extension Store: ObservableObject {
 }
