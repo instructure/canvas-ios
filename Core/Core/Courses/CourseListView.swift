@@ -282,28 +282,20 @@ struct CourseListView_Previews: PreviewProvider {
 struct TagPrefKey: PreferenceKey, Equatable {
     struct Tag: Equatable, CustomStringConvertible {
         var name: String
-        let id: Foundation.UUID
-        var subtags: [Foundation.UUID: Tag]
+        var subtags: [Tag]
 
         var description: String { description().joined(separator: "\n") }
         private func description(_ indent: String = "") -> [String] {
-            ["\(indent)\(name)"] + subtags.values.sorted { $0.name < $1.name }.flatMap {
+            ["\(indent)\(name)"] + subtags.flatMap {
                 $0.description("\(indent)  ")
             }
         }
     }
 
-    typealias Value = [Foundation.UUID: Tag]
-    static let defaultValue: Value = [:]
+    typealias Value = [Tag]
+    static let defaultValue: Value = []
     static func reduce(value: inout Value, nextValue: () -> Value) {
-        for next in nextValue().values {
-            if value[next.id] != nil {
-                value[next.id]!.name = next.name
-                reduce(value: &value[next.id]!.subtags) { next.subtags }
-            } else {
-                value[next.id] = next
-            }
-        }
+        value += nextValue()
     }
 }
 
@@ -311,11 +303,10 @@ struct TagPrefKey: PreferenceKey, Equatable {
 struct TestID: ViewModifier {
     // This really doesn't have to be string, and could be a more useful type
     let name: String
-    let id = Foundation.UUID()
 
     func body(content: Content) -> some View {
         content.transformPreference(TagPrefKey.self) { tags in
-            tags = [self.id: TagPrefKey.Tag(name: self.name, id: self.id, subtags: tags)]
+            tags = [TagPrefKey.Tag(name: self.name, subtags: tags)]
         }
     }
 }

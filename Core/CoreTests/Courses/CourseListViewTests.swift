@@ -54,7 +54,7 @@ class CourseListViewTests: CoreTestCase {
                 .autoconnect()
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    for tag in self.controller.tags.values {
+                    for tag in self.controller.tags {
                         print(tag)
                     }
             }
@@ -64,34 +64,34 @@ class CourseListViewTests: CoreTestCase {
 
     func testFilter() {
         drainMainQueue()
-        XCTAssertEqual("\(controller.tags.values)", """
+        XCTAssertEqual("\(controller.tags)", """
             [CourseListView(filter = '')
+              header
+                searchBar
               current
                 cell-1
                 cell-2
                 cell-3
-              future
-                cell-7
-              header
-                searchBar
               past
                 cell-4
                 cell-5
-                cell-6]
+                cell-6
+              future
+                cell-7]
             """
         )
 
         props.filter = "one"
         drainMainQueue()
-        XCTAssertEqual("\(controller.tags.values)", """
+        XCTAssertEqual("\(controller.tags)", """
             [CourseListView(filter = 'one')
+              header
+                searchBar
               current
                 cell-1
                 cell-2
-              future
-              header
-                searchBar
-              past]
+              past
+              future]
             """
         )
     }
