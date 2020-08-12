@@ -77,7 +77,7 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   keyExtractor = (item: SubmissionProps) => {
-    return item.userID
+    return item.userID || item.groupID
   }
 
   navigateToSubmission = (index: number) => (userID: string) => {

@@ -43,12 +43,14 @@ describe('ToDoListItem', () => {
     }
   })
 
-  it('gets courseColor and courseName from the model api', () => {
+  it('gets courseColor and courseName from the model api', async () => {
     const courseColor = 'green'
     const course = template.courseModel()
     httpCache.handle('GET', 'users/self/colors', { custom_colors: { course_1: courseColor } })
     httpCache.handle('GET', 'courses/1', course)
     const tree = shallow(<Connected item={props.item} onPress={jest.fn()} />)
+    tree.instance().api.cleanup()
+    tree.instance().api.options.policy = 'cache-only'
     expect(tree.find(ToDoListItem).props()).toMatchObject({
       courseColor,
       courseName: course.name,

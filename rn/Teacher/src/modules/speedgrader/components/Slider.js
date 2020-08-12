@@ -119,7 +119,7 @@ export default class Slider extends Component<Props, State> {
       },
       onPanResponderMove: Animated.event([
         null, { dx: this.slide },
-      ]),
+      ], { useNativeDriver: false }),
       onShouldBlockNativeResponder: () => false,
       onPanResponderRelease: () => this.interactionFinished(),
       onPanResponderTerminate: () => this.interactionFinished(),

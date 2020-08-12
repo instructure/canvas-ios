@@ -38,6 +38,8 @@ let assignment: any = template.assignment()
 let defaultProps = {}
 
 beforeEach(() => {
+  jest.useFakeTimers()
+  global.requestAnimationFrame = (fn) => { setTimeout(fn, 0) }
   const a = template.submission({ id: 1, grade: '95' })
   const b = template.submission({ id: 2, grade: 'ungraded' })
   const c = template.submission({ id: 3, grade: 'not_submitted' })

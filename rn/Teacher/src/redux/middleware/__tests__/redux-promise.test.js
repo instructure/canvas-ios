@@ -24,6 +24,7 @@ import app from '../../../modules/app'
 describe('promise middleware', () => {
   beforeEach(() => {
     app.setCurrentApp('teacher')
+    console.warn = jest.fn()
   })
 
   it('does nothing with a "normal" payload', async () => {
@@ -73,6 +74,7 @@ describe('promise middleware', () => {
       await promise
     } catch (e) {}
 
+    expect(console.warn).toHaveBeenCalled()
     expect(store.getActions()).toMatchObject([
       {
         type: 'test',

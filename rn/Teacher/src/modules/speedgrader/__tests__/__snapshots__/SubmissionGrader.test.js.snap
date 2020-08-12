@@ -11,7 +11,7 @@ exports[`SubmissionGrader can render the handle content 1`] = `
     }
   }
 >
-  <SegmentedControlIOS
+  <SegmentedControl
     onChange={[Function]}
     selectedIndex={-1}
     testID="speedgrader.segment-control"
@@ -789,7 +789,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                               }
                             }
                           >
-                            <SegmentedControlIOS
+                            <SegmentedControl
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"
@@ -859,7 +859,7 @@ exports[`SubmissionGrader renders wide 1`] = `
           }
         }
       >
-        <SegmentedControlIOS
+        <SegmentedControl
           onChange={[Function]}
           selectedIndex={-1}
           testID="speedgrader.segment-control"
@@ -1141,7 +1141,7 @@ exports[`SubmissionGrader renders wide 1`] = `
                               }
                             }
                           >
-                            <SegmentedControlIOS
+                            <SegmentedControl
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"

@@ -323,6 +323,8 @@ PODS:
     - React
   - react-native-image-picker (2.3.3):
     - React
+  - react-native-segmented-control (2.1.1):
+    - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
   - React-RCTAnimation (0.63.2):
@@ -391,6 +393,8 @@ PODS:
     - React
   - RNCPicker (1.6.6):
     - React
+  - RNDateTimePicker (3.0.0):
+    - React
   - RNFS (2.16.6):
     - React
   - RNSearchBar (3.5.1):
@@ -432,6 +436,7 @@ DEPENDENCIES:
   - react-native-camera (from `./rn/Teacher/node_modules/react-native-camera`)
   - react-native-document-picker (from `./rn/Teacher/node_modules/react-native-document-picker`)
   - react-native-image-picker (from `./rn/Teacher/node_modules/react-native-image-picker`)
+  - "react-native-segmented-control (from `./rn/Teacher/node_modules/@react-native-community/segmented-control`)"
   - React-RCTActionSheet (from `./rn/Teacher/node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `./rn/Teacher/node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `./rn/Teacher/node_modules/react-native/Libraries/Blob`)
@@ -446,6 +451,7 @@ DEPENDENCIES:
   - RNAudio (from `./rn/Teacher/node_modules/react-native-audio`)
   - "RNCAsyncStorage (from `./rn/Teacher/node_modules/@react-native-community/async-storage`)"
   - "RNCPicker (from `./rn/Teacher/node_modules/@react-native-community/picker`)"
+  - "RNDateTimePicker (from `./rn/Teacher/node_modules/@react-native-community/datetimepicker`)"
   - RNFS (from `./rn/Teacher/node_modules/react-native-fs`)
   - RNSearchBar (from `./rn/Teacher/node_modules/react-native-search-bar`)
   - RNSound (from `./rn/Teacher/node_modules/react-native-sound`)
@@ -520,6 +526,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/react-native-document-picker"
   react-native-image-picker:
     :path: "./rn/Teacher/node_modules/react-native-image-picker"
+  react-native-segmented-control:
+    :path: "./rn/Teacher/node_modules/@react-native-community/segmented-control"
   React-RCTActionSheet:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -548,6 +556,8 @@ EXTERNAL SOURCES:
     :path: "./rn/Teacher/node_modules/@react-native-community/async-storage"
   RNCPicker:
     :path: "./rn/Teacher/node_modules/@react-native-community/picker"
+  RNDateTimePicker:
+    :path: "./rn/Teacher/node_modules/@react-native-community/datetimepicker"
   RNFS:
     :path: "./rn/Teacher/node_modules/react-native-fs"
   RNSearchBar:
@@ -606,6 +616,7 @@ SPEC CHECKSUMS:
   react-native-camera: d9e7b66e40420dcef111f3265a00f01eea54c52c
   react-native-document-picker: 4921045c5c6c78243010f784eae0a3f4b2af7799
   react-native-image-picker: 3d3f85baabca60a00b75fb8facc1376db7bbdafa
+  react-native-segmented-control: 05d93c1c7576b53189720012a3e8a3c23608d849
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -620,11 +631,12 @@ SPEC CHECKSUMS:
   RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCPicker: 494015f2b7ec4bee5484b6f235aa19691426dcdb
+  RNDateTimePicker: f47a6309133c6d013ad6942fc83b753b3f6e41d6
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 6c85de038fa69b865cfb1bf017595e8c623a7b44
+PODFILE CHECKSUM: dd6d61b14daadb32d579e37a1071fd3acdb2d20a
 
 COCOAPODS: 1.9.3

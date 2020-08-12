@@ -30,10 +30,51 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native'
-import RNCounter from 'react-native-counter'
 
 // localized counting
-class Counter extends RNCounter {
+export class Counter extends Component {
+  static defaultProps = {
+    start: 0,
+    time: 1000,
+  }
+
+  state = { value: this.props.start }
+
+  componentDidMount () {
+    this.startTime = Date.now()
+    requestAnimationFrame(this.animate)
+  }
+
+  animate = () => {
+    const { onComplete } = this.props
+
+    if (this.stop) {
+      if (onComplete) { onComplete() }
+      return
+    }
+
+    requestAnimationFrame(this.animate)
+    this.draw()
+  }
+
+  draw () {
+    const { time, start, end } = this.props
+
+    const now = Date.now()
+    if (now - this.startTime >= time) this.stop = true
+    const percentage = Math.min((now - this.startTime) / time, 1)
+    const easeVal = this.circInOut(percentage)
+    const value = start + (end - start) * easeVal
+
+    this.setState({ value })
+  }
+
+  circInOut (t) {
+    return ((t *= 2) < 1)
+      ? -0.5 * (Math.sqrt(1 - t * t) - 1)
+      : 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1)
+  }
+
   render () {
     const { style } = this.props
     const { value } = this.state
@@ -101,7 +142,6 @@ export default class SubmissionGraph extends Component<SubmissionGraphProps, any
               start={0}
               end={this.state.current}
               time={500}
-              easing='circInOut'
               style={submissionsGraphStyle.innerText}
             />
           </View>

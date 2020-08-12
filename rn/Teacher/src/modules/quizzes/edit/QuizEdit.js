@@ -26,10 +26,10 @@ import {
   Image,
   Text,
   LayoutAnimation,
-  DatePickerIOS,
   NativeModules,
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { FormLabel } from '../../../common/text'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
@@ -358,9 +358,9 @@ export class QuizEdit extends Component<Props, any> {
                       </View>
                     </View>
                     { this.state.pickers.show_correct_answers_at &&
-                      <DatePickerIOS
-                        date={extractDateFromString(quiz.show_correct_answers_at) || defaultDate}
-                        onDateChange={this._updateQuiz('show_correct_answers_at', d => d.toISOString())}
+                      <DateTimePicker
+                        value={extractDateFromString(quiz.show_correct_answers_at) || defaultDate}
+                        onChange={(e, d) => this._setQuiz({ show_correct_answers_at: d.toISOString() }, true)}
                         testID='quizzes.edit.show-correct-answers-at-date-picker'
                       />
                     }
@@ -383,9 +383,9 @@ export class QuizEdit extends Component<Props, any> {
                       </View>
                     </View>
                     { this.state.pickers.hide_correct_answers_at &&
-                      <DatePickerIOS
-                        date={extractDateFromString(quiz.hide_correct_answers_at) || defaultDate}
-                        onDateChange={this._updateQuiz('hide_correct_answers_at', d => d.toISOString())}
+                      <DateTimePicker
+                        value={extractDateFromString(quiz.hide_correct_answers_at) || defaultDate}
+                        onChange={(e, d) => this._setQuiz({ hide_correct_answers_at: d.toISOString() }, true)}
                         testID='quizzes.edit.hide-correct-answers-at-date-picker'
                       />
                     }

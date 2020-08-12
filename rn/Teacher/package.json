@@ -30,7 +30,9 @@
   "dependencies": {
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/async-storage": "^1.6.1",
+    "@react-native-community/datetimepicker": "^3.0.0",
     "@react-native-community/picker": "^1.6.6",
+    "@react-native-community/segmented-control": "^2.1.1",
     "apollo-client-preset": "^1.0.8",
     "apollo-link-error": "^1.1.12",
     "create-react-class": "15.6.2",
@@ -50,7 +52,6 @@
     "react-native-audio": "^3.5.1",
     "react-native-button": "^2.1.0",
     "react-native-camera": "^3.23.1",
-    "react-native-counter": "Kerumen/react-native-counter",
     "react-native-document-picker": "Elyx0/react-native-document-picker",
     "react-native-fs": "^2.3.2",
     "react-native-hyperlink": "obipawan/react-native-hyperlink",

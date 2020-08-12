@@ -41,13 +41,15 @@ test('AuthenticatedWebView renders without uri', async () => {
   let tree = renderer.create(
     <AuthenticatedWebView source={{ html: 'html is the coolest' }}/>
   )
+  await Promise.resolve()
   expect(tree.toJSON()).toMatchSnapshot()
 })
 
-test('AuthenticatedWebView can inject javascript and not explode', () => {
+test('AuthenticatedWebView can inject javascript and not explode', async () => {
   let tree = renderer.create(
     <AuthenticatedWebView source={{ uri: 'http://fillmurray.com/100/100' }}/>
   )
+  await Promise.resolve()
   const instance = tree.getInstance()
   instance.webView = {
     evaluateJavaScript: jest.fn(),

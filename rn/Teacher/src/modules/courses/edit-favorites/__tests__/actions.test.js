@@ -23,6 +23,11 @@ import { testAsyncAction } from '../../../../../test/helpers/async'
 import { apiResponse, apiError } from '../../../../../test/helpers/apiMock'
 import * as courseTemplate from '../../../../__templates__/course'
 
+describe('edit favorite actions', () => {
+beforeEach(() => {
+  console.warn = jest.fn()
+})
+
 test('toggleCourseFavorite workflow', async () => {
   const course = courseTemplate.course({ is_favorite: false })
   let actions = FavoritesActions({ favoriteCourse: apiResponse(1234) })
@@ -53,6 +58,7 @@ test('toggleCourseFavorite workflow error', async () => {
   }
   const result = await testAsyncAction(actions.toggleCourseFavorite(course.id, true), initialState)
 
+  expect(console.warn).toHaveBeenCalled()
   expect(result).toMatchObject([
     {
       type: actions.toggleCourseFavorite.toString(),
@@ -69,4 +75,5 @@ test('toggleCourseFavorite workflow error', async () => {
       },
     },
   ])
+})
 })

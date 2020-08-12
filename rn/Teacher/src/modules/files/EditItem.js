@@ -22,10 +22,10 @@ import i18n from 'format-message'
 import React, { Component } from 'react'
 import ReactNative, {
   Alert,
-  DatePickerIOS,
   View,
   NativeModules,
 } from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import api from '../../canvas-api'
 import Screen from '../../routing/Screen'
@@ -368,10 +368,10 @@ export default class EditItem extends Component<Props, State> {
                   testID='edit-item.unlock_at'
                 />
                 {showUnlockedAt &&
-                  <DatePickerIOS
-                    date={updated.unlock_at ? new Date(updated.unlock_at) : new Date()}
+                  <DateTimePicker
+                    value={updated.unlock_at ? new Date(updated.unlock_at) : new Date()}
                     mode='date'
-                    onDateChange={value => this.setState({ updated: { ...this.state.updated, unlock_at: value.toISOString() } })}
+                    onChange={(e, value) => this.setState({ updated: { ...this.state.updated, unlock_at: value.toISOString() } })}
                   />
                 }
                 <RequiredFieldSubscript title={validation.unlock_at} visible={!!validation.unlock_at} />
@@ -385,10 +385,10 @@ export default class EditItem extends Component<Props, State> {
                   testID='edit-item.lock_at'
                 />
                 {showLockedAt &&
-                  <DatePickerIOS
-                    date={updated.lock_at ? new Date(updated.lock_at) : new Date()}
+                  <DateTimePicker
+                    value={updated.lock_at ? new Date(updated.lock_at) : new Date()}
                     mode='date'
-                    onDateChange={value => this.setState({ updated: { ...this.state.updated, lock_at: value.toISOString() } })}
+                    onChange={(e, value) => this.setState({ updated: { ...this.state.updated, lock_at: value.toISOString() } })}
                   />
                 }
                 <RequiredFieldSubscript title={validation.lock_at} visible={!!validation.lock_at} />

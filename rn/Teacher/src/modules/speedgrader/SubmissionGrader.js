@@ -20,10 +20,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  SegmentedControlIOS,
   Dimensions,
 } from 'react-native'
 import i18n from 'format-message'
+import SegmentedControl from '@react-native-community/segmented-control'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
 import SubmissionPicker from './components/SubmissionPicker'
@@ -199,7 +199,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
   renderHandleContent = () => {
     return (
       <View style={styles.controlWrapper}>
-        <SegmentedControlIOS
+        <SegmentedControl
           testID='speedgrader.segment-control'
           values={[
             i18n('Grades'),

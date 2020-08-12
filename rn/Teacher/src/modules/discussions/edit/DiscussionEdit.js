@@ -23,11 +23,11 @@ import { connect } from 'react-redux'
 import ReactNative, {
   View,
   LayoutAnimation,
-  DatePickerIOS,
   NativeModules,
   processColor,
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
@@ -372,9 +372,9 @@ export class DiscussionEdit extends Component<Props, any> {
                   removeButtonTestID='DiscussionEdit.delayPostAtClearButton'
                 />
                 { this.state.showingDatePicker.delayed_post_at &&
-                  <DatePickerIOS
-                    date={extractDateFromString(this.state.delayed_post_at) || defaultDate}
-                    onDateChange={this._valueChanged('delayed_post_at', d => d.toISOString())}
+                  <DateTimePicker
+                    value={extractDateFromString(this.state.delayed_post_at) || defaultDate}
+                    onChange={(e, d) => this._valuesChanged({ delayed_post_at: d.toISOString() }, true)}
                     testID='DiscussionEdit.delayPostAtPicker'
                   />
                 }
@@ -390,9 +390,9 @@ export class DiscussionEdit extends Component<Props, any> {
                   removeButtonTestID='DiscussionEdit.lockAtClearButton'
                 />
                 { this.state.showingDatePicker.lock_at &&
-                  <DatePickerIOS
-                    date={extractDateFromString(this.state.lock_at) || defaultDate}
-                    onDateChange={this._valueChanged('lock_at', d => d.toISOString())}
+                  <DateTimePicker
+                    value={extractDateFromString(this.state.lock_at) || defaultDate}
+                    onChange={(e, d) => this._valuesChanged({ lock_at: d.toISOString() }, true)}
                     testID='DiscussionEdit.lockAtPicker'
                   />
                 }

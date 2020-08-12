@@ -26,7 +26,7 @@ import * as template from '../../../__templates__'
 
 jest
   .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
-  .mock('react-native/Libraries/Components/SegmentedControlIOS/SegmentedControlIOS', () => 'SegmentedControlIOS')
+  .mock('@react-native-community/segmented-control', () => 'SegmentedControl')
   .mock('../GradeTab', () => 'GradeTab')
   .mock('../components/GradePicker', () => 'GradePicker')
   .mock('../components/Header', () => 'Header')

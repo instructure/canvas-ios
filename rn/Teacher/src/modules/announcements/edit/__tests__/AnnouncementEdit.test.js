@@ -183,7 +183,7 @@ describe('AnnouncementEdit', () => {
     const component = render(props)
     tapDelayedPostAtRow(component)
     const datePicker = component.find('[testID="announcements.edit.delayed-post-at-date-picker"]')
-    datePicker.simulate('dateChange', new Date(0))
+    datePicker.simulate('Change', {}, new Date(0))
     expect(getDelayPostAtValueFromLabel(component)).toEqual('1970-01-01T00:00:00.000Z')
   })
 
