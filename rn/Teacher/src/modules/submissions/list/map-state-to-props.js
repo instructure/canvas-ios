@@ -55,7 +55,6 @@ export function mapStateToProps (state: AppState, { courseID, assignmentID }: Ro
   }
 
   let anonymous = isAssignmentAnonymous(state, courseID, assignmentID)
-  let muted = !!assignmentContent && assignmentContent.data.muted
 
   let assignmentName = ''
   let gradingType = 'points'
@@ -77,7 +76,6 @@ export function mapStateToProps (state: AppState, { courseID, assignmentID }: Ro
     pending: submissions.pending,
     submissions: anonymous ? shuffle(submissions.submissions.slice(), assignmentID) : submissions.submissions,
     anonymous,
-    muted,
     assignmentName,
     gradingType,
     sections,

@@ -118,7 +118,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
         assignments: {
           '1': {
-            data: template.assignment({ muted: true, anonymize_students: true }),
+            data: template.assignment({ anonymize_students: true }),
           },
         },
         enrollments: {
@@ -177,7 +177,6 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
       ],
       anonymous: true,
-      muted: true,
     })
     expect(shuffle).toHaveBeenCalled()
   })
@@ -231,7 +230,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
         assignments: {
           '1': {
-            data: template.assignment({ muted: true, anonymize_students: true }),
+            data: template.assignment({ anonymize_students: true }),
           },
         },
         enrollments: {
@@ -274,7 +273,6 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
       ],
       anonymous: true,
-      muted: true,
     })
   })
 
@@ -318,35 +316,5 @@ describe('QuizSubmissionList mapStateToProps', () => {
       anonymous: true,
     })
     expect(shuffle).toHaveBeenCalled()
-  })
-
-  it('will set muted to false if the assignment does not exist', () => {
-    const course = template.course()
-    const quiz = template.quiz({
-      assignment_id: '1',
-    })
-    const appState = template.appState({
-      entities: {
-        courses: {
-          [course.id]: { enrollments: { refs: [] } },
-        },
-        assignments: {},
-        enrollments: {},
-        quizzes: {
-          [quiz.id]: {
-            data: quiz,
-            quizSubmissions: { refs: [] },
-            submissions: { refs: [] },
-          },
-        },
-        quizSubmissions: {},
-        submissions: {},
-        sections: [template.section({ course_id: course.id })],
-      },
-    })
-    const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
-    expect(result).toMatchObject({
-      muted: false,
-    })
   })
 })

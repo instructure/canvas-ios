@@ -91,7 +91,6 @@ const props = {
   courseColor: '#ddd',
   courseName: 'fancy name',
   anonymous: false,
-  muted: false,
   assignmentName: 'Blah',
   groupAssignment: null,
   sections: [templates.section()],
@@ -357,7 +356,6 @@ describe('graphql props', () => {
       pending: true,
       submissions: [],
       anonymous: false,
-      muted: false,
       gradingType: 'points',
       sections: [],
     })
@@ -370,7 +368,6 @@ describe('graphql props', () => {
       pointsPossible: results.assignment.pointsPossible,
       submissions: results.assignment.submissions.edges.map(({ submission }) => submission),
       anonymous: results.assignment.anonymousGrading,
-      muted: results.assignment.muted,
       assignmentName: results.assignment.name,
       gradingType: results.assignment.gradingType,
       sections: results.assignment.course.sections.edges.map(({ section }) => section),
