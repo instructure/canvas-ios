@@ -40,6 +40,7 @@ open class AppEnvironment {
     public var userDefaults: SessionDefaults?
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
+    open var isTest: Bool { false }
 
     public init() {
         self.database = globalDatabase

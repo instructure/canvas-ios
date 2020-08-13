@@ -57,13 +57,13 @@ public struct CourseListView: View {
     public var body: some View {
         let view: AnyView
         if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgressView.AsView.create().tag("loading"))
+            view = AnyView(CircleProgressView.AsView.create().testID("loading"))
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
             view = AnyView(courseList)
         }
-        return view.navigationBarTitle("All Courses").testID("CourseListView(filter = '\(props.filter)')")
+        return view.navigationBarTitle("All Courses").testID("CourseListView")
     }
 
     var empty: some View {
@@ -71,7 +71,7 @@ public struct CourseListView: View {
             title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
             body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
-        ).tag("empty")
+        ).testID()
     }
 
     @ViewBuilder
@@ -126,7 +126,7 @@ public struct CourseListView: View {
                                 control.endRefreshing()
                             }
                         }.frame(height: 0)
-                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: "")).testID("searchBar")
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: "")).testID(info: self.props.filter)
                     }.listRowInsets(EdgeInsets())
                 }.testID("header")
                 self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
@@ -277,49 +277,3 @@ struct CourseListView_Previews: PreviewProvider {
     }
 }
 #endif
-
-@available(iOSApplicationExtension 13.0, *)
-struct TagPrefKey: PreferenceKey, Equatable {
-    struct Tag: Equatable, CustomStringConvertible {
-        var name: String
-        var subtags: [Tag]
-
-        var description: String { description().joined(separator: "\n") }
-        private func description(_ indent: String = "") -> [String] {
-            ["\(indent)\(name)"] + subtags.flatMap {
-                $0.description("\(indent)  ")
-            }
-        }
-    }
-
-    typealias Value = [Tag]
-    static let defaultValue: Value = []
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
-    }
-}
-
-@available(iOSApplicationExtension 13.0, *)
-struct TestID: ViewModifier {
-    // This really doesn't have to be string, and could be a more useful type
-    let name: String
-
-    func body(content: Content) -> some View {
-        content.transformPreference(TagPrefKey.self) { tags in
-            tags = [TagPrefKey.Tag(name: self.name, subtags: tags)]
-        }
-    }
-}
-
-@available(iOSApplicationExtension 13.0, *)
-extension View {
-    #if DEBUG
-    func testID(_ name: @escaping @autoclosure () -> Any? = nil) -> some View {
-        self.modifier(TestID(name: "\(name() ?? type(of: self))"))
-    }
-    #else
-    @inlinable func testID(_ tag: @autoclosure () -> Any? = nil) -> some View {
-        self
-    }
-    #endif
-}

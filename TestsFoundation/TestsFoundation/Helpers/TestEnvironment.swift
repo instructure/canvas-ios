@@ -23,6 +23,7 @@ import XCTest
 
 public class TestEnvironment: AppEnvironment {
     public var mockStore = false
+    override open var isTest: Bool { true }
 
     override public init() {
         super.init()

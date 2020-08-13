@@ -54,8 +54,8 @@ class CourseListViewTests: CoreTestCase {
                 .autoconnect()
                 .sink { [weak self] _ in
                     guard let self = self else { return }
-                    for tag in self.controller.tags {
-                        print(tag)
+                    if let tree = self.controller.testTree {
+                        print(tree)
                     }
             }
         )
@@ -64,7 +64,7 @@ class CourseListViewTests: CoreTestCase {
 
     func testFilter() {
         drainMainQueue()
-        XCTAssertEqual("\(controller.tags)", """
+        XCTAssertEqual(controller.testTree?.description, """
             [CourseListView(filter = '')
               header
                 searchBar
@@ -83,7 +83,7 @@ class CourseListViewTests: CoreTestCase {
 
         props.filter = "one"
         drainMainQueue()
-        XCTAssertEqual("\(controller.tags)", """
+        XCTAssertEqual(controller.testTree?.description, """
             [CourseListView(filter = 'one')
               header
                 searchBar
