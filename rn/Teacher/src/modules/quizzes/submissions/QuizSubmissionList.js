@@ -104,7 +104,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         {
           toValue: 0,
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }
       ),
       Animated.delay(2000),
@@ -113,7 +113,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         {
           toValue: 100,
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }
       ),
     ]).start()

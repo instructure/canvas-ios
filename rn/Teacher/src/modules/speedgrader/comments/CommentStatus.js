@@ -58,7 +58,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
         toValue: 0.8,
         duration,
         easing: Easing.linear,
-        useNativeDriver: true,
+        useNativeDriver: false,
       },
     )
     if (animation) {
@@ -78,7 +78,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
         {
           toValue: 1,
           duration: 300,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }
       ).start(nextProps.animationComplete)
     }
