@@ -19,55 +19,70 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0, *)
-struct TestTree: Equatable, CustomStringConvertible {
-    let id: String?
-    let typeName: String
-    let info: AnyEquatable?
-    let subtrees: [TestTree]
+public struct TestTree {
+    public let kind: Kind?
+    public let id: String?
+    public let type: Any.Type
+    public let wrappedInfo: AnyEquatable?
+    public let subtrees: [TestTree]
 
-    var description: String { description(indent: "", after: "").joined(separator: "\n") }
-    private func description(indent: String, after: String) -> [String] {
-        var result = ["\(indent)\(subtrees.isEmpty ? "" : "┬") \(id ?? "type: \(typeName)")"]
-        for subtree in subtrees.dropLast() {
-            result.append(contentsOf: subtree.description(indent: "\(after)├─", after: "\(after)│ "))
-        }
-        if let subtree = subtrees.last {
-            result.append(contentsOf: subtree.description(indent: "\(after)└─", after: "\(after)  "))
-        }
-        return result
+    public var info: Any? { wrappedInfo?.value }
+    public func info<E: Equatable>(_ key: String) -> E? {
+        (info as? [String: Any])?[key] as? E
     }
 
-    subscript(_ index: Int) -> TestTree? {
-        index < subtrees.count ? subtrees[index] : nil
+    public init<Info: Equatable>(kind: Kind?, id: String?, type: Any.Type, info: Info?, subtrees: [TestTree]) {
+        self.kind = kind
+        self.id = id
+        self.type = type
+        self.wrappedInfo = AnyEquatable(info)
+        self.subtrees = subtrees
     }
-    subscript(_ id: String) -> TestTree? {
-        subtrees.first { $0.id == id }
+
+    public struct AnyEquatable {
+        public let value: Any
+        public let isEqual: (Any) -> Bool
+
+        public init<E: Equatable>(_ value: E) {
+            self.value = value
+            isEqual = { value == $0 as? E }
+        }
+        public init?<E: Equatable>(_ value: E?) {
+            guard let value = value else { return nil }
+            self.init(value)
+        }
     }
-    subscript<T>(_ type: T.Type) -> TestTree? {
-        subtrees.first { $0.typeName == "\(type)" }
+
+    /// Roughly equivalent to a CSS class
+    public enum Kind {
+        case section
+        case cell
+    }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension TestTree: Equatable {
+    public static func == (lhs: TestTree, rhs: TestTree) -> Bool {
+        lhs.kind == rhs.kind &&
+            lhs.id == rhs.id &&
+            String(reflecting: lhs.type) == String(reflecting: rhs.type) &&
+            lhs.wrappedInfo == rhs.wrappedInfo &&
+            lhs.subtrees == rhs.subtrees
     }
 }
 
 @available(iOSApplicationExtension 13.0, *)
 extension TestTree: PreferenceKey {
-    typealias Value = [TestTree]
-    static let defaultValue: Value = []
-    static func reduce(value: inout Value, nextValue: () -> Value) {
+    public typealias Value = [TestTree]
+    public static let defaultValue: Value = []
+    public static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
     }
 }
 
-struct AnyEquatable {
-    let value: Any
-    let isEqual: (Any) -> Bool
-    init<E: Equatable>(_ value: E) {
-        self.value = value
-        isEqual = { value == $0 as? E }
-    }
-}
-
-extension AnyEquatable: Equatable {
-    static func == (lhs: AnyEquatable, rhs: AnyEquatable) -> Bool {
+@available(iOSApplicationExtension 13.0, *)
+extension TestTree.AnyEquatable: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.isEqual(rhs.value)
     }
 }
@@ -76,19 +91,15 @@ extension AnyEquatable: Equatable {
 struct TestIdentifier<Info: Equatable>: ViewModifier {
     @Environment(\.appEnvironment.isTest) var isTest: Bool
 
+    let kind: TestTree.Kind?
     let id: String?
-    let typeName: String
-    let info: (() -> Info)?
-
-    private var erasedInfo: AnyEquatable? {
-        guard let info = info else { return nil}
-        return AnyEquatable(info())
-    }
+    let type: Any.Type
+    let info: Info?
 
     func body(content: Content) -> some View {
         content.transformPreference(TestTree.self) { trees in
             guard self.isTest else { return }
-            trees = [TestTree(id: self.id, typeName: self.typeName, info: self.erasedInfo, subtrees: trees)]
+            trees = [TestTree(kind: self.kind, id: self.id, type: self.type, info: self.info, subtrees: trees)]
         }
     }
 }
@@ -96,19 +107,33 @@ struct TestIdentifier<Info: Equatable>: ViewModifier {
 @available(iOSApplicationExtension 13.0, *)
 extension View {
     #if DEBUG
-    func testID<Info: Equatable>(_ id: String? = nil, info: @escaping @autoclosure () -> Info) -> some View {
-        self.modifier(TestIdentifier(id: id, typeName: "\(type(of: self))", info: info))
+    public func testID<Info: Equatable>(_ kind: TestTree.Kind?, id: String? = nil, info: Info) -> some View {
+        self.modifier(TestIdentifier(kind: kind, id: id, type: type(of: self), info: info))
     }
-    func testID(_ id: String? = nil) -> some View {
-        self.modifier(TestIdentifier<Bool>(id: id, typeName: "\(type(of: self))", info: nil))
+    public func testID<Info: Equatable>(_ id: String? = nil, info: Info) -> some View {
+        self.modifier(TestIdentifier(kind: nil, id: id, type: type(of: self), info: info))
+    }
+    public func testID(_ kind: TestTree.Kind? = nil, id: String? = nil) -> some View {
+        self.modifier(TestIdentifier<Bool>(kind: kind, id: id, type: type(of: self), info: nil))
+    }
+    public func testID(_ id: String? = nil) -> some View {
+        self.modifier(TestIdentifier<Bool>(kind: nil, id: id, type: type(of: self), info: nil))
     }
     #else
     @inlinable
-    func testID<Info: Equatable>(_ id: String? = nil, info: @escaping @autoclosure () -> Info) -> some View {
+    public func testID<Info: Equatable>(_ kind: TestTree.Kind?, id: String? = nil, info: Info) -> some View {
         self
     }
     @inlinable
-    func testID(_ id: String? = nil) -> some View {
+    public func testID<Info: Equatable>(_ id: String? = nil, info: Info) -> some View {
+        self
+    }
+    @inlinable
+    public func testID(_ kind: TestTree.Kind? = nil, id: String? = nil) -> some View {
+        self
+    }
+    @inlinable
+    public func testID(_ id: String? = nil) -> some View {
         self
     }
     #endif

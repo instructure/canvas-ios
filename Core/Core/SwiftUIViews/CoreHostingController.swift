@@ -71,7 +71,7 @@ public struct CoreHostingBaseView<Content: View>: View {
             .onPreferenceChange(NavBarStyle.self) { style in
                 self.controller()?.applyNavBarStyle(style)
             }.onPreferenceChange(TestTree.self) { testTrees in
-                self.controller()?.testTree = testTrees.first { $0.typeName == "\(Content.self)" }
+                self.controller()?.testTree = testTrees.first { $0.type == Content.self }
             }
     }
 }

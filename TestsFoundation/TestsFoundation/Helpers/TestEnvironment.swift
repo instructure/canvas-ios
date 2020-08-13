@@ -60,4 +60,9 @@ public class TestStore<U: UseCase>: Store<U> {
     override public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         getNextPageExpectation.fulfill()
     }
+
+    public var overridePending: Bool?
+    public override var pending: Bool {
+        overridePending ?? super.pending
+    }
 }

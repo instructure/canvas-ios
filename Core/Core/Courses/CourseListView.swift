@@ -63,15 +63,15 @@ public struct CourseListView: View {
         } else {
             view = AnyView(courseList)
         }
-        return view.navigationBarTitle("All Courses").testID("CourseListView")
+        return view.navigationBarTitle("All Courses")
     }
 
     var empty: some View {
-        EmptyViewRepresentable(
+        EmptyView.AsView(
             title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
             body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
-        ).testID()
+        ).testID("empty")
     }
 
     @ViewBuilder
@@ -126,15 +126,13 @@ public struct CourseListView: View {
                                 control.endRefreshing()
                             }
                         }.frame(height: 0)
-                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: "")).testID(info: self.props.filter)
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
+                            .testID(info: ["filter": self.props.filter])
                     }.listRowInsets(EdgeInsets())
-                }.testID("header")
-                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
-                    .testID("current")
-                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
-                    .testID("past")
-                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
-                    .testID("future")
+                }
+                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments, testID: "current")
+                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments, testID: "past")
+                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments, testID: "future")
                 self.notFound(
                     shown: filteredCourses.isEmpty,
                     height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
@@ -145,18 +143,24 @@ public struct CourseListView: View {
             .lineLimit(2)
     }
 
-    func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
-        let formattedHeader = courses.isEmpty ? nil : header
+    func formatHeader<Header: View>(_ header: Header) -> some View {
+        header
             .font(.medium12)
             .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-        return section(header: formattedHeader) {
-            ForEach(courses, id: \.id) { course in
-                Cell(course: course) {
-                    guard let controller = self.controller() else { return }
-                    self.env.router.route(to: "/courses/\(course.id)", from: controller)
-                }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
-            }
+    }
+
+    @ViewBuilder
+    func enrollmentSection<Header: View>(_ header: Header, courses: [Course], testID: String) -> some View {
+        if !courses.isEmpty {
+            section(header: formatHeader(header)) {
+                ForEach(courses, id: \.id) { course in
+                    Cell(course: course) {
+                        guard let controller = self.controller() else { return }
+                        self.env.router.route(to: "/courses/\(course.id)", from: controller)
+                    }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
+                }
+            }.testID(.section, id: testID)
         }
     }
 
@@ -168,6 +172,7 @@ public struct CourseListView: View {
             .opacity(shown ? 1 : 0)
             .frame(maxWidth: .infinity)
             .listRowInsets(EdgeInsets())
+            .testID("no-match", info: ["shown": shown])
         return Section(footer: footer) { SwiftUI.EmptyView() }
     }
 
@@ -189,7 +194,7 @@ public struct CourseListView: View {
                 }.accessibilityElement(children: .ignore)
                     .accessibility(label: accessibilityLabel)
                     .accessibility(addTraits: .isButton)
-            }.testID("cell-\(course.id)")
+            }.testID(.cell, id: course.id)
         }
 
         var accessibilityLabel: Text {
@@ -209,11 +214,11 @@ public struct CourseListView: View {
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.starSolid.foregroundColor(.textDark)
+                    Image.starSolid.foregroundColor(.textDark).testID("pending")
                 } else if course.isFavorite {
-                    Image.starSolid.foregroundColor(.textInfo)
+                    Image.starSolid.foregroundColor(.textInfo).testID("favorite")
                 } else {
-                    Image.starLine.foregroundColor(.textDark)
+                    Image.starLine.foregroundColor(.textDark).testID("not favorite")
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
@@ -243,9 +248,9 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.completeSolid.foregroundColor(.textSuccess)
+                    Image.completeSolid.foregroundColor(.textSuccess).testID("published")
                 } else {
-                    Image.noSolid.foregroundColor(.textDark)
+                    Image.noSolid.foregroundColor(.textDark).testID("unpublished")
                 }
             }
         }

@@ -35,64 +35,84 @@ class CourseListViewTests: CoreTestCase {
 
     var props = CourseListView.Props()
 
+    lazy var allCourses = environment.subscribe(GetAllCourses())
     lazy var controller: CoreHostingController<CourseListView> = {
-        let allCourses = environment.subscribe(GetAllCourses())
         api.mock(allCourses, value: courses)
         return hostSwiftUIController(CourseListView(allCourses: allCourses.exhaust(), props: props, useList: false))
     }()
-
     lazy var view = controller.rootView.rootView
-    var cancellable: [AnyCancellable] = []
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    func xtestRunInteractivelyAndWatch() {
-        cancellable.append(
-            Timer.publish(every: 1, on: .main, in: .default)
-                .autoconnect()
-                .sink { [weak self] _ in
-                    guard let self = self else { return }
-                    if let tree = self.controller.testTree {
-                        print(tree)
-                    }
-            }
-        )
-        RunLoop.current.run()
-    }
-
-    func testFilter() {
+    var tree: TestTree? {
+        _ = controller
         drainMainQueue()
-        XCTAssertEqual(controller.testTree?.description, """
-            [CourseListView(filter = '')
-              header
-                searchBar
-              current
-                cell-1
-                cell-2
-                cell-3
-              past
-                cell-4
-                cell-5
-                cell-6
-              future
-                cell-7]
-            """
-        )
+        return controller.testTree
+    }
+
+    var sections: [TestTree] {
+        tree?.children(kind: .section) ?? []
+    }
+    var shownCells: [String?: [String?]] {
+        Dictionary(uniqueKeysWithValues: sections.map { section in
+            (key: section.id, value: section.children(kind: .cell).map(\.id))
+        })
+    }
+    var searchBar: TestTree? {
+        tree?.find(SearchBarView.self)
+    }
+    func cell(_ id: String) -> TestTree? {
+        tree?.find(.cell, id: id)
+    }
+    var noMatch: TestTree? {
+        tree?.find(id: "no-match")
+    }
+
+    func testFilter() throws {
+        XCTAssertEqual(shownCells["current"], ["1", "2", "3"])
+        XCTAssertEqual(shownCells["past"], ["4", "5", "6"])
+        XCTAssertEqual(shownCells["future"], ["7"])
+        XCTAssertNotEqual(noMatch?.info("shown"), true)
 
         props.filter = "one"
-        drainMainQueue()
-        XCTAssertEqual(controller.testTree?.description, """
-            [CourseListView(filter = 'one')
-              header
-                searchBar
-              current
-                cell-1
-                cell-2
-              past
-              future]
-            """
-        )
+        XCTAssertEqual(searchBar?.info("filter"), "one")
+        XCTAssertEqual(shownCells["current"], ["1", "2"])
+        XCTAssertEqual(shownCells["past"], nil)
+        XCTAssertEqual(shownCells["future"], nil)
+        XCTAssertNotEqual(noMatch?.info("shown"), true)
+
+        props.filter = "garbage"
+        XCTAssertEqual(shownCells, [:])
+        XCTAssertEqual(noMatch?.info("shown"), true)
+    }
+
+    func testEmpty() throws {
+        courses = []
+        let empty = tree?.children(EmptyView.AsView.self)
+        XCTAssertNotNil(empty)
+        // Can we test the contained UIView somehow?
+    }
+
+    func testLoading() throws {
+        let store = TestStore(env: environment, useCase: GetAllCourses()) { }
+        store.overridePending = true
+        allCourses = store
+        XCTAssertNotNil(tree?.children(id: "loading"))
+    }
+
+    func testFavorite() throws {
+        XCTAssertEqual(cell("2")?[0]?.id, "not favorite")
+        allCourses.first { $0.id == "2" }?.isFavorite = true
+        XCTAssertEqual(cell("2")?[0]?.id, "favorite")
+    }
+
+    func testPublishedIcon() throws {
+        environment.app = .teacher
+        XCTAssertEqual(cell("2")?[1]?.id, "unpublished")
+        allCourses.first { $0.id == "2" }?.isPublished = true
+        XCTAssertEqual(cell("2")?[1]?.id, "published")
+    }
+
+    func testStudentNoPublishedIcon() throws {
+        XCTAssertEqual(cell("2")?[0]?.id, "not favorite")
+        XCTAssertNil(cell("2")?[1])
     }
 }
