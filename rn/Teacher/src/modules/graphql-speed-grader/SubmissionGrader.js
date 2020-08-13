@@ -34,7 +34,7 @@ import DrawerState, { type DrawerPosition } from '../speedgrader/utils/drawer-st
 // import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
-import { colors, createStyleSheet } from '../../common/stylesheet'
+import { createStyleSheet } from '../../common/stylesheet'
 import SimilarityScore from './components/SimilarityScore'
 
 let { width, height } = Dimensions.get('window')
