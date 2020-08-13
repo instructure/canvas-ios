@@ -24,6 +24,5 @@ export const assignment = template({
   pointsPossible: 100,
   gradeGroupStudentsIndividually: false,
   anonymousGrading: false,
-  muted: false,
   gradingType: 'points',
 })

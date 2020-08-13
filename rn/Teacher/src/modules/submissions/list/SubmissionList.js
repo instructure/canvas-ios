@@ -207,7 +207,6 @@ export class SubmissionList extends Component<Props, State> {
               initialFilterType={this.props.filterType}
               pointsPossible={this.props.pointsPossible}
               anonymous={this.props.anonymous}
-              muted={this.props.muted}
               navigator={this.props.navigator}
             />
             <FlatList
@@ -264,7 +263,6 @@ export function props (props) {
       pending: true,
       submissions: [],
       anonymous: false,
-      muted: false,
       gradingType: 'points',
       sections: [],
     }
@@ -295,7 +293,6 @@ export function props (props) {
     pending: false,
     submissions: isGroupGradedAssignment ? groupedSubmissions : submissions,
     anonymous: assignment.anonymousGrading,
-    muted: assignment.muted,
     assignmentName: assignment.name,
     gradingType: assignment.gradingType,
     sections,

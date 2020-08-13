@@ -27,7 +27,6 @@ public struct SubmissionListFixture {
                 "pointsPossible": 10,
                 "gradeGroupStudentsIndividually": false,
                 "anonymousGrading": false,
-                "muted": true,
                 "gradingType": "points",
                 "groupSet": nil,
                 "course": [

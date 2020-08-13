@@ -49,7 +49,6 @@ public class MiniAssignment {
                     "pointsPossible": api.points_possible,
                     "gradeGroupStudentsIndividually": api.grade_group_students_individually,
                     "anonymousGrading": false,
-                    "muted": true,
                     "gradingType": api.grading_type.rawValue,
                     "groupSet": nil,
                     "course": [

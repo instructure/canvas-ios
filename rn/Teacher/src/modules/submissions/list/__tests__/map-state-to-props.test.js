@@ -140,7 +140,6 @@ function createHappyPathTestState () {
       submissions: subRefs,
       data: t.assignment({
         points_possible: 5,
-        muted: true,
         name: "Trump's Tweets",
       }),
     },
@@ -197,7 +196,6 @@ test('submissions', () => {
     ],
     pointsPossible: 5,
     anonymous: false,
-    muted: true,
   })
 })
 

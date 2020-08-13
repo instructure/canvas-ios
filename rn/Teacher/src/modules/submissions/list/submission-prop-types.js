@@ -54,7 +54,6 @@ export type SubmissionListDataProps
     courseName: string,
     pointsPossible?: string,
     anonymous: boolean,
-    muted: boolean,
     assignmentName: string,
     sections: Array<Section>,
   }
