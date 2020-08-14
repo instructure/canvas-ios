@@ -26,7 +26,7 @@ import * as template from '../../../__templates__'
 
 jest
   .mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
-  .mock('react-native/Libraries/Components/SegmentedControlIOS/SegmentedControlIOS', () => 'SegmentedControlIOS')
+  .mock('@react-native-community/segmented-control', () => 'SegmentedControl')
   .mock('../GradeTab', () => 'GradeTab')
   .mock('../components/GradePicker', () => 'GradePicker')
   .mock('../components/Header', () => 'Header')
@@ -103,7 +103,7 @@ describe('SubmissionGrader', () => {
     const gradeTab: any = explore(tree.toJSON()).selectByType('GradeTab')
     gradeTab.props.updateUnsavedChanges({ '1': 'yo' })
 
-    tree.getInstance().componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
+    tree.getInstance().UNSAFE_componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
 
     expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalled()
   })
@@ -111,7 +111,7 @@ describe('SubmissionGrader', () => {
   it('does not saves changes to rubric on swipe (when current student changes but rubric doesnt change)', () => {
     let tree = renderer.create(<SubmissionGrader {...defaultProps} isCurrentStudent={true} />)
 
-    tree.getInstance().componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
+    tree.getInstance().UNSAFE_componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
 
     expect(defaultProps.gradeSubmissionWithRubric).not.toHaveBeenCalled()
   })

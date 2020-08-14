@@ -75,7 +75,7 @@ export class UserCoursePreferences extends Component<Props, any> {
     name: this.state.name,
   })
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     if (props.error) {
       this.setState({ name: props.course.name, pending: false })
       setTimeout(() => {

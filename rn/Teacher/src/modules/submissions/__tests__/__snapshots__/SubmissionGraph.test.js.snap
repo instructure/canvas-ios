@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render 0 on graph 1`] = `
+exports[`SubmissionGraph renders 0 on graph 1`] = `
 <View
   style={
     Object {
@@ -32,19 +32,13 @@ exports[`render 0 on graph 1`] = `
   </View>
   <Text
     style={
-      Array [
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "flex": 1,
-          "fontSize": 12,
-          "fontWeight": "500",
-          "marginTop": 8,
-          "textAlign": "center",
-        },
-      ]
+      Object {
+        "flex": 1,
+        "fontSize": 12,
+        "fontWeight": "500",
+        "marginTop": 8,
+        "textAlign": "center",
+      }
     }
     testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   >
@@ -59,7 +53,9 @@ exports[`render 0 on graph 1`] = `
       }
     }
   >
-    <Text
+    <Counter
+      end={0}
+      start={0}
       style={
         Object {
           "color": "#2D3B45",
@@ -67,14 +63,13 @@ exports[`render 0 on graph 1`] = `
           "fontWeight": "500",
         }
       }
-    >
-      0
-    </Text>
+      time={500}
+    />
   </View>
 </View>
 `;
 
-exports[`render 1`] = `
+exports[`SubmissionGraph renders 1`] = `
 <View
   style={
     Object {
@@ -106,19 +101,13 @@ exports[`render 1`] = `
   </View>
   <Text
     style={
-      Array [
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "flex": 1,
-          "fontSize": 12,
-          "fontWeight": "500",
-          "marginTop": 8,
-          "textAlign": "center",
-        },
-      ]
+      Object {
+        "flex": 1,
+        "fontSize": 12,
+        "fontWeight": "500",
+        "marginTop": 8,
+        "textAlign": "center",
+      }
     }
     testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   >
@@ -133,7 +122,9 @@ exports[`render 1`] = `
       }
     }
   >
-    <Text
+    <Counter
+      end={0}
+      start={0}
       style={
         Object {
           "color": "#2D3B45",
@@ -141,14 +132,13 @@ exports[`render 1`] = `
           "fontWeight": "500",
         }
       }
-    >
-      0
-    </Text>
+      time={500}
+    />
   </View>
 </View>
 `;
 
-exports[`render undefined label 1`] = `
+exports[`SubmissionGraph renders undefined label 1`] = `
 <View
   style={
     Object {
@@ -180,19 +170,13 @@ exports[`render undefined label 1`] = `
   </View>
   <Text
     style={
-      Array [
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "flex": 1,
-          "fontSize": 12,
-          "fontWeight": "500",
-          "marginTop": 8,
-          "textAlign": "center",
-        },
-      ]
+      Object {
+        "flex": 1,
+        "fontSize": 12,
+        "fontWeight": "500",
+        "marginTop": 8,
+        "textAlign": "center",
+      }
     }
     testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   />
@@ -205,7 +189,9 @@ exports[`render undefined label 1`] = `
       }
     }
   >
-    <Text
+    <Counter
+      end={0}
+      start={0}
       style={
         Object {
           "color": "#2D3B45",
@@ -213,9 +199,8 @@ exports[`render undefined label 1`] = `
           "fontWeight": "500",
         }
       }
-    >
-      0
-    </Text>
+      time={500}
+    />
   </View>
 </View>
 `;

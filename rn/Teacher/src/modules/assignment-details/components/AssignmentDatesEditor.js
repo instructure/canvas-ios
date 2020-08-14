@@ -28,10 +28,10 @@ import {
   TouchableOpacity,
   Alert,
   LayoutAnimation,
-  DatePickerIOS,
   Image,
 } from 'react-native'
 import i18n from 'format-message'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
@@ -478,7 +478,7 @@ export default class AssignmentDatesEditor extends Component<Props, any> {
   renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType) => {
     if (type === 'none') return <View />
     return <View style={styles.dateEditorContainer}>
-      <DatePickerIOS date={date[type] ? new Date(date[type]) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
+      <DateTimePicker value={date[type] ? new Date(date[type]) : new Date()} onChange={(event, updated) => this.updateDate(date, type, updated)}/>
     </View>
   }
 

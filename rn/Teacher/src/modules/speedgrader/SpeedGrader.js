@@ -106,7 +106,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
     SpeedGrader.drawerState.registerDrawer(this)
   }
 
-  componentWillReceiveProps (nextProps: SpeedGraderProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: SpeedGraderProps) {
     this.setSubmissions(nextProps)
   }
 

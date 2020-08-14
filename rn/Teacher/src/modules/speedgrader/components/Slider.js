@@ -72,7 +72,7 @@ export default class Slider extends Component<Props, State> {
     }
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     // Add a listener for the delta value change
     this.slide.addListener(({ value }) => {
       let newValue = this.capValue(value)
@@ -119,7 +119,7 @@ export default class Slider extends Component<Props, State> {
       },
       onPanResponderMove: Animated.event([
         null, { dx: this.slide },
-      ]),
+      ], { useNativeDriver: false }),
       onShouldBlockNativeResponder: () => false,
       onPanResponderRelease: () => this.interactionFinished(),
       onPanResponderTerminate: () => this.interactionFinished(),

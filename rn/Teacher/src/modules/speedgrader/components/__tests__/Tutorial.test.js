@@ -16,14 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
+import { shallow } from 'enzyme'
 import React from 'react'
 import { Animated, NativeModules } from 'react-native'
-import renderer from 'react-test-renderer'
 import Tutorial from '../Tutorial'
 import Images from '../../../../images'
-import explore from '../../../../../test/helpers/explore'
 
 const { NativeAccessibility } = NativeModules
 
@@ -50,61 +47,34 @@ let defaultProps = {
 describe('Tutorial', () => {
   beforeEach(() => jest.clearAllMocks())
   it('will render null before data from async storage has been retrieved', () => {
-    let tree = renderer.create(
-      <Tutorial {...defaultProps} />
-    ).toJSON()
-
-    expect(tree).toBeNull()
-  })
-
-  it('will render the tutorial after data from async storage has been retrieved', () => {
-    let tree = renderer.create(
+    let tree = shallow(
       <Tutorial {...defaultProps} />
     )
-    tree.getInstance().setState({
-      hasLoaded: true,
-      hasSeen: {},
-      currentTutorial: defaultProps.tutorials[0],
-    })
-
-    expect(tree.toJSON()).toMatchSnapshot()
+    expect(tree.isEmptyRender()).toBe(true)
   })
 
-  it('will figure out what tutorial to show in setup', async () => {
-    let tree = renderer.create(
+  it('will render the tutorial after data from async storage has been retrieved', async () => {
+    let tree = shallow(
       <Tutorial {...defaultProps} />
     )
+    await Promise.resolve() // wait for setup to finish
 
-    await tree.getInstance().setup()
-
-    expect(tree.getInstance().state).toEqual({
-      hasLoaded: true,
-      hasSeen: {},
-      currentTutorial: defaultProps.tutorials[0],
-    })
+    expect(tree.find('Image').prop('source')).toBe(Images.speedGrader.swipe)
   })
 
   it('will update hasSeen when onPress is called', async () => {
     let oldTiming = Animated.timing
-    let start = jest.fn()
+    let start = jest.fn((done) => { done() })
     Animated.timing = () => ({ start })
 
-    let tree = renderer.create(
+    let tree = shallow(
       <Tutorial {...defaultProps} />
     )
-    tree.getInstance().setState({
-      hasLoaded: true,
-      hasSeen: {},
-      currentTutorial: defaultProps.tutorials[0],
-    })
+    await Promise.resolve() // wait for setup to finish
 
-    let button = explore(tree.toJSON()).selectByID('tutorial.button-1') || {}
-    let promise = button.props.onPress()
+    await tree.find('[testID="tutorial.button-1"]').simulate('Press')
 
-    start.mock.calls[0][0]()
-    await promise
-
-    expect(tree.getInstance().state).toEqual({
+    expect(tree.state()).toEqual({
       hasLoaded: true,
       hasSeen: { '1': true },
       currentTutorial: undefined,
@@ -113,34 +83,25 @@ describe('Tutorial', () => {
     Animated.timing = oldTiming
   })
 
-  it('focus current tutorial function should work', () => {
-    let tree = renderer.create(
+  it('focus current tutorial function should work', async () => {
+    let tree = shallow(
       <Tutorial {...defaultProps} />
     )
-    const currentTutorial = defaultProps.tutorials[0]
-    tree.getInstance().setState({
-      hasLoaded: true,
-      hasSeen: {},
-      currentTutorial,
-    })
+    await Promise.resolve() // wait for setup to finish
 
     jest.useFakeTimers()
-    tree.getInstance().focusCurrentTutorial()
+    tree.instance().focusCurrentTutorial()
     jest.runAllTimers()
-    expect(NativeAccessibility.focusElement).toHaveBeenCalledWith(`${currentTutorial.id}-title`)
+    expect(NativeAccessibility.focusElement).toHaveBeenCalledWith(`1-title`)
   })
 
-  it('focus current tutorial function should not do anything when there is no current tutorial', () => {
-    let tree = renderer.create(
-      <Tutorial {...defaultProps} />
+  it('focus current tutorial function should not do anything when there is no current tutorial', async () => {
+    let tree = shallow(
+      <Tutorial tutorials={[]} />
     )
-    tree.getInstance().setState({
-      hasLoaded: true,
-      hasSeen: {},
-      currentTutorial: null,
-    })
+    await Promise.resolve() // wait for setup to finish
 
-    tree.getInstance().focusCurrentTutorial()
+    tree.instance().focusCurrentTutorial()
     expect(NativeAccessibility.focusElement).not.toHaveBeenCalled()
   })
 })

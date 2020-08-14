@@ -23,11 +23,9 @@ import { shallow } from 'enzyme'
 import { GradeTab, mapStateToProps } from '../GradeTab'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
-import { registerScreens } from '../../../routing/register-screens'
 import DrawerState from '../utils/drawer-state'
 import * as templates from '../../../__templates__'
 
-registerScreens({})
 jest.mock('../components/GradePicker')
 jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('react-native/Libraries/Components/Touchable/TouchableHighlight', () => 'TouchableHighlight')

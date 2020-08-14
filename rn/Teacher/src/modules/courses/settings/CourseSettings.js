@@ -23,10 +23,10 @@ import { connect } from 'react-redux'
 import {
   View,
   TouchableHighlight,
-  PickerIOS,
   Image,
   LayoutAnimation,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 
 import i18n from 'format-message'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
@@ -38,8 +38,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-
-var PickerItemIOS = PickerIOS.Item
 
 type Props = {
   navigator: Navigator,
@@ -71,7 +69,7 @@ export class CourseSettings extends Component<Props, State> {
     default_view: this.state.home,
   })
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     if (props.error) {
       this.setState({ pending: false })
 
@@ -162,19 +160,19 @@ export class CourseSettings extends Component<Props, State> {
             </TouchableHighlight>
             <View style={styles.separator}/>
             { this.state.showingPicker &&
-              <PickerIOS
+              <Picker
                 style={styles.picker}
                 selectedValue={this.state.home}
                 onValueChange={(home) => this.setState({ home: home })}
                 testID='course-settings.home-picker'>
                 {Array.from(DISPLAY_NAMES.keys()).map((key) => (
-                  <PickerItemIOS
+                  <Picker.Item
                     key={key}
                     value={key}
                     label={DISPLAY_NAMES.get(key)}
                   />
                 ))}
-              </PickerIOS>
+              </Picker>
             }
             <View
               style={[styles.fakePickerDrawer, { height: this.state.showingPicker ? 0 : 150 }]} />

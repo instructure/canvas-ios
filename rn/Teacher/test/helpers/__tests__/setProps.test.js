@@ -32,12 +32,12 @@ describe('setProps', () => {
     )
   })
 
-  it('should trigger componentWillReceiveProps', () => {
-    const componentWillReceiveProps = jest.fn()
-    component.getInstance().componentWillReceiveProps = componentWillReceiveProps
+  it('should trigger UNSAFE_componentWillReceiveProps', () => {
+    const UNSAFE_componentWillReceiveProps = jest.fn()
+    component.getInstance().UNSAFE_componentWillReceiveProps = UNSAFE_componentWillReceiveProps
 
     setProps(component, { test: 'setProps' })
-    expect(componentWillReceiveProps).toHaveBeenCalledWith({ test: 'setProps' })
+    expect(UNSAFE_componentWillReceiveProps).toHaveBeenCalledWith({ test: 'setProps' })
   })
 
   it('should set the props', () => {

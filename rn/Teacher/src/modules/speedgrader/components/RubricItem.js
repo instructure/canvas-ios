@@ -46,7 +46,7 @@ export default class RubricItem extends Component<RubricItemProps, RubricItemSta
     selectedPoints: this.props.grade && this.props.grade.points,
   }
 
-  componentWillReceiveProps (nextProps: RubricItemProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: RubricItemProps) {
     this.setState({
       selectedRatingID: nextProps.grade && nextProps.grade.rating_id,
       selectedPoints: nextProps.grade && nextProps.grade.points,

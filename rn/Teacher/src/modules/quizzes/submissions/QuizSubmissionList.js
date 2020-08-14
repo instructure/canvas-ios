@@ -104,7 +104,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         {
           toValue: 0,
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }
       ),
       Animated.delay(2000),
@@ -113,13 +113,13 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
         {
           toValue: 100,
           duration: 500,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }
       ),
     ]).start()
   }
 
-  componentWillReceiveProps = (newProps: QuizSubmissionListProps) => {
+  UNSAFE_componentWillReceiveProps = (newProps: QuizSubmissionListProps) => {
     if (this.props.sections.length !== newProps.sections.length) {
       let filterOptions = [ ...this.state.filterOptions, ...newProps.sections.map(createFilterFromSection) ]
       let filter = createFilter(filterOptions)

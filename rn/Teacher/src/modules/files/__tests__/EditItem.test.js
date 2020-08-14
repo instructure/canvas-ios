@@ -29,6 +29,7 @@ jest.mock('../../../redux/middleware/error-handler', () => {
   const alertError = error => { alertError.error = error }
   return { alertError }
 })
+jest.mock('@react-native-community/datetimepicker', () => 'DateTimePicker')
 
 import * as template from '../../../__templates__'
 
@@ -158,11 +159,11 @@ describe('EditItem folder', () => {
 
     tree.find(selector.unlock_at).simulate('Press')
     tree.find(selector.lock_at).simulate('Press')
-    expect(tree.find('DatePickerIOS').length).toBe(2)
+    expect(tree.find('DateTimePicker').length).toBe(2)
 
     tree.find(selector.unlock_at).simulate('Press')
     tree.find(selector.lock_at).simulate('Press')
-    expect(tree.find('DatePickerIOS').length).toBe(0)
+    expect(tree.find('DateTimePicker').length).toBe(0)
   })
 
   it('can update the unlock_at date', () => {
@@ -170,7 +171,7 @@ describe('EditItem folder', () => {
     const nextDate = '2017-11-24T00:00:00.000Z'
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.unlock_at).simulate('Press')
-    tree.find('DatePickerIOS').simulate('DateChange', new Date(nextDate))
+    tree.find('DateTimePicker').simulate('Change', {}, new Date(nextDate))
     expect(tree.find(selector.unlock_at).prop('date')).toBe(nextDate)
 
     tree.find(selector.unlock_at).simulate('RemoveDatePress')
@@ -182,7 +183,7 @@ describe('EditItem folder', () => {
     const nextDate = '2017-11-24T00:00:00.000Z'
     const tree = shallow(<EditItem {...props} />)
     tree.find(selector.lock_at).simulate('Press')
-    tree.find('DatePickerIOS').simulate('DateChange', new Date(nextDate))
+    tree.find('DateTimePicker').simulate('Change', {}, new Date(nextDate))
     expect(tree.find(selector.lock_at).prop('date')).toBe(nextDate)
 
     tree.find(selector.lock_at).simulate('RemoveDatePress')

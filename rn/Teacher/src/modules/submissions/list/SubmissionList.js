@@ -64,7 +64,7 @@ export class SubmissionList extends Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps = (newProps: Props) => {
+  UNSAFE_componentWillReceiveProps = (newProps: Props) => {
     let sectionsWithNoFilter = newProps.sections.filter(section => this.state.filterOptions.find(option => option.type === `section.${section.id}`) == null)
     if (sectionsWithNoFilter.length > 0) {
       let filterOptions = [ ...this.state.filterOptions, ...sectionsWithNoFilter.map(createFilterFromSection) ]
@@ -77,7 +77,7 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   keyExtractor = (item: SubmissionProps) => {
-    return item.userID
+    return item.userID || item.groupID
   }
 
   navigateToSubmission = (index: number) => (userID: string) => {

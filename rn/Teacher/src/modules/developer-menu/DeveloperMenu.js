@@ -25,9 +25,9 @@ import {
   ScrollView,
   Alert,
   NativeModules,
-  SegmentedControlIOS,
 } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
+import SegmentedControl from '@react-native-community/segmented-control'
 import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
@@ -210,7 +210,7 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
               }}
               onSubmitEditing={ this.go }
               style={styles.urlInput} />
-            <SegmentedControlIOS
+            <SegmentedControl
               style={{ margin: 16 }}
               values={['Modal', 'Push', 'Deep Link']}
               selectedIndex={0}

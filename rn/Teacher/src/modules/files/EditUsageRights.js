@@ -20,10 +20,8 @@
 
 import i18n from 'format-message'
 import React, { Component } from 'react'
-import {
-  PickerIOS,
-  View,
-} from 'react-native'
+import { View } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import { FormLabel } from '../../common/text'
 import RowWithDetail from '../../common/components/rows/RowWithDetail'
 import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
@@ -96,19 +94,19 @@ export default class EditUsageRights extends Component<Props, State> {
           testID='edit-item.usage_rights.use_justification'
         />
         {showUsageRight &&
-          <PickerIOS
+          <Picker
             selectedValue={rights.use_justification}
             onValueChange={this.handleChangeJustification}
             testID='edit-item.usage_rights.use_justification.picker'
           >
             {Object.keys(useOptions).map(value =>
-              <PickerIOS.Item
+              <Picker.Item
                 key={value}
                 value={value}
                 label={useOptions[value]}
               />
             )}
-          </PickerIOS>
+          </Picker>
         }
         {rights.use_justification === 'creative_commons' &&
           <View>
@@ -121,19 +119,19 @@ export default class EditUsageRights extends Component<Props, State> {
               testID='edit-item.usage_rights.license'
             />
             {showLicense &&
-              <PickerIOS
+              <Picker
                 selectedValue={rights.license}
                 onValueChange={this.handleChangeLicense}
                 testID='edit-item.usage_rights.license.picker'
               >
                 {licenses.map(({ id, name }) =>
-                  <PickerIOS.Item
+                  <Picker.Item
                     key={id}
                     value={id}
                     label={name}
                   />
                 )}
-              </PickerIOS>
+              </Picker>
             }
           </View>
         }

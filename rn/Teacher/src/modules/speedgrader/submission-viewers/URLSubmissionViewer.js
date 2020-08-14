@@ -80,7 +80,7 @@ export default class URLSubmissionViewer extends Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps (newProps: Props) {
+  UNSAFE_componentWillReceiveProps (newProps: Props) {
     const newURL = this.previewImageURL(newProps)
     if (newURL && newURL !== this.previewImageURL(this.props)) {
       this.fetchImageSize(newURL)

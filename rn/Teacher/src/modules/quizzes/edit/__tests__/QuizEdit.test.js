@@ -38,7 +38,7 @@ jest
   .mock('react-native/Libraries/LayoutAnimation/LayoutAnimation', () => ({
     easeInEaseOut: jest.fn(),
   }))
-  .mock('react-native/Libraries/Components/DatePicker/DatePickerIOS', () => 'DatePickerIOS')
+  .mock('@react-native-community/datetimepicker', () => 'DateTimePicker')
   .mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
   }))
@@ -143,7 +143,7 @@ describe('QuizEdit', () => {
     const toggle: any = explore(component.toJSON()).selectByID('quizzes.edit.show-correct-answers-at-row')
     toggle.props.onPress()
     const picker: any = explore(component.toJSON()).selectByID('quizzes.edit.show-correct-answers-at-date-picker')
-    picker.props.onDateChange(new Date(1000))
+    picker.props.onChange({}, new Date(1000))
     expect(component.toJSON()).toMatchSnapshot()
   })
 
@@ -171,7 +171,7 @@ describe('QuizEdit', () => {
     const toggle: any = explore(component.toJSON()).selectByID('quizzes.edit.hide-correct-answers-at-row')
     toggle.props.onPress()
     const picker: any = explore(component.toJSON()).selectByID('quizzes.edit.hide-correct-answers-at-date-picker')
-    picker.props.onDateChange(new Date(1000))
+    picker.props.onChange({}, new Date(1000))
     expect(component.toJSON()).toMatchSnapshot()
   })
 

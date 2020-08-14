@@ -41,6 +41,8 @@ let quiz: any = template.quiz()
 let defaultProps = {}
 
 beforeEach(() => {
+  jest.useFakeTimers()
+  global.requestAnimationFrame = (fn) => { setTimeout(fn, 0) }
   defaultProps = {
     assignmentID: '',
     courseID: course.id,

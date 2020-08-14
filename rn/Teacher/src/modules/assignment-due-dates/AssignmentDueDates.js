@@ -42,7 +42,7 @@ import { Text, Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 
 export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> {
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
     if (studentIDs.length) {
       this.props.refreshUsers(this.props.courseID, studentIDs)

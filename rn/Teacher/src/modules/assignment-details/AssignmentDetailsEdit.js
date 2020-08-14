@@ -41,16 +41,14 @@ import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
-  PickerIOS,
   TouchableHighlight,
   LayoutAnimation,
   Image,
   NativeModules,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 
 const { NativeAccessibility } = NativeModules
-
-var PickerItemIOS = PickerIOS.Item
 
 type Validation = {
   invalid: string,
@@ -121,18 +119,18 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
 
     return (
       <View>
-        <PickerIOS
+        <Picker
           selectedValue={this.state.pickerSelectedValue}
           onValueChange={this.pickerValueDidChange.bind(this)}
           testID='assignmentPicker'>
           {this.currentPickerMap && Array.from(this.currentPickerMap.keys()).map((key) => (
-            <PickerItemIOS
+            <Picker.Item
               key={key}
               value={key}
               label={this.currentPickerMap ? this.currentPickerMap.get(key) : ''}
             />
           ))}
-        </PickerIOS>
+        </Picker>
       </View>
     )
   }
@@ -380,7 +378,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     setTimeout(() => { alertError(this.state.error); delete this.state.error }, 1000)
   }
 
-  componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
     if (!nextProps.pending) {
       if (nextProps.error) {
         const error = nextProps.error.response

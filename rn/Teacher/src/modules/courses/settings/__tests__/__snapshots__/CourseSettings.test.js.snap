@@ -1653,7 +1653,8 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           }
         }
       />
-      <PickerIOS
+      <Picker
+        mode="dialog"
         onValueChange={[Function]}
         selectedValue="wiki"
         style={
@@ -1688,7 +1689,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           label="Syllabus"
           value="syllabus"
         />
-      </PickerIOS>
+      </Picker>
       <View
         style={
           Array [

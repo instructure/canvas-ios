@@ -11,11 +11,10 @@ exports[`SubmissionGrader can render the handle content 1`] = `
     }
   }
 >
-  <SegmentedControlIOS
+  <SegmentedControl
     onChange={[Function]}
     selectedIndex={-1}
     testID="speedgrader.segment-control"
-    tintColor="#008EE2"
     values={
       Array [
         "Grades",
@@ -789,11 +788,10 @@ exports[`SubmissionGrader renders wide 1`] = `
                               }
                             }
                           >
-                            <SegmentedControlIOS
+                            <SegmentedControl
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"
-                              tintColor="#008EE2"
                               values={
                                 Array [
                                   "Grades",
@@ -859,11 +857,10 @@ exports[`SubmissionGrader renders wide 1`] = `
           }
         }
       >
-        <SegmentedControlIOS
+        <SegmentedControl
           onChange={[Function]}
           selectedIndex={-1}
           testID="speedgrader.segment-control"
-          tintColor="#008EE2"
           values={
             Array [
               "Grades",
@@ -1141,11 +1138,10 @@ exports[`SubmissionGrader renders wide 1`] = `
                               }
                             }
                           >
-                            <SegmentedControlIOS
+                            <SegmentedControl
                               onChange={[Function]}
                               selectedIndex={-1}
                               testID="speedgrader.segment-control"
-                              tintColor="#008EE2"
                               values={
                                 Array [
                                   "Grades",

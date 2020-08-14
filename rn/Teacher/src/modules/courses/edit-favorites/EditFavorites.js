@@ -71,7 +71,7 @@ type Props = {
 } & RefreshProps
 
 export class FavoritesList extends Component<Props> {
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (nextProps.pending === 0 && this.props.pending > 0) {
       this.props.getDashboardCards()
     }

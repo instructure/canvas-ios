@@ -45,7 +45,7 @@ export default function refresh (
       shouldRefresh = shouldRefresh
       isFetchingData = isFetchingData
 
-      componentWillReceiveProps (nextProps) {
+      UNSAFE_componentWillReceiveProps (nextProps) {
         this.setState({
           refreshing: this.state.refreshing
             ? isFetchingData(nextProps)
@@ -53,7 +53,7 @@ export default function refresh (
         })
       }
 
-      componentWillMount () {
+      UNSAFE_componentWillMount () {
         if (this.props.forceRefresh || shouldRefresh(this.props)) {
           this.setLastUpdate(Date.now())
           refreshFunction(this.props)

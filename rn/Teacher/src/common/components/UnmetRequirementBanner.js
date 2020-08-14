@@ -40,7 +40,7 @@ export default class UnmetRequirementBanner extends PureComponent<Props, any> {
     backgroundColor: colors.backgroundDanger,
   }
 
-  componentWillUpdate () {
+  UNSAFE_componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
   }
 

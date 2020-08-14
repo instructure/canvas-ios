@@ -1584,7 +1584,8 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       }
     }
   >
-    <PickerIOS
+    <Picker
+      mode="dialog"
       onValueChange={[Function]}
       selectedValue=""
     >
@@ -1604,7 +1605,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
         label="Excuse Student"
         value="ex"
       />
-    </PickerIOS>
+    </Picker>
   </View>
 </View>
 `;

@@ -23,12 +23,12 @@ import { connect } from 'react-redux'
 import ReactNative, {
   View,
   LayoutAnimation,
-  DatePickerIOS,
   NativeModules,
   processColor,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import DateTimePicker from '@react-native-community/datetimepicker'
 import Screen from '../../../routing/Screen'
 import { FormLabel } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
@@ -111,7 +111,7 @@ export class AnnouncementEdit extends Component<Props, any> {
     }
   }
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     const error = props.error
     if (error) {
       this.setState({ pending: false })
@@ -242,9 +242,9 @@ export class AnnouncementEdit extends Component<Props, any> {
                       removeButtonTestID={'announcements.edit.clear-delayed-post-at-button'}
                     />
                     { this.state.delayedPostAtPickerShown &&
-                      <DatePickerIOS
-                        date={extractDateFromString(this.state.delayed_post_at) || this.props.defaultDate || new Date()}
-                        onDateChange={this._valueChanged('delayed_post_at', d => d.toISOString())}
+                      <DateTimePicker
+                        value={extractDateFromString(this.state.delayed_post_at) || this.props.defaultDate || new Date()}
+                        onChange={(event, date) => this._valuesChanged({ delayed_post_at: date.toISOString() }, true)}
                         testID='announcements.edit.delayed-post-at-date-picker'
                       />
                     }

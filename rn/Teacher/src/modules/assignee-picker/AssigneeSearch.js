@@ -54,11 +54,11 @@ export class AssigneeSearch extends Component<AssigneeSearchProps, any> {
     this.updateData(this.props)
   }
 
-  componentWillReceiveProps (props: AssigneeSearchProps) {
+  UNSAFE_componentWillReceiveProps (props: AssigneeSearchProps) {
     this.updateData(props)
   }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.refresh()
     this.updateData(this.props)
   }

@@ -78,7 +78,7 @@ export default class RichTextEditor extends Component<Props, State> {
     this._setKeyboardSpace()
   }
 
-  componentWillReceiveProps (newProps: Props) {
+  UNSAFE_componentWillReceiveProps (newProps: Props) {
     if (newProps.defaultValue !== this.props.defaultValue) {
       this.editor.updateHTML(newProps.defaultValue)
     }

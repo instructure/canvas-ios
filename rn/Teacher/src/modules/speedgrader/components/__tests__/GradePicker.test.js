@@ -344,7 +344,7 @@ describe('GradePicker', () => {
       <GradePicker {...defaultProps} gradingType='pass_fail' excuseAssignment={spy} />
     )
 
-    const picker: any = explore(tree.toJSON()).selectByType('PickerIOS')
+    const picker: any = explore(tree.toJSON()).selectByType('Picker')
     picker.props.onValueChange('ex')
 
     expect(spy).toHaveBeenCalledWith('3', '2', '4', '1')
@@ -356,7 +356,7 @@ describe('GradePicker', () => {
       <GradePicker {...defaultProps} gradingType='pass_fail' gradeSubmission={spy} />
     )
 
-    const picker: any = explore(tree.toJSON()).selectByType('PickerIOS')
+    const picker: any = explore(tree.toJSON()).selectByType('Picker')
     picker.props.onValueChange('complete')
 
     expect(spy).toHaveBeenCalledWith('3', '2', '4', '1', 'complete')

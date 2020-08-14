@@ -20,10 +20,10 @@
 import React, { Component } from 'react'
 import {
   View,
-  SegmentedControlIOS,
   Dimensions,
 } from 'react-native'
 import i18n from 'format-message'
+import SegmentedControl from '@react-native-community/segmented-control'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
 import SubmissionPicker from './components/SubmissionPicker'
@@ -34,7 +34,7 @@ import DrawerState, { type DrawerPosition } from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
-import { colors, createStyleSheet } from '../../common/stylesheet'
+import { createStyleSheet } from '../../common/stylesheet'
 import SimilarityScore from './components/SimilarityScore'
 
 let { width, height } = Dimensions.get('window')
@@ -108,7 +108,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
     )
   }
 
-  componentWillReceiveProps (newProps: SubmissionGraderProps) {
+  UNSAFE_componentWillReceiveProps (newProps: SubmissionGraderProps) {
     if (this.props.isCurrentStudent && !newProps.isCurrentStudent && this.state.unsavedChanges) {
       this.saveUnsavedChanges()
     }
@@ -199,7 +199,7 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
   renderHandleContent = () => {
     return (
       <View style={styles.controlWrapper}>
-        <SegmentedControlIOS
+        <SegmentedControl
           testID='speedgrader.segment-control'
           values={[
             i18n('Grades'),
@@ -208,7 +208,6 @@ export default class SubmissionGrader extends Component<SubmissionGraderProps, S
           ]}
           selectedIndex={this.state.selectedTabIndex}
           onChange={this.changeTab}
-          tintColor={colors.buttonPrimaryBackground}
         />
       </View>
     )
