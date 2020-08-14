@@ -21,6 +21,7 @@ import SwiftUI
 @available(iOSApplicationExtension 13.0.0, *)
 public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
     public var navBarStyle = NavBarStyle.global
+    var testTree: TestTree?
 
     public init(_ rootView: InnerContent, env: AppEnvironment = .shared) {
         let selfBox = Box()
@@ -64,10 +65,13 @@ public struct CoreHostingBaseView<Content: View>: View {
 
     public var body: some View {
         rootView
+            .testID()
             .environment(\.appEnvironment, env)
             .environment(\.viewController, controller)
-            .onPreferenceChange(NavBarStyle.self) { pref in
-                self.controller()?.applyNavBarStyle(pref)
-        }
+            .onPreferenceChange(NavBarStyle.self) { style in
+                self.controller()?.applyNavBarStyle(style)
+            }.onPreferenceChange(TestTree.self) { testTrees in
+                self.controller()?.testTree = testTrees.first { $0.type == Content.self }
+            }
     }
 }

@@ -792,6 +792,8 @@
 		E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E87A5E4224D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */; };
 		E87A5E4424D4BF930065B2AA /* PreviewStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */; };
+		E8809F3224E44A9B006DBE0A /* CourseListViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8809F3124E44A9B006DBE0A /* CourseListViewTests.swift */; };
+		E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8809F3324E4775F006DBE0A /* TestIdentifier.swift */; };
 		E880B4FF24AE352800A382F4 /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */; };
 		E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */; };
 		E887275F24E1F85B00798DCA /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887275E24E1F85B00798DCA /* SequenceExtensionsTests.swift */; };
@@ -1829,6 +1831,8 @@
 		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensionsTests.swift; sourceTree = "<group>"; };
 		E87A5E4324D4BF930065B2AA /* PreviewStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStoreTests.swift; sourceTree = "<group>"; };
+		E8809F3124E44A9B006DBE0A /* CourseListViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewTests.swift; sourceTree = "<group>"; };
+		E8809F3324E4775F006DBE0A /* TestIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestIdentifier.swift; sourceTree = "<group>"; };
 		E880B4FD24AE352700A382F4 /* GetObserverAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObserverAlerts.swift; sourceTree = "<group>"; };
 		E880B4FE24AE352800A382F4 /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		E887275E24E1F85B00798DCA /* SequenceExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2921,6 +2925,7 @@
 				B19792F8217699B70000369C /* CourseTests.swift */,
 				7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */,
 				B1EA5AED212E656100DABC5F /* GetCoursesTest.swift */,
+				E8809F3124E44A9B006DBE0A /* CourseListViewTests.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -3714,6 +3719,7 @@
 			children = (
 				E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */,
 				E888382424DDB82800DDF691 /* NavBarStyle.swift */,
+				E8809F3324E4775F006DBE0A /* TestIdentifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -4293,6 +4299,7 @@
 				B14FE5D92134F68800328CD7 /* CoreTestCase.swift in Sources */,
 				B1F3780A22498AF1000B7CAA /* MDMManagerTests.swift in Sources */,
 				B19792F7217697E30000369C /* AssignmentTests.swift in Sources */,
+				E8809F3224E44A9B006DBE0A /* CourseListViewTests.swift in Sources */,
 				B127C0F0245B56BE008DB716 /* MasteryPathViewControllerTests.swift in Sources */,
 				3B158CBC22E267FF0039A568 /* PageViewSessionTests.swift in Sources */,
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
@@ -4693,6 +4700,7 @@
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
+				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
 				7DA260E523F72359005D2121 /* PublishedIconView.swift in Sources */,
 				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
 				7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */,

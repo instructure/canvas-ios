@@ -117,6 +117,7 @@
 		E81B575F23E243CA002A0C38 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B575723E23DAA002A0C38 /* Courses.swift */; };
 		E839146523102F9200D772E0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DAC287D22B19D5C00C0B692 /* XCTest.framework */; };
 		E871745423BEC1B500525E67 /* SubmissionListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871745323BEC1B500525E67 /* SubmissionListFixture.swift */; };
+		E871978624E5963600D9B062 /* TestTreeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871978524E5963600D9B062 /* TestTreeExtensions.swift */; };
 		E8989F1623AD2AE800EF4B2B /* CoreUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */; };
 		E8A4887D23AD2E9700671BB6 /* UITestUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A4887C23AD2E9700671BB6 /* UITestUser.swift */; };
 		E8BE4F5C233E73E100DC399A /* XCUIElementQueryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */; };
@@ -239,6 +240,7 @@
 		E81B575523E23DAA002A0C38 /* Compose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compose.swift; sourceTree = "<group>"; };
 		E81B575723E23DAA002A0C38 /* Courses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		E871745323BEC1B500525E67 /* SubmissionListFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListFixture.swift; sourceTree = "<group>"; };
+		E871978524E5963600D9B062 /* TestTreeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTreeExtensions.swift; sourceTree = "<group>"; };
 		E8989F1523AD2AE800EF4B2B /* CoreUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITestCase.swift; sourceTree = "<group>"; };
 		E8A4887C23AD2E9700671BB6 /* UITestUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestUser.swift; sourceTree = "<group>"; };
 		E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementQueryExtensions.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
 				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
 				B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */,
+				E871978524E5963600D9B062 /* TestTreeExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				E80936D824C2480B00D15E9A /* Profile.swift in Sources */,
 				3B519EFF2332D74D00C8DEB8 /* GradingPeriodFixture.swift in Sources */,
 				7D903C0A22BC1329009D9E9E /* LoginStart.swift in Sources */,
+				E871978624E5963600D9B062 /* TestTreeExtensions.swift in Sources */,
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
 				E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */,
 				E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */,

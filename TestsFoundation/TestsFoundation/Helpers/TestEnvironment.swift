@@ -23,6 +23,7 @@ import XCTest
 
 public class TestEnvironment: AppEnvironment {
     public var mockStore = false
+    override open var isTest: Bool { true }
 
     override public init() {
         super.init()
@@ -58,5 +59,10 @@ public class TestStore<U: UseCase>: Store<U> {
     public let getNextPageExpectation = XCTestExpectation(description: "Next Page")
     override public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         getNextPageExpectation.fulfill()
+    }
+
+    public var overridePending: Bool?
+    public override var pending: Bool {
+        overridePending ?? super.pending
     }
 }

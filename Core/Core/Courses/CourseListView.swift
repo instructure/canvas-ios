@@ -26,7 +26,16 @@ public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
-    @State private var filter = ""
+
+    public class Props: ObservableObject {
+        @Published public var filter: String
+
+        public init(filter: String = "") {
+            self.filter = filter
+        }
+    }
+    @ObservedObject var props: Props
+    let useList: Bool
 
     static var configureAppearance: () -> Void = {
         // This will only run once
@@ -38,15 +47,17 @@ public struct CourseListView: View {
 
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
-    public init(allCourses: Store<GetAllCourses>? = nil) {
+    public init(allCourses: Store<GetAllCourses>? = nil, props: Props = Props(), useList: Bool = true) {
         self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses()).exhaust()
+        self.useList = useList
+        self.props = props
         Self.configureAppearance()
     }
 
     public var body: some View {
         let view: AnyView
         if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgressView.AsView.create())
+            view = AnyView(CircleProgressView.AsView.create().testID("loading"))
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
@@ -56,15 +67,45 @@ public struct CourseListView: View {
     }
 
     var empty: some View {
-        EmptyViewRepresentable(
+        EmptyView.AsView(
             title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
             body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
-        )
+        ).testID("empty")
+    }
+
+    @ViewBuilder
+    func list<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            List(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+
+    @ViewBuilder
+    func section<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+
+    @ViewBuilder
+    func section<Header: View, Content: View>(header: Header, @ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(header: header, content: content)
+        } else {
+            VStack {
+                header
+                content()
+            }
+        }
     }
 
     var courseList: some View {
-        let filterString = filter.lowercased()
+        let filterString = props.filter.lowercased()
         let filteredCourses = allCourses.filter { course in
             guard !course.accessRestrictedByDate else { return false }
             return filterString.isEmpty ||
@@ -76,8 +117,8 @@ public struct CourseListView: View {
         let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
 
         return GeometryReader { outerGeometry in
-            List {
-                Section {
+            self.list {
+                self.section {
                     ZStack {
                         CircleRefreshControl.AsView { control in
                             control.beginRefreshing()
@@ -85,34 +126,41 @@ public struct CourseListView: View {
                                 control.endRefreshing()
                             }
                         }.frame(height: 0)
-                        SearchBarView(text: self.$filter, placeholder: NSLocalizedString("Search", comment: ""))
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
+                            .testID(info: ["filter": self.props.filter])
                     }.listRowInsets(EdgeInsets())
                 }
-                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments)
-                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments)
-                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments)
+                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments, testID: "current")
+                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments, testID: "past")
+                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments, testID: "future")
                 self.notFound(
                     shown: filteredCourses.isEmpty,
                     height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
                 )
-            }.animation(.default, value: self.filter)
+            }.animation(.default, value: self.props.filter)
                 .animation(.default, value: self.allCourses)
         }.avoidKeyboardArea()
             .lineLimit(2)
     }
 
-    func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
-        let formattedHeader = courses.isEmpty ? nil : header
+    func formatHeader<Header: View>(_ header: Header) -> some View {
+        header
             .font(.medium12)
             .foregroundColor(.textDark)
             .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-        return Section(header: formattedHeader) {
-            ForEach(courses, id: \.id) { course in
-                Cell(course: course) {
-                    guard let controller = self.controller() else { return }
-                    self.env.router.route(to: "/courses/\(course.id)", from: controller)
-                }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
-            }
+    }
+
+    @ViewBuilder
+    func enrollmentSection<Header: View>(_ header: Header, courses: [Course], testID: String) -> some View {
+        if !courses.isEmpty {
+            section(header: formatHeader(header)) {
+                ForEach(courses, id: \.id) { course in
+                    Cell(course: course) {
+                        guard let controller = self.controller() else { return }
+                        self.env.router.route(to: "/courses/\(course.id)", from: controller)
+                    }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
+                }
+            }.testID(.section, id: testID)
         }
     }
 
@@ -120,10 +168,11 @@ public struct CourseListView: View {
         // All this for pretty animations
         let footer = Text("No matching courses", bundle: .core)
             .frame(height: shown ? height : 0)
-            .animation(shown ? nil : .default, value: filter)
+            .animation(shown ? nil : .default, value: props.filter)
             .opacity(shown ? 1 : 0)
             .frame(maxWidth: .infinity)
             .listRowInsets(EdgeInsets())
+            .testID("no-match", info: ["shown": shown])
         return Section(footer: footer) { SwiftUI.EmptyView() }
     }
 
@@ -145,7 +194,7 @@ public struct CourseListView: View {
                 }.accessibilityElement(children: .ignore)
                     .accessibility(label: accessibilityLabel)
                     .accessibility(addTraits: .isButton)
-            }
+            }.testID(.cell, id: course.id)
         }
 
         var accessibilityLabel: Text {
@@ -165,11 +214,11 @@ public struct CourseListView: View {
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.starSolid.foregroundColor(.textDark)
+                    Image.starSolid.foregroundColor(.textDark).testID("pending")
                 } else if course.isFavorite {
-                    Image.starSolid.foregroundColor(.textInfo)
+                    Image.starSolid.foregroundColor(.textInfo).testID("favorite")
                 } else {
-                    Image.starLine.foregroundColor(.textDark)
+                    Image.starLine.foregroundColor(.textDark).testID("not favorite")
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
@@ -199,18 +248,22 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.completeSolid.foregroundColor(.textSuccess)
+                    Image.completeSolid.foregroundColor(.textSuccess).testID("published")
                 } else {
-                    Image.noSolid.foregroundColor(.textDark)
+                    Image.noSolid.foregroundColor(.textDark).testID("unpublished")
                 }
             }
         }
 
         func toggleFavorite() {
             guard !pending else { return }
-            pending = true
+            withAnimation {
+                pending = true
+            }
             MarkFavoriteCourse(courseID: course.id, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
-                self.pending = false
+                withAnimation {
+                    self.pending = false
+                }
             }
         }
     }
