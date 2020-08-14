@@ -129,6 +129,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/files/:fileID/download', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/download', null, store, { deepLink: true })
+  registerScreen('/:context/:contextID/files/:fileID/preview', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/edit', EditFile, store)
 
   registerScreen('/courses/:courseID/section-selector', SectionSelector, store)

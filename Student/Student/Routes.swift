@@ -202,6 +202,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
+    "/:context/:contextID/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID/edit": nil,
 
     "/courses/:courseID/grades": { _, params, _ in

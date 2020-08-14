@@ -125,6 +125,7 @@ let router = Router(routes: [
     RouteHandler("/files/:fileID/download", factory: fileDetails),
     RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
     RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
 
     RouteHandler("/dev-menu") { _, _, _ in
         return DeveloperMenuViewController.create()
