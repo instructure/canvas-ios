@@ -128,6 +128,9 @@
 "Assignment Missing" = "Assignment Missing";
 
 /* No comment provided by engineer. */
+"Assignments" = "Assignments";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Create account";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Current enrolments";
+
+/* No comment provided by engineer. */
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussions";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Disk error";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Dismiss";
@@ -575,6 +584,9 @@
 "Front Page" = "Front page";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Future enrolments";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Graded";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Marked surveys";
 
 /* No comment provided by engineer. */
 "Grades" = "Grades";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "It looks like assignments haven’t been created in this space yet.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Need grading";
 
 /* No comment provided by engineer. */
+"Network Error" = "Network error";
+
+/* No comment provided by engineer. */
 "Never" = "Never";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "No image found from image picker";
 
 /* No comment provided by engineer. */
+"No matching courses" = "No matching courses";
+
+/* No comment provided by engineer. */
 "No Modules" = "No modules";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Not Urgent";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Notification error";
 
 /* No comment provided by engineer. */
 "Notifications" = "Notifications";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Practice quizzes";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferences";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
+
+/* Button to report an error */
+"Report" = "Report";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Report a problem";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Success!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Surveys";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "There are no pages to display yet.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "There was a problem registering your device for push notifications.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Undo";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Unknown error";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Unlimited";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Your child's courses might not be published yet.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Your email";

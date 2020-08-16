@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "您准备退出吗？";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "您确认想离开测验吗？";
+
+/* No comment provided by engineer. */
 "Ask me later" = "稍候再问";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "现有的附件...";
 
+/* Exit button to leave the quiz */
+"Exit" = "退出";
+
 /* Title for an external tool submission */
 "External Tool" = "外部工具";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "它有问题";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "此区域似乎尚未创建测验。";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "是空的，您还在这里干什么。";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "启动外部工具";
+
+/* Leave the quiz */
+"Leave" = "离开";
 
 /* Title for legal section on the about page */
 "Legal" = "法律";
@@ -912,6 +924,9 @@
 "No Notifications" = "无通知";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "无测验";
+
+/* No comment provided by engineer. */
 "No recipients" = "没有收件人";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "未评分（0分，总共%@分）";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意：在服务器上处理媒体文件时，无法立即播放媒体文件。";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "测验提示";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "测验详情";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "测验已锁定";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "开始录制媒体评论";
 
+/* Stay on the quiz view */
+"Stay" = "留下";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "保持登录";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "已提交";
+
+/* Submitted date */
+"Submitted %@" = "已提交%@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "正在提交...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "启动Safari时出现问题";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "加载测验时发生错误。下拉刷新以重试。";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "加载文档时出现错误。";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "查看文件%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "查看结果";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "查看提交尝试次数 %1$d。%2$@";

@@ -35,6 +35,9 @@
 "Announcement" = "通告";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "作業詳細資料";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "作業提醒";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "撰寫訊息";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "撰寫給教師的訊息";
 
 /* No comment provided by engineer. */
 "Compose new message" = "撰寫新訊息";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "目前的學生：%@. 點選以轉換學生";
 
 /* No comment provided by engineer. */
+"Date" = "日期";
+
+/* No comment provided by engineer. */
+"Description" = "描述";
+
+/* No comment provided by engineer. */
 "Dismiss" = "取消";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "網域不相符";
 
 /* No comment provided by engineer. */
+"Due" = "截止";
+
+/* No comment provided by engineer. */
 "Email address" = "電郵地址";
 
 /* No comment provided by engineer. */
 "Email..." = "電郵...";
+
+/* No comment provided by engineer. */
+"Event Details" = "事件詳細資料";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活動提醒";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "您似乎在嘗試添加學生。請在登入後再嘗試添加這名學生";
 
 /* No comment provided by engineer. */
+"Location" = "位置";
+
+/* No comment provided by engineer. */
 "Login required" = "需要登入";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "不適用";
 
 /* No comment provided by engineer. */
+"N/A" = "不適用";
+
+/* No comment provided by engineer. */
 "No Alerts" = "無提醒";
 
 /* No comment provided by engineer. */
 "No Courses" = "無課程";
+
+/* No comment provided by engineer. */
+"No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
 "No Grade" = "無評分";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "關於：%1$@，作業 - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "提醒我";
+
+/* No comment provided by engineer. */
 "Retry" = "重試";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "設定通知此活動的日期和時間。";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "載入提醒時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "載入課程時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "載入學生時發生錯誤。提取以進行重新整理以再試一次。";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "您已讀完所有新訊息";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "您孩子的課程可能尚未發佈。";
 

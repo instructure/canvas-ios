@@ -128,6 +128,9 @@
 "Assignment Missing" = "缺少作業";
 
 /* No comment provided by engineer. */
+"Assignments" = "作業列表";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "嘗試%d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "建立帳戶";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "當前註冊";
+
+/* No comment provided by engineer. */
 "Current position" = "目前位置";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "討論區";
+
+/* No comment provided by engineer. */
+"Disk Error" = "磁碟錯誤";
 
 /* Dismiss button for error messages */
 "Dismiss" = "解除";
@@ -575,6 +584,9 @@
 "Front Page" = "首頁";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "未來註冊";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "已評分";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "已評分的調查";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "看來此空間中尚未建立任何作業。";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "看來沒有與您帳戶關聯的課程。現在就前往網站，創建課程。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
@@ -839,6 +857,9 @@
 "Needs Grading" = "需要等級評分";
 
 /* No comment provided by engineer. */
+"Network Error" = "網路錯誤";
+
+/* No comment provided by engineer. */
 "Never" = "永不";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "從影像選擇器中找不到影像";
 
 /* No comment provided by engineer. */
+"No matching courses" = "無符合的課程";
+
+/* No comment provided by engineer. */
 "No Modules" = "無單元";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "非緊急";
+
+/* No comment provided by engineer. */
+"Notification Error" = "通知錯誤";
 
 /* No comment provided by engineer. */
 "Notifications" = "通知";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "練習測驗";
+
+/* No comment provided by engineer. */
 "Preferences" = "偏好設定";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "回覆註釋或上一則評論";
+
+/* Button to report an error */
+"Report" = "報告";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "報告問題";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "成功！";
 
+/* No comment provided by engineer. */
+"Surveys" = "調查";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "尚未有可顯示的頁面。";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "在您的設備上註冊推送通知時出現問題。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "取得使用條款時出現問題。";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "撤銷";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知問題";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無限制";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "您的子課程可能尚未發佈。";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "您的設備沒有儲存空間了。請釋放空間，然後重試。";
 
 /* No comment provided by engineer. */
 "Your Email" = "您的電子郵件";

@@ -35,6 +35,9 @@
 "Announcement" = "Aankondiging";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Opdrachtdetails";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Opdrachtherinnering";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Bericht opstellen";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Bericht opstellen voor cursusleiders";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Nieuw bericht opstellen";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Huidige cursist: %@. Tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
+"Date" = "Datum";
+
+/* No comment provided by engineer. */
+"Description" = "Beschrijving";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Domein komt niet overeen";
 
 /* No comment provided by engineer. */
+"Due" = "Inleverdatum";
+
+/* No comment provided by engineer. */
 "Email address" = "E-mailadres";
 
 /* No comment provided by engineer. */
 "Email..." = "E-mail...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Details van gebeurtenis";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Evenementherinnering";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Het lijkt alsof je een cursist probeert toe te voegen. Probeer deze cursist toe te voegen nadat je bent ingelogd";
 
 /* No comment provided by engineer. */
+"Location" = "Locatie";
+
+/* No comment provided by engineer. */
 "Login required" = "Inloggen vereist";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n.v.t.";
 
 /* No comment provided by engineer. */
+"N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Geen waarschuwingen";
 
 /* No comment provided by engineer. */
 "No Courses" = "Geen cursussen";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
 "No Grade" = "Geen beoordeling";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Betreffende: %1$@, opdracht -  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Stuur me een herinnering";
+
+/* No comment provided by engineer. */
 "Retry" = "Opnieuw proberen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Stel een datum en tijd in waarop je een melding wilt krijgen voor deze gebeurtenis.";
 
 /* No comment provided by engineer. */
 "Settings" = "Instellingen";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van waarschuwingen. Ophalen om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cursussen. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van cursisten. Ophalen om te vernieuwen om het opnieuw te proberen.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Je bent helemaal bij!";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "De cursussen van je kind zijn mogelijk nog niet gepubliceerd.";
 

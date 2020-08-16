@@ -35,6 +35,9 @@
 "Announcement" = "Tilkynning";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Upplýsingar um verkefni";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Áminning um verkefni";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Semja skilaboð";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Semja skilaboð til kennara";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Semja ný skilaboð";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
 
 /* No comment provided by engineer. */
+"Date" = "Dagsetning";
+
+/* No comment provided by engineer. */
+"Description" = "Lýsing";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Léna misræmi";
 
 /* No comment provided by engineer. */
+"Due" = "Skilafrestur";
+
+/* No comment provided by engineer. */
 "Email address" = "Netfang";
 
 /* No comment provided by engineer. */
 "Email..." = "Netfang…";
+
+/* No comment provided by engineer. */
+"Event Details" = "Upplýsingar viðburðar";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Þú virðist vera að reyna að bæta við nýjum nemanda. Prófaðu að bæta nemandanum við þegar þú hefur skráð þig inn";
 
 /* No comment provided by engineer. */
+"Location" = "Staðsetning";
+
+/* No comment provided by engineer. */
 "Login required" = "Þörf er á innskráningu";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "á ekki við";
 
 /* No comment provided by engineer. */
+"N/A" = "Á ekki við";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Engar viðvaranir";
 
 /* No comment provided by engineer. */
 "No Courses" = "Engin námskeið";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Enginn skiladagur";
 
 /* No comment provided by engineer. */
 "No Grade" = "Engin einkunn";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Varðandi: %1$@, verkefni - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Minntu mig á";
+
+/* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Stilltu inn dagsetningu og tíma til að fá áminningu um þennan viðburð.";
 
 /* No comment provided by engineer. */
 "Settings" = "Stillingar";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Upp kom villa við að hlaða viðvörunum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Villa kom upp við að sækja námskeiðin. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Villa kom upp við að sækja nemendur. Dragðu til að endurglæða til að reyna aftur.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Þú ert búin(n) með allt";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Námskeið barnsins gætu enn verið óbirt.";
 

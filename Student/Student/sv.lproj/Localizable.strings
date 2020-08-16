@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Är du redo att logga ut?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Vill du lämna det här quizet?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Fråga mig senare";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Befintliga bilagor ...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Avsluta";
+
 /* Title for an external tool submission */
 "External Tool" = "Externt verktyg";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Den har problem";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Det verkar inte som om quiz har skapats här än.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, så vad gör du här?";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Starta externt verktyg";
+
+/* Leave the quiz */
+"Leave" = "Lämna";
 
 /* Title for legal section on the about page */
 "Legal" = "Juridik";
@@ -912,6 +924,9 @@
 "No Notifications" = "Inga aviseringar";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Inga quiz";
+
+/* No comment provided by engineer. */
 "No recipients" = "Inga mottagare";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Inte bedömda (0 av %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Inte inlämnat";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Obs! Mediefiler är inte omedelbart tillgängliga för uppspelning under tiden de behandlas på servern.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Quiz-notis";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Quizinformation";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quizet är låst";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Börjar spela in en mediakommentar";
 
+/* Stay on the quiz view */
+"Stay" = "Stanna";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Fortsätt vara inloggad";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Inlämnad";
+
+/* Submitted date */
+"Submitted %@" = "Skickad %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Lämnar in ...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Ett fel uppstod när Safari skulle startas";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera igen.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Ett fel uppstod när dokumentet skulle läsas in.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Visa fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Visa resultat";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Visa inlämningsförsök %1$d. %2$@";

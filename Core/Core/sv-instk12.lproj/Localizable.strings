@@ -128,6 +128,9 @@
 "Assignment Missing" = "Uppgift saknas";
 
 /* No comment provided by engineer. */
+"Assignments" = "Uppgifter";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Skapa konto";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Nuvarande registreringar";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussioner";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Diskfel";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Avvisa";
@@ -575,6 +584,9 @@
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Framtida registreringar";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Har bedömts";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Bedömda enkäter";
 
 /* No comment provided by engineer. */
 "Grades" = "Bedömningar";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Det verkar som om inga uppgifter har skapats för den här platsen än.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det verkar inte finnas några kurser kopplade till det här kontot. Besök webben för att skapa en kurs idag.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Måste bedömas";
 
 /* No comment provided by engineer. */
+"Network Error" = "Nätverksfel";
+
+/* No comment provided by engineer. */
 "Never" = "Aldrig";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Ingen bild hittades i bildväljaren";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Inga matchande kurser";
+
+/* No comment provided by engineer. */
 "No Modules" = "Inga moduler";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ej brådskande";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Aviseringsfel";
 
 /* No comment provided by engineer. */
 "Notifications" = "Aviseringar";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Övningsquiz";
+
+/* No comment provided by engineer. */
 "Preferences" = "Inställningar";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
+
+/* Button to report an error */
+"Report" = "Rapportera";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapportera ett problem";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Klar!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Enkäter";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lärarassistent";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Det finns inga sidor att visa än.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Ett problem uppstod vid registreringen av din enhet för push-aviseringar.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Ångra";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Okänt fel";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Obegränsad";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Vänligen frigör utrymme och testa igen.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-postadress";

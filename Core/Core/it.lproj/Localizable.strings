@@ -128,6 +128,9 @@
 "Assignment Missing" = "Compito mancante";
 
 /* No comment provided by engineer. */
+"Assignments" = "Compiti";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Tentativo %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Crea account";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Iscrizioni attuali";
+
+/* No comment provided by engineer. */
 "Current position" = "Posizione attuale";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussioni";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Errore disco";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Ignora";
@@ -575,6 +584,9 @@
 "Front Page" = "Pagina iniziale";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Iscrizioni future";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Valutato";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Sondaggi con valutazione";
 
 /* No comment provided by engineer. */
 "Grades" = "Voti";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Sembra che i compiti non siano ancora stati creati in questo spazio.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Sembra che non ci siano corsi associati a questo account. Visita il web per creare un corso oggi.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembra che non sei iscritto ad alcun corso come %@. Una delle altre nostre app potrebbe essere la scelta migliore. Toccane una per visitare l'App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Richiede la valutazione";
 
 /* No comment provided by engineer. */
+"Network Error" = "Errore di rete";
+
+/* No comment provided by engineer. */
 "Never" = "Mai";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Nessuna immagine trovata dalla selezione immagine";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Nessun corso corrispondente";
+
+/* No comment provided by engineer. */
 "No Modules" = "Nessun modulo";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Non urgente";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Errore di notifica";
 
 /* No comment provided by engineer. */
 "Notifications" = "Notifiche";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Quiz di esercitazione";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferenze";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Rispondi all’annotazione o ai commenti precedenti";
+
+/* Button to report an error */
+"Report" = "Segnala";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Segnala un problema";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Operazione riuscita.";
 
+/* No comment provided by engineer. */
+"Surveys" = "Sondaggi";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Assistente";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Non ci sono ancora delle pagine da visualizzare.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Si è verificato un problema durante la registrazione del tuo dispositivo per le notifiche push.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Si è verificato un problema durante il recupero dei Termini di utilizzo.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Annulla";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Errore sconosciuto";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Senza limiti";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "I corsi di tuo figlio potrebbero non essere stati ancora pubblicati.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Il tuo dispositivo ha esaurito lo spazio di archiviazione. Liberare dello spazio e riprovare.";
 
 /* No comment provided by engineer. */
 "Your Email" = "La tua email";

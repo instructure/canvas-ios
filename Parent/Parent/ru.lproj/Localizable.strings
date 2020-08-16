@@ -35,6 +35,9 @@
 "Announcement" = "Объявление";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Сведения о задании";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Напоминание о тестировании";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Написать сообщение";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Составить сообщение для преподавателей";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Написать новое сообщение";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
 
 /* No comment provided by engineer. */
+"Date" = "Дата";
+
+/* No comment provided by engineer. */
+"Description" = "Описание";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Несовпадение домена";
 
 /* No comment provided by engineer. */
+"Due" = "Срок";
+
+/* No comment provided by engineer. */
 "Email address" = "Адрес электронной почты";
 
 /* No comment provided by engineer. */
 "Email..." = "Электронная почта...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Сведения о мероприятии";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Напоминание о событии";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Очевидно, вы пытаетесь добавить учащегося. Попробуйте добавить этого учащегося после того, как вы зарегистрируетесь";
 
 /* No comment provided by engineer. */
+"Location" = "Местоположение";
+
+/* No comment provided by engineer. */
 "Login required" = "Требуется зарегистрироваться в системе";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "нет данных";
 
 /* No comment provided by engineer. */
+"N/A" = "Н/Д";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Нет оповещений";
 
 /* No comment provided by engineer. */
 "No Courses" = "Курсы отсутствуют";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Срок выполнения не задан";
 
 /* No comment provided by engineer. */
 "No Grade" = "Без оценки";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Касательно: %1$@, задание - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Напомнить";
+
+/* No comment provided by engineer. */
 "Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Задать дату и время уведомления об этом событии.";
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Произошла ошибка при загрузке оповещений. Потяните для обновления, чтобы попробовать еще раз.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Произошла ошибка при скачивании курсов. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Произошла ошибка при загрузке студентов. Потяните для обновления, чтобы попробовать еще раз.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Вы все нагнали";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";
 
