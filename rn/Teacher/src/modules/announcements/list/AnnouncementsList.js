@@ -64,7 +64,7 @@ type OwnProps = {
 export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
 
 export class AnnouncementsList extends Component<Props, any> {
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.onTraitCollectionChange()
   }
 

@@ -20,12 +20,11 @@
 
 import * as React from 'react'
 import {
-  DatePickerIOS,
   NativeModules,
   ScrollView,
   View,
 } from 'react-native'
-
+import DateTimePicker from '@react-native-community/datetimepicker'
 import Screen from '../../routing/Screen'
 import { Text } from '../../common/text'
 import { createStyleSheet } from '../../common/stylesheet'
@@ -157,9 +156,9 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
             onRemoveDatePress={this.removeLastRequestDate}
           />
           { lastRequestDateShown &&
-            <DatePickerIOS
-              date={new Date(lastRequestDate || Date.now())}
-              onDateChange={this.setLastRequestDate}
+            <DateTimePicker
+              value={new Date(lastRequestDate || Date.now())}
+              onChange={(e, date) => this.setLastRequestDate(date)}
             />
           }
           <RowSeparator />
@@ -185,9 +184,9 @@ export default class RatingRequest extends React.PureComponent<Props, State> {
                 onRemoveDatePress={this.removeViewAssignmentDate}
               />
               { viewAssignmentDateShown &&
-                <DatePickerIOS
-                  date={new Date(viewAssignmentDate || Date.now())}
-                  onDateChange={this.setViewAssignmentDate}
+                <DateTimePicker
+                  value={new Date(viewAssignmentDate || Date.now())}
+                  onChange={(e, date) => this.setViewAssignmentDate(date)}
                 />
               }
               <RowSeparator />

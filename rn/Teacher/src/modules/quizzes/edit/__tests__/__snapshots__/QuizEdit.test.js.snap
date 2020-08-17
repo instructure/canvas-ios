@@ -693,7 +693,8 @@ exports[`QuizEdit changes assignment group 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <PickerIOS
+        <Picker
+          mode="dialog"
           onValueChange={[Function]}
           selectedValue="2"
           testID="quizzes.edit.assignment-group-picker"
@@ -706,7 +707,7 @@ exports[`QuizEdit changes assignment group 1`] = `
             label="Changed"
             value="2"
           />
-        </PickerIOS>
+        </Picker>
       </View>
       <TouchableHighlight
         accessibilityLabel="Shuffle Answers, Off"
@@ -2399,7 +2400,8 @@ exports[`QuizEdit changes quiz type 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <PickerIOS
+      <Picker
+        mode="dialog"
         onValueChange={[Function]}
         selectedValue="graded_survey"
         testID="quizzes.edit.quiz-type-picker"
@@ -2420,7 +2422,7 @@ exports[`QuizEdit changes quiz type 1`] = `
           label="Ungraded Survey"
           value="survey"
         />
-      </PickerIOS>
+      </Picker>
       <TouchableHighlight
         accessibilityLabel="Publish, On"
         accessibilityTraits={
@@ -21277,7 +21279,8 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <PickerIOS
+        <Picker
+          mode="dialog"
           onValueChange={[Function]}
           selectedValue={null}
           testID="quizzes.edit.assignment-group-picker"
@@ -21286,7 +21289,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             label="Group Item 1"
             value="1"
           />
-        </PickerIOS>
+        </Picker>
       </View>
       <TouchableHighlight
         accessibilityLabel="Shuffle Answers, Off"
@@ -24953,7 +24956,8 @@ exports[`QuizEdit shows quiz time picker 1`] = `
           </View>
         </View>
       </TouchableHighlight>
-      <PickerIOS
+      <Picker
+        mode="dialog"
         onValueChange={[Function]}
         selectedValue="assignment"
         testID="quizzes.edit.quiz-type-picker"
@@ -24974,7 +24978,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
           label="Ungraded Survey"
           value="survey"
         />
-      </PickerIOS>
+      </Picker>
       <TouchableHighlight
         accessibilityLabel="Publish, On"
         accessibilityTraits={
@@ -40437,10 +40441,10 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
               </View>
             </View>
           </View>
-          <DatePickerIOS
-            date={1970-01-01T00:00:00.000Z}
-            onDateChange={[Function]}
+          <DateTimePicker
+            onChange={[Function]}
             testID="quizzes.edit.hide-correct-answers-at-date-picker"
+            value={1970-01-01T00:00:00.000Z}
           />
         </View>
       </View>
@@ -52605,10 +52609,10 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
               </View>
             </View>
           </View>
-          <DatePickerIOS
-            date={1970-01-01T00:00:00.000Z}
-            onDateChange={[Function]}
+          <DateTimePicker
+            onChange={[Function]}
             testID="quizzes.edit.show-correct-answers-at-date-picker"
+            value={1970-01-01T00:00:00.000Z}
           />
           <View
             style={
@@ -70834,10 +70838,10 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
               </View>
             </View>
           </View>
-          <DatePickerIOS
-            date={1970-01-01T00:00:01.000Z}
-            onDateChange={[Function]}
+          <DateTimePicker
+            onChange={[Function]}
             testID="quizzes.edit.hide-correct-answers-at-date-picker"
+            value={1970-01-01T00:00:01.000Z}
           />
         </View>
       </View>
@@ -72936,10 +72940,10 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
               </View>
             </View>
           </View>
-          <DatePickerIOS
-            date={1970-01-01T00:00:01.000Z}
-            onDateChange={[Function]}
+          <DateTimePicker
+            onChange={[Function]}
             testID="quizzes.edit.show-correct-answers-at-date-picker"
+            value={1970-01-01T00:00:01.000Z}
           />
           <View
             style={

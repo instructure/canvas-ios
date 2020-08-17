@@ -64,7 +64,7 @@ export class SubmissionList extends Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps = (newProps: Props) => {
+  UNSAFE_componentWillReceiveProps = (newProps: Props) => {
     let sectionsWithNoFilter = newProps.sections.filter(section => this.state.filterOptions.find(option => option.type === `section.${section.id}`) == null)
     if (sectionsWithNoFilter.length > 0) {
       let filterOptions = [ ...this.state.filterOptions, ...sectionsWithNoFilter.map(createFilterFromSection) ]
@@ -77,7 +77,7 @@ export class SubmissionList extends Component<Props, State> {
   }
 
   keyExtractor = (item: SubmissionProps) => {
-    return item.userID
+    return item.userID || item.groupID
   }
 
   navigateToSubmission = (index: number) => (userID: string) => {
@@ -207,7 +207,6 @@ export class SubmissionList extends Component<Props, State> {
               initialFilterType={this.props.filterType}
               pointsPossible={this.props.pointsPossible}
               anonymous={this.props.anonymous}
-              muted={this.props.muted}
               navigator={this.props.navigator}
             />
             <FlatList
@@ -264,7 +263,6 @@ export function props (props) {
       pending: true,
       submissions: [],
       anonymous: false,
-      muted: false,
       gradingType: 'points',
       sections: [],
     }
@@ -295,7 +293,6 @@ export function props (props) {
     pending: false,
     submissions: isGroupGradedAssignment ? groupedSubmissions : submissions,
     anonymous: assignment.anonymousGrading,
-    muted: assignment.muted,
     assignmentName: assignment.name,
     gradingType: assignment.gradingType,
     sections,

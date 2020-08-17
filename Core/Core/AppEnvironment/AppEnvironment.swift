@@ -40,6 +40,7 @@ open class AppEnvironment {
     public var userDefaults: SessionDefaults?
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
+    open var isTest: Bool { false }
 
     public init() {
         self.database = globalDatabase
@@ -67,7 +68,7 @@ open class AppEnvironment {
 
     public static var shared = AppEnvironment()
 
-    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
+    public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {
         return Store(env: self, useCase: useCase, eventHandler: callback)
     }
 

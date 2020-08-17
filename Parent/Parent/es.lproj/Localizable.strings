@@ -35,6 +35,9 @@
 "Announcement" = "Anuncio";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Detalles de la tarea";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Recordatorio de la tarea";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Escribir un mensaje";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Redactar mensaje para profesores";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Escribir mensaje nuevo";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Alumno actual: %@. Pulsar para cambiar alumnos";
 
 /* No comment provided by engineer. */
+"Date" = "Fecha";
+
+/* No comment provided by engineer. */
+"Description" = "Descripción";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Dominio no correspondiente";
 
 /* No comment provided by engineer. */
+"Due" = "Fecha de entrega";
+
+/* No comment provided by engineer. */
 "Email address" = "Dirección de correo electrónico";
 
 /* No comment provided by engineer. */
 "Email..." = "Correo electrónico…";
+
+/* No comment provided by engineer. */
+"Event Details" = "Detalles del evento";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Recordatorio del evento";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Parece que está intentando agregar un estudiante. Intente agregar este estudiante después de haber iniciado sesión";
 
 /* No comment provided by engineer. */
+"Location" = "Ubicación";
+
+/* No comment provided by engineer. */
 "Login required" = "Debe iniciar sesión";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Sin alertas";
 
 /* No comment provided by engineer. */
 "No Courses" = "Sin cursos";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No hay fecha de entrega";
 
 /* No comment provided by engineer. */
 "No Grade" = "Sin calificación";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Asunto: %1$@, Tarea:  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Recordármelo";
+
+/* No comment provided by engineer. */
 "Retry" = "Reintentar";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Establecer una fecha y un horario para que se me notifique este evento.";
 
 /* No comment provided by engineer. */
 "Settings" = "Configuraciones";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Ocurrió un error al cargar las alertas. Pulse actualizar para volver a intentarlo.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Hubo un error al cargar los cursos. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Hubo un error al cargar los estudiantes. Pulse actualizar para volver a intentarlo.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "¡Ya está al día!";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Es posible que los cursos de su hijo/a todavía no se hayan publicado.";
 

@@ -17,7 +17,7 @@
 //
 
 // @flow
-import { NativeModules, type PushNotificationIOS, Linking } from 'react-native'
+import { NativeModules, Linking } from 'react-native'
 import { route } from './index'
 import { getAuthenticatedSessionURL } from '../canvas-api'
 import { recordRoute } from '../modules/developer-menu/DeveloperMenu'
@@ -121,23 +121,5 @@ export default class Navigator {
 
   traitCollection (handler: (traits: TraitCollection) => void): any {
     return NativeModules.Helm.traitCollection(this.moduleName, handler)
-  }
-
-  showNotification (notification: PushNotificationIOS) {
-    const data = notification.getData()
-    if (data && data.html_url) {
-      this.show(data.html_url, {
-        modal: true,
-        modalPresentationStyle: 'fullscreen',
-        embedInNavigationController: true,
-        deepLink: true,
-      }, {
-        forceRefresh: true,
-        pushNotification: {
-          alert: notification.getAlert(),
-          data,
-        },
-      })
-    }
   }
 }

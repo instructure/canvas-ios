@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Klaar om je af te melden?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Weet je zeker dat je deze toets wilt verlaten?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Vraag het me later";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Bestaande bijlagen...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Afsluiten";
+
 /* Title for an external tool submission */
 "External Tool" = "Externe tool";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Er zijn problemen";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Het lijkt erop dat er in deze ruimte nog geen toetsen zijn gemaakt.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Het is leeg, wat doe je hier nog .";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Extern hulpmiddel lanceren";
+
+/* Leave the quiz */
+"Leave" = "Verlaten";
 
 /* Title for legal section on the about page */
 "Legal" = "Juridisch";
@@ -912,6 +924,9 @@
 "No Notifications" = "Geen meldingen";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Geen toetsen";
+
+/* No comment provided by engineer. */
 "No recipients" = "Geen geadresseerden";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Niet beoordeeld (0 van %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Niet ingediend";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Opmerking: Mediabestanden zijn niet direct beschikbaar om af te spelen terwijl ze nog op de server bewerkt worden.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Toets waarschuwing";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Details over toets";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Toets is vergrendeld";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Een media opmerking wordt opgenomen";
 
+/* Stay on the quiz view */
+"Stay" = "Blijven";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Blijf ingelogd";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Ingediend";
+
+/* Submitted date */
+"Submitted %@" = "Ingeleverd %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Bezig met inleveren...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Er was een probleem bij het lanceren van Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van toetsen. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Er was een probleem bij het laden van het document.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Bestand bekijken %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Resultaten weergeven";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Inleveringspoging %1$d bekijken. %2$@";

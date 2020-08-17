@@ -128,6 +128,9 @@
 "Assignment Missing" = "Aseiniad ar Goll";
 
 /* No comment provided by engineer. */
+"Assignments" = "Aseiniadau";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Ymgais %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Creu Cyfrif";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Ymrestriad presennol";
+
+/* No comment provided by engineer. */
 "Current position" = "Lleoliad presennol";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Trafodaethau";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Gwall ar y Ddisg";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Gwrthod";
@@ -575,6 +584,9 @@
 "Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Ymrestriadau yn y Dyfodol";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Wedi graddio";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Arolygon wedi’u Graddio";
 
 /* No comment provided by engineer. */
 "Grades" = "Graddau";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Mae’n ymddangos nad oes aseiniadau wedi cael eu creu yn y gofod hwn eto.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Mae’n ymddangos nad oes cyrsiau’n gysylltiedig â'r cyfrif hwn. Ewch ar y we i greu cwrs heddiw.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Angen Graddio";
 
 /* No comment provided by engineer. */
+"Network Error" = "Gwall ar y Rhwydwaith";
+
+/* No comment provided by engineer. */
 "Never" = "Byth";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Dim cyrsiau cyfatebol";
+
+/* No comment provided by engineer. */
 "No Modules" = "Dim Modiwlau";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Dim Brys";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Gwall Hysbysu";
 
 /* No comment provided by engineer. */
 "Notifications" = "Hysbysiadau";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Cwisiau Ymarfer";
+
+/* No comment provided by engineer. */
 "Preferences" = "Blaenoriaethau";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
+
+/* Button to report an error */
+"Report" = "Adroddiad";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rhoi gwybod am broblem";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Wedi llwyddo!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Arolygon";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Cynorthwyydd Dysgu";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Does dim tudalennau i’w dangos eto.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Problem wrth gofrestru'ch dyfais i dderbyn hysbysiadau marchnata.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Problem wrth adfer y Telerau Defnyddio";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Dad-wneud";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Gwall Anhysbys";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Diderfyn";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Efallai nad yw cyrsiau eich plentyn wedi cael eu cyhoeddi eto.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Eich E-bost";

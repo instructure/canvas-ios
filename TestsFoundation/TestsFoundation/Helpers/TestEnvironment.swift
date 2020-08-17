@@ -23,6 +23,7 @@ import XCTest
 
 public class TestEnvironment: AppEnvironment {
     public var mockStore = false
+    override open var isTest: Bool { true }
 
     override public init() {
         super.init()
@@ -35,7 +36,7 @@ public class TestEnvironment: AppEnvironment {
         self.userDefaults = SessionDefaults(sessionID: self.currentSession! .uniqueID)
     }
 
-    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler) -> Store<U> where U: UseCase {
+    override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {
         if mockStore {
             return TestStore(env: self, useCase: useCase, eventHandler: callback)
         }
@@ -50,12 +51,18 @@ public class TestStore<U: UseCase>: Store<U> {
     }
 
     public let exhaustExpectation = XCTestExpectation(description: "Exhaust")
-    override public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) {
+    override public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) -> Self {
         exhaustExpectation.fulfill()
+        return self
     }
 
     public let getNextPageExpectation = XCTestExpectation(description: "Next Page")
     override public func getNextPage(_ callback: ((U.Response?) -> Void)? = nil) {
         getNextPageExpectation.fulfill()
+    }
+
+    public var overridePending: Bool?
+    public override var pending: Bool {
+        overridePending ?? super.pending
     }
 }

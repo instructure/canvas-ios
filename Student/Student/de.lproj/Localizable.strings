@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Sind Sie bereit, sich abzumelden?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Sind Sie sicher, dass Sie dieses Quiz wirklich verlassen wollen?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Mich später fragen";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Vorhandene Anhänge...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Beenden";
+
 /* Title for an external tool submission */
 "External Tool" = "Externes Tool";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Hat Probleme";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Quizze wurden in diesem Raum scheinbar noch nicht angelegt.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Hier gibt es nichts. Was machen Sie noch hier?!";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Externes Tool starten";
+
+/* Leave the quiz */
+"Leave" = "Verlassen";
 
 /* Title for legal section on the about page */
 "Legal" = "Rechtliches";
@@ -912,6 +924,9 @@
 "No Notifications" = "Keine Benachrichtigungen";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Keine Quizze";
+
+/* No comment provided by engineer. */
 "No recipients" = "Keine Empfänger";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Nicht benotet (0 von %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Nicht abgegeben";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Anmerkung: Mediendateien werden nicht sofort verfügbar für die Wiedergabe, wenn sie auf dem Server bearbeitet werden.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Quiz-Alarmsignal";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Quizdetails";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quiz gesperrt";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Startet die Aufzeichnung eines Medienkommentars";
 
+/* Stay on the quiz view */
+"Stay" = "Bleiben";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Angemeldet bleiben";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Abgegeben";
+
+/* Submitted date */
+"Submitted %@" = "Abgegeben %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Wird abgegeben ...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Beim Start von Safari ist ein Problem aufgetreten";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Fehler beim Laden der Quizze. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Beim Laden des Dokuments ist ein Fehler aufgetreten.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Datei anzeigen %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Ergebnisse anzeigen";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Abgabeversuch %1$d anzeigen. %2$@";

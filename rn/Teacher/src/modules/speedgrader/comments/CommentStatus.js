@@ -58,6 +58,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
         toValue: 0.8,
         duration,
         easing: Easing.linear,
+        useNativeDriver: false,
       },
     )
     if (animation) {
@@ -69,7 +70,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
     this.props.drawerState.unregisterCommentProgress(this.props.userID)
   }
 
-  componentWillReceiveProps (nextProps: CommentStatusProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: CommentStatusProps) {
     if (nextProps.isDone) {
       this.progress.stopAnimation()
       Animated.timing(
@@ -77,6 +78,7 @@ export default class CommentStatus extends Component<CommentStatusProps, Comment
         {
           toValue: 1,
           duration: 300,
+          useNativeDriver: false,
         }
       ).start(nextProps.animationComplete)
     }

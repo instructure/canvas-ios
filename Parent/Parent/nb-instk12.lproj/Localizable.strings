@@ -35,6 +35,9 @@
 "Announcement" = "Kunngjøring";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Oppgavedetaljer";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Oppgavepåminnelse";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Skriv melding";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Skriv melding til lærere";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Skriv ny melding";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Nåværende elever: %@. Trykk for å bytte mellom elever";
 
 /* No comment provided by engineer. */
+"Date" = "Dato";
+
+/* No comment provided by engineer. */
+"Description" = "Beskrivelse";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Domenefeil";
 
 /* No comment provided by engineer. */
+"Due" = "Forfall";
+
+/* No comment provided by engineer. */
 "Email address" = "E-postadresse";
 
 /* No comment provided by engineer. */
 "Email..." = "E-post...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Detaljer for hendelse";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Hendelsespåminnelse";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Det ser ut som du prøver å legge til en elev. Prøv å legge til denne eleven etter at du har logget inn";
 
 /* No comment provided by engineer. */
+"Location" = "Sted";
+
+/* No comment provided by engineer. */
 "Login required" = "Innlogging kreves";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Ingen varsler";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ingen fag";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ingen forfallsdato";
 
 /* No comment provided by engineer. */
 "No Grade" = "Ingen vurdering";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Vedrørende: %1$@, Oppgave - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Påminnelse";
+
+/* No comment provided by engineer. */
 "Retry" = "Forsøk igjen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Angi tid og dato for påminnelse om denne oppgaven.";
 
 /* No comment provided by engineer. */
 "Settings" = "Innstillinger";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Det oppsto en feil under lasting av varsler. Dra for å oppdatere og prøve på nytt.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Det oppstod en feil under lasting av fag. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Det oppsto en feil under lasting av elever. Dra for å oppdatere og prøve på nytt.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Du er oppdatert";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Dine underordnede fag er kanskje ikke publisert enda.";
 

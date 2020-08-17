@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Ali ste pripravljeni na odjavo?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Ali ste prepričani, da želite zapustiti ta kviz?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Vprašaj me pozneje.";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Obstoječe priloge ...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Izhod";
+
 /* Title for an external tool submission */
 "External Tool" = "Zunanje orodje";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Ima težave.";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Videti je, da v tem prostoru ni bil ustvarjen še noben kviz.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Prazno je, kaj še počnete tu?";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Zaženi zunanje orodje";
+
+/* Leave the quiz */
+"Leave" = "Zapusti";
 
 /* Title for legal section on the about page */
 "Legal" = "Pravne informacije";
@@ -912,6 +924,9 @@
 "No Notifications" = "Ni sporočil.";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Ni kvizov.";
+
+/* No comment provided by engineer. */
 "No recipients" = "Ni prejemnikov.";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ni ocenjeno (0 od %@).";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ni oddano.";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Opomba: Medijske datoteke med obdelavo na strežniku niso takoj na voljo za predvajanje.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Opozorilo o kvizu";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Podrobnosti o kvizu";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Kviz je zaklenjen";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Začne snemati komentar v obliki medija.";
 
+/* Stay on the quiz view */
+"Stay" = "Ostani";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Ostanite vpisani";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Poslano";
+
+/* Submitted date */
+"Submitted %@" = "Poslano %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Pošiljanje ...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Prišlo je do težave z zagonom brskalnika Safari.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Pri nalaganju kvizov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Prišlo je do napake pri nalaganju dokumenta.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Ogled datoteke %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Ogled rezultatov";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Ogled poskusa oddaje %1$d. %2$@";

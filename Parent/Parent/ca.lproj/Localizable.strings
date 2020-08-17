@@ -35,6 +35,9 @@
 "Announcement" = "Anunci";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Detalls de la tasca";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Recordatori de tasca";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Redacta un missatge";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Redacta un missatge per als professors";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Redacta un missatge nou";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
 
 /* No comment provided by engineer. */
+"Date" = "Data";
+
+/* No comment provided by engineer. */
+"Description" = "Descripció";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Descarta";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "El domini no coincideix";
 
 /* No comment provided by engineer. */
+"Due" = "Venciment";
+
+/* No comment provided by engineer. */
 "Email address" = "Adreça electrònica";
 
 /* No comment provided by engineer. */
 "Email..." = "Adreça electrònica...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Detalls de l'esdeveniment";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Recordatori d'esdeveniment";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Sembla que esteu provant d'afegir un estudiant. Proveu d'afegir aquest estudiant després d'iniciar la sessió";
 
 /* No comment provided by engineer. */
+"Location" = "Ubicació";
+
+/* No comment provided by engineer. */
 "Login required" = "Cal iniciar la sessió";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Cap avís";
 
 /* No comment provided by engineer. */
 "No Courses" = "No hi ha cap curs";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Sense data de venciment";
 
 /* No comment provided by engineer. */
 "No Grade" = "Sense qualificació";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tasca - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Recorda-m'ho";
+
+/* No comment provided by engineer. */
 "Retry" = "Torna a provar-ho";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Establiu una data i hora per rebre una notificació sobre aquest esdeveniment.";
 
 /* No comment provided by engineer. */
 "Settings" = "Configuració";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "S'ha produït un error en carregar els avisos. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar els cursos. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "S'ha produït un error en carregar els estudiants. Estireu per actualitzar per tornar-ho a provar.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Esteu completament al dia";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";
 

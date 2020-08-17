@@ -16,18 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/**
- * Teacher
- * https://github.com/instructure/ios/rn/Teacher
- * @flow
- */
-
 import {
   NativeModules,
   NativeEventEmitter,
   AppState,
-  PushNotificationIOS,
-  Linking,
+  LogBox,
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
@@ -46,10 +39,7 @@ import { Crashlytics } from './src/common/CanvasCrashlytics'
 import { clearClient } from './src/canvas-api-v2/client'
 
 global.crashReporter = Crashlytics
-
-// Useful for demos when you don't want that annoying yellow box showing up all over the place
-// such as, when demoing
-console.disableYellowBox = true
+LogBox.ignoreAllLogs()
 
 const {
   NativeLogin,
@@ -106,21 +96,6 @@ const loginHandler = async ({
   if (previous && !compareSessions(session, previous)) {
     logout()
   }
-
-  PushNotificationIOS.addEventListener('notification', (notification) => {
-    const navigator = new Navigator('')
-    navigator.showNotification(notification)
-    notification.finish(PushNotificationIOS.FetchResult.NewData)
-  })
-
-  Linking.addEventListener('url', (event) => {
-    const navigator = new Navigator('')
-    navigator.show(event.url, {
-      modal: true,
-      embedInNavigationController: true,
-      deepLink: true,
-    })
-  })
 
   clearClient()
   setSession(session)

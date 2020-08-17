@@ -78,7 +78,7 @@ export class ConversationDetails extends React.Component <Props, State> {
     }
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  UNSAFE_componentWillReceiveProps (nextProps: Props) {
     if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
       this.setState({ deletePending: false })
       this.close()

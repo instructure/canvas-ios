@@ -71,7 +71,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
 
     "/courses": {
         if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
-            return { _ in HostingController(rootView: CourseListView.create()) }
+            return { _ in CoreHostingController(CourseListView()) }
         } else {
             return nil
         }
@@ -88,6 +88,10 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
     },
 
+    "/:context/:contextID/wiki": { props in
+        guard let context = props.context else { return nil }
+        return router.match(.parse("\(context.pathComponent)/pages/front_page"))
+    },
     "/:context/:contextID/pages": { props in
         guard let context = props.context else { return nil }
         return PageListViewController.create(context: context, app: .teacher)

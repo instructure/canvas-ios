@@ -128,6 +128,9 @@
 "Assignment Missing" = "Opdracht ontbreekt";
 
 /* No comment provided by engineer. */
+"Assignments" = "Opdrachten";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Poging %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Account maken";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Huidige inschrijvingen";
+
+/* No comment provided by engineer. */
 "Current position" = "Huidige positie";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussies";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Schijffout";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Afwijzen";
@@ -575,6 +584,9 @@
 "Front Page" = "Voorpagina";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Toekomstige inschrijvingen";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Beoordeeld";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Beoordeelde onderzoeken";
 
 /* No comment provided by engineer. */
 "Grades" = "Cijfers";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Het lijkt erop dat er in deze ruimte nog geen opdrachten zijn gemaakt.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Het lijkt erop dat er geen cursussen aan dit account zijn gekoppeld. Ga naar het web om vandaag nog een cursus te maken.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Moet worden beoordeeld";
 
 /* No comment provided by engineer. */
+"Network Error" = "Netwerkfout";
+
+/* No comment provided by engineer. */
 "Never" = "Nooit";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Geen overeenkomende cursussen";
+
+/* No comment provided by engineer. */
 "No Modules" = "Geen modules";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Niet urgent";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Meldingsfout";
 
 /* No comment provided by engineer. */
 "Notifications" = "Meldingen";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Oefentoetsen";
+
+/* No comment provided by engineer. */
 "Preferences" = "Voorkeuren";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
+
+/* Button to report an error */
+"Report" = "Melden";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Een probleem melden";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Gelukt!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Enquêtes";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Onderwijsassistent";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Er zijn nog geen pagina's om weer te geven.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Er is een fout opgetreden bij het registreren van je apparaat voor pushberichten.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Er is een probleem met het ophalen van de gebruiksvoorwaarden";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Ongedaan maken";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Onbekende fout";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Onbeperkt";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "De cursussen van je cursist zijn mogelijk nog niet gepubliceerd.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Je apparaat beschikt over onvoldoende opslagruimte. Maak ruimte vrij en probeer het opnieuw.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Je e-mail";

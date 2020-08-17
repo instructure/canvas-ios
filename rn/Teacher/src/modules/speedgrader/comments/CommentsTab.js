@@ -69,7 +69,7 @@ export class CommentsTab extends Component<CommentsTabProps, any> {
     AppState.removeEventListener('change', this._handleAppStateChange)
   }
 
-  componentWillReceiveProps (newProps: CommentsTabProps) {
+  UNSAFE_componentWillReceiveProps (newProps: CommentsTabProps) {
     if (this.props.isCurrentStudent && !newProps.isCurrentStudent) {
       this.setState({ showingNewMediaComment: null })
     }

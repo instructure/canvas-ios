@@ -128,6 +128,9 @@
 "Assignment Missing" = "Manjkajoča naloga";
 
 /* No comment provided by engineer. */
+"Assignments" = "Naloge";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Poskus %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Ustvari račun";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Trenutni vpisi";
+
+/* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Razprave";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Napaka na disku";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Opusti";
@@ -575,6 +584,9 @@
 "Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Prihodnji vpisi";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Ocenjeno";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Ocenjene ankete";
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Zdi se, da v tem prostoru naloge še niso bile ustvarjene.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Zdi se, da s tem računom ni povezan noben predmet. Da ustvarite predmet še danes, obiščite splet.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Videti je, da v noben predmet niste vpisani kot %@. Morda bo primernejša ena od naših drugih aplikacij. Tapnite za obisk trgovine App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Je treba oceniti.";
 
 /* No comment provided by engineer. */
+"Network Error" = "Napaka v omrežju";
+
+/* No comment provided by engineer. */
 "Never" = "Nikoli";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Izbirnik slik ni našel nobene slike";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Ni ujemajočih se predmetov";
+
+/* No comment provided by engineer. */
 "No Modules" = "Ni modulov.";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ni nujno";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Napaka pri sporočilu";
 
 /* No comment provided by engineer. */
 "Notifications" = "Obvestila";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Kvizi za vajo";
+
+/* No comment provided by engineer. */
 "Preferences" = "Nastavitve";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Odgovori na opombo ali predhodne komentarje";
+
+/* Button to report an error */
+"Report" = "Poročilo";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Poročajte o težavi.";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Uspešno!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Ankete";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Demonstrator";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Zaenkrat ni strani za prikaz.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Prišlo je do težave pri registriranju naprave za poslana sporočila.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Prišlo je do težav pri pridobivanju pogojev uporabe.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Razveljavi";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Neznana napaka";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Neomejeno";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "V napravi je zmanjkalo prostora na disku. Počistite prostor na disku in poskusite znova.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Vaš e-poštni naslov";

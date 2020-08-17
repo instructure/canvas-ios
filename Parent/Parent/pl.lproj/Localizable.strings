@@ -35,6 +35,9 @@
 "Announcement" = "Ogłoszenie";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Szczegóły zadania";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Przypomnienie o zadaniu";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Utwórz wiadomość";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Utwórz wiadomość dla nauczycieli";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Utwórz nową wiadomość";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Obecny uczestnik: %@. Stuknij, aby przełącznik uczestników";
 
 /* No comment provided by engineer. */
+"Date" = "Data";
+
+/* No comment provided by engineer. */
+"Description" = "Opis";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Odwołaj";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Niezgodność domeny";
 
 /* No comment provided by engineer. */
+"Due" = "Termin";
+
+/* No comment provided by engineer. */
 "Email address" = "Adres e-mail";
 
 /* No comment provided by engineer. */
 "Email..." = "Adres e-mail...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Szczegółowe informacje o wydarzeniu";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Przypomnienie o zdarzeniu";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Wygląda na to, że próbujesz dodać uczestnika. Spróbuj dodać tego uczestnika po zalogowaniu się";
 
 /* No comment provided by engineer. */
+"Location" = "Lokalizacja";
+
+/* No comment provided by engineer. */
 "Login required" = "Wymagane zalogowanie";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "nd.";
 
 /* No comment provided by engineer. */
+"N/A" = "Nd.";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Brak alertów";
 
 /* No comment provided by engineer. */
 "No Courses" = "Brak kursów";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Brak terminu";
 
 /* No comment provided by engineer. */
 "No Grade" = "Brak oceny";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "W odniesieniu do: %1$@, zadanie- %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Przypomnij mi";
+
+/* No comment provided by engineer. */
 "Retry" = "Ponów próbę";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Ustaw datę i godzinę powiadomienia o tym wydarzeniu.";
 
 /* No comment provided by engineer. */
 "Settings" = "Ustawienia";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania alertów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania kursów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania uczestników. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "To już wszystko";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Być może kursy dziecka nie zostały jeszcze opublikowane.";
 

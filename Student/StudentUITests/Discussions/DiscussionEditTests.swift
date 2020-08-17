@@ -61,7 +61,8 @@ class DiscussionEditTests: CoreUITestCase {
         DiscussionEdit.titleField.waitToVanish()
     }
 
-    func testCreateDiscussionWithAttachment() {
+    func testCreateDiscussionWithAttachment() throws {
+        try XCTSkipIf(true, "Works on device but fails in simulator")
         mockBaseRequests()
         mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
         mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
@@ -74,7 +75,9 @@ class DiscussionEditTests: CoreUITestCase {
         mockEncodableRequest("files/1", value: APIFile.make())
 
         show("/courses/\(course1.id)/discussion_topics")
-        DiscussionList.newButton.waitToExist(10).tap()
+        DiscussionList.newButton.tapUntil {
+            DiscussionEdit.attachmentButton.exists
+        }
         DiscussionEdit.attachmentButton.tap()
         Attachments.addButton.tap()
         allowAccessToPhotos {

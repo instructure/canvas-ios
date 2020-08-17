@@ -70,7 +70,7 @@ export class ToDoList extends Component<Props, State> {
       ))
   }
 
-  componentWillReceiveProps (props: Props) {
+  UNSAFE_componentWillReceiveProps (props: Props) {
     if (props.loadError && props.loadError !== this.props.loadError) {
       alertError(props.loadError)
     }

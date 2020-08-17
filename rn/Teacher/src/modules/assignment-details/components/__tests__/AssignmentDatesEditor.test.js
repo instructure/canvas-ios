@@ -25,6 +25,7 @@ import renderer from 'react-test-renderer'
 
 jest.mock('../../../../routing')
 jest.mock('react-native/Libraries/LayoutAnimation/LayoutAnimation')
+jest.mock('@react-native-community/datetimepicker', () => 'DateTimePicker')
 
 jest.mock('react-native/Libraries/Alert/Alert', () => {
   return {

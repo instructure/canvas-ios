@@ -52,6 +52,7 @@ function toggleHomePicker (tree: *) {
 describe('CourseSettings', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    console.warn = jest.fn()
   })
 
   it('renders', () => {

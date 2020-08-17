@@ -22,10 +22,12 @@ import SwiftUI
 @available(iOSApplicationExtension 13.0, *)
 public struct SearchBarView: UIViewRepresentable {
     @Binding var text: String
+    let placeholder: String
 
     public func makeUIView(context: Self.Context) -> UISearchBar {
         let bar = UISearchBar()
         bar.delegate = context.coordinator
+        bar.placeholder = placeholder
         return bar
     }
 

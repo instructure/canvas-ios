@@ -229,17 +229,17 @@ jest.mock('react-native/Libraries/Animated/src/Animated', () => {
   }
 })
 
-jest.mock('react-native/Libraries/Components/Picker/PickerIOS', () => {
-  const RealComponent = require.requireActual('react-native/Libraries/Components/Picker/PickerIOS')
+jest.mock('@react-native-community/picker', () => {
+  const RealComponent = require.requireActual('@react-native-community/picker').Picker
   const React = require('React')
-  const PickerIOS = class extends RealComponent {
+  const Picker = class extends RealComponent {
     render () {
-      return React.createElement('PickerIOS', this.props, this.props.children)
+      return React.createElement('Picker', this.props, this.props.children)
     }
   }
-  PickerIOS.Item = props => React.createElement('Item', props, props.children)
-  PickerIOS.propTypes = RealComponent.propTypes
-  return PickerIOS
+  Picker.Item = props => React.createElement('Item', props, props.children)
+  Picker.propTypes = RealComponent.propTypes
+  return { Picker }
 })
 
 jest.mock('react-native/Libraries/Components/AccessibilityInfo/AccessibilityInfo', () => ({

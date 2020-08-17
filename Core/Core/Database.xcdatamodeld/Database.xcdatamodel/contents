@@ -180,6 +180,7 @@
         <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="participants" inverseEntity="Conversation"/>
     </entity>
     <entity name="Course" representedClassName="Core.Course" syncable="YES">
+        <attribute name="accessRestrictedByDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>

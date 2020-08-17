@@ -24,8 +24,8 @@ export default function setProps<P> (component: any, changedProps: P): any {
     ...instance.props,
     ...changedProps,
   }
-  if (instance.componentWillReceiveProps) {
-    instance.componentWillReceiveProps(nextProps)
+  if (instance.UNSAFE_componentWillReceiveProps) {
+    instance.UNSAFE_componentWillReceiveProps(nextProps)
   }
   instance.props = nextProps
   return component

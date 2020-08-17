@@ -35,6 +35,9 @@
 "Announcement" = "Anons";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Detay Sesyon";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Rapèl sesyon";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Konpoze yon Mesaj";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Ekri mesaj pou pwofesè yo";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Ekri nouvo mesaj";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Elèv aktyèl: %@. Tape pou chanje elèv";
 
 /* No comment provided by engineer. */
+"Date" = "Dat";
+
+/* No comment provided by engineer. */
+"Description" = "Deskripsyon";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Rejte";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Domèm pa koresponn";
 
 /* No comment provided by engineer. */
+"Due" = "Delè";
+
+/* No comment provided by engineer. */
 "Email address" = "Adrès imèl";
 
 /* No comment provided by engineer. */
 "Email..." = "Imèl...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Detay Aktivite";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Rapèl aktivite";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Ta sanble w ap eseye ajoute yon elèv. Eseye ajoute elèv sa a lè w fin konekte";
 
 /* No comment provided by engineer. */
+"Location" = "Anplasman";
+
+/* No comment provided by engineer. */
 "Login required" = "Koneksyon obligatwa";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Pa gen Alèt";
 
 /* No comment provided by engineer. */
 "No Courses" = "Pa gen Kou";
+
+/* No comment provided by engineer. */
+"No Due Date" = "San Delè";
 
 /* No comment provided by engineer. */
 "No Grade" = "Pa gen Klas";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Konsènan: %1$@, Devwa - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Raple m";
+
+/* No comment provided by engineer. */
 "Retry" = "Re eseye";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Antre yon dat ak yon lè pou yo raple w aktivite sa a.";
 
 /* No comment provided by engineer. */
 "Settings" = "Paramèt";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Te gen erè nan chajman alèt yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Te gen yon erè nan chajman kou yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Te gen yon erè nan chajman elèv yo. Rale pou aktyalize pou ka eseye ankò.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Yo pran w";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";
 

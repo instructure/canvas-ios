@@ -23,10 +23,10 @@ import React, { Component } from 'react'
 import ReactNative, {
   View,
   LayoutAnimation,
-  PickerIOS,
   findNodeHandle,
   NativeModules,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import Screen from '../../../routing/Screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Heading1, FormLabel } from '../../../common/text'
@@ -44,7 +44,6 @@ import {
 import { alertError } from '../../../redux/middleware/error-handler'
 import { isTeacher } from '../../app'
 
-const PickerItem = PickerIOS.Item
 const { NativeNotificationCenter } = NativeModules
 
 type HocProps = {
@@ -88,7 +87,7 @@ export class PageEdit extends Component<Props, State> {
     editingRolesPickerShown: false,
   }
 
-  componentWillReceiveProps ({ page, loadError }: Props) {
+  UNSAFE_componentWillReceiveProps ({ page, loadError }: Props) {
     if (loadError && loadError !== this.props.loadError) alertError(loadError)
     if (this.props.page == null && page != null) {
       this.setState(page) // page finally loaded, reset form
@@ -190,19 +189,19 @@ export class PageEdit extends Component<Props, State> {
                   testID='PageEditor.editorsButton'
                 />
                 {this.state.editingRolesPickerShown &&
-                  <PickerIOS
+                  <Picker
                     selectedValue={editingRole}
                     onValueChange={this.handleEditingRolesChange}
                     testID='PageEditor.editorsPicker'
                   >
                     {Object.keys(possibleRoles).map(key => (
-                      <PickerItem
+                      <Picker.Item
                         key={key}
                         value={key}
                         label={possibleRoles[key]}
                       />
                     ))}
-                  </PickerIOS>
+                  </Picker>
                 }
               </View>
             }

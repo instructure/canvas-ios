@@ -128,6 +128,9 @@
 "Assignment Missing" = "Brak zadania";
 
 /* No comment provided by engineer. */
+"Assignments" = "Zadania";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Próba %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Utwórz konto";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Bieżące zapisy";
+
+/* No comment provided by engineer. */
 "Current position" = "Bieżąca pozycja";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Dyskusje";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Błąd dysku";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Odrzuć";
@@ -575,6 +584,9 @@
 "Front Page" = "Pierwsza strona";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Przyszłe zapisy";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Oceniono";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Ocenione ankiety";
 
 /* No comment provided by engineer. */
 "Grades" = "Oceny";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Wygląda na to, że w tej przestrzeni nie utworzono zadań.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Wygląda na to, że nie ma kursów powiązanych z tym kontem. Odwiedź witrynę, aby utworzyć dzisiaj kurs.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Wygląda na to, że nie jesteś zapisany w żadnym kursie jako %@. Być może inna z naszych aplikacji będzie Ci bardziej pasować. Stuknij ją, aby odwiedzić App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Wymaga oceny";
 
 /* No comment provided by engineer. */
+"Network Error" = "Błąd sieci";
+
+/* No comment provided by engineer. */
 "Never" = "Nigdy";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Nie odnaleziono obrazu z narzędzia wyboru obrazów";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Brak pasujących kursów";
+
+/* No comment provided by engineer. */
 "No Modules" = "Brak modułów";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Niepilne";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Błąd powiadomienia";
 
 /* No comment provided by engineer. */
 "Notifications" = "Powiadomienia";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Testy próbne";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferencje";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Odpowiedz na adnotację lub poprzednie komentarze";
+
+/* Button to report an error */
+"Report" = "Raport";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Zgłoś problem";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Zakończono powodzeniem!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Ankiety";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Brak stron do wyświetlenia.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Wystąpił błąd z zarejestrowaniem urządzenia dla powiadomień push.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Wystąpił problem z pobraniem Warunków korzystania.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Cofnij";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Nieznany błąd";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Nieograniczony";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kursy Twojego dziecka mogły nie zostać jeszcze opublikowane.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Brak wolnego miejsca na urządzeniu. Zwolnij trochę miejsca i spróbuj ponownie";
 
 /* No comment provided by engineer. */
 "Your Email" = "Twój adres e-mail";

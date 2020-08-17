@@ -23,9 +23,9 @@ import {
   View,
   Image,
   TouchableHighlight,
-  PickerIOS,
   LayoutAnimation,
 } from 'react-native'
+import { Picker } from '@react-native-community/picker'
 import { Text } from '../../../common/text'
 import type {
   SubmissionDataProps,
@@ -33,8 +33,6 @@ import type {
 import { formattedDueDate } from '../../../common/formatters'
 import icon from '../../../images/inst-icons'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
-
-var PickerItemIOS = PickerIOS.Item
 
 export default class SubmissionPicker extends Component<SubmissionPickerProps, State> {
   state: State = {
@@ -81,19 +79,19 @@ export default class SubmissionPicker extends Component<SubmissionPickerProps, S
           </View>
         </TouchableHighlight>
         { this.state.showingPicker &&
-          <PickerIOS
+          <Picker
             selectedValue={this.props.selectedIndex}
             onValueChange={this.changeSelectedSubmission}
             testID='header.picker'
           >
             {submission.submissionHistory.edges.map(({ submission: sub }, idx) => (
-              <PickerItemIOS
+              <Picker.Item
                 key={sub.id}
                 value={idx}
                 label={formattedDueDate(new Date(sub.submittedAt || ''))}
               />
             ))}
-          </PickerIOS>
+          </Picker>
         }
       </View>
     } else {

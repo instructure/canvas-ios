@@ -35,6 +35,9 @@
 "Announcement" = "Obvestilo";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Podrobnosti o nalogi";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Opomnik za nalogo";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Sestavi sporočilo";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Sestavi sporočilo za izvajalce";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Sestavi novo sporočilo";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Trenutni študent: %@. Tapnite za preklop študentov";
 
 /* No comment provided by engineer. */
+"Date" = "Datum";
+
+/* No comment provided by engineer. */
+"Description" = "Opis";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Neujemanje domene";
 
 /* No comment provided by engineer. */
+"Due" = "Roki";
+
+/* No comment provided by engineer. */
 "Email address" = "E-poštni naslov";
 
 /* No comment provided by engineer. */
 "Email..." = "E-pošta ...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Podrobnosti dogodka";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Opozorilo o dogodku";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Kaže, da poskušate dodati študenta. Študenta poskusite dodati, ko boste prijavljeni.";
 
 /* No comment provided by engineer. */
+"Location" = "Mesto";
+
+/* No comment provided by engineer. */
 "Login required" = "Zahtevana je prijava";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "Ni na voljo";
 
 /* No comment provided by engineer. */
+"N/A" = "Ni na voljo";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Ni opozoril";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ni predmetov.";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ni roka.";
 
 /* No comment provided by engineer. */
 "No Grade" = "Ni ocen.";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Zadeva: %1$@, Naloga – %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Opomni me";
+
+/* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Nastavite datum in čas obvestila o tem dogodku.";
 
 /* No comment provided by engineer. */
 "Settings" = "Nastavitve";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Pri nalaganju opozoril je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Pri nalaganju predmetov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Pri nalaganju študentov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Seznanjeni ste z vsem";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";
 

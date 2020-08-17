@@ -98,7 +98,6 @@ export default function mapStateToProps (state: AppState, { courseID, quizID }: 
   let error = null
   let pointsPossible = 0
   let anonymous = false
-  let muted = false
   let courseColor = '#FFFFFF'
   let courseName = ''
 
@@ -120,9 +119,6 @@ export default function mapStateToProps (state: AppState, { courseID, quizID }: 
     anonymous = isQuizAnonymous(state, quizID)
     if (quiz.data.assignment_id) {
       anonymous = anonymous || isAssignmentAnonymous(state, courseID, quiz.data.assignment_id)
-      if (entities.assignments[quiz.data.assignment_id] && entities.assignments[quiz.data.assignment_id].data) {
-        muted = entities.assignments[quiz.data.assignment_id].data.muted
-      }
     }
   }
 
@@ -175,7 +171,6 @@ export default function mapStateToProps (state: AppState, { courseID, quizID }: 
     pointsPossible,
     error,
     anonymous,
-    muted,
     sections,
   }
 }

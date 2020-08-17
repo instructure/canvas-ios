@@ -71,7 +71,7 @@ class RoutesTests: XCTestCase {
         }
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
         if #available(iOS 13.0, *) {
-            XCTAssert(router.match("/courses") is HostingController<CourseListView>)
+            XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
         } else {
             XCTAssert(router.match("/courses") is HelmViewController)
         }
@@ -79,6 +79,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/modules/2") is ModuleListViewController)
         XCTAssert(router.match("/courses/3/pages") is PageListViewController)
         XCTAssert(router.match("/courses/8/users") is PeopleListViewController)
+        XCTAssert(router.match("/courses/3/wiki") is PageDetailsViewController)
         XCTAssert(router.match("/groups/3/pages/page2") is PageDetailsViewController)
         XCTAssert(router.match("/groups/3/wiki/page2") is PageDetailsViewController)
         XCTAssert(router.match("/courses/7/modules/5/items/6") is ModuleItemSequenceViewController)

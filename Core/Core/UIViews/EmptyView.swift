@@ -74,25 +74,31 @@ open class EmptyView: UIView {
         super.init(coder: aDecoder)
         loadFromXib()
     }
-}
 
-@available(iOSApplicationExtension 13.0, *)
-public struct EmptyViewRepresentable: UIViewRepresentable {
-    let title: String
-    let body: String
-    let imageName: String
+    @available(iOSApplicationExtension 13.0, *)
+    public struct AsView: UIViewRepresentable {
+        let title: String
+        let body: String
+        let imageName: String
 
-    public func makeUIView(context: Self.Context) -> EmptyView {
-        EmptyView()
-    }
+        public func makeUIView(context: Self.Context) -> EmptyView {
+            EmptyView()
+        }
 
-    public func updateUIView(_ uiView: EmptyView, context: Self.Context) {
-        uiView.titleLabel?.text = title
-        uiView.bodyLabel?.text = body
-        uiView.imageView?.contentMode = .scaleAspectFill
-        let image = UIImage(named: imageName, in: .core, compatibleWith: nil)
-        uiView.imageView?.image = image
-        uiView.imageWidth = image?.size.width ?? 0
-        uiView.imageHeight = image?.size.height ?? 0
+        public func updateUIView(_ uiView: EmptyView, context: Self.Context) {
+            uiView.titleLabel?.text = title
+            uiView.bodyLabel?.text = body
+
+            uiView.titleLabel?.font = UIFont.scaledNamedFont(.bold20)
+            uiView.titleLabel?.textColor = UIColor.textDarkest
+            uiView.bodyLabel?.font = UIFont.scaledNamedFont(.medium16)
+            uiView.bodyLabel?.textColor = UIColor.textDarkest
+
+            uiView.imageView?.contentMode = .scaleAspectFill
+            let image = UIImage(named: imageName, in: .core, compatibleWith: nil)
+            uiView.imageView?.image = image
+            uiView.imageWidth = image?.size.width ?? 0
+            uiView.imageHeight = image?.size.height ?? 0
+        }
     }
 }

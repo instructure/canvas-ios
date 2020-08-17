@@ -128,6 +128,9 @@
 "Assignment Missing" = "مهمة مفقودة";
 
 /* No comment provided by engineer. */
+"Assignments" = "المهام";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "المحاولة %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "إنشاء حساب";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "التسجيلات الحالية";
+
+/* No comment provided by engineer. */
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "النقاشات";
+
+/* No comment provided by engineer. */
+"Disk Error" = "خطأ في القرص";
 
 /* Dismiss button for error messages */
 "Dismiss" = "تجاهل";
@@ -575,6 +584,9 @@
 "Front Page" = "الصفحة الأمامية";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "عمليات الالتحاق المستقبلية";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "تم تقييم الدرجة";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "استطلاعات تم تقييمها";
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "يبدو أنه لم يتم إنشاء مهام في هذه المساحة حتى الآن.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "يبدو أنه لا توجد أي مساقات مقترنة بهذا الحساب. قم بزيارة الويب لإنشاء مساق اليوم.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "بحاجة إلى تقدير الدرجات";
 
 /* No comment provided by engineer. */
+"Network Error" = "خطأ في الشبكة";
+
+/* No comment provided by engineer. */
 "Never" = "أبدًا";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "لم يتم العثور على صورة من منتقي الصور";
 
 /* No comment provided by engineer. */
+"No matching courses" = "لا توجد مساقات مطابقة";
+
+/* No comment provided by engineer. */
 "No Modules" = "لا توجد وحدات نمطية";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "ليس عاجلاً";
+
+/* No comment provided by engineer. */
+"Notification Error" = "خطأ في الإخطارات";
 
 /* No comment provided by engineer. */
 "Notifications" = "الإعلامات";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "التدريب على اختبارات موجزة";
+
+/* No comment provided by engineer. */
 "Preferences" = "التفضيلات";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
+
+/* Button to report an error */
+"Report" = "إنشاء تقرير";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "إبلاغ عن مشكلة";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "نجاح!";
 
+/* No comment provided by engineer. */
+"Surveys" = "الاستطلاعات";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "مساعد المعلم";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "لا توجد أي صفحات للعرض حتى الآن.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "ظهرت مشكلة في تسجيل جهازك لإرسال الإخطارات.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "حدثت مشكلة أثناء استرداد شروط الاستخدام.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "تراجع";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "خطأ غير معروف";
 
 /* No comment provided by engineer. */
 "Unlimited" = "غير محدود";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "ربما لم يتم نشر مساقات الطالب بعد.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "Your Email" = "بريدك الإلكتروني";

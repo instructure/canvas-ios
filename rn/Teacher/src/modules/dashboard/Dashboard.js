@@ -141,7 +141,7 @@ export class Dashboard extends React.Component<Props, State> {
     })
   }
 
-  async componentWillReceiveProps (newProps: Props) {
+  async UNSAFE_componentWillReceiveProps (newProps: Props) {
     if (newProps.isFullDashboard &&
         !newProps.pending &&
         !newProps.error &&

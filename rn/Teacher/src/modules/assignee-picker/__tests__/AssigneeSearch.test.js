@@ -25,12 +25,9 @@ import 'react-native'
 import React from 'react'
 import { AssigneeSearch } from '../AssigneeSearch'
 import renderer from 'react-test-renderer'
-import { registerScreens } from '../../../../src/routing/register-screens'
 import setProps from '../../../../test/helpers/setProps'
 import { type AssigneeSearchProps } from '../map-state-to-props'
 import * as template from '../../../__templates__'
-
-registerScreens({})
 
 jest.mock('react-native-search-bar', () => require('../../../__mocks__/SearchBar').default)
 

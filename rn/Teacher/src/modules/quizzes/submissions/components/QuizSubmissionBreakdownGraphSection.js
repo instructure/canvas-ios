@@ -69,7 +69,7 @@ export class QuizSubmissionBreakdownGraphSection extends Component<QuizSubmissio
     }
   }
 
-  componentWillReceiveProps (nextProps: QuizSubmissionBreakdownGraphSectionProps) {
+  UNSAFE_componentWillReceiveProps (nextProps: QuizSubmissionBreakdownGraphSectionProps) {
     if (!this.props.assignmentID && nextProps.assignmentID) {
       this.props.refreshSubmissionSummary(this.props.courseID, nextProps.assignmentID)
     } else if (this.props.assignmentID && !nextProps.assignmentID) {

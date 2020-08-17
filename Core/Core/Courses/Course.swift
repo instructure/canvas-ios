@@ -37,6 +37,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var isFutureEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var termName: String?
+    @NSManaged public var accessRestrictedByDate: Bool
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -75,9 +76,9 @@ final public class Course: NSManagedObject, WriteableModel {
             (item.start_at ?? .distantPast) > Clock.now ||
             (item.term?.start_at ?? .distantPast) > Clock.now
         )
-        // TODO: is this the right logic?
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed
         model.termName = item.term?.name
+        model.accessRestrictedByDate = item.access_restricted_by_date ?? false
 
         if let apiEnrollments = item.enrollments {
             let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in

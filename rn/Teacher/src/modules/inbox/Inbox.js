@@ -53,7 +53,7 @@ export type InboxProps = {
 export class Inbox extends Component<InboxProps, any> {
   state = { selectedCourse: 'all' }
 
-  componentWillReceiveProps (newProps: InboxProps) {
+  UNSAFE_componentWillReceiveProps (newProps: InboxProps) {
     if (newProps.scope !== this.props.scope) {
       handleRefresh(newProps)
     }

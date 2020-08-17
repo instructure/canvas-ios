@@ -55,6 +55,7 @@ export default class TabsList extends Component<TabsListProps, any> {
   animatedValue: Animated.Value = new Animated.Value(-235)
   animate = Animated.event(
     [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
+    { useNativeDriver: false }
   )
 
   onScroll = (event: any) => {

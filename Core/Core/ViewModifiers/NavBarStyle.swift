@@ -19,29 +19,19 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
-public class HostingController<InnerContent: View>: UIHostingController<HostingControllerBaseView<InnerContent>> {
-    public init(rootView: InnerContent) {
-        let selfBox = Box()
-        super.init(rootView: HostingControllerBaseView(rootView: rootView, controller: { selfBox.value }))
-        selfBox.value = self
-    }
+public enum NavBarStyle: PreferenceKey, Equatable {
+    case global
+    case color(UIColor)
 
-    @objc required dynamic init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    private class Box {
-        weak var value: UIViewController?
-        init() { }
+    public static var defaultValue = NavBarStyle.global
+    public static func reduce(value: inout NavBarStyle, nextValue: () -> NavBarStyle) {
+        value = nextValue()
     }
 }
 
-@available(iOSApplicationExtension 13.0.0, *)
-public struct HostingControllerBaseView<Content: View>: View {
-    public let rootView: Content
-    let controller: () -> UIViewController?
-
-    public var body: some View {
-        rootView.environment(\.viewController, controller)
+@available(iOSApplicationExtension 13.0, *)
+extension View {
+    func navBarStyle(_ style: NavBarStyle) -> some View {
+        preference(key: NavBarStyle.self, value: style)
     }
 }

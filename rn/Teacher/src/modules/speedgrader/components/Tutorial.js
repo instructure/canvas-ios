@@ -77,6 +77,7 @@ export default class Tutorial extends PureComponent<Props, State> {
       this.opacity,
       {
         toValue: 1,
+        useNativeDriver: false,
       }
     ).start(this.focusCurrentTutorial)
   }
@@ -98,6 +99,7 @@ export default class Tutorial extends PureComponent<Props, State> {
         this.opacity,
         {
           toValue: 0,
+          useNativeDriver: false,
         }
       ).start(() => {
         this.focusCurrentTutorial()

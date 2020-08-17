@@ -111,7 +111,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             userDidLogin(session: fakeStudent)
             return true
         }
-        return openCanvasURL(url)
+        return openURL(url)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -176,35 +176,37 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
-        didReceive response: UNNotificationResponse,
-        withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-        handlePush(userInfo: response.notification.request.content.userInfo)
-        completionHandler()
-    }
-
-    func userNotificationCenter(
-        _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         completionHandler([.alert, .sound])
     }
 
-    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            notification["aps"] as? [String: AnyObject] != nil {
-            handlePush(userInfo: notification)
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        PushNotifications.record(response.notification)
+        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+            openURL(url, userInfo: [
+                "forceRefresh": true,
+                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
+            ])
         }
+        completionHandler()
     }
 
-    func handlePush(userInfo: [AnyHashable: Any]) {
-        environment.performAfterStartup { [weak self] in
-            PushNotifications.recordUserInfo(userInfo)
-            guard let self = self else { return }
-            if let url = NotificationManager.routeURL(from: userInfo) {
-                self.openCanvasURL(url)
-                return
+    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        if
+            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let aps = notification["aps"] as? [String: AnyObject] {
+            PushNotifications.recordUserInfo(notification)
+            if let url = NotificationManager.routeURL(from: notification) {
+                openURL(url, userInfo: [
+                    "forceRefresh": true,
+                    "pushNotification": aps,
+                ])
             }
         }
     }
@@ -278,7 +280,7 @@ extension StudentAppDelegate {
 
 // MARK: Launching URLS
 extension StudentAppDelegate {
-    @objc @discardableResult func openCanvasURL(_ url: URL) -> Bool {
+    @objc @discardableResult func openURL(_ url: URL, userInfo: [String: Any]? = nil) -> Bool {
         if LoginSession.mostRecent == nil, let host = url.host {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
@@ -290,16 +292,7 @@ extension StudentAppDelegate {
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/calendar"], ["/to-do"], ["/notifications"], ["/conversations", "/inbox"]]
         environment.performAfterStartup {
             let path = url.path
-            var index: Int?
-
-            for (i, element) in tabRoutes.enumerated() {
-                if element.firstIndex(of: path) != nil {
-                    index = i
-                    break
-                }
-            }
-
-            if let i = index {
+            if let i = tabRoutes.firstIndex(where: { $0.contains(path) }) {
                 guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
 
                 let finish = {
@@ -317,7 +310,7 @@ extension StudentAppDelegate {
             } else if let from = self.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
                 comps?.originIsNotification = true
-                AppEnvironment.shared.router.route(to: comps?.url ?? url, from: from, options: .modal(embedInNav: true, addDoneButton: true))
+                AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
             }
         }
         return true
@@ -395,8 +388,7 @@ extension StudentAppDelegate {
             return true
         }
         if let path = userActivity.userInfo?["url"] as? String, let url = URL(string: path) {
-            openCanvasURL(url)
-            return true
+            return openURL(url)
         }
         return false
     }

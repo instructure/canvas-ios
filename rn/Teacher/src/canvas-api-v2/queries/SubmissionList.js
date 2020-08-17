@@ -26,7 +26,6 @@ export default gql`query SubmissionList($assignmentID: ID!, $states: [Submission
     pointsPossible
     gradeGroupStudentsIndividually
     anonymousGrading
-    muted
     gradingType
 
     groupSet {

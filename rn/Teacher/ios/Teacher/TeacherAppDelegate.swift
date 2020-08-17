@@ -130,23 +130,32 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         completionHandler([.alert, .sound])
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
         PushNotifications.record(response.notification)
-        handlePush(userInfo: response.notification.request.content.userInfo, completionHandler: completionHandler)
-    }
-
-    private func handlePush(userInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
-        environment.performAfterStartup {
-            RCTPushNotificationManager.didReceiveRemoteNotification(userInfo) { _ in
-                completionHandler()
-            }
+        if let url = NotificationManager.routeURL(from: response.notification.request.content.userInfo) {
+            openURL(url, userInfo: [
+                "forceRefresh": true,
+                "pushNotification": response.notification.request.content.userInfo["aps"] ?? [:],
+            ])
         }
+        completionHandler()
     }
 
     func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            notification["aps"] as? [String: AnyObject] != nil {
-            handlePush(userInfo: notification, completionHandler: {})
+        if
+            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
+            let aps = notification["aps"] as? [String: AnyObject] {
+            PushNotifications.recordUserInfo(notification)
+            if let url = NotificationManager.routeURL(from: notification) {
+                openURL(url, userInfo: [
+                    "forceRefresh": true,
+                    "pushNotification": aps,
+                ])
+            }
         }
     }
 
@@ -165,28 +174,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        environment.performAfterStartup {
-            guard let rootView = app.keyWindow?.rootViewController as? RootTabBarController, let tabViewControllers = rootView.viewControllers else { return }
-            for (index, vc) in tabViewControllers.enumerated() {
-                let navigationController: UINavigationController?
-                if let split = vc as? UISplitViewController {
-                    navigationController = split.viewControllers.first as? UINavigationController
-                } else {
-                    navigationController = vc as? UINavigationController
-                }
-
-                guard let navController = navigationController, let helmVC = navController.viewControllers.first as? HelmViewController else { break }
-                let path = url.path.isEmpty ? "/" : url.path
-                if helmVC.moduleName == path {
-                    rootView.selectedIndex = index
-                    rootView.resetSelectedViewController()
-                    return
-                }
-            }
-
-            RCTLinkingManager.application(app, open: url, options: options)
-        }
-        return true
+        return openURL(url)
     }
 
     // similar methods exist in all other app delegates
@@ -321,6 +309,43 @@ extension TeacherAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
+    }
+}
+
+// MARK: Launching URLS
+extension TeacherAppDelegate {
+    @objc @discardableResult func openURL(_ url: URL, userInfo: [String: Any]? = nil) -> Bool {
+        if LoginSession.mostRecent == nil, let host = url.host {
+            let loginNav = LoginNavigationController.create(loginDelegate: self, app: .teacher)
+            loginNav.login(host: host)
+            window?.rootViewController = loginNav
+        }
+
+        let tabRoutes = [["/", "", "/courses", "/groups"], ["/to-do"], ["/conversations", "/inbox"]]
+        environment.performAfterStartup {
+            let path = url.path
+            if let i = tabRoutes.firstIndex(where: { $0.contains(path) }) {
+                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
+
+                let finish = {
+                    tabBarController.selectedIndex = i
+                    tabBarController.resetSelectedViewController()
+                }
+
+                if tabBarController.presentedViewController != nil {
+                    tabBarController.dismiss(animated: true, completion: {
+                        DispatchQueue.main.async(execute: finish)
+                    })
+                } else {
+                    finish()
+                }
+            } else if let from = self.topViewController {
+                var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
+                comps?.originIsNotification = true
+                AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))
+            }
+        }
+        return true
     }
 }
 

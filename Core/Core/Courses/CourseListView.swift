@@ -26,118 +26,220 @@ public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
     @ObservedObject var allCourses: Store<GetAllCourses>
-    @State var filter: String = ""
+
+    public class Props: ObservableObject {
+        @Published public var filter: String
+
+        public init(filter: String = "") {
+            self.filter = filter
+        }
+    }
+    @ObservedObject var props: Props
+    let useList: Bool
 
     static var configureAppearance: () -> Void = {
         // This will only run once
-        UITableView.appearance(whenContainedInInstancesOf: [HostingController<Self>.self]).backgroundColor = .white
+        let appearance = UITableViewHeaderFooterView.appearance(whenContainedInInstancesOf: [CoreHostingController<Self>.self])
+        appearance.tintColor = UIColor.backgroundLightest
+        appearance.hasBorderSeparators = true
         return { }
     }()
 
-    public static func create() -> CourseListView {
-        let env = AppEnvironment.shared
-        let allCourses = env.subscribe(GetAllCourses()) {}
-        allCourses.exhaust()
-        configureAppearance()
-        return CourseListView(allCourses: allCourses)
+    static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
+
+    public init(allCourses: Store<GetAllCourses>? = nil, props: Props = Props(), useList: Bool = true) {
+        self.allCourses = allCourses ?? AppEnvironment.shared.subscribe(GetAllCourses()).exhaust()
+        self.useList = useList
+        self.props = props
+        Self.configureAppearance()
     }
 
-    @ViewBuilder
     public var body: some View {
-        if allCourses.isEmpty {
-            empty.navigationBarTitle("All Courses")
+        let view: AnyView
+        if allCourses.pending && allCourses.isEmpty {
+            view = AnyView(CircleProgressView.AsView.create().testID("loading"))
+        } else if allCourses.isEmpty {
+            view = AnyView(empty)
         } else {
-            courseList.navigationBarTitle("All Courses")
+            view = AnyView(courseList)
         }
+        return view.navigationBarTitle("All Courses")
     }
 
     var empty: some View {
-        EmptyViewRepresentable(
-            title: NSLocalizedString("No Courses", comment: ""),
-            body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", comment: ""),
+        EmptyView.AsView(
+            title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
+            body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
             imageName: "PandaTeacher"
-        )
+        ).testID("empty")
     }
 
-    var courseList: some View {
-        // TODO: better searching
-        let filteredCourses = allCourses.filter { filter.isEmpty || $0.name?.lowercased().contains(filter.lowercased()) == true }
-        let currentEnrollments = filteredCourses.filter { !$0.isPastEnrollment && !$0.isFutureEnrollment }
-        let pastEnrollments = filteredCourses.filter { $0.isPastEnrollment }
-        let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
-        return VStack(spacing: 0) {
-            SearchBarView(text: $filter)
-            if filteredCourses.isEmpty {
-                Text("No matching courses").frame(maxHeight: .infinity)
-            } else {
-                Form {
-                    enrollmentSection(Text("Current Enrollments"), courses: currentEnrollments)
-                    enrollmentSection(Text("Past Enrollments"), courses: pastEnrollments)
-                    enrollmentSection(Text("Future Enrollments"), courses: futureEnrollments)
-                }
-            }
+    @ViewBuilder
+    func list<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            List(content: content)
+        } else {
+            VStack(content: content)
         }
     }
 
     @ViewBuilder
-    func enrollmentSection<Header: View>(_ header: Header, courses: [Course]) -> some View {
+    func section<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+
+    @ViewBuilder
+    func section<Header: View, Content: View>(header: Header, @ViewBuilder content: () -> Content) -> some View {
+        if useList {
+            Section(header: header, content: content)
+        } else {
+            VStack {
+                header
+                content()
+            }
+        }
+    }
+
+    var courseList: some View {
+        let filterString = props.filter.lowercased()
+        let filteredCourses = allCourses.filter { course in
+            guard !course.accessRestrictedByDate else { return false }
+            return filterString.isEmpty ||
+                course.name?.lowercased().contains(filterString) == true ||
+                course.courseCode?.lowercased().contains(filterString) == true
+        }
+        let currentEnrollments = filteredCourses.filter { !$0.isPastEnrollment && !$0.isFutureEnrollment }
+        let pastEnrollments = filteredCourses.filter { $0.isPastEnrollment }
+        let futureEnrollments = filteredCourses.filter { $0.isFutureEnrollment }
+
+        return GeometryReader { outerGeometry in
+            self.list {
+                self.section {
+                    ZStack {
+                        CircleRefreshControl.AsView { control in
+                            control.beginRefreshing()
+                            self.allCourses.refresh(force: true) { _ in
+                                control.endRefreshing()
+                            }
+                        }.frame(height: 0)
+                        SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
+                            .testID(info: ["filter": self.props.filter])
+                    }.listRowInsets(EdgeInsets())
+                }
+                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments, testID: "current")
+                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments, testID: "past")
+                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments, testID: "future")
+                self.notFound(
+                    shown: filteredCourses.isEmpty,
+                    height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
+                )
+            }.animation(.default, value: self.props.filter)
+                .animation(.default, value: self.allCourses)
+        }.avoidKeyboardArea()
+            .lineLimit(2)
+    }
+
+    func formatHeader<Header: View>(_ header: Header) -> some View {
+        header
+            .font(.medium12)
+            .foregroundColor(.textDark)
+            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+    }
+
+    @ViewBuilder
+    func enrollmentSection<Header: View>(_ header: Header, courses: [Course], testID: String) -> some View {
         if !courses.isEmpty {
-            Section(header: header) {
-                ForEach(courses, id: \.self) { course in
+            section(header: formatHeader(header)) {
+                ForEach(courses, id: \.id) { course in
                     Cell(course: course) {
                         guard let controller = self.controller() else { return }
                         self.env.router.route(to: "/courses/\(course.id)", from: controller)
-                    }
-                    .listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
+                    }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
                 }
-            }
+            }.testID(.section, id: testID)
         }
+    }
+
+    func notFound(shown: Bool, height: CGFloat) -> some View {
+        // All this for pretty animations
+        let footer = Text("No matching courses", bundle: .core)
+            .frame(height: shown ? height : 0)
+            .animation(shown ? nil : .default, value: props.filter)
+            .opacity(shown ? 1 : 0)
+            .frame(maxWidth: .infinity)
+            .listRowInsets(EdgeInsets())
+            .testID("no-match", info: ["shown": shown])
+        return Section(footer: footer) { SwiftUI.EmptyView() }
     }
 
     struct Cell: View {
         @Environment(\.appEnvironment) var env: AppEnvironment
         @ObservedObject var course: Course
-        @State var pending = false
+        @State private var pending: Bool = false
         let didSelect: () -> Void
 
         var body: some View {
-            ZStack {
-                Button(action: didSelect) { SwiftUI.EmptyView() }
-                HStack {
-                    favoriteButton
-                    label
-                    Spacer()
-                    publishedIcon
-                }
+            HStack {
+                favoriteButton
+                Button(action: didSelect) {
+                    HStack {
+                        label
+                        Spacer()
+                        publishedIcon
+                    }
+                }.accessibilityElement(children: .ignore)
+                    .accessibility(label: accessibilityLabel)
+                    .accessibility(addTraits: .isButton)
+            }.testID(.cell, id: course.id)
+        }
+
+        var accessibilityLabel: Text {
+            var texts = [
+                course.name,
+                course.termName,
+                course.enrollments?.first?.formattedRole,
+            ]
+            if env.app == .teacher {
+                texts.append(course.isPublished ?
+                    NSLocalizedString("published", bundle: .core, comment: "") :
+                    NSLocalizedString("unpublished", bundle: .core, comment: ""))
             }
+            return Text(texts.compactMap { $0 }.joined(separator: ", "))
         }
 
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.starSolid.foregroundColor(.ash)
+                    Image.starSolid.foregroundColor(.textDark).testID("pending")
                 } else if course.isFavorite {
-                    Image.starSolid.foregroundColor(.electric)
+                    Image.starSolid.foregroundColor(.textInfo).testID("favorite")
                 } else {
-                    Image.starLine.foregroundColor(.ash)
+                    Image.starLine.foregroundColor(.textDark).testID("not favorite")
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
-            .buttonStyle(PlainButtonStyle())
+                .buttonStyle(PlainButtonStyle())
+                .animation(.default, value: pending)
+                .accessibility(label: Text("favorite", bundle: .core))
+                .accessibility(addTraits: course.isFavorite ? .isSelected : [])
+        }
+
+        var enrollmentStrings: [String] {
+            [course.termName, course.enrollments?.first?.formattedRole].compactMap { $0 }
         }
 
         var label: some View {
-            let enrollment = course.enrollments?.first
-            let term = course.termName
-            return VStack(alignment: .leading) {
-                Text(course.name ?? "").fontWeight(.semibold)
-                if enrollment != nil {
-                    HStack {
-                        if term != nil {
-                            Text(term!)
-                            Text(verbatim: "|")
-                        }
-                        Text(enrollment!.formattedRole ?? "")
-                    }.foregroundColor(.ash)
+            VStack(alignment: .leading) {
+                Text(course.name ?? "").font(.semibold16)
+                HStack {
+                    ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
+                        Text($0)
+                            .foregroundColor(.textDark)
+                            .font(.medium14)
+                    }
                 }
             }
         }
@@ -146,18 +248,22 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.completeSolid.foregroundColor(.shamrock)
+                    Image.completeSolid.foregroundColor(.textSuccess).testID("published")
                 } else {
-                    Image.noSolid.foregroundColor(.ash)
+                    Image.noSolid.foregroundColor(.textDark).testID("unpublished")
                 }
             }
         }
 
         func toggleFavorite() {
             guard !pending else { return }
-            pending = true
+            withAnimation {
+                pending = true
+            }
             MarkFavoriteCourse(courseID: course.id, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
-                self.pending = false
+                withAnimation {
+                    self.pending = false
+                }
             }
         }
     }

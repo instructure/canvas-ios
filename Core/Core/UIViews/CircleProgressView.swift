@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 @IBDesignable
 public class CircleProgressView: UIView {
@@ -26,10 +27,6 @@ public class CircleProgressView: UIView {
     let morphKey = "morph"
     let rotate = CABasicAnimation(keyPath: "transform.rotation.z")
     let rotateKey = "rotate"
-
-    public override var bounds: CGRect {
-        didSet { updateSize() }
-    }
 
     @IBInspectable
     public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .backgroundLightest) {
@@ -53,6 +50,10 @@ public class CircleProgressView: UIView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
+    }
+
+    public override func layoutSubviews() {
+        updateSize()
     }
 
     func updateSize() {
@@ -127,5 +128,21 @@ public class CircleProgressView: UIView {
     public override func didMoveToWindow() {
         super.didMoveToWindow()
         updateProgress() // Make sure animations are re-added once visible
+    }
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension CircleProgressView {
+    public struct AsView: UIViewRepresentable {
+        public func makeUIView(context: Self.Context) -> CircleProgressView {
+            CircleProgressView()
+        }
+
+        public func updateUIView(_ uiView: CircleProgressView, context: Self.Context) {
+        }
+
+        public static func create(diameter: CGFloat = 40) -> some View {
+                Self().frame(width: diameter, height: diameter, alignment: .center)
+        }
     }
 }
