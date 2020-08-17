@@ -2998,6 +2998,7 @@
 				7DF9BF03215191840099026B /* BundleExtensions.swift */,
 				B1EA5AF5212E67CE00DABC5F /* DateExtensions.swift */,
 				B1A464BA225669140052F8DF /* DispatchExtensions.swift */,
+				E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */,
 				7D7BA23C24DC58E800B1A68B /* FontExtensions.swift */,
 				7DF2F5FA2347DAE900C1802C /* InstColorExtensions.swift */,
 				7DA20E8E21680DBF00F5FD19 /* InstIconExtensions.swift */,
@@ -3010,6 +3011,7 @@
 				B1C783F02241EB5E00DD89A9 /* NSPersistentContainerExtensions.swift */,
 				B195DC48213215A300797FE4 /* NSPredicateExtensions.swift */,
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
+				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
@@ -3030,8 +3032,6 @@
 				3B5369E1219CDD3500D3F62E /* URLExtensions.swift */,
 				7D80AC57212DAE4C00C40ECE /* URLResponseExtensions.swift */,
 				B150C6392298DAB90096D58C /* WKWebViewExtensions.swift */,
-				E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */,
-				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

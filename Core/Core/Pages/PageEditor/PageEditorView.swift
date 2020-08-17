@@ -52,6 +52,7 @@ public struct PageEditorView: View {
                 CircleProgress().size()
             }
         }
+            .avoidKeyboardArea()
             .background(Color.backgroundGrouped)
             .navigationBarTitle(url == nil ? Text("New Page") : Text("Edit Page"), displayMode: .inline)
             .navigationBarItems(
@@ -68,6 +69,7 @@ public struct PageEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("PageEditor.doneButton")
             )
+            .navBarStyle(.modal)
             .onAppear(perform: load)
     }
 
@@ -105,7 +107,8 @@ public struct PageEditorView: View {
                 canSubmit: $rceCanSubmit,
                 error: $rceError
             )
-                .frame(minHeight: 60, idealHeight: max(60, rceHeight))
+                .background(Color.backgroundLightest)
+                .frame(minHeight: 200, idealHeight: max(200, rceHeight))
             Divider()
 
             if env.app == .teacher || context.contextType == .group {

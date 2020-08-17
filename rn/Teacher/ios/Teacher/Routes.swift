@@ -114,6 +114,17 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
     },
 
+    "/:context/:contextID/pages/new": {
+        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+            return { props in
+                guard let context = props.context else { return nil }
+                return CoreHostingController(PageEditorView(context: context))
+            }
+        } else {
+            return nil
+        }
+    }(),
+
     "/:context/:contextID/pages/:url/edit": {
         if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
             return { props in

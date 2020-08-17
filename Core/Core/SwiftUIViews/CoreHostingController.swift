@@ -39,10 +39,12 @@ public class CoreHostingController<InnerContent: View>: UIHostingController<Core
     func applyNavBarStyle(_ style: NavBarStyle? = nil) {
         navBarStyle = style ?? navBarStyle
         switch navBarStyle {
+        case .modal:
+            navigationController?.navigationBar.useModalStyle()
         case .global:
-            self.navigationController?.navigationBar.useGlobalNavStyle()
+            navigationController?.navigationBar.useGlobalNavStyle()
         case .color(let color):
-            self.navigationController?.navigationBar.useContextColor(color)
+            navigationController?.navigationBar.useContextColor(color)
         }
     }
 
