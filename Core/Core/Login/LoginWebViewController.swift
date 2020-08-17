@@ -140,7 +140,9 @@ extension LoginWebViewController: WKNavigationDelegate {
                 self.loginDelegate?.userDidLogin(session: session)
             } }
             return decisionHandler(.cancel)
-        } else if queryItems?.first(where: { $0.name == "error" }) != nil {
+        } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
+            // access_denied is the only currently implemented error code
+            // https://canvas.instructure.com/doc/api/file.oauth.html#oauth2-flow-2
             let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", bundle: .core, comment: ""))
             self.showError(error)
             return decisionHandler(.cancel)
