@@ -227,20 +227,23 @@ public struct CourseListView: View {
                 .accessibility(addTraits: course.isFavorite ? .isSelected : [])
         }
 
-        var enrollmentStrings: [String] {
-            [course.termName, course.enrollments?.first?.formattedRole].compactMap { $0 }
-        }
-
         var label: some View {
-            VStack(alignment: .leading) {
-                Text(course.name ?? "").font(.semibold16)
+            let termName = course.termName
+            let role = course.enrollments?.first?.formattedRole
+            return VStack(alignment: .leading) {
+                Text(course.name ?? "").testID("courseName").font(.semibold16)
                 HStack {
-                    ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
-                        Text($0)
-                            .foregroundColor(.textDark)
-                            .font(.medium14)
+                    if termName != nil {
+                        Text(termName!).testID("term")
                     }
-                }
+                    if termName != nil && role != nil {
+                        Text(verbatim: "|")
+                    }
+                    if role != nil {
+                        Text(role!).testID("role")
+                    }
+                }.foregroundColor(.textDark)
+                    .font(.medium14)
             }
         }
 

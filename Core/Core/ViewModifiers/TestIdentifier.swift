@@ -54,9 +54,10 @@ public struct TestTree {
     }
 
     /// Roughly equivalent to a CSS class
-    public enum Kind {
-        case section
+    public enum Kind: Equatable {
         case cell
+        case section
+        case text
     }
 }
 
@@ -132,6 +133,23 @@ extension View {
     public func testID(_ kind: TestTree.Kind? = nil, id: String? = nil) -> some View {
         self
     }
+    @inlinable
+    public func testID(_ id: String? = nil) -> some View {
+        self
+    }
+    #endif
+}
+
+@available(iOSApplicationExtension 13.0, *)
+extension Text {
+    var verbatim: String? { Mirror(reflecting: self).descendant("storage", "verbatim") as? String }
+    var key: String? { Mirror(reflecting: self).descendant("storage", "anyTextStorage", "key", "key") as? String }
+
+    #if DEBUG
+    public func testID(_ id: String? = nil) -> some View {
+        self.modifier(TestIdentifier(kind: .text, id: id, type: type(of: self), info: ["value": verbatim ?? key]))
+    }
+    #else
     @inlinable
     public func testID(_ id: String? = nil) -> some View {
         self
