@@ -183,6 +183,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             Submission.save(submission, in: context)
             try? context.save()
         }
+        refresh()
     }
 
     func routeToSubmission(view: UIViewController) {
