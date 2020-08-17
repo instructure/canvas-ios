@@ -99,11 +99,9 @@ class CourseListViewTests: CoreTestCase {
     }
 
     func testText() throws {
-        print(tree ?? "<nil>")
-        XCTAssertEqual(
-            cell("7")?.children(kind: .text).map { $0.id },
-            ["Future Course", "Fall 3020", "|", "Student"]
-        )
+        XCTAssertEqual(cell("7")?.child(.text, id: "courseName")?.info("value"), "Future Course")
+        XCTAssertEqual(cell("7")?.child(.text, id: "term")?.info("value"), "Fall 3020")
+        XCTAssertEqual(cell("7")?.child(.text, id: "role")?.info("value"), "Student")
     }
 
     func testFavorite() throws {

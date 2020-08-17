@@ -139,3 +139,20 @@ extension View {
     }
     #endif
 }
+
+@available(iOSApplicationExtension 13.0, *)
+extension Text {
+    var verbatim: String? { Mirror(reflecting: self).descendant("storage", "verbatim") as? String }
+    var key: String? { Mirror(reflecting: self).descendant("storage", "anyTextStorage", "key", "key") as? String }
+
+    #if DEBUG
+    public func testID(_ id: String? = nil) -> some View {
+        self.modifier(TestIdentifier(kind: .text, id: id, type: type(of: self), info: ["value": verbatim ?? key]))
+    }
+    #else
+    @inlinable
+    public func testID(_ id: String? = nil) -> some View {
+        self
+    }
+    #endif
+}
