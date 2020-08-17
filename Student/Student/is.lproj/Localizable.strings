@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Ertu tilbúin(n) að skrá þig út?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Viltu örugglega fara úr prófinu?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Spyrðu mig síðar";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Núverandi viðhengi…";
 
+/* Exit button to leave the quiz */
+"Exit" = "Hætta";
+
 /* Title for an external tool submission */
 "External Tool" = "Ytra tól";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Það eru vandamál við hana";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Svo virðist sem enn hafi engin próf verið búin til á þessu svæði.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Þetta er tómt, af hverju ertu ennþá hérna?";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Nota ytra verkfæri";
+
+/* Leave the quiz */
+"Leave" = "Hætta";
 
 /* Title for legal section on the about page */
 "Legal" = "Lögfræði";
@@ -912,6 +924,9 @@
 "No Notifications" = "Engar tilkynningar";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Engin próf";
+
+/* No comment provided by engineer. */
 "No recipients" = "Engir móttakendur";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ekki metið (0 af %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ekki lagt fram";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Athugasemd: Miðlaskrár eru ekki tiltækar strax til spilunar á meðan miðlarinn er að vinna með þær.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Viðvörun vegna prófs";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Prófupplýsingar";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Prófi læst";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Byrjar að taka upp miðlaathugasemd þína";
 
+/* Stay on the quiz view */
+"Stay" = "Dvöl";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Halda þér innskráðri(um)";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Skilað";
+
+/* Submitted date */
+"Submitted %@" = "Skilað %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Legg fram...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Vandamál kom upp við að opna Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Villa varð við að sækja skjalið.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Skoða skrá %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Skoða niðurstöður";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Skoða skilatilraun %1$d. %2$@";

@@ -128,6 +128,9 @@
 "Assignment Missing" = "Opgave mangler";
 
 /* No comment provided by engineer. */
+"Assignments" = "Opgaver";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Forsøg %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Opret konto";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Aktuelle tilmeldinger";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuel position";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussioner";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Diskfejl";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Afvis";
@@ -575,6 +584,9 @@
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Fremtidige tilmeldinger";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Bedømt";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Bedømte spørgeundersøgelse";
 
 /* No comment provided by engineer. */
 "Grades" = "Vurderinger";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Det ser ud til, at opgaver ikke er blevet oprettet i dette rum endnu.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det ser ud til, at der ikke er nogen fag, der er forbundet med denne konto. Gå på internettet for at oprette et fag i dag.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det ser ud til, at du ikke er tilmeldt til nogen fag som %@. En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Mangler bedømmelse";
 
 /* No comment provided by engineer. */
+"Network Error" = "Netværk fejl";
+
+/* No comment provided by engineer. */
 "Never" = "Aldrig";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Intet billede fundet i billedvælgeren";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Ingen matchende fag";
+
+/* No comment provided by engineer. */
 "No Modules" = "Ingen forløb";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Haster ikke";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Meddelelsesfejl";
 
 /* No comment provided by engineer. */
 "Notifications" = "Notifikationer";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Øvelsesquiz";
+
+/* No comment provided by engineer. */
 "Preferences" = "Indstillinger";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Besvar anmærkningen eller tidligere kommentarer";
+
+/* Button to report an error */
+"Report" = "Rapport";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Indberet et problem";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Succes!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Spørgeundersøgelser";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Undervisningsassistent";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Der er ikke nogen sider at vise endnu.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Der opstod et problem ved tilmelding af din enhed til push-meddelelser";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Der opstod et problem ved hentning af Betingelser for brug";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Fortryd";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Ukendt fejl";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ubegrænset";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Dit barns fag er måske ikke offentliggjort endnu.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Din enhed har ikke mere lagerplads. Frigør plads og prøv igen.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-mail";

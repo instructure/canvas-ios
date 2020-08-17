@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Èske w prè pou dekonekte?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Èske vrèman ou vle kite quiz sa a?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Mande mwen pita";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Atachman ki Deja Egziste";
 
+/* Exit button to leave the quiz */
+"Exit" = "Soti";
+
 /* Title for an external tool submission */
 "External Tool" = "Zouti Ekstèn";
 
@@ -738,6 +744,9 @@
 /* No comment provided by engineer. */
 "It has problems" = "Li gen pwoblèm";
 
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Ta sanble poko gen quiz ki kreye nan espas sa a.";
+
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Li vid, sa w ap fè la a toujou.";
 
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Lanse Zouti Eksteryè";
+
+/* Leave the quiz */
+"Leave" = "Sòti";
 
 /* Title for legal section on the about page */
 "Legal" = "Legal";
@@ -912,6 +924,9 @@
 "No Notifications" = "Okenn Notifikasyon";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Okenn Quiz";
+
+/* No comment provided by engineer. */
 "No recipients" = "Pa gen destinat";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Pa klase (0 sou %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Pa Soumèt";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Nòt: Fichye miltimedya yo pa disponib menm kote a pou lekti lè se sou sèvè a yo trete.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Avètisman Quiz";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Detay Quiz";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quix Bloke";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Kòmanse anrejistre yon kòmantè medya";
 
+/* Stay on the quiz view */
+"Stay" = "Rete";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Rete Konekte";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Soumèt";
+
+/* Submitted date */
+"Submitted %@" = "Soumèt %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Soumisyon...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Te gen yon pwoblèm nan lansman Safari a";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Te gen yon erè nan chajman quiz yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Te gen yon erè nan chajman dokiman an.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Afiche fichye %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Afiche Rezilta";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Afiche tantativ soumisyon %1$d.  %2$@";

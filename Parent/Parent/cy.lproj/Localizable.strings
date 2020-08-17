@@ -35,6 +35,9 @@
 "Announcement" = "Cyhoeddiad";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Manylion Aseiniad";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Nodyn atgoffa ar gyfer aseiniad";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Creu Neges";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Creu neges i athrawon";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Creu neges newydd";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Myfyriwr Presennol: %@. Tapiwch i newid myfyrwyr";
 
 /* No comment provided by engineer. */
+"Date" = "Dyddiad";
+
+/* No comment provided by engineer. */
+"Description" = "Disgrifiad";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Dydy’r parth ddim yn cyfateb";
 
 /* No comment provided by engineer. */
+"Due" = "Erbyn";
+
+/* No comment provided by engineer. */
 "Email address" = "Cyfeiriad e-bost";
 
 /* No comment provided by engineer. */
 "Email..." = "E-bost...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Manylion Digwyddiad";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Nodyn atgoffa ar gyfer digwyddiad";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Mae’n ymddangos eich bod chi’n ceisio ychwanegu myfyriwr, Ceisiwch ychwanegu’r myfyriwr hwn ar ôl i chi fewngofnodi.";
 
 /* No comment provided by engineer. */
+"Location" = "Lleoliad";
+
+/* No comment provided by engineer. */
 "Login required" = "Angen mewngofnodi";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "Amherthnasol";
 
 /* No comment provided by engineer. */
+"N/A" = "Amherthnasol";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Dim Negeseuon Hysbysu";
 
 /* No comment provided by engineer. */
 "No Courses" = "Dim Cyrsiau";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Dim Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
 "No Grade" = "Dim Gradd";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Ynghylch: %1$@, Aseinaid - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Fy Atgoffa";
+
+/* No comment provided by engineer. */
 "Retry" = "Ailgynnig";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Gosod dyddiad ac amser i gael eich atgoffa am y digwyddiad hwn.";
 
 /* No comment provided by engineer. */
 "Settings" = "Gosodiadau";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Gwall wrth lwytho negeseuon hysbysu. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Gwall wrth lwytho cyrsiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Gwall wrth lwytho myfyrwyr. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Rydych chi wedi dal i fyny";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Efallai nad yw cyrsiau eich plentyn wedi cael eu cyhoeddi eto.";
 

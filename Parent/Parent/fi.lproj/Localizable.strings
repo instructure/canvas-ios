@@ -35,6 +35,9 @@
 "Announcement" = "Ilmoitus";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Tehtävän tiedot";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Tehtävän muistutus";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Luo viesti";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Kirjoita viesti opettajille";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Luo uusi viesti";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Kurssin opiskelija %@. Napauta vaihtaaksesi opiskelijoita";
 
 /* No comment provided by engineer. */
+"Date" = "Päivämäärä";
+
+/* No comment provided by engineer. */
+"Description" = "Kuvaus";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Ohita";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Verkkotunnus ei täsmää";
 
 /* No comment provided by engineer. */
+"Due" = "Määräpäivä";
+
+/* No comment provided by engineer. */
 "Email address" = "Sähköpostiosoite";
 
 /* No comment provided by engineer. */
 "Email..." = "Sähköposti...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Tapahtuman tiedot";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Tapahtuman muistutus";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Näyttää siltä kuin yrittäisit lisätä opiskelijaa. Yritä lisätä tämä opiskelija sen jälkeen, kun olet kirjautunut sisään";
 
 /* No comment provided by engineer. */
+"Location" = "Sijainti";
+
+/* No comment provided by engineer. */
 "Login required" = "Kirjautumistunnus on pakollinen";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "ei mitään";
 
 /* No comment provided by engineer. */
+"N/A" = "Ei sovellettavissa";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Ei hälytyksiä";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ei kursseja";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ei määräpäivää";
 
 /* No comment provided by engineer. */
 "No Grade" = "Ei arvosanaa";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Koskee: %1$@, Tehtävä - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Muistuta minua";
+
+/* No comment provided by engineer. */
 "Retry" = "Yritä uudelleen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Määritä päivämäärä ja aika, jolloin sinulle ilmoitetaan tästä tapahtumasta.";
 
 /* No comment provided by engineer. */
 "Settings" = "Asetukset";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Hälytysten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Kurssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Opiskelijoiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Olet ajan tasalla";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Lapsesi lapsen kursseja ei ehkä vielä julkaista.";
 

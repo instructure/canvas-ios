@@ -35,6 +35,9 @@
 "Announcement" = "الإعلان";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "تفاصيل المهمة";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "التذكير بالمهمة";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "إنشاء رسالة";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "إنشاء رسالة للمعلمين";
 
 /* No comment provided by engineer. */
 "Compose new message" = "إنشاء رسالة جديدة";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "الطالب الحالي: %@. اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
+"Date" = "التاريخ";
+
+/* No comment provided by engineer. */
+"Description" = "الوصف";
+
+/* No comment provided by engineer. */
 "Dismiss" = "رفض";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "المجال غير مطابق";
 
 /* No comment provided by engineer. */
+"Due" = "الاستحقاق";
+
+/* No comment provided by engineer. */
 "Email address" = "عنوان البريد الإلكتروني";
 
 /* No comment provided by engineer. */
 "Email..." = "بريد إلكتروني...";
+
+/* No comment provided by engineer. */
+"Event Details" = "تفاصيل الحدث";
 
 /* No comment provided by engineer. */
 "Event reminder" = "التذكير بالحدث";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "يبدو أنك تحاول إضافة طالب. حاول إضافة  هذا الطالب بعد أن تسجل الدخول";
 
 /* No comment provided by engineer. */
+"Location" = "الموقع";
+
+/* No comment provided by engineer. */
 "Login required" = "تسجيل الدخول مطلوب";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "لا يوجد";
 
 /* No comment provided by engineer. */
+"N/A" = "لا يوجد";
+
+/* No comment provided by engineer. */
 "No Alerts" = "لا توجد تنبيهات";
 
 /* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
+
+/* No comment provided by engineer. */
+"No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* No comment provided by engineer. */
 "No Grade" = "لا توجد أي درجة";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "بخصوص: %1$@، المهمة -  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "ذكرني";
+
+/* No comment provided by engineer. */
 "Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "تعيين تاريخ ووقت للإعلام بهذا الحدث.";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "حدث خطأ أثناء تحميل التنبيهات. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "حدث خطأ أثناء تحميل المساقات. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الطلاب. اسحب للتحديث لإعادة المحاولة.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "لقد اطلعت عليها جميعًا";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "ربما لم يتم نشر مساقات طفلك بعد.";
 

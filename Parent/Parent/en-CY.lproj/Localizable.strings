@@ -35,6 +35,9 @@
 "Announcement" = "Announcement";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "Assignment details";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "Assignment reminder";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Compose message";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Compose message to teachers";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Compose new message";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
 
 /* No comment provided by engineer. */
+"Date" = "Date";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
+
+/* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "Domain mismatch";
 
 /* No comment provided by engineer. */
+"Due" = "Due";
+
+/* No comment provided by engineer. */
 "Email address" = "Email address";
 
 /* No comment provided by engineer. */
 "Email..." = "Email...";
+
+/* No comment provided by engineer. */
+"Event Details" = "Event details";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Event reminder";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "It looks like you’re trying to add a student. Try adding this student after you’ve logged in";
 
 /* No comment provided by engineer. */
+"Location" = "Location";
+
+/* No comment provided by engineer. */
 "Login required" = "Login required";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "No Alerts";
 
 /* No comment provided by engineer. */
 "No Courses" = "No Modules";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No due date";
 
 /* No comment provided by engineer. */
 "No Grade" = "No mark";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Regarding: %1$@, Assignment - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Remind Me";
+
+/* No comment provided by engineer. */
 "Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Set a date and time to be notified of this event.";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "There was an error loading alerts. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "There was an error loading modules. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "There was an error loading students. Pull to refresh to try again.";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "You’re all caught up";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Your child’s modules might not be published yet.";
 

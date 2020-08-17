@@ -128,6 +128,9 @@
 "Assignment Missing" = "課題がありません";
 
 /* No comment provided by engineer. */
+"Assignments" = "課題";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "アカウントを作成する";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "現在の登録";
+
+/* No comment provided by engineer. */
 "Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "ディスカッション";
+
+/* No comment provided by engineer. */
+"Disk Error" = "ディスクエラー";
 
 /* Dismiss button for error messages */
 "Dismiss" = "却下する";
@@ -575,6 +584,9 @@
 "Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "将来の登録";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "採点済み";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "採点されたアンケート";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "このスペースにはまだ課題が作成されていないようです。";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "このアカウントに関連付けられているコースはないようです。今日コースを作成するには、ウェブをご覧ください。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
@@ -839,6 +857,9 @@
 "Needs Grading" = "採点が必要です";
 
 /* No comment provided by engineer. */
+"Network Error" = "ネットワークエラー";
+
+/* No comment provided by engineer. */
 "Never" = "まったくしない";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
 
 /* No comment provided by engineer. */
+"No matching courses" = "マッチするコースなし";
+
+/* No comment provided by engineer. */
 "No Modules" = "モジュールなし";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "緊急ではありません";
+
+/* No comment provided by engineer. */
+"Notification Error" = "通知エラー";
 
 /* No comment provided by engineer. */
 "Notifications" = "通知";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "練習クイズ";
+
+/* No comment provided by engineer. */
 "Preferences" = "優先設定";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
+
+/* Button to report an error */
+"Report" = "報告";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "問題を報告する";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
 
+/* No comment provided by engineer. */
+"Surveys" = "調査";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "まだ表示するページはありません。";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "アンドゥーする";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無制限";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "お子様のコースはまだ公開されていない可能性があります。";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";
 
 /* No comment provided by engineer. */
 "Your Email" = "あなたのメールアドレス";

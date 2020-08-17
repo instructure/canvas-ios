@@ -128,6 +128,9 @@
 "Assignment Missing" = "E ngaro ana Whakataunga";
 
 /* No comment provided by engineer. */
+"Assignments" = "Ngā Whakataunga";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Whakamātau %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Waihanga Pūkete";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Whakaurunga o nāianei";
+
+/* No comment provided by engineer. */
 "Current position" = "Te wāhanga o nāianei";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Ngā Kōrerorero";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Hapa kōpae";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Pana";
@@ -575,6 +584,9 @@
 "Front Page" = "Whārangi mua";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Whakaurunga e heke mai nei";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible i waho i g kōinga e taea ai";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Kōekehia";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Ngā Rangahau Kua Kōeketia";
 
 /* No comment provided by engineer. */
 "Grades" = "Ngā Kōeke";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Ko te āhua nei kaore ngā whakataunga i hāngaia i roto i tēnei wāhi.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Ko te āhua nei kaore ngā akoranga e pā ana ki tēnei pūkete. Haere ki te paetukutuku ki te hanga he akoranga i tēnei rā.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "E hiahiatia ana mo te kōeke";
 
 /* No comment provided by engineer. */
+"Network Error" = "Hapa Whatunga";
+
+/* No comment provided by engineer. */
 "Never" = "Kaua rawa";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Kaore i kitea he āhua mai i te  āhua kaiwhiwhi";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Kaore he akoranga orite";
+
+/* No comment provided by engineer. */
 "No Modules" = "Kaore ngā kōwae";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Kaore i te Whakahihiri";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Hapa whakamōhiotanga";
 
 /* No comment provided by engineer. */
 "Notifications" = "Whakamōhiotanga";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points nui ngā kōinga";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Mahi Quizzes";
+
+/* No comment provided by engineer. */
 "Preferences" = "Ngā manakohanga";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Whakautu ki te whakahuatanga me ngā kōrero o mua";
+
+/* Button to report an error */
+"Report" = "Pūrongo";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Pūrongo i te Raruraru";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Angitu!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Rangahau";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Kaore he whārangi hei whakātu anō.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "He raruraru i te wā e rēhita ana i tō pūrere mo ngā whakamōhiotanga pana.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "He raruraru i te wā e kimi ana i ngā Ture Whakamahia";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Wete";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Kaore i mōhiotia te hapa";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Kaore he mutunga";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kaore e pānuitia ngā akoranga a tō tamaiti i tēnei wā.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Kua pau te wahi rokiroki a tō taputapu. Tēnā koa whakawātea he wāhi ka ngana anō.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Tō īmēra";

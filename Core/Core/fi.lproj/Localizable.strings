@@ -128,6 +128,9 @@
 "Assignment Missing" = "Tehtävä puuttuu";
 
 /* No comment provided by engineer. */
+"Assignments" = "Tehtävät";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Yritys %d";
 
 /* No comment provided by engineer. */
@@ -347,6 +350,9 @@
 "Create Account" = "Luo tili";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Tämänhetkiset ilmoittautumiset";
+
+/* No comment provided by engineer. */
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
@@ -423,6 +429,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Keskustelut";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Levyvirhe";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Ohita";
@@ -575,6 +584,9 @@
 "Front Page" = "Etusivu";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Tulevat ilmoittautumiset";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +600,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Arvostellut kyselyt";
 
 /* No comment provided by engineer. */
 "Grades" = "Arvosanat";
@@ -669,6 +684,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Näyttää siltä kuin tehtäviä ei vielä olisi luotu tässä tilassa.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Näyttää siltä kuin tähän tiliin ei ole liitetty yhtään kurssia. Käy verkossa luodaksesi kurssi tänään";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
@@ -839,6 +857,9 @@
 "Needs Grading" = "Täytyy arvostella";
 
 /* No comment provided by engineer. */
+"Network Error" = "Verkkovirhe";
+
+/* No comment provided by engineer. */
 "Never" = "Ei koskaan";
 
 /* No comment provided by engineer. */
@@ -887,6 +908,9 @@
 "No image found from image picker" = "Kuvaa ei löytynyt kuvan poimintatoiminnosta";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Ei täsmääviä kursseja";
+
+/* No comment provided by engineer. */
 "No Modules" = "Ei moduuleita";
 
 /* No comment provided by engineer. */
@@ -915,6 +939,9 @@
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Ei kiireellinen";
+
+/* No comment provided by engineer. */
+"Notification Error" = "Ilmoitusvirhe";
 
 /* No comment provided by engineer. */
 "Notifications" = "Ilmoitukset";
@@ -1001,6 +1028,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Harjoitustestit";
+
+/* No comment provided by engineer. */
 "Preferences" = "Asetukset";
 
 /* No comment provided by engineer. */
@@ -1071,6 +1101,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
+
+/* Button to report an error */
+"Report" = "Raportti";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Raportoi ongelma";
@@ -1252,6 +1285,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Onnistui!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Kyselyt";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Apuopettaja";
 
@@ -1305,6 +1341,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Näytettäviä sivuja ei vielä ole.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Laitteesi rekisteröinnissä push-ilmoituksia varten esiintyi ongelma.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
@@ -1380,6 +1419,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Peruuta";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Tuntematon virhe";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Rajoittamaton";
@@ -1509,6 +1551,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Tämän lapsen kursseja ei ehkä vielä julkaista.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Laitteesi tallennustila on lopussa. Vapauta tilaa ja yritä uudelleen.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Sähköpostiosoitteesi";

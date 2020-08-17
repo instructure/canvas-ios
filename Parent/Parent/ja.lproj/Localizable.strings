@@ -35,6 +35,9 @@
 "Announcement" = "発表";
 
 /* No comment provided by engineer. */
+"Assignment Details" = "課題の詳細";
+
+/* No comment provided by engineer. */
 "Assignment reminder" = "課題のリマインダ";
 
 /* No comment provided by engineer. */
@@ -51,6 +54,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "メッセージを作成";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "教師へのメッセージを作文する";
 
 /* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";
@@ -71,16 +77,28 @@
 "Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
+"Date" = "日付";
+
+/* No comment provided by engineer. */
+"Description" = "説明";
+
+/* No comment provided by engineer. */
 "Dismiss" = "棄却する";
 
 /* No comment provided by engineer. */
 "Domain mismatch" = "ドメインの不一致";
 
 /* No comment provided by engineer. */
+"Due" = "期限";
+
+/* No comment provided by engineer. */
 "Email address" = "メールアドレス";
 
 /* No comment provided by engineer. */
 "Email..." = "電子メールアドレス...";
+
+/* No comment provided by engineer. */
+"Event Details" = "イベントの詳細";
 
 /* No comment provided by engineer. */
 "Event reminder" = "イベントのリマインダ";
@@ -116,6 +134,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "受講生を追加しようとしているようです。ログイン後にこの受講生を追加してみてください";
 
 /* No comment provided by engineer. */
+"Location" = "場所";
+
+/* No comment provided by engineer. */
 "Login required" = "ログインが必要です";
 
 /* No comment provided by engineer. */
@@ -125,10 +146,16 @@
 "n/a" = "該当せず";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "アラートはありません";
 
 /* No comment provided by engineer. */
 "No Courses" = "コースなし";
+
+/* No comment provided by engineer. */
+"No Due Date" = "締切日なし";
 
 /* No comment provided by engineer. */
 "No Grade" = "成績なし";
@@ -178,7 +205,13 @@
 "Regarding: %@, Assignment - %@" = "Re：%1$@、課題 - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "リマインドする";
+
+/* No comment provided by engineer. */
 "Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "このイベントの通知を受ける日付と時間を設定します。";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -203,6 +236,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "アラートの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "コースのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
@@ -230,4 +266,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "これで完了です";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "お子さんのコースはまだ公開されていないかもしれません。";
 
