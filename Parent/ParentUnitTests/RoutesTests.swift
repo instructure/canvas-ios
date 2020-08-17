@@ -38,5 +38,6 @@ class RoutesTests: ParentTestCase {
         XCTAssert(Parent.router.match("/files/2/download") is FileDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/files/3") is FileDetailsViewController)
         XCTAssert(Parent.router.match("/courses/1/files/4/download") is FileDetailsViewController)
+        XCTAssert(Parent.router.match("/courses/1/files/4/preview") is FileDetailsViewController)
     }
 }

@@ -98,6 +98,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/1") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/1/download") is FileDetailsViewController)
+        XCTAssert(router.match("/courses/1/files/1/preview") is FileDetailsViewController)
         XCTAssert(router.match("/act-as-user") is ActAsUserViewController)
         XCTAssert(router.match("/act-as-user/1") is ActAsUserViewController)
         XCTAssert(router.match("/wrong-app") is WrongAppViewController)

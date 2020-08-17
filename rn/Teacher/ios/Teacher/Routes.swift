@@ -177,6 +177,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     "/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
+    "/:context/:contextID/files/:fileID/preview": fileDetails,
 
     "/act-as-user": { _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
