@@ -130,9 +130,9 @@ public struct CourseListView: View {
                             .testID(info: ["filter": self.props.filter])
                     }.listRowInsets(EdgeInsets())
                 }
-                self.enrollmentSection(Text("Current Enrollments", bundle: .core), courses: currentEnrollments, testID: "current")
-                self.enrollmentSection(Text("Past Enrollments", bundle: .core), courses: pastEnrollments, testID: "past")
-                self.enrollmentSection(Text("Future Enrollments", bundle: .core), courses: futureEnrollments, testID: "future")
+                self.enrollmentSection(Tag.Text("Current Enrollments", bundle: .core), courses: currentEnrollments, testID: "current")
+                self.enrollmentSection(Tag.Text("Past Enrollments", bundle: .core), courses: pastEnrollments, testID: "past")
+                self.enrollmentSection(Tag.Text("Future Enrollments", bundle: .core), courses: futureEnrollments, testID: "future")
                 self.notFound(
                     shown: filteredCourses.isEmpty,
                     height: outerGeometry.frame(in: .local).height - Self.searchBarHeight
@@ -166,7 +166,7 @@ public struct CourseListView: View {
 
     func notFound(shown: Bool, height: CGFloat) -> some View {
         // All this for pretty animations
-        let footer = Text("No matching courses", bundle: .core)
+        let footer = Tag.Text("No matching courses", bundle: .core)
             .frame(height: shown ? height : 0)
             .animation(shown ? nil : .default, value: props.filter)
             .opacity(shown ? 1 : 0)
@@ -233,10 +233,10 @@ public struct CourseListView: View {
 
         var label: some View {
             VStack(alignment: .leading) {
-                Text(course.name ?? "").font(.semibold16)
+                Tag.Text(course.name ?? "").font(.semibold16)
                 HStack {
                     ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
-                        Text($0)
+                        Tag.Text($0)
                             .foregroundColor(.textDark)
                             .font(.medium14)
                     }

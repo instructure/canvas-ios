@@ -54,9 +54,10 @@ public struct TestTree {
     }
 
     /// Roughly equivalent to a CSS class
-    public enum Kind {
-        case section
+    public enum Kind: Equatable {
         case cell
+        case section
+        case text
     }
 }
 
