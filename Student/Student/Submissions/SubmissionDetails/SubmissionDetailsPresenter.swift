@@ -65,7 +65,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     var quizzes: Store<GetQuiz>?
 
-    var selectedAttempt: Int = 0
+    var selectedAttempt: Int?
     var selectedFileID: String?
     var selectedDrawerTab = Drawer.Tab.comments
     var currentAssignment: Assignment?
@@ -84,7 +84,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func viewIsReady() {
         submissions.refresh(force: true)
-        assignment.refresh()
+        assignment.refresh(force: true)
         course.refresh()
         arc.refresh()
         view?.reloadNavBar()

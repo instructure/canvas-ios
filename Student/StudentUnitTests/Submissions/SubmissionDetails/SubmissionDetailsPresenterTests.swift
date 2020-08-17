@@ -80,13 +80,21 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testUpdate() {
         Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
         Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        presenter.update()
+        XCTAssertTrue(view.didEmbed)
+        XCTAssertTrue(view.didEmbedInDrawer)
+
+        view.didEmbed = false
+        view.didEmbedInDrawer = false
+        view.didReload = false
+        view.didReloadNavbar = false
         presenter.selectedAttempt = 7
         presenter.selectedFileID = "7"
         presenter.update()
         XCTAssertEqual(presenter.selectedAttempt, 2)
         XCTAssertEqual(presenter.selectedFileID, "1")
-        XCTAssertTrue(view.didEmbed)
-        XCTAssertTrue(view.didEmbedInDrawer)
+        XCTAssertFalse(view.didEmbed)
+        XCTAssertFalse(view.didEmbedInDrawer)
         XCTAssertTrue(view.didReload)
         XCTAssertTrue(view.didReloadNavbar)
 
