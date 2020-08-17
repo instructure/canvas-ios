@@ -378,12 +378,12 @@
 			isa = PBXGroup;
 			children = (
 				3B84C391218BB102005946BA /* DateExtensions.swift */,
+				E871978524E5963600D9B062 /* TestTreeExtensions.swift */,
 				B1D5EF612358E01200B3ACD3 /* URLAuthenticationChallengeExtensions.swift */,
+				B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */,
+				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
 				7DAC287F22B1A3F900C0B692 /* XCUIElementExtensions.swift */,
 				E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */,
-				E818EF20234652A20035613A /* XCTestCaseExtensions.swift */,
-				B11AAC362379E6C3002BC41F /* URLResponseExtensions.swift */,
-				E871978524E5963600D9B062 /* TestTreeExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

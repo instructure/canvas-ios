@@ -19,17 +19,25 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
-struct CircleProgress: UIViewRepresentable {
-    let progress: CGFloat?
+public struct CircleProgress: UIViewRepresentable {
+    public let progress: CGFloat?
 
-    func makeUIView(context: Self.Context) -> CircleProgressView {
+    public init(progress: CGFloat? = nil) {
+        self.progress = progress
+    }
+
+    public func makeUIView(context: Self.Context) -> CircleProgressView {
         let uiView = CircleProgressView()
         return uiView
     }
 
-    func updateUIView(_ uiView: CircleProgressView, context: Self.Context) {
+    public func updateUIView(_ uiView: CircleProgressView, context: Self.Context) {
         uiView.updateSize()
         uiView.progress = progress
+    }
+
+    public func size(_ diameter: CGFloat = 40) -> some View {
+        frame(width: diameter, height: diameter)
     }
 }
 

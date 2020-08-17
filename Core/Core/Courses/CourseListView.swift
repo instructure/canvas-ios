@@ -57,7 +57,7 @@ public struct CourseListView: View {
     public var body: some View {
         let view: AnyView
         if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgressView.AsView.create().testID("loading"))
+            view = AnyView(CircleProgress().size().testID("loading"))
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {

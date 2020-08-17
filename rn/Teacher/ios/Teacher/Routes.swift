@@ -119,7 +119,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
             return { props in
                 guard let context = props.context else { return nil }
                 guard let slug = props["url"] as? String else { return nil }
-                return HostingController(rootView: PageEditorView(context: context, url: slug))
+                return CoreHostingController(PageEditorView(context: context, url: slug))
             }
         } else {
             return nil

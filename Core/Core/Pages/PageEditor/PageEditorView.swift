@@ -49,8 +49,7 @@ public struct PageEditorView: View {
         ZStack {
             form.disabled(isLoading || isSaving)
             if isLoading || isSaving {
-                CircleProgress(progress: nil)
-                    .frame(width: 40, height: 40)
+                CircleProgress().size()
             }
         }
             .background(Color.backgroundGrouped)
@@ -62,12 +61,12 @@ public struct PageEditorView: View {
                 }, label: {
                     Text("Cancel")
                 })
-                    .accessibility(identifier: "screen.dismiss"),
+                    .identifier("screen.dismiss"),
                 trailing: Button(action: save, label: {
                     Text("Done").bold()
                 })
-                    .accessibility(identifier: "PageEditor.doneButton")
                     .disabled(isLoading || isSaving)
+                    .identifier("PageEditor.doneButton")
             )
             .onAppear(perform: load)
     }
@@ -83,14 +82,14 @@ public struct PageEditorView: View {
                     .foregroundColor(.textDarkest)
                     .padding(16)
                     .background(Color.backgroundLightest)
-                    .accessibility(identifier: "PageEditor.titleField")
+                    .identifier("PageEditor.titleField")
                 Divider()
             } else {
                 Text(title)
                     .font(.bold20)
                     .foregroundColor(.textDarkest)
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
-                    .accessibility(identifier: "PageEditor.titleText")
+                    .identifier("PageEditor.titleText")
             }
 
             Text("Content")
@@ -119,7 +118,7 @@ public struct PageEditorView: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(16)
                         .background(Color.backgroundLightest)
-                        .accessibility(identifier: "PageEditor.publishedToggle")
+                        .identifier("PageEditor.publishedToggle")
                     Divider()
                 }
                 if published && url != "front_page" && env.app == .teacher {
@@ -127,7 +126,7 @@ public struct PageEditorView: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(16)
                         .background(Color.backgroundLightest)
-                        .accessibility(identifier: "PageEditor.frontPageToggle")
+                        .identifier("PageEditor.frontPageToggle")
                     Divider()
                 }
                 Button(action: { self.editingRolesPickerShown.toggle() }, label: {
@@ -147,7 +146,7 @@ public struct PageEditorView: View {
                     .padding(16)
                     .accentColor(.textDarkest)
                     .background(Color.backgroundLightest)
-                    .accessibility(identifier: "PageEditor.editorsButton")
+                    .identifier("PageEditor.editorsButton")
                 Divider()
                 if editingRolesPickerShown {
                     Picker("Can Edit", selection: $editingRoles) {
@@ -158,7 +157,9 @@ public struct PageEditorView: View {
                             Text("Teachers and students").tag("students,teachers")
                         }
                         Text("Anyone").tag("public")
-                    }.labelsHidden()
+                    }
+                        .labelsHidden()
+                        .identifier("PageEditor.editorsPicker")
                 }
             }
         } }
