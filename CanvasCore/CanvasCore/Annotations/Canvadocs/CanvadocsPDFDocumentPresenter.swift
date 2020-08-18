@@ -152,6 +152,12 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         pdfViewController.navigationItem.rightBarButtonItems = buttonItems
         self.pdfViewController = pdfViewController
 
+        let gestureRecognizer = UITapGestureRecognizer()
+        gestureRecognizer.addTarget(self, action: #selector(tapGestureRecognizerDidChangeState))
+        gestureRecognizer.delegate = self
+        pdfViewController.interactions.allInteractions.require(toFail: gestureRecognizer)
+        pdfViewController.view.addGestureRecognizer(gestureRecognizer)
+
         return pdfViewController
     }
 }
@@ -215,27 +221,6 @@ extension CanvadocsPDFDocumentPresenter: PDFViewControllerDelegate {
         }
         return true
     }
-    
-    public func pdfViewController(_ pdfController: PDFViewController, didTapOn pageView: PDFPageView, at viewPoint: CGPoint) -> Bool {
-        let state = pdfController.annotationStateManager
-        if state.state == .stamp, let pdfDocument = pdfController.document, let metadata = service.metadata?.annotationMetadata {
-            let pointAnnotation = CanvadocsPointAnnotation()
-            pointAnnotation.user = metadata.userID
-            pointAnnotation.userName = metadata.userName
-            pointAnnotation.color = state.drawColor
-            pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
-            pointAnnotation.pageIndex = pageView.pageIndex
-            pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
-            pdfDocument.add(annotations: [ pointAnnotation ], options: nil)
-
-            let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument, metadata: metadata)
-            let navigationController = UINavigationController(rootViewController: commentsVC)
-            pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
-
-            return true
-        }
-        return false
-    }
 }
 
 extension CanvadocsPDFDocumentPresenter: CanvadocsAnnotationProviderDelegate {
@@ -257,5 +242,42 @@ extension CanvadocsPDFDocumentPresenter: CanvadocsAnnotationProviderDelegate {
     
     @objc func annotationSaveStateChanges(saving: Bool) {
         self.onSaveStateChange?(["saving": saving])
+    }
+}
+
+extension CanvadocsPDFDocumentPresenter: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        pdfViewController?.annotationStateManager.state == .stamp &&
+            pdfViewController?.document != nil &&
+            service.metadata?.annotationMetadata != nil
+    }
+
+    @objc
+    public func tapGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard let pdfController = pdfViewController,
+            gestureRecognizer.state == .ended,
+            let documentViewController = pdfController.documentViewController else {
+                return
+        }
+        let viewPoint = gestureRecognizer.location(in: documentViewController.view)
+        let state = pdfController.annotationStateManager
+        guard state.state == .stamp,
+            let pageView = documentViewController.visiblePageView(at: viewPoint),
+            let pdfDocument = pdfController.document,
+            let metadata = service.metadata?.annotationMetadata else {
+                return
+        }
+        let pointAnnotation = CanvadocsPointAnnotation()
+        pointAnnotation.user = metadata.userID
+        pointAnnotation.userName = metadata.userName
+        pointAnnotation.color = state.drawColor
+        pointAnnotation.boundingBox = CGRect(x: 0, y: 0, width: 9.33, height: 13.33)
+        pointAnnotation.pageIndex = pageView.pageIndex
+        pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
+        pdfDocument.add(annotations: [ pointAnnotation ], options: nil)
+
+        let commentsVC = CanvadocsCommentsViewController.new(pointAnnotation, pdfDocument: pdfDocument, metadata: metadata)
+        let navigationController = UINavigationController(rootViewController: commentsVC)
+        pdfController.present(navigationController, options: nil, animated: true, sender: nil, completion: nil)
     }
 }

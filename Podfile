@@ -19,7 +19,7 @@ def canvas_crashlytics_rn_firebase_pods
 end
 
 def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.5.1.podspec'
 end
 
 def lottie
