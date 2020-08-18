@@ -84,7 +84,7 @@
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
     </entity>
     <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
-        <attribute name="contextName" attributeType="String"/>
+        <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="contextRaw" attributeType="String"/>
         <attribute name="details" optional="YES" attributeType="String"/>
         <attribute name="effectiveContextRaw" optional="YES" attributeType="String"/>
