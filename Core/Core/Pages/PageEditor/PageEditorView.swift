@@ -85,7 +85,7 @@ public struct PageEditorView: View {
                     .font(.semibold14).foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
                 Divider()
-                TextField("Add Title", text: $title)
+                TextField(NSLocalizedString("Add Title", bundle: .core, comment: ""), text: $title)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .background(Color.backgroundLightest)
