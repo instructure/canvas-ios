@@ -71,6 +71,40 @@ public struct GetPagesRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
+public struct PostPageRequest: APIRequestable {
+    public typealias Response = APIPage
+    public typealias Body = PutPageRequest.Body
+
+    let context: Context
+    public let body: Body?
+
+    public var method: APIMethod { .post }
+    public var path: String { "\(context.pathComponent)/pages" }
+}
+
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.update
+public struct PutPageRequest: APIRequestable {
+    public typealias Response = APIPage
+    public struct Body: Codable {
+        let wiki_page: WikiPage
+    }
+    public struct WikiPage: Codable {
+        let title: String?
+        let body: String?
+        let editing_roles: String?
+        let published: Bool?
+        let front_page: Bool?
+    }
+
+    let context: Context
+    let url: String
+    public let body: Body?
+
+    public var method: APIMethod { .put }
+    public var path: String { "\(context.pathComponent)/pages/\(url)" }
+}
+
 public struct GetFrontPageRequest: APIRequestable {
     public typealias Response = APIPage
 

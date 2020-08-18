@@ -19,20 +19,33 @@
 import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
-public enum NavBarStyle: PreferenceKey, Equatable {
-    case modal
-    case global
-    case color(UIColor)
+public struct CircleProgress: UIViewRepresentable {
+    public let progress: CGFloat?
 
-    public static var defaultValue = NavBarStyle.global
-    public static func reduce(value: inout NavBarStyle, nextValue: () -> NavBarStyle) {
-        value = nextValue()
+    public init(progress: CGFloat? = nil) {
+        self.progress = progress
+    }
+
+    public func makeUIView(context: Self.Context) -> CircleProgressView {
+        let uiView = CircleProgressView()
+        return uiView
+    }
+
+    public func updateUIView(_ uiView: CircleProgressView, context: Self.Context) {
+        uiView.updateSize()
+        uiView.progress = progress
+    }
+
+    public func size(_ diameter: CGFloat = 40) -> some View {
+        frame(width: diameter, height: diameter)
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
-extension View {
-    func navBarStyle(_ style: NavBarStyle) -> some View {
-        preference(key: NavBarStyle.self, value: style)
+#if DEBUG
+@available(iOSApplicationExtension 13.0.0, *)
+struct CircleProgress_Previews: PreviewProvider {
+    static var previews: some View {
+        CircleProgress(progress: nil)
     }
 }
+#endif

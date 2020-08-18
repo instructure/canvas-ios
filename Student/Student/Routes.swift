@@ -272,7 +272,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/pages/new": nil,
     "/:context/:contextID/pages/:url": pageViewController,
     "/:context/:contextID/wiki/:url": pageViewController,
-    "/:context/:contextID/pages/:url/edit": nil,
+    "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
+        guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
+        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+            return CoreHostingController(PageEditorView(context: context, url: slug))
+        } else {
+            return HelmViewController(moduleName: "/:context/:contextID/pages/:url/edit", props: makeProps(url, params: params, userInfo: userInfo))
+        }
+    },
     "/:context/:contextID/wiki/:url/edit": nil,
 
     "/courses/:courseID/quizzes": { _, params, _ in

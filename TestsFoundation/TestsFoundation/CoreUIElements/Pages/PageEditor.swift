@@ -16,10 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum PageEdit: String, RawRepresentable, RawElementWrapper {
-    case done = "pages.edit.doneButton"
-    case title = "pages.edit.titleInput"
-    case published = "pages.edit.published.row"
-    case frontPage = "pages.edit.front_page.row"
-    case canEdit = "pages.edit.editing_roles.row"
+public enum PageEditor: String, ElementWrapper {
+    case doneButton, titleField, publishedToggle, frontPageToggle, editorsButton
 }
