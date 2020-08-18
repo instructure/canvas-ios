@@ -52,7 +52,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
   static defaultProps = {
     disabled: false,
   }
-  static persistentComment: PersistentComment = { text: '' }
+  static persistentComment: PersistentComment = { text: '', clearOnBlur: false }
   _textInput: TextInput
 
   constructor (props: any) {
@@ -67,8 +67,7 @@ export default class CommentInput extends Component<CommentInputProps, State> {
     if (!text || text.length === 0) {
       return
     }
-    CommentInput.persistentComment.text = ''
-    this.forceUpdate()
+    CommentInput.persistentComment.clearOnBlur = true
     this._textInput.blur()
 
     this.props.makeComment({
@@ -89,6 +88,11 @@ export default class CommentInput extends Component<CommentInputProps, State> {
   }
 
   onBlur = () => {
+    if (CommentInput.persistentComment.clearOnBlur) {
+      CommentInput.persistentComment.text = ''
+      CommentInput.persistentComment.clearOnBlur = false
+      this.forceUpdate()
+    }
     this.props.onBlur && this.props.onBlur()
   }
 
