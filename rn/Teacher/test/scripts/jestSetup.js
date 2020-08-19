@@ -171,10 +171,6 @@ NativeModules.WebViewHacker = {
   setKeyboardDisplayRequiresUserAction: jest.fn(),
 }
 
-NativeModules.APIBridge = {
-  requestCompleted: jest.fn(),
-}
-
 NativeModules.AppStoreReview = {
   handleSuccessfulSubmit: jest.fn(),
   handleNavigateToAssignment: jest.fn(),
@@ -185,10 +181,6 @@ NativeModules.AppStoreReview = {
 
 NativeModules.CanvasAnalytics = {
   logEvent: jest.fn(),
-}
-
-NativeModules.QLPreviewManager = {
-  previewFile: jest.fn(),
 }
 
 NativeModules.LTITools = {

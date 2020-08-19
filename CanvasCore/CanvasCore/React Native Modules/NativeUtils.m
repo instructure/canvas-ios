@@ -19,19 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 
-@interface NativeUtils: NSObject<RCTBridgeModule>
-@end
-
-@implementation NativeUtils
-
-RCT_EXPORT_MODULE();
-
-RCT_EXPORT_METHOD(log:(NSString*)message) {
-    puts(message.UTF8String);
-}
-
-@end
-
 // Fix scrollEnabled in TextInput multiline
 #import <React/RCTMultilineTextInputViewManager.h>
 
