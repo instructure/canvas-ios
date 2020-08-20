@@ -117,7 +117,7 @@ export default class Row extends Component<RowProps> {
               style={titleStyles}
               ellipsizeMode={this.props.titleProps?.ellipsizeMode || 'tail'}
               numberOfLines={this.props.titleProps?.numberOfLines || 0}
-              {... (titleA11y ? {accessibilityLabel: titleA11y} : {})}
+              {... (titleA11y ? { accessibilityLabel: titleA11y } : {})}
             >
               {title}
             </Text>
