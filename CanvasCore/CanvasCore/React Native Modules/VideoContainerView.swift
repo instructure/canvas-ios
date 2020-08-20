@@ -22,7 +22,7 @@ import AVFoundation
 
 // CREDIT: https://stackoverflow.com/a/24590678
 extension UIView {
-    fileprivate var parentViewController: UIViewController? {
+    var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder!.next

@@ -41,8 +41,6 @@ import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
-import RichTextEditor from '../modules/rich-text-editor/RichTextEditor'
-import LinkModal from '../common/components/rich-text-editor/LinkModal'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
@@ -107,8 +105,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/address-book', AddressBook, store)
   registerScreen('/profile')
   registerScreen('/dev-menu', DeveloperMenu, store)
-  registerScreen('/rich-text-editor', RichTextEditor, store)
-  registerScreen('/rich-text-editor/link', LinkModal, store)
   registerScreen('/attachment', AttachmentView, store)
   registerScreen('/attachments', Attachments, store)
   registerScreen('/courses/:courseID/placeholder', CourseDetailsSplitViewPlaceholder, store)

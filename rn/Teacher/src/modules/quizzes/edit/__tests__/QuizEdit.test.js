@@ -256,7 +256,7 @@ describe('QuizEdit', () => {
     expect(navigator.dismiss).toHaveBeenCalled()
   })
 
-  it('should validate the assignment dates on done', () => {
+  it('should validate the assignment dates on done', async () => {
     const validate = jest.fn()
     const createNodeMock = ({ type }) => {
       if (type === 'AssignmentDatesEditor') {
@@ -270,11 +270,11 @@ describe('QuizEdit', () => {
     props.assignment = template.assignment()
     const tree = render(props, { createNodeMock }).toJSON()
     const doneButton: any = explore(tree).selectRightBarButton('quizzes.edit.doneButton')
-    doneButton.action()
+    await doneButton.action()
     expect(validate).toHaveBeenCalled()
   })
 
-  it('updates assignment on done', () => {
+  it('updates assignment on done', async () => {
     const originalAssignment = template.assignment({ name: 'Original Assignment' })
     const updatedAssignment = {
       ...originalAssignment,
@@ -293,22 +293,22 @@ describe('QuizEdit', () => {
     props.assignment = originalAssignment
     const tree = render(props, { createNodeMock }).toJSON()
     const doneButton: any = explore(tree).selectRightBarButton('quizzes.edit.doneButton')
-    doneButton.action()
+    await doneButton.action()
 
     expect(props.updateAssignment).toHaveBeenCalledWith(props.courseID, updatedAssignment, originalAssignment)
   })
 
-  it('shows modal while saving', () => {
+  it('shows modal while saving', async () => {
     const component = render(props)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneButton.action()
+    await doneButton.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('hides modal when save finishes', () => {
+  it('hides modal when save finishes', async () => {
     const component = render(props)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneButton.action()
+    await doneButton.action()
     component.update(<QuizEdit {...props} pending={false} />)
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -325,26 +325,6 @@ describe('QuizEdit', () => {
     const doneButton: any = explore(tree.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     await doneButton.action()
     expect(Alert.alert).toHaveBeenCalled()
-  })
-
-  it('navigates to edit description', () => {
-    props.quiz.description = 'i am a description'
-    props.navigator.show = jest.fn()
-    const component = render(props)
-    const row: any = explore(component.toJSON()).selectByID('quizzes.edit.description-row')
-    row.props.onPress()
-    expect(props.navigator.show).toHaveBeenCalledWith('/rich-text-editor', {
-      modal: true,
-      modalPresentationStyle: 'fullscreen',
-    }, {
-      defaultValue: 'i am a description',
-      onChangeValue: expect.any(Function),
-      showToolbar: 'always',
-      placeholder: 'Description',
-      attachmentUploadPath: '/courses/1/files',
-      context: 'courses',
-      contextID: '1',
-    })
   })
 
   it('toggles time limit', () => {
@@ -435,39 +415,39 @@ describe('QuizEdit', () => {
     )
   }
 
-  it('focuses unmetRequirementBanner after it shows', () => {
+  it('focuses unmetRequirementBanner after it shows', async () => {
     jest.useFakeTimers()
     props.quiz.title = ''
     const component = renderer.create(
       <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneBtn.action()
+    await doneBtn.action()
     jest.runAllTimers()
     expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`quizEdit.unmet-requirement-banner`)
   })
 
-  it('saving invalid name displays banner', () => {
+  it('saving invalid name displays banner', async () => {
     props.quiz.title = ''
     const component = renderer.create(
       <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneBtn.action()
+    await doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('saving password displays banner', () => {
+  it('saving password displays banner', async () => {
     props.quiz.access_code = ''
     const component = renderer.create(
       <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneBtn.action()
+    await doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('saving invalid viewing dates displays banner', () => {
+  it('saving invalid viewing dates displays banner', async () => {
     props.quiz.show_correct_answers = true
     props.quiz.show_correct_answers_at = '2017-06-01T07:59:00Z'
     props.quiz.hide_correct_answers_at = '2017-06-01T05:59:00Z'
@@ -475,11 +455,11 @@ describe('QuizEdit', () => {
       <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneBtn.action()
+    await doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
 
-  it('saving invalid due dates displays banner', () => {
+  it('saving invalid due dates displays banner', async () => {
     props.quiz.all_dates = [{
       due_at: '2017-06-01T07:59:00Z',
       lock_at: '2017-06-01T05:59:00Z',
@@ -488,7 +468,7 @@ describe('QuizEdit', () => {
       <QuizEdit {...props} />, options
     )
     const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
-    doneBtn.action()
+    await doneBtn.action()
     expect(component.toJSON()).toMatchSnapshot()
   })
 

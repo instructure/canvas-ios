@@ -22,20 +22,6 @@ import PSPDFKitUI
 import React
 import Core
 
-// CREDIT: https://stackoverflow.com/a/24590678
-extension UIView {
-    fileprivate var parentViewController: UIViewController? {
-        var parentResponder: UIResponder? = self
-        while parentResponder != nil {
-            parentResponder = parentResponder!.next
-            if let viewController = parentResponder as? UIViewController {
-                return viewController
-            }
-        }
-        return nil
-    }
-}
-
 public class CanvadocView: UIView {
     
     @objc weak var pdfViewController: PDFViewController?

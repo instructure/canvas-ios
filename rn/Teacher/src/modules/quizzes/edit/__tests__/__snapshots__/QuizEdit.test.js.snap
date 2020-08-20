@@ -140,144 +140,26 @@ exports[`QuizEdit changes assignment group 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -2096,144 +1978,26 @@ exports[`QuizEdit changes quiz type 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -4058,144 +3822,26 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -6230,144 +5876,26 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -8439,144 +7967,26 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -10376,144 +9786,26 @@ exports[`QuizEdit renders 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -12350,144 +11642,26 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="html"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -14105,7 +13279,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
             "assignment_group_id": null,
             "can_unpublish": true,
             "cant_go_back": false,
-            "description": "This is quiz 1",
+            "description": "html",
             "due_at": "2013-01-23T23:59:00-07:00",
             "hide_correct_answers_at": null,
             "hide_results": null,
@@ -14131,7 +13305,22 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         canEditAssignees={false}
         navigator={
           Object {
-            "dismiss": [MockFunction],
+            "dismiss": [MockFunction] {
+              "calls": Array [
+                Array [],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": Promise {
+                    "_U": 0,
+                    "_V": 1,
+                    "_W": undefined,
+                    "_X": null,
+                  },
+                },
+              ],
+            },
             "dismissAllModals": [MockFunction],
             "isModal": false,
             "pop": [MockFunction],
@@ -14352,144 +13541,26 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -16326,144 +15397,26 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -18641,144 +17594,26 @@ exports[`QuizEdit saving password displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -20728,144 +19563,26 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -22715,144 +21432,26 @@ exports[`QuizEdit shows modal while saving 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -24652,144 +23251,26 @@ exports[`QuizEdit shows quiz time picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -26614,144 +25095,26 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -28658,144 +27021,26 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -30701,144 +28946,26 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -32744,144 +30871,26 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -34681,144 +32690,26 @@ exports[`QuizEdit toggles "access code" 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -36740,144 +34631,26 @@ exports[`QuizEdit toggles "access code" 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -38677,144 +36450,26 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -40895,144 +38550,26 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -43106,144 +40643,26 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -45043,144 +42462,26 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -47086,144 +44387,26 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -49024,144 +46207,26 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -50961,144 +48026,26 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -53179,144 +50126,26 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -55390,144 +52219,26 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -57327,144 +54038,26 @@ exports[`QuizEdit toggles publish 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -59264,144 +55857,26 @@ exports[`QuizEdit toggles publish 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -61200,144 +57675,26 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -63138,144 +59495,26 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -65075,144 +61314,26 @@ exports[`QuizEdit toggles time limit 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -67136,144 +63257,26 @@ exports[`QuizEdit toggles time limit 2`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -69074,144 +65077,26 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}
@@ -71292,144 +67177,26 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <View
         style={
-          Array [
-            Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
-            },
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="quizzes.edit.description-row"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "flex": 1,
-                "flexDirection": "row",
-                "minHeight": 54,
-                "paddingBottom": 12,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12,
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
-              },
-              undefined,
-            ]
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                },
-                Object {
-                  "marginLeft": 0,
-                },
-              ]
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "paddingRight": 16,
-                }
-              }
-            >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/images/edit.png",
-                  }
-                }
-                style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Object {
-                    "color": "#008EE2",
-                    "fontSize": 16,
-                    "fontWeight": "600",
-                  }
-                }
-              >
-                Edit Description
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignSelf": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#C7CDD1",
-                      "borderRightWidth": 2,
-                      "borderTopWidth": 2,
-                      "height": 10,
-                      "marginLeft": 7,
-                      "width": 10,
-                    },
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "rotate": "45deg",
-                        },
-                      ],
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="This is quiz 1"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         accessible={false}

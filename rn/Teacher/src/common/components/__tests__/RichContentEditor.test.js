@@ -16,14 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+import { shallow } from 'enzyme'
+import React from 'react'
+import RichContentEditor from '../RichContentEditor'
 
-import RichTextEditor from './RichTextEditor'
-import RichTextToolbar from './RichTextToolbar'
-import ColorPicker from './ColorPicker'
+describe('RichContentEditor', () => {
+  const props = {
+    context: 'courses/1',
+    html: 'default html',
+    onFocus: jest.fn(),
+    placeholder: 'placehold',
+    uploadContext: 'users/self/files',
+  }
 
-export {
-  RichTextEditor,
-  RichTextToolbar,
-  ColorPicker,
-}
+  it('renders native component', () => {
+    const tree = shallow(<RichContentEditor {...props} />)
+    expect(tree.find('RichContentEditor').exists()).toBe(true)
+  })
+
+  it('can retrieve html', async () => {
+    const tree = shallow(<RichContentEditor {...props} />)
+    expect(await tree.instance().getHTML()).toBe('html')
+  })
+})

@@ -29,7 +29,7 @@ jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => 
 
 let defaultProps = {
   contentID: '1',
-  icon: images.document,
+  icon: images.add,
   title: 'foo',
   subtitle: 'bar',
   submissionID: '1',

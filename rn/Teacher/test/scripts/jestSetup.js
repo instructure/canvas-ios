@@ -161,6 +161,10 @@ NativeModules.TabBarBadgeCounts = {
   updateTodoListCount: jest.fn(),
 }
 
+NativeModules.RichContentEditorManager = {
+  getHTML: jest.fn(() => Promise.resolve('html')),
+}
+
 NativeModules.CanvasWebViewManager = {
   evaluateJavaScript: jest.fn(() => Promise.resolve()),
   stopRefreshing: jest.fn(),

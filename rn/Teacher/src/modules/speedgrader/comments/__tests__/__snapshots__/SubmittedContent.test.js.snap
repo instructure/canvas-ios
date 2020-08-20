@@ -22,7 +22,7 @@ exports[`my chat bubbles render correctly 1`] = `
     resizeMode="center"
     source={
       Object {
-        "testUri": "../../../src/images/Document.png",
+        "testUri": "../../../src/images/Add.png",
       }
     }
     style={
