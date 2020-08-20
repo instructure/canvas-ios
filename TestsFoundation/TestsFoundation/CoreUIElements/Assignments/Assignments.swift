@@ -39,6 +39,13 @@ public enum AssignmentDetails: String, ElementWrapper {
     case lockSection
     case replyButton // parent
 
+    public enum Submissions: String, ElementWrapper {
+        public var typeName: String { "AssignmentDetails.Submissions" }
+        case gradedDial
+        case ungradedDial
+        case notSubmittedDial
+    }
+
     public static func description(_ description: String) -> Element {
         return app.find(label: description)
     }

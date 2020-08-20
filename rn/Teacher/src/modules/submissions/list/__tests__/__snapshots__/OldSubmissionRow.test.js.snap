@@ -72,6 +72,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
           Student
         </Text>
         <Text
+          accessibilityLabel="Not Submitted,"
           style={
             Array [
               Object {
@@ -194,6 +195,7 @@ exports[`excused row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
+          accessibilityLabel="Missing,"
           style={
             Array [
               Object {
@@ -338,6 +340,7 @@ exports[`late graded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
+          accessibilityLabel="Late,"
           style={
             Array [
               Object {
@@ -482,6 +485,7 @@ exports[`missing ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
+          accessibilityLabel="Missing,"
           style={
             Array [
               Object {
@@ -704,6 +708,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
+          accessibilityLabel="Submitted,"
           style={
             Array [
               Object {
@@ -862,6 +867,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           Green Latern
         </Text>
         <Text
+          accessibilityLabel="Not Submitted,"
           style={
             Array [
               Object {

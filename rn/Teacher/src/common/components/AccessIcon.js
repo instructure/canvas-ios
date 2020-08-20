@@ -43,6 +43,7 @@ export type Props = {
   image: any,
   showAccessIcon: boolean,
   disableAppSpecificChecks?: boolean,
+  addAccessibilityComma?: boolean,
 }
 
 export default class AccessIcon extends React.Component<Props> {
@@ -70,6 +71,7 @@ export default class AccessIcon extends React.Component<Props> {
       iconStyle = styles.unpublishedIcon
       accessibilityLabel = i18n('Not Published')
     }
+    if (this.props.addAccessibilityComma) { accessibilityLabel += ',' }
     if (!isTeacher()) { accessibilityLabel = '' }
     let isIcon = !this.props.image.uri?.includes('/')
     return (

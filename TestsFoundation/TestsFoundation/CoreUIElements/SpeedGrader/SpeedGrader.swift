@@ -17,7 +17,6 @@
 //
 
 import Foundation
-import TestsFoundation
 import XCTest
 
 public enum SpeedGrader: String, RawElementWrapper {
@@ -29,11 +28,11 @@ public enum SpeedGrader: String, RawElementWrapper {
         return segmentControl.rawElement.buttons.matching(label: label).firstElement
     }
 
-    static func userName(userID: String) -> Element {
+    public static func userName(userID: String) -> Element {
         return app.find(id: "header.context.button.\(userID)")
     }
 
-    static func dismissTutorial() {
+    public static func dismissTutorial() {
         let button = app.find(idStartingWith: "tutorial.button")
         while button.rawElement.waitForExistence(timeout: 3) {
             button.tap()
