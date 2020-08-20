@@ -131,7 +131,7 @@ class CanvadocsAnnotationProvider: PDFContainerAnnotationProvider {
                         self.incrementRequestsInFlight()
                         self.service.deleteAnnotation(canvadocsAnnotation) { [weak self] result in
                             self?.decrementRequestsInFlight()
-                            if let e = result.error {
+                            if case .failure(let e) = result {
                                 self?.canvasDelegate?.annotationDidFailToSave(error: e)
                             }
                         }

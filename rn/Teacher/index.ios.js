@@ -34,7 +34,6 @@ import hydrate from './src/redux/hydrate-action'
 import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts } from './src/modules/tabbar/badge-counts'
 import App, { type AppId } from './src/modules/app'
 import Navigator from './src/routing/Navigator'
-import APIBridge from './src/canvas-api/APIBridge'
 import { Crashlytics } from './src/common/CanvasCrashlytics'
 import { clearClient } from './src/canvas-api-v2/client'
 
@@ -125,8 +124,6 @@ AppState.addEventListener('change', (nextAppState) => {
     stopUpdatingBadgeCounts()
   }
 })
-
-APIBridge()
 
 const notificationCenter = new NativeEventEmitter(NativeNotificationCenter)
 NativeNotificationCenter.addObserver('redux-action')
