@@ -54,9 +54,8 @@ class LoginE2ETests: CoreUITestCase {
     }
 
     func testSAMLLoginToDashboard() {
-        // This test is so flaky it deserves a clean launch every time
-        launch()
         setAnimationsEnabled(true)
+        defer { setAnimationsEnabled(false) }
         let user = UITestUser.saml
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)")
@@ -66,6 +65,10 @@ class LoginE2ETests: CoreUITestCase {
         emailField.typeText("\(user.username)\r")
         LoginWeb.passwordField.tap()
         LoginWeb.passwordField.typeText("\(user.password)\r")
+        let staySignedInButton = app.find(label: "No", type: .button)
+        while staySignedInButton.rawElement.waitForExistence(timeout: 5) {
+            staySignedInButton.tap()
+        }
         TabBar.dashboardTab.waitToExist()
     }
 
