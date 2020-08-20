@@ -105,8 +105,8 @@ export default class UserSubmissionRow extends Component<Props, any> {
       <Row
         renderImage={this._renderIcon}
         title={assignment.name}
-        titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
-        testID={`user-submission-row.cell-${assignment.id}`}
+        titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2, accessibilityLabel: `${assignment.name},` }}
+        testID={`ContextCard.submissionCell(${assignment.id})`}
         onPress={this.onPress}
         height='auto'
       >
@@ -136,7 +136,7 @@ export default class UserSubmissionRow extends Component<Props, any> {
     }
     return (
       <View style={styles.icon} testID={testID}>
-        <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} />
+        <AccessIcon entry={assignment} tintColor={this.props.tintColor} style={styles.icon} image={image} addAccessibilityComma={true} />
       </View>
     )
   }

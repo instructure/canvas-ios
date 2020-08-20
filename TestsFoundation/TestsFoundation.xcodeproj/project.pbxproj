@@ -124,6 +124,7 @@
 		E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFDC2476E46F007BC5FD /* MiniFile.swift */; };
 		E8D7EFE22476E6CC007BC5FD /* MiniFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7EFE12476E6CC007BC5FD /* MiniFolder.swift */; };
 		E8F2A96624A2788B00DB7C18 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = E8F2A96524A2788B00DB7C18 /* Swifter */; };
+		E8F4B66924EED083003FBAFD /* SpeedGrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66824EED083003FBAFD /* SpeedGrader.swift */; };
 		EE424B3A22E8E97100D083EE /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3922E8E97100D083EE /* PageFixture.swift */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		E8BE4F5B233E73E100DC399A /* XCUIElementQueryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementQueryExtensions.swift; sourceTree = "<group>"; };
 		E8D7EFDC2476E46F007BC5FD /* MiniFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFile.swift; sourceTree = "<group>"; };
 		E8D7EFE12476E6CC007BC5FD /* MiniFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFolder.swift; sourceTree = "<group>"; };
+		E8F4B66824EED083003FBAFD /* SpeedGrader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedGrader.swift; sourceTree = "<group>"; };
 		EE424B3922E8E97100D083EE /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -688,6 +690,7 @@
 		E809369724C21DFE00D15E9A /* CoreUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				E8F4B66724EED071003FBAFD /* SpeedGrader */,
 				E809366124C21DFE00D15E9A /* AudioVideo */,
 				E809366324C21DFE00D15E9A /* Assignments */,
 				E809366524C21DFE00D15E9A /* Attachments */,
@@ -762,6 +765,14 @@
 				5859560B4512977756206840 /* MiniCanvasUITestCase.swift */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		E8F4B66724EED071003FBAFD /* SpeedGrader */ = {
+			isa = PBXGroup;
+			children = (
+				E8F4B66824EED083003FBAFD /* SpeedGrader.swift */,
+			);
+			path = SpeedGrader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -890,6 +901,7 @@
 				3B6043AA232AB93900757B93 /* AssignmentGroupsFixture.swift in Sources */,
 				E81B575B23E243CA002A0C38 /* ConversationList.swift in Sources */,
 				E8D7EFDD2476E46F007BC5FD /* MiniFile.swift in Sources */,
+				E8F4B66924EED083003FBAFD /* SpeedGrader.swift in Sources */,
 				B16F0371215BD5F10011E952 /* TestRouter.swift in Sources */,
 				B1E789B821B1B06F0087FE4A /* TestLogger.swift in Sources */,
 				E80936D924C2480B00D15E9A /* FilesList.swift in Sources */,
