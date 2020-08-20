@@ -170,13 +170,6 @@ static NSString *WebViewKeyPath = @"webView.scrollView.contentSize";
             [_webView loadFileURL:request.URL allowingReadAccessToURL:request.URL];
             return;
         }
-        
-        if ([[request.URL lastPathComponent] isEqualToString:@"zss-rich-text-editor.html"]) {
-            NSString *html = [NSString stringWithContentsOfURL:request.URL encoding:NSUTF8StringEncoding error:nil];
-            NSURL *baseURL = [[NSBundle mainBundle] bundleURL];
-            [_webView loadHTMLString:html baseURL:baseURL];
-            return;
-        }
 
         [_webView loadRequest:request];
     }

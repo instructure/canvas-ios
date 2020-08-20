@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import React, { Component } from 'react'
+import {
+  findNodeHandle,
+  requireNativeComponent,
+  NativeModules,
+} from 'react-native'
 
-const RealComponent = require.requireActual('../RichTextToolbar')
-const React = require('React')
-export default class RichTextToolbar extends React.Component<*> {
+const { RichContentEditorManager } = NativeModules
+
+const NativeRichContentEditor = requireNativeComponent('RichContentEditor', null)
+NativeRichContentEditor.displayName = 'RichContentEditor'
+
+export default class RichContentEditor extends Component {
   render () {
-    return React.createElement('RichTextToolbar', this.props, this.props.children)
+    return (
+      <NativeRichContentEditor
+        {...this.props}
+        ref={ref => { this.editor = ref }}
+      />
+    )
+  }
+
+  getHTML () {
+    return RichContentEditorManager.getHTML(findNodeHandle(this.editor))
   }
 }
-RichTextToolbar.propTypes = RealComponent.propTypes

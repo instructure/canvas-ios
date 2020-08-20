@@ -80,6 +80,8 @@
 		7D0215A321BAE703009A8E69 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0215A221BAE703009A8E69 /* Core.framework */; };
 		7D6410EC2280B74E008FA345 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */; };
 		7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */; };
+		7D98611E24EDB2CD008F262F /* RichContentEditorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D98611D24EDB2CD008F262F /* RichContentEditorManager.m */; };
+		7D98612024EDB6EC008F262F /* RichContentEditorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D98611F24EDB6EC008F262F /* RichContentEditorWrapper.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
@@ -99,8 +101,6 @@
 		B1ED11972044803400C3C580 /* CanvasWebViewContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */; };
 		B1ED11982044803400C3C580 /* CanvasWebViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */; };
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
-		B1F4E8CF206189010056074A /* video-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8CE206189010056074A /* video-preview.png */; };
-		B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +198,8 @@
 		7D349C7821430D2A004C1074 /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
 		7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequestHandler.m; sourceTree = "<group>"; };
+		7D98611D24EDB2CD008F262F /* RichContentEditorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichContentEditorManager.m; sourceTree = "<group>"; };
+		7D98611F24EDB6EC008F262F /* RichContentEditorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorWrapper.swift; sourceTree = "<group>"; };
 		7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7DD89E8A20AB626600650227 /* AppStoreReview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreReview.m; sourceTree = "<group>"; };
 		7DF5A775208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationStateManager.swift; sourceTree = "<group>"; };
@@ -257,8 +259,6 @@
 		B1ED11952044803400C3C580 /* CanvasWebViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasWebViewContainer.h; sourceTree = "<group>"; };
 		B1ED11962044803400C3C580 /* CanvasWebViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasWebViewContainer.m; sourceTree = "<group>"; };
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
-		B1F4E8CE206189010056074A /* video-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-preview.png"; sourceTree = "<group>"; };
-		B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "zss-rich-text-editor.html"; path = "../../../rn/Teacher/lib/zss-rich-text-editor.html"; sourceTree = "<group>"; };
 		B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,7 +307,6 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
-				B1F4E8CD206188DC0056074A /* RCE */,
 				49301FF41F901CA0006BD777 /* Annotations */,
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
@@ -431,6 +430,8 @@
 				3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */,
 				494AE0931F843A02001A8F31 /* PushNotifications.h */,
 				494AE0941F843A03001A8F31 /* PushNotifications.m */,
+				7D98611D24EDB2CD008F262F /* RichContentEditorManager.m */,
+				7D98611F24EDB6EC008F262F /* RichContentEditorWrapper.swift */,
 				3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */,
 				3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */,
 				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
@@ -500,15 +501,6 @@
 				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B1F4E8CD206188DC0056074A /* RCE */ = {
-			isa = PBXGroup;
-			children = (
-				B1F4E8CE206189010056074A /* video-preview.png */,
-				B1F4E8D02061950C0056074A /* zss-rich-text-editor.html */,
-			);
-			path = RCE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -636,12 +628,10 @@
 				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
-				B1F4E8D12061950C0056074A /* zss-rich-text-editor.html in Resources */,
 				4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */,
 				493020141F901CF5006BD777 /* CommentReplyView.xib in Resources */,
 				B1D59802202A607200855C95 /* CanvasWebView.js in Resources */,
 				493020131F901CF5006BD777 /* CommentTableViewCell.xib in Resources */,
-				B1F4E8CF206189010056074A /* video-preview.png in Resources */,
 				49CE96BA1F8FF94B00121A43 /* CanvasWebView.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,6 +684,7 @@
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
+				7D98612024EDB6EC008F262F /* RichContentEditorWrapper.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
 				B1ED11942040CD5F00C3C580 /* CanvasWebViewManager.m in Sources */,
 				B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */,
@@ -716,6 +707,7 @@
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
 				B1BE249720AB13FE00C521C3 /* SafariActivity.swift in Sources */,
+				7D98611E24EDB2CD008F262F /* RichContentEditorManager.m in Sources */,
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
 				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
 				493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */,

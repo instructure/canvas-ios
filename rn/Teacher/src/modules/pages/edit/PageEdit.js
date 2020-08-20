@@ -34,7 +34,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import SavingBanner from '../../../common/components/SavingBanner'
-import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
+import RichContentEditor from '../../../common/components/RichContentEditor'
 import { createStyleSheet } from '../../../common/stylesheet'
 import {
   fetchPropsFor,
@@ -80,7 +80,7 @@ function editingRoles (context) {
 
 export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
-  editor: ?RichTextEditor
+  editor: ?RichContentEditor
 
   state: State = {
     ...(this.props.page || PageModel.newPage),
@@ -140,22 +140,14 @@ export class PageEdit extends Component<Props, State> {
               : <Heading1 style={style.studentTitle} testID="PageEditor.titleText">{this.state.title}</Heading1>
             }
             <FormLabel>{i18n('Description')}</FormLabel>
-            <View
-              style={style.description}
-            >
-              <RichTextEditor
+            <View style={style.description}>
+              <RichContentEditor
                 ref={(r) => { this.editor = r }}
-                defaultValue={this.props.page ? this.props.page.body : null}
-                showToolbar='always'
-                keyboardAware={false}
-                scrollEnabled
-                contentHeight={150}
+                html={this.props.page ? this.props.page.body : null}
                 placeholder={i18n('Add description')}
-                navigator={this.props.navigator}
-                attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
+                uploadContext={`${this.props.context}/${this.props.contextID}/files`}
                 onFocus={this._scrollToRCE}
-                context={this.props.context}
-                contextID={this.props.contextID}
+                context={`${this.props.context}/${this.props.contextID}`}
               />
             </View>
             {(isTeacher() || this.props.context === 'groups') &&
@@ -212,7 +204,7 @@ export class PageEdit extends Component<Props, State> {
   }
 
   done = async () => {
-    const body = this.editor && await this.editor.getHTML()
+    const body = await this.editor?.getHTML() ?? ''
     const parameters = {
       title: this.state.title,
       body,
@@ -297,7 +289,7 @@ const style = createStyleSheet((colors, vars) => ({
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
     backgroundColor: colors.backgroundLightest,
-    height: 200,
+    minHeight: 200,
   },
   studentTitle: {
     padding: 12,

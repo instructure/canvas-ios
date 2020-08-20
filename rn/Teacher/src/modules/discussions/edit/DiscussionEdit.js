@@ -38,7 +38,7 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
-import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
+import RichContentEditor from '../../../common/components/RichContentEditor'
 import Images from '../../../images'
 import ModalOverlay from '../../../common/components/ModalOverlay'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
@@ -110,7 +110,7 @@ export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Act
 export class DiscussionEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
   datesEditor: ?AssignmentDatesEditor
-  editor: ?RichTextEditor
+  editor: ?RichContentEditor
 
   constructor (props: Props) {
     super(props)
@@ -251,22 +251,14 @@ export class DiscussionEdit extends Component<Props, any> {
             />
 
             <FormLabel>{i18n('Description')}</FormLabel>
-            <View
-              style={style.description}
-            >
-              <RichTextEditor
+            <View style={style.description}>
+              <RichContentEditor
                 ref={(r) => { this.editor = r }}
-                defaultValue={this.props.message}
-                showToolbar='always'
-                keyboardAware={false}
-                scrollEnabled={true}
-                contentHeight={150}
+                html={this.props.message}
                 placeholder={i18n('Add description')}
-                navigator={this.props.navigator}
-                attachmentUploadPath={isTeacher() ? `/${this.props.context}/${this.props.contextID}/files` : '/users/self/files'}
+                uploadContext={isTeacher() ? `${this.props.context}/${this.props.contextID}/files` : 'users/self/files'}
                 onFocus={this._scrollToRCE}
-                context={this.props.context}
-                contextID={this.props.contextID}
+                context={`${this.props.context}/${this.props.contextID}`}
               />
             </View>
 
@@ -522,7 +514,7 @@ export class DiscussionEdit extends Component<Props, any> {
   }
 
   async updateDiscussion () {
-    const message = this.editor ? await this.editor.getHTML() : ''
+    const message = await this.editor?.getHTML() ?? ''
     let params = {
       title: this.state.title || i18n('No Title'),
       message: message,
@@ -576,7 +568,7 @@ const style = createStyleSheet((colors, vars) => ({
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
     backgroundColor: colors.backgroundLightest,
-    height: 200,
+    minHeight: 200,
   },
   deleteButtonTitle: {
     color: colors.textDanger,
