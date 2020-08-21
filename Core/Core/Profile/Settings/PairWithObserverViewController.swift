@@ -85,17 +85,14 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
     }
 
     func generateQRCode(pairingCode: String?) {
-        let termsAndConditionsToGetAccountIDRequest = GetAccountTermsOfServiceRequest()
-        env.api.makeRequest(termsAndConditionsToGetAccountIDRequest) { [weak self] (response, _, error) in
-            performUIUpdate {
-                self?.spinner.isHidden = true
-                if let error = error {
-                    self?.showError(error)
-                } else {
-                    self?.displayQR(pairingCode: pairingCode, accountID: response?.account_id.value, baseURL: self?.env.api.baseURL)
-                }
+        env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] (response, _, error) in performUIUpdate {
+            self?.spinner.isHidden = true
+            if let error = error {
+                self?.showError(error)
+            } else {
+                self?.displayQR(pairingCode: pairingCode, accountID: response?.account_id.value, baseURL: self?.env.api.baseURL)
             }
-        }
+        } }
     }
 
     func displayQR(pairingCode: String?, accountID: String?, baseURL: URL?) {

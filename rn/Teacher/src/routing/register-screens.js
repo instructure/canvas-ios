@@ -61,7 +61,6 @@ import EditFolder from '../modules/files/EditFolder'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
-import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import ExperimentalFeature from '../common/ExperimentalFeature'
@@ -139,7 +138,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/wiki', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki/:url/edit', PageEdit, store, { deepLink: true })
-  registerScreen('/accounts/:accountID/terms_of_service', TermsOfUse, store)
+  registerScreen('/accounts/:accountID/terms_of_service', null, store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/push-notifications', PushNotifications, store)
