@@ -33,7 +33,7 @@ import {
   SubTitle,
 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
-import CanvasWebView from '../../common/components/CanvasWebView'
+import CoreWebView from '../../common/components/CoreWebView'
 import DashboardContent from './DashboardContent'
 
 type Props = NavigationProps & {
@@ -123,7 +123,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
                 }
               </View>
             </TouchableHighlight>
-            <CanvasWebView
+            <CoreWebView
               accessibilityElementsHidden={collapsed}
               automaticallySetHeight
               html={message}

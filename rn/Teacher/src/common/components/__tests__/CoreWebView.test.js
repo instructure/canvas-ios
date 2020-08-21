@@ -16,21 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* eslint-disable flowtype/require-valid-file-annotation */
-
 import React from 'react'
 import { NativeModules } from 'react-native'
 import { shallow } from 'enzyme'
-import CanvasWebView, { type Props, heightCache } from '../CanvasWebView'
-import { setSession } from '../../../canvas-api/session'
+import CoreWebView from '../CoreWebView'
+import * as template from '../../../__templates__'
 
-const template = {
-  ...require('../../../__templates__/helm'),
-  ...require('../../../__templates__/session'),
-}
-
-describe('CanvasWebView', () => {
-  let props: Props
+describe('CoreWebView', () => {
+  let props
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -43,31 +36,29 @@ describe('CanvasWebView', () => {
 
   it('renders html', () => {
     const html = '<div>Hello, World!</div>'
-    const baseURL = 'https://narmstrong.instructure.com'
-    setSession(template.session({ baseURL }))
-    const tree = shallow(<CanvasWebView {...props} html={html} />)
+    const tree = shallow(<CoreWebView {...props} html={html} />)
     const webView = tree.find('WebView')
-    expect(webView.props().source).toEqual({ html, baseURL })
+    expect(webView.props().source).toEqual({ html })
   })
 
   it('renders uri', () => {
     const uri = 'https://apple.com'
-    const tree = shallow(<CanvasWebView {...props} source={{ uri }} />)
+    const tree = shallow(<CoreWebView {...props} source={{ uri }} />)
     const webView = tree.find('WebView')
     expect(webView.props().source).toEqual({ uri })
   })
 
   it('sends messages', () => {
     const onMessage = jest.fn()
-    const tree = shallow(<CanvasWebView {...props} onMessage={onMessage} />)
+    const tree = shallow(<CoreWebView {...props} onMessage={onMessage} />)
     const webView = tree.find('WebView')
     webView.simulate('Message', { nativeEvent: 'hello' })
-    expect(onMessage).toHaveBeenCalledWith('hello')
+    expect(onMessage).toHaveBeenCalledWith({ nativeEvent: 'hello' })
   })
 
   it('notifies when finished loading', () => {
     const onFinishedLoading = jest.fn()
-    const tree = shallow(<CanvasWebView {...props} onFinishedLoading={onFinishedLoading} />)
+    const tree = shallow(<CoreWebView {...props} onFinishedLoading={onFinishedLoading} />)
     const webView = tree.find('WebView')
     webView.simulate('FinishedLoading')
     expect(onFinishedLoading).toHaveBeenCalled()
@@ -75,7 +66,7 @@ describe('CanvasWebView', () => {
 
   it('handles navigation', () => {
     const navigator = template.navigator({ show: jest.fn() })
-    const tree = shallow(<CanvasWebView {...props} navigator={navigator} />)
+    const tree = shallow(<CoreWebView {...props} navigator={navigator} />)
     const webView = tree.find('WebView')
     const url = 'https://canvas.instructure.com/courses/1/assignments/1'
     webView.simulate('Navigation', { nativeEvent: { url } })
@@ -86,7 +77,7 @@ describe('CanvasWebView', () => {
 
   it('handles navigation when openLinksInSafari is provided', async () => {
     const navigator = template.navigator({ show: jest.fn() })
-    const tree = shallow(<CanvasWebView {...props} navigator={navigator} openLinksInSafari />)
+    const tree = shallow(<CoreWebView {...props} navigator={navigator} openLinksInSafari />)
     const webView = tree.find('WebView')
     const url = 'https://canvas.instructure.com/courses/1/assignments/1'
     webView.simulate('Navigation', { nativeEvent: { url } })
@@ -96,7 +87,7 @@ describe('CanvasWebView', () => {
   it('handles navigation callback', () => {
     const navigator = template.navigator({ show: jest.fn() })
     const onNavigation = jest.fn()
-    const tree = shallow(<CanvasWebView {...props} navigator={navigator} onNavigation={onNavigation} />)
+    const tree = shallow(<CoreWebView {...props} navigator={navigator} onNavigation={onNavigation} />)
     const webView = tree.find('WebView')
     const url = 'https://canvas.instructure.com/courses/1/assignments/1'
     webView.simulate('Navigation', { nativeEvent: { url } })
@@ -106,7 +97,7 @@ describe('CanvasWebView', () => {
 
   it('sends errors', () => {
     const onError = jest.fn()
-    const tree = shallow(<CanvasWebView {...props} onError={onError} />)
+    const tree = shallow(<CoreWebView {...props} onError={onError} />)
     const webView = tree.find('WebView')
     webView.simulate('Error', 'error')
     expect(onError).toHaveBeenCalledWith('error')
@@ -114,80 +105,42 @@ describe('CanvasWebView', () => {
 
   it('evaluates javascript', () => {
     const js = `console.log('Hello, World!');`
-    const tree = shallow(<CanvasWebView {...props} />)
+    const tree = shallow(<CoreWebView {...props} />)
     tree.instance().evaluateJavaScript(js)
-    expect(NativeModules.CanvasWebViewManager.evaluateJavaScript).toHaveBeenCalledWith(
+    expect(NativeModules.CoreWebViewManager.evaluateJavaScript).toHaveBeenCalledWith(
       null,
       js,
     )
   })
 
-  it('stops refreshing', () => {
-    const tree = shallow(<CanvasWebView {...props} />)
-    tree.instance().stopRefreshing()
-    expect(NativeModules.CanvasWebViewManager.stopRefreshing).toHaveBeenCalled()
-  })
-
-  it('updates height to fit content if scroll disabled', async () => {
-    const height = 42
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} />)
-    const webView = tree.find('WebView')
-    webView.simulate('HeightChange', { nativeEvent: { height } })
-    tree.update()
-    expect(tree.find('WebView').props().style.height).toEqual(42)
-  })
-
   it('updates height to fit content if automaticallySetHeight', async () => {
     const height = 42
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={true} automaticallySetHeight />)
+    const tree = shallow(<CoreWebView {...props} automaticallySetHeight />)
     const webView = tree.find('WebView')
     webView.simulate('HeightChange', { nativeEvent: { height } })
     tree.update()
     expect(tree.find('WebView').props().style.height).toEqual(42)
   })
 
-  it('does not update height to fit content if scroll enabled', async () => {
+  it('does not update height to fit content if no automaticallySetHeight', async () => {
     const height = 42
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={true} />)
+    const tree = shallow(<CoreWebView {...props} automaticallySetHeight={false} />)
     const webView = tree.find('WebView')
     webView.simulate('HeightChange', { nativeEvent: { height } })
     tree.update()
     expect(tree.find('WebView').props().style.height).not.toEqual(42)
   })
 
-  it('caches the height if a heightCacheKey is provided', async () => {
-    const height = 42
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='1' />)
-    const webView = tree.find('WebView')
-    webView.simulate('HeightChange', { nativeEvent: { height } })
-    tree.update()
-    expect(heightCache.get('1')).toEqual(42)
-  })
-
-  it('sets the height if the height cache already has the height', () => {
-    heightCache.set('2', 52)
-    const tree = shallow(<CanvasWebView {...props} scrollEnabled={false} heightCacheKey='2' />)
-    expect(tree.find('WebView').props().style.height).toEqual(52)
-  })
-
-  it('prevents bounce if scroll is disabled', () => {
-    props.scrollEnabled = false
-    const tree = shallow(<CanvasWebView {...props} />)
-    const webView = tree.find('WebView')
-    expect(webView.prop('bounces')).toEqual(false)
-  })
-
   it('prevents bounce if height is auto set', () => {
     props.automaticallySetHeight = true
-    const tree = shallow(<CanvasWebView {...props} />)
+    const tree = shallow(<CoreWebView {...props} />)
     const webView = tree.find('WebView')
     expect(webView.prop('bounces')).toEqual(false)
   })
 
-  it('bounces if scroll enabled and height is not auto set', () => {
-    props.scrollEnabled = true
+  it('bounces if height is not auto set', () => {
     props.automaticallySetHeight = false
-    const tree = shallow(<CanvasWebView {...props} />)
+    const tree = shallow(<CoreWebView {...props} />)
     const webView = tree.find('WebView')
     expect(webView.prop('bounces')).toEqual(true)
   })

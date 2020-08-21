@@ -23,12 +23,7 @@ import 'react-native'
 import renderer from 'react-test-renderer'
 
 import { QuizPreview, mapStateToProps } from '../QuizPreview'
-
-const template = {
-  ...require('../../../../__templates__/helm'),
-  ...require('../../../../__templates__/quiz'),
-  ...require('../../../../redux/__templates__/app-state'),
-}
+import * as template from '../../../../__templates__'
 
 describe('QuizPreview', () => {
   let props = {
@@ -67,7 +62,7 @@ describe('QuizPreview', () => {
     )
     const instance = tree.getInstance()
     instance.onMessage({
-      body: 'done',
+      nativeEvent: { body: 'done' },
     })
     instance.onTimeout()
     expect(tree.toJSON()).toMatchSnapshot()
@@ -79,12 +74,12 @@ describe('QuizPreview', () => {
     )
     const instance = tree.getInstance()
     instance.webView = {
-      injectJavaScript: jest.fn(),
+      evaluateJavaScript: jest.fn(),
     }
     instance.onLoadEnd()
-    expect(instance.webView.injectJavaScript).toHaveBeenCalled()
+    expect(instance.webView.evaluateJavaScript).toHaveBeenCalled()
     instance.onMessage({
-      body: 'done',
+      nativeEvent: { body: 'done' },
     })
     expect(tree.toJSON()).toMatchSnapshot()
   })
@@ -95,16 +90,16 @@ describe('QuizPreview', () => {
     )
     const instance = tree.getInstance()
     instance.webView = {
-      injectJavaScript: jest.fn(),
+      evaluateJavaScript: jest.fn(),
     }
     instance.onLoadEnd()
-    expect(instance.webView.injectJavaScript).toHaveBeenCalled()
+    expect(instance.webView.evaluateJavaScript).toHaveBeenCalled()
     instance.onMessage({
-      body: '',
+      nativeEvent: { body: '' },
     })
     expect(tree.toJSON()).toMatchSnapshot()
     instance.onMessage({
-      body: 'error',
+      nativeEvent: { body: 'error' },
     })
     expect(tree.toJSON()).toMatchSnapshot()
   })

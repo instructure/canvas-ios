@@ -165,9 +165,8 @@ NativeModules.RichContentEditorManager = {
   getHTML: jest.fn(() => Promise.resolve('html')),
 }
 
-NativeModules.CanvasWebViewManager = {
+NativeModules.CoreWebViewManager = {
   evaluateJavaScript: jest.fn(() => Promise.resolve()),
-  stopRefreshing: jest.fn(),
 }
 
 NativeModules.WebViewHacker = {

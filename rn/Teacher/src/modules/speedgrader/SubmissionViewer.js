@@ -28,7 +28,7 @@ import { Text } from '../../common/text'
 import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
-import CanvasWebView from '../../common/components/CanvasWebView'
+import CoreWebView from '../../common/components/CoreWebView'
 import Video from '../../common/components/Video'
 import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
@@ -213,7 +213,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
           />
           break
         case 'online_text_entry':
-          body = <CanvasWebView
+          body = <CoreWebView
             style={styles.webContainer}
             html={submission.body || ''}
             contentInset={{ bottom: this.props.drawerInset }}
