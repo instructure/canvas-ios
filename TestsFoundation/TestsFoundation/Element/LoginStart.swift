@@ -27,6 +27,8 @@ public enum LoginStart: String, ElementWrapper {
     case logoView
     case whatsNewLabel
     case whatsNewLink
+    case qrCodeButton
+    case dontHaveAccountAction
 }
 
 public enum LoginStartSession {
@@ -47,4 +49,9 @@ public enum LoginStartMDMLogin {
     public static func cell(host: String, username: String) -> Element {
         return app.find(id: "LoginStartMDMLogin.\(host).\(username)")
     }
+}
+
+public enum PairWithStudentQRCodeTutorial: String, ElementWrapper {
+    case nextButton
+    case headerLabel
 }

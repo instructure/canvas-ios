@@ -31,6 +31,11 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            failed()
+            return
+        }
+
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
 
@@ -113,9 +118,13 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     func failed() {
+        if let code = ProcessInfo.processInfo.environment["QR_CODE"] {
+            found(code: code)
+            return
+        }
         let alert = UIAlertController(
             title: NSLocalizedString("Scanning not supported", bundle: .core, comment: ""),
-            message: nil,
+            message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: ""),
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))

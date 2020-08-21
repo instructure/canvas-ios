@@ -19,14 +19,14 @@
 import UIKit
 import WebKit
 
-enum AuthenticationMethod {
+public enum AuthenticationMethod {
     case normalLogin
     case canvasLogin
     case siteAdminLogin
     case manualOAuthLogin
 }
 
-class LoginWebViewController: UIViewController, ErrorViewController {
+public class LoginWebViewController: UIViewController, ErrorViewController {
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
@@ -41,12 +41,20 @@ class LoginWebViewController: UIViewController, ErrorViewController {
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?
     var mdmLogin: MDMLogin?
+    var pairingCode: String?
 
     deinit {
         task?.cancel()
     }
 
-    static func create(authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
+    public static func create(
+        authenticationProvider: String? = nil,
+        host: String,
+        mdmLogin: MDMLogin? = nil,
+        loginDelegate: LoginDelegate?,
+        method: AuthenticationMethod,
+        pairingCode: String? = nil
+    ) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
         controller.authenticationProvider = authenticationProvider
@@ -54,14 +62,15 @@ class LoginWebViewController: UIViewController, ErrorViewController {
         controller.mdmLogin = mdmLogin
         controller.loginDelegate = loginDelegate
         controller.method = method
+        controller.pairingCode = pairingCode
         return controller
     }
 
-    override func loadView() {
+    public override func loadView() {
         view = webView
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         webView.accessibilityIdentifier = "LoginWeb.webView"
         webView.backgroundColor = .backgroundLightest
@@ -83,7 +92,7 @@ class LoginWebViewController: UIViewController, ErrorViewController {
         } }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -99,12 +108,12 @@ class LoginWebViewController: UIViewController, ErrorViewController {
 }
 
 extension LoginWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return decisionHandler(.allow)
         }
 
-        if components.host?.contains("community.canvaslms.com") == true {
+        if navigationAction.navigationType == .linkActivated, components.host?.contains("canvaslms.com") == true {
             loginDelegate?.openExternalURL(url)
             return decisionHandler(.cancel)
         }
@@ -150,18 +159,31 @@ extension LoginWebViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let login = mdmLogin else { return }
-        mdmLogin = nil
-        webView.evaluateJavaScript("""
-        const form = document.querySelector('#login_form')
-        form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
-        form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
-        form.submit()
-        """)
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let login = mdmLogin {
+            mdmLogin = nil
+            webView.evaluateJavaScript("""
+            const form = document.querySelector('#login_form')
+            form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
+            form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
+            form.submit()
+            """)
+        } else if let pairingCode = pairingCode {
+            webView.evaluateJavaScript("""
+            document.querySelector('#coenrollment_link a').click()
+            document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
+            document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
+            document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
+            let content = document.querySelector('.ui-dialog-content')
+            let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
+            content.style.height = height
+            document.querySelector('.ui-widget-overlay').style.height = height
+            """)
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissDoneButton))
+        }
     }
 
-    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard [NSURLAuthenticationMethodNTLM, NSURLAuthenticationMethodHTTPBasic].contains(challenge.protectionSpace.authenticationMethod) else {
             completionHandler(.performDefaultHandling, nil)
             return
@@ -190,7 +212,7 @@ extension LoginWebViewController: WKNavigationDelegate {
 }
 
 extension LoginWebViewController: WKUIDelegate {
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame?.isMainFrame != true {
             webView.load(navigationAction.request)
         }

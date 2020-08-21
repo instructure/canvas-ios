@@ -34,7 +34,23 @@ public class PairWithStudentQRCodeTutorialViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Create Account", comment: "")
-        //  swiftlint:disable:next line_length
-        headerLabel.text = NSLocalizedString("To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.", comment: "")
+        headerLabel.text = NSLocalizedString(
+        """
+        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.
+        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.
+        """, comment: "")
+        headerLabel.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.headerLabel"
+        let next = UIBarButtonItem(
+            title: NSLocalizedString("Next", bundle: .core, comment: ""),
+            style: .plain,
+            target: self,
+            action: #selector(done(_:))
+        )
+        next.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.nextButton"
+        addNavigationButton(next, side: .right)
+    }
+
+    @objc func done(_ sender: UIBarButtonItem) {
+        delegate?.pairWithStudentQRCodeTutorialDidFinish(self)
     }
 }
