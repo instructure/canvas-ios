@@ -41,7 +41,7 @@ import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from './Video'
 import md5 from 'md5'
-import CanvasWebView from './CanvasWebView'
+import CoreWebView from './CoreWebView'
 
 type Props = {
   attachment: Attachment,
@@ -158,7 +158,7 @@ export default class AttachmentView extends Component<Props, State> {
           body = image
         } else {
           body = (
-            <CanvasWebView
+            <CoreWebView
               navigator={this.props.navigator}
               source={{ uri: this.state.filePath }}
               style={styles.document}

@@ -55,7 +55,7 @@ describe('AttachmentView', () => {
     )
     await tree.instance().fetchFile()
     tree.update()
-    expect(tree.find('CanvasWebView').length).toEqual(1)
+    expect(tree.find('CoreWebView').length).toEqual(1)
   })
 
   it('renders an image', async () => {

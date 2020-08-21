@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTViewManager.h>
 #import <CanvasCore/CanvasCore-Swift.h>
-@import Core;
 
 @interface RichContentEditorManager: RCTViewManager
 @end
@@ -39,14 +38,14 @@ RCT_EXPORT_VIEW_PROPERTY(placeholder, NSString)
 RCT_EXPORT_VIEW_PROPERTY(uploadContext, NSString)
 
 RCT_EXPORT_METHOD(getHTML:(nonnull NSNumber *)reactTag resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
-  [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
-    RichContentEditorWrapper *view = (RichContentEditorWrapper *)viewRegistry[reactTag];
-    if (!view || ![view isKindOfClass:[RichContentEditorWrapper class]]) {
-      RCTLogError(@"Invalid view returned from registry, expecting RichContentEditorWrapper, got: %@", view);
-    } else {
-      [view getHTML:^(NSString *result) { resolve(result); }];
-    }
-  }];
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+        RichContentEditorWrapper *view = (RichContentEditorWrapper *)viewRegistry[reactTag];
+        if (!view || ![view isKindOfClass:[RichContentEditorWrapper class]]) {
+            RCTLogError(@"Invalid view returned from registry, expecting RichContentEditorWrapper, got: %@", view);
+        } else {
+            [view getHTML:^(NSString *result) { resolve(result); }];
+        }
+    }];
 }
 
 @end

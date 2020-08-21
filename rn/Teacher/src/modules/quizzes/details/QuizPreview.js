@@ -56,8 +56,8 @@ export class QuizPreview extends Component<LocalProps, any> {
     this.webView = c
   }
 
-  onMessage = (event: { body: any }) => {
-    const message = event.body
+  onMessage = (event) => {
+    const message = event.nativeEvent.body
     if (!message) return
     switch (message) {
       case 'done':
@@ -95,7 +95,7 @@ export class QuizPreview extends Component<LocalProps, any> {
         window.webkit.messageHandlers.canvas.postMessage('error')
       }
     `
-    this.webView && this.webView.injectJavaScript(js)
+    this.webView && this.webView.evaluateJavaScript(js)
   }
 
   onError = (event: any) => {
@@ -129,13 +129,13 @@ export class QuizPreview extends Component<LocalProps, any> {
           { !this.state.error &&
             <View style={ this.state.waiting ? style.waitingWebView : style.webView }>
               <AuthenticatedWebView
-                style={ this.state.waiting ? style.waitingWebView : style.webView }
-                source={{ uri }}
-                automaticallyAdjustContentInsets={false}
+                navigator={this.props.navigator}
+                onError={this.onError}
+                onFinishedLoading={this.onLoadEnd}
                 onMessage={this.onMessage}
                 ref={this.captureRef}
-                onFinishedLoading={this.onLoadEnd}
-                onError={this.onError}
+                source={{ uri }}
+                style={ this.state.waiting ? style.waitingWebView : style.webView }
               />
             </View>
           }
