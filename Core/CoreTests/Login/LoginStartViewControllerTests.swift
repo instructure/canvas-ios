@@ -150,9 +150,8 @@ class LoginStartViewControllerTests: CoreTestCase {
         controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
         let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
         tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Camera not available")
-        controller.scanner(ScannerViewController(), didScanCode: qrCode)
+        let scanner = router.presented as! ScannerViewController
+        controller.scanner(scanner, didScanCode: qrCode)
         let loading = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(loading.title, "Logging you in")
         task.paused = false
@@ -192,10 +191,9 @@ class LoginStartViewControllerTests: CoreTestCase {
         picker.actions[1].action()
         let tutorial = try XCTUnwrap(router.presented as? PairWithStudentQRCodeTutorialViewController)
         tutorial.delegate?.pairWithStudentQRCodeTutorialDidFinish(tutorial)
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Camera not available")
-        controller.scanner(ScannerViewController(), didScanCode: code)
-        let login = try XCTUnwrap(router.presented as? LoginWebViewController)
+        let scanner = router.presented as! ScannerViewController
+        controller.scanner(scanner, didScanCode: code)
+        let login = try XCTUnwrap(router.last as? LoginWebViewController)
         XCTAssertEqual(login.host, "canvas.instructure.com")
         XCTAssertEqual(login.pairingCode, "foo")
     }

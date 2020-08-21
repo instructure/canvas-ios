@@ -226,7 +226,7 @@ class LoginStartViewController: UIViewController {
             }
             sheet.addAction(
                 image: nil,
-                title: NSLocalizedString("I don’t have a Canvas account", comment: ""),
+                title: NSLocalizedString("I don't have a Canvas account", comment: ""),
                 accessibilityIdentifier: "LoginStart.dontHaveAccountAction"
             ) { [weak self] in
                 self?.showInstructionsToPairFromStudentApp()
@@ -397,7 +397,7 @@ extension LoginStartViewController: ScannerDelegate, ErrorViewController {
             method: .canvasLogin,
             pairingCode: pairingCode
         )
-        self.env.router.show(login, from: self, options: .modal(embedInNav: true))
+        self.env.router.show(login, from: self)
     }
 }
 

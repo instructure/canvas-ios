@@ -179,7 +179,6 @@ extension LoginWebViewController: WKNavigationDelegate {
             content.style.height = height
             document.querySelector('.ui-widget-overlay').style.height = height
             """)
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissDoneButton))
         }
     }
 
