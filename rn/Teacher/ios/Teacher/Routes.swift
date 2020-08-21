@@ -63,6 +63,10 @@ class TeacherRouter: Router {
 let router = TeacherRouter(routes: []) { _, _, _, _ in }
 
 private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builder?> = [
+    "/accounts/:accountID/terms_of_service": { _ in
+        return TermsOfServiceViewController()
+    },
+
     "/courses/:courseID/attendance/:toolID": { props in
         guard let courseID = props["courseID"] as? String else { return nil }
         guard let toolID = props["toolID"] as? String else { return nil }

@@ -18,12 +18,6 @@
 
 import Foundation
 
-public struct PostObserverPairingCodes: APIRequestable {
-    public typealias Response = APIPairingCode
-    public var method: APIMethod = .post
-    public var path: String = "users/self/observer_pairing_codes"
-}
-
 public struct APIPairingCode: Codable, Equatable {
     let user_id: ID?
     let code: String
@@ -31,17 +25,28 @@ public struct APIPairingCode: Codable, Equatable {
     let workflow_state: String?
 }
 
-public struct GetAccountTermsOfServiceRequest: APIRequestable {
-    public typealias Response = APIAccountTermsOfService
-    public var path: String = "accounts/self/terms_of_service"
+#if DEBUG
+extension APIPairingCode {
+    public static func make(
+        user_id: ID? = "1",
+        code: String = "code",
+        expires_at: Date? = Clock.now,
+        workflow_state: String? = "active"
+    ) -> APIPairingCode {
+        return APIPairingCode(
+            user_id: user_id,
+            code: code,
+            expires_at: expires_at,
+            workflow_state: workflow_state
+        )
+    }
 }
+#endif
 
-public struct APIAccountTermsOfService: Codable, Equatable {
-    let account_id: ID
-    let content: String?
-    let id: ID?
-    let passive: Bool?
-    let terms_type: String?
+public struct PostObserverPairingCodes: APIRequestable {
+    public typealias Response = APIPairingCode
+    public var method: APIMethod = .post
+    public var path: String = "users/self/observer_pairing_codes"
 }
 
 //  https://canvas.instructure.com/doc/api/users.html#method.users.create
@@ -96,39 +101,3 @@ public struct PostAccountUserRequest: APIRequestable {
         let user: User
     }
 }
-
-#if DEBUG
-extension APIPairingCode {
-    public static func make(
-        user_id: ID? = "1",
-        code: String = "code",
-        expires_at: Date? = Clock.now,
-        workflow_state: String? = "active"
-    ) -> APIPairingCode {
-        return APIPairingCode(
-            user_id: user_id,
-            code: code,
-            expires_at: expires_at,
-            workflow_state: workflow_state
-        )
-    }
-}
-
-extension APIAccountTermsOfService {
-    public static func make(
-        account_id: ID = "1",
-        content: String? = "content",
-        id: ID? = nil,
-        passive: Bool? = false,
-        terms_type: String? = nil
-    ) -> APIAccountTermsOfService {
-        return APIAccountTermsOfService(
-            account_id: account_id,
-            content: content,
-            id: id,
-            passive: passive,
-            terms_type: terms_type
-        )
-    }
-}
-#endif
