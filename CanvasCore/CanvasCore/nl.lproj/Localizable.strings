@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Fout bij laden van inhoud";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Ongeldige gegevens ontvangen van API.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Extern hulpmiddel lanceren";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Openen in Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Openen in...";
-
-/* button to read more of the description */
-"Read More" = "Meer lezen";
 
 /* No comment provided by engineer. */
 "Remove" = "Verwijderen";

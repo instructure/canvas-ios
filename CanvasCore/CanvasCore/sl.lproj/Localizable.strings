@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Napaka pri nalaganju vsebine";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Neveljaven datum, prejet od API";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Zaženi zunanje orodje";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Odpri v brskalniku Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Odpri v ...";
-
-/* button to read more of the description */
-"Read More" = "Preberite več.";
 
 /* No comment provided by engineer. */
 "Remove" = "Odstrani";

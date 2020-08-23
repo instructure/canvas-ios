@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ He hapa i te wā e uta ana Ihirangi";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "He hapa ohorere i puta";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Ko te rā muhu i whakawhiwhia mai i API.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Neke Taputapu Waho";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Tuwhera i roto i te Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Huaki i roto ī…";
-
-/* button to read more of the description */
-"Read More" = "Pānuitia atu";
 
 /* No comment provided by engineer. */
 "Remove" = "Tangohia";
