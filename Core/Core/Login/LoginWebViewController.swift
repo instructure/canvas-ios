@@ -170,14 +170,26 @@ extension LoginWebViewController: WKNavigationDelegate {
             """)
         } else if let pairingCode = pairingCode {
             webView.evaluateJavaScript("""
-            document.querySelector('#coenrollment_link a').click()
-            document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
-            document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
-            document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
-            let content = document.querySelector('.ui-dialog-content')
-            let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
-            content.style.height = height
-            document.querySelector('.ui-widget-overlay').style.height = height
+            var meta = document.createElement('meta')
+            meta.name = 'viewport'
+            meta.content = 'initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
+            var head = document.querySelector('head')
+            head.appendChild(meta)
+
+            let registerLink = document.querySelector('a#register_link')
+            if (registerLink) {
+                registerLink.click()
+            } else {
+                let enrollLink = document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
+                enrollLink.click()
+                document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
+                document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
+                document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
+                let content = document.querySelector('.ui-dialog-content')
+                let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
+                content.style.height = height
+                document.querySelector('.ui-widget-overlay').style.height = height
+            }
             """)
         }
     }
