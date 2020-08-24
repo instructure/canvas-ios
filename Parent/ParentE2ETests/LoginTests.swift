@@ -21,8 +21,14 @@ import TestsFoundation
 
 class LoginCreateAccountE2ETests: CoreUITestCase {
     override var experimentalFeatures: [ExperimentalFeature] { [.qrLoginParent, .parentQRCodePairing] }
-    override var qrCode: String? { "canvas-parent://iosauto.beta.instructure.com/pair?code=abc" }
     override var user: UITestUser? { nil }
+
+    override func setUp() {
+        super.setUp()
+        launch { app in
+            app.launchEnvironment["QR_CODE"] = "canvas-parent://iosauto.beta.instructure.com/pair?code=abc"
+        }
+    }
 
     func testCreateAccount() {
         LoginStart.qrCodeButton.tap()

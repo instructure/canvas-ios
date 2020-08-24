@@ -63,8 +63,6 @@ open class CoreUITestCase: XCTestCase {
 
     open var experimentalFeatures: [ExperimentalFeature] { [] }
 
-    open var qrCode: String? { nil }
-
     open override func perform(_ run: XCTestRun) {
         CoreUITestCase.currentTestCase = self
         if ProcessInfo.processInfo.environment["LIST_TESTS_ONLY"] == "YES" {
@@ -233,9 +231,6 @@ open class CoreUITestCase: XCTestCase {
         app.launchEnvironment["DRIVER_IPC_PORT_NAME"] = CoreUITestCase.ipcDriverServer.machPortName
         if let useBeta = ProcessInfo.processInfo.environment["CANVAS_USE_BETA_E2E_SERVERS"] {
             app.launchEnvironment["CANVAS_USE_BETA_E2E_SERVERS"] = useBeta
-        }
-        if let qrCode = qrCode {
-            app.launchEnvironment["QR_CODE"] = qrCode
         }
         block?(app)
         app.launch()
