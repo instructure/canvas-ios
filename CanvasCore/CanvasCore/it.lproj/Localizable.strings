@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Errore di caricamento contenuto";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Si è verificato un errore imprevisto.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Data di ricezione da API non valida.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Avvia strumento esterno";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Apri in Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Apri in...";
-
-/* button to read more of the description */
-"Read More" = "Leggi di più";
 
 /* No comment provided by engineer. */
 "Remove" = "Rimuovi";

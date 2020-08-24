@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Virhe sisällön latauksessa";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ilmeni odottamaton virhe.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "API:sta vastaanotettiin virheelliset tiedot.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Käynnistä ulkoinen työkalu";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Avaa Safarissa";
-
-/* No comment provided by engineer. */
 "Open in…" = "Avaa kohteessa...";
-
-/* button to read more of the description */
-"Read More" = "Lue lisää";
 
 /* No comment provided by engineer. */
 "Remove" = "Poista";

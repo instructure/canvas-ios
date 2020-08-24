@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️Villa við að sækja efni";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Óvænt villa hefur komið upp.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Ógild gögn móttekin frá API.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Nota ytra verkfæri";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Opna í Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Opna í…";
-
-/* button to read more of the description */
-"Read More" = "Lesa meira";
 
 /* No comment provided by engineer. */
 "Remove" = "Fjarlægja";

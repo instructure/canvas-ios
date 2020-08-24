@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ 加载内容时出错";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "发生意外错误。";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "从API收到的日期无效。";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "启动外部工具";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "在Safari中打开";
-
-/* No comment provided by engineer. */
 "Open in…" = "打开...";
-
-/* button to read more of the description */
-"Read More" = "阅读更多";
 
 /* No comment provided by engineer. */
 "Remove" = "移除";
