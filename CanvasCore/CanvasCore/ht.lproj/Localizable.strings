@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Erè Chajman Kontni";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Yon erè te fèt sanzatann.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Done yo resevwa de API yo envalid";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Lanse Zouti Eksteryè";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Ouvri nan Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Ouvri nan...";
-
-/* button to read more of the description */
-"Read More" = "Li Plis";
 
 /* No comment provided by engineer. */
 "Remove" = "Elimine";

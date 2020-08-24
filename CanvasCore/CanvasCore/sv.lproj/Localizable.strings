@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Det gick inte att läsa in innehållet";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Ett oväntat fel har uppstått.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Ogiltigt datum togs emot från API";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Starta externt verktyg";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Öppna i Safari";
-
-/* No comment provided by engineer. */
 "Open in…" = "Öppna i ...";
-
-/* button to read more of the description */
-"Read More" = "Läs mer";
 
 /* No comment provided by engineer. */
 "Remove" = "Ta bort";
