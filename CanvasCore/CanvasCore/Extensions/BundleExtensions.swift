@@ -16,17 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-//! Project version number for CanvasCore.
-FOUNDATION_EXPORT double CanvasCoreVersionNumber;
-
-//! Project version string for CanvasCore.
-FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <CanvasCore/PublicHeader.h>
-
-#import <CanvasCore/CanvasCrashlytics.h>
-#import <CanvasCore/NativeLoginManager.h>
-#import <CanvasCore/PushNotifications.h>
-#import <CanvasCore/UITextView+Placeholder.h>
+extension Bundle {
+    private class Placeholder {}
+    @objc static let canvas = Bundle(for: Placeholder.self)
+}

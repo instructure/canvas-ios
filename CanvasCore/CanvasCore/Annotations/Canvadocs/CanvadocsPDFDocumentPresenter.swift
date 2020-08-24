@@ -166,7 +166,7 @@ extension CanvadocsPDFDocumentPresenter: PDFViewControllerDelegate {
         annotations?.forEach { (pageView.annotationView(for: $0) as? FreeTextAnnotationView)?.resizableView?.allowRotating = false }
         if annotations?.count == 1, let annotation = annotations?.first, let metadata = service.metadata?.annotationMetadata {
             var realMenuItems = [MenuItem]()
-            realMenuItems.append(MenuItem(title: NSLocalizedString("Comments", bundle: .core, comment: ""), block: {
+            realMenuItems.append(MenuItem(title: NSLocalizedString("Comments", bundle: .canvas, comment: ""), block: {
                 if let pdfDocument = pdfController.document {
                     let commentsVC = CanvadocsCommentsViewController.new(annotation, pdfDocument: pdfDocument, metadata: metadata)
                     commentsVC.comments = self.annotationProvider?.getReplies(to: annotation) ?? []
@@ -178,7 +178,7 @@ extension CanvadocsPDFDocumentPresenter: PDFViewControllerDelegate {
             let filteredMenuItems = menuItems.filter {
                 guard let identifier = $0.identifier else { return true }
                 if identifier == TextMenu.annotationMenuInspector.rawValue {
-                    $0.title = NSLocalizedString("Style", bundle: .core, comment: "")
+                    $0.title = NSLocalizedString("Style", bundle: .canvas, comment: "")
                 }
                 return (
                     identifier != TextMenu.annotationMenuRemove.rawValue &&
@@ -190,7 +190,7 @@ extension CanvadocsPDFDocumentPresenter: PDFViewControllerDelegate {
             realMenuItems.append(contentsOf: filteredMenuItems)
 
             if annotation.isEditable || metadata.permissions == .ReadWriteManage {
-                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", bundle: .core, comment: ""), image: .trashLine, block: {
+                realMenuItems.append(MenuItem(title: NSLocalizedString("Remove", bundle: .canvas, comment: ""), image: .trashLine, block: {
                     pdfController.document?.remove(annotations: [annotation], options: nil)
                 }, identifier: TextMenu.annotationMenuRemove.rawValue))
             }

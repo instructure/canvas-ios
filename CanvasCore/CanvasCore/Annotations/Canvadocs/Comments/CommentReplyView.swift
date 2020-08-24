@@ -41,7 +41,7 @@ class CommentReplyView: UIView {
         replyContainerView.clipsToBounds = true
         
         replyTextView.isScrollEnabled = false
-        replyTextView.placeholder = NSLocalizedString("Reply", comment: "")
+        replyTextView.placeholder = NSLocalizedString("Reply", bundle: .canvas, comment: "")
         replyTextView.placeholderColor = .lightGray
         
         heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1.0, constant: 49.0)

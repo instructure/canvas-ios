@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
+import React
 
-//! Project version number for CanvasCore.
-FOUNDATION_EXPORT double CanvasCoreVersionNumber;
-
-//! Project version string for CanvasCore.
-FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <CanvasCore/PublicHeader.h>
-
-#import <CanvasCore/CanvasCrashlytics.h>
-#import <CanvasCore/NativeLoginManager.h>
-#import <CanvasCore/PushNotifications.h>
-#import <CanvasCore/UITextView+Placeholder.h>
+public class Adjustable: RCTView {
+    @objc public var onAccessibilityIncrement: RCTDirectEventBlock?
+    @objc public var onAccessibilityDecrement: RCTDirectEventBlock?
+    
+    public override func accessibilityIncrement() {
+        onAccessibilityIncrement?([:])
+    }
+    
+    public override func accessibilityDecrement() {
+        onAccessibilityDecrement?([:])
+    }
+    
+}

@@ -111,7 +111,7 @@ class CanvadocsAnnotationService: NSObject {
     }
     
     fileprivate func genericError() -> NSError {
-        let description = NSLocalizedString("An unexpected error has occurred.", tableName: nil, bundle: .core, value: "An unexpected error has occurred.", comment: "")
+        let description = NSLocalizedString("An unexpected error has occurred.", bundle: .canvas, comment: "")
         return NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
     }
     
@@ -236,7 +236,7 @@ class CanvadocsAnnotationService: NSObject {
                         decoder.dateDecodingStrategy = .custom { decoder in
                             let dateStr = try decoder.singleValueContainer().decode(String.self)
                             guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
-                                let description = NSLocalizedString("Invalid date received from API.", tableName: nil, bundle: .core, value: "Invalid date received from API.", comment: "")
+                                let description = NSLocalizedString("Invalid date received from API.", bundle: .canvas, comment: "")
                                 throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedDescriptionKey: description])
                             }
                             return date

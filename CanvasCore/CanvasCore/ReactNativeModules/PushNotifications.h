@@ -16,17 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
+@import UserNotifications;
 
-//! Project version number for CanvasCore.
-FOUNDATION_EXPORT double CanvasCoreVersionNumber;
+@interface PushNotifications: NSObject<RCTBridgeModule>
 
-//! Project version string for CanvasCore.
-FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
++ (void)recordUserInfo:(NSDictionary *)userInfo;
++ (void)recordNotification:(UNNotification *)notification;
 
-// In this header, you should import all the public headers of your framework using statements like #import <CanvasCore/PublicHeader.h>
-
-#import <CanvasCore/CanvasCrashlytics.h>
-#import <CanvasCore/NativeLoginManager.h>
-#import <CanvasCore/PushNotifications.h>
-#import <CanvasCore/UITextView+Placeholder.h>
+@end

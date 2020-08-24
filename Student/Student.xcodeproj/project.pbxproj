@@ -25,9 +25,8 @@
 		3B8404502360F36B00D39060 /* AssignmentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B84044F2360F36B00D39060 /* AssignmentListViewController.storyboard */; };
 		3B978D7B242EF81000AFC4FF /* AssignmentListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B978D7A242EF80F00AFC4FF /* AssignmentListModelTests.swift */; };
 		492704771CF4AF7100C631C6 /* StudentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */; };
-		492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492706A01CF4B93F00C631C6 /* RootViewController.swift */; };
 		495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */; };
-		49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */; };
+		49A04E571CF64C7F0051E1E7 /* StudentTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
 		49F9FA4B1CF7B73100654758 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F9FA4A1CF7B73100654758 /* Assets.xcassets */; };
 		5859544C501D5668C211D44C /* ConferencesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859582A0A55A6B557224C5F /* ConferencesE2ETests.swift */; };
@@ -343,11 +342,10 @@
 		492704731CF4AF7100C631C6 /* Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentAppDelegate.swift; sourceTree = "<group>"; };
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		492706A01CF4B93F00C631C6 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		495D8BBA1CFE17D700D41098 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49642BCA1CF4C66200238B3F /* Student.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
 		49A04DAC1CF4F65D0051E1E7 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTabBar.swift; sourceTree = "<group>"; };
+		49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentTabBarController.swift; sourceTree = "<group>"; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		49F9FA4A1CF7B73100654758 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -903,19 +901,6 @@
 		492704751CF4AF7100C631C6 /* Student */ = {
 			isa = PBXGroup;
 			children = (
-				49642BCA1CF4C66200238B3F /* Student.entitlements */,
-				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
-				492704821CF4AF7100C631C6 /* Info.plist */,
-				492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */,
-				9F61B52B205985A5009C0B13 /* StudentAppDelegate+Helm.swift */,
-				49A04E561CF64C7F0051E1E7 /* CanvasTabBar.swift */,
-				492706A01CF4B93F00C631C6 /* RootViewController.swift */,
-				7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */,
-				7DCF0F7722F8A0CC000AACCE /* Routes.swift */,
-				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
-				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
-				B5E212D51D88856B009D8C07 /* Localizable.strings */,
-				7D06113E2481A7E50014C8E4 /* Student-Bridging-Header.h */,
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
@@ -927,6 +912,18 @@
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
 				7DCF0EA622F89FC2000AACCE /* Syllabus */,
+				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
+				492704821CF4AF7100C631C6 /* Info.plist */,
+				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
+				495D8BBB1CFE17D700D41098 /* LaunchScreen.storyboard */,
+				B5E212D51D88856B009D8C07 /* Localizable.strings */,
+				7DCF0F7922F8A0D1000AACCE /* RouterDebugViewController.swift */,
+				7DCF0F7722F8A0CC000AACCE /* Routes.swift */,
+				7D06113E2481A7E50014C8E4 /* Student-Bridging-Header.h */,
+				49642BCA1CF4C66200238B3F /* Student.entitlements */,
+				492704761CF4AF7100C631C6 /* StudentAppDelegate.swift */,
+				9F61B52B205985A5009C0B13 /* StudentAppDelegate+Helm.swift */,
+				49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -2450,12 +2447,11 @@
 				7DCF0FBE22F8A8D7000AACCE /* SubmissionDetailsEmptyView.swift in Sources */,
 				7DCF0FCF22F8A8D7000AACCE /* UrlSubmissionViewController.swift in Sources */,
 				7DCF0FC522F8A8D7000AACCE /* UrlSubmissionContentViewController.swift in Sources */,
-				492706A11CF4B93F00C631C6 /* RootViewController.swift in Sources */,
 				7DCF0FC022F8A8D7000AACCE /* SubmissionDetailsLockedEmptyView.swift in Sources */,
 				7DCF0FAC22F8A8D7000AACCE /* RubricViewController.swift in Sources */,
 				7DCF0FCB22F8A8D7000AACCE /* SubmissionFilesViewController.swift in Sources */,
 				7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */,
-				49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */,
+				49A04E571CF64C7F0051E1E7 /* StudentTabBarController.swift in Sources */,
 				7D38A7D324CF5FEF00A4373E /* QuizWebViewController.swift in Sources */,
 				7DCF0FB222F8A8D7000AACCE /* SubmissionCommentAttemptCell.swift in Sources */,
 				7DCF0FD122F8A8D7000AACCE /* UrlSubmissionPresenter.swift in Sources */,

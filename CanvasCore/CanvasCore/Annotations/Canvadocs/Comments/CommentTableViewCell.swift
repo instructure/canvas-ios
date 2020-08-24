@@ -46,10 +46,10 @@ class CommentTableViewCell: UITableViewCell {
             removedLabelHeightConstraint.constant = 17
             let date = DateFormatter.localizedString(from: annotation.deletedAt ?? Date(), dateStyle: .medium, timeStyle: .none)
             if let deletedBy = annotation.deletedBy ?? annotation.deletedByID {
-                let format = NSLocalizedString("Removed %1$@ by %2$@", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                let format = NSLocalizedString("Removed %1$@ by %2$@", bundle: .canvas, comment: "")
                 removedLabel.text = String(format: format, date, deletedBy)
             } else {
-                let format = NSLocalizedString("Removed %1$@", tableName: "Localizable", bundle: Bundle(for: type(of: self)), value: "", comment: "")
+                let format = NSLocalizedString("Removed %1$@", bundle: .canvas, comment: "")
                 removedLabel.text = String(format: format, date)
             }
         } else {
