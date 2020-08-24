@@ -20,9 +20,6 @@
   "account_group_cb00ca73": {
     "message": "Account Group"
   },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "Account has no Terms of Use"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home."
   },
@@ -1370,9 +1367,6 @@
   "teal_f729a294": {
     "message": "Teal"
   },
-  "terms_of_use_62ee73ad": {
-    "message": "Terms Of Use"
-  },
   "text_submission_935eeb5": {
     "message": "Text Submission"
   },
@@ -1429,9 +1423,6 @@
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
-  },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "There was a problem retrieving the Terms Of Use"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "There was a problem saving the grade. Please try again."
