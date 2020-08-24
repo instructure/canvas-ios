@@ -19,37 +19,29 @@
 import UIKit
 import Core
 
-open class HelmSplitViewController: UISplitViewController {
-
-    public init() {
-        super.init(nibName: nil, bundle: nil)
+public class HelmSplitViewController: UISplitViewController {
+    public override func viewDidLoad() {
         delegate = self
         preferredDisplayMode = .allVisible
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        delegate = self
-        preferredDisplayMode = .allVisible
-    }
-    
-    override open var prefersStatusBarHidden: Bool {
+    public override var prefersStatusBarHidden: Bool {
         return viewControllers.first?.prefersStatusBarHidden ?? false
     }
-    
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         let notification = Notification.Name(rawValue: "HelmSplitViewControllerTraitsUpdated")
         NotificationCenter.default.post(name: notification, object: nil, userInfo: nil)
         updateTitleViews()
     }
-    
-    open override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+
+    public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
         super.showDetailViewController(vc, sender: sender)
         self.masterNavigationController?.syncStyles()
     }
-    
-    open override func show(_ vc: UIViewController, sender: Any?) {
+
+    public override func show(_ vc: UIViewController, sender: Any?) {
         super.show(vc, sender: sender)
         self.masterNavigationController?.syncStyles()
     }
@@ -65,12 +57,14 @@ open class HelmSplitViewController: UISplitViewController {
         }
     }
 
-    open func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
+    public func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
         let collapse = displayMode == .primaryOverlay || displayMode == .primaryHidden
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
-        prettyButton.accessibilityLabel = collapse ? NSLocalizedString("Collapse", comment: "") : NSLocalizedString("Expand", comment: "")
+        prettyButton.accessibilityLabel = collapse ?
+            NSLocalizedString("Collapse", bundle: .canvas, comment: "") :
+            NSLocalizedString("Expand", bundle: .canvas, comment: "")
         return prettyButton
     }
 }
@@ -87,7 +81,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         }
     }
 
-    open func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+    public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         if let nav = secondaryViewController as? UINavigationController {
             if let _ = nav.topViewController as? EmptyViewController {
                 return true
@@ -104,7 +98,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         return false
     }
     
-    open func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+    public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
@@ -135,3 +129,17 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         return nil
     }
 }
+
+extension HelmSplitViewController: UINavigationControllerDelegate {
+    open func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let masterNav = masterNavigationController, let detailNav = detailNavigationController, let coursesViewController = masterNav.viewControllers.first, toVC == coursesViewController, operation == .pop {
+            // When navigating back to all courses list, detail view should show empty vc
+            detailNav.navigationItem.leftBarButtonItem = nil
+            detailNav.setViewControllers([EmptyViewController()], animated: false)
+        }
+        return nil
+    }
+}
+
+// Needed for the above bug mentioned in comments
+extension HelmSplitViewController: UIGestureRecognizerDelegate { }

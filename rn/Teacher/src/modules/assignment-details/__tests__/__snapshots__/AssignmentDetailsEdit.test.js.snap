@@ -258,118 +258,26 @@ exports[`error occurs when done pressed 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="html"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -1072,118 +980,26 @@ exports[`modal saving is shown on assignment update 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="html"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -1886,118 +1702,26 @@ exports[`renders 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -2700,118 +2424,26 @@ exports[`saving invalid dates displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="html"
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -3549,118 +3181,26 @@ exports[`saving invalid name displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -4366,118 +3906,26 @@ exports[`saving invalid points possible displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={
@@ -5211,118 +4659,26 @@ exports[`saving negative points possible displays banner 1`] = `
       >
         Description
       </Text>
-      <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        testID="edit-description"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingVertical": 8,
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-              },
-              Object {
-                "alignItems": "center",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": "auto",
-                "justifyContent": "space-between",
-                "minHeight": 54,
-              },
-            ]
+      <View
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "minHeight": 200,
           }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "paddingRight": 16,
-              }
-            }
-          >
-            <Image
-              source={
-                Object {
-                  "testUri": "../../../src/images/edit.png",
-                }
-              }
-              style={
-                Array [
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#008EE2",
-                    "width": 18,
-                  },
-                  Object {
-                    "tintColor": "#008EE2",
-                  },
-                ]
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "color": "#008EE2",
-                    },
-                  ],
-                ]
-              }
-            >
-              Edit Description
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignSelf": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#C7CDD1",
-                  "borderRightWidth": 2,
-                  "borderTopWidth": 2,
-                  "height": 10,
-                  "marginLeft": 7,
-                  "width": 10,
-                },
-                Object {
-                  "transform": Array [
-                    Object {
-                      "rotate": "45deg",
-                    },
-                  ],
-                },
-              ]
-            }
-          />
-        </View>
-      </TouchableHighlight>
+        }
+      >
+        <RichContentEditor
+          context="courses/1"
+          html="a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion."
+          onFocus={[Function]}
+          placeholder="Description"
+          uploadContext="courses/1/files"
+        />
+      </View>
       <Text
         accessibilityTraits="header"
         style={

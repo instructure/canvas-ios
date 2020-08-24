@@ -41,8 +41,6 @@ import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
-import RichTextEditor from '../modules/rich-text-editor/RichTextEditor'
-import LinkModal from '../common/components/rich-text-editor/LinkModal'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
@@ -63,7 +61,6 @@ import EditFolder from '../modules/files/EditFolder'
 import PageEdit from '../modules/pages/edit/PageEdit'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
-import TermsOfUse from '../modules/tos/TermsOfUse'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import ExperimentalFeature from '../common/ExperimentalFeature'
@@ -107,8 +104,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/address-book', AddressBook, store)
   registerScreen('/profile')
   registerScreen('/dev-menu', DeveloperMenu, store)
-  registerScreen('/rich-text-editor', RichTextEditor, store)
-  registerScreen('/rich-text-editor/link', LinkModal, store)
   registerScreen('/attachment', AttachmentView, store)
   registerScreen('/attachments', Attachments, store)
   registerScreen('/courses/:courseID/placeholder', CourseDetailsSplitViewPlaceholder, store)
@@ -143,7 +138,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/wiki', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki/:url/edit', PageEdit, store, { deepLink: true })
-  registerScreen('/accounts/:accountID/terms_of_service', TermsOfUse, store)
+  registerScreen('/accounts/:accountID/terms_of_service', null, store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/:type', undefined, undefined, { deepLink: true })
   registerScreen('/push-notifications', PushNotifications, store)

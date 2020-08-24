@@ -37,7 +37,7 @@ import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
 import images from '../../../images'
-import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
+import RichContentEditor from '../../../common/components/RichContentEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import ModalOverlay from '../../../common/components/ModalOverlay'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
@@ -85,7 +85,6 @@ export type Props = DataProps & OwnProps & AsyncState & NavigationProps & typeof
 
 export class AnnouncementEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
-  editor: ?RichTextEditor
 
   state = {
     title: this.props.title,
@@ -180,19 +179,13 @@ export class AnnouncementEdit extends Component<Props, any> {
 
             <FormLabel>{i18n('Description')}</FormLabel>
             <View style={style.description}>
-              <RichTextEditor
-                ref={(r) => { this.editor = r }}
-                defaultValue={this.props.message}
-                showToolbar='always'
-                keyboardAware={false}
-                scrollEnabled={true}
-                contentHeight={150}
-                placeholder={i18n('Add description (required)')}
-                navigator={this.props.navigator}
-                attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
+              <RichContentEditor
+                context={`${this.props.context}/${this.props.contextID}`}
+                html={this.props.message}
                 onFocus={this._scrollToRCE}
-                context={this.props.context}
-                contextID={this.props.contextID}
+                placeholder={i18n('Add description (required)')}
+                ref={ref => { this.editor = ref }}
+                uploadContext={`${this.props.context}/${this.props.contextID}/files`}
               />
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />
@@ -322,7 +315,7 @@ export class AnnouncementEdit extends Component<Props, any> {
   }
 
   _donePressed = async () => {
-    const message = this.editor && await this.editor.getHTML()
+    const message = await this.editor?.getHTML()
     if (!message) {
       this.setState({ isValid: false })
       setTimeout(function () { NativeAccessibility.focusElement('announcement.edit.unmet-requirement-banner') }, 500)
@@ -370,7 +363,6 @@ export class AnnouncementEdit extends Component<Props, any> {
 
   _scrollToRCE = () => {
     const input = ReactNative.findNodeHandle(this.editor)
-    // $FlowFixMe
     this.scrollView.scrollToFocusedInput(input)
   }
 
@@ -416,7 +408,7 @@ const style = createStyleSheet((colors, vars) => ({
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
     backgroundColor: colors.backgroundLightest,
-    height: 200,
+    minHeight: 200,
   },
   deleteButtonTitle: {
     color: colors.textDanger,

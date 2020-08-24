@@ -38,8 +38,8 @@ public class RichContentEditorViewController: UIViewController {
         }
     }
     var selection: CGRect = .zero
-    var context = Context.currentUser
-    var uploadContext = FileUploadContext.myFiles
+    public var context = Context.currentUser
+    public var uploadContext = FileUploadContext.myFiles
     let uploadManager = UploadManager.shared
 
     lazy var files = uploadManager.subscribe(batchID: batchID) { [weak self] in

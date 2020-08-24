@@ -54,6 +54,6 @@ test('AuthenticatedWebView can inject javascript and not explode', async () => {
   instance.webView = {
     evaluateJavaScript: jest.fn(),
   }
-  tree.getInstance().injectJavaScript(`console.log('hello')`)
+  tree.getInstance().evaluateJavaScript(`console.log('hello')`)
   expect(tree.getInstance().webView.evaluateJavaScript).toHaveBeenCalled()
 })

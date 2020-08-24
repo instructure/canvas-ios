@@ -162,7 +162,7 @@ describe('PageEdit', () => {
     const tree = shallow(<PageEdit {...props} url={null} page={PageModel.newPage} />)
     tree.find('[identifier="PageEditor.titleField"]')
       .simulate('ChangeText', 'Page 1')
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve('This is the body')),
     })
     tree.find('[testID="PageEditor.editorsButton"]')
@@ -191,7 +191,7 @@ describe('PageEdit', () => {
     const tree = shallow(<PageEdit {...props} />)
     tree.find('[identifier="PageEditor.titleField"]')
       .simulate('ChangeText', 'Page 1 (Edited)')
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(props.page.body)),
     })
     await tapDone(tree)
@@ -214,7 +214,7 @@ describe('PageEdit', () => {
       url: 'page-1',
     })
     const tree = shallow(<PageEdit {...props} />)
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(props.page.body)),
     })
     await tapDone(tree)
@@ -252,11 +252,11 @@ describe('PageEdit', () => {
     expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
-  it('scrolls view when RichTextEditor receives focus', () => {
+  it('scrolls view when RichContentEditor receives focus', () => {
     const spy = jest.fn()
     const tree = shallow(<PageEdit {...props} />)
     tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
-    tree.find('RichTextEditor').simulate('Focus')
+    tree.find('RichContentEditor').simulate('Focus')
     expect(spy).toHaveBeenCalled()
   })
 

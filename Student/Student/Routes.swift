@@ -328,7 +328,9 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return vc
     },
 
-    "/accounts/:accountID/terms_of_service": nil,
+    "/accounts/:accountID/terms_of_service": { _, _, _ in
+        return TermsOfServiceViewController()
+    },
 
     "/logs": { _, _, _ in
         return LogEventListViewController.create()

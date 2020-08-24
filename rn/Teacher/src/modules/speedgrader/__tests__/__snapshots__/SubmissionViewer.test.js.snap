@@ -121,25 +121,18 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
         "flex": 1,
       }
     }
-    testID="web-container.view"
   >
-    <CanvasWebView
+    <CoreWebView
       bounces={true}
       contentInset={
         Object {
           "bottom": 0,
         }
       }
-      html="This is my submission!"
-      onError={[Function]}
-      onFinishedLoading={[Function]}
       onHeightChange={[Function]}
-      onMessage={[Function]}
       onNavigation={[Function]}
-      scrollEnabled={true}
       source={
         Object {
-          "baseURL": "http://mobiledev.instructure.com/",
           "html": "This is my submission!",
         }
       }
@@ -205,25 +198,18 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
         "flex": 1,
       }
     }
-    testID="web-container.view"
   >
-    <CanvasWebView
+    <CoreWebView
       bounces={true}
       contentInset={
         Object {
           "bottom": 0,
         }
       }
-      html="<p>Form Voltron</p>"
-      onError={[Function]}
-      onFinishedLoading={[Function]}
       onHeightChange={[Function]}
-      onMessage={[Function]}
       onNavigation={[Function]}
-      scrollEnabled={true}
       source={
         Object {
-          "baseURL": "http://mobiledev.instructure.com/",
           "html": "<p>Form Voltron</p>",
         }
       }

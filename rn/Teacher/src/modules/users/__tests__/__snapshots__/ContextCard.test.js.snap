@@ -34,7 +34,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -66,7 +66,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -134,6 +134,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -154,6 +155,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {
@@ -219,7 +221,7 @@ exports[`ContextCard renders 1`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -251,7 +253,7 @@ exports[`ContextCard renders 1`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -319,6 +321,7 @@ exports[`ContextCard renders 1`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -339,6 +342,7 @@ exports[`ContextCard renders 1`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {
@@ -462,7 +466,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -494,7 +498,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -562,6 +566,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -582,6 +587,7 @@ exports[`ContextCard renders for a user that cannot send messages 2`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {
@@ -670,7 +676,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -702,7 +708,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -770,6 +776,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -790,6 +797,7 @@ exports[`ContextCard renders if there is no enrollment 1`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {
@@ -855,7 +863,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -887,7 +895,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -955,6 +963,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -975,6 +984,7 @@ exports[`ContextCard renders if there is no section in the enrollment 1`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {
@@ -1040,7 +1050,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             undefined,
           ]
         }
-        testID="user-submission-row.cell-1"
+        testID="ContextCard.submissionCell(1)"
       >
         <View
           style={
@@ -1072,7 +1082,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             testID="user-submission-row-icon-published-1.icon-img"
           >
             <View
-              accessibilityLabel="Published"
+              accessibilityLabel="Published,"
               style={
                 Object {
                   "flex": 0,
@@ -1140,6 +1150,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             }
           >
             <Text
+              accessibilityLabel="learn to write code,"
               ellipsizeMode="tail"
               numberOfLines={2}
               style={
@@ -1160,6 +1171,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               learn to write code
             </Text>
             <Text
+              accessibilityLabel="Not Submitted,"
               style={
                 Array [
                   Object {

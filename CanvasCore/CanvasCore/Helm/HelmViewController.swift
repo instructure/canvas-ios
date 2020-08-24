@@ -283,7 +283,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     }
                     if let action = buttonConfig["action"] as? NSString {
                         button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
-                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                        objc_setAssociatedObject(button, &Associated.barButtonAction, action, .OBJC_ASSOCIATION_RETAIN)
                     }
                     view.addSubview(button)
                     barButtonItem = UIBarButtonItem(customView: view)
@@ -294,7 +294,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     button.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
                     button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
                     if let action = buttonConfig["action"] as? NSString {
-                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                        objc_setAssociatedObject(button, &Associated.barButtonAction, action, .OBJC_ASSOCIATION_RETAIN)
                     }
                     let badged = UIView(frame: frame)
                     badged.isAccessibilityElement = true
@@ -339,7 +339,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                 items.append(barButtonItem)
                 
                 if let action = buttonConfig["action"] as? NSString {
-                    barButtonItem.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                    objc_setAssociatedObject(barButtonItem, &Associated.barButtonAction, action, .OBJC_ASSOCIATION_RETAIN)
                 }
                 
                 let disabled = buttonConfig["disabled"] as? Bool ?? false
@@ -365,7 +365,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         // show the dismiss button when view controller is shown modally
         let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any]
         if screenConfig[PropKeys.dismissButtonTitle] != nil || (navigatorOptions?["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true) {
-            let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", comment: "")
+            let dismissTitle = screenConfig[PropKeys.dismissButtonTitle] as? String ?? NSLocalizedString("Done", bundle: .canvas, comment: "")
             addModalDismissButton(buttonTitle: dismissTitle)
         }
 
@@ -381,7 +381,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
     }
     
     @objc func barButtonTapped(_ barButton: UIBarButtonItem) {
-        if let action: NSString = barButton.getAssociatedObject(&Associated.barButtonAction) {
+        if let action = objc_getAssociatedObject(barButton, &Associated.barButtonAction) as? NSString {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
         }
     }
@@ -422,7 +422,7 @@ fileprivate struct Associated {
 
 extension UIViewController {
     @objc public func addModalDismissButton(buttonTitle: String?) {
-        var dismissTitle = NSLocalizedString("Done", tableName: nil, bundle: .core, value: "Done", comment: "")
+        var dismissTitle = NSLocalizedString("Done", bundle: .canvas, comment: "")
         if let buttonTitle = buttonTitle {
             dismissTitle = buttonTitle
         }

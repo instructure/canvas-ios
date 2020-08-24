@@ -1,6 +1,3 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Gwall wrth lwytho cynnwys";
-
 /* No comment provided by engineer. */
 "An unexpected error has occurred." = "Gwall annisgwyl.";
 
@@ -47,16 +44,7 @@
 "Invalid date received from API." = "Dyddiad annilys gan API.";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Lansio Adnodd Allanol";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Agor yn y Porwr";
-
-/* No comment provided by engineer. */
 "Open in…" = "Agor yn...";
-
-/* button to read more of the description */
-"Read More" = "Darllen mwy";
 
 /* No comment provided by engineer. */
 "Remove" = "Dileu";
