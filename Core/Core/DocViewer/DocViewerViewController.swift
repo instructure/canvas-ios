@@ -24,16 +24,19 @@ public class DocViewerViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var syncAnnotationsButton: UIButton!
+    let toolbar = UIToolbar()
+    let toolbarContainer = FlexibleToolbarContainer()
 
     var annotationProvider: DocViewerAnnotationProvider?
     let env = AppEnvironment.shared
-    var fallbackURL: URL!
+    public var fallbackURL: URL!
     var fallbackUsed = false
-    var filename = ""
+    public var filename = ""
+    public var isAnnotatable = false
     var metadata: APIDocViewerMetadata?
     weak var parentNavigationItem: UINavigationItem?
     let pdf = PDFViewController()
-    var previewURL: URL?
+    public var previewURL: URL?
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
@@ -64,11 +67,10 @@ public class DocViewerViewController: UIViewController {
         loadingView.color = nil
 
         embed(pdf, in: contentView)
+        pdf.delegate = self
         pdf.view.isHidden = true
         pdf.updateConfiguration(builder: docViewerConfigurationBuilder)
-        pdf.delegate = self
 
-        syncAnnotationsButton.isHidden = true
         syncAnnotationsButton.setTitleColor(.white, for: .normal)
         syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
@@ -123,7 +125,6 @@ public class DocViewerViewController: UIViewController {
 
     func load(document: Document) {
         pdf.document = document
-        pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
         pdf.view.isHidden = false
         loadingView.isHidden = true
 
@@ -132,6 +133,35 @@ public class DocViewerViewController: UIViewController {
         let search = UIBarButtonItem(barButtonSystemItem: .search, target: pdf.searchButtonItem.target, action: pdf.searchButtonItem.action)
         search.accessibilityIdentifier = "DocViewer.searchButton"
         parentNavigationItem?.rightBarButtonItems = [ share, search ]
+
+        if isAnnotatable, metadata?.annotations?.enabled == true {
+            syncAnnotationsButton.isHidden = false
+            contentView.addSubview(toolbar)
+            toolbar.pin(inside: contentView, bottom: nil)
+            contentView.constraints.first { $0.firstAnchor == pdf.view.topAnchor }? .isActive = false
+            pdf.view.topAnchor.constraint(equalTo: toolbar.bottomAnchor).isActive = true
+
+            let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
+            annotationToolbar.supportedToolbarPositions = .inTopBar
+            annotationToolbar.isDragEnabled = false
+            annotationToolbar.showDoneButton = false
+
+            contentView.addSubview(toolbarContainer)
+            toolbarContainer.pin(inside: contentView)
+            toolbarContainer.flexibleToolbar = annotationToolbar
+            toolbarContainer.overlaidBar = toolbar
+            toolbarContainer.show(animated: true, completion: nil)
+
+            contentView.layoutIfNeeded()
+        }
+
+        pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
+    }
+
+    public func setContentInsets(_ insets: UIEdgeInsets) {
+        pdf.updateConfigurationWithoutReloading { config in
+            config.additionalScrollViewFrameInsets = insets
+        }
     }
 
     public func showError(_ error: Error) {

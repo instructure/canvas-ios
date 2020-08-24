@@ -12,6 +12,11 @@ exports[`url submission renders correctly 1`] = `
       "bottom": 0,
     }
   }
+  style={
+    Object {
+      "padding": 16,
+    }
+  }
 >
   <View>
     <Text

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2018-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
-import PSPDFKit
-import PSPDFKitUI
+#import <Foundation/Foundation.h>
+#import <React/RCTViewManager.h>
+#import <CanvasCore/CanvasCore-Swift.h>
 
-public class CanvadocsAnnotationStateManager: AnnotationStateManager {
-    override public func stateShowsStylePicker(_ state: Annotation.Tool?) -> Bool {
-        if state == .stamp {
-            return true
-        }
-        return super.stateShowsStylePicker(state)
-    }
+@interface DocViewerManager: RCTViewManager
+@end
+
+@implementation DocViewerManager
+
+RCT_EXPORT_MODULE()
+
+- (UIView *)view {
+    return [DocViewerWrapper new];
 }
+
+RCT_EXPORT_VIEW_PROPERTY(contentInset, UIEdgeInsets)
+RCT_EXPORT_VIEW_PROPERTY(fallbackURL, NSString)
+RCT_EXPORT_VIEW_PROPERTY(filename, NSString)
+RCT_EXPORT_VIEW_PROPERTY(previewURL, NSString)
+
+@end
