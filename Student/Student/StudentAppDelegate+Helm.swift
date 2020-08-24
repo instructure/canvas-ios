@@ -26,7 +26,7 @@ extension StudentAppDelegate: RCTBridgeDelegate {
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let window = self.window else { return }
-            let controller = rootViewController()
+            let controller = StudentTabBarController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -37,7 +37,7 @@ extension StudentAppDelegate: RCTBridgeDelegate {
         }
 
         HelmManager.shared.onReactReload = {
-            guard self.window?.rootViewController is CanvasTabBarController else { return }
+            guard self.window?.rootViewController is StudentTabBarController else { return }
             guard let session = LoginSession.mostRecent else {
                 self.changeUser()
                 return

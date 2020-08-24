@@ -31,7 +31,7 @@
 		3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D402311DED8003AE3AB /* AssignmentPostPolicyTests.swift */; };
 		3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */; };
 		3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */; };
-		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
+		494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* TeacherTabBarController.swift */; };
 		494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* Routes.swift */; };
 		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -249,7 +249,7 @@
 		3BFD1D4423121ED9003AE3AB /* SubmissionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionsList.swift; sourceTree = "<group>"; };
 		3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPolicy.swift; sourceTree = "<group>"; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Teacher.entitlements; sourceTree = "<group>"; };
-		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		494AE0B51F843CB4001A8F31 /* TeacherTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherTabBarController.swift; sourceTree = "<group>"; };
 		494AE0B61F843CB4001A8F31 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53381C31DE1311D071C31B5E /* Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -535,10 +535,10 @@
 				2C96863B1FFE9FC3005127A3 /* LaunchScreen.storyboard */,
 				2CA3473E1F2147290000BB79 /* Localizable.strings */,
 				7D344E1D241160D100C052E6 /* Localizable.stringsdict */,
-				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
 				494AE0B61F843CB4001A8F31 /* Routes.swift */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */,
+				494AE0B51F843CB4001A8F31 /* TeacherTabBarController.swift */,
 			);
 			path = Teacher;
 			sourceTree = "<group>";
@@ -1273,7 +1273,7 @@
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,
-				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
+				494AE0B91F843CB5001A8F31 /* TeacherTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

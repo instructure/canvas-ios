@@ -307,7 +307,7 @@ extension StudentAppDelegate {
                 } else {
                     finish()
                 }
-            } else if let from = self.topViewController {
+            } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
                 comps?.originIsNotification = true
                 AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))

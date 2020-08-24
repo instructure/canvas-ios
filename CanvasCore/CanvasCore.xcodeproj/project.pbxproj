@@ -8,21 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */; };
-		2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */; };
-		2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */; };
-		2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */; };
+		2C4EBB3B204DFC820085D00E /* UITabBarControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4EBB3A204DFC820085D00E /* UITabBarControllerExtensions.swift */; };
+		2C4FAD3220487DD6000551EB /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4FAD3120487DD6000551EB /* UINavigationControllerExtensions.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
-		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
+		2CAF1B3A1F72B1B7007225DF /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* BundleExtensions.swift */; };
 		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
-		2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */; };
 		2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */; };
-		2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */; };
 		3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */; };
-		3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */; };
 		3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */; };
 		3BD3220E2242E2F60036C764 /* SiriShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220C2242E2F60036C764 /* SiriShortcutManager.swift */; };
 		3BD3220F2242E2F60036C764 /* SiriShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3220D2242E2F60036C764 /* SiriShortcutManager.m */; };
@@ -42,16 +37,10 @@
 		4930201A1F901CF5006BD777 /* CanvadocsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020081F901CF5006BD777 /* CanvadocsConstants.swift */; };
 		4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */; };
 		4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */; };
-		493020791F902462006BD777 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930206D1F902462006BD777 /* Context.swift */; };
-		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
-		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
 		494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0871F8436C0001A8F31 /* NativeLoginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */; };
 		494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */; };
-		494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE08E1F843A01001A8F31 /* HapticFeedback.h */; };
 		494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0911F843A02001A8F31 /* HapticFeedback.m */; };
-		494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0971F843A04001A8F31 /* NativeAccessibility.h */; };
 		494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0921F843A02001A8F31 /* NativeAccessibility.m */; };
 		494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0931F843A02001A8F31 /* PushNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0941F843A03001A8F31 /* PushNotifications.m */; };
@@ -65,11 +54,7 @@
 		497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7611F82D18900501613 /* HelmNavigationController.swift */; };
 		497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7651F82D18A00501613 /* HelmSplitViewController.swift */; };
 		497CA7741F82D19600501613 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7631F82D18A00501613 /* HelmViewController.swift */; };
-		497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */; };
-		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
-		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
-		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		585959D0165156B27BB92716 /* React+Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 58595B2045EC1806A88292D9 /* React+Core.m */; };
+		585959D0165156B27BB92716 /* ReactExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 58595B2045EC1806A88292D9 /* ReactExtensions.m */; };
 		630085E9F4EBC97E435FFE64 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */; };
 		78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C610CC21CA022400913B93 /* CanvasCrashlytics.m */; };
 		78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,7 +75,6 @@
 		B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */; };
 		B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C316FE2463348700CA368C /* NativeUserDefaults.m */; };
 		B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C317002463371300CA368C /* NativeUserDefaults.swift */; };
-		B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1ED11942040CD5F00C3C580 /* CoreWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */; };
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
@@ -100,19 +84,14 @@
 		0C6ED514BCD5F05D551BC00B /* Pods_defaults_CanvasCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		210CE9F7FA304793F1B02F7C /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 		2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmScreenConfig.swift; sourceTree = "<group>"; };
-		2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+Core.swift"; sourceTree = "<group>"; };
-		2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Core.swift"; sourceTree = "<group>"; };
+		2C4EBB3A204DFC820085D00E /* UITabBarControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarControllerExtensions.swift; sourceTree = "<group>"; };
+		2C4FAD3120487DD6000551EB /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
 		2CAF1B141F72AEDB007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
-		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
+		2CAF1B391F72B1B7007225DF /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
-		2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowTraitsManager.h; sourceTree = "<group>"; };
 		2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowTraitsManager.m; sourceTree = "<group>"; };
-		2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplicationDelegate+Core.swift"; sourceTree = "<group>"; };
-		2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
-		2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasAnalytics.h; sourceTree = "<group>"; };
 		2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasAnalytics.m; sourceTree = "<group>"; };
 		2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTraits.swift; sourceTree = "<group>"; };
 		356FC2F2919ECEF83CA044BA /* Pods-defaults-CanvasCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,19 +114,13 @@
 		493020081F901CF5006BD777 /* CanvadocsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsConstants.swift; sourceTree = "<group>"; };
 		493020091F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		4930200A1F901CF5006BD777 /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
-		4930206D1F902462006BD777 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
-		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
-		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
 		494AE0881F8436C1001A8F31 /* NativeLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
-		494AE08E1F843A01001A8F31 /* HapticFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HapticFeedback.h; sourceTree = "<group>"; };
 		494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerHandleViewManager.m; sourceTree = "<group>"; };
-		494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerHandleViewManager.h; sourceTree = "<group>"; };
 		494AE0911F843A02001A8F31 /* HapticFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
 		494AE0921F843A02001A8F31 /* NativeAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeAccessibility.m; sourceTree = "<group>"; };
 		494AE0931F843A02001A8F31 /* PushNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
 		494AE0941F843A03001A8F31 /* PushNotifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
-		494AE0971F843A04001A8F31 /* NativeAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeAccessibility.h; sourceTree = "<group>"; };
 		494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
 		494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
@@ -160,11 +133,7 @@
 		497CA7631F82D18A00501613 /* HelmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmViewController.swift; sourceTree = "<group>"; };
 		497CA7651F82D18A00501613 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewController.swift; sourceTree = "<group>"; };
 		497CA7661F82D18B00501613 /* Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helm.swift; sourceTree = "<group>"; };
-		497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewControllerExtensions.swift; sourceTree = "<group>"; };
-		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
-		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
-		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		58595B2045EC1806A88292D9 /* React+Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "React+Core.m"; sourceTree = "<group>"; };
+		58595B2045EC1806A88292D9 /* ReactExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactExtensions.m; sourceTree = "<group>"; };
 		5B0E4DC62430866600AB84EB /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5B1FFAA722BD70940019BAC8 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B2F8DFC240B9C90001087B2 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -241,7 +210,6 @@
 		B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandler.swift; sourceTree = "<group>"; };
 		B1C316FE2463348700CA368C /* NativeUserDefaults.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeUserDefaults.m; sourceTree = "<group>"; };
 		B1C317002463371300CA368C /* NativeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeUserDefaults.swift; sourceTree = "<group>"; };
-		B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeNotificationCenter.h; sourceTree = "<group>"; };
 		B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeNotificationCenter.m; sourceTree = "<group>"; };
 		B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreWebViewManager.m; sourceTree = "<group>"; };
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
@@ -294,17 +262,13 @@
 			isa = PBXGroup;
 			children = (
 				49301FF41F901CA0006BD777 /* Annotations */,
-				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
-				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
-				4961F5EF1F8FB6160093EC86 /* Enrollments */,
 				2CAF1B381F72B18F007225DF /* Extensions */,
 				497CA7351F82B3C200501613 /* Helm */,
-				49383CF41F849921009C8F8E /* Inbox */,
-				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
+				494AE08C1F8439A8001A8F31 /* ReactNativeModules */,
+				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
+				9F544E071FBB766E00BB2D84 /* InfoPlist.strings */,
 				9F544E0C1FBB766E00BB2D84 /* Localizable.strings */,
-				494AE0AF1F843B1F001A8F31 /* PDF */,
-				494AE08C1F8439A8001A8F31 /* React Native Modules */,
 			);
 			path = CanvasCore;
 			sourceTree = "<group>";
@@ -312,11 +276,11 @@
 		2CAF1B381F72B18F007225DF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */,
-				58595B2045EC1806A88292D9 /* React+Core.m */,
-				2CD7769B200977EC00589D4F /* UIApplicationDelegate+Core.swift */,
-				2C4FAD3120487DD6000551EB /* UINavigationController+Core.swift */,
-				2C4EBB3A204DFC820085D00E /* UITabBarController+Core.swift */,
+				2CAF1B391F72B1B7007225DF /* BundleExtensions.swift */,
+				58595B2045EC1806A88292D9 /* ReactExtensions.m */,
+				2C4FAD3120487DD6000551EB /* UINavigationControllerExtensions.swift */,
+				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
+				2C4EBB3A204DFC820085D00E /* UITabBarControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -371,15 +335,7 @@
 			path = Comments;
 			sourceTree = "<group>";
 		};
-		49383CF41F849921009C8F8E /* Inbox */ = {
-			isa = PBXGroup;
-			children = (
-				49383CF51F849933009C8F8E /* inboxTab.swift */,
-			);
-			path = Inbox;
-			sourceTree = "<group>";
-		};
-		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
+		494AE08C1F8439A8001A8F31 /* ReactNativeModules */ = {
 			isa = PBXGroup;
 			children = (
 				494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */,
@@ -387,28 +343,24 @@
 				9FB85498208677DB007499DA /* AdjustableManager.m */,
 				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
 				7DD89E8A20AB626600650227 /* AppStoreReview.m */,
-				2CE2058F20EAC5BD002A6A64 /* CanvasAnalytics.h */,
+				494AE0B01F843B58001A8F31 /* CanvadocView.swift */,
+				494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */,
 				2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */,
 				78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */,
 				78C610CC21CA022400913B93 /* CanvasCrashlytics.m */,
 				B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */,
 				7D81F3FD24F04DD000C482D2 /* CoreWebViewWrapper.swift */,
-				494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */,
 				494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */,
-				2CD20D741FA125EC00F339F7 /* DropViewManager.h */,
 				2CD20D751FA125EC00F339F7 /* DropViewManager.m */,
-				494AE08E1F843A01001A8F31 /* HapticFeedback.h */,
 				494AE0911F843A02001A8F31 /* HapticFeedback.m */,
 				7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */,
 				B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */,
 				9FD18B6A2052DE6800119927 /* LTITools.m */,
-				494AE0971F843A04001A8F31 /* NativeAccessibility.h */,
 				494AE0921F843A02001A8F31 /* NativeAccessibility.m */,
 				B1F4E8CB206179CC0056074A /* NativeFileSystem.m */,
 				494AE0871F8436C0001A8F31 /* NativeLoginManager.h */,
 				494AE0881F8436C1001A8F31 /* NativeLoginManager.m */,
 				7D6410EB2280B74E008FA345 /* NativeLoginManager.swift */,
-				B1CA05041FE448F300B7D5AA /* NativeNotificationCenter.h */,
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
 				B1C316FE2463348700CA368C /* NativeUserDefaults.m */,
 				B1C317002463371300CA368C /* NativeUserDefaults.swift */,
@@ -422,56 +374,24 @@
 				496C7D651F8C00250010DC03 /* TabBarBadgeCounts.m */,
 				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
+				2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */,
+				2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */,
 			);
-			path = "React Native Modules";
-			sourceTree = "<group>";
-		};
-		494AE0AF1F843B1F001A8F31 /* PDF */ = {
-			isa = PBXGroup;
-			children = (
-				494AE0B01F843B58001A8F31 /* CanvadocView.swift */,
-				494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */,
-			);
-			path = PDF;
-			sourceTree = "<group>";
-		};
-		4961F5EF1F8FB6160093EC86 /* Enrollments */ = {
-			isa = PBXGroup;
-			children = (
-				4930206D1F902462006BD777 /* Context.swift */,
-				2CD7769D201111F700589D4F /* EnrollmentSplitViewController.swift */,
-			);
-			path = Enrollments;
+			path = ReactNativeModules;
 			sourceTree = "<group>";
 		};
 		497CA7351F82B3C200501613 /* Helm */ = {
 			isa = PBXGroup;
 			children = (
-				497CA7681F82D18B00501613 /* Extensions */,
 				497CA75F1F82D18900501613 /* Helm.m */,
 				497CA7661F82D18B00501613 /* Helm.swift */,
 				497CA7621F82D18900501613 /* HelmConstants.swift */,
 				497CA7611F82D18900501613 /* HelmNavigationController.swift */,
 				497CA7651F82D18A00501613 /* HelmSplitViewController.swift */,
 				497CA7631F82D18A00501613 /* HelmViewController.swift */,
-				2CD6B56E1FD20A9800C7DE15 /* WindowTraitsManager.h */,
-				2CD6B56F1FD20A9800C7DE15 /* WindowTraitsManager.m */,
-				2CFAFBD01FD21B3800F22C7F /* WindowTraits.swift */,
 				2C195F51201948DB003B0D7D /* HelmScreenConfig.swift */,
 			);
 			path = Helm;
-			sourceTree = "<group>";
-		};
-		497CA7681F82D18B00501613 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				497CA76A1F82D18B00501613 /* HelmSplitViewControllerExtensions.swift */,
-				497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */,
-				497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */,
-				497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */,
-				3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,15 +401,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1CA05061FE448F300B7D5AA /* NativeNotificationCenter.h in Headers */,
-				2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */,
-				2CD6B5701FD20A9800C7DE15 /* WindowTraitsManager.h in Headers */,
-				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
-				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
 				494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */,
-				494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */,
-				3BC3E0212315BC8A00E15C6D /* CanvasAnalytics.h in Headers */,
 				493020151F901CF5006BD777 /* UITextView+Placeholder.h in Headers */,
 				78C610CE21CA022C00913B93 /* CanvasCrashlytics.h in Headers */,
 				494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */,
@@ -595,7 +508,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */,
 				9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */,
 				4930200D1F901CF5006BD777 /* Assets.xcassets in Resources */,
@@ -634,11 +546,9 @@
 			files = (
 				496C7D661F8C00250010DC03 /* TabBarBadgeCounts.m in Sources */,
 				7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */,
-				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
-				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
 				4930200E1F901CF5006BD777 /* CommentReplyView.swift in Sources */,
-				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
+				2CAF1B3A1F72B1B7007225DF /* BundleExtensions.swift in Sources */,
 				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				7DF5A776208AAB8000419AB9 /* CanvadocsAnnotationStateManager.swift in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
@@ -649,8 +559,7 @@
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */,
 				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
-				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
-				2C4FAD3220487DD6000551EB /* UINavigationController+Core.swift in Sources */,
+				2C4FAD3220487DD6000551EB /* UINavigationControllerExtensions.swift in Sources */,
 				7D98612024EDB6EC008F262F /* RichContentEditorWrapper.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
 				B1ED11942040CD5F00C3C580 /* CoreWebViewManager.m in Sources */,
@@ -663,10 +572,8 @@
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				7D81F3FE24F04DD000C482D2 /* CoreWebViewWrapper.swift in Sources */,
 				B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */,
-				493020791F902462006BD777 /* Context.swift in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationController.swift in Sources */,
 				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
-				2CD7769C200977EC00589D4F /* UIApplicationDelegate+Core.swift in Sources */,
 				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
 				4930201B1F901CF5006BD777 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
@@ -677,14 +584,12 @@
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
 				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
 				493020181F901CF5006BD777 /* CanvadocsAnnotationToolbar.swift in Sources */,
-				497CA7781F82D19A00501613 /* HelmSplitViewControllerExtensions.swift in Sources */,
 				493020121F901CF5006BD777 /* CanvasCommentsViewController.swift in Sources */,
 				4930200F1F901CF5006BD777 /* UITextView+Placeholder.m in Sources */,
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				493020101F901CF5006BD777 /* CanvadocsCommentAnnotation.swift in Sources */,
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
 				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
-				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
 				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
@@ -694,11 +599,10 @@
 				493020111F901CF5006BD777 /* CommentTableViewCell.swift in Sources */,
 				4930201C1F901CF5006BD777 /* CanvadocsAnnotation.swift in Sources */,
 				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,
-				2C4EBB3B204DFC820085D00E /* UITabBarController+Core.swift in Sources */,
-				2C5649E820111E0400C0D1BB /* EnrollmentSplitViewController.swift in Sources */,
+				2C4EBB3B204DFC820085D00E /* UITabBarControllerExtensions.swift in Sources */,
 				2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */,
 				493020161F901CF5006BD777 /* CanvadocsAnnotationProvider.swift in Sources */,
-				585959D0165156B27BB92716 /* React+Core.m in Sources */,
+				585959D0165156B27BB92716 /* ReactExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
