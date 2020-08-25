@@ -33,8 +33,8 @@ public struct PageEditorView: View {
     @State var isFrontPage: Bool = false
 
     @State var isLoading = true
+    @State var isLoaded = false
     @State var isSaving = false
-    @State var editingRolesPickerShown: Bool = false
     @State var rceHeight: CGFloat = 60
     @State var rceCanSubmit = false
     @State var showError: Bool = false
@@ -111,8 +111,8 @@ public struct PageEditorView: View {
                 canSubmit: $rceCanSubmit,
                 error: $error
             )
+                .frame(height: max(200, rceHeight))
                 .background(Color.backgroundLightest)
-                .frame(minHeight: 200, idealHeight: max(200, rceHeight))
             Divider()
 
             if env.app == .teacher || context.contextType == .group {
@@ -138,10 +138,21 @@ public struct PageEditorView: View {
                         .identifier("PageEditor.frontPageToggle")
                     Divider()
                 }
-                Button(action: { self.editingRolesPickerShown.toggle() }, label: {
+                Button(action: {
+                    guard let controller = self.viewController() else { return }
+                    let options: [RoleOption] = self.context.contextType == .group
+                        ? [ .members, .public ]
+                        : [ .teachers, .teachersAndStudents, .public ]
+                    self.env.router.show(ItemPickerViewController.create(
+                        title: NSLocalizedString("Can Edit", bundle: .core, comment: ""),
+                        sections: [ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) } )],
+                        selected: options.firstIndex(of: self.editingRoles).flatMap { IndexPath(row: $0, section: 0) },
+                        didSelect: { self.editingRoles = options[$0.row] }
+                    ), from: controller)
+                }, label: {
                     Text("Can Edit", bundle: .core).font(.semibold16)
                     Spacer()
-                    editingRoles.text
+                    Text(editingRoles.string)
                     Image(systemName: "chevron.right")
                         .flipsForRightToLeftLayoutDirection(true)
                         .accentColor(.borderMedium)
@@ -151,27 +162,16 @@ public struct PageEditorView: View {
                     .background(Color.backgroundLightest)
                     .identifier("PageEditor.editorsButton")
                 Divider()
-                if editingRolesPickerShown {
-                    Picker(selection: $editingRoles, label: Text("Can Edit", bundle: .core), content: {
-                        if context.contextType == .group {
-                            RoleOption.members.text
-                        } else {
-                            RoleOption.teachers.text
-                            RoleOption.teachersAndStudents.text
-                        }
-                        RoleOption.public.text
-                    })
-                        .labelsHidden()
-                        .identifier("PageEditor.editorsPicker")
-                }
             }
         } }
     }
 
     func load() {
+        guard !isLoaded else { return }
         guard let url = url else {
             editingRoles = context.contextType == .group ? .members : .teachers
             isLoading = false
+            isLoaded = true
             return
         }
         let useCase = GetPage(context: context, url: url)
@@ -187,6 +187,7 @@ public struct PageEditorView: View {
             self.published = page?.published ?? false
             self.isFrontPage = page?.isFrontPage ?? false
             self.isLoading = false
+            self.isLoaded = true
             self.error = error
         } }
     }
@@ -214,16 +215,16 @@ public struct PageEditorView: View {
         case `public`, members, teachers
         case teachersAndStudents = "students,teachers"
 
-        var text: some View {
+        var string: String {
             switch self {
             case .public:
-                return Text("Anyone", bundle: .core).tag(self)
+                return NSLocalizedString("Anyone", bundle: .core, comment: "")
             case .members:
-                return Text("Only members", bundle: .core).tag(self)
+                return NSLocalizedString("Only members", bundle: .core, comment: "")
             case .teachers:
-                return Text("Only teachers", bundle: .core).tag(self)
+                return NSLocalizedString("Only teachers", bundle: .core, comment: "")
             case .teachersAndStudents:
-                return Text("Teachers and students", bundle: .core).tag(self)
+                return NSLocalizedString("Teachers and students", bundle: .core, comment: "")
             }
         }
     }

@@ -237,8 +237,7 @@ open class CoreWebView: WKWebView {
             let lastHeight = 0
             let lastWidth = window.innerWidth
             const checkSize = () => {
-                const rce = document.getElementById('content')
-                const height = rce && rce.isContentEditable ? rce.getBoundingClientRect().height : document.documentElement.scrollHeight
+                const height = window.editor && window.editor.contentHeight || document.documentElement.scrollHeight
                 if (lastHeight !== height) {
                     lastHeight = height
                     window.webkit.messageHandlers.resize.postMessage({ height })
