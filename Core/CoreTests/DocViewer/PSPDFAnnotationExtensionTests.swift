@@ -62,7 +62,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
     }
 
     func testHighlight() {
-        let apiAnnotation = model(type: .highlight, coords: [[[0, 0], [1, 1]]])
+        let apiAnnotation = model(type: .highlight, coords: [[[0, 0], [1, 0], [0, 1], [1, 1]]])
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is HighlightAnnotation)
@@ -71,7 +71,7 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
     }
 
     func testStrikeout() {
-        let apiAnnotation = model(type: .strikeout, color: nil, coords: [[[0, 0], [1, 1]]])
+        let apiAnnotation = model(type: .strikeout, color: nil, coords: [[[0, 0], [1, 0], [0, 1], [1, 1]]])
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is StrikeOutAnnotation)
