@@ -55,7 +55,7 @@ func docViewerConfigurationBuilder(_ builder: PDFConfigurationBuilder) {
     builder.backgroundColor = .borderMedium
     builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .eraser, .square]
     builder.isRenderAnimationEnabled = true
-    builder.naturalDrawingAnnotationEnabled = true
+    builder.naturalDrawingAnnotationEnabled = false
     builder.pageMode = .single
     builder.pageTransition = .scrollContinuous
     builder.scrollDirection = .vertical
