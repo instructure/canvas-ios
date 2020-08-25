@@ -145,7 +145,7 @@ public struct PageEditorView: View {
                         : [ .teachers, .teachersAndStudents, .public ]
                     self.env.router.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Can Edit", bundle: .core, comment: ""),
-                        sections: [ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) } )],
+                        sections: [ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) })],
                         selected: options.firstIndex(of: self.editingRoles).flatMap { IndexPath(row: $0, section: 0) },
                         didSelect: { self.editingRoles = options[$0.row] }
                     ), from: controller)
