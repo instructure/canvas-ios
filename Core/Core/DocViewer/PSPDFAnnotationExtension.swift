@@ -162,7 +162,7 @@ extension Annotation {
             icon: type == .text ? "Comment" : nil,
             contents: contents,
             inreplyto: inreplyto,
-            coords: rects?.map { pointsFrom($0) },
+            coords: rects?.map { coordsFrom($0) },
             rect: pointsFrom(boundingBox),
             font: fontName.flatMap { "\(Int(fontSize / 0.9))pt \($0)" },
             inklist: inklist,
@@ -187,6 +187,15 @@ private func rectFrom(_ points: [[Double]]) -> CGRect {
 
 private func pointsFrom(_ rect: CGRect) -> [[Double]] {
     return [ [ Double(rect.minX), Double(rect.minY) ], [ Double(rect.maxX), Double(rect.maxY) ] ]
+}
+
+private func coordsFrom(_ rect: CGRect) -> [[Double]] {
+    return [
+        [ Double(rect.minX), Double(rect.minY) ],
+        [ Double(rect.maxX), Double(rect.minY) ],
+        [ Double(rect.minX), Double(rect.maxY) ],
+        [ Double(rect.maxX), Double(rect.maxY) ],
+    ]
 }
 
 private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
