@@ -29,4 +29,3 @@ FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
 #import <CanvasCore/CanvasCrashlytics.h>
 #import <CanvasCore/NativeLoginManager.h>
 #import <CanvasCore/PushNotifications.h>
-#import <CanvasCore/UITextView+Placeholder.h>
