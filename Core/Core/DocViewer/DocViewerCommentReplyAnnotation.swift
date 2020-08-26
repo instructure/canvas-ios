@@ -49,7 +49,6 @@ class DocViewerStrikeOutAnnotation: StrikeOutAnnotation {
     }
 }
 
-
 class DocViewerFreeTextAnnotation: FreeTextAnnotation {
     open override func draw(context: CGContext, options: RenderOptions?) {
         super.draw(context: context, options: options)
