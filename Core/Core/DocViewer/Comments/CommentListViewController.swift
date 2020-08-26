@@ -94,6 +94,7 @@ class CommentListViewController: UIViewController {
         reply.inReplyToName = annotation.name
         reply.user = metadata?.user_id
         reply.userName = metadata?.user_name
+        annotation.hasReplies = true
         comments.append(reply)
         document?.add(annotations: [reply], options: nil)
         replyTextView.text = ""

@@ -22,6 +22,7 @@ private var annotationUserNameKey: UInt8 = 0
 private var annotationDeletedAtKey: UInt8 = 0
 private var annotationDeletedByKey: UInt8 = 0
 private var annotationDeletedByIDKey: UInt8 = 0
+private var annotationHasRepliesKey: UInt8 = 0
 
 extension Annotation {
     var userName: String? {
@@ -40,6 +41,10 @@ extension Annotation {
         get { return objc_getAssociatedObject(self, &annotationDeletedByIDKey) as? String }
         set { objc_setAssociatedObject(self, &annotationDeletedByIDKey, newValue, .OBJC_ASSOCIATION_COPY) }
     }
+    var hasReplies: Bool? {
+        get { return objc_getAssociatedObject(self, &annotationHasRepliesKey) as? Bool }
+        set { objc_setAssociatedObject(self, &annotationHasRepliesKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
 
     var isEmpty: Bool {
         return (self is FreeTextAnnotation || self is DocViewerCommentReplyAnnotation) && contents?.isEmpty != false
@@ -49,15 +54,15 @@ extension Annotation {
         let annotation: Annotation
         switch apiAnnotation.type {
         case .highlight:
-            let highlight = HighlightAnnotation()
+            let highlight = DocViewerHighlightAnnotation()
             highlight.rects = apiAnnotation.coords?.map { rectFrom($0) }
             annotation = highlight
         case .strikeout:
-            let strikeout = StrikeOutAnnotation()
+            let strikeout = DocViewerStrikeOutAnnotation()
             strikeout.rects = apiAnnotation.coords?.map { rectFrom($0) }
             annotation = strikeout
         case .freetext:
-            let freeText = FreeTextAnnotation(contents: apiAnnotation.contents ?? "")
+            let freeText = DocViewerFreeTextAnnotation(contents: apiAnnotation.contents ?? "")
             let fontSizeStr = apiAnnotation.font?.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted) ?? ""
             freeText.fontName = "Helvetica" // apiAnnotation.font?.split(separator: " ")?.last.flatMap { String($0) } ?? "Helvetica"
             freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * 0.9
@@ -72,7 +77,7 @@ extension Annotation {
             reply.inReplyToName = apiAnnotation.inreplyto
             annotation = reply
         case .ink:
-            let ink = InkAnnotation()
+            let ink = DocViewerInkAnnotation()
             ink.lines = apiAnnotation.inklist?.gestures.map { $0.map { (point: APIDocViewerInkPoint) -> DrawingPoint in
                 return DrawingPoint(cgPoint: CGPoint(x: point.x, y: point.y))
             } }
@@ -81,7 +86,7 @@ extension Annotation {
             }
             annotation = ink
         case .square:
-            let square = SquareAnnotation()
+            let square = DocViewerSquareAnnotation()
             square.lineWidth = CGFloat(apiAnnotation.width ?? 1.0)
             annotation = square
         }

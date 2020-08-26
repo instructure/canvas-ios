@@ -21,3 +21,52 @@ import PSPDFKit
 class DocViewerCommentReplyAnnotation: NoteAnnotation {
     var inReplyToName: String?
 }
+
+extension Annotation {
+    func drawRepliesIcon(in context: CGContext, options: RenderOptions?) {
+        guard hasReplies == true else { return }
+        let bb = CGRect(x: boundingBox.maxX - 7, y: boundingBox.maxY - 8, width: 24, height: 24)
+        context.saveGState()
+        context.setFillColor(DocViewerAnnotationColor.blue.color.cgColor)
+        context.clip(to: bb, mask: UIImage.commentLine.cgImage!)
+        context.addRect(bb)
+        context.fillPath()
+        context.restoreGState()
+    }
+}
+
+class DocViewerHighlightAnnotation: HighlightAnnotation {
+    open override func draw(context: CGContext, options: RenderOptions?) {
+        super.draw(context: context, options: options)
+        drawRepliesIcon(in: context, options: options)
+    }
+}
+
+class DocViewerStrikeOutAnnotation: StrikeOutAnnotation {
+    open override func draw(context: CGContext, options: RenderOptions?) {
+        super.draw(context: context, options: options)
+        drawRepliesIcon(in: context, options: options)
+    }
+}
+
+
+class DocViewerFreeTextAnnotation: FreeTextAnnotation {
+    open override func draw(context: CGContext, options: RenderOptions?) {
+        super.draw(context: context, options: options)
+        drawRepliesIcon(in: context, options: options)
+    }
+}
+
+class DocViewerInkAnnotation: InkAnnotation {
+    open override func draw(context: CGContext, options: RenderOptions?) {
+        super.draw(context: context, options: options)
+        drawRepliesIcon(in: context, options: options)
+    }
+}
+
+class DocViewerSquareAnnotation: SquareAnnotation {
+    open override func draw(context: CGContext, options: RenderOptions?) {
+        super.draw(context: context, options: options)
+        drawRepliesIcon(in: context, options: options)
+    }
+}

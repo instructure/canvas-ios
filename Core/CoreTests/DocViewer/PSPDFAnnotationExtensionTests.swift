@@ -65,7 +65,12 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let apiAnnotation = model(type: .highlight, coords: [[[0, 0], [1, 0], [0, 1], [1, 1]]])
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
+        annotation?.hasReplies = true
         XCTAssert(annotation is HighlightAnnotation)
+        XCTAssert(annotation is DocViewerHighlightAnnotation)
+        XCTAssertNoThrow(UIGraphicsImageRenderer(size: annotation!.boundingBox.size).image { context in
+            annotation?.draw(context: context.cgContext, options: nil)
+        })
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.rects, [ CGRect(x: 0, y: 0, width: 1, height: 1) ])
     }
@@ -75,6 +80,10 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is StrikeOutAnnotation)
+        XCTAssert(annotation is DocViewerStrikeOutAnnotation)
+        XCTAssertNoThrow(UIGraphicsImageRenderer(size: annotation!.boundingBox.size).image { context in
+            annotation?.draw(context: context.cgContext, options: nil)
+        })
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.rects, [ CGRect(x: 0, y: 0, width: 1, height: 1) ])
         XCTAssertNil(annotation?.color)
@@ -85,6 +94,10 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is FreeTextAnnotation)
+        XCTAssert(annotation is DocViewerFreeTextAnnotation)
+        XCTAssertNoThrow(UIGraphicsImageRenderer(size: annotation!.boundingBox.size).image { context in
+            annotation?.draw(context: context.cgContext, options: nil)
+        })
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.contents, "freetext")
         XCTAssertEqual(annotation?.fontName, "Helvetica")
@@ -124,6 +137,10 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is InkAnnotation)
+        XCTAssert(annotation is DocViewerInkAnnotation)
+        XCTAssertNoThrow(UIGraphicsImageRenderer(size: annotation!.boundingBox.size).image { context in
+            annotation?.draw(context: context.cgContext, options: nil)
+        })
         XCTAssertEqual(annotation?.apiAnnotation()?.type, .ink) // float precision makes testing full equality fail
         XCTAssertEqual(annotation?.color?.hexString, "#00ffff")
         let lines = (annotation as! InkAnnotation).lines!
@@ -140,6 +157,10 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         let annotation = Annotation.from(apiAnnotation, metadata: metadata)
         annotation?.lastModified = nil
         XCTAssert(annotation is SquareAnnotation)
+        XCTAssert(annotation is DocViewerSquareAnnotation)
+        XCTAssertNoThrow(UIGraphicsImageRenderer(size: annotation!.boundingBox.size).image { context in
+            annotation?.draw(context: context.cgContext, options: nil)
+        })
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.lineWidth, 2)
     }
