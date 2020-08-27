@@ -18,8 +18,6 @@
 
 import XCTest
 @testable import Core
-import PSPDFKit
-import PDFKit
 
 class CacheManagerTests: CoreTestCase {
     let rnManifestURL = URL.documentsDirectory
@@ -99,27 +97,5 @@ class CacheManagerTests: CoreTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: extra.path))
         XCTAssertEqual(json?["speed-grader-tutorial"] as? String, "preserved")
         XCTAssertNil(json?["something-else"])
-    }
-
-    func testRemoveBloat() {
-        let fs = FileManager.default
-        let url = URL.documentsDirectory.appendingPathComponent("bloat.pdf")
-        PDFDocument().write(to: url)
-        XCTAssertTrue(fs.fileExists(atPath: url.path))
-        CacheManager.removeBloat()
-        XCTAssertFalse(fs.fileExists(atPath: url.path))
-    }
-
-    func testRemoveBloatSkipsAnnotatedPDFs() {
-        let fs = FileManager.default
-        let url = URL.documentsDirectory.appendingPathComponent("bloat.pdf")
-        PDFDocument().write(to: url)
-        let pdf = Document(url: url)
-        let annotation = SquigglyAnnotation()
-        pdf.add(annotations: [annotation], options: nil)
-        try! pdf.save()
-        XCTAssertTrue(fs.fileExists(atPath: url.path))
-        CacheManager.removeBloat()
-        XCTAssertTrue(fs.fileExists(atPath: url.path))
     }
 }
