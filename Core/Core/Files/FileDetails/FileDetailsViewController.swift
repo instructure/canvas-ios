@@ -42,7 +42,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
 
     var assignmentID: String?
-    var context = Context.currentUser
+    var context: Context?
     var downloadTask: URLSessionTask?
     let env = AppEnvironment.shared
     var fileID: String = ""
@@ -55,7 +55,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         self?.update()
     }
 
-    public static func create(context: Context, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
+    public static func create(context: Context?, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -76,6 +76,9 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
         lockView.isHidden = true
 
+        if presentingViewController != nil, navigationItem.leftBarButtonItem == nil {
+            addDoneButton(side: .left)
+        }
         navigationItem.rightBarButtonItem = env.app == .teacher ? editButton : shareButton
         editButton.accessibilityIdentifier = "FileDetails.editButton"
         shareButton.accessibilityIdentifier = "FileDetails.shareButton"
@@ -102,7 +105,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
-        env.userDefaults?.submitAssignmentCourseID = context.contextType == .course ? context.id : nil
+        env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
 
@@ -110,7 +113,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
+        stopTrackingTimeOnViewController(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
         BackgroundVideoPlayer.shared.disconnect()
     }
 
@@ -176,12 +179,12 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func doneLoading() {
         spinnerView.isHidden = true
         progressView.isHidden = true
-        let courseID = context.contextType == .course ? context.id : nil
+        let courseID = context?.contextType == .course ? context?.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
     }
 
     @IBAction func viewModules() {
-        env.router.route(to: "/\(context.pathComponent)/modules", from: self)
+        env.router.route(to: "\(context?.pathComponent ?? "")/modules", from: self)
     }
 
     @objc func edit() {
@@ -215,7 +218,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
             ],
         ]
         env.router.route(
-            to: "/\(context.pathComponent)/files/\(fileID)/edit",
+            to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
             userInfo: [ "file": apiFile ],
             from: self,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true)

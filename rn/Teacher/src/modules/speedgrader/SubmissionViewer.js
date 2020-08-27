@@ -80,6 +80,13 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
     return text
   }
 
+  onNavigation = (url) => {
+    this.props.navigator.show(url, {
+      deepLink: true,
+      modal: true,
+    })
+  }
+
   renderCenteredText (text: string) {
     return (
       <View style={styles.centeredText}>
@@ -132,7 +139,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
       <CoreWebView
         contentInset={{ bottom: this.props.drawerInset }}
         html={submission.body || ''}
-        navigator={this.props.navigator}
+        onNavigation={this.onNavigation}
         style={styles.viewer}
       />
     )
@@ -152,28 +159,22 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
           <CoreWebView
             contentInset={{ bottom: this.props.drawerInset }}
             html={submission.body || ''}
-            navigator={this.props.navigator}
+            onNavigation={this.onNavigation}
             style={styles.viewer}
           />
         )
+      case 'discussion_topic':
       case 'online_quiz':
         return (
           <AuthenticatedWebView
             contentInset={{ bottom: this.props.drawerInset }}
-            onNavigation={(url) => {
-              this.props.navigator.show(url, {
-                deepLink: true,
-                modal: true,
-              })
-            }}
-            openLinksInSafari={false}
+            onNavigation={this.onNavigation}
             source={{ uri: submission.preview_url }}
             style={styles.viewer}
           />
         )
       case 'online_upload':
         return this.renderFile(submission)
-      case 'discussion_topic':
       case 'basic_lti_launch':
       case 'external_tool':
         return (
