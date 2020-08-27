@@ -143,6 +143,7 @@ class LoginStartViewController: UIViewController {
         logoView.alpha = 1
         logoYCenter.constant = 0
         previousLoginsBottom.constant = -previousLoginsView.frame.height
+        previousLoginsView.alpha = 0
         view.layoutIfNeeded()
     }
 
@@ -178,6 +179,7 @@ class LoginStartViewController: UIViewController {
             options: .curveEaseOut,
             animations: {
                 self.previousLoginsBottom.constant = 0
+                self.previousLoginsView.alpha = 1
                 self.view.layoutIfNeeded()
             },
             completion: nil
@@ -371,6 +373,7 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5) {
                 self.previousLoginsBottom?.constant = -self.previousLoginsView.frame.height
+                self.previousLoginsView.alpha = 0
                 self.view.layoutIfNeeded()
             }
         }
