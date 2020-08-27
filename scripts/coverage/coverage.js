@@ -35,6 +35,8 @@ const { execSync } = require('child_process')
 const { existsSync, readFileSync, writeFileSync } = require('fs')
 const hljs = require('highlight.js')
 const { basename, dirname, extname, join, relative, resolve } = require('path')
+const d3 = require('d3')
+const jsdom = require('jsdom').JSDOM
 
 const config = require("./config.json")
 const ignoreExps = config.ignorePatterns.map(pattern => new RegExp(pattern))
@@ -46,9 +48,10 @@ program
   .option('--os [name]', 'Run XCTest on [name]', '13.0')
   .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
+  .option('--skip-sync', "Don't upload/download to S3")
   .parse(process.argv)
 
-const { device, os, scheme, test } = program
+const { device, os, scheme, test, skipSync } = program
 if (!scheme) {
   program.outputHelp()
   process.exit(-1)
@@ -230,7 +233,7 @@ function lineCoverage (blocks) {
 function updateFolders (folders, file) {
   const relPath = relative(process.cwd(), file.path)
   let parts = relPath.split('/')
-  parts.pop()
+  const name = parts.pop()
   const path = parts.join('/')
   const folder = folders[path] || (folders[path] = {
     get coveredLines() {
@@ -247,12 +250,83 @@ function updateFolders (folders, file) {
       return Array.from(this.files).some(file => !file.files)
     },
     files: new Set(),
-    path: path
+    path: path,
+    name
   })
   folder.files.add(file)
   if (parts.length) {
     updateFolders(folders, folder)
   }
+}
+
+// based on https://observablehq.com/@d3/zoomable-sunburst
+function makeSunburst(folder) {
+  const width = 600
+  const height = width + 40
+  const layers = 3
+  const radius = width / (2 * layers + 1)
+
+  const hierarchy = d3.hierarchy(folder, d => Array.from(d.files || []))
+        .sum(d => d.files ? d.value : d.executableLines)
+        .sort((a, b) => b.value - a.value)
+  const root = d3.partition().size([2 * Math.PI, hierarchy.height + 1])(hierarchy)
+
+  const arc = d3.arc()
+    .startAngle(d => d.x0)
+    .endAngle(d => d.x1)
+    .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+    .padRadius(radius * 1.5)
+    .innerRadius(d => (d.y0 - 0.5) * radius)
+    .outerRadius(d => Math.max((d.y0 - 0.5) * radius, (d.y1 - 0.5) * radius - 1))
+
+  const color = d3.interpolateHsl("red", "green")
+
+  const path = file => {
+    const name = relative(folder.path, file.path)
+    let link, display
+    if (name === "") {
+      link = file.path ? "../index.html" : null
+      display = ""
+    } else {
+      link = file.files ? `${name}/index.html` : `${name}.html`
+      display = `${name}` + (file.files ? "/" : "")
+    }
+    return { link, display }
+  }
+
+  const visible = root.descendants().filter(d => d.depth <= layers)
+
+  const svg = d3.select(new jsdom().window.document.body).append('svg');
+
+  const g = svg.append("g")
+    .selectAll("path")
+    .data(visible)
+    .join("g")
+
+  g.append("a")
+    .attr("href", d => path(d.data).link)
+    .attr("class", "tooltip")
+    .append("path")
+    .attr("fill-opacity", 0.8)
+    .attr("fill", d => color(percent(d.data) / 100))
+    .attr("d", arc)
+
+  g.append("g")
+    .attr("class", "hide")
+    .append("text")
+    .attr("y", width / 2 + 15)
+    .attr("text-anchor", "middle")
+    .text(d => path(d.data).display)
+    .clone()
+    .attr("dy", 20)
+    .text(d => `${percent(d.data)}% (${d.data.coveredLines}/${d.data.executableLines})`)
+
+  return svg
+    .attr("viewBox", [-width / 2, -width / 2, width, height])
+    .attr("width", width)
+    .attr("height", height)
+    .node()
+    .outerHTML
 }
 
 async function writeFolderHTML (folder, cssPath) {
@@ -276,6 +350,7 @@ async function writeFolderHTML (folder, cssPath) {
     <h1>${header(folder.path, 0)}</h1>
     <h2>${percent(folder)}%
       (${folder.coveredLines}/${folder.executableLines}) Lines Covered</h2>
+    ${makeSunburst(folder)}
     <table style="text-align:right">
       <thead>
         <tr>
@@ -300,6 +375,7 @@ async function writeFolderHTML (folder, cssPath) {
 }
 
 function syncCoverage () {
+  if (skipSync) { return }
   if (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY) {
     console.log('Missing AWS environment variables, skipping coverage sync')
     return
