@@ -74,9 +74,6 @@
   "all_4321c3a1": {
     "message": "All"
   },
-  "all_annotations_saved_c0c650ab": {
-    "message": "All annotations saved."
-  },
   "all_courses_a7dbb853": {
     "message": "All Courses"
   },
@@ -517,9 +514,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "Error Saving Grade"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "Error Saving. Tap to retry."
   },
   "everyone_854554dd": {
     "message": "Everyone"
