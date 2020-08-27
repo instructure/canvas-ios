@@ -41,7 +41,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
-        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
