@@ -113,13 +113,21 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     func failed() {
+        if let code = ProcessInfo.processInfo.environment["QR_CODE"] {
+            found(code: code)
+            return
+        }
         let alert = UIAlertController(
             title: NSLocalizedString("Scanning not supported", bundle: .core, comment: ""),
-            message: nil,
+            message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: ""),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default))
-        present(alert, animated: true)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        })
+        performUIUpdate {
+            self.present(alert, animated: true)
+        }
         captureSession = nil
     }
 
@@ -139,8 +147,14 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         }
     }
 
-    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
+            failed()
+        }
+    }
 
+    public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }

@@ -32,4 +32,12 @@ public enum LoginWeb: String, ElementWrapper {
     public static var logInButton: Element {
         return app.find(label: "Log In")
     }
+
+    public static var studentPairingCodeLabel: Element {
+        app.webViews.staticTexts.matching(label: "Student Pairing Code").firstElement
+    }
+
+    public static var parentCreateAccountButton: Element {
+        app.webViews.buttons.matching(label: "Start Participating").firstElement
+    }
 }

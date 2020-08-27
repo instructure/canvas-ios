@@ -79,16 +79,14 @@ class DashboardViewControllerTests: ParentTestCase {
         ExperimentalFeature.parentQRCodePairing.isEnabled = true
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is SelectAddStudentMethodViewController)
-        guard let selectVC = router.presented as? SelectAddStudentMethodViewController else { XCTFail("Expected SelectAddStudentMethodViewController"); return }
-        var row = selectVC.tableView(selectVC.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(row.textLabel?.text, "QR Code")
-        row = selectVC.tableView(selectVC.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
-        XCTAssertEqual(row.textLabel?.text, "Pairing Code")
-        selectVC.tableView(selectVC.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        let picker = router.presented as! BottomSheetPickerViewController
+        XCTAssertEqual(picker.actions.count, 2)
+        XCTAssertEqual(picker.actions[0].title, "QR Code")
+        XCTAssertEqual(picker.actions[1].title, "Pairing Code")
+        picker.actions[0].action()
         XCTAssert(router.presented is ScannerViewController)
         router.dismiss(vc, completion: nil)
-        selectVC.tableView(selectVC.tableView, didSelectRowAt: IndexPath(row: 1, section: 0))
+        picker.actions[1].action()
         XCTAssert(router.presented is UIAlertController)
         router.dismiss(vc, completion: nil)
 
@@ -168,7 +166,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        let code = "canvas-parent://create-account/create-account/1/code?baseURL=twilson.instructure.com"
+        let code = "canvas-parent://twilson.instructure.com/pair?code=abc"
         vc.scanner(ScannerViewController(), didScanCode: code)
         XCTAssert(router.presented is UIAlertController)
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Domain mismatch")
@@ -182,7 +180,7 @@ class DashboardViewControllerTests: ParentTestCase {
         vc.view.layoutIfNeeded()
         vc.viewWillAppear(false)
 
-        let code = "canvas-parent://create-account/create-account/1/code?baseURL=canvas.instructure.com"
+        let code = "canvas-parent://canvas.instructure.com/pair?code=code"
 
         let student = APIUser.make(
             id: "1",
