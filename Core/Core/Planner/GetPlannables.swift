@@ -91,15 +91,12 @@ public class GetPlannables: UseCase {
     var contextCodes: [String]?
     var filter: String = ""
 
-    public let syncContext: NSManagedObjectContext?
-
-    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "", syncContext: NSManagedObjectContext? = nil) {
+    public init(userID: String? = nil, startDate: Date, endDate: Date, contextCodes: [String]? = nil, filter: String = "") {
         self.userID = userID
         self.startDate = startDate
         self.endDate = endDate
         self.contextCodes = contextCodes
         self.filter = filter
-        self.syncContext = syncContext
     }
 
     public var cacheKey: String? {
@@ -143,7 +140,7 @@ public class GetPlannables: UseCase {
                 contextCodes: contextCodes ?? [],
                 filter: filter
             )
-            environment.api.makeRequest(request) { response, urlResponse, error in
+            environment.api.exhaust(request) { response, urlResponse, error in
                 completionHandler(Response(plannables: response, calendarEvents: nil), urlResponse, error)
             }
         }
