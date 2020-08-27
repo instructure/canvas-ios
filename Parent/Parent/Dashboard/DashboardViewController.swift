@@ -259,11 +259,31 @@ class DashboardViewController: UIViewController {
 
     @objc func actionDidTapAddStudent() {
         if ExperimentalFeature.parentQRCodePairing.isEnabled {
-            let selectionVC = SelectAddStudentMethodViewController.create(delegate: self)
-            env.router.show(selectionVC, from: self, options: .modal())
+            let picker = BottomSheetPickerViewController.create()
+            picker.addAction(
+                image: nil,
+                title: NSLocalizedString("QR Code", comment: ""),
+                accessibilityIdentifier: "DashboardViewController.addStudent.qrCode"
+            ) { [weak self] in
+                self?.scanQRCode()
+            }
+            picker.addAction(
+                image: nil,
+                title: NSLocalizedString("Pairing Code", comment: ""),
+                accessibilityIdentifier: "DashboardViewController.addStudent.pairingCode"
+            ) { [weak self] in
+                self?.addStudentController.actionAddStudent()
+            }
+            env.router.show(picker, from: self, options: .modal())
         } else {
             addStudentController.actionAddStudent()
         }
+    }
+
+    func scanQRCode() {
+        let scanner = ScannerViewController()
+        scanner.delegate = self
+        self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
     }
 }
 
@@ -271,17 +291,16 @@ extension DashboardViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
             guard
-                let comps = URLComponents(string: code),
-                let pairingCode = comps.url?.lastPathComponent,
-                comps.queryItems?.first?.name == "baseURL",
-                let host = comps.queryItems?.first?.value
+                let components = URLComponents(string: code),
+                let host = components.host,
+                let pairingCode = components.queryItems?.first(where: { $0.name == "code" })?.value
             else {
                 let error = NSError.instructureError(NSLocalizedString("Could not parse QR code, QR code invalid", comment: ""))
                 self.showError(error)
                 return
             }
 
-            if host != self.env.currentSession?.baseURL.host {
+            guard host == self.env.currentSession?.baseURL.host else {
                 let title = NSLocalizedString("Domain mismatch", comment: "")
                 let msg = NSLocalizedString(
                     """
@@ -293,21 +312,6 @@ extension DashboardViewController: ScannerDelegate, ErrorViewController {
                 return
             }
             self.addStudentController.addPairingCode(code: pairingCode)
-        }
-    }
-}
-
-extension DashboardViewController: AddStudentMethodProtocol {
-    func didSelectAddStudentMethod(method: AddObserveeMethod) {
-        env.router.dismiss(self) {
-            switch method {
-            case .qr:
-                let scanner = ScannerViewController()
-                scanner.delegate = self
-                self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
-            case .pairingCode:
-                self.addStudentController.actionAddStudent()
-            }
         }
     }
 }
