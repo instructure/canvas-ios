@@ -58,12 +58,12 @@ public enum ModuleItemType: Equatable, Codable {
         case .subHeader:
             self = .subHeader
         case .externalURL:
-            let url = try container.decode(URL.self, forKey: .external_url)
-            self = .externalURL(url)
+            let url = try container.decode(APIURL.self, forKey: .external_url)
+            self = .externalURL(url.rawValue)
         case .externalTool:
             let id = try container.decode(ID.self, forKey: .content_id)
-            let url = try container.decode(URL.self, forKey: .external_url)
-            self = .externalTool(id.value, url)
+            let url = try container.decode(APIURL.self, forKey: .external_url)
+            self = .externalTool(id.value, url.rawValue)
         }
     }
 
