@@ -37,14 +37,12 @@ import { alertError } from '../../redux/middleware/error-handler'
 import canvas from '../../canvas-api'
 import Row from '../../common/components/rows/Row'
 import RowSeparator from '../../common/components/rows/RowSeparator'
-import find from 'lodash/find'
 import localeSort from '../../utils/locale-sort'
 import AccessIcon from '../../common/components/AccessIcon'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
 import instIcon from '../../images/inst-icons'
 import bytes, { unitFor } from '../../utils/locale-bytes'
-import DropView from '../../common/components/DropView'
 import SavingBanner from '../../common/components/SavingBanner'
 import TypeAheadSearch from '../../common/TypeAheadSearch'
 import AttachmentPicker from '../attachments/AttachmentPicker'
@@ -563,7 +561,7 @@ export class FilesList extends Component<Props, State> {
         rightBarButtons={rightBarButtons}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
       >
-        <DropView style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
           { this.state.uploadPending && <SavingBanner title={this.state.uploadMessage || ''} /> }
           <FlatList
             data={data}
@@ -582,7 +580,7 @@ export class FilesList extends Component<Props, State> {
             fileTypes={['all']}
             navigator={this.props.navigator}
           />
-        </DropView>
+        </View>
       </Screen>
     )
   }
@@ -604,7 +602,7 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
     const fullPath = `${rootFolder.name}/${decodeURIComponent(props.subFolder)}`
     const parentPath = fullPath.substring(0, fullPath.lastIndexOf('/'))
     const possibleParents = contextFolders[parentPath]
-    parentFolder = find(possibleParents, { full_name: fullPath })
+    parentFolder = possibleParents?.find(folder => folder.full_name === fullPath)
   } else {
     parentFolder = rootFolder
   }
