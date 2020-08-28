@@ -287,7 +287,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertFalse(controller.lockView.isHidden)
         XCTAssertEqual(controller.lockLabel.text, "Locked, yo.")
         controller.viewModules() // not yet accessible from UI
-        XCTAssertTrue(router.lastRoutedTo("/\(context.pathComponent)/modules"))
+        XCTAssertTrue(router.lastRoutedTo("\(context.pathComponent)/modules"))
     }
 
     func testTeacher() {
@@ -296,7 +296,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
         XCTAssert(controller.navigationItem.rightBarButtonItem == controller.editButton)
         _ = controller.editButton.target?.perform(controller.editButton.action)
-        XCTAssert(router.lastRoutedTo("/\(context.pathComponent)/files/1/edit"))
+        XCTAssert(router.lastRoutedTo("\(context.pathComponent)/files/1/edit"))
 
         _ = controller.toolbarLinkButton.target?.perform(controller.toolbarLinkButton.action)
         XCTAssertEqual(controller.copiedView.isHidden, false)

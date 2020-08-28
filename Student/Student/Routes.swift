@@ -200,6 +200,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
 
     "/files/:fileID": fileDetails,
     "/files/:fileID/download": fileDetails,
+    "/files/:fileID/preview": fileDetails,
+    "/files/:fileID/edit": nil,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID/preview": fileDetails,
@@ -415,12 +417,12 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    var context = Context(path: url.path) ?? .currentUser
+    var context = Context(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
         context = Context(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    if !url.originIsModuleItemDetails, context.contextType == .course {
+    if !url.originIsModuleItemDetails, let context = context, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .file,

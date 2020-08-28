@@ -206,6 +206,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
 
     "/files/:fileID": fileDetails,
     "/files/:fileID/download": fileDetails,
+    "/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID/preview": fileDetails,
@@ -279,8 +280,7 @@ private func fileList(props: Props) -> UIViewController? {
 
 private func fileDetails(props: Props) -> UIViewController? {
     guard let fileID = props["preview"] as? String ?? props["fileID"] as? String else { return nil }
-    let context = props.context ?? .currentUser
-    return FileDetailsViewController.create(context: context, fileID: fileID)
+    return FileDetailsViewController.create(context: props.context, fileID: fileID)
 }
 
 private extension Props {
