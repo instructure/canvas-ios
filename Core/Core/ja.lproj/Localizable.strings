@@ -179,9 +179,6 @@
 "Camera" = "カメラ";
 
 /* No comment provided by engineer. */
-"Camera not available" = "カメラを使用できません";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
 
 /* No comment provided by engineer. */
+"favorite" = "お気に入り";
+
+/* No comment provided by engineer. */
 "file" = "ファイル";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "回答があるまで何もできません";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Canvasアカウントを持っていません";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Canvasアカウントを持っています";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "～へ%@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。ペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";

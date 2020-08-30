@@ -14,9 +14,6 @@
 "Add Student" = "Lisää opiskelija";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Lisää opiskelija, jolla on...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Lisää opiskelijoita yläosaan tai naamioituaksesi opiskelijana.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Hälytykset";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Onko sinulla jo tili? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Ilmoitus";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Takaisin";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Kun napautat ”Luo tili”, hyväksyt %1$@ ja %2$@";
 
 /* Calendar Tab */
 "Calendar" = "Kalenteri";
@@ -71,9 +62,6 @@
 "Courses" = "Kurssit";
 
 /* No comment provided by engineer. */
-"Create Account" = "Luo tili";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Kurssin opiskelija %@. Napauta vaihtaaksesi opiskelijoita";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Määräpäivä";
 
 /* No comment provided by engineer. */
-"Email address" = "Sähköpostiosoite";
-
-/* No comment provided by engineer. */
-"Email..." = "Sähköposti...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Tapahtuman tiedot";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Etusivu";
-
-/* No comment provided by engineer. */
-"Full name" = "Koko nimi";
-
-/* No comment provided by engineer. */
-"Full name..." = "Koko nimi...";
 
 /* No comment provided by engineer. */
 "Grades" = "Arvosanat";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Parinmuodostuskoodi";
 
 /* No comment provided by engineer. */
-"Password" = "Salasana";
-
-/* No comment provided by engineer. */
-"Password is required" = "Salasana vaaditaan";
-
-/* No comment provided by engineer. */
-"Password..." = "Salasana...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Käyttöoikeus tarvitaan";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Anna sähköpostiosoite.";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Anna koko nimesi";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Tietosuojakäytäntö";
 
 /* No comment provided by engineer. */
 "QR Code" = "Viivakoodi";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Asetukset. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Kirjaudu sisään";
-
 /* No comment provided by engineer. */
 "Summary" = "Yhteenveto";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Opinto-ohjelma";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Käyttöehdot";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Arvon täytyy olla 0 ja 100 välillä";

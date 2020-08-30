@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Yon erè te fèt sanzatann.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Anile";
-
-/* No comment provided by engineer. */
 "Collapse" = "Redwi";
-
-/* No comment provided by engineer. */
-"Comments" = "Kòmantè";
-
-/* No comment provided by engineer. */
-"Delete" = "Efase";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Efase Kòmantè";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Rejte";
 
 /* No comment provided by engineer. */
 "Done" = "Fini";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Jwenn Nòt pou";
-
-/* Inbox tab title */
-"Inbox" = "Bwat resepsyon";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Done yo resevwa de API yo envalid";
-
-/* No comment provided by engineer. */
-"Open in…" = "Ouvri nan...";
-
-/* No comment provided by engineer. */
-"Remove" = "Elimine";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Elimine %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Elimine %1$@ pa %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Reponn";
-
-/* No comment provided by engineer. */
-"Style" = "Estil";
 

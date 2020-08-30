@@ -14,9 +14,6 @@
 "Add Student" = "Tilføj elever";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Tilføj elever med ...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Tilføj elever øverst, eller besøg den overordnede menu for at anvende en brugeridentitet som en elev.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Varslinger";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Har du allerede en konto? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Besked";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Tilbage";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ved at trykke på 'Opret konto' accepterer jeg %1$@ og accepterer %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -71,9 +62,6 @@
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
-"Create Account" = "Opret konto";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Nuværende elev: %@. Tryk for at skifte elev";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Forfalder";
 
 /* No comment provided by engineer. */
-"Email address" = "E-mailadresse";
-
-/* No comment provided by engineer. */
-"Email..." = "E-mail ...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Begivenhedsdetaljer";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
-
-/* No comment provided by engineer. */
-"Full name" = "Fulde navn";
-
-/* No comment provided by engineer. */
-"Full name..." = "Fulde navn ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Vurderinger";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Parringskode";
 
 /* No comment provided by engineer. */
-"Password" = "Adgangskode";
-
-/* No comment provided by engineer. */
-"Password is required" = "Adgangskode er påkrævet";
-
-/* No comment provided by engineer. */
-"Password..." = "Adgangskode ...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Tilladelse nødvendig";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Indtast en e-mailadresse";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Indtast det fulde navn";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Datapolitik";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-kode";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Indstillinger. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Log på";
-
 /* No comment provided by engineer. */
 "Summary" = "Sammendrag";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Fagplan";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Betingelser for service";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Værdien skal være et tal mellem 0 og 100.";

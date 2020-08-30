@@ -14,9 +14,6 @@
 "Add Student" = "Dodaj študenta";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Dodaj študenta s/z ...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Dodajte študente na vrhu ali pa pojdite v globalni meni, da prevzamete vlogo študenta.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Opozorila";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Ali že imate račun? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Obvestilo";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Nazaj";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Če tapnete »Ustvari račun«, pristajate na %1$@ in potrdite %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Koledar";
@@ -71,9 +62,6 @@
 "Courses" = "Predmeti";
 
 /* No comment provided by engineer. */
-"Create Account" = "Ustvari račun";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Trenutni študent: %@. Tapnite za preklop študentov";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Roki";
 
 /* No comment provided by engineer. */
-"Email address" = "E-poštni naslov";
-
-/* No comment provided by engineer. */
-"Email..." = "E-pošta ...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Podrobnosti dogodka";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Prva stran";
-
-/* No comment provided by engineer. */
-"Full name" = "Polno ime";
-
-/* No comment provided by engineer. */
-"Full name..." = "Polno ime ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Ocene";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Koda za seznanjanje naprave";
 
 /* No comment provided by engineer. */
-"Password" = "Geslo";
-
-/* No comment provided by engineer. */
-"Password is required" = "Geslo je obvezno";
-
-/* No comment provided by engineer. */
-"Password..." = "Geslo ...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Potrebno je dovoljenje.";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Vnesite e-poštni naslov";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Vnesite polno ime";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Pravilnik o zasebnosti";
 
 /* No comment provided by engineer. */
 "QR Code" = "Koda QR";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Nastavitve. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Prijava";
-
 /* No comment provided by engineer. */
 "Summary" = "Povzetek";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Učni načrt";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Pogoji storitve";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Vrednost mora biti število 0–100";

@@ -14,9 +14,6 @@
 "Add Student" = "Ajoute Elèv";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Ajoute elèv ak...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ajoute elèv yo anlè a oswa vizite meni global la pou w ka fè tèt ou pase pou yon elèv.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Alèt";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Ou gen yon kont deja? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Anons";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Retounen";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Lè w tape ‘Kreye Kont’, ou dakò ak %1$@ epi w rekonèt %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalandriye";
@@ -71,9 +62,6 @@
 "Courses" = "Kou";
 
 /* No comment provided by engineer. */
-"Create Account" = "Kreye Kont";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Elèv aktyèl: %@. Tape pou chanje elèv";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Delè";
 
 /* No comment provided by engineer. */
-"Email address" = "Adrès imèl";
-
-/* No comment provided by engineer. */
-"Email..." = "Imèl...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Detay Aktivite";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
-
-/* No comment provided by engineer. */
-"Full name" = "Non Konplè";
-
-/* No comment provided by engineer. */
-"Full name..." = "Non Konplè...";
 
 /* No comment provided by engineer. */
 "Grades" = "Nòt";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Kòd Kouplaj";
 
 /* No comment provided by engineer. */
-"Password" = "Modpas";
-
-/* No comment provided by engineer. */
-"Password is required" = "Modpas obligatwa";
-
-/* No comment provided by engineer. */
-"Password..." = "Modpas...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Otorizasyon Nesesè";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Tanpri ekri yon adrès imèl";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Tanpri antre non konplè a";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Politik Konfidansyalite";
 
 /* No comment provided by engineer. */
 "QR Code" = "Kòd QR";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Paramèt. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Konekte";
-
 /* No comment provided by engineer. */
 "Summary" = "Rezime";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Pwogram";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Kondisyon Itilizasyon";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Valè a dwe se yon nonb ant 0 a 100";

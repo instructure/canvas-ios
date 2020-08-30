@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "حدث خطأ غير متوقع.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك تود حذف هذا التعليق؟";
-
-/* No comment provided by engineer. */
-"Cancel" = "إلغاء";
-
-/* No comment provided by engineer. */
 "Collapse" = "طي";
-
-/* No comment provided by engineer. */
-"Comments" = "التعليقات";
-
-/* No comment provided by engineer. */
-"Delete" = "حذف";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "حذف التعليق";
-
-/* No comment provided by engineer. */
-"Dismiss" = "تجاهل";
 
 /* No comment provided by engineer. */
 "Done" = "تم";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "احصل على درجات";
-
-/* Inbox tab title */
-"Inbox" = "صندوق الوارد";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "تم تلقي تاريخ غير صالح من API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "الفتح في...";
-
-/* No comment provided by engineer. */
-"Remove" = "إزالة";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "تمت الإزالة %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "تمت إزالة %1$@ بواسطة %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "رد";
-
-/* No comment provided by engineer. */
-"Style" = "نمط";
 

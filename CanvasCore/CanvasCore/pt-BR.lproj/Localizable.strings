@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Ocorreu um erro inesperado.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Tem certeza de que deseja excluir este comentário?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Cancelar";
-
-/* No comment provided by engineer. */
 "Collapse" = "Recolher";
-
-/* No comment provided by engineer. */
-"Comments" = "Comentários";
-
-/* No comment provided by engineer. */
-"Delete" = "Excluir";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Excluir comentário";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
 "Done" = "Feito";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Obter notas para";
-
-/* Inbox tab title */
-"Inbox" = "Caixa de entrada";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Dados inválidos recebidos da API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Abrir em...";
-
-/* No comment provided by engineer. */
-"Remove" = "Remover";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Removido %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "%1$@ removido por %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Responder";
-
-/* No comment provided by engineer. */
-"Style" = "Estilo";
 

@@ -14,9 +14,6 @@
 "Add Student" = "Lägg till elev";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Lägg till elev med...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Lägg till elever längst upp eller öppna den globala menyn för att utge dig för att vara elev.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Larm";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Har du redan ett konto? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Anslag";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Tillbaka";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Genom att trycka på \"Skapa konto\" godkänner %1$@ och samtycker här %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -71,9 +62,6 @@
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
-"Create Account" = "Skapa konto";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Aktuell elev: %@. Tryck för att växla elev";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Inlämningsdatum";
 
 /* No comment provided by engineer. */
-"Email address" = "E-postadress";
-
-/* No comment provided by engineer. */
-"Email..." = "E-post...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Händelsedetaljer";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Framsida";
-
-/* No comment provided by engineer. */
-"Full name" = "Fullständigt namn";
-
-/* No comment provided by engineer. */
-"Full name..." = "Fullständigt namn...";
 
 /* No comment provided by engineer. */
 "Grades" = "Omdömen";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Kopplingskod";
 
 /* No comment provided by engineer. */
-"Password" = "Lösenord";
-
-/* No comment provided by engineer. */
-"Password is required" = "Lösenord krävs";
-
-/* No comment provided by engineer. */
-"Password..." = "Lösenord...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Tillstånd behövs";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Ange en e-postadress";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Ange fullständigt namn";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Integritetspolicy";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-kod";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Inställningar. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Logga in";
-
 /* No comment provided by engineer. */
 "Summary" = "Sammanfattning";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Kursöversikt";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Tjänstvillkor";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Värdet måste vara mellan 0 och 100";

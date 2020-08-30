@@ -179,9 +179,6 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Dim camera ar gael";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Ceisiwch deipio URL llawn yr ysgol.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
 
 /* No comment provided by engineer. */
+"favorite" = "ffefryn";
+
+/* No comment provided by engineer. */
 "file" = "ffeil";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Alla i ddim bwrw ymlaen nes bydda i wedi cael ateb gennych chi";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Does gen i ddim cyfrif Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Mae gen i gyfrif Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "i %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn. Os nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";

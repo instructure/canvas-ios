@@ -179,9 +179,6 @@
 "Camera" = "الكاميرا";
 
 /* No comment provided by engineer. */
-"Camera not available" = "الكاميرا غير متاحة";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "لا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
 
 /* No comment provided by engineer. */
+"favorite" = "مفضلة";
+
+/* No comment provided by engineer. */
 "file" = "ملف";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "ليس لدي حساب Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "لدي حساب Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "إلى %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا. إذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.";
 
 /* No comment provided by engineer. */
 "To Do" = "قائمة المهام";

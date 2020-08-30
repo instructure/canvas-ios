@@ -14,9 +14,6 @@
 "Add Student" = "Dodaj ucznia";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Dodaj uczestnika z...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Dodaj uczestników na górze lub odwiedź globalne menu, aby podszyć się pod uczestnika.";
 
 /* No comment provided by engineer. */
@@ -29,9 +26,6 @@
 "Alerts" = "Alerty";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Masz już konto? %@";
-
-/* No comment provided by engineer. */
 "Announcement" = "Ogłoszenie";
 
 /* No comment provided by engineer. */
@@ -42,9 +36,6 @@
 
 /* No comment provided by engineer. */
 "Back" = "Wstecz";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Stukając opcję Utwórz konto, zgadzasz się na %1$@ i potwierdzasz %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalendarz";
@@ -71,9 +62,6 @@
 "Courses" = "Kursy";
 
 /* No comment provided by engineer. */
-"Create Account" = "Utwórz konto";
-
-/* No comment provided by engineer. */
 "Current student: %@. Tap to switch students" = "Obecny uczestnik: %@. Stuknij, aby przełącznik uczestników";
 
 /* No comment provided by engineer. */
@@ -92,12 +80,6 @@
 "Due" = "Termin";
 
 /* No comment provided by engineer. */
-"Email address" = "Adres e-mail";
-
-/* No comment provided by engineer. */
-"Email..." = "Adres e-mail...";
-
-/* No comment provided by engineer. */
 "Event Details" = "Szczegółowe informacje o wydarzeniu";
 
 /* No comment provided by engineer. */
@@ -108,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Pierwsza strona";
-
-/* No comment provided by engineer. */
-"Full name" = "Pełna nazwa";
-
-/* No comment provided by engineer. */
-"Full name..." = "Pełna nazwa...";
 
 /* No comment provided by engineer. */
 "Grades" = "Oceny";
@@ -170,25 +146,7 @@
 "Pairing Code" = "Kod parowania";
 
 /* No comment provided by engineer. */
-"Password" = "Hasło";
-
-/* No comment provided by engineer. */
-"Password is required" = "Wymagane jest hasło";
-
-/* No comment provided by engineer. */
-"Password..." = "Hasło...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Wymagane uprawnienia";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Podaj adres e-mail";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Podaj pełną nazwę";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Polityka prywatności";
 
 /* No comment provided by engineer. */
 "QR Code" = "Kod QR";
@@ -219,17 +177,11 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Ustawienia. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Zapisz się";
-
 /* No comment provided by engineer. */
 "Summary" = "Podsumowanie";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Konspekt";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Warunki korzystania z usługi";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Wartość powinna wynosić między 0 a 100.";

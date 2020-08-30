@@ -179,9 +179,6 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Camera niet beschikbaar";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kun je je school niet vinden? Typ de volledige URL van de school.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Mislukt. Tik voor opties";
 
 /* No comment provided by engineer. */
+"favorite" = "favoriet";
+
+/* No comment provided by engineer. */
 "file" = "bestand";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ik kan niets doen tot ik een antwoord van je terugkrijg";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Ik heb geen Canvas-account";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Ik heb een Canvas-account";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "tot %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas-cursistenapp zoals hieronder aangegeven en daarna scan je die code hier. Als je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opdrachtenlijst";

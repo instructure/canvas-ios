@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Gwall annisgwyl.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Canslo";
-
-/* No comment provided by engineer. */
 "Collapse" = "Crebachu";
-
-/* No comment provided by engineer. */
-"Comments" = "Sylwadau";
-
-/* No comment provided by engineer. */
-"Delete" = "Dileu";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Dileu Sylw";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Diystyru";
 
 /* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Nôl Graddau ar gyfer";
-
-/* Inbox tab title */
-"Inbox" = "Blwch Derbyn";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Dyddiad annilys gan API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Agor yn...";
-
-/* No comment provided by engineer. */
-"Remove" = "Dileu";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Wedi tynnu %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "%1$@ wedi’i dynnu gan %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Ateb";
-
-/* No comment provided by engineer. */
-"Style" = "Arddull";
 

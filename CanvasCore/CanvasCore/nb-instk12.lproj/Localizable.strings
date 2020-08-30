@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "En uventet feil har oppstått.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Er du sikker på at du vil slette denne kommentaren?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Avbryt";
-
-/* No comment provided by engineer. */
 "Collapse" = "Kollaps";
-
-/* No comment provided by engineer. */
-"Comments" = "Kommentarer";
-
-/* No comment provided by engineer. */
-"Delete" = "Slett";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Slett kommentar";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
 "Done" = "Ferdig";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Få vurderinger for";
-
-/* Inbox tab title */
-"Inbox" = "Innboks";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ugyldig data mottatt fra API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Åpne i...";
-
-/* No comment provided by engineer. */
-"Remove" = "Fjern";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Fjernet %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Fjernet %1$@ av %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Svar";
-
-/* No comment provided by engineer. */
-"Style" = "Stil";
 

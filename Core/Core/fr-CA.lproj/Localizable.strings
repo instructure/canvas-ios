@@ -179,9 +179,6 @@
 "Camera" = "Caméra";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Caméra non disponible";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Vous ne trouvez pas votre école? Essayez de saisir l'URL complète de l’école.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Échec. Appuyez pour des options";
 
 /* No comment provided by engineer. */
+"favorite" = "favori";
+
+/* No comment provided by engineer. */
 "file" = "fichier";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Je ne peux pas continuer mon travail avant d’avoir reçu une réponse de votre part";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Je n’ai pas de compte Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "J’ai un compte Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "à %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pour créer un compte, demandez à votre étudiant de créer un code d’appariement pour vous à partir de la section Paramètres de l’application Canvas Student, comme indiqué ci-dessous, puis scannez ce code à partir d’ici. Si votre étudiant ne voit pas l’option de créer un code d’appariement, vous devrez contacter votre école pour créer votre compte.";
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";

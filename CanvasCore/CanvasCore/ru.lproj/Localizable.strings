@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Произошла непредвиденная ошибка.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Отменить";
-
-/* No comment provided by engineer. */
 "Collapse" = "Свернуть";
-
-/* No comment provided by engineer. */
-"Comments" = "Комментарии";
-
-/* No comment provided by engineer. */
-"Delete" = "Удалить";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Удалить комментарий";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Отказаться";
 
 /* No comment provided by engineer. */
 "Done" = "Готово";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Получить оценки за";
-
-/* Inbox tab title */
-"Inbox" = "Входящие";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Получены недопустимые данные от API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Открыть в...";
-
-/* No comment provided by engineer. */
-"Remove" = "Удалить";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Удалено %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Удалено %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Ответить";
-
-/* No comment provided by engineer. */
-"Style" = "Стиль";
 
