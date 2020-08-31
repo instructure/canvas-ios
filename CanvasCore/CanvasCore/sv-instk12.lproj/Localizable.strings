@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Ett oväntat fel har uppstått.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Avbryt";
-
-/* No comment provided by engineer. */
 "Collapse" = "Stäng";
-
-/* No comment provided by engineer. */
-"Comments" = "Kommentarer";
-
-/* No comment provided by engineer. */
-"Delete" = "Ta bort";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Ta bort kommentar";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Avvisa";
 
 /* No comment provided by engineer. */
 "Done" = "Klar";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Hämta omdömen för";
-
-/* Inbox tab title */
-"Inbox" = "Inkorg";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ogiltigt datum togs emot från API";
-
-/* No comment provided by engineer. */
-"Open in…" = "Öppna i ...";
-
-/* No comment provided by engineer. */
-"Remove" = "Ta bort";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Tog bort %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Tog bort %1$@ av %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Svara";
-
-/* No comment provided by engineer. */
-"Style" = "Stil";
 

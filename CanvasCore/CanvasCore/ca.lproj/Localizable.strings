@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "S'ha produït un error inesperat.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Cancel·la";
-
-/* No comment provided by engineer. */
 "Collapse" = "Contrau";
-
-/* No comment provided by engineer. */
-"Comments" = "Comentaris";
-
-/* No comment provided by engineer. */
-"Delete" = "Suprimeix";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Suprimeix el comentari";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Descarta";
 
 /* No comment provided by engineer. */
 "Done" = "Fet";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Obtén qualificacions per a";
-
-/* Inbox tab title */
-"Inbox" = "Safata d'entrada";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "S'ha rebut una data no vàlida de l'API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Obre'l a…";
-
-/* No comment provided by engineer. */
-"Remove" = "Elimina";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Eliminat %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Eliminat %1$@ per %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Respon";
-
-/* No comment provided by engineer. */
-"Style" = "Estil";
 

@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Prišlo je do nepričakovane napake.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Prekliči";
-
-/* No comment provided by engineer. */
 "Collapse" = "Strni";
-
-/* No comment provided by engineer. */
-"Comments" = "Komentarji";
-
-/* No comment provided by engineer. */
-"Delete" = "Odstrani";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Odstrani komentar";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Opusti";
 
 /* No comment provided by engineer. */
 "Done" = "Dokončano";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Pridobi ocene za";
-
-/* Inbox tab title */
-"Inbox" = "Pošta";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Neveljaven datum, prejet od API";
-
-/* No comment provided by engineer. */
-"Open in…" = "Odpri v ...";
-
-/* No comment provided by engineer. */
-"Remove" = "Odstrani";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Odstranjeno %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Odstranjeno %1$@, odstranil %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Odgovori";
-
-/* No comment provided by engineer. */
-"Style" = "Slog";
 

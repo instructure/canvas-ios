@@ -179,9 +179,6 @@
 "Camera" = "Càmera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "La càmera no està disponible";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "No trobeu l'escola? Proveu d'escriure l'URL de l'escola complet.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "S'ha produït un error. Toqueu per veure les opcions";
 
 /* No comment provided by engineer. */
+"favorite" = "preferit";
+
+/* No comment provided by engineer. */
 "file" = "fitxer";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "No puc acabar de fer les coses fins que torni a tenir notícies teves";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "No tinc un compte del Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Tinc un compte del Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "per a %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un compte, feu que l'estudiant creï un codi d'emparellament per a vós des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí. Si l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre compte.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";

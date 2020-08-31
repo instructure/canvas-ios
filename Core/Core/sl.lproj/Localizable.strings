@@ -179,9 +179,6 @@
 "Camera" = "Fotoaparat";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kamera ni na voljo";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ali svoje šole ne najdete? Poskusite vnesti poln naslov URL šole.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
 
 /* No comment provided by engineer. */
+"favorite" = "priljubljeno";
+
+/* No comment provided by engineer. */
 "file" = "datoteka";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ne morem dokončati zadev, dokler ne prejmem vašega odziva.";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Nimam računa Calvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Imam račun Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "naslovnik %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam. Če študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.";
 
 /* No comment provided by engineer. */
 "To Do" = "Čakajoča opravila";

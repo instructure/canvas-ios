@@ -179,9 +179,6 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kemera pa disponib";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
 
 /* No comment provided by engineer. */
+"favorite" = "prefere";
+
+/* No comment provided by engineer. */
 "file" = "fichye";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Mwen pa gen kont Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Mwen gen yon kont Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "pou %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la. Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";

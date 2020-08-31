@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Óvænt villa hefur komið upp.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Hætta við";
-
-/* No comment provided by engineer. */
 "Collapse" = "Fella";
-
-/* No comment provided by engineer. */
-"Comments" = "Athugasemdir";
-
-/* No comment provided by engineer. */
-"Delete" = "Eyða";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Eyða athugasemd";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
 "Done" = "Lokið";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Fá einkunnir fyrir";
-
-/* Inbox tab title */
-"Inbox" = "Innhólf";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ógild gögn móttekin frá API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Opna í…";
-
-/* No comment provided by engineer. */
-"Remove" = "Fjarlægja";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Fjarlægt %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Fjarlægt %1$@ af %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Svara";
-
-/* No comment provided by engineer. */
-"Style" = "Stíll";
 

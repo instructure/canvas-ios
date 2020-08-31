@@ -1,26 +1,5 @@
 /* No comment provided by engineer. */
-"An unexpected error has occurred." = "Er is een onverwachte fout opgetreden.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Annuleren";
-
-/* No comment provided by engineer. */
 "Collapse" = "Invouwen";
-
-/* No comment provided by engineer. */
-"Comments" = "Opmerkingen";
-
-/* No comment provided by engineer. */
-"Delete" = "Verwijderen";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Opmerking verwijderen";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Afwijzen";
 
 /* No comment provided by engineer. */
 "Done" = "Gereed";
@@ -36,28 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Cijfers ophalen voor";
-
-/* Inbox tab title */
-"Inbox" = "Inbox";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ongeldige gegevens ontvangen van API.";
-
-/* No comment provided by engineer. */
-"Open in…" = "Openen in...";
-
-/* No comment provided by engineer. */
-"Remove" = "Verwijderen";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Verwijderd %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "%1$@ verwijderd door %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Antwoord";
-
-/* No comment provided by engineer. */
-"Style" = "Stijl";
 
