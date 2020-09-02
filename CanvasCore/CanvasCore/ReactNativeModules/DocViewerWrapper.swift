@@ -27,9 +27,15 @@ public class DocViewerWrapper: UIView {
             controller?.setContentInsets(contentInset)
         }
     }
-    @objc public var fallbackURL: String?
-    @objc public var filename: String?
-    @objc public var previewURL: String?
+    @objc public var fallbackURL: String? {
+        didSet { setNeedsLayout() }
+    }
+    @objc public var filename: String? {
+        didSet { setNeedsLayout() }
+    }
+    @objc public var previewURL: String? {
+        didSet { setNeedsLayout() }
+    }
 
     public override func layoutSubviews() {
         guard let filename = filename, let fallbackURL = fallbackURL.flatMap({ URL(string: $0) }) else {
