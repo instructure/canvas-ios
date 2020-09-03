@@ -44,9 +44,14 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         super.init(documentProvider: documentProvider)
 
         guard metadata.enabled else { return }
+        var hasReplies: Set<String> = []
         let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
             apiAnnotations[apiAnnotation.id] = apiAnnotation
+            if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
             return Annotation.from(apiAnnotation, metadata: metadata)
+        }
+        for annotation in allAnnotations {
+            annotation.hasReplies = hasReplies.contains(annotation.name ?? "")
         }
         setAnnotations(allAnnotations, append: false)
     }
@@ -84,6 +89,12 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             guard let id = annotation.name, apiAnnotations.removeValue(forKey: id) != nil else { continue }
             removed.append(annotation)
             delete(id)
+        }
+        let hasReplies = Set(allAnnotations.compactMap {
+            ($0 as? DocViewerCommentReplyAnnotation)?.inReplyToName
+        })
+        for annotation in allAnnotations {
+            annotation.hasReplies = hasReplies.contains(annotation.name ?? "")
         }
         return removed
     }

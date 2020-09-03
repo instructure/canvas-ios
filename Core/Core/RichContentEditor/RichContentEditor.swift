@@ -60,6 +60,10 @@ struct RichContentEditor: UIViewControllerRepresentable {
     func makeUIViewController(context: Self.Context) -> RichContentEditorViewController {
         let uiViewController = RichContentEditorViewController.create(context: self.context, uploadTo: uploadTo)
         uiViewController.webView.autoresizesHeight = true
+        // Prevent bad adjustedContentInset from adding unnecessary scrollbars
+        NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.removeObserver(uiViewController.webView, name: UIResponder.keyboardWillHideNotification, object: nil)
         return uiViewController
     }
 

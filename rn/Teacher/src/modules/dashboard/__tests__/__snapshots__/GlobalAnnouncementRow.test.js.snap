@@ -85,7 +85,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -102,7 +102,6 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,
@@ -200,7 +199,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -217,7 +216,6 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,
@@ -315,7 +313,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -332,7 +330,6 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,
@@ -430,7 +427,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -447,7 +444,6 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,
@@ -545,7 +541,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -562,7 +558,6 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,
@@ -660,7 +655,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
           </SubTitle>
         </View>
       </ForwardRef>
-      <CanvasWebView
+      <CoreWebView
         accessibilityElementsHidden={true}
         automaticallySetHeight={true}
         html="Don’t forget your permission slips this Wednesday."
@@ -677,7 +672,6 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
-        scrollEnabled={true}
         style={
           Object {
             "height": 0,

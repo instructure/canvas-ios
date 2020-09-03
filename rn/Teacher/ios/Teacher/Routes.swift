@@ -63,6 +63,10 @@ class TeacherRouter: Router {
 let router = TeacherRouter(routes: []) { _, _, _, _ in }
 
 private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builder?> = [
+    "/accounts/:accountID/terms_of_service": { _ in
+        return TermsOfServiceViewController()
+    },
+
     "/courses/:courseID/attendance/:toolID": { props in
         guard let courseID = props["courseID"] as? String else { return nil }
         guard let toolID = props["toolID"] as? String else { return nil }
@@ -202,6 +206,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
 
     "/files/:fileID": fileDetails,
     "/files/:fileID/download": fileDetails,
+    "/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
     "/:context/:contextID/files/:fileID/preview": fileDetails,
@@ -275,8 +280,7 @@ private func fileList(props: Props) -> UIViewController? {
 
 private func fileDetails(props: Props) -> UIViewController? {
     guard let fileID = props["preview"] as? String ?? props["fileID"] as? String else { return nil }
-    let context = props.context ?? .currentUser
-    return FileDetailsViewController.create(context: context, fileID: fileID)
+    return FileDetailsViewController.create(context: props.context, fileID: fileID)
 }
 
 private extension Props {

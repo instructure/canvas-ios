@@ -52,10 +52,10 @@ public enum DocViewerHighlightColor: String, CaseIterable {
 
 func docViewerConfigurationBuilder(_ builder: PDFConfigurationBuilder) {
     builder.additionalScrollViewFrameInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    builder.backgroundColor = .borderMedium
+    builder.backgroundColor = .backgroundMedium
     builder.editableAnnotationTypes = [.stamp, .highlight, .freeText, .strikeOut, .ink, .eraser, .square]
     builder.isRenderAnimationEnabled = true
-    builder.naturalDrawingAnnotationEnabled = true
+    builder.naturalDrawingAnnotationEnabled = false
     builder.pageMode = .single
     builder.pageTransition = .scrollContinuous
     builder.scrollDirection = .vertical

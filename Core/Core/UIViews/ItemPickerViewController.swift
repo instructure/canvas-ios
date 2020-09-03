@@ -48,14 +48,22 @@ public protocol ItemPickerDelegate: class {
 
 public class ItemPickerViewController: UIViewController {
     weak var delegate: ItemPickerDelegate?
+    var didSelect: ((IndexPath) -> Void)?
     var sections: [ItemPickerSection] = []
     var selected: IndexPath?
 
     let tableView = UITableView(frame: .zero, style: .grouped)
 
-    public static func create(title: String, sections: [ItemPickerSection], selected: IndexPath?, delegate: ItemPickerDelegate?) -> ItemPickerViewController {
+    public static func create(
+        title: String,
+        sections: [ItemPickerSection],
+        selected: IndexPath?,
+        delegate: ItemPickerDelegate? = nil,
+        didSelect: ((IndexPath) -> Void)? = nil
+    ) -> ItemPickerViewController {
         let controller = ItemPickerViewController()
         controller.delegate = delegate
+        controller.didSelect = didSelect
         controller.sections = sections
         controller.selected = selected
         controller.title = title
@@ -125,6 +133,7 @@ extension ItemPickerViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selected = indexPath
         delegate?.itemPicker(self, didSelectRowAt: indexPath)
+        didSelect?(indexPath)
         tableView.deselectRow(at: indexPath, animated: false)
         tableView.reloadData()
     }

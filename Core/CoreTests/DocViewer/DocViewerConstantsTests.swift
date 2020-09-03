@@ -36,6 +36,7 @@ class DocViewerConstantsTests: XCTestCase {
         XCTAssertEqual(config.pageMode, .single)
         XCTAssertEqual(config.pageTransition, .scrollContinuous)
         XCTAssertEqual(config.scrollDirection, .vertical)
+        XCTAssertEqual(config.naturalDrawingAnnotationEnabled, false) // MBL-13579
     }
 
     func testStyle() {

@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Error Loading Content";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "An unexpected error has occurred.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Cancel";
-
 /* No comment provided by engineer. */
 "Collapse" = "Collapse";
-
-/* No comment provided by engineer. */
-"Comments" = "Comments";
-
-/* No comment provided by engineer. */
-"Delete" = "Delete";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Delete Comment";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Dismiss";
 
 /* No comment provided by engineer. */
 "Done" = "Done";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Get Grades for";
-
-/* Inbox tab title */
-"Inbox" = "Inbox";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Invalid date received from API.";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "Launch External Tool";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Open in Safari";
-
-/* No comment provided by engineer. */
-"Open in…" = "Open in…";
-
-/* button to read more of the description */
-"Read More" = "Read More";
-
-/* No comment provided by engineer. */
-"Remove" = "Remove";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Removed %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Removed %1$@ by %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Reply";
-
-/* No comment provided by engineer. */
-"Style" = "Style";
 

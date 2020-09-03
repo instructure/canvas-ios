@@ -179,9 +179,6 @@
 "Camera" = "Камера";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Камера отсутствует";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
 
 /* No comment provided by engineer. */
+"favorite" = "предпочтительный";
+
+/* No comment provided by engineer. */
 "file" = "файл";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "У меня нет учетной записи Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "У меня есть учетная запись Canvas";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "к %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда. Если ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";

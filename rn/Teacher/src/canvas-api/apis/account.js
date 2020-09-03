@@ -38,10 +38,6 @@ export function getLiveConferences () {
   return httpClient.get(`conferences?state=live`)
 }
 
-export function getTermsOfService (): ApiPromise<TermsOfService> {
-  return httpClient.get(`accounts/self/terms_of_service`)
-}
-
 export function getHelpLinks (): ApiResponse<HelpLink[]> {
   return httpClient.get('accounts/self/help_links')
 }

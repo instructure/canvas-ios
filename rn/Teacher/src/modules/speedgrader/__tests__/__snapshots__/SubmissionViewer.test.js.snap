@@ -1,90 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
-<View
+<AuthenticatedWebView
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+  onNavigation={[Function]}
+  source={
+    Object {
+      "uri": "https://google.com",
+    }
+  }
   style={
     Object {
       "backgroundColor": "#FFFFFF",
       "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
     }
   }
->
-  <AuthenticatedWebView
-    contentInset={
-      Object {
-        "bottom": 0,
-      }
-    }
-    openLinksInSafari={true}
-    source={
-      Object {
-        "uri": "https://google.com",
-      }
-    }
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  />
-</View>
+/>
 `;
 
 exports[`SubmissionViewer renders a file (stub) 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This student does not have a submission for this assignment.
-    </Text>
-  </View>
+    This student does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
 exports[`SubmissionViewer renders a media submission 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
   }
 >
   <VideoContainer
@@ -95,7 +75,8 @@ exports[`SubmissionViewer renders a media submission 1`] = `
     }
     style={
       Object {
-        "height": 193,
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
       }
     }
     testID="submission-viewer.video"
@@ -109,73 +90,21 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
     Object {
       "backgroundColor": "#FFFFFF",
       "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
     }
   }
 >
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-    testID="web-container.view"
-  >
-    <CanvasWebView
-      bounces={true}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      html="This is my submission!"
-      onError={[Function]}
-      onFinishedLoading={[Function]}
-      onHeightChange={[Function]}
-      onMessage={[Function]}
-      onNavigation={[Function]}
-      scrollEnabled={true}
-      source={
-        Object {
-          "baseURL": "http://mobiledev.instructure.com/",
-          "html": "This is my submission!",
-        }
-      }
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </View>
-</View>
-`;
-
-exports[`SubmissionViewer renders an online_quiz submission 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
-    }
-  }
->
-  <AuthenticatedWebView
+  <CoreWebView
+    bounces={true}
     contentInset={
       Object {
         "bottom": 0,
       }
     }
+    onHeightChange={[Function]}
     onNavigation={[Function]}
-    openLinksInSafari={false}
     source={
       Object {
-        "uri": "https://google.com",
+        "html": "This is my submission!",
       }
     }
     style={
@@ -187,53 +116,57 @@ exports[`SubmissionViewer renders an online_quiz submission 1`] = `
 </View>
 `;
 
+exports[`SubmissionViewer renders an online_quiz submission 1`] = `
+<AuthenticatedWebView
+  contentInset={
+    Object {
+      "bottom": 0,
+    }
+  }
+  onNavigation={[Function]}
+  source={
+    Object {
+      "uri": "https://google.com",
+    }
+  }
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "flex": 1,
+    }
+  }
+/>
+`;
+
 exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
 <View
   style={
     Object {
       "backgroundColor": "#FFFFFF",
       "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
     }
   }
 >
-  <View
+  <CoreWebView
+    bounces={true}
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    onHeightChange={[Function]}
+    onNavigation={[Function]}
+    source={
+      Object {
+        "html": "<p>Form Voltron</p>",
+      }
+    }
     style={
       Object {
         "flex": 1,
       }
     }
-    testID="web-container.view"
-  >
-    <CanvasWebView
-      bounces={true}
-      contentInset={
-        Object {
-          "bottom": 0,
-        }
-      }
-      html="<p>Form Voltron</p>"
-      onError={[Function]}
-      onFinishedLoading={[Function]}
-      onHeightChange={[Function]}
-      onMessage={[Function]}
-      onNavigation={[Function]}
-      scrollEnabled={true}
-      source={
-        Object {
-          "baseURL": "http://mobiledev.instructure.com/",
-          "html": "<p>Form Voltron</p>",
-        }
-      }
-      style={
-        Object {
-          "flex": 1,
-        }
-      }
-    />
-  </View>
+  />
 </View>
 `;
 
@@ -241,41 +174,30 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This student does not have a submission for this assignment.
-    </Text>
-  </View>
+    This student does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
@@ -283,41 +205,30 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This student does not have a submission for this assignment.
-    </Text>
-  </View>
+    This student does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
@@ -325,41 +236,30 @@ exports[`SubmissionViewer renders grade-only submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This student does not have a submission for this assignment.
-    </Text>
-  </View>
+    This student does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
@@ -367,41 +267,30 @@ exports[`SubmissionViewer renders no group submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This group does not have a submission for this assignment.
-    </Text>
-  </View>
+    This group does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
@@ -409,41 +298,30 @@ exports[`SubmissionViewer renders no submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This student does not have a submission for this assignment.
-    </Text>
-  </View>
+    This student does not have a submission for this assignment.
+  </Text>
 </View>
 `;
 
@@ -451,41 +329,30 @@ exports[`SubmissionViewer renders on-paper submission 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This assignment only allows on-paper submissions.
-    </Text>
-  </View>
+    This assignment only allows on-paper submissions.
+  </Text>
 </View>
 `;
 
@@ -493,40 +360,29 @@ exports[`SubmissionViewer renders submission type of none 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#FFFFFF",
-      "flex": 1,
-      "paddingLeft": 16,
-      "paddingRight": 16,
-      "paddingTop": 16,
+      "alignItems": "center",
+      "flex": 0,
+      "height": 200,
+      "justifyContent": "center",
+      "padding": 16,
     }
   }
 >
-  <View
+  <Text
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 0,
-        "height": 200,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "500",
+          "textAlign": "center",
+        },
+      ]
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontWeight": "500",
-            "textAlign": "center",
-          },
-        ]
-      }
-    >
-      This assignment does not allow submissions.
-    </Text>
-  </View>
+    This assignment does not allow submissions.
+  </Text>
 </View>
 `;

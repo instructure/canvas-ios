@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Virhe sisällön latauksessa";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "Ilmeni odottamaton virhe.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Peruuta";
-
 /* No comment provided by engineer. */
 "Collapse" = "Kutista";
-
-/* No comment provided by engineer. */
-"Comments" = "Kommentit";
-
-/* No comment provided by engineer. */
-"Delete" = "Poista";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Poista kommentti";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Ohita";
 
 /* No comment provided by engineer. */
 "Done" = "Valmis";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Hae arvosanat kohteesta";
-
-/* Inbox tab title */
-"Inbox" = "Saapuneet";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "API:sta vastaanotettiin virheelliset tiedot.";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "Käynnistä ulkoinen työkalu";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Avaa Safarissa";
-
-/* No comment provided by engineer. */
-"Open in…" = "Avaa kohteessa...";
-
-/* button to read more of the description */
-"Read More" = "Lue lisää";
-
-/* No comment provided by engineer. */
-"Remove" = "Poista";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Poistettu %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Kohteen poistaja %1$@ %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Vastaus";
-
-/* No comment provided by engineer. */
-"Style" = "Tyyli";
 

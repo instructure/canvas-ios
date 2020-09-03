@@ -213,6 +213,9 @@
 		7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC5A212DB0B500C40ECE /* URLResponseExtensionsTests.swift */; };
 		7D819FF9228C898100C61EDD /* APIErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D819FF8228C898100C61EDD /* APIErrorTests.swift */; };
 		7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81A000228DC1F000C61EDD /* GetQuizTests.swift */; };
+		7D81F3F724F0112700C482D2 /* APIAccountTermsOfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81F3F624F0112700C482D2 /* APIAccountTermsOfService.swift */; };
+		7D81F3FA24F0121900C482D2 /* APIAccountTermsOfServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81F3F924F0121900C482D2 /* APIAccountTermsOfServiceTests.swift */; };
+		7D81F3FC24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81F3FB24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift */; };
 		7D82DB382374A82800C699B8 /* FileDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D82DB372374A82800C699B8 /* FileDetailsViewControllerTests.swift */; };
 		7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D842A8D22A818C800484B92 /* WrongAppLinkView.xib */; };
 		7D85D8EF226E6901002DBF63 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D85D8EE226E6901002DBF63 /* SectionHeaderView.xib */; };
@@ -1391,6 +1394,9 @@
 		7D819FF8228C898100C61EDD /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 		7D819FFE228DB48C00C61EDD /* GetQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuiz.swift; sourceTree = "<group>"; };
 		7D81A000228DC1F000C61EDD /* GetQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizTests.swift; sourceTree = "<group>"; };
+		7D81F3F624F0112700C482D2 /* APIAccountTermsOfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountTermsOfService.swift; sourceTree = "<group>"; };
+		7D81F3F924F0121900C482D2 /* APIAccountTermsOfServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountTermsOfServiceTests.swift; sourceTree = "<group>"; };
+		7D81F3FB24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewControllerTests.swift; sourceTree = "<group>"; };
 		7D8262EA212B1A7B00BD268D /* APIRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestable.swift; sourceTree = "<group>"; };
 		7D8262EE212B228F00BD268D /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		7D8262F8212B3B2000BD268D /* APICourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSection.swift; sourceTree = "<group>"; };
@@ -2061,6 +2067,7 @@
 				B1EF7AB521E7E40400D653D7 /* Store */,
 				7DCB2E98247D987A0071F172 /* Submissions */,
 				3B1669DB233DAF2300B2EFAB /* Syllabus */,
+				7D81F3F824F011C300C482D2 /* TermsOfService */,
 				7D57629D23849CF7001F980D /* Todos */,
 				B14D555F2130B6630066D275 /* Utils */,
 				E8E070EE24E1843C00B37176 /* ViewModifiers */,
@@ -3103,6 +3110,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7D81F3F824F011C300C482D2 /* TermsOfService */ = {
+			isa = PBXGroup;
+			children = (
+				7D81F3F924F0121900C482D2 /* APIAccountTermsOfServiceTests.swift */,
+				7D81F3FB24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift */,
+			);
+			path = TermsOfService;
+			sourceTree = "<group>";
+		};
 		7D8262E9212B1A4F00BD268D /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -3521,6 +3537,7 @@
 		9FBE5359223ADA4D001EC40C /* TermsOfService */ = {
 			isa = PBXGroup;
 			children = (
+				7D81F3F624F0112700C482D2 /* APIAccountTermsOfService.swift */,
 				9FBE535A223ADA68001EC40C /* TermsOfServiceViewController.swift */,
 			);
 			path = TermsOfService;
@@ -4388,6 +4405,7 @@
 				7D0970EF22DFB6F200E8A551 /* APIPandataTests.swift in Sources */,
 				9F3107FA2371E02600502428 /* PageTests.swift in Sources */,
 				B19797AB23D77CC400032BC4 /* GoogleCloudAssignmentViewControllerTests.swift in Sources */,
+				7D81F3FC24F0128F00C482D2 /* TermsOfServiceViewControllerTests.swift in Sources */,
 				7D86285B224C05BB003A37DC /* APIMediaCommentTests.swift in Sources */,
 				3B3467612130556000F9BC2E /* MockURLSession.swift in Sources */,
 				7DDC450D215BF14A003F3209 /* DynamicLabelTests.swift in Sources */,
@@ -4495,6 +4513,7 @@
 				7D80AC1F212B738500C40ECE /* APITests.swift in Sources */,
 				7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */,
 				B1B6F078219A7D8B00C1575D /* UTITests.swift in Sources */,
+				7D81F3FA24F0121900C482D2 /* APIAccountTermsOfServiceTests.swift in Sources */,
 				3B3FCA2D238026D00011F11A /* ActivityTests.swift in Sources */,
 				7DF4AADA2489430C00B07BB8 /* AppStoreReviewTests.swift in Sources */,
 				7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */,
@@ -4992,6 +5011,7 @@
 				7D630B7124A52C050039A45D /* GetFolders.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,
+				7D81F3F724F0112700C482D2 /* APIAccountTermsOfService.swift in Sources */,
 				7DA260D023F72359005D2121 /* CircleProgressView.swift in Sources */,
 				7DA25FBD23F72136005D2121 /* APIMediaComment.swift in Sources */,
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,

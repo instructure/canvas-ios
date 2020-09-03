@@ -29,7 +29,7 @@ import SubmissionType from './components/SubmissionType'
 import AssignmentSection from './components/AssignmentSection'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
-import CanvasWebView from '../../common/components/CanvasWebView'
+import CoreWebView from '../../common/components/CoreWebView'
 import DescriptionDefaultView from '../../common/components/DescriptionDefaultView'
 import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
@@ -262,7 +262,7 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
   checkAssignmentDescription (description: ?string) {
     if (description) {
       return (
-        <CanvasWebView
+        <CoreWebView
           style={{ flex: 1 }}
           html={description}
           testID='assignment-details.description-section-info-lbl'

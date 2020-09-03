@@ -177,7 +177,7 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         switch submission.type {
         case .some(.online_quiz):
             if let quizID = assignment.quizID,
-                let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt)&headless=1", relativeTo: env.api.baseURL) {
+                let url = URL(string: "/courses/\(assignment.courseID)/quizzes/\(quizID)/history?version=\(selectedAttempt ?? 1)&headless=1", relativeTo: env.api.baseURL) {
                 let controller = CoreWebViewController()
                 controller.webView.accessibilityIdentifier = "SubmissionDetails.onlineQuizWebView"
                 controller.webView.load(URLRequest(url: url))

@@ -50,7 +50,7 @@ public class BottomSheetPickerViewController: UIViewController {
         view.frame.size.height = 8
     }
 
-    func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
+    public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
         loadViewIfNeeded()
         let button = UIButton(type: .system)
 

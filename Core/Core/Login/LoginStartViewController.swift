@@ -143,6 +143,7 @@ class LoginStartViewController: UIViewController {
         logoView.alpha = 1
         logoYCenter.constant = 0
         previousLoginsBottom.constant = -previousLoginsView.frame.height
+        previousLoginsView.alpha = 0
         view.layoutIfNeeded()
     }
 
@@ -178,6 +179,7 @@ class LoginStartViewController: UIViewController {
             options: .curveEaseOut,
             animations: {
                 self.previousLoginsBottom.constant = 0
+                self.previousLoginsView.alpha = 1
                 self.view.layoutIfNeeded()
             },
             completion: nil
@@ -224,7 +226,11 @@ class LoginStartViewController: UIViewController {
             sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", comment: "")) { [weak self] in
                 self?.showLoginQRCodeTutorial()
             }
-            sheet.addAction(image: nil, title: NSLocalizedString("I don’t have a Canvas account", comment: "")) { [weak self] in
+            sheet.addAction(
+                image: nil,
+                title: NSLocalizedString("I don't have a Canvas account", comment: ""),
+                accessibilityIdentifier: "LoginStart.dontHaveAccountAction"
+            ) { [weak self] in
                 self?.showInstructionsToPairFromStudentApp()
             }
             env.router.show(sheet, from: self, options: .modal())
@@ -235,7 +241,8 @@ class LoginStartViewController: UIViewController {
 
     func showInstructionsToPairFromStudentApp() {
         let tutorial = PairWithStudentQRCodeTutorialViewController.create()
-        env.router.show(tutorial, from: self, options: .modal(embedInNav: true, addDoneButton: true))
+        tutorial.delegate = self
+        env.router.show(tutorial, from: self, options: .modal(embedInNav: true))
     }
 
     func showLoginQRCodeTutorial() {
@@ -246,13 +253,6 @@ class LoginStartViewController: UIViewController {
     }
 
     func launchQRScanner() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            showAlert(
-                title: NSLocalizedString("Camera not available", bundle: .core, comment: ""),
-                message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: "")
-            )
-            return
-        }
         let scanner = ScannerViewController()
         scanner.delegate = self
         self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
@@ -371,6 +371,7 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
             view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5) {
                 self.previousLoginsBottom?.constant = -self.previousLoginsView.frame.height
+                self.previousLoginsView.alpha = 0
                 self.view.layoutIfNeeded()
             }
         }
@@ -381,18 +382,38 @@ extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
             if let url = URL(string: code),
-                let host = url.host,
-                self.loginDelegate?.supportedDeepLinkActions.contains(host) == true {
-                self.loginDelegate?.handleDeepLink(url: url)
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                let host = components.host,
+                components.path == "/pair",
+                let code = components.queryItems?.first(where: { $0.name == "code" })?.value {
+                self.createAccount(host: host, pairingCode: code)
             } else {
                 self.logIn(withCode: code)
             }
         }
     }
+
+    func createAccount(host: String, pairingCode: String) {
+        let login = LoginWebViewController.create(
+            host: host,
+            loginDelegate: loginDelegate,
+            method: .canvasLogin,
+            pairingCode: pairingCode
+        )
+        self.env.router.show(login, from: self)
+    }
 }
 
 extension LoginStartViewController: LoginQRCodeTutorialDelegate {
     func loginQRCodeTutorialDidFinish(_ controller: LoginQRCodeTutorialViewController) {
+        env.router.dismiss(controller) {
+            self.launchQRScanner()
+        }
+    }
+}
+
+extension LoginStartViewController: PairWithStudentQRCodeTutorialDelegate {
+    func pairWithStudentQRCodeTutorialDidFinish(_ controller: PairWithStudentQRCodeTutorialViewController) {
         env.router.dismiss(controller) {
             self.launchQRScanner()
         }

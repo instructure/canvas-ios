@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Erreur lors du chargement du contenu";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "Une erreur inconnue s'est produite.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Voulez-vous vraiment supprimer ce commentaire?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Annuler";
-
 /* No comment provided by engineer. */
 "Collapse" = "Réduire";
-
-/* No comment provided by engineer. */
-"Comments" = "Commentaires";
-
-/* No comment provided by engineer. */
-"Delete" = "Supprimer";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Supprimer le commentaire";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Ignorer";
 
 /* No comment provided by engineer. */
 "Done" = "Terminé";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Obtenir les notes pour";
-
-/* Inbox tab title */
-"Inbox" = "Boîte de réception";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Date non valide reçu de l'API.";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "Lancer l'outil externe";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Ouvrir avec Safari";
-
-/* No comment provided by engineer. */
-"Open in…" = "Ouvrir dans...";
-
-/* button to read more of the description */
-"Read More" = "Pour en lire davantage";
-
-/* No comment provided by engineer. */
-"Remove" = "Retirer";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Retiré %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Retiré %1$@ par %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Répondre";
-
-/* No comment provided by engineer. */
-"Style" = "Style";
 

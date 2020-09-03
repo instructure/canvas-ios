@@ -19,28 +19,19 @@
 // @flow
 
 import React, { Component } from 'react'
-import {
-  View,
-  TouchableOpacity,
-} from 'react-native'
+import { View } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../common/text'
 import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
-import CanvasWebView from '../../common/components/CanvasWebView'
+import CoreWebView from '../../common/components/CoreWebView'
 import Video from '../../common/components/Video'
 import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
-import CanvadocViewer from './components/CanvadocViewer'
-import debounce from 'lodash/debounce'
-import { createStyleSheet, vars } from '../../common/stylesheet'
-
-type State = {
-  saving: boolean,
-  saveError: ?string,
-}
+import DocViewer from './components/DocViewer'
+import { createStyleSheet } from '../../common/stylesheet'
 
 type SubmissionViewerProps = {
   isCurrentStudent: boolean,
@@ -56,29 +47,6 @@ type SubmissionViewerProps = {
 
 export default class SubmissionViewer extends Component<SubmissionViewerProps, State> {
   videoPlayer: ?Video
-  canvadocViewer: ?CanvadocViewer
-  state: State
-
-  // This is tricky, because i want this to be updated all the time,
-  // But I don't want the state of the component to be up to date all the time, because it needs to be debounced 😱
-  saveState: { saving: boolean, error?: string }
-  debouncedUpdateSaveState: Function
-
-  constructor (props: any) {
-    super(props)
-
-    // $FlowFixMe
-    this.state = {
-      saving: false,
-      saveError: undefined,
-    }
-
-    this.saveState = {
-      saving: false,
-    }
-
-    this.debouncedUpdateSaveState = debounce(this.updateSaveState, 2000, { 'leading': true })
-  }
 
   UNSAFE_componentWillReceiveProps (newProps: SubmissionViewerProps) {
     if (this.videoPlayer && !newProps.isCurrentStudent) {
@@ -88,39 +56,6 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
 
   captureVideoPlayer = (video: ?Video) => {
     this.videoPlayer = video
-  }
-
-  captureCanvadocViewer = (viewer: ?CanvadocViewer) => {
-    this.canvadocViewer = viewer
-  }
-
-  updateSaveState = (newSaveState: any) => {
-    this.setState({
-      saving: this.saveState.saving,
-      saveError: this.saveState.error ? i18n('Error Saving. Tap to retry.') : undefined,
-    })
-  }
-
-  saveStateChanged = (event: any) => {
-    // If an error happened, keep it around forever
-    // until the user taps retry
-    const error = this.saveState.error || event.nativeEvent.error
-    this.saveState = {
-      saving: event.nativeEvent.saving,
-      error,
-    }
-    this.debouncedUpdateSaveState()
-  }
-
-  saveAllAnnotations = () => {
-    if (this.canvadocViewer) {
-      this.canvadocViewer.syncAllAnnotations()
-      this.saveState = {
-        saving: true,
-        error: undefined,
-      }
-      this.updateSaveState()
-    }
   }
 
   currentSubmission (): ?Submission {
@@ -145,166 +80,150 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
     return text
   }
 
-  renderCenteredText (text: string) {
-    return <View style={styles.centeredText}>
-      <Text style={styles.noSubText}>{text}</Text>
-    </View>
+  onNavigation = (url) => {
+    this.props.navigator.show(url, {
+      deepLink: true,
+      modal: true,
+    })
   }
 
-  renderSavingHeader = () => {
-    if (this.state.saveError) {
-      return <TouchableOpacity style={styles.errorBanner} onPress={this.saveAllAnnotations}>
-        <View>
-          <Text style={styles.errorBannerText}>{i18n('Error Saving. Tap to retry.')}</Text>
-        </View>
-      </TouchableOpacity>
-    }
-
-    return <View style={styles.savingBanner}>
-      { this.state.saving && <Text style={styles.savingBannerText}>{i18n('Saving...')}</Text> }
-      { !this.state.saving && <Text style={styles.savingBannerText}>{i18n('All annotations saved.')}</Text> }
-    </View>
+  renderCenteredText (text: string) {
+    return (
+      <View style={styles.centeredText}>
+        <Text style={styles.noSubText}>{text}</Text>
+      </View>
+    )
   }
 
   renderFile (submission: Submission) {
-    if (submission.attachments) {
-      let attachment = submission.attachments[this.props.selectedAttachmentIndex]
-      if (attachment['content-type'] === 'image/heic') {
-        let { width, height } = this.props.size
+    const attachment = submission.attachments?.[this.props.selectedAttachmentIndex]
+    if (!attachment) { return null }
+    switch (attachment.mime_class) {
+      case 'doc':
+      case 'image':
+      case 'pdf':
         return (
-          <View style={{ flex: 1 }}>
-            <ImageSubmissionViewer
-              width={width}
-              height={height}
-              attachment={attachment}
+          <DocViewer
+            previewURL={attachment.preview_url}
+            fallbackURL={attachment.url}
+            filename={attachment.filename}
+            contentInset={{ bottom: this.props.drawerInset }}
+            style={styles.viewer}
+          />
+        )
+      case 'audio':
+      case 'video':
+        return (
+          <View style={[styles.viewer, { paddingBottom: this.props.drawerInset }]}>
+            <Video
+              ref={this.captureVideoPlayer}
+              source={{ uri: attachment.url }}
+              style={styles.viewer}
+              testID='submission-viewer.video'
             />
           </View>
         )
-      }
+    }
+    if (attachment['content-type'] === 'image/heic') {
+      let { width, height } = this.props.size
       return (
-        <View style={{ flex: 1 }}>
-          { this.renderSavingHeader() }
-          <CanvadocViewer
-            config={{
-              previewPath: attachment.preview_url,
-              fallbackURL: attachment.url,
-              filename: attachment.filename,
-              drawerInset: this.props.drawerInset,
-            }}
-            onSaveStateChange={this.saveStateChanged}
-            ref={this.captureCanvadocViewer}
-            style={styles.pdfContainer}
-          />
-        </View>
+        <ImageSubmissionViewer
+          attachment={attachment}
+          height={height}
+          style={styles.viewer}
+          width={width}
+        />
       )
     }
-
-    return null
+    return (
+      <CoreWebView
+        contentInset={{ bottom: this.props.drawerInset }}
+        html={submission.body || ''}
+        onNavigation={this.onNavigation}
+        style={styles.viewer}
+      />
+    )
   }
 
   renderSubmission (submission: Submission) {
-    let body = <View></View>
-    if (submission.submission_type) {
-      switch (submission.submission_type) {
-        case 'online_url':
-          body = <URLSubmissionViewer
-            submission={submission}
+    switch (submission.submission_type) {
+      case 'online_url':
+        return (
+          <URLSubmissionViewer
             drawerInset={this.props.drawerInset}
+            submission={submission}
           />
-          break
-        case 'online_text_entry':
-          body = <CanvasWebView
-            style={styles.webContainer}
+        )
+      case 'online_text_entry':
+        return (
+          <CoreWebView
+            contentInset={{ bottom: this.props.drawerInset }}
             html={submission.body || ''}
-            contentInset={{ bottom: this.props.drawerInset }}
-            navigator={this.props.navigator}
+            onNavigation={this.onNavigation}
+            style={styles.viewer}
           />
-          break
-        case 'online_quiz':
-          body = <AuthenticatedWebView
-            style={styles.webContainer}
-            source={{ uri: submission.preview_url }}
+        )
+      case 'discussion_topic':
+      case 'online_quiz':
+        return (
+          <AuthenticatedWebView
             contentInset={{ bottom: this.props.drawerInset }}
-            openLinksInSafari={false}
-            onNavigation={(url) => {
-              this.props.navigator.show(url, {
-                deepLink: true,
-                modal: true,
-              })
-            }}
-          />
-          break
-        case 'discussion_topic':
-        case 'basic_lti_launch':
-        case 'external_tool':
-          body = <AuthenticatedWebView
-            style={styles.webContainer}
+            onNavigation={this.onNavigation}
             source={{ uri: submission.preview_url }}
+            style={styles.viewer}
+          />
+        )
+      case 'online_upload':
+        return this.renderFile(submission)
+      case 'basic_lti_launch':
+      case 'external_tool':
+        return (
+          <AuthenticatedWebView
             contentInset={{ bottom: this.props.drawerInset }}
             navigator={this.props.navigator}
             openLinksInSafari
+            source={{ uri: submission.preview_url }}
+            style={styles.viewer}
           />
-          break
-        case 'media_recording':
-          const width = this.props.size.width - vars.padding * 2.0
-          const height = Math.ceil(width * 9.0 / 16.0)
-          const url = submission.media_comment
-            ? submission.media_comment.url
-            : ''
-          body = <Video
-            testID='submission-viewer.video'
-            ref={this.captureVideoPlayer}
-            style={{ height }}
-            source={{ uri: url }}
-          />
-          break
-        default:
-          let text = this.unviewableSubmissionText(submission.submission_type)
-          body = this.renderCenteredText(text)
-      }
+        )
+      case 'media_recording':
+        return (
+          <View style={[styles.viewer, { paddingBottom: this.props.drawerInset }]}>
+            <Video
+              ref={this.captureVideoPlayer}
+              source={{ uri: submission.media_comment?.url }}
+              style={styles.viewer}
+              testID='submission-viewer.video'
+            />
+          </View>
+        )
+      default:
+        let text = this.unviewableSubmissionText(submission.submission_type)
+        return this.renderCenteredText(text)
     }
-    return <View style={styles.container}>{body}</View>
   }
 
   render () {
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
-      if (submission.attachments && submission.submission_type === 'online_upload') {
-        return this.renderFile(submission) || <View />
-      } else {
-        return this.renderSubmission(submission)
-      }
+      return this.renderSubmission(submission)
     }
 
     let text = this.unviewableSubmissionText(this.props.assignmentSubmissionTypes)
     text = text || (this.props.submissionProps.groupID
       ? i18n('This group does not have a submission for this assignment.')
       : i18n('This student does not have a submission for this assignment.'))
-    return <View style={styles.container}>
-      {this.renderCenteredText(text)}
-    </View>
+    return this.renderCenteredText(text)
   }
 }
 
 const styles = createStyleSheet((colors, vars) => ({
-  container: {
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    flex: 1,
+  viewer: {
     backgroundColor: colors.backgroundLightest,
-  },
-  webContainer: {
     flex: 1,
-  },
-  pdfContainer: {
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    flex: 1,
-    backgroundColor: colors.backgroundDark,
   },
   centeredText: {
+    padding: 16,
     height: 200,
     flex: 0,
     justifyContent: 'center',
@@ -313,32 +232,5 @@ const styles = createStyleSheet((colors, vars) => ({
   noSubText: {
     textAlign: 'center',
     fontWeight: '500',
-  },
-  savingBanner: {
-    height: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.backgroundLight,
-    borderBottomWidth: vars.hairlineWidth,
-    borderBottomColor: colors.borderMedium,
-    borderStyle: 'solid',
-  },
-  savingBannerText: {
-    color: colors.textDark,
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize: 12,
-  },
-  errorBanner: {
-    height: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.backgroundDanger,
-  },
-  errorBannerText: {
-    color: colors.white,
-    textAlign: 'center',
-    fontWeight: '500',
-    fontSize: 12,
   },
 }))

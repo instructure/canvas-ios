@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
-import CanvasWebView from '../../common/components/CanvasWebView'
+import CoreWebView from '../../common/components/CoreWebView'
 import { createStyleSheet } from '../../common/stylesheet'
 
 export class RubricDescription extends Component<*> {
@@ -38,7 +38,7 @@ export class RubricDescription extends Component<*> {
     }
     return (
       <View style={styles.container}>
-        <CanvasWebView html={this.props.description} automaticallySetHeight navigator={this.props.navigator}/>
+        <CoreWebView html={this.props.description} automaticallySetHeight navigator={this.props.navigator}/>
       </View>
     )
   }

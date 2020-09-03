@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ 載入內容時發生錯誤";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "出現意外錯誤。";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "您確定要刪除此評論嗎？";
-
-/* No comment provided by engineer. */
-"Cancel" = "取消";
-
 /* No comment provided by engineer. */
 "Collapse" = "收起";
-
-/* No comment provided by engineer. */
-"Comments" = "評論";
-
-/* No comment provided by engineer. */
-"Delete" = "刪除";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "刪除評論";
-
-/* No comment provided by engineer. */
-"Dismiss" = "解除";
 
 /* No comment provided by engineer. */
 "Done" = "已完成";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "取得成績";
-
-/* Inbox tab title */
-"Inbox" = "收件匣";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "API 發出無效日期。";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "啟動外部工具";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "在 Safari 中打開";
-
-/* No comment provided by engineer. */
-"Open in…" = "打開方式...";
-
-/* button to read more of the description */
-"Read More" = "讀取更多";
-
-/* No comment provided by engineer. */
-"Remove" = "移除";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "已移除%1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "由  已移除 %1$@%2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "回覆";
-
-/* No comment provided by engineer. */
-"Style" = "樣式";
 

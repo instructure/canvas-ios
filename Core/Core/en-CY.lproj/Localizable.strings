@@ -179,9 +179,6 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Camera not available";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the school’s full URL.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Failed. Tap for options";
 
 /* No comment provided by engineer. */
+"favorite" = "favourite";
+
+/* No comment provided by engineer. */
 "file" = "file";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "I don’t have a Canvas account";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "I have a Canvas account";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "to %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.";
 
 /* No comment provided by engineer. */
 "To Do" = "To-do";

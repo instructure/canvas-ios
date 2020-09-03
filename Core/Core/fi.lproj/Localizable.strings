@@ -179,9 +179,6 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kamera ei ole käytettävissä";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Etkö löydä kouluasi? Yritä kirjoittaa koko koulun URL";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Epäonnistui. Asetukset napauttamalla";
 
 /* No comment provided by engineer. */
+"favorite" = "suosikki";
+
+/* No comment provided by engineer. */
 "file" = "tiedosto";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "En saa asioita tehtyä, ennen kuin kuulen sinusta.";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Minulla ei ole Canvas-tiliä.";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Minulla on jo Canvas-tili";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "- %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.  Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tehtävä";

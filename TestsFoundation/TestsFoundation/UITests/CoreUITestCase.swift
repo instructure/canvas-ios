@@ -132,7 +132,7 @@ open class CoreUITestCase: XCTestCase {
         // and also write the request/response in plain text to the log file
         case passThruAndLog(toPath: String)
     }
-    open var missingMockBehavior: MissingMockBehavior = .failTest
+    open var missingMockBehavior: MissingMockBehavior = .allow
 
     static var currentTestCase: CoreUITestCase?
 

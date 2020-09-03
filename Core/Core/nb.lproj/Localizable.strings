@@ -179,9 +179,6 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kamera er ikke tilgjengelig";
-
-/* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kan du ikke finne skolen din? Prøv å skrive hele skolens URL.";
 
 /* No comment provided by engineer. */
@@ -530,6 +527,9 @@
 "Failed. Tap for options" = "Mislyktes. Trykk for alternativer";
 
 /* No comment provided by engineer. */
+"favorite" = "favoritt";
+
+/* No comment provided by engineer. */
 "file" = "fil";
 
 /* No comment provided by engineer. */
@@ -633,9 +633,6 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jeg kan ikke gjøre noe før jeg får tilbakemelding";
-
-/* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Jeg har ikke en Canvas-konto";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Jeg har en Canvas-konto";
@@ -1401,9 +1398,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "til %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For å opprette en konto, må studenten opprette en sammenkoblingskode for deg fra Innstillinger-delen av Canvas Student-appen som vist nedenfor, og deretter skanne koden herfra. Hvis studenten ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.";
 
 /* No comment provided by engineer. */
 "To Do" = "Å gjøre";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,7 @@
                                             <action selector="syncAnnotations" destination="zMj-m0-Fr2" eventType="primaryActionTriggered" id="a0O-F9-3ON"/>
                                         </connections>
                                     </button>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GF5-Jx-QTk">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eh6-Oq-I9e">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </view>
                                 </subviews>
@@ -63,7 +63,7 @@
                         <viewLayoutGuide key="safeArea" id="Sr0-LJ-zzw"/>
                     </view>
                     <connections>
-                        <outlet property="contentView" destination="GF5-Jx-QTk" id="fvu-TK-Y2L"/>
+                        <outlet property="contentView" destination="eh6-Oq-I9e" id="H6R-LH-OCF"/>
                         <outlet property="loadingView" destination="Vso-K4-CR4" id="bnV-M2-iaX"/>
                         <outlet property="syncAnnotationsButton" destination="ubA-C8-Q9c" id="p4r-l2-Zaq"/>
                     </connections>
