@@ -214,6 +214,7 @@ workflows:
     - deploy-to-bitrise-io: {}
 
   _student-vars:
+    steps:
     - script:
         title: Set Student environment variables
         inputs:
@@ -228,6 +229,7 @@ workflows:
             envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist"
 
   _teacher-vars:
+    steps:
     - script:
         title: Set Teacher environment variables
         inputs:
@@ -242,6 +244,7 @@ workflows:
             envman add --key INFO_PLISTS --value rn/Teacher/ios/Teacher/Info.plist
 
   _parent-vars:
+    steps:
     - script:
         title: Set Parent environment variables
         inputs:
@@ -256,6 +259,7 @@ workflows:
             envman add --key INFO_PLISTS --value Parent/Parent/Info.plist
 
   _ad-hoc-vars:
+    steps:
     - script:
         title: Set ad-hoc environment variables
         inputs:
