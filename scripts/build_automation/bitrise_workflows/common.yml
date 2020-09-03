@@ -213,7 +213,7 @@ workflows:
         - webhook_url: "$SLACK_URL"
     - deploy-to-bitrise-io: {}
 
-    _student-vars:
+  _student-vars:
     - script:
         title: Set Student environment variables
         inputs:
@@ -227,7 +227,7 @@ workflows:
             envman add --key APP_NAME --value Student
             envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist"
 
-    _teacher-vars:
+  _teacher-vars:
     - script:
         title: Set Teacher environment variables
         inputs:
@@ -241,7 +241,7 @@ workflows:
             envman add --key APP_NAME --value Teacher
             envman add --key INFO_PLISTS --value rn/Teacher/ios/Teacher/Info.plist
 
-    _parent-vars:
+  _parent-vars:
     - script:
         title: Set Parent environment variables
         inputs:
@@ -255,7 +255,7 @@ workflows:
             envman add --key APP_NAME --value Parent
             envman add --key INFO_PLISTS --value Parent/Parent/Info.plist
 
-    _ad-hoc-vars:
+  _ad-hoc-vars:
     - script:
         title: Set ad-hoc environment variables
         inputs:
