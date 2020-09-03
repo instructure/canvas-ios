@@ -312,7 +312,13 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testStatisticsSectionNotHiddenAfterAvailability() {
-        Assignment.make(from: .make(submission: APISubmission.make(workflow_state: .graded), unlock_at: Date().addYears(-1), locked_for_user: true, lock_explanation: "this is locked", score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0)))
+        Assignment.make(from: .make(
+            submission: APISubmission.make(workflow_state: .graded),
+            unlock_at: Date().addYears(-1),
+            locked_for_user: true,
+            lock_explanation: "this is locked",
+            score_statistics: APIAssignmentScoreStatistics(mean: 2.0, min: 1.0, max: 3.0)
+        ))
         XCTAssertFalse( presenter.statisticsIsHidden() )
     }
 
