@@ -139,8 +139,8 @@ class GradeStatisticsGraphViewTests: XCTestCase {
             workflow_state: .graded
         ))
         view.update(a)
-        XCTAssertEqual(view.minLabel.text, "Min: 2.0")
-        XCTAssertEqual(view.maxLabel.text, "Max: 8.0")
-        XCTAssertEqual(view.averageLabel.text, "Avg: 5.0")
+        XCTAssertEqual(view.minLabel.text, "Low: 2.0")
+        XCTAssertEqual(view.maxLabel.text, "High: 8.0")
+        XCTAssertEqual(view.averageLabel.text, "Mean: 5.0")
     }
 }

@@ -96,30 +96,37 @@ public class GradeStatisticGraphView: UIView {
         let boundedMax = allowedInterval.clamp(stats.max)
         let boundedMean = allowedInterval.clamp(stats.mean)
         let boundedScore = allowedInterval.clamp(score)
-        
+
         let possible = CGFloat(points_possible)
-        
+
         // Store percents, they will be used to fix constraints in layoutSubviews,
         // even as the view changes
         minPercent = (CGFloat(boundedMin) / possible)
         maxPercent = (CGFloat(boundedMax) / possible)
         avgPercent = (CGFloat(boundedMean) / possible)
         studentPercent = (CGFloat(boundedScore) / possible)
-        
+
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 1
-        
-        minLabel.text = "Min: \(formatter.string(from: NSNumber(value: stats.min)) ?? "")"
-        averageLabel.text = "Avg: \(formatter.string(from: NSNumber(value: stats.mean)) ?? "")"
-        maxLabel.text = "Max: \(formatter.string(from: NSNumber(value: stats.max)) ?? "")"
-        
-                
+
+        minLabel.text = String.localizedStringWithFormat(
+            NSLocalizedString("Low: %@", bundle: .core, comment: ""),
+            formatter.string(from: NSNumber(value: stats.min)) ?? ""
+        )
+        averageLabel.text = String.localizedStringWithFormat(
+            NSLocalizedString("Mean: %@", bundle: .core, comment: ""),
+            formatter.string(from: NSNumber(value: stats.mean)) ?? ""
+        )
+        maxLabel.text = String.localizedStringWithFormat(
+            NSLocalizedString("High: %@", bundle: .core, comment: ""),
+            formatter.string(from: NSNumber(value: stats.max)) ?? ""
+        )
+
         // We want the layout to update NOW -- don't wait for next cycle
         setNeedsLayout()
         layoutIfNeeded()
-
     }
 }
 
