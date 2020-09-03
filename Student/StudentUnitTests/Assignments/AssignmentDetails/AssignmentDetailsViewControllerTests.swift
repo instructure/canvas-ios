@@ -381,7 +381,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
         XCTAssertFalse(viewController.gradedView!.isHidden)
     }
-    
+
     func testGradedWithScoreStatistics() {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)

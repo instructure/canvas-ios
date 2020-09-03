@@ -193,7 +193,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func updateGradeCell(_ assignment: Assignment) {
         self.gradedView?.update(assignment)
-        
+
         // Update grade statistics view
         if let presenter = presenter {
             let shouldHide = presenter.statisticsIsHidden()

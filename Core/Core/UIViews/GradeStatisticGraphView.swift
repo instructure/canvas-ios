@@ -18,33 +18,32 @@
 
 import Foundation
 
-
 public class GradeStatisticGraphView: UIView {
     @IBOutlet weak var averageLabel: UILabel!
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet weak var maxLabel: UILabel!
-    
+
     @IBOutlet weak var minPossibleBar: UIView!
     @IBOutlet weak var maxPossibleBar: UIView!
-    
+
     @IBOutlet weak var graphArea: UIView!
-    
+
     @IBOutlet weak var minConstraint: NSLayoutConstraint!
     @IBOutlet weak var maxConstraint: NSLayoutConstraint!
     @IBOutlet weak var yourScoreConstraint: NSLayoutConstraint!
     @IBOutlet weak var meanConstraint: NSLayoutConstraint!
-    
+
     // These are here just for tests
     @IBOutlet weak var leftBoundView: UIView!
     @IBOutlet weak var rightBoundView: UIView!
     @IBOutlet weak var minBarView: UIView!
     @IBOutlet weak var maxBarView: UIView!
     @IBOutlet weak var meanBarView: UIView!
-    
+
     @IBOutlet private var lines: [UIView]!
-    
+
     @IBOutlet weak var yourScoreView: UIView!
-    
+
     // State: These are computed when update() is called
     // and are used in layoutSubviews so we can resize
     // even if update isn't called.
@@ -61,18 +60,18 @@ public class GradeStatisticGraphView: UIView {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
-        
+
         yourScoreView.backgroundColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
         yourScoreView.layer.cornerRadius = 8.0
         for line in lines {
             line.layer.cornerRadius = 1.0
         }
     }
-    
+
     public override func layoutSubviews() {
         if let minPercent = minPercent, let avgPercent = avgPercent, let maxPercent = maxPercent, let studentPercent = studentPercent {
             let usableWidth = frame.width - 48.0 - 2.0 // subtract 2 for half width of the outermost bars
-            
+
             minConstraint.constant = usableWidth * minPercent
             meanConstraint.constant = usableWidth * avgPercent
             maxConstraint.constant = usableWidth * maxPercent
@@ -83,14 +82,14 @@ public class GradeStatisticGraphView: UIView {
     public func update(_ assignment: Assignment) {
         setupGraph(assignment: assignment)
     }
-    
+
     func setupGraph(assignment: Assignment) {
         guard let stats = assignment.scoreStatistics, let points_possible = assignment.pointsPossible, let score = assignment.viewableScore, points_possible > 0 else {
             isHidden = true
             return
         }
         isHidden = false
-        
+
         let allowedInterval = 0 ... points_possible
         let boundedMin = allowedInterval.clamp(stats.min)
         let boundedMax = allowedInterval.clamp(stats.max)
@@ -129,4 +128,3 @@ public class GradeStatisticGraphView: UIView {
         layoutIfNeeded()
     }
 }
-

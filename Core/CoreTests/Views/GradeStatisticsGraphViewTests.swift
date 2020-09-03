@@ -26,7 +26,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         super.setUp()
         view = GradeStatisticGraphView(frame: CGRect(x: 0, y: 0, width: 800, height: 200))
     }
-    
+
     // Helper func to validate the layout
     private func validateLayout(assignment: Assignment, allowedError: CGFloat) {
         guard let scoreStatistics = assignment.scoreStatistics, let maxPossible = assignment.pointsPossible else {
@@ -34,14 +34,14 @@ class GradeStatisticsGraphViewTests: XCTestCase {
             return
         }
         XCTAssertFalse(view.isHidden, "GradeStatisticGraphView should not be hidden")
-        
+
         // Check order of markers
         let x1 = view.minPossibleBar.frame.midX, x2 = view.minBarView.frame.midX, x3 = view.meanBarView.frame.midX, x4 = view.maxBarView.frame.midX, x5 = view.maxPossibleBar.frame.midX
         XCTAssertTrue(x1 <= x2 && x2 <= x3 && x3 <= x4 && x4 <= x5, "Graph view text labels were not correctly ordered")
-        
+
         let minX = view.minPossibleBar.frame.midX
         let width = view.maxPossibleBar.frame.midX - view.minPossibleBar.frame.midX
-        
+
         let expected = [0, scoreStatistics.min, scoreStatistics.mean, scoreStatistics.max, maxPossible].map { (d: Double) -> CGFloat in
             return CGFloat(d / maxPossible) * width + minX
         }
@@ -50,18 +50,18 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         XCTAssertLessThan((x3 - expected[2]).magnitude, allowedError, "Avg label was too far from it's expected location")
         XCTAssertLessThan((x4 - expected[3]).magnitude, allowedError, "Max label was too far from it's expected location")
         XCTAssertLessThan((x5 - expected[4]).magnitude, allowedError, "Max possible label was too far from it's expected location")
-        
+
     }
-    
+
     // Helper func to call update on the view and then re-layout as if being displayed
     func updateAndValidateLayoutForAssignment(assignment: Assignment, allowedError: CGFloat = 2.0) {
         view.layoutIfNeeded()
         view.update(assignment)
-        
+
         // This is needed for tests since we aren't actually in a view controller or render loop
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        
+
         validateLayout(assignment: assignment, allowedError: allowedError)
     }
 
@@ -74,7 +74,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         ))
         updateAndValidateLayoutForAssignment(assignment: a)
     }
-    
+
     func testLabelsCorrectLocationAllZero() {
         let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 0.0, min: 0.0, max: 0.0)))
         a.submission = Submission.make(from: .make(
@@ -84,7 +84,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         ))
         updateAndValidateLayoutForAssignment(assignment: a)
     }
-    
+
     func testLabelsCorrectLocationAllMax() {
         let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 10.0, min: 10.0, max: 10.0)))
         a.submission = Submission.make(from: .make(
@@ -94,7 +94,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         ))
         updateAndValidateLayoutForAssignment(assignment: a)
     }
-    
+
     func testLabelsCorrectLocationFullSplit() {
         let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 0.0, min: 0.0, max: 10.0)))
         a.submission = Submission.make(from: .make(
@@ -104,7 +104,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         ))
         updateAndValidateLayoutForAssignment(assignment: a)
     }
-    
+
     func testLabelsOutOfBounds() {
         let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 11.0, min: -5000.0, max: 6000.0)))
         a.submission = Submission.make(from: .make(
@@ -112,14 +112,14 @@ class GradeStatisticsGraphViewTests: XCTestCase {
             score: 15.0,
             workflow_state: .graded
         ))
-        
+
         view.layoutIfNeeded()
         view.update(a)
-        
+
         // This is needed for tests since we aren't actually in a view controller or render loop
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        
+
         // Should appear the same as the layout for min=0, max=max_possible, and mean=max_possible
         let lookalike = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 10.0, min: 0.0, max: 10.0)))
         lookalike.submission = Submission.make(from: .make(
@@ -130,7 +130,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
 
         validateLayout(assignment: lookalike, allowedError: 1.0)
     }
-    
+
     func testLabelsCorrectText() {
         let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 5.0, min: 2.0, max: 8.0)))
         a.submission = Submission.make(from: .make(

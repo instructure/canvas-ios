@@ -186,7 +186,7 @@ extension Assignment {
                 self.submissions = nil
             }
         }
-        
+
         if updateScoreStatistics {
             if let newStatistics = item.score_statistics {
                 let replacementStats = scoreStatistics ?? client.insert()
@@ -335,8 +335,7 @@ public final class ScoreStatistics: NSManagedObject {
     @NSManaged internal (set) public var min: Double
     @NSManaged internal (set) public var max: Double
     @NSManaged internal (set) public var assignment: Assignment
-    
-    
+
     public func update(fromApiModel item: APIAssignmentScoreStatistics, in client: NSManagedObjectContext) {
         mean = item.mean
         min = item.min

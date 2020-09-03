@@ -80,7 +80,7 @@ class AssignmentTests: CoreTestCase {
         XCTAssertNotNil(result)
         XCTAssertNil(result?.submission)
     }
-    
+
     func testUpdateFromAPIItemWithAPIScoreStatistics() {
         let client = databaseClient
         let a = Assignment.make(from: .make(name: "a", score_statistics: nil))

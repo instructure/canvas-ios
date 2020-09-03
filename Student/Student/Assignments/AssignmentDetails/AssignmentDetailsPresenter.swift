@@ -45,9 +45,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
     lazy var arc = env.subscribe(GetArc(courseID: courseID)) { [weak self] in
         self?.updateArc()
     }
-    
+
     private let includes: [GetAssignmentRequest.GetAssignmentInclude] = [.submission, .score_statistics]
-    
+
     lazy var assignments = env.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID, include: includes)) { [weak self] in
         self?.update()
     }
@@ -272,7 +272,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             assignment?.submissionTypes.contains(.online_quiz) == true // attempts show up elsewhere
         )
     }
-    
+
     func statisticsIsHidden() -> Bool {
         // If there are no statistics, or the statistics are invalid, don't show them
         // (Valid statistics should have min <= mean <= max
