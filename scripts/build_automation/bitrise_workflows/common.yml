@@ -13,17 +13,9 @@ workflows:
 
   ad-hoc:
     before_run:
+    - _ad-hoc-vars
     - _setup
     steps:
-    - script:
-        title: Set ad-hoc environment variables
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            set -exo pipefail
-
-            envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/all.xcarchive
-            envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
     - ios-auto-provision:
         inputs:
         - generate_profiles: 'yes'
@@ -64,7 +56,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-        - scheme: Student
+        - scheme: 'Student'
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -72,7 +64,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-        - scheme: Teacher
+        - scheme: 'Teacher'
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -80,7 +72,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-        - scheme: Parent
+        - scheme: 'Parent'
     - deploy-to-bitrise-io: {}
 
   student-app-store:
@@ -308,3 +300,14 @@ workflows:
             envman add --key INFO_PLISTS --value Parent/Parent/Info.plist
 
             envman add --key BITRISE_EXPORT_METHOD --value app-store
+
+  _ad-hoc-vars:
+    steps:
+    - script:
+        title: Set Parent environment variables
+        inputs:
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            set -exo pipefail
+
+            envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
