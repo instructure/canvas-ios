@@ -12,6 +12,8 @@ project_type: other
 workflows:
 
   ad-hoc:
+    before_run:
+    - _setup
     steps:
     - script:
         title: Set ad-hoc environment variables
@@ -21,8 +23,6 @@ workflows:
             set -exo pipefail
 
             envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/all.xcarchive
-            envman add --key BITRISE_SCHEME --value All
-
             envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
     - ios-auto-provision:
         inputs:
@@ -42,13 +42,51 @@ workflows:
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Parent'
-    after_run:
-    - _common
+    - bitrise-step-stamp-appicon-with-version-number:
+        inputs:
+        - stamp_path_to_icons: Student/Student/Assets.xcassets/AppIcon.appiconset
+        - stamp_version: PR
+        title: Stamp Student AppIcon with version number
+    - bitrise-step-stamp-appicon-with-version-number:
+        inputs:
+        - stamp_path_to_icons: rn/Teacher/ios/Teacher/Assets.xcassets/AppIcon.appiconset
+        - stamp_version: PR
+        title: Stamp Teacher AppIcon with version number
+    - bitrise-step-stamp-appicon-with-version-number:
+        inputs:
+        - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
+        - stamp_version: PR
+        title: Stamp Parent AppIcon with version number
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+        - scheme: Student
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+        - scheme: Teacher
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+        - scheme: Parent
+    - deploy-to-bitrise-io: {}
 
   student-app-store:
     before_run:
     - _student-vars
-    - _common
+    - _setup
     steps:
     - script:
         inputs:
@@ -60,11 +98,19 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+    - deploy-to-bitrise-io: {}
 
   teacher-app-store:
     before_run:
     - _teacher-vars
-    - _common
+    - _setup
     steps:
     - script:
         inputs:
@@ -76,11 +122,19 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+    - deploy-to-bitrise-io: {}
 
   parent-app-store:
     before_run:
     - _parent-vars
-    - _common
+    - _setup
     steps:
     - script:
         inputs:
@@ -92,6 +146,14 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+    - deploy-to-bitrise-io: {}
 
   student-app-store-automated:
     before_run:
@@ -108,7 +170,7 @@ workflows:
     - _parent-vars
     - _app-store-automated
 
-  _common:
+  _setup:
     steps:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
@@ -148,32 +210,6 @@ workflows:
     - set-xcode-build-number:
         inputs:
         - plist_path: Parent/Parent/Info.plist
-    - bitrise-step-stamp-appicon-with-version-number:
-        run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
-        inputs:
-        - stamp_path_to_icons: Student/Student/Assets.xcassets/AppIcon.appiconset
-        - stamp_version: PR
-        title: Stamp Student AppIcon with version number if ad-hoc
-    - bitrise-step-stamp-appicon-with-version-number:
-        inputs:
-        - stamp_path_to_icons: rn/Teacher/ios/Teacher/Assets.xcassets/AppIcon.appiconset
-        - stamp_version: PR
-        run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
-        title: Stamp Teacher AppIcon with version number if ad-hoc
-    - bitrise-step-stamp-appicon-with-version-number:
-        run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
-        inputs:
-        - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
-        - stamp_version: PR
-        title: Stamp Parent AppIcon with version number if ad-hoc
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
-    - deploy-to-bitrise-io: {}
 
   _app-store-automated:
     steps:
