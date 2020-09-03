@@ -84,7 +84,7 @@ class FileListViewControllerTests: CoreTestCase {
 
         api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
             .make(),
-            .make(thumbnail_url: URL(string: "/"))
+            .make(thumbnail_url: URL(string: "/")),
         ])
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "File"
