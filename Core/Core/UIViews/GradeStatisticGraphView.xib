@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -131,10 +131,10 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlA-Fj-h0O">
-                    <rect key="frame" x="0.0" y="102" width="598" height="17"/>
+                    <rect key="frame" x="0.0" y="102" width="598" height="160"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min: 7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAf-Wd-kzE" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="199.5" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="199.5" height="160"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <color key="textColor" name="ashHighContrast"/>
                             <nil key="highlightedColor"/>
@@ -143,7 +143,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Avg: 9" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rX-af-3gd" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="207.5" y="0.0" width="183" height="17"/>
+                            <rect key="frame" x="207.5" y="0.0" width="183" height="160"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <color key="textColor" name="ashHighContrast"/>
                             <nil key="highlightedColor"/>
@@ -152,7 +152,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max: 9" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTg-IB-Qm3" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="398.5" y="0.0" width="199.5" height="17"/>
+                            <rect key="frame" x="398.5" y="0.0" width="199.5" height="160"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <color key="textColor" name="ashHighContrast"/>
                             <nil key="highlightedColor"/>
@@ -168,6 +168,7 @@
                 <constraint firstItem="IrV-ai-eG7" firstAttribute="trailing" secondItem="mHu-F5-DWY" secondAttribute="trailing" id="4zX-zt-OiX"/>
                 <constraint firstItem="VlA-Fj-h0O" firstAttribute="leading" secondItem="IrV-ai-eG7" secondAttribute="leading" id="5WN-ed-UqH"/>
                 <constraint firstItem="VlA-Fj-h0O" firstAttribute="top" secondItem="mHu-F5-DWY" secondAttribute="bottom" constant="8" id="ODm-It-jpH"/>
+                <constraint firstItem="IrV-ai-eG7" firstAttribute="bottom" secondItem="VlA-Fj-h0O" secondAttribute="bottom" constant="16" id="YRi-ql-nOs"/>
                 <constraint firstItem="mHu-F5-DWY" firstAttribute="leading" secondItem="IrV-ai-eG7" secondAttribute="leading" id="bE1-7I-Jcs"/>
                 <constraint firstItem="IrV-ai-eG7" firstAttribute="trailing" secondItem="VlA-Fj-h0O" secondAttribute="trailing" id="gpy-3Y-AE1"/>
                 <constraint firstItem="mHu-F5-DWY" firstAttribute="top" secondItem="IrV-ai-eG7" secondAttribute="top" constant="10" id="iJD-e4-wjw"/>
