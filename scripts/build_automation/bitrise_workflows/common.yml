@@ -183,6 +183,7 @@ workflows:
         inputs:
         - verbose: 'false'
     - ios-auto-provision:
+        run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
