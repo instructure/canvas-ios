@@ -47,6 +47,7 @@ public struct APIAssignment: Codable, Equatable {
     let all_dates: [APIAssignmentDate]?
     let allowed_attempts: Int?
     let external_tool_tag_attributes: APIExternalToolTagAttributes?
+    let score_statistics: APIAssignmentScoreStatistics?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -62,6 +63,12 @@ public struct APIAssignmentDate: Codable, Equatable {
 // https://canvas.instructure.com/doc/api/assignments.html#ExternalToolTagAttributes
 public struct APIExternalToolTagAttributes: Codable, Equatable {
     let content_id: ID? // undocumented
+}
+
+public struct APIAssignmentScoreStatistics: Codable, Equatable {
+    let mean: Double
+    let min: Double
+    let max: Double
 }
 
 public enum GradingType: String, Codable {
@@ -98,7 +105,8 @@ extension APIAssignment {
         assignment_group_id: ID? = nil,
         all_dates: [APIAssignmentDate]? = nil,
         allowed_attempts: Int? = -1,
-        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil
+        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil,
+        score_statistics: APIAssignmentScoreStatistics? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -135,7 +143,8 @@ extension APIAssignment {
             assignment_group_id: assignment_group_id,
             all_dates: all_dates,
             allowed_attempts: allowed_attempts,
-            external_tool_tag_attributes: external_tool_tag_attributes
+            external_tool_tag_attributes: external_tool_tag_attributes,
+            score_statistics: score_statistics
         )
     }
 }
@@ -165,6 +174,19 @@ extension APIExternalToolTagAttributes {
         return Self(content_id: content_id)
     }
 }
+extension APIAssignmentScoreStatistics {
+    public static func make(
+        mean: Double = 2.0,
+        min: Double = 1.0,
+        max: Double = 5.0
+    ) -> APIAssignmentScoreStatistics {
+        return APIAssignmentScoreStatistics(
+            mean: mean,
+            min: min,
+            max: max
+        )
+    }
+}
 #endif
 
 // https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.show
@@ -184,7 +206,7 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public enum GetAssignmentInclude: String {
-        case submission, overrides
+        case submission, overrides, score_statistics
     }
 
     public var path: String {
@@ -246,6 +268,7 @@ public struct GetAssignmentsRequest: APIRequestable {
         case observed_users
         case submission
         case all_dates
+        case score_statistics
     }
 
     public typealias Response = [APIAssignment]

@@ -63,6 +63,7 @@
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
+        <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ScoreStatistics" inverseName="assignment" inverseEntity="ScoreStatistics"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
         <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="assignment" inverseEntity="Todo"/>
@@ -686,6 +687,12 @@
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratings" inverseEntity="Rubric"/>
     </entity>
+    <entity name="ScoreStatistics" representedClassName="Core.ScoreStatistics" syncable="YES">
+        <attribute name="max" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="mean" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="min" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="assignment" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="scoreStatistics" inverseEntity="Assignment"/>
+    </entity>
     <entity name="SearchRecipient" representedClassName="Core.SearchRecipient" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="filter" optional="YES" attributeType="String"/>
@@ -877,5 +884,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
