@@ -35,7 +35,7 @@ class AssignmentTests: CoreTestCase {
 
         XCTAssertNil(a.submission)
 
-        a.update(fromApiModel: api, in: client, updateSubmission: true)
+        a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: false)
 
         XCTAssertEqual(a.id, api.id.value)
         XCTAssertEqual(a.name, api.name)
@@ -61,7 +61,7 @@ class AssignmentTests: CoreTestCase {
 
         XCTAssertNil(a.submission)
 
-        a.update(fromApiModel: api, in: client, updateSubmission: false)
+        a.update(fromApiModel: api, in: client, updateSubmission: false, updateScoreStatistics: false)
 
         XCTAssertNil(a.submission)
     }
@@ -72,13 +72,67 @@ class AssignmentTests: CoreTestCase {
         let api = APIAssignment.make(name: "api_a", submission: nil)
         XCTAssertNil(api.submission)
 
-        a.update(fromApiModel: api, in: client, updateSubmission: true)
+        a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: false)
         XCTAssertNil(a.submission)
 
         let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id))
         let result = list.first
         XCTAssertNotNil(result)
         XCTAssertNil(result?.submission)
+    }
+
+    func testUpdateFromAPIItemWithAPIScoreStatistics() {
+        let client = databaseClient
+        let a = Assignment.make(from: .make(name: "a", score_statistics: nil))
+        let api = APIAssignment.make(name: "api_a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 1.0, max: 10.0))
+
+        XCTAssertNil(a.scoreStatistics)
+
+        a.update(fromApiModel: api, in: client, updateSubmission: false, updateScoreStatistics: true)
+
+        XCTAssertEqual(a.id, api.id.value)
+        XCTAssertEqual(a.name, api.name)
+        XCTAssertEqual(a.courseID, api.course_id.value)
+        XCTAssertEqual(a.details, api.description)
+        XCTAssertEqual(a.pointsPossible, api.points_possible)
+        XCTAssertEqual(a.dueAt, api.due_at)
+        XCTAssertEqual(a.htmlURL, api.html_url)
+        XCTAssertEqual(a.gradingType, api.grading_type)
+        XCTAssertEqual(a.submissionTypes, api.submission_types)
+        XCTAssertEqual(a.position, api.position)
+        XCTAssertFalse(a.useRubricForGrading)
+        XCTAssertFalse(a.hideRubricPoints)
+        XCTAssertFalse(a.freeFormCriterionCommentsOnRubric)
+
+        XCTAssertNotNil(a.scoreStatistics)
+
+    }
+
+    func testUpdateFromAPIItemWithAPIScoreStatisticsButDoNotUpdateStatistics() {
+        let client = databaseClient
+        let a = Assignment.make(from: .make(name: "a", score_statistics: nil))
+        let api = APIAssignment.make(name: "api_a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 1.0, max: 10.0))
+
+        XCTAssertNil(a.scoreStatistics)
+
+        a.update(fromApiModel: api, in: client, updateSubmission: false, updateScoreStatistics: false)
+
+        XCTAssertNil(a.scoreStatistics)
+    }
+
+    func testUpdateFromAPIItemWithExistingScoreStatistics() {
+        let client = databaseClient
+        let a = Assignment.make(from: .make(name: "a", score_statistics: APIAssignmentScoreStatistics(mean: 5.0, min: 2.0, max: 10.0)))
+        let api = APIAssignment.make(name: "api_a", score_statistics: nil)
+        XCTAssertNil(api.score_statistics)
+
+        a.update(fromApiModel: api, in: client, updateSubmission: false, updateScoreStatistics: true)
+        XCTAssertNil(a.scoreStatistics)
+
+        let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id))
+        let result = list.first
+        XCTAssertNotNil(result)
+        XCTAssertNil(result?.scoreStatistics)
     }
 
     func testCanMakeSubmissions() {
@@ -131,7 +185,7 @@ class AssignmentTests: CoreTestCase {
         let apiAssignment = APIAssignment.make(use_rubric_for_grading: true)
         let assignment = Assignment.make()
 
-        assignment.update(fromApiModel: apiAssignment, in: databaseClient, updateSubmission: true)
+        assignment.update(fromApiModel: apiAssignment, in: databaseClient, updateSubmission: true, updateScoreStatistics: false)
 
         XCTAssertTrue(assignment.useRubricForGrading)
     }
