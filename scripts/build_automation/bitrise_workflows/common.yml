@@ -307,7 +307,7 @@ workflows:
   _ad-hoc-vars:
     steps:
     - script:
-        title: Set Parent environment variables
+        title: Set ad-hoc environment variables
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
