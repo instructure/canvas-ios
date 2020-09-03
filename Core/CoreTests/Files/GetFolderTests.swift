@@ -20,6 +20,41 @@ import XCTest
 @testable import Core
 
 class GetFolderTests: CoreTestCase {
+    func testGetFolder() {
+        let useCase = GetFolder(context: .course("1"), path: "sub")
+        XCTAssertEqual(useCase.cacheKey, "courses/1/folders/by_path/sub")
+        XCTAssertEqual(useCase.request.fullPath, "sub")
+        XCTAssertEqual(useCase.scope, Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Folder.canvasContextID), equals: "course_1"),
+                NSPredicate(key: #keyPath(Folder.path), equals: "sub"),
+            ]),
+            orderBy: #keyPath(Folder.id)
+        ))
+        XCTAssertEqual(GetFolder(context: .currentUser).scope, Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Folder.canvasContextID), equals: "user_1"),
+                NSPredicate(key: #keyPath(Folder.path), equals: ""),
+            ]),
+            orderBy: #keyPath(Folder.id)
+        ))
+    }
+
+    func testGetFolderItems() {
+        let useCase = GetFolderItems(folderID: "1")
+        XCTAssertEqual(useCase.cacheKey, "/folder/1/items")
+        XCTAssertEqual(useCase.scope, .where(
+            #keyPath(FolderItem.parentFolderID), equals: "1",
+            orderBy: #keyPath(FolderItem.name), naturally: true
+        ))
+        api.mock(GetFilesRequest(context: Context(.folder, id: "1")), value: [ .make() ])
+        api.mock(GetFoldersRequest(context: Context(.folder, id: "1")), value: [ .make(id: 2, parent_folder_id: 1) ])
+        useCase.fetch()
+        let items: [FolderItem] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(items.first?.name, "File")
+        XCTAssertEqual(items.last?.name, "my files")
+    }
+
     func testGetFolders() {
         XCTAssertEqual(GetFolders(context: .course("1")).cacheKey, "courses/1/folders")
         XCTAssertEqual(GetFolders(context: .course("1")).request.context, .course("1"))
@@ -31,5 +66,17 @@ class GetFolderTests: CoreTestCase {
             #keyPath(Folder.parentFolderID), equals: "2",
             orderBy: #keyPath(Folder.name), naturally: true)
         )
+    }
+
+    func testCreateFolder() {
+        let useCase = CreateFolder(context: .course("1"), name: "f", parentFolderID: "1")
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.context, .course("1"))
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+        let folder: FolderItem? = databaseClient.first(where: #keyPath(FolderItem.id), equals: "folder-1")
+        XCTAssertEqual(folder?.name, "my files")
+        XCTAssertEqual(folder?.file, nil)
+        XCTAssertEqual(folder?.folder?.path, "")
     }
 }

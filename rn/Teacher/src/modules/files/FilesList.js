@@ -74,8 +74,6 @@ type FileListNavProps = {
   subFolder?: ?string,
   canEdit: boolean,
   canAdd: boolean,
-  canSelectFile: Function,
-  onSelectFile: Function,
 }
 
 type Props =
@@ -118,7 +116,6 @@ export class FilesList extends Component<Props, State> {
     updateFile: canvas.updateFile,
     canEdit: true,
     canAdd: true,
-    canSelectFile: () => true,
   }
 
   attachmentPicker: AttachmentPicker
@@ -203,8 +200,6 @@ export class FilesList extends Component<Props, State> {
     const {
       contextID,
       context,
-      onSelectFile,
-      canSelectFile,
       canEdit,
       canAdd,
     } = this.props
@@ -213,9 +208,6 @@ export class FilesList extends Component<Props, State> {
       logEvent('file_viewed')
       this.setState({ selectedRowID: item.id })
 
-      if (onSelectFile) {
-        return onSelectFile(item)
-      }
       this.props.navigator.show(`/${context}/${contextID}/files/${item.id}`, {}, {
         file: item,
         onChange: this.update,
@@ -229,8 +221,6 @@ export class FilesList extends Component<Props, State> {
         route = `/${context}/${contextID}/files/folder/${name}`
       }
       this.props.navigator.show(route, { modal: false }, {
-        onSelectFile,
-        canSelectFile,
         canEdit,
         canAdd,
         onChange: this.update,
@@ -425,7 +415,7 @@ export class FilesList extends Component<Props, State> {
           identifier={index}
           onPress={this.onSelectRow}
           disclosureIndicator
-          testID={`file-list.file-list-row.cell-${item.key}`}
+          testID={`FileList.${index}`}
           selected={selected} />
       </View>
     </View>)
@@ -536,14 +526,14 @@ export class FilesList extends Component<Props, State> {
     if (this.canAdd()) {
       rightBarButtons.push({
         image: images.add,
-        testID: 'files.add.button',
+        testID: 'FileList.addButton',
         action: this.addItem,
         accessibilityLabel: i18n('Add Item'),
       })
     }
     if (this.canEdit()) {
       rightBarButtons.push({
-        testID: 'files.edit-folder.button',
+        testID: 'FileList.editButton',
         title: i18n('Edit'),
         action: this.handleEditFolder,
       })
@@ -616,8 +606,7 @@ export function mapStateToProps (state: Object, props: FileListNavProps) {
   }
 
   const folders = (contextFolders[parentFolder.full_name] || []).map(mapper('folder'))
-  const canSelectFile = props.canSelectFile || (() => true)
-  const files = (contextFiles[parentFolder.full_name] || []).map(mapper('file')).filter(canSelectFile)
+  const files = (contextFiles[parentFolder.full_name] || []).map(mapper('file'))
   const data = [...folders, ...files].sort((a, b) => localeSort(a.name || a.display_name, b.name || b.display_name))
 
   return { data, folder: parentFolder, courseColor }

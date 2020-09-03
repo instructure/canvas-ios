@@ -149,7 +149,7 @@ extension File: WriteableModel {
         model.filename = item.filename
         model.contentType = item.contentType
         model.url = item.url?.rawValue
-        model.size = item.size
+        model.size = item.size ?? 1
         model.createdAt = item.created_at
         model.updatedAt = item.updated_at
         model.unlockAt = item.unlock_at
@@ -170,7 +170,9 @@ extension File: WriteableModel {
         return model
     }
 
-    public var icon: UIImage {
+    public var icon: UIImage { File.icon(mimeClass: mimeClass, contentType: contentType) }
+
+    static func icon(mimeClass: String?, contentType: String?) -> UIImage {
         if mimeClass == "audio" || contentType?.hasPrefix("audio/") == true {
             return UIImage.audioLine
         } else if mimeClass == "doc" {

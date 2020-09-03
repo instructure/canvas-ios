@@ -137,7 +137,6 @@ exports[`Attachments renders attachments 1`] = `
           "top": 0,
         }
       }
-      userFiles={false}
     />
   </View>
 </Screen>
@@ -215,7 +214,6 @@ exports[`Attachments renders empty state 1`] = `
           "top": 0,
         }
       }
-      userFiles={false}
     />
   </View>
 </Screen>

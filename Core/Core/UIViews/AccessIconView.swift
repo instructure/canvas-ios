@@ -29,8 +29,17 @@ open class AccessIconView: UIView {
 
     public var icon: UIImage? {
         didSet {
+            iconView.layer.cornerRadius = 0
+            iconView.contentMode = .scaleAspectFit
+            iconView.load(url: nil)
             iconView.image = icon
         }
+    }
+
+    public func load(url: URL?) {
+        iconView.layer.cornerRadius = 4
+        iconView.contentMode = .scaleAspectFill
+        iconView.load(url: url)
     }
 
     public var state: State? {

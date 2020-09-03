@@ -32,7 +32,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 
-        FilesList.addButton.tap()
+        FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
@@ -55,7 +55,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 
-        FilesList.addButton.tap()
+        FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToPhotos {
             app.find(label: "Choose From Library").tap()
@@ -77,7 +77,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 
-        FilesList.addButton.tap()
+        FileList.addButton.tap()
         app.find(label: "Create Folder").tap()
         app.alerts.textFields.firstElement.typeText("top secret!")
         app.find(label: "OK", type: .button).tap()
@@ -92,7 +92,7 @@ class FilesUITests: MiniCanvasUITestCase {
 
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
-        FilesList.file(id: firstFile!.id).tap()
+        FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
         FileEditItem.copyright.typeText("me")
@@ -108,7 +108,7 @@ class FilesUITests: MiniCanvasUITestCase {
     func testRestrictAccess() throws {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
-        FilesList.file(id: firstFile!.id).tap()
+        FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
         FileEditItem.publish.tap()
@@ -130,7 +130,7 @@ class FilesUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
 
-        let file = FilesList.file(id: firstFile!.id)
+        let file = FileList.file(index: 0)
         XCTAssertEqual(file.label(), "Restricted hamburger 1 KB")
         file.tap()
         FileDetails.editButton.tap()
@@ -150,7 +150,7 @@ class FilesUITests: MiniCanvasUITestCase {
     func testDeleteFile() throws {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.files.tap()
-        FilesList.file(id: firstFile!.id).tap()
+        FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
         FileEditItem.delete.tap()

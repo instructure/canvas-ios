@@ -28,7 +28,7 @@ public struct APIFile: Codable, Equatable {
     let contentType: String
     let url: APIURL?
     // file size in bytes
-    let size: Int
+    let size: Int?
     let created_at: Date
     let updated_at: Date
     let unlock_at: Date?
@@ -86,7 +86,7 @@ public struct APIFile: Codable, Equatable {
         filename: String,
         contentType: String,
         url: APIURL,
-        size: Int,
+        size: Int?,
         created_at: Date,
         updated_at: Date,
         unlock_at: Date?,
@@ -139,7 +139,7 @@ public struct APIFile: Codable, Equatable {
         filename = try container.decode(String.self, forKey: .filename)
         contentType = try container.decode(String.self, forKey: .contentType)
         url = try container.decodeURLIfPresent(forKey: .url)
-        size = try container.decode(Int.self, forKey: .size)
+        size = try container.decodeIfPresent(Int.self, forKey: .size)
         created_at = try container.decode(Date.self, forKey: .created_at)
         updated_at = try container.decode(Date.self, forKey: .updated_at)
         unlock_at = try container.decodeIfPresent(Date.self, forKey: .unlock_at)
@@ -164,6 +164,7 @@ public struct APIFileToken: Codable, Equatable {
 
 // https://canvas.instructure.com/doc/api/files.html#Folder
 public struct APIFolder: Codable, Equatable {
+    let can_upload: Bool
     let context_type: String
     let context_id: ID
     let files_count: Int
@@ -191,6 +192,18 @@ public struct APIUsageRights: Codable, Equatable {
     public let legal_copyright: String?
     public let license: String?
     public let use_justification: UseJustification?
+}
+
+public enum APIFolderItem: Codable {
+    case file(APIFile)
+    case folder(APIFolder)
+
+    public init(from decoder: Decoder) throws {
+        throw NSError.instructureError("Not for actual api decoding")
+    }
+    public func encode(to encoder: Encoder) throws {
+        throw NSError.instructureError("Not for actual api encoding")
+    }
 }
 
 #if DEBUG
@@ -252,6 +265,7 @@ extension APIFile {
 
 extension APIFolder {
     public static func make(
+        can_upload: Bool = true,
         context_type: String = "User",
         context_id: ID = 1,
         files_count: Int = 1,
@@ -274,6 +288,7 @@ extension APIFolder {
         for_submissions: Bool = false
     ) -> APIFolder {
         APIFolder(
+            can_upload: can_upload,
             context_type: context_type,
             context_id: context_id,
             files_count: files_count,
@@ -435,7 +450,7 @@ public class GetContextFolderHierarchyRequest: APIRequestable {
     }
 
     public var path: String {
-        "\(context.pathComponent)/folders/by_path/\(fullPath)"
+        "\(context.pathComponent)/folders/by_path/\(fullPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? "")"
     }
 
     public var query: [APIQueryItem] {
@@ -472,23 +487,22 @@ public class GetFilesRequest: APIRequestable {
     public typealias Response = [APIFile]
 
     let context: Context
+    let searchTerm: String?
     let perPage: Int?
 
-    init(context: Context, perPage: Int? = 100) {
+    init(context: Context, searchTerm: String? = nil, perPage: Int? = 100) {
         self.context = context
+        self.searchTerm = searchTerm
         self.perPage = perPage
     }
 
-    public var path: String {
-        "\(context.pathComponent)/files"
-    }
+    public var path: String { "\(context.pathComponent)/files" }
 
-    public var query: [APIQueryItem] {
-        [
-            .include([ "usage_rights" ]),
-            .perPage(perPage),
-        ]
-    }
+    public var query: [APIQueryItem] { [
+        .include([ "usage_rights" ]),
+        .optionalValue("search_term", searchTerm),
+        .perPage(perPage),
+    ] }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.show
@@ -514,6 +528,28 @@ public class GetFolderRequest: APIRequestable {
     public var query: [APIQueryItem] {
         [ .include([ "usage_rights" ]) ]
     }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.folders.create
+struct PostFolderRequest: APIRequestable {
+    typealias Response = APIFolder
+
+    struct Body: Codable {
+        let name: String
+        let parent_folder_id: String
+        let locked: Bool
+    }
+
+    let context: Context
+    let body: Body?
+
+    init(context: Context, name: String, parentFolderID: String) {
+        self.context = context
+        self.body = Body(name: name, parent_folder_id: parentFolderID, locked: true)
+    }
+
+    var method: APIMethod { .post }
+    var path: String { "\(context.pathComponent)/folders" }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.files.destroy

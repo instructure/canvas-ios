@@ -19,12 +19,11 @@
 import Foundation
 import XCTest
 
-public enum FilesList {
-    public static func file(id: String) -> Element {
-        return app.find(id: "file-list.file-list-row.cell-file-\(id)")
-    }
+public enum FileList: String, ElementWrapper {
+    case addButton, editButton
+    case addFileButton, addFolderButton
 
-    public static var addButton: Element {
-        app.find(id: "files.add.button")
+    public static func file(index: Int) -> Element {
+        app.find(id: "FileList.\(index)")
     }
 }
