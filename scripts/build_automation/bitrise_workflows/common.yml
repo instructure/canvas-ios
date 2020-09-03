@@ -12,25 +12,42 @@ project_type: other
 workflows:
 
   ad-hoc:
-    before_run:
-    - _ad-hoc-vars
-    - _set-export-ad-hoc
-    - _common
     steps:
     - script:
-        title: Update build link
-        is_skippable: true
+        title: Set ad-hoc environment variables
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
-            set -euo pipefail
-            ./scripts/run-swift build-link update-link student $BITRISE_GIT_BRANCH \
-                $BITRISE_PUBLIC_INSTALL_PAGE_URL
+            set -exo pipefail
+
+            envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/all.xcarchive
+            envman add --key BITRISE_SCHEME --value All
+
+            envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
+    - ios-auto-provision:
+        inputs:
+        - generate_profiles: 'yes'
+        - distribution_type: "$BITRISE_EXPORT_METHOD"
+        - configuration: "$BITRISE_CONFIGURATION"
+        - scheme: 'Student'
+    - ios-auto-provision:
+        inputs:
+        - generate_profiles: 'yes'
+        - distribution_type: "$BITRISE_EXPORT_METHOD"
+        - configuration: "$BITRISE_CONFIGURATION"
+        - scheme: 'Teacher'
+    - ios-auto-provision:
+        inputs:
+        - generate_profiles: 'yes'
+        - distribution_type: "$BITRISE_EXPORT_METHOD"
+        - configuration: "$BITRISE_CONFIGURATION"
+        - scheme: 'Parent'
+    after_run:
+    - _common
 
   student-app-store:
     before_run:
     - _student-vars
-    - _set-export-app-store
     - _common
     steps:
     - script:
@@ -47,7 +64,6 @@ workflows:
   teacher-app-store:
     before_run:
     - _teacher-vars
-    - _set-export-app-store
     - _common
     steps:
     - script:
@@ -64,7 +80,6 @@ workflows:
   parent-app-store:
     before_run:
     - _parent-vars
-    - _set-export-app-store
     - _common
     steps:
     - script:
@@ -97,7 +112,6 @@ workflows:
     steps:
     - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
-    - cache-pull: {}
     - script:
         title: Install build tools
         inputs:
@@ -119,11 +133,6 @@ workflows:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
-        outputs:
-        - BITRISE_DEVELOPMENT_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
-        - BITRISE_PRODUCTION_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
-        - BITRISE_DEVELOPMENT_PROFILE: BITRISE_PROFILE
-        - BITRISE_PRODUCTION_PROFILE: BITRISE_PROFILE
     - set-xcode-build-number:
         inputs:
         - plist_path: Student/Student/Info.plist
@@ -228,6 +237,8 @@ workflows:
             envman add --key APP_NAME --value Student
             envman add --key INFO_PLISTS --value "Student/Student/Info.plist Student/GradesWidget/Info.plist Student/SubmitAssignment/Info.plist"
 
+            envman add --key BITRISE_EXPORT_METHOD --value app-store
+
   _teacher-vars:
     steps:
     - script:
@@ -242,6 +253,8 @@ workflows:
             envman add --key RELEASE_BRANCH --value release/teacher
             envman add --key APP_NAME --value Teacher
             envman add --key INFO_PLISTS --value rn/Teacher/ios/Teacher/Info.plist
+
+            envman add --key BITRISE_EXPORT_METHOD --value app-store
 
   _parent-vars:
     steps:
@@ -258,28 +271,4 @@ workflows:
             envman add --key APP_NAME --value Parent
             envman add --key INFO_PLISTS --value Parent/Parent/Info.plist
 
-  _ad-hoc-vars:
-    steps:
-    - script:
-        title: Set ad-hoc environment variables
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            set -exo pipefail
-
-            envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/all.xcarchive
-            envman add --key BITRISE_SCHEME --value All
-
-  _set-export-ad-hoc:
-    steps:
-    - set-env-var:
-        inputs:
-        - destination_keys: BITRISE_EXPORT_METHOD
-        - value: ad-hoc
-
-  _set-export-app-store:
-    steps:
-    - set-env-var:
-        inputs:
-        - destination_keys: BITRISE_EXPORT_METHOD
-        - value: app-store
+            envman add --key BITRISE_EXPORT_METHOD --value app-store
