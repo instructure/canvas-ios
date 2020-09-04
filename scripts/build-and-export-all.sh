@@ -54,7 +54,9 @@ for app in $apps; do
     cp -r $allArchive $appArchive
 
     # delete extra apps
-    rm -rf $appArchive/Products/Applications/${(@)apps:#$app}.app
+    for otherApp in ${(@)apps:#$app}; do
+        rm -rf $appArchive/Products/Applications/$otherApp.app
+    done
 
     /usr/libexec/PlistBuddy $appArchive/Info.plist \
         -c "Add :ApplicationProperties dict" \
