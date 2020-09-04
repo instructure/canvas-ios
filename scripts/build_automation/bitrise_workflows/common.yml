@@ -35,45 +35,49 @@ workflows:
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Parent'
     - bitrise-step-stamp-appicon-with-version-number:
+        title: Stamp Student AppIcon with version number
         inputs:
         - stamp_path_to_icons: Student/Student/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
-        title: Stamp Student AppIcon with version number
     - bitrise-step-stamp-appicon-with-version-number:
+        title: Stamp Teacher AppIcon with version number
         inputs:
         - stamp_path_to_icons: rn/Teacher/ios/Teacher/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
-        title: Stamp Teacher AppIcon with version number
     - bitrise-step-stamp-appicon-with-version-number:
+        title: Stamp Parent AppIcon with version number
         inputs:
         - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
-        title: Stamp Parent AppIcon with version number
     - script:
+        title: Build Archive
         inputs:
         - content: |-
             exec ./scripts/build-and-export-all.sh
-    - export-xcarchive:
+    - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
-        - archive_path: "build/archives/Student.xcarchive"
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - upload_bitcode: 'no'
+        - existing_archive_path: "build/archives/Student.xcarchive"
+        - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
-        - team_id: "$TEAM_ID"
-    - export-xcarchive:
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+    - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
-        - archive_path: "build/archives/Teacher.xcarchive"
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - upload_bitcode: 'no'
+        - existing_archive_path: "build/archives/Teacher.xcarchive"
+        - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
-        - team_id: "$TEAM_ID"
-    - export-xcarchive:
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
+    - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
-        - archive_path: "build/archives/Parent.xcarchive"
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - upload_bitcode: 'no'
+        - existing_archive_path: "build/archives/Parent.xcarchive"
+        - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
-        - team_id: "$TEAM_ID"
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
     - deploy-to-bitrise-io: {}
     - cache-push: {}
 
