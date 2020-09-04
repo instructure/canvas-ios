@@ -56,6 +56,7 @@ workflows:
             exec ./scripts/build-and-export-all.sh
     - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
+        - scheme: "Student"
         - existing_archive_path: "build/archives/Student.xcarchive"
         - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
@@ -64,6 +65,7 @@ workflows:
         - icloud_container_environment: "Production"
     - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
+        - scheme: "Teacher"
         - existing_archive_path: "build/archives/Teacher.xcarchive"
         - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
@@ -72,6 +74,7 @@ workflows:
         - icloud_container_environment: "Production"
     - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
+        - scheme: "Parent"
         - existing_archive_path: "build/archives/Parent.xcarchive"
         - configuration: "$BITRISE_CONFIGURATION"
         - compile_bitcode: 'no'
