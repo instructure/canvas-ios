@@ -56,23 +56,23 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-        - scheme: 'Student'
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
-        - scheme: 'Teacher'
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
-        - scheme: 'Parent'
+        - scheme: 'All'
+    # - xcode-archive:
+    #     inputs:
+    #     - configuration: "$BITRISE_CONFIGURATION"
+    #     - compile_bitcode: 'no'
+    #     - upload_bitcode: 'no'
+    #     - export_method: "$BITRISE_EXPORT_METHOD"
+    #     - icloud_container_environment: "Production"
+    #     - scheme: 'Teacher'
+    # - xcode-archive:
+    #     inputs:
+    #     - configuration: "$BITRISE_CONFIGURATION"
+    #     - compile_bitcode: 'no'
+    #     - upload_bitcode: 'no'
+    #     - export_method: "$BITRISE_EXPORT_METHOD"
+    #     - icloud_container_environment: "Production"
+    #     - scheme: 'Parent'
     - deploy-to-bitrise-io: {}
     - cache-push: {}
 
