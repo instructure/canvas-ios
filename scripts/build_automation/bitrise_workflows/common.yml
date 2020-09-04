@@ -49,30 +49,31 @@ workflows:
         - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
         title: Stamp Parent AppIcon with version number
-    - xcode-archive:
+    - script:
         inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
+        - content: |-
+            exec ./scripts/build-and-export-all.sh
+    - export-xcarchive:
+        inputs:
+        - archive_path: "build/archives/Student.xcarchive"
         - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
-        - scheme: 'All'
-    # - xcode-archive:
-    #     inputs:
-    #     - configuration: "$BITRISE_CONFIGURATION"
-    #     - compile_bitcode: 'no'
-    #     - upload_bitcode: 'no'
-    #     - export_method: "$BITRISE_EXPORT_METHOD"
-    #     - icloud_container_environment: "Production"
-    #     - scheme: 'Teacher'
-    # - xcode-archive:
-    #     inputs:
-    #     - configuration: "$BITRISE_CONFIGURATION"
-    #     - compile_bitcode: 'no'
-    #     - upload_bitcode: 'no'
-    #     - export_method: "$BITRISE_EXPORT_METHOD"
-    #     - icloud_container_environment: "Production"
-    #     - scheme: 'Parent'
+        - upload_bitcode: 'no'
+        - compile_bitcode: 'no'
+        - team_id: "$TEAM_ID"
+    - export-xcarchive:
+        inputs:
+        - archive_path: "build/archives/Teacher.xcarchive"
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - upload_bitcode: 'no'
+        - compile_bitcode: 'no'
+        - team_id: "$TEAM_ID"
+    - export-xcarchive:
+        inputs:
+        - archive_path: "build/archives/Parent.xcarchive"
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - upload_bitcode: 'no'
+        - compile_bitcode: 'no'
+        - team_id: "$TEAM_ID"
     - deploy-to-bitrise-io: {}
     - cache-push: {}
 
