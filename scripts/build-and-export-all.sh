@@ -43,9 +43,9 @@ exportOptionsPlist=tmp/exportOptions.plist
     -c "Add :iCloudContainerEnvironment string Production" \
     -c "Add :compileBitcode bool false"
 
-for app in Student Teacher Parent; do
+apps=(Student Teacher Parent)
+for app in $apps; do
     appInfo=$allArchive/Products/Applications/$app.app/Info.plist
-    appPath=Applications/$app.app
     bundleId=$(/usr/libexec/PlistBuddy $appInfo -c "Print CFBundleIdentifier")
     version=$(/usr/libexec/PlistBuddy $appInfo -c "Print CFBundleShortVersionString")
 
@@ -53,9 +53,12 @@ for app in Student Teacher Parent; do
     rm -rf $appArchive
     cp -r $allArchive $appArchive
 
+    # delete extra apps
+    rm -rf $appArchive/Products/Applications/${(@)apps:#$app}.app
+
     /usr/libexec/PlistBuddy $appArchive/Info.plist \
         -c "Add :ApplicationProperties dict" \
-        -c "Add :ApplicationProperties:ApplicationPath string $appPath" \
+        -c "Add :ApplicationProperties:ApplicationPath string Applications/$app.app" \
         -c "Add :ApplicationProperties:CFBundleIdentifier string $bundleId" \
         -c "Add :ApplicationProperties:CFBundleShortVersionString string $version" \
         -c "Add :ApplicationProperties:CFBundleVersion string 1" \
