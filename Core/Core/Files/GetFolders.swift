@@ -52,6 +52,11 @@ public class GetFolder: CollectionUseCase {
         ]),
         orderBy: #keyPath(Folder.id)
     ) }
+
+    public func write(response: [APIFolder]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let folder = response?.last else { return }
+        FolderItem.save(folder, in: client)
+    }
 }
 
 public class GetFolders: CollectionUseCase {

@@ -38,6 +38,13 @@ class GetFolderTests: CoreTestCase {
             ]),
             orderBy: #keyPath(Folder.id)
         ))
+        api.mock(useCase, value: [
+            .make(context_type: "Course", context_id: "1", full_name: "m/sub", id: 2, name: "sub", parent_folder_id: 1),
+        ])
+        XCTAssertNoThrow(useCase.write(response: nil, urlResponse: nil, to: databaseClient))
+        useCase.fetch()
+        let items: [Folder] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(items.first?.name, "sub")
     }
 
     func testGetFolderItems() {

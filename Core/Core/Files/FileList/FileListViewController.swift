@@ -157,12 +157,11 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
         }
 
         loadingView.isHidden = !folder.pending || !folder.isEmpty || folder.error != nil || refreshControl.isRefreshing
-        emptyView.isHidden = folder.pending || !folder.isEmpty || folder.error != nil
         errorView.isHidden = folder.error == nil
         titleSubtitleView.title = (path.isEmpty ? nil : folder.first?.name) ?? NSLocalizedString("Files", bundle: .core, comment: "")
         updateNavButtons()
 
-        guard let folder = folder.first, items == nil else { return }
+        guard let folder = folder.first, items == nil else { return update() }
         items = env.subscribe(GetFolderItems(folderID: folder.id)) { [weak self] in
             self?.update()
         }
@@ -347,7 +346,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard errorView.isHidden else { return 0 }
+        // guard errorView.isHidden else { return 0 }
         switch section {
         case 0: return uploads.count
         case 1: return results.count
@@ -381,7 +380,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             env.router.route(to: "/\(context.pathComponent)/files/\(id)", from: self, options: .detail)
         } else if let id = items?[indexPath.row]?.file?.id {
             env.router.route(to: "/\(context.pathComponent)/files/\(id)", from: self, options: .detail)
-        } else if let path = items?[indexPath.row]?.folder?.path {
+        } else if let path = items?[indexPath.row]?.folder?.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
             env.router.route(to: "/\(context.pathComponent)/files/folder/\(path)", from: self, options: .push)
         }
     }

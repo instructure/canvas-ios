@@ -2384,7 +2384,7 @@
 			isa = PBXGroup;
 			children = (
 				7D82DB362374A80200C699B8 /* FileDetails */,
-				7D3A0D3025016EF8000C6F42 /* FileLIst */,
+				7D3A0D3025016EF8000C6F42 /* FileList */,
 				B1B42C1422403AE90087399A /* FilePicker */,
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
@@ -2822,12 +2822,12 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		7D3A0D3025016EF8000C6F42 /* FileLIst */ = {
+		7D3A0D3025016EF8000C6F42 /* FileList */ = {
 			isa = PBXGroup;
 			children = (
 				7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */,
 			);
-			path = FileLIst;
+			path = FileList;
 			sourceTree = "<group>";
 		};
 		7D3A1EED227BEFB20094531E /* ActAsUser */ = {
@@ -4838,7 +4838,6 @@
 				7DA2601023F7227A005D2121 /* UIColorExtensions.swift in Sources */,
 				7DA25FD123F72136005D2121 /* APIURL.swift in Sources */,
 				49428D5A24BA526F00EF3EAB /* GradeStatisticGraphView.swift in Sources */,
-				7DA2605E23F722D9005D2121 /* QuizType.swift in Sources */,
 				7DA260C923F72359005D2121 /* AlertAction.swift in Sources */,
 				7DA2604B23F722D9005D2121 /* GradingPeriod.swift in Sources */,
 				7DA2603A23F722D9005D2121 /* Assignment.swift in Sources */,
