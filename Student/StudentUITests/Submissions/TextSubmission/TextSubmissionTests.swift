@@ -26,7 +26,7 @@ class TextSubmissionTests: CoreUITestCase {
         mockBaseRequests()
         let course = mock(course: APICourse.make())
         let assignment = APIAssignment.make(submission_types: [ .online_text_entry ])
-        mockData(GetAssignmentRequest(courseID: course.id.value, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mock(assignment: assignment)
         mockData(GetModuleItemSequenceRequest(courseID: course.id.value, assetType: .assignment, assetID: assignment.id.value), value: .make())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
