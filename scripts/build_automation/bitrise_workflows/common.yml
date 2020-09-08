@@ -49,11 +49,11 @@ workflows:
         inputs:
         - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
         - stamp_version: PR
-    - script:
+    - script-runner:
         title: Build Archive
         inputs:
-        - content: |-
-            exec ./scripts/build-and-export-all.sh
+        - runner: "/bin/zsh"
+        - file_path: scripts/archive-all.sh
     - git::https://github.com/cobbal/steps-xcode-archive@master:
         inputs:
         - scheme: "Student"

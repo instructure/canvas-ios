@@ -25,7 +25,6 @@ set -euxo pipefail
 
 archivePath=build/archives
 allArchive=$archivePath/All.xcarchive
-mkdir -p $archivePath tmp
 
 xcodebuild \
     -workspace Canvas.xcworkspace \
@@ -35,13 +34,6 @@ xcodebuild \
     -destination generic/platform=iOS \
     COMPILER_INDEX_STORE_ENABLE=NO \
     archive | xcpretty
-
-exportOptionsPlist=tmp/exportOptions.plist
-/usr/libexec/PlistBuddy $exportOptionsPlist \
-    -c "Clear dict" \
-    -c "Add :method string $BITRISE_EXPORT_METHOD" \
-    -c "Add :iCloudContainerEnvironment string Production" \
-    -c "Add :compileBitcode bool false"
 
 apps=(Student Teacher Parent)
 for app in $apps; do
