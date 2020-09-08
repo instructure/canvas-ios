@@ -34,11 +34,6 @@ struct BuildLinks: ParsableCommand {
 
     mutating func run() throws {
         ExternalCommand.verbose = true
-        guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
-            print("can't find a pull request associated with branch \(branch)")
-            throw ExitCode.failure
-        }
-
         let apps = installPageMap.components(separatedBy: "|")
           .map { (x: String) -> [String] in x.components(separatedBy: "=>") }
           .compactMap { (mapping: [String]) -> (file: String, url: String)? in
@@ -50,17 +45,21 @@ struct BuildLinks: ParsableCommand {
               return (file: file, url: url)
           }
 
-        var body = """
-          <!-- \(magicString) -->
-          """
+        var body = "<!-- \(magicString) -->"
         for app in apps {
+            let base64 = QRCode.generatePng(app.url, scale: 10)!.base64EncodedString()
             body += """
+
                 <details><summary>\(app.file)</summary>
-                \(app.url)
+                [![QR for \(app.file) install](data:image/png;base64,\(base64))](\(app.url))
                 </details>
                 """
         }
 
+        guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
+            print("can't find a pull request associated with branch \(branch)")
+            throw ExitCode.failure
+        }
         if let commentID = try getCommentID(prID: "\(prID)") {
             try Github.updateComment(prID: "\(prID)", commentID: commentID, body: body)
         } else {

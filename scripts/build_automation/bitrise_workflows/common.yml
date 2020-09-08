@@ -92,7 +92,7 @@ workflows:
             (cd build/archives/All.xcarchive; tar -czf - dSYMs) > $BITRISE_DEPLOY_DIR/dSYMs.tgz
     - deploy-to-bitrise-io: {}
     - script:
-        title: "Post build QRs/links"
+        title: "Post build links"
         inputs:
         - content: |-
             #!/usr/bin/env bash
