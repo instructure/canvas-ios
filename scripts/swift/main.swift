@@ -41,7 +41,7 @@ struct Scripts: ParsableCommand {
     static let configuration = CommandConfiguration(
       commandName: "./scripts/swift-run",
       subcommands: [
-        BuildLink.self,
+        BuildLinks.self,
         DeleteExtraCheckmarxComments.self,
         ExportCoverage.self,
         RunUITests.self,

@@ -284,7 +284,10 @@ private class Runner {
     }
 
     func xcodebuild(noScheme: Bool = false, _ args: String...) -> Command {
-        var flags: [String] = ["-destination", "platform=iOS Simulator,name=\(command.deviceName)"]
+        var flags: [String] = [
+          "-destination", "platform=iOS Simulator,name=\(command.deviceName)",
+          "COMPILER_INDEX_STORE_ENABLE=NO",
+        ]
         if !noScheme {
             flags.append(contentsOf: [
                            "-workspace", "Canvas.xcworkspace",

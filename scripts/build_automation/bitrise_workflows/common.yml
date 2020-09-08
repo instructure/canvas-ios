@@ -82,6 +82,13 @@ workflows:
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
     - deploy-to-bitrise-io: {}
+    - script:
+        title: "Post build QRs/links"
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            ./scripts/run-swift build-links $BITRISE_GIT_BRANCH
     - cache-push: {}
 
   student-app-store:
