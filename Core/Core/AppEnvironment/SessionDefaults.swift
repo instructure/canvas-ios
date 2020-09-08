@@ -51,7 +51,6 @@ public struct SessionDefaults {
     }
 
     public var landingPath: String? {
-        set { self["landingPath"] = newValue }
         mutating get {
             if let landingPath = self["landingPath"] as? String {
                 return landingPath
@@ -71,6 +70,7 @@ public struct SessionDefaults {
             }
             return nil
         }
+        set { self["landingPath"] = newValue }
     }
 
     public var limitWebAccess: Bool? {

@@ -38,10 +38,6 @@ public class PageViewEventController: NSObject {
         return isNotTest && isStudent && isNotExtension
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     private override init() {
         super.init()
         setup()

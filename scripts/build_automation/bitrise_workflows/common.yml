@@ -81,6 +81,15 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - script:
+        title: "Cleanup deployment"
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -euxo pipefail
+            rm -rf $BITRISE_DEPLOY_DIR/*.dSYM.zip
+            rm -rf $BITRISE_DEPLOY_DIR/*.xcarchive.zip
+            (cd build/archives/All.xcarchive; tar -czf - dSYMs) > $BITRISE_DEPLOY_DIR/dSYMs.tgz
     - deploy-to-bitrise-io: {}
     - script:
         title: "Post build QRs/links"

@@ -33,6 +33,7 @@ struct BuildLinks: ParsableCommand {
     var branch: String
 
     mutating func run() throws {
+        ExternalCommand.verbose = true
         guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
             print("can't find a pull request associated with branch \(branch)")
             throw ExitCode.failure
