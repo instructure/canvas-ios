@@ -47,11 +47,12 @@ struct BuildLinks: ParsableCommand {
 
         var body = "<!-- \(magicString) -->"
         for app in apps {
-            let base64 = QRCode.generatePng(app.url, scale: 10)!.base64EncodedString()
+            let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "?&"))
+            let escapedUrl = app.url.addingPercentEncoding(withAllowedCharacters: allowedChars)!
             body += """
 
                 <details><summary>\(app.file)</summary>
-                [![QR for \(app.file) install](data:image/png;base64,\(base64))](\(app.url))
+                [![QR for \(app.file) install](https://api.qrserver.com/v1/create-qr-code/?data=\(escapedUrl))](\(app.url))
                 </details>
                 """
         }
