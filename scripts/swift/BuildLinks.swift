@@ -35,6 +35,7 @@ struct BuildLinks: ParsableCommand {
     mutating func run() throws {
         ExternalCommand.verbose = true
         let apps = installPageMap.components(separatedBy: "|")
+          .sorted { $0.dropFirst() > $1.dropFirst() } // sTudent > tEacher > pArent
           .map { (x: String) -> [String] in x.components(separatedBy: "=>") }
           .compactMap { (mapping: [String]) -> (file: String, url: String)? in
               guard mapping.count == 2 else {
@@ -52,13 +53,14 @@ struct BuildLinks: ParsableCommand {
             body += """
 
                 <details><summary>\(app.file)</summary>
-                [![QR for \(app.file) install](https://api.qrserver.com/v1/create-qr-code/?data=\(escapedUrl))](\(app.url))
+                  <a href="\(app.url)">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=\(escapedUrl)" />
+                  </a>
                 </details>
                 """
         }
 
         guard let prID = try Github.findAssociatedPullRequests(branch: branch).max() else {
-            print("can't find a pull request associated with branch \(branch)")
             throw ExitCode.failure
         }
         if let commentID = try getCommentID(prID: "\(prID)") {
