@@ -5,14 +5,7 @@ project_type: other
 workflows:
 
   ad-hoc:
-    steps:
-    - script:
-        title: continue from repo
-        inputs:
-        - content: |-
-            #!/bin/bash
-            set -ex
-            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml ad-hoc
+    steps: []
 
   app-store:
     steps:
@@ -22,7 +15,7 @@ workflows:
         - content: |-
             #!/bin/bash
             set -ex
-            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml student-app-store
+            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml parent-app-store
 
   app-store-automated:
     steps:
@@ -32,4 +25,4 @@ workflows:
         - content: |-
             #!/bin/bash
             set -ex
-            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml student-app-store-automated
+            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml parent-app-store-automated

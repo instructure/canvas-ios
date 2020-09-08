@@ -182,7 +182,7 @@ workflows:
         - runner_bin: "/bin/zsh"
         - content: |-
             #!/bin/zsh
-            set -euxo pipefail
+            set -euo pipefail
 
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - yarn:
@@ -268,7 +268,7 @@ workflows:
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
-            set -exo pipefail
+            set -euo pipefail
 
             envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/Student.xcarchive
             envman add --key BITRISE_SCHEME --value Student
@@ -285,7 +285,7 @@ workflows:
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
-            set -exo pipefail
+            set -euo pipefail
 
             envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/Teacher.xcarchive
             envman add --key BITRISE_SCHEME --value Teacher
@@ -302,7 +302,7 @@ workflows:
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
-            set -exo pipefail
+            set -euo pipefail
 
             envman add --key BITRISE_XCARCHIVE_PATH --value ./archives/Parent.xcarchive
             envman add --key BITRISE_SCHEME --value Parent
@@ -319,6 +319,6 @@ workflows:
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
-            set -exo pipefail
+            set -euo pipefail
 
             envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
