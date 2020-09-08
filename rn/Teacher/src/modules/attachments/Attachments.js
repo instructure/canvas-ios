@@ -69,7 +69,6 @@ export type Props = NavigationProps & {
   uploadAttachment: typeof uploadAttachment,
   uploadMedia: typeof uploadMedia,
   fileTypes?: Array<FileType>,
-  userFiles: boolean,
 }
 
 export default class Attachments extends Component<Props, any> {
@@ -82,7 +81,6 @@ export default class Attachments extends Component<Props, any> {
     storageOptions: {},
     uploadAttachment,
     uploadMedia,
-    userFiles: false,
   }
 
   constructor (props: Props) {
@@ -151,7 +149,6 @@ export default class Attachments extends Component<Props, any> {
             ref={this.captureAttachmentPicker}
             fileTypes={this.props.fileTypes || ['all']}
             navigator={this.props.navigator}
-            userFiles={this.props.userFiles}
           />
         </View>
       </Screen>
@@ -229,7 +226,7 @@ export default class Attachments extends Component<Props, any> {
 
   addAttachment = async (attachment: Attachment, source: Source) => {
     attachment.id = uuid()
-    const shouldUpload = source !== 'userFiles' &&
+    const shouldUpload =
       (this.props.storageOptions.uploadPath != null || this.uploadAsMediaComment(attachment))
     this.setState({
       attachments: {

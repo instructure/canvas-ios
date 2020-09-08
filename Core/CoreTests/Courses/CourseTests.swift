@@ -146,4 +146,11 @@ class CourseTests: CoreTestCase {
         XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment")])).hasStudentEnrollment)
         XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment"), .make(type: "TeacherEnrollment")])).hasStudentEnrollment)
     }
+
+    func testHasTeacherEnrollment() {
+        XCTAssertFalse(Course.make(from: .make(enrollments: [])).hasTeacherEnrollment)
+        XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "TeacherEnrollment")])).hasTeacherEnrollment)
+        XCTAssertFalse(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment")])).hasTeacherEnrollment)
+        XCTAssertTrue(Course.make(from: .make(enrollments: [.make(type: "StudentEnrollment"), .make(type: "TeacherEnrollment")])).hasTeacherEnrollment)
+    }
 }

@@ -246,9 +246,7 @@ extension Submission {
         case .online_text_entry:
             return body?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .online_upload:
-            return (attachments?.first?.size).flatMap {
-                ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .file)
-            }
+            return attachments?.first?.size.humanReadableFileSize
         case .online_url:
             return url?.absoluteString
         case .none, .not_graded, .on_paper, .wiki_page:

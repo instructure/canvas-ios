@@ -19,6 +19,46 @@
 import Foundation
 import CoreData
 
+public class GetFolder: CollectionUseCase {
+    public typealias Model = Folder
+
+    let context: Context
+    let path: String
+
+    var scopeContextID: String {
+        if context == .currentUser, let id = AppEnvironment.shared.currentSession?.userID {
+            return "user_\(id)"
+        }
+        return context.canvasContextID
+    }
+
+    public init(context: Context, path: String = "") {
+        self.context = context
+        self.path = path
+    }
+
+    public var cacheKey: String? {
+        "\(context.pathComponent)/folders/by_path/\(path)"
+    }
+
+    public var request: GetContextFolderHierarchyRequest {
+        GetContextFolderHierarchyRequest(context: context, fullPath: path)
+    }
+
+    public var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Folder.canvasContextID), equals: scopeContextID),
+            NSPredicate(key: #keyPath(Folder.path), equals: path),
+        ]),
+        orderBy: #keyPath(Folder.id)
+    ) }
+
+    public func write(response: [APIFolder]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let folder = response?.last else { return }
+        FolderItem.save(folder, in: client)
+    }
+}
+
 public class GetFolders: CollectionUseCase {
     public typealias Model = Folder
 
@@ -41,5 +81,89 @@ public class GetFolders: CollectionUseCase {
             return .where(#keyPath(Folder.parentFolderID), equals: context.id, orderBy: #keyPath(Folder.name), naturally: true)
         }
         return .where(#keyPath(Folder.canvasContextID), equals: context.canvasContextID, orderBy: #keyPath(Folder.name), naturally: true)
+    }
+}
+
+public class GetFolderItems: UseCase {
+    public typealias Model = FolderItem
+    public typealias Response = [APIFolderItem]
+
+    let folderID: String
+
+    public init(folderID: String) {
+        self.folderID = folderID
+    }
+
+    public var cacheKey: String? { "/folder/\(folderID)/items" }
+
+    public func reset(context: NSManagedObjectContext) {
+        let all: [FolderItem] = context.fetch(scope: scope)
+        context.delete(all)
+    }
+
+    public var scope: Scope { .where(
+        #keyPath(FolderItem.parentFolderID), equals: folderID,
+        orderBy: #keyPath(FolderItem.name), naturally: true
+    ) }
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIFolderItem]?, URLResponse?, Error?) -> Void) {
+        let context = Context(.folder, id: folderID)
+        var items: [APIFolderItem] = []
+        var response: URLResponse?
+        var error: Error?
+        var filesIsDone = false
+        var foldersIsDone = false
+
+        environment.api.exhaust(GetFilesRequest(context: context)) { files, r, e in
+            files?.forEach { items.append(APIFolderItem.file($0)) }
+            response = response ?? r
+            error = error ?? e
+            filesIsDone = true
+            if foldersIsDone { completionHandler(items, response, error) }
+        }
+
+        environment.api.exhaust(GetFoldersRequest(context: context)) { folders, r, e in
+            folders?.forEach { items.append(APIFolderItem.folder($0)) }
+            response = response ?? r
+            error = error ?? e
+            foldersIsDone = true
+            if filesIsDone { completionHandler(items, response, error) }
+        }
+    }
+
+    public func write(response: [APIFolderItem]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.forEach({
+            switch $0 {
+            case .file(let file):
+                FolderItem.save(file, in: client)
+            case .folder(let folder):
+                FolderItem.save(folder, in: client)
+            }
+        })
+    }
+}
+
+class CreateFolder: APIUseCase {
+    public typealias Model = FolderItem
+
+    let context: Context
+    let name: String
+    let parentFolderID: String
+
+    init(context: Context, name: String, parentFolderID: String) {
+        self.context = context
+        self.name = name
+        self.parentFolderID = parentFolderID
+    }
+
+    var cacheKey: String? { nil }
+
+    var request: PostFolderRequest {
+        PostFolderRequest(context: context, name: name, parentFolderID: parentFolderID)
+    }
+
+    func write(response: APIFolder?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        FolderItem.save(item, in: client)
     }
 }

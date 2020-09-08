@@ -128,6 +128,7 @@
 		7D37BE8821C824DA0063FAAC /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */; };
 		7D37BE8D21C837840063FAAC /* SubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE8C21C837840063FAAC /* SubmissionTests.swift */; };
 		7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */; };
+		7D3A0D3225016F12000C6F42 /* FileListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */; };
 		7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */; };
 		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
@@ -557,6 +558,7 @@
 		7DA667F523835FF60062F7B9 /* TodoListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */; };
 		7DA8C37D239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */; };
 		7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */; };
+		7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAC16F524FD8AE6001F48A1 /* FileListViewController.storyboard */; };
 		7DAFB46521A4693B00311275 /* LocalizationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */; };
 		7DAFBE702318588000E9A37D /* ErrorReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DAFBE6F2318588000E9A37D /* ErrorReportViewController.storyboard */; };
 		7DB0A1B621BF168A009ABB40 /* LoginDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB0A1B521BF168A009ABB40 /* LoginDelegateTests.swift */; };
@@ -567,6 +569,8 @@
 		7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB94972247DA160006FB025 /* GetSubmissionSummary.swift */; };
 		7DB94978247DC8E8006FB025 /* SubmissionBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */; };
 		7DB94979247DCC51006FB025 /* SubmissionBreakdownViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */; };
+		7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA77C524F9BE6300B4D6B3 /* FileEditorView.swift */; };
+		7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
@@ -1274,6 +1278,7 @@
 		7D37BE8721C824DA0063FAAC /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7D37BE8C21C837840063FAAC /* SubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionTests.swift; sourceTree = "<group>"; };
 		7D37BE9021C849D10063FAAC /* DocViewerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerViewControllerTests.swift; sourceTree = "<group>"; };
+		7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D4C3A762236FFD2007D6792 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -1458,6 +1463,7 @@
 		7DA667F6238360930062F7B9 /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		7DA8C37C239EAE0F004762DD /* LoginManualOAuthViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManualOAuthViewControllerTests.swift; sourceTree = "<group>"; };
 		7DA8C37E239EB535004762DD /* LoginNavigationControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationControllerTests.swift; sourceTree = "<group>"; };
+		7DAC16F524FD8AE6001F48A1 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		7DAFB46221A361C400311275 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
 		7DAFB46421A4693B00311275 /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
 		7DAFBE6F2318588000E9A37D /* ErrorReportViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ErrorReportViewController.storyboard; sourceTree = "<group>"; };
@@ -1472,6 +1478,8 @@
 		7DB94972247DA160006FB025 /* GetSubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummary.swift; sourceTree = "<group>"; };
 		7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionBreakdownViewController.storyboard; sourceTree = "<group>"; };
 		7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewController.swift; sourceTree = "<group>"; };
+		7DBA77C524F9BE6300B4D6B3 /* FileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorView.swift; sourceTree = "<group>"; };
+		7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		7DBED00D232C252200392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
 		7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountHelpLinks.swift; sourceTree = "<group>"; };
@@ -2071,7 +2079,7 @@
 				7D57629D23849CF7001F980D /* Todos */,
 				B14D555F2130B6630066D275 /* Utils */,
 				E8E070EE24E1843C00B37176 /* ViewModifiers */,
-				7D1758C2215A993100F88613 /* Views */,
+				7D1758C2215A993100F88613 /* UIViews */,
 				B14FE5D82134F68800328CD7 /* CoreTestCase.swift */,
 				2C96483E211E2F1A002C3255 /* Info.plist */,
 			);
@@ -2354,6 +2362,8 @@
 			isa = PBXGroup;
 			children = (
 				7D82DB352374A78700C699B8 /* FileDetails */,
+				7DBA77C424F9BE2600B4D6B3 /* FileEditor */,
+				7DBA77C324F9BE1D00B4D6B3 /* FileList */,
 				7D2E82832270BB7600735854 /* FilePicker */,
 				9FD504E52180BE1300B395BA /* APIFile.swift */,
 				9FD504EB2180BF1A00B395BA /* File.swift */,
@@ -2374,6 +2384,7 @@
 			isa = PBXGroup;
 			children = (
 				7D82DB362374A80200C699B8 /* FileDetails */,
+				7D3A0D3025016EF8000C6F42 /* FileList */,
 				B1B42C1422403AE90087399A /* FilePicker */,
 				9FD504E92180BE2900B395BA /* APIFileTests.swift */,
 				7D4C3A762236FFD2007D6792 /* FileTests.swift */,
@@ -2534,9 +2545,10 @@
 			path = UIViews;
 			sourceTree = "<group>";
 		};
-		7D1758C2215A993100F88613 /* Views */ = {
+		7D1758C2215A993100F88613 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */,
 				7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */,
 				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
@@ -2557,9 +2569,8 @@
 				7D303DE72412F9AB001F5F36 /* PagesViewControllerTests.swift */,
 				B16E05E3242529D4006B6ADB /* ScannerViewControllerTests.swift */,
 				7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */,
-				3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */,
 			);
-			path = Views;
+			path = UIViews;
 			sourceTree = "<group>";
 		};
 		7D1D5BE32492A5FA009EA317 /* Groups */ = {
@@ -2809,6 +2820,14 @@
 				7D37BE8521C81C9A0063FAAC /* UserAgentTests.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		7D3A0D3025016EF8000C6F42 /* FileList */ = {
+			isa = PBXGroup;
+			children = (
+				7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */,
+			);
+			path = FileList;
 			sourceTree = "<group>";
 		};
 		7D3A1EED227BEFB20094531E /* ActAsUser */ = {
@@ -3250,6 +3269,23 @@
 				7DB92CA124C5F5ED004A6C16 /* GetAccountNotifications.swift */,
 			);
 			path = AccountNotifications;
+			sourceTree = "<group>";
+		};
+		7DBA77C324F9BE1D00B4D6B3 /* FileList */ = {
+			isa = PBXGroup;
+			children = (
+				7DAC16F524FD8AE6001F48A1 /* FileListViewController.storyboard */,
+				7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */,
+			);
+			path = FileList;
+			sourceTree = "<group>";
+		};
+		7DBA77C424F9BE2600B4D6B3 /* FileEditor */ = {
+			isa = PBXGroup;
+			children = (
+				7DBA77C524F9BE6300B4D6B3 /* FileEditorView.swift */,
+			);
+			path = FileEditor;
 			sourceTree = "<group>";
 		};
 		7DBED015232FDD8000392F3C /* Profile */ = {
@@ -4132,6 +4168,7 @@
 				7DA260FD23F77281005D2121 /* SyllabusSummaryItemCell.xib in Resources */,
 				9FBE5356223AD1A4001EC40C /* DeveloperMenuViewController.storyboard in Resources */,
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
+				7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
 				7D75FF1624081F57000544E7 /* ListErrorView.xib in Resources */,
 				7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */,
@@ -4481,6 +4518,7 @@
 				7DCF1ED8216C060B003AF358 /* SubmissionViewableTests.swift in Sources */,
 				9FCD79D62188DE8B0054293A /* APISubmissionTests.swift in Sources */,
 				7D2DC2F82199F774008FE29A /* DocViewerAnnotationProviderTests.swift in Sources */,
+				7D3A0D3225016F12000C6F42 /* FileListViewControllerTests.swift in Sources */,
 				B14D55612130B6740066D275 /* TestOperationQueue.swift in Sources */,
 				7D37BE9121C849D10063FAAC /* DocViewerViewControllerTests.swift in Sources */,
 				7DFD5F7523FEF38100D988E0 /* PlannerListViewControllerTests.swift in Sources */,
@@ -4754,6 +4792,7 @@
 				7DA2605823F722D9005D2121 /* Permissions.swift in Sources */,
 				7DA260DA23F72359005D2121 /* FloatingButton.swift in Sources */,
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
+				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
@@ -4898,6 +4937,7 @@
 				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
+				7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
 				7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */,

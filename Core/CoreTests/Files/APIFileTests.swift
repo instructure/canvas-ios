@@ -20,22 +20,29 @@ import XCTest
 @testable import Core
 
 private let decoder = APIJSONDecoder()
+private let encoder = APIJSONEncoder()
 
 class APIFileTests: XCTestCase {
-    func testAPIFileDecode() {
+    func testAPIFileDecode() throws {
         var fixture = validFixture
-        var data = try! serialize(json: fixture)
+        var data = try serialize(json: fixture)
         XCTAssertNoThrow(try decoder.decode(APIFile.self, from: data))
 
         fixture["url"] = ""
-        data = try! serialize(json: fixture)
-        var file = try! decoder.decode(APIFile.self, from: data)
+        data = try serialize(json: fixture)
+        var file = try decoder.decode(APIFile.self, from: data)
         XCTAssertNil(file.url)
 
         fixture["thumbnail_url"] = ""
-        data = try! serialize(json: fixture)
-        file = try! decoder.decode(APIFile.self, from: data)
+        data = try serialize(json: fixture)
+        file = try decoder.decode(APIFile.self, from: data)
         XCTAssertNil(file.thumbnail_url)
+    }
+
+    func testAPIFolderItem() throws {
+        let data = try encoder.encode(APIFolder.make())
+        XCTAssertThrowsError(try decoder.decode(APIFolderItem.self, from: data), "Not for actual api decoding")
+        XCTAssertThrowsError(try encoder.encode(APIFolderItem.file(.make())), "Not for actual api encoding")
     }
 
     func testGetFileRequest() {
@@ -51,8 +58,8 @@ class APIFileTests: XCTestCase {
     }
 
     func testGetContextFolderHierarchyRequest() {
-        let request = GetContextFolderHierarchyRequest(context: .course("1"), fullPath: "a/b")
-        XCTAssertEqual(request.path, "courses/1/folders/by_path/a/b")
+        let request = GetContextFolderHierarchyRequest(context: .course("1"), fullPath: "a/ ?# b")
+        XCTAssertEqual(request.path, "courses/1/folders/by_path/a/%20%3F%23%20b")
         XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
     }
 
@@ -63,6 +70,15 @@ class APIFileTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "usage_rights"),
             URLQueryItem(name: "per_page", value: "100"),
         ])
+    }
+
+    func testPostFolderRequest() {
+        let request = PostFolderRequest(context: .course("1"), name: "PostFolder", parentFolderID: "1")
+        XCTAssertEqual(request.method, .post)
+        XCTAssertEqual(request.path, "courses/1/folders")
+        XCTAssertEqual(request.body?.locked, true)
+        XCTAssertEqual(request.body?.name, "PostFolder")
+        XCTAssertEqual(request.body?.parent_folder_id, "1")
     }
 
     func testGetFilesRequest() {
@@ -90,6 +106,11 @@ class APIFileTests: XCTestCase {
         let request = DeleteFileRequest(fileID: "43")
         XCTAssertEqual(request.method, .delete)
         XCTAssertEqual(request.path, "files/43")
+    }
+
+    func testSetUsageRightsRequest() throws {
+        let request = SetUsageRightsRequest(context: .course("1"))
+        XCTAssertEqual(request.path, "courses/1/usage_rights")
     }
 }
 
@@ -230,12 +251,5 @@ class PostFileUploadRequestTests: XCTestCase {
         ])
         XCTAssertEqual(requestable.form?.count, 2)
         XCTAssertEqual(requestable.form?.last?.key, "file")
-    }
-}
-
-class SetUsageRightsRequestTests: XCTestCase {
-    func testSetUsageRightsRequest() throws {
-        let request = SetUsageRightsRequest(context: .course("1"))
-        XCTAssertEqual(request.path, "courses/1/usage_rights")
     }
 }

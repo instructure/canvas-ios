@@ -25,7 +25,7 @@ class CourseFileE2ETests: CoreUITestCase {
 
         CourseNavigation.files.tap()
 
-        FilesList.file(id: "10528").tap()
+        FileList.file(index: 0).tap()
 
         // need be on the next page before checking for image
         sleep(3)

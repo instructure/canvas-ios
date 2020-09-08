@@ -40,11 +40,11 @@ class SubmissionCommentFileView: UIControl {
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("View file %@ %@", bundle: .student, comment: ""),
             file.displayName ?? "",
-            ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
+            file.size.humanReadableFileSize
         )
         iconView?.image = file.icon
         nameLabel?.text = file.displayName
-        sizeLabel?.text = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
+        sizeLabel?.text = file.size.humanReadableFileSize
     }
 
     func update(submission: Submission) {

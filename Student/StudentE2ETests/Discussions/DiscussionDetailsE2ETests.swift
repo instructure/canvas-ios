@@ -61,7 +61,7 @@ class DiscussionDetailsE2ETests: CoreUITestCase {
         app.swipeUp()
 
         app.find(label: "Files", type: .link).tap()
-        FilesList.file(id: "10528").waitToExist()
+        FileList.file(index: 0).waitToExist()
         NavBar.backButton.tap()
 
         app.find(label: "Announcements", type: .link).tap()
