@@ -100,9 +100,9 @@ enum Github {
         ).input(withJSONObject: [ "body": body ]).run()
     }
 
-    static func updateComment(prID: String, commentID: String, body: String) throws {
+    static func updateComment(commentID: String, body: String) throws {
         try cmd(
-          "curl", "-sf", "https://api.github.com/repos/\(repo)/issues/\(prID)/comments/\(commentID)",
+            "curl", "-sf", "https://api.github.com/repos/\(repo)/issues/comments/\(commentID)",
             "-X", "PATCH",
             "-H", "Content-Type: application/json; charset=utf-8",
             "-H", "Authorization: Bearer \(token)",

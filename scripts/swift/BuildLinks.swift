@@ -61,7 +61,7 @@ struct BuildLinks: ParsableCommand {
             throw ExitCode.failure
         }
         if let commentID = try getCommentID(prID: "\(prID)") {
-            try Github.updateComment(prID: "\(prID)", commentID: commentID, body: body)
+            try Github.updateComment(commentID: commentID, body: body)
         } else {
             try Github.postComment(prID: "\(prID)", body: body)
         }
