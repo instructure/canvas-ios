@@ -70,14 +70,6 @@ workflows:
 
             pip3 install awscli
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
-    - script:
-        title: Create temporary build links
-        is_skippable: true
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            set -euo pipefail
-            ./scripts/run-swift build-link generate-temp-links $BITRISE_PULL_REQUEST
     - &yarn-install-root
       yarn:
         title: yarn install root dependencies
@@ -108,6 +100,7 @@ workflows:
                 -scheme CITests \
                 -sdk iphonesimulator \
                 -configuration Debug \
+                COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
                 xcbeautify --quiet
@@ -637,6 +630,7 @@ workflows:
                 -scheme Pact \
                 -sdk iphonesimulator \
                 -configuration Debug \
+                COMPILER_INDEX_STORE_ENABLE=NO \
                 build-for-testing |
                 tee $BITRISE_DEPLOY_DIR/raw-xcodebuild.log |
                 xcbeautify --quiet

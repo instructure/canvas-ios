@@ -35,8 +35,8 @@ class FilePickerProgressView: UIView {
     }
 
     public var text: String? {
-        set { header?.text = newValue }
         get { return header?.text }
+        set { header?.text = newValue }
     }
 
     required init?(coder aDecoder: NSCoder) {

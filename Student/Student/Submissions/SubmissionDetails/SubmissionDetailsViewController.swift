@@ -44,10 +44,6 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         return controller
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest

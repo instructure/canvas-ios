@@ -1,165 +1,28 @@
 ---
-app:
-  envs:
-  - TRIGGER_PATHS: |-
-      rn/Teacher/
-      CanvasCore/
-      Podfile.lock
-      Frameworks/SoAnnotated/
-      Frameworks/Attendance/
-      Frameworks/CanvasKeymaster/
-    opts:
-      is_expand: false
-  - TEAM_ID: B6333T4PXQ
-  - BITRISE_PROJECT_PATH: "./Canvas.xcworkspace"
-  - BITRISE_XCARCHIVE_PATH: "./archives/Parent.xcarchive"
-  - BITRISE_SCHEME: Parent
-  - BITRISE_CONFIGURATION: Release
-  - RELEASE_BRANCH: release/parent
-  - APP_NAME: Parent
-  - TEST_APP_SLUG: 0dd579306f1d4289
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 format_version: '4'
 project_type: other
 workflows:
 
-  _common:
-    steps:
-    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
-        title: Canvas iOS Secrets
-    - cache-pull: {}
-    - script:
-        title: Install build tools
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            #!/bin/zsh
-            set -euxo pipefail
-
-            rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
-    - yarn:
-        inputs:
-        - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
-        title: yarn install dependencies
-    - cocoapods-install:
-        inputs:
-        - verbose: 'false'
-    - ios-auto-provision:
-        inputs:
-        - generate_profiles: 'yes'
-        - distribution_type: "$BITRISE_EXPORT_METHOD"
-        - configuration: "$BITRISE_CONFIGURATION"
-        outputs:
-        - BITRISE_DEVELOPMENT_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
-        - BITRISE_PRODUCTION_CODESIGN_IDENTITY: BITRISE_CODESIGN_IDENTITY
-        - BITRISE_DEVELOPMENT_PROFILE: BITRISE_PROFILE
-        - BITRISE_PRODUCTION_PROFILE: BITRISE_PROFILE
-    - set-xcode-build-number:
-        inputs:
-        - plist_path: Parent/Parent/Info.plist
-    - bitrise-step-stamp-appicon-with-version-number:
-        run_if: '{{enveq "BITRISE_EXPORT_METHOD" "ad-hoc"}}'
-        inputs:
-        - stamp_path_to_icons: Parent/Parent/Assets.xcassets/AppIcon.appiconset
-        - stamp_version: PR
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -e
-            set -x
-            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
-    - deploy-to-bitrise-io: {}
-
   ad-hoc:
-    before_run:
-    - _set-export-ad-hoc
-    - _common
-    steps:
-    - script:
-        title: Update build link
-        is_skippable: true
-        inputs:
-        - runner_bin: "/bin/zsh"
-        - content: |-
-            set -euo pipefail
-            ./scripts/run-swift build-link update-link parent $BITRISE_GIT_BRANCH \
-                $BITRISE_PUBLIC_INSTALL_PAGE_URL
+    steps: []
 
   app-store:
-    before_run:
-    - _set-export-app-store
-    - _common
     steps:
-    - deploy-to-itunesconnect-application-loader:
+    - script:
+        title: continue from repo
         inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
+        - content: |-
+            #!/bin/bash
+            set -ex
+            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml parent-app-store
 
   app-store-automated:
     steps:
-    - yarn:
-        inputs:
-        - command: install
-        title: yarn install
     - script:
+        title: continue from repo
         inputs:
-        - content: |+
-            #!/usr/bin/env bash
-            # fail if any commands fails
-            # set -e
-            set -x
-
-            scripts/build_automation/automateVersioning.sh verifyInputs
-            scripts/build_automation/automateVersioning.sh checkoutReleaseBranch
-            scripts/build_automation/automateVersioning.sh updateVersionAndBuildNumberInPlist Parent/Parent/Info.plist
-            git add Parent/Parent/Info.plist
-            scripts/build_automation/automateVersioning.sh checkInReleaseBranchAndTag
-            scripts/build_automation/automateVersioning.sh generateReleaseNotes
-
-        title: Branch,Tag,Trigger Release
-    - trigger-bitrise-workflow:
-        inputs:
-        - app_slug: "$TEST_APP_SLUG"
-        - api_token: "$TEST_BUILD_TRIGGER"
-        - branch: "$RELEASE_BRANCH"
-        - tag: ""
-        - commit_hash: ""
-        - commit_message: ""
-        - workflow_id: nightly
-        - branch_dest: ""
-        - pull_request_id: ""
-        - pull_request_repository_url: ""
-        - pull_request_merge_branch: ""
-        - pull_request_head_branch: ""
-    - slack:
-        inputs:
-        - is_debug_mode: 'no'
-        - channel: "#ios-bots"
-        - text: "$RELEASE_NOTES"
-        - from_username: Bob the Bitrise Bot
-        - color: "#0480e5"
-        - pretext: "*Releasing $APP_NAME $APP_RELEASE_VERSION*"
-        - webhook_url: "$SLACK_URL"
-    - deploy-to-bitrise-io: {}
-
-  _set-export-ad-hoc:
-    steps:
-    - set-env-var:
-        inputs:
-        - destination_keys: BITRISE_EXPORT_METHOD
-        - value: ad-hoc
-
-  _set-export-app-store:
-    steps:
-    - set-env-var:
-        inputs:
-        - destination_keys: BITRISE_EXPORT_METHOD
-        - value: app-store
+        - content: |-
+            #!/bin/bash
+            set -ex
+            bitrise run --config scripts/build_automation/bitrise_workflows/common.yml parent-app-store-automated
