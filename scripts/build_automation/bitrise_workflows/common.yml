@@ -105,12 +105,6 @@ workflows:
     - _student-vars
     - _setup
     steps:
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -118,6 +112,12 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
@@ -129,12 +129,6 @@ workflows:
     - _teacher-vars
     - _setup
     steps:
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -142,6 +136,12 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
@@ -153,12 +153,6 @@ workflows:
     - _parent-vars
     - _setup
     steps:
-    - script:
-        inputs:
-        - content: |-
-            #!/usr/bin/env bash
-            set -ex
-            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -166,6 +160,12 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - script:
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -ex
+            ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
