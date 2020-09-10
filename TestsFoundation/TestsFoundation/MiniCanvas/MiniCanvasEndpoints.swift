@@ -368,7 +368,7 @@ enum MiniCanvasEndpoints {
         },
 
         .rest("/api/v1/courses/\(Pattern.courseID)/content_licenses") { _ in .json([String]()) },
-        .apiRequest(SetUsageRightsRequest(context: Pattern.courseContext)) { request in
+        .apiRequest(PutUsageRightsRequest(context: Pattern.courseContext, fileIDs: [], usageRights: .make())) { request in
             guard let body = request.body else {
                 throw ServerError.badRequest
             }

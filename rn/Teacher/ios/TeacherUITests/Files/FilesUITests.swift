@@ -95,11 +95,11 @@ class FilesUITests: MiniCanvasUITestCase {
         FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
-        FileEditItem.copyright.typeText("me")
+        FileEditor.copyrightField.typeText("me")
         let picker = app.pickerWheels.firstElement
-        FileEditItem.justification.tapUntil { picker.exists }
+        FileEditor.justificationButton.tapUntil { picker.exists }
         picker.rawElement.adjust(toPickerWheelValue: "Public Domain File")
-        FileEditItem.done.tap().waitToVanish()
+        FileEditor.doneButton.tap().waitToVanish()
 
         XCTAssertEqual(firstFile!.api.usage_rights?.legal_copyright, "me")
         XCTAssertEqual(firstFile!.api.usage_rights?.use_justification, .public_domain)
@@ -111,14 +111,14 @@ class FilesUITests: MiniCanvasUITestCase {
         FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
-        FileEditItem.publish.tap()
+        FileEditor.accessButton.tap()
         app.find(label: "Restricted Access").tap()
-        FileEditItem.hidden.tap()
+        app.find(id: "FileEditor.hiddenButton").tap()
         app.find(label: "Schedule student availability").tap()
         let picker = app.datePickers.firstElement
-        FileEditItem.unlockAt.tapUntil { picker.exists }
+        FileEditor.unlockAtButton.tapUntil { picker.exists }
         picker.rawElement.pickerWheels.element(boundBy: 2).adjust(toPickerWheelValue: "2019")
-        FileEditItem.done.tap().waitToVanish()
+        FileEditor.doneButton.tap().waitToVanish()
 
         XCTAssertNotNil(firstFile!.api.unlock_at)
         XCTAssertNil(firstFile!.api.lock_at)
@@ -135,9 +135,9 @@ class FilesUITests: MiniCanvasUITestCase {
         file.tap()
         FileDetails.editButton.tap()
 
-        FileEditItem.publish.tap()
+        FileEditor.accessButton.tap()
         app.find(label: "Publish").tap()
-        FileEditItem.done.tap().waitToVanish()
+        FileEditor.doneButton.tap().waitToVanish()
         NavBar.backButton.tap()
 
         pullToRefresh()
@@ -153,7 +153,7 @@ class FilesUITests: MiniCanvasUITestCase {
         FileList.file(index: 0).tap()
         FileDetails.editButton.tap()
 
-        FileEditItem.delete.tap()
+        FileEditor.deleteButton.tap()
         app.find(label: "Delete").tap()
 
         // FIXME: These should have happened automatically.

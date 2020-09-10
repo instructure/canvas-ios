@@ -524,10 +524,6 @@ public class GetFolderRequest: APIRequestable {
             return "folders/\(id)"
         }
     }
-
-    public var query: [APIQueryItem] {
-        [ .include([ "usage_rights" ]) ]
-    }
 }
 
 // https://canvas.instructure.com/doc/api/files.html#method.folders.create
@@ -552,18 +548,81 @@ struct PostFolderRequest: APIRequestable {
     var path: String { "\(context.pathComponent)/folders" }
 }
 
+// https://canvas.instructure.com/doc/api/files.html#method.files.api_update
+struct PutFileRequest: APIRequestable {
+    typealias Response = APIFile
+    struct Body: Codable {
+        let name: String
+        let locked: Bool
+        let hidden: Bool
+        let unlock_at: Date?
+        let lock_at: Date?
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(name, forKey: .name)
+            try container.encode(locked, forKey: .locked)
+            try container.encode(hidden, forKey: .hidden)
+            // Auto-generated code omits the nil value properties.
+            // These need to be present and null to remove previous values.
+            try container.encode(unlock_at, forKey: .unlock_at)
+            try container.encode(lock_at, forKey: .lock_at)
+        }
+    }
+
+    let fileID: String
+    let body: Body?
+
+    init(fileID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
+        self.fileID = fileID
+        self.body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
+    }
+
+    var method: APIMethod { .put }
+    var path: String { "files/\(fileID)" }
+}
+
+// https://canvas.instructure.com/doc/api/files.html#method.folders.update
+struct PutFolderRequest: APIRequestable {
+    typealias Response = APIFolder
+    typealias Body = PutFileRequest.Body
+
+    let folderID: String
+    let body: Body?
+
+    init(folderID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
+        self.folderID = folderID
+        self.body = Body(name: name, locked: locked, hidden: hidden, unlock_at: unlockAt, lock_at: lockAt)
+    }
+
+    var method: APIMethod { .put }
+    var path: String { "folders/\(folderID)" }
+}
+
 // https://canvas.instructure.com/doc/api/files.html#method.files.destroy
 struct DeleteFileRequest: APIRequestable {
     typealias Response = APIFile
 
     let fileID: String
 
-    let method = APIMethod.delete
+    var method: APIMethod { .delete }
     var path: String { "files/\(fileID)" }
 }
 
+// https://canvas.instructure.com/doc/api/files.html#method.folders.api_destroy
+struct DeleteFolderRequest: APIRequestable {
+    typealias Response = APIFolder
+
+    let folderID: String
+    let force: Bool
+
+    var method: APIMethod { .delete }
+    var path: String { "folders/\(folderID)" }
+    var query: [APIQueryItem] { [ .bool("force", force) ] }
+}
+
 // https://canvas.instructure.com/doc/api/files.html#method.usage_rights.set_usage_right
-public struct SetUsageRightsRequest: APIRequestable {
+public struct PutUsageRightsRequest: APIRequestable {
     public struct Body: Codable {
         let file_ids: [String]
         let publish: Bool?
@@ -574,12 +633,12 @@ public struct SetUsageRightsRequest: APIRequestable {
     public let context: Context
     public let body: Body?
 
-    public init(context: Context, body: Body? = nil) {
+    public init(context: Context, fileIDs: [String], publish: Bool? = nil, usageRights: APIUsageRights) {
         self.context = context
-        self.body = body
+        self.body = Body(file_ids: fileIDs, publish: publish, usage_rights: usageRights)
     }
 
-    public let method = APIMethod.put
+    public var method: APIMethod { .put }
     public var path: String {
         return "\(context.pathComponent)/usage_rights"
     }

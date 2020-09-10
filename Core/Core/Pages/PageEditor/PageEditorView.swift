@@ -48,17 +48,7 @@ public struct PageEditorView: View {
     }
 
     public var body: some View {
-        ZStack {
-            form.disabled(isLoading || isSaving)
-            if isLoading || isSaving {
-                CircleProgress().size()
-            }
-        }
-            .alert(isPresented: $showError) {
-                Alert(title: Text(verbatim: ""), message: Text(error!.localizedDescription))
-            }
-            .avoidKeyboardArea()
-            .background(Color.backgroundGrouped)
+        form
             .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Page", bundle: .core), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -74,23 +64,23 @@ public struct PageEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("PageEditor.doneButton")
             )
-            .navBarStyle(.modal)
+
+            .alert(isPresented: $showError) {
+                Alert(title: Text(verbatim: ""), message: Text(error!.localizedDescription))
+            }
+
             .onAppear(perform: load)
     }
 
     var form: some View {
-        ScrollView { VStack(alignment: .leading, spacing: 0) {
+        EditorForm(isSpinning: isLoading || isSaving) {
             if env.app == .teacher {
-                Text("Title", bundle: .core)
-                    .font(.semibold14).foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-                Divider()
-                TextField(NSLocalizedString("Add Title", bundle: .core, comment: ""), text: $title)
-                    .font(.regular16).foregroundColor(.textDarkest)
-                    .padding(16)
-                    .background(Color.backgroundLightest)
-                    .identifier("PageEditor.titleField")
-                Divider()
+                EditorSection(label: Text("Title", bundle: .core)) {
+                    TextField(NSLocalizedString("Add Title", bundle: .core, comment: ""), text: $title)
+                        .font(.regular16).foregroundColor(.textDarkest)
+                        .padding(16)
+                        .identifier("PageEditor.titleField")
+                }
             } else {
                 Text(title)
                     .font(.bold20).foregroundColor(.textDarkest)
@@ -98,72 +88,64 @@ public struct PageEditorView: View {
                     .identifier("PageEditor.titleText")
             }
 
-            Text("Content", bundle: .core)
-                .font(.semibold14).foregroundColor(.textDark)
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-            Divider()
-            RichContentEditor(
-                placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
-                html: $html,
-                context: context,
-                uploadTo: .context(context),
-                height: $rceHeight,
-                canSubmit: $rceCanSubmit,
-                error: $error
-            )
-                .frame(height: max(200, rceHeight))
-                .background(Color.backgroundLightest)
-            Divider()
+            EditorSection(label: Text("Content", bundle: .core)) {
+                RichContentEditor(
+                    placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
+                    html: $html,
+                    context: context,
+                    uploadTo: .context(context),
+                    height: $rceHeight,
+                    canSubmit: $rceCanSubmit,
+                    error: $error
+                )
+                    .frame(height: max(200, rceHeight))
+            }
 
             if env.app == .teacher || context.contextType == .group {
-                Text("Details", bundle: .core)
-                    .font(.semibold14).foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
-                Divider()
-                if url != "front_page" && env.app == .teacher {
-                    Toggle(isOn: $published) { Text("Publish", bundle: .core) }
-                        .font(.semibold16).foregroundColor(.textDarkest)
+                EditorSection(label: Text("Details", bundle: .core)) {
+                    if url != "front_page" && env.app == .teacher {
+                        Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                            .font(.semibold16).foregroundColor(.textDarkest)
+                            .padding(16)
+                            .disabled(isFrontPage)
+                            .identifier("PageEditor.publishedToggle")
+                        Divider()
+                    }
+                    if url != "front_page" && env.app == .teacher {
+                        Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
+                            .font(.semibold16).foregroundColor(.textDarkest)
+                            .padding(16)
+                            .disabled(!published)
+                            .identifier("PageEditor.frontPageToggle")
+                        Divider()
+                    }
+                    Button(action: {
+                        guard let controller = self.viewController() else { return }
+                        let options: [RoleOption] = self.context.contextType == .group
+                            ? [ .members, .public ]
+                            : [ .teachers, .teachersAndStudents, .public ]
+                        self.env.router.show(ItemPickerViewController.create(
+                            title: NSLocalizedString("Can Edit", bundle: .core, comment: ""),
+                            sections: [ ItemPickerSection(items: options.map {
+                                ItemPickerItem(title: $0.string)
+                            }), ],
+                            selected: options.firstIndex(of: self.editingRoles).flatMap {
+                                IndexPath(row: $0, section: 0)
+                            },
+                            didSelect: { self.editingRoles = options[$0.row] }
+                        ), from: controller)
+                    }, label: {
+                        Text("Can Edit", bundle: .core).font(.semibold16)
+                        Spacer()
+                        Text(editingRoles.string)
+                        DisclosureIndicator()
+                    })
                         .padding(16)
-                        .background(Color.backgroundLightest)
-                        .disabled(isFrontPage)
-                        .identifier("PageEditor.publishedToggle")
-                    Divider()
+                        .accentColor(.textDarkest)
+                        .identifier("PageEditor.editorsButton")
                 }
-                if url != "front_page" && env.app == .teacher {
-                    Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                        .padding(16)
-                        .background(Color.backgroundLightest)
-                        .disabled(!published)
-                        .identifier("PageEditor.frontPageToggle")
-                    Divider()
-                }
-                Button(action: {
-                    guard let controller = self.viewController() else { return }
-                    let options: [RoleOption] = self.context.contextType == .group
-                        ? [ .members, .public ]
-                        : [ .teachers, .teachersAndStudents, .public ]
-                    self.env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Can Edit", bundle: .core, comment: ""),
-                        sections: [ItemPickerSection(items: options.map { ItemPickerItem(title: $0.string) })],
-                        selected: options.firstIndex(of: self.editingRoles).flatMap { IndexPath(row: $0, section: 0) },
-                        didSelect: { self.editingRoles = options[$0.row] }
-                    ), from: controller)
-                }, label: {
-                    Text("Can Edit", bundle: .core).font(.semibold16)
-                    Spacer()
-                    Text(editingRoles.string)
-                    Image(systemName: "chevron.right")
-                        .flipsForRightToLeftLayoutDirection(true)
-                        .accentColor(.borderMedium)
-                })
-                    .padding(16)
-                    .accentColor(.textDarkest)
-                    .background(Color.backgroundLightest)
-                    .identifier("PageEditor.editorsButton")
-                Divider()
             }
-        } }
+        }
     }
 
     func load() {

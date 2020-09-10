@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Files-->
+        <!--File List View Controller-->
         <scene sceneID="Hxf-bI-NIw">
             <objects>
-                <viewController storyboardIdentifier="FileListViewController" title="Files" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FRQ-rO-NRC" customClass="FileListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FileListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FRQ-rO-NRC" customClass="FileListViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iXY-zh-ske">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

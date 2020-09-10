@@ -93,13 +93,22 @@ class APIFileTests: XCTestCase {
     func testGetFolderRequest() {
         let request = GetFolderRequest(context: .course("1"), id: "2")
         XCTAssertEqual(request.path, "courses/1/folders/2")
-        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
+        XCTAssertEqual(GetFolderRequest(context: nil, id: "2").path, "folders/2")
     }
 
-    func testListFilesRequestWithRootContext() {
-        let request = GetFolderRequest(context: nil, id: "2")
-        XCTAssertEqual(request.path, "folders/2")
-        XCTAssertEqual(request.queryItems, [ URLQueryItem(name: "include[]", value: "usage_rights") ])
+    func testPutFileRequest() throws {
+        let request = PutFileRequest(fileID: "43", name: "", locked: false, hidden: false, unlockAt: nil, lockAt: nil)
+        XCTAssertEqual(request.method, .put)
+        XCTAssertEqual(request.path, "files/43")
+        let json = String(data: try APIJSONEncoder().encode(XCTUnwrap(request.body)), encoding: .utf8)
+        XCTAssertEqual(json?.contains("\"unlock_at\":null"), true)
+        XCTAssertEqual(json?.contains("\"lock_at\":null"), true)
+    }
+
+    func testPutFolderRequest() {
+        let request = PutFolderRequest(folderID: "43", name: "", locked: false, hidden: false, unlockAt: nil, lockAt: nil)
+        XCTAssertEqual(request.method, .put)
+        XCTAssertEqual(request.path, "folders/43")
     }
 
     func testDeleteFileRequest() {
@@ -108,9 +117,25 @@ class APIFileTests: XCTestCase {
         XCTAssertEqual(request.path, "files/43")
     }
 
-    func testSetUsageRightsRequest() throws {
-        let request = SetUsageRightsRequest(context: .course("1"))
+    func testDeleteFolderRequest() {
+        let request = DeleteFolderRequest(folderID: "43", force: true)
+        XCTAssertEqual(request.method, .delete)
+        XCTAssertEqual(request.path, "folders/43")
+        XCTAssertEqual(request.query, [ .bool("force", true) ])
+    }
+
+    func testPutUsageRightsRequest() {
+        let request = PutUsageRightsRequest(context: .course("1"), fileIDs: [], usageRights: .make())
+        XCTAssertEqual(request.method, .put)
         XCTAssertEqual(request.path, "courses/1/usage_rights")
+    }
+
+    func testUseJustification() {
+        XCTAssertEqual(UseJustification.creative_commons.label, "It is licensed under Creative Commons")
+        XCTAssertEqual(UseJustification.fair_use.label, "It is a fair use or similar exception")
+        XCTAssertEqual(UseJustification.own_copyright.label, "I hold the copyright")
+        XCTAssertEqual(UseJustification.public_domain.label, "It is in the public domain")
+        XCTAssertEqual(UseJustification.used_by_permission.label, "I obtained permission")
     }
 }
 

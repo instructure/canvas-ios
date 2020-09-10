@@ -188,38 +188,45 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     }
 
     @objc func edit() {
-        guard let file = files.first else { return }
-        let apiFile: [String: Any?] = [
-            "id": fileID,
-            "folder_id": file.folderID,
-            "display_name": file.displayName,
-            "filename": file.filename,
-            "content-type": file.contentType,
-            "url": file.url?.absoluteString,
-            "size": file.size,
-            "created_at": file.createdAt?.isoString(),
-            "updated_at": file.updatedAt?.isoString(),
-            "unlock_at": file.unlockAt?.isoString(),
-            "lock_at": file.lockAt?.isoString(),
-            "locked": file.locked,
-            "hidden": file.hidden,
-            "hidden_for_user": file.hiddenForUser,
-            "thumbnail_url": file.thumbnailURL?.absoluteString,
-            "modified_at": file.modifiedAt?.isoString(),
-            "mime_class": file.mimeClass,
-            "media_entry_id": file.mediaEntryID,
-            "locked_for_user": file.lockedForUser,
-            "lock_explanation": file.lockExplanation,
-            "preview_url": file.previewURL?.absoluteString,
-            "usage_rights": [
-                "legal_copyright": file.usageRights?.legalCopyright,
-                "use_justification": file.usageRights?.useJustification?.rawValue,
-                "license": file.usageRights?.license,
-            ],
-        ]
+        guard ExperimentalFeature.nativeFiles.isEnabled else {
+            guard let file = files.first else { return }
+            let apiFile: [String: Any?] = [
+                "id": fileID,
+                "folder_id": file.folderID,
+                "display_name": file.displayName,
+                "filename": file.filename,
+                "content-type": file.contentType,
+                "url": file.url?.absoluteString,
+                "size": file.size,
+                "created_at": file.createdAt?.isoString(),
+                "updated_at": file.updatedAt?.isoString(),
+                "unlock_at": file.unlockAt?.isoString(),
+                "lock_at": file.lockAt?.isoString(),
+                "locked": file.locked,
+                "hidden": file.hidden,
+                "hidden_for_user": file.hiddenForUser,
+                "thumbnail_url": file.thumbnailURL?.absoluteString,
+                "modified_at": file.modifiedAt?.isoString(),
+                "mime_class": file.mimeClass,
+                "media_entry_id": file.mediaEntryID,
+                "locked_for_user": file.lockedForUser,
+                "lock_explanation": file.lockExplanation,
+                "preview_url": file.previewURL?.absoluteString,
+                "usage_rights": [
+                    "legal_copyright": file.usageRights?.legalCopyright,
+                    "use_justification": file.usageRights?.useJustification?.rawValue,
+                    "license": file.usageRights?.license,
+                ],
+            ]
+            return env.router.route(
+                to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
+                userInfo: [ "file": apiFile ],
+                from: self,
+                options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            )
+        }
         env.router.route(
             to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
-            userInfo: [ "file": apiFile ],
             from: self,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true)
         )

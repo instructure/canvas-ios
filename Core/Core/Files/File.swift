@@ -75,6 +75,8 @@ final public class File: NSManagedObject {
     @NSManaged public var userRaw: Data?
     @NSManaged public var usageRights: UsageRights?
 
+    @NSManaged public var items: Set<FolderItem>?
+
     /// Used to group together files being attached to the same content
     @NSManaged public var batchID: String?
 
@@ -167,6 +169,7 @@ extension File: WriteableModel {
         model.usageRights = item.usage_rights.map {
             UsageRights.save($0, to: model.usageRights, in: client)
         }
+        model.items?.forEach { $0.name = item.display_name }
         return model
     }
 
