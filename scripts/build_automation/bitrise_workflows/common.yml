@@ -338,3 +338,4 @@ workflows:
             set -euo pipefail
 
             envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
+            envman add --key BITRISE_SCHEME --value All
