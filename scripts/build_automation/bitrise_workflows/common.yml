@@ -111,10 +111,6 @@ workflows:
             #!/usr/bin/env bash
             set -ex
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Student/Student/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
-    - deploy-to-itunesconnect-application-loader:
-        inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -122,6 +118,10 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - deploy-to-itunesconnect-application-loader:
+        inputs:
+        - password: "$APPSTORECONNECT_PASSWORD"
+        - itunescon_user: iosbuilds@instructure.com
     - deploy-to-bitrise-io: {}
 
   teacher-app-store:
@@ -135,10 +135,6 @@ workflows:
             #!/usr/bin/env bash
             set -ex
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
-    - deploy-to-itunesconnect-application-loader:
-        inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -146,6 +142,10 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - deploy-to-itunesconnect-application-loader:
+        inputs:
+        - password: "$APPSTORECONNECT_PASSWORD"
+        - itunescon_user: iosbuilds@instructure.com
     - deploy-to-bitrise-io: {}
 
   parent-app-store:
@@ -159,10 +159,6 @@ workflows:
             #!/usr/bin/env bash
             set -ex
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/Parent/Parent/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
-    - deploy-to-itunesconnect-application-loader:
-        inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
     - xcode-archive:
         inputs:
         - configuration: "$BITRISE_CONFIGURATION"
@@ -170,6 +166,10 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
+    - deploy-to-itunesconnect-application-loader:
+        inputs:
+        - password: "$APPSTORECONNECT_PASSWORD"
+        - itunescon_user: iosbuilds@instructure.com
     - deploy-to-bitrise-io: {}
 
   student-app-store-automated:
