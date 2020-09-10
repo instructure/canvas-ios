@@ -115,12 +115,12 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
 
     private func delete(_ id: String) {
         requestsInFlight += 1
-        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: id, sessionID: sessionID)) { [weak self] _, _, error in
+        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: id, sessionID: sessionID)) { [weak self] _, _, error in performUIUpdate {
             self?.requestsInFlight -= 1
             if let error = error {
                 self?.docViewerDelegate?.annotationDidFailToSave(error: error)
             }
-        }
+        } }
     }
 
     override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {
