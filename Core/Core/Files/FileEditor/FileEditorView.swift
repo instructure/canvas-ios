@@ -253,6 +253,7 @@ public struct FileEditorView: View {
     }
 
     func save() {
+        viewController()?.view.endEditing(true) // dismiss keyboard
         isSaving = true
         let name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         let locked = access == .unpublished

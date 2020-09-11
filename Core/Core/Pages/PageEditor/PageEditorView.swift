@@ -175,6 +175,7 @@ public struct PageEditorView: View {
     }
 
     func save() {
+        viewController()?.view.endEditing(true) // dismiss keyboard
         isSaving = true
         UpdatePage(
             context: context,
