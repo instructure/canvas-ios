@@ -83,7 +83,7 @@ export default class EditUsageRights extends Component<Props, State> {
           placeholder={i18n('Name')}
           onChangeText={this.handleChangeCopyright}
           inputWidth={200}
-          identifier='edit-item.usage_rights.legal_copyright'
+          identifier='FileEditor.copyrightField'
         />
         <RowWithDetail
           border='bottom'
@@ -91,13 +91,13 @@ export default class EditUsageRights extends Component<Props, State> {
           detailSelected={showUsageRight}
           onPress={() => this.setState({ showUsageRight: !showUsageRight })}
           title={i18n('Usage Right')}
-          testID='edit-item.usage_rights.use_justification'
+          testID='FileEditor.justificationButton'
         />
         {showUsageRight &&
           <Picker
             selectedValue={rights.use_justification}
             onValueChange={this.handleChangeJustification}
-            testID='edit-item.usage_rights.use_justification.picker'
+            testID='FileEditor.justificationPicker'
           >
             {Object.keys(useOptions).map(value =>
               <Picker.Item
@@ -116,13 +116,13 @@ export default class EditUsageRights extends Component<Props, State> {
               detailSelected={showLicense}
               onPress={() => this.setState({ showLicense: !showLicense })}
               title={i18n('Creative Commons License')}
-              testID='edit-item.usage_rights.license'
+              testID='FileEditor.licenseButton'
             />
             {showLicense &&
               <Picker
                 selectedValue={rights.license}
                 onValueChange={this.handleChangeLicense}
-                testID='edit-item.usage_rights.license.picker'
+                testID='FileEditor.licensePicker'
               >
                 {licenses.map(({ id, name }) =>
                   <Picker.Item

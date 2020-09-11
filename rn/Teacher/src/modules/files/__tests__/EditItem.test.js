@@ -34,12 +34,12 @@ jest.mock('@react-native-community/datetimepicker', () => 'DateTimePicker')
 import * as template from '../../../__templates__'
 
 const selector = {
-  name: '[identifier="edit-item.name"]',
-  publish: '[testID="edit-item.publish"]',
-  hidden: '[testID="edit-item.hidden"]',
-  unlock_at: '[testID="edit-item.unlock_at"]',
-  lock_at: '[testID="edit-item.lock_at"]',
-  delete: '[testID="edit-item.delete"]',
+  name: '[identifier="FileEditor.nameField"]',
+  publish: '[testID="FileEditor.accessButton"]',
+  hidden: '[testID="FileEditor.hiddenButton"]',
+  unlock_at: '[testID="FileEditor.unlockAtButton"]',
+  lock_at: '[testID="FileEditor.lockAtButton"]',
+  delete: '[testID="FileEditor.deleteButton"]',
 }
 
 const updatedState = (tree: ShallowWrapper) => new Promise(resolve => tree.setState({}, resolve))

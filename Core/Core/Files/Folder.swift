@@ -39,6 +39,8 @@ public final class Folder: NSManagedObject, WriteableModel {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var updatedAt: Date?
 
+    @NSManaged public var items: Set<FolderItem>?
+
     public var context: Context {
         get { Context(canvasContextID: canvasContextID) ?? .currentUser }
         set { canvasContextID = newValue.canvasContextID }
@@ -65,6 +67,7 @@ public final class Folder: NSManagedObject, WriteableModel {
         model.position = item.position ?? 0
         model.unlockAt = item.unlock_at
         model.updatedAt = item.updated_at
+        model.items?.forEach { $0.name = item.name }
         return model
     }
 }

@@ -117,10 +117,16 @@ extension APIUseCase where Response == Request.Response {
 }
 
 public protocol CollectionUseCase: APIUseCase {}
-extension CollectionUseCase where Response == Request.Response {
+extension CollectionUseCase {
     public func reset(context: NSManagedObjectContext) {
-        let all: [Model] = context.fetch(scope.predicate)
-        context.delete(all)
+        context.delete(context.fetch(scope: scope) as [Model])
+    }
+}
+
+public protocol DeleteUseCase: APIUseCase {}
+extension DeleteUseCase {
+    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        client.delete(client.fetch(scope: scope) as [Model])
     }
 }
 

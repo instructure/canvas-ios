@@ -289,7 +289,7 @@ private func fileList(props: Props) -> UIViewController? {
     }
     return FileListViewController.create(
         context: props.context ?? .currentUser,
-        path: props["subFolder"] as? String
+        path: (props["subFolder"] as? String)?.removingPercentEncoding
     )
 }
 

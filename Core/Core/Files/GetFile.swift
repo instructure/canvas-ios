@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import CoreData
 
 class GetFile: APIUseCase {
     typealias Model = File
@@ -63,5 +63,55 @@ public class GetFolderFiles: CollectionUseCase {
 
     public var scope: Scope {
         .where(#keyPath(File.folderID), equals: context.id, orderBy: #keyPath(File.displayName), naturally: true)
+    }
+}
+
+class UpdateFile: APIUseCase {
+    typealias Model = File
+
+    var cacheKey: String? { nil }
+    let request: PutFileRequest
+    let scope: Scope
+
+    init(fileID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
+        request = PutFileRequest(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
+        scope = .where(#keyPath(File.id), equals: fileID)
+    }
+}
+
+class DeleteFile: DeleteUseCase {
+    typealias Model = File
+
+    var cacheKey: String? { nil }
+    let request: DeleteFileRequest
+    let scope: Scope
+
+    init(fileID: String) {
+        request = DeleteFileRequest(fileID: fileID)
+        scope = .where(#keyPath(File.id), equals: fileID)
+    }
+}
+
+class UpdateUsageRights: APIUseCase {
+    typealias Model = File
+
+    var cacheKey: String? { nil }
+    let request: PutUsageRightsRequest
+    let scope: Scope
+
+    init(context: Context, fileIDs: [String], publish: Bool? = nil, usageRights: APIUsageRights) {
+        request = PutUsageRightsRequest(context: context, fileIDs: fileIDs, publish: publish, usageRights: usageRights)
+        scope = Scope(
+            predicate: NSPredicate(format: "%K IN %@", #keyPath(File.id), fileIDs),
+            order: [ NSSortDescriptor(key: #keyPath(File.id), ascending: true) ]
+        )
+    }
+
+    func write(response: APIUsageRights?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        let models: [Model] = client.fetch(scope: scope)
+        for model in models {
+            model.usageRights = UsageRights.save(item, to: model.usageRights, in: client)
+        }
     }
 }

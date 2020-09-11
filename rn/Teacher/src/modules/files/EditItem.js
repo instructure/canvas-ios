@@ -307,7 +307,7 @@ export default class EditItem extends Component<Props, State> {
         drawUnderNavBar
         dismissButtonTitle={i18n('Cancel')}
         rightBarButtons={[{
-          testID: 'edit-item.done-btn',
+          testID: 'FileEditor.doneButton',
           title: i18n('Done'),
           action: this.handleDone,
           style: 'done',
@@ -328,7 +328,7 @@ export default class EditItem extends Component<Props, State> {
               placeholder={i18n('Title')}
               onChangeText={name => this.setState({ updated: { ...this.state.updated, name } }) }
               onFocus={this.scrollToInput}
-              identifier='edit-item.name'
+              identifier='FileEditor.nameField'
             />
             <RequiredFieldSubscript title={validation.name} visible={!!validation.name} />
 
@@ -339,7 +339,7 @@ export default class EditItem extends Component<Props, State> {
               title={this.getAccessOptions()[this.getAccessKey(updated)]}
               titleStyles={{ fontWeight: 'normal' }}
               onPress={this.handleAccess}
-              testID='edit-item.publish'
+              testID='FileEditor.accessButton'
               disclosureIndicator
             />
             {secondaryAccessTitle &&
@@ -348,7 +348,7 @@ export default class EditItem extends Component<Props, State> {
                 title={secondaryAccessTitle}
                 titleStyles={{ fontWeight: 'normal' }}
                 onPress={this.handle2ndAccess}
-                testID='edit-item.hidden'
+                testID='FileEditor.hiddenButton'
                 disclosureIndicator
               />
             }
@@ -365,7 +365,7 @@ export default class EditItem extends Component<Props, State> {
                   onPress={() => this.setState({ showUnlockedAt: !showUnlockedAt })}
                   showRemoveButton
                   onRemoveDatePress={() => this.setState({ updated: { ...this.state.updated, unlock_at: null } })}
-                  testID='edit-item.unlock_at'
+                  testID='FileEditor.unlockAtButton'
                 />
                 {showUnlockedAt &&
                   <DateTimePicker
@@ -382,7 +382,7 @@ export default class EditItem extends Component<Props, State> {
                   onPress={() => this.setState({ showLockedAt: !showLockedAt })}
                   showRemoveButton
                   onRemoveDatePress={() => this.setState({ updated: { ...this.state.updated, lock_at: null } })}
-                  testID='edit-item.lock_at'
+                  testID='FileEditor.lockAtButton'
                 />
                 {showLockedAt &&
                   <DateTimePicker
@@ -416,7 +416,7 @@ export default class EditItem extends Component<Props, State> {
               image={icon('trash', 'line')}
               imageTint={colors.textDanger}
               onPress={this.handleDelete}
-              testID='edit-item.delete'
+              testID='FileEditor.deleteButton'
             />
           </KeyboardAwareScrollView>
         </View>

@@ -21,7 +21,14 @@ import XCTest
 
 class GetFolderTests: CoreTestCase {
     func testGetFolder() {
-        let useCase = GetFolder(context: .course("1"), path: "sub")
+        let useCase = GetFolder(context: .course("1"), folderID: "1")
+        XCTAssertEqual(useCase.cacheKey, "folders/1")
+        XCTAssertEqual(useCase.request.path, "courses/1/folders/1")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(Folder.id), equals: "1"))
+    }
+
+    func testGetFolderByPath() {
+        let useCase = GetFolderByPath(context: .course("1"), path: "sub")
         XCTAssertEqual(useCase.cacheKey, "courses/1/folders/by_path/sub")
         XCTAssertEqual(useCase.request.fullPath, "sub")
         XCTAssertEqual(useCase.scope, Scope(
@@ -31,7 +38,7 @@ class GetFolderTests: CoreTestCase {
             ]),
             orderBy: #keyPath(Folder.id)
         ))
-        XCTAssertEqual(GetFolder(context: .currentUser).scope, Scope(
+        XCTAssertEqual(GetFolderByPath(context: .currentUser).scope, Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Folder.canvasContextID), equals: "user_1"),
                 NSPredicate(key: #keyPath(Folder.path), equals: ""),
@@ -85,5 +92,19 @@ class GetFolderTests: CoreTestCase {
         XCTAssertEqual(folder?.name, "my files")
         XCTAssertEqual(folder?.file, nil)
         XCTAssertEqual(folder?.folder?.path, "")
+    }
+
+    func testUpdateFolder() {
+        let useCase = UpdateFolder(folderID: "1", name: "f", locked: true, hidden: false, unlockAt: nil, lockAt: nil)
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.body?.locked, true)
+        XCTAssertEqual(useCase.scope, .where(#keyPath(Folder.id), equals: "1"))
+    }
+
+    func testDeleteFolder() {
+        let useCase = DeleteFolder(folderID: "1")
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.folderID, "1")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(Folder.id), equals: "1"))
     }
 }

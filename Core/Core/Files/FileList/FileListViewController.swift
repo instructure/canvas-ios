@@ -53,7 +53,7 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
     lazy var course = context.contextType == .course ? env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
         self?.updateNavBar()
     } : nil
-    lazy var folder = env.subscribe(GetFolder(context: context, path: path)) { [weak self] in
+    lazy var folder = env.subscribe(GetFolderByPath(context: context, path: path)) { [weak self] in
         self?.updateFolder()
     }
     var items: Store<GetFolderItems>?
@@ -147,7 +147,7 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
             if let folder = updated, !env.database.viewContext.isObjectDeleted(folder) {
                 // Folder was renamed, make sure next refresh doesn't 404.
                 path = folder.path
-                self.folder = env.subscribe(GetFolder(context: context, path: path)) { [weak self] in
+                self.folder = env.subscribe(GetFolderByPath(context: context, path: path)) { [weak self] in
                     self?.updateFolder()
                 }
             } else {
@@ -310,31 +310,33 @@ extension FileListViewController: FilePickerDelegate {
     }
 
     public func filePicker(didPick url: URL) {
-        UploadManager.shared.upload(url: url, batchID: batchID, to: .context(context), folderPath: path)
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        guard let folderID = folder.first?.id else { return }
+        UploadManager.shared.upload(url: url, batchID: batchID, to: .context(Context(.folder, id: folderID)))
+        tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.maxY), animated: true)
     }
 
     public func filePicker(didRetry file: File) {
-        UploadManager.shared.upload(file: file, to: .context(context), folderPath: path)
+        guard let folderID = folder.first?.id else { return }
+        UploadManager.shared.upload(file: file, to: .context(Context(.folder, id: folderID)))
     }
 
     func updateUploads() {
         let completes = uploads.filter { $0.url != nil && $0.uploadError == nil }
         guard !completes.isEmpty else { return tableView.reloadData() }
 
-        // Copy file object from globalDatabase
-        var context = env.database.viewContext
+        let context = env.database.viewContext
+        let ucontext = UploadManager.shared.viewContext
         context.performAndWait {
+            // Copy file object from globalDatabase
             for file in completes {
-                FolderItem.save(context.copy(file), in: context)
+                let copy = context.copy(file)
+                copy.batchID = nil
+                FolderItem.save(copy, in: context)
             }
-            try? context.save()
-        }
+            // Delete from globalDatabase
+            ucontext.delete(completes)
+            try? ucontext.save()
 
-        // Delete from globalDatabase
-        context = UploadManager.shared.viewContext
-        context.perform {
-            context.delete(completes)
             try? context.save()
         }
     }
@@ -346,7 +348,6 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // guard errorView.isHidden else { return 0 }
         switch section {
         case 0: return uploads.count
         case 1: return results.count
@@ -416,27 +417,39 @@ class FileListCell: UITableViewCell {
         nameLabel.text = item?.name
         if let folder = item?.folder {
             iconView.icon = .folderSolid
+            iconView.setState(locked: folder.locked, hidden: folder.hidden, unlockAt: folder.unlockAt, lockAt: folder.lockAt)
             sizeLabel.text = String.localizedStringWithFormat(
                 NSLocalizedString("d_items", bundle: .core, comment: ""),
                 folder.filesCount + folder.foldersCount
             )
+            updateAccessibilityLabel()
             return
         }
-        if let url = item?.file?.thumbnailURL {
+        let file = item?.file
+        if let url = file?.thumbnailURL, let c = file?.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
-            iconView.icon = item?.file?.icon
+            iconView.icon = file?.icon
         }
-        sizeLabel.text = item?.file?.size.humanReadableFileSize
+        iconView.setState(locked: file?.locked, hidden: file?.hidden, unlockAt: file?.unlockAt, lockAt: file?.lockAt)
+        sizeLabel.text = file?.size.humanReadableFileSize
+        updateAccessibilityLabel()
     }
 
     func update(result: APIFile?) {
         nameLabel.text = result?.display_name
-        if let url = result?.thumbnail_url?.rawValue {
+        if let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
             iconView.icon = File.icon(mimeClass: result?.mime_class, contentType: result?.contentType)
         }
+        iconView.setState(locked: result?.locked, hidden: result?.hidden, unlockAt: result?.unlock_at, lockAt: result?.lock_at)
         sizeLabel.text = result?.size?.humanReadableFileSize
+        updateAccessibilityLabel()
+    }
+
+    func updateAccessibilityLabel() {
+        accessibilityLabel = [ iconView.accessibilityLabel, nameLabel.text, sizeLabel.text ]
+            .compactMap { $0 }.joined(separator: ", ")
     }
 }

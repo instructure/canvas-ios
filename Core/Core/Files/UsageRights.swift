@@ -40,5 +40,20 @@ public final class UsageRights: NSManagedObject {
 }
 
 public enum UseJustification: String, Codable, CaseIterable {
-    case creative_commons, fair_use, own_copyright, public_domain, used_by_permission
+    case own_copyright, used_by_permission, public_domain, fair_use, creative_commons
+
+    public var label: String {
+        switch self {
+        case .own_copyright:
+            return NSLocalizedString("I hold the copyright", bundle: .core, comment: "")
+        case .used_by_permission:
+            return NSLocalizedString("I obtained permission", bundle: .core, comment: "")
+        case .public_domain:
+            return NSLocalizedString("It is in the public domain", bundle: .core, comment: "")
+        case .fair_use:
+            return NSLocalizedString("It is a fair use or similar exception", bundle: .core, comment: "")
+        case .creative_commons:
+            return NSLocalizedString("It is licensed under Creative Commons", bundle: .core, comment: "")
+        }
+    }
 }

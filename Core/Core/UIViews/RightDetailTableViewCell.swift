@@ -38,5 +38,6 @@ public class RightDetailTableViewCell: UITableViewCell {
         heightAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
         textLabel?.textColor = .textDarkest
         textLabel?.font = .scaledNamedFont(.semibold16)
+        textLabel?.numberOfLines = 2
     }
 }
