@@ -824,6 +824,7 @@
 		E8CA4D3723F730F500A3CA3C /* GetCoursesPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3623F730F500A3CA3C /* GetCoursesPactTests.swift */; };
 		E8CA4D3923F7312600A3CA3C /* QuizPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */; };
 		E8CA4D3B23F7324F00A3CA3C /* GetContextUsersPactTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */; };
+		E8D54FF8250BB7E7001CEB00 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D54FF7250BB7E7001CEB00 /* Icon.swift */; };
 		E8D6949424D4635B0080D883 /* EnvironmentValuesExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */; };
 		E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* CoreHostingController.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
@@ -1880,6 +1881,7 @@
 		E8CA4D3623F730F500A3CA3C /* GetCoursesPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesPactTests.swift; sourceTree = "<group>"; };
 		E8CA4D3823F7312600A3CA3C /* QuizPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPactTests.swift; sourceTree = "<group>"; };
 		E8CA4D3A23F7324F00A3CA3C /* GetContextUsersPactTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersPactTests.swift; sourceTree = "<group>"; };
+		E8D54FF7250BB7E7001CEB00 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		E8D6949324D4635B0080D883 /* EnvironmentValuesExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtensions.swift; sourceTree = "<group>"; };
 		E8D6949724D46B1E0080D883 /* CoreHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreHostingController.swift; sourceTree = "<group>"; };
 		E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardArea.swift; sourceTree = "<group>"; };
@@ -3791,6 +3793,7 @@
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				E8D6949724D46B1E0080D883 /* CoreHostingController.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
+				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4786,6 +4789,7 @@
 				7DA25F9B23F72136005D2121 /* APIActivity.swift in Sources */,
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
+				E8D54FF8250BB7E7001CEB00 /* Icon.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,

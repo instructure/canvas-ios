@@ -1,0 +1,21 @@
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+ <g id="Guides">
+  <line id="Baseline-S" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-S"  x1="0" x2="24" y1="6" y2="6"/>
+  <line id="Baseline-M" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-M"  x1="0" x2="24" y1="6" y2="6"/>
+  <line id="Baseline-L" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-L"  x1="0" x2="24" y1="6" y2="6"/>
+  <line id="left-margin" x1="0" x2="0" y1="0" y2="24"/>
+  <line id="right-margin"  x1="24" x2="24" y1="0" y2="24"/>
+ </g>
+ <g id="Symbols">
+  <g id="Regular-M">
+   <rect width="24" height="24" opacity="0" />
+   <g transform="matrix(0.010416666666666666 0 0 0.010416666666666666 2 2)">
+     <path d="M1359.36 1279.51l-79.85 79.85L960 1039.85l-319.398 319.51-79.85-79.85L880.152 960 560.753 640.602l79.85-79.85L960 880.152l319.51-319.398 79.85 79.85L1039.85 960l319.51 319.51zM960 0C430.645 0 0 430.645 0 960s430.645 960 960 960 960-430.645 960-960S1489.355 0 960 0z" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+   </g>
+  </g>
+ </g>
+</svg>
