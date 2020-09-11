@@ -101,7 +101,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
 
     private func put(_ body: APIDocViewerAnnotation) {
         requestsInFlight += 1
-        api.makeRequest(PutDocViewerAnnotationRequest(body: body, sessionID: sessionID)) { [weak self] updated, _, error in
+        api.makeRequest(PutDocViewerAnnotationRequest(body: body, sessionID: sessionID)) { [weak self] updated, _, error in performUIUpdate {
             self?.requestsInFlight -= 1
             if let updated = updated {
                 self?.apiAnnotations[updated.id] = updated
@@ -110,17 +110,17 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             } else {
                 self?.docViewerDelegate?.annotationDidFailToSave(error: error ?? APIDocViewerError.noData)
             }
-        }
+        } }
     }
 
     private func delete(_ id: String) {
         requestsInFlight += 1
-        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: id, sessionID: sessionID)) { [weak self] _, _, error in
+        api.makeRequest(DeleteDocViewerAnnotationRequest(annotationID: id, sessionID: sessionID)) { [weak self] _, _, error in performUIUpdate {
             self?.requestsInFlight -= 1
             if let error = error {
                 self?.docViewerDelegate?.annotationDidFailToSave(error: error)
             }
-        }
+        } }
     }
 
     override func didChange(_ annotation: Annotation, keyPaths: [String], options: [String: Any]? = nil) {

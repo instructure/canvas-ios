@@ -105,6 +105,13 @@ workflows:
     - _student-vars
     - _setup
     steps:
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
     - script:
         inputs:
         - content: |-
@@ -115,13 +122,6 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
     - deploy-to-bitrise-io: {}
 
   teacher-app-store:
@@ -129,6 +129,13 @@ workflows:
     - _teacher-vars
     - _setup
     steps:
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
     - script:
         inputs:
         - content: |-
@@ -139,13 +146,6 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
     - deploy-to-bitrise-io: {}
 
   parent-app-store:
@@ -153,6 +153,13 @@ workflows:
     - _parent-vars
     - _setup
     steps:
+    - xcode-archive:
+        inputs:
+        - configuration: "$BITRISE_CONFIGURATION"
+        - compile_bitcode: 'no'
+        - upload_bitcode: 'no'
+        - export_method: "$BITRISE_EXPORT_METHOD"
+        - icloud_container_environment: "Production"
     - script:
         inputs:
         - content: |-
@@ -163,13 +170,6 @@ workflows:
         inputs:
         - password: "$APPSTORECONNECT_PASSWORD"
         - itunescon_user: iosbuilds@instructure.com
-    - xcode-archive:
-        inputs:
-        - configuration: "$BITRISE_CONFIGURATION"
-        - compile_bitcode: 'no'
-        - upload_bitcode: 'no'
-        - export_method: "$BITRISE_EXPORT_METHOD"
-        - icloud_container_environment: "Production"
     - deploy-to-bitrise-io: {}
 
   student-app-store-automated:
@@ -338,3 +338,4 @@ workflows:
             set -euo pipefail
 
             envman add --key BITRISE_EXPORT_METHOD --value ad-hoc
+            envman add --key BITRISE_SCHEME --value All
