@@ -31,6 +31,8 @@ public class Module: NSManagedObject {
     @NSManaged public var publishedRaw: NSNumber?
     @NSManaged public var stateRaw: String?
     @NSManaged public var itemsRaw: NSOrderedSet?
+    @NSManaged var prerequisiteModuleIDsRaw: String
+    @NSManaged public var unlockAt: Date?
 
     public var published: Bool? {
         get { return publishedRaw?.boolValue }
@@ -45,6 +47,32 @@ public class Module: NSManagedObject {
     public var state: ModuleState? {
         get { stateRaw.flatMap(ModuleState.init(rawValue:)) }
         set { stateRaw = newValue?.rawValue }
+    }
+
+    public var prerequisiteModuleIDs: [String] {
+        get { prerequisiteModuleIDsRaw.split(separator: ",").map(String.init) }
+        set { prerequisiteModuleIDsRaw = newValue.joined(separator: ",") }
+    }
+
+    public var prerequisiteModules: [Module] {
+        guard let context = managedObjectContext else { return [] }
+        return context.fetch(NSPredicate(format: "%K in %@", #keyPath(Module.id), prerequisiteModuleIDs), sortDescriptors: nil)
+    }
+
+    public var lockedMessage: String? {
+        guard state == .locked else { return nil }
+        if let unlockAt = unlockAt, unlockAt > Clock.now {
+            return String.localizedStringWithFormat(
+                NSLocalizedString("Will unlock %@", bundle: .core, comment: ""),
+                DateFormatter.localizedString(from: unlockAt, dateStyle: .medium, timeStyle: .short)
+            )
+        } else if prerequisiteModuleIDs.count > 0 {
+            return String.localizedStringWithFormat(
+                NSLocalizedString("Prerequisite: %@", bundle: .core, comment: ""),
+                prerequisiteModules.map(\.name).joined(separator: ", ")
+            )
+        }
+        return nil
     }
 
     @discardableResult
@@ -63,6 +91,8 @@ public class Module: NSManagedObject {
         module.published = item.published
         module.state = item.state
         module.items = item.items?.map { .save($0, forCourse: courseID, in: context) } ?? []
+        module.prerequisiteModuleIDs = item.prerequisite_module_ids
+        module.unlockAt = item.unlock_at
         return module
     }
 }

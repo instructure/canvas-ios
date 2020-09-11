@@ -28,6 +28,7 @@ public struct APIModule: Codable, Equatable {
     public let prerequisite_module_ids: [String]
     public let state: ModuleState?
     public var items: [APIModuleItem]?
+    public var unlock_at: Date?
 }
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem

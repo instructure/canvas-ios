@@ -22,9 +22,11 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
+    @IBOutlet weak var lockedButton: UIButton!
 
     var isExpanded = true
     var onTap: (() -> Void)?
+    var onLockTap: (() -> Void)?
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -41,6 +43,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         self.onTap = onTap
         titleLabel.text = module.name
         publishedIconView.published = module.published
+        lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
         accessibilityLabel = [
             module.name,
@@ -63,5 +66,9 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
             self.collapsableIndicator.layoutIfNeeded()
         }
         onTap?()
+    }
+
+    @IBAction func lockTapped() {
+        onLockTap?()
     }
 }

@@ -451,8 +451,10 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="prerequisiteModuleIDsRaw" optional="YES" attributeType="String"/>
         <attribute name="publishedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="stateRaw" optional="YES" attributeType="String"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="itemsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ModuleItem" inverseName="module" inverseEntity="ModuleItem"/>
     </entity>
     <entity name="ModuleItem" representedClassName="Core.ModuleItem" syncable="YES">
@@ -856,7 +858,7 @@
         <element name="MasteryPathAssignment" positionX="-522" positionY="0" width="128" height="148"/>
         <element name="MasteryPathAssignmentSet" positionX="-531" positionY="-9" width="128" height="103"/>
         <element name="MediaComment" positionX="-369" positionY="-18" width="128" height="148"/>
-        <element name="Module" positionX="-369" positionY="-18" width="128" height="148"/>
+        <element name="Module" positionX="-369" positionY="-18" width="128" height="178"/>
         <element name="ModuleItem" positionX="-540" positionY="-27" width="128" height="358"/>
         <element name="ModuleItemSequence" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="ModuleItemSequenceNode" positionX="-540" positionY="-18" width="128" height="118"/>
@@ -871,6 +873,7 @@
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="433"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
@@ -884,6 +887,5 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
     </elements>
 </model>
