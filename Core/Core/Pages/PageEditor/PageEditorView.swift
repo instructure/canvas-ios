@@ -66,7 +66,7 @@ public struct PageEditorView: View {
             )
 
             .alert(isPresented: $showError) {
-                Alert(title: Text(verbatim: ""), message: Text(error!.localizedDescription))
+                Alert(title: Text(error!.localizedDescription))
             }
 
             .onAppear(perform: load)

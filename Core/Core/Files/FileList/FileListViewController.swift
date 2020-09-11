@@ -310,12 +310,14 @@ extension FileListViewController: FilePickerDelegate {
     }
 
     public func filePicker(didPick url: URL) {
-        UploadManager.shared.upload(url: url, batchID: batchID, to: .context(context), folderPath: path)
+        guard let folderID = folder.first?.id else { return }
+        UploadManager.shared.upload(url: url, batchID: batchID, to: .context(Context(.folder, id: folderID)))
         tableView.setContentOffset(CGPoint(x: 0, y: searchBar.frame.maxY), animated: true)
     }
 
     public func filePicker(didRetry file: File) {
-        UploadManager.shared.upload(file: file, to: .context(context), folderPath: path)
+        guard let folderID = folder.first?.id else { return }
+        UploadManager.shared.upload(file: file, to: .context(Context(.folder, id: folderID)))
     }
 
     func updateUploads() {
@@ -415,18 +417,23 @@ class FileListCell: UITableViewCell {
         nameLabel.text = item?.name
         if let folder = item?.folder {
             iconView.icon = .folderSolid
+            iconView.setState(locked: folder.locked, hidden: folder.hidden, unlockAt: folder.unlockAt, lockAt: folder.lockAt)
             sizeLabel.text = String.localizedStringWithFormat(
                 NSLocalizedString("d_items", bundle: .core, comment: ""),
                 folder.filesCount + folder.foldersCount
             )
+            updateAccessibilityLabel()
             return
         }
-        if let url = item?.file?.thumbnailURL, let c = item?.file?.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
+        let file = item?.file
+        if let url = file?.thumbnailURL, let c = file?.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
-            iconView.icon = item?.file?.icon
+            iconView.icon = file?.icon
         }
-        sizeLabel.text = item?.file?.size.humanReadableFileSize
+        iconView.setState(locked: file?.locked, hidden: file?.hidden, unlockAt: file?.unlockAt, lockAt: file?.lockAt)
+        sizeLabel.text = file?.size.humanReadableFileSize
+        updateAccessibilityLabel()
     }
 
     func update(result: APIFile?) {
@@ -436,6 +443,13 @@ class FileListCell: UITableViewCell {
         } else {
             iconView.icon = File.icon(mimeClass: result?.mime_class, contentType: result?.contentType)
         }
+        iconView.setState(locked: result?.locked, hidden: result?.hidden, unlockAt: result?.unlock_at, lockAt: result?.lock_at)
         sizeLabel.text = result?.size?.humanReadableFileSize
+        updateAccessibilityLabel()
+    }
+
+    func updateAccessibilityLabel() {
+        accessibilityLabel = [ iconView.accessibilityLabel, nameLabel.text, sizeLabel.text ]
+            .compactMap { $0 }.joined(separator: ", ")
     }
 }

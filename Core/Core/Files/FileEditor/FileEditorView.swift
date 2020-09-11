@@ -80,15 +80,18 @@ public struct FileEditorView: View {
                     .identifier("FileEditor.doneButton")
             )
 
-            .alert(isPresented: $showError) {
-                Alert(title: Text(verbatim: ""), message: Text(error!.localizedDescription))
+            .alert(isPresented: Binding(get: { self.showError || self.showDeleteConfirm }, set: {
+                self.showError = false
+                self.showDeleteConfirm = $0
+            })) {
+                showError ? Alert(title: Text(error!.localizedDescription)) :
+                Alert(
+                    title: Text("Are you sure you want to delete \(name)?", bundle: .core),
+                    message: isFile ? nil : Text("Deleting this folder will also delete all of the files inside the folder.", bundle: .core),
+                    primaryButton: .destructive(Text("Delete", bundle: .core), action: delete),
+                    secondaryButton: .cancel()
+                )
             }
-            .alert(isPresented: $showDeleteConfirm) { Alert(
-                title: Text("Are you sure you want to delete \(name)?", bundle: .core),
-                message: isFile ? nil : Text("Deleting this folder will also delete all of the files inside the folder.", bundle: .core),
-                primaryButton: .destructive(Text("Delete", bundle: .core), action: delete),
-                secondaryButton: .cancel()
-            ) }
 
             .onAppear(perform: load)
     }
@@ -258,12 +261,32 @@ public struct FileEditorView: View {
         let lockAt = access == .scheduled ? self.lockAt : nil
         switch itemID {
         case .file(let fileID):
-            UpdateFile(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
-                .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
+            saveUsageRights {
+                UpdateFile(fileID: fileID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
+                    .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
+            }
         case .folder(let folderID):
             UpdateFolder(folderID: folderID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
                 .fetch { result, _, error in performUIUpdate { self.saved(result != nil, error: error) } }
         }
+    }
+
+    func saveUsageRights(_ then: @escaping () -> Void) {
+        guard usageRightsRequired, let context = context, case .file(let fileID) = itemID else {
+            return then()
+        }
+        UpdateUsageRights(context: context, fileIDs: [ fileID ], usageRights: APIUsageRights(
+            legal_copyright: copyright.trimmingCharacters(in: .whitespacesAndNewlines),
+            license: justification == .creative_commons ? license.rawValue : nil,
+            use_justification: justification
+        )).fetch { result, _, error in performUIUpdate {
+            self.error = error
+            if result != nil {
+                then()
+            } else {
+                self.isSaving = false
+            }
+        } }
     }
 
     func delete() {
@@ -281,18 +304,7 @@ public struct FileEditorView: View {
     func saved(_ success: Bool, error: Error?) {
         self.error = error
         self.isSaving = false
-        if usageRightsRequired, let context = context, case .file(let fileID) = itemID, error == nil {
-            self.isSaving = true
-            UpdateUsageRights(context: context, fileIDs: [ fileID ], usageRights: APIUsageRights(
-                legal_copyright: copyright.trimmingCharacters(in: .whitespacesAndNewlines),
-                license: justification == .creative_commons ? license.rawValue : nil,
-                use_justification: justification
-            )).fetch { result, _, error in performUIUpdate {
-                self.error = error
-                self.isSaving = false
-                if result != nil { self.dismiss() }
-            } }
-        } else if success {
+        if success {
             dismiss()
         }
     }

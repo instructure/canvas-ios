@@ -36,7 +36,12 @@ public struct OptionalDatePicker<Label: View>: View {
     }
 
     public var body: some View { VStack(alignment: .center, spacing: 0) {
-        Button(action: { self.showDatePicker.toggle() }, label: {
+        Button(action: {
+            if self.showDatePicker == false, self.selection == nil {
+                self.selection = self.initial
+            }
+            self.showDatePicker.toggle()
+        }, label: {
             label.font(.semibold16)
             Spacer()
             Text(selection?.dateTimeString ?? NSLocalizedString("--", bundle: .core, comment: ""))

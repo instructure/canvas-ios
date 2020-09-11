@@ -155,6 +155,7 @@ public struct APIFile: Codable, Equatable {
         lock_explanation = try container.decodeIfPresent(String.self, forKey: .lock_explanation)
         preview_url = try container.decodeURLIfPresent(forKey: .preview_url)
         avatar = try container.decodeIfPresent(APIFileToken.self, forKey: .avatar)
+        usage_rights = try container.decodeIfPresent(APIUsageRights.self, forKey: .usage_rights)
     }
 }
 

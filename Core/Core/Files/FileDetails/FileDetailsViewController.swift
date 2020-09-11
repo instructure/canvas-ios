@@ -124,7 +124,12 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     func update() {
         guard let file = files.first else {
-            if let error = files.error { showError(error) }
+            if let error = files.error {
+                showError(error)
+            } else if files.requested, !files.pending {
+                // File was deleted, go back.
+                env.router.dismiss(self)
+            }
             return
         }
 
