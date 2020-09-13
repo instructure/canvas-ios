@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا.\n        إذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "إضافة مرفقات";
 
 /* No comment provided by engineer. */
+"Add content" = "إضافة محتوى";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "إضافة ملاحظة مخطِط";
+
+/* No comment provided by engineer. */
+"Add Title" = "إضافة عنوان";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "تمت الإضافة إلى المحادثة";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "ردود الإعلان";
+
+/* No comment provided by engineer. */
+"Anyone" = "أي شخص";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "توفر الموعد";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "الكاميرا";
+
+/* No comment provided by engineer. */
+"Can Edit" = "يمكن التحرير";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "لا تستطيع العثور على مدرستك؟ حاول كتابة رابط URL الكامل للمدرسة.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "المؤتمرات";
+
+/* No comment provided by engineer. */
+"Content" = "المحتوى";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "خطأ في ارتباط المحتوى";
@@ -404,6 +422,9 @@
 "Designers" = "المصممون";
 
 /* No comment provided by engineer. */
+"Details" = "التفاصيل";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "قائمة المطورين";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "تحرير المرفق (بلا)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "تحرير صفحة";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "تحرير المستلمين";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "لن أستطيع إنجاز أعمالي حتى تردون عليّ";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "ليس لدي حساب Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "لدي حساب Canvas";
@@ -866,6 +893,9 @@
 "New Message" = "رسالة جديدة";
 
 /* No comment provided by engineer. */
+"New Page" = "صفحة جديدة";
+
+/* No comment provided by engineer. */
 "New To Do" = "قائمة مهمة جديدة";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "على الورق";
 
 /* No comment provided by engineer. */
+"Only members" = "الأعضاء فقط";
+
+/* No comment provided by engineer. */
+"Only teachers" = "المعلمون فقط";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "قائمة ملف التعريف";
+
+/* No comment provided by engineer. */
+"Publish" = "نشر";
 
 /* No comment provided by engineer. */
 "published" = "تم النشر";
@@ -1181,6 +1220,9 @@
 "Sent" = "مرسَل";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "تعيين كصفحة أمامية";
+
+/* No comment provided by engineer. */
 "Set text color" = "تعيين لون النص";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "المعلمون";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "المعلمون والطلاب";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "مساعدو المعلمين";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "الوقت المنقضي";
 
 /* No comment provided by engineer. */
+"Title" = "العنوان";
+
+/* No comment provided by engineer. */
 "Title..." = "العنوان...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "تحميل %1$@ في %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "جارٍ تحميل %1$@ من %2$@";
 
 /* No comment provided by engineer. */

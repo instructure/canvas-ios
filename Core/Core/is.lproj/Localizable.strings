@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Til þess að stofna reikning skaltu biðja nemandann þinn um að búa til pörunarkóða fyrir þig úr hlutanum Stillingar í Canvas Student-forritinu, eins og sýnt er hér fyrir neðan, síðan er hægt að skanna kóðann héðan.\n        Ef nemandinn finnur ekki valmöguleikann til að búa til pörunarkóða þarftu að hafa samband við skólann þinn til að stofna reikning fyrir þig.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Bæta við viðhengjum";
 
 /* No comment provided by engineer. */
+"Add content" = "Bæta við efni";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Bæta við skipuleggjara athugasemd";
+
+/* No comment provided by engineer. */
+"Add Title" = "Bæta við titli";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Bætt við samræðu";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Svör við tilkynningum";
+
+/* No comment provided by engineer. */
+"Anyone" = "Hver sem er";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Tiltækir fundir";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Myndavél";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Getur breytt";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Finnurðu ekki skólann þinn? Prufaðu að slá inn alla vefslóð skólans.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Ráðstefnur";
+
+/* No comment provided by engineer. */
+"Content" = "Efni";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Efnishlekksvilla";
@@ -404,6 +422,9 @@
 "Designers" = "Hönnuðir";
 
 /* No comment provided by engineer. */
+"Details" = "Upplýsingar";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Hönnuða valmynd";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Breyta síðu";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Breyta viðtakendum";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ég get ekkert gert fyrr en þú svarar mér";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Ég er ekki með Canvas-reikning";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Ég er með Canvas-reikning";
@@ -866,6 +893,9 @@
 "New Message" = "Ný skilaboð";
 
 /* No comment provided by engineer. */
+"New Page" = "Ný síða";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nýtt að gera";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Á blaði";
 
 /* No comment provided by engineer. */
+"Only members" = "Aðeins meðlimir";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Aðeins kennarar";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Opna %@ kjörstillingar notanda";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Uppsetningar valmynd";
+
+/* No comment provided by engineer. */
+"Publish" = "Birta";
 
 /* No comment provided by engineer. */
 "published" = "birt";
@@ -1181,6 +1220,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Setja sem forsíðu";
+
+/* No comment provided by engineer. */
 "Set text color" = "Stilla lit á texta";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Kennarar";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Kennarar og nemendur";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Aðstoðarkennarar";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Liðinn tími";
 
 /* No comment provided by engineer. */
+"Title" = "Titill";
+
+/* No comment provided by engineer. */
 "Title..." = "Titill…";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Upphleðsla %1$@ er í %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Hleð upp %1$@ af %2$@";
 
 /* No comment provided by engineer. */

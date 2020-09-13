@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n        如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add content" = "添加内容";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加规划器备注";
+
+/* No comment provided by engineer. */
+"Add Title" = "添加标题";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "添加到会话";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "公告回复";
+
+/* No comment provided by engineer. */
+"Anyone" = "任何人";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "预约可用性";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "摄像机、照相机";
+
+/* No comment provided by engineer. */
+"Can Edit" = "可以编辑";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的学校？尝试键入完整的学校 URL。";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "会议";
+
+/* No comment provided by engineer. */
+"Content" = "内容";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
@@ -404,6 +422,9 @@
 "Designers" = "设计者";
 
 /* No comment provided by engineer. */
+"Details" = "详情";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "开发人员菜单";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "编辑附件（无）";
+
+/* No comment provided by engineer. */
+"Edit Page" = "编辑页面";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "编辑收件人";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "我需要您的回信才能完成工作";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "我没有 Canvas 帐户";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "我有 Canvas 帐户";
@@ -866,6 +893,9 @@
 "New Message" = "新消息";
 
 /* No comment provided by engineer. */
+"New Page" = "新页面";
+
+/* No comment provided by engineer. */
 "New To Do" = "新待办事项";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "纸上";
 
 /* No comment provided by engineer. */
+"Only members" = "仅成员";
+
+/* No comment provided by engineer. */
+"Only teachers" = "仅教师";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "打开%@用户首选项";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "个人资料菜单";
+
+/* No comment provided by engineer. */
+"Publish" = "发布";
 
 /* No comment provided by engineer. */
 "published" = "已发布";
@@ -1181,6 +1220,9 @@
 "Sent" = "已发送";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "设置为首页";
+
+/* No comment provided by engineer. */
 "Set text color" = "设置文本颜色";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "教师";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "教师和学生";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "助教";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "经过的时间";
 
 /* No comment provided by engineer. */
+"Title" = "标题";
+
+/* No comment provided by engineer. */
 "Title..." = "标题...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
 
 /* No comment provided by engineer. */

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Per creare un account, lo studente deve creare un codice di abbinamento nella sezione Impostazioni dell’app Studente Canvas, come mostrato in basso, poi deve scansionarlo.\n        Se lo studente non vede l’opzione per creare un codice di abbinamento, devi contattare la scuola per creare l’account.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Aggiungi allegati";
 
 /* No comment provided by engineer. */
+"Add content" = "Aggiungi contenuto";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Aggiungi nota all’agenda";
+
+/* No comment provided by engineer. */
+"Add Title" = "Aggiungi titolo";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Aggiunto alla conversazione";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Risposte annuncio";
+
+/* No comment provided by engineer. */
+"Anyone" = "Chiunque";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilità appuntamento";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Videocamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Può modificare";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Non riesci a trovare la tua scuola? Prova a digitare l’URL della scuola per intero.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferenze";
+
+/* No comment provided by engineer. */
+"Content" = "Contenuto";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Errore link contenuto";
@@ -404,6 +422,9 @@
 "Designers" = "Progettista";
 
 /* No comment provided by engineer. */
+"Details" = "Dettagli";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Menu Sviluppatore";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Modifica allegato (nessuno)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Modifica pagina";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Modifica destinatari";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Non riesco a terminare il lavoro finché non ricevo una risposta";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Non ho un account Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Ho un account Canvas";
@@ -866,6 +893,9 @@
 "New Message" = "Nuovo messaggio";
 
 /* No comment provided by engineer. */
+"New Page" = "Nuova pagina";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nuovo elenco azioni";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "In formato cartaceo";
 
 /* No comment provided by engineer. */
+"Only members" = "Solo membri";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Solo insegnanti";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Apri le preferenze utente di %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu del profilo";
+
+/* No comment provided by engineer. */
+"Publish" = "Pubblica";
 
 /* No comment provided by engineer. */
 "published" = "pubblicato";
@@ -1181,6 +1220,9 @@
 "Sent" = "Inviato";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Imposta come pagina iniziale";
+
+/* No comment provided by engineer. */
 "Set text color" = "Imposta colore testo";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Insegnanti";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Insegnanti e studenti";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Assistenti";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Tempo trascorso";
 
 /* No comment provided by engineer. */
+"Title" = "Titolo";
+
+/* No comment provided by engineer. */
 "Title..." = "Titolo...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Il caricamento di %1$@ avviene alle %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Caricamento %1$@ di %2$@";
 
 /* No comment provided by engineer. */

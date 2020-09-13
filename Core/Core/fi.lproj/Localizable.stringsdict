@@ -50,6 +50,22 @@
 			<string>%d tapahtumat</string>
 		</dict>
 	</dict>
+	<key>d_items</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d item</string>
+			<key>other</key>
+			<string>%d items</string>
+		</dict>
+	</dict>
 	<key>d_likes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

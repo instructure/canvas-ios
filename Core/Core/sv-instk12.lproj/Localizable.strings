@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        För att skapa ett konto ska du be din elev att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-elevappen som visas nedan. Skanna sedan koden därifrån.\n        Om din elev inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Lägg till bilagor";
 
 /* No comment provided by engineer. */
+"Add content" = "Lägg till innehåll";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
+
+/* No comment provided by engineer. */
+"Add Title" = "Lägg till titel";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Tillagd i konversationen";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Meddelandesvar";
+
+/* No comment provided by engineer. */
+"Anyone" = "Vem som helst";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Mötestillgänglighet";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Kan redigera";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Hittar du inte din skola? Försök att skriva in skolans fullständiga URL.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenser";
+
+/* No comment provided by engineer. */
+"Content" = "Innehåll";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Fel med innehållslänk";
@@ -404,6 +422,9 @@
 "Designers" = "Designers";
 
 /* No comment provided by engineer. */
+"Details" = "Detaljer";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meny för utvecklare";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Redigera bilaga (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Redigera sidan";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Redigera mottagare";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jag kan inte få något gjort förrän jag fått ett svar";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Jag har inte ett Canvas-konto";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Jag har ett Canvas-konto";
@@ -866,6 +893,9 @@
 "New Message" = "Nytt kursmeddelande";
 
 /* No comment provided by engineer. */
+"New Page" = "Ny sida";
+
+/* No comment provided by engineer. */
 "New To Do" = "Ny att-göra";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "På papper";
 
 /* No comment provided by engineer. */
+"Only members" = "Endast medlemmar";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Endast lärare";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Öppna %@ användarinställningar";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmeny";
+
+/* No comment provided by engineer. */
+"Publish" = "Publicera";
 
 /* No comment provided by engineer. */
 "published" = "publicerad";
@@ -1181,6 +1220,9 @@
 "Sent" = "Skickade";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Ställ in som framsida";
+
+/* No comment provided by engineer. */
 "Set text color" = "Ange textfärg";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Lärare";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Lärare och elever";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Lärarassistenter";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Förfluten tid";
 
 /* No comment provided by engineer. */
+"Title" = "Titel";
+
+/* No comment provided by engineer. */
 "Title..." = "Titel...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uppladdning av %1$@ är på %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
 
 /* No comment provided by engineer. */

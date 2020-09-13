@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\n        Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Lisää liite";
 
 /* No comment provided by engineer. */
+"Add content" = "Lisää sisältö";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lisää muistokirjoituksen merkintä";
+
+/* No comment provided by engineer. */
+"Add Title" = "Lisää otsikko";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Lisätty viestiketjuun";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ilmoituksen vastaukset";
+
+/* No comment provided by engineer. */
+"Anyone" = "Kuka tahansa";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Tapaamisen saatavilla olo";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Voi muokata";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Etkö löydä kouluasi? Yritä kirjoittaa koko koulun URL";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenssit";
+
+/* No comment provided by engineer. */
+"Content" = "Sisältö";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Sisällön linkin virhe";
@@ -404,6 +422,9 @@
 "Designers" = "Suunnittelijaa";
 
 /* No comment provided by engineer. */
+"Details" = "Lisätiedot";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Sovelluskehittäjän valikko";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Muokkaa liitettä (ei mitään)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Muokkaa sivua";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Muokkaa vastaanottajia";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "En saa asioita tehtyä, ennen kuin kuulen sinusta.";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Minulla ei ole Canvas-tiliä";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Minulla on jo Canvas-tili";
@@ -866,6 +893,9 @@
 "New Message" = "Uusi viesti";
 
 /* No comment provided by engineer. */
+"New Page" = "Uusi sivu";
+
+/* No comment provided by engineer. */
 "New To Do" = "Uusi tehtävä";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
+"Only members" = "Vain jäsenet";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Vain opettajat";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Esikatseluvalikko";
+
+/* No comment provided by engineer. */
+"Publish" = "Julkaise";
 
 /* No comment provided by engineer. */
 "published" = "julkaistu";
@@ -1181,6 +1220,9 @@
 "Sent" = "Lähetetty";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Määritä etusivuksi";
+
+/* No comment provided by engineer. */
 "Set text color" = "Määritä tekstiväri";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Opettajat";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Opettajat ja opiskelijat";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Apuopettajat";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Kulunut aika";
 
 /* No comment provided by engineer. */
+"Title" = "Otsikko";
+
+/* No comment provided by engineer. */
 "Title..." = "Otsikko...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ lataus on %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Ladataan tiedostoa %1$@/%2$@";
 
 /* No comment provided by engineer. */

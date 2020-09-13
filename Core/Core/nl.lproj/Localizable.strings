@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas Student-app zoals hieronder aangegeven en daarna scan je die code hier.\n        Als je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Bijlagen toevoegen";
 
 /* No comment provided by engineer. */
+"Add content" = "Inhoud toevoegen";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Planneraantekening toevoegen";
+
+/* No comment provided by engineer. */
+"Add Title" = "Titel toevoegen";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Toegevoegd aan gesprek";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Antwoorden op aankondiging";
+
+/* No comment provided by engineer. */
+"Anyone" = "Iedereen";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Beschikbaarheid voor afspraak";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Kan bewerken";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kun je je school niet vinden? Typ de volledige URL van de school.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Vergaderingen";
+
+/* No comment provided by engineer. */
+"Content" = "Inhoud";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Fout met inhoudslink";
@@ -404,6 +422,9 @@
 "Designers" = "Ontwerpers";
 
 /* No comment provided by engineer. */
+"Details" = "Details";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Menu Ontwikkelaar";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Bijlage bewerken (geen)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Pagina bewerken";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Ontvangers bewerken";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ik kan niets doen tot ik een antwoord van je terugkrijg";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Ik heb geen Canvas-account";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Ik heb een Canvas-account";
@@ -866,6 +893,9 @@
 "New Message" = "Nieuw bericht";
 
 /* No comment provided by engineer. */
+"New Page" = "Nieuwe pagina";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nieuwe takenlijst";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Op papier";
 
 /* No comment provided by engineer. */
+"Only members" = "Alleen leden";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Alleen docenten";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Gebruikersvoorkeuren %@ openen";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profiel";
+
+/* No comment provided by engineer. */
+"Publish" = "Publiceren";
 
 /* No comment provided by engineer. */
 "published" = "gepubliceerd";
@@ -1181,6 +1220,9 @@
 "Sent" = "Verzonden";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Instellen als voorpagina";
+
+/* No comment provided by engineer. */
 "Set text color" = "Tekstkleur instellen";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Docenten";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Docent en cursisten";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Onderwijsassistenten";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Verstreken tijd";
 
 /* No comment provided by engineer. */
+"Title" = "Titel";
+
+/* No comment provided by engineer. */
 "Title..." = "Titel...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ wordt geüpload om %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploaden van %1$@ van %2$@";
 
 /* No comment provided by engineer. */
