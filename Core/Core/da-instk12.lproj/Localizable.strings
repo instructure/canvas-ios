@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        For at oprette en konto skal din elev oprette en parringskode til dig fra sektionen Indstillinger i Canvas-appen for elev, som vist nedenfor, og derefter skal du scanne den kode herfra.\n        Hvis din elev ikke kan se muligheden for at oprette en parringskode, skal du kontakte din skole for at oprette din konto.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Tilføj vedhæftede filer";
 
 /* No comment provided by engineer. */
+"Add content" = "Tilføj indhold";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tilføj en planlægger-note";
+
+/* No comment provided by engineer. */
+"Add Title" = "Tilføj titel";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Føjet til samtale";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Svar på besked";
+
+/* No comment provided by engineer. */
+"Anyone" = "Alle";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Aftaler til rådighed";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Kan redigere";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kan du ikke finde din skole? Prøv at indtaste skolens fulde URL.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferencer";
+
+/* No comment provided by engineer. */
+"Content" = "Indhold";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Indholdslinkfejl";
@@ -404,6 +422,9 @@
 "Designers" = "Designere";
 
 /* No comment provided by engineer. */
+"Details" = "Nærmere oplysninger";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Udvikler-menu";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Rediger vedhæftet fil (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Rediger side";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Rediger modtagere";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Jeg kan ikke gøre noget, før jeg hører fra dig";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Jeg har ikke en Canvas-konto";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Jeg har en Canvas-konto";
@@ -866,6 +893,9 @@
 "New Message" = "Ny besked";
 
 /* No comment provided by engineer. */
+"New Page" = "Ny side";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nyt på opgavelisten";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
+"Only members" = "Kun medlemmer";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Kun lærere";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Åbn brugerpræferencer for %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmenu";
+
+/* No comment provided by engineer. */
+"Publish" = "Offentliggør";
 
 /* No comment provided by engineer. */
 "published" = "Offentliggjort";
@@ -1181,6 +1220,9 @@
 "Sent" = "Sendt";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Indstil som forside";
+
+/* No comment provided by engineer. */
 "Set text color" = "Indstil tekstfarve";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Lærere";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Lærere og elever";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Undervisningsassistenter";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Tid gået";
 
 /* No comment provided by engineer. */
+"Title" = "Titel";
+
+/* No comment provided by engineer. */
 "Title..." = "Titel ...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploaden af %1$@ er på %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Overfører %1$@ af %2$@";
 
 /* No comment provided by engineer. */

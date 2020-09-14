@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Add Attachments";
 
 /* No comment provided by engineer. */
+"Add content" = "Add content";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Add Planner Note";
+
+/* No comment provided by engineer. */
+"Add Title" = "Add Title";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Added To Conversation";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Announcement Replies";
+
+/* No comment provided by engineer. */
+"Anyone" = "Anyone";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Appointment Availability";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Can Edit";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the full school URL.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferences";
+
+/* No comment provided by engineer. */
+"Content" = "Content";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Content Link Error";
@@ -404,6 +422,9 @@
 "Designers" = "Designers";
 
 /* No comment provided by engineer. */
+"Details" = "Details";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Developer Menu";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edit attachment (none)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Edit Page";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edit Recipients";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "I don't have a Canvas account";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "I have a Canvas account";
@@ -866,6 +893,9 @@
 "New Message" = "New Message";
 
 /* No comment provided by engineer. */
+"New Page" = "New Page";
+
+/* No comment provided by engineer. */
 "New To Do" = "New To Do";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "On Paper";
 
 /* No comment provided by engineer. */
+"Only members" = "Only members";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Only instructors";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Open %@ user preferences";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profile Menu";
+
+/* No comment provided by engineer. */
+"Publish" = "Publish";
 
 /* No comment provided by engineer. */
 "published" = "published";
@@ -1181,6 +1220,9 @@
 "Sent" = "Sent";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Set as Front Page";
+
+/* No comment provided by engineer. */
 "Set text color" = "Set text colour";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Instructors";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Instructors and students";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Tutors";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Time elapsed";
 
 /* No comment provided by engineer. */
+"Title" = "Title";
+
+/* No comment provided by engineer. */
 "Title..." = "Title...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploading %1$@ is at %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
 
 /* No comment provided by engineer. */

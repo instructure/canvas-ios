@@ -70,6 +70,9 @@
 /* No comment provided by engineer. */
 "Hide Grades" = "Piilota arvosanat";
 
+/* Inbox tab title */
+"Inbox" = "Viestit";
+
 /* No comment provided by engineer. */
 "Late" = "Myöhään";
 

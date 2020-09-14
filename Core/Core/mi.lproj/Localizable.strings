@@ -1444,7 +1444,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "E tukuake ana %1$@ ō %2$@";
 
 /* No comment provided by engineer. */

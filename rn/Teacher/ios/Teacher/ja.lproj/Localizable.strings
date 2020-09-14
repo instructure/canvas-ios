@@ -70,6 +70,9 @@
 /* No comment provided by engineer. */
 "Hide Grades" = "成績を非表示にする";
 
+/* Inbox tab title */
+"Inbox" = "受信トレイ";
+
 /* No comment provided by engineer. */
 "Late" = "遅れている";
 
