@@ -807,6 +807,7 @@
 		E81ACBA723D9F4F2007AFDC1 /* PactEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8623D9EA83007AFDC1 /* PactEncoder.swift */; };
 		E81ACBA823D9F4F2007AFDC1 /* PactShapeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */; };
 		E81ACBA923D9F4F2007AFDC1 /* PactSimpleEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81ACA8823D9EABB007AFDC1 /* PactSimpleEncodable.swift */; };
+		E8258E562510040F0033334F /* IconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8258E552510040F0033334F /* IconTests.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
 		E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E87A5E4224D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87A5E4124D4BBBA0065B2AA /* EnvironmentValuesExtensionsTests.swift */; };
@@ -1865,6 +1866,7 @@
 		E81ACA8A23D9EAF9007AFDC1 /* PactShapeEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactShapeEncodable.swift; sourceTree = "<group>"; };
 		E81ACBA323D9F469007AFDC1 /* PactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E81ACBA423D9F469007AFDC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8258E552510040F0033334F /* IconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTests.swift; sourceTree = "<group>"; };
 		E861489F23D755BC00ABFA5D /* PactTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PactTestCase.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
 		E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
@@ -2028,12 +2030,12 @@
 				2C964858211E3049002C3255 /* Router */,
 				B11D321521E4649B00F37ABF /* Store */,
 				7DCB2E97247D95FA0071F172 /* Submissions */,
+				E8A8FA8C24D3289D000B27DF /* SwiftUIViews */,
 				3BF34288233D2C7F0095D0D3 /* Syllabus */,
 				9FBE5359223ADA4D001EC40C /* TermsOfService */,
 				7DA667F023835C500062F7B9 /* Todos */,
 				7D13C52822B9566F00345253 /* UITestHelpers */,
 				7D1758B12159894C00F88613 /* UIViews */,
-				E8A8FA8C24D3289D000B27DF /* SwiftUIViews */,
 				E8D7E6E824D9D0B400D6CCD0 /* ViewModifiers */,
 				9FBFE6DD22428966002B3796 /* WrongApp */,
 			);
@@ -2084,6 +2086,7 @@
 				2C964859211E30A0002C3255 /* Router */,
 				B1EF7AB521E7E40400D653D7 /* Store */,
 				7DCB2E98247D987A0071F172 /* Submissions */,
+				E8258E54251003BE0033334F /* SwiftUIViews */,
 				3B1669DB233DAF2300B2EFAB /* Syllabus */,
 				7D81F3F824F011C300C482D2 /* TermsOfService */,
 				7D57629D23849CF7001F980D /* Todos */,
@@ -3785,6 +3788,14 @@
 			path = CoreTester;
 			sourceTree = "<group>";
 		};
+		E8258E54251003BE0033334F /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				E8258E552510040F0033334F /* IconTests.swift */,
+			);
+			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
 		E861489E23D7557A00ABFA5D /* PactTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -4662,6 +4673,7 @@
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				7D7BA23F24DC776000B1A68B /* InstColorExtensionsTests.swift in Sources */,
 				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
+				E8258E562510040F0033334F /* IconTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */,
