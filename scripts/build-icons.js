@@ -310,8 +310,8 @@ class InstIconExtensionTests: XCTestCase {
     @available(iOS 13, *)
     func testImage() {
         ${Array.from(icons).sort().flatMap(name => [
-          `XCTAssertEqual(Icon.${name}Line.image, Image("${name}Line", bundle: .core))`,
-          `XCTAssertEqual(Icon.${name}Solid.image, Image("${name}Solid", bundle: .core))`,
+          `XCTAssertEqual(Icon.${name}Line.image, Image("${name}LineSymbol", bundle: .core))`,
+          `XCTAssertEqual(Icon.${name}Solid.image, Image("${name}SolidSymbol", bundle: .core))`,
         ]).join('\n        ')}
     }
     // swiftlint:enable function_body_length
