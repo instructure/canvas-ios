@@ -28,7 +28,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/cobbal/swsh.git", .exact("1.0.1")),
         .package(url: "https://github.com/apple/swift-argument-parser", .exact("0.1.0")),
-        .package(url: "https://github.com/davidahouse/XCResultKit", from: "0.7.0"),
+        .package(url: "https://github.com/davidahouse/XCResultKit", .exact("0.7.0")),
         .package(url: "https://github.com/cobbal/GitDiffSwift.git", .exact("0.0.2")),
     ],
     targets: [
