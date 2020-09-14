@@ -419,7 +419,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     }
 
     func testLockedByPrerequisiteModule() {
-        api.mock(GetModulesRequest(courseID: "1", include:[]), value: [
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
             .make(id: "2", position: 1, prerequisite_module_ids: ["1"], state: .locked),
         ])
@@ -439,7 +439,7 @@ class ModuleListViewControllerTests: CoreTestCase {
     func testLockedByDate() {
         let now = DateComponents(calendar: .current, year: 2020, month: 9, day: 14).date!
         Clock.mockNow(now)
-        api.mock(GetModulesRequest(courseID: "1", include:[]), value: [
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
             .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
             .make(id: "2", position: 1, state: .locked, unlock_at: now.addDays(1)),
         ])
