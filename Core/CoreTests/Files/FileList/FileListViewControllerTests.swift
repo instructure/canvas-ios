@@ -84,7 +84,7 @@ class FileListViewControllerTests: CoreTestCase {
 
         api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
             .make(),
-            .make(thumbnail_url: URL(string: "/")),
+            .make(created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/")),
         ])
         controller.searchBar.delegate?.searchBarTextDidBeginEditing?(controller.searchBar)
         controller.searchBar.text = "File"
@@ -110,7 +110,7 @@ class FileListViewControllerTests: CoreTestCase {
             .make(full_name: "my files/Folder A", id: "2", name: "Folder Refresh", parent_folder_id: "1"),
         ])
         api.mock(GetFilesRequest(context: Context(.folder, id: "2")), value: [
-            .make(folder_id: "2", display_name: "Picture", thumbnail_url: URL(string: "/")),
+            .make(folder_id: "2", display_name: "Picture", created_at: Clock.now.add(.day, number: -1), thumbnail_url: URL(string: "/")),
         ])
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false) // stops refreshing
@@ -226,5 +226,41 @@ class FileListViewControllerTests: CoreTestCase {
         (prompt?.actions.last as? AlertAction)?.handler?(UIAlertAction())
         let items: [FolderItem] = databaseClient.fetch(scope: controller.items!.useCase.scope)
         XCTAssertEqual(items.count, 3)
+    }
+
+    func testAddFile() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
+        _ = controller.addButton.target?.perform(controller.addButton.action)
+        let sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.last?.title, "Add File")
+        router.calls = []
+        sheet?.actions.last?.action()
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        controller.filePicker.delegate?.filePicker(didPick: URL(string: "picked")!)
+        XCTAssertEqual(uploadManager.uploadWasCalled, true)
+        uploadManager.uploadWasCalled = false
+
+        controller.filePicker.delegate?.filePicker(didRetry: File.make())
+        XCTAssertEqual(uploadManager.uploadWasCalled, true)
+
+        File.make(from: .make(id: "1", folder_id: "2"), batchID: controller.batchID, removeURL: true, taskID: "7", session: currentSession)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 1)
+        let upload = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FileListUploadCell
+        XCTAssertEqual(upload?.iconView.isHidden, true)
+        XCTAssertEqual(upload?.nameLabel.text, "File.jpg")
+        XCTAssertEqual(upload?.progressView.progress, 0)
+        XCTAssertEqual(upload?.progressView.isHidden, false)
+        XCTAssertEqual(upload?.sizeLabel.text, "Uploading Zero KB of 1 KB")
+
+        router.calls = []
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssert(router.presented is BottomSheetPickerViewController)
+
+        File.make(from: .make(id: "1", folder_id: "2"), batchID: controller.batchID, session: currentSession)
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
     }
 }

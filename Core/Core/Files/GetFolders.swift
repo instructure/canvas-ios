@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public class GetFolder: CollectionUseCase {
+public class GetFolderByPath: CollectionUseCase {
     public typealias Model = Folder
 
     let context: Context
@@ -57,6 +57,26 @@ public class GetFolder: CollectionUseCase {
         guard let folder = response?.last else { return }
         FolderItem.save(folder, in: client)
     }
+}
+
+public class GetFolder: APIUseCase {
+    public typealias Model = Folder
+
+    let context: Context?
+    let folderID: String
+
+    public init(context: Context?, folderID: String) {
+        self.context = context
+        self.folderID = folderID
+    }
+
+    public var cacheKey: String? { "folders/\(folderID)" }
+
+    public var request: GetFolderRequest {
+        GetFolderRequest(context: context, id: folderID)
+    }
+
+    public var scope: Scope { .where(#keyPath(Folder.id), equals: folderID) }
 }
 
 public class GetFolders: CollectionUseCase {
@@ -165,5 +185,31 @@ class CreateFolder: APIUseCase {
     func write(response: APIFolder?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let item = response else { return }
         FolderItem.save(item, in: client)
+    }
+}
+
+class UpdateFolder: APIUseCase {
+    typealias Model = Folder
+
+    var cacheKey: String? { nil }
+    let request: PutFolderRequest
+    let scope: Scope
+
+    init(folderID: String, name: String, locked: Bool, hidden: Bool, unlockAt: Date?, lockAt: Date?) {
+        request = PutFolderRequest(folderID: folderID, name: name, locked: locked, hidden: hidden, unlockAt: unlockAt, lockAt: lockAt)
+        scope = .where(#keyPath(Folder.id), equals: folderID)
+    }
+}
+
+class DeleteFolder: DeleteUseCase {
+    typealias Model = Folder
+
+    var cacheKey: String? { nil }
+    let request: DeleteFolderRequest
+    let scope: Scope
+
+    init(folderID: String, force: Bool = false) {
+        request = DeleteFolderRequest(folderID: folderID, force: force)
+        scope = .where(#keyPath(Folder.id), equals: folderID)
     }
 }

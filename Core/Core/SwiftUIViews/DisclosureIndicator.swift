@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
-public enum FileEditItem: String, RawElementWrapper {
-    case copyright = "edit-item.usage_rights.legal_copyright"
-    case justification = "edit-item.usage_rights.use_justification"
-    case done = "edit-item.done-btn"
-    case publish = "edit-item.publish"
-    case hidden = "edit-item.hidden"
-    case unlockAt = "edit-item.unlock_at"
-    case delete = "edit-item.delete"
+@available(iOSApplicationExtension 13.0, *)
+public struct DisclosureIndicator: View {
+    public init() {}
+
+    public var body: some View {
+        Image(systemName: "chevron.right")
+            .flipsForRightToLeftLayoutDirection(true)
+            .accentColor(.borderMedium)
+    }
 }

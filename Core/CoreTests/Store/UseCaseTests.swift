@@ -183,6 +183,34 @@ class CollectionUseCaseTests: CoreTestCase {
     }
 }
 
+class DeleteUseCaseTests: CoreTestCase {
+    class TestDeleteUseCase: DeleteUseCase {
+        typealias Model = File
+
+        var request: DeleteFileRequest {
+            return DeleteFileRequest(fileID: "1")
+        }
+
+        let scope = Scope.all(orderBy: "name")
+        let cacheKey: String? = nil
+    }
+
+    func testFetchDeletes() {
+        let useCase = TestDeleteUseCase()
+
+        File.make()
+        XCTAssertEqual((databaseClient.fetch(scope: useCase.scope) as [File]).count, 1)
+
+        let expectation = XCTestExpectation(description: "make request callback")
+        useCase.fetch(environment: environment) { _, _, _ in
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+        databaseClient.refresh()
+        XCTAssertEqual((databaseClient.fetch(scope: useCase.scope) as [File]).count, 0)
+    }
+}
+
 class APIUseCaseTests: CoreTestCase {
     class TestAPIUseCase: APIUseCase {
         var request: GetCoursesRequest {
