@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\n        ペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
+"Add content" = "コンテンツを追加";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
+
+/* No comment provided by engineer. */
+"Add Title" = "タイトルを追加";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "会話に追加されました";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "アナウンスの回答";
+
+/* No comment provided by engineer. */
+"Anyone" = "全員";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "予約利用可能性";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "カメラ";
+
+/* No comment provided by engineer. */
+"Can Edit" = "編集可能";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "会議";
+
+/* No comment provided by engineer. */
+"Content" = "コンテンツ";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "コンテンツリンクエラー";
@@ -404,6 +422,9 @@
 "Designers" = "設計者";
 
 /* No comment provided by engineer. */
+"Details" = "詳細";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "開発者用メニュー";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "添付 (なし) を編集する";
+
+/* No comment provided by engineer. */
+"Edit Page" = "ページを編集";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "受信者を編集する";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "回答があるまで何もできません";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Canvasアカウントを持っていません";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Canvasアカウントを持っています";
@@ -866,6 +893,9 @@
 "New Message" = "新しいメッセージ";
 
 /* No comment provided by engineer. */
+"New Page" = "新しいページ";
+
+/* No comment provided by engineer. */
 "New To Do" = "新しい To Do";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "書類上";
 
 /* No comment provided by engineer. */
+"Only members" = "メンバーのみ";
+
+/* No comment provided by engineer. */
+"Only teachers" = "講師のみ";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "%@ ユーザー設定を開く";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "プロフィールメニュー";
+
+/* No comment provided by engineer. */
+"Publish" = "公開";
 
 /* No comment provided by engineer. */
 "published" = "公開済み";
@@ -1181,6 +1220,9 @@
 "Sent" = "送信済み";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "フロントページとして設定";
+
+/* No comment provided by engineer. */
 "Set text color" = "テキストの色を設定する";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "講師";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "講師と受講生";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "授業助手";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "経過時間";
 
 /* No comment provided by engineer. */
+"Title" = "タイトル";
+
+/* No comment provided by engineer. */
 "Title..." = "タイトル...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
 
 /* No comment provided by engineer. */

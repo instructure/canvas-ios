@@ -42,6 +42,8 @@ class CoreTestCase: XCTestCase {
     let notificationCenter = MockUserNotificationCenter()
     var notificationManager: NotificationManager!
 
+    var uploadManager = MockUploadManager()
+
     lazy var testFile: URL = {
         let bundle = Bundle(for: type(of: self))
         return bundle.url(forResource: "fileupload", withExtension: "txt")!
@@ -62,7 +64,7 @@ class CoreTestCase: XCTestCase {
         AppEnvironment.shared = environment
         LoginSession.add(environment.currentSession!)
         notificationManager = NotificationManager(notificationCenter: notificationCenter, logger: logger)
-        UploadManager.shared = MockUploadManager()
+        UploadManager.shared = uploadManager
         MockUploadManager.reset()
         UUID.reset()
         ExperimentalFeature.allEnabled = false

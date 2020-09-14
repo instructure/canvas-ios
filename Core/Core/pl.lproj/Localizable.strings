@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Aby utworzyć konto, poproś uczestnika o utworzenie kodu parowania w sekcji Ustawienia aplikacji Canvas Student, jak pokazano poniżej, a następnie zeskanuj udostępniony kod.\n        Jeśli uczestnik nie widzi opcji tworzenia kodu parowania, należy skontaktować się ze szkoła w celu utworzenia konta.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Dodaj załączniki";
 
 /* No comment provided by engineer. */
+"Add content" = "Dodaj zawartość";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj notatkę planera";
+
+/* No comment provided by engineer. */
+"Add Title" = "Dodaj tytuł";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Dodano do konwersacji";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Odpowiedzi na ogłoszenie";
+
+/* No comment provided by engineer. */
+"Anyone" = "Wszyscy";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Dostępność spotkań";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Może edytować";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Nie możesz znaleźć swojej szkoły? Spróbuj wprowadzić pełen adres URL szkoły.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferencje";
+
+/* No comment provided by engineer. */
+"Content" = "Zawartość";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Błąd łącza do zawartości";
@@ -404,6 +422,9 @@
 "Designers" = "Projektanci";
 
 /* No comment provided by engineer. */
+"Details" = "Szczegóły";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Menu programisty";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edytuj załącznik (brak)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Edytuj stronę";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edytuj odbiorców";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Nie mogę skończyć pracy, dopóki nie otrzymam tej informacji.";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Nie mam konta Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Posiadam konto Canvas";
@@ -866,6 +893,9 @@
 "New Message" = "Nowa wiadomość";
 
 /* No comment provided by engineer. */
+"New Page" = "Nowa strona";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nowa lista zadań";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Na papierze";
 
 /* No comment provided by engineer. */
+"Only members" = "Tylko członkowie";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Tylko instruktorzy";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Otwórz preferencje użytkownika %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu profilu";
+
+/* No comment provided by engineer. */
+"Publish" = "Publikuj";
 
 /* No comment provided by engineer. */
 "published" = "opublikowane";
@@ -1181,6 +1220,9 @@
 "Sent" = "Wysłane";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Usuń jako stronę tytułową";
+
+/* No comment provided by engineer. */
 "Set text color" = "Ustaw kolor tekstu";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Nauczyciele";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Instruktorzy i uczestnicy";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Asystenci instruktorów";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Czas do tej pory";
 
 /* No comment provided by engineer. */
+"Title" = "Tytuł";
+
+/* No comment provided by engineer. */
 "Title..." = "Tytuł...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Wysyłanie %1$@ ukończono w %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wysyłanie %1$@ z %2$@";
 
 /* No comment provided by engineer. */

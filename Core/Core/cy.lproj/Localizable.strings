@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\n        Os nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Ychwanegu Atodiadau";
 
 /* No comment provided by engineer. */
+"Add content" = "Ychwanegu cynnwys";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ychwanegu Nodyn gan y Trefnydd";
+
+/* No comment provided by engineer. */
+"Add Title" = "Ychwanegu Teitl";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Wedi ychwanegu i sgwrs";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ymatebion i'r Cyhoeddiad";
+
+/* No comment provided by engineer. */
+"Anyone" = "Unrhyw un";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Apwyntiadau ar gael";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Camera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Gallu golygu";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Methu dod o hyd i’ch ysgol? Ceisiwch deipio URL llawn yr ysgol.";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Cynadleddau";
+
+/* No comment provided by engineer. */
+"Content" = "Cynnwys";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Gwall Dolen Gynnwys";
@@ -404,6 +422,9 @@
 "Designers" = "Dylunwyr";
 
 /* No comment provided by engineer. */
+"Details" = "Manylion";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Dewislen Datblygwr";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Golygu atodiad (dim)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Golygu Tudalen";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Golygu Derbynwyr";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Alla i ddim bwrw ymlaen nes bydda i wedi cael ateb gennych chi";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Does gen i ddim cyfrif Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Mae gen i gyfrif Canvas";
@@ -866,6 +893,9 @@
 "New Message" = "Neges Newydd";
 
 /* No comment provided by engineer. */
+"New Page" = "Tudalen Newydd";
+
+/* No comment provided by engineer. */
 "New To Do" = "Tasg Newydd i’w Gwneud";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Ar bapur";
 
 /* No comment provided by engineer. */
+"Only members" = "Dim ond aelodau";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Dim ond athrawon";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Agor dewisiadau defnyddiwr ar gyfer %@";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Dewislen Proffil";
+
+/* No comment provided by engineer. */
+"Publish" = "Cyhoeddi";
 
 /* No comment provided by engineer. */
 "published" = "wedi cyhoeddi";
@@ -1181,6 +1220,9 @@
 "Sent" = "Wedi anfon";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Gosod fel Tudalen Flaen";
+
+/* No comment provided by engineer. */
 "Set text color" = "Gosod lliw’r testun";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Athrawon";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Athrawon a myfyrwyr";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Cynorthwywyr Dysgu";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Amser wedi mynd heibio";
 
 /* No comment provided by engineer. */
+"Title" = "Teitl";
+
+/* No comment provided by engineer. */
 "Title..." = "Teitl...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Wrthi'n llwytho i fyny %1$@ o %2$@";
 
 /* No comment provided by engineer. */

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\n        Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
+"Add content" = "Ajoute kontni";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
+
+/* No comment provided by engineer. */
+"Add Title" = "Ajoute Tit";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Ajoute nan Konvèsasyon";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Repons Anons";
+
+/* No comment provided by engineer. */
+"Anyone" = "Nenpòt";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilite Randevou";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Kapab Modifye";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferans";
+
+/* No comment provided by engineer. */
+"Content" = "Kontni";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Erè Lyen Kontni";
@@ -404,6 +422,9 @@
 "Designers" = "Kreyatè";
 
 /* No comment provided by engineer. */
+"Details" = "Detay";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meni Developè";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Chanje pyès jwent (okenn)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Modifye Paj";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Chanje Destinatè";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Mwen pa gen yon kont Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Mwen gen yon kont Canvas";
@@ -866,6 +893,9 @@
 "New Message" = "Nouvo Mesaj";
 
 /* No comment provided by engineer. */
+"New Page" = "Nouvo Paj";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nouco Tach";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "Sou Papye";
 
 /* No comment provided by engineer. */
+"Only members" = "Manm sèlman";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Pwofesè sèlman";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Ouvri %@ preferans itilizatè";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Meni Pwofil";
+
+/* No comment provided by engineer. */
+"Publish" = "Pibliye";
 
 /* No comment provided by engineer. */
 "published" = "pibliye";
@@ -1181,6 +1220,9 @@
 "Sent" = "Voye";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Defini kòm Paj Dakèy";
+
+/* No comment provided by engineer. */
 "Set text color" = "Defini koulè tèks";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Pwofesè";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Pwofesè ak elèv";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Asistan Ansèyman";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "Tan ki pase";
 
 /* No comment provided by engineer. */
+"Title" = "Tit";
+
+/* No comment provided by engineer. */
 "Title..." = "Tit...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
 
 /* No comment provided by engineer. */

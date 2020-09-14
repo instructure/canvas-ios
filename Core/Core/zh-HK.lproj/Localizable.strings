@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        如要建立帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n        如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add content" = "添加內容";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加規劃筆記";
+
+/* No comment provided by engineer. */
+"Add Title" = "添加標題";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "添加至交談（Conversation）";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "通告回覆";
+
+/* No comment provided by engineer. */
+"Anyone" = "任何人";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "預約可用性";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "攝影機";
+
+/* No comment provided by engineer. */
+"Can Edit" = "可編輯";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的學校？請嘗試輸入學校完整 URL。";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "會議";
+
+/* No comment provided by engineer. */
+"Content" = "內容";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "內容連結錯誤";
@@ -404,6 +422,9 @@
 "Designers" = "設計師";
 
 /* No comment provided by engineer. */
+"Details" = "詳細資料";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "開發人員選單";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "編輯附件 (無)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "編輯內容頁";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "編輯收件人";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "在收到您的回覆之前，我無法把事情做好";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "我沒有 Canvas 帳戶";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "我有 Canvas 帳戶";
@@ -866,6 +893,9 @@
 "New Message" = "新訊息";
 
 /* No comment provided by engineer. */
+"New Page" = "新頁面";
+
+/* No comment provided by engineer. */
 "New To Do" = "新待辦事項";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "在紙上";
 
 /* No comment provided by engineer. */
+"Only members" = "僅成員";
+
+/* No comment provided by engineer. */
+"Only teachers" = "僅限教師";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "打開 %@ 用戶偏好設定";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "個人檔案選單";
+
+/* No comment provided by engineer. */
+"Publish" = "發佈";
 
 /* No comment provided by engineer. */
 "published" = "已發佈";
@@ -1181,6 +1220,9 @@
 "Sent" = "已發送";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "設定為標題頁";
+
+/* No comment provided by engineer. */
 "Set text color" = "設定文字顏色";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "教師";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "教師和學生";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "教學助理";
 
 /* No comment provided by engineer. */
@@ -1391,6 +1436,9 @@
 "Time elapsed" = "已用時間";
 
 /* No comment provided by engineer. */
+"Title" = "標題";
+
+/* No comment provided by engineer. */
 "Title..." = "標題...";
 
 /* No comment provided by engineer. */
@@ -1444,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上傳 %1$@ 在 %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "正在上傳第 %1$@ / 個檔案%2$@";
 
 /* No comment provided by engineer. */

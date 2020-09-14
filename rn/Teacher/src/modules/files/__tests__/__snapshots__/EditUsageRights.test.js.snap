@@ -7,7 +7,7 @@ exports[`EditUsageRights should render 1`] = `
   </FormLabel>
   <RowWithTextInput
     border="both"
-    identifier="edit-item.usage_rights.legal_copyright"
+    identifier="FileEditor.copyrightField"
     inputWidth={200}
     onChangeText={[Function]}
     placeholder="Name"
@@ -19,7 +19,7 @@ exports[`EditUsageRights should render 1`] = `
     detail="Creative Commons File"
     detailSelected={false}
     onPress={[Function]}
-    testID="edit-item.usage_rights.use_justification"
+    testID="FileEditor.justificationButton"
     title="Usage Right"
   />
   <View>
@@ -28,7 +28,7 @@ exports[`EditUsageRights should render 1`] = `
       detail="CC Attribution"
       detailSelected={false}
       onPress={[Function]}
-      testID="edit-item.usage_rights.license"
+      testID="FileEditor.licenseButton"
       title="Creative Commons License"
     />
   </View>
@@ -42,7 +42,7 @@ exports[`EditUsageRights shows blank when no rights are passed in 1`] = `
   </FormLabel>
   <RowWithTextInput
     border="both"
-    identifier="edit-item.usage_rights.legal_copyright"
+    identifier="FileEditor.copyrightField"
     inputWidth={200}
     onChangeText={[Function]}
     placeholder="Name"
@@ -53,7 +53,7 @@ exports[`EditUsageRights shows blank when no rights are passed in 1`] = `
     border="bottom"
     detailSelected={false}
     onPress={[Function]}
-    testID="edit-item.usage_rights.use_justification"
+    testID="FileEditor.justificationButton"
     title="Usage Right"
   />
 </View>
