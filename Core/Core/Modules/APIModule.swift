@@ -185,7 +185,8 @@ extension APIModule {
         published: Bool = true,
         prerequisite_module_ids: [String] = [],
         state: ModuleState? = nil,
-        items: [APIModuleItem]? = nil
+        items: [APIModuleItem]? = nil,
+        unlock_at: Date? = nil
     ) -> APIModule {
         return APIModule(
             id: id,
@@ -194,7 +195,8 @@ extension APIModule {
             published: published,
             prerequisite_module_ids: prerequisite_module_ids,
             state: state,
-            items: items
+            items: items,
+            unlock_at: unlock_at
         )
     }
 }
