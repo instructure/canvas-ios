@@ -66,9 +66,8 @@ class LoginWebViewControllerTests: CoreTestCase {
 
         action.mockRequest = URLRequest(url: URL(string: "https://community.canvaslms.com")!)
         controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
+            XCTAssertEqual(policy, .allow)
         }
-        XCTAssertEqual(opened, URL(string: "https://community.canvaslms.com"))
 
         action.mockRequest = URLRequest(url: URL(string: "about:blank")!)
         controller.webView(controller.webView, decidePolicyFor: action) { policy in
