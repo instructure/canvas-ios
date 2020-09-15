@@ -140,8 +140,16 @@ const overrides = {
 const assetsFolder = './Core/Core/Assets.xcassets/InstIcons'
 
 echo('Building Icons...')
-run(`rm -rf ${assetsFolder}/*.imageset ${assetsFolder}/*.symbolset`)
-run(`mkdir -p tmp`)
+run(`rm -rf ${assetsFolder}`)
+run(`mkdir -p tmp ${assetsFolder}`)
+fs.writeFileSync(`${assetsFolder}/Contents.json`, `{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+`)
+
 const icons = new Set()
 for (const icon of whitelist) {
   for (const type of [ 'Line', 'Solid' ]) {
@@ -151,7 +159,7 @@ for (const icon of whitelist) {
     let slug = (overrides[icon] || {})[type] || icon
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
-    const sfolder = `${assetsFolder}/${name}${type}.symbolset`
+    const sfolder = `${assetsFolder}/Symbols/${name}${type}Symbol.symbolset`
     if (!skipDownload) {
       run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/c1c7d673/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     }
@@ -177,41 +185,44 @@ for (const icon of whitelist) {
 }\n`)
 
     // Generate symbol image
-    continue // It's not ready yet
     run(`mkdir -p ${sfolder}`)
     fs.writeFileSync(`${sfolder}/${name}.svg`,
-`<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-192 -192 2304 2304">
+`<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
  <g id="Guides">
-  <line id="Baseline-S" x1="0" x2="1920" y1="1540" y2="1540"/>
-  <line id="Capline-S" x1="0" x2="1920" y1="380" y2="380"/>
-  <line id="Baseline-M" x1="0" x2="1920" y1="1540" y2="1540"/>
-  <line id="Capline-M" x1="0" x2="1920" y1="380" y2="380"/>
-  <line id="Baseline-L" x1="0" x2="1920" y1="1540" y2="1540"/>
-  <line id="Capline-L" x1="0" x2="1920" y1="380" y2="380"/>
-  <rect id="left-margin" x="-192" y="-192" width="192" height="2304" />
-  <rect id="right-margin" x="1920" y="-192" width="192" height="2304" />
+  <line id="Baseline-S" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-S"  x1="0" x2="24" y1="6"  y2="6"/>
+  <line id="Baseline-M" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-M"  x1="0" x2="24" y1="6"  y2="6"/>
+  <line id="Baseline-L" x1="0" x2="24" y1="18" y2="18"/>
+  <line id="Capline-L"  x1="0" x2="24" y1="6"  y2="6"/>
+  <line id="left-margin"  x1="0"  x2="0"  y1="0" y2="24"/>
+  <line id="right-margin" x1="24" x2="24" y1="0" y2="24"/>
  </g>
  <g id="Symbols">
   <g id="Regular-M">
-   <rect width="1920" height="1920" opacity="0" />
-   ${fs.readFileSync(filepath, 'utf8').replace(/<\/?svg[^>]*>/gi, '').trim()}
+   <rect width="24" height="24" opacity="0" />
+   <g transform="matrix(${20/1920} 0 0 ${20/1920} 2 2)">
+     ${fs.readFileSync(filepath, 'utf8').replace(/<\/?svg[^>]*>/gi, '').trim()}
+   </g>
   </g>
  </g>
 </svg>
 `)
-    fs.writeFileSync(`${sfolder}/Contents.json`, `{
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
-  },
-  "symbols" : [
-    {
-      "filename" : "${name}.svg",
-      "idiom" : "universal"${ !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? '' : `,
-      "language-direction" : "left-to-right"` }
-    }
-  ]
-}\n`)
+    fs.writeFileSync(`${sfolder}/Contents.json`, JSON.stringify({
+      "info" : {
+        "author" : "xcode",
+        "version" : 1
+      },
+      "symbols" : [
+        {
+          "filename" : `${name}.svg`,
+          "idiom" : "universal",
+          ... !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? {} : {
+            "language-direction" : "left-to-right"
+          }
+        }
+      ]
+    }))
   }
 }
 
@@ -239,10 +250,10 @@ import SwiftUI
 import UIKit
 
 public extension UIImage {
-    ${Array.from(icons).sort().map(name =>
-      `static var ${name}Line: UIImage { UIImage(named: "${name}Line", in: .core, compatibleWith: nil)! }
-    static var ${name}Solid: UIImage { UIImage(named: "${name}Solid", in: .core, compatibleWith: nil)! }`
-    ).join('\n    ')}
+    ${Array.from(icons).sort().flatMap(name => [
+      `static var ${name}Line: UIImage { UIImage(named: "${name}Line", in: .core, compatibleWith: nil)! }`,
+      `static var ${name}Solid: UIImage { UIImage(named: "${name}Solid", in: .core, compatibleWith: nil)! }`,
+    ]).join('\n    ')}
 
     ${localIcons.map(name =>
       `static var ${name}: UIImage { UIImage(named: "${name}", in: .core, compatibleWith: nil)! }`
@@ -250,15 +261,11 @@ public extension UIImage {
 }
 
 @available(iOSApplicationExtension 13, *)
-public extension Image {
-    ${Array.from(icons).sort().map(name =>
-      `static var ${name}Line: Image { Image("${name}Line", bundle: .core) }
-    static var ${name}Solid: Image { Image("${name}Solid", bundle: .core) }`
-    ).join('\n    ')}
-
-    ${localIcons.map(name =>
-      `static var ${name}: Image { Image("${name}", bundle: .core) }`
-    ).join('\n    ')}
+public extension Icon {
+    ${Array.from(icons).sort().flatMap(name => [
+      `static var ${name}Line: Icon { Icon(Image("${name}LineSymbol", bundle: .core)) }`,
+      `static var ${name}Solid: Icon { Icon(Image("${name}SolidSymbol", bundle: .core)) }`,
+    ]).join('\n    ')}
 }
 `)
 fs.writeFileSync('./Core/CoreTests/Extensions/InstIconExtensionsTests.swift', `//
@@ -289,10 +296,10 @@ import UIKit
 class InstIconExtensionTests: XCTestCase {
     // swiftlint:disable function_body_length
     func testUIImage() {
-        ${Array.from(icons).sort().map(name =>
-          `XCTAssertEqual(UIImage.${name}Line, UIImage(named: "${name}Line", in: .core, compatibleWith: nil))
-        XCTAssertEqual(UIImage.${name}Solid, UIImage(named: "${name}Solid", in: .core, compatibleWith: nil))`
-        ).join('\n        ')}
+        ${Array.from(icons).sort().flatMap(name => [
+          `XCTAssertEqual(UIImage.${name}Line, UIImage(named: "${name}Line", in: .core, compatibleWith: nil))`,
+          `XCTAssertEqual(UIImage.${name}Solid, UIImage(named: "${name}Solid", in: .core, compatibleWith: nil))`,
+        ]).join('\n        ')}
 
         ${localIcons.map(name =>
           `XCTAssertEqual(UIImage.${name}, UIImage(named: "${name}", in: .core, compatibleWith: nil))`
@@ -301,14 +308,10 @@ class InstIconExtensionTests: XCTestCase {
 
     @available(iOS 13, *)
     func testImage() {
-        ${Array.from(icons).sort().map(name =>
-          `XCTAssertEqual(Image.${name}Line, Image("${name}Line", bundle: .core))
-        XCTAssertEqual(Image.${name}Solid, Image("${name}Solid", bundle: .core))`
-        ).join('\n        ')}
-
-        ${localIcons.map(name =>
-          `XCTAssertEqual(Image.${name}, Image("${name}", bundle: .core))`
-        ).join('\n        ')}
+        ${Array.from(icons).sort().flatMap(name => [
+          `XCTAssertEqual(Icon.${name}Line.image, Image("${name}LineSymbol", bundle: .core))`,
+          `XCTAssertEqual(Icon.${name}Solid.image, Image("${name}SolidSymbol", bundle: .core))`,
+        ]).join('\n        ')}
     }
     // swiftlint:enable function_body_length
 }
