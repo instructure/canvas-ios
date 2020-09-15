@@ -42,6 +42,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var task: URLSessionTask?
     var mdmLogin: MDMLogin?
     var pairingCode: String?
+    var canGoBackObserver: NSKeyValueObservation?
 
     deinit {
         task?.cancel()
@@ -72,11 +73,18 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        let goBack = UIBarButtonItem(image: .arrowOpenLeftSolid, style: .plain, target: webView, action: #selector(WKWebView.goBack))
+        toolbarItems = [goBack]
+        navigationController?.setToolbarHidden(true, animated: false)
+
         webView.accessibilityIdentifier = "LoginWeb.webView"
         webView.backgroundColor = .backgroundLightest
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        canGoBackObserver = webView.observe(\.canGoBack) { [weak self] webView, _ in
+            self?.navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+        }
 
         // Manual OAuth provided mobileVerifyModel
         if mobileVerifyModel != nil {
@@ -95,6 +103,12 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func loadLoginWebRequest() {
@@ -111,11 +125,6 @@ extension LoginWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return decisionHandler(.allow)
-        }
-
-        if navigationAction.navigationType == .linkActivated, components.host?.contains("canvaslms.com") == true {
-            loginDelegate?.openExternalURL(url)
-            return decisionHandler(.cancel)
         }
 
         if components.scheme == "about" && components.path == "blank" {
