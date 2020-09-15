@@ -32,6 +32,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         configuration.websiteDataStore = .nonPersistent()
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
+    let progressView = UIProgressView()
 
     var mobileVerifyModel: APIVerifyClient?
     var authenticationProvider: String?
@@ -42,7 +43,9 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var task: URLSessionTask?
     var mdmLogin: MDMLogin?
     var pairingCode: String?
-    var canGoBackObserver: NSKeyValueObservation?
+
+    var canGoBackObservation: NSKeyValueObservation?
+    var loadObservation: NSKeyValueObservation?
 
     deinit {
         task?.cancel()
@@ -67,12 +70,15 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         return controller
     }
 
-    public override func loadView() {
-        view = webView
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(webView)
+        webView.pin(inside: view)
+
+        view.addSubview(progressView)
+        progressView.pin(inside: view, leading: 0, trailing: 0, top: nil, bottom: nil)
+        progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+
         let goBack = UIBarButtonItem(image: .arrowOpenLeftSolid, style: .plain, target: webView, action: #selector(WKWebView.goBack))
         toolbarItems = [goBack]
         navigationController?.setToolbarHidden(true, animated: false)
@@ -82,8 +88,15 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        canGoBackObserver = webView.observe(\.canGoBack) { [weak self] webView, _ in
+        canGoBackObservation = webView.observe(\.canGoBack) { [weak self] webView, _ in
             self?.navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+        }
+
+        progressView.progress = 0
+        progressView.progressTintColor = Brand.shared.primary
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            self?.progressView.isHidden = webView.estimatedProgress >= 1
         }
 
         // Manual OAuth provided mobileVerifyModel
@@ -166,6 +179,10 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
         decisionHandler(.allow)
+    }
+
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.isHidden = false
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
