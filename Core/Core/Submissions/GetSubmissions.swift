@@ -151,3 +151,106 @@ public class GetSubmission: APIUseCase {
         Submission.save(item, in: client)
     }
 }
+
+public class GetSubmissions: CollectionUseCase {
+    public typealias Model = Submission
+
+    public let context: Context
+    public let assignmentID: String
+    public let filter: Filter?
+    public var shuffled: Bool
+
+    public init(context: Context, assignmentID: String, filter: Filter?, shuffled: Bool = false) {
+        self.assignmentID = assignmentID
+        self.context = context
+        self.filter = filter
+        self.shuffled = shuffled
+    }
+
+    public var cacheKey: String? { "\(context.pathComponent)/assignments/\(assignmentID)/submissions" }
+
+    public var request: GetSubmissionsRequest {
+        GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
+    }
+
+    public var scope: Scope {
+        var predicate = NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID)
+        if let filter = filter?.predicate {
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [ predicate, filter ])
+        }
+        let order = shuffled ?
+            NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)
+        return Scope(predicate: predicate, order: [order])
+    }
+
+    public enum Filter: RawRepresentable {
+        case late, notSubmitted, needsGrading, graded
+        case scoreAbove(Double)
+        case scoreBelow(Double)
+
+        public init?(rawValue: String?) {
+            guard let rawValue = rawValue else { return nil }
+            self.init(rawValue: rawValue)
+        }
+
+        public init?(rawValue: String) {
+            switch rawValue {
+            case "late":
+                self = .late
+            case "not_submitted":
+                self = .notSubmitted
+            case "needs_grading":
+                self = .needsGrading
+            case "graded":
+                self = .graded
+            default:
+                let parts = rawValue.split(separator: "_")
+                if parts.count == 3, parts[0] == "score", parts[1] == "above", let score = Double(parts[2]) {
+                    self = .scoreAbove(score)
+                } else if parts.count == 3, parts[0] == "score", parts[1] == "above", let score = Double(parts[2]) {
+                    self = .scoreAbove(score)
+                } else {
+                    return nil
+                }
+            }
+        }
+
+        public var rawValue: String {
+            switch self {
+            case .late:
+                return "late"
+            case .notSubmitted:
+                return "not_submitted"
+            case .needsGrading:
+                return "needs_grading"
+            case .graded:
+                return "graded"
+            case .scoreAbove(let score):
+                return "score_above_\(score)"
+            case .scoreBelow(let score):
+                return "score_below_\(score)"
+            }
+        }
+
+        var predicate: NSPredicate {
+            switch self {
+            case .late:
+                return NSPredicate(key: #keyPath(Submission.late), equals: true)
+            case .notSubmitted:
+                return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
+            case .needsGrading:
+                return NSPredicate(format: "%K != nil AND %K == nil",
+                    #keyPath(Submission.submittedAt),
+                    #keyPath(Submission.gradedAt)
+                )
+            case .graded:
+                return NSPredicate(format: "%K != nil", #keyPath(Submission.gradedAt))
+            case .scoreAbove(let score):
+                return NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), score)
+            case .scoreBelow(let score):
+                return NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), score)
+            }
+        }
+    }
+}

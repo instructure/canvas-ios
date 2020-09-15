@@ -28,6 +28,7 @@
     <entity name="Assignment" representedClassName="Core.Assignment" syncable="YES">
         <attribute name="allowedAttempts" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="allowedExtensionsRaw" attributeType="String" defaultValueString=""/>
+        <attribute name="anonymizeStudents" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
         <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
@@ -720,6 +721,8 @@
         <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="previewUrl" optional="YES" attributeType="URI"/>
         <attribute name="scoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="shuffleOrder" attributeType="String" defaultValueString=""/>
+        <attribute name="sortableName" optional="YES" attributeType="String"/>
         <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="typeRaw" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
@@ -824,7 +827,7 @@
         <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="643"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="673"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
@@ -875,7 +878,7 @@
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="433"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="463"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>

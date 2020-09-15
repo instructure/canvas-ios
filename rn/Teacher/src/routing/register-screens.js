@@ -36,7 +36,6 @@ import SubmissionList from '../modules/submissions/list/SubmissionList'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
-import GraphqlSpeedGrader from '../modules/graphql-speed-grader/SpeedGrader'
 import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
@@ -177,11 +176,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/module_item_redirect/:itemID', null, store, { deepLink: true })
 
-    if (ExperimentalFeature.graphqlSpeedGrader.isEnabled) {
-      registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', GraphqlSpeedGrader, store, { deepLink: true })
-    } else {
-      registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', SpeedGrader, store, { deepLink: true })
-    }
+    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', ExperimentalFeature.nativeSpeedGrader.isEnabled ? null : SpeedGrader, store, { deepLink: true })
   }
 
   if (isStudent()) {

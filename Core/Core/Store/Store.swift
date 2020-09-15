@@ -35,7 +35,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     private let frc: NSFetchedResultsController<U.Model>
     public var changes = [StoreChange]()
     public let useCase: U
-    public let eventHandler: EventHandler
+    public var eventHandler: EventHandler
 
     public var count: Int {
         return frc.sections?.first?.numberOfObjects ?? 0
@@ -102,6 +102,17 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         super.init()
 
         frc.delegate = self
+        do {
+            try frc.performFetch()
+        } catch {
+            assertionFailure("Failed to performFetch \(error)")
+        }
+    }
+
+    /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
+    public func setScope(_ scope: Scope) {
+        frc.fetchRequest.predicate = scope.predicate
+        frc.fetchRequest.sortDescriptors = scope.order
         do {
             try frc.performFetch()
         } catch {

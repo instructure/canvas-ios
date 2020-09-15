@@ -20,6 +20,7 @@ import CoreData
 import Foundation
 import MobileCoreServices
 import UIKit
+import CommonCrypto
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
@@ -32,7 +33,7 @@ public final class SubmissionList: NSManagedObject {
     }
 }
 
-final public class Submission: NSManagedObject {
+final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
     @NSManaged public var userID: String
@@ -56,6 +57,8 @@ final public class Submission: NSManagedObject {
     @NSManaged public var gradedAt: Date?
     @NSManaged public var gradeMatchesCurrentSubmission: Bool
     @NSManaged public var externalToolURL: URL?
+    @NSManaged public var sortableName: String?
+    @NSManaged public var shuffleOrder: String
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
@@ -139,6 +142,8 @@ extension Submission: WriteableModel {
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
         model.externalToolURL = item.external_tool_url?.rawValue
+        model.sortableName = item.group_name ?? item.user?.sortable_name
+        model.shuffleOrder = md5(item.id.value)
 
         model.attachments = Set(item.attachments?.map { attachment in
             return File.save(attachment, in: client)
@@ -410,4 +415,12 @@ extension Array where Element == SubmissionType {
 
 public enum SubmissionWorkflowState: String, Codable {
     case submitted, unsubmitted, graded, pending_review, complete
+}
+
+private func md5(_ string: String) -> String {
+    var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+    string.data(using: .utf8)?.withUnsafeBytes {
+        _ = CC_MD5($0.baseAddress, UInt32($0.count), &digest)
+    }
+    return digest.map { String(format: "%02x", $0) } .joined()
 }

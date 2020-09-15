@@ -81,6 +81,20 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         }
     }(),
 
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": {
+        if ExperimentalFeature.nativeSpeedGrader.isEnabled, #available(iOS 13.0, *) {
+            return { props in
+                guard let context = props.context else { return nil }
+                guard let assignmentID = props["assignmentID"] as? String else { return nil }
+                guard let userID = props["userID"] as? String else { return nil }
+                let filter = GetSubmissions.Filter(rawValue: props["filter"] as? String)
+                return CoreHostingController(SpeedGraderView(context: context, assignmentID: assignmentID, userID: userID, filter: filter))
+            }
+        } else {
+            return nil
+        }
+    }(),
+
     "/courses/:courseID/modules": { props in
         guard let courseID = props["courseID"] as? String else { return nil }
         return ModuleListViewController.create(courseID: courseID)

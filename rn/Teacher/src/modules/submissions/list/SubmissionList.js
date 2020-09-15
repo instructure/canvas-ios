@@ -82,9 +82,7 @@ export class SubmissionList extends Component<Props, State> {
 
   navigateToSubmission = (index: number) => (userID: string) => {
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
-    let filter = ExperimentalFeature.graphqlSpeedGrader.isEnabled
-      ? this.state.filter
-      : oldCreateFilter(this.state.filterOptions)
+    let filter = oldCreateFilter(this.state.filterOptions)
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
