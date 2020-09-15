@@ -417,4 +417,42 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertTrue(viewController.spinnerView.isHidden)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)
     }
+
+    func testLockedByPrerequisiteModule() {
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
+            .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
+            .make(id: "2", position: 1, prerequisite_module_ids: ["1"], state: .locked),
+        ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make(id: "2")])
+        loadView()
+        let header1 = header(forSection: 0)
+        XCTAssertTrue(header1.lockedButton.isHidden)
+        let header2 = header(forSection: 1)
+        XCTAssertFalse(header2.lockedButton.isHidden)
+        header2.lockedButton.sendActions(for: .primaryActionTriggered)
+        let alert = router.presented as! UIAlertController
+        XCTAssertEqual(alert.title, "Locked")
+        XCTAssertEqual(alert.message, "Prerequisite: Module 1")
+    }
+
+    func testLockedByDate() {
+        let now = DateComponents(calendar: .current, year: 2020, month: 9, day: 14).date!
+        Clock.mockNow(now)
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [
+            .make(id: "1", name: "Module 1", position: 0, state: .unlocked),
+            .make(id: "2", position: 1, state: .locked, unlock_at: now.addDays(1)),
+        ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [.make(id: "1")])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "2", include: [.content_details, .mastery_paths]), value: [.make(id: "2")])
+        loadView()
+        let header1 = header(forSection: 0)
+        XCTAssertTrue(header1.lockedButton.isHidden)
+        let header2 = header(forSection: 1)
+        XCTAssertFalse(header2.lockedButton.isHidden)
+        header2.lockedButton.sendActions(for: .primaryActionTriggered)
+        let alert = router.presented as! UIAlertController
+        XCTAssertEqual(alert.title, "Locked")
+        XCTAssertEqual(alert.message, "Will unlock Sep 15, 2020 at 12:00 AM")
+    }
 }

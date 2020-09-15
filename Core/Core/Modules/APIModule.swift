@@ -28,6 +28,7 @@ public struct APIModule: Codable, Equatable {
     public let prerequisite_module_ids: [String]
     public let state: ModuleState?
     public var items: [APIModuleItem]?
+    public var unlock_at: Date?
 }
 
 // https://canvas.instructure.com/doc/api/modules.html#ModuleItem
@@ -184,7 +185,8 @@ extension APIModule {
         published: Bool = true,
         prerequisite_module_ids: [String] = [],
         state: ModuleState? = nil,
-        items: [APIModuleItem]? = nil
+        items: [APIModuleItem]? = nil,
+        unlock_at: Date? = nil
     ) -> APIModule {
         return APIModule(
             id: id,
@@ -193,7 +195,8 @@ extension APIModule {
             published: published,
             prerequisite_module_ids: prerequisite_module_ids,
             state: state,
-            items: items
+            items: items,
+            unlock_at: unlock_at
         )
     }
 }
