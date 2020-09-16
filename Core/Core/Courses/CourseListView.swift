@@ -53,23 +53,22 @@ public struct CourseListView: View {
     }
 
     public var body: some View {
-        let view: AnyView
-        if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgress().size().testID("loading"))
-        } else if allCourses.isEmpty {
-            view = AnyView(empty)
-        } else {
-            view = AnyView(courseList)
+        ZStack {
+            if allCourses.pending && allCourses.isEmpty {
+                CircleProgress()
+                    .testID("loading")
+            } else if allCourses.isEmpty {
+                EmptyPanda(
+                    name: "PandaTeacher",
+                    title: Text("No Courses", bundle: .core),
+                    message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
+                )
+                    .testID("empty")
+            } else {
+                courseList
+            }
         }
-        return view.navigationBarTitle("All Courses")
-    }
-
-    var empty: some View {
-        EmptyView.AsView(
-            title: NSLocalizedString("No Courses", bundle: .core, comment: ""),
-            body: NSLocalizedString("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core, comment: ""),
-            imageName: "PandaTeacher"
-        ).testID("empty")
+            .navigationBarTitle("All Courses")
     }
 
     @ViewBuilder

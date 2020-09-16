@@ -19,7 +19,6 @@
 import SwiftUI
 import Core
 
-@available(iOS 13.0, *)
 struct SpeedGraderView: View {
     let context: Context
     let assignmentID: String
@@ -65,7 +64,7 @@ struct SpeedGraderView: View {
                     )
                 }
             } else {
-                CircleProgress().size()
+                CircleProgress()
             }
         }
             .onAppear(perform: load)
@@ -73,7 +72,7 @@ struct SpeedGraderView: View {
 
     func load() {
         guard !submissions.requested else { return }
-        assignment.refresh() { _ in
+        assignment.refresh { _ in
             guard self.assignment.first?.anonymizeStudents == true else { return }
             self.submissions.useCase.shuffled = true
             self.submissions.setScope(self.submissions.useCase.scope)

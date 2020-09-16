@@ -39,7 +39,6 @@ import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { graphql } from 'react-apollo'
 import query from '../../../canvas-api-v2/queries/SubmissionList'
 import icon from '../../../images/inst-icons'
-import ExperimentalFeature from '../../../common/ExperimentalFeature'
 import { createStyleSheet } from '../../../common/stylesheet'
 import localeSort from '../../../utils/locale-sort'
 

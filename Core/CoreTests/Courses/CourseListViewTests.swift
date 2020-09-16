@@ -85,7 +85,7 @@ class CourseListViewTests: CoreTestCase {
 
     func testEmpty() throws {
         courses = []
-        let empty = tree?.children(EmptyView.AsView.self)
+        let empty = tree?.children(EmptyPanda.self)
         XCTAssertNotNil(empty)
         // Can we test the contained UIView somehow?
     }

@@ -19,7 +19,6 @@
 import SwiftUI
 import Core
 
-@available(iOS 13.0, *)
 struct SubmissionGrader: View {
     let assignment: Assignment
     let submission: Submission

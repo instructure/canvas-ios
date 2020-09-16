@@ -168,10 +168,6 @@
                                                         <constraint firstAttribute="width" constant="24" id="3dQ-L3-4qk"/>
                                                         <constraint firstAttribute="height" constant="24" id="vU5-g1-Mpe"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textLightest"/>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="checkSolid"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

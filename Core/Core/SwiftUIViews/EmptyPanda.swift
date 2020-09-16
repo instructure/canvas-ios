@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct EmptyPanda: View {
     public let name: String
     public let title: Text

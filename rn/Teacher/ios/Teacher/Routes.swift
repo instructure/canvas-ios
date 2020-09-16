@@ -82,7 +82,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     }(),
 
     "/courses/:courseID/assignments/:assignmentID/submissions/:userID": {
-        if ExperimentalFeature.nativeSpeedGrader.isEnabled, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativeSpeedGrader.isEnabled {
             return { props in
                 guard let context = props.context else { return nil }
                 guard let assignmentID = props["assignmentID"] as? String else { return nil }

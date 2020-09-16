@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct Pages<Item: Identifiable, Content: View>: View {
     public typealias ContentBuilder = (Item) -> Content
 

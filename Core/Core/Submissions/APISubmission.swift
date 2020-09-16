@@ -290,7 +290,7 @@ public struct GetSubmissionsRequest: APIRequestable {
             .include(include.map { $0.rawValue }),
         ]
         if let grouped = grouped {
-            query.append(.value("grouped", String(grouped)))
+            query.append(.bool("grouped", grouped))
         }
         return query
     }
