@@ -32,6 +32,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         configuration.websiteDataStore = .nonPersistent()
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
+    let progressView = UIProgressView()
 
     var mobileVerifyModel: APIVerifyClient?
     var authenticationProvider: String?
@@ -42,6 +43,9 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var task: URLSessionTask?
     var mdmLogin: MDMLogin?
     var pairingCode: String?
+
+    var canGoBackObservation: NSKeyValueObservation?
+    var loadObservation: NSKeyValueObservation?
 
     deinit {
         task?.cancel()
@@ -66,17 +70,35 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         return controller
     }
 
-    public override func loadView() {
-        view = webView
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
+        view.addSubview(webView)
+        webView.pin(inside: view)
+
+        view.addSubview(progressView)
+        progressView.pin(inside: view, leading: 0, trailing: 0, top: nil, bottom: nil)
+        progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+
+        let goBack = UIBarButtonItem(image: .arrowOpenLeftSolid, style: .plain, target: webView, action: #selector(WKWebView.goBack))
+        toolbarItems = [goBack]
+        navigationController?.setToolbarHidden(true, animated: false)
+
         webView.accessibilityIdentifier = "LoginWeb.webView"
         webView.backgroundColor = .backgroundLightest
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        canGoBackObservation = webView.observe(\.canGoBack) { [weak self] webView, _ in
+            self?.navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+        }
+
+        progressView.progress = 0
+        progressView.progressTintColor = Brand.shared.primary
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            self?.progressView.isHidden = webView.estimatedProgress >= 1
+        }
 
         // Manual OAuth provided mobileVerifyModel
         if mobileVerifyModel != nil {
@@ -95,6 +117,12 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func loadLoginWebRequest() {
@@ -111,11 +139,6 @@ extension LoginWebViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return decisionHandler(.allow)
-        }
-
-        if navigationAction.navigationType == .linkActivated, components.host?.contains("canvaslms.com") == true {
-            loginDelegate?.openExternalURL(url)
-            return decisionHandler(.cancel)
         }
 
         if components.scheme == "about" && components.path == "blank" {
@@ -157,6 +180,10 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
         decisionHandler(.allow)
+    }
+
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.isHidden = false
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

@@ -67,6 +67,7 @@ class LoginFindSchoolViewController: UIViewController {
         logoView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         navigationItem.titleView = logoView
+        navigationItem.title = NSLocalizedString("Find School", bundle: .core, comment: "")
 
         promptLabel.text = NSLocalizedString("What’s your school’s name?", bundle: .core, comment: "")
         searchField.attributedPlaceholder = NSAttributedString(
