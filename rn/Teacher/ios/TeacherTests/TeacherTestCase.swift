@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 import CoreData
+import SwiftUI
 
 class TeacherTestCase: XCTestCase {
     var database: NSPersistentContainer {
@@ -30,26 +31,46 @@ class TeacherTestCase: XCTestCase {
     }
 
     var api = MockURLSession.self
-    var environment = AppEnvironment.shared
+    var environment = TestEnvironment()
     var queue = OperationQueue()
     var router = TestRouter()
     var logger = TestLogger()
+
+    let window = UIWindow()
 
     override func setUp() {
         super.setUp()
         MockURLSession.reset()
         LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
+        AppEnvironment.shared = environment
         environment.api = URLSessionAPI()
         environment.database = singleSharedTestDatabase
         environment.globalDatabase = singleSharedTestDatabase
         environment.router = router
         environment.logger = logger
         environment.currentSession = LoginSession.make()
+        environment.window = window
+        window.rootViewController = UIViewController()
     }
 
     override func tearDown() {
         super.tearDown()
         LoginSession.clearAll()
+    }
+}
+
+@available(iOS 13.0.0, *)
+extension TeacherTestCase {
+    open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
+        let controller = CoreHostingController(view, env: environment)
+        window.rootViewController = controller
+        window.screen = UIScreen.main
+        window.makeKeyAndVisible()
+        RunLoop.current.run(until: Date() + 0.01)
+        return controller
+    }
+    open func hostSwiftUI<V: View>(_ view: V) -> V {
+        return hostSwiftUIController(view).rootView.rootView
     }
 }

@@ -45,6 +45,7 @@ struct SpeedGraderView: View {
             if currentIndex >= 0 && currentIndex < submissions.count && assignment.first != nil {
                 Pages(items: submissions.all, currentIndex: $currentIndex) { submission in
                     SubmissionGrader(assignment: self.assignment.first!, submission: submission)
+                        .testID("SpeedGrader.submission.\(submission.id)")
                 }
                     .spaceBetween(10)
                     .scaleEach { max(0.9, (1 - abs($0 * 0.5))) }
@@ -56,6 +57,7 @@ struct SpeedGraderView: View {
                         Button("Close", action: dismiss)
                             .font(.semibold16).accentColor(Color(Brand.shared.linkColor))
                             .padding(16)
+                            .identifier("SpeedGrader.emptyCloseButton")
                     }
                     EmptyPanda(
                         name: "PandaSpace",
@@ -65,6 +67,8 @@ struct SpeedGraderView: View {
                 }
             } else {
                 CircleProgress()
+                    .accessibility(label: Text("Loading"))
+                    .identifier("SpeedGrader.spinner")
             }
         }
             .onAppear(perform: load)
