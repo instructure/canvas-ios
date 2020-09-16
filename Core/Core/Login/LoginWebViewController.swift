@@ -72,6 +72,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         view.addSubview(webView)
         webView.pin(inside: view)
 
