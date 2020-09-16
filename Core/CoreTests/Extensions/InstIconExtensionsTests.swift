@@ -224,7 +224,6 @@ class InstIconExtensionTests: XCTestCase {
         XCTAssertEqual(UIImage.todoTabActive, UIImage(named: "todoTabActive", in: .core, compatibleWith: nil))
     }
 
-    @available(iOS 13, *)
     func testImage() {
         XCTAssertEqual(Icon.addLine.image, Image("addLineSymbol", bundle: .core))
         XCTAssertEqual(Icon.addSolid.image, Image("addSolidSymbol", bundle: .core))

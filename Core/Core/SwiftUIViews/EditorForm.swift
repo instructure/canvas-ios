@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct EditorForm<Content: View>: View {
     public let content: Content
     public let isSpinning: Bool
@@ -44,7 +43,6 @@ public struct EditorForm<Content: View>: View {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 public struct EditorSection<Content: View>: View {
     public let content: Content
     public let label: Text
@@ -64,7 +62,6 @@ public struct EditorSection<Content: View>: View {
     } }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 public struct TextFieldRow: View {
     public let label: Text
     public let placeholder: String

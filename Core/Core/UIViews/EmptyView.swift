@@ -75,7 +75,6 @@ open class EmptyView: UIView {
         loadFromXib()
     }
 
-    @available(iOSApplicationExtension 13.0, *)
     public struct AsView: UIViewRepresentable {
         let title: String
         let body: String

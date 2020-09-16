@@ -105,7 +105,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             item.accessibilityIdentifier = "FilePicker.filesButton"
             tabBarItems.append(item)
         }
-        if #available(iOS 13.0, *), sources.contains(.documentScan) {
+        if sources.contains(.documentScan) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Scanner", bundle: .core, comment: ""),
                 image: UIImage(systemName: "doc.text.viewfinder"),
@@ -271,7 +271,7 @@ extension FilePickerViewController: UITabBarDelegate {
             audioRecorder.modalPresentationStyle = .formSheet
             env.router.show(audioRecorder, from: self, options: .modal())
         case .documentScan:
-            if #available(iOS 13.0, *), VNDocumentCameraViewController.isSupported {
+            if VNDocumentCameraViewController.isSupported {
                 let scanner = VNDocumentCameraViewController()
                 scanner.delegate = self
                 env.router.show(scanner, from: self, options: .modal())
@@ -350,7 +350,6 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-@available(iOS 13.0, *)
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
     public func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         controller.dismiss(animated: true)

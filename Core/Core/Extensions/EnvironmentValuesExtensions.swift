@@ -22,7 +22,6 @@ private class ViewControllerKey: EnvironmentKey {
     static var defaultValue: () -> UIViewController? = { nil }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension EnvironmentValues {
     public var appEnvironment: AppEnvironment {
         get { self[AppEnvironment.self] }

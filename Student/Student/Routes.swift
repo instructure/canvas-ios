@@ -54,7 +54,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/conversations/:conversationID": nil,
 
     "/courses": { url, params, userInfo in
-        if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativeDashboard.isEnabled != false {
             return CoreHostingController(CourseListView())
         } else {
             return HelmViewController(moduleName: "/courses", props: makeProps(url, params: params, userInfo: userInfo))
@@ -197,7 +197,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
     "/folders/:folderID/edit": { url, params, _ in
-        guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+        guard ExperimentalFeature.nativeFiles.isEnabled else {
             return HelmViewController(moduleName: "/folders/:folderID/edit", props: makeProps(url, params: params))
         }
         guard let folderID = params["folderID"] else { return nil }
@@ -282,7 +282,7 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/wiki/:url": pageViewController,
     "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
-        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativePageEdit.isEnabled {
             return CoreHostingController(PageEditorView(context: context, url: slug))
         } else {
             return HelmViewController(moduleName: "/:context/:contextID/pages/:url/edit", props: makeProps(url, params: params, userInfo: userInfo))
@@ -446,7 +446,7 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
 }
 
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+    guard ExperimentalFeature.nativeFiles.isEnabled else {
         return HelmViewController(moduleName: "/files/:fileID/edit", props: makeProps(url, params: params))
     }
     guard let fileID = params["fileID"] else { return nil }

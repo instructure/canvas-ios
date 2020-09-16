@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOS 13, *)
 public struct Icon: View {
     public let image: Image
     public let size: CGFloat?
@@ -41,7 +40,6 @@ public struct Icon: View {
 }
 
 #if DEBUG
-@available(iOS 13, *)
 struct Icon_Previews: PreviewProvider {
     static var previews: some View {
         VStack {

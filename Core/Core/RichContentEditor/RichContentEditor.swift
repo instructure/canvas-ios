@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 struct RichContentEditor: UIViewControllerRepresentable {
     let placeholder: String
     @Binding var html: String
@@ -78,7 +77,6 @@ struct RichContentEditor: UIViewControllerRepresentable {
 }
 
 #if DEBUG
-@available(iOSApplicationExtension 13.0.0, *)
 struct RichContentEditorView_Previews: PreviewProvider {
     struct Preview: View {
         @State var html: String = "Edit Me!"

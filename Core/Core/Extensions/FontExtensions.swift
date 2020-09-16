@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public extension Font {
     static let regular10 = Font(UIFont.scaledNamedFont(.regular10))
     static let regular11Monodigit = Font(UIFont.scaledNamedFont(.regular11Monodigit))

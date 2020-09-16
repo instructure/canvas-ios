@@ -18,7 +18,6 @@
 
 import UIKit
 
-@available(iOSApplicationExtension 13.0.0, *)
 extension UITableViewHeaderFooterView {
     @objc dynamic var hasBorderSeparators: Bool {
         get {

@@ -47,7 +47,6 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     public override func didMoveToSuperview() {
-        guard #available(iOS 13, *) else { return super.didMoveToSuperview() }
         // super.didMoveToSuperview() // don't allow UIRefreshControl set up
         progressView.removeFromSuperview()
         offsetObservation = nil
@@ -92,7 +91,6 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     public override func beginRefreshing() {
-        guard #available(iOS 13, *) else { return super.beginRefreshing() }
         if let scrollView = superview as? UIScrollView {
             let inset = scrollView.adjustedContentInset.top
             let y = inset + scrollView.contentOffset.y
@@ -106,7 +104,6 @@ public class CircleRefreshControl: UIRefreshControl {
     }
 
     public override func endRefreshing() {
-        guard #available(iOS 13, *) else { return super.endRefreshing() }
         guard refreshState == .refreshing else { return }
         refreshState = .complete
         UIView.animate(withDuration: 0.3, animations: { self.progressView.alpha = 0 })
@@ -124,7 +121,6 @@ public class CircleRefreshControl: UIRefreshControl {
         }
     }
 
-    @available(iOSApplicationExtension 13.0, *)
     public struct AsView: UIViewRepresentable {
         typealias Callback = (_ control: CircleRefreshControl) -> Void
         let action: Callback

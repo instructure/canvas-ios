@@ -142,7 +142,6 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         XCTAssertNoThrow(doneItem?.target?.perform(doneItem?.action))
     }
 
-    @available(iOS 13.0, *)
     func testDocumentScan() {
         controller.sources = [.documentScan]
         controller.view.layoutIfNeeded()

@@ -55,7 +55,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         env: AppEnvironment = .shared,
         courseID: String,
         sort: GetAssignments.Sort = .position,
-        appTraitCollection: UITraitCollection? = UIApplication.shared.keyWindow?.traitCollection
+        appTraitCollection: UITraitCollection? = AppEnvironment.shared.window?.traitCollection
     ) -> AssignmentListViewController {
         let controller = loadFromStoryboard()
         controller.appTraitCollection = appTraitCollection

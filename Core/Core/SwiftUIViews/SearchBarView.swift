@@ -19,7 +19,6 @@
 import UIKit
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct SearchBarView: UIViewRepresentable {
     @Binding var text: String
     let placeholder: String

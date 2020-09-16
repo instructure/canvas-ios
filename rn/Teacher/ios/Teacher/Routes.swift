@@ -74,7 +74,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     },
 
     "/courses": {
-        if ExperimentalFeature.nativeDashboard.isEnabled != false, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativeDashboard.isEnabled != false {
             return { _ in CoreHostingController(CourseListView()) }
         } else {
             return nil
@@ -119,7 +119,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     },
 
     "/:context/:contextID/pages/new": {
-        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativePageEdit.isEnabled {
             return { props in
                 guard let context = props.context else { return nil }
                 return CoreHostingController(PageEditorView(context: context))
@@ -130,7 +130,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     }(),
 
     "/:context/:contextID/pages/:url/edit": {
-        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+        if ExperimentalFeature.nativePageEdit.isEnabled {
             return { props in
                 guard let context = props.context else { return nil }
                 guard let slug = props["url"] as? String else { return nil }
@@ -204,7 +204,7 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
     "/folders/:folderID/edit": { props in
-        guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+        guard ExperimentalFeature.nativeFiles.isEnabled else {
             return HelmViewController(moduleName: "/folders/:folderID/edit", props: props)
         }
         guard let folderID = props["folderID"] as? String else { return nil }
@@ -299,7 +299,7 @@ private func fileDetails(props: Props) -> UIViewController? {
 }
 
 private func fileEditor(props: Props) -> UIViewController? {
-    guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+    guard ExperimentalFeature.nativeFiles.isEnabled else {
         return HelmViewController(moduleName: "/files/:fileID/edit", props: props)
     }
     guard let fileID = props["fileID"] as? String else { return nil }

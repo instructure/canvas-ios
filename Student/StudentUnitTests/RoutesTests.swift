@@ -78,11 +78,7 @@ class RoutesTests: XCTestCase {
         ExperimentalFeature.nativeDashboard.isEnabled = false
         XCTAssertEqual((router.match("/courses") as? HelmViewController)?.moduleName, "/courses")
         ExperimentalFeature.nativeDashboard.isEnabled = true
-        if #available(iOS 13.0, *) {
-            XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
-        } else {
-            XCTAssert(router.match("/courses") is CourseCardsViewController)
-        }
+        XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
     }
 
     func testCourseAssignment() {

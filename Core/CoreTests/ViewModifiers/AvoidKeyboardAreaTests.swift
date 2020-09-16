@@ -22,7 +22,6 @@ import XCTest
 import SwiftUI
 import Combine
 
-@available(iOS 13.0, *)
 class AvoidKeyboardAreaTests: CoreTestCase {
     var received: [CGFloat] = []
     lazy var keyboardCancel = AvoidKeyboardArea.keyboardHeight.sink(receiveValue: { [weak self] in

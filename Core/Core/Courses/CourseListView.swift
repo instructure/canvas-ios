@@ -20,8 +20,6 @@ import SwiftUI
 import Combine
 
 // swiftlint:disable superfluous_disable_command multiple_closures_with_trailing_closure
-
-@available(iOSApplicationExtension 13.0.0, *)
 public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
@@ -273,7 +271,6 @@ public struct CourseListView: View {
 }
 
 #if DEBUG
-@available(iOSApplicationExtension 13.0.0, *)
 struct CourseListView_Previews: PreviewProvider {
     static var previews: some View {
         CourseListView(allCourses: PreviewStore(useCase: GetAllCourses(), contents: [

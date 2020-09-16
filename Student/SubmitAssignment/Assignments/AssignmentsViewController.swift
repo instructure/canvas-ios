@@ -29,7 +29,7 @@ class AssignmentsViewController: UIViewController {
     }
 
     @IBOutlet weak var tableView: UITableView!
-    let activityIndicator = UIActivityIndicatorView(style: .white)
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     static func create(courseID: String, selectedAssignmentID: String?, callback: @escaping (Assignment) -> Void) -> AssignmentsViewController {
         let view = loadFromStoryboard()

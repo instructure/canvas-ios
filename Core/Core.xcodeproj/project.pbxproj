@@ -59,8 +59,6 @@
 		3BA9FF752332B05700196A06 /* APIGradingPeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF742332B05700196A06 /* APIGradingPeriodTests.swift */; };
 		3BA9FF792332B39700196A06 /* GetGradingPeriodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9FF782332B39700196A06 /* GetGradingPeriodsTests.swift */; };
 		3BC3E0202315A2BC00E15C6D /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */; };
-		3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */; };
-		3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */; };
 		3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */; };
 		3BC8426A247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */; };
 		3BCDACF824536B9E00E41D27 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */; };
@@ -1026,8 +1024,6 @@
 		3BA9FF7C2332B43C00196A06 /* GradingPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingPeriod.swift; sourceTree = "<group>"; };
 		3BC3E01C2315A0DE00E15C6D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		3BC3E01F2315A2BC00E15C6D /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
-		3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorButton.swift; sourceTree = "<group>"; };
-		3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivtyIndicatorButtonTests.swift; sourceTree = "<group>"; };
 		3BC84267247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithStudentQRCodeTutorialViewController.swift; sourceTree = "<group>"; };
 		3BC84269247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PairWithStudentQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		3BCDACF724536B9E00E41D27 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
@@ -2501,7 +2497,6 @@
 			children = (
 				B18359A722244E230005A918 /* AccessIconView.swift */,
 				B18359A9222450DE0005A918 /* AccessIconView.xib */,
-				3BC50CC6246CA0AF0023159F /* ActivityIndicatorButton.swift */,
 				B1D5EF5D2357907F00B3ACD3 /* AlertAction.swift */,
 				7D88EA2723A9326200D5F8FD /* AvatarGroupView.swift */,
 				7D005F762239CCEF0040CBD7 /* AvatarView.swift */,
@@ -2562,7 +2557,6 @@
 		7D1758C2215A993100F88613 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-				3BC50CC8246CA1F70023159F /* ActivtyIndicatorButtonTests.swift */,
 				7D88EA2923A96EA600D5F8FD /* AvatarGroupViewTests.swift */,
 				7D016B5E23E8984B00C6E0CA /* BottomSheetPickerViewControllerTests.swift */,
 				7D64A96923622D3A004EAEDF /* CalendarDayIconViewTests.swift */,
@@ -4415,7 +4409,6 @@
 				7D80AC19212B697600C40ECE /* APIGroupTests.swift in Sources */,
 				7D2DC31B219CE469008FE29A /* DocViewerSessionTests.swift in Sources */,
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
-				3BC50CC9246CA1F70023159F /* ActivtyIndicatorButtonTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagTests.swift in Sources */,
 				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
@@ -5035,7 +5028,6 @@
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
 				7DA2601123F7227A005D2121 /* InstColorExtensions.swift in Sources */,
 				7DA25FF123F7225D005D2121 /* AccountNotification.swift in Sources */,
-				3BC50CC7246CA0AF0023159F /* ActivityIndicatorButton.swift in Sources */,
 				7DA2600B23F7227A005D2121 /* NSNumberExtensions.swift in Sources */,
 				7DA25FC223F72136005D2121 /* APIPage.swift in Sources */,
 				7DA260C123F72352005D2121 /* GetGradingPeriods.swift in Sources */,
@@ -5425,7 +5417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -5484,7 +5476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -5509,7 +5501,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5522,7 +5514,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -5563,7 +5555,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5572,7 +5564,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};
@@ -5584,7 +5576,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5593,7 +5585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester";
 			};

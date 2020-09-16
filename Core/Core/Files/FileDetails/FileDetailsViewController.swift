@@ -380,7 +380,7 @@ extension FileDetailsViewController: UIScrollViewDelegate {
 
 extension FileDetailsViewController: QLPreviewControllerDataSource, QLPreviewControllerDelegate {
     func embedQLThumbnail() {
-        if #available(iOS 13, *), let localURL = localURL {
+        if let localURL = localURL {
             let request = QLThumbnailGenerator.Request(fileAt: localURL, size: arImageView.bounds.size, scale: UIScreen.main.scale, representationTypes: .thumbnail)
             QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [weak self] thumb, _ in performUIUpdate {
                 self?.doneLoading()
@@ -436,12 +436,10 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         })
         controller.annotationToolbarController?.toolbar.toolbarPosition = .left
-        if #available(iOS 13, *) {
-            let appearance = UIToolbarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = navigationController?.navigationBar.barTintColor
-            controller.annotationToolbarController?.toolbar.standardAppearance = appearance
-        }
+        let appearance = UIToolbarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = navigationController?.navigationBar.barTintColor
+        controller.annotationToolbarController?.toolbar.standardAppearance = appearance
         controller.delegate = self
         embed(controller, in: contentView)
         addPDFAnnotationChangeNotifications()

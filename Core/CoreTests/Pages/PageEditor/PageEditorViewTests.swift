@@ -21,7 +21,6 @@ import Combine
 @testable import Core
 import TestsFoundation
 
-@available(iOS 13.0, *)
 class PageEditorViewTests: CoreTestCase {
     lazy var controller: CoreHostingController<PageEditorView> = {
         api.mock(GetPageRequest(context: .course("1"), url: "page-1"), value: .make(

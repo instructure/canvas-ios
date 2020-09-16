@@ -408,7 +408,7 @@ open class HelmManager: NSObject {
 
     @objc open func dismissAllModals(_ options: [String: Any], callback: (() -> Void)? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-        guard let vc = UIApplication.shared.keyWindow?.rootViewController, vc.presentedViewController != nil else {
+        guard let vc = AppEnvironment.shared.window?.rootViewController, vc.presentedViewController != nil else {
             callback?()
             return
         }
@@ -462,7 +462,7 @@ extension HelmManager {
 
 extension HelmManager {
     @objc open func topMostViewController() -> UIViewController? {
-        return UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
+        return AppEnvironment.shared.window?.rootViewController?.topMostViewController()
     }
 
     @objc open func topNavigationController() -> UINavigationController? {

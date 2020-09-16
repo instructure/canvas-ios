@@ -21,7 +21,6 @@ import Combine
 @testable import Core
 import TestsFoundation
 
-@available(iOS 13.0, *)
 class FileEditorViewTests: CoreTestCase {
     lazy var controller: CoreHostingController<FileEditorView> = {
         api.mock(GetCourseSettings(courseID: "1"), value: .make(usage_rights_required: true))

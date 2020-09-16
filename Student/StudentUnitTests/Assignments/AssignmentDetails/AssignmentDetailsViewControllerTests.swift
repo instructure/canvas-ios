@@ -31,12 +31,12 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         viewController = AssignmentDetailsViewController.create(courseID: courseID, assignmentID: assignmentID)
-        prevSpeed = UIApplication.shared.keyWindow?.layer.speed ?? 1
-        UIApplication.shared.keyWindow?.layer.speed = 100
+        prevSpeed = AppEnvironment.shared.window?.layer.speed ?? 1
+        AppEnvironment.shared.window?.layer.speed = 100
     }
 
     override func tearDown() {
-        UIApplication.shared.keyWindow?.layer.speed = prevSpeed
+        AppEnvironment.shared.window?.layer.speed = prevSpeed
         super.tearDown()
     }
 

@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 public struct PageEditorView: View {
     let context: Context
     let url: String?
@@ -214,7 +213,6 @@ public struct PageEditorView: View {
 }
 
 #if DEBUG
-@available(iOSApplicationExtension 13.0.0, *)
 struct PageEditorView_Previews: PreviewProvider {
     static var previews: some View {
         PageEditorView(context: .course("1"), url: "page")
