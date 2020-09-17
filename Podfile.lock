@@ -142,9 +142,9 @@ PODS:
     - Nimble (~> 8.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
-  - PSPDFKit (9.5.1):
-    - PSPDFKit/Core (= 9.5.1)
-  - PSPDFKit/Core (9.5.1)
+  - PSPDFKit (9.5.2):
+    - PSPDFKit/Core (= 9.5.2)
+  - PSPDFKit/Core (9.5.2)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -420,7 +420,7 @@ DEPENDENCIES:
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - lottie-ios (~> 3.1.8)
   - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
-  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.5.1.podspec`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
   - React (from `./rn/Teacher/node_modules/react-native/`)
@@ -499,7 +499,7 @@ EXTERNAL SOURCES:
   PactConsumerSwift:
     :git: https://github.com/DiUS/pact-consumer-swift.git
   PSPDFKit:
-    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/9.5.1.podspec
+    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec
   RCTRequired:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -602,7 +602,7 @@ SPEC CHECKSUMS:
   PactConsumerSwift: 3944a3d54d1c59ed9cd2d56b38582d011378d332
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
-  PSPDFKit: 3cb004163773ea0979d36894deeecd6cee83d543
+  PSPDFKit: 55defc08dc144ed2ef87dae903bf4977cf089722
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -637,6 +637,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 3d14b70ea9ef7f483b2a88813ba47fd7868e694f
+PODFILE CHECKSUM: 7b05652531d2aa9c954f914099050d0a815dd0d2
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.10.0.rc.1
