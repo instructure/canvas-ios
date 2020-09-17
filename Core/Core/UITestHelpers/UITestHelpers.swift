@@ -176,7 +176,14 @@ public class UITestHelpers {
         // horrible hack to get rid of old modally presented controllers that stick around after the rootViewController is changed
         window.rootViewController = nil
         window.subviews.forEach { $0.removeFromSuperview() }
-        window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate, app: .student)
+        var app: App = .student
+        if Bundle.main.isParentApp {
+            app = .parent
+        }
+        if Bundle.main.isTeacherApp {
+            app = .teacher
+        }
+        window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate, app: app)
 
         resetDatabase()
         MockDistantURLSession.reset(useMocks: useMocks)

@@ -14,9 +14,6 @@
 "Add Student" = "受講生を追加";
 
 /* No comment provided by engineer. */
-"Add student with..." = "受講生を追加...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講生を追加する、またはグローバルメニューに移動して受講生としてマスカレードします。";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "アラート";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "アカウントをすでにお持ちですか？%@";
+"Announcement" = "発表";
 
 /* No comment provided by engineer. */
-"Announcement" = "発表";
+"Assignment Details" = "課題の詳細";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "課題のリマインダ";
 
 /* No comment provided by engineer. */
 "Back" = "戻る";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "[アカウントを作成]をタップすると、%1$@に同意し、%2$@を受け入れたことになります。";
 
 /* Calendar Tab */
 "Calendar" = "予定表";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "メッセージを作成";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "教師へのメッセージを作文する";
 
 /* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";
@@ -65,10 +62,13 @@
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
-"Create Account" = "アカウントを作成する";
+"Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
+"Date" = "日付";
+
+/* No comment provided by engineer. */
+"Description" = "説明";
 
 /* No comment provided by engineer. */
 "Dismiss" = "棄却する";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "ドメインの不一致";
 
 /* No comment provided by engineer. */
-"Email address" = "メールアドレス";
+"Due" = "期限";
 
 /* No comment provided by engineer. */
-"Email..." = "電子メールアドレス...";
+"Event Details" = "イベントの詳細";
 
 /* No comment provided by engineer. */
 "Event reminder" = "イベントのリマインダ";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "フロントページ";
-
-/* No comment provided by engineer. */
-"Full name" = "フル ネーム";
-
-/* No comment provided by engineer. */
-"Full name..." = "姓名...";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "受講生を追加しようとしているようです。ログイン後にこの受講生を追加してみてください";
 
 /* No comment provided by engineer. */
+"Location" = "場所";
+
+/* No comment provided by engineer. */
 "Login required" = "ログインが必要です";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "該当せず";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "アラートはありません";
 
 /* No comment provided by engineer. */
 "No Courses" = "コースなし";
+
+/* No comment provided by engineer. */
+"No Due Date" = "締切日なし";
 
 /* No comment provided by engineer. */
 "No Grade" = "成績なし";
@@ -143,25 +146,7 @@
 "Pairing Code" = "ペアリングコード";
 
 /* No comment provided by engineer. */
-"Password" = "パスワード";
-
-/* No comment provided by engineer. */
-"Password is required" = "パスワードは必須です";
-
-/* No comment provided by engineer. */
-"Password..." = "パスワード...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "許可が必要";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "メールアドレスを入力してください";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "姓名を入力してください";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "個人情報保護方針";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR コード";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Re：%1$@、課題 - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "リマインドする";
+
+/* No comment provided by engineer. */
 "Retry" = "再試行";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "このイベントの通知を受ける日付と時間を設定します。";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "設定。%@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "サインイン";
-
 /* No comment provided by engineer. */
 "Summary" = "概要";
 
 /* No comment provided by engineer. */
 "Syllabus" = "シラバス";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "サービス利用規約";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "値は0から100の間でなければなりません。";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "アラートの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "コースのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "これで完了です";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "お子さんのコースはまだ公開されていないかもしれません。";
 

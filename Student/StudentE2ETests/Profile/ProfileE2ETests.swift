@@ -66,7 +66,7 @@ class ProfileE2ETests: CoreUITestCase {
         Profile.open()
         Profile.filesButton.tap()
 
-        FilesList.file(id: "11585").tap()
+        FileList.file(index: 0).tap()
         FileDetails.imageView.waitToExist()
     }
 

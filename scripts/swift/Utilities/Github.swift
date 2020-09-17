@@ -72,6 +72,7 @@ enum Github {
     }
 
     struct IssueComment: Codable {
+        let id: Int
         let body: String
         let user: User
 
@@ -93,6 +94,16 @@ enum Github {
         try cmd(
             "curl", "-sf", "https://api.github.com/repos/\(repo)/issues/\(prID)/comments",
             "-X", "POST",
+            "-H", "Content-Type: application/json; charset=utf-8",
+            "-H", "Authorization: Bearer \(token)",
+            "--data-binary", "@-"
+        ).input(withJSONObject: [ "body": body ]).run()
+    }
+
+    static func updateComment(commentID: String, body: String) throws {
+        try cmd(
+            "curl", "-sf", "https://api.github.com/repos/\(repo)/issues/comments/\(commentID)",
+            "-X", "PATCH",
             "-H", "Content-Type: application/json; charset=utf-8",
             "-H", "Authorization: Bearer \(token)",
             "--data-binary", "@-"

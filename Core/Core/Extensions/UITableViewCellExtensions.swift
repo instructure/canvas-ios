@@ -22,15 +22,15 @@ import UIKit
 extension UITableViewCell {
     @IBInspectable
     public var fullDivider: Bool {
+        get {
+            return separatorInset == .zero
+        }
         set {
             if newValue {
                 preservesSuperviewLayoutMargins = true
                 separatorInset = UIEdgeInsets.zero
                 layoutMargins = UIEdgeInsets.zero
             }
-        }
-        get {
-            return separatorInset == .zero
         }
     }
 }

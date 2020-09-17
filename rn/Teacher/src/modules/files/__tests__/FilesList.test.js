@@ -160,7 +160,6 @@ describe('FilesList', () => {
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/some%20folder', { modal: false }, {
       canAdd: true,
       canEdit: true,
-      canSelectFile: expect.any(Function),
       onChange: expect.any(Function),
     })
   })
@@ -176,7 +175,6 @@ describe('FilesList', () => {
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/files/folder/something/somewhere%3F/over%23/the/rainbow/some%20folder', { modal: false }, {
       canAdd: true,
       canEdit: true,
-      canSelectFile: expect.any(Function),
       onChange: expect.any(Function),
     })
   })
@@ -194,19 +192,6 @@ describe('FilesList', () => {
       {},
       { file: data[1], onChange: expect.any(Function) }
     )
-  })
-
-  it('calls callback on select file', () => {
-    const file = template.file({
-      type: 'file',
-      key: 'file-1',
-    })
-    const onSelectFile = jest.fn()
-    const view = shallow(<FilesList data={[file]} navigator={template.navigator()} onSelectFile={onSelectFile} />)
-    const item = shallow(view.find('FlatList').prop('renderItem')({ item: data[0], index: 0 }))
-    const row = item.find('Row')
-    row.simulate('Press', 0)
-    expect(onSelectFile).toHaveBeenCalledWith(file)
   })
 
   it('add item should open an action sheet', () => {
@@ -694,61 +679,6 @@ describe('FilesList', () => {
       })
       const result = mapStateToProps(appState, { contextID, context, folders })
       expect(result).toMatchObject({ data: [] })
-    })
-
-    it('filters out files that cant be selected', () => {
-      const contextID = '4'
-      const context = 'courses'
-      const folderOne = template.folder({
-        id: '1',
-        name: 'files',
-        full_name: 'files',
-        context_type: 'course',
-        context_id: contextID,
-        parent_folder_id: null,
-      })
-      const folderTwo = template.folder({
-        id: '2',
-        name: 'zzz',
-        full_name: 'files/zzz',
-        context_type: 'course',
-        context_id: contextID,
-        parent_folder_id: folderOne.id,
-      })
-      const image = template.file({
-        id: '3',
-        display_name: 'first',
-        context_type: 'course',
-        context_id: contextID,
-        folder_id: folderOne.id,
-        mime_class: 'image',
-      })
-      const video = template.file({
-        id: '4',
-        display_name: 'last',
-        context_type: 'course',
-        context_id: contextID,
-        folder_id: folderOne.id,
-        mime_class: 'video',
-      })
-
-      const state = template.appState({
-        folders: {
-          'courses-4': {
-            'root': [folderOne],
-            'files': [folderTwo],
-          },
-        },
-        files: {
-          'courses-4': {
-            'files': [image, video],
-          },
-        },
-      })
-
-      const canSelectFile = (file) => file.mime_class === 'image'
-      const result = mapStateToProps(state, { context, contextID, canSelectFile })
-      expect(result).toMatchObject({ data: [image, folderTwo] })
     })
   })
 })

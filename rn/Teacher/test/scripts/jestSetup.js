@@ -161,18 +161,17 @@ NativeModules.TabBarBadgeCounts = {
   updateTodoListCount: jest.fn(),
 }
 
-NativeModules.CanvasWebViewManager = {
+NativeModules.RichContentEditorManager = {
+  getHTML: jest.fn(() => Promise.resolve('html')),
+}
+
+NativeModules.CoreWebViewManager = {
   evaluateJavaScript: jest.fn(() => Promise.resolve()),
-  stopRefreshing: jest.fn(),
 }
 
 NativeModules.WebViewHacker = {
   removeInputAccessoryView: jest.fn(),
   setKeyboardDisplayRequiresUserAction: jest.fn(),
-}
-
-NativeModules.APIBridge = {
-  requestCompleted: jest.fn(),
 }
 
 NativeModules.AppStoreReview = {
@@ -185,10 +184,6 @@ NativeModules.AppStoreReview = {
 
 NativeModules.CanvasAnalytics = {
   logEvent: jest.fn(),
-}
-
-NativeModules.QLPreviewManager = {
-  previewFile: jest.fn(),
 }
 
 NativeModules.LTITools = {

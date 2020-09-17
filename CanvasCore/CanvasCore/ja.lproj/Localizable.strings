@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ コンテンツ読み込み中エラー";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "予期しないエラーが発生しました。";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
-
-/* No comment provided by engineer. */
-"Cancel" = "キャンセル";
-
 /* No comment provided by engineer. */
 "Collapse" = "折りたたみ";
-
-/* No comment provided by engineer. */
-"Comments" = "コメント";
-
-/* No comment provided by engineer. */
-"Delete" = "削除";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "コメントを削除する";
-
-/* No comment provided by engineer. */
-"Dismiss" = "却下する";
 
 /* No comment provided by engineer. */
 "Done" = "完了";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "（）の成績を取得する";
-
-/* Inbox tab title */
-"Inbox" = "受信トレイ";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "APIから受け取った日付が無効です。";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "外部ツールを起動する";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Safariで開く";
-
-/* No comment provided by engineer. */
-"Open in…" = "...で開く";
-
-/* button to read more of the description */
-"Read More" = "もっと読む";
-
-/* No comment provided by engineer. */
-"Remove" = "削除";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "除去済%1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "（）により%1$@除去済%2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "返信";
-
-/* No comment provided by engineer. */
-"Style" = "スタイル";
 

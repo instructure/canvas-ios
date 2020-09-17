@@ -29,7 +29,7 @@ public struct APICalendarEvent: Codable, Equatable {
     let type: CalendarEventType
     let context_code: String
     let effective_context_code: String?
-    let context_name: String
+    let context_name: String?
     let created_at: Date
     let updated_at: Date
     let workflow_state: CalendarEventWorkflowState
@@ -51,7 +51,7 @@ extension APICalendarEvent {
         type: CalendarEventType = .event,
         context_code: String = "course_1",
         effective_context_code: String? = nil,
-        context_name: String = "Course One",
+        context_name: String? = "Course One",
         created_at: Date = Clock.now,
         updated_at: Date = Clock.now,
         workflow_state: CalendarEventWorkflowState = .active,

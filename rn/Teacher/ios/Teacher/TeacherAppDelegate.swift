@@ -43,7 +43,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
-        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
@@ -99,7 +98,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         NativeLoginManager.shared().delegate = self
         HelmManager.shared.onReactLoginComplete = {
             guard let window = self.window else { return }
-            let controller = RootTabBarController()
+            let controller = TeacherTabBarController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -109,7 +108,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             })
         }
         HelmManager.shared.onReactReload = {
-            guard self.window?.rootViewController is RootTabBarController else { return }
+            guard self.window?.rootViewController is TeacherTabBarController else { return }
             guard let session = LoginSession.mostRecent else {
                 self.changeUser()
                 return
@@ -339,7 +338,7 @@ extension TeacherAppDelegate {
                 } else {
                     finish()
                 }
-            } else if let from = self.topViewController {
+            } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
                 comps?.originIsNotification = true
                 AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))

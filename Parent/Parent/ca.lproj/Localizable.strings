@@ -14,9 +14,6 @@
 "Add Student" = "Afegeix un estudiant";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Afegeix un estudiant amb...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Afegiu estudiants a la part superior o visiteu el menú global per fer-vos passar per un estudiant.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Avisos";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Ja teniu un compte? %@";
+"Announcement" = "Anunci";
 
 /* No comment provided by engineer. */
-"Announcement" = "Anunci";
+"Assignment Details" = "Detalls de la tasca";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Recordatori de tasca";
 
 /* No comment provided by engineer. */
 "Back" = "Enrere";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "En tocar \"Crea un compte\", accepteu les %1$@ i reconeixeu la %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendari";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Redacta un missatge";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Redacta un missatge per als professors";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Redacta un missatge nou";
@@ -65,10 +62,13 @@
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
-"Create Account" = "Crea un compte";
+"Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Estudiant actual: %@. Toqueu per canviar d'estudiants";
+"Date" = "Data";
+
+/* No comment provided by engineer. */
+"Description" = "Descripció";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Descarta";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "El domini no coincideix";
 
 /* No comment provided by engineer. */
-"Email address" = "Adreça electrònica";
+"Due" = "Venciment";
 
 /* No comment provided by engineer. */
-"Email..." = "Adreça electrònica...";
+"Event Details" = "Detalls de l'esdeveniment";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Recordatori d'esdeveniment";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Pàgina frontal";
-
-/* No comment provided by engineer. */
-"Full name" = "Nom complet";
-
-/* No comment provided by engineer. */
-"Full name..." = "Nom complet...";
 
 /* No comment provided by engineer. */
 "Grades" = "Qualificacions";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Sembla que esteu provant d'afegir un estudiant. Proveu d'afegir aquest estudiant després d'iniciar la sessió";
 
 /* No comment provided by engineer. */
+"Location" = "Ubicació";
+
+/* No comment provided by engineer. */
 "Login required" = "Cal iniciar la sessió";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Cap avís";
 
 /* No comment provided by engineer. */
 "No Courses" = "No hi ha cap curs";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Sense data de venciment";
 
 /* No comment provided by engineer. */
 "No Grade" = "Sense qualificació";
@@ -143,25 +146,7 @@
 "Pairing Code" = "S'està aparellant el codi";
 
 /* No comment provided by engineer. */
-"Password" = "Contrasenya";
-
-/* No comment provided by engineer. */
-"Password is required" = "La contrasenya és obligatòria";
-
-/* No comment provided by engineer. */
-"Password..." = "Contrasenya...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Cal permís";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Introduïu una adreça electrònica";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Introduïu un nom complet";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Política de privacitat";
 
 /* No comment provided by engineer. */
 "QR Code" = "Codi QR";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Sobre: %1$@, Tasca - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Recorda-m'ho";
+
+/* No comment provided by engineer. */
 "Retry" = "Torna a provar-ho";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Establiu una data i hora per rebre una notificació sobre aquest esdeveniment.";
 
 /* No comment provided by engineer. */
 "Settings" = "Configuració";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Configuració. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Inicia la sessió";
-
 /* No comment provided by engineer. */
 "Summary" = "Resum";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Temari";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Condicions de servei";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "El valor ha de ser un número entre 0 i 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "S'ha produït un error en carregar els avisos. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "S'ha produït un error en carregar els cursos. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "S'ha produït un error en carregar els estudiants. Estireu per actualitzar per tornar-ho a provar.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Esteu completament al dia";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";
 

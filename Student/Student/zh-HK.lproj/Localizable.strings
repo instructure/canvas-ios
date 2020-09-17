@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "您是否要登出？";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "您確定要離開這次測驗嗎？";
+
+/* No comment provided by engineer. */
 "Ask me later" = "稍後再問我";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "現存的附件...";
 
+/* Exit button to leave the quiz */
+"Exit" = "退出";
+
 /* Title for an external tool submission */
 "External Tool" = "外部工具";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "從 Dropbox 匯入";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "收件匣";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "它出問題了";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "看來此空間中尚未建立任何測驗。";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "這裡是空的，您還在這裡做什麼呢？";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "啟動外部工具";
+
+/* Leave the quiz */
+"Leave" = "離開";
 
 /* Title for legal section on the about page */
 "Legal" = "法律事務";
@@ -912,6 +924,9 @@
 "No Notifications" = "無通知";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "無測驗";
+
+/* No comment provided by engineer. */
 "No recipients" = "無收件人";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "未評分（0 分，滿分為 %@）";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "未提交";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注意：媒體檔案目前正在伺服器上進行處理中，暫時無法提供播放。";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "測驗提醒";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "測驗詳細資料";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "鎖定的測驗";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "開始錄製媒體評論";
 
+/* Stay on the quiz view */
+"Stay" = "保持";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "保持登入狀態";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "已提交";
+
+/* Submitted date */
+"Submitted %@" = "已提交%@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "正在提交...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "啟動 Safari 時出錯";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "載入測驗時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "載入文件時發生錯誤。";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "檢視檔案%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "檢視結果";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "檢視提交項目的嘗試 %1$d。%2$@";

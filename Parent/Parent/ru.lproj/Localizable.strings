@@ -14,9 +14,6 @@
 "Add Student" = "Добавить студента";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Добавить студента с...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Добавьте учащихся в верхней части или пройдите в общее меню, чтобы выступит в качестве учащегося.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Предупреждения";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Уже есть учетная запись? %@";
+"Announcement" = "Объявление";
 
 /* No comment provided by engineer. */
-"Announcement" = "Объявление";
+"Assignment Details" = "Сведения о задании";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Напоминание о тестировании";
 
 /* No comment provided by engineer. */
 "Back" = "Назад";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Нажимая «Создать учетную запись», вы соглашаетесь с %1$@ и %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Календарь";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Написать сообщение";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Составить сообщение для преподавателей";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Написать новое сообщение";
@@ -65,10 +62,13 @@
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
-"Create Account" = "Создать учетную запись";
+"Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Текущий студент: %@. Нажмите для переключения студентов";
+"Date" = "Дата";
+
+/* No comment provided by engineer. */
+"Description" = "Описание";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Отклонить";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Несовпадение домена";
 
 /* No comment provided by engineer. */
-"Email address" = "Адрес электронной почты";
+"Due" = "Срок";
 
 /* No comment provided by engineer. */
-"Email..." = "Электронная почта...";
+"Event Details" = "Сведения о мероприятии";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Напоминание о событии";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Первая страница";
-
-/* No comment provided by engineer. */
-"Full name" = "Полное имя";
-
-/* No comment provided by engineer. */
-"Full name..." = "Полное имя...";
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Очевидно, вы пытаетесь добавить учащегося. Попробуйте добавить этого учащегося после того, как вы зарегистрируетесь";
 
 /* No comment provided by engineer. */
+"Location" = "Местоположение";
+
+/* No comment provided by engineer. */
 "Login required" = "Требуется зарегистрироваться в системе";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "нет данных";
 
 /* No comment provided by engineer. */
+"N/A" = "Н/Д";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Нет оповещений";
 
 /* No comment provided by engineer. */
 "No Courses" = "Курсы отсутствуют";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Срок выполнения не задан";
 
 /* No comment provided by engineer. */
 "No Grade" = "Без оценки";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Код сопряжения";
 
 /* No comment provided by engineer. */
-"Password" = "Пароль";
-
-/* No comment provided by engineer. */
-"Password is required" = "Требуется пароль";
-
-/* No comment provided by engineer. */
-"Password..." = "Пароль...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Требуется разрешение";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Введите адрес эл. почты";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Введите полное имя";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Политика конфиденциальности";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-код";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Касательно: %1$@, задание - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Напомнить";
+
+/* No comment provided by engineer. */
 "Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Задать дату и время уведомления об этом событии.";
 
 /* No comment provided by engineer. */
 "Settings" = "Настройки";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Настройки. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Войти в систему";
-
 /* No comment provided by engineer. */
 "Summary" = "Сводные данные";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Учебный план";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Условия предоставления услуг";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Значение должно быть числом от 0 до 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Произошла ошибка при загрузке оповещений. Потяните для обновления, чтобы попробовать еще раз.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Произошла ошибка при скачивании курсов. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Произошла ошибка при загрузке студентов. Потяните для обновления, чтобы попробовать еще раз.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Вы все нагнали";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";
 

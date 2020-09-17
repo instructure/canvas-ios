@@ -168,6 +168,9 @@ extension ModuleListViewController: UITableViewDataSource {
         header.update(module, section: section, isExpanded: isSectionExpanded(section)) { [weak self] in
             self?.toggleSection(section)
         }
+        header.onLockTap = { [weak self] in
+            self?.showLockedMessage(module: module)
+        }
         return header
     }
 
@@ -179,6 +182,21 @@ extension ModuleListViewController: UITableViewDataSource {
             collapsedIDs[courseID]?.remove(module.id)
         }
         tableView.reloadSections([section], with: .automatic)
+    }
+
+    func showLockedMessage(module: Module) {
+        guard let message = module.lockedMessage else { return }
+        let alert = UIAlertController(
+            title: NSLocalizedString("Locked", bundle: .core, comment: ""),
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: NSLocalizedString("OK", bundle: .core, comment: ""),
+            style: .default,
+            handler: nil
+        ))
+        env.router.show(alert, from: self)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

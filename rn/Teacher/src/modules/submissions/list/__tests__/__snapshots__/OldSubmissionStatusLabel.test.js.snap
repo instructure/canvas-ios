@@ -2,6 +2,7 @@
 
 exports[`SubmissionStatus status \`excused\` renders properly 1`] = `
 <Text
+  accessibilityLabel="Excused,"
   style={
     Array [
       Object {
@@ -27,6 +28,7 @@ exports[`SubmissionStatus status \`excused\` renders properly 1`] = `
 
 exports[`SubmissionStatus status \`late\` renders properly 1`] = `
 <Text
+  accessibilityLabel="Late,"
   style={
     Array [
       Object {
@@ -52,6 +54,7 @@ exports[`SubmissionStatus status \`late\` renders properly 1`] = `
 
 exports[`SubmissionStatus status \`missing\` renders properly 1`] = `
 <Text
+  accessibilityLabel="Missing,"
   style={
     Array [
       Object {
@@ -77,6 +80,7 @@ exports[`SubmissionStatus status \`missing\` renders properly 1`] = `
 
 exports[`SubmissionStatus status \`none\` renders properly 1`] = `
 <Text
+  accessibilityLabel="Not Submitted,"
   style={
     Array [
       Object {
@@ -102,6 +106,7 @@ exports[`SubmissionStatus status \`none\` renders properly 1`] = `
 
 exports[`SubmissionStatus status \`submitted\` renders properly 1`] = `
 <Text
+  accessibilityLabel="Submitted,"
   style={
     Array [
       Object {

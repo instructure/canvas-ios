@@ -73,10 +73,6 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         refresh()
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     @objc func refresh(sender: Any? = nil) {
         let force = sender != nil
         categories.refresh(force: force)

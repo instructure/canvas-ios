@@ -13,13 +13,13 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -46,7 +46,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -180,7 +180,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -251,7 +251,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -385,7 +385,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -456,7 +456,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -590,7 +590,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -660,9 +660,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
           "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
-              Array [
-                [Function],
-              ],
               Array [
                 [Function],
               ],
@@ -791,10 +788,6 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
                 "type": "return",
                 "value": undefined,
               },
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
             ],
           },
         }
@@ -809,7 +802,7 @@ exports[`FilesList progress function should update the UI correctly 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -826,13 +819,13 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -859,7 +852,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -993,7 +986,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -1064,7 +1057,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -1198,7 +1191,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -1269,7 +1262,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -1403,7 +1396,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -1473,9 +1466,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
           "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
-              Array [
-                [Function],
-              ],
               Array [
                 [Function],
               ],
@@ -1604,10 +1594,6 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
                 "type": "return",
                 "value": undefined,
               },
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
             ],
           },
         }
@@ -1622,7 +1608,7 @@ exports[`FilesList progress function should update the UI correctly 2`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -1639,13 +1625,13 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -1672,7 +1658,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -1806,7 +1792,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -1877,7 +1863,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -2011,7 +1997,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -2082,7 +2068,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -2216,7 +2202,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -2286,9 +2272,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
           "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
-              Array [
-                [Function],
-              ],
               Array [
                 [Function],
               ],
@@ -2417,10 +2400,6 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
                 "type": "return",
                 "value": undefined,
               },
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
             ],
           },
         }
@@ -2435,7 +2414,7 @@ exports[`FilesList progress function should update the UI correctly 3`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -2452,13 +2431,13 @@ exports[`FilesList sending weird data into the progress update function should n
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -2485,7 +2464,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -2619,7 +2598,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -2690,7 +2669,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -2824,7 +2803,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -2895,7 +2874,7 @@ exports[`FilesList sending weird data into the progress update function should n
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -3029,7 +3008,7 @@ exports[`FilesList sending weird data into the progress update function should n
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -3099,9 +3078,6 @@ exports[`FilesList sending weird data into the progress update function should n
           "showWebView": [MockFunction],
           "traitCollection": [MockFunction] {
             "calls": Array [
-              Array [
-                [Function],
-              ],
               Array [
                 [Function],
               ],
@@ -3237,10 +3213,6 @@ exports[`FilesList sending weird data into the progress update function should n
                 "type": "return",
                 "value": undefined,
               },
-              Object {
-                "type": "return",
-                "value": undefined,
-              },
             ],
           },
         }
@@ -3255,7 +3227,7 @@ exports[`FilesList sending weird data into the progress update function should n
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -3272,13 +3244,13 @@ exports[`FilesList should render 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -3305,7 +3277,7 @@ exports[`FilesList should render 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -3439,7 +3411,7 @@ exports[`FilesList should render 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -3510,7 +3482,7 @@ exports[`FilesList should render 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -3644,7 +3616,7 @@ exports[`FilesList should render 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -3715,7 +3687,7 @@ exports[`FilesList should render 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -3849,7 +3821,7 @@ exports[`FilesList should render 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -3942,7 +3914,7 @@ exports[`FilesList should render 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -3960,13 +3932,13 @@ exports[`FilesList should render for course files 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -3993,7 +3965,7 @@ exports[`FilesList should render for course files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -4127,7 +4099,7 @@ exports[`FilesList should render for course files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -4198,7 +4170,7 @@ exports[`FilesList should render for course files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -4332,7 +4304,7 @@ exports[`FilesList should render for course files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -4403,7 +4375,7 @@ exports[`FilesList should render for course files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -4537,7 +4509,7 @@ exports[`FilesList should render for course files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -4637,7 +4609,7 @@ exports[`FilesList should render for course files 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -4654,13 +4626,13 @@ exports[`FilesList should render for user files 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -4687,7 +4659,7 @@ exports[`FilesList should render for user files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -4821,7 +4793,7 @@ exports[`FilesList should render for user files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -4892,7 +4864,7 @@ exports[`FilesList should render for user files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -5026,7 +4998,7 @@ exports[`FilesList should render for user files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -5097,7 +5069,7 @@ exports[`FilesList should render for user files 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -5231,7 +5203,7 @@ exports[`FilesList should render for user files 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -5338,7 +5310,7 @@ exports[`FilesList should render for user files 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -5355,13 +5327,13 @@ exports[`FilesList should render with folders 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -5388,7 +5360,7 @@ exports[`FilesList should render with folders 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-folder-1"
+              testID="FileList.0"
             >
               <View
                 style={
@@ -5522,7 +5494,7 @@ exports[`FilesList should render with folders 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-folder-1-subtitle-lbl"
+                    testID="FileList.0-subtitle-lbl"
                   >
                     3 items
                   </Text>
@@ -5593,7 +5565,7 @@ exports[`FilesList should render with folders 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-1"
+              testID="FileList.1"
             >
               <View
                 style={
@@ -5727,7 +5699,7 @@ exports[`FilesList should render with folders 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-1-subtitle-lbl"
+                    testID="FileList.1-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -5798,7 +5770,7 @@ exports[`FilesList should render with folders 1`] = `
                   undefined,
                 ]
               }
-              testID="file-list.file-list-row.cell-file-2"
+              testID="FileList.2"
             >
               <View
                 style={
@@ -5932,7 +5904,7 @@ exports[`FilesList should render with folders 1`] = `
                         ],
                       ]
                     }
-                    testID="file-list.file-list-row.cell-file-2-subtitle-lbl"
+                    testID="FileList.2-subtitle-lbl"
                   >
                     476.77 KB
                   </Text>
@@ -6046,7 +6018,7 @@ exports[`FilesList should render with folders 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 
@@ -6063,13 +6035,13 @@ exports[`FilesList should render with no data at all 1`] = `
         "image": Object {
           "testUri": "../../../src/images/Add.png",
         },
-        "testID": "files.add.button",
+        "testID": "FileList.addButton",
       },
     ]
   }
   title="Files"
 >
-  <DropView
+  <View
     style={
       Object {
         "flex": 1,
@@ -6149,7 +6121,7 @@ exports[`FilesList should render with no data at all 1`] = `
         }
       }
     />
-  </DropView>
+  </View>
 </Screen>
 `;
 

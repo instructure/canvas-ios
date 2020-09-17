@@ -68,7 +68,7 @@ public class MasteryPathAssignment: NSManagedObject {
         model.courseID = item.model.course_id.value
         model.name = item.model.name
         model.pointsPossible = NSNumber(value: item.model.points_possible)
-        model.model = Assignment.save(item.model, in: context, updateSubmission: false)
+        model.model = Assignment.save(item.model, in: context, updateSubmission: false, updateScoreStatistics: false)
         return model
     }
 }

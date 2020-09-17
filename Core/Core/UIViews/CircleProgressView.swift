@@ -130,19 +130,3 @@ public class CircleProgressView: UIView {
         updateProgress() // Make sure animations are re-added once visible
     }
 }
-
-@available(iOSApplicationExtension 13.0, *)
-extension CircleProgressView {
-    public struct AsView: UIViewRepresentable {
-        public func makeUIView(context: Self.Context) -> CircleProgressView {
-            CircleProgressView()
-        }
-
-        public func updateUIView(_ uiView: CircleProgressView, context: Self.Context) {
-        }
-
-        public static func create(diameter: CGFloat = 40) -> some View {
-                Self().frame(width: diameter, height: diameter, alignment: .center)
-        }
-    }
-}

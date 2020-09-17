@@ -10,7 +10,7 @@ exports[`EditItem folder should render 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-item.done-btn",
+        "testID": "FileEditor.doneButton",
         "title": "Done",
       },
     ]
@@ -38,7 +38,7 @@ exports[`EditItem folder should render 1`] = `
       </FormLabel>
       <RowWithTextInput
         border="both"
-        identifier="edit-item.name"
+        identifier="FileEditor.nameField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Title"
@@ -61,7 +61,7 @@ exports[`EditItem folder should render 1`] = `
         border="both"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.publish"
+        testID="FileEditor.accessButton"
         title="Publish"
         titleStyles={
           Object {
@@ -85,7 +85,7 @@ exports[`EditItem folder should render 1`] = `
         }
         imageTint="#EE0612"
         onPress={[Function]}
-        testID="edit-item.delete"
+        testID="FileEditor.deleteButton"
         title="Delete Folder"
         titleStyles={
           Object {
@@ -108,7 +108,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-item.done-btn",
+        "testID": "FileEditor.doneButton",
         "title": "Done",
       },
     ]
@@ -136,7 +136,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
       </FormLabel>
       <RowWithTextInput
         border="both"
-        identifier="edit-item.name"
+        identifier="FileEditor.nameField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Title"
@@ -159,7 +159,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         border="both"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.publish"
+        testID="FileEditor.accessButton"
         title="Restricted Access"
         titleStyles={
           Object {
@@ -171,7 +171,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         border="bottom"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.hidden"
+        testID="FileEditor.hiddenButton"
         title="Schedule student availability"
         titleStyles={
           Object {
@@ -190,7 +190,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}
-          testID="edit-item.unlock_at"
+          testID="FileEditor.unlockAtButton"
           title="Available from"
         />
         <RequiredFieldSubscript
@@ -203,7 +203,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}
-          testID="edit-item.lock_at"
+          testID="FileEditor.lockAtButton"
           title="Available to"
         />
         <RequiredFieldSubscript
@@ -227,7 +227,7 @@ exports[`EditItem folder shows availability when there is a lock_at date 1`] = `
         }
         imageTint="#EE0612"
         onPress={[Function]}
-        testID="edit-item.delete"
+        testID="FileEditor.deleteButton"
         title="Delete Folder"
         titleStyles={
           Object {
@@ -250,7 +250,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-item.done-btn",
+        "testID": "FileEditor.doneButton",
         "title": "Done",
       },
     ]
@@ -278,7 +278,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
       </FormLabel>
       <RowWithTextInput
         border="both"
-        identifier="edit-item.name"
+        identifier="FileEditor.nameField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Title"
@@ -301,7 +301,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         border="both"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.publish"
+        testID="FileEditor.accessButton"
         title="Restricted Access"
         titleStyles={
           Object {
@@ -313,7 +313,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         border="bottom"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.hidden"
+        testID="FileEditor.hiddenButton"
         title="Schedule student availability"
         titleStyles={
           Object {
@@ -332,7 +332,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}
-          testID="edit-item.unlock_at"
+          testID="FileEditor.unlockAtButton"
           title="Available from"
         />
         <RequiredFieldSubscript
@@ -345,7 +345,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
           onPress={[Function]}
           onRemoveDatePress={[Function]}
           showRemoveButton={true}
-          testID="edit-item.lock_at"
+          testID="FileEditor.lockAtButton"
           title="Available to"
         />
         <RequiredFieldSubscript
@@ -369,7 +369,7 @@ exports[`EditItem folder shows availability when there is an unlock_at date 1`] 
         }
         imageTint="#EE0612"
         onPress={[Function]}
-        testID="edit-item.delete"
+        testID="FileEditor.deleteButton"
         title="Delete Folder"
         titleStyles={
           Object {
@@ -392,7 +392,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
       Object {
         "action": [Function],
         "style": "done",
-        "testID": "edit-item.done-btn",
+        "testID": "FileEditor.doneButton",
         "title": "Done",
       },
     ]
@@ -420,7 +420,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
       </FormLabel>
       <RowWithTextInput
         border="both"
-        identifier="edit-item.name"
+        identifier="FileEditor.nameField"
         onChangeText={[Function]}
         onFocus={[Function]}
         placeholder="Title"
@@ -443,7 +443,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
         border="both"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.publish"
+        testID="FileEditor.accessButton"
         title="Restricted Access"
         titleStyles={
           Object {
@@ -455,7 +455,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
         border="bottom"
         disclosureIndicator={true}
         onPress={[Function]}
-        testID="edit-item.hidden"
+        testID="FileEditor.hiddenButton"
         title="Hidden. Files inside will be available with links."
         titleStyles={
           Object {
@@ -479,7 +479,7 @@ exports[`EditItem folder shows the type of restriction when hidden 1`] = `
         }
         imageTint="#EE0612"
         onPress={[Function]}
-        testID="edit-item.delete"
+        testID="FileEditor.deleteButton"
         title="Delete Folder"
         titleStyles={
           Object {

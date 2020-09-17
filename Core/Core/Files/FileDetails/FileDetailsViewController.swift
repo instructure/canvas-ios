@@ -42,7 +42,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     lazy var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
 
     var assignmentID: String?
-    var context = Context.currentUser
+    var context: Context?
     var downloadTask: URLSessionTask?
     let env = AppEnvironment.shared
     var fileID: String = ""
@@ -55,7 +55,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         self?.update()
     }
 
-    public static func create(context: Context, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
+    public static func create(context: Context?, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -76,6 +76,9 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
         lockView.isHidden = true
 
+        if presentingViewController != nil, navigationItem.leftBarButtonItem == nil {
+            addDoneButton(side: .left)
+        }
         navigationItem.rightBarButtonItem = env.app == .teacher ? editButton : shareButton
         editButton.accessibilityIdentifier = "FileDetails.editButton"
         shareButton.accessibilityIdentifier = "FileDetails.shareButton"
@@ -102,7 +105,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrackingTimeOnViewController()
-        env.userDefaults?.submitAssignmentCourseID = context.contextType == .course ? context.id : nil
+        env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
     }
 
@@ -110,7 +113,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         super.viewWillDisappear(animated)
         saveAnnotations()
         downloadTask?.cancel()
-        stopTrackingTimeOnViewController(eventName: "/\(context.pathComponent)/files/\(fileID)")
+        stopTrackingTimeOnViewController(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
         BackgroundVideoPlayer.shared.disconnect()
     }
 
@@ -121,7 +124,12 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     func update() {
         guard let file = files.first else {
-            if let error = files.error { showError(error) }
+            if let error = files.error {
+                showError(error)
+            } else if files.requested, !files.pending {
+                // File was deleted, go back.
+                env.router.dismiss(self)
+            }
             return
         }
 
@@ -176,47 +184,54 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func doneLoading() {
         spinnerView.isHidden = true
         progressView.isHidden = true
-        let courseID = context.contextType == .course ? context.id : nil
+        let courseID = context?.contextType == .course ? context?.id : nil
         NotificationCenter.default.post(moduleItem: .file(fileID), completedRequirement: .view, courseID: courseID ?? "")
     }
 
     @IBAction func viewModules() {
-        env.router.route(to: "/\(context.pathComponent)/modules", from: self)
+        env.router.route(to: "\(context?.pathComponent ?? "")/modules", from: self)
     }
 
     @objc func edit() {
-        guard let file = files.first else { return }
-        let apiFile: [String: Any?] = [
-            "id": fileID,
-            "folder_id": file.folderID,
-            "display_name": file.displayName,
-            "filename": file.filename,
-            "content-type": file.contentType,
-            "url": file.url?.absoluteString,
-            "size": file.size,
-            "created_at": file.createdAt?.isoString(),
-            "updated_at": file.updatedAt?.isoString(),
-            "unlock_at": file.unlockAt?.isoString(),
-            "lock_at": file.lockAt?.isoString(),
-            "locked": file.locked,
-            "hidden": file.hidden,
-            "hidden_for_user": file.hiddenForUser,
-            "thumbnail_url": file.thumbnailURL?.absoluteString,
-            "modified_at": file.modifiedAt?.isoString(),
-            "mime_class": file.mimeClass,
-            "media_entry_id": file.mediaEntryID,
-            "locked_for_user": file.lockedForUser,
-            "lock_explanation": file.lockExplanation,
-            "preview_url": file.previewURL?.absoluteString,
-            "usage_rights": [
-                "legal_copyright": file.usageRights?.legalCopyright,
-                "use_justification": file.usageRights?.useJustification?.rawValue,
-                "license": file.usageRights?.license,
-            ],
-        ]
+        guard ExperimentalFeature.nativeFiles.isEnabled else {
+            guard let file = files.first else { return }
+            let apiFile: [String: Any?] = [
+                "id": fileID,
+                "folder_id": file.folderID,
+                "display_name": file.displayName,
+                "filename": file.filename,
+                "content-type": file.contentType,
+                "url": file.url?.absoluteString,
+                "size": file.size,
+                "created_at": file.createdAt?.isoString(),
+                "updated_at": file.updatedAt?.isoString(),
+                "unlock_at": file.unlockAt?.isoString(),
+                "lock_at": file.lockAt?.isoString(),
+                "locked": file.locked,
+                "hidden": file.hidden,
+                "hidden_for_user": file.hiddenForUser,
+                "thumbnail_url": file.thumbnailURL?.absoluteString,
+                "modified_at": file.modifiedAt?.isoString(),
+                "mime_class": file.mimeClass,
+                "media_entry_id": file.mediaEntryID,
+                "locked_for_user": file.lockedForUser,
+                "lock_explanation": file.lockExplanation,
+                "preview_url": file.previewURL?.absoluteString,
+                "usage_rights": [
+                    "legal_copyright": file.usageRights?.legalCopyright,
+                    "use_justification": file.usageRights?.useJustification?.rawValue,
+                    "license": file.usageRights?.license,
+                ],
+            ]
+            return env.router.route(
+                to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
+                userInfo: [ "file": apiFile ],
+                from: self,
+                options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            )
+        }
         env.router.route(
-            to: "/\(context.pathComponent)/files/\(fileID)/edit",
-            userInfo: [ "file": apiFile ],
+            to: "\(context?.pathComponent ?? "")/files/\(fileID)/edit",
             from: self,
             options: .modal(.formSheet, isDismissable: false, embedInNav: true)
         )

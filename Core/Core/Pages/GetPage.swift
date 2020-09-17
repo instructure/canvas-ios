@@ -68,3 +68,37 @@ public struct GetPage: UseCase {
         }
     }
 }
+
+struct UpdatePage: UseCase {
+    typealias Model = Page
+
+    let context: Context
+    let url: String?
+    let body: PutPageRequest.Body
+
+    init(
+        context: Context,
+        url: String?,
+        title: String? = nil,
+        body: String? = nil,
+        editing_roles: String? = nil,
+        published: Bool? = nil,
+        front_page: Bool? = nil
+    ) {
+        self.context = context
+        self.url = url?.removingPercentEncoding
+        self.body = PutPageRequest.Body(wiki_page: PutPageRequest.WikiPage(
+            title: title, body: body, editing_roles: editing_roles, published: published, front_page: front_page
+        ))
+    }
+
+    let cacheKey: String? = nil
+
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIPage?, URLResponse?, Error?) -> Void) {
+        if let url = url {
+            environment.api.makeRequest(PutPageRequest(context: context, url: url, body: body), callback: completionHandler)
+        } else {
+            environment.api.makeRequest(PostPageRequest(context: context, body: body), callback: completionHandler)
+        }
+    }
+}

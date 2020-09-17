@@ -32,19 +32,6 @@ class APIPairingCodeTests: CoreTestCase {
     }
 }
 
-class APIAccountTermsOfServiceTests: CoreTestCase {
-    func testGetAccountTermsOfService() {
-        let r = GetAccountTermsOfServiceRequest()
-        XCTAssertEqual(r.path, "accounts/self/terms_of_service")
-        XCTAssertEqual(r.method, .get)
-    }
-
-    func testObject() {
-        let model = APIAccountTermsOfService.make()
-        XCTAssertEqual(model.account_id, "1")
-    }
-}
-
 class PostAccountUserRequestTests: CoreTestCase {
     let accountID = "1"
     let email = "john@doe.com"

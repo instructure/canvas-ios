@@ -125,6 +125,7 @@ let router = Router(routes: [
     RouteHandler("/files/:fileID/download", factory: fileDetails),
     RouteHandler("/:context/:contextID/files/:fileID", factory: fileDetails),
     RouteHandler("/:context/:contextID/files/:fileID/download", factory: fileDetails),
+    RouteHandler("/:context/:contextID/files/:fileID/preview", factory: fileDetails),
 
     RouteHandler("/dev-menu") { _, _, _ in
         return DeveloperMenuViewController.create()
@@ -137,19 +138,6 @@ let router = Router(routes: [
     RouteHandler("/wrong-app") { _, _, _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
-    },
-
-    RouteHandler("/create-account/:accountID/:pairingCode") { url, params, _ in
-        guard ExperimentalFeature.parentQRCodePairing.isEnabled else { return nil }
-        guard
-            let queryItem = url.queryItems?.first,
-            queryItem.name == "baseURL",
-            let host = queryItem.value,
-            let accountID = params["accountID"],
-            let code = params["pairingCode"],
-            let baseURL = URL(string: "https://\(host)")
-         else { return nil }
-        return CreateAccountViewController.create(baseURL: baseURL, accountID: accountID, pairingCode: code)
     },
 
 ]) { url, _, _, _ in

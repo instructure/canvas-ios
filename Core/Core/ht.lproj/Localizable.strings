@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\n        Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
+"Add content" = "Ajoute kontni";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
+
+/* No comment provided by engineer. */
+"Add Title" = "Ajoute Tit";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Ajoute nan Konvèsasyon";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Repons Anons";
+
+/* No comment provided by engineer. */
+"Anyone" = "Nenpòt";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilite Randevou";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Devwa ki manke";
+
+/* No comment provided by engineer. */
+"Assignments" = "Sesyon";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Tantativ %d";
@@ -176,7 +191,7 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kemera pa disponib";
+"Can Edit" = "Kapab Modifye";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Ou paka jwenn lekòl ou a? Eseye tape tout URL lekòl la";
@@ -284,6 +299,9 @@
 "Conferences" = "Konferans";
 
 /* No comment provided by engineer. */
+"Content" = "Kontni";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Erè Lyen Kontni";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Kreye Kont";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Enskripsyon Aktyèl";
+
+/* No comment provided by engineer. */
 "Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Kreyatè";
 
 /* No comment provided by engineer. */
+"Details" = "Detay";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meni Developè";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskisyon";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Erè Disk";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Rejte";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Chanje pyès jwent (okenn)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Modifye Paj";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Chanje Destinatè";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
 
 /* No comment provided by engineer. */
+"favorite" = "prefere";
+
+/* No comment provided by engineer. */
 "file" = "fichye";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Premye Paj";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Pwochen Enskripsyon";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Klase";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Ankèt Klase";
 
 /* No comment provided by engineer. */
 "Grades" = "Nòt";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "Mwen paka fè bagay yo jiskaske mwen tounen tande w";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Mwen pa gen kont Canvas";
+"I don't have a Canvas account" = "Mwen pa gen yon kont Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Mwen gen yon kont Canvas";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Ta sanble poko gen devwa ki kreye nan espas sa a.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Ta sanble pa gen okenn kou ki lye ak kont sa a. Vizite paj wèb la pou ka kreye yon kou jodi a.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "Bezwen Klasman";
 
 /* No comment provided by engineer. */
+"Network Error" = "Erè Rezo";
+
+/* No comment provided by engineer. */
 "Never" = "Jamè";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "Nouvo Mesaj";
+
+/* No comment provided by engineer. */
+"New Page" = "Nouvo Paj";
 
 /* No comment provided by engineer. */
 "New To Do" = "Nouco Tach";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "Nou pa jwenn okenn imaj apati de selektè imaj la";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Pa gen kou ki asosye";
+
+/* No comment provided by engineer. */
 "No Modules" = "Okenn Modil";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "Pa Ijan";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Erè Notifikasyon";
+
+/* No comment provided by engineer. */
 "Notifications" = "Notifikasyon";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Sou Papye";
+
+/* No comment provided by engineer. */
+"Only members" = "Manm sèlman";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Pwofesè sèlman";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Ouvri %@ preferans itilizatè";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Quiz Pratik";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferans";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Meni Pwofil";
+
+/* No comment provided by engineer. */
+"Publish" = "Pibliye";
 
 /* No comment provided by engineer. */
 "published" = "pibliye";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reponn anotasyon an oswa ansyen kòmantè yo";
+
+/* Button to report an error */
+"Report" = "Rapòte";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapòte yon Pwoblèm";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Voye";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Defini kòm Paj Dakèy";
 
 /* No comment provided by engineer. */
 "Set text color" = "Defini koulè tèks";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Reyisi!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Ankèt";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Pwofesè";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Pwofesè ak elèv";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Asistan Ansèyman";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Poko gen paj pou afiche.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Te gen yon pwoblèm pandan anrejistreman aparèy ou a pou ka resevwa notifikasyon push.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Tan ki pase";
 
 /* No comment provided by engineer. */
+"Title" = "Tit";
+
+/* No comment provided by engineer. */
 "Title..." = "Tit...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "pou %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la. Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Defèt";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Erè Enkoni";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ilimite";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Transfere %1$@ nan %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Transfè %1$@ sou %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Imèl Ou";

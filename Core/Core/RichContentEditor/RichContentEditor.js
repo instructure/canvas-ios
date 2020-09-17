@@ -258,6 +258,8 @@ const editor = window.editor = {
         }
         return { x: x + scrollX, y: y + scrollY, width, height }
     },
+
+    get contentHeight () { return content.scrollHeight }
 }
 
 const rgbToHex = (rgb) => {

@@ -234,7 +234,7 @@ describe('ContextCard', () => {
       <ContextCard {...defaultProps} />
     )
     let assignmentID = defaultProps.submissions[0].assignment.id
-    let row = explore(view.toJSON()).selectByID(`user-submission-row.cell-${assignmentID}`)
+    let row = explore(view.toJSON()).selectByID(`ContextCard.submissionCell(${assignmentID})`)
     expect(row).not.toBeNull()
     row && row.props.onPress()
 

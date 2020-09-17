@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 public extension UIFont {
     enum Name: String, CaseIterable {

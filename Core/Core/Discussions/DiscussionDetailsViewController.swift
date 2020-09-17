@@ -597,7 +597,13 @@ extension DiscussionDetailsViewController {
         guard let entry = self.entry(entryID), let topic = topic.first else { return }
         let canEdit = env.app == .teacher || (
             !topic.lockedForUser &&
-            entry.author?.id == env.currentSession?.userID
+            entry.author?.id == env.currentSession?.userID &&
+            topic.canUpdate
+        )
+        let canDelete = env.app == .teacher || (
+            !topic.lockedForUser &&
+            entry.author?.id == env.currentSession?.userID &&
+            topic.canDelete
         )
 
         let sheet = BottomSheetPickerViewController.create()
@@ -626,6 +632,8 @@ extension DiscussionDetailsViewController {
             ) { [weak self] in
                 self?.editEntry(entryID)
             }
+        }
+        if canDelete {
             sheet.addAction(
                 image: .trashLine,
                 title: NSLocalizedString("Delete", bundle: .core, comment: ""),

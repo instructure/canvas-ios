@@ -34,7 +34,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import SavingBanner from '../../../common/components/SavingBanner'
-import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
+import RichContentEditor from '../../../common/components/RichContentEditor'
 import { createStyleSheet } from '../../../common/stylesheet'
 import {
   fetchPropsFor,
@@ -80,7 +80,7 @@ function editingRoles (context) {
 
 export class PageEdit extends Component<Props, State> {
   scrollView: ?KeyboardAwareScrollView
-  editor: ?RichTextEditor
+  editor: ?RichContentEditor
 
   state: State = {
     ...(this.props.page || PageModel.newPage),
@@ -109,7 +109,7 @@ export class PageEdit extends Component<Props, State> {
         rightBarButtons={[
           {
             title: i18n('Done'),
-            testID: 'pages.edit.doneButton',
+            testID: 'PageEditor.doneButton',
             style: 'done',
             action: this.done,
           },
@@ -132,30 +132,22 @@ export class PageEdit extends Component<Props, State> {
                   defaultValue={this.state.title}
                   border='both'
                   onChangeText={this.handleTitleChange}
-                  identifier='pages.edit.titleInput'
+                  identifier='PageEditor.titleField'
                   placeholder={i18n('Add title')}
                   onFocus={this._scrollToInput}
                 />
               </View>
-              : <Heading1 style={style.studentTitle}>{this.state.title}</Heading1>
+              : <Heading1 style={style.studentTitle} testID="PageEditor.titleText">{this.state.title}</Heading1>
             }
             <FormLabel>{i18n('Description')}</FormLabel>
-            <View
-              style={style.description}
-            >
-              <RichTextEditor
+            <View style={style.description}>
+              <RichContentEditor
                 ref={(r) => { this.editor = r }}
-                defaultValue={this.props.page ? this.props.page.body : null}
-                showToolbar='always'
-                keyboardAware={false}
-                scrollEnabled
-                contentHeight={150}
+                html={this.props.page ? this.props.page.body : null}
                 placeholder={i18n('Add description')}
-                navigator={this.props.navigator}
-                attachmentUploadPath={`/${this.props.context}/${this.props.contextID}/files`}
+                uploadContext={`${this.props.context}/${this.props.contextID}/files`}
                 onFocus={this._scrollToRCE}
-                context={this.props.context}
-                contextID={this.props.contextID}
+                context={`${this.props.context}/${this.props.contextID}`}
               />
             </View>
             {(isTeacher() || this.props.context === 'groups') &&
@@ -167,36 +159,32 @@ export class PageEdit extends Component<Props, State> {
                     border='bottom'
                     value={this.state.published}
                     onValueChange={this.handlePublishedChange}
-                    testID='pages.edit.published.row'
-                    identifier='pages.edit.published.switch'
+                    testID='PageEditor.publishedToggle'
                   />
                 }
-                { (isTeacher() || this.props.context === 'groups') && !(page && page.isFrontPage) && this.state.published &&
+                { !(page && page.isFrontPage) && this.state.published &&
                   <RowWithSwitch
                     title={i18n('Set as Front Page')}
                     border='both'
                     value={this.state.isFrontPage}
                     onValueChange={this.handleIsFrontPageChange}
-                    testID='pages.edit.front_page.row'
-                    identifier='pages.edit.front_page.switch'
+                    testID='PageEditor.frontPageToggle'
                   />
                 }
-                {(isTeacher() || this.props.context === 'groups') &&
-                  <RowWithDetail
-                    title={i18n('Can Edit')}
-                    detailSelected={this.state.editingRolesPickerShown}
-                    detail={possibleRoles[editingRole]}
-                    disclosureIndicator
-                    border='bottom'
-                    onPress={this.toggleEditingRoles}
-                    testID='pages.edit.editing_roles.row'
-                  />
-                }
+                <RowWithDetail
+                  title={i18n('Can Edit')}
+                  detailSelected={this.state.editingRolesPickerShown}
+                  detail={possibleRoles[editingRole]}
+                  disclosureIndicator
+                  border='bottom'
+                  onPress={this.toggleEditingRoles}
+                  testID='PageEditor.editorsButton'
+                />
                 {this.state.editingRolesPickerShown &&
                   <Picker
                     selectedValue={editingRole}
                     onValueChange={this.handleEditingRolesChange}
-                    testID='pages.edit.editing_roles.picker'
+                    testID='PageEditor.editorsPicker'
                   >
                     {Object.keys(possibleRoles).map(key => (
                       <Picker.Item
@@ -216,7 +204,7 @@ export class PageEdit extends Component<Props, State> {
   }
 
   done = async () => {
-    const body = this.editor && await this.editor.getHTML()
+    const body = await this.editor?.getHTML() ?? ''
     const parameters = {
       title: this.state.title,
       body,
@@ -301,7 +289,7 @@ const style = createStyleSheet((colors, vars) => ({
     borderBottomWidth: vars.hairlineWidth,
     borderBottomColor: colors.borderMedium,
     backgroundColor: colors.backgroundLightest,
-    height: 200,
+    minHeight: 200,
   },
   studentTitle: {
     padding: 12,

@@ -105,27 +105,27 @@ describe('PageEdit', () => {
   it('hides front page switch when already is front page', () => {
     let page = template.pageModel({ isFrontPage: true })
     const tree = shallow(<PageEdit {...props} page={page} />)
-    const row = tree.find('[testID="pages.edit.front_page.row"]')
+    const row = tree.find('[testID="PageEditor.frontPageToggle"]')
     expect(row.exists()).toBe(false)
   })
 
   it('hides published switch when already front page', () => {
     let page = template.pageModel({ isFrontPage: true })
     const tree = shallow(<PageEdit {...props} page={page} />)
-    const row = tree.find('[testID="pages.edit.published.row"]')
+    const row = tree.find('[testID="PageEditor.publishedToggle"]')
     expect(row.exists()).toBe(false)
   })
 
   it('can edit front page if published', () => {
     const tree = shallow(<PageEdit {...props} />)
-    const row = tree.find('[testID="pages.edit.front_page.row"]')
+    const row = tree.find('[testID="PageEditor.frontPageToggle"]')
     expect(row.exists()).toBe(true)
   })
 
   it('cannot edit front page as student in course', () => {
     app.setCurrentApp('student')
     const tree = shallow(<PageEdit {...props} />)
-    let row = tree.find('[testID="pages.edit.front_page.row"]')
+    let row = tree.find('[testID="PageEditor.frontPageToggle"]')
     expect(row.exists()).toBe(false)
     app.setCurrentApp('teacher')
   })
@@ -133,25 +133,25 @@ describe('PageEdit', () => {
   it('can edit front page as student in group', () => {
     app.setCurrentApp('student')
     const tree = shallow(<PageEdit {...props} context='groups' />)
-    let row = tree.find('[testID="pages.edit.front_page.row"]')
+    let row = tree.find('[testID="PageEditor.frontPageToggle"]')
     expect(row.exists()).toBe(true)
     app.setCurrentApp('teacher')
   })
 
   it('can edit published', () => {
     const tree = shallow(<PageEdit {...props} />)
-    const row = tree.find('[testID="pages.edit.published.row"]')
+    const row = tree.find('[testID="PageEditor.publishedToggle"]')
     expect(row.exists()).toBe(true)
   })
 
   it('can not edit published as student', () => {
     app.setCurrentApp('student')
     let tree = shallow(<PageEdit {...props} />)
-    let row = tree.find('[testID="pages.edit.published.row"]')
+    let row = tree.find('[testID="PageEditor.publishedToggle"]')
     expect(row.exists()).toBe(false)
 
     tree = shallow(<PageEdit {...props} context='groups' />)
-    row = tree.find('[testID="pages.edit.published.row"]')
+    row = tree.find('[testID="PageEditor.publishedToggle"]')
     expect(row.exists()).toBe(false)
 
     app.setCurrentApp('teacher')
@@ -160,18 +160,18 @@ describe('PageEdit', () => {
   it('creates new page with values', async () => {
     props.api.createPage = jest.fn()
     const tree = shallow(<PageEdit {...props} url={null} page={PageModel.newPage} />)
-    tree.find('[identifier="pages.edit.titleInput"]')
+    tree.find('[identifier="PageEditor.titleField"]')
       .simulate('ChangeText', 'Page 1')
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve('This is the body')),
     })
-    tree.find('[testID="pages.edit.editing_roles.row"]')
+    tree.find('[testID="PageEditor.editorsButton"]')
       .simulate('Press')
-    tree.find('[testID="pages.edit.editing_roles.picker"]')
+    tree.find('[testID="PageEditor.editorsPicker"]')
       .simulate('ValueChange', 'students,teachers')
-    tree.find('[identifier="pages.edit.published.switch"]')
+    tree.find('[testID="PageEditor.publishedToggle"]')
       .simulate('ValueChange', true)
-    tree.find('[identifier="pages.edit.front_page.switch"]')
+    tree.find('[testID="PageEditor.frontPageToggle"]')
       .simulate('ValueChange', true)
     await tapDone(tree)
 
@@ -189,9 +189,9 @@ describe('PageEdit', () => {
     props.url = 'page-1'
     props.page = template.pageModel({ url: 'page-1', title: 'Page 1', editingRoles: [ 'public' ] })
     const tree = shallow(<PageEdit {...props} />)
-    tree.find('[identifier="pages.edit.titleInput"]')
+    tree.find('[identifier="PageEditor.titleField"]')
       .simulate('ChangeText', 'Page 1 (Edited)')
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(props.page.body)),
     })
     await tapDone(tree)
@@ -214,7 +214,7 @@ describe('PageEdit', () => {
       url: 'page-1',
     })
     const tree = shallow(<PageEdit {...props} />)
-    tree.find('RichTextEditor').getElement().ref({
+    tree.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(props.page.body)),
     })
     await tapDone(tree)
@@ -252,11 +252,11 @@ describe('PageEdit', () => {
     expect(props.navigator.dismiss).toHaveBeenCalled()
   })
 
-  it('scrolls view when RichTextEditor receives focus', () => {
+  it('scrolls view when RichContentEditor receives focus', () => {
     const spy = jest.fn()
     const tree = shallow(<PageEdit {...props} />)
     tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
-    tree.find('RichTextEditor').simulate('Focus')
+    tree.find('RichContentEditor').simulate('Focus')
     expect(spy).toHaveBeenCalled()
   })
 
@@ -264,7 +264,7 @@ describe('PageEdit', () => {
     app.setCurrentApp('student')
 
     let tree = shallow(<PageEdit {...props} />)
-    let row = tree.find('[testID="pages.edit.editing_roles.row"]')
+    let row = tree.find('[testID="PageEditor.editorsButton"]')
     expect(row.exists()).toBe(false)
 
     app.setCurrentApp('teacher')
@@ -275,11 +275,11 @@ describe('PageEdit', () => {
 
     let page = template.pageModel({ editing_roles: 'members' })
     let tree = shallow(<PageEdit {...props} context='groups' page={page} />)
-    let row = tree.find('[testID="pages.edit.editing_roles.row"]')
+    let row = tree.find('[testID="PageEditor.editorsButton"]')
     expect(row.exists()).toBe(true)
 
     row.simulate('Press')
-    let pickers = tree.find('[testID="pages.edit.editing_roles.picker"] > *')
+    let pickers = tree.find('[testID="PageEditor.editorsPicker"] > *')
     let keys = pickers.map(picker => picker.props().value)
     expect(keys).toEqual(['members', 'public'])
 
@@ -290,7 +290,7 @@ describe('PageEdit', () => {
     app.setCurrentApp('student')
 
     let tree = shallow(<PageEdit {...props} />)
-    let input = tree.find('[identifier="pages.edit.titleInput"]')
+    let input = tree.find('[identifier="PageEditor.titleField"]')
     expect(input.exists()).toBe(false)
 
     app.setCurrentApp('teacher')
@@ -300,7 +300,7 @@ describe('PageEdit', () => {
     app.setCurrentApp('student')
 
     let tree = shallow(<PageEdit {...props} context='groups' />)
-    let input = tree.find('[identifier="pages.edit.titleInput"]')
+    let input = tree.find('[identifier="PageEditor.titleField"]')
     expect(input.exists()).toBe(true)
 
     app.setCurrentApp('teacher')
@@ -308,7 +308,7 @@ describe('PageEdit', () => {
 
   function tapDone (tree: any) {
     return tree.find('Screen').prop('rightBarButtons')
-      .find(({ testID }) => testID === 'pages.edit.doneButton')
+      .find(({ testID }) => testID === 'PageEditor.doneButton')
       .action()
   }
 })

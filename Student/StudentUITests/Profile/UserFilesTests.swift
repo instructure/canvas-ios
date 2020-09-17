@@ -59,7 +59,7 @@ class UserFilesTests: CoreUITestCase {
     }
 
     func testAddFileAudio() {
-        FilesList.addButton.tap()
+        FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
@@ -73,7 +73,7 @@ class UserFilesTests: CoreUITestCase {
     }
 
     func testAddFileFiles() {
-        FilesList.addButton.tap()
+        FileList.addButton.tap()
         app.find(label: "Add File").tap()
         allowAccessToPhotos {
             app.find(label: "Choose From Library").tap()

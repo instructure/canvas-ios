@@ -29,8 +29,17 @@ open class AccessIconView: UIView {
 
     public var icon: UIImage? {
         didSet {
+            iconView.layer.cornerRadius = 0
+            iconView.contentMode = .scaleAspectFit
+            iconView.load(url: nil)
             iconView.image = icon
         }
+    }
+
+    public func load(url: URL?) {
+        iconView.layer.cornerRadius = 4
+        iconView.contentMode = .scaleAspectFill
+        iconView.load(url: url)
     }
 
     public var state: State? {
@@ -41,15 +50,29 @@ open class AccessIconView: UIView {
             case .published:
                 statusIconView.image = .publishSolid
                 statusIconView.tintColor = UIColor.textSuccess
+                accessibilityLabel = NSLocalizedString("Published", bundle: .core, comment: "")
             case .restricted:
                 statusIconView.image = .cloudLockLine
                 statusIconView.tintColor = UIColor.textDark
+                accessibilityLabel = NSLocalizedString("Restricted", bundle: .core, comment: "")
             case .unpublished:
                 statusIconView.image = .noSolid
                 statusIconView.tintColor = UIColor.textDark
+                accessibilityLabel = NSLocalizedString("Not Published", bundle: .core, comment: "")
             case .none:
                 statusIconView.isHidden = true
+                accessibilityLabel = nil
             }
+        }
+    }
+
+    public func setState(locked: Bool?, hidden: Bool?, unlockAt: Date?, lockAt: Date?) {
+        if locked == true {
+            state = .unpublished
+        } else if hidden == true || unlockAt != nil || lockAt != nil {
+            state = .restricted
+        } else {
+            state = .published
         }
     }
 

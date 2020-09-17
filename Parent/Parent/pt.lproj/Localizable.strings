@@ -14,9 +14,6 @@
 "Add Student" = "Adicionar aluno";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Adicione o aluno com...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Adicione alunos no topo ou visite o menu global para se disfarçar de aluno.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Alertas";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Já tens uma conta? %@";
+"Announcement" = "Anúncio";
 
 /* No comment provided by engineer. */
-"Announcement" = "Anúncio";
+"Assignment Details" = "Detalhes da tarefa";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Lembrete de atribuição";
 
 /* No comment provided by engineer. */
 "Back" = "Voltar";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ao tocar em \"Criar Conta\", aceita o %1$@ e reconhece o %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendário";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Compor Mensagem";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Compor mensagem aos professores";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Compor nova mensagem";
@@ -65,10 +62,13 @@
 "Courses" = "Disciplinas";
 
 /* No comment provided by engineer. */
-"Create Account" = "Criar Conta";
+"Current student: %@. Tap to switch students" = "Aluno atual %@. Toque para alternar os alunos";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Aluno atual %@. Toque para alternar os alunos";
+"Date" = "Data";
+
+/* No comment provided by engineer. */
+"Description" = "Descrição";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dispensar";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Descoordenação de domínios";
 
 /* No comment provided by engineer. */
-"Email address" = "Endereço de email";
+"Due" = "Vencimento";
 
 /* No comment provided by engineer. */
-"Email..." = "E-mail...";
+"Event Details" = "Detalhes do evento";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Lembrete do evento";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Primeira página";
-
-/* No comment provided by engineer. */
-"Full name" = "Nome completo";
-
-/* No comment provided by engineer. */
-"Full name..." = "Nome completo...";
 
 /* No comment provided by engineer. */
 "Grades" = "Classificações";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Parece que estás a tentar acrescentar um aluno. Tente adicionar este aluno depois de ter feito o login";
 
 /* No comment provided by engineer. */
+"Location" = "Local";
+
+/* No comment provided by engineer. */
 "Login required" = "Login necessário";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/d";
 
 /* No comment provided by engineer. */
+"N/A" = "N/D";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Sem Alertas";
 
 /* No comment provided by engineer. */
 "No Courses" = "Sem Disicplinas";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Sem data de vencimento";
 
 /* No comment provided by engineer. */
 "No Grade" = "Sem Nota";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Código de pareamento";
 
 /* No comment provided by engineer. */
-"Password" = "Palavra passe";
-
-/* No comment provided by engineer. */
-"Password is required" = "Palavra passe é necessária";
-
-/* No comment provided by engineer. */
-"Password..." = "Palavra passe...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Permissão necessária";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Por favor, insira um endereço de e-mail";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Por favor, insira nome completo";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Política de Privacidade";
 
 /* No comment provided by engineer. */
 "QR Code" = "Código QR";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Em relação a: %1$@, Tarefa - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Relembra-me";
+
+/* No comment provided by engineer. */
 "Retry" = "Tentar novamente";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Defina uma data e hora para ser notificado deste evento.";
 
 /* No comment provided by engineer. */
 "Settings" = "Configurações";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Configurações. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Iniciar sessão";
-
 /* No comment provided by engineer. */
 "Summary" = "Sumário";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Apontamentos";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Termos de serviço";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "O valor deve ser um número entre 0 e 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Houve um erro ao carregar seus alertas. Puxe para refrescar para tentar novamente.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Houve um erro ao carregar as disciplinas. Puxe para refrescar para tentar novamente.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Houve um erro ao carregar os alunos. Puxe para refrescar para tentar novamente.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Você é pego!";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "As disciplinas do seu filho podem ainda não ter sido publicadas.";
 

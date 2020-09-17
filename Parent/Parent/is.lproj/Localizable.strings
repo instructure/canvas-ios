@@ -14,9 +14,6 @@
 "Add Student" = "Bæta við nemanda";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Bæta nemanda við…";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Bæta nemendum við efst eða fara í altæka valmynd til að dyljast sem nemandi.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Áttu nú þegar reikning? %@";
+"Announcement" = "Tilkynning";
 
 /* No comment provided by engineer. */
-"Announcement" = "Tilkynning";
+"Assignment Details" = "Upplýsingar um verkefni";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Áminning um verkefni";
 
 /* No comment provided by engineer. */
 "Back" = "Til baka";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Með því að smella á „stofna reikning“ samþykkir þú %1$@ og viðurkennir %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Dagatal";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Semja skilaboð";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Semja skilaboð til kennara";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Semja ný skilaboð";
@@ -65,10 +62,13 @@
 "Courses" = "Námskeið";
 
 /* No comment provided by engineer. */
-"Create Account" = "Stofna reikning";
+"Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Núverandi nemandi: %@. Smelltu til að skipta nemendum";
+"Date" = "Dagsetning";
+
+/* No comment provided by engineer. */
+"Description" = "Lýsing";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Léna misræmi";
 
 /* No comment provided by engineer. */
-"Email address" = "Netfang";
+"Due" = "Skilafrestur";
 
 /* No comment provided by engineer. */
-"Email..." = "Netfang…";
+"Event Details" = "Upplýsingar viðburðar";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Áminning um viðburð";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Forsíða";
-
-/* No comment provided by engineer. */
-"Full name" = "Fullt nafn";
-
-/* No comment provided by engineer. */
-"Full name..." = "Fullt nafn…";
 
 /* No comment provided by engineer. */
 "Grades" = "Einkunnir";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Þú virðist vera að reyna að bæta við nýjum nemanda. Prófaðu að bæta nemandanum við þegar þú hefur skráð þig inn";
 
 /* No comment provided by engineer. */
+"Location" = "Staðsetning";
+
+/* No comment provided by engineer. */
 "Login required" = "Þörf er á innskráningu";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "á ekki við";
 
 /* No comment provided by engineer. */
+"N/A" = "Á ekki við";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Engar viðvaranir";
 
 /* No comment provided by engineer. */
 "No Courses" = "Engin námskeið";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Enginn skiladagur";
 
 /* No comment provided by engineer. */
 "No Grade" = "Engin einkunn";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Pörunarkóði";
 
 /* No comment provided by engineer. */
-"Password" = "Lykilorð";
-
-/* No comment provided by engineer. */
-"Password is required" = "Lykilorðs er krafist";
-
-/* No comment provided by engineer. */
-"Password..." = "Lykilorð…";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Leyfis krafist";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Settu inn netfang";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Settu inn fullt nafn";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Persónuverndarstefna";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR kóði";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Varðandi: %1$@, verkefni - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Minntu mig á";
+
+/* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Stilltu inn dagsetningu og tíma til að fá áminningu um þennan viðburð.";
 
 /* No comment provided by engineer. */
 "Settings" = "Stillingar";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Stillingar. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Innskráning";
-
 /* No comment provided by engineer. */
 "Summary" = "Samantekt";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Kennsluáætlun";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Þjónustuskilmálar";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Gildið þarf að vera á milli 0 og 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Upp kom villa við að hlaða viðvörunum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Villa kom upp við að sækja námskeiðin. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Villa kom upp við að sækja nemendur. Dragðu til að endurglæða til að reyna aftur.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Þú ert búin(n) með allt";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Námskeið barnsins gætu enn verið óbirt.";
 

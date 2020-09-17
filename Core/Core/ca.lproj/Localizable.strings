@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Per crear un compte, feu que l'estudiant creï un codi d'emparellament per a vós des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí.\n        Si l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre compte.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Afegeix fitxers adjunts";
 
 /* No comment provided by engineer. */
+"Add content" = "Afegeix el contingut";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Afegeix una nota al planificador";
+
+/* No comment provided by engineer. */
+"Add Title" = "Afegeix el títol";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Afegit a la conversa";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Respostes a l'anunci";
+
+/* No comment provided by engineer. */
+"Anyone" = "Qualsevol persona";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Disponibilitat per a la cita";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Falta la tasca";
+
+/* No comment provided by engineer. */
+"Assignments" = "Tasques";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Intent %d";
@@ -176,7 +191,7 @@
 "Camera" = "Càmera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "La càmera no està disponible";
+"Can Edit" = "Es pot editar";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "No trobeu l'escola? Proveu d'escriure l'URL de l'escola complet.";
@@ -284,6 +299,9 @@
 "Conferences" = "Conferències";
 
 /* No comment provided by engineer. */
+"Content" = "Contingut";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "S'ha produït un error a l'enllaç al contingut";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Crea un compte";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Inscripcions actuals";
+
+/* No comment provided by engineer. */
 "Current position" = "Posició actual";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Dissenyadors";
 
 /* No comment provided by engineer. */
+"Details" = "Detalls";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Menú de desenvolupador";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Debats";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Error de disc";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Descarta";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edita el fitxer adjunt (cap)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Edita la pàgina";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edita els destinataris";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "S'ha produït un error. Toqueu per veure les opcions";
 
 /* No comment provided by engineer. */
+"favorite" = "preferit";
+
+/* No comment provided by engineer. */
 "file" = "fitxer";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Pàgina frontal";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Inscripcions futures";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Qualificat";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Estudis qualificats";
 
 /* No comment provided by engineer. */
 "Grades" = "Qualificacions";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "No puc acabar de fer les coses fins que torni a tenir notícies teves";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "No tinc un compte del Canvas";
+"I don't have a Canvas account" = "No tinc un compte del Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Tinc un compte del Canvas";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap tasca.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Sembla que no hi ha cap curs associat a aquest compte. Aneu al lloc web per crear un curs ara mateix.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap curs com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "S'ha de qualificar";
 
 /* No comment provided by engineer. */
+"Network Error" = "Error de xarxa";
+
+/* No comment provided by engineer. */
 "Never" = "Mai";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "Missatge nou";
+
+/* No comment provided by engineer. */
+"New Page" = "Pàgina nova";
 
 /* No comment provided by engineer. */
 "New To Do" = "Noves tasques pendents";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "No s'ha trobat cap imatge al selector d'imatges";
 
 /* No comment provided by engineer. */
+"No matching courses" = "No s’ha trobat cap curs coincident";
+
+/* No comment provided by engineer. */
 "No Modules" = "No hi ha cap mòdul";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "No és urgent";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Error de notificació";
+
+/* No comment provided by engineer. */
 "Notifications" = "Notificacions";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "En paper";
+
+/* No comment provided by engineer. */
+"Only members" = "Només membres";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Només professors";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Obre les preferències d'usuari per a %@";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Qüestionaris de pràctica";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferències";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menú Perfil";
+
+/* No comment provided by engineer. */
+"Publish" = "Publica";
 
 /* No comment provided by engineer. */
 "published" = "publicat";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Responeu a l'anotació o als comentaris anteriors";
+
+/* Button to report an error */
+"Report" = "Informa";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Informeu d'un problema";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Enviat";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Estableix com a pàgina frontal";
 
 /* No comment provided by engineer. */
 "Set text color" = "Establiu el color del text";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Operació correcta!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Enquestes";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Professors";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Professors i estudiants";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Auxiliars de professors";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Encara no hi ha cap pàgina per mostrar.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "S'ha produït un problema en registrar el dispositiu per rebre notificació d'inserció.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "S'ha produït un problema en recuperar les condicions d'ús.";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Temps transcorregut";
 
 /* No comment provided by engineer. */
+"Title" = "Títol";
+
+/* No comment provided by engineer. */
 "Title..." = "Títol...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "per a %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un compte, feu que l'estudiant creï un codi d'emparellament per a vós des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí. Si l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre compte.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Desfés";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Error desconegut";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Il·limitat";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "La càrrega de %1$@ està a %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "S'estan penjant %1$@ de %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "És possible que encara no s'hagin publicat els cursos del vostre fill.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "El dispositiu s'ha quedat sense espai d'emmagatzematge. Allibereu espai i torneu a provar-ho.";
 
 /* No comment provided by engineer. */
 "Your Email" = "El vostre correu electrònic";

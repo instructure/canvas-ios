@@ -35,17 +35,14 @@ public class KeyboardTransitioning {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     @objc func keyboardWillChangeFrame(_ notification: Notification) {
         guard
             let view = view, let space = space,
             let info = notification.userInfo as? [String: Any],
             let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
         else { return }
-        let constant = max(0, view.bounds.height - view.safeAreaInsets.bottom - view.convert(keyboardFrame, from: nil).origin.y)
+        let safe = space.firstAnchor == view.bottomAnchor ? 0 : view.safeAreaInsets.bottom
+        let constant = max(0, view.bounds.height - safe - view.convert(keyboardFrame, from: nil).origin.y)
         guard
             let animationCurve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
             let animationDuration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval

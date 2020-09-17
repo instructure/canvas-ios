@@ -94,7 +94,7 @@ describe('DiscussionEdit', () => {
     expect(tree.find('Screen').prop('title')).toEqual('New Discussion')
     expect(tree.find('ModalOverlay').prop('text')).toEqual('Saving')
     expect(tree.find('UnmetRequirementBanner').prop('text')).toEqual('Invalid field')
-    expect(tree.find('RichTextEditor').prop('placeholder')).toEqual('Add description')
+    expect(tree.find('RichContentEditor').prop('placeholder')).toEqual('Add description')
     expect(props.getCourseSettings).toHaveBeenCalledWith(props.contextID)
   })
 
@@ -203,7 +203,7 @@ describe('DiscussionEdit', () => {
     const tree = shallow(<DiscussionEdit {...props} />)
     tree.find('[identifier="DiscussionEdit.titleField"]')
       .simulate('ChangeText', 'UPDATED TITLE')
-    tree.find('RichTextEditor')
+    tree.find('RichContentEditor')
       .getElement()
       .ref({ getHTML: jest.fn(() => Promise.resolve('Gather tribute or face my curse.')) })
     await tapDone(tree)
@@ -252,8 +252,8 @@ describe('DiscussionEdit', () => {
   test('message', async () => {
     // default
     let tree = shallow(<DiscussionEdit {...props} message='The message' />)
-    let messageEditor = tree.find('RichTextEditor')
-    expect(messageEditor.prop('defaultValue')).toEqual('The message')
+    let messageEditor = tree.find('RichContentEditor')
+    expect(messageEditor.prop('html')).toEqual('The message')
 
     // submit with value
     let message = 'A new message'
@@ -581,16 +581,16 @@ describe('DiscussionEdit', () => {
     )
   })
 
-  it('scrolls view when RichTextEditor receives focus', () => {
+  it('scrolls view when RichContentEditor receives focus', () => {
     const spy = jest.fn()
     const tree = shallow(<DiscussionEdit {...props} />)
     tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
-    tree.find('RichTextEditor').simulate('Focus')
+    tree.find('RichContentEditor').simulate('Focus')
     expect(spy).toHaveBeenCalled()
   })
 
   function tapDone (tree, html) {
-    tree.find('RichTextEditor')
+    tree.find('RichContentEditor')
       .getElement()
       .ref({ getHTML: jest.fn(() => Promise.resolve(html ?? props.message)) })
 

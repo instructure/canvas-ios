@@ -14,9 +14,6 @@
 "Add Student" = "Legg til student";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Legg til student med...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Legg til studenter på øverst eller besøk den globale menyen for å maskere deg som student.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Har du allerede en konto? %@";
+"Announcement" = "Kunngjøring";
 
 /* No comment provided by engineer. */
-"Announcement" = "Kunngjøring";
+"Assignment Details" = "Oppgavedetaljer";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Oppgavepåminnelse";
 
 /* No comment provided by engineer. */
 "Back" = "Tilbake";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Ved å klikke på “Opprett konto”, godtar du %1$@ og erkjenner %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Skriv melding";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Skriv melding til lærere";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Skriv ny melding";
@@ -65,10 +62,13 @@
 "Courses" = "Emner";
 
 /* No comment provided by engineer. */
-"Create Account" = "Opprett konto";
+"Current student: %@. Tap to switch students" = "Nåværende studenter: %@. Trykk for å bytte mellom studenter";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Nåværende studenter: %@. Trykk for å bytte mellom studenter";
+"Date" = "Dato";
+
+/* No comment provided by engineer. */
+"Description" = "Beskrivelse";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Avvis";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Domenefeil";
 
 /* No comment provided by engineer. */
-"Email address" = "E-postadresse";
+"Due" = "Forfall";
 
 /* No comment provided by engineer. */
-"Email..." = "E-post...";
+"Event Details" = "Detaljer for hendelse";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Hendelsespåminnelse";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Forside";
-
-/* No comment provided by engineer. */
-"Full name" = "Fullt navn";
-
-/* No comment provided by engineer. */
-"Full name..." = "Fullt navn...";
 
 /* No comment provided by engineer. */
 "Grades" = "Karakterer";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Det ser ut som du prøver å legge til en student. Prøv å legge til denne studenten etter at du har logget inn";
 
 /* No comment provided by engineer. */
+"Location" = "Sted";
+
+/* No comment provided by engineer. */
 "Login required" = "Innlogging kreves";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Ingen varsler";
 
 /* No comment provided by engineer. */
 "No Courses" = "Ingen emne";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Ingen forfallsdato";
 
 /* No comment provided by engineer. */
 "No Grade" = "Ingen vurdering";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Parringskode";
 
 /* No comment provided by engineer. */
-"Password" = "Passord";
-
-/* No comment provided by engineer. */
-"Password is required" = "Passord kreves";
-
-/* No comment provided by engineer. */
-"Password..." = "Passord...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Tillatelse kreves";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Angi en e-postadresse";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Angi fullt navn";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "retningslinjer for personvern";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-kode";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Vedrørende: %1$@, Oppgave - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Påminnelse";
+
+/* No comment provided by engineer. */
 "Retry" = "Forsøk igjen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Angi tid og dato for påminnelse om denne oppgaven.";
 
 /* No comment provided by engineer. */
 "Settings" = "Innstillinger";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Innstillinger. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Logg inn";
-
 /* No comment provided by engineer. */
 "Summary" = "Sammendrag";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Emneoversikt";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "tjenestevilkår";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Verdien må være et tall mellom 0 og 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Det oppsto en feil under lasting av varsler. Dra for å oppdatere og prøve på nytt.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Det oppstod en feil under lasting av emner. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Det oppsto en feil under lasting av studenter. Dra for å oppdatere og prøve på nytt.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Du er oppdatert";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Emnene til barnet ditt er kanskje ikke publisert ennå.";
 

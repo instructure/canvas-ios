@@ -14,9 +14,6 @@
 "Add Student" = "Ajouter un étudiant";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Ajouter un élève avec...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Ajoutez des élèves en haut ou rendez-vous dans le menu global pour vous connecter sous le nom d'un élève.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Alertes";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Vous possédez déjà un compte ? %@";
+"Announcement" = "Annonce";
 
 /* No comment provided by engineer. */
-"Announcement" = "Annonce";
+"Assignment Details" = "Informations sur le devoir";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Rappel des travaux";
 
 /* No comment provided by engineer. */
 "Back" = "Retour";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "En appuyant sur « Créer un compte », vous acceptez les %1$@ et déclarez avoir pris connaissance de la %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Agenda";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Composer un message";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Composez un message à destination des enseignants";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Composer un nouveau message";
@@ -65,10 +62,13 @@
 "Courses" = "Cours";
 
 /* No comment provided by engineer. */
-"Create Account" = "Créer un compte";
+"Current student: %@. Tap to switch students" = "Élève actuel : %@. Appuyez pour changer d'élève";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Élève actuel : %@. Appuyez pour changer d'élève";
+"Date" = "Date";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Rejeter";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Le domaine ne correspond pas";
 
 /* No comment provided by engineer. */
-"Email address" = "Adresse électronique";
+"Due" = "À rendre le";
 
 /* No comment provided by engineer. */
-"Email..." = "E-mail...";
+"Event Details" = "Détails de l’événement";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Rappel d'événement";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Première page";
-
-/* No comment provided by engineer. */
-"Full name" = "Nom complet";
-
-/* No comment provided by engineer. */
-"Full name..." = "Nom complet...";
 
 /* No comment provided by engineer. */
 "Grades" = "Notes";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Il semble que vous essayez d'ajouter un élève Essayez de l’ajouter après vous être identifié";
 
 /* No comment provided by engineer. */
+"Location" = "Lieu";
+
+/* No comment provided by engineer. */
 "Login required" = "Identification requise";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "S/O";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Pas d’alerte";
 
 /* No comment provided by engineer. */
 "No Courses" = "Aucun cours";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Pas de date limite de rendu";
 
 /* No comment provided by engineer. */
 "No Grade" = "Aucune note";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Code d'appariement";
 
 /* No comment provided by engineer. */
-"Password" = "Mot de passe";
-
-/* No comment provided by engineer. */
-"Password is required" = "Un mot de passe est requis.";
-
-/* No comment provided by engineer. */
-"Password..." = "Mot de passe...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Autorisation requise";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Veuillez saisir une adresse email";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Veuillez saisir un nom complet.";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Politique de confidentialité";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR Code";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "À propos : %1$@, Travaux -  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Me le rappeler";
+
+/* No comment provided by engineer. */
 "Retry" = "Réessayer";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Paramétrez une date et une heure à laquelle vous notifier de cet événement.";
 
 /* No comment provided by engineer. */
 "Settings" = "Paramètres";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Paramètres. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Se connecter";
-
 /* No comment provided by engineer. */
 "Summary" = "Résumé";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Programme";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Conditions d’utilisation";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "La valeur doit être un nombre situé entre 0 et 100.";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des alertes. Balayez vers le bas pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des cours. Balayez vers le bas pour actualiser et réessayer.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des élèves. Balayez vers le bas pour actualiser et réessayer.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Vous êtes à jour";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Les cours de votre enfant n’ont peut-être pas encore été publiés.";
 

@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "ログアウトしますか？";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "このクイズを止めますか？";
+
+/* No comment provided by engineer. */
 "Ask me later" = "後ほど聞いてください";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "既存の添付ファイル...";
 
+/* Exit button to leave the quiz */
+"Exit" = "終了";
+
 /* Title for an external tool submission */
 "External Tool" = "外部ツール";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Dropboxからインポートする";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "受信トレイ";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "問題があります";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "このスペースにはまだクイズが作成されていないようです。";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "空白です。まだここで何をしているのですか。";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "外部ツールを起動する";
+
+/* Leave the quiz */
+"Leave" = "退出する";
 
 /* Title for legal section on the about page */
 "Legal" = "法務";
@@ -912,6 +924,9 @@
 "No Notifications" = "通知なし";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "クイズなし";
+
+/* No comment provided by engineer. */
 "No recipients" = "受信者がいません";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "未採点 (0 / %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "未提出";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "注記：メディアファイルは、サーバー上で処理中はすぐには再生できません。";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "クイズのアラート";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "クイズの詳細情報";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "クイズはロックされています";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "メディアコメントの録音を開始する";
 
+/* Stay on the quiz view */
+"Stay" = "留まる";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "ログイン状態にしておく";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "タスクの成績を送信";
+
+/* Submitted date */
+"Submitted %@" = "提出済み %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "提出しています...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "サファリの起動中に問題が発生しました";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "クイズの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "ドキュメントのロード中にエラーが発生しました。";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "ファイルを表示%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "結果を表示";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "提出予定 %1$dを閲覧します。%2$@";

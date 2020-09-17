@@ -75,6 +75,8 @@ final public class File: NSManagedObject {
     @NSManaged public var userRaw: Data?
     @NSManaged public var usageRights: UsageRights?
 
+    @NSManaged public var items: Set<FolderItem>?
+
     /// Used to group together files being attached to the same content
     @NSManaged public var batchID: String?
 
@@ -149,7 +151,7 @@ extension File: WriteableModel {
         model.filename = item.filename
         model.contentType = item.contentType
         model.url = item.url?.rawValue
-        model.size = item.size
+        model.size = item.size ?? 1
         model.createdAt = item.created_at
         model.updatedAt = item.updated_at
         model.unlockAt = item.unlock_at
@@ -167,10 +169,13 @@ extension File: WriteableModel {
         model.usageRights = item.usage_rights.map {
             UsageRights.save($0, to: model.usageRights, in: client)
         }
+        model.items?.forEach { $0.name = item.display_name }
         return model
     }
 
-    public var icon: UIImage {
+    public var icon: UIImage { File.icon(mimeClass: mimeClass, contentType: contentType) }
+
+    static func icon(mimeClass: String?, contentType: String?) -> UIImage {
         if mimeClass == "audio" || contentType?.hasPrefix("audio/") == true {
             return UIImage.audioLine
         } else if mimeClass == "doc" {

@@ -34,4 +34,35 @@ class GetFileTests: CoreTestCase {
         XCTAssertEqual(useCase.request.context, Context(.folder, id: "2"))
         XCTAssertEqual(useCase.scope, .where(#keyPath(File.folderID), equals: "2", orderBy: #keyPath(File.displayName), naturally: true))
     }
+
+    func testUpdateFile() {
+        let useCase = UpdateFile(fileID: "1", name: "f", locked: true, hidden: false, unlockAt: nil, lockAt: nil)
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.body?.locked, true)
+        XCTAssertEqual(useCase.scope, .where(#keyPath(File.id), equals: "1"))
+    }
+
+    func testDeleteFile() {
+        let useCase = DeleteFile(fileID: "1")
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.fileID, "1")
+        XCTAssertEqual(useCase.scope, .where(#keyPath(File.id), equals: "1"))
+    }
+
+    func testUpdateUsageRights() {
+        let useCase = UpdateUsageRights(context: .course("1"), fileIDs: ["1"], usageRights: .make(
+            use_justification: .own_copyright
+        ))
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.body?.file_ids, [ "1" ])
+        XCTAssertEqual(useCase.scope, Scope(
+            predicate: NSPredicate(format: "%K IN %@", #keyPath(File.id), [ "1" ]),
+            order: [ NSSortDescriptor(key: #keyPath(File.id), ascending: true) ]
+        ))
+
+        File.make()
+        useCase.write(response: useCase.request.body?.usage_rights, urlResponse: nil, to: databaseClient)
+        let file: File? = databaseClient.fetch(scope: useCase.scope).first
+        XCTAssertEqual(file?.usageRights?.useJustification, .own_copyright)
+    }
 }

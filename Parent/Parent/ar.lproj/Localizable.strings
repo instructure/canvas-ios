@@ -14,9 +14,6 @@
 "Add Student" = "إضافة طالب";
 
 /* No comment provided by engineer. */
-"Add student with..." = "إضافة طالب في...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "أضف طلاباً في المقدمة أو زر القائمة العامة للتخفي كطالب.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "تنبيهات";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "هل تمتلك حسابًا بالفعل؟ %@";
+"Announcement" = "الإعلان";
 
 /* No comment provided by engineer. */
-"Announcement" = "الإعلان";
+"Assignment Details" = "تفاصيل المهمة";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "التذكير بالمهمة";
 
 /* No comment provided by engineer. */
 "Back" = "عودة";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "بالضغط على \"إنشاء حساب\"، أنت توافق على %1$@ وتقر بـ%2$@.";
 
 /* Calendar Tab */
 "Calendar" = "التقويم";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "إنشاء رسالة";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "إنشاء رسالة للمعلمين";
 
 /* No comment provided by engineer. */
 "Compose new message" = "إنشاء رسالة جديدة";
@@ -65,10 +62,13 @@
 "Courses" = "المساقات";
 
 /* No comment provided by engineer. */
-"Create Account" = "إنشاء حساب";
+"Current student: %@. Tap to switch students" = "الطالب الحالي: %@. اضغط لتبديل الطلاب";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "الطالب الحالي: %@. اضغط لتبديل الطلاب";
+"Date" = "التاريخ";
+
+/* No comment provided by engineer. */
+"Description" = "الوصف";
 
 /* No comment provided by engineer. */
 "Dismiss" = "رفض";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "المجال غير مطابق";
 
 /* No comment provided by engineer. */
-"Email address" = "عنوان البريد الإلكتروني";
+"Due" = "الاستحقاق";
 
 /* No comment provided by engineer. */
-"Email..." = "بريد إلكتروني...";
+"Event Details" = "تفاصيل الحدث";
 
 /* No comment provided by engineer. */
 "Event reminder" = "التذكير بالحدث";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
-
-/* No comment provided by engineer. */
-"Full name" = "الاسم الكامل";
-
-/* No comment provided by engineer. */
-"Full name..." = "اسم كامل...";
 
 /* No comment provided by engineer. */
 "Grades" = "الدرجات";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "يبدو أنك تحاول إضافة طالب. حاول إضافة  هذا الطالب بعد أن تسجل الدخول";
 
 /* No comment provided by engineer. */
+"Location" = "الموقع";
+
+/* No comment provided by engineer. */
 "Login required" = "تسجيل الدخول مطلوب";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "لا يوجد";
 
 /* No comment provided by engineer. */
+"N/A" = "لا يوجد";
+
+/* No comment provided by engineer. */
 "No Alerts" = "لا توجد تنبيهات";
 
 /* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
+
+/* No comment provided by engineer. */
+"No Due Date" = "لا يوجد تاريخ استحقاق";
 
 /* No comment provided by engineer. */
 "No Grade" = "لا توجد أي درجة";
@@ -143,25 +146,7 @@
 "Pairing Code" = "رمز الإقران";
 
 /* No comment provided by engineer. */
-"Password" = "كلمة المرور";
-
-/* No comment provided by engineer. */
-"Password is required" = "كلمة المرور مطلوبة";
-
-/* No comment provided by engineer. */
-"Password..." = "كلمة المرور...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "مطلوب إذن";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "يُرجى إدخال عنوان بريد إلكتروني";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "يُرجى إدخال الاسم الكامل";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "سياسة الخصوصية";
 
 /* No comment provided by engineer. */
 "QR Code" = "رمز QR";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "بخصوص: %1$@، المهمة -  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "ذكرني";
+
+/* No comment provided by engineer. */
 "Retry" = "إعادة المحاولة";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "تعيين تاريخ ووقت للإعلام بهذا الحدث.";
 
 /* No comment provided by engineer. */
 "Settings" = "إعدادات";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "الإعداد %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "تسجيل الدخول";
-
 /* No comment provided by engineer. */
 "Summary" = "ملخص";
 
 /* No comment provided by engineer. */
 "Syllabus" = "المناهج";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "شروط الخدمة";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "يجب أن تكون القيمة رقمًا بين 0 و100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "حدث خطأ أثناء تحميل التنبيهات. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "حدث خطأ أثناء تحميل المساقات. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الطلاب. اسحب للتحديث لإعادة المحاولة.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "لقد اطلعت عليها جميعًا";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "ربما لم يتم نشر مساقات طفلك بعد.";
 

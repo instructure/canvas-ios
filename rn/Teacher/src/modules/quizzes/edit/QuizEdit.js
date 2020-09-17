@@ -21,10 +21,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
-import {
+import ReactNative, {
   View,
-  Image,
-  Text,
   LayoutAnimation,
   NativeModules,
 } from 'react-native'
@@ -33,9 +31,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { FormLabel } from '../../../common/text'
 import { colors, createStyleSheet } from '../../../common/stylesheet'
-import images from '../../../images'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
-import Row from '../../../common/components/rows/Row'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
@@ -51,6 +47,7 @@ import UnmetRequirementBanner from '../../../common/components/UnmetRequirementB
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import canvas from '../../../canvas-api'
 import SavingBanner from '../../../common/components/SavingBanner'
+import RichContentEditor from '../../../common/components/RichContentEditor'
 
 const { NativeAccessibility } = NativeModules
 
@@ -170,17 +167,16 @@ export class QuizEdit extends Component<Props, any> {
             <RequiredFieldSubscript title={i18n('A title is required')} visible={!this.state.validation.title} />
 
             <FormLabel>{i18n('Description')}</FormLabel>
-            <Row
-              disclosureIndicator={true}
-              border='both'
-              testID='quizzes.edit.description-row'
-              onPress={this._editDescription}
-            >
-              <View style={style.buttonInnerContainer}>
-                <Image source={images.edit} style={style.buttonImage} />
-                <Text style={style.buttonText}>{i18n('Edit Description')}</Text>
-              </View>
-            </Row>
+            <View style={style.description}>
+              <RichContentEditor
+                ref={(r) => { this.editor = r }}
+                onFocus={this._scrollToRCE}
+                html={this.state.quiz.description}
+                placeholder={i18n('Description')}
+                uploadContext={`courses/${this.props.courseID}/files`}
+                context={`courses/${this.props.courseID}`}
+              />
+            </View>
 
             <FormLabel accessible={false}> </FormLabel>
             <RowWithDetail
@@ -451,9 +447,7 @@ export class QuizEdit extends Component<Props, any> {
     )
   }
 
-  _validateChanges (): Validation {
-    const quiz = this.state.quiz
-
+  _validateChanges (quiz): Validation {
     let validator = {
       isValid: true,
       title: true,
@@ -562,7 +556,9 @@ export class QuizEdit extends Component<Props, any> {
   }
 
   _donePressed = async () => {
-    const validator = this._validateChanges()
+    const description = await this.editor?.getHTML() ?? ''
+    const quiz = { ...this.state.quiz, description }
+    const validator = this._validateChanges(quiz)
     if (!validator.isValid) {
       this.setState({ validation: validator })
       setTimeout(function () { NativeAccessibility.focusElement('quizEdit.unmet-requirement-banner') }, 500)
@@ -571,12 +567,12 @@ export class QuizEdit extends Component<Props, any> {
 
     // Update assignment overrides
     let updatedAssignment = this.state.assignment
-    if (this.state.quiz.quiz_type === 'assignment' && this.state.assignment) {
+    if (quiz.quiz_type === 'assignment' && this.state.assignment) {
       updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
       this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignment)
     }
 
-    const updatedQuiz = this.datesEditor.updateAssignment({ ...this.state.quiz })
+    const updatedQuiz = this.datesEditor.updateAssignment(quiz)
     this.setState({
       quiz: updatedQuiz,
       assignment: updatedAssignment,
@@ -594,16 +590,9 @@ export class QuizEdit extends Component<Props, any> {
     }
   }
 
-  _editDescription = () => {
-    this.props.navigator.show('/rich-text-editor', { modal: true, modalPresentationStyle: 'fullscreen' }, {
-      defaultValue: this.state.quiz.description,
-      onChangeValue: this._updateQuiz('description'),
-      showToolbar: 'always',
-      placeholder: i18n('Description'),
-      attachmentUploadPath: `/courses/${this.props.courseID}/files`,
-      context: 'courses',
-      contextID: this.props.courseID,
-    })
+  _scrollToRCE = () => {
+    const input = ReactNative.findNodeHandle(this.editor)
+    this.scrollView.scrollToFocusedInput(input)
   }
 }
 
@@ -631,6 +620,14 @@ const style = createStyleSheet((colors, vars) => ({
   },
   savingBanner: {
     backgroundColor: 'transparent',
+  },
+  description: {
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
+    minHeight: 200,
   },
 }))
 

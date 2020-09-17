@@ -21,11 +21,12 @@ import CoreData
 
 public final class Folder: NSManagedObject, WriteableModel {
     @NSManaged var canvasContextID: String
+    @NSManaged public var canUpload: Bool
     @NSManaged public var createdAt: Date?
     @NSManaged public var filesCount: Int
     @NSManaged public var foldersCount: Int
     @NSManaged public var forSubmissions: Bool
-    @NSManaged public var fullName: String
+    @NSManaged public var path: String
     @NSManaged public var hidden: Bool
     @NSManaged public var hiddenForUser: Bool
     @NSManaged public var id: String
@@ -38,6 +39,8 @@ public final class Folder: NSManagedObject, WriteableModel {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var updatedAt: Date?
 
+    @NSManaged public var items: Set<FolderItem>?
+
     public var context: Context {
         get { Context(canvasContextID: canvasContextID) ?? .currentUser }
         set { canvasContextID = newValue.canvasContextID }
@@ -46,12 +49,12 @@ public final class Folder: NSManagedObject, WriteableModel {
     @discardableResult
     public static func save(_ item: APIFolder, in client: NSManagedObjectContext) -> Folder {
         let model: Folder = client.first(where: #keyPath(Folder.id), equals: item.id.value) ?? client.insert()
+        model.canUpload = item.can_upload
         model.canvasContextID = "\(item.context_type.lowercased())_\(item.context_id)"
         model.createdAt = item.created_at
         model.filesCount = item.files_count
         model.foldersCount = item.folders_count
         model.forSubmissions = item.for_submissions
-        model.fullName = item.full_name
         model.hidden = item.hidden ?? false
         model.hiddenForUser = item.hidden_for_user
         model.id = item.id.value
@@ -60,9 +63,47 @@ public final class Folder: NSManagedObject, WriteableModel {
         model.lockAt = item.lock_at
         model.name = item.name
         model.parentFolderID = item.parent_folder_id?.value
+        model.path = item.full_name.split(separator: "/").dropFirst().joined(separator: "/")
         model.position = item.position ?? 0
         model.unlockAt = item.unlock_at
         model.updatedAt = item.updated_at
+        model.items?.forEach { $0.name = item.name }
+        return model
+    }
+}
+
+public final class FolderItem: NSManagedObject {
+    @NSManaged public var id: String
+    @NSManaged public var name: String
+    @NSManaged public var parentFolderID: String?
+
+    @NSManaged public var file: File?
+    @NSManaged public var folder: Folder?
+
+    @discardableResult
+    public static func save(_ item: APIFolder, in client: NSManagedObjectContext) -> FolderItem {
+        let id = "folder-\(item.id.value)"
+        let model: FolderItem = client.first(where: #keyPath(FolderItem.id), equals: id) ?? client.insert()
+        model.id = id
+        model.name = item.name
+        model.parentFolderID = item.parent_folder_id?.value
+        model.folder = Folder.save(item, in: client)
+        return model
+    }
+
+    @discardableResult
+    public static func save(_ item: APIFile, in client: NSManagedObjectContext) -> FolderItem {
+        return save(File.save(item, in: client), in: client)
+    }
+
+    @discardableResult
+    public static func save(_ file: File, in client: NSManagedObjectContext) -> FolderItem {
+        let id = "file-\(file.id ?? "")"
+        let model: FolderItem = client.first(where: #keyPath(FolderItem.id), equals: id) ?? client.insert()
+        model.id = id
+        model.name = file.displayName ?? file.filename
+        model.parentFolderID = file.folderID
+        model.file = file
         return model
     }
 }

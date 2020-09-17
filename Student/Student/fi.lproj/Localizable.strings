@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Oletko valmis kirjautumaan ulos?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Haluatko varmasti lähteä tästä kyselystä?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Kysy minulta myöhemmin";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Olemassa olevat liitteet...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Poistu";
+
 /* Title for an external tool submission */
 "External Tool" = "Ulkoinen työkalu";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Tuo Dropboxista";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Saapuneet";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Siinä on ongelmia";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Näyttää siltä kuin kyselyitä ei vielä olisi luotu tässä tilassa.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Se on tyhjä, mitä sinä vielä teet täällä.";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Käynnistä ulkoinen työkalu";
+
+/* Leave the quiz */
+"Leave" = "Lähde";
 
 /* Title for legal section on the about page */
 "Legal" = "Lakitiedot";
@@ -912,6 +924,9 @@
 "No Notifications" = "Ei ilmoituksia";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Ei tietovisoja";
+
+/* No comment provided by engineer. */
 "No recipients" = "Ei vastaanottajia";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ei arvosteltu (0/%@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ei lähetetty";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Huomautus: Mediatiedostot eivät ole välittömästi saatavissa toistettaviksi, kun niitä käsitellään palvelimella.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Tietovisan hälytys";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Testin tiedot";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Tietovisa lukittu";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Aloittaa mediakommentin nauhoittamisen";
 
+/* Stay on the quiz view */
+"Stay" = "Tuki";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Pysy sisäänkirjautuneena";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Lähetetty";
+
+/* Submitted date */
+"Submitted %@" = "Lähetetty %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Lähetetään...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Safarin käynnityksessä ilmeni ongelma";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Tiedoston lataamisessa ilmeni ongelma.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Näytä tiedosto %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Näytä tulokset";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Näytä lähetysyritykset %1$d. %2$@";

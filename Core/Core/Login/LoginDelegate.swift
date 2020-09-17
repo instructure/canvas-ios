@@ -24,7 +24,6 @@ public protocol LoginDelegate: class {
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }
     var findSchoolButtonTitle: String { get }
-    var supportedDeepLinkActions: [String] { get }
 
     func openExternalURL(_ url: URL)
     func openSupportTicket()
@@ -33,7 +32,6 @@ public protocol LoginDelegate: class {
     func userDidStopActing(as session: LoginSession)
     func userDidLogout(session: LoginSession)
     func changeUser()
-    func handleDeepLink(url: URL)
 }
 
 public extension LoginDelegate {
@@ -42,11 +40,9 @@ public extension LoginDelegate {
     var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
     var whatsNewURL: URL? { nil }
     var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
-    var supportedDeepLinkActions: [String] { [] }
 
     func openSupportTicket() {}
     func changeUser() {}
-    func handleDeepLink(url: URL) {}
 
     func userDidStartActing(as session: LoginSession) {
         userDidLogin(session: session)

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån.\n        Om din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Lägg till bilagor";
 
 /* No comment provided by engineer. */
+"Add content" = "Lägg till innehåll";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
+
+/* No comment provided by engineer. */
+"Add Title" = "Lägg till titel";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Tillagd i konversationen";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Meddelandesvar";
+
+/* No comment provided by engineer. */
+"Anyone" = "Vem som helst";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Mötestillgänglighet";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Uppgift saknas";
+
+/* No comment provided by engineer. */
+"Assignments" = "Uppgifter";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
@@ -176,7 +191,7 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kameran är inte tillgänglig";
+"Can Edit" = "Kan redigera";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Hittar du inte din skola? Försök att skriva in skolans fullständiga URL.";
@@ -284,6 +299,9 @@
 "Conferences" = "Konferenser";
 
 /* No comment provided by engineer. */
+"Content" = "Innehåll";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Fel med innehållslänk";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Skapa konto";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Nuvarande registreringar";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Designers";
 
 /* No comment provided by engineer. */
+"Details" = "Detaljer";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Meny för utvecklare";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussioner";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Diskfel";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Avvisa";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Redigera bilaga (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Redigera sidan";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Redigera mottagare";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "Misslyckades. Flik för alternativ";
 
 /* No comment provided by engineer. */
+"favorite" = "favorit";
+
+/* No comment provided by engineer. */
 "file" = "fil";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Framtida registreringar";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Har bedömts";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Bedömda enkäter";
 
 /* No comment provided by engineer. */
 "Grades" = "Omdömen";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "Jag kan inte utföra saker innan jag hör från dig";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Jag har inget Canvas-konto";
+"I don't have a Canvas account" = "Jag har inte ett Canvas-konto";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Jag har ett Canvas-konto";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Det verkar som om inga uppgifter har skapats för den här platsen än.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det verkar inte finnas några kurser kopplade till det här kontot. Besök webben för att skapa en kurs idag.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "Måste bedömas";
 
 /* No comment provided by engineer. */
+"Network Error" = "Nätverksfel";
+
+/* No comment provided by engineer. */
 "Never" = "Aldrig";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "Nytt kursmeddelande";
+
+/* No comment provided by engineer. */
+"New Page" = "Ny sida";
 
 /* No comment provided by engineer. */
 "New To Do" = "Ny att-göra";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "Ingen bild hittades i bildväljaren";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Inga matchande kurser";
+
+/* No comment provided by engineer. */
 "No Modules" = "Inga moduler";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "Ej brådskande";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Aviseringsfel";
+
+/* No comment provided by engineer. */
 "Notifications" = "Aviseringar";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "På papper";
+
+/* No comment provided by engineer. */
+"Only members" = "Endast medlemmar";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Endast lärare";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Öppna %@ användarinställningar";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Övningsquiz";
+
+/* No comment provided by engineer. */
 "Preferences" = "Inställningar";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmeny";
+
+/* No comment provided by engineer. */
+"Publish" = "Publicera";
 
 /* No comment provided by engineer. */
 "published" = "publicerad";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
+
+/* Button to report an error */
+"Report" = "Rapportera";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Rapportera ett problem";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Skickade";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Ställ in som framsida";
 
 /* No comment provided by engineer. */
 "Set text color" = "Ange textfärg";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Lyckades!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Enkäter";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lärarassistent";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Lärare";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Lärare och studenter";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Lärarassistenter";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Det finns inga sidor att visa än.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Ett problem uppstod vid registreringen av din enhet för push-aviseringar.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Förfluten tid";
 
 /* No comment provided by engineer. */
+"Title" = "Titel";
+
+/* No comment provided by engineer. */
 "Title..." = "Titel...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "till %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån. Om din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Ångra";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Okänt fel";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Obegränsad";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uppladdning av %1$@ är på %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Laddar upp %1$@ av %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Vänligen frigör utrymme och testa igen.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Din e-post";

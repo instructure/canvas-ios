@@ -290,7 +290,7 @@ describe('SubmissionViewer', () => {
         attempt: 1,
         submission_type: 'online_upload',
         attachments: [
-          { mime_class: 'image', url, 'content-type': 'image/heic' },
+          { mime_class: 'unknown', url, 'content-type': 'image/heic' },
         ],
       },
     }

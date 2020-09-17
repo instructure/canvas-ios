@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n        如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "添加附件";
 
 /* No comment provided by engineer. */
+"Add content" = "添加内容";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "添加规划器备注";
+
+/* No comment provided by engineer. */
+"Add Title" = "添加标题";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "添加到会话";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "公告回复";
+
+/* No comment provided by engineer. */
+"Anyone" = "任何人";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "预约可用性";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "缺少作业";
+
+/* No comment provided by engineer. */
+"Assignments" = "作业";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "尝试%d";
@@ -176,7 +191,7 @@
 "Camera" = "摄像机、照相机";
 
 /* No comment provided by engineer. */
-"Camera not available" = "摄像头不可用";
+"Can Edit" = "可以编辑";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "找不到您的学校？尝试键入完整的学校 URL。";
@@ -284,6 +299,9 @@
 "Conferences" = "会议";
 
 /* No comment provided by engineer. */
+"Content" = "内容";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "创建帐户";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "当前注册";
+
+/* No comment provided by engineer. */
 "Current position" = "当前位置";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "设计者";
 
 /* No comment provided by engineer. */
+"Details" = "详情";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "开发人员菜单";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "讨论";
+
+/* No comment provided by engineer. */
+"Disk Error" = "磁盘错误";
 
 /* Dismiss button for error messages */
 "Dismiss" = "撤销";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "编辑附件（无）";
+
+/* No comment provided by engineer. */
+"Edit Page" = "编辑页面";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "编辑收件人";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "失败。点击以获取选项";
 
 /* No comment provided by engineer. */
+"favorite" = "收藏";
+
+/* No comment provided by engineer. */
 "file" = "文件";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "首页";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "未来的注册情况";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "已评分";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "评分调查";
 
 /* No comment provided by engineer. */
 "Grades" = "评分";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "我需要您的回信才能完成工作";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "我没有 Canvas 帐户";
+"I don't have a Canvas account" = "我没有 Canvas 帐户";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "我有 Canvas 帐户";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "似乎尚未在此区域创建作业。";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "似乎没有任何与此账户关联的课程。 立即访问网页以创建课程。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您似乎没有以%@身份注册任何课程。我们的其他应用程序可能更合适。单击任一应用程序可访问应用商店。";
@@ -839,6 +881,9 @@
 "Needs Grading" = "需要评分";
 
 /* No comment provided by engineer. */
+"Network Error" = "网络错误";
+
+/* No comment provided by engineer. */
 "Never" = "从不";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "新消息";
+
+/* No comment provided by engineer. */
+"New Page" = "新页面";
 
 /* No comment provided by engineer. */
 "New To Do" = "新待办事项";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "从图像选择器找不到图像";
 
 /* No comment provided by engineer. */
+"No matching courses" = "没有匹配的课程";
+
+/* No comment provided by engineer. */
 "No Modules" = "无模块";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "不紧急";
 
 /* No comment provided by engineer. */
+"Notification Error" = "通知错误";
+
+/* No comment provided by engineer. */
 "Notifications" = "通知";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "纸上";
+
+/* No comment provided by engineer. */
+"Only members" = "仅成员";
+
+/* No comment provided by engineer. */
+"Only teachers" = "仅教师";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "打开%@用户首选项";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "练习测验";
+
+/* No comment provided by engineer. */
 "Preferences" = "首选项";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "个人资料菜单";
+
+/* No comment provided by engineer. */
+"Publish" = "发布";
 
 /* No comment provided by engineer. */
 "published" = "已发布";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
+
+/* Button to report an error */
+"Report" = "报告";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "报告问题";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "已发送";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "设置为首页";
 
 /* No comment provided by engineer. */
 "Set text color" = "设置文本颜色";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "成功！";
 
+/* No comment provided by engineer. */
+"Surveys" = "调查";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "教师";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "教师和学生";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "助教";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "没有可显示的页面。";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "注册您的设备接收推送通知时出现问题。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "提取使用条款时出错。";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "经过的时间";
 
 /* No comment provided by engineer. */
+"Title" = "标题";
+
+/* No comment provided by engineer. */
 "Title..." = "标题...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "至%@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "后退";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知错误";
 
 /* No comment provided by engineer. */
 "Unlimited" = "无限制";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "上传 %1$@ 位于%2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "正在上传 %1$@，共%2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "您孩子的课程可能尚未发布。";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "您的设备的存储空间不足。请释放空间，然后重试。";
 
 /* No comment provided by engineer. */
 "Your Email" = "您的电子邮件";

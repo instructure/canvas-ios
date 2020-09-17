@@ -27,7 +27,7 @@ extension AssignmentGroup {
         courseID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> AssignmentGroup {
-        let model = AssignmentGroup.save(api, courseID: courseID, in: context)
+        let model = AssignmentGroup.save(api, courseID: courseID, in: context, updateSubmission: false, updateScoreStatistics: false)
         try! context.save()
         return model
     }

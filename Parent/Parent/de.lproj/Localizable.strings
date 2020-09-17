@@ -14,9 +14,6 @@
 "Add Student" = "Teilnehmer hinzufügen";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Student hinzufügen mit ...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Fügen Sie Studenten oben hinzu oder besuchen Sie das globale Menü zur Maskierung als ein Student.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Benachrichtigungen";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Sie haben bereits ein Konto? %@";
+"Announcement" = "Ankündigung";
 
 /* No comment provided by engineer. */
-"Announcement" = "Ankündigung";
+"Assignment Details" = "Aufgabendetails";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Aufgabenerinnerung";
 
 /* No comment provided by engineer. */
 "Back" = "Zurück";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Durch das Drücken von „Konto erstellen“ stimmen Sie den %1$@ zu und akzeptieren die %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Nachricht verfassen";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Nachricht an Lehrer verfassen";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Neue Nachricht verfassen";
@@ -65,10 +62,13 @@
 "Courses" = "Kurse";
 
 /* No comment provided by engineer. */
-"Create Account" = "Konto erstellen";
+"Current student: %@. Tap to switch students" = "Aktueller Student: %@. Antippen, um den Teilnehmer zu wechseln";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Aktueller Student: %@. Antippen, um den Teilnehmer zu wechseln";
+"Date" = "Datum";
+
+/* No comment provided by engineer. */
+"Description" = "Beschreibung";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Ablehnen";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Domäne stimmt nicht überein";
 
 /* No comment provided by engineer. */
-"Email address" = "E-Mail-Adresse";
+"Due" = "Fällig";
 
 /* No comment provided by engineer. */
-"Email..." = "E-Mail ...";
+"Event Details" = "Eventdetails";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Ereigniserinnerung";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Frontseite";
-
-/* No comment provided by engineer. */
-"Full name" = "Vollständiger Name";
-
-/* No comment provided by engineer. */
-"Full name..." = "Vollständiger Name ...";
 
 /* No comment provided by engineer. */
 "Grades" = "Noten";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Es sieht so aus, als wollten Sie einen Studenten hinzufügen. Versuchen Sie, diesen Studenten hinzuzufügen, nachdem Sie sich eingeloggt haben";
 
 /* No comment provided by engineer. */
+"Location" = "Standort";
+
+/* No comment provided by engineer. */
 "Login required" = "Anmeldung erforderlich";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "k. A.";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Keine Benachrichtigungen";
 
 /* No comment provided by engineer. */
 "No Courses" = "Keine Kurse";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Kein Abgabetermin";
 
 /* No comment provided by engineer. */
 "No Grade" = "Keine Noten";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Pairing-Code";
 
 /* No comment provided by engineer. */
-"Password" = "Kennwort";
-
-/* No comment provided by engineer. */
-"Password is required" = "Passwort ist erforderlich";
-
-/* No comment provided by engineer. */
-"Password..." = "Passwort ...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Berechtigung erforderlich";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Bitte geben Sie eine E-Mail-Adresse an.";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Bitte geben Sie Ihren vollständigen Namen ein.";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Datenschutzrichtlinien";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-Code";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Betreffend: %1$@, Aufgabe – %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Erinnerung";
+
+/* No comment provided by engineer. */
 "Retry" = "Erneut versuchen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Datum und Uhrzeit zur Benachrichtigung über dieses Ereignis einstellen.";
 
 /* No comment provided by engineer. */
 "Settings" = "Einstellungen";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Einstellungen. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Anmelden";
-
 /* No comment provided by engineer. */
 "Summary" = "Übersicht";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Lehrplan";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Servicebedingungen";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "Der Wert muss eine Zahl zwischen 0 und 100. sein.";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Fehler beim Laden der Alarme. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Fehler beim Laden der Kurse. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Fehler beim Laden der Studenten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Sie werden alle erfasst";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Die Kurse Ihres Kindes wurden möglicherweise noch nicht veröffentlicht.";
 

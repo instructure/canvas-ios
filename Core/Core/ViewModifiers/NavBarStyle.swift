@@ -20,6 +20,7 @@ import SwiftUI
 
 @available(iOSApplicationExtension 13.0.0, *)
 public enum NavBarStyle: PreferenceKey, Equatable {
+    case modal
     case global
     case color(UIColor)
 

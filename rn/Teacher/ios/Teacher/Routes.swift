@@ -63,6 +63,10 @@ class TeacherRouter: Router {
 let router = TeacherRouter(routes: []) { _, _, _, _ in }
 
 private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builder?> = [
+    "/accounts/:accountID/terms_of_service": { _ in
+        return TermsOfServiceViewController()
+    },
+
     "/courses/:courseID/attendance/:toolID": { props in
         guard let courseID = props["courseID"] as? String else { return nil }
         guard let toolID = props["toolID"] as? String else { return nil }
@@ -113,6 +117,29 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         guard let pageURL = props["url"] as? String else { return nil }
         return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
     },
+
+    "/:context/:contextID/pages/new": {
+        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+            return { props in
+                guard let context = props.context else { return nil }
+                return CoreHostingController(PageEditorView(context: context))
+            }
+        } else {
+            return nil
+        }
+    }(),
+
+    "/:context/:contextID/pages/:url/edit": {
+        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+            return { props in
+                guard let context = props.context else { return nil }
+                guard let slug = props["url"] as? String else { return nil }
+                return CoreHostingController(PageEditorView(context: context, url: slug))
+            }
+        } else {
+            return nil
+        }
+    }(),
 
     "/courses/:courseID/modules/:moduleID/items/:itemID": { props in
         guard
@@ -176,11 +203,22 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     "/:context/:contextID/files": fileList,
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
+    "/folders/:folderID/edit": { props in
+        guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+            return HelmViewController(moduleName: "/folders/:folderID/edit", props: props)
+        }
+        guard let folderID = props["folderID"] as? String else { return nil }
+        return CoreHostingController(FileEditorView(folderID: folderID))
+    },
 
     "/files/:fileID": fileDetails,
     "/files/:fileID/download": fileDetails,
+    "/files/:fileID/preview": fileDetails,
+    "/files/:fileID/edit": fileEditor,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
+    "/:context/:contextID/files/:fileID/preview": fileDetails,
+    "/:context/:contextID/files/:fileID/edit": fileEditor,
 
     "/act-as-user": { _ in
         guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
@@ -237,22 +275,35 @@ private func fileList(props: Props) -> UIViewController? {
     if let preview = fileDetails(props: props) {
         return preview
     }
-    var props = props
-    props["context"] = props["context"] ?? "users"
-    props["contextID"] = props["contextID"] ?? "self"
-    if props.context == .currentUser, props["subFolder"] == nil {
-        props["customPageViewPath"] = "/files"
+    guard ExperimentalFeature.nativeFiles.isEnabled else {
+        var props = props
+        props["context"] = props["context"] ?? "users"
+        props["contextID"] = props["contextID"] ?? "self"
+        if props.context == .currentUser, props["subFolder"] == nil {
+            props["customPageViewPath"] = "/files"
+        }
+        let moduleName = props["subFolder"] == nil
+            ? "/:context/:contextID/files"
+            : "/:context/:contextID/files/folder/*subFolder"
+        return HelmViewController(moduleName: moduleName, props: props)
     }
-    let moduleName = props["subFolder"] == nil
-        ? "/:context/:contextID/files"
-        : "/:context/:contextID/files/folder/*subFolder"
-    return HelmViewController(moduleName: moduleName, props: props)
+    return FileListViewController.create(
+        context: props.context ?? .currentUser,
+        path: (props["subFolder"] as? String)?.removingPercentEncoding
+    )
 }
 
 private func fileDetails(props: Props) -> UIViewController? {
     guard let fileID = props["preview"] as? String ?? props["fileID"] as? String else { return nil }
-    let context = props.context ?? .currentUser
-    return FileDetailsViewController.create(context: context, fileID: fileID)
+    return FileDetailsViewController.create(context: props.context, fileID: fileID)
+}
+
+private func fileEditor(props: Props) -> UIViewController? {
+    guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+        return HelmViewController(moduleName: "/files/:fileID/edit", props: props)
+    }
+    guard let fileID = props["fileID"] as? String else { return nil }
+    return CoreHostingController(FileEditorView(context: props.context, fileID: fileID))
 }
 
 private extension Props {

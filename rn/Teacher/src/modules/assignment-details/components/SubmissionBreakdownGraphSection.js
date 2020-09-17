@@ -85,7 +85,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
     let notSubmittedLabel = i18n('Not Submitted')
 
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
-    let ids = ['graded', 'ungraded', 'not_submitted']
+    let ids = ['graded', 'ungraded', 'notSubmitted']
 
     let noSubmissions = submissionTypes.includes('none')
     if (noSubmissions) { return this.renderNoSubmissions() }
@@ -110,7 +110,7 @@ export class SubmissionBreakdownGraphSection extends Component<SubmissionBreakdo
       <View style={[style.container, this.props.style, paperOnly && { paddingLeft: vars.padding / 2 }]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={!paperOnly && style.common} key={`submission_dial_highlight_${index}`}
-            testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
+            testID={`AssignmentDetails.Submissions.${ids[index]}Dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
             <View>
               <SubmissionGraph
                 label={labels[index]}

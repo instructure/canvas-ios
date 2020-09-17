@@ -56,13 +56,7 @@ export function getContextFolderHierarchy (context: CanvasContext, contextID: st
 }
 
 export function getFolder (folderID: string): ApiPromise<Folder> {
-  const url = `folders/${folderID}`
-  const options = {
-    params: {
-      include: ['usage_rights'],
-    },
-  }
-  return httpClient.get(url, options)
+  return httpClient.get(`folders/${folderID}`)
 }
 
 export function getFile (fileID: string): ApiPromise<File> {

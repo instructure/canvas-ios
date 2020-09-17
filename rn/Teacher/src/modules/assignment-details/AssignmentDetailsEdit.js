@@ -26,24 +26,21 @@ import { updateMapStateToProps, type AssignmentDetailsProps } from './map-state-
 import AssignmentActions from '../assignments/actions'
 import i18n from 'format-message'
 import AssignmentDatesEditor from './components/AssignmentDatesEditor'
-import { TextInput, Text, FormLabel } from '../../common/text'
+import { TextInput, FormLabel } from '../../common/text'
 import ModalOverlay from '../../common/components/ModalOverlay'
 import UnmetRequirementBanner from '../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
 import { alertError } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { colors, createStyleSheet } from './../../common/stylesheet'
-import images from '../../images/'
-import DisclosureIndicator from '../../common/components/DisclosureIndicator'
+import { createStyleSheet } from './../../common/stylesheet'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../common/components/rows/RowWithDetail'
 import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
+import RichContentEditor from '../../common/components/RichContentEditor'
 import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
-  TouchableHighlight,
   LayoutAnimation,
-  Image,
   NativeModules,
 } from 'react-native'
 import { Picker } from '@react-native-community/picker'
@@ -111,7 +108,12 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
 
   _scrollToInput = (event: any) => {
     const input = ReactNative.findNodeHandle(event.target)
-    this.refs.scrollView.scrollToFocusedInput(input)
+    this.scrollView.scrollToFocusedInput(input)
+  }
+
+  _scrollToRCE = () => {
+    const input = ReactNative.findNodeHandle(this.editor)
+    this.scrollView.scrollToFocusedInput(input)
   }
 
   renderDataMapPicker = () => {
@@ -172,7 +174,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
           <UnmetRequirementBanner text={this.state.validation.invalid} visible={this.state.validation.invalid} testID={'assignmentDetailsEdit.unmet-requirement-banner'}/>
           <KeyboardAwareScrollView
             style={style.container}
-            ref='scrollView'
+            ref={scrollView => { this.scrollView = scrollView }}
             keyboardShouldPersistTaps='handled'
             enableAutoAutomaticScroll={false}
           >
@@ -185,19 +187,16 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
 
             {/* Description */}
             <FormLabel>{sectionDescription}</FormLabel>
-            <TouchableHighlight
-              testID='edit-description'
-              accessibilityTraits={['button']}
-              onPress={this._editDescription}
-            >
-              <View style={[style.row, style.topRow, style.twoColumnRow]}>
-                <View style={style.buttonInnerContainer}>
-                  <Image source={images.edit} style={[style.buttonImage, { tintColor: colors.buttonPrimaryBackground }]} />
-                  <Text style={[style.buttonText, { color: colors.buttonPrimaryBackground }]}>{i18n('Edit Description')}</Text>
-                </View>
-                <DisclosureIndicator />
-              </View>
-            </TouchableHighlight>
+            <View style={style.description}>
+              <RichContentEditor
+                ref={(r) => { this.editor = r }}
+                onFocus={this._scrollToRCE}
+                html={this.state.assignment.description}
+                placeholder={i18n('Description')}
+                uploadContext={`courses/${this.props.courseID}/files`}
+                context={`courses/${this.props.courseID}`}
+              />
+            </View>
 
             {/* Points */}
             <FormLabel>{sectionDetails}</FormLabel>
@@ -256,18 +255,6 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     this.updateFromInput(key, value)
   }
 
-  _editDescription = () => {
-    this.props.navigator.show('/rich-text-editor', { modal: true, modalPresentationStyle: 'fullscreen' }, {
-      onChangeValue: (value) => { this.updateFromInput('description', value) },
-      defaultValue: this.state.assignment.description,
-      placeholder: i18n('Description'),
-      showToolbar: 'always',
-      attachmentUploadPath: `/courses/${this.props.courseID}/files`,
-      context: 'courses',
-      contextID: this.props.courseID,
-    })
-  }
-
   pickerValueDidChange (value: any) {
     if (this.state.currentAssignmentKey) {
       this.state.assignment[this.state.currentAssignmentKey] = value
@@ -300,8 +287,7 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     return assignment[key]
   }
 
-  validateChanges (): Validation {
-    const assignment = this.state.assignment
+  validateChanges (assignment): Validation {
     let requiredText = i18n('Invalid field')
 
     let validator = {
@@ -344,8 +330,11 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
     return validator
   }
 
-  actionDonePressed = () => {
-    const validator = this.validateChanges()
+  actionDonePressed = async () => {
+    const description = await this.editor?.getHTML() ?? ''
+    const assignment = { ...this.state.assignment, description }
+
+    const validator = this.validateChanges(assignment)
 
     if (validator.invalid !== '') {
       this.setState({ validation: validator })
@@ -353,14 +342,14 @@ export class AssignmentDetailsEdit extends Component<AssignmentDetailsProps, any
       return
     }
 
-    const updatedAssignment = this.datesEditor.updateAssignment(this.state.assignment)
+    const updatedAssignment = this.datesEditor.updateAssignment(assignment)
     this.setState({
       pending: true,
       assignment: updatedAssignment,
       validation: validator,
     })
 
-    this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignmentDetails)
+    return this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignmentDetails)
   }
 
   actionCancelPressed = () => {
@@ -466,6 +455,14 @@ const style = createStyleSheet((colors, vars) => ({
     marginRight: 8,
     height: 18,
     width: 18,
+  },
+  description: {
+    borderTopWidth: vars.hairlineWidth,
+    borderTopColor: colors.borderMedium,
+    borderBottomWidth: vars.hairlineWidth,
+    borderBottomColor: colors.borderMedium,
+    backgroundColor: colors.backgroundLightest,
+    minHeight: 200,
   },
 }))
 

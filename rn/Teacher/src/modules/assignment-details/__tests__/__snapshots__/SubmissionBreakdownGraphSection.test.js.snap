@@ -24,7 +24,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -110,7 +110,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -196,7 +196,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -224,7 +224,7 @@ exports[`render 0 submissions 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -245,7 +245,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -301,7 +301,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -387,7 +387,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -473,7 +473,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -501,7 +501,7 @@ exports[`render 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -522,7 +522,7 @@ exports[`render 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -578,7 +578,7 @@ exports[`render 1 needs grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -664,7 +664,7 @@ exports[`render 1 needs grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -750,7 +750,7 @@ exports[`render 1 needs grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -778,7 +778,7 @@ exports[`render 1 needs grading 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -799,7 +799,7 @@ exports[`render 1 needs grading 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -855,7 +855,7 @@ exports[`render 2 need grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -941,7 +941,7 @@ exports[`render 2 need grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1027,7 +1027,7 @@ exports[`render 2 need grading 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1055,7 +1055,7 @@ exports[`render 2 need grading 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -1076,7 +1076,7 @@ exports[`render 2 need grading 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -1132,7 +1132,7 @@ exports[`render loading with pending set 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1212,7 +1212,7 @@ exports[`render loading with pending set 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1292,7 +1292,7 @@ exports[`render loading with pending set 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1320,7 +1320,7 @@ exports[`render loading with pending set 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -1341,7 +1341,7 @@ exports[`render loading with pending set 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -1391,7 +1391,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1477,7 +1477,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1563,7 +1563,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1591,7 +1591,7 @@ exports[`render multiple data points  1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -1612,7 +1612,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -1666,7 +1666,7 @@ exports[`render on paper submission type 1`] = `
     accessibilityTraits="button"
     onPress={[Function]}
     style={false}
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1826,7 +1826,7 @@ exports[`render undefined submission type 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    testID="AssignmentDetails.Submissions.gradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1912,7 +1912,7 @@ exports[`render undefined submission type 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    testID="AssignmentDetails.Submissions.ungradedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -1998,7 +1998,7 @@ exports[`render undefined submission type 1`] = `
         "flex": 1,
       }
     }
-    testID="assignment-details.submission-breakdown-graph-section.not_submitted-dial"
+    testID="AssignmentDetails.Submissions.notSubmittedDial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -2026,7 +2026,7 @@ exports[`render undefined submission type 1`] = `
             progress={0}
             showsText={false}
             size={70}
-            testID="submissions.submission-graph.not_submitted-progress-view"
+            testID="submissions.submission-graph.notSubmitted-progress-view"
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -2047,7 +2047,7 @@ exports[`render undefined submission type 1`] = `
               },
             ]
           }
-          testID="submissions.submission-graph.not_submitted-title-lbl"
+          testID="submissions.submission-graph.notSubmitted-title-lbl"
         >
           Not Submitted
         </Text>

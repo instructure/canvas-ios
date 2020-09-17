@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ He hapa i te wā e uta ana Ihirangi";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "He hapa ohorere i puta";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Whakakore";
-
 /* No comment provided by engineer. */
 "Collapse" = "Hinga";
-
-/* No comment provided by engineer. */
-"Comments" = "Ngā Kōrerorero";
-
-/* No comment provided by engineer. */
-"Delete" = "Muku";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Muku Kōrero";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Pana";
 
 /* No comment provided by engineer. */
 "Done" = "Kua mahia";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Tikina ngā koeke mō";
-
-/* Inbox tab title */
-"Inbox" = "Pouakauru";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ko te rā muhu i whakawhiwhia mai i API.";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "Neke Taputapu Waho";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Tuwhera i roto i te Safari";
-
-/* No comment provided by engineer. */
-"Open in…" = "Huaki i roto ī…";
-
-/* button to read more of the description */
-"Read More" = "Pānuitia atu";
-
-/* No comment provided by engineer. */
-"Remove" = "Tangohia";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Kua tangohia %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Kua tangohia %1$@ e %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Whakautu";
-
-/* No comment provided by engineer. */
-"Style" = "Kāhua";
 

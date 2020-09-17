@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Add Attachments";
 
 /* No comment provided by engineer. */
+"Add content" = "Add content";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Add Planner Note";
+
+/* No comment provided by engineer. */
+"Add Title" = "Add Title";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Added To Conversation";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Announcement Replies";
+
+/* No comment provided by engineer. */
+"Anyone" = "Anyone";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Appointment Availability";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Assignment Missing";
+
+/* No comment provided by engineer. */
+"Assignments" = "Assignments";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
@@ -176,7 +191,7 @@
 "Camera" = "Camera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Camera not available";
+"Can Edit" = "Can Edit";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Can’t find your school? Try typing the full school URL.";
@@ -284,6 +299,9 @@
 "Conferences" = "Conferences";
 
 /* No comment provided by engineer. */
+"Content" = "Content";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Content Link Error";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Create Account";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Current Enrolments";
+
+/* No comment provided by engineer. */
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Designers";
 
 /* No comment provided by engineer. */
+"Details" = "Details";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Developer Menu";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Discussions";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Disk Error";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Dismiss";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edit attachment (none)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Edit Page";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edit Recipients";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "Failed. Tap for options";
 
 /* No comment provided by engineer. */
+"favorite" = "favourite";
+
+/* No comment provided by engineer. */
 "file" = "file";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Front Page";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Future Enrolments";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Graded";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Graded Surveys";
 
 /* No comment provided by engineer. */
 "Grades" = "Grades";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "I can't get things done until I hear back from you";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "I don’t have a Canvas account";
+"I don't have a Canvas account" = "I don't have a Canvas account";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "I have a Canvas account";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "It looks like assignments haven’t been created in this space yet.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "It looks like there aren’t any subjects associated with this account. Visit the web to create a subject today.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any subjects as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "Needs Grading";
 
 /* No comment provided by engineer. */
+"Network Error" = "Network Error";
+
+/* No comment provided by engineer. */
 "Never" = "Never";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "New Message";
+
+/* No comment provided by engineer. */
+"New Page" = "New Page";
 
 /* No comment provided by engineer. */
 "New To Do" = "New To Do";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "No image found from image picker";
 
 /* No comment provided by engineer. */
+"No matching courses" = "No matching subjects";
+
+/* No comment provided by engineer. */
 "No Modules" = "No Modules";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "Not Urgent";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Notification Error";
+
+/* No comment provided by engineer. */
 "Notifications" = "Notifications";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "On Paper";
+
+/* No comment provided by engineer. */
+"Only members" = "Only members";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Only instructors";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Open %@ user preferences";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Practice Quizzes";
+
+/* No comment provided by engineer. */
 "Preferences" = "Preferences";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profile Menu";
+
+/* No comment provided by engineer. */
+"Publish" = "Publish";
 
 /* No comment provided by engineer. */
 "published" = "published";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
+
+/* Button to report an error */
+"Report" = "Report";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Report a Problem";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Sent";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Set as Front Page";
 
 /* No comment provided by engineer. */
 "Set text color" = "Set text colour";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Success!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Surveys";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Instructors";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Instructors and students";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Tutors";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "There are no pages to display yet.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "There was a problem registering your device for push notifications.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Time elapsed";
 
 /* No comment provided by engineer. */
+"Title" = "Title";
+
+/* No comment provided by engineer. */
 "Title..." = "Title...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "to %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.";
 
 /* No comment provided by engineer. */
 "To Do" = "To Do";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Undo";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Unknown Error";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Unlimited";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploading %1$@ is at %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Uploading %1$@ of %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Your child's subjects might not be published yet.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Your Email";

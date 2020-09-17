@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Esteu a punt per tancar la sessió?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Segur que voleu marxar d'aquest qüestionari?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Pregunta'm més endavant";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Fitxers adjunts existents…";
 
+/* Exit button to leave the quiz */
+"Exit" = "Surt";
+
 /* Title for an external tool submission */
 "External Tool" = "Eina externa";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Importa de Dropbox";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Safata d'entrada";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Té problemes";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap qüestionari.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Està buit; què estàs fent encara aquí?";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Inicieu l'eina externa";
+
+/* Leave the quiz */
+"Leave" = "Deixa";
 
 /* Title for legal section on the about page */
 "Legal" = "Jurídic";
@@ -912,6 +924,9 @@
 "No Notifications" = "No hi ha cap notificació";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "No hi ha cap qüestionari";
+
+/* No comment provided by engineer. */
 "No recipients" = "No hi ha cap destinatari";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "No s'ha qualificat (0 de %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "No entregat";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Nota: Els fitxers multimèdia no estan immediatament disponibles per reproduir-los mentre es processen al servidor.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Avís sobre el qüestionari";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Informació del qüestionari";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Qüestionari bloquejat";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Comença a enregistrar un comentari sobre l'element multimèdia";
 
+/* Stay on the quiz view */
+"Stay" = "Roman";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Manteniu la sessió iniciada";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Entregat";
+
+/* Submitted date */
+"Submitted %@" = "Entregat %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "S'està entregant…";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "S'ha produït un problema en iniciar Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar els qüestionaris. Estireu per actualitzar per tornar-ho a provar.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "S'ha produït un error en carregar el document.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Mostra el fitxer %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Mostra els resultats";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Mireu l'intent d'entrega de %1$d. %2$@";

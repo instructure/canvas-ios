@@ -353,4 +353,38 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.dueSection.isHidden, false)
         XCTAssertEqual(controller.submissionsSection.isHidden, true)
     }
+
+    func testEditAndDeleteOwnPostsDisabled() {
+        let userID = environment.currentSession!.userID
+        api.mock(controller.entries, value: .make(
+            participants: [
+                .make(id: 2, display_name: "Bob"),
+                .make(id: 3, display_name: "Ruth"),
+            ],
+            unread_entries: [],
+            forced_entries: [2],
+            view: [
+                .make(id: 1, user_id: 2, message: """
+                <p>Cube rule all the way.</p>
+                <p>Oreos are sandwiches.</p>
+                """, replies: [
+                    .make(id: 2, user_id: ID(userID), parent_id: 1, message: "<p>I disagree.</p>", replies: [
+                        .make(id: 3, user_id: 2, parent_id: 2, message: "Why?"),
+                    ]),
+                ]),
+            ],
+            new_entries: []
+        ))
+        api.mock(controller.topic, value: .make(
+            id: 1,
+            assignment_id: 1,
+            title: "What is a sandwich?",
+            permissions: .make(attach: true, update: false, reply: true, delete: false)
+        ))
+        controller.view.layoutIfNeeded()
+        controller.showMoreOptions(for: "2")
+        let sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet?.actions.count, 1)
+        XCTAssertEqual(sheet?.actions.first?.title, "Mark as Unread")
+    }
 }

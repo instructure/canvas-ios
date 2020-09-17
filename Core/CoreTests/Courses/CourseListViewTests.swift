@@ -30,7 +30,7 @@ class CourseListViewTests: CoreTestCase {
         .make(id: "4", name: "Concluded 1", workflow_state: .completed),
         .make(id: "5", name: "Concluded 2", end_at: Clock.now.addDays(-10)),
         .make(id: "6", name: "Concluded 10", term: .make(end_at: Clock.now.addDays(-2))),
-        .make(id: "7", name: "Future Course", term: .make(start_at: Clock.now.addDays(2))),
+        .make(id: "7", name: "Future Course", term: .make(name: "Fall 3020", start_at: Clock.now.addDays(2))),
     ]
 
     var props = CourseListView.Props()
@@ -98,21 +98,28 @@ class CourseListViewTests: CoreTestCase {
         XCTAssertNotNil(tree?.children(id: "loading"))
     }
 
+    func testText() throws {
+        XCTAssertEqual(cell("7")?.child(.text, id: "courseName")?.info("value"), "Future Course")
+        XCTAssertEqual(cell("7")?.child(.text, id: "term")?.info("value"), "Fall 3020")
+        XCTAssertEqual(cell("7")?.child(.text, id: "role")?.info("value"), "Student")
+    }
+
     func testFavorite() throws {
-        XCTAssertEqual(cell("2")?[0]?.id, "not favorite")
+        XCTAssertNotNil(cell("2")?.child(id: "not favorite"))
         allCourses.first { $0.id == "2" }?.isFavorite = true
-        XCTAssertEqual(cell("2")?[0]?.id, "favorite")
+        XCTAssertNotNil(cell("2")?.child(id: "favorite"))
     }
 
     func testPublishedIcon() throws {
         environment.app = .teacher
-        XCTAssertEqual(cell("2")?[1]?.id, "unpublished")
+        XCTAssertNotNil(cell("2")?.child(id: "unpublished"))
         allCourses.first { $0.id == "2" }?.isPublished = true
-        XCTAssertEqual(cell("2")?[1]?.id, "published")
+        XCTAssertNotNil(cell("2")?.child(id: "published"))
     }
 
     func testStudentNoPublishedIcon() throws {
-        XCTAssertEqual(cell("2")?[0]?.id, "not favorite")
-        XCTAssertNil(cell("2")?[1])
+        XCTAssertNotNil(cell("2")?.child(id: "not favorite"))
+        XCTAssertNil(cell("2")?.child(id: "unpublished"))
+        XCTAssertNil(cell("2")?.child(id: "published"))
     }
 }

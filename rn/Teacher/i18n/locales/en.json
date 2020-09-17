@@ -20,9 +20,6 @@
   "account_group_cb00ca73": {
     "message": "Account Group"
   },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "Account has no Terms of Use"
-  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home."
   },
@@ -76,9 +73,6 @@
   },
   "all_4321c3a1": {
     "message": "All"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "All annotations saved."
   },
   "all_courses_a7dbb853": {
     "message": "All Courses"
@@ -218,17 +212,8 @@
   "back_2900f52a": {
     "message": "Back"
   },
-  "black_8d713c75": {
-    "message": "black"
-  },
-  "blue_7aca5197": {
-    "message": "blue"
-  },
   "blue_daf8fea9": {
     "message": "Blue"
-  },
-  "bold_34b9d97e": {
-    "message": "Bold"
   },
   "brick_f2656265": {
     "message": "Brick"
@@ -503,9 +488,6 @@
   "edit_dashboard_7e5b7043": {
     "message": "Edit Dashboard"
   },
-  "edit_description_1206e0a8": {
-    "message": "Edit Description"
-  },
   "edit_file_c560115a": {
     "message": "Edit File"
   },
@@ -532,9 +514,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "Error Saving Grade"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "Error Saving. Tap to retry."
   },
   "everyone_854554dd": {
     "message": "Everyone"
@@ -680,12 +659,6 @@
   "green_15af4778": {
     "message": "Green"
   },
-  "green_d46e687c": {
-    "message": "green"
-  },
-  "grey_56f61c1": {
-    "message": "grey"
-  },
   "group_a8f5ed9c": {
     "message": "Group"
   },
@@ -746,12 +719,6 @@
   "input_1d1d9b8e": {
     "message": "Input"
   },
-  "insert_image_42d30344": {
-    "message": "Insert Image"
-  },
-  "insert_link_6dc23cae": {
-    "message": "Insert Link"
-  },
   "invalid_field_54480fae": {
     "message": "Invalid field"
   },
@@ -763,9 +730,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "It seems there aren''t any valid submissions to grade."
-  },
-  "italic_ac45200a": {
-    "message": "Italic"
   },
   "item_count_plural_one_item_other_items_88319c63": {
     "message": "{ item_count, plural,\n    one {# item}\n  other {# items}\n}"
@@ -859,9 +823,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates"
-  },
-  "my_files_eea33f44": {
-    "message": "My Files"
   },
   "n_a_d6f6c42f": {
     "message": "N/A"
@@ -1037,12 +998,6 @@
   "orange_81386a62": {
     "message": "Orange"
   },
-  "orange_86946f54": {
-    "message": "orange"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "Ordered List"
-  },
   "out_of_points_number_42209979": {
     "message": "Out of { points, number }"
   },
@@ -1130,9 +1085,6 @@
   "pumpkin_904428d5": {
     "message": "Pumpkin"
   },
-  "purple_71d4acca": {
-    "message": "purple"
-  },
   "purple_7678a9fc": {
     "message": "Purple"
   },
@@ -1172,12 +1124,6 @@
   "red_8258edf3": {
     "message": "Red"
   },
-  "red_ba15ab13": {
-    "message": "red"
-  },
-  "redo_363c58b7": {
-    "message": "Redo"
-  },
   "remove_attachment_81f30aa3": {
     "message": "Remove attachment"
   },
@@ -1201,9 +1147,6 @@
   },
   "report_a_problem_4d48624a": {
     "message": "Report a Problem"
-  },
-  "request_could_not_be_completed_157615ef": {
-    "message": "Request could not be completed."
   },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
@@ -1306,9 +1249,6 @@
   },
   "set_home_to_82ab5119": {
     "message": "Set ''Home'' to..."
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "Set text color to { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Settings"
@@ -1418,15 +1358,6 @@
   "teal_f729a294": {
     "message": "Teal"
   },
-  "terms_of_use_62ee73ad": {
-    "message": "Terms Of Use"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "Text Color ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "Text Color { colorName } ({ colorHex })"
-  },
   "text_submission_935eeb5": {
     "message": "Text Submission"
   },
@@ -1483,9 +1414,6 @@
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
-  },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "There was a problem retrieving the Terms Of Use"
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "There was a problem saving the grade. Please try again."
@@ -1589,9 +1517,6 @@
   "un_starred_8fef021f": {
     "message": "Un-starred"
   },
-  "undo_a7be8fef": {
-    "message": "Undo"
-  },
   "unexpected_error_93991f40": {
     "message": "Unexpected Error"
   },
@@ -1600,9 +1525,6 @@
   },
   "unlimited_ff19e96d": {
     "message": "Unlimited"
-  },
-  "unordered_list_3c1650b3": {
-    "message": "Unordered List"
   },
   "unpin_a318452a": {
     "message": "Unpin"
@@ -1689,14 +1611,8 @@
   "welcome_73d18b4d": {
     "message": "Welcome!"
   },
-  "white_463b4bf9": {
-    "message": "white"
-  },
   "whoops_de2cf9fc": {
     "message": "Whoops!"
-  },
-  "yellow_4b5532b3": {
-    "message": "yellow"
   },
   "yes_dde87d5": {
     "message": "Yes"

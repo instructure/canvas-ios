@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Er du klar til å logge ut?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Er du sikker på ut du vil gå ut av denne testen?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Spør meg senere";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Eksisterende vedlegg...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Avslutt";
+
 /* Title for an external tool submission */
 "External Tool" = "Eksternt verktøy";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Importere fra Dropbox";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Innboks";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Den har problemer";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Det ser ut som det ikke er opprettet tester på dette stedet ennå.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Den er tom, hva driver du med her fremdeles.";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Åpne eksternt verktøy";
+
+/* Leave the quiz */
+"Leave" = "Forlate";
 
 /* Title for legal section on the about page */
 "Legal" = "Rettslig";
@@ -912,6 +924,9 @@
 "No Notifications" = "Ingen anmerkninger";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Ingen tester";
+
+/* No comment provided by engineer. */
 "No recipients" = "Ingen mottakere";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Ikke karaktersatt (0 out of %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Ikke levert";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Notat: Mediefiler er ikke tilgjengelig for avspilling mens de behandles av server.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Testvarsel";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Testdetaljer";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Test låst";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Begynner opptak av et mediainnhold";
 
+/* Stay on the quiz view */
+"Stay" = "Bli";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Forbli innlogget";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Sendt inn";
+
+/* Submitted date */
+"Submitted %@" = "Innlevert %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Sender inn...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Det oppsto et problem med å starte Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Det oppstod en feil under lasting av tester. Dra for å oppdatere og prøve på nytt.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Det oppsto en feil med å laste dokumentet.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Vis fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Vis resultater";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Se innleveringsforsøk %1$d. %2$@";

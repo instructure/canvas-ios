@@ -14,9 +14,6 @@
 "Add Student" = "Add Student";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Add student with...";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Add students at the top or visit the global menu to masquerade as a student.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Alerts";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Already have an account? %@";
+"Announcement" = "Announcement";
 
 /* No comment provided by engineer. */
-"Announcement" = "Announcement";
+"Assignment Details" = "Assignment Details";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Assignment reminder";
 
 /* No comment provided by engineer. */
 "Back" = "Back";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "By tapping ‘Create Account’, you agree to the %1$@ and acknowledge the %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Calendar";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Compose Message";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Compose message to teachers";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Compose new message";
@@ -65,10 +62,13 @@
 "Courses" = "Courses";
 
 /* No comment provided by engineer. */
-"Create Account" = "Create Account";
+"Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Current student: %@. Tap to switch students";
+"Date" = "Date";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Domain mismatch";
 
 /* No comment provided by engineer. */
-"Email address" = "Email address";
+"Due" = "Due";
 
 /* No comment provided by engineer. */
-"Email..." = "Email...";
+"Event Details" = "Event Details";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Event reminder";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Front Page";
-
-/* No comment provided by engineer. */
-"Full name" = "Full name";
-
-/* No comment provided by engineer. */
-"Full name..." = "Full name...";
 
 /* No comment provided by engineer. */
 "Grades" = "Marks";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "It looks like you’re trying to add a student. Try adding this student after you’ve logged in";
 
 /* No comment provided by engineer. */
+"Location" = "Location";
+
+/* No comment provided by engineer. */
 "Login required" = "Login required";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n/a";
 
 /* No comment provided by engineer. */
+"N/A" = "N/A";
+
+/* No comment provided by engineer. */
 "No Alerts" = "No Alerts";
 
 /* No comment provided by engineer. */
 "No Courses" = "No Courses";
+
+/* No comment provided by engineer. */
+"No Due Date" = "No Due Date";
 
 /* No comment provided by engineer. */
 "No Grade" = "No Grade";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Pairing Code";
 
 /* No comment provided by engineer. */
-"Password" = "Password";
-
-/* No comment provided by engineer. */
-"Password is required" = "Password is required";
-
-/* No comment provided by engineer. */
-"Password..." = "Password...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Permission Needed";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Please enter an email address";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Please enter full name";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Privacy Policy";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR Code";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Regarding: %1$@, Assignment - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Remind Me";
+
+/* No comment provided by engineer. */
 "Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Set a date and time to be notified of this event.";
 
 /* No comment provided by engineer. */
 "Settings" = "Settings";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Settings. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Sign In";
-
 /* No comment provided by engineer. */
 "Summary" = "Summary";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Terms of Service";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "The value must a number between 0 and 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "There was an error loading alerts. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "There was an error loading courses. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "There was an error loading students. Pull to refresh to try again.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "You’re all caught up";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "Your child’s courses might not be published yet.";
 

@@ -118,6 +118,7 @@ export default class URLSubmissionViewer extends Component<Props, State> {
 
     return (
       <ScrollView
+        style={styles.root}
         contentContainerStyle={{ flex: 1 }}
         contentInset={{ bottom: this.props.drawerInset }}
       >
@@ -141,6 +142,9 @@ export default class URLSubmissionViewer extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
+  root: {
+    padding: 16,
+  },
   scrollView: {
     alignItems: 'center',
     justifyContent: 'flex-start',

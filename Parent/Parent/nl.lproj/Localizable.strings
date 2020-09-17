@@ -14,9 +14,6 @@
 "Add Student" = "Cursist toevoegen";
 
 /* No comment provided by engineer. */
-"Add student with..." = "Cursist toevoegen met…";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "Voeg bovenaan cursisten toe of open het algemene menu om je voor te doen als cursist.";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "Waarschuwingen";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "Heb je al een account? %@";
+"Announcement" = "Aankondiging";
 
 /* No comment provided by engineer. */
-"Announcement" = "Aankondiging";
+"Assignment Details" = "Opdrachtdetails";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "Opdrachtherinnering";
 
 /* No comment provided by engineer. */
 "Back" = "Terug";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "Door op ‘Account maken’ te tikken, ga je akkoord met de %1$@ en erken je het %2$@.";
 
 /* Calendar Tab */
 "Calendar" = "Kalender";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "Bericht opstellen";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "Bericht opstellen voor cursusleiders";
 
 /* No comment provided by engineer. */
 "Compose new message" = "Nieuw bericht opstellen";
@@ -65,10 +62,13 @@
 "Courses" = "Cursussen";
 
 /* No comment provided by engineer. */
-"Create Account" = "Account maken";
+"Current student: %@. Tap to switch students" = "Huidige cursist: %@. Tik om van cursist te wisselen";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "Huidige cursist: %@. Tik om van cursist te wisselen";
+"Date" = "Datum";
+
+/* No comment provided by engineer. */
+"Description" = "Beschrijving";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Verwijderen";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "Domein komt niet overeen";
 
 /* No comment provided by engineer. */
-"Email address" = "E-mailadres";
+"Due" = "Inleverdatum";
 
 /* No comment provided by engineer. */
-"Email..." = "E-mail...";
+"Event Details" = "Details van gebeurtenis";
 
 /* No comment provided by engineer. */
 "Event reminder" = "Evenementherinnering";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "Voorpagina";
-
-/* No comment provided by engineer. */
-"Full name" = "Volledige naam";
-
-/* No comment provided by engineer. */
-"Full name..." = "Volledige naam...";
 
 /* No comment provided by engineer. */
 "Grades" = "Cijfers";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "Het lijkt alsof je een cursist probeert toe te voegen. Probeer deze cursist toe te voegen nadat je bent ingelogd";
 
 /* No comment provided by engineer. */
+"Location" = "Locatie";
+
+/* No comment provided by engineer. */
 "Login required" = "Inloggen vereist";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "n.v.t.";
 
 /* No comment provided by engineer. */
+"N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
 "No Alerts" = "Geen waarschuwingen";
 
 /* No comment provided by engineer. */
 "No Courses" = "Geen cursussen";
+
+/* No comment provided by engineer. */
+"No Due Date" = "Geen inleverdatum";
 
 /* No comment provided by engineer. */
 "No Grade" = "Geen beoordeling";
@@ -143,25 +146,7 @@
 "Pairing Code" = "Koppelingscode";
 
 /* No comment provided by engineer. */
-"Password" = "Wachtwoord";
-
-/* No comment provided by engineer. */
-"Password is required" = "Wachtwoord is vereist";
-
-/* No comment provided by engineer. */
-"Password..." = "Wachtwoord...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "Toestemming vereist";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "Voer een e-mailadres in";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "Voer volledige naam in";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "Privacybeleid";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR-code";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "Betreffende: %1$@, opdracht -  %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "Stuur me een herinnering";
+
+/* No comment provided by engineer. */
 "Retry" = "Opnieuw proberen";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "Stel een datum en tijd in waarop je een melding wilt krijgen voor deze gebeurtenis.";
 
 /* No comment provided by engineer. */
 "Settings" = "Instellingen";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "Instellingen. %@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "Aanmelden";
-
 /* No comment provided by engineer. */
 "Summary" = "Samenvatting";
 
 /* No comment provided by engineer. */
 "Syllabus" = "Syllabus";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "Servicevoorwaarden";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "De waarde moet een getal zijn tussen 0 en 100";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van waarschuwingen. Ophalen om te vernieuwen om het opnieuw te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cursussen. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van cursisten. Ophalen om te vernieuwen om het opnieuw te proberen.";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Je bent helemaal bij!";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "De cursussen van je kind zijn mogelijk nog niet gepubliceerd.";
 

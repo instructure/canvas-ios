@@ -51,11 +51,3 @@ export type ExternalToolLaunchDefinitionGlobalNavigationItem = {
   title: string,
   url: string,
 }
-
-export type TermsOfService = {
-  id: string,
-  terms_type: string,
-  passive: boolean,
-  account_id: string,
-  content: string,
-}

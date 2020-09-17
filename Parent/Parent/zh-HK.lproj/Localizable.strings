@@ -14,9 +14,6 @@
 "Add Student" = "添加學生";
 
 /* No comment provided by engineer. */
-"Add student with..." = "添加學生…";
-
-/* No comment provided by engineer. */
 "Add students at the top or visit the global menu to masquerade as a student." = "在頂部添加學生或瀏覽全域選單以便以學生身份檢視。";
 
 /* No comment provided by engineer. */
@@ -29,19 +26,16 @@
 "Alerts" = "提醒";
 
 /* No comment provided by engineer. */
-"Already have an account? %@" = "已經擁有帳戶？%@";
+"Announcement" = "通告";
 
 /* No comment provided by engineer. */
-"Announcement" = "通告";
+"Assignment Details" = "作業詳細資料";
 
 /* No comment provided by engineer. */
 "Assignment reminder" = "作業提醒";
 
 /* No comment provided by engineer. */
 "Back" = "返回";
-
-/* No comment provided by engineer. */
-"By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@." = "點擊「創建帳戶」，代表我同意%1$@，並了解%2$@。";
 
 /* Calendar Tab */
 "Calendar" = "行事曆";
@@ -51,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Compose Message" = "撰寫訊息";
+
+/* No comment provided by engineer. */
+"Compose message to teachers" = "撰寫給教師的訊息";
 
 /* No comment provided by engineer. */
 "Compose new message" = "撰寫新訊息";
@@ -65,10 +62,13 @@
 "Courses" = "課程";
 
 /* No comment provided by engineer. */
-"Create Account" = "建立帳戶";
+"Current student: %@. Tap to switch students" = "目前的學生：%@. 點選以轉換學生";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "目前的學生：%@. 點選以轉換學生";
+"Date" = "日期";
+
+/* No comment provided by engineer. */
+"Description" = "描述";
 
 /* No comment provided by engineer. */
 "Dismiss" = "取消";
@@ -77,10 +77,10 @@
 "Domain mismatch" = "網域不相符";
 
 /* No comment provided by engineer. */
-"Email address" = "電郵地址";
+"Due" = "截止";
 
 /* No comment provided by engineer. */
-"Email..." = "電郵...";
+"Event Details" = "事件詳細資料";
 
 /* No comment provided by engineer. */
 "Event reminder" = "活動提醒";
@@ -90,12 +90,6 @@
 
 /* No comment provided by engineer. */
 "Front Page" = "首頁";
-
-/* No comment provided by engineer. */
-"Full name" = "全名";
-
-/* No comment provided by engineer. */
-"Full name..." = "全名...";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -116,6 +110,9 @@
 "It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "您似乎在嘗試添加學生。請在登入後再嘗試添加這名學生";
 
 /* No comment provided by engineer. */
+"Location" = "位置";
+
+/* No comment provided by engineer. */
 "Login required" = "需要登入";
 
 /* No comment provided by engineer. */
@@ -125,10 +122,16 @@
 "n/a" = "不適用";
 
 /* No comment provided by engineer. */
+"N/A" = "不適用";
+
+/* No comment provided by engineer. */
 "No Alerts" = "無提醒";
 
 /* No comment provided by engineer. */
 "No Courses" = "無課程";
+
+/* No comment provided by engineer. */
+"No Due Date" = "無截止日期";
 
 /* No comment provided by engineer. */
 "No Grade" = "無評分";
@@ -143,25 +146,7 @@
 "Pairing Code" = "配對代碼";
 
 /* No comment provided by engineer. */
-"Password" = "密碼";
-
-/* No comment provided by engineer. */
-"Password is required" = "需要輸入密碼";
-
-/* No comment provided by engineer. */
-"Password..." = "密碼...";
-
-/* No comment provided by engineer. */
 "Permission Needed" = "需要權限";
-
-/* No comment provided by engineer. */
-"Please enter an email address" = "請輸入電郵地址";
-
-/* No comment provided by engineer. */
-"Please enter full name" = "請輸入全名";
-
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Privacy Policy" = "隱私政策";
 
 /* No comment provided by engineer. */
 "QR Code" = "QR 碼";
@@ -178,7 +163,13 @@
 "Regarding: %@, Assignment - %@" = "關於：%1$@，作業 - %2$@";
 
 /* No comment provided by engineer. */
+"Remind Me" = "提醒我";
+
+/* No comment provided by engineer. */
 "Retry" = "重試";
+
+/* No comment provided by engineer. */
+"Set a date and time to be notified of this event." = "設定通知此活動的日期和時間。";
 
 /* No comment provided by engineer. */
 "Settings" = "設定";
@@ -186,23 +177,20 @@
 /* No comment provided by engineer. */
 "Settings. %@" = "設定。%@";
 
-/* Link text in 'Already have an account? Sign In */
-"Sign In" = "登入";
-
 /* No comment provided by engineer. */
 "Summary" = "摘要";
 
 /* No comment provided by engineer. */
 "Syllabus" = "課程大綱";
 
-/* Link text in 'By tapping ‘Create Account’, you agree to the %@ and acknowledge the %@.' */
-"Terms of Service" = "服務條款";
-
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "數值必須是一個介於 0 和 100 之間的數字";
 
 /* No comment provided by engineer. */
 "There was an error loading alerts. Pull to refresh to try again." = "載入提醒時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading courses. Pull to refresh to try again." = "載入課程時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
 "There was an error loading students. Pull to refresh to try again." = "載入學生時發生錯誤。提取以進行重新整理以再試一次。";
@@ -230,4 +218,7 @@
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "您已讀完所有新訊息";
+
+/* No comment provided by engineer. */
+"Your child’s courses might not be published yet." = "您孩子的課程可能尚未發佈。";
 

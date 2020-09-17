@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Um ein Konto zu erstellen, lassen Sie Ihren Studenten einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studenten-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\n        Wenn Ihr Student die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Anhänge hinzufügen";
 
 /* No comment provided by engineer. */
+"Add content" = "Inhalte hinzufügen";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Planungsnotiz hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Title" = "Titel hinzufügen";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Zur Konversation hinzugefügt";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Antworten auf Ankündigung";
+
+/* No comment provided by engineer. */
+"Anyone" = "Jeder";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Terminverfügbarkeit";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Aufgabe fehlt";
+
+/* No comment provided by engineer. */
+"Assignments" = "Aufgaben";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Versuch %d";
@@ -176,7 +191,7 @@
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Kamera nicht verfügbar";
+"Can Edit" = "Kann bearbeiten";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Finden Sie Ihre Schule nicht? Geben Sie den vollständigen URL der Schule ein.";
@@ -284,6 +299,9 @@
 "Conferences" = "Konferenzen";
 
 /* No comment provided by engineer. */
+"Content" = "Content";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Content-Link-Fehler";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Konto erstellen";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Aktuelle Einschreibungen";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuelle Position";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Designer";
 
 /* No comment provided by engineer. */
+"Details" = "Details";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Entwicklermenü";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Diskussionen";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Festplattenfehler";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Verwerfen";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Anhang bearbeiten (0)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Seite bearbeiten";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Empfänger bearbeiten";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "Fehlgeschlagen. Antippen für Optionen";
 
 /* No comment provided by engineer. */
+"favorite" = "Favorit";
+
+/* No comment provided by engineer. */
 "file" = "Datei";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Frontseite";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Zukünftige Einschreibungen";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "Benotet";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Benotete Umfragen";
 
 /* No comment provided by engineer. */
 "Grades" = "Noten";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "Ich kann ohne eine Antwort nicht weitermachen.";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Ich besitze kein Canvas-Konto";
+"I don't have a Canvas account" = "Ich besitze kein Canvas-Konto";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Ich besitze ein Canvas-Konto";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Wie es aussieht, wurden in diesem Raum noch keine Aufgaben erstellt.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Es scheint, dass mit diesem Konto keine Kurse verknüpft sind. Besuchen Sie das Internet, um heute einen Kurs zu erstellen.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Wie es aussieht, sind Sie in keinem Kurs als %@ angemeldet. Eine unserer anderen Apps passt möglicherweise besser. Antippen, um den APP-Store zu besuchen.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "Muss benotet werden";
 
 /* No comment provided by engineer. */
+"Network Error" = "Netzwerkfehler";
+
+/* No comment provided by engineer. */
 "Never" = "Nie";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "Neue Nachricht";
+
+/* No comment provided by engineer. */
+"New Page" = "Neue Seite";
 
 /* No comment provided by engineer. */
 "New To Do" = "Neue Aufgabe";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "Kein Bild von Image-Picker gefunden";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Keine passenden Kurse";
+
+/* No comment provided by engineer. */
 "No Modules" = "Keine Module";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "Nicht dringend";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Benachrichtigungsfehler";
+
+/* No comment provided by engineer. */
 "Notifications" = "Benachrichtigungen";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Als Papierdokument";
+
+/* No comment provided by engineer. */
+"Only members" = "Nur Mitglieder";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Nur Dozenten";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "%@-Benutzereinstellungen öffnen";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Übungsquizze";
+
+/* No comment provided by engineer. */
 "Preferences" = "Präferenzen";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Profilmenü";
+
+/* No comment provided by engineer. */
+"Publish" = "Veröffentlichen";
 
 /* No comment provided by engineer. */
 "published" = "veröffentlicht";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Auf die Anmerkung oder Kommentare antworten";
+
+/* Button to report an error */
+"Report" = "Bericht";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Ein Problem melden";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Gesendet";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Als Frontseite einstellen";
 
 /* No comment provided by engineer. */
 "Set text color" = "Textfarbe festlegen";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Erfolgreich!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Befragungen";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lehrassistent";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Dozenten";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Dozenten und Studenten";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Lehrassistenten";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Es gibt noch keine Seiten zum Anzeigen.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "Es gab ein Problem bei der Registrierung Ihres Geräts für Push-Benachrichtigungen.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Es gab ein Problem beim Abrufen der Nutzungsbedingungen.";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Verstrichene Zeit:";
 
 /* No comment provided by engineer. */
+"Title" = "Titel";
+
+/* No comment provided by engineer. */
 "Title..." = "Titel ...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "bis %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihren Studenten einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studenten-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus. Wenn Ihr Student die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
 
 /* No comment provided by engineer. */
 "To Do" = "Zu erledigen";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Rückgängig machen";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Unbekannter Fehler";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Unbegrenzt";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Hochladen %1$@ ist bei %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "%1$@ von [...] wird hochgeladen %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ihre untergeordneten Kurse sind möglicherweise noch nicht veröffentlicht.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "Der Speicher Ihres Geräts ist voll. Bitte geben Sie Speicherplatz frei, und versuchen Sie es erneut.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Ihre E-Mail";

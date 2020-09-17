@@ -57,7 +57,7 @@ public struct CourseListView: View {
     public var body: some View {
         let view: AnyView
         if allCourses.pending && allCourses.isEmpty {
-            view = AnyView(CircleProgressView.AsView.create().testID("loading"))
+            view = AnyView(CircleProgress().size().testID("loading"))
         } else if allCourses.isEmpty {
             view = AnyView(empty)
         } else {
@@ -214,11 +214,11 @@ public struct CourseListView: View {
         var favoriteButton: some View {
             Button(action: toggleFavorite) {
                 if pending {
-                    Image.starSolid.foregroundColor(.textDark).testID("pending")
+                    Icon.starSolid.foregroundColor(.textDark).testID("pending")
                 } else if course.isFavorite {
-                    Image.starSolid.foregroundColor(.textInfo).testID("favorite")
+                    Icon.starSolid.foregroundColor(.textInfo).testID("favorite")
                 } else {
-                    Image.starLine.foregroundColor(.textDark).testID("not favorite")
+                    Icon.starLine.foregroundColor(.textDark).testID("not favorite")
                 }
             }.frame(maxHeight: .infinity, alignment: .top)
                 .buttonStyle(PlainButtonStyle())
@@ -227,20 +227,23 @@ public struct CourseListView: View {
                 .accessibility(addTraits: course.isFavorite ? .isSelected : [])
         }
 
-        var enrollmentStrings: [String] {
-            [course.termName, course.enrollments?.first?.formattedRole].compactMap { $0 }
-        }
-
         var label: some View {
-            VStack(alignment: .leading) {
-                Text(course.name ?? "").font(.semibold16)
+            let termName = course.termName
+            let role = course.enrollments?.first?.formattedRole
+            return VStack(alignment: .leading) {
+                Text(course.name ?? "").testID("courseName").font(.semibold16)
                 HStack {
-                    ForEach(enrollmentStrings.interleave(separator: "|"), id: \.self) {
-                        Text($0)
-                            .foregroundColor(.textDark)
-                            .font(.medium14)
+                    if termName != nil {
+                        Text(termName!).testID("term")
                     }
-                }
+                    if termName != nil && role != nil {
+                        Text(verbatim: "|")
+                    }
+                    if role != nil {
+                        Text(role!).testID("role")
+                    }
+                }.foregroundColor(.textDark)
+                    .font(.medium14)
             }
         }
 
@@ -248,9 +251,9 @@ public struct CourseListView: View {
         var publishedIcon: some View {
             if env.app == .teacher {
                 if course.isPublished {
-                    Image.completeSolid.foregroundColor(.textSuccess).testID("published")
+                    Icon.completeSolid.foregroundColor(.textSuccess).testID("published")
                 } else {
-                    Image.noSolid.foregroundColor(.textDark).testID("unpublished")
+                    Icon.noSolid.foregroundColor(.textDark).testID("unpublished")
                 }
             }
         }

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда.\n        Если ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Добавить вложения";
 
 /* No comment provided by engineer. */
+"Add content" = "Добавить содержание";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Добавьте примечание планировщика";
+
+/* No comment provided by engineer. */
+"Add Title" = "Добавить заголовок";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Добавлено к разговору";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Ответы на объявление";
+
+/* No comment provided by engineer. */
+"Anyone" = "Все";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Доступность регистрации";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "Задание отсутствует";
+
+/* No comment provided by engineer. */
+"Assignments" = "Задания";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "Попытка %d";
@@ -176,7 +191,7 @@
 "Camera" = "Камера";
 
 /* No comment provided by engineer. */
-"Camera not available" = "Камера отсутствует";
+"Can Edit" = "Можно редактировать";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Не можете найти ваше учебное заведение? Попробуйте набрать полный адрес URL учебного заведения.";
@@ -284,6 +299,9 @@
 "Conferences" = "Конференции";
 
 /* No comment provided by engineer. */
+"Content" = "Содержимое";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ошибка ссылки на содержимое";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "Создать учетную запись";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "Текущие регистрации";
+
+/* No comment provided by engineer. */
 "Current position" = "Текущая позиция";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "Дизайнеры";
 
 /* No comment provided by engineer. */
+"Details" = "Подробные сведения";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Меню программиста";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "Обсуждения";
+
+/* No comment provided by engineer. */
+"Disk Error" = "Ошибка диска";
 
 /* Dismiss button for error messages */
 "Dismiss" = "Исключить";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Редактировать вложение (нет)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Редактировать страницу";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Редактировать получателей";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
 
 /* No comment provided by engineer. */
+"favorite" = "предпочтительный";
+
+/* No comment provided by engineer. */
 "file" = "файл";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "Первая страница";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "Будущие регистрации";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "С оценкой";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "Оцениваемые опросы";
 
 /* No comment provided by engineer. */
 "Grades" = "Оценки";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "Я не могу закончить, пока не услышу ваш ответ";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "У меня нет учетной записи Canvas";
+"I don't have a Canvas account" = "У меня нет учетной записи Canvas";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "У меня есть учетная запись Canvas";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Похоже, что в этом разделе пока что не было создано ни одного задания.";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Похоже, что к этой учетной записи не привязано ни одного курса. Зайдите в сеть для создания курса сегодня.";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
@@ -839,6 +881,9 @@
 "Needs Grading" = "Требует оценки";
 
 /* No comment provided by engineer. */
+"Network Error" = "Ошибка сети";
+
+/* No comment provided by engineer. */
 "Never" = "Никогда";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "Новое сообщение";
+
+/* No comment provided by engineer. */
+"New Page" = "Новая страница";
 
 /* No comment provided by engineer. */
 "New To Do" = "Новая задача";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "Средству сбора изображений не удалось найти ни одного изображения";
 
 /* No comment provided by engineer. */
+"No matching courses" = "Нет совпадающих курсов";
+
+/* No comment provided by engineer. */
 "No Modules" = "Модули отсутствуют";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "Не срочно";
 
 /* No comment provided by engineer. */
+"Notification Error" = "Ошибка уведомления";
+
+/* No comment provided by engineer. */
 "Notifications" = "Уведомления";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "На бумаге";
+
+/* No comment provided by engineer. */
+"Only members" = "Только участники";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Только учителя";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Открыть %@ пользовательские предпочтения";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "Практические тесты";
+
+/* No comment provided by engineer. */
 "Preferences" = "Предпочтения";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Меню профиля";
+
+/* No comment provided by engineer. */
+"Publish" = "Разместить";
 
 /* No comment provided by engineer. */
 "published" = "опубликовано";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
+
+/* Button to report an error */
+"Report" = "Сообщить";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "Сообщить о проблеме";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "Отправлено";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "Установить в качестве титульной страницы";
 
 /* No comment provided by engineer. */
 "Set text color" = "Задать цвет текста";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "Успешно!";
 
+/* No comment provided by engineer. */
+"Surveys" = "Опросы";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "Учителя";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "Учителя и студенты";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Ассистенты";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "Пока нет страниц для отображения.";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "При регистрации вашего устройства для получения push-уведомлений возникла проблема.";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "Возникла проблема при обращении к условиям использования.";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "Время истекло";
 
 /* No comment provided by engineer. */
+"Title" = "Заголовок";
+
+/* No comment provided by engineer. */
 "Title..." = "Заголовок...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "к %@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда. Если ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "Отменить";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "Неизвестная ошибка";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Неограниченно";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Загрузка %1$@ находится в %2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "Загрузка %1$@ из %2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "На вашем устройстве закончилась свободная память. Освободите память и попробуйте снова.";
 
 /* No comment provided by engineer. */
 "Your Email" = "Ваша электронная почта";

@@ -23,11 +23,11 @@ import { shallow } from 'enzyme'
 import EditUsageRights from '../EditUsageRights'
 
 const selector = {
-  copyright: '[identifier="edit-item.usage_rights.legal_copyright"]',
-  justification: '[testID="edit-item.usage_rights.use_justification"]',
-  justificationPicker: '[testID="edit-item.usage_rights.use_justification.picker"]',
-  license: '[testID="edit-item.usage_rights.license"]',
-  licensePicker: '[testID="edit-item.usage_rights.license.picker"]',
+  copyright: '[identifier="FileEditor.copyrightField"]',
+  justification: '[testID="FileEditor.justificationButton"]',
+  justificationPicker: '[testID="FileEditor.justificationPicker"]',
+  license: '[testID="FileEditor.licenseButton"]',
+  licensePicker: '[testID="FileEditor.licensePicker"]',
 }
 
 const updatedState = (tree: ShallowWrapper) => new Promise(resolve => tree.setState({}, resolve))

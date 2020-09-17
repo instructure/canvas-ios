@@ -33,7 +33,7 @@ class SyllabusTests: CoreUITestCase {
         ]))
 
         let assignment = APIAssignment.make(name: assignmentName, description: "hello world", submission: .make())
-        mockData(GetAssignmentRequest(courseID: course.id.value, assignmentID: assignment.id.value, include: [.submission]), value: assignment)
+        mock(assignment: assignment)
         mockData(GetCalendarEventsRequest(contexts: [Context(.course, id: course.id.value)], type: .event, allEvents: true), value: [
             .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])

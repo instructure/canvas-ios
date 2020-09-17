@@ -172,7 +172,7 @@ export class UserCoursePreferences extends Component<Props, any> {
         onRefresh={this.props.refresh}
       >
         <View style={styles.imageWrapper}>
-          {this.props.course.image_download_url &&
+          {Boolean(this.props.course.image_download_url) &&
             <Image source={{ uri: this.props.course.image_download_url }} style={styles.image} />
           }
           {this.props.showColorOverlay &&

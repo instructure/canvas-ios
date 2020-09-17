@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ 加载内容时出错";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "发生意外错误。";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
-
-/* No comment provided by engineer. */
-"Cancel" = "取消";
-
 /* No comment provided by engineer. */
 "Collapse" = "折叠";
-
-/* No comment provided by engineer. */
-"Comments" = "评论";
-
-/* No comment provided by engineer. */
-"Delete" = "删除";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "删除评论";
-
-/* No comment provided by engineer. */
-"Dismiss" = "撤销";
 
 /* No comment provided by engineer. */
 "Done" = "完成";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "获取以下评分：";
-
-/* Inbox tab title */
-"Inbox" = "收件箱";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "从API收到的日期无效。";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "启动外部工具";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "在Safari中打开";
-
-/* No comment provided by engineer. */
-"Open in…" = "打开...";
-
-/* button to read more of the description */
-"Read More" = "阅读更多";
-
-/* No comment provided by engineer. */
-"Remove" = "移除";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "已删除%1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "已删除 %1$@，删除人%2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "回复";
-
-/* No comment provided by engineer. */
-"Style" = "样式";
 

@@ -132,7 +132,7 @@ open class CoreUITestCase: XCTestCase {
         // and also write the request/response in plain text to the log file
         case passThruAndLog(toPath: String)
     }
-    open var missingMockBehavior: MissingMockBehavior = .failTest
+    open var missingMockBehavior: MissingMockBehavior = .allow
 
     static var currentTestCase: CoreUITestCase?
 
@@ -544,6 +544,7 @@ open class CoreUITestCase: XCTestCase {
         }
         if Bundle.main.isStudentApp {
             mock(include: [ .submission ])
+            mock(include: [ .submission, .score_statistics ])
             mock(include: [])
         } else if Bundle.main.isTeacherApp {
             mock(include: [ .overrides ], allDates: true)

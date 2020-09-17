@@ -57,7 +57,7 @@ export default class OldSubmissionStatusLabel extends Component<OldSubmissionSta
 
     if (this.props.onlineSubmissionType !== undefined && !this.props.onlineSubmissionType) { title = '' }
 
-    return <Text style={[styles.statusText, this.props.style, { color }]}>{title}</Text>
+    return <Text style={[styles.statusText, this.props.style, { color }]} accessibilityLabel={`${title},`}>{title}</Text>
   }
 }
 

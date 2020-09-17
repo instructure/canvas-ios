@@ -182,7 +182,7 @@ extension Submission: WriteableModel {
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)
         if let apiAssignment = item.assignment {
             let assignment: Assignment = client.fetch(assignmentPredicate).first ?? client.insert()
-            assignment.update(fromApiModel: apiAssignment, in: client, updateSubmission: false)
+            assignment.update(fromApiModel: apiAssignment, in: client, updateSubmission: false, updateScoreStatistics: false)
             assignment.submission = model
         } else if let assignment: Assignment = client.fetch(assignmentPredicate).first {
             assignment.submission = model
@@ -246,9 +246,7 @@ extension Submission {
         case .online_text_entry:
             return body?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
         case .online_upload:
-            return (attachments?.first?.size).flatMap {
-                ByteCountFormatter.string(fromByteCount: Int64($0), countStyle: .file)
-            }
+            return attachments?.first?.size.humanReadableFileSize
         case .online_url:
             return url?.absoluteString
         case .none, .not_graded, .on_paper, .wiki_page:

@@ -249,7 +249,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
     }
 
     func refreshStatusesForCurrentSection() {
-        guard let section = currentSection?.id, !section.isEmpty, case .active(_) = session.state else { return }
+        guard let section = currentSection?.id, !section.isEmpty, case .active = session.state else { return }
         tableView.refreshControl?.beginRefreshing()
         session.fetchStatuses(section: section, date: date) { [weak self] (statuses, error) in performUIUpdate {
             if let error = error {

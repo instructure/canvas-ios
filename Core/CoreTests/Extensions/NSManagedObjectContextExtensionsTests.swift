@@ -52,4 +52,14 @@ class NSManagedObjectContextExtensionsTests: CoreTestCase {
         XCTAssertFalse(object.isDeleted)
         XCTAssertTrue(databaseClient.isObjectDeleted(object))
     }
+
+    func testCopy() {
+        let original = Course.make()
+        let copy = databaseClient.copy(original)
+        XCTAssertEqual(copy.courseCode, original.courseCode)
+        XCTAssertEqual(copy.name, original.name)
+        XCTAssertEqual(copy.id, original.id)
+        XCTAssertEqual(copy.isPublished, original.isPublished)
+        XCTAssertFalse(copy === original)
+    }
 }

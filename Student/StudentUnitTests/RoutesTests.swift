@@ -143,6 +143,8 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/files/2?module_item_id=2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/files/2/download?module_item_id=2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/files/2?origin=module_item_details") is FileDetailsViewController)
+        XCTAssert(router.match("/courses/1/files/2/preview") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/1/files/2/preview?module_item_id=2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/quizzes/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/module_item_redirect/2") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/modules/2/items/3") is ModuleItemSequenceViewController)

@@ -61,7 +61,7 @@ public class ModuleItem: NSManagedObject {
     }
 
     public var isAssignment: Bool {
-        if case .assignment(_) = type {
+        if case .assignment = type {
             return true
         }
         return false

@@ -102,7 +102,7 @@ describe('AnnouncementEdit', () => {
     props.title = 'Hanamura'
     props.createDiscussion = jest.fn()
     const view = shallow(<AnnouncementEdit {...props} />)
-    view.find('RichTextEditor').getElement().ref({
+    view.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(formFields.message)),
     })
     view.find('[identifier="announcements.edit.titleInput"]')
@@ -118,7 +118,7 @@ describe('AnnouncementEdit', () => {
     props.announcementID = null
     props.createDiscussion = jest.fn()
     const view = shallow(<AnnouncementEdit {...props} />)
-    view.find('RichTextEditor').getElement().ref({
+    view.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(formFields.message)),
     })
     await view.prop('rightBarButtons')[0].action()
@@ -136,7 +136,7 @@ describe('AnnouncementEdit', () => {
     props.delayed_post_at = null
     props.createDiscussion = jest.fn()
     const view = shallow(<AnnouncementEdit {...props} />)
-    view.find('RichTextEditor').getElement().ref({
+    view.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve('required')),
     })
     await view.prop('rightBarButtons')[0].action()
@@ -189,7 +189,7 @@ describe('AnnouncementEdit', () => {
 
   it('shows modal when saving', async () => {
     const component = shallow(<AnnouncementEdit {...props} />)
-    component.find('RichTextEditor').getElement().ref({
+    component.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve('message')),
     })
     await component.prop('rightBarButtons')[0].action()
@@ -208,7 +208,7 @@ describe('AnnouncementEdit', () => {
       component.setProps({ error: 'ERROR WAS ALERTED' })
     })
     component.setProps({ createDiscussion })
-    component.find('RichTextEditor').getElement().ref({
+    component.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve('message')),
     })
     await component.prop('rightBarButtons')[0].action()
@@ -245,20 +245,20 @@ describe('AnnouncementEdit', () => {
     expect(getMessageEditor(render(props)).props().placeholder).toEqual('Add description (required)')
   })
 
-  it('shows banner on done press if message is blank', () => {
+  it('shows banner on done press if message is blank', async () => {
     props.message = null
     const component = render(props)
     expect(getUnmetRequirementBanner(component).props().visible).toBeFalsy()
-    tapDone(component)
+    await tapDone(component)
     expect(getUnmetRequirementBanner(component).props().visible).toBeTruthy()
   })
 
-  it('focuses unmetRequirementBanner when it shows', () => {
+  it('focuses unmetRequirementBanner when it shows', async () => {
     jest.useFakeTimers()
     props.message = null
     const component = render(props)
     expect(getUnmetRequirementBanner(component).props().visible).toBeFalsy()
-    tapDone(component)
+    await tapDone(component)
     expect(getUnmetRequirementBanner(component).props().visible).toBeTruthy()
     jest.runAllTimers()
     expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`announcement.edit.unmet-requirement-banner`)
@@ -271,7 +271,7 @@ describe('AnnouncementEdit', () => {
     const component = shallow(<AnnouncementEdit {...props} />)
     component.find('[identifier="announcements.edit.titleInput"]')
       .simulate('ChangeText', 'UPDATED TITLE')
-    component.find('RichTextEditor').getElement().ref({
+    component.find('RichContentEditor').getElement().ref({
       getHTML: jest.fn(() => Promise.resolve(formFields.message)),
     })
     await component.prop('rightBarButtons')[0].action()
@@ -340,11 +340,11 @@ describe('AnnouncementEdit', () => {
     )
   })
 
-  it('scrolls view when RichTextEditor receives focus', () => {
+  it('scrolls view when RichContentEditor receives focus', () => {
     const spy = jest.fn()
     const tree = shallow(<AnnouncementEdit {...props} />)
     tree.find('KeyboardAwareScrollView').getElement().ref({ scrollToFocusedInput: spy })
-    tree.find('RichTextEditor').simulate('Focus')
+    tree.find('RichContentEditor').simulate('Focus')
     expect(spy).toHaveBeenCalled()
   })
 
@@ -378,8 +378,8 @@ describe('AnnouncementEdit', () => {
     return shallow(<AnnouncementEdit {...props} />)
   }
 
-  function tapDone (component: any): any {
-    getDoneButton(component).action()
+  async function tapDone (component: any): any {
+    await getDoneButton(component).action()
   }
 
   function getTitle (component: any): string {
@@ -387,7 +387,7 @@ describe('AnnouncementEdit', () => {
   }
 
   function getMessageEditor (component: any): any {
-    return component.find('RichTextEditor')
+    return component.find('RichContentEditor')
   }
 
   function getDoneButton (component: any): any {

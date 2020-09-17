@@ -45,7 +45,7 @@ export type RowProps = {
   accessories?: any,
   accessibilityLabel?: ?string,
   accessibilityTraits?: React$ElementProps<typeof View>,
-  titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
+  titleProps?: { ellipsizeMode?: string, numberOfLines?: number, accessibilityLabel?: string },
   selected?: ?boolean,
   titleStyles?: any,
   subtitleStyles?: any,
@@ -105,6 +105,7 @@ export default class Row extends Component<RowProps> {
     const titleStyles = [style.title, this.props.titleStyles].filter(Boolean)
     const subtitleStyles = [style.subtitle, this.props.subtitleStyles].filter(Boolean)
     const RowView = this.props.onPress ? TouchableHighlight : View
+    let titleA11y = this.props.titleProps?.accessibilityLabel
 
     return (<RowView style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps}>
       <View style={[style.container, { backgroundColor }, this.props.style]}>
@@ -114,8 +115,9 @@ export default class Row extends Component<RowProps> {
           { Boolean(title) &&
             <Text
               style={titleStyles}
-              ellipsizeMode={(this.props.titleProps && this.props.titleProps.ellipsizeMode) || 'tail'}
-              numberOfLines={(this.props.titleProps && this.props.titleProps.numberOfLines) || 0}
+              ellipsizeMode={this.props.titleProps?.ellipsizeMode || 'tail'}
+              numberOfLines={this.props.titleProps?.numberOfLines || 0}
+              {... (titleA11y ? { accessibilityLabel: titleA11y } : {})}
             >
               {title}
             </Text>

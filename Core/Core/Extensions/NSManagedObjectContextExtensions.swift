@@ -81,4 +81,12 @@ extension NSManagedObjectContext {
             return (error as NSError).code == NSManagedObjectReferentialIntegrityError
         }
     }
+
+    public func copy<T: NSManagedObject>(_ original: T) -> T {
+        let copy: T = insert()
+        copy.setValuesForKeys(original.dictionaryWithValues(forKeys:
+            original.entity.attributesByName.keys.map { $0 }
+        ))
+        return copy
+    }
 }

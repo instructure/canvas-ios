@@ -31,7 +31,6 @@ import ImagePicker from 'react-native-image-picker'
 import DocumentPicker from 'react-native-document-picker'
 import explore from '../../../../test/helpers/explore'
 import Permissions from '../../../common/permissions'
-import * as template from '../../../__templates__'
 
 jest
   .mock('react-native/Libraries/Components/Button', () => 'Button')
@@ -85,25 +84,6 @@ describe('AttachmentPicker', () => {
         'Cancel',
       ],
       cancelButtonIndex: 4,
-    }, expect.any(Function))
-  })
-
-  it('shows an action sheet with user files option', () => {
-    const mock = jest.fn()
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = mock
-    const picker = shallow(<AttachmentPicker fileTypes={['all']} userFiles={true} />)
-    picker.instance().show(null, jest.fn())
-    expect(mock).toHaveBeenCalledWith({
-      options: [
-        'Record Audio',
-        'Use Camera',
-        'Upload File',
-        'Choose From Library',
-        'My Files',
-        'Cancel',
-      ],
-      cancelButtonIndex: 5,
     }, expect.any(Function))
   })
 
@@ -301,71 +281,6 @@ describe('AttachmentPicker', () => {
     expect(audioRecorder().props.visible).toBeFalsy()
     await view.getInstance().recordAudio(null, jest.fn())
     expect(audioRecorder().props.visible).toBeTruthy()
-  })
-
-  it('shows user files picker', () => {
-    const navigator = template.navigator({ show: jest.fn() })
-    const picker = renderer.create(<AttachmentPicker navigator={navigator} />).getInstance()
-    picker.userFiles(null, jest.fn())
-    expect(navigator.show).toHaveBeenCalledWith('/users/self/files', { modal: true }, {
-      onSelectFile: expect.any(Function),
-      canSelectFile: expect.any(Function),
-      canEdit: false,
-      canAdd: false,
-    })
-  })
-
-  it('calls callback when user file selected', async () => {
-    const callback = jest.fn()
-    const file = template.file()
-    const navigator = template.navigator({
-      show: jest.fn((route, options, props) => {
-        props.onSelectFile(template.file())
-      }),
-    })
-    const picker = renderer.create(<AttachmentPicker navigator={navigator} />).getInstance()
-    picker.userFiles(null, callback)
-    await navigator.dismiss()
-    expect(callback).toHaveBeenCalledWith(file, 'userFiles')
-  })
-
-  it('filters user files by file types', () => {
-    let canSelectFile
-    const navigator = template.navigator({
-      show: jest.fn((route, options, props) => {
-        canSelectFile = props.canSelectFile
-      }),
-    })
-    const picker = renderer.create(<AttachmentPicker navigator={navigator} fileTypes={['image', 'video']} />).getInstance()
-    picker.userFiles(null, jest.fn())
-
-    const image = template.file({ mime_class: 'image', 'content-type': 'image/jpeg' })
-    expect(canSelectFile(image)).toBeTruthy()
-
-    const video = template.file({ mime_class: 'movie', 'content-type': 'video/mpeg' })
-    expect(canSelectFile(video)).toBeTruthy()
-
-    const pdf = template.file({ mime_class: 'file', 'content-type': 'file/pdf' })
-    expect(canSelectFile(pdf)).toBeFalsy()
-  })
-
-  it('can select all files', () => {
-    let canSelectFile
-    const navigator = template.navigator({
-      show: jest.fn((route, options, props) => {
-        canSelectFile = props.canSelectFile
-      }),
-    })
-    const picker = renderer.create(<AttachmentPicker navigator={navigator} fileTypes={['all']} />).getInstance()
-    picker.userFiles(null, jest.fn())
-    const image = template.file({ mime_class: 'image', 'content-type': 'image/jpeg' })
-    expect(canSelectFile(image)).toBeTruthy()
-
-    const video = template.file({ mime_class: 'movie', 'content-type': 'video/mpeg' })
-    expect(canSelectFile(video)).toBeTruthy()
-
-    const pdf = template.file({ mime_class: 'file', 'content-type': 'file/pdf' })
-    expect(canSelectFile(pdf)).toBeTruthy()
   })
 
   it('hides audio recorder when it cancels', async () => {

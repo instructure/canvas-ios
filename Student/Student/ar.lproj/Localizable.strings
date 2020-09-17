@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "هل أنت مستعد لتسجيل الخروج؟";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "هل تريد حقاً الخروج من هذا الاختبار الموجز؟";
+
+/* No comment provided by engineer. */
 "Ask me later" = "اسألني فيما بعد";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "المرفقات الموجودة...";
 
+/* Exit button to leave the quiz */
+"Exit" = "خروج";
+
 /* Title for an external tool submission */
 "External Tool" = "أداة خارجية";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "استيراد من Dropbox";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "علبة الوارد";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "هناك مشاكل";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "يبدو أنه لم يتم إنشاء اختبارات موجزة في هذه المساحة حتى الآن.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "هذا فارغ، ماذا تفعل هنا؟";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "تشغيل الأداة الخارجية";
+
+/* Leave the quiz */
+"Leave" = "مغادرة";
 
 /* Title for legal section on the about page */
 "Legal" = "قانوني";
@@ -912,6 +924,9 @@
 "No Notifications" = "لا توجد إعلامات";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "لا توجد اختبارات موجزة";
+
+/* No comment provided by engineer. */
 "No recipients" = "لا يوجد أي مستلم";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "لم يتم تقييم الدرجة (0 من إجمالي %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "لم يتم الإرسال";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "ملاحظة: لا يمكن تشغيل ملفات الوسائط بشكل فوري أثناء معالجتها على الخادم.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "تنبيه الاختبار الموجز";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "تفاصيل الاختبار الموجز";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "تم تأمين الاختبار الموجز";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "بدء تسجيل تعليق الوسائط";
 
+/* Stay on the quiz view */
+"Stay" = "البقاء";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "الاستمرار في الجلسة";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "تم الإرسال";
+
+/* Submitted date */
+"Submitted %@" = "تم الإرسال %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "جارٍ الإرسال...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "حدث خطأ أثناء تشغيل Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الاختبارات الموجزة. اسحب للتحديث لإعادة المحاولة.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "حدث خطأ أثناء تحميل المستند.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "عرض الملف %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "عرض النتائج";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "عرض محاولة الإرسال %1$d.  %2$@";

@@ -19,19 +19,20 @@
 import UIKit
 import WebKit
 
-enum AuthenticationMethod {
+public enum AuthenticationMethod {
     case normalLogin
     case canvasLogin
     case siteAdminLogin
     case manualOAuthLogin
 }
 
-class LoginWebViewController: UIViewController, ErrorViewController {
+public class LoginWebViewController: UIViewController, ErrorViewController {
     lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
         return WKWebView(frame: UIScreen.main.bounds, configuration: configuration)
     }()
+    let progressView = UIProgressView()
 
     var mobileVerifyModel: APIVerifyClient?
     var authenticationProvider: String?
@@ -41,12 +42,23 @@ class LoginWebViewController: UIViewController, ErrorViewController {
     var method = AuthenticationMethod.normalLogin
     var task: URLSessionTask?
     var mdmLogin: MDMLogin?
+    var pairingCode: String?
+
+    var canGoBackObservation: NSKeyValueObservation?
+    var loadObservation: NSKeyValueObservation?
 
     deinit {
         task?.cancel()
     }
 
-    static func create(authenticationProvider: String? = nil, host: String, mdmLogin: MDMLogin? = nil, loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginWebViewController {
+    public static func create(
+        authenticationProvider: String? = nil,
+        host: String,
+        mdmLogin: MDMLogin? = nil,
+        loginDelegate: LoginDelegate?,
+        method: AuthenticationMethod,
+        pairingCode: String? = nil
+    ) -> LoginWebViewController {
         let controller = LoginWebViewController()
         controller.title = host
         controller.authenticationProvider = authenticationProvider
@@ -54,20 +66,39 @@ class LoginWebViewController: UIViewController, ErrorViewController {
         controller.mdmLogin = mdmLogin
         controller.loginDelegate = loginDelegate
         controller.method = method
+        controller.pairingCode = pairingCode
         return controller
     }
 
-    override func loadView() {
-        view = webView
-    }
-
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
+        view.addSubview(webView)
+        webView.pin(inside: view)
+
+        view.addSubview(progressView)
+        progressView.pin(inside: view, leading: 0, trailing: 0, top: nil, bottom: nil)
+        progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+
+        let goBack = UIBarButtonItem(image: .arrowOpenLeftSolid, style: .plain, target: webView, action: #selector(WKWebView.goBack))
+        toolbarItems = [goBack]
+        navigationController?.setToolbarHidden(true, animated: false)
+
         webView.accessibilityIdentifier = "LoginWeb.webView"
         webView.backgroundColor = .backgroundLightest
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        canGoBackObservation = webView.observe(\.canGoBack) { [weak self] webView, _ in
+            self?.navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+        }
+
+        progressView.progress = 0
+        progressView.progressTintColor = Brand.shared.primary
+        loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
+            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+            self?.progressView.isHidden = webView.estimatedProgress >= 1
+        }
 
         // Manual OAuth provided mobileVerifyModel
         if mobileVerifyModel != nil {
@@ -83,9 +114,15 @@ class LoginWebViewController: UIViewController, ErrorViewController {
         } }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
 
     func loadLoginWebRequest() {
@@ -99,14 +136,9 @@ class LoginWebViewController: UIViewController, ErrorViewController {
 }
 
 extension LoginWebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url, let components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return decisionHandler(.allow)
-        }
-
-        if components.host?.contains("community.canvaslms.com") == true {
-            loginDelegate?.openExternalURL(url)
-            return decisionHandler(.cancel)
         }
 
         if components.scheme == "about" && components.path == "blank" {
@@ -140,7 +172,9 @@ extension LoginWebViewController: WKNavigationDelegate {
                 self.loginDelegate?.userDidLogin(session: session)
             } }
             return decisionHandler(.cancel)
-        } else if queryItems?.first(where: { $0.name == "error" }) != nil {
+        } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
+            // access_denied is the only currently implemented error code
+            // https://canvas.instructure.com/doc/api/file.oauth.html#oauth2-flow-2
             let error = NSError.instructureError(NSLocalizedString("Authentication failed. Most likely the user denied the request for access.", bundle: .core, comment: ""))
             self.showError(error)
             return decisionHandler(.cancel)
@@ -148,18 +182,46 @@ extension LoginWebViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let login = mdmLogin else { return }
-        mdmLogin = nil
-        webView.evaluateJavaScript("""
-        const form = document.querySelector('#login_form')
-        form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
-        form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
-        form.submit()
-        """)
+    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.isHidden = false
     }
 
-    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if let login = mdmLogin {
+            mdmLogin = nil
+            webView.evaluateJavaScript("""
+            const form = document.querySelector('#login_form')
+            form.querySelector('[type=email],[type=text]').value = \(CoreWebView.jsString(login.username))
+            form.querySelector('[type=password]').value = \(CoreWebView.jsString(login.password))
+            form.submit()
+            """)
+        } else if let pairingCode = pairingCode {
+            webView.evaluateJavaScript("""
+            var meta = document.createElement('meta')
+            meta.name = 'viewport'
+            meta.content = 'initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
+            var head = document.querySelector('head')
+            head.appendChild(meta)
+
+            let registerLink = document.querySelector('a#register_link')
+            if (registerLink) {
+                registerLink.click()
+            } else {
+                let enrollLink = document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
+                enrollLink.click()
+                document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
+                document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
+                document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
+                let content = document.querySelector('.ui-dialog-content')
+                let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
+                content.style.height = height
+                document.querySelector('.ui-widget-overlay').style.height = height
+            }
+            """)
+        }
+    }
+
+    public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard [NSURLAuthenticationMethodNTLM, NSURLAuthenticationMethodHTTPBasic].contains(challenge.protectionSpace.authenticationMethod) else {
             completionHandler(.performDefaultHandling, nil)
             return
@@ -188,7 +250,7 @@ extension LoginWebViewController: WKNavigationDelegate {
 }
 
 extension LoginWebViewController: WKUIDelegate {
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame?.isMainFrame != true {
             webView.load(navigationAction.request)
         }

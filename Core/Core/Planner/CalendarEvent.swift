@@ -39,7 +39,7 @@ final public class CalendarEvent: NSManagedObject, WriteableModel {
     @NSManaged public var htmlURL: URL?
     @NSManaged public var contextRaw: String
     @NSManaged public var effectiveContextRaw: String?
-    @NSManaged public var contextName: String
+    @NSManaged public var contextName: String?
     @NSManaged public var hasStartAt: Bool
     @NSManaged public var details: String?
     @NSManaged public var locationName: String?

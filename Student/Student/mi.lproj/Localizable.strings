@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Kei te reri koe ki te takiputa?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "E tino hiahia ana koe ki te waiho i tēnei quiz?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Pātai mai ki au a muri iho";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Ngā Āpitihanga ...";
 
+/* Exit button to leave the quiz */
+"Exit" = "E puta";
+
 /* Title for an external tool submission */
 "External Tool" = "Taputapu waho";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Kawemai i te Pouakawhiriwhiri";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Pouakauru";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "He raruraru";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Ko te āhua nei kaore anō ngā quizzes i hāngaia i roto i tēnei wāhi.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Kei te kore, he aha tō mahi tonu i konei.";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Neke Taputapu Waho";
+
+/* Leave the quiz */
+"Leave" = "Puta ki waho";
 
 /* Title for legal section on the about page */
 "Legal" = "Ture";
@@ -912,6 +924,9 @@
 "No Notifications" = "Kaore he whakamōhiotanga";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Kaore nga Quizzes";
+
+/* No comment provided by engineer. */
 "No recipients" = "Kāore ngā kaiwhiwhi";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Kaore i kōeketia (0 i roto i te %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "E Kore E Tukua";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Tuhipoka Kāore i te wātea tonu ngā kōnae Pāpāho mo te purei anō i te wā e tukatukahia ana i runga i te tūmau.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Quiz Matohi";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Ngā Quiz Taipitopito";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Quiz kua rakaina";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Tīmata tāhopu he kōrero pāpāho";
 
+/* Stay on the quiz view */
+"Stay" = "Noho";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Noho takiuru";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Kua tukuna";
+
+/* Submitted date */
+"Submitted %@" = "Kua Tukuna %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "E tuku ana....";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "He hapa te wā e  whakarewa ana Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā quizzes. Kumea ki te whakahou ki te ngana anō.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "He hapa i te wā e utanga i te tuhinga.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Tirohia Ngā Hua";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Titiro tāpaetanga ngana %1$d. %2$@";

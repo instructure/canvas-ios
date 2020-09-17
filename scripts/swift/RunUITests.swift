@@ -39,6 +39,9 @@ struct RunUITests: ParsableCommand {
     @Flag(help: "run all tests in scheme")
     var allTests: Bool
 
+    @Flag()
+    var verbose: Bool
+
     @Argument(help: "tests/suites to run")
     var tests: [String]
 
@@ -105,8 +108,8 @@ private class Runner {
     }
 
     func setUp() throws {
+        ExternalCommand.verbose = command.verbose
         // Launch the sim first to save time later
-        ExternalCommand.verbose = true
         try cmd("open", "-a", cmd("xcode-select", "-p").runString() + "/Applications/Simulator.app").run()
         sleep(3)
 
@@ -115,7 +118,6 @@ private class Runner {
             try? cmd("xcrun", "simctl", "shutdown", "booted").run()
         }
         try? cmd("xcrun", "simctl", "boot", command.deviceName).run()
-        ExternalCommand.verbose = false
 
         Darwin.setenv("NSUnbufferedIO", "YES", 1)
         try cmd("mkdir", "-p", "tmp").run()
@@ -282,7 +284,10 @@ private class Runner {
     }
 
     func xcodebuild(noScheme: Bool = false, _ args: String...) -> Command {
-        var flags: [String] = ["-destination", "platform=iOS Simulator,name=\(command.deviceName)"]
+        var flags: [String] = [
+          "-destination", "platform=iOS Simulator,name=\(command.deviceName)",
+          "COMPILER_INDEX_STORE_ENABLE=NO",
+        ]
         if !noScheme {
             flags.append(contentsOf: [
                            "-workspace", "Canvas.xcworkspace",
@@ -294,7 +299,7 @@ private class Runner {
 
     func xcpretty(quiet: Bool = false) -> Command {
         cmd("tee", "-a", "\(deployDir)/build.log") |
-          cmd("xcbeautify", arguments: quiet ? ["--quiet"] : [])
+          cmd("xcbeautify", arguments: !command.verbose && quiet ? ["--quiet"] : [])
     }
 
     func mergeResults() throws {

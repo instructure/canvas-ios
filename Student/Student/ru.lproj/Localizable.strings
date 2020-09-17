@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Вы готовы выйти из системы?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Вы уверены, что хотите выйти из этого теста?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Спросить меня позже";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Существующие вложения...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Выход";
+
 /* Title for an external tool submission */
 "External Tool" = "Внешний инструмент";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Импорт из Dropbox";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Входящие";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Имеет проблемы";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Похоже, что в этом разделе пока что не было создано ни одного теста.";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Там пусто, что ты до сих пор здесь делаешь.";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Запуск внешнего инструмента";
+
+/* Leave the quiz */
+"Leave" = "Оставить";
 
 /* Title for legal section on the about page */
 "Legal" = "Юридические вопросы";
@@ -912,6 +924,9 @@
 "No Notifications" = "Уведомления отсутствуют";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Нет тестов";
+
+/* No comment provided by engineer. */
 "No recipients" = "Нет получателей";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Не оценено (0 из %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Не отправлено";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Примечание. Файлы мультимедиа не доступны для воспроизведения, пока они обрабатываются на сервере.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Оповещение о тесте";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Сведения о тесте";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Тест заблокирован";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Начало записи медиа-комментария";
 
+/* Stay on the quiz view */
+"Stay" = "Остаться";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Оставаться в системе";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Отправлено";
+
+/* Submitted date */
+"Submitted %@" = "Отправлено %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Выполняется отправка...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Возникла проблема при запуске Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Произошла ошибка при загрузке тестов. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Возникла ошибка при загрузке документа.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Просмотреть файл %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Посмотреть результаты";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Просмотреть попытку отправки %1$d.  %2$@";

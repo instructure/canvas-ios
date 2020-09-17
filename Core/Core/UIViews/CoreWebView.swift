@@ -31,10 +31,15 @@ extension CoreWebViewLinkDelegate where Self: UIViewController {
     public var routeLinksFrom: UIViewController { return self }
 }
 
+public protocol CoreWebViewSizeDelegate: class {
+    func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
+}
+
 @IBDesignable
 open class CoreWebView: WKWebView {
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
+    public weak var sizeDelegate: CoreWebViewSizeDelegate?
 
     public var isLinkNavigationEnabled = true
 
@@ -57,9 +62,9 @@ open class CoreWebView: WKWebView {
 
         addScript(js)
         handle("resize") { [weak self] message in
-            guard let self = self else { return }
-            if self.autoresizesHeight, let body = message.body as? [String: CGFloat], let height = body["height"],
-                let constraint = self.constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
+            guard let self = self, let body = message.body as? [String: CGFloat], let height = body["height"] else { return }
+            self.sizeDelegate?.coreWebView(self, didChangeContentHeight: height)
+            if self.autoresizesHeight, let constraint = self.constraints.first(where: { $0.firstItem === self && $0.firstAttribute == .height }) {
                 constraint.constant = height
                 self.setNeedsLayout()
             }
@@ -232,7 +237,7 @@ open class CoreWebView: WKWebView {
             let lastHeight = 0
             let lastWidth = window.innerWidth
             const checkSize = () => {
-                let height = document.documentElement.scrollHeight
+                const height = window.editor && window.editor.contentHeight || document.documentElement.scrollHeight
                 if (lastHeight !== height) {
                     lastHeight = height
                     window.webkit.messageHandlers.resize.postMessage({ height })

@@ -149,7 +149,11 @@ extension Course {
     }
 
     public var hasStudentEnrollment: Bool {
-        return enrollments?.first { $0.isStudent } != nil
+        return enrollments?.contains { $0.isStudent } == true
+    }
+
+    public var hasTeacherEnrollment: Bool {
+        return enrollments?.contains { $0.isTeacher } == true
     }
 }
 

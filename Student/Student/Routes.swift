@@ -196,13 +196,22 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/files": fileList,
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
-    "/folders/:folderID/edit": nil,
+    "/folders/:folderID/edit": { url, params, _ in
+        guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+            return HelmViewController(moduleName: "/folders/:folderID/edit", props: makeProps(url, params: params))
+        }
+        guard let folderID = params["folderID"] else { return nil }
+        return CoreHostingController(FileEditorView(folderID: folderID))
+    },
 
     "/files/:fileID": fileDetails,
     "/files/:fileID/download": fileDetails,
+    "/files/:fileID/preview": fileDetails,
+    "/files/:fileID/edit": fileEditor,
     "/:context/:contextID/files/:fileID": fileDetails,
     "/:context/:contextID/files/:fileID/download": fileDetails,
-    "/:context/:contextID/files/:fileID/edit": nil,
+    "/:context/:contextID/files/:fileID/preview": fileDetails,
+    "/:context/:contextID/files/:fileID/edit": fileEditor,
 
     "/courses/:courseID/grades": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -271,7 +280,14 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/pages/new": nil,
     "/:context/:contextID/pages/:url": pageViewController,
     "/:context/:contextID/wiki/:url": pageViewController,
-    "/:context/:contextID/pages/:url/edit": nil,
+    "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
+        guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
+        if ExperimentalFeature.nativePageEdit.isEnabled, #available(iOS 13.0, *) {
+            return CoreHostingController(PageEditorView(context: context, url: slug))
+        } else {
+            return HelmViewController(moduleName: "/:context/:contextID/pages/:url/edit", props: makeProps(url, params: params, userInfo: userInfo))
+        }
+    },
     "/:context/:contextID/wiki/:url/edit": nil,
 
     "/courses/:courseID/quizzes": { _, params, _ in
@@ -320,7 +336,9 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return vc
     },
 
-    "/accounts/:accountID/terms_of_service": nil,
+    "/accounts/:accountID/terms_of_service": { _, _, _ in
+        return TermsOfServiceViewController()
+    },
 
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
@@ -391,26 +409,32 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
         return fileDetails(url: url, params: params, userInfo: userInfo)
     }
-    var props = makeProps(url, params: params, userInfo: userInfo)
-    props["context"] = params["context"] ?? "users"
-    props["contextID"] = params["contextID"] ?? "self"
-    if params["context"] == "users", params["subFolder"] == nil {
-        props["customPageViewPath"] = "/files"
+    guard ExperimentalFeature.nativeFiles.isEnabled else {
+        var props = makeProps(url, params: params, userInfo: userInfo)
+        props["context"] = params["context"] ?? "users"
+        props["contextID"] = params["contextID"] ?? "self"
+        if params["context"] == "users", params["subFolder"] == nil {
+            props["customPageViewPath"] = "/files"
+        }
+        let moduleName = params["subFolder"] == nil
+            ? "/:context/:contextID/files"
+            : "/:context/:contextID/files/folder/*subFolder"
+        return HelmViewController(moduleName: moduleName, props: props)
     }
-    let moduleName = params["subFolder"] == nil
-        ? "/:context/:contextID/files"
-        : "/:context/:contextID/files/folder/*subFolder"
-    return HelmViewController(moduleName: moduleName, props: props)
+    return FileListViewController.create(
+        context: Context(path: url.path) ?? .currentUser,
+        path: params["subFolder"]
+    )
 }
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
-    var context = Context(path: url.path) ?? .currentUser
+    var context = Context(path: url.path)
     if let courseID = url.queryItems?.first(where: { $0.name == "courseID" })?.value {
         context = Context(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    if !url.originIsModuleItemDetails, context.contextType == .course {
+    if !url.originIsModuleItemDetails, let context = context, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .file,
@@ -419,6 +443,14 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
         )
     }
     return FileDetailsViewController.create(context: context, fileID: fileID, assignmentID: assignmentID)
+}
+
+private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard #available(iOS 13, *), ExperimentalFeature.nativeFiles.isEnabled else {
+        return HelmViewController(moduleName: "/files/:fileID/edit", props: makeProps(url, params: params))
+    }
+    guard let fileID = params["fileID"] else { return nil }
+    return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
 private func pageViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

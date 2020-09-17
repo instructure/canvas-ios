@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\n        ペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "添付を追加";
 
 /* No comment provided by engineer. */
+"Add content" = "コンテンツを追加";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
+
+/* No comment provided by engineer. */
+"Add Title" = "タイトルを追加";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "会話に追加されました";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "アナウンスの回答";
+
+/* No comment provided by engineer. */
+"Anyone" = "全員";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "予約利用可能性";
@@ -126,6 +138,9 @@
 
 /* No comment provided by engineer. */
 "Assignment Missing" = "課題がありません";
+
+/* No comment provided by engineer. */
+"Assignments" = "課題";
 
 /* No comment provided by engineer. */
 "Attempt %d" = "試行%d";
@@ -176,7 +191,7 @@
 "Camera" = "カメラ";
 
 /* No comment provided by engineer. */
-"Camera not available" = "カメラを使用できません";
+"Can Edit" = "編集可能";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "学校が見つかりませんか？学校の完全なURLを入力してみてください。";
@@ -284,6 +299,9 @@
 "Conferences" = "会議";
 
 /* No comment provided by engineer. */
+"Content" = "コンテンツ";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "コンテンツリンクエラー";
 
 /* No comment provided by engineer. */
@@ -347,6 +365,9 @@
 "Create Account" = "アカウントを作成する";
 
 /* No comment provided by engineer. */
+"Current Enrollments" = "現在の登録";
+
+/* No comment provided by engineer. */
 "Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
@@ -401,6 +422,9 @@
 "Designers" = "設計者";
 
 /* No comment provided by engineer. */
+"Details" = "詳細";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "開発者用メニュー";
 
 /* No comment provided by engineer. */
@@ -423,6 +447,9 @@
 
 /* No comment provided by engineer. */
 "Discussions" = "ディスカッション";
+
+/* No comment provided by engineer. */
+"Disk Error" = "ディスクエラー";
 
 /* Dismiss button for error messages */
 "Dismiss" = "却下する";
@@ -456,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "添付 (なし) を編集する";
+
+/* No comment provided by engineer. */
+"Edit Page" = "ページを編集";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "受信者を編集する";
@@ -521,6 +551,9 @@
 "Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
 
 /* No comment provided by engineer. */
+"favorite" = "お気に入り";
+
+/* No comment provided by engineer. */
 "file" = "ファイル";
 
 /* No comment provided by engineer. */
@@ -575,6 +608,9 @@
 "Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
+"Future Enrollments" = "将来の登録";
+
+/* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
 
 /* No comment provided by engineer. */
@@ -588,6 +624,9 @@
 
 /* No comment provided by engineer. */
 "Graded" = "採点済み";
+
+/* No comment provided by engineer. */
+"Graded Surveys" = "採点されたアンケート";
 
 /* No comment provided by engineer. */
 "Grades" = "成績";
@@ -620,7 +659,7 @@
 "I can't get things done until I hear back from you" = "回答があるまで何もできません";
 
 /* No comment provided by engineer. */
-"I don’t have a Canvas account" = "Canvasアカウントを持っていません";
+"I don't have a Canvas account" = "Canvasアカウントを持っていません";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "Canvasアカウントを持っています";
@@ -669,6 +708,9 @@
 
 /* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "このスペースにはまだ課題が作成されていないようです。";
+
+/* No comment provided by engineer. */
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "このアカウントに関連付けられているコースはないようです。今日コースを作成するには、ウェブをご覧ください。";
 
 /* No comment provided by engineer. */
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
@@ -839,6 +881,9 @@
 "Needs Grading" = "採点が必要です";
 
 /* No comment provided by engineer. */
+"Network Error" = "ネットワークエラー";
+
+/* No comment provided by engineer. */
 "Never" = "まったくしない";
 
 /* No comment provided by engineer. */
@@ -846,6 +891,9 @@
 
 /* No comment provided by engineer. */
 "New Message" = "新しいメッセージ";
+
+/* No comment provided by engineer. */
+"New Page" = "新しいページ";
 
 /* No comment provided by engineer. */
 "New To Do" = "新しい To Do";
@@ -887,6 +935,9 @@
 "No image found from image picker" = "画像ピッカーに画像が見つかりませんでした";
 
 /* No comment provided by engineer. */
+"No matching courses" = "マッチするコースなし";
+
+/* No comment provided by engineer. */
 "No Modules" = "モジュールなし";
 
 /* No comment provided by engineer. */
@@ -917,6 +968,9 @@
 "Not Urgent" = "緊急ではありません";
 
 /* No comment provided by engineer. */
+"Notification Error" = "通知エラー";
+
+/* No comment provided by engineer. */
 "Notifications" = "通知";
 
 /* No comment provided by engineer. */
@@ -936,6 +990,12 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "書類上";
+
+/* No comment provided by engineer. */
+"Only members" = "メンバーのみ";
+
+/* No comment provided by engineer. */
+"Only teachers" = "講師のみ";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "%@ ユーザー設定を開く";
@@ -1001,6 +1061,9 @@
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
+"Practice Quizzes" = "練習クイズ";
+
+/* No comment provided by engineer. */
 "Preferences" = "優先設定";
 
 /* No comment provided by engineer. */
@@ -1011,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "プロフィールメニュー";
+
+/* No comment provided by engineer. */
+"Publish" = "公開";
 
 /* No comment provided by engineer. */
 "published" = "公開済み";
@@ -1071,6 +1137,9 @@
 
 /* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
+
+/* Button to report an error */
+"Report" = "報告";
 
 /* No comment provided by engineer. */
 "Report a Problem" = "問題を報告する";
@@ -1149,6 +1218,9 @@
 
 /* No comment provided by engineer. */
 "Sent" = "送信済み";
+
+/* No comment provided by engineer. */
+"Set as Front Page" = "フロントページとして設定";
 
 /* No comment provided by engineer. */
 "Set text color" = "テキストの色を設定する";
@@ -1252,6 +1324,9 @@
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
 
+/* No comment provided by engineer. */
+"Surveys" = "調査";
+
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";
 
@@ -1275,6 +1350,9 @@
 
 /* No comment provided by engineer. */
 "Teachers" = "講師";
+
+/* No comment provided by engineer. */
+"Teachers and students" = "講師と受講生";
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "授業助手";
@@ -1305,6 +1383,9 @@
 
 /* No comment provided by engineer. */
 "There are no pages to display yet." = "まだ表示するページはありません。";
+
+/* No comment provided by engineer. */
+"There was a problem registering your device for push notifications." = "デバイスにプッシュ通知を登録する際に問題が発生しました。";
 
 /* No comment provided by engineer. */
 "There was a problem retrieving the Terms of Use." = "利用規約の取得中に問題が発生しました。";
@@ -1355,6 +1436,9 @@
 "Time elapsed" = "経過時間";
 
 /* No comment provided by engineer. */
+"Title" = "タイトル";
+
+/* No comment provided by engineer. */
 "Title..." = "タイトル...";
 
 /* No comment provided by engineer. */
@@ -1362,9 +1446,6 @@
 
 /* No comment provided by engineer. */
 "to %@" = "～へ%@";
-
-/* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here. If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講生にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。ペアリングコードを作成するオプションが受講生に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";
@@ -1380,6 +1461,9 @@
 
 /* No comment provided by engineer. */
 "Undo" = "アンドゥーする";
+
+/* No comment provided by engineer. */
+"Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無制限";
@@ -1408,7 +1492,7 @@
 /* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@のアップロードが%2$@";
 
-/* No comment provided by engineer. */
+/* Uploading X KB of Y MB */
 "Uploading %@ of %@" = "～の %1$@ をアップロード中%2$@";
 
 /* No comment provided by engineer. */
@@ -1509,6 +1593,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "お子様のコースはまだ公開されていない可能性があります。";
+
+/* No comment provided by engineer. */
+"Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";
 
 /* No comment provided by engineer. */
 "Your Email" = "あなたのメールアドレス";

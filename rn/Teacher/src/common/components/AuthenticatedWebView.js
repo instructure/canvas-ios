@@ -21,10 +21,10 @@
 import React from 'react'
 import ActivityIndicatorView from './ActivityIndicatorView'
 import canvas from '../../canvas-api'
-import CanvasWebView from './CanvasWebView'
+import CoreWebView from './CoreWebView'
 
 export default class AuthenticatedWebView extends React.Component<any, any> {
-  webView: CanvasWebView
+  webView: CoreWebView
 
   constructor (props: any) {
     super(props)
@@ -33,11 +33,11 @@ export default class AuthenticatedWebView extends React.Component<any, any> {
     }
   }
 
-  injectJavaScript = (script: string) => {
+  evaluateJavaScript = (script: string) => {
     return this.webView.evaluateJavaScript(script)
   }
 
-  captureRef = (c: CanvasWebView) => {
+  captureRef = (c: CoreWebView) => {
     this.webView = c
   }
 
@@ -79,6 +79,6 @@ export default class AuthenticatedWebView extends React.Component<any, any> {
       ...this.props,
       source: uri ? { uri } : this.props.source,
     }
-    return <CanvasWebView {...props} ref={this.captureRef} />
+    return <CoreWebView {...props} ref={this.captureRef} />
   }
 }

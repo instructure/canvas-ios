@@ -66,9 +66,8 @@ class LoginWebViewControllerTests: CoreTestCase {
 
         action.mockRequest = URLRequest(url: URL(string: "https://community.canvaslms.com")!)
         controller.webView(controller.webView, decidePolicyFor: action) { policy in
-            XCTAssertEqual(policy, .cancel)
+            XCTAssertEqual(policy, .allow)
         }
-        XCTAssertEqual(opened, URL(string: "https://community.canvaslms.com"))
 
         action.mockRequest = URLRequest(url: URL(string: "about:blank")!)
         controller.webView(controller.webView, decidePolicyFor: action) { policy in
@@ -90,11 +89,16 @@ class LoginWebViewControllerTests: CoreTestCase {
         XCTAssertNotNil(loggedIn)
         XCTAssert(router.viewControllerCalls.last?.0 is LoadingViewController)
 
-        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=e")!)
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=access_denied")!)
         controller.webView(controller.webView, decidePolicyFor: action) { policy in
             XCTAssertEqual(policy, .cancel)
         }
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Authentication failed. Most likely the user denied the request for access.")
+
+        action.mockRequest = URLRequest(url: URL(string: "https://canvas/login?error=false")!)
+        controller.webView(controller.webView, decidePolicyFor: action) { policy in
+            XCTAssertEqual(policy, .allow)
+        }
     }
 
     func testLocaleIsSetOnLogin() {

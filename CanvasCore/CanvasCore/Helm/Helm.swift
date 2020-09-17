@@ -228,7 +228,7 @@ open class HelmManager: NSObject {
                 if !canBecomeMaster,
                     !clickedFromMaster,
                     sideBySideViews,
-                    let detailNav = splitViewController.detailHelmNavigationController,
+                    let detailNav = splitViewController.detailNavigationController,
                     detailNav.viewControllers.count == 1,
                     detailNav.viewControllers[0] is EmptyViewController
                 {
@@ -418,23 +418,7 @@ open class HelmManager: NSObject {
     }
 
     @objc public func traitCollection(_ moduleName: String, callback: @escaping RCTResponseSenderBlock) {
-        var top = topMostViewController()
-        //  FIXME: - fix sourceController method, something named more appropriate
-        if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {
-            top = sourceController
-        }
-
-        let screenSizeClassInfo = top?.sizeClassInfoForJavascriptConsumption()
-        let windowSizeClassInfo = UIApplication.shared.keyWindow?.sizeClassInfoForJavascriptConsumption()
-
-        var result: [String: [String: String]] = [:]
-        if let screenSizeClassInfo = screenSizeClassInfo {
-            result["screen"] = screenSizeClassInfo
-        }
-        if let windowSizeClassInfo = windowSizeClassInfo {
-            result["window"] = windowSizeClassInfo
-        }
-
+        let result = [ "window": WindowTraits.current() ]
         callback([result])
     }
     
@@ -457,21 +441,21 @@ open class HelmManager: NSObject {
 extension HelmManager {
     @objc func navigationControllerForSplitViewControllerPush(splitViewController: HelmSplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> UINavigationController? {
         let canBecomeMaster = options["canBecomeMaster"] as? Bool == true
-        if canBecomeMaster, let masterNav = splitViewController?.masterHelmNavigationController {
+        if canBecomeMaster, let masterNav = splitViewController?.masterNavigationController {
             return masterNav
         } else if (splitViewController?.detailTopViewController as? HelmModule)?.moduleName == sourceModule {
-            return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
+            return splitViewController?.detailNavigationController
         } else {
             if (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
-                return splitViewController?.masterHelmNavigationController as? HelmNavigationController
+                return splitViewController?.masterNavigationController
             }
 
             let isDeepLink = options["deepLink"] as? Bool ?? false
-            if (splitViewController?.detailHelmNavigationController == nil && !isDeepLink) {
-                splitViewController?.primeEmptyDetailNavigationController()
+            if (splitViewController?.detailNavigationController == nil && !isDeepLink) {
+                splitViewController?.showDetailViewController(HelmNavigationController(), sender: nil)
             }
 
-            return splitViewController?.detailHelmNavigationController ?? splitViewController?.detailNavigationController
+            return splitViewController?.detailNavigationController
         }
     }
 }

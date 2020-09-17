@@ -82,3 +82,12 @@ a:hover {
 .hljs {
   background: none;
 }
+
+svg .hide {
+    display: none;
+}
+
+svg .tooltip:hover + .hide {
+    display: block;
+    user-select: none;
+}

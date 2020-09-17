@@ -41,7 +41,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
-        CacheManager.removeBloat()
         #if DEBUG
             UITestHelpers.setup(self)
         #endif
@@ -307,7 +306,7 @@ extension StudentAppDelegate {
                 } else {
                     finish()
                 }
-            } else if let from = self.topViewController {
+            } else if let from = self.environment.topViewController {
                 var comps = URLComponents(url: url, resolvingAgainstBaseURL: true)
                 comps?.originIsNotification = true
                 AppEnvironment.shared.router.route(to: comps?.url ?? url, userInfo: userInfo, from: from, options: .modal(embedInNav: true, addDoneButton: true))

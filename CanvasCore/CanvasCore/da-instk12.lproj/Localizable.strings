@@ -1,29 +1,5 @@
-/* web content failed to load */
-"⚠️ Error Loading Content" = "⚠️ Fejl ved indlæsning af indhold";
-
-/* No comment provided by engineer. */
-"An unexpected error has occurred." = "En uventet fejl er opstået.";
-
-/* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Er du sikker på, at du ønsker at slette denne kommentar?";
-
-/* No comment provided by engineer. */
-"Cancel" = "Annuller";
-
 /* No comment provided by engineer. */
 "Collapse" = "Skjul";
-
-/* No comment provided by engineer. */
-"Comments" = "Kommentarer";
-
-/* No comment provided by engineer. */
-"Delete" = "Slet";
-
-/* No comment provided by engineer. */
-"Delete Comment" = "Slet kommentar";
-
-/* No comment provided by engineer. */
-"Dismiss" = "Afvis";
 
 /* No comment provided by engineer. */
 "Done" = "Udført";
@@ -39,37 +15,4 @@
 
 /* No comment provided by engineer. */
 "Get Grades for" = "Få vurderinger for";
-
-/* Inbox tab title */
-"Inbox" = "Indbakke";
-
-/* No comment provided by engineer. */
-"Invalid date received from API." = "Ugyldig dato modtaget fra API.";
-
-/* No comment provided by engineer. */
-"Launch External Tool" = "Start eksternt værktøj";
-
-/* No comment provided by engineer. */
-"Open in Safari" = "Åbn i Safari";
-
-/* No comment provided by engineer. */
-"Open in…" = "Åbn om ...";
-
-/* button to read more of the description */
-"Read More" = "Læs mere";
-
-/* No comment provided by engineer. */
-"Remove" = "Fjern";
-
-/* No comment provided by engineer. */
-"Removed %1$@" = "Fjernet %1$@";
-
-/* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "Fjernet %1$@ af %2$@";
-
-/* No comment provided by engineer. */
-"Reply" = "Svar";
-
-/* No comment provided by engineer. */
-"Style" = "Stil";
 

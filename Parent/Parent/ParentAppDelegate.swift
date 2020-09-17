@@ -139,10 +139,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
-    var supportedDeepLinkActions: [String] {
-        return ["create-account"]
-    }
-
     var supportsQRCodeLogin: Bool {
         ExperimentalFeature.qrLoginParent.isEnabled
     }

@@ -239,6 +239,9 @@
 "Are you ready to logout?" = "Ydych chi’n barod i allgofnodi?";
 
 /* No comment provided by engineer. */
+"Are you sure you want to leave this quiz?" = "Ydych chi’n siŵr eich bod am adael y cwis hwn?";
+
+/* No comment provided by engineer. */
 "Ask me later" = "Gofyn i mi wedyn";
 
 /* Label for an assignment */
@@ -590,6 +593,9 @@
 /* No comment provided by engineer. */
 "Existing Attachments..." = "Atodiadau Presennol...";
 
+/* Exit button to leave the quiz */
+"Exit" = "Gadael";
+
 /* Title for an external tool submission */
 "External Tool" = "Adnodd Allanol";
 
@@ -716,7 +722,7 @@
 /* No comment provided by engineer. */
 "Import from Dropbox" = "Mewngludo o Dropbox";
 
-/* No comment provided by engineer. */
+/* Inbox tab title */
 "Inbox" = "Blwch Derbyn";
 
 /* Assignment grade: Incomplete
@@ -737,6 +743,9 @@
 
 /* No comment provided by engineer. */
 "It has problems" = "Problem";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Mae’n ymddangos nad oes cwisiau wedi cael eu creu yn y gofod hwn eto";
 
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Mae'n wag, does dim angen i chi fod yma.";
@@ -761,6 +770,9 @@
 
 /* title for submission button */
 "Launch External Tool" = "Lansio Adnodd Allanol";
+
+/* Leave the quiz */
+"Leave" = "Gadael";
 
 /* Title for legal section on the about page */
 "Legal" = "Cyfreithiol";
@@ -912,6 +924,9 @@
 "No Notifications" = "Dim Hysbysiadau";
 
 /* No comment provided by engineer. */
+"No Quizzes" = "Dim Cwisiau";
+
+/* No comment provided by engineer. */
 "No recipients" = "Dim derbynwyr";
 
 /* Title for attempting submission without a comment */
@@ -943,6 +958,9 @@
 
 /* not graded with points possible */
 "Not graded (0 out of %@)" = "Heb raddio (0 allan o %@)";
+
+/* No comment provided by engineer. */
+"Not Submitted" = "Heb Gyflwyno";
 
 /* No comment provided by engineer. */
 "Note: Media files are not immediately available for playback while they are processed on the server." = "Nodyn: Dydy ffeiliau cyfryngau ddim ar gael i'w chwarae ar unwaith tra maent yn cael eu prosesu ar y gweinydd.";
@@ -1073,6 +1091,9 @@
 
 /* Title for alert notifying users that support for quizzes on mobile is limited. */
 "Quiz Alert" = "Hysbysiad Cwis";
+
+/* No comment provided by engineer. */
+"Quiz Details" = "Manylion Cwis";
 
 /* No comment provided by engineer. */
 "Quiz Locked" = "Cwis wedi'i Gloi";
@@ -1210,6 +1231,9 @@
 /* Hint about the record button */
 "Starts recording a media comment" = "Mae'n dechrau recordio sylw ar gyfryngau";
 
+/* Stay on the quiz view */
+"Stay" = "Aros";
+
 /* button title for cancelling a logout. */
 "Stay Logged In" = "Aros wedi mewngofnodi";
 
@@ -1266,6 +1290,9 @@
 
 /* Submitted grouping */
 "Submitted" = "Wedi Cyflwyno";
+
+/* Submitted date */
+"Submitted %@" = "Wedi Cyflwyno %@";
 
 /* No comment provided by engineer. */
 "Submitting..." = "Wrthi’n cyflwyno...";
@@ -1387,6 +1414,9 @@
 
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Problem wrth gychwyn Safari";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Gwall wrth lwytho cwisiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* Web browser error handling message */
 "There was an error loading the document." = "Gwall wrth lwytho'r ddogfen.";
@@ -1538,6 +1568,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Gweld ffeil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Results" = "Gweld Canlyniadau";
 
 /* No comment provided by engineer. */
 "View submission attempt %d. %@" = "Gweld ymgais cyflwyno %1$d. %2$@";

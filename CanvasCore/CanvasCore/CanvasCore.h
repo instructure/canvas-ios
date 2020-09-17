@@ -26,9 +26,6 @@ FOUNDATION_EXPORT const unsigned char CanvasCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <CanvasCore/PublicHeader.h>
 
-#import <CanvasCore/NativeLoginManager.h>
-#import <CanvasCore/UITextView+Placeholder.h>
-#import <CanvasCore/NativeNotificationCenter.h>
-#import <CanvasCore/PushNotifications.h>
-#import <CanvasCore/APIBridge.h>
 #import <CanvasCore/CanvasCrashlytics.h>
+#import <CanvasCore/NativeLoginManager.h>
+#import <CanvasCore/PushNotifications.h>

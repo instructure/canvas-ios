@@ -30,8 +30,6 @@ class LoginStartViewControllerTests: CoreTestCase {
 
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
-    var supportedDeepLinkActions: [String] = []
-    var deepLinkUrl: URL?
 
     lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false, app: .student)
 
@@ -41,8 +39,6 @@ class LoginStartViewControllerTests: CoreTestCase {
         supportsQRCodeLogin = true
         MDMManager.mockDefaults()
         api.mock(GetUserRequest(userID: "1"), value: .make())
-        deepLinkUrl = nil
-        supportedDeepLinkActions = []
     }
 
     func testAnimateIn() {
@@ -154,9 +150,8 @@ class LoginStartViewControllerTests: CoreTestCase {
         controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
         let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
         tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Camera not available")
-        controller.scanner(ScannerViewController(), didScanCode: qrCode)
+        let scanner = router.presented as! ScannerViewController
+        controller.scanner(scanner, didScanCode: qrCode)
         let loading = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(loading.title, "Logging you in")
         task.paused = false
@@ -182,19 +177,25 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
 
-    func testCreateAccont() throws {
-        supportedDeepLinkActions = ["create-account"]
-        let code = "parent-app://create-account/foo"
+    func testParentCreateAccountQRCode() throws {
+        ExperimentalFeature.parentQRCodePairing.isEnabled = true
+        let code = "parent-app://canvas.instructure.com/pair?code=foo"
+        controller.app = .parent
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
-        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
         controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
-        let tutorial = try XCTUnwrap(router.presented as? LoginQRCodeTutorialViewController)
-        tutorial.delegate?.loginQRCodeTutorialDidFinish(tutorial)
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(alert.title, "Camera not available")
-        controller.scanner(ScannerViewController(), didScanCode: code)
-        XCTAssertEqual(deepLinkUrl, URL(string: code))
+        let picker = try XCTUnwrap(router.presented as? BottomSheetPickerViewController)
+        XCTAssertEqual(picker.actions.count, 2)
+        XCTAssertEqual(picker.actions[0].title, "I have a Canvas account")
+        XCTAssertEqual(picker.actions[1].title, "I don't have a Canvas account")
+        picker.actions[1].action()
+        let tutorial = try XCTUnwrap(router.presented as? PairWithStudentQRCodeTutorialViewController)
+        tutorial.delegate?.pairWithStudentQRCodeTutorialDidFinish(tutorial)
+        let scanner = router.presented as! ScannerViewController
+        controller.scanner(scanner, didScanCode: code)
+        let login = try XCTUnwrap(router.last as? LoginWebViewController)
+        XCTAssertEqual(login.host, "canvas.instructure.com")
+        XCTAssertEqual(login.pairingCode, "foo")
     }
 
     func testQRLoginFeatureGetsTurnedOn() {
@@ -258,9 +259,5 @@ extension LoginStartViewControllerTests: LoginDelegate {
 
     func userDidLogout(session: LoginSession) {
         loggedOut = session
-    }
-
-    func handleDeepLink(url: URL) {
-        deepLinkUrl = url
     }
 }
