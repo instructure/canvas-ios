@@ -117,7 +117,7 @@ workflows:
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
-                -destination 'platform=iOS Simulator,name=iPhone 8' \
+                -destination 'platform=iOS Simulator,name=iPhone SE (2nd generation)' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
     - script:

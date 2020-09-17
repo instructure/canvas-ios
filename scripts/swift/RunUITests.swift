@@ -27,7 +27,7 @@ struct RunUITests: ParsableCommand {
     @Option(default: "NightlyTests")
     var scheme: String
 
-    @Option(default: "iPhone 8")
+    @Option(default: "iPhone SE (2nd generation)")
     var deviceName: String
 
     @Flag(help: "build test target first")

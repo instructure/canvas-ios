@@ -43,9 +43,9 @@ const ignoreExps = config.ignorePatterns.map(pattern => new RegExp(pattern))
 
 program
   .version(require('../../package.json').version)
-  .option('--device [name]', 'Run XCTest on [name]', 'iPhone 8')
+  .option('--device [name]', 'Run XCTest on [name]', 'iPhone SE (2nd generation)')
   .option('--html', 'Deprecated, html reports are always generated')
-  .option('--os [name]', 'Run XCTest on [name]', '13.0')
+  .option('--os [name]', 'Run XCTest on [name]', '14.0')
   .option('--scheme [name]', 'Report coverage for scheme [name]', 'CITests')
   .option('--test', 'Run XCTest for scheme before generating reports')
   .option('--skip-sync', "Don't upload/download to S3")
