@@ -257,6 +257,9 @@ open class CoreWebView: WKWebView {
                 document.addEventListener('load', checkSize, true)
             })
             window.addEventListener('error', checkSize, true)
+            if (window.ResizeObserver) {
+                new ResizeObserver(checkSize).observe(document.documentElement)
+            }
             checkSize()
         """
     }

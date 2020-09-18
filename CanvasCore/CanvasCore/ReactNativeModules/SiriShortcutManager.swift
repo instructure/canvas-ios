@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Core
 
 public class SiriShortcutManager: NSObject {
     enum ShortcutType: String {
@@ -42,13 +43,11 @@ public class SiriShortcutManager: NSObject {
         activity.userInfo = userInfo
         activity.title = shortcutType.title(userInfo: userInfo)
         activity.isEligibleForSearch = true
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(stringLiteral: identifier)
-        }
+        activity.isEligibleForPrediction = true
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(stringLiteral: identifier)
 
-        if let window = UIApplication.shared.delegate?.window {
-            if let vc = window?.rootViewController?.topMostViewController() {
+        if let window = AppEnvironment.shared.window {
+            if let vc = window.rootViewController?.topMostViewController() {
                 vc.userActivity = activity
                 activity.becomeCurrent()
             }

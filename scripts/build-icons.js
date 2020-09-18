@@ -260,7 +260,6 @@ public extension UIImage {
     ).join('\n    ')}
 }
 
-@available(iOSApplicationExtension 13, *)
 public extension Icon {
     ${Array.from(icons).sort().flatMap(name => [
       `static var ${name}Line: Icon { Icon(Image("${name}LineSymbol", bundle: .core)) }`,
@@ -306,7 +305,6 @@ class InstIconExtensionTests: XCTestCase {
         ).join('\n        ')}
     }
 
-    @available(iOS 13, *)
     func testImage() {
         ${Array.from(icons).sort().flatMap(name => [
           `XCTAssertEqual(Icon.${name}Line.image, Image("${name}LineSymbol", bundle: .core))`,

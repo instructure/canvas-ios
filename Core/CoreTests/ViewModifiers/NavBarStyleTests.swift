@@ -21,7 +21,6 @@ import XCTest
 @testable import Core
 import SwiftUI
 
-@available(iOS 13.0, *)
 class NavBarStyleTests: CoreTestCase {
     func testReduce() {
         var style = NavBarStyle.global

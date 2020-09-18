@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 public struct FileEditorView: View {
     let context: Context?
     let itemID: ItemID
@@ -365,7 +364,6 @@ public struct FileEditorView: View {
 }
 
 #if DEBUG
-@available(iOSApplicationExtension 13.0.0, *)
 struct FileEditorView_Previews: PreviewProvider {
     static var previews: some View {
         SwiftUI.Group {

@@ -220,7 +220,6 @@ public extension UIImage {
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
 }
 
-@available(iOSApplicationExtension 13, *)
 public extension Icon {
     static var addLine: Icon { Icon(Image("addLineSymbol", bundle: .core)) }
     static var addSolid: Icon { Icon(Image("addSolidSymbol", bundle: .core)) }

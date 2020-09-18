@@ -17,10 +17,11 @@
 //
 
 import Foundation
+import Core
 
 public class WindowTraits: NSObject {
     @objc public static func current() -> [String: String] {
-        guard let traitCollection = UIApplication.shared.keyWindow?.traitCollection else { return [:] }
+        guard let traitCollection = AppEnvironment.shared.window?.traitCollection else { return [:] }
         return [
             "style": traitCollection.userInterfaceStyle == .dark ? "dark" : "light",
             "contrast": UIAccessibility.isDarkerSystemColorsEnabled ? "high" : "normal",

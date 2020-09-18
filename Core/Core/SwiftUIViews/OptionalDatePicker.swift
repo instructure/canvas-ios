@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct OptionalDatePicker<Label: View>: View {
     let label: Label
     let min: Date

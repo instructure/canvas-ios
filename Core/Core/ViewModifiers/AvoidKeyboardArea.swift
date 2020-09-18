@@ -19,7 +19,6 @@
 import SwiftUI
 import Combine
 
-@available(iOSApplicationExtension 13.0, *)
 struct AvoidKeyboardArea: ViewModifier {
     static var keyboardHeight: AnyPublisher<CGFloat, Never> {
         let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).map { notification in
@@ -46,7 +45,6 @@ struct AvoidKeyboardArea: ViewModifier {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension View {
     func avoidKeyboardArea() -> some View {
         modifier(AvoidKeyboardArea())

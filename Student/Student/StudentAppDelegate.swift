@@ -292,7 +292,7 @@ extension StudentAppDelegate {
         environment.performAfterStartup {
             let path = url.path
             if let i = tabRoutes.firstIndex(where: { $0.contains(path) }) {
-                guard let tabBarController = UIApplication.shared.keyWindow?.rootViewController as? UITabBarController else { return }
+                guard let tabBarController = self.window?.rootViewController as? UITabBarController else { return }
 
                 let finish = {
                     tabBarController.selectedIndex = i

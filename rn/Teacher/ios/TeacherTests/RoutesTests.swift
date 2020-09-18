@@ -70,11 +70,7 @@ class RoutesTests: XCTestCase {
             HelmManager.shared.registerRoute(template)
         }
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
-        if #available(iOS 13.0, *) {
-            XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
-        } else {
-            XCTAssert(router.match("/courses") is HelmViewController)
-        }
+        XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
         XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/2/modules/2") is ModuleListViewController)
         XCTAssert(router.match("/courses/3/pages") is PageListViewController)

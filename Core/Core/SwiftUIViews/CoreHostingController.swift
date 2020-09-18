@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
     public var navBarStyle = NavBarStyle.global
     var testTree: TestTree?
@@ -59,7 +58,6 @@ public class CoreHostingController<InnerContent: View>: UIHostingController<Core
 
 }
 
-@available(iOSApplicationExtension 13.0.0, *)
 public struct CoreHostingBaseView<Content: View>: View {
     var rootView: Content
     let env: AppEnvironment
