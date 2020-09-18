@@ -119,7 +119,8 @@ public enum DiscussionHTML {
             maxDepth: \(maxDepth),
             canLike: \(canLike),
             contextColor: \(s(contextColor?.hexString))
-        }), document.body)
+        }), Discussion.element)
+        Discussion.fixCustomJS()
         fixLTITools()
         """
     }
@@ -137,7 +138,7 @@ public enum DiscussionHTML {
             depth: 0,
             maxDepth: \(maxDepth),
             canLike: \(canLike)
-        }), document.body)
+        }), Discussion.element)
         """
     }
 
@@ -233,7 +234,7 @@ public enum DiscussionHTML {
         const { topic, entries, maxDepth, canLike } = props
         return h(Fragment, null,
             h(Discussion.Header, topic),
-            h('div', { dangerouslySetInnerHTML: { __html: topic.message } }),
+            h('div', { class: \(s(.message)), dangerouslySetInnerHTML: { __html: topic.message } }),
             h(Discussion.ReplyButton, topic),
             h(Discussion.GroupTopicChildren, props),
             entries.length > 0 && h('h2', { class: \(s(.heading)) },
@@ -419,6 +420,24 @@ public enum DiscussionHTML {
         ) // div actions
     }
 
+    const scripts = new Set()
+    Discussion.fixCustomJS = () => {
+        for (const script of document.querySelectorAll('.\(Styles.message) script')) {
+            const key = script.src || script.textContent
+            if (scripts.has(key)) { continue }
+            scripts.add(key)
+            script.remove()
+            const exec = document.createElement('script')
+            exec.textContent = script.textContent
+            for (let i = 0; i < script.attributes.length; ++i) {
+                exec.setAttribute(script.attributes[i].name, script.attributes[i].value)
+            }
+            document.head.appendChild(exec)
+        }
+    }
+
+    Discussion.element = document.createElement('div')
+    document.body.appendChild(Discussion.element)
     window.webkit.messageHandlers.ready.postMessage('')
     """
 
@@ -437,7 +456,7 @@ public enum DiscussionHTML {
     enum Styles: Int, CustomStringConvertible {
         case authorName, date, entryHeader, topicHeader
         case avatar, avatarInitials, avatarTopic
-        case groupTopicChild, groupTopicChildren
+        case message, groupTopicChild, groupTopicChildren
         case deleted, entry, entryContent, moreReplies, read, unread
         case actions, like, liked, likeIcon, moreOptions, reply, replyPipe
         case blockLink, divider, heading, hiddenCheck, icon, mirrorRTL, screenreader
