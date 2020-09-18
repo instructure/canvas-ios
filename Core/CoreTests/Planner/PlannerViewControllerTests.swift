@@ -36,7 +36,7 @@ class PlannerViewControllerTests: CoreTestCase {
         _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
         XCTAssert(router.presented is CreateTodoViewController)
 
-        XCTAssertGreaterThan(controller.list.tableView.scrollIndicatorInsets.top, 143)
+        XCTAssertGreaterThan(controller.list.tableView.verticalScrollIndicatorInsets.top, 143)
         XCTAssertGreaterThan(controller.list.tableView.contentInset.top, 143)
 
         XCTAssertEqual(controller.getPlannables(from: Clock.now, to: Clock.now).userID, controller.studentID)
@@ -82,7 +82,7 @@ class PlannerViewControllerTests: CoreTestCase {
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
-        XCTAssertEqual(controller.list.tableView.scrollIndicatorInsets.top, height)
+        XCTAssertEqual(controller.list.tableView.verticalScrollIndicatorInsets.top, height)
         XCTAssertEqual(controller.list.tableView.contentInset.top, height)
 
         controller.calendar.setExpanded(true)

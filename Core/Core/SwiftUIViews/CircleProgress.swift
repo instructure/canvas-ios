@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 public struct CircleProgress: UIViewRepresentable {
     public let progress: CGFloat?
 
@@ -42,7 +41,6 @@ public struct CircleProgress: UIViewRepresentable {
 }
 
 #if DEBUG
-@available(iOSApplicationExtension 13.0.0, *)
 struct CircleProgress_Previews: PreviewProvider {
     static var previews: some View {
         CircleProgress(progress: nil)

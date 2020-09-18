@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0, *)
 public struct TestTree {
     public let kind: Kind?
     public let id: String?
@@ -61,7 +60,6 @@ public struct TestTree {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension TestTree: Equatable {
     public static func == (lhs: TestTree, rhs: TestTree) -> Bool {
         lhs.kind == rhs.kind &&
@@ -72,7 +70,6 @@ extension TestTree: Equatable {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension TestTree: PreferenceKey {
     public typealias Value = [TestTree]
     public static let defaultValue: Value = []
@@ -81,14 +78,12 @@ extension TestTree: PreferenceKey {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension TestTree.AnyEquatable: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.isEqual(rhs.value)
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 struct TestIdentifier<Info: Equatable>: ViewModifier {
     @Environment(\.appEnvironment.isTest) var isTest: Bool
 
@@ -105,7 +100,6 @@ struct TestIdentifier<Info: Equatable>: ViewModifier {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension View {
     #if DEBUG
     public func testID<Info: Equatable>(_ kind: TestTree.Kind?, id: String? = nil, info: Info) -> some View {
@@ -144,7 +138,6 @@ extension View {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension Text {
     var verbatim: String? { Mirror(reflecting: self).descendant("storage", "verbatim") as? String }
     var key: String? { Mirror(reflecting: self).descendant("storage", "anyTextStorage", "key", "key") as? String }

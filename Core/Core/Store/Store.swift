@@ -74,23 +74,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var error: Error?
 
     // The default implementation of objectWillChange requires at least one
-    // @Published property, but we can't have stored properties that are iOS 13+
-    private let _objectWillChange: Any? = {
-        if #available(iOS 13.0, *) {
-            return ObservableObjectPublisher()
-        } else {
-            return nil
-        }
-    }()
-    @available(iOS 13.0, *)
-    public var objectWillChange: ObservableObjectPublisher {
-        (_objectWillChange as? ObservableObjectPublisher)!
-    }
+    // @Published property
+    public var objectWillChange = ObservableObjectPublisher()
     private func willChange() {
-        if #available(iOS 13.0, *) {
-            performUIUpdate {
-                self.objectWillChange.send()
-            }
+        performUIUpdate {
+            self.objectWillChange.send()
         }
     }
 
@@ -270,6 +258,5 @@ extension Store: Sequence {
     }
 }
 
-@available(iOS 13.0, *)
 extension Store: ObservableObject {
 }

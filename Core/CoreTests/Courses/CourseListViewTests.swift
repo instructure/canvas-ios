@@ -21,7 +21,6 @@ import SwiftUI
 import Combine
 @testable import Core
 
-@available(iOS 13.0, *)
 class CourseListViewTests: CoreTestCase {
     lazy var courses: [APICourse] = [
         .make(),

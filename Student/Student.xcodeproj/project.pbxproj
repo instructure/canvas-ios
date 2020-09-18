@@ -174,7 +174,6 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
-		B5F122C91D8C4D6C0045063A /* Student.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Student.entitlements */; };
 		DA5C72BF38BB22F39F7FB893 /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */; };
 		E809363124C21A5D00D15E9A /* AccountNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363024C21A5D00D15E9A /* AccountNotificationsTests.swift */; };
 		E809363824C21B6F00D15E9A /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363724C21B6F00D15E9A /* InboxTests.swift */; };
@@ -187,7 +186,6 @@
 		E80936E224C24CDD00D15E9A /* AnnouncementE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365024C21CB600D15E9A /* AnnouncementE2ETests.swift */; };
 		E80936E324C24CDD00D15E9A /* CourseFileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365E24C21CB700D15E9A /* CourseFileE2ETests.swift */; };
 		E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364B24C21CB600D15E9A /* CourseGroupE2ETests.swift */; };
-		E80936E524C24CDD00D15E9A /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365C24C21CB700D15E9A /* DashboardE2ETests.swift */; };
 		E80936E624C24CDD00D15E9A /* DeepLinkE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365824C21CB700D15E9A /* DeepLinkE2ETests.swift */; };
 		E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364E24C21CB600D15E9A /* DiscussionDetailsE2ETests.swift */; };
 		E80936E824C24CDD00D15E9A /* InboxE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365224C21CB600D15E9A /* InboxE2ETests.swift */; };
@@ -737,7 +735,6 @@
 		E809365624C21CB700D15E9A /* PageE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageE2ETests.swift; sourceTree = "<group>"; };
 		E809365824C21CB700D15E9A /* DeepLinkE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkE2ETests.swift; sourceTree = "<group>"; };
 		E809365A24C21CB700D15E9A /* ActAsUserE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActAsUserE2ETests.swift; sourceTree = "<group>"; };
-		E809365C24C21CB700D15E9A /* DashboardE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardE2ETests.swift; sourceTree = "<group>"; };
 		E809365E24C21CB700D15E9A /* CourseFileE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseFileE2ETests.swift; sourceTree = "<group>"; };
 		E841D89E23D6467900685A63 /* CoreE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CoreE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89B3002244F3EC0007CF19B /* ConferencesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesUITests.swift; sourceTree = "<group>"; };
@@ -1719,7 +1716,6 @@
 			isa = PBXGroup;
 			children = (
 				E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */,
-				E809365C24C21CB700D15E9A /* DashboardE2ETests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -1990,7 +1986,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					3B6DCCA41FB502CD005EE8D2 = {
@@ -2161,7 +2157,6 @@
 				495D8BB91CFE17D700D41098 /* LaunchScreen.storyboard in Resources */,
 				7D38A7D724CF610E00A4373E /* QuizDetailsViewController.storyboard in Resources */,
 				7DCF0FA522F8A8A9000AACCE /* QuizListViewController.storyboard in Resources */,
-				B5F122C91D8C4D6C0045063A /* Student.entitlements in Resources */,
 				2C8E356E20939C2D0071ED94 /* Settings.bundle in Resources */,
 				7DCF0FAE22F8A8D7000AACCE /* RubricCollectionViewCell.xib in Resources */,
 				7DCF0FC322F8A8D7000AACCE /* SubmissionDetailsViewController.storyboard in Resources */,
@@ -2577,7 +2572,6 @@
 				E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */,
 				E8C6F4E223D626220086B865 /* PeopleE2ETests.swift in Sources */,
 				E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */,
-				E80936E524C24CDD00D15E9A /* DashboardE2ETests.swift in Sources */,
 				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				E841D8C423D6648300685A63 /* AssignmentsE2ETests.swift in Sources */,
 				E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */,
@@ -3004,6 +2998,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3028,7 +3023,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3061,6 +3056,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3079,7 +3075,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

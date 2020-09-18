@@ -20,7 +20,6 @@ import SwiftUI
 import TestsFoundation
 @testable import Core
 
-@available(iOS 13, *)
 class IconTests: CoreTestCase {
     func testDefaultSize() {
         XCTAssertEqual(Icon.starLine.size, 24)

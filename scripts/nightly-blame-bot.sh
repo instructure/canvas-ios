@@ -56,7 +56,7 @@ function banner() (
 )
 
 function build {
-    destination_flag=(-destination 'platform=iOS Simulator,name=iPhone 8')
+    destination_flag=(-destination 'platform=iOS Simulator,name=iPhone SE (2nd generation)')
     {
         xcodebuild -workspace Canvas.xcworkspace -scheme NightlyTests $destination_flag build-for-testing 2>&1 | xcbeautify --quiet
     } || {

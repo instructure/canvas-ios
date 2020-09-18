@@ -20,7 +20,7 @@ import Core
 
 class CoursesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    let activityIndicator = UIActivityIndicatorView(style: .white)
+    let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     let env = AppEnvironment.shared
     var selectedCourseID: String?

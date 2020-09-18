@@ -164,11 +164,7 @@ class SubmissionButtonPresenter: NSObject {
         guard case let .some(arcID) = arcID, let userID = assignment.submission?.userID else { return }
         let arc = ArcSubmissionViewController.create(environment: env, courseID: assignment.courseID, assignmentID: assignment.id, userID: userID, arcID: arcID)
         let nav = UINavigationController(rootViewController: arc)
-        if #available(iOS 13, *) {
-            nav.modalPresentationStyle = .fullScreen
-        } else {
-            nav.modalPresentationStyle = .formSheet
-        }
+        nav.modalPresentationStyle = .fullScreen
         show(nav)
     }
 

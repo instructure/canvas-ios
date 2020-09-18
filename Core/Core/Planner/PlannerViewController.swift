@@ -82,7 +82,7 @@ public class PlannerViewController: UIViewController {
         divider.topAnchor.constraint(equalTo: calendar.view.bottomAnchor).isActive = true
 
         calendar.view.layoutIfNeeded()
-        list.tableView.scrollIndicatorInsets.top = calendar.minHeight
+        list.tableView.verticalScrollIndicatorInsets.top = calendar.minHeight
         list.tableView.contentInset.top = calendar.minHeight
 
         planners.refresh()
@@ -147,7 +147,7 @@ extension PlannerViewController: CalendarViewControllerDelegate {
     }
 
     func calendarDidResize(height: CGFloat, animated: Bool) {
-        list.tableView.scrollIndicatorInsets.top = height
+        list.tableView.verticalScrollIndicatorInsets.top = height
         list.tableView.contentInset.top = height
         view.layoutIfNeeded()
     }
@@ -180,7 +180,7 @@ extension PlannerViewController: PlannerListDelegate {
         guard scrollView.isDragging, scrollView.contentInset.top > calendar.minHeight else { return }
         let topSpace = scrollView.contentInset.top + listContentOffsetY - scrollView.contentOffset.y
         let height = max(calendar.minHeight, min(calendar.maxHeight, topSpace))
-        scrollView.scrollIndicatorInsets.top = height
+        scrollView.verticalScrollIndicatorInsets.top = height
         calendar.setHeight(height)
     }
 
@@ -206,7 +206,7 @@ extension PlannerViewController: PagesViewControllerDataSource, PagesViewControl
             delegate: self
         )
         newList.loadViewIfNeeded()
-        newList.tableView.scrollIndicatorInsets = list.tableView.scrollIndicatorInsets
+        newList.tableView.verticalScrollIndicatorInsets = list.tableView.verticalScrollIndicatorInsets
         newList.tableView.contentInset = list.tableView.contentInset
         newList.title = DateFormatter.localizedString(from: newList.start, dateStyle: .long, timeStyle: .none)
         return newList

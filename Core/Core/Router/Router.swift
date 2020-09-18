@@ -139,7 +139,7 @@ open class Router {
             if let presentationStyle = style {
                 (nav ?? view).modalPresentationStyle = presentationStyle
             }
-            if #available(iOS 13, *), !isDismissable {
+            if !isDismissable {
                 (nav ?? view).isModalInPresentation = true
             }
             from.present(nav ?? view, animated: true, completion: completion)

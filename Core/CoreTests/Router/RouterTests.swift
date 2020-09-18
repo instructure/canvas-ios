@@ -355,7 +355,6 @@ class RouterTests: CoreTestCase {
         XCTAssert(navController.viewControllers.first is EmptyViewController)
     }
 
-    @available(iOS 13, *)
     func testIsDismissable() {
         let mockView = MockViewController()
         let router = Router(routes: []) { _, _, _, _ in }

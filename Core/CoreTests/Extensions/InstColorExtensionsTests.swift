@@ -68,7 +68,6 @@ class InstColorExtensionTests: XCTestCase {
         XCTAssertEqual(UIColor.tiara, UIColor(named: "tiara", in: .core, compatibleWith: nil))
     }
 
-    @available(iOS 13, *)
     func testColor() {
         XCTAssertEqual(Color.ash, Color("ash", bundle: .core))
         XCTAssertEqual(Color.backgroundAlert, Color("backgroundAlert", bundle: .core))

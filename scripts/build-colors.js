@@ -195,7 +195,6 @@ public extension UIColor {
     ).join('\n    ')}
 }
 
-@available(iOSApplicationExtension 13, *)
 public extension Color {
     ${colorArray.filter(color => color != 'white').map(name =>
       `static let ${name} = Color("${name}", bundle: .core)`
@@ -234,7 +233,6 @@ class InstColorExtensionTests: XCTestCase {
         ).join('\n        ')}
     }
 
-    @available(iOS 13, *)
     func testColor() {
         ${colorArray.filter(color => color != 'white').map(name =>
           `XCTAssertEqual(Color.${name}, Color("${name}", bundle: .core))`

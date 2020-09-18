@@ -65,7 +65,6 @@ public extension UIColor {
     static let tiara = UIColor(named: "tiara", in: .core, compatibleWith: nil)!
 }
 
-@available(iOSApplicationExtension 13, *)
 public extension Color {
     static let ash = Color("ash", bundle: .core)
     static let backgroundAlert = Color("backgroundAlert", bundle: .core)

@@ -18,7 +18,6 @@
 
 import SwiftUI
 
-@available(iOSApplicationExtension 13.0.0, *)
 public enum NavBarStyle: PreferenceKey, Equatable {
     case modal
     case global
@@ -30,7 +29,6 @@ public enum NavBarStyle: PreferenceKey, Equatable {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 extension View {
     func navBarStyle(_ style: NavBarStyle) -> some View {
         preference(key: NavBarStyle.self, value: style)
