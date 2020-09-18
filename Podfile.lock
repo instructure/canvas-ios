@@ -137,9 +137,6 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - Nimble (8.0.7)
-  - PactConsumerSwift (0.9.0):
-    - Nimble (~> 8.0)
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.4)
   - PSPDFKit (9.3.0):
@@ -419,7 +416,6 @@ DEPENDENCIES:
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
   - lottie-ios (~> 3.1.8)
-  - PactConsumerSwift (from `https://github.com/DiUS/pact-consumer-swift.git`)
   - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
@@ -477,7 +473,6 @@ SPEC REPOS:
     - GoogleUtilities
     - lottie-ios
     - nanopb
-    - Nimble
     - PromisesObjC
     - Protobuf
 
@@ -496,8 +491,6 @@ EXTERNAL SOURCES:
     :podspec: "./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec"
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
-  PactConsumerSwift:
-    :git: https://github.com/DiUS/pact-consumer-swift.git
   PSPDFKit:
     :podspec: https://customers.pspdfkit.com/pspdfkit-ios/9.3.0.podspec
   RCTRequired:
@@ -567,11 +560,6 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "./rn/Teacher/node_modules/react-native/ReactCommon/yoga"
 
-CHECKOUT OPTIONS:
-  PactConsumerSwift:
-    :commit: a02f76567310f1960ce5a75a68013a9340aa1c06
-    :git: https://github.com/DiUS/pact-consumer-swift.git
-
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
@@ -598,8 +586,6 @@ SPEC CHECKSUMS:
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
-  PactConsumerSwift: 3944a3d54d1c59ed9cd2d56b38582d011378d332
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   PSPDFKit: 28cd40fba9aac0bb3ebce46562a57df5a6569d1c
@@ -637,6 +623,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 6d9f69310265c89eae9096966f98781c6d8f0619
+PODFILE CHECKSUM: 60afc71e9f174ee381155b10c844a10289eedfcf
 
 COCOAPODS: 1.9.3
