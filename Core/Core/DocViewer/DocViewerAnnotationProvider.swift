@@ -37,22 +37,28 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         }
     }
 
-    init(documentProvider: PDFDocumentProvider!, metadata: APIDocViewerAnnotationsMetadata, annotations: [APIDocViewerAnnotation], api: API, sessionID: String) {
+    init(documentProvider: PDFDocumentProvider!, metadata: APIDocViewerMetadata, annotations: [APIDocViewerAnnotation], api: API, sessionID: String) {
         self.api = api
         self.sessionID = sessionID
 
         super.init(documentProvider: documentProvider)
 
-        guard metadata.enabled else { return }
+        guard let annotationsMetadata = metadata.annotations, annotationsMetadata.enabled else { return }
         var hasReplies: Set<String> = []
         let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
             apiAnnotations[apiAnnotation.id] = apiAnnotation
             if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
-            return Annotation.from(apiAnnotation, metadata: metadata)
+            return Annotation.from(apiAnnotation, metadata: annotationsMetadata)
         }
         for annotation in allAnnotations {
             annotation.hasReplies = hasReplies.contains(annotation.name ?? "")
         }
+        for (pageKey, rawRotation) in metadata.rotations ?? [:] {
+            if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
+                documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
+            }
+        }
+
         setAnnotations(allAnnotations, append: false)
     }
 
@@ -149,13 +155,5 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
             requestsInFlight = 0
         }
         allAnnotations.forEach(syncAnnotation)
-    }
-}
-
-// Needed for setRotationOffset(_:forPageAt:)
-extension DocViewerAnnotationProvider {
-    override func prepareForRefresh() {
-    }
-    override func refreshAnnotationsForPages(at pageIndexes: IndexSet) {
     }
 }

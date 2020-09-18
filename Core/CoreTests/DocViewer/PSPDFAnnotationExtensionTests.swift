@@ -101,13 +101,13 @@ class PSPDFAnnotationExtensionTests: XCTestCase {
         XCTAssertEqual(annotation?.apiAnnotation(), apiAnnotation)
         XCTAssertEqual(annotation?.contents, "freetext")
         XCTAssertEqual(annotation?.fontName, "Helvetica")
-        XCTAssertEqual(annotation?.fontSize, 38 * 0.9)
+        XCTAssertEqual(annotation?.fontSize, 38 * 0.85)
 
         let apiEmpty = model(type: .freetext, contents: nil, font: nil)
         let empty = Annotation.from(apiEmpty, metadata: metadata)
         XCTAssertEqual(empty?.contents, "")
         XCTAssertEqual(empty?.fontName, "Helvetica")
-        XCTAssertEqual(empty?.fontSize, 14 * 0.9)
+        XCTAssertEqual(empty?.fontSize, 14 * 0.85)
         XCTAssertEqual(empty?.fillColor, UIColor(hexString: "#ffffff"))
     }
 
