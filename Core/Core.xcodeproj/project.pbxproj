@@ -681,7 +681,7 @@
 		9FBFE6E1224289A6002B3796 /* WrongAppViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FBFE6E0224289A6002B3796 /* WrongAppViewController.storyboard */; };
 		9FC715CE23D758BD008CBDBF /* GetConversationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC715CD23D758BD008CBDBF /* GetConversationsTests.swift */; };
 		9FCD79D62188DE8B0054293A /* APISubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D52188DE8B0054293A /* APISubmissionTests.swift */; };
-		9FCD79DA2188E3CD0054293A /* GetSubmissionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D92188E3CD0054293A /* GetSubmissionsTest.swift */; };
+		9FCD79DA2188E3CD0054293A /* GetSubmissionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCD79D92188E3CD0054293A /* GetSubmissionsTests.swift */; };
 		9FCF1540227B6BC1009D35F6 /* GradeCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */; };
 		9FCF1554227CC927009D35F6 /* GradeCircleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF1553227CC927009D35F6 /* GradeCircleViewTests.swift */; };
 		9FD504EA2180BE2900B395BA /* APIFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD504E92180BE2900B395BA /* APIFileTests.swift */; };
@@ -1672,7 +1672,7 @@
 		9FC715CD23D758BD008CBDBF /* GetConversationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversationsTests.swift; sourceTree = "<group>"; };
 		9FCD79D52188DE8B0054293A /* APISubmissionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmissionTests.swift; sourceTree = "<group>"; };
 		9FCD79D72188DFD00054293A /* GetSubmissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissions.swift; sourceTree = "<group>"; };
-		9FCD79D92188E3CD0054293A /* GetSubmissionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionsTest.swift; sourceTree = "<group>"; };
+		9FCD79D92188E3CD0054293A /* GetSubmissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionsTests.swift; sourceTree = "<group>"; };
 		9FCF153F227B6BC1009D35F6 /* GradeCircleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradeCircleView.xib; sourceTree = "<group>"; };
 		9FCF1541227B6DB6009D35F6 /* GradeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCircleView.swift; sourceTree = "<group>"; };
 		9FCF1553227CC927009D35F6 /* GradeCircleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCircleViewTests.swift; sourceTree = "<group>"; };
@@ -3362,7 +3362,7 @@
 				9FCD79D52188DE8B0054293A /* APISubmissionTests.swift */,
 				7DEB5C3B224EBF2D00F28404 /* CreateTextCommentTests.swift */,
 				7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */,
-				9FCD79D92188E3CD0054293A /* GetSubmissionsTest.swift */,
+				9FCD79D92188E3CD0054293A /* GetSubmissionsTests.swift */,
 				7D06113524800E240014C8E4 /* SubmissionBreakdownViewControllerTests.swift */,
 				7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */,
 				7D37BE8C21C837840063FAAC /* SubmissionTests.swift */,
@@ -3821,10 +3821,10 @@
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
+				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
 				7D6C47EA250C1C5B0088ADDE /* Pages.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
-				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4665,7 +4665,7 @@
 				7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */,
 				7D7F71DE241FDDDB00D6F9CB /* ConferenceTests.swift in Sources */,
 				7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */,
-				9FCD79DA2188E3CD0054293A /* GetSubmissionsTest.swift in Sources */,
+				9FCD79DA2188E3CD0054293A /* GetSubmissionsTests.swift in Sources */,
 				9F5C93032375F682005105BB /* GetPageTests.swift in Sources */,
 				B11AEBB32405D31C00B736D6 /* CoreWebViewControllerTests.swift in Sources */,
 				7DCF1ED6216C05FE003AF358 /* GradeViewableTests.swift in Sources */,

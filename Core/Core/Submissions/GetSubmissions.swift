@@ -157,7 +157,7 @@ public class GetSubmissions: CollectionUseCase {
 
     public let context: Context
     public let assignmentID: String
-    public let filter: Filter?
+    public var filter: Filter?
     public var shuffled: Bool
 
     public init(context: Context, assignmentID: String, filter: Filter?, shuffled: Bool = false) {
@@ -184,7 +184,7 @@ public class GetSubmissions: CollectionUseCase {
         return Scope(predicate: predicate, order: [order])
     }
 
-    public enum Filter: RawRepresentable {
+    public enum Filter: RawRepresentable, Equatable {
         case late, notSubmitted, needsGrading, graded
         case scoreAbove(Double)
         case scoreBelow(Double)
@@ -208,8 +208,8 @@ public class GetSubmissions: CollectionUseCase {
                 let parts = rawValue.split(separator: "_")
                 if parts.count == 3, parts[0] == "score", parts[1] == "above", let score = Double(parts[2]) {
                     self = .scoreAbove(score)
-                } else if parts.count == 3, parts[0] == "score", parts[1] == "above", let score = Double(parts[2]) {
-                    self = .scoreAbove(score)
+                } else if parts.count == 3, parts[0] == "score", parts[1] == "below", let score = Double(parts[2]) {
+                    self = .scoreBelow(score)
                 } else {
                     return nil
                 }
@@ -240,12 +240,24 @@ public class GetSubmissions: CollectionUseCase {
             case .notSubmitted:
                 return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
             case .needsGrading:
-                return NSPredicate(format: "%K != nil AND %K == nil",
-                    #keyPath(Submission.submittedAt),
-                    #keyPath(Submission.gradedAt)
+                return NSPredicate(format: """
+                    %K != nil AND (%K == 'pending_review' OR (
+                        %K IN { 'graded', 'submitted' } AND
+                        (%K == nil OR %K == false)
+                    ))
+                    """,
+                    #keyPath(Submission.typeRaw),
+                    #keyPath(Submission.workflowStateRaw),
+                    #keyPath(Submission.workflowStateRaw),
+                    #keyPath(Submission.scoreRaw),
+                    #keyPath(Submission.gradeMatchesCurrentSubmission)
                 )
             case .graded:
-                return NSPredicate(format: "%K != nil", #keyPath(Submission.gradedAt))
+                return NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
+                    #keyPath(Submission.excusedRaw),
+                    #keyPath(Submission.scoreRaw),
+                    #keyPath(Submission.workflowStateRaw)
+                )
             case .scoreAbove(let score):
                 return NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), score)
             case .scoreBelow(let score):

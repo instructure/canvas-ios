@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492704721CF4AF7100C631C6"
-               BuildableName = "Student.app"
-               BlueprintName = "Student"
-               ReferencedContainer = "container:Student.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C96482D211E2F1A002C3255"
                BuildableName = "Core.framework"
                BlueprintName = "Core"
@@ -42,24 +28,38 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Teacher.app"
-               BlueprintName = "Teacher"
-               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
+               BlueprintIdentifier = "5E6441861C3EE2E0003D7397"
+               BuildableName = "Parent.app"
+               BlueprintName = "Parent"
+               ReferencedContainer = "container:../Parent/Parent.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E81918E3230348440039616A"
-               BuildableName = "CoreUITests.framework"
-               BlueprintName = "CoreUITests"
-               ReferencedContainer = "container:../Core/Core.xcodeproj">
+               BlueprintIdentifier = "492704721CF4AF7100C631C6"
+               BuildableName = "Student.app"
+               BlueprintName = "Student"
+               ReferencedContainer = "container:Student.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BuildableName = "Teacher.app"
+               BlueprintName = "Teacher"
+               ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

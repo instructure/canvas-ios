@@ -20,7 +20,7 @@ import CoreData
 import Foundation
 import MobileCoreServices
 import UIKit
-import CommonCrypto
+import CryptoKit
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
@@ -143,7 +143,10 @@ extension Submission: WriteableModel {
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
         model.externalToolURL = item.external_tool_url?.rawValue
         model.sortableName = item.group_name ?? item.user?.sortable_name
-        model.shuffleOrder = md5(item.id.value)
+        // Non-cryptographic hash, used only as a deterministic somewhat random sort order
+        model.shuffleOrder = item.id.value.data(using: .utf8).flatMap {
+            Insecure.MD5.hash(data: $0).map { String(format: "%02x", $0) } .joined()
+        } ?? ""
 
         model.attachments = Set(item.attachments?.map { attachment in
             return File.save(attachment, in: client)
@@ -415,12 +418,4 @@ extension Array where Element == SubmissionType {
 
 public enum SubmissionWorkflowState: String, Codable {
     case submitted, unsubmitted, graded, pending_review, complete
-}
-
-private func md5(_ string: String) -> String {
-    var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-    string.data(using: .utf8)?.withUnsafeBytes {
-        _ = CC_MD5($0.baseAddress, UInt32($0.count), &digest)
-    }
-    return digest.map { String(format: "%02x", $0) } .joined()
 }

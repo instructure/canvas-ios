@@ -23,7 +23,7 @@ public enum Panda: String, CaseIterable {
     case NoAlerts, NoComments, NoEvents, NoResults, NoRubric
     case Papers, Sleeping, Space, Teacher, Welcome
 
-    var name: String { "Panda\(rawValue)" }
+    public var name: String { "Panda\(rawValue)" }
 }
 
 public struct EmptyPanda: View {

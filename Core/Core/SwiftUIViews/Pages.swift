@@ -40,7 +40,7 @@ public struct Pages<Item: Identifiable, Content: View>: View {
     }
 
     func scale(for item: Item, width: CGFloat) -> CGFloat {
-        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return 1 }
+        guard width > 0, let index = items.firstIndex(where: { $0.id == item.id }) else { return 1 }
         let offset = CGFloat(index - currentIndex) + translation / width
         return scaling(offset)
     }
@@ -69,7 +69,7 @@ public struct Pages<Item: Identifiable, Content: View>: View {
                     state = value.translation.width * self.dx
                 }
                 .onEnded { value in
-                    let offset = Int((value.translation.width * self.dx / geometry.size.width).rounded())
+                    let offset = Int((value.translation.width * self.dx / max(1, geometry.size.width)).rounded())
                     self.show(index: self.currentIndex - offset)
                 }
             )
