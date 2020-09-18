@@ -59,8 +59,7 @@ struct SpeedGraderView: View {
                             .padding(16)
                             .identifier("SpeedGrader.emptyCloseButton")
                     }
-                    EmptyPanda(
-                        name: "PandaSpace",
+                    EmptyPanda(.Space,
                         title: Text("No Submissions"),
                         message: Text("It seems there aren't any valid submissions to grade.")
                     )

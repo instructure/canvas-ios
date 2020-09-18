@@ -60,7 +60,6 @@ class TeacherTestCase: XCTestCase {
     }
 }
 
-@available(iOS 13.0.0, *)
 extension TeacherTestCase {
     open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view, env: environment)

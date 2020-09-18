@@ -70,7 +70,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentView.backgroundColor = .backgroundLight
         emptyContainer.isHidden = true
         emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
-        emptyImageView.image = UIImage(named: "emptyComments", in: .core, compatibleWith: nil)
+        emptyImageView.image = UIImage(named: Panda.NoComments.name, in: .core, compatibleWith: nil)
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         tableView.keyboardDismissMode = .onDrag
         addMediaButton.accessibilityLabel = NSLocalizedString("Add media attachment", bundle: .student, comment: "")

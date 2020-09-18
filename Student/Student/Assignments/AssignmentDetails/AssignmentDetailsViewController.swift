@@ -143,7 +143,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         attemptsUsedValueLabel.text = nil
 
         //  locked
-        lockedIconImageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+        lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
         descriptionView?.linkDelegate = self

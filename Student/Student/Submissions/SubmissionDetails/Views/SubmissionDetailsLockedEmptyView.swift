@@ -27,7 +27,7 @@ class SubmissionDetailsLockedEmptyView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
-        imageView.image = UIImage(named: "PandaLocked", in: .core, compatibleWith: nil)
+        imageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
         headerLabel.text = NSLocalizedString("Quiz Locked", comment: "")
     }
 }

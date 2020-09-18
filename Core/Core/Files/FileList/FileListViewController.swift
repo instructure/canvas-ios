@@ -81,7 +81,7 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
 
         editButton.accessibilityIdentifier = "FileList.editButton"
 
-        emptyImageView.image = UIImage(named: "PandaFilePicker", in: .core, compatibleWith: nil)
+        emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
         emptyMessageLabel.text = NSLocalizedString("This folder is empty.", bundle: .core, comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Files", bundle: .core, comment: "")
         errorView.messageLabel.text = NSLocalizedString("There was an error loading files. Pull to refresh to try again.", bundle: .core, comment: "")
@@ -211,11 +211,11 @@ extension FileListViewController: UISearchBarDelegate {
         guard newSearch != searchTerm else { return }
         searchTerm = newSearch
         if searchTerm != nil {
-            emptyImageView.image = UIImage(named: "PandaNoResults", in: .core, compatibleWith: nil)
+            emptyImageView.image = UIImage(named: Panda.NoResults.name, in: .core, compatibleWith: nil)
             emptyMessageLabel.text = NSLocalizedString("We couldn’t find any files like that.", bundle: .core, comment: "")
             emptyTitleLabel.text = NSLocalizedString("No Results", bundle: .core, comment: "")
         } else {
-            emptyImageView.image = UIImage(named: "PandaFilePicker", in: .core, compatibleWith: nil)
+            emptyImageView.image = UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil)
             emptyMessageLabel.text = NSLocalizedString("This folder is empty.", bundle: .core, comment: "")
             emptyTitleLabel.text = NSLocalizedString("No Files", bundle: .core, comment: "")
         }

@@ -22,7 +22,6 @@ import Combine
 @testable import Teacher
 import TestsFoundation
 
-@available(iOS 13.0, *)
 class SpeedGraderViewTests: TeacherTestCase {
     lazy var controller: CoreHostingController<SpeedGraderView> = {
         api.mock(GetAssignment(courseID: "1", assignmentID: "1", include: [ .overrides ]), value: .make())

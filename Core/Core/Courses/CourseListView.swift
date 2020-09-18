@@ -58,8 +58,7 @@ public struct CourseListView: View {
                 CircleProgress()
                     .testID("loading")
             } else if allCourses.isEmpty {
-                EmptyPanda(
-                    name: "PandaTeacher",
+                EmptyPanda(.Teacher,
                     title: Text("No Courses", bundle: .core),
                     message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core)
                 )

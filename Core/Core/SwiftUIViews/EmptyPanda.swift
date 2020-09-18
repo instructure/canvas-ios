@@ -18,13 +18,21 @@
 
 import SwiftUI
 
+public enum Panda: String, CaseIterable {
+    case AtLaptop, Blindfold, Blocks, Book, FilePicker, Grades, InboxZero, Locked
+    case NoAlerts, NoComments, NoEvents, NoResults, NoRubric
+    case Papers, Sleeping, Space, Teacher, Welcome
+
+    var name: String { "Panda\(rawValue)" }
+}
+
 public struct EmptyPanda: View {
-    public let name: String
+    public let panda: Panda
     public let title: Text
     public let message: Text
 
-    public init(name: String, title: Text, message: Text) {
-        self.name = name
+    public init(_ panda: Panda, title: Text, message: Text) {
+        self.panda = panda
         self.title = title
         self.message = message
     }
@@ -32,7 +40,7 @@ public struct EmptyPanda: View {
     public var body: some View {
         VStack {
             Spacer()
-            Image(name, bundle: .core)
+            Image(panda.name, bundle: .core)
             Spacer().frame(height: 64)
             title
                 .font(.bold20)
