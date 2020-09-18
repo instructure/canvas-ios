@@ -69,6 +69,7 @@ export class ContextCard extends Component {
     const selectedText = { color: colors.white }
     const gradeSelected = !unpostedGrade && !overrideGrade
     const unpostedSelected = Boolean(unpostedGrade && !overrideGrade)
+    const totalSubmissions = user.analytics && (user.analytics.tardinessBreakdown.onTime + user.analytics.tardinessBreakdown.late)
 
     return (
       <View>
@@ -166,10 +167,10 @@ export class ContextCard extends Component {
                 style={styles.box}
                 testID='ContextCard.submissionsTotalLabel'
                 accessibilityLabel={i18n('Total Submissions {total, number}', {
-                  total: user.analytics.tardinessBreakdown.total,
+                  total: totalSubmissions,
                 })}
               >
-                <Text style={styles.largeText}>{i18n.number(user.analytics.tardinessBreakdown.total)}</Text>
+                <Text style={styles.largeText}>{i18n.number(totalSubmissions)}</Text>
                 <Text style={styles.label}>{i18n('Submitted')}</Text>
               </View>
               <View

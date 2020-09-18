@@ -70,7 +70,6 @@ export const courseQuery = gql`query StudentContextCardCourse($courseID: ID!, $u
                 late
                 missing
                 onTime
-                total
               }
             }
           }
