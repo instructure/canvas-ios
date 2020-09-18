@@ -75,7 +75,7 @@ open class HelmManager: NSObject {
     }
 
     @objc open func reload() {
-        bridge.reload()
+        RCTTriggerReloadCommandListeners("reload called")
     }
 
     @objc open func reactWillReload() {

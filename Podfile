@@ -47,12 +47,6 @@ def react_native_pods
   pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
 end
 
-target 'PactTests' do
-  project 'Core/Core.xcodeproj'
-  use_frameworks!
-  pod 'PactConsumerSwift', :git => 'https://github.com/DiUS/pact-consumer-swift.git'
-end
-
 abstract_target 'needs-pspdfkit' do
   use_frameworks!
   pspdfkit
@@ -142,6 +136,8 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
+      config.build_settings.delete('IPHONEOS_DEPLOYMENT_TARGET')
+      config.build_settings.delete('ONLY_ACTIVE_ARCH')
     end
     usesNonAppExAPI = %w[
       react-native-camera
