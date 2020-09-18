@@ -54,7 +54,12 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         let documentProvider = document.documentProviders.first!
         let provider = DocViewerAnnotationProvider(
             documentProvider: documentProvider,
-            metadata: metadata,
+            metadata: APIDocViewerMetadata(
+                annotations: metadata,
+                panda_push: nil,
+                rotations: nil,
+                urls: APIDocViewerURLsMetadata(pdf_download: APIURL.make().rawValue)
+            ),
             annotations: annotations,
             api: URLSessionAPI(urlSession: MockURLSession()),
             sessionID: "a"

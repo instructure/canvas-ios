@@ -23,6 +23,7 @@ private var annotationDeletedAtKey: UInt8 = 0
 private var annotationDeletedByKey: UInt8 = 0
 private var annotationDeletedByIDKey: UInt8 = 0
 private var annotationHasRepliesKey: UInt8 = 0
+private var fontSizeTransform: CGFloat = 0.85
 
 extension Annotation {
     var userName: String? {
@@ -65,7 +66,7 @@ extension Annotation {
             let freeText = DocViewerFreeTextAnnotation(contents: apiAnnotation.contents ?? "")
             let fontSizeStr = apiAnnotation.font?.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted) ?? ""
             freeText.fontName = "Helvetica" // apiAnnotation.font?.split(separator: " ")?.last.flatMap { String($0) } ?? "Helvetica"
-            freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * 0.9
+            freeText.fontSize = CGFloat(Float(fontSizeStr) ?? 14) * fontSizeTransform
             freeText.fillColor = apiAnnotation.bgColor == "transparent" ? .clear
                 : UIColor(hexString: apiAnnotation.bgColor) ?? .white
             annotation = freeText
@@ -169,7 +170,7 @@ extension Annotation {
             inreplyto: inreplyto,
             coords: rects?.map { coordsFrom($0) },
             rect: pointsFrom(boundingBox),
-            font: fontName.flatMap { "\(Int(fontSize / 0.9))pt \($0)" },
+            font: fontName.flatMap { "\(Int(fontSize / fontSizeTransform))pt \($0)" },
             inklist: inklist,
             width: Double(lineWidth)
         )

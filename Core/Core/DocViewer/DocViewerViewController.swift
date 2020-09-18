@@ -96,15 +96,10 @@ public class DocViewerViewController: UIViewController {
         if let annotationMeta = metadata.annotations {
             document.defaultAnnotationUsername = annotationMeta.user_name
             document.didCreateDocumentProviderBlock = { documentProvider in
-                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: annotationMeta, annotations: annotations, api: self.session.api, sessionID: sessionID)
+                let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: metadata, annotations: annotations, api: self.session.api, sessionID: sessionID)
                 provider.docViewerDelegate = self
                 documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
                 self.annotationProvider = provider
-                for (pageKey, rawRotation) in metadata.rotations ?? [:] {
-                    if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
-                        documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
-                    }
-                }
             }
         }
         load(document: document)
