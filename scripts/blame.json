@@ -1,16 +1,7 @@
 [{
-    "emails": ["acobb_AT_instructure_DOT_com", "default"],
-    "slack": "ULP6BG8CS"
-}, {
-    "emails": ["bluwave_AT_users_DOT_noreply_DOT_github_DOT_com"],
-    "slack": "U41GSEQBC"
-}, {
     "emails": ["andy_AT_instructure_DOT_com"],
     "slack": "U02UQ709S"
 }, {
-    "emails": ["natearmstrong2_AT_gmail_DOT_com"],
+    "emails": ["natearmstrong2_AT_gmail_DOT_com", "default"],
     "slack": "U0J63NV89"
-}, {
-    "emails": ["me_AT_matthewsessions_DOT_com"],
-    "slack": "U039X39KA"
 }]
