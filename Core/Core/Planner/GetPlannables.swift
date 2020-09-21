@@ -148,7 +148,7 @@ public class GetPlannables: UseCase {
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         let items: [PlannableItem] = response?.plannables ?? response?.calendarEvents ?? []
-        for item in items {
+        for item in items where item.plannableType != .announcement {
             Plannable.save(item, userID: userID, in: client)
         }
     }
