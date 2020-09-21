@@ -114,4 +114,28 @@ extension MiniCanvasState {
         let color = UIColor(hue: CGFloat(Int(id) ?? 0) * phi, saturation: 1, brightness: 0.75, alpha: 1)
         return color.hexString
     }
+
+    @discardableResult
+    public func addDocument(name: String, contents: Data) -> MiniFile {
+        let file = addFile(name: name, contents: contents, type: "image/pdf", mimeClass: "pdf")
+        file.api.url = APIURL(rawValue: baseUrl.appendingPathComponent("files/\(file.id)"))
+        file.api.preview_url = APIURL(rawValue: baseUrl.appendingPathComponent("documents/\(file.id)/preview"))
+        file.api.thumbnail_url = APIURL(rawValue: baseUrl.appendingPathComponent("files/\(file.id)"))
+        return file
+    }
+
+    @discardableResult
+    public func addFile(name: String, contents: Data, type: String = "image/png", mimeClass: String = "image") -> MiniFile {
+        let id = nextId()
+        let file = MiniFile(APIFile.make(
+            id: id,
+            display_name: name,
+            filename: name,
+            contentType: type,
+            size: contents.count,
+            mime_class: mimeClass
+        ), contents: contents, baseURL: baseUrl)
+        files[id.value] = file
+        return file
+    }
 }

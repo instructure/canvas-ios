@@ -125,13 +125,16 @@ public class MiniCourse {
         state.folders[folder.id] = folder
         course.courseFiles = folder
 
-        let file = MiniFile(APIFile.make(
-            id: state.nextId(),
-            folder_id: folderID,
-            display_name: "hamburger",
-            filename: "hamburger.jpg",
-            url: UIImage.hamburgerLine.asDataUrl!
-        ))
+        let file = MiniFile(
+            APIFile.make(
+                id: state.nextId(),
+                folder_id: folderID,
+                display_name: "hamburger",
+                filename: "hamburger.jpg"
+            ),
+            contents: UIImage.hamburgerLine.pngData()!,
+            baseURL: state.baseUrl
+        )
         state.files[file.id] = file
         folder.fileIDs.append(file.id)
 

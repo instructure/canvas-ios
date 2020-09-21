@@ -356,15 +356,22 @@ enum MiniCanvasEndpoints {
                 size: filePart.body.count
             )
             folder.fileIDs.append(fileID.value)
-            request.state.files[fileID.value] = MiniFile(file, contents: Data(filePart.body))
+            request.state.files[fileID.value] = MiniFile(file, contents: Data(filePart.body), baseURL: request.baseUrl)
             return .json(file)
         },
         .rest("/files/\(Pattern.fileID)") { request in
             let file = try lookupFile(forRequest: request)
             return .data(
-                file.contents ?? Data(),
+                file.contents,
                 headers: [HttpHeader.contentType: file.api.contentType]
             )
+        },
+        .rest("/documents/\(Pattern.fileID)/preview") { request in
+            .movedPermanently("\(request.baseUrl)documents/sessions/session_ids_should_be_very_long_\(request[Pattern.fileID]!)/view")
+        },
+        .rest("/documents/sessions/:sessionID") { request in
+            let fileID = request[":sessionID"]?.split(separator: "_").last
+            return try .json(object: ["urls": ["pdf_download": "/files/\(fileID!)"]])
         },
 
         .rest("/api/v1/courses/\(Pattern.courseID)/content_licenses") { _ in .json([String]()) },

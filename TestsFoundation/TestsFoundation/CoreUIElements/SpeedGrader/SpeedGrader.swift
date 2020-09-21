@@ -23,9 +23,15 @@ public enum SpeedGrader: String, RawElementWrapper {
     case doneButton = "header.navigation-done"
     case gradePickerButton = "grade-picker.button"
 
-    public static func segmentButton(label: String) -> Element {
-        let segmentControl = app.find(id: "speedgrader.segment-control").waitToExist()
-        return segmentControl.rawElement.buttons.matching(label: label).firstElement
+    public enum Segment {
+        public static var grades: Element { withLabel(label: "Grades") }
+        public static var comments: Element { withLabel(label: "Comments") }
+        public static var files: Element { withLabel(label: "Files") }
+
+        public static func withLabel(label: String) -> Element {
+            let segmentControl = app.find(id: "speedgrader.segment-control").waitToExist()
+            return segmentControl.rawElement.find(labelContaining: label)
+        }
     }
 
     public static func userName(userID: String) -> Element {
