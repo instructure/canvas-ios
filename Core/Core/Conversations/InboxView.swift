@@ -156,6 +156,7 @@ public struct InboxView: View {
         var body: some View {
             let participants = conversation.participants.filter { $0.id != env.currentSession?.userID }
             let subject = conversation.subject
+            let sample = self.participants.prefix(5).map(\.displayName)
 
             return Button(action: {
                 print("hi")
@@ -186,10 +187,7 @@ public struct InboxView: View {
                                     .foregroundColor(.accentColor)
                                 }
                                 if participants.count > 6 {
-                                    {
-                                        let sample = self.participants.prefix(5).map(\.displayName)
-                                        return Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)
-                                    }()
+                                    Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)
                                 } else {
                                     Text(verbatim: participants.map(\.displayName).joined(separator: ", "))
                                 }
