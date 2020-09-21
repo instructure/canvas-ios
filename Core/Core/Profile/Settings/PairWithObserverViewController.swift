@@ -98,10 +98,11 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
     func displayQR(pairingCode: String?, accountID: String?, baseURL: URL?) {
         guard
             let code = pairingCode,
+            let accountID = accountID, // Android requires the account id
             let host = baseURL?.host
         else { return }
 
-        let comps = URLComponents(string: "canvas-parent://\(host)/pair?code=\(code)")
+        let comps = URLComponents(string: "canvas-parent://\(host)/pair?code=\(code)&account_id=\(accountID)")
 
         let input = comps?.url?.absoluteString ?? ""
         let data = input.data(using: String.Encoding.ascii)
