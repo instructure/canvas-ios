@@ -44,8 +44,8 @@ public struct SwiftUIAvatarView: View {
     public var body: some View {
         GeometryReader { geom in
             SwiftUI.Group {
-                if image != nil {
-                    image!
+                if self.image != nil {
+                    self.image!
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .background(Color.backgroundLight)
@@ -54,7 +54,7 @@ public struct SwiftUIAvatarView: View {
                         .strokeBorder(lineWidth: 1 / UIScreen.main.scale)
                         .foregroundColor(.borderMedium)
                         .overlay(
-                            Text(label)
+                            Text(self.label)
                                 .allowsTightening(true)
                                 .lineLimit(1)
                                 .foregroundColor(.textDark)

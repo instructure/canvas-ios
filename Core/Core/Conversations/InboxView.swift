@@ -80,7 +80,7 @@ public struct InboxView: View {
     var scopeUnderline: some View {
         HStack(spacing: 0) {
             ForEach(Scope.allCases.prefix { $0 != selectedScope }, id: \.self) { scope in
-                text(forScope: scope).opacity(0)
+                self.text(forScope: scope).opacity(0)
             }
             text(forScope: selectedScope)
                 .opacity(0)
@@ -97,11 +97,11 @@ public struct InboxView: View {
                     HStack(spacing: 0) {
                         ForEach(Scope.allCases, id: \.self) { scope in
                             Button(action: {
-                                guard selectedScope != scope else { return }
-                                selectedScope = scope
-                                conversations = Self.conversations(scope: scope, course: selectedCourse)
+                                guard self.selectedScope != scope else { return }
+                                self.selectedScope = scope
+                                self.conversations = Self.conversations(scope: scope, course: self.selectedCourse)
                             }) {
-                                text(forScope: scope)
+                                self.text(forScope: scope)
                             }
                         }
                     }.frame(height: 44)
@@ -129,7 +129,7 @@ public struct InboxView: View {
             }
             ScrollView {
                 VStack(spacing: 0) {
-                    ForEach(conversations.all, id: \.id) { conversation in
+                    ForEach(self.conversations.all, id: \.id) { conversation in
                         Cell(conversation: conversation)
                     }
                 }
@@ -157,7 +157,7 @@ public struct InboxView: View {
             let participants = conversation.participants.filter { $0.id != env.currentSession?.userID }
             let subject = conversation.subject
 
-            Button(action: {
+            return Button(action: {
                 print("hi")
             }) {
                 ZStack(alignment: .topLeading) {
@@ -179,16 +179,17 @@ public struct InboxView: View {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
                                 if conversation.starred {
-                                    let config = UIImage.SymbolConfiguration(pointSize: 10)
                                     Image(uiImage:
-                                            UIImage(systemName: "star.fill", withConfiguration: config)!
+                                            UIImage(systemName: "star.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 10))!
                                             .withBaselineOffset(fromBottom: 0)
                                     ).renderingMode(.template)
                                     .foregroundColor(.accentColor)
                                 }
                                 if participants.count > 6 {
-                                    let sample = participants.prefix(5).map(\.displayName)
-                                    Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)
+                                    {
+                                        let sample = self.participants.prefix(5).map(\.displayName)
+                                        return Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)
+                                    }()
                                 } else {
                                     Text(verbatim: participants.map(\.displayName).joined(separator: ", "))
                                 }
