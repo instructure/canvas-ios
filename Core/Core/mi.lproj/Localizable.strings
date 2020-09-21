@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Canvas Ākonga Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei.\n        Mehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.\n        ";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -41,7 +44,13 @@
 "Add Attachments" = "Tāpiri ngā Apititanga";
 
 /* No comment provided by engineer. */
+"Add content" = "Tāpiri Ihirangi";
+
+/* No comment provided by engineer. */
 "Add Planner Note" = "Tāpiri Mahere Tuhipoka";
+
+/* No comment provided by engineer. */
+"Add Title" = "Tāpiri Taitara";
 
 /* No comment provided by engineer. */
 "Added To Conversation" = "Kua tāpirihia ki te Kōrero";
@@ -81,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Pānuitanga ngā Whakautu";
+
+/* No comment provided by engineer. */
+"Anyone" = "Tangata";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Wāhui te wātea";
@@ -177,6 +189,9 @@
 
 /* No comment provided by engineer. */
 "Camera" = "kāmera";
+
+/* No comment provided by engineer. */
+"Can Edit" = "Ka taea te whakatika";
 
 /* No comment provided by engineer. */
 "Can’t find your school? Try typing the full school URL." = "Kaore e kitea tō kura? Ngana ki te pātō te nuinga o te kura url";
@@ -282,6 +297,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Ngā Hui";
+
+/* No comment provided by engineer. */
+"Content" = "Ihirangi";
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Ihirangi Hono Hapa";
@@ -404,6 +422,9 @@
 "Designers" = "Kaitātai";
 
 /* No comment provided by engineer. */
+"Details" = "Ngā taipitopito";
+
+/* No comment provided by engineer. */
 "Developer Menu" = "Tahua Whakawhanake";
 
 /* No comment provided by engineer. */
@@ -462,6 +483,9 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Whakatika tāpiritanga(kore)";
+
+/* No comment provided by engineer. */
+"Edit Page" = "Whakatika Whārangi";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Whakatika ngā Kaiwhiwhi";
@@ -633,6 +657,9 @@
 
 /* No comment provided by engineer. */
 "I can't get things done until I hear back from you" = "Ka taea e kore kia mea mahi ahau, kia hoki rongo ahau i a koutou";
+
+/* No comment provided by engineer. */
+"I don't have a Canvas account" = "Kaore he pūkete Canvas tāku";
 
 /* No comment provided by engineer. */
 "I have a Canvas account" = "He Pūkete Canvas tāku";
@@ -866,6 +893,9 @@
 "New Message" = "Karere Hōu";
 
 /* No comment provided by engineer. */
+"New Page" = "Whārangi Hōu";
+
+/* No comment provided by engineer. */
 "New To Do" = "He Hou Whakamahi";
 
 /* No comment provided by engineer. */
@@ -962,6 +992,12 @@
 "On Paper" = "I runga i te Pepa";
 
 /* No comment provided by engineer. */
+"Only members" = "Ngā mema anake";
+
+/* No comment provided by engineer. */
+"Only teachers" = "Kaiako anake";
+
+/* No comment provided by engineer. */
 "Open %@ user preferences" = "Huaki %@ ngā manakohanga o ngā kaiwhakamahi";
 
 /* No comment provided by engineer. */
@@ -1038,6 +1074,9 @@
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Kōtaha Tāhua";
+
+/* No comment provided by engineer. */
+"Publish" = "Whakaputa";
 
 /* No comment provided by engineer. */
 "published" = "whakaputaina";
@@ -1181,6 +1220,9 @@
 "Sent" = "Kua tukuna";
 
 /* No comment provided by engineer. */
+"Set as Front Page" = "Whakatau hei Whārangi o mua";
+
+/* No comment provided by engineer. */
 "Set text color" = "Whakatau tae kuputuhi";
 
 /* No comment provided by engineer. */
@@ -1310,6 +1352,9 @@
 "Teachers" = "Ngā Kaiako";
 
 /* No comment provided by engineer. */
+"Teachers and students" = "Kaiako me ngā ākonga";
+
+/* No comment provided by engineer. */
 "Teaching Assistants" = "Ngā Kaiako Kaiāwhina";
 
 /* No comment provided by engineer. */
@@ -1389,6 +1434,9 @@
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kua mutu te wā";
+
+/* No comment provided by engineer. */
+"Title" = "Taitara";
 
 /* No comment provided by engineer. */
 "Title..." = "Taitara...";
