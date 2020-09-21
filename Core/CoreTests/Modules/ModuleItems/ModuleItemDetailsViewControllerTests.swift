@@ -92,14 +92,14 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
     func testLockedForUser() {
         api.mock(controller.store, value: .make(
             id: "3",
-            title: "Discuss this thing!",
-            content: .discussion("1"),
+            title: "This is a page",
+            content: .page("1"),
             content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
         ))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.children.count, 0)
         XCTAssertFalse(controller.lockedView.isHidden)
-        XCTAssertEqual(controller.lockedTitleLabel.text, "Discuss this thing!")
+        XCTAssertEqual(controller.lockedTitleLabel.text, "This is a page")
     }
 
     func testLockedForUserTeacherApp() {
@@ -128,6 +128,38 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
             title: "Submit this thing!",
             content: .assignment("2"),
             url: URL(string: "/courses/1/assignments/2")!,
+            content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.children.first as? DetailViewController)
+        XCTAssertTrue(controller.lockedView.isHidden)
+    }
+
+    func testDiscussionLockedForUser() {
+        router.mock("/courses/1/discussions/2?origin=module_item_details") {
+            DetailViewController()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            title: "Submit this thing!",
+            content: .discussion("2"),
+            url: URL(string: "/courses/1/discussions/2")!,
+            content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
+        ))
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.children.first as? DetailViewController)
+        XCTAssertTrue(controller.lockedView.isHidden)
+    }
+
+    func testQuizzesLockedForUser() {
+        router.mock("/courses/1/quizzes/2?origin=module_item_details") {
+            DetailViewController()
+        }
+        api.mock(controller.store, value: .make(
+            id: "3",
+            title: "Submit this thing!",
+            content: .quiz("2"),
+            url: URL(string: "/courses/1/quizzes/2")!,
             content_details: .make(locked_for_user: true, lock_explanation: "Locked for reasons")
         ))
         controller.view.layoutIfNeeded()

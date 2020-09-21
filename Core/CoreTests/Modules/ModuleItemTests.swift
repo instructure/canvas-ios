@@ -60,4 +60,13 @@ class ModuleItemTests: CoreTestCase {
         let empty = APIModuleItem.make(published: nil)
         XCTAssertNil(ModuleItem.save(empty, forCourse: "1", in: databaseClient).published)
     }
+
+    func testVisibleWhenLocked() {
+        let assignment = ModuleItem.make(from: .make(content: .assignment("1")))
+        XCTAssertTrue(assignment.visibleWhenLocked)
+        let quiz = ModuleItem.make(from: .make(content: .quiz("1")))
+        XCTAssertTrue(quiz.visibleWhenLocked)
+        let discussion = ModuleItem.make(from: .make(content: .discussion("1")))
+        XCTAssertTrue(discussion.visibleWhenLocked)
+    }
 }
