@@ -156,7 +156,7 @@ public struct InboxView: View {
         var body: some View {
             let participants = conversation.participants.filter { $0.id != env.currentSession?.userID }
             let subject = conversation.subject
-            let sample = self.participants.prefix(5).map(\.displayName)
+            let sample = participants.prefix(5).map(\.displayName)
 
             return Button(action: {
                 print("hi")
@@ -180,11 +180,7 @@ public struct InboxView: View {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
                                 if conversation.starred {
-                                    Image(uiImage:
-                                            UIImage(systemName: "star.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 10))!
-                                            .withBaselineOffset(fromBottom: 0)
-                                    ).renderingMode(.template)
-                                    .foregroundColor(.accentColor)
+                                    Icon.starSolid.size(14).foregroundColor(.accentColor)
                                 }
                                 if participants.count > 6 {
                                     Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)
