@@ -236,6 +236,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         task.paused = true
         loadView()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
+        XCTAssertEqual(viewController.errorView.isHidden, true)
         task.paused = false
         drainMainQueue()
         XCTAssertEqual(viewController.spinnerView.isHidden, true)

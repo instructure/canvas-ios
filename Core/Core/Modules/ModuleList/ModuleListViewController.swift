@@ -110,7 +110,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         let pending = modules.pending || tabs.pending || courses.pending
         spinnerView.isHidden = !pending || refreshControl.isRefreshing
         emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
-        errorView.isHidden = modules.error == nil && !isPageDisabled
+        errorView.isHidden = pending || (modules.error == nil && !isPageDisabled)
         if isPageDisabled {
             errorView.messageLabel.text = NSLocalizedString("This page has been disabled for this course.", bundle: .core, comment: "")
             errorView.retryButton.isHidden = true
