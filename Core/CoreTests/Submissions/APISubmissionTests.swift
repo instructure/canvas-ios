@@ -71,30 +71,28 @@ class APISubmissionTests: CoreTestCase {
             GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: nil, include: []).path,
             "courses/1/assignments/2/submissions"
         )
-        XCTAssertEqual(
-            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: false, include: []).queryItems,
-            [
-                URLQueryItem(name: "grouped", value: "false"),
-            ]
-        )
-        XCTAssertEqual(
-            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: []).queryItems,
-            [
-                URLQueryItem(name: "grouped", value: "true"),
-            ]
-        )
-        XCTAssertEqual(
-            GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).queryItems,
-            [
-                URLQueryItem(name: "include[]", value: "rubric_assessment"),
-                URLQueryItem(name: "include[]", value: "submission_comments"),
-                URLQueryItem(name: "include[]", value: "submission_history"),
-                URLQueryItem(name: "include[]", value: "total_scores"),
-                URLQueryItem(name: "include[]", value: "user"),
-                URLQueryItem(name: "include[]", value: "group"),
-                URLQueryItem(name: "grouped", value: "true"),
-            ]
-        )
+        XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: false, include: []).query, [
+            .perPage(100),
+            .include([]),
+            .bool("grouped", false),
+        ])
+        XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: []).query, [
+            .perPage(100),
+            .include([]),
+            .bool("grouped", true),
+        ])
+        XCTAssertEqual(GetSubmissionsRequest(context: .course("1"), assignmentID: "2", grouped: true, include: GetSubmissionsRequest.Include.allCases).query, [
+            .perPage(100),
+            .include([
+                "rubric_assessment",
+                "submission_comments",
+                "submission_history",
+                "total_scores",
+                "user",
+                "group",
+            ]),
+            .bool("grouped", true),
+        ])
     }
 
     func testGetRecentlyGradedSubmissionsRequest() {

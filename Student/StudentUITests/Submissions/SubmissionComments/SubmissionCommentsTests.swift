@@ -41,7 +41,7 @@ class SubmissionCommentsTests: CoreUITestCase {
             submission_type: .online_upload,
             attempt: 1,
             attachments: attachments,
-            user: APISubmissionUser.make(id: "1", short_name: "Student")
+            user: APIUser.make(id: "1", short_name: "Student")
         ))
         attachments.forEach { mockURL($0.url!.rawValue, data: nil) }
 
@@ -60,7 +60,7 @@ class SubmissionCommentsTests: CoreUITestCase {
             user_id: "1",
             submission_type: .online_quiz,
             attempt: 1,
-            user: APISubmissionUser.make(id: "1", short_name: "Student")
+            user: APIUser.make(id: "1", short_name: "Student")
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")

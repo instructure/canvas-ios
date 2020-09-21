@@ -39,7 +39,6 @@ import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import { graphql } from 'react-apollo'
 import query from '../../../canvas-api-v2/queries/SubmissionList'
 import icon from '../../../images/inst-icons'
-import ExperimentalFeature from '../../../common/ExperimentalFeature'
 import { createStyleSheet } from '../../../common/stylesheet'
 import localeSort from '../../../utils/locale-sort'
 
@@ -82,9 +81,7 @@ export class SubmissionList extends Component<Props, State> {
 
   navigateToSubmission = (index: number) => (userID: string) => {
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
-    let filter = ExperimentalFeature.graphqlSpeedGrader.isEnabled
-      ? this.state.filter
-      : oldCreateFilter(this.state.filterOptions)
+    let filter = oldCreateFilter(this.state.filterOptions)
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },

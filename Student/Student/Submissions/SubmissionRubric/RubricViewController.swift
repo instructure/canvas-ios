@@ -54,7 +54,7 @@ class RubricViewController: UIViewController {
 
         emptyViewLabel.text = NSLocalizedString("There is no rubric for this assignment", comment: "")
 
-        emptyImageView.image = UIImage(named: "emptyRubric", in: .core, compatibleWith: nil)
+        emptyImageView.image = UIImage(named: Panda.NoRubric.name, in: .core, compatibleWith: nil)
         presenter.viewIsReady()
     }
 

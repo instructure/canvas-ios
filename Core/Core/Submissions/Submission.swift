@@ -20,6 +20,7 @@ import CoreData
 import Foundation
 import MobileCoreServices
 import UIKit
+import CryptoKit
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
@@ -32,7 +33,7 @@ public final class SubmissionList: NSManagedObject {
     }
 }
 
-final public class Submission: NSManagedObject {
+final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
     @NSManaged public var userID: String
@@ -56,6 +57,9 @@ final public class Submission: NSManagedObject {
     @NSManaged public var gradedAt: Date?
     @NSManaged public var gradeMatchesCurrentSubmission: Bool
     @NSManaged public var externalToolURL: URL?
+    @NSManaged public var sortableName: String?
+    @NSManaged public var shuffleOrder: String
+    @NSManaged public var isLatest: Bool
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
@@ -139,6 +143,11 @@ extension Submission: WriteableModel {
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
         model.externalToolURL = item.external_tool_url?.rawValue
+        model.sortableName = item.group_name ?? item.user?.sortable_name
+        // Non-cryptographic hash, used only as a deterministic somewhat random sort order
+        model.shuffleOrder = item.id.value.data(using: .utf8).flatMap {
+            Insecure.MD5.hash(data: $0).map { String(format: "%02x", $0) } .joined()
+        } ?? ""
 
         model.attachments = Set(item.attachments?.map { attachment in
             return File.save(attachment, in: client)
@@ -175,8 +184,9 @@ extension Submission: WriteableModel {
             // but are still "unsubmitted"
             for var submission in submissionHistory where submission.attempt != nil {
                 submission.user = item.user
-                Submission.save(submission, in: client)
+                Submission.save(submission, in: client).isLatest = false
             }
+            model.isLatest = true
         }
 
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)

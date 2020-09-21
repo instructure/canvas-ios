@@ -66,6 +66,8 @@ class SubmissionTests: CoreTestCase {
         XCTAssertNil(submission.gradedAt)
         submission.gradedAt = date
         XCTAssertEqual(submission.gradedAt, date)
+
+        XCTAssertEqual(submission.shuffleOrder, "c4ca4238a0b923820dcc509a6f75849b")
     }
 
     func testMediaSubmission() {

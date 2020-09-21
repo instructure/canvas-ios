@@ -41,6 +41,8 @@ public struct APISubmission: Codable, Equatable {
     var graded_at: Date?
     let grade_matches_current_submission: Bool
     let external_tool_url: APIURL?
+    let group_id: ID?
+    let group_name: String?
 
     // late policies
     let late_policy_status: LatePolicyStatus?
@@ -48,17 +50,9 @@ public struct APISubmission: Codable, Equatable {
 
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
-    var user: APISubmissionUser? // include[]=user
+    var user: APIUser? // include[]=user
     let assignment: APIAssignment? // include[]=assignment
     var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
-}
-
-public struct APISubmissionUser: Codable, Equatable {
-    let id: String
-    let name: String?
-    let short_name: String
-    let avatar_url: URL?
-    let pronouns: String?
 }
 
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
@@ -122,10 +116,12 @@ extension APISubmission {
         points_deducted: Double? = nil,
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
-        user: APISubmissionUser? = nil,
+        user: APIUser? = nil,
         assignment: APIAssignment? = nil,
         rubric_assessment: APIRubricAssessmentMap? = nil,
-        external_tool_url: APIURL? = nil
+        external_tool_url: APIURL? = nil,
+        group_id: ID? = nil,
+        group_name: String? = nil
     ) -> APISubmission {
         return APISubmission(
             id: id,
@@ -149,6 +145,8 @@ extension APISubmission {
             graded_at: graded_at,
             grade_matches_current_submission: grade_matches_current_submission,
             external_tool_url: external_tool_url,
+            group_id: group_id,
+            group_name: group_name,
             late_policy_status: late_policy_status,
             points_deducted: points_deducted,
             submission_comments: submission_comments,
@@ -209,34 +207,6 @@ extension APISubmissionCommentAuthor {
             display_name: user.name,
             avatar_image_url: user.avatar_url?.rawValue,
             html_url: URL(string: "/users/\(user.id)")!,
-            pronouns: user.pronouns
-        )
-    }
-}
-
-extension APISubmissionUser {
-    public static func make(
-        id: String = "1",
-        name: String? = "Bob",
-        short_name: String = "Bob",
-        avatar_url: URL? = nil,
-        pronouns: String? = nil
-    ) -> APISubmissionUser {
-        return APISubmissionUser(
-            id: id,
-            name: name,
-            short_name: short_name,
-            avatar_url: avatar_url,
-            pronouns: pronouns
-        )
-    }
-
-    public static func make(from user: APIUser) -> APISubmissionUser {
-        APISubmissionUser(
-            id: user.id.value,
-            name: user.name,
-            short_name: user.short_name,
-            avatar_url: user.avatar_url?.rawValue,
             pronouns: user.pronouns
         )
     }
@@ -316,10 +286,11 @@ public struct GetSubmissionsRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = [
+            .perPage(100),
             .include(include.map { $0.rawValue }),
         ]
         if let grouped = grouped {
-            query.append(.value("grouped", String(grouped)))
+            query.append(.bool("grouped", grouped))
         }
         return query
     }

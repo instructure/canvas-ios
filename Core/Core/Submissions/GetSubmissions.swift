@@ -151,3 +151,119 @@ public class GetSubmission: APIUseCase {
         Submission.save(item, in: client)
     }
 }
+
+public class GetSubmissions: CollectionUseCase {
+    public typealias Model = Submission
+
+    public let context: Context
+    public let assignmentID: String
+    public var filter: Filter?
+    public var shuffled: Bool
+
+    public init(context: Context, assignmentID: String, filter: Filter?, shuffled: Bool = false) {
+        self.assignmentID = assignmentID
+        self.context = context
+        self.filter = filter
+        self.shuffled = shuffled
+    }
+
+    public var cacheKey: String? { "\(context.pathComponent)/assignments/\(assignmentID)/submissions" }
+
+    public var request: GetSubmissionsRequest {
+        GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
+    }
+
+    public var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            filter?.predicate,
+        ].compactMap { $0 }),
+        order: [ shuffled ?
+            NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+        ]
+    ) }
+
+    public enum Filter: RawRepresentable, Equatable {
+        case late, notSubmitted, needsGrading, graded
+        case scoreAbove(Double)
+        case scoreBelow(Double)
+
+        public init?(rawValue: String?) {
+            guard let rawValue = rawValue else { return nil }
+            self.init(rawValue: rawValue)
+        }
+
+        public init?(rawValue: String) {
+            switch rawValue {
+            case "late":
+                self = .late
+            case "not_submitted":
+                self = .notSubmitted
+            case "needs_grading":
+                self = .needsGrading
+            case "graded":
+                self = .graded
+            default:
+                let parts = rawValue.split(separator: "_")
+                if parts.count == 3, parts[0] == "score", parts[1] == "above", let score = Double(parts[2]) {
+                    self = .scoreAbove(score)
+                } else if parts.count == 3, parts[0] == "score", parts[1] == "below", let score = Double(parts[2]) {
+                    self = .scoreBelow(score)
+                } else {
+                    return nil
+                }
+            }
+        }
+
+        public var rawValue: String {
+            switch self {
+            case .late:
+                return "late"
+            case .notSubmitted:
+                return "not_submitted"
+            case .needsGrading:
+                return "needs_grading"
+            case .graded:
+                return "graded"
+            case .scoreAbove(let score):
+                return "score_above_\(score)"
+            case .scoreBelow(let score):
+                return "score_below_\(score)"
+            }
+        }
+
+        var predicate: NSPredicate {
+            switch self {
+            case .late:
+                return NSPredicate(key: #keyPath(Submission.late), equals: true)
+            case .notSubmitted:
+                return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
+            case .needsGrading:
+                return NSPredicate(format: """
+                    %K != nil AND (%K == 'pending_review' OR (
+                        %K IN { 'graded', 'submitted' } AND
+                        (%K == nil OR %K == false)
+                    ))
+                    """,
+                    #keyPath(Submission.typeRaw),
+                    #keyPath(Submission.workflowStateRaw),
+                    #keyPath(Submission.workflowStateRaw),
+                    #keyPath(Submission.scoreRaw),
+                    #keyPath(Submission.gradeMatchesCurrentSubmission)
+                )
+            case .graded:
+                return NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
+                    #keyPath(Submission.excusedRaw),
+                    #keyPath(Submission.scoreRaw),
+                    #keyPath(Submission.workflowStateRaw)
+                )
+            case .scoreAbove(let score):
+                return NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), score)
+            case .scoreBelow(let score):
+                return NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), score)
+            }
+        }
+    }
+}

@@ -34,7 +34,7 @@ public struct EditorForm<Content: View>: View {
             } }
                 .disabled(isSpinning)
             if isSpinning {
-                CircleProgress().size()
+                CircleProgress()
             }
         }
             .avoidKeyboardArea()

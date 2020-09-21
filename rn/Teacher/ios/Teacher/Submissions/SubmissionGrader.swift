@@ -17,20 +17,22 @@
 //
 
 import SwiftUI
+import Core
 
-public enum NavBarStyle: PreferenceKey, Equatable {
-    case modal
-    case global
-    case color(UIColor)
+struct SubmissionGrader: View {
+    let assignment: Assignment
+    let submission: Submission
 
-    public static var defaultValue = NavBarStyle.global
-    public static func reduce(value: inout NavBarStyle, nextValue: () -> NavBarStyle) {
-        value = nextValue()
-    }
-}
-
-extension View {
-    public func navBarStyle(_ style: NavBarStyle) -> some View {
-        preference(key: NavBarStyle.self, value: style)
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text(submission.sortableName ?? "no name")
+                Spacer()
+            }
+            Spacer()
+        }
+            .background(Color.blue)
     }
 }

@@ -25,6 +25,7 @@ import httpClient from '../httpClient'
 export function getSubmissions (courseID: string, assignmentID: string, grouped: boolean = false): ApiPromise<SubmissionWithHistory[]> {
   const submissions = paginate(`courses/${courseID}/assignments/${assignmentID}/submissions`, {
     params: {
+      per_page: 100,
       include: [
         'submission_history',
         'submission_comments',

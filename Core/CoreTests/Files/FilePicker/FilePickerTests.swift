@@ -59,7 +59,7 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
             let imagePicker = router.presented as! UIImagePickerController
             XCTAssertEqual(imagePicker.sourceType, .camera)
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .editedImage: UIImage(named: "PandaFilePicker", in: .core, compatibleWith: nil) as Any,
+                .editedImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any,
             ])
             XCTAssertEqual(try pickedURL?.checkResourceIsReachable(), true)
             XCTAssertNoThrow(try FileManager.default.removeItem(at: pickedURL!))
@@ -79,7 +79,7 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
             let imagePicker = router.presented as! UIImagePickerController
             XCTAssertEqual(imagePicker.sourceType, .photoLibrary)
             imagePicker.delegate?.imagePickerController?(mockPicker, didFinishPickingMediaWithInfo: [
-                .originalImage: UIImage(named: "PandaFilePicker", in: .core, compatibleWith: nil) as Any,
+                .originalImage: UIImage(named: Panda.FilePicker.name, in: .core, compatibleWith: nil) as Any,
             ])
             XCTAssertEqual(try pickedURL?.checkResourceIsReachable(), true)
             XCTAssertNoThrow(try FileManager.default.removeItem(at: pickedURL!))

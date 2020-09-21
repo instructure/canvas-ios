@@ -65,7 +65,7 @@ public struct Scope: Equatable {
 }
 
 extension NSSortDescriptor {
-    convenience init(key: String?, ascending: Bool, naturally: Bool) {
+    convenience init(key: String?, ascending: Bool = true, naturally: Bool) {
         self.init(key: key, ascending: ascending, selector: naturally ? #selector(NSString.localizedStandardCompare(_:)) : nil)
     }
 }

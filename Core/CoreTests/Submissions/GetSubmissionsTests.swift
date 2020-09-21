@@ -123,7 +123,7 @@ class CreateSubmissionTests: CoreTestCase {
     }
 }
 
-class GetSubmissionTest: CoreTestCase {
+class GetSubmissionsTests: CoreTestCase {
     func testItCreatesSubmission() {
         let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
@@ -207,5 +207,67 @@ class GetSubmissionTest: CoreTestCase {
             order: [NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)]
         )
         XCTAssertEqual(getSubmission.scope, scope)
+    }
+
+    func testGetSubmissions() {
+        let useCase = GetSubmissions(context: .course("1"), assignmentID: "1", filter: nil)
+        XCTAssertEqual(useCase.cacheKey, "courses/1/assignments/1/submissions")
+        XCTAssertEqual(useCase.request.assignmentID, "1")
+        XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)])
+        useCase.shuffled = true
+        XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)])
+        XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+        ]))
+        useCase.filter = .late
+        XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSPredicate(key: #keyPath(Submission.late), equals: true),
+        ]))
+    }
+
+    func testGetSubmissionsFilterRawValue() {
+        typealias Filter = GetSubmissions.Filter
+        XCTAssertEqual(Filter(rawValue: nil), nil)
+        XCTAssertEqual(Filter(rawValue: "bogus" as String?), nil)
+        XCTAssertEqual(Filter(rawValue: "late"), .late)
+        XCTAssertEqual(Filter.late.rawValue, "late")
+        XCTAssertEqual(Filter(rawValue: "not_submitted"), .notSubmitted)
+        XCTAssertEqual(Filter.notSubmitted.rawValue, "not_submitted")
+        XCTAssertEqual(Filter(rawValue: "needs_grading"), .needsGrading)
+        XCTAssertEqual(Filter.needsGrading.rawValue, "needs_grading")
+        XCTAssertEqual(Filter(rawValue: "graded"), .graded)
+        XCTAssertEqual(Filter.graded.rawValue, "graded")
+        XCTAssertEqual(Filter(rawValue: "score_above_10"), .scoreAbove(10))
+        XCTAssertEqual(Filter.scoreAbove(1.5).rawValue, "score_above_1.5")
+        XCTAssertEqual(Filter(rawValue: "score_below_0.7"), .scoreBelow(0.7))
+        XCTAssertEqual(Filter.scoreBelow(-2).rawValue, "score_below_-2.0")
+    }
+
+    func testGetSubmissionsFilterPredicate() {
+        typealias Filter = GetSubmissions.Filter
+        XCTAssertEqual(Filter.late.predicate, NSPredicate(key: #keyPath(Submission.late), equals: true))
+        XCTAssertEqual(Filter.notSubmitted.predicate, NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil))
+        XCTAssertEqual(Filter.needsGrading.predicate, NSPredicate(format: """
+            %K != nil AND (%K == 'pending_review' OR (
+                %K IN { 'graded', 'submitted' } AND
+                (%K == nil OR %K == false)
+            ))
+            """,
+            #keyPath(Submission.typeRaw),
+            #keyPath(Submission.workflowStateRaw),
+            #keyPath(Submission.workflowStateRaw),
+            #keyPath(Submission.scoreRaw),
+            #keyPath(Submission.gradeMatchesCurrentSubmission)
+        ))
+        XCTAssertEqual(Filter.graded.predicate, NSPredicate(format: "%K == true OR (%K != nil AND %K == 'graded')",
+            #keyPath(Submission.excusedRaw),
+            #keyPath(Submission.scoreRaw),
+            #keyPath(Submission.workflowStateRaw)
+        ))
+        XCTAssertEqual(Filter.scoreAbove(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), 100.0))
+        XCTAssertEqual(Filter.scoreBelow(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), 0.0))
     }
 }
