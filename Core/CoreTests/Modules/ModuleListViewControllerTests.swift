@@ -186,7 +186,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), error: NSError.internalError())
         loadView()
         XCTAssertEqual(viewController.errorView.isHidden, false)
-        XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules. Pull to refresh to try again.")
+        XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules.")
 
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         viewController.errorView.retryButton.sendActions(for: .primaryActionTriggered)
