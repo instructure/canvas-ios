@@ -45,6 +45,13 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     lazy var modules = env.subscribe(GetModules(courseID: courseID)) { [weak self] in
         self?.update()
     }
+    lazy var tabs = env.subscribe(GetContextTabs(context: .course(courseID))) { [weak self] in
+        self?.update()
+    }
+
+    var isPageDisabled: Bool {
+        tabs.first { $0.id == "modules" } == nil && courses.first?.defaultView != .modules
+    }
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -64,7 +71,6 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
         emptyMessageLabel.text = NSLocalizedString("There are no modules to display yet.", bundle: .core, comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Modules", bundle: .core, comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading modules. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.color = nil
@@ -87,6 +93,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         courses.refresh()
         colors.refresh()
         modules.refresh()
+        tabs.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -100,9 +107,17 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     }
 
     func update() {
-        spinnerView.isHidden = !modules.pending || refreshControl.isRefreshing
-        emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil
-        errorView.isHidden = modules.error == nil
+        let pending = modules.pending || tabs.pending || courses.pending
+        spinnerView.isHidden = !pending || refreshControl.isRefreshing
+        emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
+        errorView.isHidden = pending || (modules.error == nil && !isPageDisabled)
+        if isPageDisabled {
+            errorView.messageLabel.text = NSLocalizedString("This page has been disabled for this course.", bundle: .core, comment: "")
+            errorView.retryButton.isHidden = true
+        } else {
+            errorView.messageLabel.text = NSLocalizedString("There was an error loading modules.", bundle: .core, comment: "")
+            errorView.retryButton.isHidden = false
+        }
         tableView.tableFooterView?.setNeedsLayout()
         tableView.reloadData()
         scrollToModule()
@@ -114,7 +129,11 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     }
 
     @objc func refresh() {
-        modules.refresh(force: true)
+        modules.refresh(force: true) { [weak self] _ in
+            self?.refreshControl.endRefreshing()
+        }
+        tabs.refresh(force: true)
+        courses.refresh(force: true)
     }
 
     func isSectionExpanded(_ section: Int) -> Bool {
@@ -123,7 +142,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
     }
 
     func scrollToModule() {
-        if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }) {
+        if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }), section < tableView.numberOfSections {
             let rect = tableView.rect(forSection: section)
             tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
             self.moduleID = nil
@@ -159,7 +178,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
 extension ModuleListViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return modules.count
+        return isPageDisabled ? 0 : modules.count
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

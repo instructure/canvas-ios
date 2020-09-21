@@ -42,7 +42,8 @@ class ModuleListViewControllerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         PublishedIconView.isAutohideEnabled = false
-        api.mock(viewController.courses, value: .make(id: "1", name: "Course 1"))
+        api.mock(viewController.courses, value: .make(id: "1", name: "Course 1", default_view: .modules))
+        api.mock(viewController.tabs, value: [.make(id: "modules")])
         UIView.setAnimationsEnabled(false)
     }
 
@@ -185,7 +186,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         api.mock(GetModulesRequest(courseID: "1", include: []), error: NSError.internalError())
         loadView()
         XCTAssertEqual(viewController.errorView.isHidden, false)
-        XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules. Pull to refresh to try again.")
+        XCTAssertEqual(viewController.errorView.messageLabel.text, "There was an error loading modules.")
 
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
         viewController.errorView.retryButton.sendActions(for: .primaryActionTriggered)
@@ -235,6 +236,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         task.paused = true
         loadView()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
+        XCTAssertEqual(viewController.errorView.isHidden, true)
         task.paused = false
         drainMainQueue()
         XCTAssertEqual(viewController.spinnerView.isHidden, true)
@@ -454,5 +456,19 @@ class ModuleListViewControllerTests: CoreTestCase {
         let alert = router.presented as! UIAlertController
         XCTAssertEqual(alert.title, "Locked")
         XCTAssertEqual(alert.message, "Will unlock Sep 15, 2020 at 12:00 AM")
+    }
+
+    func testModulesPageDisabled() {
+        api.mock(viewController.courses, value: .make(id: "1", name: "Course 1", default_view: .assignments))
+        api.mock(viewController.tabs, value: [.make(id: "assignments")])
+        api.mock(GetModulesRequest(courseID: "1", include: []), value: [.make(id: "1") ])
+        api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
+            .make(content: .assignment("1")),
+        ])
+        loadView()
+        XCTAssertFalse(viewController.errorView.isHidden)
+        XCTAssertTrue(viewController.emptyView.isHidden)
+        XCTAssertEqual(viewController.errorView.messageLabel.text, "This page has been disabled for this course.")
+        XCTAssertEqual(viewController.tableView!.dataSource!.numberOfSections?(in: viewController.tableView!), 0)
     }
 }
