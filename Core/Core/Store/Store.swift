@@ -151,8 +151,10 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         return frc.sections?[section]
     }
 
-    public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
+    @discardableResult
+    public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
         request(useCase, force: force, callback: callback)
+        return self
     }
 
     @discardableResult
@@ -162,7 +164,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
                 self?.exhaustNext(while: condition)
             }
         }
-        return self
     }
 
     private func exhaustNext(while condition: @escaping (U.Response) -> Bool) {

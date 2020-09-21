@@ -46,8 +46,9 @@ public class TestEnvironment: AppEnvironment {
 
 public class TestStore<U: UseCase>: Store<U> {
     public let refreshExpectation = XCTestExpectation(description: "Refresh")
-    override public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) {
+    override public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
         refreshExpectation.fulfill()
+        return self
     }
 
     public let exhaustExpectation = XCTestExpectation(description: "Exhaust")
