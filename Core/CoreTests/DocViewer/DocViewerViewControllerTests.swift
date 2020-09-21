@@ -233,16 +233,19 @@ class DocViewerViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.pdfViewController(PDFViewController(), shouldShow: UIViewController(), animated: true))
     }
 
-    func testDidTapOn() {
-        XCTAssertFalse(controller.pdfViewController(PDFViewController(), didTapOn: PDFPageView(frame: .zero), at: .zero))
+    func testPerformTap() {
+        XCTAssertEqual(controller.gestureRecognizerShouldBegin(UITapGestureRecognizer()), false)
+
+        let document = MockPDFDocument(url: url)
+        controller.pdf.document = document
+        controller.pdf.annotationStateManager.state = .stamp
 
         controller.view.layoutIfNeeded()
         controller.metadata = APIDocViewerMetadata.make()
-        let viewController = PDFViewController(document: MockPDFDocument(url: url))
-        viewController.annotationStateManager.state = .stamp
-        XCTAssertTrue(controller.pdfViewController(viewController, didTapOn: PDFPageView(frame: .zero), at: .zero))
+        XCTAssertEqual(controller.gestureRecognizerShouldBegin(UITapGestureRecognizer()), true)
+        controller.performTap(pageView: PDFPageView(frame: .zero), at: .zero)
         XCTAssert(router.presented is CommentListViewController)
-        XCTAssertEqual((viewController.document as? MockPDFDocument)?.added?.count, 1)
+        XCTAssertEqual((controller.pdf.document as? MockPDFDocument)?.added?.count, 1)
     }
 
     func testAnnotationDidExceedLimit() {

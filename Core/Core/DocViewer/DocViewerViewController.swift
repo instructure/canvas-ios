@@ -75,6 +75,12 @@ public class DocViewerViewController: UIViewController {
         syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 
+        let gestureRecognizer = UITapGestureRecognizer()
+        gestureRecognizer.addTarget(self, action: #selector(tapGestureRecognizerDidChangeState))
+        gestureRecognizer.delegate = self
+        pdf.interactions.allInteractions.require(toFail: gestureRecognizer)
+        pdf.view.addGestureRecognizer(gestureRecognizer)
+
         if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
         } else {
@@ -239,10 +245,31 @@ extension DocViewerViewController: PDFViewControllerDelegate {
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         return !(controller is StampViewController)
     }
+    // swiftlint:enable function_parameter_count
+}
 
-    public func pdfViewController(_ pdfController: PDFViewController, didTapOn pageView: PDFPageView, at viewPoint: CGPoint) -> Bool {
-        let state = pdfController.annotationStateManager
-        guard state.state == .stamp, let document = pdfController.document, let metadata = metadata?.annotations else { return false }
+extension DocViewerViewController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        pdf.annotationStateManager.state == .stamp &&
+            pdf.documentViewController != nil &&
+            pdf.document != nil &&
+            metadata?.annotations != nil
+    }
+
+    @objc func tapGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
+        guard gestureRecognizer.state == .ended, let documentViewController = pdf.documentViewController else { return }
+        let viewPoint = gestureRecognizer.location(in: documentViewController.view)
+        guard let pageView = documentViewController.visiblePageView(at: viewPoint) else { return }
+        performTap(pageView: pageView, at: viewPoint)
+    }
+
+    func performTap(pageView: PDFPageView, at viewPoint: CGPoint) {
+        let state = pdf.annotationStateManager
+        guard state.state == .stamp,
+            let document = pdf.document,
+            let metadata = metadata?.annotations else {
+                return
+        }
         let pointAnnotation = DocViewerPointAnnotation()
         pointAnnotation.user = metadata.user_id
         pointAnnotation.userName = metadata.user_name
@@ -254,11 +281,9 @@ extension DocViewerViewController: PDFViewControllerDelegate {
         document.add(annotations: [ pointAnnotation ], options: nil)
 
         let view = CommentListViewController.create(comments: [], inReplyTo: pointAnnotation, document: document, metadata: metadata)
-        env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
-
-        return true
+        env.router.show(view, from: pdf, options: .modal(embedInNav: true))
     }
-    // swiftlint:enable function_parameter_count
+
 }
 
 extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
