@@ -59,6 +59,7 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var sortableName: String?
     @NSManaged public var shuffleOrder: String
+    @NSManaged public var isLatest: Bool
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
@@ -183,8 +184,9 @@ extension Submission: WriteableModel {
             // but are still "unsubmitted"
             for var submission in submissionHistory where submission.attempt != nil {
                 submission.user = item.user
-                Submission.save(submission, in: client)
+                Submission.save(submission, in: client).isLatest = false
             }
+            model.isLatest = true
         }
 
         let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)

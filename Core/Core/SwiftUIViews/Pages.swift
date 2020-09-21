@@ -31,18 +31,15 @@ public struct Pages<Item: Identifiable, Content: View>: View {
     var spacing: CGFloat = 0
     var scaling: (CGFloat) -> CGFloat = { _ in 1 }
 
+    var dx: CGFloat { layoutDirection == .rightToLeft ? -1 : 1 }
     var minIndex: Int { max(0, currentIndex - 1) }
     var maxIndex: Int { min(items.count, currentIndex + 2) }
-    var dx: CGFloat { layoutDirection == .rightToLeft ? -1 : 1 }
-
-    func show(index: Int) {
-        currentIndex = min(max(index, 0), items.count - 1)
-    }
-
-    func scale(for item: Item, width: CGFloat) -> CGFloat {
-        guard width > 0, let index = items.firstIndex(where: { $0.id == item.id }) else { return 1 }
-        let offset = CGFloat(index - currentIndex) + translation / width
-        return scaling(offset)
+    var rendered: [Item] {
+        var rendered: [Item] = []
+        for i in minIndex..<maxIndex {
+            rendered.append(items[i])
+        }
+        return rendered
     }
 
     public init(items: [Item], currentIndex: Binding<Int>, @ViewBuilder content: @escaping ContentBuilder) {
@@ -54,7 +51,7 @@ public struct Pages<Item: Identifiable, Content: View>: View {
     public var body: some View {
         GeometryReader { geometry in
             HStack(spacing: self.spacing) {
-                ForEach(self.items[self.minIndex..<self.maxIndex]) { item in
+                ForEach(self.rendered) { item in
                     self.content(item)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .scaleEffect(self.scale(for: item, width: geometry.size.width), anchor: .center)
@@ -91,5 +88,15 @@ public struct Pages<Item: Identifiable, Content: View>: View {
         var modified = self
         modified.scaling = scaling
         return modified
+    }
+
+    func scale(for item: Item, width: CGFloat) -> CGFloat {
+        guard width > 0, let index = items.firstIndex(where: { $0.id == item.id }) else { return 1 }
+        let offset = CGFloat(index - currentIndex) + translation / width
+        return scaling(offset)
+    }
+
+    func show(index: Int) {
+        currentIndex = min(max(index, 0), items.count - 1)
     }
 }

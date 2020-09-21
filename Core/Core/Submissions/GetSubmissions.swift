@@ -173,16 +173,17 @@ public class GetSubmissions: CollectionUseCase {
         GetSubmissionsRequest(context: context, assignmentID: assignmentID, grouped: true, include: GetSubmissionsRequest.Include.allCases)
     }
 
-    public var scope: Scope {
-        var predicate = NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID)
-        if let filter = filter?.predicate {
-            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [ predicate, filter ])
-        }
-        let order = shuffled ?
+    public var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            filter?.predicate,
+        ].compactMap { $0 }),
+        order: [ shuffled ?
             NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
-            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)
-        return Scope(predicate: predicate, order: [order])
-    }
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+        ]
+    ) }
 
     public enum Filter: RawRepresentable, Equatable {
         case late, notSubmitted, needsGrading, graded

@@ -216,10 +216,14 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)])
         useCase.shuffled = true
         XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)])
-        XCTAssertEqual(useCase.scope.predicate, NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"))
+        XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+        ]))
         useCase.filter = .late
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             NSPredicate(key: #keyPath(Submission.late), equals: true),
         ]))
     }
