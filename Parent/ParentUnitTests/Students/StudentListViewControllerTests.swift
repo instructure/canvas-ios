@@ -36,7 +36,6 @@ class StudentListViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual((router.presented as? UIAlertController)?.title, "Add Student")
 
         XCTAssertEqual(nav.navigationBar.barTintColor, ColorScheme.observeeBlue.color)
         XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.action, #selector(controller.addStudentController.addStudent))
