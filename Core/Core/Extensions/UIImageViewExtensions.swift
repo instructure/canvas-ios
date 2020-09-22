@@ -18,6 +18,7 @@
 
 import UIKit
 import WebKit
+import Combine
 
 public struct LoadedImage {
     let image: UIImage
@@ -27,12 +28,7 @@ public struct LoadedImage {
 private var urlHandle: UInt8 = 0
 private var loaderHandle: UInt8 = 0
 
-public protocol ImageLoadingView: class {
-    var frame: CGRect { get }
-    func load(url: URL, didCompleteWith: LoadedImage?, error: Error?)
-}
-
-extension UIImageView: ImageLoadingView {
+extension UIImageView {
     public var url: URL? {
         get {
             return objc_getAssociatedObject(self, &urlHandle) as? URL
@@ -64,7 +60,9 @@ extension UIImageView: ImageLoadingView {
         loader = nil
         image = nil
         if let url = url {
-            loader = ImageLoader(url: url, view: self)
+            loader = ImageLoader(url: url, frame: frame) { [weak self] url, loaded, error in
+                self?.load(url: url, didCompleteWith: loaded, error: error)
+            }
         }
         return loader?.load()
     }
@@ -88,11 +86,13 @@ extension UIImageView: ImageLoadingView {
 }
 
 public class ImageLoader {
+    typealias Callback = (URL, LoadedImage?, Error?) -> Void
+
     let frame: CGRect
     let key: String
     var task: URLSessionTask?
     let url: URL
-    weak var view: ImageLoadingView?
+    let callback: Callback
     var webView: WKWebView?
 
     private static var rendered: [String: LoadedImage] = [:]
@@ -103,13 +103,13 @@ public class ImageLoader {
         loading = [:]
     }
 
-    init(url: URL, view: ImageLoadingView) {
-        self.frame = view.frame
+    init(url: URL, frame: CGRect, callback: @escaping Callback) {
+        self.frame = frame
         self.key = url.pathExtension == "svg"
-            ? "\(url.absoluteString)@\(view.frame.width)x\(view.frame.height)"
+            ? "\(url.absoluteString)@\(frame.width)x\(frame.height)"
             : url.absoluteString
         self.url = url
-        self.view = view
+        self.callback = callback
     }
 
     func cancel() {
@@ -120,7 +120,7 @@ public class ImageLoader {
     @discardableResult
     func load() -> URLSessionTask? {
         if let loaded = ImageLoader.rendered[key] {
-            view?.load(url: url, didCompleteWith: loaded, error: nil)
+            callback(url, loaded, nil)
             return nil
         } else if ImageLoader.loading[key] != nil {
             ImageLoader.loading[key]?.append(self)
@@ -163,9 +163,36 @@ public class ImageLoader {
             if !url.isFileURL { ImageLoader.rendered[key] = loaded }
         }
         for loader in ImageLoader.loading[key] ?? [] {
-            loader.view?.load(url: url, didCompleteWith: loaded, error: error)
+            loader.callback(url, loaded, error)
         }
         ImageLoader.loading[key] = nil
+    }
+
+    // MARK: - Combine
+
+    public class Publisher: Combine.Publisher {
+        public typealias Output = UIImage?
+        public typealias Failure = Error
+
+        let subject = CurrentValueSubject<UIImage?, Error>(nil)
+        var loader: ImageLoader?
+
+        public init(url: URL) {
+            loader = ImageLoader(url: url, frame: .zero) { [weak self] _, image, error in
+                guard let self = self else { return }
+                self.subject.send(image?.image)
+                if let error = error {
+                    self.subject.send(completion: .failure(error))
+                } else {
+                    self.subject.send(completion: .finished)
+                }
+                self.loader = nil
+            }
+        }
+
+        public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
+            subject.receive(subscriber: subscriber)
+        }
     }
 
     // MARK: - SVG snapshot
@@ -243,21 +270,13 @@ public class ImageLoader {
 }
 
 /// Use Euclid's method to find the largest factor in common between two `Int`s.
-///
-/// Assumes both numbers are greater than zero.
-///
-/// - Parameter a: An `Int` greater than zero.
-/// - Parameter b: An `Int` greater than zero.
+/// 
 /// - Returns: Greatest common `Int` factor of `a` and `b`.
 public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
     var a = a
     var b = b
-    while a != b {
-        if a < b {
-            b -= a
-        } else {
-            a -= b
-        }
+    while b != 0 {
+        (a, b) = (b, a % b)
     }
     return a
 }

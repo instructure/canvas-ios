@@ -44,12 +44,10 @@ export default class ConversationRow extends Component<ConversationRowProps, any
     this.props.onPress(this.props.conversation.id)
   }
 
-  _participantNames = (): string[] => {
+  _participants = (): string[] => {
     const participants = this.props.conversation.participants || []
     const myUserId = getSession().user.id
-    return participants
-      .filter((p) => p.id !== myUserId)
-      .map((p) => personDisplayName(p.name, p.pronouns))
+    return participants.filter((p) => p.id !== myUserId)
   }
 
   static extractDate = (c: Conversation): ?string => {
@@ -60,7 +58,8 @@ export default class ConversationRow extends Component<ConversationRowProps, any
   render () {
     const c = this.props.conversation
     const subject = c.subject || i18n('No Subject')
-    const names = this._participantNames()
+    const participants = this._participants()
+    const names = participants.map((p) => personDisplayName(p.name, p.pronouns))
     const nameCount = names.length
     let title = ''
     if (nameCount > 6) {
@@ -74,7 +73,7 @@ export default class ConversationRow extends Component<ConversationRowProps, any
     } else {
       title = names.join(', ')
     }
-    const avatarUserName = nameCount > 1 ? i18n('Group') : names[0]
+    const avatarUserName = nameCount > 1 ? i18n('Group') : (participants[0] || {}).name
     const containerStyles = [styles.container, styles.bottomHairline]
     if (this.props.drawsTopLine) {
       containerStyles.push(styles.topHairline)

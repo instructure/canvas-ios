@@ -19,7 +19,6 @@
 import SwiftUI
 import Combine
 
-// swiftlint:disable superfluous_disable_command multiple_closures_with_trailing_closure
 public struct CourseListView: View {
     @Environment(\.appEnvironment) var env: AppEnvironment
     @Environment(\.viewController) var controller: () -> UIViewController?
