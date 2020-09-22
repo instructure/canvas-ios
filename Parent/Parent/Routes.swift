@@ -90,10 +90,8 @@ let router = Router(routes: [
         return ProfileViewController.create(enrollment: .observer)
     },
 
-    RouteHandler("/profile/observees") { url, _, _ in
-        let showPromptValue = url.queryItems?.first { $0.name == "showPrompt" }?.value
-        let showPrompt = Bool(showPromptValue ?? "") ?? false
-        return StudentListViewController.create(showAddStudentPrompt: showPrompt)
+    RouteHandler("/profile/observees") { _, _, _ in
+        return StudentListViewController.create()
     },
 
     RouteHandler("/profile/observees/:userID/thresholds") { _, params, _ in
