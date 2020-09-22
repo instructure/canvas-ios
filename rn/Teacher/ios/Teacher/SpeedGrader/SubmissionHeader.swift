@@ -28,40 +28,51 @@ struct SubmissionHeader: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Button(action: navigateToSubmitter, label: { HStack(spacing: 0) {
-                if assignment.anonymizeStudents {
-                    (submission.groupID != nil ? Icon.groupLine : Icon.userLine)
-                        .foregroundColor(.textDark)
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(20)
-                        .overlay(Circle()
-                            .stroke(Color.borderMedium, lineWidth: 1)
-                        )
-                } else if let name = submission.groupName {
-                    Avatar(name: name, url: nil)
-                } else {
-                    Avatar(name: submission.user?.name, url: submission.user?.avatarURL)
+            Button(action: navigateToSubmitter, label: {
+                HStack(spacing: 0) {
+                    avatar
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        nameText
+                            .font(.semibold16).foregroundColor(.textDarkest)
+                        Text(submission.status.text)
+                            .font(.medium14).foregroundColor(Color(submission.status.color))
+                    }
+                        .padding(.leading, 12)
                 }
-                VStack(alignment: .leading, spacing: 2) {
-                    nameText
-                        .font(.semibold16).foregroundColor(.textDarkest)
-                    Text(submission.status.text)
-                        .font(.medium14).foregroundColor(Color(submission.status.color))
-                }
-                    .padding(.leading, 12)
-            } })
+                    .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
+            })
                 .buttonStyle(PlainButtonStyle())
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
+
             Spacer()
+
             Button(action: navigateToPostPolicy, label: {
-                Icon.eyeLine.foregroundColor(Color(Brand.shared.linkColor))
+                Icon.eyeLine
+                    .foregroundColor(Color(Brand.shared.linkColor))
                     .padding(16)
             })
+
             Button(action: dismiss, label: {
                 Text("Done")
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                     .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
             })
+        }
+    }
+
+    @ViewBuilder var avatar: some View {
+        if assignment.anonymizeStudents {
+            (submission.groupID != nil ? Icon.groupLine : Icon.userLine)
+                .foregroundColor(.textDark)
+                .frame(width: 40, height: 40)
+                .cornerRadius(20)
+                .overlay(Circle()
+                    .stroke(Color.borderMedium, lineWidth: 1)
+                )
+        } else if let name = submission.groupName {
+            Avatar(name: name, url: nil)
+        } else {
+            Avatar(name: submission.user?.name, url: submission.user?.avatarURL)
         }
     }
 

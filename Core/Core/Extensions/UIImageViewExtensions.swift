@@ -18,6 +18,7 @@
 
 import UIKit
 import WebKit
+import Combine
 
 public struct LoadedImage {
     let image: UIImage
@@ -243,21 +244,13 @@ public class ImageLoader {
 }
 
 /// Use Euclid's method to find the largest factor in common between two `Int`s.
-///
-/// Assumes both numbers are greater than zero.
-///
-/// - Parameter a: An `Int` greater than zero.
-/// - Parameter b: An `Int` greater than zero.
+/// 
 /// - Returns: Greatest common `Int` factor of `a` and `b`.
 public func greatestCommonFactor(_ a: Int, _ b: Int) -> Int {
     var a = a
     var b = b
-    while a != b {
-        if a < b {
-            b -= a
-        } else {
-            a -= b
-        }
+    while b != 0 {
+        (a, b) = (b, a % b)
     }
     return a
 }

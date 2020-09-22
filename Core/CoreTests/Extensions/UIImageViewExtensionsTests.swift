@@ -37,54 +37,59 @@ class UIImageViewExtensionsTests: CoreTestCase {
         let image = UIImage.animatedImage(with: [
             UIImage(data: Data(base64Encoded: "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")!)!,
         ], duration: 3)!
-        view.load(url: url, didCompleteWith: LoadedImage(image: image, repeatCount: 2), error: nil)
+        view.load(url: url, result: .success(LoadedImage(image: image, repeatCount: 2)))
         XCTAssertNil(view.loader)
         XCTAssertNil(view.animationImages)
         view.url = url // requires url to match for load to complete
-        view.load(url: url, didCompleteWith: LoadedImage(image: image, repeatCount: 2), error: nil)
+        view.load(url: url, result: .success(LoadedImage(image: image, repeatCount: 2)))
         XCTAssertEqual(view.animationImages?.count, 1)
         XCTAssertEqual(view.animationRepeatCount, 2)
         XCTAssertEqual(view.animationDuration, 3)
     }
 }
 
-class ImageLoaderTests: CoreTestCase, ImageLoadingView {
+class ImageLoaderTests: CoreTestCase {
     lazy var gifURL = Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "gif")!
     lazy var pngURL = Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png")!
     lazy var svgURL = Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "svg")!
 
     let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
-    @objc var loadedURL: URL?
-    var loadedImage: LoadedImage?
+    @objc var loadedImage: UIImage?
+    var loadedRepeatCount: Int?
     var loadedError: Error?
     var loadedCount = 0
-    func load(url: URL, didCompleteWith image: LoadedImage?, error: Error?) {
-        loadedURL = url
-        loadedImage = image
-        loadedError = error
+    func callback(result: Result<LoadedImage, Error>) {
+        switch result {
+        case .success(let loaded):
+            loadedImage = loaded.image
+            loadedRepeatCount = loaded.repeatCount
+            loadedError = nil
+        case .failure(let error):
+            loadedImage = nil
+            loadedRepeatCount = nil
+            loadedError = error
+        }
         loadedCount += 1
     }
 
     func testLoadPng() throws {
         api.mock(URLRequest(url: pngURL), data: try Data(contentsOf: pngURL))
 
-        let loader = ImageLoader(url: pngURL, view: self)
+        let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         loader.load()
-        XCTAssertEqual(loadedURL, pngURL)
-        XCTAssertNotNil(loadedImage?.image)
+        XCTAssertNotNil(loadedImage)
         XCTAssertNil(loadedError)
     }
 
     func testLoadGif() throws {
         api.mock(URLRequest(url: gifURL), data: try Data(contentsOf: gifURL))
 
-        let loader = ImageLoader(url: gifURL, view: self)
+        let loader = ImageLoader(url: gifURL, frame: frame, callback: callback)
         loader.load()
-        XCTAssertEqual(loadedURL, gifURL)
-        XCTAssertEqual(loadedImage?.image.duration, 0.24)
-        XCTAssertEqual(loadedImage?.image.images?.count, 2)
-        XCTAssertEqual(loadedImage?.repeatCount, 0)
+        XCTAssertEqual(loadedImage?.duration, 0.24)
+        XCTAssertEqual(loadedImage?.images?.count, 2)
+        XCTAssertEqual(loadedRepeatCount, 0)
         XCTAssertNil(loadedError)
     }
 
@@ -98,31 +103,30 @@ class ImageLoaderTests: CoreTestCase, ImageLoadingView {
             headerFields: [ "Content-Type": "image/gif" ]
         ))
 
-        let loader = ImageLoader(url: plainURL, view: self)
+        let loader = ImageLoader(url: plainURL, frame: frame, callback: callback)
         loader.load()
-        XCTAssertEqual(loadedImage?.image.duration, 0.24)
-        XCTAssertEqual(loadedImage?.image.images?.count, 2)
-        XCTAssertEqual(loadedImage?.repeatCount, 0)
+        XCTAssertEqual(loadedImage?.duration, 0.24)
+        XCTAssertEqual(loadedImage?.images?.count, 2)
+        XCTAssertEqual(loadedRepeatCount, 0)
 
         api.mock(URLRequest(url: plainURL), data: data)
         ImageLoader.reset()
         loader.load()
-        XCTAssertEqual(loadedImage?.image.duration, 0)
-        XCTAssertEqual(loadedImage?.image.images, nil)
-        XCTAssertEqual(loadedImage?.repeatCount, 0)
+        XCTAssertEqual(loadedImage?.duration, 0)
+        XCTAssertEqual(loadedImage?.images, nil)
+        XCTAssertEqual(loadedRepeatCount, 0)
     }
 
     func testLoadSvg() throws {
         api.mock(URLRequest(url: svgURL), data: try Data(contentsOf: svgURL))
-        let loaded = expectation(for: NSPredicate(format: "%K != nil", #keyPath(loadedURL)), evaluatedWith: self)
+        let loaded = expectation(for: NSPredicate(format: "%K != nil", #keyPath(loadedImage)), evaluatedWith: self)
 
-        let loader = ImageLoader(url: svgURL, view: self)
+        let loader = ImageLoader(url: svgURL, frame: frame, callback: callback)
         loader.load()
         XCTAssertNotNil(loader.webView)
 
         wait(for: [ loaded ], timeout: 9)
-        XCTAssertEqual(loadedURL, svgURL)
-        XCTAssertNotNil(loadedImage?.image)
+        XCTAssertNotNil(loadedImage)
         XCTAssertNil(loadedError)
     }
 
@@ -131,14 +135,13 @@ class ImageLoaderTests: CoreTestCase, ImageLoadingView {
         let task = api.mock(URLRequest(url: pngURL), data: try Data(contentsOf: pngURL))
         task.paused = true
 
-        let loader = ImageLoader(url: pngURL, view: self)
+        let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         loader.load()
-        let dupe = ImageLoader(url: pngURL, view: self)
+        let dupe = ImageLoader(url: pngURL, frame: frame, callback: callback)
         dupe.load()
         task.paused = false
 
-        XCTAssertEqual(loadedURL, pngURL)
-        XCTAssertNotNil(loadedImage?.image)
+        XCTAssertNotNil(loadedImage)
         XCTAssertNil(loadedError)
         XCTAssertEqual(loadedCount, 2)
     }
@@ -146,9 +149,8 @@ class ImageLoaderTests: CoreTestCase, ImageLoadingView {
     func testLoadInvalid() throws {
         api.mock(URLRequest(url: pngURL), error: NSError.internalError())
 
-        let loader = ImageLoader(url: pngURL, view: self)
+        let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         loader.load()
-        XCTAssertEqual(loadedURL, pngURL)
         XCTAssertNil(loadedImage)
         XCTAssertNotNil(loadedError)
     }
@@ -158,7 +160,7 @@ class ImageLoaderTests: CoreTestCase, ImageLoadingView {
         let task = api.mock(URLRequest(url: pngURL))
         task.paused = true
 
-        let loader = ImageLoader(url: pngURL, view: self)
+        let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         XCTAssertNotNil(loader.load())
         loader.cancel()
         XCTAssertEqual(task.canceled, true)

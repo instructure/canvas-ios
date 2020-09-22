@@ -11,11 +11,14 @@ You will need the following tools installed beforehand:
 
 - [Cocoapods](https://cocoapods.org)
 - [SwiftLint](https://github.com/realm/SwiftLint#installation)
+- [node](https://nodejs.org/en/download/)
 - [yarn](https://yarnpkg.com/en/docs/install#mac-stable)
+- [react-native-cli](https://www.npmjs.com/package/react-native-cli)
 
 ```sh
 brew install swiftlint yarn
 gem install cocoapods
+yarn global add react-native-cli --prefix /usr/local
 ```
 
 Then you can setup the repo:

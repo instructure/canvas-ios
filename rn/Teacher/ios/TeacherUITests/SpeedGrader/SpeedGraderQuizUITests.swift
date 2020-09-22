@@ -42,7 +42,7 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
         app.find(id: "quiz-row-0").tap()
         app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
         SubmissionsList.row(contextID: student.id.value).tap()
-        SpeedGrader.segmentButton(label: "Grades").tap()
+        SpeedGrader.Segment.grades.tap()
         SpeedGrader.gradePickerButton.tap()
         app.textFields.firstElement.typeText("6")
 

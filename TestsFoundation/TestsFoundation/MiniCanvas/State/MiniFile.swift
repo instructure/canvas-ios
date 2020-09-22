@@ -21,12 +21,16 @@ import Foundation
 
 public class MiniFile {
     public var api: APIFile
-    public var contents: Data?
+    public var contents: Data
 
     public var id: String { api.id.value }
 
-    public init(_ file: APIFile, contents: Data? = nil) {
+    public init(_ file: APIFile, contents: Data, baseURL: URL) {
         self.api = file
+        let url = APIURL(rawValue: baseURL.appendingPathComponent("files/\(file.id)"))
+        self.api.url = url
+        self.api.preview_url = url
+        self.api.thumbnail_url = url
         self.contents = contents
     }
 }

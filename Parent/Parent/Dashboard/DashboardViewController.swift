@@ -25,7 +25,7 @@ class DashboardNavigationController: UINavigationController {
     override var childForStatusBarStyle: UIViewController? { nil }
 }
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
@@ -195,12 +195,12 @@ class DashboardViewController: UIViewController {
             studentListStack.addArrangedSubview(button)
         }
         let addButton = AddStudentButton()
-        addButton.addTarget(self, action: #selector(actionDidTapAddStudent), for: .primaryActionTriggered)
+        addButton.addTarget(addStudentController, action: #selector(AddStudentController.addStudent), for: .primaryActionTriggered)
         studentListStack.addArrangedSubview(addButton)
     }
 
     @IBAction func didTapDropdownButton() {
-        guard !students.isEmpty else { return actionDidTapAddStudent() }
+        guard !students.isEmpty else { return addStudentController.addStudent() }
         toggleStudentList(studentListHiddenHeight.isActive)
     }
 
@@ -255,64 +255,6 @@ class DashboardViewController: UIViewController {
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
-    }
-
-    @objc func actionDidTapAddStudent() {
-        if ExperimentalFeature.parentQRCodePairing.isEnabled {
-            let picker = BottomSheetPickerViewController.create()
-            picker.addAction(
-                image: nil,
-                title: NSLocalizedString("QR Code", comment: ""),
-                accessibilityIdentifier: "DashboardViewController.addStudent.qrCode"
-            ) { [weak self] in
-                self?.scanQRCode()
-            }
-            picker.addAction(
-                image: nil,
-                title: NSLocalizedString("Pairing Code", comment: ""),
-                accessibilityIdentifier: "DashboardViewController.addStudent.pairingCode"
-            ) { [weak self] in
-                self?.addStudentController.actionAddStudent()
-            }
-            env.router.show(picker, from: self, options: .modal())
-        } else {
-            addStudentController.actionAddStudent()
-        }
-    }
-
-    func scanQRCode() {
-        let scanner = ScannerViewController()
-        scanner.delegate = self
-        self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
-    }
-}
-
-extension DashboardViewController: ScannerDelegate, ErrorViewController {
-    func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
-        env.router.dismiss(scanner) {
-            guard
-                let components = URLComponents(string: code),
-                let host = components.host,
-                let pairingCode = components.queryItems?.first(where: { $0.name == "code" })?.value
-            else {
-                let error = NSError.instructureError(NSLocalizedString("Could not parse QR code, QR code invalid", comment: ""))
-                self.showError(error)
-                return
-            }
-
-            guard host == self.env.currentSession?.baseURL.host else {
-                let title = NSLocalizedString("Domain mismatch", comment: "")
-                let msg = NSLocalizedString(
-                    """
-                    The student you are trying to add is at a different Canvas institution.
-                    Sign in or create an account with that institution to add this student.
-                    """,
-                    comment: "")
-                self.showAlert(title: title, message: msg)
-                return
-            }
-            self.addStudentController.addPairingCode(code: pairingCode)
-        }
     }
 }
 

@@ -161,43 +161,4 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssertEqual(vc.titleLabel.text, "User 2")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1)
     }
-
-    func testResponseFromScannerWithMisMatchedBaseURL() {
-        vc.view.layoutIfNeeded()
-        vc.viewWillAppear(false)
-
-        let code = "canvas-parent://twilson.instructure.com/pair?code=abc"
-        vc.scanner(ScannerViewController(), didScanCode: code)
-        XCTAssert(router.presented is UIAlertController)
-        XCTAssertEqual((router.presented as? UIAlertController)?.title, "Domain mismatch")
-        let msg = "The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student."
-        XCTAssertEqual((router.presented as? UIAlertController)?.message, msg)
-
-        XCTAssertEqual( vc.studentListStack.arrangedSubviews.count, 1)
-    }
-
-    func testResponseFromScannerWithValidCode() {
-        vc.view.layoutIfNeeded()
-        vc.viewWillAppear(false)
-
-        let code = "canvas-parent://canvas.instructure.com/pair?code=code"
-
-        let student = APIUser.make(
-            id: "1",
-            name: "Full Name",
-            short_name: "John Doe"
-        )
-        let students: [APIEnrollment] = [
-            .make(observed_user: student),
-        ]
-        api.mock(GetObservedStudents(observerID: "1"), value: students)
-
-        let r = PostObserveesRequest(userID: "self", pairingCode: "code")
-        api.mock(r, value: student)
-
-        vc.scanner(ScannerViewController(), didScanCode: code)
-
-        XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, 2)
-        XCTAssertEqual((vc.studentListStack.arrangedSubviews.first as? StudentButton)?.titleLabel?.text, "John Doe")
-    }
 }

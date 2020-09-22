@@ -38,7 +38,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         submission.api.submission_comments = [ .make(attachments: [attachment]) ]
 
         showSubmission()
-        SpeedGrader.segmentButton(label: "Comments").tap()
+        SpeedGrader.Segment.comments.tap()
         app.find(id: "CommentAttachment-1").tap()
         app.find(id: "AttachmentView.image").waitToExist()
         app.find(id: "attachment-view.share-btn").waitToExist()
@@ -66,7 +66,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         submission.api.submission_comments = [teacherComment, studentComment]
 
         showSubmission()
-        SpeedGrader.segmentButton(label: "Comments").tap()
+        SpeedGrader.Segment.comments.tap()
 
         XCTAssertEqual(
             SubmissionComments.textCell(commentID: "comment-\(teacherComment.id)").label(),
@@ -82,7 +82,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         let testString = "Is this thing on?"
 
         showSubmission()
-        SpeedGrader.segmentButton(label: "Comments").tap()
+        SpeedGrader.Segment.comments.tap()
         SubmissionComments.commentTextView.typeText(testString)
 
         XCTAssert((submission.api.submission_comments ?? []).isEmpty)
@@ -94,7 +94,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
 
     func testNewAudioComment() {
         showSubmission()
-        SpeedGrader.segmentButton(label: "Comments").tap()
+        SpeedGrader.Segment.comments.tap()
         SubmissionComments.addMediaButton.tap()
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()

@@ -72,7 +72,7 @@ class TeacherTabBarController: UITabBarController {
         let inboxSplit = HelmSplitViewController()
 
         if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            inboxVC = ConversationsViewController.create()
+            inboxVC = CoreHostingController(InboxView())
             inboxNav = UINavigationController(rootViewController: inboxVC)
         } else {
             inboxVC = HelmViewController(moduleName: "/conversations", props: [:])

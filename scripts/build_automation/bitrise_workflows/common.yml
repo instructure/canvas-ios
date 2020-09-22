@@ -54,7 +54,7 @@ workflows:
         inputs:
         - runner: "/bin/zsh"
         - file_path: scripts/archive-all.sh
-    - git::https://github.com/cobbal/steps-xcode-archive@master:
+    - git::https://github.com/instructure/steps-xcode-archive@master:
         inputs:
         - scheme: "Student"
         - existing_archive_path: "build/archives/Student.xcarchive"
@@ -63,7 +63,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-    - git::https://github.com/cobbal/steps-xcode-archive@master:
+    - git::https://github.com/instructure/steps-xcode-archive@master:
         inputs:
         - scheme: "Teacher"
         - existing_archive_path: "build/archives/Teacher.xcarchive"
@@ -72,7 +72,7 @@ workflows:
         - upload_bitcode: 'no'
         - export_method: "$BITRISE_EXPORT_METHOD"
         - icloud_container_environment: "Production"
-    - git::https://github.com/cobbal/steps-xcode-archive@master:
+    - git::https://github.com/instructure/steps-xcode-archive@master:
         inputs:
         - scheme: "Parent"
         - existing_archive_path: "build/archives/Parent.xcarchive"

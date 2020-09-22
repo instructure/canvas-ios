@@ -60,11 +60,12 @@ public class ModuleItem: NSManagedObject {
         set { typeRaw = try? encoder.encode(newValue) }
     }
 
-    public var isAssignment: Bool {
-        if case .assignment = type {
+    public var visibleWhenLocked: Bool {
+        switch type {
+        case .assignment, .discussion, .quiz:
             return true
+        default: return false
         }
-        return false
     }
 
     public var isLocked: Bool {

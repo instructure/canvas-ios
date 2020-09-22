@@ -28,6 +28,7 @@ public protocol PlannableItem {
     var date: Date? { get }
     var pointsPossible: Double? { get }
     var details: String? { get }
+    var isHidden: Bool { get }
 }
 
 extension APIPlannable: PlannableItem {
@@ -39,6 +40,7 @@ extension APIPlannable: PlannableItem {
     public var pointsPossible: Double? { self.plannable?.points_possible }
     public var details: String? { self.plannable?.details }
     public var contextName: String? { context_name }
+    public var isHidden: Bool { false }
     public var context: Context? {
         guard let raw = context_type, let type = ContextType(rawValue: raw.lowercased()) else {
             return nil
@@ -75,7 +77,7 @@ extension APICalendarEvent: PlannableItem {
     public var date: Date? { start_at }
     public var pointsPossible: Double? { assignment?.points_possible }
     public var details: String? { description }
-
+    public var isHidden: Bool { hidden }
 }
 
 public class GetPlannables: UseCase {
@@ -148,7 +150,7 @@ public class GetPlannables: UseCase {
 
     public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         let items: [PlannableItem] = response?.plannables ?? response?.calendarEvents ?? []
-        for item in items {
+        for item in items where item.plannableType != .announcement && !item.isHidden {
             Plannable.save(item, userID: userID, in: client)
         }
     }

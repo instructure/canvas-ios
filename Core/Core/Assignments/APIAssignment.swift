@@ -102,7 +102,7 @@ extension APIAssignment {
         discussion_topic: APIDiscussionTopic? = nil,
         rubric: [APIRubric]? = nil,
         use_rubric_for_grading: Bool? = nil,
-        rubric_settings: APIRubricSettings? = nil,
+        rubric_settings: APIRubricSettings? = .make(),
         assignment_group_id: ID? = nil,
         all_dates: [APIAssignmentDate]? = nil,
         allowed_attempts: Int? = -1,

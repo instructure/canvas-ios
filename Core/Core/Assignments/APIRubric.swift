@@ -105,7 +105,7 @@ extension APIRubricAssessment {
 }
 
 extension APIRubricSettings {
-    public static func make(hides_points: Bool = false, free_form_criterion_comments: Bool? = nil) -> APIRubricSettings {
+    public static func make(hides_points: Bool = false, free_form_criterion_comments: Bool? = false) -> APIRubricSettings {
         return APIRubricSettings(hide_points: hides_points, free_form_criterion_comments: free_form_criterion_comments)
     }
 }
