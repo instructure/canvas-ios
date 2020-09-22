@@ -24,7 +24,7 @@ class StudentListViewController: UIViewController {
         image: .addSolid,
         style: .plain,
         target: addStudentController,
-        action: #selector(addStudentController.actionAddStudent)
+        action: #selector(AddStudentController.addStudent)
     )
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -35,7 +35,6 @@ class StudentListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared
-    var showAddStudentPrompt = false
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
@@ -46,10 +45,8 @@ class StudentListViewController: UIViewController {
         self?.update()
     }
 
-    static func create(showAddStudentPrompt: Bool = false) -> StudentListViewController {
-        let controller = loadFromStoryboard()
-        controller.showAddStudentPrompt = showAddStudentPrompt
-        return controller
+    static func create() -> StudentListViewController {
+        loadFromStoryboard()
     }
 
     override func viewDidLoad() {
@@ -79,14 +76,6 @@ class StudentListViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.useContextColor(ColorScheme.observeeBlue.color)
         env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if showAddStudentPrompt {
-            showAddStudentPrompt = false
-            addStudentController.actionAddStudent()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

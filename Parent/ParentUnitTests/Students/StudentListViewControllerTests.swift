@@ -22,7 +22,7 @@ import XCTest
 import TestsFoundation
 
 class StudentListViewControllerTests: ParentTestCase {
-    lazy var controller = StudentListViewController.create(showAddStudentPrompt: true)
+    lazy var controller = StudentListViewController.create()
 
     override func setUp() {
         super.setUp()
@@ -36,11 +36,9 @@ class StudentListViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        controller.viewDidAppear(false)
-        XCTAssertEqual((router.presented as? UIAlertController)?.title, "Add Student")
 
         XCTAssertEqual(nav.navigationBar.barTintColor, ColorScheme.observeeBlue.color)
-        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.action, #selector(controller.addStudentController.actionAddStudent))
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.action, #selector(controller.addStudentController.addStudent))
 
         let index0 = IndexPath(row: 0, section: 0)
         let cell0 = controller.tableView.cellForRow(at: index0) as? StudentListCell
