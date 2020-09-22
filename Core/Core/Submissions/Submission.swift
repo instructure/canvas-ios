@@ -40,6 +40,8 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var body: String?
     @NSManaged var excusedRaw: NSNumber?
     @NSManaged public var grade: String?
+    @NSManaged public var groupID: String?
+    @NSManaged public var groupName: String?
     @NSManaged public var id: String
     @NSManaged public var late: Bool
     @NSManaged var latePolicyStatusRaw: String?
@@ -63,6 +65,7 @@ final public class Submission: NSManagedObject, Identifiable {
 
     @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var mediaComment: MediaComment?
+    @NSManaged public var user: User?
 
     public var rubricAssessments: RubricAssessments? {
         if let assessments = rubricAssesmentRaw, assessments.count > 0 {
@@ -128,6 +131,8 @@ extension Submission: WriteableModel {
         model.userID = item.user_id.value
         model.body = item.body
         model.grade = item.grade
+        model.groupID = item.group_id?.value
+        model.groupName = item.group_name
         model.score = item.score
         model.submittedAt = item.submitted_at
         model.late = item.late
@@ -144,6 +149,9 @@ extension Submission: WriteableModel {
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
         model.externalToolURL = item.external_tool_url?.rawValue
         model.sortableName = item.group_name ?? item.user?.sortable_name
+        if let user = item.user {
+            model.user = User.save(user, in: client)
+        }
         // Non-cryptographic hash, used only as a deterministic somewhat random sort order
         model.shuffleOrder = item.id.value.data(using: .utf8).flatMap {
             Insecure.MD5.hash(data: $0).map { String(format: "%02x", $0) } .joined()

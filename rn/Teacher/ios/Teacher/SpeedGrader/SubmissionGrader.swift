@@ -24,15 +24,11 @@ struct SubmissionGrader: View {
     let submission: Submission
 
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Text(submission.sortableName ?? "no name")
-                Spacer()
-            }
+        VStack(spacing: 0) {
+            SubmissionHeader(assignment: assignment, submission: submission)
+            Divider()
             Spacer()
         }
-            .background(Color.blue)
+            .background(Color.backgroundLightest)
     }
 }
