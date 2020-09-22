@@ -18,14 +18,6 @@ def canvas_crashlytics_rn_firebase_pods
   pod 'Firebase/Crashlytics', '~> 6.20.0'
 end
 
-def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec'
-end
-
-def lottie
-  pod 'lottie-ios', '~> 3.1.8'
-end
-
 def react_native_pods
   use_react_native!(:path => './rn/Teacher/node_modules/react-native')
 
@@ -47,25 +39,10 @@ def react_native_pods
   pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
 end
 
-abstract_target 'needs-pspdfkit' do
-  use_frameworks!
-  pspdfkit
-  target 'Core' do project 'Core/Core.xcodeproj' end
-  target 'CoreTests' do project 'Core/Core.xcodeproj' end
-  target 'CoreTester' do project 'Core/Core.xcodeproj' end
-  target 'StudentUITests' do project 'Student/Student.xcodeproj' end
-  target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
-  target 'TeacherUITests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'TeacherE2ETests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'ParentUITests' do project 'Parent/Parent.xcodeproj' end
-  target 'ParentE2ETests' do project 'Parent/Parent.xcodeproj' end
-end
-
 abstract_target 'defaults' do
   use_frameworks!
 
   react_native_pods
-  pspdfkit
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
@@ -80,13 +57,11 @@ abstract_target 'defaults' do
   target 'Student' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    lottie
   end
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    lottie
   end
 
   target 'CanvasCore' do
@@ -98,7 +73,6 @@ end
 abstract_target 'parent_defaults' do
   use_frameworks!
 
-  pspdfkit
   firebase_pods
 
   target 'Parent' do
@@ -107,14 +81,6 @@ abstract_target 'parent_defaults' do
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-  end
-end
-
-pre_install do |installer|
-  # dSYMs cause problems, will be fixed in cocoapods 1.10
-  # https://github.com/CocoaPods/CocoaPods/pull/9547
-  installer.pod_targets.detect { |s| s.name == "PSPDFKit" }.framework_paths["PSPDFKit/Core"].map! do |framework_paths|
-    Xcode::FrameworkPaths.new(framework_paths.source_path)
   end
 end
 

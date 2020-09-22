@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -77,12 +77,10 @@
 		97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */; };
 		97F69BA523F1C682009622E3 /* AddStudentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BA423F1C682009622E3 /* AddStudentController.swift */; };
 		97F69BA723F1D232009622E3 /* AddStudentControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F69BA623F1D232009622E3 /* AddStudentControllerTests.swift */; };
-		ADD6688DB8C1E4DEB417B9B4 /* Pods_needs_pspdfkit_ParentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */; };
 		B1497D2424F03A0000B70B35 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1497D2324F03A0000B70B35 /* LoginTests.swift */; };
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
-		DEC576CA6283206E676C040D /* Pods_needs_pspdfkit_ParentE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
 		E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81B573823E1EEC5002A0C38 /* GradeListTests.swift */; };
 		E81B575923E23EF5002A0C38 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8E1BE5623C68A03000E3A76 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -151,7 +149,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F11AABDD17943D77A2566C0 /* Pods-defaults-common_tests-ParentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C0CAD8C1DEF6EC2008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C0CAD981DEF6EC8008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CAD991DEF6EC9008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -264,9 +261,7 @@
 		5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Parent-Bridging-Header.h"; sourceTree = "<group>"; };
 		5EEB551C1C483E7200953B20 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6CD9E310CF6459ADE27807CA /* Pods_parent_defaults_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent_defaults_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-ParentTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-ParentTests/Pods-defaults-common_tests-ParentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F81215C648C522BCD82F22E /* Pods_parent_defaults_ParentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent_defaults_ParentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7835A5E6209B6F4C00C9220B /* ParentAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentAppDelegate.swift; sourceTree = "<group>"; };
 		785AC17E20CEDAD300C28E46 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		7893BDFC20D1A83F00231DF7 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
@@ -321,25 +316,19 @@
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
-		90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewControllerTests.swift; sourceTree = "<group>"; };
 		97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		97F69BA423F1C682009622E3 /* AddStudentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentController.swift; sourceTree = "<group>"; };
 		97F69BA623F1D232009622E3 /* AddStudentControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentControllerTests.swift; sourceTree = "<group>"; };
 		98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
-		A729ABED0807C60CC66A4CCB /* Pods-needs-pspdfkit-ParentE2ETests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentE2ETests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests.debug.xcconfig"; sourceTree = "<group>"; };
-		AEFC9663E06934AB6CCC4837 /* Pods-needs-pspdfkit-ParentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B0267B43C296CE05361CA9E6 /* Pods-parent_defaults-ParentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent_defaults-ParentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-parent_defaults-ParentUnitTests/Pods-parent_defaults-ParentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1497D2324F03A0000B70B35 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		B18F80E323463A060001A666 /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewControllerTests.swift; sourceTree = "<group>"; };
 		B1BAD29423FEEB40004ED99E /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
-		B2A6FB5031C4EDFB6D02D05E /* Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig"; sourceTree = "<group>"; };
 		B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD1A7D1C6D890685D283049D /* Pods-defaults-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Parent/Pods-defaults-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		E03AFC6A296E0CCA5F13C25A /* Pods-parent_defaults-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent_defaults-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		E403D6B1080D654745FB1A78 /* Pods-parent_defaults-Parent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent_defaults-Parent.release.xcconfig"; path = "../Pods/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent.release.xcconfig"; sourceTree = "<group>"; };
@@ -390,7 +379,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEC576CA6283206E676C040D /* Pods_needs_pspdfkit_ParentE2ETests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +386,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADD6688DB8C1E4DEB417B9B4 /* Pods_needs_pspdfkit_ParentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,13 +539,10 @@
 				2C75AB961DDF62CF00650856 /* CoreTelephony.framework */,
 				2C75AB981DDF62D500650856 /* CoreText.framework */,
 				2C75AB9E1DDF62E600650856 /* CoreVideo.framework */,
-				90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */,
 				B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */,
 				3029A40C0EE636CB00AF751E /* Pods_ParentTests.framework */,
 				2C75ABA01DDF62ED00650856 /* QuartzCore.framework */,
 				2C75ABA21DDF62F200650856 /* SystemConfiguration.framework */,
-				71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */,
-				8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */,
 				6CD9E310CF6459ADE27807CA /* Pods_parent_defaults_Parent.framework */,
 				6F81215C648C522BCD82F22E /* Pods_parent_defaults_ParentUnitTests.framework */,
 			);
@@ -743,14 +727,8 @@
 				F8877E061349202471F1B57A /* Pods-Parent.release.xcconfig */,
 				DD1A7D1C6D890685D283049D /* Pods-defaults-Parent.debug.xcconfig */,
 				98A80F881229764105018888 /* Pods-defaults-Parent.release.xcconfig */,
-				6E6BDD2513908E187E77D0C6 /* Pods-defaults-common_tests-ParentTests.debug.xcconfig */,
-				0F11AABDD17943D77A2566C0 /* Pods-defaults-common_tests-ParentTests.release.xcconfig */,
 				4AE1D28B6DAB087E0F5A1127 /* Pods-defaults-ParentUnitTests.debug.xcconfig */,
 				837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */,
-				A729ABED0807C60CC66A4CCB /* Pods-needs-pspdfkit-ParentE2ETests.debug.xcconfig */,
-				B2A6FB5031C4EDFB6D02D05E /* Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig */,
-				B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */,
-				AEFC9663E06934AB6CCC4837 /* Pods-needs-pspdfkit-ParentUITests.release.xcconfig */,
 				E03AFC6A296E0CCA5F13C25A /* Pods-parent_defaults-Parent.debug.xcconfig */,
 				E403D6B1080D654745FB1A78 /* Pods-parent_defaults-Parent.release.xcconfig */,
 				B0267B43C296CE05361CA9E6 /* Pods-parent_defaults-ParentUnitTests.debug.xcconfig */,
@@ -828,12 +806,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E80763D223E08DA10085DAFB /* Build configuration list for PBXNativeTarget "ParentE2ETests" */;
 			buildPhases = (
-				F1120B67EFB5A74C98661753 /* [CP] Check Pods Manifest.lock */,
 				E80763CA23E08DA10085DAFB /* Sources */,
 				E80763CD23E08DA10085DAFB /* Frameworks */,
 				E80763CE23E08DA10085DAFB /* Resources */,
 				E80763CF23E08DA10085DAFB /* Embed Frameworks */,
-				490020356B27886A79D1EBCF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -849,12 +825,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8E1BE5123C6891F000E3A76 /* Build configuration list for PBXNativeTarget "ParentUITests" */;
 			buildPhases = (
-				5370A28749B23261E2A0912D /* [CP] Check Pods Manifest.lock */,
 				E8E1BE4623C6891F000E3A76 /* Sources */,
 				E8E1BE4723C6891F000E3A76 /* Frameworks */,
 				E8E1BE4823C6891F000E3A76 /* Resources */,
 				E8E1BE5C23C68A76000E3A76 /* Embed Frameworks */,
-				990B879E44E177F91B020BCE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -878,10 +852,13 @@
 				TargetAttributes = {
 					3B36A2DE2322C26A00599A1E = {
 						CreatedOnToolsVersion = 10.2.1;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 5E6441861C3EE2E0003D7397;
 					};
 					5E6441861C3EE2E0003D7397 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -897,10 +874,14 @@
 						};
 					};
 					E80763C723E08DA10085DAFB = {
+						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					E8E1BE4923C6891F000E3A76 = {
 						CreatedOnToolsVersion = 11.2.1;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 5E6441861C3EE2E0003D7397;
 					};
 				};
@@ -1008,48 +989,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		490020356B27886A79D1EBCF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentE2ETests/Pods-needs-pspdfkit-ParentE2ETests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5370A28749B23261E2A0912D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-needs-pspdfkit-ParentUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		81618D31A0BD56EE9423C713 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1061,8 +1000,6 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1070,8 +1007,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1096,26 +1031,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		990B879E44E177F91B020BCE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1127,8 +1042,6 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1136,34 +1049,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1120B67EFB5A74C98661753 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-needs-pspdfkit-ParentE2ETests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FB24C3360B33F479305651E1 /* [CP] Check Pods Manifest.lock */ = {
@@ -1420,11 +1309,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
@@ -1451,11 +1336,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1566,8 +1447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1590,10 +1470,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1623,10 +1500,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1641,7 +1515,6 @@
 		};
 		E80763D323E08DA10085DAFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A729ABED0807C60CC66A4CCB /* Pods-needs-pspdfkit-ParentE2ETests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1654,11 +1527,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
@@ -1672,7 +1541,6 @@
 		};
 		E80763D423E08DA10085DAFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2A6FB5031C4EDFB6D02D05E /* Pods-needs-pspdfkit-ParentE2ETests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1685,11 +1553,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1700,7 +1564,6 @@
 		};
 		E8E1BE5223C6891F000E3A76 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1712,11 +1575,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
@@ -1729,7 +1588,6 @@
 		};
 		E8E1BE5323C6891F000E3A76 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEFC9663E06934AB6CCC4837 /* Pods-needs-pspdfkit-ParentUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1741,11 +1599,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
