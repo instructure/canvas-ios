@@ -26,7 +26,7 @@ public struct APIFile: Codable, Equatable {
     let display_name: String
     let filename: String
     let contentType: String
-    let url: APIURL?
+    var url: APIURL?
     // file size in bytes
     let size: Int?
     let created_at: Date
@@ -36,7 +36,7 @@ public struct APIFile: Codable, Equatable {
     var hidden: Bool
     let lock_at: Date?
     let hidden_for_user: Bool
-    let thumbnail_url: APIURL?
+    var thumbnail_url: APIURL?
     let modified_at: Date
     // simplified content-type mapping
     let mime_class: String
@@ -47,7 +47,7 @@ public struct APIFile: Codable, Equatable {
     let lock_explanation: String?
     // optional: url to the document preview. This url is specific to the user
     // making the api call. Only included in submission endpoints.
-    let preview_url: APIURL?
+    var preview_url: APIURL?
     let avatar: APIFileToken?
     var usage_rights: APIUsageRights?
 

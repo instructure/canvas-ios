@@ -34,7 +34,7 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
         firstAssignment.api.rubric = [ APIRubric.make() ]
 
         showSubmission()
-        SpeedGrader.segmentButton(label: "Grades").tap()
+        SpeedGrader.Segment.grades.tap()
         app.find(id: "rubric-item.add-comment-1").tapUntil {
             SubmissionComments.commentTextView.exists
         }
@@ -52,5 +52,32 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(submission.api.rubric_assessment?["1"]?.comments, ":facepalm:")
+    }
+
+    func testSetScore() throws {
+        showSubmission()
+        SpeedGrader.Segment.grades.tap()
+
+        throw XCTSkip("unfinished test")
+    }
+
+    func testCusomizeScore() throws {
+        firstAssignment.api.rubric = [ APIRubric.make() ]
+
+        showSubmission()
+        SpeedGrader.Segment.grades.tap()
+
+        let customizeButton = app.find(id: "rubric-item.customize-grade-1")
+
+        XCTAssertEqual(customizeButton.label(), "Customize Grade")
+        customizeButton.tap()
+        app.alerts.textFields.firstElement.typeText("200")
+        app.alerts.buttons["OK"].tap()
+
+        XCTAssertEqual(customizeButton.label(), "Customize Grade 200")
+        customizeButton.tap()
+        XCTAssertEqual(customizeButton.label(), "Customize Grade")
+
+        throw XCTSkip("unfinished test")
     }
 }
