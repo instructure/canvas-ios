@@ -133,7 +133,7 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
     return (
       <CoreWebView
         contentInset={{ bottom: this.props.drawerInset }}
-        html={submission.body || ''}
+        source={{ uri: attachment.url }}
         onNavigation={this.onNavigation}
         style={styles.viewer}
       />
