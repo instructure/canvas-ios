@@ -191,34 +191,31 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         case .some(.online_upload):
             if let attachment = submission.attachments?.first(where: { $0.id == selectedFileID }),
                 let url = attachment.url {
-                switch attachment.mimeClass {
-                case "doc", "image", "pdf":
-                    return DocViewerViewController.create(
-                        filename: attachment.filename,
-                        previewURL: attachment.previewURL,
-                        fallbackURL: url,
-                        navigationItem: view?.navigationItem
-                    )
-                case "audio", "video":
+                if attachment.mimeClass == "audio" || attachment.mimeClass == "video" {
                     let player = AVPlayer(url: url)
                     let controller = AVPlayerViewController()
                     controller.player = player
                     controller.view.accessibilityIdentifier = "SubmissionDetails.mediaPlayer"
                     return controller
-                default:
-                    if attachment.contentType == "image/heic" {
-                        let imageView = UIImageView()
-                        imageView.contentMode = .scaleAspectFit
-                        imageView.load(url: url)
-                        let controller = UIViewController()
-                        controller.view = imageView
-                        return controller
-                    }
-                    let controller = CoreWebViewController()
-                    controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
-                    controller.webView.load(URLRequest(url: url))
+                } else if attachment.contentType == "image/heic" {
+                    let imageView = UIImageView()
+                    imageView.contentMode = .scaleAspectFit
+                    imageView.load(url: url)
+                    let controller = UIViewController()
+                    controller.view = imageView
                     return controller
+                } else if let previewURL = attachment.previewURL {
+                    return DocViewerViewController.create(
+                        filename: attachment.filename,
+                        previewURL: previewURL,
+                        fallbackURL: url,
+                        navigationItem: view?.navigationItem
+                    )
                 }
+                let controller = CoreWebViewController()
+                controller.webView.accessibilityIdentifier = "SubmissionDetails.webView"
+                controller.webView.load(URLRequest(url: url))
+                return controller
             }
         case .some(.discussion_topic):
             guard let previewUrl = submission.previewUrl else { break }
