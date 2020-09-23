@@ -86,4 +86,11 @@ test('map state to props should work', async () => {
     assignment,
     users: {},
   })
+
+  state.entities.assignments[assignment.id] = null
+  result = mapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignment: undefined,
+    users: {},
+  })
 })
