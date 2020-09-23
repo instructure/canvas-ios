@@ -173,7 +173,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Assignment.make(from: .make(submission_types: [ .external_tool ]))
         Submission.make(from: .make(
             submission_type: .online_upload,
-            attachments: [ .make(mime_class: "doc") ]
+            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ]
         ))
         presenter.update()
 
@@ -202,7 +202,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
         Assignment.make()
         Submission.make(from: .make(
             submission_type: .online_upload,
-            attachments: [ .make(mime_class: "doc") ]
+            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ]
         ))
         presenter.update()
 

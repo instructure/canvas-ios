@@ -98,33 +98,18 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
   renderFile (submission: Submission) {
     const attachment = submission.attachments?.[this.props.selectedAttachmentIndex]
     if (!attachment) { return null }
-    switch (attachment.mime_class) {
-      case 'doc':
-      case 'image':
-      case 'pdf':
-        return (
-          <DocViewer
-            previewURL={attachment.preview_url}
-            fallbackURL={attachment.url}
-            filename={attachment.filename}
-            contentInset={{ bottom: this.props.drawerInset }}
+    if (attachment.mime_class === 'audio' || attachment.mime_class === 'video') {
+      return (
+        <View style={[styles.viewer, { paddingBottom: this.props.drawerInset }]}>
+          <Video
+            ref={this.captureVideoPlayer}
+            source={{ uri: attachment.url }}
             style={styles.viewer}
+            testID='submission-viewer.video'
           />
-        )
-      case 'audio':
-      case 'video':
-        return (
-          <View style={[styles.viewer, { paddingBottom: this.props.drawerInset }]}>
-            <Video
-              ref={this.captureVideoPlayer}
-              source={{ uri: attachment.url }}
-              style={styles.viewer}
-              testID='submission-viewer.video'
-            />
-          </View>
-        )
-    }
-    if (attachment['content-type'] === 'image/heic') {
+        </View>
+      )
+    } else if (attachment['content-type'] === 'image/heic') {
       let { width, height } = this.props.size
       return (
         <ImageSubmissionViewer
@@ -134,11 +119,21 @@ export default class SubmissionViewer extends Component<SubmissionViewerProps, S
           width={width}
         />
       )
+    } else if (attachment.preview_url) {
+      return (
+        <DocViewer
+          previewURL={attachment.preview_url}
+          fallbackURL={attachment.url}
+          filename={attachment.filename}
+          contentInset={{ bottom: this.props.drawerInset }}
+          style={styles.viewer}
+        />
+      )
     }
     return (
       <CoreWebView
         contentInset={{ bottom: this.props.drawerInset }}
-        html={submission.body || ''}
+        source={{ uri: attachment.url }}
         onNavigation={this.onNavigation}
         style={styles.viewer}
       />

@@ -310,6 +310,34 @@ describe('SubmissionViewer', () => {
     expect(viewer.prop('attachment').url).toEqual(url)
   })
 
+  it('renders key', () => {
+    let url = 'https://fillmurray.com/200/200.key'
+    let sub = {
+      ...defaultSub,
+      submission: {
+        attempt: 1,
+        submission_type: 'online_upload',
+        attachments: [
+          { mime_class: 'file', url, 'content-type': 'binary/octet-stream' },
+        ],
+      },
+    }
+    let props = {
+      selectedIndex: null,
+      selectedAttachmentIndex: 0,
+      assignmentSubmissionTypes: ['online_upload'],
+      submissionProps: sub,
+      isCurrentStudent: true,
+      size: { width: 375, height: 667 },
+      isModeratedGrading: false,
+      drawerInset: 0,
+    }
+
+    let tree = shallow(<SubmissionViewer {...props} />)
+    let viewer = tree.find('CoreWebView')
+    expect(viewer.prop('source').uri).toEqual(url)
+  })
+
   it('renders a media submission', () => {
     let sub = {
       ...defaultSub,
