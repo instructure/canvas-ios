@@ -59,6 +59,7 @@ open class CoreWebView: WKWebView {
     func setup() {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
+        uiDelegate = self
 
         addScript(js)
         handle("resize") { [weak self] message in
@@ -327,6 +328,81 @@ extension CoreWebView: WKNavigationDelegate {
             }
             then?(true)
         }
+    }
+}
+
+extension CoreWebView: WKUIDelegate {
+    public func webView(
+        _ webView: WKWebView,
+        runJavaScriptAlertPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: @escaping (Bool) -> Void)
+    {
+        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
+        let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            completionHandler(true)
+        })
+        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+    }
+
+    public func webView(
+        _ webView: WKWebView,
+        runJavaScriptConfirmPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: @escaping (Bool) -> Void
+    ) {
+        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
+        let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            completionHandler(false)
+        })
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            completionHandler(true)
+        })
+        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+    }
+
+    public func webView(
+        _ webView: WKWebView,
+        runJavaScriptTextInputPanelWithPrompt prompt: String,
+        defaultText: String?,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: @escaping (String?) -> Void
+    ) {
+        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(defaultText) }
+        let alert = UIAlertController(title: frame.request.url?.host, message: prompt, preferredStyle: .alert)
+        alert.addTextField()
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            completionHandler(nil)
+        })
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            completionHandler(alert.textFields?[0].text)
+        })
+        AppEnvironment.shared.router.show(alert, from: from, options: .modal())
+    }
+
+    public func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        guard let from = linkDelegate?.routeLinksFrom else { return nil }
+        let controller = CoreWebViewController()
+        configuration.userContentController.removeAllUserScripts()
+        controller.webView = CoreWebView(frame: .zero, configuration: configuration)
+        AppEnvironment.shared.router.show(
+            controller,
+            from: from,
+            options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
+        )
+        return controller.webView
+    }
+
+    public func webViewDidClose(_ webView: WKWebView) {
+        guard let controller = linkDelegate?.routeLinksFrom else { return }
+        AppEnvironment.shared.router.dismiss(controller)
     }
 }
 

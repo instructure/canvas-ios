@@ -28,6 +28,7 @@ extension WKWebView {
 
     public func handle(_ name: String, handler: @escaping MessageHandler) {
         let passer = MessagePasser(handler: handler)
+        configuration.userContentController.removeScriptMessageHandler(forName: name)
         configuration.userContentController.add(passer, name: name)
     }
 }
