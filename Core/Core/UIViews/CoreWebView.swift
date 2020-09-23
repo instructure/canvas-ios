@@ -336,8 +336,8 @@ extension CoreWebView: WKUIDelegate {
         _ webView: WKWebView,
         runJavaScriptAlertPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
-        completionHandler: @escaping (Bool) -> Void)
-    {
+        completionHandler: @escaping (Bool) -> Void
+    ) {
         guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
         let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { _ in
