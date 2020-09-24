@@ -107,6 +107,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             let components = URLComponents(url: url, resolvingAgainstBaseURL: true),
             components.path == "student_view",
             let fakeStudent = LoginSession.mostRecent(in: .shared, forKey: .fakeStudents) {
+            if environment.currentSession != nil {
+                NativeLoginManager.shared().logout() // Cleanup old to prevent token errors
+            }
             userDidLogin(session: fakeStudent)
             return true
         }
