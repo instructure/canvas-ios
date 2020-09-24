@@ -714,6 +714,8 @@
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="gradeMatchesCurrentSubmission" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="groupID" optional="YES" attributeType="String"/>
+        <attribute name="groupName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isLatest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO"/>
         <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -735,6 +737,7 @@
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionList" inverseName="submissionsRaw" inverseEntity="SubmissionList"/>
         <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MediaComment" inverseName="submission" inverseEntity="MediaComment"/>
         <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="submissions" inverseEntity="User"/>
     </entity>
     <entity name="SubmissionComment" representedClassName="Core.SubmissionComment" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
@@ -809,6 +812,7 @@
         <attribute name="sortableName" attributeType="String"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment"/>
         <relationship name="observerEnrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="observedUser" inverseEntity="Enrollment"/>
+        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="user" inverseEntity="Submission"/>
     </entity>
     <entity name="UserProfile" representedClassName="Core.UserProfile" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
@@ -879,7 +883,7 @@
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="478"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="523"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
@@ -888,7 +892,7 @@
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="223"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>

@@ -23,9 +23,6 @@
          location = "group:i18n">
       </FileRef>
       <FileRef
-         location = "group:lib">
-      </FileRef>
-      <FileRef
          location = "group:src">
       </FileRef>
       <FileRef

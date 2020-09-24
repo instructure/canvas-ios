@@ -60,16 +60,16 @@ extension UIImageView {
         loader = nil
         image = nil
         if let url = url {
-            loader = ImageLoader(url: url, frame: frame) { [weak self] url, loaded, error in
-                self?.load(url: url, didCompleteWith: loaded, error: error)
+            loader = ImageLoader(url: url, frame: self.frame) { [weak self] result in
+                self?.load(url: url, result: result)
             }
         }
         return loader?.load()
     }
 
-    public func load(url: URL, didCompleteWith loaded: LoadedImage?, error: Error?) {
+    public func load(url: URL, result: Result<LoadedImage, Error>) {
         guard self.url == url else { return }
-        if let cached = loaded {
+        if case .success(let cached) = result {
             image = cached.image
             if let images = cached.image.images {
                 image = images.last
@@ -86,13 +86,11 @@ extension UIImageView {
 }
 
 public class ImageLoader {
-    typealias Callback = (URL, LoadedImage?, Error?) -> Void
-
+    let callback: (Result<LoadedImage, Error>) -> Void
     let frame: CGRect
     let key: String
     var task: URLSessionTask?
     let url: URL
-    let callback: Callback
     var webView: WKWebView?
 
     private static var rendered: [String: LoadedImage] = [:]
@@ -103,13 +101,13 @@ public class ImageLoader {
         loading = [:]
     }
 
-    init(url: URL, frame: CGRect, callback: @escaping Callback) {
+    init(url: URL, frame: CGRect, callback: @escaping (Result<LoadedImage, Error>) -> Void) {
+        self.callback = callback
         self.frame = frame
         self.key = url.pathExtension == "svg"
             ? "\(url.absoluteString)@\(frame.width)x\(frame.height)"
             : url.absoluteString
         self.url = url
-        self.callback = callback
     }
 
     func cancel() {
@@ -120,7 +118,7 @@ public class ImageLoader {
     @discardableResult
     func load() -> URLSessionTask? {
         if let loaded = ImageLoader.rendered[key] {
-            callback(url, loaded, nil)
+            callback(.success(loaded))
             return nil
         } else if ImageLoader.loading[key] != nil {
             ImageLoader.loading[key]?.append(self)
@@ -157,42 +155,18 @@ public class ImageLoader {
     }
 
     func notify(_ image: UIImage?, _ repeatCount: Int, _ error: Error? = nil) {
-        var loaded: LoadedImage?
+        let result: Result<LoadedImage, Error>
         if let image = image {
-            loaded = LoadedImage(image: image, repeatCount: repeatCount)
+            let loaded = LoadedImage(image: image, repeatCount: repeatCount)
             if !url.isFileURL { ImageLoader.rendered[key] = loaded }
+            result = .success(loaded)
+        } else {
+            result = .failure(error ?? NSError.internalError())
         }
         for loader in ImageLoader.loading[key] ?? [] {
-            loader.callback(url, loaded, error)
+            loader.callback(result)
         }
         ImageLoader.loading[key] = nil
-    }
-
-    // MARK: - Combine
-
-    public class Publisher: Combine.Publisher {
-        public typealias Output = UIImage?
-        public typealias Failure = Error
-
-        let subject = CurrentValueSubject<UIImage?, Error>(nil)
-        var loader: ImageLoader?
-
-        public init(url: URL) {
-            loader = ImageLoader(url: url, frame: .zero) { [weak self] _, image, error in
-                guard let self = self else { return }
-                self.subject.send(image?.image)
-                if let error = error {
-                    self.subject.send(completion: .failure(error))
-                } else {
-                    self.subject.send(completion: .finished)
-                }
-                self.loader = nil
-            }
-        }
-
-        public func receive<S: Subscriber>(subscriber: S) where S.Failure == Failure, S.Input == Output {
-            subject.receive(subscriber: subscriber)
-        }
     }
 
     // MARK: - SVG snapshot

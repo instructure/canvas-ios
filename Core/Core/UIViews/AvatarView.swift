@@ -57,7 +57,7 @@ open class AvatarView: UIView {
 
     public var url: URL? {
         didSet {
-            let url = AvatarView.scrubbedURL(self.url)
+            let url = Avatar.scrubbedURL(self.url)
             imageView.load(url: url)
             label.isHidden = url != nil
         }
@@ -66,22 +66,7 @@ open class AvatarView: UIView {
     @IBInspectable
     public var name: String = "" {
         didSet {
-            label.text = AvatarView.initials(for: name)
+            label.text = Avatar.initials(for: name)
         }
-    }
-
-    static func scrubbedURL(_ url: URL?) -> URL? {
-        // Ignore crappy default avatars.
-        if url?.absoluteString.contains("images/dotted_pic.png") == true || url?.absoluteString.contains("images/messages/avatar-50.png") == true {
-            return nil
-        }
-        return url
-    }
-
-    static func initials(for name: String) -> String {
-        return name.split(separator: " ", maxSplits: 1).reduce("") { (value: String, part: Substring) -> String in
-            guard let char = part.first else { return value }
-            return "\(value)\(char)"
-        }.localizedUppercase
     }
 }

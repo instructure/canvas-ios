@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		5BEC981A24CD62E40065D741 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5BEC981824CD62E40065D741 /* Localizable.strings */; };
 		61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */; };
 		78AD913121C8180C0075FBCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AD913021C8180C0075FBCF /* GoogleService-Info.plist */; };
+		7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */; };
 		7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D344E1D241160D100C052E6 /* Localizable.stringsdict */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -386,6 +387,7 @@
 		61BD85FB1EB2933C005A09A5 /* TeacherAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAppDelegate.swift; sourceTree = "<group>"; };
 		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		78AD913021C8180C0075FBCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeader.swift; sourceTree = "<group>"; };
 		7D344E1C241160D100C052E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7D344E1F2411613200C052E6 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-AU"; path = "en-AU.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		7D349D0D21430F5E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				7D64A95B2362092B004EAEDF /* Attendance */,
 				B15CA241221DC4DA0014FB02 /* Extensions */,
 				B15CA293221E0F890014FB02 /* IBDesignables */,
+				7D0A28E0251A8104004FB3B6 /* SpeedGrader */,
 				3B55FEC522FC861F00FCB7B2 /* Submissions */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
 				78AD913021C8180C0075FBCF /* GoogleService-Info.plist */,
@@ -579,8 +582,6 @@
 				3B55FEC822FC871400FCB7B2 /* PostGradesViewController.storyboard */,
 				3B55FECC22FCB91800FCB7B2 /* PostGradesViewController.swift */,
 				3B55FECA22FCB90000FCB7B2 /* PostSettingsViewController.swift */,
-				7D6C47ED250C2BEB0088ADDE /* SpeedGraderView.swift */,
-				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
 			);
 			path = Submissions;
 			sourceTree = "<group>";
@@ -593,6 +594,16 @@
 				3BFD1D4623121FEE003AE3AB /* PostPolicy.swift */,
 			);
 			path = Submissions;
+			sourceTree = "<group>";
+		};
+		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
+			isa = PBXGroup;
+			children = (
+				7D6C47ED250C2BEB0088ADDE /* SpeedGraderView.swift */,
+				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
+				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
+			);
+			path = SpeedGrader;
 			sourceTree = "<group>";
 		};
 		7D630B5E24A5003E0039A45D /* TeacherFiles */ = {
@@ -898,6 +909,7 @@
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -914,18 +926,25 @@
 					};
 					7D630B5C24A5003E0039A45D = {
 						CreatedOnToolsVersion = 11.4;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 					};
 					B15CA25C221DDB820014FB02 = {
 						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					E8315D3522FC9E60003CD27C = {
 						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					E841D8A223D6472F00685A63 = {
+						DevelopmentTeam = B6333T4PXQ;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
@@ -1303,6 +1322,7 @@
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
+				7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
@@ -1668,10 +1688,7 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Teacher\"",
@@ -1731,10 +1748,7 @@
 					"$(SRCROOT)/../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Teacher\"",
@@ -1776,11 +1790,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherFiles/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 0.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1809,11 +1819,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherFiles/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 0.0.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher.TeacherFiles;
@@ -1923,8 +1929,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1948,11 +1953,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
@@ -1983,11 +1984,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2011,11 +2008,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
@@ -2043,11 +2036,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2071,11 +2060,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherE2ETests;
@@ -2103,11 +2088,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = TeacherE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

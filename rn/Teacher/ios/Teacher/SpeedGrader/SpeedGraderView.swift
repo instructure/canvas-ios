@@ -49,6 +49,7 @@ struct SpeedGraderView: View {
                 }
                     .spaceBetween(10)
                     .scaleEach { max(0.9, (1 - abs($0 * 0.5))) }
+                    .background(Color.backgroundMedium)
                     .edgesIgnoringSafeArea(.bottom)
             } else if !isLoading {
                 VStack {

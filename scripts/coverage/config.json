@@ -12,6 +12,7 @@
     "Frameworks\/",
     "Parent\/",
     "Pods\\/",
+    "\/SwiftUIViews\/",
     "Student\/Canvas\/",
     "Student\/GradesWidget\/",
     "UITestHelpers\/",

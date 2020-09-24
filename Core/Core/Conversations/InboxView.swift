@@ -170,10 +170,13 @@ public struct InboxView: View {
                     }
                     HStack(alignment: .top) {
                         if participants.count > 1 {
-                            SwiftUIAvatarView.Group()
+                            Circle()
+                                .strokeBorder(lineWidth: 1 / UIScreen.main.scale)
+                                .foregroundColor(.borderMedium)
+                                .overlay(Icon.groupLine.foregroundColor(.borderDark))
                                 .frame(width: 40, height: 40)
                         } else {
-                            SwiftUIAvatarView(imageUrl: nil, name: participants.first?.name ?? "")
+                            Avatar(name: participants.first?.name, url: nil)
                                 .frame(width: 40, height: 40)
                         }
 
