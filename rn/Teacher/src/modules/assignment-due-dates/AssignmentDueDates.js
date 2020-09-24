@@ -29,6 +29,7 @@ import {
 
 import { mapStateToProps, type AssignmentDueDatesProps } from './map-state-to-props'
 import UserActions from '../users/actions'
+import AssignmentActions from '../assignments/actions'
 import AssignmentDates from '../../common/AssignmentDates'
 import {
   formattedDueDateWithStatus,
@@ -39,18 +40,25 @@ import { createStyleSheet } from '../../common/stylesheet'
 import { extractDateFromString } from '../../utils/dateUtils'
 import i18n from 'format-message'
 import { Text, Heading1 } from '../../common/text'
+import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import Screen from '../../routing/Screen'
+
+const Actions = {
+  ...UserActions,
+  ...AssignmentActions,
+}
 
 export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> {
   UNSAFE_componentWillMount () {
-    const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
-    if (studentIDs.length) {
+    const studentIDs = this.props.assignment && new AssignmentDates(this.props.assignment).studentIDs()
+    if (studentIDs?.length) {
       this.props.refreshUsers(this.props.courseID, studentIDs)
     }
+    this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
   }
 
   editAssignment = () => {
-    let route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/edit`
+    let route = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`
     if (this.props.quizID) {
       route = `/courses/${this.props.courseID}/quizzes/${this.props.quizID}/edit`
     }
@@ -115,6 +123,9 @@ export class AssignmentDueDates extends Component<AssignmentDueDatesProps, any> 
   }
 
   render () {
+    if (this.props.assignment == null) {
+      return <ActivityIndicatorView />
+    }
     const dates = new AssignmentDates(this.props.assignment)
     const rows = dates.allDates().map((date) => {
       return this.renderRow(date, dates)
@@ -168,5 +179,5 @@ const styles = createStyleSheet((colors, vars) => ({
   },
 }))
 
-let Connected = connect(mapStateToProps, UserActions)(AssignmentDueDates)
+let Connected = connect(mapStateToProps, Actions)(AssignmentDueDates)
 export default (Connected: Component<AssignmentDueDatesProps, any>)

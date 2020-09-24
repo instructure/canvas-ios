@@ -39,6 +39,7 @@ test('renders', () => {
   const props = {
     assignment: template.assignment(),
     navigator: template.navigator(),
+    refreshAssignment: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -57,6 +58,7 @@ test('renders with overrides', () => {
       overrides: [override],
     }),
     navigator: template.navigator(),
+    refreshAssignment: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -91,6 +93,7 @@ test('renders with overrides and specific student ids and sections', () => {
       [user2.id]: user2,
     },
     navigator: template.navigator(),
+    refreshAssignment: jest.fn(),
   }
 
   let tree = shallow(<AssignmentDueDates {...props} />)
@@ -102,8 +105,10 @@ test('renders with overrides and specific student ids and sections', () => {
 test('routes to assignment edit', () => {
   const props = {
     courseID: '1',
+    assignmentID: '1',
     assignment: template.assignment({ id: '1' }),
     navigator: template.navigator({ show: jest.fn() }),
+    refreshAssignment: jest.fn(),
   }
   let tree = renderer.create(
     <AssignmentDueDates {...props} />
@@ -119,6 +124,7 @@ test('routes to quiz edit', () => {
     quizID: '2',
     assignment: template.assignment({ id: '1' }),
     navigator: template.navigator({ show: jest.fn() }),
+    refreshAssignment: jest.fn(),
   }
   let tree = renderer.create(
     <AssignmentDueDates {...props} />
@@ -126,4 +132,17 @@ test('routes to quiz edit', () => {
   const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
   editButton.action()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/2/edit', { modal: true })
+})
+
+test('null assignment', () => {
+  const props = {
+    courseID: '1',
+    assignmentID: '1',
+    quizID: '2',
+    assignment: undefined,
+    navigator: template.navigator({ show: jest.fn() }),
+    refreshAssignment: jest.fn(),
+  }
+  let tree = shallow(<AssignmentDueDates {...props} />)
+  expect(tree.find('ActivityIndicatorView').exists()).toBe(true)
 })
