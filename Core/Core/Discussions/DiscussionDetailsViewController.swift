@@ -66,7 +66,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var groups = env.subscribe(GetGroups(context: .currentUser)) { [weak self] in
+    lazy var groups = env.subscribe(GetGroups(context: groupsContext)) { [weak self] in
         self?.update()
     }
     lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .postToForum ])) { [weak self] in
@@ -75,6 +75,12 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     lazy var topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
         self?.updateNavBar()
         self?.update()
+    }
+    var groupsContext: Context {
+        if env.app == .teacher && context.contextType == .course {
+            return .course(context.id)
+        }
+        return .currentUser
     }
     func entry(_ entryID: String) -> DiscussionEntry? {
         env.database.viewContext.first(where: #keyPath(DiscussionEntry.id), equals: entryID)
