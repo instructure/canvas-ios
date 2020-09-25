@@ -39,10 +39,9 @@ public class GetObservedStudents: CollectionUseCase {
     public var request: GetEnrollmentsRequest {
         GetEnrollmentsRequest(
             context: .currentUser,
-            gradingPeriodID: nil,
             includes: [.observed_users, .avatar_url],
-            states: GetEnrollmentsRequest.State.allForParentObserver,
-            roles: [ .observer ]
+            states: GetEnrollmentsRequest.State.allForParentObserver
+            // roles: [ .observer ] // filters out some desirable observer enrolements :shrug:.
         )
     }
 
