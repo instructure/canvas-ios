@@ -72,8 +72,6 @@ class UploadMediaCommentTests: CoreTestCase {
 
     func testSuccess() {
         let baseURL = URL(string: "https://u.edu/")!
-        environment.api = URLSessionAPI(loginSession: nil, urlSession: MockURLSession())
-        let api = MockURLSession.self
         api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
         api.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
         api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8), baseURL: baseURL)

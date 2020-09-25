@@ -108,7 +108,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
             XCTAssert(statuses.isEmpty)
             XCTAssertNil(error)
         }
-        session.state = .active(MockURLSession())
+        session.state = .active(URLSessionAPI.defaultURLSession)
         api.mock(URLRequest(url: url))
         session.fetchStatuses(section: "1", date: date) { (statuses, error) in
             XCTAssert(statuses.isEmpty)
@@ -138,7 +138,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
             XCTAssertNil(error)
         }
 
-        session.state = .active(MockURLSession())
+        session.state = .active(URLSessionAPI.defaultURLSession)
         api.mock(URLRequest(url: url))
         session.updateStatus(.make(id: nil)) { (id, error) in
             XCTAssertNil(id)

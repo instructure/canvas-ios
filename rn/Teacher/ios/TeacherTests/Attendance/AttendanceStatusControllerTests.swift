@@ -25,7 +25,7 @@ class AttendanceStatusControllerTests: TeacherTestCase {
     func testUpdate() {
         let context = Context(.course, id: "1")
         let session = RollCallSession(context: context, toolID: "2")
-        session.state = .active(MockURLSession())
+        session.state = .active(URLSessionAPI.defaultURLSession)
 
         let controller = AttendanceStatusController(status: .make(attendance: .present), in: session)
         XCTAssertNoThrow(controller.statusDidChange())

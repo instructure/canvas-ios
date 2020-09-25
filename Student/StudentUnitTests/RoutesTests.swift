@@ -43,9 +43,10 @@ class RoutesTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        MockURLSession.reset()
         AppEnvironment.shared.currentSession = LoginSession.make()
         AppEnvironment.shared.loginDelegate = loginDelegate
-        AppEnvironment.shared.api = URLSessionAPI(loginSession: nil, baseURL: nil, urlSession: MockURLSession())
+        AppEnvironment.shared.api = URLSessionAPI()
     }
 
     override func tearDown() {

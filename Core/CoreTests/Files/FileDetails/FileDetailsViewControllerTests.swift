@@ -95,7 +95,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         controller.downloadFile(at: file.url!.rawValue) // restart download without local file
-        let session = MockURLSession()
+        let session = URLSessionAPI.defaultURLSession as! MockURLSession
         let task = controller.downloadTask as! MockURLSession.MockDownloadTask
 
         // Updates progress

@@ -21,9 +21,7 @@ import PSPDFKit
 import TestsFoundation
 @testable import Core
 
-class DocViewerAnnotationProviderTests: XCTestCase {
-    let api = MockURLSession.self
-
+class DocViewerAnnotationProviderTests: CoreTestCase {
     class Delegate: DocViewerAnnotationProviderDelegate {
         var annotation: APIDocViewerAnnotation?
         var error: Error?
@@ -37,11 +35,6 @@ class DocViewerAnnotationProviderTests: XCTestCase {
         func annotationSaveStateChanges(saving: Bool) {
             self.saving = saving
         }
-    }
-
-    override func setUp() {
-        super.setUp()
-        MockURLSession.reset()
     }
 
     func getProvider(
@@ -61,7 +54,7 @@ class DocViewerAnnotationProviderTests: XCTestCase {
                 urls: APIDocViewerURLsMetadata(pdf_download: APIURL.make().rawValue)
             ),
             annotations: annotations,
-            api: URLSessionAPI(urlSession: MockURLSession()),
+            api: environment.api,
             sessionID: "a"
         )
         documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
