@@ -22,12 +22,12 @@ import Core
 public let router: Router = {
 let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/act-as-user": { _, _, _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
     "/act-as-user/:userID": { _, params, _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
     },
 

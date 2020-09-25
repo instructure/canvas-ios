@@ -373,7 +373,7 @@ class APITests: XCTestCase {
     }
 
     func testExhaust() {
-        let api = URLSessionAPI(session: .make(), urlSession: MockURLSession())
+        let api = URLSessionAPI(session: .make())
         let request = Exhaustable(path: "/1")
         MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
         MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
@@ -395,7 +395,7 @@ class APITests: XCTestCase {
     }
 
     func testExhaustError() {
-        let api = URLSessionAPI(session: .make(), urlSession: MockURLSession())
+        let api = URLSessionAPI(session: .make())
         let request = Exhaustable(path: "/1")
         MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
         MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
