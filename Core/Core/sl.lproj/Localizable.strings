@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam.\n        Če študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.\n        ";
 
+/* No comment provided by engineer. */
+"--" = "--";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -38,6 +41,9 @@
 "a teacher" = "izvajalec";
 
 /* No comment provided by engineer. */
+"Access" = "Dostop";
+
+/* No comment provided by engineer. */
 "Act as User" = "Nastopajoči v vlogi uporabnika";
 
 /* No comment provided by engineer. */
@@ -45,6 +51,15 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Dodaj vsebino";
+
+/* No comment provided by engineer. */
+"Add File" = "Dodaj datoteko";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Dodaj mapo";
+
+/* No comment provided by engineer. */
+"Add Item" = "Dodaj element";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj opombo orodja Planner";
@@ -60,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Opozorila";
-
-/* No comment provided by engineer. */
-"All" = "Vse";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Vse opombe so shranjene.";
@@ -104,7 +116,7 @@
 "Appointment Signups" = "Prijave na sestanke";
 
 /* No comment provided by engineer. */
-"Archived" = "Arhivirano";
+"Are you sure you want to delete %@?" = "Ali ste prepričani, da želite odstraniti %@?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Ali ste prepričani, da želite odstraniti to stran?";
@@ -146,6 +158,24 @@
 "Attempt %d" = "Poskus %d";
 
 /* No comment provided by engineer. */
+"Attribution" = "Priznanje avtorstva";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Priznanje avtorstva – brez predelav";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Priznanje avtorstva – nekomercialno";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Priznanje avtorstva – nekomercialno – brez predelav";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Priznanje avtorstva – nekomercialno – deljenje pod istimi pogoji";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Priznanje avtorstva – deljenje pod istimi pogoji";
+
+/* No comment provided by engineer. */
 "Audio" = "Zvok";
 
 /* No comment provided by engineer. */
@@ -161,7 +191,13 @@
 "Availability: Closed" = "Razpoložljivost: Zaprto";
 
 /* No comment provided by engineer. */
+"Available from" = "Na voljo od";
+
+/* No comment provided by engineer. */
 "Available From:" = "Na voljo od:";
+
+/* No comment provided by engineer. */
+"Available to" = "Na voljo do";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Na voljo do:";
@@ -283,9 +319,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Zaključeno";
 
-/* No comment provided by engineer. */
-"Compose new message" = "Sestavi novo sporočilo";
-
 /* concluded datetime */
 "Concluded %@" = "Zaključeno %@";
 
@@ -329,6 +362,9 @@
 "Copy Link" = "Kopiraj povezavo";
 
 /* No comment provided by engineer. */
+"Copyright Holder" = "Lastnik avtorskih pravic";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Orodja ni bilo mogoče zagnati. Poskusite znova.";
 
 /* No comment provided by engineer. */
@@ -365,10 +401,16 @@
 "Create Account" = "Ustvari račun";
 
 /* No comment provided by engineer. */
+"Creative Commons License" = "Licenca Creative Commons";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Trenutni vpisi";
 
 /* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
+
+/* No comment provided by engineer. */
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -404,7 +446,16 @@
 "Delete Comment" = "Odstrani komentar";
 
 /* No comment provided by engineer. */
+"Delete File" = "Izbriši datoteko";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Izbriši mapo";
+
+/* No comment provided by engineer. */
 "Deleted this reply." = "Odstranil ta odgovor.";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Z odstranitvijo te mape bodo odstranjene tudi vse datoteke v mapi.";
 
 /* No comment provided by engineer. */
 "Describe the feature" = "Opišite funkcionalnost";
@@ -483,6 +534,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Uredi prilogo (brez)";
+
+/* No comment provided by engineer. */
+"Edit File" = "Uredi datoteko";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Uredi mapo";
 
 /* No comment provided by engineer. */
 "Edit Page" = "Uredi stran";
@@ -653,6 +710,9 @@
 "Help" = "Pomoč";
 
 /* No comment provided by engineer. */
+"High: %@" = "Visoko: %@";
+
+/* No comment provided by engineer. */
 "How do I find my school?" = "Kako najdem svojo šolo?";
 
 /* No comment provided by engineer. */
@@ -665,7 +725,13 @@
 "I have a Canvas account" = "Imam račun Canvas";
 
 /* No comment provided by engineer. */
+"I hold the copyright" = "Imam avtorske pravice.";
+
+/* No comment provided by engineer. */
 "I need help but it's not urgent" = "Potrebujem pomoč, ni pa nujno.";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Pridobil(a) sem dovoljenje.";
 
 /* No comment provided by engineer. */
 "Image" = "Slika";
@@ -686,9 +752,6 @@
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Nabiralnik je prazen";
-
-/* No comment provided by engineer. */
 "Incomplete" = "Nezaključeno";
 
 /* No comment provided by engineer. */
@@ -702,6 +765,15 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Povabilo";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Gre za izjemo zaradi poštene uporabe ali podobno";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Je javno dostopno.";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Licencirano je z licenco Creative Commons.";
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Videti je, da je to krasen dan za počitek, sprostitev in regeneracijo.";
@@ -809,6 +881,9 @@
 "Login Error" = "Napaka pri vpisovanju";
 
 /* No comment provided by engineer. */
+"Low: %@" = "Nizko: %@";
+
+/* No comment provided by engineer. */
 "LTI Tool" = "Orodje LTI";
 
 /* No comment provided by engineer. */
@@ -851,6 +926,9 @@
 "me & %@" = "jaz in %@";
 
 /* No comment provided by engineer. */
+"Mean: %@" = "Povprečje: %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Medijski posnetek";
 
 /* No comment provided by engineer. */
@@ -876,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "Ni na voljo";
+
+/* No comment provided by engineer. */
+"Name" = "Ime";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Je treba oceniti.";
@@ -932,6 +1013,9 @@
 "No Events Today!" = "Danes ni dogodkov.";
 
 /* No comment provided by engineer. */
+"No Files" = "Ni datotek.";
+
+/* No comment provided by engineer. */
 "No image found from image picker" = "Izbirnik slik ni našel nobene slike";
 
 /* No comment provided by engineer. */
@@ -957,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";
+
+/* No comment provided by engineer. */
+"Not Published" = "Ni objavljeno.";
 
 /* No comment provided by engineer. */
 "Not Started" = "Ni začeto.";
@@ -990,6 +1077,9 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Na papirju";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Na voljo je le študentom s povezavo";
 
 /* No comment provided by engineer. */
 "Only members" = "Samo člani";
@@ -1115,9 +1205,6 @@
 "Redo" = "Uveljavi";
 
 /* No comment provided by engineer. */
-"Regarding: %@" = "Zadeva: %@";
-
-/* No comment provided by engineer. */
 "Remove" = "Odstrani";
 
 /* No comment provided by engineer. */
@@ -1151,6 +1238,9 @@
 "Request Failed!" = "Zahteva ni uspela.";
 
 /* No comment provided by engineer. */
+"Restricted" = "Omejeno";
+
+/* No comment provided by engineer. */
 "Retry" = "Ponovno poskusi";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1251,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Optično branje ni podprto";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Razporedi razpoložljivost študenta";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Razporejanje";
@@ -1217,9 +1310,6 @@
 "Send weekly summary" = "Pošlji tedenski povzetek";
 
 /* No comment provided by engineer. */
-"Sent" = "Poslano";
-
-/* No comment provided by engineer. */
 "Set as Front Page" = "Nastavi kot prvo stran";
 
 /* No comment provided by engineer. */
@@ -1269,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Prišlo je do težave";
-
-/* No comment provided by engineer. */
-"Starred" = "Označeno z zvezdico";
 
 /* No comment provided by engineer. */
 "Start recording" = "Zaženi snemanje";
@@ -1400,10 +1487,10 @@
 "There was an error loading events. Pull to refresh to try again." = "Pri nalaganju dogodkov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Pri nalaganju ocen je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+"There was an error loading files. Pull to refresh to try again." = "Pri nalaganju datotek je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules. Pull to refresh to try again." = "Pri nalaganju modulov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+"There was an error loading grades. Pull to refresh to try again." = "Pri nalaganju ocen je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Pri nalaganju strani je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
@@ -1425,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Ta naloga je imela rok do %@";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Ta mapa je prazna.";
 
 /* No comment provided by engineer. */
 "This is a media comment" = "To je komentar v obliki medija";
@@ -1472,6 +1562,9 @@
 "Unordered List" = "Nerazvrščeni seznam";
 
 /* No comment provided by engineer. */
+"Unpublish" = "Ne objavi";
+
+/* No comment provided by engineer. */
 "unpublished" = "neobjavljeno";
 
 /* No comment provided by engineer. */
@@ -1500,6 +1593,12 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Pravica uporabe";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Pravice uporabe";
 
 /* No comment provided by engineer. */
 "Use Camera" = "Uporabi fotoaparat";
@@ -1542,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Ogledano";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "Takšnih datotek ni bilo mogoče najti.";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nikogar takšnega nismo uspeli najti.";
@@ -1587,9 +1689,6 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Prenehali boste nastopati v vlogi tega uporabnika in se boste vrnili v svoj račun.";
-
-/* No comment provided by engineer. */
-"You’re all caught up" = "Seznanjeni ste z vsem";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";

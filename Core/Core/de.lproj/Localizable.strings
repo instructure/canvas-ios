@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Um ein Konto zu erstellen, lassen Sie Ihren Studenten einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studenten-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\n        Wenn Ihr Student die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.\n        ";
 
+/* No comment provided by engineer. */
+"--" = "--";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -38,6 +41,9 @@
 "a teacher" = "ein Lehrer";
 
 /* No comment provided by engineer. */
+"Access" = "Zugang";
+
+/* No comment provided by engineer. */
 "Act as User" = "Handeln als Benutzer";
 
 /* No comment provided by engineer. */
@@ -45,6 +51,15 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Inhalte hinzufügen";
+
+/* No comment provided by engineer. */
+"Add File" = "Datei hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Ordner hinzufügen";
+
+/* No comment provided by engineer. */
+"Add Item" = "Objekt hinzufügen";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Planungsnotiz hinzufügen";
@@ -60,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Benachrichtigungen";
-
-/* No comment provided by engineer. */
-"All" = "Alle";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle Anmerkungen gespeichert.";
@@ -104,7 +116,7 @@
 "Appointment Signups" = "Terminanmeldungen";
 
 /* No comment provided by engineer. */
-"Archived" = "Archiviert";
+"Are you sure you want to delete %@?" = "Möchten Sie %@ wirklich löschen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Möchten Sie diese Seite wirklich löschen?";
@@ -146,6 +158,24 @@
 "Attempt %d" = "Versuch %d";
 
 /* No comment provided by engineer. */
+"Attribution" = "Attribution";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Attribution, keine Derivate";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Attribution, nichtgewerblich";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Attribution, nichtgewerblich, keine Derivate";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Attribution, nichtgewerblich, Share Alike";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Attribution, Share Alike";
+
+/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -161,7 +191,13 @@
 "Availability: Closed" = "Verfügbarkeit: Geschlossen";
 
 /* No comment provided by engineer. */
+"Available from" = "Verfügbar von";
+
+/* No comment provided by engineer. */
 "Available From:" = "Verfügbar von:";
+
+/* No comment provided by engineer. */
+"Available to" = "Verfügbar für";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Verfügbar bis:";
@@ -283,9 +319,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Fertigstellen";
 
-/* No comment provided by engineer. */
-"Compose new message" = "Neue Nachricht verfassen";
-
 /* concluded datetime */
 "Concluded %@" = "Abgeschlossen %@";
 
@@ -329,6 +362,9 @@
 "Copy Link" = "Link kopieren";
 
 /* No comment provided by engineer. */
+"Copyright Holder" = "Copyright-Inhaber";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Werkzeug konnte nicht gestartet werden. Bitte versuchen Sie es noch einmal.";
 
 /* No comment provided by engineer. */
@@ -365,10 +401,16 @@
 "Create Account" = "Konto erstellen";
 
 /* No comment provided by engineer. */
+"Creative Commons License" = "Creative-Commons-Lizenz";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Aktuelle Einschreibungen";
 
 /* No comment provided by engineer. */
 "Current position" = "Aktuelle Position";
+
+/* No comment provided by engineer. */
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -404,7 +446,16 @@
 "Delete Comment" = "Kommentar löschen";
 
 /* No comment provided by engineer. */
+"Delete File" = "Datei löschen";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Ordner löschen";
+
+/* No comment provided by engineer. */
 "Deleted this reply." = "Diese Antwort wurde gelöscht";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Beim Löschen dieses Ordners werden auch alle Dateien in dem Ordner gelöscht.";
 
 /* No comment provided by engineer. */
 "Describe the feature" = "Die Funktion beschreiben";
@@ -483,6 +534,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Anhang bearbeiten (0)";
+
+/* No comment provided by engineer. */
+"Edit File" = "Datei bearbeiten";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Ordner bearbeiten";
 
 /* No comment provided by engineer. */
 "Edit Page" = "Seite bearbeiten";
@@ -653,6 +710,9 @@
 "Help" = "Hilfe";
 
 /* No comment provided by engineer. */
+"High: %@" = "Hoch: %@";
+
+/* No comment provided by engineer. */
 "How do I find my school?" = "Wie finde ich meine Schule?";
 
 /* No comment provided by engineer. */
@@ -665,7 +725,13 @@
 "I have a Canvas account" = "Ich besitze ein Canvas-Konto";
 
 /* No comment provided by engineer. */
+"I hold the copyright" = "Ich bin der Urheberrechtsinhaber";
+
+/* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ich benötige zwar Hilfe, es eilt jedoch nicht";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Ich habe die Erlaubnis erhalten";
 
 /* No comment provided by engineer. */
 "Image" = "Bild";
@@ -686,9 +752,6 @@
 "Inbox" = "Posteingang";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Posteingang Zero";
-
-/* No comment provided by engineer. */
 "Incomplete" = "Unvollständig";
 
 /* No comment provided by engineer. */
@@ -702,6 +765,15 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Einladung";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Es ist eine faire Nutzung oder eine ähnliche Ausnahme";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Es ist gemeinfrei.";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Es ist unter Creative Commons lizenziert.";
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Scheinbar ein großartiger Tag für Ruhe, Entspannung und Wiederaufladung.";
@@ -809,6 +881,9 @@
 "Login Error" = "Fehler beim Einloggen";
 
 /* No comment provided by engineer. */
+"Low: %@" = "Gering: %@";
+
+/* No comment provided by engineer. */
 "LTI Tool" = "LTI-Tool";
 
 /* No comment provided by engineer. */
@@ -851,6 +926,9 @@
 "me & %@" = "Ich und %@";
 
 /* No comment provided by engineer. */
+"Mean: %@" = "Mittel: %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Medienaufzeichnung";
 
 /* No comment provided by engineer. */
@@ -876,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "k. A.";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Muss benotet werden";
@@ -932,6 +1013,9 @@
 "No Events Today!" = "Heute keine Ereignisse!";
 
 /* No comment provided by engineer. */
+"No Files" = "Keine Dateien";
+
+/* No comment provided by engineer. */
 "No image found from image picker" = "Kein Bild von Image-Picker gefunden";
 
 /* No comment provided by engineer. */
@@ -957,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Unbenotet";
+
+/* No comment provided by engineer. */
+"Not Published" = "Nicht veröffentlicht";
 
 /* No comment provided by engineer. */
 "Not Started" = "Nicht begonnen";
@@ -990,6 +1077,9 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Als Papierdokument";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Nur verfügbar für Studenten mit Link";
 
 /* No comment provided by engineer. */
 "Only members" = "Nur Mitglieder";
@@ -1115,9 +1205,6 @@
 "Redo" = "Wiederholen";
 
 /* No comment provided by engineer. */
-"Regarding: %@" = "Betreffend: %@";
-
-/* No comment provided by engineer. */
 "Remove" = "Entfernen";
 
 /* No comment provided by engineer. */
@@ -1151,6 +1238,9 @@
 "Request Failed!" = "Anfrage fehlgeschlagen.";
 
 /* No comment provided by engineer. */
+"Restricted" = "Eingeschränkt";
+
+/* No comment provided by engineer. */
 "Retry" = "Erneut versuchen";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1251,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scannen wird nicht unterstützt";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Studentenverfügbarkeit planen";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Zeitplanung";
@@ -1217,9 +1310,6 @@
 "Send weekly summary" = "Wöchentliche Zusammenfassung senden";
 
 /* No comment provided by engineer. */
-"Sent" = "Gesendet";
-
-/* No comment provided by engineer. */
 "Set as Front Page" = "Als Frontseite einstellen";
 
 /* No comment provided by engineer. */
@@ -1269,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Etwas ist nicht in Ordnung";
-
-/* No comment provided by engineer. */
-"Starred" = "Mit Stern markiert";
 
 /* No comment provided by engineer. */
 "Start recording" = "Aufzeichnung starten";
@@ -1400,10 +1487,10 @@
 "There was an error loading events. Pull to refresh to try again." = "Fehler beim Laden der Ereignisse. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Fehler beim Laden der Noten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
+"There was an error loading files. Pull to refresh to try again." = "Es gab einen Fehler beim Laden von Dateien. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules. Pull to refresh to try again." = "Fehler beim Laden der Module Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
+"There was an error loading grades. Pull to refresh to try again." = "Fehler beim Laden der Noten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Fehler beim Laden der Seiten. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
@@ -1425,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Diese Aufgabe war fällig um %@";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Dieser Ordner ist leer.";
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Dies ist ein Medienkommentar";
@@ -1472,6 +1562,9 @@
 "Unordered List" = "Unsortierte Liste";
 
 /* No comment provided by engineer. */
+"Unpublish" = "Veröffentlichung rückgängig machen";
+
+/* No comment provided by engineer. */
 "unpublished" = "nicht veröffentlicht";
 
 /* No comment provided by engineer. */
@@ -1500,6 +1593,12 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Nutzungsrecht";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Nutzungsrechte";
 
 /* No comment provided by engineer. */
 "Use Camera" = "Kamera verwenden";
@@ -1542,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Angezeigt";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "Wir konnten keine ähnlichen Dateien finden.";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Wir konnten so jemanden nicht finden.";
@@ -1587,9 +1689,6 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Sie hören auf, als dieser Benutzer zu handeln, und kehren zu Ihrem Konto zurück.";
-
-/* No comment provided by engineer. */
-"You’re all caught up" = "Sie werden alle erfasst";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ihre untergeordneten Kurse sind möglicherweise noch nicht veröffentlicht.";

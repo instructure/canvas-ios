@@ -75,9 +75,9 @@
 			<key>few</key>
 			<string></string>
 			<key>one</key>
-			<string>%d item</string>
+			<string>%d predmet</string>
 			<key>other</key>
-			<string>%d items</string>
+			<string>%d elementov</string>
 			<key>two</key>
 			<string></string>
 		</dict>

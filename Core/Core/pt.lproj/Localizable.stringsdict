@@ -63,7 +63,7 @@
 			<key>one</key>
 			<string>%d item</string>
 			<key>other</key>
-			<string>%d items</string>
+			<string>%d ítens</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>
