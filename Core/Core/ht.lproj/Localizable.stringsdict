@@ -89,9 +89,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d item</string>
+			<string>%d atik</string>
 			<key>other</key>
-			<string>%d items</string>
+			<string>%d atik</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

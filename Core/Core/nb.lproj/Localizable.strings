@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        For å opprette en konto, må studenten opprette en sammenkoblingskode for deg fra Innstillinger-delen av Canvas Student-appen som vist nedenfor, og deretter skanne koden herfra.\n        Hvis studenten ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.\n        ";
 
+/* No comment provided by engineer. */
+"--" = "--";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -38,6 +41,9 @@
 "a teacher" = "en lærer";
 
 /* No comment provided by engineer. */
+"Access" = "Tilgang";
+
+/* No comment provided by engineer. */
 "Act as User" = "Opptre som bruker";
 
 /* No comment provided by engineer. */
@@ -45,6 +51,15 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Legg til innhold";
+
+/* No comment provided by engineer. */
+"Add File" = "Legg til fil";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Legg til mappe";
+
+/* No comment provided by engineer. */
+"Add Item" = "Legg til punkt";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Legg til merknad";
@@ -60,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Varsler";
-
-/* No comment provided by engineer. */
-"All" = "Alle";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle merknader er lagret.";
@@ -104,7 +116,7 @@
 "Appointment Signups" = "Avtalepåmeldinger";
 
 /* No comment provided by engineer. */
-"Archived" = "Arkivert";
+"Are you sure you want to delete %@?" = "Er du sikker på at du vil slette %@?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Er du sikker på at du vil slette denne siden?";
@@ -146,6 +158,24 @@
 "Attempt %d" = "Forsøk %d";
 
 /* No comment provided by engineer. */
+"Attribution" = "Attribution";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Attribution ingen derivater";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Attribution ikke-kommersiell";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Attribution ikke-kommersiell, ingen derivater";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Attribution ikke-kommersiell, Share Alike";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Attribution Share Alike";
+
+/* No comment provided by engineer. */
 "Audio" = "Lyd";
 
 /* No comment provided by engineer. */
@@ -161,7 +191,13 @@
 "Availability: Closed" = "Tilgjengelighet: Lukket";
 
 /* No comment provided by engineer. */
+"Available from" = "Tilgjengelig fra";
+
+/* No comment provided by engineer. */
 "Available From:" = "Tilgjengelig fra:";
+
+/* No comment provided by engineer. */
+"Available to" = "Tilgjengelig til";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tilgjengelig til:";
@@ -283,9 +319,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Fullført";
 
-/* No comment provided by engineer. */
-"Compose new message" = "Skriv ny melding";
-
 /* concluded datetime */
 "Concluded %@" = "Avsluttet %@";
 
@@ -329,6 +362,9 @@
 "Copy Link" = "Kopiert lenke";
 
 /* No comment provided by engineer. */
+"Copyright Holder" = "Innehaver av opphavsrett";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Kunne ikke starte verktøy. Prøv på nytt.";
 
 /* No comment provided by engineer. */
@@ -365,10 +401,16 @@
 "Create Account" = "Opprett konto";
 
 /* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons-lisens";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Gjeldende påmeldinger";
 
 /* No comment provided by engineer. */
 "Current position" = "Nåværende posisjon";
+
+/* No comment provided by engineer. */
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -404,7 +446,16 @@
 "Delete Comment" = "Slett kommentar";
 
 /* No comment provided by engineer. */
+"Delete File" = "Slett fil";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Slett mappe";
+
+/* No comment provided by engineer. */
 "Deleted this reply." = "Slettet dette svaret.";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Hvis du sletter denne mappen vil det også slette alle filene i mappen.";
 
 /* No comment provided by engineer. */
 "Describe the feature" = "Beskriv funksjonen";
@@ -483,6 +534,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Legg til vedlegg (ingen)";
+
+/* No comment provided by engineer. */
+"Edit File" = "Endre fil";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Endre mappe";
 
 /* No comment provided by engineer. */
 "Edit Page" = "Rediger sider";
@@ -653,6 +710,9 @@
 "Help" = "Hjelp";
 
 /* No comment provided by engineer. */
+"High: %@" = "Høy: %@";
+
+/* No comment provided by engineer. */
 "How do I find my school?" = "Hvordan finner jeg skolen min?";
 
 /* No comment provided by engineer. */
@@ -665,7 +725,13 @@
 "I have a Canvas account" = "Jeg har en Canvas-konto";
 
 /* No comment provided by engineer. */
+"I hold the copyright" = "Jeg har opphavsretten";
+
+/* No comment provided by engineer. */
 "I need help but it's not urgent" = "Jeg trenger hjelp, men det haster ikke";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Jeg har fått tillatelse";
 
 /* No comment provided by engineer. */
 "Image" = "Bilde";
@@ -686,9 +752,6 @@
 "Inbox" = "Innboks";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Innboks null";
-
-/* No comment provided by engineer. */
 "Incomplete" = "Ikke godkjent";
 
 /* No comment provided by engineer. */
@@ -702,6 +765,15 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitasjon";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Det er rettferdig bruk eller lignende unntak";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Det er i det offentlige domenet";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Det er lisensiert under Creative Commons";
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Det ser ut som dette er en flott dag til å slappe av og lade batteriene.";
@@ -809,6 +881,9 @@
 "Login Error" = "Innloggingsfeil";
 
 /* No comment provided by engineer. */
+"Low: %@" = "Lav: %@";
+
+/* No comment provided by engineer. */
 "LTI Tool" = "LTI-verktøy";
 
 /* No comment provided by engineer. */
@@ -851,6 +926,9 @@
 "me & %@" = "meg & %@";
 
 /* No comment provided by engineer. */
+"Mean: %@" = "Gjennomsnitt: %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Medieinnspilling";
 
 /* No comment provided by engineer. */
@@ -876,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Name" = "Navn";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Trenger karakter";
@@ -932,6 +1013,9 @@
 "No Events Today!" = "Ingen arrangementer i dag!";
 
 /* No comment provided by engineer. */
+"No Files" = "Ingen filer";
+
+/* No comment provided by engineer. */
 "No image found from image picker" = "Det ble ikke funnet noen bilder i bildevelger";
 
 /* No comment provided by engineer. */
@@ -957,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ikke karaktersatt";
+
+/* No comment provided by engineer. */
+"Not Published" = "Ikke publisert";
 
 /* No comment provided by engineer. */
 "Not Started" = "Ikke startet";
@@ -990,6 +1077,9 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "På papir";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Kun tilgjengelig for studenter med lenken.";
 
 /* No comment provided by engineer. */
 "Only members" = "Kun medlemmer";
@@ -1115,9 +1205,6 @@
 "Redo" = "Gjør om";
 
 /* No comment provided by engineer. */
-"Regarding: %@" = "Vedrørende: %@";
-
-/* No comment provided by engineer. */
 "Remove" = "Fjern";
 
 /* No comment provided by engineer. */
@@ -1151,6 +1238,9 @@
 "Request Failed!" = "Forespørsel mislyktes!";
 
 /* No comment provided by engineer. */
+"Restricted" = "Begrenset";
+
+/* No comment provided by engineer. */
 "Retry" = "Forsøk igjen";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1251,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Ikke støttet skanning";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Planlegg studenttilgjengelighet";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planlegger";
@@ -1217,9 +1310,6 @@
 "Send weekly summary" = "Send ukentlig sammendrag";
 
 /* No comment provided by engineer. */
-"Sent" = "Sendt";
-
-/* No comment provided by engineer. */
 "Set as Front Page" = "Sett som forside";
 
 /* No comment provided by engineer. */
@@ -1269,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Noe er galt";
-
-/* No comment provided by engineer. */
-"Starred" = "Stjernemerket";
 
 /* No comment provided by engineer. */
 "Start recording" = "Start opptak";
@@ -1400,10 +1487,10 @@
 "There was an error loading events. Pull to refresh to try again." = "Det oppstod en feil under lasting av hendelser. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Det oppsto en feil ved lasting av karakterer. Dra for å oppdatere og prøve på nytt.";
+"There was an error loading files. Pull to refresh to try again." = "Det oppsto en feil under innlasting av filene. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules. Pull to refresh to try again." = "Det oppstod en feil under lasting av moduler. Dra for å oppdatere og prøve på nytt.";
+"There was an error loading grades. Pull to refresh to try again." = "Det oppsto en feil ved lasting av karakterer. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Det oppsto en feil ved lasting av sider. Dra for å oppdatere og prøve på nytt.";
@@ -1425,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Denne oppgaven hadde frist %@";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Mappen er tom.";
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Dette er en mediekommentar";
@@ -1472,6 +1562,9 @@
 "Unordered List" = "Ikke sortert liste";
 
 /* No comment provided by engineer. */
+"Unpublish" = "Fjernet fra publisering";
+
+/* No comment provided by engineer. */
 "unpublished" = "ikke publisert";
 
 /* No comment provided by engineer. */
@@ -1500,6 +1593,12 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Brukerrettigheter";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Brukerrettigheter:";
 
 /* No comment provided by engineer. */
 "Use Camera" = "Bruk kamera";
@@ -1542,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Vist";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "Vi fant ingen slike filer.";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Vi kunne ikke finne noen som stemte med det.";
@@ -1587,9 +1689,6 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Du vil slutte å opptre som denne brukeren og gå tilbake til din egen konto.";
-
-/* No comment provided by engineer. */
-"You’re all caught up" = "Du er oppdatert";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Dine underordnede emner er kanskje ikke publisert enda.";

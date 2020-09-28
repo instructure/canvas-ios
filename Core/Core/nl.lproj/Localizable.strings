@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas Student-app zoals hieronder aangegeven en daarna scan je die code hier.\n        Als je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.\n        ";
 
+/* No comment provided by engineer. */
+"--" = "--";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -38,6 +41,9 @@
 "a teacher" = "een cursusleider";
 
 /* No comment provided by engineer. */
+"Access" = "Toegang";
+
+/* No comment provided by engineer. */
 "Act as User" = "Optreden als gebruiker";
 
 /* No comment provided by engineer. */
@@ -45,6 +51,15 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Inhoud toevoegen";
+
+/* No comment provided by engineer. */
+"Add File" = "Bestand toevoegen";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Map toevoegen";
+
+/* No comment provided by engineer. */
+"Add Item" = "Item toevoegen";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Planneraantekening toevoegen";
@@ -60,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Waarschuwingen";
-
-/* No comment provided by engineer. */
-"All" = "Alle";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle aantekeningen opgeslagen.";
@@ -104,7 +116,7 @@
 "Appointment Signups" = "Aanmeldingen voor afspraak";
 
 /* No comment provided by engineer. */
-"Archived" = "Gearchiveerd";
+"Are you sure you want to delete %@?" = "Weet je zeker dat je %@ wilt verwijderen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Weet je zeker dat je deze pagina wilt verwijderen?";
@@ -146,6 +158,24 @@
 "Attempt %d" = "Poging %d";
 
 /* No comment provided by engineer. */
+"Attribution" = "Bijdrage";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Bijdrage, geen afgeleiden";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Bijdrage, niet-commercieel";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Bijdrage, niet-commercieel, geen afgeleiden";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Bijdrage, niet-commercieel, gelijke delen";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Bijdrage, gelijke delen";
+
+/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -161,7 +191,13 @@
 "Availability: Closed" = "Beschikbaarheid: Gesloten";
 
 /* No comment provided by engineer. */
+"Available from" = "Beschikbaar vanaf";
+
+/* No comment provided by engineer. */
 "Available From:" = "Beschikbaar vanaf:";
+
+/* No comment provided by engineer. */
+"Available to" = "Beschikbaar voor";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Beschikbaar tot:";
@@ -283,9 +319,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Voltooid";
 
-/* No comment provided by engineer. */
-"Compose new message" = "Nieuw bericht opstellen";
-
 /* concluded datetime */
 "Concluded %@" = "Voltooid %@";
 
@@ -329,6 +362,9 @@
 "Copy Link" = "Link kopieren";
 
 /* No comment provided by engineer. */
+"Copyright Holder" = "Houder van auteursrecht";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Kan tool niet starten. Probeer het opnieuw.";
 
 /* No comment provided by engineer. */
@@ -365,10 +401,16 @@
 "Create Account" = "Account maken";
 
 /* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons-licentie";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Huidige inschrijvingen";
 
 /* No comment provided by engineer. */
 "Current position" = "Huidige positie";
+
+/* No comment provided by engineer. */
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -404,7 +446,16 @@
 "Delete Comment" = "Opmerking verwijderen";
 
 /* No comment provided by engineer. */
+"Delete File" = "Bestand verwijderen";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Map verwijderen";
+
+/* No comment provided by engineer. */
 "Deleted this reply." = "Dit antwoord is verwijderd.";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Als u dezemap verwijdert, worden ook alle bestanden in de map verwijderd.";
 
 /* No comment provided by engineer. */
 "Describe the feature" = "Beschrijf de functie";
@@ -483,6 +534,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Bijlage bewerken (geen)";
+
+/* No comment provided by engineer. */
+"Edit File" = "Bestand bewerken";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Map bewerken";
 
 /* No comment provided by engineer. */
 "Edit Page" = "Pagina bewerken";
@@ -653,6 +710,9 @@
 "Help" = "Help";
 
 /* No comment provided by engineer. */
+"High: %@" = "Hoog: %@";
+
+/* No comment provided by engineer. */
 "How do I find my school?" = "Hoe vind ik mijn school?";
 
 /* No comment provided by engineer. */
@@ -665,7 +725,13 @@
 "I have a Canvas account" = "Ik heb een Canvas-account";
 
 /* No comment provided by engineer. */
+"I hold the copyright" = "Ik heb het auteursrecht";
+
+/* No comment provided by engineer. */
 "I need help but it's not urgent" = "Ik heb hulp nodig maar het is niet dringend";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Ik heb toestemming verkregen";
 
 /* No comment provided by engineer. */
 "Image" = "Afbeelding";
@@ -686,9 +752,6 @@
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Inbox leeg";
-
-/* No comment provided by engineer. */
 "Incomplete" = "Incompleet";
 
 /* No comment provided by engineer. */
@@ -702,6 +765,15 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Uitnodiging";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Het is een redelijk gebruik of dergelijke uitzondering";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Het is in het openbare domein";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Het is onder Creative Commons gelicentieerd";
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Dat lijkt een prima dag om lekker uit te rusten, te relaxen en de batterij op te laden.";
@@ -809,6 +881,9 @@
 "Login Error" = "Fout bij aanmelden";
 
 /* No comment provided by engineer. */
+"Low: %@" = "Laag: %@";
+
+/* No comment provided by engineer. */
 "LTI Tool" = "LTI Tool";
 
 /* No comment provided by engineer. */
@@ -851,6 +926,9 @@
 "me & %@" = "mij en %@";
 
 /* No comment provided by engineer. */
+"Mean: %@" = "Gemiddelde: %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Media opnames";
 
 /* No comment provided by engineer. */
@@ -876,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N.v.t.";
+
+/* No comment provided by engineer. */
+"Name" = "Naam";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Moet worden beoordeeld";
@@ -932,6 +1013,9 @@
 "No Events Today!" = "Vandaag geen gebeurtenissen!";
 
 /* No comment provided by engineer. */
+"No Files" = "Geen bestanden";
+
+/* No comment provided by engineer. */
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
 
 /* No comment provided by engineer. */
@@ -957,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";
+
+/* No comment provided by engineer. */
+"Not Published" = "Niet gepubliceerd";
 
 /* No comment provided by engineer. */
 "Not Started" = "Niet gestart";
@@ -990,6 +1077,9 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Op papier";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Alleen beschikbaar voor cursisten met koppeling";
 
 /* No comment provided by engineer. */
 "Only members" = "Alleen leden";
@@ -1115,9 +1205,6 @@
 "Redo" = "Opnieuw";
 
 /* No comment provided by engineer. */
-"Regarding: %@" = "Betreffende: %@";
-
-/* No comment provided by engineer. */
 "Remove" = "Verwijderen";
 
 /* No comment provided by engineer. */
@@ -1151,6 +1238,9 @@
 "Request Failed!" = "Verzoek mislukt!";
 
 /* No comment provided by engineer. */
+"Restricted" = "Beperkt";
+
+/* No comment provided by engineer. */
 "Retry" = "Opnieuw proberen";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1251,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Scannen wordt niet ondersteund";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Schema met beschikbaarheid van cursist";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planning";
@@ -1217,9 +1310,6 @@
 "Send weekly summary" = "Wekelijkse samenvatting versturen";
 
 /* No comment provided by engineer. */
-"Sent" = "Verzonden";
-
-/* No comment provided by engineer. */
 "Set as Front Page" = "Instellen als voorpagina";
 
 /* No comment provided by engineer. */
@@ -1269,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Er is iets mis";
-
-/* No comment provided by engineer. */
-"Starred" = "Met ster";
 
 /* No comment provided by engineer. */
 "Start recording" = "Opname starten";
@@ -1400,10 +1487,10 @@
 "There was an error loading events. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van gebeurtenissen. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cijfers. Pull om te vernieuwen om het opnieuw te proberen.";
+"There was an error loading files. Pull to refresh to try again." = "Er is een probleem opgetreden bij het laden van bestanden. Ophalen om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van modules. Pull om te vernieuwen om het opnieuw te proberen.";
+"There was an error loading grades. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cijfers. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van pagina's. Pull om te vernieuwen om het opnieuw te proberen.";
@@ -1425,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Deze opdracht moest ingeleverd zijn op %@";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Deze map is leeg.";
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Dit is een media-opmerking";
@@ -1472,6 +1562,9 @@
 "Unordered List" = "Ongeordende lijst";
 
 /* No comment provided by engineer. */
+"Unpublish" = "Publicatie ongedaan maken";
+
+/* No comment provided by engineer. */
 "unpublished" = "niet-gepubliceerd";
 
 /* No comment provided by engineer. */
@@ -1500,6 +1593,12 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Gebruiksrecht";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Gebruiksrechten";
 
 /* No comment provided by engineer. */
 "Use Camera" = "Camera gebruiken";
@@ -1542,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Bekeken";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "We konden geen bestanden zoals die vinden.";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "We hebben niemand kunnen vinden die daaraan voldoet.";
@@ -1587,9 +1689,6 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Je stopt met optreden als deze gebruiker en keert terug naar je account.";
-
-/* No comment provided by engineer. */
-"You’re all caught up" = "Je bent helemaal bij";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "De cursussen van je cursist zijn mogelijk nog niet gepubliceerd.";

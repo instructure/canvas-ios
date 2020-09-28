@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\n        Si elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.\n        ";
 
+/* No comment provided by engineer. */
+"--" = "--";
+
 /* Unknown time duration */
 "--:--" = "--:--";
 
@@ -38,6 +41,9 @@
 "a teacher" = "yon pwofesè";
 
 /* No comment provided by engineer. */
+"Access" = "Aksè";
+
+/* No comment provided by engineer. */
 "Act as User" = "Aji tankou Itilizatè";
 
 /* No comment provided by engineer. */
@@ -45,6 +51,15 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Ajoute kontni";
+
+/* No comment provided by engineer. */
+"Add File" = "Ajoute Fichye";
+
+/* No comment provided by engineer. */
+"Add Folder" = "Ajoute Dosye";
+
+/* No comment provided by engineer. */
+"Add Item" = "Ajoute Eleman";
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
@@ -60,9 +75,6 @@
 
 /* No comment provided by engineer. */
 "Alerts" = "Alèt";
-
-/* No comment provided by engineer. */
-"All" = "Tout";
 
 /* No comment provided by engineer. */
 "All annotations saved." = "Tout anotasyon anrejistre.";
@@ -104,7 +116,7 @@
 "Appointment Signups" = "Randevou Enskripsyon";
 
 /* No comment provided by engineer. */
-"Archived" = "Achive";
+"Are you sure you want to delete %@?" = "Èske se vre ou vle efase %@?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete this page?" = "Èske se vre ou vle efase paj sa a?";
@@ -146,6 +158,24 @@
 "Attempt %d" = "Tantativ %d";
 
 /* No comment provided by engineer. */
+"Attribution" = "Atribisyon";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Atribisyon Pa gen Derive";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Atribisyon San Komèsyal";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Atribisyon San Komèsyal Ni Derive";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Atribisyon San Komèsyal Pataje Tankou";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Atribisyon Pataje Tankou";
+
+/* No comment provided by engineer. */
 "Audio" = "Odyo";
 
 /* No comment provided by engineer. */
@@ -161,7 +191,13 @@
 "Availability: Closed" = "Disponibilite: Fèmen";
 
 /* No comment provided by engineer. */
+"Available from" = "Disponib depi";
+
+/* No comment provided by engineer. */
 "Available From:" = "Disponib Depi:";
+
+/* No comment provided by engineer. */
+"Available to" = "Disponib pou";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponib Jiska:";
@@ -283,9 +319,6 @@
 /* No comment provided by engineer. */
 "Complete" = "Fini";
 
-/* No comment provided by engineer. */
-"Compose new message" = "Ekri nouvo mesaj";
-
 /* concluded datetime */
 "Concluded %@" = "Fini %@";
 
@@ -329,6 +362,9 @@
 "Copy Link" = "Kopye Lyen";
 
 /* No comment provided by engineer. */
+"Copyright Holder" = "Detantè Copyright";
+
+/* No comment provided by engineer. */
 "Could not launch tool. Please try again." = "Paka lanse zouti. Tanpri eseye ankò.";
 
 /* No comment provided by engineer. */
@@ -365,10 +401,16 @@
 "Create Account" = "Kreye Kont";
 
 /* No comment provided by engineer. */
+"Creative Commons License" = "Lisans Kreyatif Komen";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Enskripsyon Aktyèl";
 
 /* No comment provided by engineer. */
 "Current position" = "Pozisyon aktyèl";
+
+/* No comment provided by engineer. */
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -404,7 +446,16 @@
 "Delete Comment" = "Efase Kòmantè";
 
 /* No comment provided by engineer. */
+"Delete File" = "Efase Fichye";
+
+/* No comment provided by engineer. */
+"Delete Folder" = "Elimine Dosye";
+
+/* No comment provided by engineer. */
 "Deleted this reply." = "Elimine kòmantè sa a.";
+
+/* No comment provided by engineer. */
+"Deleting this folder will also delete all of the files inside the folder." = "Efase dosye sa a ap tou efase tout fichye ki andedan dosye a.";
 
 /* No comment provided by engineer. */
 "Describe the feature" = "Dekri fonksyon an";
@@ -483,6 +534,12 @@
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Chanje pyès jwent (okenn)";
+
+/* No comment provided by engineer. */
+"Edit File" = "Modifye Fichye";
+
+/* No comment provided by engineer. */
+"Edit Folder" = "Modifye Dosye";
 
 /* No comment provided by engineer. */
 "Edit Page" = "Modifye Paj";
@@ -653,6 +710,9 @@
 "Help" = "Èd";
 
 /* No comment provided by engineer. */
+"High: %@" = "Wo: %@";
+
+/* No comment provided by engineer. */
 "How do I find my school?" = "Kijan pou mwen jwenn lekòl mwen an?";
 
 /* No comment provided by engineer. */
@@ -665,7 +725,13 @@
 "I have a Canvas account" = "Mwen gen yon kont Canvas";
 
 /* No comment provided by engineer. */
+"I hold the copyright" = "Mwen gen dwa dotè a";
+
+/* No comment provided by engineer. */
 "I need help but it's not urgent" = "Mwen bezwen èd men li pa ijan";
+
+/* No comment provided by engineer. */
+"I obtained permission" = "Mwen gen pèmisyon";
 
 /* No comment provided by engineer. */
 "Image" = "Imaj";
@@ -686,9 +752,6 @@
 "Inbox" = "Bwat resepsyon";
 
 /* No comment provided by engineer. */
-"Inbox Zero" = "Bwat Resepsyon Zewo";
-
-/* No comment provided by engineer. */
 "Incomplete" = "Enkonplè";
 
 /* No comment provided by engineer. */
@@ -702,6 +765,15 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Envitasyon";
+
+/* No comment provided by engineer. */
+"It is a fair use or similar exception" = "Se yon eksepsyon pou itilizasyon akseptab oswa parèy";
+
+/* No comment provided by engineer. */
+"It is in the public domain" = "Li nan yon domèn piblik";
+
+/* No comment provided by engineer. */
+"It is licensed under Creative Commons" = "Li distribye sou lisans Creative Commons";
 
 /* No comment provided by engineer. */
 "It looks like a great day to rest, relax, and recharge." = "Sanble yon bon jou pou repoze w, amize w epi mete enèji..";
@@ -809,6 +881,9 @@
 "Login Error" = "Erè Koneksyon";
 
 /* No comment provided by engineer. */
+"Low: %@" = "Ba: %@";
+
+/* No comment provided by engineer. */
 "LTI Tool" = "Zouti LTI";
 
 /* No comment provided by engineer. */
@@ -851,6 +926,9 @@
 "me & %@" = "mwen & %@";
 
 /* No comment provided by engineer. */
+"Mean: %@" = "Mwayen: %@";
+
+/* No comment provided by engineer. */
 "Media Recording" = "Anrejistreman Medya";
 
 /* No comment provided by engineer. */
@@ -876,6 +954,9 @@
 
 /* No comment provided by engineer. */
 "N/A" = "N/A";
+
+/* No comment provided by engineer. */
+"Name" = "Non";
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Bezwen Klasman";
@@ -932,6 +1013,9 @@
 "No Events Today!" = "Pa gen Aktivite Jodi a!";
 
 /* No comment provided by engineer. */
+"No Files" = "Okenn Fichye";
+
+/* No comment provided by engineer. */
 "No image found from image picker" = "Nou pa jwenn okenn imaj apati de selektè imaj la";
 
 /* No comment provided by engineer. */
@@ -957,6 +1041,9 @@
 
 /* No comment provided by engineer. */
 "Not Graded" = "Pa Klase";
+
+/* No comment provided by engineer. */
+"Not Published" = "Pa Pibliye";
 
 /* No comment provided by engineer. */
 "Not Started" = "Pa Kòmanse";
@@ -990,6 +1077,9 @@
 
 /* No comment provided by engineer. */
 "On Paper" = "Sou Papye";
+
+/* No comment provided by engineer. */
+"Only available to students with link" = "Disponib sèlman a elèv ak lyen";
 
 /* No comment provided by engineer. */
 "Only members" = "Manm sèlman";
@@ -1115,9 +1205,6 @@
 "Redo" = "Refè";
 
 /* No comment provided by engineer. */
-"Regarding: %@" = "Konsènan: %@";
-
-/* No comment provided by engineer. */
 "Remove" = "Elimine";
 
 /* No comment provided by engineer. */
@@ -1151,6 +1238,9 @@
 "Request Failed!" = "Demann lan Echwe!";
 
 /* No comment provided by engineer. */
+"Restricted" = "Limite";
+
+/* No comment provided by engineer. */
 "Retry" = "Re eseye";
 
 /* No comment provided by engineer. */
@@ -1161,6 +1251,9 @@
 
 /* No comment provided by engineer. */
 "Scanning not supported" = "Nimerizasyon an pa posib";
+
+/* No comment provided by engineer. */
+"Schedule student availability" = "Orè Disponibilite Elèv";
 
 /* No comment provided by engineer. */
 "Scheduling" = "Planifikasyon";
@@ -1217,9 +1310,6 @@
 "Send weekly summary" = "Voye rezime chak semenn";
 
 /* No comment provided by engineer. */
-"Sent" = "Voye";
-
-/* No comment provided by engineer. */
 "Set as Front Page" = "Defini kòm Paj Dakèy";
 
 /* No comment provided by engineer. */
@@ -1269,9 +1359,6 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Yon Bagay pa Bon";
-
-/* No comment provided by engineer. */
-"Starred" = "Favori";
 
 /* No comment provided by engineer. */
 "Start recording" = "Kòmanse anrejistreman";
@@ -1400,10 +1487,10 @@
 "There was an error loading events. Pull to refresh to try again." = "Te gen yon erè nan chajman aktivite yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Te gen yon erè nan chajman nòt yo. Rale pou aktyalize pou ka eseye ankò.";
+"There was an error loading files. Pull to refresh to try again." = "Te gen erè nan chajman fichye yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules. Pull to refresh to try again." = "Te gen yon erè nan chajman modil yo. Rale pou aktyalize pou ka eseye ankò.";
+"There was an error loading grades. Pull to refresh to try again." = "Te gen yon erè nan chajman nòt yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Te gen yon erè nan chajman paj yo. Rale pou aktyalize pou ka eseye ankò.";
@@ -1425,6 +1512,9 @@
 
 /* No comment provided by engineer. */
 "This assignment was due by %@" = "Delè sesyon sa a se te %@";
+
+/* No comment provided by engineer. */
+"This folder is empty." = "Dosye sa a vid.";
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Sa se yon kòmantè miltimedya";
@@ -1472,6 +1562,9 @@
 "Unordered List" = "Lis non Òdone";
 
 /* No comment provided by engineer. */
+"Unpublish" = "Pa Pibliye";
+
+/* No comment provided by engineer. */
 "unpublished" = "pa pibliye";
 
 /* No comment provided by engineer. */
@@ -1500,6 +1593,12 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Dwa Itilizasyon";
+
+/* No comment provided by engineer. */
+"Usage Rights" = "Dwa Itilizasyon";
 
 /* No comment provided by engineer. */
 "Use Camera" = "Itilize Kamera";
@@ -1542,6 +1641,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Afiche";
+
+/* No comment provided by engineer. */
+"We couldn’t find any files like that." = "Nou paka jwenn okenn fichye konsa.";
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nou pa kapab jwenn moun konsa.";
@@ -1587,9 +1689,6 @@
 
 /* No comment provided by engineer. */
 "You will stop acting as this user and return to your account." = "Ou pral sispann aji tankou yon itilizatè epi retounen sou kont ou.";
-
-/* No comment provided by engineer. */
-"You’re all caught up" = "Yo pran w";
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";

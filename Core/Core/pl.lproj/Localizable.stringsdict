@@ -77,9 +77,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%d item</string>
+			<string>%d element</string>
 			<key>other</key>
-			<string>%d items</string>
+			<string>%d elementy</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>

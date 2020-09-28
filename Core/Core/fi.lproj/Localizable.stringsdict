@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d item</string>
+			<string>%d kohde</string>
 			<key>other</key>
-			<string>%d items</string>
+			<string>%d kohdetta</string>
 		</dict>
 	</dict>
 	<key>d_likes</key>
