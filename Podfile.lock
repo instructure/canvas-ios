@@ -299,20 +299,20 @@ PODS:
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
   - React-jsinspector (0.63.2)
-  - react-native-camera (3.35.0):
-    - React
-    - react-native-camera/RCT (= 3.35.0)
-    - react-native-camera/RN (= 3.35.0)
-  - react-native-camera/RCT (3.35.0):
-    - React
-  - react-native-camera/RN (3.35.0):
-    - React
+  - react-native-camera (3.40.0):
+    - React-Core
+    - react-native-camera/RCT (= 3.40.0)
+    - react-native-camera/RN (= 3.40.0)
+  - react-native-camera/RCT (3.40.0):
+    - React-Core
+  - react-native-camera/RN (3.40.0):
+    - React-Core
   - react-native-document-picker (3.5.4):
-    - React
-  - react-native-image-picker (2.3.3):
-    - React
+    - React-Core
+  - react-native-image-picker (2.3.4):
+    - React-Core
   - react-native-segmented-control (2.1.1):
-    - React
+    - React-Core
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
   - React-RCTAnimation (0.63.2):
@@ -374,14 +374,14 @@ PODS:
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
   - ReactNativeART (1.2.0):
-    - React
+    - React-Core
   - RNAudio (3.6.0):
     - React
-  - RNCAsyncStorage (1.11.0):
+  - RNCAsyncStorage (1.12.0):
     - React
-  - RNCPicker (1.6.6):
-    - React
-  - RNDateTimePicker (3.0.0):
+  - RNCPicker (1.8.0):
+    - React-Core
+  - RNDateTimePicker (3.0.2):
     - React
   - RNFS (2.16.6):
     - React
@@ -581,10 +581,10 @@ SPEC CHECKSUMS:
   React-jsi: 54245e1d5f4b690dec614a73a3795964eeef13a8
   React-jsiexecutor: 8ca588cc921e70590820ce72b8789b02c67cce38
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
-  react-native-camera: d9e7b66e40420dcef111f3265a00f01eea54c52c
-  react-native-document-picker: 4921045c5c6c78243010f784eae0a3f4b2af7799
-  react-native-image-picker: 3d3f85baabca60a00b75fb8facc1376db7bbdafa
-  react-native-segmented-control: 05d93c1c7576b53189720012a3e8a3c23608d849
+  react-native-camera: 35854c4f764a4a6cf61c1c3525888b92f0fe4b31
+  react-native-document-picker: a1d2dc578f106686182595f24706adcc59a6dfe2
+  react-native-image-picker: c6d75c4ab2cf46f9289f341242b219cb3c1180d3
+  react-native-segmented-control: 15ceda4fc72864a9dd178615e570c4901b72a461
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -595,11 +595,11 @@ SPEC CHECKSUMS:
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
-  ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
+  ReactNativeART: b8678eb7180c5fabf24977bdfb77d3fab45e6214
   RNAudio: 5a5bc9863f6db8b6c9f34f98a7b472c03c684246
-  RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
-  RNCPicker: 494015f2b7ec4bee5484b6f235aa19691426dcdb
-  RNDateTimePicker: f47a6309133c6d013ad6942fc83b753b3f6e41d6
+  RNCAsyncStorage: 2a692bcb9b69b76a2f1a95f33db057129700af64
+  RNCPicker: a724b3aa22b182697c190a8fd7b060b66119e136
+  RNDateTimePicker: a84d2b439666c9243d42a8396c588d4d1d36e3f3
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
