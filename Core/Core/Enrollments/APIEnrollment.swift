@@ -21,10 +21,10 @@ import Foundation
 // https://canvas.instructure.com/doc/api/enrollments.html#Enrollment
 public struct APIEnrollment: Codable, Equatable {
     let id: ID?
-    let course_id: String?
+    let course_id: ID?
     // let sis_course_id: String?
     // let course_integration_id: String?
-    let course_section_id: String?
+    let course_section_id: ID?
     // let section_integration_id: String?
     // let sis_account_id: String?
     // let sis_section_id: String?
@@ -34,8 +34,8 @@ public struct APIEnrollment: Codable, Equatable {
     // let sis_import_id: String?
     // let root_account_id: String
     let type: String
-    let user_id: String
-    let associated_user_id: String?
+    let user_id: ID
+    let associated_user_id: ID?
     let role: String
     let role_id: String
     // let created_at: Date
@@ -93,7 +93,7 @@ public enum EnrollmentState: String, Codable, CaseIterable {
 #if DEBUG
 extension APIEnrollment {
     public static func make(
-        id: ID? = "1",
+        id: String? = "1",
         course_id: String? = nil,
         course_section_id: String? = nil,
         enrollment_state: EnrollmentState = .active,
@@ -120,13 +120,13 @@ extension APIEnrollment {
         observed_user: APIUser? = nil
     ) -> APIEnrollment {
         return APIEnrollment(
-            id: id,
-            course_id: course_id,
-            course_section_id: course_section_id,
+            id: ID(id),
+            course_id: ID(course_id),
+            course_section_id: ID(course_section_id),
             enrollment_state: enrollment_state,
             type: type,
-            user_id: user_id,
-            associated_user_id: associated_user_id,
+            user_id: ID(user_id),
+            associated_user_id: ID(associated_user_id),
             role: role,
             role_id: role_id,
             start_at: start_at,
@@ -184,7 +184,7 @@ struct PostEnrollmentRequest: APIRequestable {
     let courseID: String
 
     let body: Body?
-    let method = APIMethod.post
+    var method: APIMethod { .post }
     var path: String {
         let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/enrollments"

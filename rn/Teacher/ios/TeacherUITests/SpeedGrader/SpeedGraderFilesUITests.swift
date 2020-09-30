@@ -38,17 +38,17 @@ class SpeedGraderFilesUITests: MiniCanvasUITestCase {
         let file2 = mocked.addFile(name: "dashboard.png", contents: UIImage.dashboardSolid.pngData()!)
         let submission = MiniSubmission(
             APISubmission.make(
-                id: mocked.nextId(),
-                assignment_id: firstAssignment.api.id,
-                user_id: student.id,
-                submission_type: .online_upload,
-                workflow_state: .submitted,
-                attempt: 1,
+                assignment_id: firstAssignment.api.id.value,
                 attachments: [
                     file1.api,
                     file2.api,
                 ],
-                user: student
+                attempt: 1,
+                id: mocked.nextId().value,
+                submission_type: .online_upload,
+                user: student,
+                user_id: student.id.value,
+                workflow_state: .submitted
             )
         )
 

@@ -36,12 +36,12 @@ class SubmissionCommentsTests: CoreUITestCase {
             APIFile.make(id: "2", display_name: "File 2"),
         ]
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            id: "1",
-            user_id: "1",
-            submission_type: .online_upload,
-            attempt: 1,
             attachments: attachments,
-            user: APIUser.make(id: "1", short_name: "Student")
+            attempt: 1,
+            id: "1",
+            submission_type: .online_upload,
+            user: APIUser.make(id: "1", short_name: "Student"),
+            user_id: "1"
         ))
         attachments.forEach { mockURL($0.url!.rawValue, data: nil) }
 
@@ -56,11 +56,11 @@ class SubmissionCommentsTests: CoreUITestCase {
     func testAttemptComments() {
         mockBaseRequests()
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            id: "1",
-            user_id: "1",
-            submission_type: .online_quiz,
             attempt: 1,
-            user: APIUser.make(id: "1", short_name: "Student")
+            id: "1",
+            submission_type: .online_quiz,
+            user: APIUser.make(id: "1", short_name: "Student"),
+            user_id: "1"
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -73,11 +73,9 @@ class SubmissionCommentsTests: CoreUITestCase {
     func testTextComments() {
         mockBaseRequests()
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            id: "1",
-            user_id: "1",
-            submission_type: .online_upload,
-            attempt: 1,
             attachments: [],
+            attempt: 1,
+            id: "1",
             submission_comments: [
                 APISubmissionComment.make(
                     id: "1",
@@ -91,7 +89,9 @@ class SubmissionCommentsTests: CoreUITestCase {
                     author: APISubmissionCommentAuthor.make(display_name: "Student"),
                     comment: "Oops, I meant a different file"
                 ),
-            ]
+            ],
+            submission_type: .online_upload,
+            user_id: "1"
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
@@ -131,11 +131,9 @@ class SubmissionCommentsTests: CoreUITestCase {
         mockBaseRequests()
         let testm4a = Bundle(for: SubmissionCommentsTests.self).url(forResource: "test", withExtension: "m4a")!
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            id: "1",
-            user_id: "1",
-            submission_type: .online_upload,
-            attempt: 1,
             attachments: [],
+            attempt: 1,
+            id: "1",
             submission_comments: [
                 APISubmissionComment.make(
                     id: "1",
@@ -155,7 +153,9 @@ class SubmissionCommentsTests: CoreUITestCase {
                         media_type: .audio
                     )
                 ),
-            ]
+            ],
+            submission_type: .online_upload,
+            user_id: "1"
         ))
         mockURL(testm4a, data: try! Data(contentsOf: testm4a))
 

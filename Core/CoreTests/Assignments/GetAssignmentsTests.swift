@@ -64,14 +64,14 @@ class GetAssignmentsTests: CoreTestCase {
             id: "2",
             submission: APISubmission.make(
                 assignment_id: "2",
-                grade: "A-",
-                score: 97,
-                late: true,
                 excused: true,
-                missing: true,
-                workflow_state: .submitted,
+                grade: "A-",
+                late: true,
                 late_policy_status: .late,
-                points_deducted: 10
+                missing: true,
+                points_deducted: 10,
+                score: 97,
+                workflow_state: .submitted
             )
         )
         api.mock(request, value: apiAssignment, response: nil, error: nil)

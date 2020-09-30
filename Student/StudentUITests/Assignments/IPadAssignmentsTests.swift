@@ -29,13 +29,13 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
 
     func makeTextSubmission(score: Int? = nil, comments: [APISubmissionComment]? = nil) -> APISubmission {
         APISubmission.make(
-            id: 8,
-            assignment_id: 2,
+            assignment_id: "2",
             grade: score.map(String.init),
+            id: "8",
             score: score.map(Double.init),
+            submission_comments: comments,
             submission_type: .online_text_entry,
-            workflow_state: score == nil ? .submitted : .graded,
-            submission_comments: comments
+            workflow_state: score == nil ? .submitted : .graded
         )
     }
 

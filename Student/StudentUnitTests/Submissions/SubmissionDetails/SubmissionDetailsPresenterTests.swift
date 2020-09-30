@@ -78,8 +78,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testUpdate() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 2, user_id: "1"))
         presenter.update()
         XCTAssertTrue(view.didEmbed)
         XCTAssertTrue(view.didEmbedInDrawer)
@@ -110,16 +110,16 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testSelectAttempt() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1") ]))
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1") ], attempt: 1, user_id: "1"))
+        Submission.make(from: .make(assignment_id: "1", attempt: 2, user_id: "1"))
         presenter.select(attempt: 1)
         XCTAssertEqual(presenter.selectedAttempt, 1)
         XCTAssertEqual(presenter.selectedFileID, "1")
     }
 
     func testSelectFileID() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 2, user_id: "1"))
         presenter.select(fileID: "2")
         XCTAssertEqual(presenter.selectedFileID, "2")
         presenter.select(fileID: "bogus")
@@ -127,8 +127,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testSelectDrawerTabComments() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "3"), .make(id: "4") ]))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "3"), .make(id: "4") ], attempt: 2, user_id: "1"))
         presenter.update()
         presenter.select(drawerTab: nil)
         XCTAssertEqual(presenter.selectedDrawerTab, .comments)
@@ -141,8 +141,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testSelectDrawerTabFiles() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 2, attachments: [ .make(id: "3"), .make(id: "4") ]))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "3"), .make(id: "4") ], attempt: 2, user_id: "1"))
         presenter.update()
         presenter.select(drawerTab: .files)
         XCTAssertEqual(presenter.selectedDrawerTab, .files)
@@ -155,7 +155,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testSelectDrawerTabRubric() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1, attachments: [ .make(id: "1"), .make(id: "2") ]))
+        Submission.make(from: .make(assignment_id: "1", attachments: [ .make(id: "1"), .make(id: "2") ], attempt: 1, user_id: "1"))
         presenter.select(drawerTab: .rubric)
         XCTAssertEqual(presenter.selectedDrawerTab, .rubric)
         XCTAssert(view.embeddedInDrawer is RubricViewController)
@@ -172,8 +172,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedExternalToolOnlineUploadWithAttachment() {
         Assignment.make(from: .make(submission_types: [ .external_tool ]))
         Submission.make(from: .make(
-            submission_type: .online_upload,
-            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ]
+            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ], submission_type: .online_upload
         ))
         presenter.update()
 
@@ -201,8 +200,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedUpload() {
         Assignment.make()
         Submission.make(from: .make(
-            submission_type: .online_upload,
-            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ]
+            attachments: [ .make(mime_class: "doc", preview_url: URL(string: "/preview")) ], submission_type: .online_upload
         ))
         presenter.update()
 
@@ -212,8 +210,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedUploadVideo() {
         Assignment.make()
         Submission.make(from: .make(
-            submission_type: .online_upload,
-            attachments: [ .make(mime_class: "video") ]
+            attachments: [ .make(mime_class: "video") ],
+            submission_type: .online_upload
         ))
         presenter.update()
 
@@ -223,8 +221,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedUploadOther() {
         Assignment.make()
         Submission.make(from: .make(
-            submission_type: .online_upload,
-            attachments: [ .make(mime_class: "file") ]
+            attachments: [ .make(mime_class: "file") ],
+            submission_type: .online_upload
         ))
         presenter.update()
 
@@ -234,8 +232,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedUploadHeic() {
         Assignment.make()
         Submission.make(from: .make(
-            submission_type: .online_upload,
-            attachments: [ .make(contentType: "image/heic", mime_class: "file") ]
+            attachments: [ .make(contentType: "image/heic", mime_class: "file") ],
+            submission_type: .online_upload
         ))
         presenter.update()
 
@@ -245,7 +243,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testEmbedDiscussion() throws {
         Assignment.make()
-        Submission.make(from: .make(submission_type: .discussion_topic, preview_url: URL(string: "preview")))
+        Submission.make(from: .make(preview_url: URL(string: "preview"), submission_type: .discussion_topic))
         presenter.update()
 
         let embedded = try XCTUnwrap(view.embedded as? CoreWebViewController)
@@ -262,7 +260,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testEmbedMediaSubmission() {
         Assignment.make()
-        Submission.make(from: .make(submission_type: .media_recording, media_comment: .make() ))
+        Submission.make(from: .make(media_comment: .make(), submission_type: .media_recording ))
         presenter.update()
 
         XCTAssert(view.embedded is AVPlayerViewController)
@@ -271,8 +269,8 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     func testEmbedArc() throws {
         Assignment.make()
         let submission = Submission.make(from: .make(
-            submission_type: .basic_lti_launch,
-            external_tool_url: .make()
+            external_tool_url: .make(),
+            submission_type: .basic_lti_launch
         ))
         presenter.update()
 
@@ -321,7 +319,7 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testPageViewLogging() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
         presenter.viewIsReady()
 
         presenter.viewDidAppear()
@@ -340,13 +338,13 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testLockedEmptyViewIsHidden() {
-        Submission.make(from: .make(assignment_id: "1", user_id: "1", attempt: 1))
+        Submission.make(from: .make(assignment_id: "1", attempt: 1, user_id: "1"))
         XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
     }
 
     func testLockedEmptyViewIsHiddenWithUntilDateInThePast() {
         Assignment.make(from: .make(
-            submission: .make(id: "1", assignment_id: "1", user_id: 1, workflow_state: SubmissionWorkflowState.submitted),
+            submission: .make(assignment_id: "1", id: "1", user_id: "1", workflow_state: SubmissionWorkflowState.submitted),
             submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
             lock_at: Date().addDays(-5),

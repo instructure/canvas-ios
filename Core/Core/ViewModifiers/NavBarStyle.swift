@@ -21,7 +21,7 @@ import SwiftUI
 public enum NavBarStyle: PreferenceKey, Equatable {
     case modal
     case global
-    case color(UIColor)
+    case color(UIColor?)
 
     public static var defaultValue = NavBarStyle.global
     public static func reduce(value: inout NavBarStyle, nextValue: () -> NavBarStyle) {

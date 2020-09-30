@@ -81,12 +81,12 @@ public class MiniCourse {
 
         course.assignments[0].submissions = state.students.map { student in
             MiniSubmission(APISubmission.make(
-                id: state.nextId(),
-                assignment_id: course.assignments[0].api.id,
-                user_id: student.id,
+                assignment_id: course.assignments[0].api.id.value,
+                attempt: 1,
                 body: "A submission from \(student.name)",
+                id: state.nextId().value,
                 submission_type: .online_text_entry,
-                attempt: 1
+                user_id: student.id.value
             ))
         }
 
@@ -172,12 +172,12 @@ public class MiniCourse {
             let previewUrl = URL(string: "data:text/plain;base64,\(data)")!
             let submission = MiniSubmission(
                 APISubmission.make(
-                    id: submissionId,
-                    assignment_id: assignment.api.id,
-                    user_id: student.id,
-                    submission_type: .online_quiz,
+                    assignment_id: assignment.api.id.value,
                     attempt: 1,
-                    preview_url: previewUrl
+                    id: submissionId.value,
+                    preview_url: previewUrl,
+                    submission_type: .online_quiz,
+                    user_id: student.id.value
                 ),
                 associatedQuizSubmission: APIQuizSubmission.make(
                     attempt: 1,

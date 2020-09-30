@@ -21,9 +21,12 @@ import XCTest
 
 class EnrollmentTests: CoreTestCase {
     func testEnrollmentStateInitRawValue() {
-        // Converting to & from String is needed by database models
-        XCTAssertEqual(EnrollmentState(rawValue: "invited"), .invited)
-        XCTAssertEqual(EnrollmentState.invited.rawValue, "invited")
+        let enrollment = Enrollment.make(from: .make(enrollment_state: .invited))
+        XCTAssertEqual(enrollment.state, .invited)
+        enrollment.state = .active
+        XCTAssertEqual(enrollment.stateRaw, EnrollmentState.active.rawValue)
+        enrollment.stateRaw = nil
+        XCTAssertEqual(enrollment.state, .inactive)
     }
 
     func testUpdateFromCourseAPI() {
@@ -40,7 +43,7 @@ class EnrollmentTests: CoreTestCase {
         XCTAssertEqual(model.role, "StudentEnrollment")
         XCTAssertEqual(model.roleID, apiEnrollment.role_id)
         XCTAssertEqual(model.state, apiEnrollment.enrollment_state)
-        XCTAssertEqual(model.userID, apiEnrollment.user_id)
+        XCTAssertEqual(model.userID, apiEnrollment.user_id.value)
         XCTAssertEqual(model.multipleGradingPeriodsEnabled, apiEnrollment.multiple_grading_periods_enabled)
         XCTAssertEqual(model.computedCurrentScore, apiEnrollment.computed_current_score)
         XCTAssertEqual(model.computedFinalScore, apiEnrollment.computed_final_score)
@@ -89,13 +92,25 @@ class EnrollmentTests: CoreTestCase {
 
     }
 
-    func isStudent() {
-        XCTAssertTrue(Enrollment.make(from: .make(type: "student")).isStudent)
-        XCTAssertTrue(Enrollment.make(from: .make(type: "StudentEnrollment")).isStudent)
-        XCTAssertTrue(Enrollment.make(from: .make(type: "StudentView")).isStudent)
-        XCTAssertFalse(Enrollment.make(from: .make(type: "teacher")).isStudent)
-        XCTAssertFalse(Enrollment.make(from: .make(type: "TeacherEnrollment")).isStudent)
-        XCTAssertFalse(Enrollment.make(from: .make(type: "QaEnrollment")).isStudent)
+    func testIsStudentTeacherTA() {
+        for type in [ "student", "StudentEnrollment", "StudentView" ] {
+            let enrollment = Enrollment.make(from: .make(type: type))
+            XCTAssertTrue(enrollment.isStudent)
+            XCTAssertFalse(enrollment.isTeacher)
+            XCTAssertFalse(enrollment.isTA)
+        }
+        for type in [ "teacher", "TeacherEnrollment" ] {
+            let enrollment = Enrollment.make(from: .make(type: type))
+            XCTAssertFalse(enrollment.isStudent)
+            XCTAssertTrue(enrollment.isTeacher)
+            XCTAssertFalse(enrollment.isTA)
+        }
+        for type in [ "ta", "TAEnrollment" ] {
+            let enrollment = Enrollment.make(from: .make(type: type))
+            XCTAssertFalse(enrollment.isStudent)
+            XCTAssertFalse(enrollment.isTeacher)
+            XCTAssertTrue(enrollment.isTA)
+        }
     }
 
     func testFormattedRole() {

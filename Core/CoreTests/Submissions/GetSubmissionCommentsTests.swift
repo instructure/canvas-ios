@@ -41,16 +41,17 @@ class GetSubmissionCommentsTests: CoreTestCase {
         let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
-            user_id: "3",
             attempt: 2,
             submission_comments: [
                 APISubmissionComment.make(id: "1"),
                 APISubmissionComment.make(id: "2"),
             ],
             submission_history: [
-                APISubmission.make(assignment_id: "2", user_id: "3", submission_type: .online_text_entry, attempt: 2),
-                APISubmission.make(assignment_id: "2", user_id: "3", submission_type: .online_text_entry, attempt: 1),
-            ]
+                APISubmission.make(assignment_id: "2", attempt: 2, submission_type: .online_text_entry, user_id: "3"),
+                APISubmission.make(assignment_id: "2", attempt: 1, submission_type: .online_text_entry, user_id: "3"),
+            ],
+            submission_type: .online_text_entry,
+            user_id: "3"
         )
         let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
         getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)

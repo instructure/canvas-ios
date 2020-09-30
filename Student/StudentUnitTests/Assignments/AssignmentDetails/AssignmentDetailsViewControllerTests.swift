@@ -186,10 +186,11 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             course_id: ID(courseID),
             submission: .make(
                 grade: "10",
+                grade_matches_current_submission: false,
                 score: nil,
                 submission_type: .online_text_entry,
-                workflow_state: .graded,
-                grade_matches_current_submission: false)
+                workflow_state: .graded
+            )
         )
         api.mock(viewController.presenter!.assignments, value: assignment)
         load()
@@ -284,10 +285,10 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             course_id: ID(courseID),
             submission: .make(
                 grade: "10",
+                grade_matches_current_submission: false,
                 score: 10,
                 submission_type: .discussion_topic,
-                workflow_state: .graded,
-                grade_matches_current_submission: false
+                workflow_state: .graded
             )
         )
         api.mock(viewController.presenter!.assignments, value: assignment)
@@ -306,10 +307,10 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             course_id: ID(courseID),
             submission: .make(
                 grade: "10",
+                grade_matches_current_submission: false,
                 score: 10,
                 submission_type: .discussion_topic,
-                workflow_state: .submitted,
-                grade_matches_current_submission: false
+                workflow_state: .submitted
             )
         )
         api.mock(viewController.presenter!.assignments, value: assignment)
@@ -435,10 +436,10 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             course_id: ID(courseID),
             submission: .make(
                 grade: "10",
+                grade_matches_current_submission: false,
                 score: 10,
                 submission_type: .discussion_topic,
-                workflow_state: .graded,
-                grade_matches_current_submission: false
+                workflow_state: .graded
             )
         )
         File.make(assignmentID: assignmentID, batchID: "assignment-\(assignmentID)",

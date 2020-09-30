@@ -23,3 +23,7 @@ private class Placeholder {}
 internal extension Bundle {
     static let teacher = Bundle(for: Placeholder.self)
 }
+
+internal func NSLocalizedString(_ key: String) -> String {
+    return NSLocalizedString(key, bundle: .teacher, comment: "")
+}

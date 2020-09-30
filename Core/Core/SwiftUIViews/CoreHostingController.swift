@@ -43,6 +43,7 @@ public class CoreHostingController<InnerContent: View>: UIHostingController<Core
         case .global:
             navigationController?.navigationBar.useGlobalNavStyle()
         case .color(let color):
+            guard let color = color else { return }
             navigationController?.navigationBar.useContextColor(color)
         }
     }

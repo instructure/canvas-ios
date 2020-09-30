@@ -46,11 +46,9 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
     func testLayout() {
         Clock.mockNow(Date())
         api.mock(controller.presenter!.comments, value: .make(
-            id: ID(submissionID),
-            assignment_id: ID(assignmentID),
-            user_id: ID(userID),
-            submission_type: .online_upload,
+            assignment_id: assignmentID,
             attempt: 1,
+            id: submissionID,
             submission_comments: [
                 .make(
                     id: "1",
@@ -65,7 +63,9 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
                     created_at: Clock.now.addDays(-2)
                 ),
             ],
-            user: .make(short_name: "John Smith", pronouns: "He/Him")
+            submission_type: .online_upload,
+            user: .make(short_name: "John Smith", pronouns: "He/Him"),
+            user_id: userID
         ))
         api.mock(controller.presenter!.assignment, value: .make(
             id: ID(assignmentID),

@@ -81,7 +81,7 @@ struct SubmissionHeader: View {
             return submission.groupID != nil ? Text("Group") : Text("Student")
         }
         return Text(submission.groupName ?? submission.user.flatMap {
-            User.displayName($0.sortableName, pronouns: $0.pronouns)
+            User.displayName($0.name, pronouns: $0.pronouns)
         } ?? "")
     }
 

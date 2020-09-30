@@ -43,10 +43,10 @@ class URLSubmissionTests: CoreUITestCase {
     func testShowSubmission() {
         mockBaseRequests()
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            assignment_id: assignment.id,
-            user_id: "1",
+            assignment_id: assignment.id.value,
             submission_type: .online_url,
-            url: URL(string: "http://www.amazon.com")
+            url: URL(string: "http://www.amazon.com"),
+            user_id: "1"
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")

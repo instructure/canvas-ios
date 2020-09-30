@@ -23,7 +23,7 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
     @NSManaged public var authorAvatarURL: URL?
-    @NSManaged public var authorID: String
+    @NSManaged public var authorID: String?
     @NSManaged public var authorName: String
     @NSManaged public var authorPronouns: String?
     @NSManaged public var comment: String
@@ -62,8 +62,8 @@ final public class SubmissionComment: NSManagedObject {
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
         model.authorAvatarURL = item.author.avatar_image_url
-        model.authorID = item.author_id
-        model.authorName = item.author.display_name
+        model.authorID = item.author_id?.value
+        model.authorName = item.author.display_name ?? item.author_name
         model.authorPronouns = item.author.pronouns
         model.comment = item.comment
         model.createdAt = item.created_at

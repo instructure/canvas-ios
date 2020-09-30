@@ -27,9 +27,9 @@ class GetRecentlyGradedSubmissionsTests: CoreTestCase {
 
     func testItCreatesSubmissionsWithAssignments() {
         let apiSubmission = APISubmission.make(
-            id: "1",
+            assignment: APIAssignment.make(id: "2", submission: nil),
             assignment_id: "2",
-            assignment: APIAssignment.make(id: "2", submission: nil)
+            id: "1"
         )
 
         let useCase = GetRecentlyGradedSubmissions(userID: "1")
@@ -59,15 +59,15 @@ class CreateSubmissionTests: CoreTestCase {
         let context = Context(.course, id: "1")
         let url = URL(string: "http://www.instructure.com")!
         let template: APISubmission = APISubmission.make(
-            assignment_id: "2",
-            grade: "A-",
-            score: 97,
-            late: true,
+            assignment_id: "1",
             excused: true,
-            missing: true,
-            workflow_state: .submitted,
+            grade: "A-",
+            late: true,
             late_policy_status: .late,
-            points_deducted: 10
+            missing: true,
+            points_deducted: 10,
+            score: 97,
+            workflow_state: .submitted
         )
 
         //  when
@@ -75,7 +75,7 @@ class CreateSubmissionTests: CoreTestCase {
         createSubmission.write(response: template, urlResponse: nil, to: databaseClient)
 
         //  then
-        let subs: [Submission] = databaseClient.fetch()
+        let subs: [Submission] = databaseClient.fetch(scope: createSubmission.scope)
         let submission = subs.first
         XCTAssertNotNil(submission)
         XCTAssertEqual(submission?.grade, "A-")
@@ -145,12 +145,12 @@ class GetSubmissionsTests: CoreTestCase {
         let context = Context(.course, id: "1")
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
-            user_id: "3",
             attempt: 2,
             submission_history: [
-                APISubmission.make(assignment_id: "2", user_id: "3", attempt: 2),
-                APISubmission.make(assignment_id: "2", user_id: "3", attempt: 1),
-            ]
+                APISubmission.make(assignment_id: "2", attempt: 2, user_id: "3"),
+                APISubmission.make(assignment_id: "2", attempt: 1, user_id: "3"),
+            ],
+            user_id: "3"
         )
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
         getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
@@ -164,13 +164,13 @@ class GetSubmissionsTests: CoreTestCase {
 
     func testNoHistoryDoesntDelete() {
         let context = Context(.course, id: "1")
-        Submission.make(from: .make(assignment_id: "2", user_id: "3", late: false, attempt: 2))
-        Submission.make(from: .make(assignment_id: "2", user_id: "3", attempt: 1))
+        Submission.make(from: .make(assignment_id: "2", attempt: 2, late: false, user_id: "3"))
+        Submission.make(from: .make(assignment_id: "2", attempt: 1, user_id: "3"))
         let apiSubmission = APISubmission.make(
             assignment_id: "2",
-            user_id: "3",
+            attempt: 2,
             late: true,
-            attempt: 2
+            user_id: "3"
         )
 
         let getSubmission = GetSubmission(context: context, assignmentID: "2", userID: "3")
@@ -210,7 +210,7 @@ class GetSubmissionsTests: CoreTestCase {
     }
 
     func testGetSubmissions() {
-        let useCase = GetSubmissions(context: .course("1"), assignmentID: "1", filter: nil)
+        let useCase = GetSubmissions(context: .course("1"), assignmentID: "1")
         XCTAssertEqual(useCase.cacheKey, "courses/1/assignments/1/submissions")
         XCTAssertEqual(useCase.request.assignmentID, "1")
         XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)])
@@ -220,7 +220,7 @@ class GetSubmissionsTests: CoreTestCase {
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
         ]))
-        useCase.filter = .late
+        useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
@@ -244,6 +244,10 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(Filter.scoreAbove(1.5).rawValue, "score_above_1.5")
         XCTAssertEqual(Filter(rawValue: "score_below_0.7"), .scoreBelow(0.7))
         XCTAssertEqual(Filter.scoreBelow(-2).rawValue, "score_below_-2.0")
+        XCTAssertEqual(Filter(rawValue: "user_7"), .user("7"))
+        XCTAssertEqual(Filter.user("a").rawValue, "user_a")
+        XCTAssertEqual(Filter(rawValue: "section_a_2"), .section([ "a", "2" ]))
+        XCTAssertEqual(Filter.section([ "c", "1" ]).rawValue, "section_1_c")
     }
 
     func testGetSubmissionsFilterPredicate() {
@@ -267,7 +271,28 @@ class GetSubmissionsTests: CoreTestCase {
             #keyPath(Submission.scoreRaw),
             #keyPath(Submission.workflowStateRaw)
         ))
-        XCTAssertEqual(Filter.scoreAbove(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), 100.0))
-        XCTAssertEqual(Filter.scoreBelow(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), 0.0))
+        XCTAssertEqual(Filter.scoreAbove(100).predicate, NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: 100.0)))
+        XCTAssertEqual(Filter.scoreBelow(0).predicate, NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: 0.0)))
+        XCTAssertEqual(Filter.user("1").predicate, NSPredicate(key: #keyPath(Submission.userID), equals: "1"))
+        XCTAssertEqual(Filter.section([ "c", "1" ]).predicate, NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), Set([ "c", "1" ])))
+    }
+
+    func testGetSubmissionsFilterName() {
+        typealias Filter = GetSubmissions.Filter
+        User.make(from: .make(short_name: "Me"))
+        CourseSection.make(from: .make(id: "1", name: "One"))
+        CourseSection.make(from: .make(id: "2", name: "Two"))
+        Enrollment.make(from: .make(id: "1", course_id: "1", user_id: "1"))
+        Enrollment.make(from: .make(id: "2", course_id: "1", user_id: "2"))
+        Submission.make(from: .make(assignment: .make(), id: "1", user_id: "1"))
+        Submission.make(from: .make(id: "2", user_id: "2"))
+        XCTAssertEqual(Filter.late.name, "Late")
+        XCTAssertEqual(Filter.notSubmitted.name, "Not Submitted")
+        XCTAssertEqual(Filter.needsGrading.name, "Needs Grading")
+        XCTAssertEqual(Filter.graded.name, "Graded")
+        XCTAssertEqual(Filter.scoreAbove(100).name, "Scored above 100")
+        XCTAssertEqual(Filter.scoreBelow(0).name, "Scored below 0")
+        XCTAssertEqual(Filter.user("1").name, "Me")
+        XCTAssertEqual(Filter.section([ "2", "1" ]).name, "One and Two")
     }
 }

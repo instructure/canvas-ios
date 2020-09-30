@@ -32,7 +32,7 @@ struct SpeedGraderView: View {
 
     @State var currentIndex: Int = -1
 
-    init(context: Context, assignmentID: String, userID: String, filter: GetSubmissions.Filter?) {
+    init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
         self.assignmentID = assignmentID
         self.context = context
         self.assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID, include: [ .overrides ]))

@@ -750,7 +750,7 @@
 		B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A464BC225669B50052F8DF /* DispatchExtensionsTests.swift */; };
 		B1A6BC762189F9AE000515E3 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CEB762150408A00D07CFA /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1A6BC88218A94FA000515E3 /* APIAssignmentOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideTests.swift */; };
-		B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */; };
+		B1A6BC8A218A977D000515E3 /* APIEnrollmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC89218A977D000515E3 /* APIEnrollmentTests.swift */; };
 		B1A6BC8C218A9843000515E3 /* APILatePolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A6BC8B218A9843000515E3 /* APILatePolicyTests.swift */; };
 		B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A76ABF24227027000820A8 /* ScannerViewController.swift */; };
 		B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A784882441136C001A2B50 /* GetModules.swift */; };
@@ -1723,7 +1723,7 @@
 		B1A6BC81218A5066000515E3 /* APILatePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicy.swift; sourceTree = "<group>"; };
 		B1A6BC85218A5D07000515E3 /* LatePolicyInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatePolicyInterval.swift; sourceTree = "<group>"; };
 		B1A6BC87218A94FA000515E3 /* APIAssignmentOverrideTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentOverrideTests.swift; sourceTree = "<group>"; };
-		B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentRequestableTests.swift; sourceTree = "<group>"; };
+		B1A6BC89218A977D000515E3 /* APIEnrollmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnrollmentTests.swift; sourceTree = "<group>"; };
 		B1A6BC8B218A9843000515E3 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
 		B1A76ABF24227027000820A8 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		B1A784882441136C001A2B50 /* GetModules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetModules.swift; sourceTree = "<group>"; };
@@ -2898,7 +2898,7 @@
 		7D76C337243CF33D00F481BF /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
-				B1A6BC89218A977D000515E3 /* APIEnrollmentRequestableTests.swift */,
+				B1A6BC89218A977D000515E3 /* APIEnrollmentTests.swift */,
 				9F88ED00224A742F00DCCA09 /* EnrollmentTests.swift */,
 				B109249323CE81C400796903 /* RoleTests.swift */,
 			);
@@ -4045,7 +4045,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */,
-				B1A6BC8A218A977D000515E3 /* APIEnrollmentRequestableTests.swift in Sources */,
+				B1A6BC8A218A977D000515E3 /* APIEnrollmentTests.swift in Sources */,
 				7DA8C37F239EB535004762DD /* LoginNavigationControllerTests.swift in Sources */,
 				7D80AC5B212DB0B500C40ECE /* URLResponseExtensionsTests.swift in Sources */,
 				7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */,
