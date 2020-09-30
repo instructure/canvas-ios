@@ -83,7 +83,7 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .borderMedium
 
-        assignment.refresh() { [weak self] _ in
+        assignment.refresh { [weak self] _ in
             guard let self = self, self.assignment.first?.anonymizeStudents == true else { return }
             self.submissions.useCase.shuffled = true
             self.submissions.setScope(self.submissions.useCase.scope)
@@ -152,7 +152,7 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
             "recipients": submissions.compactMap { $0.user } .map { (user: User) -> [String: Any?] in [
                 "id": user.id,
                 "name": user.name,
-                "avatar_url": user.avatarURL
+                "avatar_url": user.avatarURL,
             ] },
             "subject": subject,
             "contextName": course.first?.name ?? "",
@@ -263,6 +263,6 @@ class SubmissionListCell: UITableViewCell {
         statusLabel.textColor = submission?.status.color
         needsGradingView.isHidden = submission?.needsGrading != true
         gradeLabel.text = GradeFormatter.graderString(from: assignment, submission: submission)
-        hiddenView.isHidden = submission?.postedAt != nil || (submission?.score == nil && submission?.grade == nil) 
+        hiddenView.isHidden = submission?.postedAt != nil || (submission?.score == nil && submission?.grade == nil)
     }
 }
