@@ -119,14 +119,8 @@ describe('ToDoList', () => {
     tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
-      '/courses/222/gradebook/speed_grader',
-      { modal: true, modalPresentationStyle: 'fullscreen' },
-      {
-        filter: expect.any(Function),
-        studentIndex: 0,
-        assignmentID: '1',
-        onDismiss: expect.any(Function),
-      },
+      '/courses/222/assignments/1/submissions?filter=needs_grading',
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
     )
   })
 
@@ -141,14 +135,8 @@ describe('ToDoList', () => {
     tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
-      '/courses/222/gradebook/speed_grader',
-      { modal: true, modalPresentationStyle: 'fullscreen' },
-      {
-        filter: expect.any(Function),
-        studentIndex: 0,
-        assignmentID: '1',
-        onDismiss: expect.any(Function),
-      },
+      '/courses/222/assignments/1/submissions?filter=needs_grading',
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
     )
   })
 })
