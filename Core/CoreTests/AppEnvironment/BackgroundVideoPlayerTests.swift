@@ -24,11 +24,6 @@ import AVKit
 class BackgroundVideoPlayerTests: XCTestCase {
     let player = BackgroundVideoPlayer.shared
 
-    override func setUp() {
-        super.setUp()
-        player.disconnect()
-    }
-
     func testBackgroundReconnect() {
         XCTAssertNil(player.viewController)
         XCTAssertNil(player.player)
@@ -36,9 +31,9 @@ class BackgroundVideoPlayerTests: XCTestCase {
         controller.player = AVPlayer()
         player.connect(controller)
         XCTAssertNotNil(player.viewController)
-        XCTAssertNotNil(player.player)
         player.background()
         XCTAssertNil(controller.player)
+        XCTAssertNotNil(player.player)
         player.reconnect()
         XCTAssertNotNil(controller.player)
         XCTAssertNil(player.viewController)
@@ -48,13 +43,12 @@ class BackgroundVideoPlayerTests: XCTestCase {
     func testDisconnect() {
         XCTAssertNil(player.viewController)
         XCTAssertNil(player.player)
-        let controller = AVPlayerViewController()
-        controller.player = AVPlayer()
-        player.connect(controller)
-        XCTAssertNotNil(player.viewController)
-        XCTAssertNotNil(player.player)
-        player.disconnect()
+        if true { // create scope block the controller lives in
+            let controller = AVPlayerViewController()
+            controller.player = AVPlayer()
+            player.connect(controller)
+            XCTAssertNotNil(player.viewController)
+        }
         XCTAssertNil(player.viewController)
-        XCTAssertNil(player.player)
     }
 }
