@@ -810,6 +810,7 @@
 				49AD4F601F730CB000BEDB8E /* Bundle React Native Code And Images */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
+				B15CAECA25262432006BA9A4 /* Sign Frameworks */,
 				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
 				7D630B6A24A5003E0039A45D /* Embed App Extensions */,
 			);
@@ -818,6 +819,8 @@
 			dependencies = (
 			);
 			name = Teacher;
+			packageProductDependencies = (
+			);
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Teacher.app */;
 			productType = "com.apple.product-type.application";
@@ -991,6 +994,8 @@
 				it,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
+			packageReferences = (
+			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1199,6 +1204,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-defaults-TeacherTests/Pods-defaults-TeacherTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B15CAECA25262432006BA9A4 /* Sign Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# https://pspdfkit.com/guides/ios/current/knowledge-base/library-not-found-swiftpm/\nfind \"${CODESIGNING_FOLDER_PATH}\" -name '*.framework' -print0 | while read -d $'\\0' framework \ndo \n    codesign --force --deep --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"${framework}\" \ndone\n";
 		};
 		B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1786,6 +1809,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = TeacherFiles/TeacherFiles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1815,6 +1839,7 @@
 				CODE_SIGN_ENTITLEMENTS = TeacherFiles/TeacherFiles.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
