@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Lottie",
-        "repositoryURL": "https://github.com/airbnb/lottie-ios",
-        "state": {
-          "branch": null,
-          "revision": "4e5877425dae5c10792fc9d22d53dc6bf6824dc1",
-          "version": "3.1.8"
-        }
-      },
-      {
-        "package": "PSPDFKit",
-        "repositoryURL": "https://github.com/PSPDFKit/PSPDFKit-SP",
-        "state": {
-          "branch": null,
-          "revision": "f5e430da0017148c2455a8bdabc4856a8494334b",
-          "version": "10.0.0"
-        }
-      },
-      {
         "package": "Swifter",
         "repositoryURL": "https://github.com/httpswift/swifter",
         "state": {
