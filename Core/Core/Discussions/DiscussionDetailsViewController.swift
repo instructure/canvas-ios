@@ -450,7 +450,11 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
-            env.router.route(to: url, from: self)
+            if url.pathComponents.count > 1, url.pathComponents[1] == "files" {
+                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            } else {
+                env.router.route(to: url, from: self)
+            }
             return true
         }
         let path = Array(url.pathComponents.dropFirst(5))

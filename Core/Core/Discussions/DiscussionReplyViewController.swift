@@ -20,7 +20,7 @@ import Foundation
 import QuickLook
 import UIKit
 
-public class DiscussionReplyViewController: UIViewController, CoreWebViewLinkDelegate, ErrorViewController, RichContentEditorDelegate {
+public class DiscussionReplyViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
     var contentHeightObs: NSKeyValueObservation?
     @IBOutlet weak var editorContainer: UIView!
@@ -327,5 +327,16 @@ extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewController
 
     public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         return attachmentURL! as NSURL
+    }
+}
+
+extension DiscussionReplyViewController: CoreWebViewLinkDelegate {
+    public func handleLink(_ url: URL) -> Bool {
+        if url.pathComponents.count > 1, url.pathComponents[1] == "files" {
+            env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+        } else {
+            env.router.route(to: url, from: self)
+        }
+        return true
     }
 }
