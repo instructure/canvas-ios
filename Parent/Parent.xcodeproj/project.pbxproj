@@ -791,6 +791,7 @@
 				5E6441841C3EE2E0003D7397 /* Frameworks */,
 				5E6441851C3EE2E0003D7397 /* Resources */,
 				5E75B5FF1C4D4A7F00A44160 /* Embed Frameworks */,
+				B15CAEDC252629A5006BA9A4 /* Sign Frameworks */,
 				ADAFC3B5838CDB330E525883 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1054,6 +1055,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B15CAEDC252629A5006BA9A4 /* Sign Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# https://pspdfkit.com/guides/ios/current/knowledge-base/library-not-found-swiftpm/\nfind \"${CODESIGNING_FOLDER_PATH}\" -name '*.framework' -print0 | while read -d $'\\0' framework \ndo \n    codesign --force --deep --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"${framework}\" \ndone\n";
 		};
 		FB24C3360B33F479305651E1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
