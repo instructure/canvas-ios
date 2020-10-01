@@ -20,8 +20,6 @@ import TestsFoundation
 @testable import Core
 
 class PagesUITests: MiniCanvasUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [ .nativePageEdit ] }
-
     func testNavigateToPage() {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.pages.tap()

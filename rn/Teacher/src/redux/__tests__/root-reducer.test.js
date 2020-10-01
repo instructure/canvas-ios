@@ -53,7 +53,7 @@ test('contains quizzes subreducer', () => {
 
 test('subreducers count', () => {
   const state: {} = reduce(undefined, dummyAction)
-  expect(Object.keys(state).length).toEqual(8)
+  expect(Object.keys(state).length).toEqual(6)
 })
 
 test('hydrate action will hydrate the store when the expiration is still in the future', () => {
@@ -103,5 +103,5 @@ test('hydrate action will not hydrate the store when the expiration is in the pa
 
 test('logout action', () => {
   const state: {} = reduce(undefined, logout)
-  expect(Object.keys(state).length).toEqual(8)
+  expect(Object.keys(state).length).toEqual(6)
 })

@@ -25,7 +25,6 @@ import httpClient, { httpCache } from './httpClient'
 import parseLink from './utils/parse-link-header'
 import {
   CourseModel,
-  PageModel,
   ToDoModel,
 } from './model'
 
@@ -152,43 +151,6 @@ export class API {
       },
       transform: (course: Course) => new CourseModel(course),
     })
-  }
-
-  getPages (context: CanvasContext, contextID: string): Paginated<PageModel[]> {
-    return this.paginate(`${context}/${contextID}/pages`, {
-      params: {
-        per_page: 100,
-      },
-      transform: (pages: Page[]) => pages.map(page => new PageModel(page)),
-    })
-  }
-
-  createPage (context: CanvasContext, contextID: string, parameters: PageParameters): ApiPromise<PageModel> {
-    return this.post(`${context}/${contextID}/pages`, { wiki_page: parameters }, {
-      transform: (page: Page) => new PageModel(page),
-    })
-  }
-
-  getPage (context: CanvasContext, contextID: string, url: string): ?PageModel {
-    return this.get(`${context}/${contextID}/pages/${url}`, {
-      transform: (page: Page) => new PageModel(page),
-    })
-  }
-
-  getFrontPage (contextID: string): ?PageModel {
-    return this.get(`courses/${contextID}/front_page`, {
-      transform: (page: Page) => new PageModel(page),
-    })
-  }
-
-  updatePage (context: CanvasContext, contextID: string, url: string, parameters: PageParameters): ApiPromise<PageModel> {
-    return this.put(`${context}/${contextID}/pages/${url}`, { wiki_page: parameters }, {
-      transform: (page: Page) => new PageModel(page),
-    })
-  }
-
-  deletePage (context: CanvasContext, contextID: string, url: string): ApiPromise<null> {
-    return this.delete(`${context}/${contextID}/pages/${url}`)
   }
 
   getToDos (): Paginated<ToDoModel[]> {

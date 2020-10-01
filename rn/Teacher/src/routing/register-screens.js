@@ -54,10 +54,6 @@ import ContextCard from '../modules/users/ContextCard'
 import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import Filter from '../modules/filter/Filter'
 import ToDoList from '../modules/to-do/list/ToDoList'
-import FilesList from '../modules/files/FilesList'
-import EditFile from '../modules/files/EditFile'
-import EditFolder from '../modules/files/EditFolder'
-import PageEdit from '../modules/pages/edit/PageEdit'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
@@ -114,31 +110,31 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/discussion_topics/:discussionID', null, store, { deepLink: true })
 
   registerScreen('/files', null, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/files', ExperimentalFeature.nativeFiles.isEnabled ? null : FilesList, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/:context/:contextID/files', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/files/folder/*subFolder', null, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/files/folder/*subFolder', ExperimentalFeature.nativeFiles.isEnabled ? null : FilesList, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/folders/:folderID/edit', ExperimentalFeature.nativeFiles.isEnabled ? null : EditFolder, store)
+  registerScreen('/:context/:contextID/files/folder/*subFolder', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/folders/:folderID/edit', null, store)
 
   registerScreen('/files/:fileID', null, store, { deepLink: true })
   registerScreen('/files/:fileID/download', null, store, { deepLink: true })
   registerScreen('/files/:fileID/preview', null, store, { deepLink: true })
-  registerScreen('/files/:fileID/edit', ExperimentalFeature.nativeFiles.isEnabled ? null : EditFile, store)
+  registerScreen('/files/:fileID/edit', null, store)
   registerScreen('/:context/:contextID/files/:fileID', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/download', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/preview', null, store, { deepLink: true })
-  registerScreen('/:context/:contextID/files/:fileID/edit', ExperimentalFeature.nativeFiles.isEnabled ? null : EditFile, store)
+  registerScreen('/:context/:contextID/files/:fileID/edit', null, store)
 
   registerScreen('/courses/:courseID/section-selector', SectionSelector, store)
   registerScreen('/wrong-app', null, store)
   registerScreen('/filter', Filter, store)
   registerScreen('/to-do', ToDoList, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/pages', null, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/pages/new', ExperimentalFeature.nativePageEdit.isEnabled ? null : PageEdit, store)
+  registerScreen('/:context/:contextID/pages/new', null, store)
   registerScreen('/:context/:contextID/pages/:url', null, store, { deepLink: true })
-  registerScreen('/:context/:contextID/pages/:url/edit', ExperimentalFeature.nativePageEdit.isEnabled ? null : PageEdit, store, { deepLink: true })
+  registerScreen('/:context/:contextID/pages/:url/edit', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/wiki/:url', null, store, { deepLink: true })
-  registerScreen('/:context/:contextID/wiki/:url/edit', PageEdit, store, { deepLink: true })
+  registerScreen('/:context/:contextID/wiki/:url/edit', null, store, { deepLink: true })
   registerScreen('/accounts/:accountID/terms_of_service', null, store, { deepLink: true })
   registerScreen('/profile/settings')
   registerScreen('/support/problem', undefined, undefined, { deepLink: true })

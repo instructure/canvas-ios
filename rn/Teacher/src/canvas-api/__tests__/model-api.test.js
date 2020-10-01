@@ -22,7 +22,6 @@ import {
   API,
   httpCache,
   CourseModel,
-  PageModel,
   ToDoModel,
 } from '../model-api'
 import * as template from '../../__templates__'
@@ -43,14 +42,14 @@ describe('model api', () => {
     const api = new API({ policy: 'cache-only' })
 
     it('immediately returns cached data', () => {
-      expect(api.get('courses/1/pages/test')).toBe(null)
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page)
-      expect(api.get('courses/1/pages/test')).toBe(page)
+      expect(api.get('courses/1')).toBe(null)
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course)
+      expect(api.get('courses/1')).toBe(course)
     })
 
     it('does not hit the network api for GET', () => {
-      api.get('courses/1/pages/test')
+      api.get('courses/1')
       expect(httpClient.get).not.toHaveBeenCalled()
     })
 
@@ -79,20 +78,17 @@ describe('model api', () => {
     const api = new API({ policy: 'network-only' })
 
     it('immediately returns cached data', () => {
-      expect(api.get('courses/1/pages/test')).toBe(null)
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page)
-      expect(api.get('courses/1/pages/test')).toBe(page)
+      expect(api.get('courses/1')).toBe(null)
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course)
+      expect(api.get('courses/1')).toBe(course)
     })
 
     it('hits the network api for cached GET', () => {
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page)
-      api.get('courses/1/pages/test')
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'courses/1/pages/test',
-        {}
-      )
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course)
+      api.get('courses/1')
+      expect(httpClient.get).toHaveBeenCalledWith('courses/1', {})
     })
 
     it('hits the network api for non-GET', () => {
@@ -127,27 +123,24 @@ describe('model api', () => {
     const api = new API({ policy: 'cache-and-network' })
 
     it('immediately returns cached data', () => {
-      expect(api.get('courses/1/pages/test')).toBe(null)
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page)
-      expect(api.get('courses/1/pages/test')).toBe(page)
+      expect(api.get('courses/1')).toBe(null)
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course)
+      expect(api.get('courses/1')).toBe(course)
     })
 
     it('does not hit the network api for cached GET', () => {
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page)
-      api.get('courses/1/pages/test')
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course)
+      api.get('courses/1')
       expect(httpClient.get).not.toHaveBeenCalled()
     })
 
     it('does hit the network api for expired GET', () => {
-      const page = template.pageModel()
-      httpCache.handle('GET', 'courses/1/pages/test', page, { ttl: -1 })
-      api.get('courses/1/pages/test')
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'courses/1/pages/test',
-        {}
-      )
+      const course = template.courseModel()
+      httpCache.handle('GET', 'courses/1', course, { ttl: -1 })
+      api.get('courses/1')
+      expect(httpClient.get).toHaveBeenCalledWith('courses/1', {})
       httpCache.handle('GET', 'users/self/todo', { list: [] }, { ttl: -1 })
       api.paginate('users/self/todo')
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -297,112 +290,6 @@ describe('model api', () => {
       const { transform } = mock(httpClient.get).mock.calls[0][1]
       expect(transform(template.course())).toEqual(
         new CourseModel(template.course())
-      )
-    })
-  })
-
-  describe('pages', () => {
-    const api = new API({ policy: 'network-only' })
-
-    it('can getPages', () => {
-      expect(api.getPages('courses', '1')).toEqual({
-        list: [],
-        next: null,
-        getNextPage: null,
-      })
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'courses/1/pages',
-        {
-          params: { per_page: 100 },
-          transform: expect.any(Function),
-        }
-      )
-      const args = mock(httpClient.get).mock.calls[0]
-      const response = template.apiResponse({ data: [
-        template.page({ title: 'syllabus' }),
-        template.page({ title: 'another' }),
-        template.page({ title: 'Front', front_page: true }),
-      ] })
-      const result = args[1].transform(response.data, response)
-      expect(result.list).toEqual([
-        new PageModel(template.page({ title: 'syllabus' })),
-        new PageModel(template.page({ title: 'another' })),
-        new PageModel(template.page({ title: 'Front', front_page: true })),
-      ])
-    })
-
-    it('can createPage', () => {
-      const page = {
-        title: 'Page 1',
-        body: 'body',
-        editing_roles: 'teachers',
-        published: true,
-        front_page: false,
-      }
-      const promise = api.createPage('courses', '1', page)
-      expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient.post).toHaveBeenCalledWith(
-        'courses/1/pages',
-        { wiki_page: page },
-        { transform: expect.any(Function) }
-      )
-      const { transform } = mock(httpClient.post).mock.calls[0][2]
-      expect(transform(template.page())).toEqual(
-        new PageModel(template.page())
-      )
-    })
-
-    it('can getPage', () => {
-      api.getPage('courses', '1', 'home')
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'courses/1/pages/home',
-        { transform: expect.any(Function) }
-      )
-      const { transform } = mock(httpClient.get).mock.calls[0][1]
-      expect(transform(template.page())).toEqual(
-        new PageModel(template.page())
-      )
-    })
-
-    it('can getFrontPage', () => {
-      api.getFrontPage('1')
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'courses/1/front_page',
-        { transform: expect.any(Function) }
-      )
-      const { transform } = mock(httpClient.get).mock.calls[0][1]
-      expect(transform(template.page())).toEqual(
-        new PageModel(template.page())
-      )
-    })
-
-    it('can updatePage', () => {
-      const page = {
-        title: 'Page 1',
-        body: 'body',
-        editing_roles: 'teachers',
-        published: true,
-        front_page: false,
-      }
-      const promise = api.updatePage('courses', '1', 'test', page)
-      expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient.put).toHaveBeenCalledWith(
-        'courses/1/pages/test',
-        { wiki_page: page },
-        { transform: expect.any(Function) }
-      )
-      const { transform } = mock(httpClient.put).mock.calls[0][2]
-      expect(transform(template.page())).toEqual(
-        new PageModel(template.page())
-      )
-    })
-
-    it('can deletePage', () => {
-      const promise = api.deletePage('courses', '1', 'test')
-      expect(promise).toBeInstanceOf(Promise)
-      expect(httpClient.delete).toHaveBeenCalledWith(
-        'courses/1/pages/test',
-        {}
       )
     })
   })

@@ -21,7 +21,6 @@
 import * as template from '../../__templates__'
 import {
   CourseModel,
-  PageModel,
 } from '../model'
 
 describe('CourseModel', () => {
@@ -29,15 +28,6 @@ describe('CourseModel', () => {
     it('returns course id', () => {
       const course = template.courseModel()
       expect(CourseModel.keyExtractor(course)).toBe(course.id)
-    })
-  })
-})
-
-describe('PageModel', () => {
-  describe('keyExtractor', () => {
-    it('returns page id', () => {
-      const page = template.pageModel()
-      expect(PageModel.keyExtractor(page)).toBe(page.url)
     })
   })
 })
