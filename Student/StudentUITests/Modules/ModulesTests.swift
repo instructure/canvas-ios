@@ -63,6 +63,7 @@ class ModulesTests: CoreUITestCase {
         mockData(GetModuleItemRequest(courseID: "1", moduleID: "1", itemID: "1", include: [.content_details]), value: item1)
         mockData(GetPageRequest(context: .course("1"), url: "page-1"), value: .make(body: "hello", html_url: URL(string: "/courses/1/pages/page-1")!, url: "page-1"))
         mockData(PostMarkModuleItemRead(courseID: "1", moduleID: "1", moduleItemID: "1"))
+        mockData(GetTabsRequest(context: .course("1")), value: [APITab.make(id: "modules")])
         show("courses/1/modules")
         ModuleList.module(section: 0).waitToExist()
         ModuleList.module(section: 1).waitToExist()
