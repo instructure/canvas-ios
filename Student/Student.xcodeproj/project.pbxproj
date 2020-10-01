@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -155,6 +155,7 @@
 		B157A60F22BD78E800963E56 /* AssignmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157A60E22BD78E800963E56 /* AssignmentsViewController.storyboard */; };
 		B157A61122BD790200963E56 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157A61022BD790200963E56 /* AssignmentsViewController.swift */; };
 		B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B175D62123A969F600F8E696 /* IPadAssignmentsTests.swift */; };
+		B1B4E992252641C300B0DDD8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4E991252641C300B0DDD8 /* Lottie */; };
 		B1BB7A8522BAC820006CA068 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BB7A8422BAC820006CA068 /* SubmitAssignmentViewController.swift */; };
 		B1BB7A8822BAC820006CA068 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BB7A8622BAC820006CA068 /* MainInterface.storyboard */; };
 		B1BB7A9122BADAC1006CA068 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; };
@@ -767,6 +768,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B4E992252641C300B0DDD8 /* Lottie in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				7DBF920222690E9400710D0F /* CanvasCore.framework in Frameworks */,
@@ -1878,6 +1880,9 @@
 				B1BB7A8B22BAC820006CA068 /* PBXTargetDependency */,
 			);
 			name = Student;
+			packageProductDependencies = (
+				B1B4E991252641C300B0DDD8 /* Lottie */,
+			);
 			productName = Canvas;
 			productReference = 492704731CF4AF7100C631C6 /* Student.app */;
 			productType = "com.apple.product-type.application";
@@ -2116,6 +2121,9 @@
 				it,
 			);
 			mainGroup = 4927046A1CF4AF7100C631C6;
+			packageReferences = (
+				B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 492704741CF4AF7100C631C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2329,7 +2337,6 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
 			);
@@ -2374,7 +2381,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -2499,7 +2505,6 @@
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKit/PSPDFKit.framework/PSPDFKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/PSPDFKitUI/PSPDFKitUI.framework/PSPDFKitUI",
 			);
@@ -2544,7 +2549,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKitUI.framework",
 			);
@@ -3677,6 +3681,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1B4E991252641C300B0DDD8 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1B4E990252641C300B0DDD8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4927046B1CF4AF7100C631C6 /* Project object */;
 }

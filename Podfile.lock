@@ -126,7 +126,6 @@ PODS:
     - GoogleUtilities/Logger
   - Interactable (0.0.9):
     - React
-  - lottie-ios (3.1.8)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -134,9 +133,9 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
-  - PSPDFKit (9.5.2):
-    - PSPDFKit/Core (= 9.5.2)
-  - PSPDFKit/Core (9.5.2)
+  - PSPDFKit (10.0.0):
+    - PSPDFKit/Core (= 10.0.0)
+  - PSPDFKit/Core (10.0.0)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -410,8 +409,7 @@ DEPENDENCIES:
   - glog (from `./rn/Teacher/node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities (~> 6.0)
   - Interactable (from `./rn/Teacher/node_modules/react-native-interactable`)
-  - lottie-ios (~> 3.1.8)
-  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec`)
+  - PSPDFKit (from `https://customers.pspdfkit.com/pspdfkit-ios/10.0.0.podspec`)
   - RCTRequired (from `./rn/Teacher/node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `./rn/Teacher/node_modules/react-native/Libraries/TypeSafety`)
   - React (from `./rn/Teacher/node_modules/react-native/`)
@@ -465,7 +463,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
-    - lottie-ios
     - nanopb
     - PromisesObjC
     - Protobuf
@@ -486,7 +483,7 @@ EXTERNAL SOURCES:
   Interactable:
     :path: "./rn/Teacher/node_modules/react-native-interactable"
   PSPDFKit:
-    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec
+    :podspec: https://customers.pspdfkit.com/pspdfkit-ios/10.0.0.podspec
   RCTRequired:
     :path: "./rn/Teacher/node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -577,11 +574,10 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 0f39025e8cf51f168711bd3fb773938d7e62ddb5
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   Interactable: 0a9f2a42b02ea03114d7e03e714d946a65cd8d0b
-  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
-  PSPDFKit: 55defc08dc144ed2ef87dae903bf4977cf089722
+  PSPDFKit: 1a6adca9a745716adf3f51459d7163bf639dc0d3
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -616,6 +612,6 @@ SPEC CHECKSUMS:
   RNSound: da030221e6ac7e8290c6b43f2b5f2133a8e225b0
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 470527ea7733a975f6933c8d902f18cd7b8cc19b
+PODFILE CHECKSUM: f195ea6993d67b3a1663f4bc64101d0467a8dee2
 
 COCOAPODS: 1.10.0.rc.1

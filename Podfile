@@ -19,11 +19,7 @@ def canvas_crashlytics_rn_firebase_pods
 end
 
 def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/9.5.2.podspec'
-end
-
-def lottie
-  pod 'lottie-ios', '~> 3.1.8'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/10.0.0.podspec'
 end
 
 def react_native_pods
@@ -80,13 +76,11 @@ abstract_target 'defaults' do
   target 'Student' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    lottie
   end
 
   target 'StudentUnitTests' do
     project 'Student/Student.xcodeproj'
     firebase_pods
-    lottie
   end
 
   target 'CanvasCore' do
