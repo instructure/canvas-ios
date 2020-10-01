@@ -76,7 +76,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
         lockView.isHidden = true
 
-        if presentingViewController != nil, navigationItem.leftBarButtonItem == nil {
+        if presentingViewController != nil, navigationItem.leftBarButtonItem == nil, navigationController?.tabBarItem.title == nil {
             addDoneButton(side: .left)
         }
         navigationItem.rightBarButtonItem = env.app == .teacher ? editButton : shareButton
