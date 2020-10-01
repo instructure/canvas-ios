@@ -121,38 +121,4 @@ class PageDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.titleSubtitleView.title, "Front Page")
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
-
-    func testUpdatesThePageOnEdit() {
-        controller.view.layoutIfNeeded()
-        NotificationCenter.default.post(name: NSNotification.Name("page-edit"), object: nil, userInfo: apiPageToDictionary(page: .make(
-           html_url: htmlURL,
-           title: "Changed",
-           url: "changed"
-        )))
-        XCTAssertEqual(controller.titleSubtitleView.title, "Changed")
-        XCTAssertEqual(controller.pageURL, "changed")
-    }
-
-    func testUpdatesFrontPageWhenChanged() {
-        let prevFront = Page.make(from: .make(
-            front_page: true,
-            html_url: URL(string: "/courses/1/pages/front-page")!,
-            page_id: "1234"
-        ))
-        controller.view.layoutIfNeeded()
-        NotificationCenter.default.post(name: NSNotification.Name("page-edit"), object: nil, userInfo: apiPageToDictionary(page: .make(
-            front_page: true,
-            html_url: htmlURL,
-            url: pageURL
-        )))
-        XCTAssertEqual(prevFront.isFrontPage, false)
-        XCTAssertEqual(controller.page?.isFrontPage, true)
-    }
-
-    func apiPageToDictionary(page: APIPage) -> [String: Any] {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = try! encoder.encode(page)
-        return try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
-    }
 }

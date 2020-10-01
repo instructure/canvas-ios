@@ -264,7 +264,7 @@ open class CoreUITestCase: XCTestCase {
             expiresAt: nil,
             locale: "en",
             refreshToken: nil,
-            userID: "",
+            userID: "1",
             userName: ""
         ), file: file, line: line)
     }
