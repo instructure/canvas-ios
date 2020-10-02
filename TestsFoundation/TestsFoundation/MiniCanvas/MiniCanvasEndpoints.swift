@@ -242,7 +242,7 @@ enum MiniCanvasEndpoints {
             request.state.userEnrollments()
         },
         .apiRequest(GetEnrollmentsRequest(context: Pattern.courseContext)) { request in
-            request.state.enrollments.filter { $0.course_id == request[Pattern.courseID]! }
+            request.state.enrollments.filter { $0.course_id?.value == request[Pattern.courseID]! }
         },
 
         // MARK: Favorites
@@ -481,12 +481,12 @@ enum MiniCanvasEndpoints {
             }
 
             let api = APISubmission.make(
-                id: request.state.nextId(),
-                assignment_id: assignment.api.id,
+                assignment: assignment.api,
+                assignment_id: assignment.api.id.value,
                 body: submission.body,
+                id: request.state.nextId().value,
                 submission_type: submission.submission_type,
-                url: submission.url,
-                assignment: assignment.api
+                url: submission.url
             )
             assignment.submissions.append(MiniSubmission(api))
             return api
@@ -509,7 +509,7 @@ enum MiniCanvasEndpoints {
                 }
                 submission.api.submission_comments!.append(APISubmissionComment.make(
                     id: request.state.nextId().value,
-                    author_id: request.state.selfId,
+                    author_id: ID(request.state.selfId),
                     author_name: request.state.selfUser.name,
                     author: .make(from: request.state.selfUser),
                     comment: comment.text_comment ?? "",
@@ -573,7 +573,7 @@ enum MiniCanvasEndpoints {
         .rest("/users/self") { _ in .ok(.htmlBody("")) },
         .apiRequest(GetDashboardCardsRequest()) { request in
             let courses: [(MiniCourse, String)] = try request.state.userEnrollments().map { enrollment in
-                guard let course = request.state.course(byId: enrollment.course_id!) else {
+                guard let course = request.state.course(byId: enrollment.course_id!.value) else {
                     throw ServerError.notFound
                 }
                 return (course, enrollment.type)

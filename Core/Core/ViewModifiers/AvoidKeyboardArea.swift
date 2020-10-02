@@ -46,7 +46,7 @@ struct AvoidKeyboardArea: ViewModifier {
 }
 
 extension View {
-    func avoidKeyboardArea() -> some View {
+    public func avoidKeyboardArea() -> some View {
         modifier(AvoidKeyboardArea())
     }
 }

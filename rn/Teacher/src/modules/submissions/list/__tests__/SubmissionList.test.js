@@ -254,7 +254,7 @@ test('should navigate to a submission', () => {
   instance.navigateToSubmission(1)(submission.user.id)
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/2',
-    { modal: true, modalPresentationStyle: 'fullscreen' },
+    { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
     { filter: expect.any(Function), studentIndex: 1, onDismiss: expect.any(Function) }
   )
 

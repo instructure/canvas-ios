@@ -36,35 +36,37 @@ public final class SubmissionList: NSManagedObject {
 final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
-    @NSManaged public var userID: String
+    @NSManaged public var attachments: Set<File>?
+    @NSManaged public var attempt: Int
     @NSManaged public var body: String?
+    @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged var excusedRaw: NSNumber?
+    @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
+    @NSManaged public var gradedAt: Date?
+    @NSManaged public var gradeMatchesCurrentSubmission: Bool
     @NSManaged public var groupID: String?
     @NSManaged public var groupName: String?
     @NSManaged public var id: String
+    @NSManaged public var isLatest: Bool
     @NSManaged public var late: Bool
     @NSManaged var latePolicyStatusRaw: String?
     @NSManaged public var missing: Bool
     @NSManaged var pointsDeductedRaw: NSNumber?
-    @NSManaged var scoreRaw: NSNumber?
-    @NSManaged var typeRaw: String?
-    @NSManaged public var submittedAt: Date?
-    @NSManaged public var workflowStateRaw: String
-    @NSManaged public var attempt: Int
-    @NSManaged public var attachments: Set<File>?
-    @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @NSManaged public var postedAt: Date?
     @NSManaged public var previewUrl: URL?
-    @NSManaged public var url: URL?
-    @NSManaged public var gradedAt: Date?
-    @NSManaged public var gradeMatchesCurrentSubmission: Bool
-    @NSManaged public var externalToolURL: URL?
-    @NSManaged public var sortableName: String?
+    @NSManaged var scoreRaw: NSNumber?
     @NSManaged public var shuffleOrder: String
-    @NSManaged public var isLatest: Bool
+    @NSManaged public var sortableName: String?
+    @NSManaged public var submittedAt: Date?
+    @NSManaged var typeRaw: String?
+    @NSManaged public var url: URL?
+    @NSManaged public var userID: String
+    @NSManaged public var workflowStateRaw: String
 
-    @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
+    @NSManaged public var enrollments: Set<Enrollment>
     @NSManaged public var mediaComment: MediaComment?
+    @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
     @NSManaged public var user: User?
 
     public var rubricAssessments: RubricAssessments? {
@@ -126,29 +128,30 @@ extension Submission: WriteableModel {
             item.attempt ?? 0
         )
         let model: Submission = client.fetch(predicate).first ?? client.insert()
-        model.id = item.id.value
         model.assignmentID = item.assignment_id.value
-        model.userID = item.user_id.value
-        model.body = item.body
-        model.grade = item.grade
-        model.groupID = item.group_id?.value
-        model.groupName = item.group_name
-        model.score = item.score
-        model.submittedAt = item.submitted_at
-        model.late = item.late
-        model.excused = item.excused
-        model.missing = item.missing
-        model.workflowState = item.workflow_state
-        model.latePolicyStatus = item.late_policy_status
-        model.pointsDeducted = item.points_deducted
         model.attempt = item.attempt ?? 0
-        model.type = item.submission_type
-        model.url = item.url
-        model.previewUrl = item.preview_url
+        model.body = item.body
+        model.excused = item.excused
+        model.externalToolURL = item.external_tool_url?.rawValue
+        model.grade = item.grade
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
-        model.externalToolURL = item.external_tool_url?.rawValue
+        model.groupID = item.group_id?.value
+        model.groupName = item.group_name
+        model.id = item.id.value
+        model.late = item.late
+        model.latePolicyStatus = item.late_policy_status
+        model.missing = item.missing
+        model.pointsDeducted = item.points_deducted
+        model.postedAt = item.posted_at
+        model.previewUrl = item.preview_url
+        model.score = item.score
         model.sortableName = item.group_name ?? item.user?.sortable_name
+        model.submittedAt = item.submitted_at
+        model.type = item.submission_type
+        model.url = item.url
+        model.userID = item.user_id.value
+        model.workflowState = item.workflow_state
         if let user = item.user {
             model.user = User.save(user, in: client)
         }
@@ -190,7 +193,7 @@ extension Submission: WriteableModel {
             // don't save histories where attempts are null or else it will overwrite
             // the top level submission. This is the case for submissions with a grade
             // but are still "unsubmitted"
-            for var submission in submissionHistory where submission.attempt != nil {
+            for var submission in submissionHistory where submission.attempt != nil && submission.attempt != item.attempt {
                 submission.user = item.user
                 Submission.save(submission, in: client).isLatest = false
             }
@@ -216,6 +219,14 @@ extension Submission: WriteableModel {
                 let a = RubricAssessment.save(i, in: client, id: k, submissionID: item.id.value)
                 model.rubricAssesmentRaw?.insert(a)
             }
+        }
+
+        if let courseID = model.assignment?.courseID {
+            let enrollments: [Enrollment] = client.fetch(NSPredicate(format: "%K == %@ AND %K == %@",
+                #keyPath(Enrollment.canvasContextID), "course_\(courseID)",
+                #keyPath(Enrollment.userID), item.user_id.value
+            ))
+            model.enrollments.formUnion(enrollments)
         }
 
         return model

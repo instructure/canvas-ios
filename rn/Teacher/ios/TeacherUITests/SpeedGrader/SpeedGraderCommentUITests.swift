@@ -51,14 +51,14 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         let teacher = mocked.teachers.first!
         let teacherComment = APISubmissionComment.make(
             id: mocked.nextId().value,
-            author_id: teacher.id.value,
+            author_id: teacher.id,
             author_name: teacher.name,
             author: .make(from: teacher),
             comment: "Completely incorrect"
         )
         let studentComment = APISubmissionComment.make(
             id: mocked.nextId().value,
-            author_id: student.id.value,
+            author_id: student.id,
             author_name: student.name,
             author: .make(from: student),
             comment: "no u"

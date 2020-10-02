@@ -58,6 +58,9 @@ open class AvatarView: UIView {
     public var url: URL? {
         didSet {
             let url = Avatar.scrubbedURL(self.url)
+            sendSubviewToBack(imageView)
+            imageView.backgroundColor = .backgroundLight
+            imageView.contentMode = .scaleAspectFill
             imageView.load(url: url)
             label.isHidden = url != nil
         }
@@ -67,6 +70,18 @@ open class AvatarView: UIView {
     public var name: String = "" {
         didSet {
             label.text = Avatar.initials(for: name)
+        }
+    }
+
+    public var icon: UIImage? {
+        get { imageView.image }
+        set {
+            bringSubviewToFront(imageView)
+            imageView.backgroundColor = nil
+            imageView.contentMode = .center
+            imageView.image = newValue
+            label.text = ""
+            label.isHidden = false
         }
     }
 }

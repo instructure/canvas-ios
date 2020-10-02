@@ -44,22 +44,32 @@ class RoutesTests: XCTestCase {
     func testRouteSendsNotification() {
         let userInfo = userInfoFromRoute(options: .push)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
-        XCTAssertEqual(userInfo?["modal"] as? Bool, false)
-        XCTAssertEqual(userInfo?["detail"] as? Bool, false)
+        XCTAssertNil(userInfo?["modal"])
+        XCTAssertNil(userInfo?["detail"])
+        XCTAssertNil(userInfo?["embedInNavigationController"])
     }
 
     func testModalOption() {
-        let userInfo = userInfoFromRoute(options: .modal())
+        let userInfo = userInfoFromRoute(options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true))
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
         XCTAssertEqual(userInfo?["modal"] as? Bool, true)
-        XCTAssertEqual(userInfo?["detail"] as? Bool, false)
+        XCTAssertNil(userInfo?["detail"])
+        XCTAssertEqual(userInfo?["embedInNavigationController"] as? Bool, true)
+        XCTAssertEqual(userInfo?["disableSwipeDownToDismissModal"] as? Bool, true)
+        XCTAssertEqual(userInfo?["modalPresentationStyle"] as? String, "fullscreen")
+
+        let formSheet = userInfoFromRoute(options: .modal(.formSheet))
+        XCTAssertEqual(formSheet?["embedInNavigationController"] as? Bool, false)
+        XCTAssertEqual(formSheet?["disableSwipeDownToDismissModal"] as? Bool, false)
+        XCTAssertEqual(formSheet?["modalPresentationStyle"] as? String, "formsheet")
     }
 
     func testDetailOption() {
         let userInfo = userInfoFromRoute(options: .detail)
         XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
-        XCTAssertEqual(userInfo?["modal"] as? Bool, false)
+        XCTAssertNil(userInfo?["modal"])
         XCTAssertEqual(userInfo?["detail"] as? Bool, true)
+        XCTAssertEqual(userInfo?["embedInNavigationController"] as? Bool, true)
     }
 
     func testRoutes() {
@@ -86,6 +96,12 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
+        ExperimentalFeature.nativeSpeedGrader.isEnabled = false
+        XCTAssert(router.match("/courses/1/assignments/1/submissions") is HelmViewController)
+        XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is HelmViewController)
+        ExperimentalFeature.nativeSpeedGrader.isEnabled = true
+        XCTAssert(router.match("/courses/1/assignments/1/submissions") is SubmissionListViewController)
+        XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is CoreHostingController<SpeedGraderView>)
         ExperimentalFeature.nativeFiles.isEnabled = false
         XCTAssert(router.match("/files") is HelmViewController)
         XCTAssert(router.match("/users/self/files") is HelmViewController)

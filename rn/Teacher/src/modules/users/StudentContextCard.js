@@ -170,7 +170,7 @@ export class ContextCard extends Component<ContextCardProps> {
         assignment={submission.assignment}
         submission={submission}
         user={this.props.user}
-        onPress={this._navigateToSpeedGrader}
+        onPress={this._navigateToSubmission}
       />
     )
   }
@@ -228,15 +228,9 @@ export class ContextCard extends Component<ContextCardProps> {
     }
   }
 
-  _navigateToSpeedGrader = (assignment: Assignment) => {
-    const user = this.props.user
-    let filter = (submissions: any) => submissions.filter((s) => s.userID === user.id)
-
-    let url = `${assignment.html_url}/submissions/${user.id}`
-    this.props.navigator.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
-      studentIndex: 0,
-      filter,
-    })
+  _navigateToSubmission = (assignment: Assignment) => {
+    let url = `${assignment.html_url}/submissions/${this.props.user.id}`
+    this.props.navigator.show(url, { modal: true })
   }
 }
 

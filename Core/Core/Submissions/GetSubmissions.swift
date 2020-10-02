@@ -80,11 +80,15 @@ public class CreateSubmission: APIUseCase {
 
     public var cacheKey: String?
 
-    public var scope: Scope {
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Submission.assignmentID), assignmentID, #keyPath(Submission.userID), userID)
-        let sort = NSSortDescriptor(key: #keyPath(Submission.attempt), ascending: false)
-        return Scope(predicate: predicate, order: [sort])
-    }
+    public var scope: Scope { Scope(
+        predicate: NSPredicate(
+            format: "%K == %@ AND %K == %@",
+            #keyPath(Submission.assignmentID), assignmentID,
+            #keyPath(Submission.userID), userID
+        ),
+        orderBy: #keyPath(Submission.attempt),
+        ascending: false
+    ) }
 
     public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APISubmission?, URLResponse?, Error?) -> Void) {
         environment.api.makeRequest(request) { [weak self] response, urlResponse, error in
@@ -157,10 +161,10 @@ public class GetSubmissions: CollectionUseCase {
 
     public let context: Context
     public let assignmentID: String
-    public var filter: Filter?
+    public var filter: [Filter]
     public var shuffled: Bool
 
-    public init(context: Context, assignmentID: String, filter: Filter?, shuffled: Bool = false) {
+    public init(context: Context, assignmentID: String, filter: [Filter] = [], shuffled: Bool = false) {
         self.assignmentID = assignmentID
         self.context = context
         self.filter = filter
@@ -177,8 +181,7 @@ public class GetSubmissions: CollectionUseCase {
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
-            filter?.predicate,
-        ].compactMap { $0 }),
+        ] + filter.map { $0.predicate }),
         order: [ shuffled ?
             NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
             NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
@@ -189,6 +192,8 @@ public class GetSubmissions: CollectionUseCase {
         case late, notSubmitted, needsGrading, graded
         case scoreAbove(Double)
         case scoreBelow(Double)
+        case user(String)
+        case section(Set<String>)
 
         public init?(rawValue: String?) {
             guard let rawValue = rawValue else { return nil }
@@ -211,6 +216,10 @@ public class GetSubmissions: CollectionUseCase {
                     self = .scoreAbove(score)
                 } else if parts.count == 3, parts[0] == "score", parts[1] == "below", let score = Double(parts[2]) {
                     self = .scoreBelow(score)
+                } else if parts.count == 2, parts[0] == "user" {
+                    self = .user(String(parts[1]))
+                } else if parts.count >= 2, parts[0] == "section" {
+                    self = .section(Set(parts.dropFirst().map { String($0) }))
                 } else {
                     return nil
                 }
@@ -231,6 +240,10 @@ public class GetSubmissions: CollectionUseCase {
                 return "score_above_\(score)"
             case .scoreBelow(let score):
                 return "score_below_\(score)"
+            case .user(let userID):
+                return "user_\(userID)"
+            case .section(let sectionIDs):
+                return "section_\(sectionIDs.sorted().joined(separator: "_"))"
             }
         }
 
@@ -260,9 +273,39 @@ public class GetSubmissions: CollectionUseCase {
                     #keyPath(Submission.workflowStateRaw)
                 )
             case .scoreAbove(let score):
-                return NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), score)
+                return NSPredicate(format: "%K > %@", #keyPath(Submission.scoreRaw), NSNumber(value: score))
             case .scoreBelow(let score):
-                return NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), score)
+                return NSPredicate(format: "%K < %@", #keyPath(Submission.scoreRaw), NSNumber(value: score))
+            case .user(let userID):
+                return NSPredicate(key: #keyPath(Submission.userID), equals: userID)
+            case .section(let sectionIDs):
+                return NSPredicate(format: "ANY %K IN %@", #keyPath(Submission.enrollments.courseSectionID), sectionIDs)
+            }
+        }
+
+        public var name: String? {
+            switch self {
+            case .late:
+                return SubmissionStatus.late.text
+            case .notSubmitted:
+                return SubmissionStatus.notSubmitted.text
+            case .needsGrading:
+                return NSLocalizedString("Needs Grading")
+            case .graded:
+                return NSLocalizedString("Graded")
+            case .scoreBelow(let score):
+                return String.localizedStringWithFormat(NSLocalizedString("Scored below %g"), score)
+            case .scoreAbove(let score):
+                return String.localizedStringWithFormat(NSLocalizedString("Scored above %g"), score)
+            case .user(let userID):
+                let user: User? = AppEnvironment.shared.database.viewContext.first(where: #keyPath(User.id), equals: userID)
+                return user?.shortName
+            case .section(let sectionIDs):
+                let sections: [CourseSection] = AppEnvironment.shared.database.viewContext.fetch(
+                    NSPredicate(format: "%K IN %@", #keyPath(CourseSection.id), sectionIDs),
+                    sortDescriptors: [NSSortDescriptor(key: #keyPath(CourseSection.name), naturally: true)]
+                )
+                return ListFormatter.localizedString(from: sections.map { $0.name })
             }
         }
     }

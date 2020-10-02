@@ -241,8 +241,8 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testMutlipleSubmissions() {
-        let a = APISubmission.make(id: "1", assignment_id: "1", user_id: "1")
-        let b = APISubmission.make(id: "2", assignment_id: "1", user_id: "2")
+        let a = APISubmission.make(assignment_id: "1", id: "1", user_id: "1")
+        let b = APISubmission.make(assignment_id: "1", id: "2", user_id: "2")
         let assignment = Assignment.make(from: APIAssignment.make(submissions: [a, b]), in: databaseClient)
 
         XCTAssertEqual(assignment.submissions?.count, 2)
@@ -256,9 +256,9 @@ class AssignmentTests: CoreTestCase {
     func testRequiresLTILaunchToViewSubmission() {
         let onPaper = Assignment.make(from: .make(id: "1", submission_types: [.on_paper]))
         let externalTool = Assignment.make(from: .make(id: "2", submission_types: [.external_tool]))
-        let onlineUploadWithAttachment = Submission.make(from: .make(submission_type: .online_upload, attempt: 1, attachments: [.make(id: "1")]))
-        let onlineUploadWithoutAttachment = Submission.make(from: .make(submission_type: .online_upload, attempt: 2, attachments: []))
-        let onlineQuizWithAttachment = Submission.make(from: .make(submission_type: .online_quiz, attempt: 3, attachments: [.make(id: "2")]))
+        let onlineUploadWithAttachment = Submission.make(from: .make(attachments: [.make(id: "1")], attempt: 1, submission_type: .online_upload))
+        let onlineUploadWithoutAttachment = Submission.make(from: .make(attachments: [], attempt: 2, submission_type: .online_upload))
+        let onlineQuizWithAttachment = Submission.make(from: .make(attachments: [.make(id: "2")], attempt: 3, submission_type: .online_quiz))
         XCTAssertFalse(onPaper.requiresLTILaunch(toViewSubmission: onlineUploadWithAttachment))
         XCTAssertFalse(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithAttachment))
         XCTAssertTrue(externalTool.requiresLTILaunch(toViewSubmission: onlineUploadWithoutAttachment))
@@ -330,7 +330,7 @@ class AssignmentTests: CoreTestCase {
     func testUsedAttempts() {
         let a = Assignment.make(from: .make(submission: nil))
         XCTAssertEqual(a.usedAttempts, 0)
-        a.submission = Submission.make(from: .make(submitted_at: nil, attempt: 1))
+        a.submission = Submission.make(from: .make(attempt: 1, submitted_at: nil))
         XCTAssertEqual(a.usedAttempts, 1)
         a.submission = Submission.make(from: .make(attempt: nil))
         XCTAssertEqual(a.usedAttempts, 0)

@@ -95,10 +95,10 @@ class AssignmentDetailsTests: CoreUITestCase {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(
-                submission_type: .discussion_topic,
                 discussion_entries: [ APIDiscussionEntry.make(
                     message: "My discussion entry"
-                ), ]
+                ), ],
+                submission_type: .discussion_topic
             ),
             submission_types: [ .discussion_topic ]
         ))
@@ -287,11 +287,11 @@ class AssignmentDetailsTests: CoreUITestCase {
             due_at: Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
             submission: APISubmission.make(
                 grade: "85",
-                score: 85,
                 late: true,
-                workflow_state: .graded,
                 late_policy_status: .late,
-                points_deducted: 5
+                points_deducted: 5,
+                score: 85,
+                workflow_state: .graded
             )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")

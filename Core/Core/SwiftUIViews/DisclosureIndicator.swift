@@ -24,6 +24,6 @@ public struct DisclosureIndicator: View {
     public var body: some View {
         Image(systemName: "chevron.right")
             .flipsForRightToLeftLayoutDirection(true)
-            .accentColor(.borderMedium)
+            .foregroundColor(.borderMedium)
     }
 }

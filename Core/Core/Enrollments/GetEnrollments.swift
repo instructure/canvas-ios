@@ -19,16 +19,16 @@
 import CoreData
 import Foundation
 
-class GetEnrollments: CollectionUseCase {
-    typealias Model = Enrollment
+public class GetEnrollments: CollectionUseCase {
+    public typealias Model = Enrollment
 
-    let cacheKey: String?
-    let context: Context
-    let gradingPeriodID: String?
-    let request: GetEnrollmentsRequest
-    let scope: Scope
+    public let cacheKey: String?
+    public let context: Context
+    public let gradingPeriodID: String?
+    public let request: GetEnrollmentsRequest
+    public let scope: Scope
 
-    init(
+    public init(
         context: Context,
         userID: String? = nil,
         gradingPeriodID: String? = nil,
@@ -62,7 +62,7 @@ class GetEnrollments: CollectionUseCase {
         cacheKey = "\(request.path)?\(url.query ?? "")"
     }
 
-    func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
             let enrollment: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: item.id!.rawValue) ?? client.insert()
             enrollment.update(fromApiModel: item, course: nil, gradingPeriodID: gradingPeriodID, in: client)

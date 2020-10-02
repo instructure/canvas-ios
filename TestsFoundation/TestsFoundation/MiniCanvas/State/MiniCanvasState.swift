@@ -73,7 +73,7 @@ public class MiniCanvasState {
 extension MiniCanvasState {
     public func enroll(_ user: APIUser, intoCourse course: MiniCourse, as role: String, observing: APIUser? = nil) {
         let enrollment = APIEnrollment.make(
-            id: nextId(),
+            id: nextId().value,
             course_id: course.id,
             type: role,
             user_id: user.id.value,
@@ -101,7 +101,7 @@ extension MiniCanvasState {
     public var selfUser: APIUser { user(byId: selfId)! }
 
     public func userEnrollments(forId id: String? = nil) -> [APIEnrollment] {
-        enrollments.filter { $0.user_id == id ?? selfId }
+        enrollments.filter { $0.user_id.value == id ?? selfId }
     }
 
     public func nextId() -> ID {

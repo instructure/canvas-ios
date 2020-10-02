@@ -108,9 +108,9 @@ class SubmissionTests: CoreTestCase {
 
     func testSubtitle() {
         let submission = Submission.make(from: .make(
-            body: "<a style=\"stuff\">Text</z>",
-            attempt: 1,
             attachments: [ .make(size: 1234) ],
+            attempt: 1,
+            body: "<a style=\"stuff\">Text</z>",
             discussion_entries: [ .make(message: "<p>reply<p>") ],
             url: URL(string: "https://instructure.com")
         ))
@@ -231,10 +231,10 @@ class SubmissionTests: CoreTestCase {
         let submittedScore = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .submitted))
         XCTAssertFalse(submittedScore.needsGrading)
 
-        let regraded = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .graded, grade_matches_current_submission: false))
+        let regraded = Submission.make(from: .make(grade_matches_current_submission: false, score: 10, submission_type: .online_url, workflow_state: .graded))
         XCTAssertTrue(regraded.needsGrading)
 
-        let resubmitted = Submission.make(from: .make(score: 10, submission_type: .online_url, workflow_state: .submitted, grade_matches_current_submission: false))
+        let resubmitted = Submission.make(from: .make(grade_matches_current_submission: false, score: 10, submission_type: .online_url, workflow_state: .submitted))
         XCTAssertTrue(resubmitted.needsGrading)
     }
 
@@ -262,7 +262,7 @@ class SubmissionTests: CoreTestCase {
         let submitted = Submission.make(from: .make(submitted_at: Date()))
         XCTAssertEqual(submitted.status, .submitted)
 
-        let notSubmitted = Submission.make(from: .make(submitted_at: nil, late: false, missing: false))
+        let notSubmitted = Submission.make(from: .make(late: false, missing: false, submitted_at: nil))
         XCTAssertEqual(notSubmitted.status, .notSubmitted)
     }
 }
