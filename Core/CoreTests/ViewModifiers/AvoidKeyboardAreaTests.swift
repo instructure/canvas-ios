@@ -49,9 +49,4 @@ class AvoidKeyboardAreaTests: CoreTestCase {
             UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100),
         ])
     }
-
-    func testViewExtension() {
-        let view = SwiftUI.EmptyView().avoidKeyboardArea()
-        XCTAssert(view is ModifiedContent<SwiftUI.EmptyView, AvoidKeyboardArea>)
-    }
 }

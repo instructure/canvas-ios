@@ -46,7 +46,12 @@ struct AvoidKeyboardArea: ViewModifier {
 }
 
 extension View {
-    func avoidKeyboardArea() -> some View {
-        modifier(AvoidKeyboardArea())
+    @ViewBuilder
+    public func avoidKeyboardArea() -> some View {
+        if #available(iOS 14, *) {
+            self
+        } else {
+            modifier(AvoidKeyboardArea())
+        }
     }
 }

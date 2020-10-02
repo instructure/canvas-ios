@@ -65,7 +65,6 @@ public class FilePicker: NSObject {
                 controller.delegate = self
                 controller.sourceType = .photoLibrary
                 controller.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
-                controller.modalPresentationStyle = .overCurrentContext
                 self?.env.router.show(controller, from: from, options: .modal())
             }
         }
