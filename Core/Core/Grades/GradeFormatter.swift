@@ -45,15 +45,22 @@ public class GradeFormatter {
         return formatter
     }()
 
+    public static let percentFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
+        formatter.numberStyle = .percent
+        return formatter
+    }()
+
     public var gradeStyle: Style = .short
     public var gradingType: GradingType = .points
     public var pointsPossible: Double = 0
-    public var userID: String?
     public var placeholder = "-"
 
     public static func string(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
         let formatter = GradeFormatter()
-        formatter.userID = userID
         formatter.pointsPossible = assignment.pointsPossible ?? 0
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
@@ -106,7 +113,7 @@ public class GradeFormatter {
     }
 
     private func format(_ number: Double) -> String? {
-        return GradeFormatter.numberFormatter.string(from: NSNumber(value: number))
+        return GradeFormatter.numberFormatter.string(from: GradeFormatter.truncate(number))
     }
 
     private func medium(score: Double, grade: String? = nil) -> String {
@@ -119,5 +126,53 @@ public class GradeFormatter {
             return "\(score) / \(pointsPossible) (\(grade))"
         }
         return "\(score) / \(pointsPossible)"
+    }
+
+    private static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
+        var rounded = round(value * factor) / factor
+        // We don't want to round to next integer
+        if (trunc(rounded) != trunc(value)) {
+            rounded = trunc(value * factor) / factor
+        }
+        return NSNumber(value: rounded)
+    }
+
+    // For teachers & graders in submission list
+    public static func graderString(from assignment: Assignment?, submission: Submission?) -> String {
+        guard assignment?.gradingType != .not_graded else { return "" }
+
+        let placeholder = NSLocalizedString("--", comment: "placeholder for the score of an ungraded submission")
+        guard let assignment = assignment, let submission = submission,
+            submission.workflowState != .unsubmitted, !submission.needsGrading
+        else { return placeholder }
+
+        guard submission.excused != true else { return NSLocalizedString("Excused") }
+
+        switch assignment.gradingType {
+        case .percent:
+            return (submission.grade?.replacingOccurrences(of: "%", with: "")).flatMap { Double($0) }
+                .flatMap { percentFormatter.string(from: truncate($0 / 100, factor: 10000)) }
+                ?? placeholder
+        case .points:
+            return (submission.score ?? submission.grade.flatMap { Double($0) })
+                .flatMap { numberFormatter.string(from: truncate($0)) }
+                ?? placeholder
+        default:
+            switch submission.grade {
+            case "pass":
+                return NSLocalizedString("Pass")
+            case "fail":
+                return NSLocalizedString("Fail")
+            case "complete":
+                return NSLocalizedString("Complete")
+            case "incomplete":
+                return NSLocalizedString("Incomplete")
+            default:
+                return submission.grade.flatMap { Double($0) }
+                    .flatMap { numberFormatter.string(from: truncate($0)) }
+                    ?? submission.grade
+                    ?? placeholder
+            }
+        }
     }
 }

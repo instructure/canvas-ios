@@ -37,9 +37,9 @@ class SubmissionFilesTests: CoreUITestCase {
             APIFile.make(id: "2", display_name: "File 2"),
         ]
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
-            user_id: "1",
+            attachments: attachments,
             submission_type: .online_upload,
-            attachments: attachments
+            user_id: "1"
         ))
         attachments.forEach { mockURL($0.url!.rawValue, data: nil) }
 

@@ -50,12 +50,29 @@ class TeacherRouter: Router {
     override func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
         guard let url = url.url else { return }
         let name = NSNotification.Name("route")
-        let notificationInfo: [AnyHashable: Any] = [
-            "url": url.absoluteString,
-            "modal": options.isModal,
-            "detail": options.isDetail,
+        var notificationInfo: [AnyHashable: Any] = [
             "props": userInfo ?? [:],
+            "url": url.absoluteString,
         ]
+        switch options {
+        case .push:
+            break
+        case .detail:
+            notificationInfo["detail"] = true
+            notificationInfo["embedInNavigationController"] = true
+        case .modal(let style, let isDismissable, let embedInNav, _):
+            notificationInfo["modal"] = true
+            notificationInfo["embedInNavigationController"] = embedInNav
+            notificationInfo["disableSwipeDownToDismissModal"] = !isDismissable
+            switch style {
+            case .formSheet:
+                notificationInfo["modalPresentationStyle"] = "formsheet"
+            case .fullScreen:
+                notificationInfo["modalPresentationStyle"] = "fullscreen"
+            default:
+                break
+            }
+        }
         NotificationCenter.default.post(name: name, object: nil, userInfo: notificationInfo)
     }
 }
@@ -81,19 +98,30 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         }
     }(),
 
-    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": {
-        if ExperimentalFeature.nativeSpeedGrader.isEnabled {
-            return { props in
-                guard let context = props.context else { return nil }
-                guard let assignmentID = props["assignmentID"] as? String else { return nil }
-                guard let userID = props["userID"] as? String else { return nil }
-                let filter = GetSubmissions.Filter(rawValue: props["filter"] as? String)
-                return CoreHostingController(SpeedGraderView(context: context, assignmentID: assignmentID, userID: userID, filter: filter))
-            }
-        } else {
-            return nil
+    "/courses/:courseID/assignments/:assignmentID/submissions": { props in
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions", props: props)
         }
-    }(),
+        guard let context = props.context else { return nil }
+        guard let assignmentID = props["assignmentID"] as? String else { return nil }
+        let filter = (props["filter"] as? String)?.components(separatedBy: ",").compactMap {
+            GetSubmissions.Filter(rawValue: $0)
+        } ?? []
+        return SubmissionListViewController.create(context: context, assignmentID: assignmentID, filter: filter)
+    },
+
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { props in
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions/:userID", props: props)
+        }
+        guard let context = props.context else { return nil }
+        guard let assignmentID = props["assignmentID"] as? String else { return nil }
+        guard let userID = props["userID"] as? String else { return nil }
+        let filter = (props["filter"] as? String)?.components(separatedBy: ",").compactMap {
+            GetSubmissions.Filter(rawValue: $0)
+        } ?? []
+        return CoreHostingController(SpeedGraderView(context: context, assignmentID: assignmentID, userID: userID, filter: filter))
+    },
 
     "/courses/:courseID/modules": { props in
         guard let courseID = props["courseID"] as? String else { return nil }

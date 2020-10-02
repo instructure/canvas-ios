@@ -114,7 +114,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         saveAnnotations()
         downloadTask?.cancel()
         stopTrackingTimeOnViewController(eventName: "\(context?.pathComponent ?? "")/files/\(fileID)")
-        BackgroundVideoPlayer.shared.disconnect()
     }
 
     @objc func fileEdited(_ notification: NSNotification) {

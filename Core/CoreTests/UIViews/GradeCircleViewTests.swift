@@ -102,10 +102,10 @@ class GradeCircleViewTests: XCTestCase {
         ))
         a.submission = Submission.make(from: .make(
             grade: "80",
-            score: 80,
             late: true,
-            workflow_state: .graded,
-            points_deducted: 10
+            points_deducted: 10,
+            score: 80,
+            workflow_state: .graded
         ))
         view.update(a)
         XCTAssertFalse(view.latePenaltyLabel.isHidden)

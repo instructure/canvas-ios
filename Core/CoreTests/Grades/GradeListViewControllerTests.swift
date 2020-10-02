@@ -31,18 +31,18 @@ class GradeListViewControllerTests: CoreTestCase {
             points_possible: 25,
             due_at: DateComponents(calendar: .current, year: 2020, month: 1, day: 1).date,
             submission: APISubmission.make(
-                id: "1",
                 assignment_id: "1",
-                user_id: ID(currentSession.userID),
+                attempt: 1,
                 grade: "20",
+                grade_matches_current_submission: true,
+                id: "1",
+                late: true,
+                late_policy_status: .late,
+                points_deducted: 2,
                 score: 20,
                 submitted_at: DateComponents(calendar: .current, year: 2020, month: 1, day: 2).date,
-                late: true,
-                workflow_state: .submitted,
-                attempt: 1,
-                grade_matches_current_submission: true,
-                late_policy_status: .late,
-                points_deducted: 2
+                user_id: currentSession.userID,
+                workflow_state: .submitted
             ),
             grading_type: .points,
             assignment_group_id: "1"

@@ -59,6 +59,11 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         layout()
     }
 
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        setCurrentPage(currentPage) // remove other pages to avoid messed up contentOffset
+        super.viewWillTransition(to: size, with: coordinator)
+    }
+
     private func getPage(onLeft: Bool) -> UIViewController? {
         let isBefore = view.effectiveUserInterfaceLayoutDirection == .leftToRight ? onLeft : !onLeft
         return isBefore

@@ -25,10 +25,10 @@ import TestsFoundation
 class SpeedGraderViewTests: TeacherTestCase {
     lazy var controller: CoreHostingController<SpeedGraderView> = {
         api.mock(GetAssignment(courseID: "1", assignmentID: "1", include: [ .overrides ]), value: .make())
-        api.mock(GetSubmissions(context: .course("1"), assignmentID: "1", filter: nil), value: [
+        api.mock(GetSubmissions(context: .course("1"), assignmentID: "1"), value: [
             .make(submission_history: [], user: .make(avatar_url: URL(string: "data:text/plain,"))),
         ])
-        return hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "1", filter: nil))
+        return hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "1", filter: []))
     }()
 
     func getTestTree() -> TestTree? {
@@ -44,7 +44,7 @@ class SpeedGraderViewTests: TeacherTestCase {
     }
 
     func testEmpty() throws {
-        controller = hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "bogus", filter: nil))
+        controller = hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "bogus", filter: []))
         let tree = getTestTree()
         XCTAssertNil(tree?.find(id: "SpeedGrader.submission.1"))
         XCTAssertNotNil(tree?.find(id: "SpeedGrader.emptyCloseButton"))

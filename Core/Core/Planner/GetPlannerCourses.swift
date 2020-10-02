@@ -99,7 +99,7 @@ class GetPlannerCourses: APIUseCase {
                 return
             }
             let result = courses.filter { course in
-                return course.enrollments?.contains { $0.associated_user_id == studentID } == true
+                return course.enrollments?.contains { $0.associated_user_id?.value == studentID } == true
             }
             callback(result, urlResponse, error)
         }

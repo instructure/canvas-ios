@@ -84,7 +84,7 @@ export class SubmissionList extends Component<Props, State> {
     let filter = oldCreateFilter(this.state.filterOptions)
     this.props.navigator.show(
       path,
-      { modal: true, modalPresentationStyle: 'fullscreen' },
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
       {
         filter: filter,
         studentIndex: index,

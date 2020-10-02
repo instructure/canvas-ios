@@ -20,45 +20,43 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/submissions.html#Submission
 public struct APISubmission: Codable, Equatable {
-    let id: ID
+    let assignment: APIAssignment? // include[]=assignment
     let assignment_id: ID
-    let user_id: ID
-    let body: String?
-    var grade: String?
-    var score: Double?
-    let submission_type: SubmissionType?
-    let submitted_at: Date?
-    let late: Bool
-    let excused: Bool?
-    let missing: Bool
-    let workflow_state: SubmissionWorkflowState
-    let attempt: Int?
     let attachments: [APIFile]?
+    let attempt: Int?
+    let body: String?
     let discussion_entries: [APIDiscussionEntry]?
-    let preview_url: URL?
-    let url: URL?
-    let media_comment: APIMediaComment?
+    let excused: Bool?
+    let external_tool_url: APIURL?
+    var grade: String?
     var graded_at: Date?
     let grade_matches_current_submission: Bool
-    let external_tool_url: APIURL?
     let group_id: ID?
     let group_name: String?
-
-    // late policies
+    let id: ID
+    let late: Bool
     let late_policy_status: LatePolicyStatus?
+    let media_comment: APIMediaComment?
+    let missing: Bool
     let points_deducted: Double?
-
+    let posted_at: Date?
+    let preview_url: URL?
+    var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
+    var score: Double?
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
+    let submission_type: SubmissionType?
+    let submitted_at: Date?
+    let url: URL?
     var user: APIUser? // include[]=user
-    let assignment: APIAssignment? // include[]=assignment
-    var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
+    let user_id: ID
+    let workflow_state: SubmissionWorkflowState
 }
 
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
 public struct APISubmissionComment: Codable, Equatable {
     let id: String
-    let author_id: String
+    let author_id: ID?
     let author_name: String
     let author: APISubmissionCommentAuthor
     let comment: String
@@ -69,10 +67,10 @@ public struct APISubmissionComment: Codable, Equatable {
 }
 
 public struct APISubmissionCommentAuthor: Codable, Equatable {
-    let id: String
-    let display_name: String
+    let id: ID?
+    let display_name: String?
     let avatar_image_url: URL?
-    let html_url: URL
+    let html_url: URL?
     let pronouns: String?
 }
 
@@ -92,68 +90,70 @@ public struct APISubmissionSummary: Codable, Equatable {
 #if DEBUG
 extension APISubmission {
     public static func make(
-        id: ID = "1",
-        assignment_id: ID = "1",
-        user_id: ID = "1",
-        body: String? = nil,
-        grade: String? = nil,
-        score: Double? = nil,
-        submission_type: SubmissionType? = nil,
-        submitted_at: Date? = Date(fromISOString: "2019-03-13T21:00:00Z"),
-        late: Bool = false,
-        excused: Bool? = false,
-        missing: Bool = false,
-        workflow_state: SubmissionWorkflowState = .submitted,
-        attempt: Int? = nil,
+        assignment: APIAssignment? = nil,
+        assignment_id: String = "1",
         attachments: [APIFile]? = nil,
+        attempt: Int? = nil,
+        body: String? = nil,
         discussion_entries: [APIDiscussionEntry]? = nil,
-        preview_url: URL? = nil,
-        url: URL? = nil,
-        media_comment: APIMediaComment? = nil,
+        excused: Bool? = false,
+        external_tool_url: APIURL? = nil,
+        grade: String? = nil,
         graded_at: Date? = nil,
         grade_matches_current_submission: Bool = true,
+        group_id: String? = nil,
+        group_name: String? = nil,
+        id: String = "1",
+        late: Bool = false,
         late_policy_status: LatePolicyStatus? = nil,
+        media_comment: APIMediaComment? = nil,
+        missing: Bool = false,
         points_deducted: Double? = nil,
+        posted_at: Date? = nil,
+        preview_url: URL? = nil,
+        rubric_assessment: APIRubricAssessmentMap? = nil,
+        score: Double? = nil,
         submission_comments: [APISubmissionComment]? = nil,
         submission_history: [APISubmission]? = nil,
+        submission_type: SubmissionType? = nil,
+        submitted_at: Date? = Date(fromISOString: "2019-03-13T21:00:00Z"),
+        url: URL? = nil,
         user: APIUser? = nil,
-        assignment: APIAssignment? = nil,
-        rubric_assessment: APIRubricAssessmentMap? = nil,
-        external_tool_url: APIURL? = nil,
-        group_id: ID? = nil,
-        group_name: String? = nil
+        user_id: String = "1",
+        workflow_state: SubmissionWorkflowState = .submitted
     ) -> APISubmission {
         return APISubmission(
-            id: id,
-            assignment_id: assignment_id,
-            user_id: user_id,
-            body: body,
-            grade: grade,
-            score: score,
-            submission_type: submission_type,
-            submitted_at: submitted_at,
-            late: late,
-            excused: excused,
-            missing: missing,
-            workflow_state: workflow_state,
-            attempt: attempt,
+            assignment: assignment,
+            assignment_id: ID(assignment_id),
             attachments: attachments,
+            attempt: attempt,
+            body: body,
             discussion_entries: discussion_entries,
-            preview_url: preview_url,
-            url: url,
-            media_comment: media_comment,
+            excused: excused,
+            external_tool_url: external_tool_url,
+            grade: grade,
             graded_at: graded_at,
             grade_matches_current_submission: grade_matches_current_submission,
-            external_tool_url: external_tool_url,
-            group_id: group_id,
+            group_id: ID(group_id),
             group_name: group_name,
+            id: ID(id),
+            late: late,
             late_policy_status: late_policy_status,
+            media_comment: media_comment,
+            missing: missing,
             points_deducted: points_deducted,
+            posted_at: posted_at,
+            preview_url: preview_url,
+            rubric_assessment: rubric_assessment,
+            score: score,
             submission_comments: submission_comments,
             submission_history: submission_history,
+            submission_type: submission_type,
+            submitted_at: submitted_at,
+            url: url,
             user: user,
-            assignment: assignment,
-            rubric_assessment: rubric_assessment
+            user_id: ID(user_id),
+            workflow_state: workflow_state
         )
     }
 }
@@ -161,7 +161,7 @@ extension APISubmission {
 extension APISubmissionComment {
     public static func make(
         id: String = "1",
-        author_id: String = "1",
+        author_id: ID? = "1",
         author_name: String = "Steve",
         author: APISubmissionCommentAuthor = .make(),
         comment: String = "comment",
@@ -186,10 +186,10 @@ extension APISubmissionComment {
 
 extension APISubmissionCommentAuthor {
     public static func make(
-        id: String = "1",
-        display_name: String = "Steve",
+        id: ID? = "1",
+        display_name: String? = "Steve",
         avatar_image_url: URL? = nil,
-        html_url: URL = URL(string: "/users/1")!,
+        html_url: URL? = URL(string: "/users/1"),
         pronouns: String? = nil
     ) -> APISubmissionCommentAuthor {
         return APISubmissionCommentAuthor(
@@ -203,10 +203,10 @@ extension APISubmissionCommentAuthor {
 
     public static func make(from user: APIUser) -> APISubmissionCommentAuthor {
         APISubmissionCommentAuthor(
-            id: user.id.value,
+            id: user.id,
             display_name: user.name,
             avatar_image_url: user.avatar_url?.rawValue,
-            html_url: URL(string: "/users/\(user.id)")!,
+            html_url: URL(string: "/users/\(user.id)"),
             pronouns: user.pronouns
         )
     }
@@ -345,7 +345,7 @@ public struct CreateSubmissionRequest: APIRequestable {
     let assignmentID: String
 
     public let body: Body?
-    public let method = APIMethod.post
+    public var method: APIMethod { .post }
     public var path: String {
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions"
     }

@@ -154,7 +154,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', AssignmentDueDates, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', AssigneePicker, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', AssigneeSearch, store)
-    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', SubmissionList, store, { deepLink: true })
+    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', ExperimentalFeature.nativeSpeedGrader.isEnabled ? null : SubmissionList, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/post_policy')
     registerScreen('/courses/:courseID/attendance/:toolID')
     registerScreen('/courses/:courseID/gradebook/speed_grader', SpeedGrader, store)

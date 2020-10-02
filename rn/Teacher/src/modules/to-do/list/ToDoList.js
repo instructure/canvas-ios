@@ -38,6 +38,7 @@ import { alertError } from '../../../redux/middleware/error-handler'
 import { Text } from '../../../common/text'
 import { updateBadgeCounts } from '../../tabbar/badge-counts'
 import ToDoListItem from './ToDoListItem'
+import ExperimentalFeature from '../../../common/ExperimentalFeature'
 
 type Props = {
   navigator: Navigator,
@@ -146,7 +147,13 @@ export class ToDoList extends Component<Props, State> {
     if (item.quiz) {
       assignmentID = item.quiz.assignment_id
     }
-    const path = `/courses/${item.courseID}/gradebook/speed_grader`
+    const path = `/courses/${item.courseID}/assignments/${assignmentID}/submissions`
+    if (ExperimentalFeature.nativeSpeedGrader.isEnabled) {
+      return this.props.navigator.show(
+        `${path}?filter=needs_grading`,
+        { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false }
+      )
+    }
     const filter = (submissions) => submissions.filter(({ grade }) => grade === 'ungraded')
     this.props.navigator.show(
       path,

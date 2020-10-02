@@ -41,12 +41,17 @@ public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepr
         value = ""
     }
 
+    public init?(_ string: String?) {
+        guard let string = string else { return nil }
+        self.init(rawValue: string)
+    }
+
     public init(_ string: String) {
-        self.init(stringLiteral: string)
+        self.init(rawValue: string)
     }
 
     public init(rawValue: String) {
-        self.init(stringLiteral: rawValue)
+        self.value = ID.expandTildeID(rawValue)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -74,15 +79,15 @@ public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepr
 
 extension ID: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self.value = ID.expandTildeID(value)
+        self.init(rawValue: value)
     }
 
     public init(extendedGraphemeClusterLiteral value: String) {
-        self.init(stringLiteral: value)
+        self.init(rawValue: value)
     }
 
     public init(unicodeScalarLiteral value: String) {
-        self.init(stringLiteral: value)
+        self.init(rawValue: value)
     }
 }
 

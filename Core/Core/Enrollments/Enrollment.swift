@@ -31,6 +31,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var totalsForAllGradingPeriodsOption: Bool
     @NSManaged public var type: String
     @NSManaged public var course: Course?
+    @NSManaged public var courseSectionID: String?
     @NSManaged public var grades: Set<Grade>
     @NSManaged public var observedUser: User?
 
@@ -43,6 +44,8 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var currentPeriodComputedCurrentGrade: String?
     @NSManaged public var currentPeriodComputedFinalScoreRaw: NSNumber?
     @NSManaged public var currentPeriodComputedFinalGrade: String?
+
+    @NSManaged public var submissions: Set<Submission>
 }
 
 extension Enrollment {
@@ -116,9 +119,10 @@ extension Enrollment {
         roleID = item.role_id
         state = item.enrollment_state
         type = item.type
-        userID = item.user_id
+        userID = item.user_id.value
+        courseSectionID = item.course_section_id?.value
 
-        if let courseID = item.course_id ?? course?.id {
+        if let courseID = item.course_id?.value ?? course?.id {
             canvasContextID = "course_\(courseID)"
         }
 
@@ -158,6 +162,14 @@ extension Enrollment {
             observedUser = observedUserModel
         } else {
             observedUser = nil
+        }
+
+        if let courseID = item.course_id?.value ?? course?.id {
+            let submissions: [Submission] = client.fetch(NSPredicate(format: "%K == %@ AND %K == %@",
+                #keyPath(Submission.assignment.courseID), courseID,
+                #keyPath(Submission.userID), item.user_id.value
+            ))
+            self.submissions.formUnion(submissions)
         }
     }
 }

@@ -138,9 +138,6 @@ notificationCenter.addListener('route', (notification) => {
   const userInfo = notification.userInfo
   if (userInfo && userInfo.url) {
     const navigator = new Navigator('')
-    navigator.show(userInfo.url, {
-      modal: userInfo.modal === true,
-      detail: userInfo.detail === true,
-    }, userInfo.props)
+    navigator.show(userInfo.url, userInfo, userInfo.props)
   }
 })

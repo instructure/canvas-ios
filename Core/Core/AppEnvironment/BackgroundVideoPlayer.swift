@@ -20,7 +20,7 @@ import Foundation
 import AVKit
 
 public class BackgroundVideoPlayer {
-    var viewController: AVPlayerViewController?
+    weak var viewController: AVPlayerViewController?
     var player: AVPlayer?
 
     public static let shared = BackgroundVideoPlayer()
@@ -29,20 +29,15 @@ public class BackgroundVideoPlayer {
 
     public func connect(_ viewController: AVPlayerViewController) {
         self.viewController = viewController
-        self.player = viewController.player
     }
 
     public func background() {
+        player = viewController?.player
         viewController?.player = nil
     }
 
     public func reconnect() {
         viewController?.player = player
-        viewController = nil
-        player = nil
-    }
-
-    public func disconnect() {
         viewController = nil
         player = nil
     }
