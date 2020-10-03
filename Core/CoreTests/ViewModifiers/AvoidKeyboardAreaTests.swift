@@ -24,7 +24,7 @@ import Combine
 
 class AvoidKeyboardAreaTests: CoreTestCase {
     var received: [CGFloat] = []
-    lazy var keyboardCancel = AvoidKeyboardArea.keyboardHeight.sink(receiveValue: { [weak self] in
+    lazy var keyboardCancel = AvoidKeyboardArea<Text>.keyboardHeight.sink(receiveValue: { [weak self] in
         self?.received.append($0)
     })
 
