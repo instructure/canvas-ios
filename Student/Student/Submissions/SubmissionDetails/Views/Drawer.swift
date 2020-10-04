@@ -172,4 +172,12 @@ extension Drawer {
             self?.superview?.layoutIfNeeded()
         }, completion: nil)
     }
+
+    func setMiddle() {
+        layoutIfNeeded()
+        tabs?.selectedSegmentIndex = 0
+        updateGripperLabel(height: midDrawerHeight)
+        contentViewHeight?.constant = midDrawerHeight
+        self.height = midDrawerHeight
+    }
 }

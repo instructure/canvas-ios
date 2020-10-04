@@ -28,6 +28,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
     var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
 
+    private lazy var setDrawerPositionOnce: () = {
+        drawer?.setMiddle()
+    }()
+
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
@@ -75,6 +79,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        _ = setDrawerPositionOnce
         drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
         contentView?.accessibilityElementsHidden = drawer?.height != 0
     }
