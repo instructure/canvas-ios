@@ -1,7 +1,7 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Para criar uma conta, peça ao seu aluno para criar um código de parelhamento a partir da seção Configurações da aplicação Canvas Student, como mostrado abaixo, e depois digitalize esse código a partir daqui.\n        Se o seu aluno não vê a opção de criar um código de parelhamento, terá de contactar a sua escola para criar a sua conta.\n        ";
 
-/* No comment provided by engineer. */
+/* placeholder for the score of an ungraded submission */
 "--" = "--";
 
 /* Unknown time duration */

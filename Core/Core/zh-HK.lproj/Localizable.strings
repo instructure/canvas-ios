@@ -1,7 +1,7 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        如要建立帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n        如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。\n        ";
 
-/* No comment provided by engineer. */
+/* placeholder for the score of an ungraded submission */
 "--" = "--";
 
 /* Unknown time duration */
