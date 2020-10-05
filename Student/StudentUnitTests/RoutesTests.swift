@@ -23,35 +23,24 @@ import XCTest
 import TestsFoundation
 
 class RoutesTests: XCTestCase {
-    class LoginDelegate: Core.LoginDelegate {
-        func userDidLogin(session: LoginSession) {
-        }
-
-        func userDidLogout(session: LoginSession) {
-        }
+    lazy var login = TestLogin()
+    class TestLogin: LoginDelegate {
+        func userDidLogin(session: LoginSession) {}
+        func userDidLogout(session: LoginSession) {}
 
         var opened: URL?
-        var openedExpectation = XCTestExpectation(description: "openedExternalURL")
         func openExternalURL(_ url: URL) {
-            openedExpectation.fulfill()
             opened = url
         }
     }
 
-    // swiftlint:disable:next weak_delegate
-    let loginDelegate = LoginDelegate()
-
     override func setUp() {
         super.setUp()
         MockURLSession.reset()
-        AppEnvironment.shared.currentSession = LoginSession.make()
-        AppEnvironment.shared.loginDelegate = loginDelegate
         AppEnvironment.shared.api = URLSessionAPI()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-        AppEnvironment.shared.currentSession = nil
+        AppEnvironment.shared.currentSession = LoginSession.make()
+        AppEnvironment.shared.loginDelegate = login
+        AppEnvironment.shared.router = router
     }
 
     func testActAsUser() {
@@ -159,8 +148,7 @@ class RoutesTests: XCTestCase {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
         MockURLSession.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
-        wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened, expected)
+        XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackRelative() {
@@ -168,16 +156,14 @@ class RoutesTests: XCTestCase {
         MockURLSession.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
         AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.instructure.com")!)
         router.route(to: "not-a-native-route", from: UIViewController())
-        wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened?.absoluteURL, expected)
+        XCTAssertEqual(login.opened?.absoluteURL, expected)
     }
 
     func testFallbackAbsoluteHTTPs() {
-        let expected = URL(string: "https://google.com")!
-        MockURLSession.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
+        let expected = URL(string: "https://instructure.com")!
+        MockURLSession.mock(GetWebSessionRequest(to: URL(string: "https://google.com")!), value: .init(session_url: expected))
         router.route(to: "https://google.com", from: UIViewController())
-        wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened, expected)
+        XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackOpensAuthenticatedSession() {
@@ -187,15 +173,13 @@ class RoutesTests: XCTestCase {
             value: .init(session_url: expected)
         )
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
-        wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened, expected)
+        XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackAuthenticatedError() {
         let expected = URL(string: "https://google.com")!
         MockURLSession.mock(GetWebSessionRequest(to: expected), error: NSError.internalError())
         router.route(to: "https://google.com", from: UIViewController())
-        wait(for: [loginDelegate.openedExpectation], timeout: 1)
-        XCTAssertEqual(loginDelegate.opened, expected)
+        XCTAssertEqual(login.opened, expected)
     }
 }

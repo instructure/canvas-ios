@@ -110,7 +110,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/act-as-user") { _, _, _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
 
@@ -134,13 +134,11 @@ let router = Router(routes: [
     },
 
     RouteHandler("/wrong-app") { _, _, _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
-]) { url, _, _, _ in
-    Router.open(url: url)
-}
+])
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {

@@ -16,69 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import XCTest
-import Core
-import SwiftUI
-@testable import Teacher
 @testable import CanvasCore
+@testable import Core
+@testable import Teacher
+import TestsFoundation
 
 class RoutesTests: XCTestCase {
-    let route = URLComponents(string: "https://canvas.instructure.com/api/v1/courses/1")!
+    lazy var login = TestLogin()
+    class TestLogin: LoginDelegate {
+        func userDidLogin(session: LoginSession) {}
+        func userDidLogout(session: LoginSession) {}
 
-    func userInfoFromRoute(options: RouteOptions) -> [AnyHashable: Any]? {
-        let expectation = self.expectation(description: "route notification")
-        let name = NSNotification.Name("route")
-        var userInfo: [AnyHashable: Any]?
-        let observer = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil) { note in
-            userInfo = note.userInfo
-            expectation.fulfill()
+        var opened: URL?
+        func openExternalURL(_ url: URL) {
+            opened = url
         }
-        router.route(to: route, from: UIViewController(), options: options)
-        wait(for: [expectation], timeout: 0.5)
-        NotificationCenter.default.removeObserver(observer)
-        XCTAssertNotNil(userInfo)
-        return userInfo
     }
 
-    func testRouteSendsNotification() {
-        let userInfo = userInfoFromRoute(options: .push)
-        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
-        XCTAssertNil(userInfo?["modal"])
-        XCTAssertNil(userInfo?["detail"])
-        XCTAssertNil(userInfo?["embedInNavigationController"])
-    }
-
-    func testModalOption() {
-        let userInfo = userInfoFromRoute(options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true))
-        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
-        XCTAssertEqual(userInfo?["modal"] as? Bool, true)
-        XCTAssertNil(userInfo?["detail"])
-        XCTAssertEqual(userInfo?["embedInNavigationController"] as? Bool, true)
-        XCTAssertEqual(userInfo?["disableSwipeDownToDismissModal"] as? Bool, true)
-        XCTAssertEqual(userInfo?["modalPresentationStyle"] as? String, "fullscreen")
-
-        let formSheet = userInfoFromRoute(options: .modal(.formSheet))
-        XCTAssertEqual(formSheet?["embedInNavigationController"] as? Bool, false)
-        XCTAssertEqual(formSheet?["disableSwipeDownToDismissModal"] as? Bool, false)
-        XCTAssertEqual(formSheet?["modalPresentationStyle"] as? String, "formsheet")
-    }
-
-    func testDetailOption() {
-        let userInfo = userInfoFromRoute(options: .detail)
-        XCTAssertEqual(userInfo?["url"] as? String, route.url!.absoluteString)
-        XCTAssertNil(userInfo?["modal"])
-        XCTAssertEqual(userInfo?["detail"] as? Bool, true)
-        XCTAssertEqual(userInfo?["embedInNavigationController"] as? Bool, true)
+    override func setUp() {
+        super.setUp()
+        MockURLSession.reset()
+        AppEnvironment.shared.api = URLSessionAPI()
+        AppEnvironment.shared.currentSession = LoginSession.make()
+        AppEnvironment.shared.loginDelegate = login
+        AppEnvironment.shared.router = router
     }
 
     func testRoutes() {
-        let appDelegate = UIApplication.shared.delegate as! TeacherAppDelegate
         ExperimentalFeature.nativeDashboard.isEnabled = true
-        appDelegate.registerNativeRoutes()
-        for (template, _) in HelmManager.shared.nativeViewControllerFactories {
-            HelmManager.shared.registerRoute(template)
-        }
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
         XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)
