@@ -93,6 +93,11 @@ public struct SessionDefaults {
         set { self["hasSetPSPDFKitLastUsedValues"] = newValue }
     }
 
+    public var collapsedModules: [String: [String]]? {
+        get { self["collapsedModules"] as? [String: [String]] }
+        set { self["collapsedModules"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
