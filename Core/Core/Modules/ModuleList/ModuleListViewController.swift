@@ -19,7 +19,11 @@
 import Foundation
 import SafariServices
 
-private var collapsedIDs: [String: Set<String>] = [:] // [courseID: [moduleID]]
+private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
+    didSet {
+        AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
+    }
+}
 
 public class ModuleListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     let refreshControl = CircleRefreshControl()
@@ -66,7 +70,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
-            collapsedIDs[courseID]?.remove(moduleID)
+            collapsedIDs[courseID]?.removeAll { $0 == moduleID }
         }
 
         emptyMessageLabel.text = NSLocalizedString("There are no modules to display yet.", bundle: .core, comment: "")
@@ -196,9 +200,9 @@ extension ModuleListViewController: UITableViewDataSource {
     func toggleSection(_ section: Int) {
         guard let module = modules[section] else { return }
         if isSectionExpanded(section) {
-            collapsedIDs[courseID]?.insert(module.id)
+            collapsedIDs[courseID]?.append(module.id)
         } else {
-            collapsedIDs[courseID]?.remove(module.id)
+            collapsedIDs[courseID]?.removeAll { $0 == module.id }
         }
         tableView.reloadSections([section], with: .automatic)
     }
