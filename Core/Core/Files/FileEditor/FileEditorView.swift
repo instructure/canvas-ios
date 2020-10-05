@@ -105,7 +105,7 @@ public struct FileEditorView: View {
             }
 
             EditorSection(label: Text("Access", bundle: .core)) {
-                Button(action: {
+                ButtonRow(action: {
                     guard let controller = self.viewController() else { return }
                     self.env.router.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Access", bundle: .core, comment: ""),
@@ -117,13 +117,11 @@ public struct FileEditorView: View {
                         },
                         didSelect: { self.access = Access.allCases[$0.row] }
                     ), from: controller)
-                }, label: {
-                    Text(access.label).font(.semibold16)
+                }, content: {
+                    Text(access.label)
                     Spacer()
                     DisclosureIndicator()
                 })
-                    .padding(16)
-                    .accentColor(.textDarkest)
                     .identifier("FileEditor.accessButton")
 
                 if access == .scheduled {
@@ -149,7 +147,7 @@ public struct FileEditorView: View {
                     )
                         .identifier("FileEditor.copyrightField")
                     Divider()
-                    Button(action: {
+                    ButtonRow(action: {
                         guard let controller = self.viewController() else { return }
                         self.env.router.show(ItemPickerViewController.create(
                             title: NSLocalizedString("Usage Right", bundle: .core, comment: ""),
@@ -161,17 +159,15 @@ public struct FileEditorView: View {
                             },
                             didSelect: { self.justification = UseJustification.allCases[$0.row] }
                         ), from: controller)
-                    }, label: {
-                        Text(justification.label).font(.semibold16)
+                    }, content: {
+                        Text(justification.label)
                         Spacer()
                         DisclosureIndicator()
                     })
-                        .padding(16)
-                        .accentColor(.textDarkest)
                         .identifier("FileEditor.justificationButton")
                     if justification == .creative_commons {
                         Divider()
-                        Button(action: {
+                        ButtonRow(action: {
                             guard let controller = self.viewController() else { return }
                             self.env.router.show(ItemPickerViewController.create(
                                 title: NSLocalizedString("Creative Commons License", bundle: .core, comment: ""),
@@ -183,27 +179,25 @@ public struct FileEditorView: View {
                                 },
                                 didSelect: { self.license = License.allCases[$0.row] }
                             ), from: controller)
-                        }, label: {
-                            Text(license.label).font(.semibold16)
+                        }, content: {
+                            Text(license.label)
                             Spacer()
                             DisclosureIndicator()
                         })
-                            .padding(16)
-                            .accentColor(.textDarkest)
                             .identifier("FileEditor.licenseButton")
                     }
                 }
             }
 
             EditorSection {
-                Button(action: { self.showDeleteConfirm = true }, label: {
+                ButtonRow(action: { self.showDeleteConfirm = true }, content: {
                     Image(uiImage: .trashLine)
+                        .foregroundColor(.textDanger)
                     Spacer().frame(width: 16)
-                    isFile ? Text("Delete File", bundle: .core) : Text("Delete Folder", bundle: .core)
+                    (isFile ? Text("Delete File", bundle: .core) : Text("Delete Folder", bundle: .core))
+                        .foregroundColor(.textDanger)
                     Spacer()
                 })
-                    .padding(16)
-                    .font(.semibold16).accentColor(.textDanger)
                     .identifier("FileEditor.deleteButton")
             }
         }

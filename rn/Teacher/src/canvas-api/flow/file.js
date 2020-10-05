@@ -35,32 +35,10 @@ export type File = {
   'content-type': string,
 }
 
-export type UpdateFileParameters = {
-  name?: string,
-  parent_folder_id?: ?string,
-  lock_at?: ?string,
-  unlock_at?: ?string,
-  locked?: boolean,
-  hidden?: boolean,
-  on_duplicate?: 'overwrite' | 'rename',
-}
-
 export type UsageRights = {
   legal_copyright: string,
   use_justification: 'own_copyright' | 'public_domain' | 'used_by_permission' | 'fair_use' | 'creative_commons',
   license?: string,
   license_name?: string,
   message?: string,
-}
-
-export type UpdateUsageRightsParameters = {
-  use_justification: string,
-  legal_copyright?: string,
-  license?: string,
-}
-
-export type License = {
-  id: string,
-  name: string,
-  url: string,
 }

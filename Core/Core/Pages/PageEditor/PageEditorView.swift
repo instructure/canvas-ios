@@ -118,7 +118,7 @@ public struct PageEditorView: View {
                             .identifier("PageEditor.frontPageToggle")
                         Divider()
                     }
-                    Button(action: {
+                    ButtonRow(action: {
                         guard let controller = self.viewController() else { return }
                         let options: [RoleOption] = self.context.contextType == .group
                             ? [ .members, .public ]
@@ -133,14 +133,14 @@ public struct PageEditorView: View {
                             },
                             didSelect: { self.editingRoles = options[$0.row] }
                         ), from: controller)
-                    }, label: {
-                        Text("Can Edit", bundle: .core).font(.semibold16)
+                    }, content: {
+                        Text("Can Edit", bundle: .core)
                         Spacer()
                         Text(editingRoles.string)
+                            .font(.medium16).foregroundColor(.textDark)
+                        Spacer().frame(width: 16)
                         DisclosureIndicator()
                     })
-                        .padding(16)
-                        .accentColor(.textDarkest)
                         .identifier("PageEditor.editorsButton")
                 }
             }

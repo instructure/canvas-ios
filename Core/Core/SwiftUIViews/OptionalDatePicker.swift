@@ -34,26 +34,25 @@ public struct OptionalDatePicker<Label: View>: View {
         self._selection = selection
     }
 
-    public var body: some View { VStack(alignment: .center, spacing: 0) {
-        Button(action: {
+    public var body: some View { VStack(spacing: 0) {
+        ButtonRow(action: {
             if self.showDatePicker == false, self.selection == nil {
                 self.selection = self.initial
             }
             self.showDatePicker.toggle()
-        }, label: {
-            label.font(.semibold16)
+        }, content: {
+            label
             Spacer()
             Text(selection?.dateTimeString ?? NSLocalizedString("--", bundle: .core, comment: ""))
                 .font(.regular14)
+            Spacer().frame(width: 12)
             if selection != nil {
                 Button(action: { self.selection = nil }, label: {
                     Image(systemName: "xmark.circle.fill")
-                        .accentColor(.textDark)
+                        .foregroundColor(.textDark)
                 })
             }
         })
-            .padding(16)
-            .accentColor(.textDarkest)
 
         if showDatePicker {
             Divider()

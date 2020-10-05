@@ -24,7 +24,7 @@ import Combine
 
 class AvoidKeyboardAreaTests: CoreTestCase {
     var received: [CGFloat] = []
-    lazy var keyboardCancel = AvoidKeyboardArea.keyboardHeight.sink(receiveValue: { [weak self] in
+    lazy var keyboardCancel = AvoidKeyboardArea<Text>.keyboardHeight.sink(receiveValue: { [weak self] in
         self?.received.append($0)
     })
 
@@ -48,10 +48,5 @@ class AvoidKeyboardAreaTests: CoreTestCase {
         NotificationCenter.default.post(name: UIApplication.keyboardWillShowNotification, object: nil, userInfo: [
             UIResponder.keyboardFrameEndUserInfoKey: CGRect(x: 0, y: 0, width: 0, height: 100),
         ])
-    }
-
-    func testViewExtension() {
-        let view = SwiftUI.EmptyView().avoidKeyboardArea()
-        XCTAssert(view is ModifiedContent<SwiftUI.EmptyView, AvoidKeyboardArea>)
     }
 }

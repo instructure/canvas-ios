@@ -20,8 +20,6 @@ import TestsFoundation
 @testable import Core
 
 class FilesUITests: MiniCanvasUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [ .nativeFiles ] }
-
     var firstFile: MiniFile? {
         guard let fileID = firstCourse.courseFiles?.fileIDs.first else {
             return nil

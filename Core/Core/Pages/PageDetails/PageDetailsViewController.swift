@@ -87,7 +87,6 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         }
         pages.refresh(force: true)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(pageEdited), name: Notification.Name("page-edit"), object: nil)
         NotificationCenter.default.post(moduleItem: .page(pageURL), completedRequirement: .view, courseID: context.id)
     }
 
@@ -157,31 +156,5 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
             try? self.env.database.viewContext.save()
             self.env.router.pop(from: self)
         } }
-    }
-
-    @objc func pageEdited(notification: NSNotification) {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        guard
-            let info = notification.userInfo,
-            let data = try? JSONSerialization.data(withJSONObject: info),
-            let apiPage = try? decoder.decode(APIPage.self, from: data)
-        else { return }
-
-        // if the front page was changed, ensure only one page has the front page set
-        let frontPageChanged = apiPage.front_page != page?.isFrontPage
-        if frontPageChanged {
-            let scope = GetFrontPage(context: context).scope
-            let currentFrontPage: Page? = env.database.viewContext.fetch(scope: scope).first
-            currentFrontPage?.isFrontPage = false
-        }
-        page?.update(from: apiPage)
-        try? env.database.viewContext.save()
-
-        pageURL = apiPage.url
-        pages = env.subscribe(GetPage(context: context, url: pageURL)) { [weak self] in
-            self?.update()
-        }
-        pages.refresh()
     }
 }

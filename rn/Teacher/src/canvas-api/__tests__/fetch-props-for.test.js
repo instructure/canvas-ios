@@ -73,7 +73,7 @@ describe('fetchPropsFor', () => {
   it('sets isLoading when an api requests data', () => {
     const HOC = fetchPropsFor(View, (props: Object, api) => ({
       courseColor: api.getCourseColor('1'),
-      page: api.getPage('courses', '1', 'test'),
+      course: api.getCourse('1'),
     }))
     const tree = shallow(<HOC />)
     expect(tree.find(View).prop('isLoading')).toBe(true)
@@ -86,7 +86,7 @@ describe('fetchPropsFor', () => {
     })
     const HOC = fetchPropsFor(View, (props: Object, api) => ({
       courseColor: api.getCourseColor('1'),
-      page: api.getPage('courses', '1', 'test'),
+      course: api.getCourse('1'),
     }))
     const tree = shallow(<HOC />)
     jest.runOnlyPendingTimers()
@@ -102,7 +102,7 @@ describe('fetchPropsFor', () => {
     })
     const HOC = fetchPropsFor(View, (props: Object, api) => ({
       courseColor: api.getCourseColor('1'),
-      page: api.getPage('courses', '1', 'test'),
+      course: api.getCourse('1'),
     }))
     const tree = shallow(<HOC />)
     jest.runOnlyPendingTimers()
@@ -168,7 +168,7 @@ describe('fetchPropsFor', () => {
     })
     const HOC = fetchPropsFor(View, (props: Object, api) => ({
       courseColor: api.getCourseColor('1'),
-      page: api.getPage('courses', '1', 'test'),
+      course: api.getCourse('1'),
     }))
     const tree = shallow(<HOC />)
     tree.instance().softRefreshTimer = 1

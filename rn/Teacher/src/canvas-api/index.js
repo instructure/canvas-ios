@@ -36,7 +36,6 @@ export * from './apis/users'
 export * from './apis/media-comments'
 export * from './apis/feature-flags'
 export * from './apis/file-uploads'
-export * from './apis/files'
 export * from './apis/accounts'
 export * from './apis/dashboard'
 

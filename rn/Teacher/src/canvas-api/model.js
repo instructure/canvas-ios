@@ -47,38 +47,6 @@ export class CourseModel extends Model<Course> {
   permissions = this.raw.permissions
 }
 
-export class PageModel extends Model<Page> {
-  static keyExtractor (page: PageModel) {
-    return page.url
-  }
-
-  static newPage = Object.freeze(new PageModel({
-    page_id: '',
-    url: '',
-    html_url: '',
-    title: '',
-    created_at: new Date().toJSON(),
-    updated_at: new Date().toJSON(),
-    hide_from_students: false,
-    editing_roles: 'teachers',
-    body: '',
-    published: false,
-    front_page: false,
-  }))
-
-  id = this.raw.page_id
-  url = this.raw.url
-  htmlUrl = this.raw.html_url
-  title = this.raw.title
-  createdAt = new Date(this.raw.created_at)
-  updatedAt = new Date(this.raw.updated_at)
-  isHiddenFromStudents = this.raw.hide_from_students
-  editingRoles = this.raw.editing_roles.split(',').map(r => r.trim()).sort()
-  body = this.raw.body
-  published = this.raw.published
-  isFrontPage = this.raw.front_page
-}
-
 export class ToDoModel extends Model<ToDoItem> {
   static keyExtractor (todo: ToDoModel) {
     return todo.htmlUrl

@@ -19,34 +19,43 @@
 import SwiftUI
 import Combine
 
-struct AvoidKeyboardArea: ViewModifier {
+struct AvoidKeyboardArea<Content: View>: View {
     static var keyboardHeight: AnyPublisher<CGFloat, Never> {
         let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification).map { notification in
+            (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+        }
+        let willChange = NotificationCenter.default.publisher(for: UIApplication.keyboardWillChangeFrameNotification).map { notification in
             (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
         }
         let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification).map { _ in
             CGFloat(0)
         }
-        return Publishers.MergeMany(willShow, willHide).eraseToAnyPublisher()
+        return Publishers.MergeMany(willShow, willChange, willHide).eraseToAnyPublisher()
     }
 
-    @State var padding = CGFloat(0)
+    let content: Content
+    @State var padding: CGFloat = 0
 
-    func body(content: Content) -> some View {
+    var body: some View {
         GeometryReader { geometry in
             content
                 .padding(.bottom, self.padding)
                 .onReceive(AvoidKeyboardArea.keyboardHeight) { height in
                     let maxY = geometry.frame(in: .global).maxY
                     let distanceToBottom = UIScreen.main.bounds.height - maxY
-                    self.padding = max(0, height - distanceToBottom)
+                    self.padding = max(0, height - distanceToBottom - geometry.safeAreaInsets.bottom)
                 }
         }
     }
 }
 
 extension View {
+    @ViewBuilder
     public func avoidKeyboardArea() -> some View {
-        modifier(AvoidKeyboardArea())
+        if #available(iOS 14, *) {
+            self
+        } else {
+            AvoidKeyboardArea(content: self)
+        }
     }
 }

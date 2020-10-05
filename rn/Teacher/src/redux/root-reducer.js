@@ -40,7 +40,6 @@ import { discussions } from '../modules/discussions/reducer'
 import inbox from '../modules/inbox/reducer'
 import { groups } from '../modules/groups/group-entities-reducer'
 import { asyncActions } from './actions/async-tracker'
-import { filesData as files, foldersData as folders } from '../modules/files/reducer'
 import { userInfo } from '../modules/userInfo/reducer'
 
 const entities = combineReducers({
@@ -64,8 +63,6 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   favoriteCourses,
   favoriteGroups,
   inbox,
-  files,
-  folders,
   entities,
   asyncActions,
   userInfo,

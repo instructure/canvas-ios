@@ -62,6 +62,24 @@ public struct EditorSection<Content: View>: View {
     } }
 }
 
+public struct ButtonRow<Content: View>: View {
+    public let action: () -> Void
+    public let content: Content
+
+    public init(action: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.action = action
+        self.content = content()
+    }
+
+    public var body: some View {
+        Button(action: action, label: {
+            HStack(spacing: 0) { content }
+                .font(.semibold16).foregroundColor(.textDarkest)
+                .padding(16)
+        })
+    }
+}
+
 public struct TextFieldRow: View {
     public let label: Text
     public let placeholder: String

@@ -19,7 +19,6 @@
 // @flow
 
 import httpClient from '../httpClient'
-import { getFile } from './files'
 
 type UploadTarget = {
   upload_url: string,
@@ -44,7 +43,7 @@ export async function uploadAttachment (attachment: Attachment, options: UploadO
   const file = await postFile(attachment.uri, target, options)
 
   // GET the file because we need the url to contain the verifier token
-  const response = await getFile(file.id)
+  const response = await httpClient.get(`files/${file.id}`)
   return response.data
 }
 
