@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zL8-8t-qkP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WsE-Un-X6y">
                                 <rect key="frame" x="0.0" y="530" width="375" height="44"/>
@@ -42,18 +43,18 @@
                                 </subviews>
                             </stackView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UNl-BQ-NzC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
                             </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-Jq-BOi" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="167.5" y="267" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="nah-BY-uqT"/>
                                     <constraint firstAttribute="height" constant="40" id="uZg-vH-EzG"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7rB-rn-nKm">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="441"/>
+                                <rect key="frame" x="0.0" y="65.5" width="375" height="443"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zta-Lt-JLk">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -61,8 +62,8 @@
                                             <constraint firstAttribute="width" secondItem="Zta-Lt-JLk" secondAttribute="height" id="ViI-kr-7t3"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF5-0i-tYn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="77.5" y="391" width="220" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sF5-0i-tYn" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="71" y="391" width="233" height="52"/>
                                         <inset key="contentEdgeInsets" minX="54" minY="16" maxX="54" maxY="16"/>
                                         <state key="normal" title="Augment Reality"/>
                                         <userDefinedRuntimeAttributes>
@@ -80,7 +81,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-aH-HV0">
-                                <rect key="frame" x="16" y="210" width="343" height="154.5"/>
+                                <rect key="frame" x="16" y="209.5" width="343" height="155.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lJs-Vl-I7M" customClass="IconView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="135.5" y="0.0" width="72" height="72"/>
@@ -94,7 +95,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="This content is locked." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1Y-Z0-88i" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="85.5" y="88" width="172" height="20.5"/>
+                                        <rect key="frame" x="90" y="88" width="163" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -103,8 +104,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-Ct-o3R" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="123.5" y="124.5" width="96" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsZ-Ct-o3R" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                        <rect key="frame" x="118.5" y="123.5" width="106" height="32"/>
                                         <state key="normal" title="View Modules"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="linkColor"/>
@@ -115,7 +116,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </stackView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Zq-jRM">
                                 <rect key="frame" x="102.5" y="162" width="170" height="170"/>
@@ -147,7 +148,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ykC-3m-OWR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UNl-BQ-NzC" firstAttribute="leading" secondItem="ykC-3m-OWR" secondAttribute="leading" id="1Jo-Iz-y51"/>
                             <constraint firstItem="tJy-aH-HV0" firstAttribute="centerY" secondItem="gmk-7b-oRC" secondAttribute="centerY" id="228-oS-nt0"/>
@@ -178,7 +180,6 @@
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="trailing" secondItem="UNl-BQ-NzC" secondAttribute="trailing" id="sBq-Y7-hmE"/>
                             <constraint firstItem="ykC-3m-OWR" firstAttribute="bottom" secondItem="WsE-Un-X6y" secondAttribute="bottom" id="ynQ-hU-5XW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ykC-3m-OWR"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -203,7 +204,27 @@
             <point key="canvasLocation" x="-248" y="64"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="45M-Tf-zvK">
+            <size key="intrinsicContentSize" width="88" height="29"/>
+        </designable>
+        <designable name="bsZ-Ct-o3R">
+            <size key="intrinsicContentSize" width="106" height="32"/>
+        </designable>
+        <designable name="l1Y-Z0-88i">
+            <size key="intrinsicContentSize" width="163" height="19.5"/>
+        </designable>
+        <designable name="lJs-Vl-I7M">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+        <designable name="sF5-0i-tYn">
+            <size key="intrinsicContentSize" width="233" height="52"/>
+        </designable>
+    </designables>
     <resources>
         <image name="linkLine" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

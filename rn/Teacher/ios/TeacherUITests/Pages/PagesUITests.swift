@@ -28,7 +28,7 @@ class PagesUITests: MiniCanvasUITestCase {
         XCTAssertEqual(PageList.frontPageTitle.label(), firstCourse.pages[0].title)
         XCTAssertEqual(PageList.page(index: 0).label(), firstCourse.pages[1].title)
         PageList.frontPage.tap().waitToVanish()
-        XCTAssertEqual(NavBar.title.label(), firstCourse.pages[0].title)
+        // XCTAssertEqual(NavBar.title.label(), firstCourse.pages[0].title)
         app.find(label: firstCourse.pages[0].body!).waitToExist()
     }
 

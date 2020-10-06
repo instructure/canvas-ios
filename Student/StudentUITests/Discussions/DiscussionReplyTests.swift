@@ -155,7 +155,7 @@ class DiscussionReplyTests: CoreUITestCase {
         }
 
         let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
+        app.find(label: "Photos").tapUntil { photo.exists }
         photo.tap()
 
         waitUntil { DiscussionEditReply.attachmentButton.label() == "Edit attachment (1)" }

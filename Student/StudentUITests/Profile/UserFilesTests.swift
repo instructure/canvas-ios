@@ -80,7 +80,7 @@ class UserFilesTests: CoreUITestCase {
         }
 
         let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
+        app.find(label: "Photos").tapUntil { photo.exists }
         mockUpload {
             photo.tap()
         }

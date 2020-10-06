@@ -69,7 +69,7 @@ class InboxTests: ParentUITestCase {
             app.find(label: "Photo Library").tap()
         }
         let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
+        app.find(label: "Photos").tapUntil { photo.exists }
         photo.tap()
         ComposeReply.attachmentCard(index: 0).waitToExist()
         app.find(label: "Compose Attachment").waitToExist()
