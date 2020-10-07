@@ -64,6 +64,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/syllabus": { url, _, _ in
         Router.open(url: url)
+        return nil
     },
 
     "/courses/:courseID/assignments/:assignmentID": nil,
