@@ -31,9 +31,9 @@ class StudentTestCase: XCTestCase {
         return database.viewContext
     }
 
-    var api = MockURLSession.self
+    var api: API { env.api }
     var queue = OperationQueue()
-    var env = TestEnvironment()
+    var env: TestEnvironment!
     var logger: TestLogger!
     var router: TestRouter { env.router as! TestRouter }
     var uploadManager = MockUploadManager()
@@ -41,7 +41,7 @@ class StudentTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MockURLSession.reset()
+        API.resetMocks()
         LoginSession.useTestKeychain()
         queue = OperationQueue()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()

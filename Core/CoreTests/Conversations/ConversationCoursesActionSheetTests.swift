@@ -57,15 +57,15 @@ class ConversationCoursesActionSheetTests: CoreTestCase {
                                        value: [])
         let coursesTask = api.mock(GetCoursesRequest(enrollmentState: .active, state: nil, perPage: 100))
 
-        enrollmentsTask.paused = true
-        coursesTask.paused = true
+        enrollmentsTask.suspend()
+        coursesTask.suspend()
 
         loadView()
 
         XCTAssertTrue(controller.loadingIndicator.isAnimating)
 
-        enrollmentsTask.paused = false
-        coursesTask.paused = false
+        enrollmentsTask.resume()
+        coursesTask.resume()
 
         XCTAssertFalse(controller.loadingIndicator.isAnimating)
     }

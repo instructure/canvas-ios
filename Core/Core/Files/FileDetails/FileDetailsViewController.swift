@@ -43,7 +43,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     var assignmentID: String?
     var context: Context?
-    var downloadTask: URLSessionTask?
+    var downloadTask: APITask?
     let env = AppEnvironment.shared
     var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
@@ -251,7 +251,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
     func downloadFile(at url: URL) {
         localURL = prepLocalURL()
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
-        downloadTask = URLSessionAPI.delegateURLSession(.ephemeral, self, nil).downloadTask(with: url)
+        downloadTask = API(urlSession: URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)).makeDownloadRequest(url)
         downloadTask?.resume()
     }
 

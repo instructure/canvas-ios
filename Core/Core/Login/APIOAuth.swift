@@ -188,21 +188,10 @@ struct PostLoginOAuthRequest: APIRequestable {
 public struct DeleteLoginOAuthRequest: APIRequestable {
     public typealias Response = APINoContent
 
-    let session: LoginSession
-    public init(session: LoginSession) {
-        self.session = session
-    }
+    public init() {}
 
-    public let method = APIMethod.delete
-    public var path: String {
-        return session.baseURL.appendingPathComponent("login/oauth2/token").absoluteString
-    }
-
-    public var headers: [String: String?] {
-        return [
-            HttpHeader.authorization: session.accessToken.flatMap { "Bearer \($0)" },
-        ]
-    }
+    public var method: APIMethod { .delete }
+    public var path: String { "/login/oauth2/token" }
 }
 
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#get-login-session-token

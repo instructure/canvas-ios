@@ -193,7 +193,7 @@ class LTIToolsTests: CoreTestCase {
             moduleItemID: nil
         )
         let data = try! APIJSONEncoder().encode(APIGetSessionlessLaunchResponse.make())
-        api.mock(URLRequest(url: url), data: data)
+        api.mock(url: url, data: data)
         var success = false
         let done = XCTestExpectation(description: "present tool callback")
         tools.presentTool(from: mockView, animated: false) { result in

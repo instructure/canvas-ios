@@ -53,10 +53,10 @@ class ComposeReplyViewControllerTests: CoreTestCase {
 
         controller.all = true
         let task = api.mock(AddMessage(conversationID: conversation.id, body: "").request, value: .make())
-        task.paused = true
+        task.suspend()
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
         XCTAssert(sendButton.customView is CircleProgressView)
-        task.paused = false
+        task.resume()
         XCTAssertEqual(router.dismissed, controller)
     }
 

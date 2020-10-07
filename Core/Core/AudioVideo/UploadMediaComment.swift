@@ -19,7 +19,7 @@
 import Foundation
 
 public class UploadMediaComment {
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -30,7 +30,7 @@ public class UploadMediaComment {
     let url: URL
     let uploader: UploadMedia
     let userID: String
-    var task: URLSessionTask?
+    var task: APITask?
 
     private static var placeholderSuffix = 1
 
@@ -58,9 +58,8 @@ public class UploadMediaComment {
         uploader.cancel()
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
+    public func fetch(_ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
-        self.env = environment
         savePlaceholder()
     }
 
@@ -85,7 +84,7 @@ public class UploadMediaComment {
                 try client.save()
                 self.placeholderID = placeholder.id
                 UploadMediaComment.placeholderSuffix += 1
-                self.uploader.fetch(environment: self.env) { mediaID, error in
+                self.uploader.fetch { mediaID, error in
                     guard error == nil, let mediaID = mediaID else {
                         self.callback(nil, error)
                         return

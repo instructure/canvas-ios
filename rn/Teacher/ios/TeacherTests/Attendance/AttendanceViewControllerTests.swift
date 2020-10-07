@@ -33,7 +33,7 @@ class AttendanceViewControllerTests: TeacherTestCase {
         Clock.mockNow(now)
 
         controller = AttendanceViewController(context: context, toolID: "1")
-        controller.session.state = .active(URLSessionAPI.defaultURLSession)
+        controller.session.state = .active(API())
 
         navigation = UINavigationController(rootViewController: controller)
 

@@ -87,12 +87,9 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
         let data = "<meta name=\"csrf-token\" content=\"xsrf\">".data(using: .utf8)!
         let url = URL(string: "data:text/html;base64,\(data.base64EncodedString())")!
         api.mock(launchRequest, value: .make(url: url))
-        URLSessionAPI.delegateURLSession = { (configuration: URLSessionConfiguration, delegate: URLSessionDelegate?, delegateQueue: OperationQueue?) -> URLSession in
-            return URLSession(configuration: configuration, delegate: delegate, delegateQueue: delegateQueue)
-        }
         switch session.state {
-        case .active(let session):
-            XCTAssertEqual(session.configuration.httpAdditionalHeaders?["X-CSRF-Token"] as? String, "xsrf")
+        case .active(let api):
+            XCTAssertEqual(api.urlSession.configuration.httpAdditionalHeaders?["X-CSRF-Token"] as? String, "xsrf")
         default:
             XCTFail("Session loading should not have failed")
         }
@@ -108,7 +105,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
             XCTAssert(statuses.isEmpty)
             XCTAssertNil(error)
         }
-        session.state = .active(URLSessionAPI.defaultURLSession)
+        session.state = .active(API())
         api.mock(URLRequest(url: url))
         session.fetchStatuses(section: "1", date: date) { (statuses, error) in
             XCTAssert(statuses.isEmpty)
@@ -138,7 +135,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
             XCTAssertNil(error)
         }
 
-        session.state = .active(URLSessionAPI.defaultURLSession)
+        session.state = .active(API())
         api.mock(URLRequest(url: url))
         session.updateStatus(.make(id: nil)) { (id, error) in
             XCTAssertNil(id)

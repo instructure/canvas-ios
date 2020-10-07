@@ -19,7 +19,7 @@
 import Foundation
 
 public class CreateTextComment {
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -28,7 +28,7 @@ public class CreateTextComment {
     let submissionID: String
     let text: String
     let userID: String
-    var task: URLSessionTask?
+    var task: APITask?
 
     private static var placeholderSuffix = 1
 
@@ -52,9 +52,8 @@ public class CreateTextComment {
         task?.cancel()
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
+    public func fetch(_ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
-        self.env = environment
         savePlaceholder()
     }
 

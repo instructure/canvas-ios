@@ -176,13 +176,13 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testKeepCookieAlive() {
-        environment.api = URLSessionAPI(loginSession: LoginSession.make(accessToken: nil))
+        environment.api = API(.make(accessToken: nil))
         CoreWebView.keepCookieAlive(for: environment)
         XCTAssertNil(CoreWebView.cookieKeepAliveTimer)
 
-        environment.api = URLSessionAPI(loginSession: LoginSession.make(accessToken: "a"))
+        environment.api = API(.make(accessToken: "a"))
         let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!)
-        api.mock(GetWebSessionRequest(to: environment.api.baseURL.appendingPathComponent("users/self")), value: value, baseURL: environment.api.baseURL, accessToken: "a")
+        api.mock(GetWebSessionRequest(to: environment.api.baseURL.appendingPathComponent("users/self")), value: value)
         CoreWebView.keepCookieAlive(for: environment)
         wait(for: [expectation(for: .all, evaluatedWith: api) { CoreWebView.cookieKeepAliveWebView.url != nil }], timeout: 10)
         XCTAssertEqual(CoreWebView.cookieKeepAliveWebView.url, URL(string: "data:text/html,"))

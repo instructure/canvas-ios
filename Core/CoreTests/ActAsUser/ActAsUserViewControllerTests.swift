@@ -57,7 +57,7 @@ class ActAsUserViewControllerTests: CoreTestCase, LoginDelegate {
         ])
         XCTAssertGreaterThan(controller.scrollView.contentOffset.y, 0)
 
-        api.mock(GetUserRequest(userID: "1"), value: .make(), baseURL: URL(string: "https://cgnu.online")!)
+        API(baseURL: URL(string: "https://cgnu.online")).mock(GetUserRequest(userID: "1"), value: .make())
         controller.domainTextField.text = "cgnu.online/extra"
         controller.actAsUserButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(session?.userID, "1")
@@ -65,7 +65,7 @@ class ActAsUserViewControllerTests: CoreTestCase, LoginDelegate {
         XCTAssertEqual(session?.masquerader, URL(string: "https://canvas.instructure.com/users/1"))
         session = nil
 
-        api.mock(GetUserRequest(userID: "1"), value: .make(), baseURL: URL(string: "https://cgnu.instructure.com")!)
+        API(baseURL: URL(string: "https://cgnu.instructure.com")).mock(GetUserRequest(userID: "1"), value: .make())
         controller.domainTextField.text = "cgnu"
         controller.actAsUserButton.sendActions(for: .primaryActionTriggered)
         XCTAssertNotNil(session)
@@ -76,7 +76,7 @@ class ActAsUserViewControllerTests: CoreTestCase, LoginDelegate {
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Error")
         router.viewControllerCalls.removeAll()
 
-        api.mock(GetUserRequest(userID: "1"), error: NSError.internalError(), baseURL: URL(string: "https://cgnu.instructure.com")!)
+        API(baseURL: URL(string: "https://cgnu.instructure.com")).mock(GetUserRequest(userID: "1"), error: NSError.internalError())
         controller.actAsUserButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual((router.presented as? UIAlertController)?.title, "Error")
     }

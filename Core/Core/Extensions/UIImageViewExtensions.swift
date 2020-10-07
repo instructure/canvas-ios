@@ -54,7 +54,7 @@ extension UIImageView {
     /// - Parameter url: The `URL` pointing to an image file.
     /// - Returns: If this needs to reach out to the network, the associated `URLSessionTask` is returned.
     @discardableResult
-    public func load(url: URL?) -> URLSessionTask? {
+    public func load(url: URL?) -> APITask? {
         guard self.url != url else { return nil }
         self.url = url
         loader = nil
@@ -89,7 +89,7 @@ public class ImageLoader {
     let callback: (Result<LoadedImage, Error>) -> Void
     let frame: CGRect
     let key: String
-    var task: URLSessionTask?
+    var task: APITask?
     let url: URL
     var webView: WKWebView?
 
@@ -116,7 +116,7 @@ public class ImageLoader {
     }
 
     @discardableResult
-    func load() -> URLSessionTask? {
+    func load() -> APITask? {
         if let loaded = ImageLoader.rendered[key] {
             callback(.success(loaded))
             return nil
@@ -127,7 +127,7 @@ public class ImageLoader {
         ImageLoader.loading[key] = []
         ImageLoader.loading[key]?.append(self)
 
-        task = URLSessionAPI.defaultURLSession.dataTask(with: URLRequest(url: url)) { data, response, error in
+        task = API().makeRequest(url) { data, response, error in
             self.task = nil
             if let data = data, error == nil {
                 self.imageFrom(data: data, response: response as? HTTPURLResponse)

@@ -98,13 +98,13 @@ public class AudioPlayerViewController: UIViewController {
         playPauseButton?.alpha = 0
         playPauseButton?.isEnabled = false
         guard let url = url else { return }
-        URLSessionAPI.cachingURLSession.dataTask(with: url) { [weak self] data, _, error in
+        API(urlSession: .shared).makeRequest(url) { [weak self] data, _, error in performUIUpdate {
             guard error == nil, let data = data else {
-                performUIUpdate { self?.showError(error ?? NSError.internalError()) }
+                self?.showError(error ?? NSError.internalError())
                 return
             }
-            performUIUpdate { self?.loadData(data) }
-        }.resume()
+            self?.loadData(data)
+        } }
     }
 
     public func loadData(_ data: Data) {

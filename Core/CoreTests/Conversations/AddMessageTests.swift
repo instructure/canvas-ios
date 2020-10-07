@@ -28,7 +28,7 @@ class AddMessageTests: CoreTestCase {
             messages: [ .make() ]
         ))
         let useCase = AddMessage(conversationID: "1", body: "See-Gee-IN-YOU!")
-        api.mock(useCase.request, value: .make(
+        api.mock(useCase, value: .make(
             workflow_state: .read,
             last_message: "See-Gee-IN-YOU!",
             last_message_at: Clock.now,
@@ -59,7 +59,7 @@ class AddMessageTests: CoreTestCase {
         let conversation = Conversation.make()
 
         let useCase = AddMessage(conversationID: "1", body: "See-Gee-IN-YOU")
-        api.mock(useCase.request, value: APIConversation.make(
+        api.mock(useCase, value: APIConversation.make(
             last_message: nil,
             last_message_at: nil,
             last_authored_message: "See-Gee-IN-YOU",

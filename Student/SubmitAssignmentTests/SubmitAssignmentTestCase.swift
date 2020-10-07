@@ -22,8 +22,8 @@ import XCTest
 import CoreData
 
 class SubmitAssignmentTestCase: XCTestCase {
-    var env = TestEnvironment()
-    let api = MockURLSession.self
+    var env: TestEnvironment!
+    var api: API { env.api }
     var database: NSPersistentContainer {
         return TestsFoundation.singleSharedTestDatabase
     }
@@ -36,7 +36,7 @@ class SubmitAssignmentTestCase: XCTestCase {
         env = TestEnvironment()
         env.database = database
         AppEnvironment.shared = env
-        MockURLSession.reset()
+        API.resetMocks()
         UploadManager.shared = uploadManager
         MockUploadManager.reset()
     }

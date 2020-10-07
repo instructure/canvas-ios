@@ -244,22 +244,8 @@ public struct APINoContent: Codable {}
 extension URLRequest: APIRequestable {
     public typealias Response = Data
 
-    public var path: String {
-        return ""
-    }
-    public var method: APIMethod {
-        return .get
-    }
-    public var headers: [String: String?] {
-        return [:]
-    }
-    public var query: [APIQueryItem] {
-        return []
-    }
-
-    public func decode(_ data: Data) throws -> Data {
-        return data
-    }
+    public var path: String { "" }
+    public func decode(_ data: Data) throws -> Data { data }
 
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard let url = url else { throw NSError.internalError() }
@@ -271,5 +257,14 @@ extension URLRequest: APIRequestable {
             request.url = url.appendingQueryItems(URLQueryItem(name: "as_user_id", value: actAsUserID))
         }
         return request
+    }
+}
+
+extension URL: APIRequestable {
+    public typealias Response = Data
+
+    public func decode(_ data: Data) throws -> Data { data }
+    public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
+        try URLRequest(url: self).urlRequest(relativeTo: baseURL, accessToken: accessToken, actAsUserID: actAsUserID)
     }
 }

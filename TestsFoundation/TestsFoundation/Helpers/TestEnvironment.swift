@@ -27,13 +27,14 @@ public class TestEnvironment: AppEnvironment {
 
     override public init() {
         super.init()
-        self.api = URLSessionAPI(urlSession: MockURLSession())
+        let session = LoginSession.make()
+        self.api = API(session)
         self.database = singleSharedTestDatabase
         self.globalDatabase = singleSharedTestDatabase
         self.router = TestRouter()
         self.logger = TestLogger()
-        self.currentSession = LoginSession.make()
-        self.userDefaults = SessionDefaults(sessionID: self.currentSession! .uniqueID)
+        self.currentSession = session
+        self.userDefaults = SessionDefaults(sessionID: session.uniqueID)
     }
 
     override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {

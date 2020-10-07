@@ -35,7 +35,7 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
-    open var httpMocks = [URL: (URLRequest) -> MockHTTPResponse]()
+    open var httpMocks = [String: (URLRequest) -> MockHTTPResponse]()
     open var graphQLMocks = [String: (URLRequest) -> Data]()
     open var useMocks: Bool {
         switch Bundle.main.bundleIdentifier {
@@ -140,23 +140,16 @@ open class CoreUITestCase: XCTestCase {
         public func handler(_ message: IPCDriverServerMessage) -> Data? {
             switch message {
             case .urlRequest(let request):
-                guard let url = request.url?.withCanonicalQueryParams!,
-                    let testCase = currentTestCase else {
-                    return nil
-                }
-                guard let mock = testCase.httpMocks[url] else {
-                    print("installed mocks:")
-                    var mockKeys = testCase.httpMocks.map { $0.key.absoluteString }
-                    let targetKey = url.absoluteString
-                    var similarity = [String: Int]()
-                    for key in mockKeys {
-                        similarity[key] = targetKey.commonPrefix(with: key).count
+                guard let testCase = currentTestCase else { return nil }
+                guard let mock = testCase.httpMocks[request.key] else {
+                    let targetKey = request.key
+                    print("⚠️ \(request.key) not found in mocks:")
+                    let keys = testCase.httpMocks.keys.sorted {
+                        targetKey.commonPrefix(with: $0).count > targetKey.commonPrefix(with: $1).count
                     }
-                    mockKeys.sort { (similarity[$0]!, $0) < (similarity[$1]!, $1) }
-                    for key in mockKeys {
-                        print("  \(key)")
+                    for key in keys {
+                        print("* \(key)")
                     }
-                    print("mock not found for url (\(request.httpMethod ?? "GET")):\n  \(url.absoluteString)")
                     return try? encoder.encode(testCase.handleMissingMock(request))
                 }
                 return try? encoder.encode(mock(request))
@@ -419,13 +412,13 @@ open class CoreUITestCase: XCTestCase {
         error: String? = nil,
         noCallback: Bool = false
     ) {
-        let api = URLSessionAPI()
+        let api = API()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
         return mockRequest(request, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockData<R: APIRequestable>(_ requestable: R, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
-        let api = URLSessionAPI()
+        let api = API()
         let request = try! requestable.urlRequest(relativeTo: api.baseURL, accessToken: api.loginSession?.accessToken, actAsUserID: api.loginSession?.actAsUserID)
         return mockResponse(request, response: dynamicResponse)
     }
@@ -438,13 +431,13 @@ open class CoreUITestCase: XCTestCase {
         noCallback: Bool = false
     ) {
         let data = value.flatMap { try! Self.encoder.encode($0) }
-        let api = URLSessionAPI()
+        let api = API()
         let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
         mockURL(url, data: data, response: response, error: error, noCallback: noCallback)
     }
 
     open func mockRequest(_ path: String, dynamicResponse: @escaping (URLRequest) -> MockHTTPResponse) {
-        let api = URLSessionAPI()
+        let api = API()
         let url = URL(string: path, relativeTo: api.baseURL.appendingPathComponent("api/v1/"))!
         mockResponse(URLRequest(url: url), response: dynamicResponse)
     }
@@ -462,7 +455,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func mockGraphQL(operationName: String, dynamicData: @escaping (URLRequest) -> Data) {
-        let api = URLSessionAPI()
+        let api = API()
         let url = URL(string: "/api/graphql", relativeTo: api.baseURL)!
         graphQLMocks[operationName] = dynamicData
         mockURL(url, dynamicData: doGraphQLMock)
@@ -676,12 +669,11 @@ open class CoreUITestCase: XCTestCase {
         response: @escaping (URLRequest) -> MockHTTPResponse
     ) {
         XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
-        let mockUrl = request.url!.withCanonicalQueryParams!
-        if httpMocks[mockUrl] != nil {
-            print("⚠️ Overwriting mock (which is totally a fine thing to do) for:")
-            print("  \(mockUrl)")
+        let key = request.key
+        if httpMocks[key] != nil {
+            print("💫 \(key) overwriting mock")
         }
-        httpMocks[mockUrl] = response
+        httpMocks[key] = response
     }
 
     open func mockNow(_ date: Date) {

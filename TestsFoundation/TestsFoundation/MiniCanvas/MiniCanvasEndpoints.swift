@@ -408,7 +408,7 @@ enum MiniCanvasEndpoints {
         .apiRequest(PostLoginOAuthRequest(client: .make(), code: "")) { request in
             APIOAuthToken.make(user: .from(user: request.state.selfUser))
         },
-        .apiRequest(DeleteLoginOAuthRequest(session: .make())) { _ in .init() },
+        .apiRequest(DeleteLoginOAuthRequest()) { _ in .init() },
         .apiRequest(GetWebSessionRequest(to: nil)) { request in
             .init(session_url: request["return_to"].flatMap { URL(string: $0) } ?? request.baseUrl)
         },

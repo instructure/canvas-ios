@@ -95,7 +95,7 @@ extension NotificationManager {
     }
 
     func createPushChannel(token: Data, session: LoginSession, retriesLeft: Int = 4) {
-        let api = URLSessionAPI(session: session)
+        let api = API(session)
         api.makeRequest(PostCommunicationChannelRequest(pushToken: token)) { channel, _, error in
             let retryCodes = [ Int(ECONNABORTED), NSURLErrorNetworkConnectionLost ]
             if let code = (error as NSError?)?.code, retryCodes.contains(code), retriesLeft > 0 {
@@ -111,7 +111,7 @@ extension NotificationManager {
         }
     }
 
-    func setPushChannelDefaults(_ api: URLSessionAPI, channelID: String) {
+    func setPushChannelDefaults(_ api: API, channelID: String) {
         api.makeRequest(GetNotificationPreferencesRequest(channelID: channelID)) { response, _, error in
             if let error = error {
                 return self.logger.error(error.localizedDescription)
@@ -133,8 +133,7 @@ extension NotificationManager {
 
     public func unsubscribeFromPushChannel() {
         guard let token = remoteToken, let session = remoteSession else { return }
-        let api = URLSessionAPI(session: session)
-        api.makeRequest(DeletePushChannelRequest(pushToken: token)) { _, _, error in
+        API(session).makeRequest(DeletePushChannelRequest(pushToken: token)) { _, _, error in
             guard let error = error else { return }
             self.logger.error(error.localizedDescription)
         }

@@ -26,13 +26,13 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var searchField: UITextField!
 
     var accounts = [APIAccountResult]()
-    var api: API = URLSessionAPI()
+    var api: API = API()
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     let logoView = UIImageView()
     var method = AuthenticationMethod.normalLogin
     weak var loginDelegate: LoginDelegate?
-    var searchTask: URLSessionTask?
+    var searchTask: APITask?
 
     var notFoundAttributedText: NSAttributedString = {
         let text = NSLocalizedString("Can’t find your school? Try typing the full school URL.", bundle: .core, comment: "")

@@ -384,7 +384,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         avatarView.alpha = 0.5
         avatarLoading.isHidden = false
         do {
-            UploadAvatar(url: try image.write(nameIt: "profile")).fetch(env: env) { [weak self] result in performUIUpdate {
+            UploadAvatar(url: try image.write(nameIt: "profile")).fetch { [weak self] result in performUIUpdate {
                 switch result {
                 case .success(let url):
                     self?.avatarView?.url = url

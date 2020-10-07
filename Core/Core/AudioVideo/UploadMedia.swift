@@ -20,11 +20,10 @@ import CoreData
 import Foundation
 
 public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     let database = UploadManager.shared.database
-    lazy var urlSession = URLSessionAPI.delegateURLSession(.ephemeral, self, nil)
     var mediaAPI: API?
-    var task: URLSessionTask?
+    var task: APITask?
     var callback: (String?, Error?) -> Void = { _, _ in }
     let file: File?
     let url: URL
@@ -46,8 +45,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         }
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (String?, Error?) -> Void) {
-        self.env = environment
+    public func fetch(_ callback: @escaping (String?, Error?) -> Void) {
         self.callback = callback
         upload()
     }
@@ -64,7 +62,7 @@ public class UploadMedia: NSObject, URLSessionDelegate, URLSessionDataDelegate {
             guard let baseUrl = url, error == nil else {
                 return self.callback(nil, error)
             }
-            self.mediaAPI = URLSessionAPI(baseURL: baseUrl, urlSession: self.urlSession)
+            self.mediaAPI = API(baseURL: baseUrl, urlSession: URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil))
             self.getSession()
         }
     }

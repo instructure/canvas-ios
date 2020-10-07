@@ -233,11 +233,11 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     func testLoadingFirstPage() {
         let task = api.mock(GetModulesRequest(courseID: "1", include: []), value: [])
-        task.paused = true
+        task.suspend()
         loadView()
         XCTAssertEqual(viewController.spinnerView.isHidden, false)
         XCTAssertEqual(viewController.errorView.isHidden, true)
-        task.paused = false
+        task.resume()
         drainMainQueue()
         XCTAssertEqual(viewController.spinnerView.isHidden, true)
     }
@@ -397,7 +397,7 @@ class ModuleListViewControllerTests: CoreTestCase {
             PostSelectMasteryPath(courseID: "1", moduleID: "1", moduleItemID: "1", assignmentSetID: "1"),
             value: APINoContent()
         )
-        task.paused = true
+        task.suspend()
         loadView()
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 2)
         let item = moduleItemCell(at: IndexPath(row: 0, section: 0))
@@ -414,7 +414,7 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertTrue(viewController.spinnerView.isHidden)
         masteryPath.delegate?.didSelectMasteryPath(id: "1", inModule: "1", item: "1")
         XCTAssertFalse(viewController.spinnerView.isHidden)
-        task.paused = false
+        task.resume()
         drainMainQueue()
         XCTAssertTrue(viewController.spinnerView.isHidden)
         XCTAssertEqual(viewController.tableView.numberOfRows(inSection: 0), 1)

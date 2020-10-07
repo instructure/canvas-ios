@@ -20,8 +20,7 @@ import Foundation
 
 public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var annotations: [APIDocViewerAnnotation]?
-    lazy var api: API = URLSessionAPI(baseURL: sessionURL)
-    var sessionAPI: API?
+    lazy var api: API = API(baseURL: sessionURL)
     var callback: () -> Void
     var error: Error?
     var localURL: URL?
@@ -29,7 +28,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
     var remoteURL: URL?
     var sessionID: String?
     var sessionURL: URL?
-    var task: URLSessionTask?
+    var task: APITask?
 
     init(callback: @escaping () -> Void) {
         self.callback = callback
@@ -46,9 +45,7 @@ public class DocViewerSession: NSObject, URLSessionTaskDelegate {
 
     func load(url: URL, session: LoginSession) {
         task?.cancel()
-        sessionAPI = URLSessionAPI(session: session, urlSession: URLSessionAPI.noFollowRedirectURLSession)
-        let request = URLRequest(url: url)
-        task = sessionAPI?.makeRequest(request) { [weak self] _, response, error in
+        task = API(session, urlSession: .noFollowRedirect).makeRequest(url) { [weak self] _, response, error in
             self?.error = error
             if let url = (response as? HTTPURLResponse)?.allHeaderFields["Location"] as? String {
                 var components = URLComponents.parse(url)

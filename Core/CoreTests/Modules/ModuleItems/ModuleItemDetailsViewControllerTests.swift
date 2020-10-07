@@ -179,7 +179,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
             completion_requirement: .make(type: .must_mark_done, completed: false)
         ))
         let task = api.mock(PutMarkModuleItemDone(courseID: "1", moduleID: "2", moduleItemID: "3", done: true), value: APINoContent())
-        task.paused = true
+        task.suspend()
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.count, 1)
         let options = controller.navigationItem.rightBarButtonItems!.first!
@@ -190,7 +190,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         markAsDone.handler?(markAsDone)
         router.dismiss()
         XCTAssertFalse(controller.spinnerView.isHidden)
-        task.paused = false
+        task.resume()
         XCTAssertTrue(controller.spinnerView.isHidden)
         wait(for: [expectation], timeout: 1)
     }

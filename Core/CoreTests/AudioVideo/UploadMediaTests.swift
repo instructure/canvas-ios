@@ -21,7 +21,7 @@ import XCTest
 @testable import Core
 
 class UploadMediaTests: CoreTestCase {
-    let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!)
+    lazy var upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!)
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -29,8 +29,7 @@ class UploadMediaTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.mediaAPI = URLSessionAPI()
-        upload.env = environment
+        upload.mediaAPI = API()
         upload.callback = { [weak self] (comment, error) in
             self?.error = error
             self?.called?.fulfill()
@@ -46,7 +45,7 @@ class UploadMediaTests: CoreTestCase {
     }
 
     func testFetch() {
-        upload.fetch(environment: environment, upload.callback)
+        upload.fetch(upload.callback)
         XCTAssert(upload.env === environment)
     }
 
@@ -92,7 +91,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
-        upload.env = environment
         upload.callback = {
             mediaID = $0
             error = $1
@@ -111,7 +109,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: context)
-        upload.env = environment
         upload.callback = {
             mediaID = $0
             error = $1
@@ -131,7 +128,6 @@ class UploadMediaTests: CoreTestCase {
         var error: Error?
         var mediaID: String?
         let upload = UploadMedia(type: .audio, url: URL(string: "data:text/plain,abcde")!, context: nil)
-        upload.env = environment
         upload.callback = {
             mediaID = $0
             error = $1

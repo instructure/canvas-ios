@@ -104,7 +104,7 @@ class LoginStartViewController: UIViewController {
 
     func refreshLogins() {
         for session in LoginSession.sessions {
-            URLSessionAPI(session: session).makeRequest(GetUserRequest(userID: session.userID)) { [weak self] (response, _, error) in performUIUpdate {
+            API(session).makeRequest(GetUserRequest(userID: session.userID)) { [weak self] (response, _, error) in performUIUpdate {
                 guard let response = response, error == nil else { return }
                 let entry = LoginSession(
                     accessToken: session.accessToken,

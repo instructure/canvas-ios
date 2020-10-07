@@ -30,8 +30,8 @@ class TeacherTestCase: XCTestCase {
         return database.viewContext
     }
 
-    var api = MockURLSession.self
-    var environment = TestEnvironment()
+    var api: API { environment.api }
+    var environment: TestEnvironment!
     var queue = OperationQueue()
     var router = TestRouter()
     var logger = TestLogger()
@@ -40,11 +40,12 @@ class TeacherTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MockURLSession.reset()
+        API.resetMocks()
         LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
+        environment = TestEnvironment()
         AppEnvironment.shared = environment
-        environment.api = URLSessionAPI()
+        environment.api = API()
         environment.database = singleSharedTestDatabase
         environment.globalDatabase = singleSharedTestDatabase
         environment.router = router
@@ -64,7 +65,6 @@ extension TeacherTestCase {
     open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view, env: environment)
         window.rootViewController = controller
-        window.screen = UIScreen.main
         window.makeKeyAndVisible()
         RunLoop.current.run(until: Date() + 0.01)
         return controller

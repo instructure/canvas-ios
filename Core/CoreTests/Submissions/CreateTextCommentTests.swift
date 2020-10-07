@@ -20,13 +20,12 @@ import XCTest
 @testable import Core
 
 class CreateTextCommentTests: CoreTestCase {
-    let create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, text: "comment")
+    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, text: "comment")
     var comment: SubmissionComment?
     var error: Error?
 
     override func setUp() {
         super.setUp()
-        create.env = environment
         create.callback = { [weak self] (comment, error) in
             self?.comment = comment
             self?.error = error
@@ -38,12 +37,12 @@ class CreateTextCommentTests: CoreTestCase {
     }
 
     func testFetch() {
-        create.fetch(environment: environment, create.callback)
+        create.fetch(create.callback)
         XCTAssert(create.env === environment)
     }
 
     func testSavePlaceholderError() {
-        create.env = AppEnvironment()
+        environment.currentSession = nil
         create.savePlaceholder()
         XCTAssertNotNil(error)
     }
@@ -61,7 +60,7 @@ class CreateTextCommentTests: CoreTestCase {
 
     func testPlaceholderCreated() {
         let called = expectation(description: "called")
-        create.fetch(environment: environment) { [weak self] comment, error in
+        create.fetch { [weak self] comment, error in
             self?.comment = comment
             self?.error = error
             called.fulfill()
@@ -85,7 +84,7 @@ class CreateTextCommentTests: CoreTestCase {
             submission_comments: [ .make() ]
         ))
         let called = expectation(description: "called")
-        create.fetch(environment: environment) { [weak self] comment, error in
+        create.fetch { [weak self] comment, error in
             self?.comment = comment
             self?.error = error
             called.fulfill()

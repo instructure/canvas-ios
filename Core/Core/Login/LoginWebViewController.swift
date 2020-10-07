@@ -40,7 +40,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
     var host = ""
     weak var loginDelegate: LoginDelegate?
     var method = AuthenticationMethod.normalLogin
-    var task: URLSessionTask?
+    var task: APITask?
     var mdmLogin: MDMLogin?
     var pairingCode: String?
 
@@ -107,7 +107,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
 
         // Lookup OAuth from mobile verify
         task?.cancel()
-        task = URLSessionAPI().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
+        task = API().makeRequest(GetMobileVerifyRequest(domain: host)) { [weak self] (response, _, _) in performUIUpdate {
             self?.mobileVerifyModel = response
             self?.task = nil
             self?.loadLoginWebRequest()
@@ -151,7 +151,7 @@ extension LoginWebViewController: WKNavigationDelegate {
             let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty,
             let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
             task?.cancel()
-            task = URLSessionAPI().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {
+            task = API().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {
                 guard let self = self else { return }
                 guard let token = response, error == nil else {
                     self.showError(error ?? NSError.internalError())

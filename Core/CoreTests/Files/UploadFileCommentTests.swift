@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadFileCommentTests: CoreTestCase {
-    let upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, batchID: "5")
+    lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, batchID: "5")
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -29,7 +29,6 @@ class UploadFileCommentTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.env = environment
         upload.callback = { [weak self] (comment, error) in
             self?.comment = comment
             self?.error = error
@@ -47,15 +46,13 @@ class UploadFileCommentTests: CoreTestCase {
     }
 
     func testFetch() {
-        upload.fetch(environment: environment, upload.callback)
+        upload.fetch(upload.callback)
         XCTAssert(upload.env === environment)
     }
 
     func testSavePlaceholderError() {
-        upload.env = AppEnvironment()
-        called = expectation(description: "callback called")
+        environment.currentSession = nil
         upload.savePlaceholder()
-        wait(for: [called!], timeout: 5)
         XCTAssertNotNil(error)
     }
 
@@ -83,7 +80,7 @@ class UploadFileCommentTests: CoreTestCase {
         ))
         let called = self.expectation(description: "error callback was called")
         called.assertForOverFulfill = false
-        upload.fetch(environment: environment) { comment, error in
+        upload.fetch { comment, error in
             XCTAssertNil(comment)
             XCTAssertNotNil(error)
             called.fulfill()
@@ -105,7 +102,7 @@ class UploadFileCommentTests: CoreTestCase {
             submission_comments: [ APISubmissionComment.make() ]
         ))
         let called = self.expectation(description: "success callback was called")
-        upload.fetch(environment: environment) { comment, error in
+        upload.fetch { comment, error in
             XCTAssertNotNil(comment)
             XCTAssertNil(error)
             called.fulfill()

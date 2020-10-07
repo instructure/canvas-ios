@@ -30,12 +30,12 @@ class CoreTestCase: XCTestCase {
     var databaseClient: NSManagedObjectContext {
         return database.viewContext
     }
-    var api = MockURLSession.self
+    var api: API { environment.api }
     var router: TestRouter!
     var logger: TestLogger!
     var analytics = TestAnalyticsHandler()
 
-    var environment = TestEnvironment()
+    lazy var environment = TestEnvironment()
     var currentSession: LoginSession!
     var login = TestLoginDelegate()
 
@@ -53,10 +53,9 @@ class CoreTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MockURLSession.reset()
+        API.resetMocks()
         LoginSession.useTestKeychain()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
-        environment = TestEnvironment()
         router = environment.router as? TestRouter
         logger = environment.logger as? TestLogger
         currentSession = environment.currentSession

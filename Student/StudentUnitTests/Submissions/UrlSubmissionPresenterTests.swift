@@ -53,7 +53,7 @@ class UrlSubmissionPresenterTests: StudentTestCase {
     func testSubmitError() {
         let url = URL(string: "https://instructure.com")
         let error = NSError(domain: "test", code: 5, userInfo: nil)
-        MockURLSession.mock(submissionRequest(for: url), value: nil, response: nil, error: error, accessToken: presenter.env.api.loginSession?.accessToken)
+        api.mock(submissionRequest(for: url), error: error)
         let expectation = XCTestExpectation(description: "got an error")
         onError = expectation.fulfill
         presenter.submit(url?.absoluteString)
@@ -63,7 +63,7 @@ class UrlSubmissionPresenterTests: StudentTestCase {
 
     func testSubmitSuccess() {
         let url = URL(string: "https://instructure.com")
-        MockURLSession.mock(submissionRequest(for: url), value: APISubmission.make(), response: nil, error: nil, accessToken: presenter.env.api.loginSession?.accessToken)
+        api.mock(submissionRequest(for: url), value: .make())
         let expectation = XCTestExpectation(description: "dismissed")
         onDismiss = expectation.fulfill
         presenter.submit(url?.absoluteString)

@@ -63,11 +63,8 @@ class APIOAuthTests: XCTestCase {
     }
 
     func testDeleteLoginOAuthRequest() {
-        let session = LoginSession.make(accessToken: "t")
-        XCTAssertEqual(DeleteLoginOAuthRequest(session: session).path, "\(session.baseURL.absoluteString)/login/oauth2/token")
-        XCTAssertEqual(DeleteLoginOAuthRequest(session: session).headers, [
-            HttpHeader.authorization: "Bearer t",
-        ])
+        XCTAssertEqual(DeleteLoginOAuthRequest().method, .delete)
+        XCTAssertEqual(DeleteLoginOAuthRequest().path, "/login/oauth2/token")
     }
 
     func testGetWebSessionRequest() {

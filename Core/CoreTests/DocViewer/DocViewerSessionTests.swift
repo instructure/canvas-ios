@@ -23,10 +23,10 @@ import TestsFoundation
 class DocViewerSessionTests: CoreTestCase {
     func testCancel() {
         let session = DocViewerSession {}
-        let mockTask = MockURLSession.MockDataTask()
-        session.task = mockTask
+        let task = MockAPITask(api, request: URLRequest(url: URL(string: "/")!))
+        session.task = task
         session.cancel()
-        XCTAssertTrue(mockTask.canceled)
+        XCTAssertEqual(task.state, .canceling)
     }
 
     func testLoad() {
@@ -36,7 +36,7 @@ class DocViewerSessionTests: CoreTestCase {
             "Location": "https://doc.viewer/1/session1/view?query",
         ])
         let loginSession = LoginSession.make()
-        MockURLSession.mock(URLRequest(url: url), value: nil, response: response, accessToken: loginSession.accessToken)
+        api.mock(url: url, response: response)
         session.load(url: url, session: loginSession)
         XCTAssertEqual(session.sessionURL, URL(string: "https://doc.viewer/1/session1"))
     }
@@ -45,7 +45,7 @@ class DocViewerSessionTests: CoreTestCase {
         let session = DocViewerSession {}
         let url = URL(string: "/")!
         let loginSession = LoginSession.make()
-        MockURLSession.mock(URLRequest(url: url), error: APIDocViewerError.noData, accessToken: loginSession.accessToken)
+        api.mock(url: url, error: APIDocViewerError.noData)
         session.load(url: URL(string: "/")!, session: loginSession)
         XCTAssertNotNil(session.error)
         XCTAssertNil(session.sessionURL)
