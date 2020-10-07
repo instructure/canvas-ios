@@ -37,6 +37,7 @@ public class FilterHeaderView: UITableViewHeaderFooterView {
         contentView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
         titleLabel.textColor = .textDarkest
         titleLabel.font = .scaledNamedFont(.heavy24)
+        titleLabel.numberOfLines = 2
         contentView.addSubview(titleLabel)
         titleLabel.pin(inside: contentView, leading: 16, trailing: nil, top: 16, bottom: 8)
         filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)

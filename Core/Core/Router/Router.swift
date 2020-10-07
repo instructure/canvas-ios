@@ -59,7 +59,7 @@ open class Router {
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
-    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler) {
+    public init(routes: [RouteHandler], fallback: @escaping FallbackHandler = { url, _, _, _ in open(url: url) }) {
         self.handlers = routes
         self.fallback = fallback
     }

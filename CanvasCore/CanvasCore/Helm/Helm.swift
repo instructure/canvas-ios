@@ -436,6 +436,29 @@ open class HelmManager: NSObject {
             callback?()
         }
     }
+
+    public func routeHandlers(_ routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?>) -> [RouteHandler] {
+        var routes: [RouteHandler] = []
+        for (template, handler) in routeMap {
+            if let factory = handler {
+                let route = RouteHandler(template, factory: factory)
+                registerNativeViewController(for: template, factory: { props in
+                    guard
+                        let location = props["location"] as? [String: Any],
+                        let url = (location["href"] as? String).flatMap(URLComponents.parse),
+                        let params = route.match(url)
+                    else { return nil }
+                    return route.factory(url, params, props)
+                })
+                routes.append(route)
+            } else {
+                routes.append(RouteHandler(template) { url, params, userInfo in
+                    return HelmViewController(moduleName: template, url: url, params: params, userInfo: userInfo)
+                })
+            }
+        }
+        return routes
+    }
 }
 
 extension HelmManager {
@@ -492,29 +515,4 @@ extension HelmManager: UIAdaptivePresentationControllerDelegate {
     public func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
         return false
     }
-}
-
-public func makeProps(_ url: URLComponents, params: Props, userInfo: [String: Any]?) -> Props {
-    var props: Props = userInfo ?? [:]
-    for (key, value) in params {
-        props[key] = value
-    }
-    let location: [String: Any?] = [
-        "hash": url.fragment.flatMap { "#\($0)" },
-        "host": url.host.flatMap { host in
-            url.port.flatMap { "\(host):\($0)" } ?? host
-        },
-        "hostname": url.host,
-        "href": url.string,
-        "pathname": url.path,
-        "port": url.port.flatMap { String($0) },
-        "protocol": url.scheme.flatMap { "\($0):" },
-        "query": url.queryItems?.reduce(into: [String: String?]()) { query, item in
-            props[item.name] = item.value
-            query[item.name] = item.value
-        },
-        "search": url.query.flatMap { "?\($0)" },
-    ]
-    props["location"] = location
-    return props
 }

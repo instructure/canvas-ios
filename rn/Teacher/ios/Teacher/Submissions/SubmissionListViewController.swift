@@ -180,10 +180,6 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
 }
 
 extension SubmissionListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 16 + UIFont.scaledNamedFont(.heavy24).lineHeight + 8
-    }
-
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
         header.titleLabel.text = filter.isEmpty ? NSLocalizedString("All submissions") :

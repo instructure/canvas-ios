@@ -16,220 +16,116 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CanvasCore
 import Core
-import SwiftUI
 
-extension TeacherAppDelegate {
-    @objc func registerNativeRoutes() {
-        for (template, factory) in nativeRoutes {
-            guard let factory = factory else { continue }
-            HelmManager.shared.registerNativeViewController(for: template, factory: factory)
-        }
-    }
-}
-
-class TeacherRouter: Router {
-    override func match(_ url: URLComponents, userInfo: [String: Any]? = nil) -> UIViewController? {
-        for template in HelmManager.shared.registeredRoutes {
-            let route = RouteHandler(template) { url, params, userInfo in
-                let props = makeProps(url, params: params, userInfo: userInfo)
-                if let factory = HelmManager.shared.nativeViewControllerFactories[template] {
-                    return factory.builder(props)
-                }
-                return HelmViewController(moduleName: template, props: props)
-            }
-            if let params = route.match(url), let match = route.factory(url, params, userInfo) {
-                return match
-            }
-        }
-        return nil
-    }
-
-    override func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
-        guard let url = url.url else { return }
-        let name = NSNotification.Name("route")
-        var notificationInfo: [AnyHashable: Any] = [
-            "props": userInfo ?? [:],
-            "url": url.absoluteString,
-        ]
-        switch options {
-        case .push:
-            break
-        case .detail:
-            notificationInfo["detail"] = true
-            notificationInfo["embedInNavigationController"] = true
-        case .modal(let style, let isDismissable, let embedInNav, _):
-            notificationInfo["modal"] = true
-            notificationInfo["embedInNavigationController"] = embedInNav
-            notificationInfo["disableSwipeDownToDismissModal"] = !isDismissable
-            switch style {
-            case .formSheet:
-                notificationInfo["modalPresentationStyle"] = "formsheet"
-            case .fullScreen:
-                notificationInfo["modalPresentationStyle"] = "fullscreen"
-            default:
-                break
-            }
-        }
-        NotificationCenter.default.post(name: name, object: nil, userInfo: notificationInfo)
-    }
-}
-
-let router = TeacherRouter(routes: []) { _, _, _, _ in }
-
-private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builder?> = [
-    "/accounts/:accountID/terms_of_service": { _ in
+let router = Router(routes: HelmManager.shared.routeHandlers([
+    "/accounts/:accountID/terms_of_service": { _, _, _ in
         return TermsOfServiceViewController()
     },
 
-    "/courses/:courseID/attendance/:toolID": { props in
-        guard let courseID = props["courseID"] as? String else { return nil }
-        guard let toolID = props["toolID"] as? String else { return nil }
-        return AttendanceViewController(context: .course(courseID), toolID: toolID)
+    "/act-as-user": { _, _, _ in
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate)
+    },
+    "/act-as-user/:userID": { _, params, _ in
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
+        return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
     },
 
-    "/courses": {
-        if ExperimentalFeature.nativeDashboard.isEnabled != false {
-            return { _ in CoreHostingController(CourseListView()) }
-        } else {
-            return nil
-        }
-    }(),
+    "/conversations": nil,
+    "/conversations/compose": nil,
+    "/conversations/:conversationID": nil,
 
-    "/courses/:courseID/assignments/:assignmentID/submissions": { props in
-        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
-            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions", props: props)
+    "/course_favorites": nil,
+
+    "/courses": { url, params, userInfo in
+        guard ExperimentalFeature.nativeDashboard.isEnabled else {
+            return HelmViewController(moduleName: "/courses", url: url, params: params, userInfo: userInfo)
         }
-        guard let context = props.context else { return nil }
-        guard let assignmentID = props["assignmentID"] as? String else { return nil }
-        let filter = (props["filter"] as? String)?.components(separatedBy: ",").compactMap {
+        return CoreHostingController(CourseListView())
+    },
+
+    "/courses/:courseID": nil,
+    "/courses/:courseID/tabs": nil,
+    "/courses/:courseID/settings": nil,
+    "/courses/:courseID/user_preferences": nil,
+
+    "/:context/:contextID/announcements": nil,
+    "/:context/:contextID/announcements/new": nil,
+    "/:context/:contextID/announcements/:announcementID/edit": nil,
+
+    "/:context/:contextID/announcements/:announcementID": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
+        return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
+    },
+
+    "/courses/:courseID/assignments": nil,
+
+    "/courses/:courseID/assignments/syllabus": { url, _, _ in
+        Router.open(url: url)
+        return nil
+    },
+
+    "/courses/:courseID/assignments/:assignmentID": nil,
+    "/courses/:courseID/assignments/:assignmentID/edit": nil,
+    "/courses/:courseID/assignments/:assignmentID/due_dates": nil,
+    "/courses/:courseID/assignments/:assignmentID/assignee-picker": nil,
+    "/courses/:courseID/assignments/:assignmentID/assignee-search": nil,
+
+    "/courses/:courseID/assignments/:assignmentID/post_policy": { _, params, _ in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
+    },
+
+    "/courses/:courseID/assignments/:assignmentID/submissions": { url, params, userInfo in
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions", url: url, params: params, userInfo: userInfo)
+        }
+        guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
+        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
         return SubmissionListViewController.create(context: context, assignmentID: assignmentID, filter: filter)
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { props in
+    "/courses/:courseID/gradebook/speed_grader": nil,
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params, userInfo in
         guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
-            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions/:userID", props: props)
+            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions/:userID", url: url, params: params, userInfo: userInfo)
         }
-        guard let context = props.context else { return nil }
-        guard let assignmentID = props["assignmentID"] as? String else { return nil }
-        guard let userID = props["userID"] as? String else { return nil }
-        let filter = (props["filter"] as? String)?.components(separatedBy: ",").compactMap {
+        guard let context = Context(path: url.path) else { return nil }
+        guard let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
+        let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
         return CoreHostingController(SpeedGraderView(context: context, assignmentID: assignmentID, userID: userID, filter: filter))
     },
 
-    "/courses/:courseID/modules": { props in
-        guard let courseID = props["courseID"] as? String else { return nil }
-        return ModuleListViewController.create(courseID: courseID)
+    "/courses/:courseID/attendance/:toolID": { _, params, _ in
+        guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
+        return AttendanceViewController(context: .course(courseID), toolID: toolID)
     },
 
-    "/courses/:courseID/modules/:moduleID": { props in
-        guard let courseID = props["courseID"] as? String else { return nil }
-        guard let moduleID = props["moduleID"] as? String else { return nil }
-        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
-    },
-
-    "/:context/:contextID/wiki": { props in
-        guard let context = props.context else { return nil }
-        return router.match(.parse("\(context.pathComponent)/pages/front_page"))
-    },
-    "/:context/:contextID/pages": { props in
-        guard let context = props.context else { return nil }
-        return PageListViewController.create(context: context, app: .teacher)
-    },
-
-    "/courses/:courseID/users": { props in
-        guard let courseID = props["courseID"] as? String else { return nil }
-        return PeopleListViewController.create(context: .course(courseID))
-    },
-
-    "/:context/:contextID/pages/:url": { props in
-        guard let context = props.context else { return nil }
-        guard let pageURL = props["url"] as? String else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
-    },
-
-    "/:context/:contextID/wiki/:url": { props in
-        guard let context = props.context else { return nil }
-        guard let pageURL = props["url"] as? String else { return nil }
-        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
-    },
-
-    "/:context/:contextID/pages/new": { props in
-        guard let context = props.context else { return nil }
-        return CoreHostingController(PageEditorView(context: context))
-    },
-
-    "/:context/:contextID/pages/:url/edit": { props in
-        guard let context = props.context, let slug = props["url"] as? String else { return nil }
-        return CoreHostingController(PageEditorView(context: context, url: slug))
-    },
-
-    "/:context/:contextID/wiki/:url/edit": { props in
-        guard let context = props.context, let slug = props["url"] as? String else { return nil }
-        return CoreHostingController(PageEditorView(context: context, url: slug))
-    },
-
-    "/courses/:courseID/modules/:moduleID/items/:itemID": { props in
-        guard
-            let courseID = props["courseID"] as? String,
-            let itemID = props["itemID"] as? String,
-            let location = props["location"] as? [String: Any],
-            let url = (location["href"] as? String).flatMap(URLComponents.parse)
-        else {
-            return nil
-        }
-        return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
-    },
-
-    "/courses/:courseID/modules/items/:itemID": { props in
-        guard
-            let courseID = props["courseID"] as? String,
-            let itemID = props["itemID"] as? String,
-            let location = props["location"] as? [String: Any],
-            let url = (location["href"] as? String).flatMap(URLComponents.parse)
-        else {
-            return nil
-        }
-        return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
-    },
-
-    "/courses/:courseID/module_item_redirect/:itemID": { props in
-        guard
-            let courseID = props["courseID"] as? String,
-            let itemID = props["itemID"] as? String,
-            let location = props["location"] as? [String: Any],
-            let url = (location["href"] as? String).flatMap(URLComponents.parse)
-        else {
-            return nil
-        }
-        return ModuleItemSequenceViewController.create(courseID: courseID, assetType: .moduleItem, assetID: itemID, url: url)
-    },
-
-    "/:context/:contextID/announcements/:announcementID": { (props: Props) -> UIViewController? in
-        guard let context = props.context else { return nil }
-        guard let topicID = props["announcementID"] as? String else { return nil }
-        return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
-    },
-
+    "/:context/:contextID/discussions": nil,
+    "/:context/:contextID/discussion_topics": nil,
+    "/:context/:contextID/discussion_topics/new": nil,
     "/:context/:contextID/discussions/:discussionID": discussionDetails,
     "/:context/:contextID/discussion_topics/:discussionID": discussionDetails,
 
-    "/:context/:contextID/discussion_topics/:discussionID/reply": { props in
-        guard let context = props.context else { return nil }
-        guard let topicID = props["discussionID"] as? String else { return nil }
+    "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
+
+    "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
         return DiscussionReplyViewController.create(context: context, topicID: topicID)
     },
 
-    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { props in
-        guard let context = props.context else { return nil }
-        guard let topicID = props["discussionID"] as? String else { return nil }
-        guard let entryID = props["entryID"] as? String else { return nil }
+    "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { url, params, _ in
+        guard
+            let context = Context(path: url.path),
+            let topicID = params["discussionID"],
+            let entryID = params["entryID"]
+        else { return nil }
         return DiscussionReplyViewController.create(context: context, topicID: topicID, replyToEntryID: entryID)
     },
 
@@ -237,8 +133,8 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     "/:context/:contextID/files": fileList,
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
-    "/folders/:folderID/edit": { props in
-        guard let folderID = props["folderID"] as? String else { return nil }
+    "/folders/:folderID/edit": { _, params, _ in
+        guard let folderID = params["folderID"] else { return nil }
         return CoreHostingController(FileEditorView(folderID: folderID))
     },
 
@@ -251,35 +147,94 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
     "/:context/:contextID/files/:fileID/preview": fileDetails,
     "/:context/:contextID/files/:fileID/edit": fileEditor,
 
-    "/act-as-user": { _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
-        return ActAsUserViewController.create(loginDelegate: loginDelegate)
+    "/courses/:courseID/modules": { _, params, _ in
+        guard let courseID = params["courseID"] else { return nil }
+        return ModuleListViewController.create(courseID: courseID)
     },
 
-    "/act-as-user/:userID": { props in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
-        return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: props["userID"] as? String)
+    "/courses/:courseID/modules/:moduleID": { _, params, _ in
+        guard let courseID = params["courseID"], let moduleID = params["moduleID"] else { return nil }
+        return ModuleListViewController.create(courseID: courseID, moduleID: moduleID)
     },
 
-    "/wrong-app": { _ in
-        guard let loginDelegate = UIApplication.shared.delegate as? LoginDelegate else { return nil }
-        return WrongAppViewController.create(delegate: loginDelegate)
+    "/courses/:courseID/modules/:moduleID/items/:itemID": { url, params, _ in
+        guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+        return ModuleItemSequenceViewController.create(
+            courseID: courseID,
+            assetType: .moduleItem,
+            assetID: itemID,
+            url: url
+        )
     },
 
-    "/courses/:courseID/assignments/:assignmentID/post_policy": { props in
-        guard let courseID = props["courseID"] as? String, let assignmentID = props["assignmentID"] as? String else { return nil }
-        return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
+    "/courses/:courseID/modules/items/:itemID": { url, params, _ in
+        guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+        return ModuleItemSequenceViewController.create(
+            courseID: courseID,
+            assetType: .moduleItem,
+            assetID: itemID,
+            url: url
+        )
     },
 
-    "/profile": { _ in
-        return ProfileViewController.create(enrollment: .teacher)
+    "/courses/:courseID/module_item_redirect/:itemID": { url, params, _ in
+        guard let courseID = params["courseID"], let itemID = params["itemID"] else { return nil }
+        return ModuleItemSequenceViewController.create(
+            courseID: courseID,
+            assetType: .moduleItem,
+            assetID: itemID,
+            url: url
+        )
     },
 
-    "/profile/settings": { _ in
-        return ProfileSettingsViewController.create()
+    "/:context/:contextID/wiki": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return AppEnvironment.shared.router.match("\(context.pathComponent)/pages/front_page")
+    },
+    "/:context/:contextID/pages": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return PageListViewController.create(context: context, app: .teacher)
     },
 
-    "/dev-menu/experimental-features": { _ in
+    "/:context/:contextID/pages/new": { url, params, userInfo in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(PageEditorView(context: context))
+    },
+
+    "/:context/:contextID/pages/:url": { url, params, _ in
+        guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+    },
+    "/:context/:contextID/wiki/:url": { url, params, _ in
+        guard let context = Context(path: url.path), let pageURL = params["url"] else { return nil }
+        return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
+    },
+
+    "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
+        guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
+        return CoreHostingController(PageEditorView(context: context, url: slug))
+    },
+    "/:context/:contextID/wiki/:url/edit": { url, params, userInfo in
+        guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
+        return CoreHostingController(PageEditorView(context: context, url: slug))
+    },
+
+    "/courses/:courseID/quizzes": nil,
+    "/courses/:courseID/quizzes/:quizID": nil,
+    "/courses/:courseID/quizzes/:quizID/preview": nil,
+    "/courses/:courseID/quizzes/:quizID/edit": nil,
+    "/courses/:courseID/quizzes/:quizID/submissions": nil,
+
+    "/courses/:courseID/users": { _, params, _ in
+        guard let courseID = params["courseID"] else { return nil }
+        return PeopleListViewController.create(context: .course(courseID))
+    },
+
+    "/courses/:courseID/users/:userID": nil,
+
+    "/dev-menu": nil,
+
+    "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
         vc.afterToggle = {
             HelmManager.shared.reload()
@@ -287,53 +242,53 @@ private let nativeRoutes: KeyValuePairs<String, HelmViewControllerFactory.Builde
         return vc
     },
 
-    "/support/problem": { props in
+    "/profile": { _, _, _ in
+        return ProfileViewController.create(enrollment: .teacher)
+    },
+
+    "/profile/settings": { _, _, _ in
+        return ProfileSettingsViewController.create()
+    },
+
+    "/support/problem": { _, _, _ in
         return ErrorReportViewController.create(type: .problem)
     },
 
-    "/support/feature": { props in
+    "/support/feature": { _, _, _ in
         return ErrorReportViewController.create(type: .feature)
     },
-]
 
-private func discussionDetails(props: Props) -> UIViewController? {
-    guard let context = props.context else { return nil }
-    guard let topicID = props["discussionID"] as? String else { return nil }
+    "/to-do": nil,
+
+    "/wrong-app": { _, _, _ in
+        guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
+        return WrongAppViewController.create(delegate: loginDelegate)
+    },
+]))
+
+private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
     return DiscussionDetailsViewController.create(context: context, topicID: topicID)
 }
 
-private func fileList(props: Props) -> UIViewController? {
-    if let preview = fileDetails(props: props) {
-        return preview
+private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard url.queryItems?.contains(where: { $0.name == "preview" }) != true else {
+        return fileDetails(url: url, params: params, userInfo: userInfo)
     }
     return FileListViewController.create(
-        context: props.context ?? .currentUser,
-        path: (props["subFolder"] as? String)?.removingPercentEncoding
+        context: Context(path: url.path) ?? .currentUser,
+        path: params["subFolder"]
     )
 }
 
-private func fileDetails(props: Props) -> UIViewController? {
-    guard let fileID = props["preview"] as? String ?? props["fileID"] as? String else { return nil }
-    return FileDetailsViewController.create(context: props.context, fileID: fileID)
+private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
+    return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID)
 }
 
-private func fileEditor(props: Props) -> UIViewController? {
-    guard let fileID = props["fileID"] as? String else { return nil }
-    return CoreHostingController(FileEditorView(context: props.context, fileID: fileID))
-}
-
-private extension Props {
-    var context: Context? {
-        if let contextType = self["context"] as? String, let contextID = self["contextID"] as? String {
-            return Context(path: "\(contextType)/\(contextID)")
-        } else if let courseID = self["courseID"] as? String {
-            return Context(.course, id: courseID)
-        } else if let groupID = self["groupID"] as? String {
-            return Context(.group, id: groupID)
-        } else {
-            return nil
-        }
-    }
+private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let fileID = params["fileID"] else { return nil }
+    return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
 }
 
 // MARK: - HelmModules

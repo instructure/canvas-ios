@@ -168,14 +168,7 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
             view = 'activity_stream'
           }
           let url = `native-route/courses/${this.props.courseID}/${view}`
-          if (view === 'assignments') {
-            // Jira: MBL-10948
-            // This block is a hack because the native-route resolver does not use the props that are passed in until
-            // after the route is handled and a Helm view controller is created. So instead of using props, we use a
-            // one-off route subpath. See Routes.swift
-            url += '-fromHomeTab'
-          }
-          this.props.navigator.show(url, undefined, { color: processColor(this.props.color) })
+          this.props.navigator.show(url, undefined, { color: processColor(this.props.color), doNotSelectFirstItem: true })
         } else {
           const url = `/native-route-master${tab.html_url}`
           this.props.navigator.show(url)

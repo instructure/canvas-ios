@@ -69,11 +69,7 @@ import { isTeacher, isStudent } from '../modules/app'
 export function registerScreens (store: Store): void {
   registerScreen('', Dashboard, store, { deepLink: true })
   registerScreen('/', Dashboard, store, { deepLink: true })
-  if (ExperimentalFeature.nativeDashboard.isEnabled) {
-    registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
-  } else {
-    registerScreen('/courses', AllCourseList, store, { canBecomeMaster: true, deepLink: true })
-  }
+  registerScreen('/courses', ExperimentalFeature.nativeDashboard.isEnabled ? null : AllCourseList, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/course_favorites', EditFavorites, store, { deepLink: true })
   registerScreen('/courses/:courseID', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })

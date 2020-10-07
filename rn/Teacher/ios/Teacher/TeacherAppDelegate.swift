@@ -24,6 +24,7 @@ import Firebase
 import CanvasCore
 import Core
 import React
+import SafariServices
 
 @UIApplicationMain
 class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -94,7 +95,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     @objc func prepareReactNative() {
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
-        registerNativeRoutes()
         NativeLoginManager.shared().delegate = self
         HelmManager.shared.onReactLoginComplete = {
             guard let window = self.window else { return }
@@ -235,7 +235,12 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func openExternalURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        guard let from = environment.topViewController else {
+            return UIApplication.shared.open(url, options: [:])
+        }
+        let safari = SFSafariViewController(url: url)
+        safari.transitioningDelegate = ResetTransitionDelegate.shared
+        environment.router.show(safari, from: from, options: .modal())
     }
 
     func userDidLogin(session: LoginSession) {

@@ -133,6 +133,31 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         
         HelmManager.shared.register(screen: self)
     }
+
+    public convenience init(moduleName: String, url: URLComponents, params: [String: String], userInfo: [String: Any]?) {
+        var props: Props = userInfo ?? [:]
+        for (key, value) in params {
+            props[key] = value
+        }
+        let location: [String: Any?] = [
+            "hash": url.fragment.flatMap { "#\($0)" },
+            "host": url.host.flatMap { host in
+                url.port.flatMap { "\(host):\($0)" } ?? host
+            },
+            "hostname": url.host,
+            "href": url.string,
+            "pathname": url.path,
+            "port": url.port.flatMap { String($0) },
+            "protocol": url.scheme.flatMap { "\($0):" },
+            "query": url.queryItems?.reduce(into: [String: String?]()) { query, item in
+                props[item.name] = item.value
+                query[item.name] = item.value
+            },
+            "search": url.query.flatMap { "?\($0)" },
+        ]
+        props["location"] = location
+        self.init(moduleName: moduleName, props: props)
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -19,13 +19,15 @@
 import CanvasCore
 import Core
 
-public let router: Router = {
-let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
+let router = Router(routes: HelmManager.shared.routeHandlers([
+    "/accounts/:accountID/terms_of_service": { _, _, _ in
+        return TermsOfServiceViewController()
+    },
+
     "/act-as-user": { _, _, _ in
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate)
     },
-
     "/act-as-user/:userID": { _, params, _ in
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return ActAsUserViewController.create(loginDelegate: loginDelegate, userID: params["userID"])
@@ -50,14 +52,17 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return CalendarEventDetailsViewController.create(eventID: eventID)
     },
 
+    "/conversations": nil,
     "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
+
+    "/course_favorites": nil,
 
     "/courses": { url, params, userInfo in
         if ExperimentalFeature.nativeDashboard.isEnabled != false {
             return CoreHostingController(CourseListView())
         } else {
-            return HelmViewController(moduleName: "/courses", props: makeProps(url, params: params, userInfo: userInfo))
+            return HelmViewController(moduleName: "/courses", url: url, params: params, userInfo: userInfo)
         }
     },
 
@@ -85,12 +90,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     },
 
     "/courses/:courseID/assignments": nil,
-
-    "/courses/:courseID/assignments-fromHomeTab": { url, params, userInfo in
-        var props = params as [String: Any]
-        props["doNotSelectFirstItem"] = true
-        return HelmViewController(moduleName: "/courses/:courseID/assignments", props: makeProps(url, params: props, userInfo: userInfo))
-    },
 
     "/courses/:courseID/syllabus": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
@@ -166,11 +165,8 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/:context/:contextID/discussion_topics/new": nil,
     "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
     "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params, _ in
-        guard
-            let context = Context(path: url.path),
-            let discussionID = params["discussionID"]
-        else { return nil }
-        return DiscussionReplyViewController.create(context: context, topicID: discussionID)
+        guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
+        return DiscussionReplyViewController.create(context: context, topicID: topicID)
     },
     "/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies": { url, params, _ in
         guard
@@ -274,7 +270,10 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return AppEnvironment.shared.router.match(url)
     },
 
-    "/:context/:contextID/pages/new": nil,
+    "/:context/:contextID/pages/new": { url, params, userInfo in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(PageEditorView(context: context))
+    },
     "/:context/:contextID/pages/:url": pageViewController,
     "/:context/:contextID/wiki/:url": pageViewController,
     "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
@@ -332,10 +331,6 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
         return vc
     },
 
-    "/accounts/:accountID/terms_of_service": { _, _, _ in
-        return TermsOfServiceViewController()
-    },
-
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },
@@ -355,50 +350,16 @@ let routeMap: KeyValuePairs<String, RouteHandler.ViewFactory?> = [
     "/support/feature": { _, _, _ in
         return ErrorReportViewController.create(type: .feature)
     },
-]
 
-var routes: [RouteHandler] = []
-for (template, handler) in routeMap {
-    if let factory = handler {
-        let route = RouteHandler(template, factory: factory)
-        HelmManager.shared.registerNativeViewController(for: template, factory: { props in
-            guard
-                let location = props["location"] as? [String: Any],
-                let url = (location["href"] as? String).flatMap(URLComponents.parse),
-                let params = route.match(url)
-            else { return nil }
-            return route.factory(url, params, props)
-        })
-        routes.append(route)
-    } else {
-        routes.append(RouteHandler(template) { url, params, userInfo in
-            return HelmViewController(moduleName: template, props: makeProps(url, params: params, userInfo: userInfo))
-        })
-    }
-}
+    "/to-do": nil,
 
-let nativeFactory: ([String: Any]) -> UIViewController? = { props in
-    guard let route = props["route"] as? String else { return nil }
-    let controller = AppEnvironment.shared.router.match(route)
+    "/native-route/*route": nativeFactory,
+    "/native-route-master/*route": nativeFactory,
+]))
 
-    // Work around all these controllers not setting the nav color
-    DispatchQueue.main.async {
-        guard let color = RCTConvert.uiColor(props["color"]) else { return }
-        controller?.navigationController?.navigationBar.useContextColor(color)
-    }
-
-    return controller
-}
-HelmManager.shared.registerNativeViewController(for: "/native-route/*route", factory: nativeFactory)
-HelmManager.shared.registerNativeViewController(for: "/native-route-master/*route", factory: nativeFactory)
-
-return Router(routes: routes) { url, _, _, _ in
-    Router.open(url: url)
-}
-}()
-
-private func route(_ view: UIViewController, url: URL) {
-    router.route(to: url, from: view)
+private func nativeFactory(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let route = params["route"] else { return nil }
+    return AppEnvironment.shared.router.match(route, userInfo: userInfo)
 }
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -458,26 +419,4 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
     return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
-}
-
-private func makeProps(_ url: URLComponents, params: Props) -> Props {
-    var props = params
-    let location: [String: Any?] = [
-        "hash": url.fragment.flatMap { "#\($0)" },
-        "host": url.host.flatMap { host in
-            url.port.flatMap { "\(host):\($0)" } ?? host
-        },
-        "hostname": url.host,
-        "href": url.string,
-        "pathname": url.path,
-        "port": url.port.flatMap { String($0) },
-        "protocol": url.scheme.flatMap { "\($0):" },
-        "query": url.queryItems?.reduce(into: [String: String?]()) { query, item in
-            props[item.name] = item.value
-            query[item.name] = item.value
-        },
-        "search": url.query.flatMap { "?\($0)" },
-    ]
-    props["location"] = location
-    return props
 }

@@ -199,11 +199,6 @@ extension PeopleListViewController: UISearchBarDelegate {
 }
 
 extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard context.contextType == .course else { return 0 }
-        return 16 + UIFont.scaledNamedFont(.heavy24).lineHeight + 8
-    }
-
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard context.contextType == .course else { return nil }
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
