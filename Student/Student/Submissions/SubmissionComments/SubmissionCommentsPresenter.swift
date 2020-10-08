@@ -71,7 +71,7 @@ class SubmissionCommentsPresenter {
             submissionID: submissionID,
             isGroup: assignment.first?.gradedIndividually == false,
             text: text
-        ).fetch(environment: env) { [weak self] comment, error in
+        ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
             }
@@ -87,7 +87,7 @@ class SubmissionCommentsPresenter {
             isGroup: assignment.first?.gradedIndividually == false,
             type: type,
             url: url
-        ).fetch(environment: env) { [weak self] comment, error in
+        ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
             }
@@ -102,7 +102,7 @@ class SubmissionCommentsPresenter {
             submissionID: submissionID,
             isGroup: assignment.first?.gradedIndividually == false,
             batchID: batchID
-        ).fetch(environment: env) { [weak self] comment, error in
+        ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
             }

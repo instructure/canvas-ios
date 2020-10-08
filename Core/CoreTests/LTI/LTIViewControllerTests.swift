@@ -27,22 +27,22 @@ class LTIViewControllerTests: CoreTestCase {
         let tools = LTITools(id: "1")
         let controller = LTIViewController.create(tools: tools)
         var task = api.mock(tools.request, value: .make(name: "So Descriptive", url: URL(string: "/")!))
-        task.paused = true
+        task.suspend()
 
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.nameLabel.text, "LTI Tool")
         XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertEqual(controller.titleSubtitleView.title, "External Tool")
         XCTAssertNil(controller.titleSubtitleView.subtitle)
-        task.paused = false
+        task.resume()
         XCTAssertEqual(controller.nameLabel.text, "So Descriptive")
 
         task = api.mock(tools.request, value: .make())
-        task.paused = true
+        task.suspend()
         controller.openButton.sendActions(for: .primaryActionTriggered)
         XCTAssertFalse(controller.spinnerView.isHidden)
         XCTAssertFalse(controller.openButton.isEnabled)
-        task.paused = false
+        task.resume()
         XCTAssertNotNil(router.presented as? SFSafariViewController)
         XCTAssertTrue(controller.spinnerView.isHidden)
         XCTAssertTrue(controller.openButton.isEnabled)

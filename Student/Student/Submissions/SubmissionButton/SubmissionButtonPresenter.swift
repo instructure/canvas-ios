@@ -303,7 +303,7 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
                 mediaCommentType: type
             ).fetch(environment: env) { _, _, error in doneUploading(error) }
         }
-        let upload = { mediaUploader.fetch(environment: env, createSubmission) }
+        let upload = { mediaUploader.fetch(createSubmission) }
         show(uploading, completion: upload)
     }
 }

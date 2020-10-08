@@ -70,10 +70,10 @@ class PlannerFilterViewControllerTests: CoreTestCase {
 
     func testLoadingState() {
         let task = api.mock(controller.courses.useCase.request, value: [])
-        task.paused = true
+        task.suspend()
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.spinnerView.isHidden)
-        task.paused = false
+        task.resume()
         XCTAssertTrue(controller.spinnerView.isHidden)
     }
 

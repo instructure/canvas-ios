@@ -44,14 +44,14 @@ open class AppEnvironment {
 
     public init() {
         self.database = globalDatabase
-        self.api = URLSessionAPI()
+        self.api = API()
         self.router = Router(routes: []) { _, _, _, _ in }
         self.logger = Logger.shared
     }
 
     public func userDidLogin(session: LoginSession) {
         database = NSPersistentContainer.create(session: session)
-        api = URLSessionAPI(loginSession: session, baseURL: session.baseURL)
+        api = API(session)
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         Logger.shared.database = database
@@ -60,7 +60,7 @@ open class AppEnvironment {
     public func userDidLogout(session: LoginSession) {
         guard session == currentSession else { return }
         database = globalDatabase
-        api = URLSessionAPI()
+        api = API()
         currentSession = nil
         userDefaults = nil
         Logger.shared.database = database

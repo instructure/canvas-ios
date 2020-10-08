@@ -20,8 +20,8 @@ import Foundation
 
 public class UploadAvatar {
     var callback: (Result<URL, Error>) -> Void = { _ in }
-    var env = AppEnvironment.shared
-    var task: URLSessionTask?
+    let env = AppEnvironment.shared
+    var task: APITask?
     let url: URL
 
     public init(url: URL) {
@@ -32,8 +32,7 @@ public class UploadAvatar {
         task?.cancel()
     }
 
-    public func fetch(env: AppEnvironment = .shared, _ callback: @escaping (Result<URL, Error>) -> Void) {
-        self.env = env
+    public func fetch(_ callback: @escaping (Result<URL, Error>) -> Void) {
         self.callback = callback
         getTarget()
     }

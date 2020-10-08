@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 import TestsFoundation
 
-let accountResultsUrl = Bundle(for: APITests.self).url(forResource: "APIAccountResults", withExtension: "json")!
+private let accountResultsUrl = Bundle(for: APITests.self).url(forResource: "APIAccountResults", withExtension: "json")!
 
 class APITests: XCTestCase {
 
@@ -58,11 +58,7 @@ class APITests: XCTestCase {
 
     struct GetNoContent: APIRequestable {
         typealias Response = APINoContent
-
-        let path = "/health_check"
-        let headers: [String: String?] = [
-            HttpHeader.accept: "text/html",
-        ]
+        let path = accountResultsUrl.absoluteString
     }
 
     struct UploadFile: APIRequestable {
@@ -82,33 +78,22 @@ class APITests: XCTestCase {
         let path: String
     }
 
-    var api: URLSessionAPI!
+    var api: API { AppEnvironment.shared.api }
     override func setUp() {
         super.setUp()
-        MockURLSession.reset()
-        api = AppEnvironment.shared.api as? URLSessionAPI
-        AppEnvironment.shared.currentSession = LoginSession.make()
-        ExperimentalFeature.allEnabled = true
-    }
-
-    override func tearDown() {
-        super.tearDown()
-        ExperimentalFeature.allEnabled = false
-    }
-
-    func testIdentifier() {
-        XCTAssertEqual(api.identifier, api.urlSession.configuration.identifier)
+        API.resetMocks(useMocks: false)
+        AppEnvironment.shared.userDidLogin(session: .make())
     }
 
     func testUrlSession() {
-        XCTAssertNotNil(api.urlSession.configuration.urlCache)
+        XCTAssertNil(api.urlSession.configuration.urlCache)
     }
 
     func testBaseURL() {
         let expected = URL(string: "https://foo.com")!
-        XCTAssertEqual(URLSessionAPI(session: LoginSession.make(baseURL: expected)).baseURL, expected)
-        XCTAssertEqual(URLSessionAPI(loginSession: LoginSession.make(baseURL: URL(string: "https://bar.com")!), baseURL: expected).baseURL, expected)
-        XCTAssertEqual(URLSessionAPI(loginSession: nil, baseURL: nil).baseURL, URL(string: "https://canvas.instructure.com/")!)
+        XCTAssertEqual(API(.make(baseURL: expected)).baseURL, expected)
+        XCTAssertEqual(API(.make(baseURL: URL(string: "https://bar.com")!), baseURL: expected).baseURL, expected)
+        XCTAssertEqual(API().baseURL, URL(string: "https://canvas.instructure.com/"))
     }
 
     func testMakeRequestInvalidPath() {
@@ -124,7 +109,6 @@ class APITests: XCTestCase {
     }
 
     func testMakeRequestUnsupported() {
-        MockURLSession.mock(InvalidScheme(), error: NSError.internalError())
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeRequest(InvalidScheme()) { value, response, error in
             XCTAssertNil(value)
@@ -137,12 +121,6 @@ class APITests: XCTestCase {
     }
 
     func testMakeRequestWrongResponse() {
-        var data: Data?
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        data = try! encoder.encode([APIAccountResult.make()])
-        MockURLSession.mock(WrongResponse(), data: data, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil), error: NSError.internalError())
-
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeRequest(WrongResponse()) { value, response, error in
             XCTAssertNil(value)
@@ -150,25 +128,22 @@ class APITests: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertNotNil(task)
     }
 
-    func testNoCredsNeeded() {
-        MockURLSession.mock(GetAccountsSearchRequest(), value: [APIAccountResult.make()], response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil))
-        let expectation = XCTestExpectation(description: "request callback runs")
+    func testSuccess() {
+        API.resetMocks()
+        api.mock(GetAccountsSearchRequest(), value: [])
         let task = api.makeRequest(GetAccountsSearchRequest()) { value, response, error in
             XCTAssertNotNil(value)
-            XCTAssertNotNil(response)
+            XCTAssertNil(response)
             XCTAssertNil(error)
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(task)
     }
 
     func testNoContentNeeded() {
-        MockURLSession.mock(GetNoContent(), value: nil, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil))
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeRequest(GetNoContent()) { value, response, error in
             XCTAssertNil(value)
@@ -180,24 +155,13 @@ class APITests: XCTestCase {
         XCTAssertNotNil(task)
     }
 
-    func testMakeDownloadRequest() {
-        let downloadURL = URL(string: "https://download.com/download")!
-        let tempURL = URL(string: "file://test/file.txt")
-        MockURLSession.mockDownload(downloadURL, value: tempURL, response: HTTPURLResponse(url: api.baseURL, statusCode: 200, httpVersion: nil, headerFields: nil), error: nil)
-        let expectation = XCTestExpectation(description: "request callback runs")
-        let task = api.makeDownloadRequest(downloadURL) { url, response, error in
-            XCTAssertEqual(url, tempURL)
-            XCTAssertNotNil(response)
-            XCTAssertNil(error)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 1.0)
+    func testMakeDownloadRequestErrorNoCallback() {
+        let task = api.makeDownloadRequest(URL(string: "custom://host.tld/api/v1")!)
         XCTAssertNotNil(task)
     }
 
     func testMakeDownloadRequestError() {
         let downloadURL = URL(string: "custom://host.tld/api/v1")!
-        MockURLSession.mockDownload(downloadURL, value: nil, response: nil, error: NSError.internalError())
         let expectation = XCTestExpectation(description: "request callback runs")
         let task = api.makeDownloadRequest(downloadURL) { url, response, error in
             XCTAssertNil(url)
@@ -205,7 +169,6 @@ class APITests: XCTestCase {
             XCTAssertNotNil(error)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(task)
     }
 
@@ -231,18 +194,19 @@ class APITests: XCTestCase {
         let expectation = XCTestExpectation(description: "handler called")
         let url = URL(string: "/")!
         NoFollowRedirect().urlSession(
-            URLSessionAPI.noFollowRedirectURLSession,
-            task: MockURLSession.MockDataTask(),
+            URLSession.noFollowRedirect,
+            task: URLSession.noFollowRedirect.dataTask(with: accountResultsUrl),
             willPerformHTTPRedirection: HTTPURLResponse(url: url, mimeType: nil, expectedContentLength: 0, textEncodingName: nil),
             newRequest: URLRequest(url: url)
         ) { request in
             XCTAssertNil(request)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1.0)
     }
 
     func testRefreshToken() {
+        API.resetMocks()
         Clock.mockNow(Date())
         let session = LoginSession.make(
             accessToken: "expired-token",
@@ -252,16 +216,11 @@ class APITests: XCTestCase {
         )
         AppEnvironment.shared.currentSession = session
         api.loginSession = session
+        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        MockURLSession.mock(
-            request,
-            value: nil,
-            response: response,
-            accessToken: session.accessToken
-        )
-        MockURLSession.mock(
+        api.mock(url: url, response: response)
+        let refresh = api.mock(
             PostLoginOAuthRequest(
                 client: APIVerifyClient(
                     authorized: true,
@@ -271,14 +230,12 @@ class APITests: XCTestCase {
                 ),
                 refreshToken: "refresh-token"
             ),
-            value: APIOAuthToken.make(accessToken: "new-token", expiresIn: 3600),
-            accessToken: session.accessToken
+            value: .make(accessToken: "new-token", expiresIn: 3600)
         )
-        let expectation = XCTestExpectation(description: "request callback was called")
-        api.makeRequest(request) { _, _, error in
-            XCTAssertNil(error)
-            expectation.fulfill()
-        }
+        refresh.suspend()
+        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
+        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
+        refresh.resume()
         XCTAssertEqual(api.loginSession?.accessToken, "new-token")
         XCTAssertEqual(api.loginSession?.expiresAt, Clock.now.addingTimeInterval(3600))
         XCTAssertEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
@@ -286,6 +243,7 @@ class APITests: XCTestCase {
     }
 
     func testRefreshTokenNotCurrentSession() {
+        API.resetMocks()
         AppEnvironment.shared.currentSession = LoginSession.make(
             accessToken: "expired-token",
             baseURL: URL(string: "https://other.instructure.com")!,
@@ -301,16 +259,11 @@ class APITests: XCTestCase {
             clientSecret: "client-secret"
         )
         api.loginSession = session
+        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        MockURLSession.mock(
-            request,
-            value: nil,
-            response: response,
-            accessToken: session.accessToken
-        )
-        MockURLSession.mock(
+        api.mock(url: url, response: response)
+        api.mock(
             PostLoginOAuthRequest(
                 client: APIVerifyClient(
                     authorized: true,
@@ -320,20 +273,16 @@ class APITests: XCTestCase {
                 ),
                 refreshToken: "refresh-token"
             ),
-            value: APIOAuthToken.make(accessToken: "new-token"),
-            accessToken: session.accessToken
+            value: .make(accessToken: "new-token")
         )
-        let expectation = XCTestExpectation(description: "request callback was called")
-        api.makeRequest(request) { _, _, error in
-            XCTAssertNil(error)
-            expectation.fulfill()
-        }
+        api.makeRequest(url) { _, _, error in XCTAssertNil(error) }
         XCTAssertEqual(api.loginSession?.accessToken, "new-token")
         XCTAssertNotEqual(AppEnvironment.shared.currentSession?.accessToken, "new-token")
         XCTAssertTrue(LoginSession.sessions.contains(where: { $0.accessToken == "new-token" }))
     }
 
     func testRefreshTokenError() {
+        API.resetMocks()
         let session = LoginSession.make(
             accessToken: "expired-token",
             refreshToken: "refresh-token",
@@ -341,17 +290,11 @@ class APITests: XCTestCase {
             clientSecret: "client-secret"
         )
         api.loginSession = session
+        api.refreshQueue = OperationQueue.main
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
-        let request = URLRequest(url: url)
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
-        MockURLSession.mock(
-            request,
-            value: nil,
-            response: response,
-            error: NSError.internalError(),
-            accessToken: session.accessToken
-        )
-        MockURLSession.mock(
+        api.mock(url: url, response: response, error: NSError.internalError())
+        api.mock(
             PostLoginOAuthRequest(
                 client: APIVerifyClient(
                     authorized: true,
@@ -361,59 +304,57 @@ class APITests: XCTestCase {
                 ),
                 refreshToken: "refresh-token"
             ),
-            error: NSError.internalError(),
-            accessToken: session.accessToken
+            error: NSError.internalError()
         )
-        let expectation = XCTestExpectation(description: "request callback was called")
-        api.makeRequest(request) { _, _, error in
-            XCTAssertNotNil(error)
-            expectation.fulfill()
-        }
+        api.makeRequest(url) { _, _, error in XCTAssertNotNil(error) }
         XCTAssertEqual(api.loginSession?.accessToken, "expired-token")
     }
 
+    func testNoRefreshToken() {
+        API.resetMocks()
+        api.refreshQueue = OperationQueue.main
+        AppEnvironment.shared.userDidLogin(session: .make(refreshToken: nil))
+        let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
+        let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
+        api.mock(url: url, response: response, error: NSError.internalError())
+        api.makeRequest(url) { _, _, error in XCTAssertNotNil(error) }
+    }
+
     func testExhaust() {
-        let api = URLSessionAPI(session: .make())
+        API.resetMocks()
         let request = Exhaustable(path: "/1")
-        MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
-        MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
-        MockURLSession.mock(Exhaustable(path: "/3"), value: [3], response: nil)
+        api.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
+        api.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
+        api.mock(Exhaustable(path: "/3"), value: [3], response: nil)
         var response: [Int]?
         var urlResponse: URLResponse?
         var error: Error?
-        let expectation = XCTestExpectation(description: "exhaust callback")
         api.exhaust(request) {
             response = $0
             urlResponse = $1
             error = $2
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(response, [1, 2, 3])
         XCTAssertNil(urlResponse)
         XCTAssertNil(error)
     }
 
     func testExhaustError() {
-        let api = URLSessionAPI(session: .make())
+        API.resetMocks()
         let request = Exhaustable(path: "/1")
-        MockURLSession.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
-        MockURLSession.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
-        MockURLSession.mock(Exhaustable(path: "/3"), value: nil, error: NSError.internalError())
+        api.mock(request, value: [1], response: HTTPURLResponse(next: "/2"))
+        api.mock(Exhaustable(path: "/2"), value: [2], response: HTTPURLResponse(next: "/3"))
+        api.mock(Exhaustable(path: "/3"), value: nil, error: NSError.internalError())
         var response: [Int]?
         var urlResponse: URLResponse?
         var error: Error?
-        let expectation = XCTestExpectation(description: "exhaust callback")
         api.exhaust(request) {
             response = $0
             urlResponse = $1
             error = $2
-            expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 1)
         XCTAssertNil(response)
         XCTAssertNil(urlResponse)
         XCTAssertNotNil(error)
-
     }
 }

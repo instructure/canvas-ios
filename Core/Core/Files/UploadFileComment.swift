@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class UploadFileComment {
-    var env = AppEnvironment.shared
+    let env = AppEnvironment.shared
     let assignmentID: String
     var callback: (SubmissionComment?, Error?) -> Void = { _, _ in }
     let courseID: String
@@ -30,7 +30,7 @@ public class UploadFileComment {
     var placeholderID: String?
     let submissionID: String
     let userID: String
-    var task: URLSessionTask?
+    var task: APITask?
     lazy var context = env.database.newBackgroundContext()
     var uploadContext: FileUploadContext {
         return .submissionComment(courseID: courseID, assignmentID: assignmentID)
@@ -59,9 +59,8 @@ public class UploadFileComment {
         UploadManager.shared.cancel(batchID: batchID)
     }
 
-    public func fetch(environment: AppEnvironment = .shared, _ callback: @escaping (SubmissionComment?, Error?) -> Void) {
+    public func fetch(_ callback: @escaping (SubmissionComment?, Error?) -> Void) {
         self.callback = callback
-        self.env = environment
         files = UploadManager.shared.subscribe(batchID: batchID) {
             guard let files = self.files, !files.isEmpty else { return }
             if files.allSatisfy({ $0.isUploaded }) == true {

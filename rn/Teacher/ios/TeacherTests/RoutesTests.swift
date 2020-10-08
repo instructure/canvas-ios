@@ -34,10 +34,10 @@ class RoutesTests: XCTestCase {
         }
     }
 
+    var api: API { AppEnvironment.shared.api }
     override func setUp() {
         super.setUp()
-        MockURLSession.reset()
-        AppEnvironment.shared.api = URLSessionAPI()
+        API.resetMocks()
         AppEnvironment.shared.currentSession = LoginSession.make()
         AppEnvironment.shared.loginDelegate = login
         AppEnvironment.shared.router = router

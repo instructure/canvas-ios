@@ -32,6 +32,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
     var groups: [APIAssignmentListGroup] = []
 
     override func setUp() {
+        super.setUp()
         vc = AssignmentListViewController.create(env: env, courseID: courseID)
         gradingPeriods = []
         groups = []
@@ -269,13 +270,13 @@ class AssignmentListViewControllerTests: StudentTestCase {
         ]
         let d2 = data(groups: groups)
         var data: [Data] = [d2, d1]
-        api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
+        api.mock(withData: req) { _ in
             guard let d = data.popLast() else {
                 XCTFail()
                 return (nil, nil, nil)
             }
             return (d, nil, nil)
-        })
+        }
         api.mock(GetGradingPeriods(courseID: courseID), value: gradingPeriods)
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
         api.mock(GetCourseRequest(courseID: courseID), value: .make())
@@ -338,11 +339,10 @@ class AssignmentListViewControllerTests: StudentTestCase {
         let expect = XCTestExpectation(description: "")
         expect.expectedFulfillmentCount = 2
 
-        api.mock(req, data: nil, response: nil, error: nil, dataHandler: { () -> MockURLSession.UrlResponseTuple in
+        api.mock(withData: req) { _ in
             guard let d = data.popLast() else { XCTFail(); return (nil, nil, nil) }
-
             return (d, nil, nil)
-        })
+        }
         api.mock(GetGradingPeriods(courseID: courseID), value: gradingPeriods)
         api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [ "course_\(courseID)": "#008EE2", ]))
         api.mock(GetCourseRequest(courseID: courseID), value: .make())

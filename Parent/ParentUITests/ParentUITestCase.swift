@@ -40,7 +40,6 @@ class ParentUITestCase: CoreUITestCase {
                 "users/self/enrollments",
                 "?include[]=avatar_url&include[]=observed_users",
                 paginated ? "&per_page=100" : "",
-                "&role[]=ObserverEnrollment",
                 "&state[]=active&state[]=completed&state[]=creation_pending",
                 "&state[]=current_and_future&state[]=invited",
                 ].joined(), value: [baseEnrollment])

@@ -70,12 +70,14 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNil(controller.env.userDefaults?.submitAssignmentID)
     }
 
-    func testCancel() {
+    func testCancel() throws {
         controller.view.layoutIfNeeded()
-        let task = controller.downloadTask as! MockURLSession.MockDownloadTask
-        XCTAssertFalse(task.canceled)
+        let mock = api.mockDownload(file.url!.rawValue)
+        mock.suspend()
+        let task = controller.downloadTask
+        XCTAssertEqual(task?.state, .running)
         controller.viewWillDisappear(false)
-        XCTAssertTrue(task.canceled)
+        XCTAssertEqual(task?.state, .canceling)
     }
 
     func testFileError() {
@@ -92,19 +94,19 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNil(controller.downloadTask)
 
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
+        let mock = api.mockDownload(file.url!.rawValue)
+        mock.suspend()
         controller.downloadFile(at: file.url!.rawValue) // restart download without local file
-        let session = URLSessionAPI.defaultURLSession as! MockURLSession
-        let task = controller.downloadTask as! MockURLSession.MockDownloadTask
 
         // Updates progress
-        controller.urlSession(session, downloadTask: task, didWriteData: 5, totalBytesWritten: 65, totalBytesExpectedToWrite: 100)
+        mock.download(didWriteData: 5, totalBytesWritten: 65, totalBytesExpectedToWrite: 100)
         XCTAssertEqual(controller.progressView.progress, 0.65)
 
         // Overwrites existing file
         FileManager.default.createFile(atPath: url.path, contents: Data())
         let temp = URL.temporaryDirectory.appendingPathComponent(UUID.string)
         FileManager.default.createFile(atPath: temp.path, contents: "hi".data(using: .utf8))
-        controller.urlSession(session, downloadTask: task, didFinishDownloadingTo: temp)
+        mock.download(didFinishDownloadingTo: temp)
         XCTAssertNil(router.presented) // no error
         XCTAssertFalse(FileManager.default.fileExists(atPath: temp.path))
         XCTAssertEqual(try? Data(contentsOf: url), "hi".data(using: .utf8))
@@ -113,24 +115,24 @@ class FileDetailsViewControllerTests: CoreTestCase {
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url))
         XCTAssertNoThrow(try FileManager.default.removeItem(at: url.deletingLastPathComponent()))
         FileManager.default.createFile(atPath: temp.path, contents: "mkdir -p".data(using: .utf8))
-        controller.urlSession(session, downloadTask: task, didFinishDownloadingTo: temp)
+        mock.download(didFinishDownloadingTo: temp)
         XCTAssertNil(router.presented) // no error
         XCTAssertFalse(FileManager.default.fileExists(atPath: temp.path))
         XCTAssertEqual(try? Data(contentsOf: url), "mkdir -p".data(using: .utf8))
 
         // Shows errors in file moving
         // temp doesn't exist
-        controller.urlSession(session, downloadTask: task, didFinishDownloadingTo: temp)
+        mock.download(didFinishDownloadingTo: temp)
         XCTAssertNotNil(router.presented)
         router.viewControllerCalls = []
 
         // Doesn't alert cancellations
-        controller.urlSession(session, task: task, didCompleteWithError: NSError(domain: "", code: NSURLErrorCancelled, userInfo: nil))
+        mock.complete(withError: NSError(domain: "", code: NSURLErrorCancelled, userInfo: nil))
         XCTAssertNil(router.presented)
-        XCTAssertTrue(session.finishedTasksAndInvalidated)
 
         // Does alert other errors
-        controller.urlSession(session, task: task, didCompleteWithError: NSError.instructureError("boo"))
+        controller.downloadFile(at: file.url!.rawValue) // restart download
+        mock.complete(withError: NSError.instructureError("boo"))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "boo")
     }
 

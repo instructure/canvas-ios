@@ -186,7 +186,7 @@ public class UITestHelpers {
         window.rootViewController = LoginNavigationController.create(loginDelegate: loginDelegate, app: app)
 
         resetDatabase()
-        MockDistantURLSession.reset(useMocks: useMocks)
+        API.resetMocks(useMocks: useMocks)
         setAnimationsEnabled(false)
     }
 

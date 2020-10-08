@@ -136,6 +136,7 @@
 		7D4F44FD241BFB2300233B92 /* APIConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F44FC241BFB2300233B92 /* APIConferenceTests.swift */; };
 		7D4F44FF241BFCF300233B92 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4F44FE241BFCF300233B92 /* Conference.swift */; };
 		7D52D8AD2301C0A400684932 /* ExperimentalFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */; };
+		7D5400B3252BD3D7003691F4 /* APIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5400B2252BD3D7003691F4 /* APIMock.swift */; };
 		7D5425D2246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5425D1246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift */; };
 		7D54D6AF24646AF800409520 /* DiscussionParticipantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54D6AE24646AF800409520 /* DiscussionParticipantTests.swift */; };
 		7D54D6B124646C8500409520 /* GetDiscussionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54D6B024646C8500409520 /* GetDiscussionsTests.swift */; };
@@ -466,7 +467,6 @@
 		7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667F6238360930062F7B9 /* TodoListViewController.swift */; };
 		7DA2609E23F72348005D2121 /* APITodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */; };
 		7DA2609F23F72348005D2121 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA667EE23834D150062F7B9 /* Todo.swift */; };
-		7DA260A023F7234C005D2121 /* MockDistantURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13C52D22B956C200345253 /* MockDistantURLSession.swift */; };
 		7DA260A123F7234C005D2121 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13C52F22B9570400345253 /* MockMessage.swift */; };
 		7DA260A223F7234C005D2121 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D13C52B22B956AC00345253 /* UITestHelpers.swift */; };
 		7DA260A323F7234C005D2121 /* IPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58595E38E685A009AA510843 /* IPC.swift */; };
@@ -875,7 +875,6 @@
 /* Begin PBXFileReference section */
 		180BC2536A70738540E5EE74 /* Pods_needs_pspdfkit_CoreTester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_CoreTester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD6D7F6C2DD1E2A87C8C4B3 /* Pods-needs-pspdfkit-Core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.debug.xcconfig"; sourceTree = "<group>"; };
-		2616E6A1AA27CAE5063D1B65 /* Pods-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Core.release.xcconfig"; path = "Target Support Files/Pods-Core/Pods-Core.release.xcconfig"; sourceTree = "<group>"; };
 		2C96482E211E2F1A002C3255 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C964831211E2F1A002C3255 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		2C964832211E2F1A002C3255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1133,7 +1132,6 @@
 		5BFDE65421BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BFDE65521BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-CY"; path = "en-CY.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		5BFDE65621BCF6CA00040DF2 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Main.strings"; sourceTree = "<group>"; };
-		66DF48C8511CDFDE308A7A96 /* Pods-defaults-PactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PactTests.release.xcconfig"; path = "Target Support Files/Pods-defaults-PactTests/Pods-defaults-PactTests.release.xcconfig"; sourceTree = "<group>"; };
 		78151DCA21AE75D400692862 /* APIDiscussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussion.swift; sourceTree = "<group>"; };
 		78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDiscussionTests.swift; sourceTree = "<group>"; };
 		7851D9B22138264800E76EC3 /* GetCustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomColors.swift; sourceTree = "<group>"; };
@@ -1168,7 +1166,6 @@
 		7D10194A215E97D90058FDD1 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		7D1219232243340200D3BF5C /* KeyboardTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardTransitioning.swift; sourceTree = "<group>"; };
 		7D13C52B22B956AC00345253 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
-		7D13C52D22B956C200345253 /* MockDistantURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDistantURLSession.swift; sourceTree = "<group>"; };
 		7D13C52F22B9570400345253 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		7D14863D230B43F8003944A2 /* APIAccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountNotification.swift; sourceTree = "<group>"; };
 		7D14863F230B4519003944A2 /* AccountNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotification.swift; sourceTree = "<group>"; };
@@ -1245,6 +1242,7 @@
 		7D4F44FE241BFCF300233B92 /* Conference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		7D52D8AA2301BA5100684932 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		7D52D8AC2301C0A400684932 /* ExperimentalFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeatureTests.swift; sourceTree = "<group>"; };
+		7D5400B2252BD3D7003691F4 /* APIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMock.swift; sourceTree = "<group>"; };
 		7D5425D1246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionReplyViewControllerTests.swift; sourceTree = "<group>"; };
 		7D54D6AE24646AF800409520 /* DiscussionParticipantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionParticipantTests.swift; sourceTree = "<group>"; };
 		7D54D6B024646C8500409520 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
@@ -1548,7 +1546,6 @@
 		7DFFAB19219DDB22003E71F8 /* CommentListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentListViewController.storyboard; sourceTree = "<group>"; };
 		7DFFAB1B219DDB8B003E71F8 /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
 		8214F65C508237E183071F61 /* Pods-needs-pspdfkit-CoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-CoreTests.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-CoreTests/Pods-needs-pspdfkit-CoreTests.release.xcconfig"; sourceTree = "<group>"; };
-		83EB8A2E566E437B02B04320 /* Pods-defaults-PactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PactTests.debug.xcconfig"; path = "Target Support Files/Pods-defaults-PactTests/Pods-defaults-PactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9727093A23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalMenuViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2972383B846006633CA /* TokenLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenLabelView.swift; sourceTree = "<group>"; };
 		977921A023E11C3F0082696B /* UIBarButtonItemExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtensionTests.swift; sourceTree = "<group>"; };
@@ -1842,7 +1839,6 @@
 		EE584C7D22F2048D00D1E201 /* PageListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
 		EEC3EF6222E25F6100799FE2 /* APIPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPage.swift; sourceTree = "<group>"; };
 		EEC3EF6622E265CF00799FE2 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		F0414E2BCC9DD9EEA2595EBF /* Pods-Core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Core.debug.xcconfig"; path = "Target Support Files/Pods-Core/Pods-Core.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2256,10 +2252,6 @@
 		3D8675B50DFC3BE9139D5E8C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83EB8A2E566E437B02B04320 /* Pods-defaults-PactTests.debug.xcconfig */,
-				66DF48C8511CDFDE308A7A96 /* Pods-defaults-PactTests.release.xcconfig */,
-				F0414E2BCC9DD9EEA2595EBF /* Pods-Core.debug.xcconfig */,
-				2616E6A1AA27CAE5063D1B65 /* Pods-Core.release.xcconfig */,
 				1BD6D7F6C2DD1E2A87C8C4B3 /* Pods-needs-pspdfkit-Core.debug.xcconfig */,
 				DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */,
 				40DBE7EA2442FB031DB6DE12 /* Pods-needs-pspdfkit-CoreTests.debug.xcconfig */,
@@ -2339,7 +2331,6 @@
 		7D13C52822B9566F00345253 /* UITestHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				7D13C52D22B956C200345253 /* MockDistantURLSession.swift */,
 				7D13C52F22B9570400345253 /* MockMessage.swift */,
 				7D13C52B22B956AC00345253 /* UITestHelpers.swift */,
 				58595E38E685A009AA510843 /* IPC.swift */,
@@ -3071,6 +3062,7 @@
 				7D819FF6228C7C7E00C61EDD /* APIError.swift */,
 				3B35F06A230EEAA800674FF5 /* APIGraphQLRequestable.swift */,
 				7D5A2BC122CD062E0029B6AC /* APIList.swift */,
+				7D5400B2252BD3D7003691F4 /* APIMock.swift */,
 				7D8262EA212B1A7B00BD268D /* APIRequestable.swift */,
 				B11AAC3C237A2428002BC41F /* APIURL.swift */,
 				3B3467D32135B7B700F9BC2E /* ID.swift */,
@@ -4627,6 +4619,7 @@
 				7DA260B223F72352005D2121 /* GetEnabledFeatureFlags.swift in Sources */,
 				7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */,
 				7D57398B243692DD000073BE /* GetAssignmentsByGroup.swift in Sources */,
+				7D5400B3252BD3D7003691F4 /* APIMock.swift in Sources */,
 				E8AC2D3224AE3A160053AA8A /* APIAlertThreshold.swift in Sources */,
 				7DA25F9023F72123005D2121 /* SyllabusViewController.swift in Sources */,
 				B1A7848B2441136C001A2B50 /* GetModules.swift in Sources */,
@@ -4732,7 +4725,6 @@
 				7DA260DB23F72359005D2121 /* GradeCircleView.swift in Sources */,
 				7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */,
 				7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */,
-				7DA260A023F7234C005D2121 /* MockDistantURLSession.swift in Sources */,
 				7DA2603423F722D9005D2121 /* GradeViewable.swift in Sources */,
 				7D7242602429BEE9007ED42F /* DashboardViewController.swift in Sources */,
 				7DA2605723F722D9005D2121 /* Page.swift in Sources */,

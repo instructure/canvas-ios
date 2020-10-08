@@ -50,7 +50,7 @@ class SubmitAssignmentViewControllerTests: SubmitAssignmentTestCase {
         try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
         viewController.view.layoutIfNeeded()
         viewController.env.database = database
-        viewController.env.api = URLSessionAPI(urlSession: MockURLSession())
+        viewController.env.api = API()
         viewController.presentationAnimationDidFinish()
         XCTAssertEqual(configurationItems.count, 2)
         XCTAssertEqual(configurationItems[0].title, "Course")

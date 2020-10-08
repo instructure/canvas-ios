@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadMediaCommentTests: CoreTestCase {
-    let upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
+    lazy var upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?
@@ -29,7 +29,6 @@ class UploadMediaCommentTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         UUID.mock("zzxxzz")
-        upload.env = environment
         upload.callback = { [weak self] (comment, error) in
             self?.comment = comment
             self?.error = error
@@ -47,15 +46,13 @@ class UploadMediaCommentTests: CoreTestCase {
     }
 
     func testFetch() {
-        upload.fetch(environment: environment, upload.callback)
+        upload.fetch(upload.callback)
         XCTAssert(upload.env === environment)
     }
 
     func testSavePlaceholderError() {
-        upload.env = AppEnvironment()
-        called = expectation(description: "callback called")
+        environment.currentSession = nil
         upload.savePlaceholder()
-        wait(for: [called!], timeout: 5)
         XCTAssertNotNil(error)
     }
 
@@ -72,11 +69,12 @@ class UploadMediaCommentTests: CoreTestCase {
 
     func testSuccess() {
         let baseURL = URL(string: "https://u.edu/")!
+        let uapi = API(baseURL: baseURL)
         api.mock(GetMediaServiceRequest(), value: APIMediaService(domain: "u.edu"))
         api.mock(PostMediaSessionRequest(), value: APIMediaSession(ks: "k"))
-        api.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8), baseURL: baseURL)
-        api.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"), value: nil, baseURL: baseURL)
-        api.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), data: "<id>2</id>".data(using: .utf8), baseURL: baseURL)
+        uapi.mock(PostMediaUploadTokenRequest(body: .init(ks: "k")), data: "<id>t</id>".data(using: .utf8))
+        uapi.mock(PostMediaUploadRequest(fileURL: upload.url, type: upload.type, ks: "k", token: "t"))
+        uapi.mock(PostMediaIDRequest(ks: "k", token: "t", type: upload.type), data: "<id>2</id>".data(using: .utf8))
         api.mock(PutSubmissionGradeRequest(
             courseID: upload.courseID,
             assignmentID: upload.assignmentID,
@@ -86,12 +84,11 @@ class UploadMediaCommentTests: CoreTestCase {
             submission_comments: [ .make() ]
         ))
         let called = self.expectation(description: "callback was called")
-        upload.fetch(environment: environment) { comment, error in
+        upload.fetch { comment, error in
             XCTAssertNotNil(comment)
             XCTAssertNil(error)
             called.fulfill()
         }
         wait(for: [called], timeout: 1)
-        api.dataMocks = [:]
     }
 }

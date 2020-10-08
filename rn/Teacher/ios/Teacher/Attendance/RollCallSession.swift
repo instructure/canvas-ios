@@ -35,7 +35,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
     enum State {
         case fetchingLaunchURL
         case launchingTool(WKWebView)
-        case active(URLSession)
+        case active(API)
         case error(Error)
     }
 
@@ -121,7 +121,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
                     for cookie in cookies {
                         config.httpCookieStorage?.setCookie(cookie)
                     }
-                    self.state = .active(URLSessionAPI.delegateURLSession(config, nil, nil))
+                    self.state = .active(API(urlSession: URLSession(configuration: config)))
                 }
             } else if let message = dict?["error"], !message.isEmpty {
                 self.state = .error(attendanceError(message: message, code: 2))
@@ -132,26 +132,25 @@ class RollCallSession: NSObject, WKNavigationDelegate {
     }
 
     func fetchStatuses(section: String, date: Date, completed: @escaping ([Status], Error?) -> Void) {
-        guard case .active(let session) = state else { return completed([], nil) }
+        guard case .active(let api) = state else { return completed([], nil) }
 
         let date = Status.dateFormatter.string(from: date)
         let url = URL(string: "/statuses?section_id=\(section)&class_date=\(date)", relativeTo: baseURL)!
-        session.dataTask(with: URLRequest(url: url)) { (data, _, error) in
+        api.makeRequest(url) { [self] (data, _, error) in
             do {
                 guard let data = data else {
                     return completed([], attendanceError(message: NSLocalizedString("Error: No data returned from the rollcall api.", comment: ""), code: 1))
                 }
-                let statuses: [Status] = try self.decoder.decode([Status].self, from: data)
+                let statuses: [Status] = try decoder.decode([Status].self, from: data)
                 completed(statuses, nil)
             } catch let error {
                 completed([], error)
             }
         }
-        .resume()
     }
 
     func updateStatus(_ status: Status, completed: @escaping (ID?, Error?) -> Void) {
-        guard case .active(let session) = state else { return completed(nil, nil) }
+        guard case .active(let api) = state else { return completed(nil, nil) }
 
         var url = URL(string: "/statuses", relativeTo: baseURL)!
         var method = "POST"
@@ -170,7 +169,7 @@ class RollCallSession: NSObject, WKNavigationDelegate {
         request.httpMethod = method
         request.httpBody = try? encoder.encode(status)
 
-        session.dataTask(with: request) { (data, _, error) in
+        api.makeRequest(request) { [self] (data, _, error) in
             guard let data = data else {
                 let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [
                     NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error"),
@@ -181,12 +180,11 @@ class RollCallSession: NSObject, WKNavigationDelegate {
             // don't capture the ID of the deleted status... leave it nil
             guard status.attendance != nil else { return completed(nil, nil) }
             do {
-                let status = try self.decoder.decode(Status.self, from: data)
+                let status = try decoder.decode(Status.self, from: data)
                 completed(status.id, nil)
             } catch let e {
                 completed(nil, e)
             }
         }
-        .resume()
     }
 }

@@ -128,8 +128,7 @@ public class LTITools: NSObject {
 
     public func getSessionlessLaunch(completionBlock: @escaping (APIGetSessionlessLaunchResponse?) -> Void) {
         if let url = url, url.path.hasSuffix("/external_tools/sessionless_launch") {
-            let request = URLRequest(url: url)
-            env.api.makeRequest(request) { data, _, _ in performUIUpdate {
+            env.api.makeRequest(url) { data, _, _ in performUIUpdate {
                 guard let data = data else { return completionBlock(nil) }
                 let response = try? APIJSONDecoder().decode(APIGetSessionlessLaunchResponse.self, from: data)
                 completionBlock(response)

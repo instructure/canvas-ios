@@ -37,7 +37,7 @@ public class UITestUser: NSObject, XCTestObservation {
     public var session: LoginSession? {
         didSet {
             guard let session = oldValue else { return }
-            URLSessionAPI().makeRequest(DeleteLoginOAuthRequest(session: session)) { _, _, _ in }
+            API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         }
     }
 

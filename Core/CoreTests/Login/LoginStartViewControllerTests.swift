@@ -143,7 +143,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         let client = APIVerifyClient.make()
         api.mock(GetMobileVerifyRequest(domain: domain), value: client)
         let task = api.mock(PostLoginOAuthRequest(client: client, code: code), value: .make())
-        task.paused = true
+        task.suspend()
         controller.view.layoutIfNeeded()
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertFalse(controller.useQRCodeDivider.isHidden)
@@ -154,7 +154,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         controller.scanner(scanner, didScanCode: qrCode)
         let loading = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(loading.title, "Logging you in")
-        task.paused = false
+        task.resume()
         XCTAssertNotNil(loggedIn)
     }
 

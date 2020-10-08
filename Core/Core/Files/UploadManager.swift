@@ -75,7 +75,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func createSession() -> URLSession {
         let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
         configuration.sharedContainerIdentifier = sharedContainerIdentifier
-        return URLSessionAPI.delegateURLSession(configuration, self, nil)
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 
     public func uploadURL(_ url: URL) throws -> URL {
@@ -167,10 +167,10 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         do {
                             file.size = url.lookupFileSize()
                             let request = PostFileUploadRequest(fileURL: url, target: target)
-                            let api = URLSessionAPI(loginSession: nil, baseURL: target.upload_url, urlSession: self.backgroundSession)
-                            let task = try api.uploadTask(request)
+                            let api = API(baseURL: target.upload_url, urlSession: self.backgroundSession)
+                            var task = try api.uploadTask(request)
                             file.taskID = UUID.string
-                            task.taskDescription = file.taskID
+                            task.taskID = file.taskID
                             try self.context.save()
                             task.resume()
                         } catch let error {
@@ -188,7 +188,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         Logger.shared.log()
         context.performAndWait {
-            guard let file = self.file(taskID: task.taskDescription) else { return }
+            guard let file = self.file(taskID: task.taskID) else { return }
             file.bytesSent = Int(totalBytesSent)
             file.size = Int(totalBytesExpectedToSend)
             try? context.save()
@@ -198,7 +198,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         Logger.shared.log()
         self.context.performAndWait {
-            guard let file = self.file(taskID: task.taskDescription) else { return }
+            guard let file = self.file(taskID: task.taskID) else { return }
             if error == nil, case let .submission(courseID, assignmentID, comment)? = file.context {
                 self.submit(file: file, courseID: courseID, assignmentID: assignmentID, comment: comment)
                 return
@@ -210,7 +210,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         Logger.shared.log()
         self.context.performAndWait {
-            guard let file = self.file(taskID: dataTask.taskDescription) else { return }
+            guard let file = self.file(taskID: dataTask.taskID) else { return }
             do {
                 let response = try self.decoder.decode(APIFile.self, from: data)
                 File.save(response, to: file, in: self.context)
@@ -246,7 +246,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             guard let file = try? context.existingObject(with: objectID) as? File else { return }
             let taskID = file.taskID
             backgroundSession.getAllTasks { tasks in
-                tasks.first { $0.taskDescription == taskID }?.cancel()
+                tasks.first { $0.taskID == taskID }?.cancel()
             }
             context.delete(file)
             try? context.save()
@@ -260,10 +260,8 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
             let files: [File] = context.fetch(predicate(userID: session.userID, batchID: batchID))
             let taskIDs = files.map { $0.taskID }
             backgroundSession.getAllTasks { tasks in
-                for task in tasks {
-                    if taskIDs.contains(task.taskDescription) {
-                        task.cancel()
-                    }
+                for task in tasks where taskIDs.contains(task.taskID) {
+                    task.cancel()
                 }
             }
             context.delete(files)
@@ -288,15 +286,14 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         let fileIDs = files.compactMap { $0.id }
         let submission = CreateSubmissionRequest.Body.Submission(text_comment: comment, submission_type: .online_upload, file_ids: fileIDs)
         let requestable = CreateSubmissionRequest(context: .course(courseID), assignmentID: assignmentID, body: .init(submission: submission))
-        var task: URLSessionTask?
+        var task: APITask?
         let semaphore = DispatchSemaphore(value: 0)
         let objectID = file.objectID
         process.performExpiringActivity(withReason: "submit assignment") { expired in
             if expired {
                 task?.cancel()
             }
-            let api = URLSessionAPI(loginSession: session)
-            task = api.makeRequest(requestable) { response, _, error in
+            task = API(session).makeRequest(requestable) { response, _, error in
                 self.context.performAndWait {
                     defer { semaphore.signal() }
                     guard let file = try? self.context.existingObject(with: objectID) as? File else { return }

@@ -120,7 +120,7 @@ public class ActAsUserViewController: UIViewController {
             return showMasqueradingError()
         }
         view.endEditing(true)
-        let api = URLSessionAPI(loginSession: session, baseURL: baseURL)
+        let api = API(session, baseURL: baseURL)
         api.makeRequest(GetUserRequest(userID: userID)) { [weak self] (user, _, error) in performUIUpdate {
             guard let self = self else { return }
             guard let user = user, error == nil else {

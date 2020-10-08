@@ -23,7 +23,7 @@ import UIKit
 class UIImageViewExtensionsTests: CoreTestCase {
     func testLoad() {
         let url = URL(string: "/")
-        api.mock(URLRequest(url: url!)).paused = true
+        api.mock(url: url!).suspend()
         let view = UIImageView()
         XCTAssertNotNil(view.load(url: url))
         XCTAssertEqual(view.url, url)
@@ -74,7 +74,7 @@ class ImageLoaderTests: CoreTestCase {
     }
 
     func testLoadPng() throws {
-        api.mock(URLRequest(url: pngURL), data: try Data(contentsOf: pngURL))
+        api.mock(url: pngURL, data: try Data(contentsOf: pngURL))
 
         let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         loader.load()
@@ -83,7 +83,7 @@ class ImageLoaderTests: CoreTestCase {
     }
 
     func testLoadGif() throws {
-        api.mock(URLRequest(url: gifURL), data: try Data(contentsOf: gifURL))
+        api.mock(url: gifURL, data: try Data(contentsOf: gifURL))
 
         let loader = ImageLoader(url: gifURL, frame: frame, callback: callback)
         loader.load()
@@ -96,7 +96,7 @@ class ImageLoaderTests: CoreTestCase {
     func testLoadGifWithoutExtension() throws {
         let plainURL = URL(string: "https://no.valid/extension")!
         let data = try Data(contentsOf: gifURL)
-        api.mock(URLRequest(url: plainURL), data: data, response: HTTPURLResponse(
+        api.mock(url: plainURL, data: data, response: HTTPURLResponse(
             url: plainURL,
             statusCode: 200,
             httpVersion: "1.1",
@@ -109,7 +109,7 @@ class ImageLoaderTests: CoreTestCase {
         XCTAssertEqual(loadedImage?.images?.count, 2)
         XCTAssertEqual(loadedRepeatCount, 0)
 
-        api.mock(URLRequest(url: plainURL), data: data)
+        api.mock(url: plainURL, data: data)
         ImageLoader.reset()
         loader.load()
         XCTAssertEqual(loadedImage?.duration, 0)
@@ -118,7 +118,7 @@ class ImageLoaderTests: CoreTestCase {
     }
 
     func testLoadSvg() throws {
-        api.mock(URLRequest(url: svgURL), data: try Data(contentsOf: svgURL))
+        api.mock(url: svgURL, data: try Data(contentsOf: svgURL))
         let loaded = expectation(for: NSPredicate(format: "%K != nil", #keyPath(loadedImage)), evaluatedWith: self)
 
         let loader = ImageLoader(url: svgURL, frame: frame, callback: callback)
@@ -132,14 +132,14 @@ class ImageLoaderTests: CoreTestCase {
 
     func testDoubleLoad() throws {
         ImageLoader.reset()
-        let task = api.mock(URLRequest(url: pngURL), data: try Data(contentsOf: pngURL))
-        task.paused = true
+        let task = api.mock(url: pngURL, data: try Data(contentsOf: pngURL))
+        task.suspend()
 
         let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         loader.load()
         let dupe = ImageLoader(url: pngURL, frame: frame, callback: callback)
         dupe.load()
-        task.paused = false
+        task.resume()
 
         XCTAssertNotNil(loadedImage)
         XCTAssertNil(loadedError)
@@ -158,12 +158,12 @@ class ImageLoaderTests: CoreTestCase {
     func testCancel() {
         ImageLoader.reset()
         let task = api.mock(URLRequest(url: pngURL))
-        task.paused = true
+        task.suspend()
 
         let loader = ImageLoader(url: pngURL, frame: frame, callback: callback)
         XCTAssertNotNil(loader.load())
         loader.cancel()
-        XCTAssertEqual(task.canceled, true)
+        XCTAssertNil(loader.task)
     }
 
     func testGreatestCommonFactor() {

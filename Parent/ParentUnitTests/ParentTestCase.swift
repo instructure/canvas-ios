@@ -17,7 +17,7 @@
 //
 
 import XCTest
-import Core
+@testable import Core
 import TestsFoundation
 import CoreData
 @testable import Parent
@@ -26,7 +26,7 @@ class ParentTestCase: XCTestCase {
     var database: NSPersistentContainer { TestsFoundation.singleSharedTestDatabase }
     var databaseClient: NSManagedObjectContext { database.viewContext }
 
-    var api = MockURLSession.self
+    var api: API { env.api }
     let router = TestRouter()
     lazy var env: TestEnvironment = {
         let env = TestEnvironment()
@@ -43,7 +43,7 @@ class ParentTestCase: XCTestCase {
         super.setUp()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         AppEnvironment.shared = env
-        MockURLSession.reset()
+        API.resetMocks()
         MockUploadManager.reset()
         NotificationManager.shared = notificationManager
         UploadManager.shared = MockUploadManager()

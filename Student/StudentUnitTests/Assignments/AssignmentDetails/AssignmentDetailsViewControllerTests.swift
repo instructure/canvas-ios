@@ -20,7 +20,7 @@ import Foundation
 @testable import Student
 import XCTest
 @testable import TestsFoundation
-import Core
+@testable import Core
 
 class AssignmentDetailsViewControllerTests: StudentTestCase {
     var courseID = "1"

@@ -95,7 +95,7 @@ class ComposeViewControllerTests: CoreTestCase {
             attachment_ids: [])
             ), value: [ APIConversation.make() ]
         )
-        task.paused = true
+        task.suspend()
         let sendButton = controller.sendButton
         XCTAssertNoThrow(sendButton.target?.perform(sendButton.action))
         XCTAssert(controller.sendButton.customView is CircleProgressView)

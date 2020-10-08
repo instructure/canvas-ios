@@ -55,15 +55,15 @@ class CreateTodoViewControllerTests: CoreTestCase {
                 linked_object_id: nil))
         let refreshPlannablesRequest = GetPlannablesRequest(startDate: date.startOfDay(), endDate: date.startOfDay().addDays(1))
 
-        api.mock(createNoteRequest, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
+        api.mock(createNoteRequest) { _ in
             createExpectation.fulfill()
             return (nil, nil, nil)
-        }, taskID: 1)
+        }
 
-        api.mock(refreshPlannablesRequest, data: nil, response: nil, error: nil, baseURL: URL(string: "https://canvas.instructure.com")!, accessToken: nil, dataHandler: {
+        api.mock(refreshPlannablesRequest) { _ in
             refreshExpectation.fulfill()
             return (nil, nil, nil)
-        }, taskID: 1)
+        }
 
         vc.loadView()
         vc.viewDidLoad()
