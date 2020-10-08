@@ -29,6 +29,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
     @NSManaged public var contextRaw: String?
+    @NSManaged public var contextColor: ContextColor?
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -38,6 +39,8 @@ public final class Group: NSManagedObject, WriteableModel {
     public var canvasContextID: String {
         Context(.group, id: id).canvasContextID
     }
+
+    public var color: UIColor { contextColor?.color ?? .ash }
 
     @discardableResult
     public static func save(_ item: APIGroup, in context: NSManagedObjectContext) -> Group {
@@ -49,25 +52,12 @@ public final class Group: NSManagedObject, WriteableModel {
         model.name = item.name
         model.concluded = item.concluded
         model.showOnDashboard = !item.concluded
+        if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
+            model.contextColor = contextColor
+        } else if let courseID = model.courseID,
+           let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: Context(.course, id: courseID).canvasContextID)).first {
+            model.contextColor = contextColor
+        }
         return model
-    }
-}
-
-extension Group {
-    public var color: UIColor {
-        let request = NSFetchRequest<ContextColor>(entityName: String(describing: ContextColor.self))
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), canvasContextID)
-        if let color = try? managedObjectContext?.fetch(request).first {
-            return color.color
-        }
-        if let courseID = courseID {
-            let course = Context(.course, id: courseID)
-            request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), course.canvasContextID)
-            if let color = try? managedObjectContext?.fetch(request).first {
-                return color.color
-            }
-        }
-        return .ash
     }
 }
