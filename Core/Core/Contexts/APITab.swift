@@ -26,7 +26,7 @@ public struct APITab: Codable, Equatable {
     let label: String
     let type: TabType
     let hidden: Bool?
-    let visibility: TabVisibility
+    let visibility: String
     let position: Int
 }
 
@@ -49,7 +49,7 @@ extension APITab {
             label: label,
             type: type,
             hidden: hidden,
-            visibility: visibility,
+            visibility: visibility.rawValue,
             position: position
         )
     }
