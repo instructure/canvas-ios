@@ -149,6 +149,17 @@ class AssignmentTests: CoreTestCase {
         XCTAssertTrue(a.isLTIAssignment)
     }
 
+    func testAttemptPossible() {
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.external_tool])).attemptPossible)
+        XCTAssertTrue(Assignment.make(from: .make(submission_types: [.media_recording])).attemptPossible)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.none])).attemptPossible)
+        XCTAssertTrue(Assignment.make(from: .make(submission_types: [.online_upload])).attemptPossible)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.on_paper])).attemptPossible)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.basic_lti_launch])).attemptPossible)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [.wiki_page])).attemptPossible)
+        XCTAssertFalse(Assignment.make(from: .make(submission_types: [])).attemptPossible)
+    }
+
     func testIsDiscussion() {
         let a = Assignment.make(from: .make(submission_types: [ .discussion_topic ] ))
         XCTAssertTrue(a.isDiscussion)

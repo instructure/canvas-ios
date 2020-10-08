@@ -218,6 +218,10 @@ extension Assignment {
             (submissionTypes.contains(.basic_lti_launch) || submissionTypes.contains(.external_tool))
     }
 
+    public var attemptPossible: Bool {
+        return canMakeSubmissions && !isLTIAssignment
+    }
+
     public var isDiscussion: Bool {
         return submissionTypes.count == 1 &&
             submissionTypes.contains(.discussion_topic)
