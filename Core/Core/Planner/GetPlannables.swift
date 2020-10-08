@@ -77,7 +77,7 @@ extension APICalendarEvent: PlannableItem {
     public var date: Date? { start_at }
     public var pointsPossible: Double? { assignment?.points_possible }
     public var details: String? { description }
-    public var isHidden: Bool { hidden }
+    public var isHidden: Bool { hidden == true }
 }
 
 public class GetPlannables: UseCase {

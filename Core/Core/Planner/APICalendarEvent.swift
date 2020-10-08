@@ -37,7 +37,7 @@ public struct APICalendarEvent: Codable, Equatable {
     let description: String?
     let location_name: String?
     let location_address: String?
-    let hidden: Bool
+    let hidden: Bool?
 }
 
 #if DEBUG
@@ -60,7 +60,7 @@ extension APICalendarEvent {
         description: String? = nil,
         location_name: String? = nil,
         location_address: String? = nil,
-        hidden: Bool = false
+        hidden: Bool? = false
     ) -> APICalendarEvent {
         return APICalendarEvent(
             id: id,

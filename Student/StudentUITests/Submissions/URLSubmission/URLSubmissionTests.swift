@@ -50,6 +50,8 @@ class URLSubmissionTests: CoreUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
         XCTAssertEqual(SubmissionDetails.urlButton.label(), "http://www.amazon.com")
     }
 }

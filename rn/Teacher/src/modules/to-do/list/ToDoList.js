@@ -147,7 +147,7 @@ export class ToDoList extends Component<Props, State> {
     if (item.quiz) {
       assignmentID = item.quiz.assignment_id
     }
-    const path = `/courses/${item.courseID}/assignments/${assignmentID}/submissions`
+    const path = `/courses/${item.courseID}/assignments/${assignmentID}/submissions/speedgrader`
     if (ExperimentalFeature.nativeSpeedGrader.isEnabled) {
       return this.props.navigator.show(
         `${path}?filter=needs_grading`,

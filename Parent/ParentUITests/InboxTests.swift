@@ -68,9 +68,7 @@ class InboxTests: ParentUITestCase {
         allowAccessToPhotos {
             app.find(label: "Photo Library").tap()
         }
-        let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
-        photo.tap()
+        app.find(labelContaining: "Photo, ").tap()
         ComposeReply.attachmentCard(index: 0).waitToExist()
         app.find(label: "Compose Attachment").waitToExist()
         ComposeReply.sendButton.tap()
