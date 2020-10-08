@@ -19,6 +19,9 @@
 #if DEBUG
 import Foundation
 
+// swiftlint:disable large_tuple
+// swiftlint:disable force_try
+
 extension API {
     private static var isMocked = false
     static var mocks: [String: APIMock] = [:]
