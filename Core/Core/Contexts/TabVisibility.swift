@@ -20,5 +20,5 @@ import Foundation
 
 public enum TabVisibility: String, Codable {
     case admins, members, `public`, none
-    case course // undocumented
+    case course, users // undocumented
 }
