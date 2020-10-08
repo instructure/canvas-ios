@@ -38,6 +38,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var isPublished: Bool
     @NSManaged public var termName: String?
     @NSManaged public var accessRestrictedByDate: Bool
+    @NSManaged var contextColor: ContextColor?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -47,6 +48,8 @@ final public class Course: NSManagedObject, WriteableModel {
     public var canvasContextID: String {
         Context(.course, id: id).canvasContextID
     }
+
+    public var color: UIColor { contextColor?.color ?? .ash }
 
     @discardableResult
     public static func save(_ item: APICourse, in context: NSManagedObjectContext) -> Course {
@@ -89,19 +92,15 @@ final public class Course: NSManagedObject, WriteableModel {
             model.enrollments = Set(enrollmentModels)
         }
 
+        if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
+            model.contextColor = contextColor
+        }
+
         return model
     }
 }
 
 extension Course {
-    public var color: UIColor {
-        let request = NSFetchRequest<ContextColor>(entityName: String(describing: ContextColor.self))
-        request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(ContextColor.canvasContextID), canvasContextID)
-        let color = try? managedObjectContext?.fetch(request).first
-        return color?.color ?? .ash
-    }
-
     public static let scoreFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent

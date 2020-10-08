@@ -23,6 +23,8 @@ import UIKit
 public final class ContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
     @NSManaged public var colorRaw: UInt32
+    @NSManaged public var course: Course?
+    @NSManaged public var group: Group?
 
     public var color: UIColor {
         get { return UIColor(intValue: colorRaw) }

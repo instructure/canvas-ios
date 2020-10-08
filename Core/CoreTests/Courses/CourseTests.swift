@@ -22,8 +22,8 @@ import XCTest
 
 class CourseTests: CoreTestCase {
     func testColor() {
-        let a = Course.make()
-        ContextColor.make()
+        ContextColor.make(canvasContextID: "course_1", color: .red)
+        let a = Course.make(from: .make(id: "1"))
 
         XCTAssertEqual(a.color, UIColor.red)
     }
