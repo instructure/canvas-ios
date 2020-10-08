@@ -56,6 +56,6 @@ public class Tab: NSManagedObject {
         position = item.position
         self.context = context
         type = item.type
-        visibility = item.visibility
+        visibility = TabVisibility(rawValue: item.visibility) ?? .none
     }
 }
