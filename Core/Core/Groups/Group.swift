@@ -54,8 +54,7 @@ public final class Group: NSManagedObject, WriteableModel {
         model.showOnDashboard = !item.concluded
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor
-        }
-        if let courseID = model.courseID,
+        } else if let courseID = model.courseID,
            let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: Context(.course, id: courseID).canvasContextID)).first {
             model.contextColor = contextColor
         }
