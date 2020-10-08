@@ -39,6 +39,22 @@ public final class ContextColor: NSManagedObject {
             let model: ContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = record.key
             model.color = color
+            model.course = nil
+            model.group = nil
+            if let canvasContext = Context(canvasContextID: record.key) {
+                switch canvasContext.contextType {
+                case .course:
+                    if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: canvasContext.id)).first {
+                        model.course = course
+                    }
+                case .group:
+                    if let group: Group = context.fetch(scope: .where(#keyPath(Group.id), equals: canvasContext.id)).first {
+                        model.group = group
+                    }
+                default:
+                    break
+                }
+            }
             return model
         }
     }

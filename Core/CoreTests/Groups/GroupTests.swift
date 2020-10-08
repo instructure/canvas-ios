@@ -31,11 +31,4 @@ class GroupTests: CoreTestCase {
 
         XCTAssertEqual(group.color, .red)
     }
-
-    func testColorWithCourseID() {
-        ContextColor.make(canvasContextID: "course_1", color: .red)
-        let group = Group.make(from: .make(course_id: "1"))
-
-        XCTAssertEqual(group.color, .red)
-    }
 }
