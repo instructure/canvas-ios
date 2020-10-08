@@ -24,12 +24,13 @@ public class API {
     public let urlSession: URLSession
 
     var refreshTask: APITask?
-    var refreshQueue: [() -> Void] = []
+    var refreshQueue = OperationQueue()
 
     public init(_ loginSession: LoginSession? = nil, baseURL: URL? = nil, urlSession: URLSession = .ephemeral) {
         self.loginSession = loginSession
         self.baseURL = baseURL ?? loginSession?.baseURL ?? URL(string: "https://canvas.instructure.com/")!
         self.urlSession = urlSession
+        refreshQueue.isSuspended = true
     }
 
     @discardableResult
@@ -40,7 +41,7 @@ public class API {
     ) -> APITask? {
         do {
             guard refreshTask?.state != .running else {
-                refreshQueue.append { [weak self] in
+                refreshQueue.addOperation { [weak self] in
                     self?.makeRequest(requestable, callback: callback)
                 }
                 return nil
@@ -48,7 +49,7 @@ public class API {
             let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
             let handler = { [weak self] (data: Data?, response: URLResponse?, error: Error?) in
                 if response?.isUnauthorized == true, refreshToken {
-                    self?.refreshQueue.append { [weak self] in
+                    self?.refreshQueue.addOperation { [weak self] in
                         self?.makeRequest(requestable, refreshToken: false, callback: callback)
                     }
                     if self?.refreshTask?.state != .running {
@@ -145,8 +146,10 @@ public class API {
     }
 
     private func flushRefreshQueue() {
-        for task in refreshQueue { task() }
-        refreshQueue = []
+        refreshQueue.isSuspended = false
+        refreshQueue.addOperation { [weak self] in
+            self?.refreshQueue.isSuspended = true
+        }
     }
 
     public func exhaust<R>(_ requestable: R, callback: @escaping (R.Response?, URLResponse?, Error?) -> Void) where R: APIRequestable, R.Response: RangeReplaceableCollection {
