@@ -27,10 +27,8 @@ extension ContextColor {
         color: UIColor = .red,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> ContextColor {
-        let model: ContextColor = context.insert()
-        model.canvasContextID = canvasContextID
-        model.color = color
+        ContextColor.save(APICustomColors(custom_colors: [canvasContextID: color.hexString]), in: context)
         try! context.save()
-        return model
+        return context.first(where: #keyPath(ContextColor.canvasContextID), equals: canvasContextID)!
     }
 }

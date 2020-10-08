@@ -24,7 +24,11 @@ public final class ContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
     @NSManaged public var colorRaw: UInt32
     @NSManaged public var course: Course?
-    @NSManaged public var group: Group?
+
+    // This is a Set because course groups will use the course's custom color.
+    // We need to allow for multiple groups to reference the same course color
+    // in the case where a student is in multiple groups in the same course.
+    @NSManaged public var groups: Set<Group>
 
     public var color: UIColor {
         get { return UIColor(intValue: colorRaw) }
@@ -39,8 +43,6 @@ public final class ContextColor: NSManagedObject {
             let model: ContextColor = context.fetch(predicate).first ?? context.insert()
             model.canvasContextID = record.key
             model.color = color
-            model.course = nil
-            model.group = nil
             if let canvasContext = Context(canvasContextID: record.key) {
                 switch canvasContext.contextType {
                 case .course:
@@ -49,7 +51,7 @@ public final class ContextColor: NSManagedObject {
                     }
                 case .group:
                     if let group: Group = context.fetch(scope: .where(#keyPath(Group.id), equals: canvasContext.id)).first {
-                        model.group = group
+                        model.groups.insert(group)
                     }
                 default:
                     break
