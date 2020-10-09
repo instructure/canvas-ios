@@ -48,7 +48,7 @@ export class QuizPreview extends Component<LocalProps, any> {
   }
 
   componentWillUnmount () {
-    clearTimeout(timer)
+    clearTimeout(this.timer)
   }
 
   captureRef = (c: ?AuthenticatedWebView) => {
