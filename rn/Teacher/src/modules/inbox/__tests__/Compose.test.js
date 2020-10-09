@@ -50,6 +50,7 @@ jest
   .mock('react-native/Libraries/Alert/Alert', () => ({ alert: jest.fn() }))
   .mock('../../../canvas-api')
   .mock('../../../routing/Screen')
+  .useFakeTimers()
 
 describe('Compose', () => {
   beforeEach(() => jest.clearAllMocks())

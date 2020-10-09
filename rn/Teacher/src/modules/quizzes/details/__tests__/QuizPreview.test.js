@@ -25,6 +25,8 @@ import renderer from 'react-test-renderer'
 import { QuizPreview, mapStateToProps } from '../QuizPreview'
 import * as template from '../../../../__templates__'
 
+jest.useFakeTimers()
+
 describe('QuizPreview', () => {
   let props = {
     quiz: template.quiz(),
