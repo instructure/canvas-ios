@@ -27,6 +27,10 @@ extension ProcessInfo {
     public static var isUITest: Bool {
         return processInfo.environment["IS_UI_TEST"] != nil
     }
+
+    public static var isBitrise: Bool {
+        return processInfo.environment["BITRISE_BUILD_NUMBER"] != nil
+    }
 }
 
 public var unitTesting: Bool {
