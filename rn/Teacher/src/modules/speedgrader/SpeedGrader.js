@@ -92,7 +92,7 @@ export class SpeedGrader extends Component<SpeedGraderProps, State> {
         width: width + PAGE_GUTTER_HALF_WIDTH + PAGE_GUTTER_HALF_WIDTH,
         height,
       },
-      currentStudentID: props.userID,
+      currentStudentID: props.userID === 'speedgrader' ? null : props.userID,
       currentPageIndex: props.studentIndex,
       drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
       hasScrolledToInitialSubmission: false,

@@ -36,12 +36,22 @@ class InboxTests: CoreUITestCase {
         let before = APIConversation.make(
             id: "1",
             subject: "Subject One",
+            participants: [
+                .make(),
+                .make(id: "2", name: "Participant Two"),
+            ],
+            audience: [ "1", "2" ],
             avatar_url: avatarURL,
             messages: [.make(body: "Message Body")]
         )
         let after = APIConversation.make(
             id: "1",
             subject: "Subject One",
+            participants: [
+                .make(),
+                .make(id: "2", name: "Participant Two"),
+            ],
+            audience: [ "1", "2" ],
             avatar_url: avatarURL,
             messages: [.make(body: "Message Body"), .make(body: "This is a reply")]
         )

@@ -32,7 +32,7 @@ export function alertError (error: any, alertTitle?: string, callback?: Function
   if (error instanceof Error) {
     console.warn(`Error: ${error.message}.  Stack:\n${error.stack}`)
   } else {
-    console.warn(`Error: ${error}`)
+    console.warn(`Error: `, error)
   }
 }
 

@@ -52,7 +52,7 @@ extension UseCase {
     }
 
     public func hasExpired(in client: NSManagedObjectContext) -> Bool {
-        guard let cacheKey = cacheKey else { return true }
+        guard let cacheKey = cacheKey, !ProcessInfo.isUITest else { return true }
         var expired = true
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         if let cache: TTL = client.fetch(predicate).first,

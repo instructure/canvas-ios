@@ -37,7 +37,7 @@ struct SpeedGraderView: View {
         self.context = context
         self.assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID, include: [ .overrides ]))
         self.submissions = AppEnvironment.shared.subscribe(GetSubmissions(context: context, assignmentID: assignmentID, filter: filter))
-        self.userID = userID
+        self.userID = userID == "speedgrader" ? nil : userID
     }
 
     var body: some View {

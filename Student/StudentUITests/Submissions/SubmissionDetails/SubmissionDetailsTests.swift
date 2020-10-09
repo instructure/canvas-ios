@@ -32,6 +32,8 @@ class SubmissionDetailsTests: CoreUITestCase {
             workflow_state: .unsubmitted
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertEqual(SubmissionDetails.emptyAssignmentDueBy.label(), "This assignment was due by October 31, 2018 at 10:00 PM")
         XCTAssertTrue(SubmissionDetails.emptySubmitButton.isVisible)
@@ -48,6 +50,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         SubmissionDetails.onlineTextEntryWebView.waitToExist(5)
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
@@ -67,6 +71,7 @@ class SubmissionDetailsTests: CoreUITestCase {
         let submittedAt2 = DateComponents(calendar: Calendar.current, year: 2018, month: 11, day: 1, hour: 22, minute: 0).date!
         mockData(GetSubmissionRequest(context: .course(course.id.value), assignmentID: assignment.id.value, userID: "1"), value: APISubmission.make(
             attempt: 2,
+            body: "two",
             submission_history: [
                 APISubmission.make(
                     attempt: 1,
@@ -74,16 +79,15 @@ class SubmissionDetailsTests: CoreUITestCase {
                     submission_type: .online_text_entry,
                     submitted_at: submittedAt1
                 ),
-                APISubmission.make(
-                    attempt: 2,
-                    body: "two",
-                    submission_type: .online_text_entry,
-                    submitted_at: submittedAt2
-                ),
-            ]
+                APISubmission.make(attempt: 2),
+            ],
+            submission_type: .online_text_entry,
+            submitted_at: submittedAt2
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         let date1 = DateFormatter.localizedString(from: submittedAt1, dateStyle: .medium, timeStyle: .short)
         let date2 = DateFormatter.localizedString(from: submittedAt2, dateStyle: .medium, timeStyle: .short)
@@ -153,6 +157,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         mockURL(downloadURL, data: url.flatMap { try? Data(contentsOf: $0) })
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         PSPDFDoc.view.waitToExist(5)
         XCTAssertTrue(PSPDFDoc.view.isVisible)
@@ -212,6 +218,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         // There's a uuid in a request that has no way to be mocked currently
         missingMockBehavior = .allow
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         // 😱 PSPDFAnnotations are not in the accessibility tree
         PSPDFDoc.page.tapAt(CGPoint(x: 32, y: 32))
@@ -250,6 +258,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
         XCTAssertFalse(SubmissionDetails.attemptPicker.isVisible)
@@ -272,6 +282,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         mockData(GetQuizSubmissionRequest(courseID: course.id.value, quizID: "1"), value: .init(quiz_submissions: []))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         SubmissionDetails.onlineQuizWebView.waitToExist()
         XCTAssertFalse(SubmissionDetails.emptyView.isVisible)
@@ -290,6 +302,8 @@ class SubmissionDetailsTests: CoreUITestCase {
         mockEncodedData(URLRequest(url: attachment.url!.rawValue), data: Data())
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         SubmissionDetails.urlSubmissionBlurb.waitToExist(5)
         XCTAssertTrue(SubmissionDetails.urlSubmissionBlurb.isVisible)
@@ -315,6 +329,8 @@ class SubmissionDetailsTests: CoreUITestCase {
             value: .make()
         )
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
 
         ExternalToolElement.launchButton.waitToExist(5)
         XCTAssertTrue(ExternalToolElement.launchButton.isVisible)
@@ -334,7 +350,10 @@ class SubmissionDetailsTests: CoreUITestCase {
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)/submissions/1")
-        SubmissionDetails.mediaPlayer.waitToExist(2)
+        SubmissionDetails.drawerGripper.tap()
+        SubmissionDetails.drawerGripper.tap()
+
+        SubmissionDetails.mediaPlayer.waitToExist()
         XCTAssertTrue(SubmissionDetails.mediaPlayer.isVisible)
     }
 

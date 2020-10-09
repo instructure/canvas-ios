@@ -61,9 +61,7 @@ class FilesUITests: MiniCanvasUITestCase {
             app.find(label: "Photo Library").tap()
         }
 
-        let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
-        photo.tap()
+        app.find(labelContaining: "Photo, ").tap()
 
         app.find(labelContaining: "Not Published").waitToExist()
 

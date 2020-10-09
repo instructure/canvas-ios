@@ -32,7 +32,9 @@ class DiscussionEditE2ETests: CoreUITestCase {
 
     func testEditDiscussion() throws {
         DiscussionListCell.cell(id: "14392").tap()
-        app.find(id: "DiscussionDetails.options").tap()
+        app.find(id: "DiscussionDetails.options").tapUntil {
+            app.find(label: "Edit").exists
+        }
         app.find(label: "Edit").tap()
 
         DiscussionEdit.titleField.waitToExist()

@@ -42,14 +42,13 @@ type LocalProps = Props & {
 export class QuizPreview extends Component<LocalProps, any> {
   webView: ?AuthenticatedWebView
 
-  constructor (props: any) {
-    super(props)
-    this.state = {
-      waiting: true,
-      error: false,
-    }
+  state = {
+    waiting: true,
+    error: false,
+  }
 
-    setTimeout(this.onTimeout, 30000)
+  componentWillUnmount () {
+    clearTimeout(this.timer)
   }
 
   captureRef = (c: ?AuthenticatedWebView) => {
@@ -110,6 +109,7 @@ export class QuizPreview extends Component<LocalProps, any> {
       })
     }
   }
+  timer = setTimeout(this.onTimeout, 30000)
 
   render () {
     const uri = `${this.props.quiz.html_url}/take?preview=1&persist_headless=1&force_user=1`

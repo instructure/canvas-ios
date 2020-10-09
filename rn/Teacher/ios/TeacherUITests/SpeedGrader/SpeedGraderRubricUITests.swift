@@ -53,7 +53,7 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
 
         XCTAssertEqual(submission.api.rubric_assessment?["1"]?.comments, ":facepalm:")
     }
-
+/*
     func testSetScore() throws {
         showSubmission()
         SpeedGrader.Segment.grades.tap()
@@ -80,4 +80,5 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
 
         throw XCTSkip("unfinished test")
     }
+*/
 }

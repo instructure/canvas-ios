@@ -119,7 +119,7 @@ describe('ToDoList', () => {
     tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
-      '/courses/222/assignments/1/submissions?filter=needs_grading',
+      '/courses/222/assignments/1/submissions/speedgrader?filter=needs_grading',
       { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
     )
   })
@@ -135,7 +135,7 @@ describe('ToDoList', () => {
     tree.find('FlatList').dive().find('ToDoListItem')
       .simulate('Press', props.list[0])
     expect(props.navigator.show).toHaveBeenCalledWith(
-      '/courses/222/assignments/1/submissions?filter=needs_grading',
+      '/courses/222/assignments/1/submissions/speedgrader?filter=needs_grading',
       { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
     )
   })
