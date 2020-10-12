@@ -104,7 +104,7 @@ public class DocViewerViewController: UIViewController {
             document.didCreateDocumentProviderBlock = { documentProvider in
                 let provider = DocViewerAnnotationProvider(documentProvider: documentProvider, metadata: metadata, annotations: annotations, api: self.session.api, sessionID: sessionID)
                 provider.docViewerDelegate = self
-                documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
+                documentProvider.annotationManager.annotationProviders.append(provider)
                 self.annotationProvider = provider
             }
         }
