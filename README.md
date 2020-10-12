@@ -47,6 +47,20 @@ You will need to purchase PSPDFKitLicenses to distribute custom apps. Instructur
 
 If you wish to use Firebase Analytics in custom apps, you will need to populate the `GoogleService-Info.plist` for each app.
 
+### Debugging Redux
+
+To get redux logs you can add [redux-logger](https://github.com/LogRocket/redux-logger) as a middleware to the redux store.
+
+We don't want to keep the logger in because it slows down the runtime quite a lot.
+
+In src/redux/store.js
+```js
+import logger from 'redux-logger'
+
+let middleware = [promiseMiddleware, errorHandler, createPersisteMiddleware(500), logger]
+```
+
+The redux logs will now show up in the React Native Debugger.
 
 ## Contributing Guiding Principles
 
