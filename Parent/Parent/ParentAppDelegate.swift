@@ -139,9 +139,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension ParentAppDelegate: LoginDelegate {
-    var supportsQRCodeLogin: Bool {
-        ExperimentalFeature.qrLoginParent.isEnabled
-    }
     var supportsCanvasNetwork: Bool { false }
     var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 

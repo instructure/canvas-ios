@@ -32,26 +32,22 @@ class AddStudentController {
 
     @objc func addStudent() {
         guard let presenting = presentingViewController else { return }
-        if ExperimentalFeature.parentQRCodePairing.isEnabled {
-            let picker = BottomSheetPickerViewController.create()
-            picker.addAction(
-                image: nil,
-                title: NSLocalizedString("QR Code", comment: ""),
-                accessibilityIdentifier: "DashboardViewController.addStudent.qrCode"
-            ) { [weak self] in
-                self?.scanQRCode()
-            }
-            picker.addAction(
-                image: nil,
-                title: NSLocalizedString("Pairing Code", comment: ""),
-                accessibilityIdentifier: "DashboardViewController.addStudent.pairingCode"
-            ) { [weak self] in
-                self?.useInput()
-            }
-            env.router.show(picker, from: presenting, options: .modal())
-        } else {
-            useInput()
+        let picker = BottomSheetPickerViewController.create()
+        picker.addAction(
+            image: nil,
+            title: NSLocalizedString("QR Code", comment: ""),
+            accessibilityIdentifier: "DashboardViewController.addStudent.qrCode"
+        ) { [weak self] in
+            self?.scanQRCode()
         }
+        picker.addAction(
+            image: nil,
+            title: NSLocalizedString("Pairing Code", comment: ""),
+            accessibilityIdentifier: "DashboardViewController.addStudent.pairingCode"
+        ) { [weak self] in
+            self?.useInput()
+        }
+        env.router.show(picker, from: presenting, options: .modal())
     }
 
     func useInput() {

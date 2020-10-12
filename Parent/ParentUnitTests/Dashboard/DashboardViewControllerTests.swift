@@ -26,7 +26,6 @@ class DashboardViewControllerTests: ParentTestCase {
 
     override class func setUp() {
         super.setUp()
-        ExperimentalFeature.parentQRCodePairing.isEnabled = false
     }
 
     func testLayoutMenu() {
@@ -71,12 +70,6 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssertEqual(vc.titleLabel.text, "Bob")
         XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Bob. Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
-
-        (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
-        XCTAssert(router.presented is UIAlertController)
-        router.dismiss(vc, completion: nil)
-
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
 
         (vc.studentListStack.arrangedSubviews.last as? UIButton)?.sendActions(for: .primaryActionTriggered)
         let picker = router.presented as! BottomSheetPickerViewController

@@ -20,7 +20,6 @@ import UIKit
 
 public protocol LoginDelegate: class {
     var supportsCanvasNetwork: Bool { get }
-    var supportsQRCodeLogin: Bool { get }
     var helpURL: URL? { get }
     var whatsNewURL: URL? { get }
     var findSchoolButtonTitle: String { get }
@@ -36,7 +35,6 @@ public protocol LoginDelegate: class {
 
 public extension LoginDelegate {
     var supportsCanvasNetwork: Bool { true }
-    var supportsQRCodeLogin: Bool { true }
     var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
     var whatsNewURL: URL? { nil }
     var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }

@@ -43,14 +43,9 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         title = NSLocalizedString("Pair with Observer", bundle: .core, comment: "")
         //  swiftlint:disable:next line_length
-        instructionsLabel.text = NSLocalizedString("Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.", comment: "")
-        if ExperimentalFeature.studentQRCodePairing.isEnabled {
-            instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
-            codeContainer.backgroundColor = .backgroundLightest
-            codeContainer.setNeedsDisplay()
-        }
-
-        tapToCopyButton.isHidden = ExperimentalFeature.studentQRCodePairing.isEnabled
+        instructionsLabel.text = NSLocalizedString("Have your parent scan this QR code from the Canvas Parent app to pair with you.", comment: "")
+        codeContainer.backgroundColor = .backgroundLightest
+        codeContainer.setNeedsDisplay()
 
         notificationView.messageLabel.text = NSLocalizedString("Copied!", bundle: .core, comment: "")
         tapToCopyButton.setTitle(NSLocalizedString("Tap to copy", bundle: .core, comment: ""), for: .normal)
@@ -73,12 +68,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
                     self?.spinner.isHidden = true
                     self?.showError(error)
                 } else {
-                    if ExperimentalFeature.studentQRCodePairing.isEnabled {
-                        self?.generateQRCode(pairingCode: response?.code)
-                    } else {
-                        self?.spinner.isHidden = true
-                        self?.displayPairingCode(response?.code)
-                    }
+                    self?.generateQRCode(pairingCode: response?.code)
                 }
             }
         }

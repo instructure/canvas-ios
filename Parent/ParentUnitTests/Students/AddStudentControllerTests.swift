@@ -27,11 +27,6 @@ class AddStudentControllerTests: ParentTestCase {
     let mock = MockViewController()
     lazy var controller = AddStudentController(presentingViewController: mock) { _ in }
 
-    override func setUp() {
-        super.setUp()
-        ExperimentalFeature.parentQRCodePairing.isEnabled = false
-    }
-
     func testLayout() throws {
         controller.addStudent()
 
@@ -75,7 +70,6 @@ class AddStudentControllerTests: ParentTestCase {
     }
 
     func testScanQRCode() {
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
         let expectation = XCTestExpectation(description: "handler was called")
         controller.handler = { error in
             XCTAssertNil(error)
@@ -95,7 +89,6 @@ class AddStudentControllerTests: ParentTestCase {
     }
 
     func testScannerDomainMismatch() {
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
         let expectation = XCTestExpectation(description: "handler was called")
         controller.handler = { error in
             XCTAssertNil(error)

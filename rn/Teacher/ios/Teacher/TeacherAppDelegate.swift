@@ -211,10 +211,6 @@ extension TeacherAppDelegate: RCTBridgeDelegate {
 }
 
 extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
-    var supportsQRCodeLogin: Bool {
-        ExperimentalFeature.qrLoginTeacher.isEnabled
-    }
-
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {

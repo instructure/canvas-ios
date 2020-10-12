@@ -26,8 +26,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     var opened: URL?
     var hasOpenedSupportTicket = false
     var supportsCanvasNetwork = true
-    var supportsQRCodeLogin: Bool = true
-
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
 
@@ -36,7 +34,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         supportsCanvasNetwork = true
-        supportsQRCodeLogin = true
         MDMManager.mockDefaults()
         api.mock(GetUserRequest(userID: "1"), value: .make())
     }
@@ -170,15 +167,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertEqual(alert.message, "Please generate another QR Code and try again.")
     }
 
-    func testQRCodeNotSupported() {
-        supportsQRCodeLogin = false
-        controller.view.layoutIfNeeded()
-        XCTAssertTrue(controller.useQRCodeButton.isHidden)
-        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
-    }
-
     func testParentCreateAccountQRCode() throws {
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
         let code = "parent-app://canvas.instructure.com/pair?code=foo"
         controller.app = .parent
         controller.view.layoutIfNeeded()
@@ -196,34 +185,6 @@ class LoginStartViewControllerTests: CoreTestCase {
         let login = try XCTUnwrap(router.last as? LoginWebViewController)
         XCTAssertEqual(login.host, "canvas.instructure.com")
         XCTAssertEqual(login.pairingCode, "foo")
-    }
-
-    func testQRLoginFeatureGetsTurnedOn() {
-        ExperimentalFeature.qrLoginParent.isEnabled = false
-        supportsQRCodeLogin = false
-        controller.view.layoutIfNeeded()
-        XCTAssertTrue(controller.useQRCodeButton.isHidden)
-        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
-        supportsQRCodeLogin = true
-        //  this just triggers userDefaultsDidChange notification
-        //  doesn't matter which feature is changed
-        ExperimentalFeature.qrLoginParent.isEnabled = true
-        XCTAssertFalse(controller.useQRCodeButton.isHidden)
-        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
-    }
-
-    func testQRLoginFeatureGetsTurnedOff() {
-        ExperimentalFeature.qrLoginParent.isEnabled = true
-        supportsQRCodeLogin = true
-        controller.view.layoutIfNeeded()
-        XCTAssertFalse(controller.useQRCodeButton.isHidden)
-        XCTAssertFalse(controller.useQRCodeDivider.isHidden)
-        supportsQRCodeLogin = false
-        //  this just triggers userDefaultsDidChange notification
-        //  doesn't matter which feature is changed
-        ExperimentalFeature.qrLoginParent.isEnabled = false
-        XCTAssertTrue(controller.useQRCodeButton.isHidden)
-        XCTAssertTrue(controller.useQRCodeDivider.isHidden)
     }
 
     func testButtonsBelowLoginButtonWithBothEnabled() {
