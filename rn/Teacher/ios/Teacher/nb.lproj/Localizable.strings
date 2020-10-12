@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Avvise";
 
+/* No comment provided by engineer. */
+"Done" = "Ferdig";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Avvik: Ingen data returnert fra opprop api.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Gruppe";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Skjul vurderinger";
 
 /* Inbox tab title */
 "Inbox" = "Innboks";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Det ser ut til at det ikke er noen gyldige innleveringer å vurdere.";
+
+/* No comment provided by engineer. */
 "Late" = "Sent";
+
+/* No comment provided by engineer. */
+"Loading" = "Laster";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Merk alle som nåværende";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marker gjenværende som nåværende";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Ingen innleveringer";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publisert karakterer";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Utvalgte seksjoner";
+
+/* No comment provided by engineer. */
+"Student" = "Student";
 
 /* No comment provided by engineer. */
 "Test Student" = "Test Student";

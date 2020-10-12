@@ -17,6 +17,12 @@
 "(No subject)" = "(Kaore he kaupapa)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ ētahi atu";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Whakawātea tātari";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Whakawātea pouaka tātari";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Mukua te tāhopu";
@@ -635,6 +644,9 @@
 "Filter events" = "Tātari Tauwhainga";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Tātari pouaka roto";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Kimihia taku kura";
+
+/* No comment provided by engineer. */
+"Find School" = "Kimihia taku kura";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Kimihia tō kura takiwa ranei";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = " Kua rakaina";
+
+/* No comment provided by engineer. */
+"Locked" = "Kua rakaina";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Ka rakaina kī \"%@\" i kōeketia";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Ngā manakohanga";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Hiahiatanga: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Ngā takiurunga o mua";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā kōeke Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "He hapa i te wā e uta ana ngā kōwae.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā whārangi Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Kei te kore tēnei kōwae.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Kua monokia tē whārangi mō tēnei akoranga.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kua mutu te wā";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Whoops!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Ka huakina %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Mahi huringa";

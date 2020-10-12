@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Rejte";
 
+/* No comment provided by engineer. */
+"Done" = "Fini";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Erè: Okenn done ranvwaye pa API apèl la.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Gwoup";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Kache Klas";
 
 /* Inbox tab title */
 "Inbox" = "Bwat resepsyon";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Ta sanble pa gen okenn soumisyon valid pou yo korije.";
+
+/* No comment provided by engineer. */
 "Late" = "An reta";
+
+/* No comment provided by engineer. */
+"Loading" = "Chajman";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Make Tout kòm Prezan";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Make Rete kòm Prezan";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Pa gen Soumisyon";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Piblikasyon Nòt";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Seksyon Espesyal";
+
+/* No comment provided by engineer. */
+"Student" = "Elèv";
 
 /* No comment provided by engineer. */
 "Test Student" = "Teste Elèv";

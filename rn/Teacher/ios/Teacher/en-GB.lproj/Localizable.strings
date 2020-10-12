@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Dismiss";
 
+/* No comment provided by engineer. */
+"Done" = "Done";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Error: No data returned from the roll call API.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Group";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Hide marks";
 
 /* Inbox tab title */
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "It seems there aren't any valid submissions to grade.";
+
+/* No comment provided by engineer. */
 "Late" = "Late";
+
+/* No comment provided by engineer. */
+"Loading" = "Loading";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Mark all as present";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Mark remaining as present";
+
+/* No comment provided by engineer. */
+"No Submissions" = "No Submissions";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Post grades";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specific Sections";
+
+/* No comment provided by engineer. */
+"Student" = "Student";
 
 /* No comment provided by engineer. */
 "Test Student" = "Test student";

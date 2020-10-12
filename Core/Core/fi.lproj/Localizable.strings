@@ -17,6 +17,12 @@
 "(No subject)" = "(ei aihetta)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ lisää";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Tyhjennä suodatin";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Tyhjennä suodattimen saapuneet";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Tyhjennä nauhoitus";
@@ -635,6 +644,9 @@
 "Filter events" = "Suodata tapahtumia";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Suodata saapuneet";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Etsi kouluni";
+
+/* No comment provided by engineer. */
+"Find School" = "Etsi koulu";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Etsi koulusi tai alueesi";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "lukittu";
+
+/* No comment provided by engineer. */
+"Locked" = "Lukittu";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Lukittu, kunnes ”%@” on arvosteltu";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Asetukset";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Edellytys: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Edelliset kirjautumiset";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Arvosanojenn latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Moduulien latauksessa ilmeni virhe.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Sivujen latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Tämä moduuli on tyhjä.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Kyseinen sivu on poistettu käytöstä tälle kurssille.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Kulunut aika";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Hups!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Poistaa lukituksen kohteesta  %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Väliaikainen ratkaisu";

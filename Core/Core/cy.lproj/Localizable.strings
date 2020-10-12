@@ -17,6 +17,12 @@
 "(No subject)" = "(Dim pwnc)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ arall";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Clirio’r Hidlydd";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Clirio Mewnflwch yr Hidlydd";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Clirio’r recordiad";
@@ -635,6 +644,9 @@
 "Filter events" = "Hidlo digwyddiadau";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Mewnflwch yr Hidlydd";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Dod o hyd i fy ysgol";
+
+/* No comment provided by engineer. */
+"Find School" = "Dod o hyd i Ysgol";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Ewch ati i ddod o hyd i'ch ysgol neu'ch ardal";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "wedi'u cloi";
+
+/* No comment provided by engineer. */
+"Locked" = "Wedi Cloi";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Ar glo nes bydd \"%@\" wedi’i raddio";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Blaenoriaethau";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Rhagofyniad: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Manylion Mewngofnodi Blaenorol";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Gwall wrth lwytho graddau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Gwall wrth lwytho modiwlau.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Gwall wrth lwytho tudalennau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Mae’r modiwl hwn yn wag.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Mae’r dudalen hon wedi’i hanalluogi ar gyfer y cwrs hwn";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Amser wedi mynd heibio";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Wps!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Yn datgloi %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Datrys";

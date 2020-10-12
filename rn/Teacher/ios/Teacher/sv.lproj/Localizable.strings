@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Avvisa";
 
+/* No comment provided by engineer. */
+"Done" = "Klar";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fel: Ingen data returnerades från närvaro-API.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Grupp";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Dölj omdömen";
 
 /* Inbox tab title */
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Det verkar inte finnas några giltiga inlämningar att bedöma.";
+
+/* No comment provided by engineer. */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Loading" = "Läser in";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Markera alla som närvarande";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Markera återstående som närvarande";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Inga inlämningar";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publicera omdömen";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specifika sektioner";
+
+/* No comment provided by engineer. */
+"Student" = "Student";
 
 /* No comment provided by engineer. */
 "Test Student" = "Teststudent";

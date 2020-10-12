@@ -17,6 +17,12 @@
 "(No subject)" = "(Brak tematu)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ więcej";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Średnia ocen";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Wyczyść filtr";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Wyczyść filtrowaną skrzynkę odbiorczą";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Wyczyść nagranie";
@@ -635,6 +644,9 @@
 "Filter events" = "Filtruj wydarzenia";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Filtruj skrzynkę odbiorczą";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Znajdź moją szkołę";
+
+/* No comment provided by engineer. */
+"Find School" = "Znajdź szkołę";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Znajdź swoją szkołę lub dzielnicę";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "zblokowane";
+
+/* No comment provided by engineer. */
+"Locked" = "Zablokowany";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Zablokowano do chwili oceny \"%@\"";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferencje";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Wymóg wstępny: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Poprzednie logowania";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania ocen. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Wystąpił błąd podczas wczytywania modułów.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania stron. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Ten moduł jest pusty.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Strona została zablokowana dla tego kursu.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Czas do tej pory";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Ups!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Zostanie odblokowane %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Obejście";

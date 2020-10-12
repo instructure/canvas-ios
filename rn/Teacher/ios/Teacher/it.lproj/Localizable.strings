@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Ignora";
 
+/* No comment provided by engineer. */
+"Done" = "Fatto";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Errore: Nessun dato fornito da API votazione.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Gruppo";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Nascondi voti";
 
 /* Inbox tab title */
 "Inbox" = "Posta in arrivo";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Sembra che non ci siano consegne valide da valutare.";
+
+/* No comment provided by engineer. */
 "Late" = "In ritardo";
+
+/* No comment provided by engineer. */
+"Loading" = "Caricamento";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Contrassegna tutto come presente";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Contrassegna il resto come presente";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Nessuna consegna";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Pubblica voti";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Sezioni specifiche";
+
+/* No comment provided by engineer. */
+"Student" = "Studente";
 
 /* No comment provided by engineer. */
 "Test Student" = "Studente di test";

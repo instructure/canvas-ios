@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "撤销";
 
+/* No comment provided by engineer. */
+"Done" = "完成";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "错误：没有数据从点名单 API 中返回。";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "小组";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "隐藏评分";
 
 /* Inbox tab title */
 "Inbox" = "收件箱";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "似乎没有任何可评分的有效提交项。";
+
+/* No comment provided by engineer. */
 "Late" = "延迟";
+
+/* No comment provided by engineer. */
+"Loading" = "正在加载";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "将所有标记为出勤";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "将其余的标记为出勤";
+
+/* No comment provided by engineer. */
+"No Submissions" = "无提交项";
 
 /* No comment provided by engineer. */
 "Post Grades" = "发布评分";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "特定分组";
+
+/* No comment provided by engineer. */
+"Student" = "学生";
 
 /* No comment provided by engineer. */
 "Test Student" = "测验学生";

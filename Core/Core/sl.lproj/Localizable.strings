@@ -17,6 +17,12 @@
 "(No subject)" = "(Ni zadeve)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ več";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Počisti filter";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Počisti filtriranje pošte";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Počisti snemanje";
@@ -635,6 +644,9 @@
 "Filter events" = "Filtriraj dogodke";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Filtriraj pošto";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Najdi mojo šolo";
+
+/* No comment provided by engineer. */
+"Find School" = "Poišči šolo";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Najdite svojo šolo ali okoliš.";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "zaklenjeno";
+
+/* No comment provided by engineer. */
+"Locked" = "Zaklenjeno";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Zaklenjeno, dokler element »%@« ni ocenjen.";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Nastavitve";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Predpogoj: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Predhodne prijave";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Pri nalaganju ocen je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Pri nalaganju modulov je prišlo do napake.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Pri nalaganju strani je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Ta modul je prazen.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Ta stran je za ta predmet onemogočena.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Pretečeni čas";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Ups.";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Bo odklenjeno %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Rešitev";

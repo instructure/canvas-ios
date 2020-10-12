@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Ohita";
 
+/* No comment provided by engineer. */
+"Done" = "Valmis";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Virhe: Rollcall apista ei palautettu tietoja.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Ryhmä";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Piilota arvosanat";
 
 /* Inbox tab title */
 "Inbox" = "Viestit";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Näyttää siltä, että arvosanalle ei ole voimassa olevia lähetyksiä.";
+
+/* No comment provided by engineer. */
 "Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Loading" = "Ladataan";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Merkitse kaikki läsnä olevina";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Merkitse jäljellä olevat läsnä olevina";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Ei lähetyksiä";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Lähetä arvosanoja";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Määrätyt osat";
+
+/* No comment provided by engineer. */
+"Student" = "Opiskelija";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testaa opiskelijaa";

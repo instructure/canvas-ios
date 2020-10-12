@@ -17,6 +17,12 @@
 "(No subject)" = "(inget ämne)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ mer";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Rensa filter";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Rensa filter inkorg";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Rensa inspelning";
@@ -635,6 +644,9 @@
 "Filter events" = "Filterhändelser";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Filtrera inkorg";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Hitta min skola";
+
+/* No comment provided by engineer. */
+"Find School" = "Sök skola";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Hitta din skola eller ditt distrikt";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "låst";
+
+/* No comment provided by engineer. */
+"Locked" = "Låst";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Låst tills ”%@” har bedömts";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Inställningar";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Systemkrav: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidigare inloggningar";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Det gick inte att läsa in bedömningar. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Det gick inte att läsa in modulerna.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Det gick inte att läsa in sidor. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Den här modulen är tom.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Den här sidan har inaktiverats för den här kursen.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Förfluten tid";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Hoppsan!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Kommer att låsas upp %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Tillfällig lösning";

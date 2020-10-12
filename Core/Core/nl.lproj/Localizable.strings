@@ -17,6 +17,12 @@
 "(No subject)" = "(Geen onderwerp)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ meer";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Filter wissen";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Filter voor inbox wissen";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Opname wissen";
@@ -635,6 +644,9 @@
 "Filter events" = "Gebeurtenissen filteren";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Inbox filteren";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Zoek mijn school";
+
+/* No comment provided by engineer. */
+"Find School" = "School zoeken";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Vind je school of district";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "vergrendeld";
+
+/* No comment provided by engineer. */
+"Locked" = "Vergrendeld";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Vergrendeld totdat \"%@\" is beoordeeld";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Voorkeuren";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Eerste vereiste: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Eerdere aanmeldingen";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van cijfers. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Er is een fout opgetreden bij het laden van modules.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van pagina's. Pull om te vernieuwen om het opnieuw te proberen.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Deze module is leeg.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Deze pagina is uitgeschakeld voor deze cursus.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Verstreken tijd";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Oeps!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Wordt ontgrendeld %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Oplossing";

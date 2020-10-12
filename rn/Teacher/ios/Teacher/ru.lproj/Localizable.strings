@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Исключить";
 
+/* No comment provided by engineer. */
+"Done" = "Готово";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Ошибка: Не получены данные от api проверки присутствия.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Группа";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Скрыть Оценки";
 
 /* Inbox tab title */
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Похоже, что действительных отправок для оценивания нет.";
+
+/* No comment provided by engineer. */
 "Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Loading" = "Загрузка";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Отметить всех как присутствующих";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Отметить остальных как присутствующих";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Нет отправок";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Опубликовать оценки";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Специальные разделы";
+
+/* No comment provided by engineer. */
+"Student" = "Студент";
 
 /* No comment provided by engineer. */
 "Test Student" = "Тестовый студент";

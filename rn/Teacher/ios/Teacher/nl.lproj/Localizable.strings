@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Afwijzen";
 
+/* No comment provided by engineer. */
+"Done" = "Gereed";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fout: Geen gegevens geretourneerd door de Roll Call-API.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Groep";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Cijfers verbergen";
 
 /* Inbox tab title */
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Het lijkt erop dat er geen geldige inleveringen zijn om te beoordelen.";
+
+/* No comment provided by engineer. */
 "Late" = "Te laat";
+
+/* No comment provided by engineer. */
+"Loading" = "Bezig met laden";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Allen markeren als aanwezig";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Rest markeren als aanwezig";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Geen inleveringen";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Cijfers posten";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specifieke secties";
+
+/* No comment provided by engineer. */
+"Student" = "Cursist";
 
 /* No comment provided by engineer. */
 "Test Student" = "Cursist toetsen";
