@@ -17,6 +17,12 @@
 "(No subject)" = "(Ekkert efnisheiti)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ meira";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ Meðaleinkunn";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Hreinsa síu";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Hreinsa síu innhólfs";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Hreinsa skrár";
@@ -635,6 +644,9 @@
 "Filter events" = "Sía viðburði";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Sía innhólf";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Finna skólann minn";
+
+/* No comment provided by engineer. */
+"Find School" = "Finna skóla";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Finndu skólann þinn eða umdæmi";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "læst";
+
+/* No comment provided by engineer. */
+"Locked" = "Læst";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Læst þar til \"%@\" hefur verið metið";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Kjörstillingar";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Forsenda: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Fyrri innskráningar";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Villa kom upp við að sækja einkunnir. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Villa kom upp við að sækja einingar.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Villa kom upp við að sækja síður. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Þessi eining er tóm.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Slökkt hefur verið á þessari síðu fyrir þetta námskeið.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Liðinn tími";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Úbbs!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Opnar %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Redding";

@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Gwrthod";
 
+/* No comment provided by engineer. */
+"Done" = "Wedi gorffen";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Gwall: Dim data wedi'i ddychwelyd o API y gofrestr.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Grŵp";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Cuddio Graddau";
 
 /* Inbox tab title */
 "Inbox" = "Blwch Derbyn";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Mae’n ymddangos nad oes yno unrhyw gyflwyniadau dilys i’w graddio.";
+
+/* No comment provided by engineer. */
 "Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
+"Loading" = "Wrthi’n llwytho";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Marcio bod y Cyfan yn Bresennol";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Dim Cyflwyniadau";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Postio Graddau";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Adrannau Penodol";
+
+/* No comment provided by engineer. */
+"Student" = "Myfyriwr";
 
 /* No comment provided by engineer. */
 "Test Student" = "Myfyriwr Prawf";

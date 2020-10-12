@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Ignorar";
 
+/* No comment provided by engineer. */
+"Done" = "Feito";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Erro: Nenhum dado retornou do rollcall api.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Grupo";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Esconder Classificações";
 
 /* Inbox tab title */
 "Inbox" = "Caixa de entrada";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Parece não haver nenhuma submissão válida para a classificação.";
+
+/* No comment provided by engineer. */
 "Late" = "Atrasado";
+
+/* No comment provided by engineer. */
+"Loading" = "A carregar";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Marcar tudo como presente";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marcar restante como presente";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Sem Submissões";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publicar notas";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Secções Específicas";
+
+/* No comment provided by engineer. */
+"Student" = "Aluno";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testar aluno";

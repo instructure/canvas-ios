@@ -17,6 +17,12 @@
 "(No subject)" = "(Nessun oggetto)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + altri %2$@";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Cancella filtro";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Cancella posta in arrivo con filtro";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Cancella registrazione";
@@ -635,6 +644,9 @@
 "Filter events" = "Filtra eventi";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Posta in arrivo con filtro";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Trova la mia scuola";
+
+/* No comment provided by engineer. */
+"Find School" = "Trova scuola";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Trova la tua scuola o distretto";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "bloccato";
+
+/* No comment provided by engineer. */
+"Locked" = "Bloccato";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Bloccato fino alla valutazione di \"%@\"";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferenze";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Prerequisito: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Login precedenti";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Si è verificato un errore durante il caricamento dei voti. Trascinare verso il basso per aggiornare e riprovare.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Si è verificato un errore durante il caricamento dei moduli.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Si è verificato un errore durante il caricamento delle pagine. Trascinare verso il basso per aggiornare e riprovare.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Questo modulo è vuoto.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Questa pagina è stata disattivata per questo corso.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tempo trascorso";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Spiacenti.";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Sbloccherà %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Soluzione";

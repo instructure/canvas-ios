@@ -17,6 +17,12 @@
 "(No subject)" = "(Uten tittel)";
 
 /* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ + %@ more" = "%1$@ + %2$@ mer";
+
+/* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
@@ -288,6 +294,9 @@
 
 /* No comment provided by engineer. */
 "Clear Filter" = "Tøm filter";
+
+/* No comment provided by engineer. */
+"Clear Filter Inbox" = "Rydd filter innboks";
 
 /* No comment provided by engineer. */
 "Clear recording" = "Fjern opptak";
@@ -635,6 +644,9 @@
 "Filter events" = "Filtrer hendelser";
 
 /* No comment provided by engineer. */
+"Filter Inbox" = "Filtrere innboksen";
+
+/* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
@@ -648,6 +660,9 @@
 
 /* No comment provided by engineer. */
 "Find my school" = "Finne skolen min";
+
+/* No comment provided by engineer. */
+"Find School" = "Finne skole";
 
 /* No comment provided by engineer. */
 "Find your school or district" = "Finn din skole eller ditt distrikt";
@@ -858,6 +873,9 @@
 
 /* No comment provided by engineer. */
 "locked" = "låst";
+
+/* No comment provided by engineer. */
+"Locked" = "Låst";
 
 /* No comment provided by engineer. */
 "Locked until \"%@\" is graded" = "Låst inntil \"%@\" har fått karakter";
@@ -1155,6 +1173,9 @@
 
 /* No comment provided by engineer. */
 "Preferences" = "Preferanser";
+
+/* No comment provided by engineer. */
+"Prerequisite: %@" = "Forutsetning: %@";
 
 /* No comment provided by engineer. */
 "Previous Logins" = "Tidligere innlogginger";
@@ -1493,6 +1514,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Det oppsto en feil ved lasting av karakterer. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
+"There was an error loading modules." = "Det oppstod en feil under lasting av moduler.";
+
+/* No comment provided by engineer. */
 "There was an error loading pages. Pull to refresh to try again." = "Det oppsto en feil ved lasting av sider. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
@@ -1521,6 +1545,9 @@
 
 /* No comment provided by engineer. */
 "This module is empty." = "Modulen er tom.";
+
+/* No comment provided by engineer. */
+"This page has been disabled for this course." = "Denne siden er deaktivert for dette emnet:";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Brukt tid";
@@ -1671,6 +1698,9 @@
 
 /* No comment provided by engineer. */
 "Whoops!" = "Oisann!";
+
+/* No comment provided by engineer. */
+"Will unlock %@" = "Vil låse opp %@";
 
 /* No comment provided by engineer. */
 "Workaround" = "Løsning";

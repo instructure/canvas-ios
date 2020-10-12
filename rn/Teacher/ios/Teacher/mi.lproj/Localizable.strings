@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Pana";
 
+/* No comment provided by engineer. */
+"Done" = "Kua mahia";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Hapa: Kaore he raraunga i whakahokia mai i rollcall.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Rōpū";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Huna ngā Kōeke";
 
 /* Inbox tab title */
 "Inbox" = "Pouakauru";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Anō nei kaore he tukuna whaimana hei kōeke.";
+
+/* No comment provided by engineer. */
 "Late" = "Tūreiti";
+
+/* No comment provided by engineer. */
+"Loading" = "E tukuake ana";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Tohua katoa kei nāianei";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Tohua ngā toenga o nāianei";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Kahore ngā tāpaetanga";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Whakairi ngā kōeke";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Ngā Wāhanga Motuhake";
+
+/* No comment provided by engineer. */
+"Student" = "Ākonga";
 
 /* No comment provided by engineer. */
 "Test Student" = "Whakamātau Ākonga";

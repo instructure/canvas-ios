@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "却下する";
 
+/* No comment provided by engineer. */
+"Done" = "終了";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "エラー:ロールコールAPIから返されたデータはありません。";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "グループ";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "成績を非表示にする";
 
 /* Inbox tab title */
 "Inbox" = "受信トレイ";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "採点する有効な提出物がないようです。";
+
+/* No comment provided by engineer. */
 "Late" = "遅れている";
+
+/* No comment provided by engineer. */
+"Loading" = "読み込み中";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "全員を出席としてマークする";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "出席としてマークする";
+
+/* No comment provided by engineer. */
+"No Submissions" = "提出物なし";
 
 /* No comment provided by engineer. */
 "Post Grades" = "成績表の掲示";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "特定のセクション";
+
+/* No comment provided by engineer. */
+"Student" = "受講者";
 
 /* No comment provided by engineer. */
 "Test Student" = "受講生をテストする";

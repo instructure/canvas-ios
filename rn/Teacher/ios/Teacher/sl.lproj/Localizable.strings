@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Opusti";
 
+/* No comment provided by engineer. */
+"Done" = "Dokončano";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Napaka: Iz vmesnika API za preverjanje prisotnosti ni vrnjenih podatkov.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Skupina";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Skrij ocene";
 
 /* Inbox tab title */
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Videti je, da za ocenjevanje ni na voljo nobene veljavne oddaje.";
+
+/* No comment provided by engineer. */
 "Late" = "Zamuda";
+
+/* No comment provided by engineer. */
+"Loading" = "Nalaganje";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Označi vse kot prisotne";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Označi preostale kot prisotne";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Ni oddaj";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Pošlji ocene v SIS";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Posamične sekcije";
+
+/* No comment provided by engineer. */
+"Student" = "Študent";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testni študent";

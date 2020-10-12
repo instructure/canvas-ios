@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Sleppa";
 
+/* No comment provided by engineer. */
+"Done" = "Lokið";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Villa: Engin gögn komu frá nafnakalls api.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Hópur";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Fela einkunnir";
 
 /* Inbox tab title */
 "Inbox" = "Innhólf";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Það virðast ekki vera nein gild skil til einkunnargjafar.";
+
+/* No comment provided by engineer. */
 "Late" = "Seint";
+
+/* No comment provided by engineer. */
+"Loading" = "Hleður";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Merkja mætt við alla";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Merkja mætt við alla sem eftir eru";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Engin skil";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Birta einkunnir";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Sérstakir hlutar";
+
+/* No comment provided by engineer. */
+"Student" = "Nemandi";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prófa nemanda";

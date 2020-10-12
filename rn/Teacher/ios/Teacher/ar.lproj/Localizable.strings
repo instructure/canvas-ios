@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "تجاهل";
 
+/* No comment provided by engineer. */
+"Done" = "تم";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "خطأ: لا توجد بيانات عائدة من api للتحقق من الحضور.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "المجموعة";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "إخفاء الدرجات";
 
 /* Inbox tab title */
 "Inbox" = "علبة الوارد";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "يبدو أنه لا توجد أي إرسالات صالحة للتقدير.";
+
+/* No comment provided by engineer. */
 "Late" = "متأخر";
+
+/* No comment provided by engineer. */
+"Loading" = "جارٍ التحميل";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "وضع علامة موجود للجميع";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "وضع علامة موجود للبقية";
+
+/* No comment provided by engineer. */
+"No Submissions" = "لا توجد إرسالات";
 
 /* No comment provided by engineer. */
 "Post Grades" = "نشر الدرجات";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "أقسام محددة";
+
+/* No comment provided by engineer. */
+"Student" = "الطالب";
 
 /* No comment provided by engineer. */
 "Test Student" = "اختبار الطالب";

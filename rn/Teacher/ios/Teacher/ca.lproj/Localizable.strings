@@ -43,6 +43,9 @@
 /* No comment provided by engineer. */
 "Dismiss" = "Descarta";
 
+/* No comment provided by engineer. */
+"Done" = "Fet";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Error: L'API de passar llista no ha retornat cap data.";
 
@@ -68,19 +71,31 @@
 "grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
+"Group" = "Grup";
+
+/* No comment provided by engineer. */
 "Hide Grades" = "Amaga les qualificacions";
 
 /* Inbox tab title */
 "Inbox" = "Safata d'entrada";
 
 /* No comment provided by engineer. */
+"It seems there aren't any valid submissions to grade." = "Sembla que no hi ha cap entrega vàlida per qualificar.";
+
+/* No comment provided by engineer. */
 "Late" = "Tardà";
+
+/* No comment provided by engineer. */
+"Loading" = "S'està carregant";
 
 /* No comment provided by engineer. */
 "Mark All as Present" = "Marca tots com a Present";
 
 /* No comment provided by engineer. */
 "Mark Remaining as Present" = "Marca la resta com a Present";
+
+/* No comment provided by engineer. */
+"No Submissions" = "Cap entrega";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publica les qualificacions";
@@ -99,6 +114,9 @@
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Seccions específiques";
+
+/* No comment provided by engineer. */
+"Student" = "Estudiant";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prova l'estudiant";
