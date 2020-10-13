@@ -183,6 +183,39 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.isHidden = items.error == nil
         tableView.reloadData()
     }
+
+    func delete(fileID: String, fileName: String) {
+        showDeleteAlert(name: fileName) { [weak self] _ in
+            DeleteFile(fileID: fileID).fetch { _, _, error in
+                performUIUpdate {
+                    if let error = error {
+                        self?.showError(error)
+                    } else {
+                        self?.refresh()
+                    }
+                }
+            }
+        }
+    }
+
+    func delete(folder: Folder) {
+        showDeleteAlert(name: folder.name) { [weak self] _ in
+            DeleteFolder(folderID: folder.id, force: true).fetch { _, _, error in
+                performUIUpdate {
+                    if let error = error {
+                        self?.showError(error)
+                    }
+                }
+            }
+        }
+    }
+
+    func showDeleteAlert(name: String, handler: @escaping ((UIAlertAction) -> Void)) {
+        let alert = UIAlertController(title: NSLocalizedString("Are you sure you want to delete \(name)?", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .default, handler: handler))
+        env.router.show(alert, from: self, options: .modal())
+    }
 }
 
 extension FileListViewController: UISearchBarDelegate {
@@ -339,6 +372,7 @@ extension FileListViewController: FilePickerDelegate {
 
             try? context.save()
         }
+        folder.refresh(force: true)
     }
 }
 
@@ -384,6 +418,39 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         } else if let path = items?[indexPath.row]?.folder?.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
             env.router.route(to: "/\(context.pathComponent)/files/folder/\(path)", from: self, options: .push)
         }
+    }
+
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        guard indexPath.section > 0,
+              folder.first?.forSubmissions == false,
+              context == .currentUser || course?.first?.hasTeacherEnrollment == true else {
+            return nil
+        }
+
+        if indexPath.section == 2, let folder = items?[indexPath.row]?.folder,
+           folder.forSubmissions || folder.filesCount > 0 {
+            return nil
+        }
+
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", bundle: .core, comment: "")) { [weak self] _, _, completion in
+            guard let self = self else { return }
+            if indexPath.section == 1 {
+                let file = self.results[indexPath.row]
+                self.delete(fileID: file.id.value, fileName: file.display_name)
+            } else if let file = self.items?[indexPath.row]?.file, let fileID = file.id, let fileName = file.displayName {
+                self.delete(fileID: fileID, fileName: fileName)
+            } else if let folder = self.items?[indexPath.row]?.folder {
+                self.delete(folder: folder)
+            }
+            completion(true)
+        }
+
+        deleteAction.backgroundColor = .backgroundDanger
+
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
 }
 
