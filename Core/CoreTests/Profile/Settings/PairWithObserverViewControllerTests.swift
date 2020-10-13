@@ -41,5 +41,8 @@ class PairWithObserverViewControllerTests: CoreTestCase {
         load()
         XCTAssertEqual(vc.spinner.isHidden, true)
         XCTAssertEqual(vc.qrCodePairingCodeLabel.attributedText?.string, "Pairing Code: abc")
+        let share = vc.navigationItem.rightBarButtonItem!
+        _ = share.target!.perform(share.action, with: [share])
+        XCTAssert(router.presented is UIActivityViewController)
     }
 }
