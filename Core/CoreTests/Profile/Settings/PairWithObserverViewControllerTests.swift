@@ -35,14 +35,11 @@ class PairWithObserverViewControllerTests: CoreTestCase {
     }
 
     func testRender() {
-        let code = APIPairingCode.make()
+        let code = APIPairingCode.make(code: "abc")
         api.mock(PostObserverPairingCodes(), value: code)
+        api.mock(GetAccountTermsOfServiceRequest(), value: .make())
         load()
-        XCTAssertEqual(vc.codeLabel.text, code.code)
-        vc.tapToCopyButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(vc.notificationView.messageLabel.text, "Copied!")
-        XCTAssertEqual(vc.notificationViewBottomConstraint.constant, 8)
         XCTAssertEqual(vc.spinner.isHidden, true)
-        XCTAssertEqual(UIPasteboard.general.string, code.code)
+        XCTAssertEqual(vc.qrCodePairingCodeLabel.attributedText?.string, "Pairing Code: abc")
     }
 }
