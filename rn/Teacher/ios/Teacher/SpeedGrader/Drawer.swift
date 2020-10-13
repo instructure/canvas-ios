@@ -68,7 +68,7 @@ struct Drawer<Content: View>: View {
                 .accessibility(label: buttonA11yText)
             content
         }
-            .frame(height: max(minHeight, min(maxHeight,  height + translation)))
+            .frame(height: max(minHeight, min(maxHeight, height + translation)))
             .animation(.interactiveSpring())
             .background(DrawerBackground()
                 .fill(Color.backgroundLightest)
