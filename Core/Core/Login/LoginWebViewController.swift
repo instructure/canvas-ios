@@ -89,6 +89,12 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         webView.customUserAgent = UserAgent.safari.description
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.handle("selfRegistrationError") { [weak self] _ in performUIUpdate {
+            self?.showAlert(
+                title: NSLocalizedString("Self Registration Not Allowed"),
+                message: NSLocalizedString("Contact your school to create an account.")
+            )
+        } }
         canGoBackObservation = webView.observe(\.canGoBack) { [weak self] webView, _ in
             self?.navigationController?.setToolbarHidden(!webView.canGoBack, animated: true)
         }
@@ -196,7 +202,13 @@ extension LoginWebViewController: WKNavigationDelegate {
             form.submit()
             """)
         } else if let pairingCode = pairingCode {
-            webView.evaluateJavaScript("""
+            showSelfRegistration(pairingCode: pairingCode)
+        }
+    }
+
+    func showSelfRegistration(pairingCode: String) {
+        webView.evaluateJavaScript("""
+        function showSelfRegistration() {
             var meta = document.createElement('meta')
             meta.name = 'viewport'
             meta.content = 'initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no'
@@ -206,19 +218,24 @@ extension LoginWebViewController: WKNavigationDelegate {
             let registerLink = document.querySelector('a#register_link')
             if (registerLink) {
                 registerLink.click()
-            } else {
-                let enrollLink = document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
-                enrollLink.click()
-                document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
-                document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
-                document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
-                let content = document.querySelector('.ui-dialog-content')
-                let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
-                content.style.height = height
-                document.querySelector('.ui-widget-overlay').style.height = height
+                return
             }
-            """)
+            let enrollLink = document.querySelector('#coenrollment_link a') || document.querySelector('a#signup_parent')
+            if (!enrollLink) {
+                window.webkit.messageHandlers.selfRegistrationError.postMessage('')
+                return
+            }
+            enrollLink.click()
+            document.querySelector('input#pairing_code').value = \(CoreWebView.jsString(pairingCode))
+            document.querySelector('.ui-dialog-titlebar-close').style.display = 'none'
+            document.querySelector('.ui-dialog-buttonpane button.dialog_closer').style.display = 'none'
+            let content = document.querySelector('.ui-dialog-content')
+            let height = `${parseInt(content.style.height) - \(view.frame.origin.y)}px`
+            content.style.height = height
+            document.querySelector('.ui-widget-overlay').style.height = height
         }
+        showSelfRegistration()
+        """)
     }
 
     public func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

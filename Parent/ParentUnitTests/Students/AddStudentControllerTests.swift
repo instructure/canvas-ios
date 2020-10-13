@@ -27,55 +27,52 @@ class AddStudentControllerTests: ParentTestCase {
     let mock = MockViewController()
     lazy var controller = AddStudentController(presentingViewController: mock) { _ in }
 
-    override func setUp() {
-        super.setUp()
-        ExperimentalFeature.parentQRCodePairing.isEnabled = false
-    }
-
-    func testLayout() throws {
-        controller.addStudent()
-
-        let alert = try XCTUnwrap(router.presented as? UIAlertController)
-
-        var action = alert.actions[1] as! AlertAction
-        XCTAssertEqual(action.title, "Add")
-        XCTAssertEqual(action.style, .default)
-
-        action = alert.actions[0] as! AlertAction
-        XCTAssertEqual(action.title, "Cancel")
-        XCTAssertEqual(action.style, .cancel)
-
-        let tf = alert.textFields?.first!
-        XCTAssertEqual(tf!.placeholder, "Pairing Code")
-    }
-
     func testAddPairingCodeInput() throws {
+        let expectation = XCTestExpectation(description: "handler was called")
+        controller.handler = { error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
         api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), value: .make())
         controller.addStudent()
+        let picker = router.presented as! BottomSheetPickerViewController
+        XCTAssertEqual(picker.actions.count, 2)
+        XCTAssertEqual(picker.actions[0].title, "QR Code")
+        XCTAssertEqual(picker.actions[1].title, "Pairing Code")
+        picker.actions[1].action()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        router.dismiss()
         let textField = try XCTUnwrap(alert.textFields?.first)
         textField.text = "abc"
         let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
         add.handler?(add)
-        XCTAssertNil(router.presented, "Nothing presented so no error alert shown")
+        wait(for: [expectation], timeout: 1)
     }
 
     func testAddPairingCodeError() throws {
-        api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), error: NSError.instructureError("Oops!"))
+        let expectation = XCTestExpectation(description: "handler was called")
+        controller.handler = { error in
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        let error = NSError.internalError()
+        api.mock(PostObserveesRequest(userID: "self", pairingCode: "abc"), error: error)
         controller.addStudent()
+        let picker = router.presented as! BottomSheetPickerViewController
+        XCTAssertEqual(picker.actions.count, 2)
+        XCTAssertEqual(picker.actions[0].title, "QR Code")
+        XCTAssertEqual(picker.actions[1].title, "Pairing Code")
+        picker.actions[1].action()
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
-        router.dismiss()
         let textField = try XCTUnwrap(alert.textFields?.first)
         textField.text = "abc"
         let add = try XCTUnwrap(alert.actions.first { $0.title == "Add" } as? AlertAction)
         add.handler?(add)
-        let error = try XCTUnwrap(router.presented as? UIAlertController)
-        XCTAssertEqual(error.message, "Oops!")
+        wait(for: [expectation], timeout: 1)
+        let errorAlert = router.presented as! UIAlertController
+        XCTAssertEqual(errorAlert.message, error.localizedDescription)
     }
 
     func testScanQRCode() {
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
         let expectation = XCTestExpectation(description: "handler was called")
         controller.handler = { error in
             XCTAssertNil(error)
@@ -95,7 +92,6 @@ class AddStudentControllerTests: ParentTestCase {
     }
 
     func testScannerDomainMismatch() {
-        ExperimentalFeature.parentQRCodePairing.isEnabled = true
         let expectation = XCTestExpectation(description: "handler was called")
         controller.handler = { error in
             XCTAssertNil(error)

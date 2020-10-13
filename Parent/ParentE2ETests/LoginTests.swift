@@ -20,7 +20,6 @@ import Core
 import TestsFoundation
 
 class LoginCreateAccountE2ETests: CoreUITestCase {
-    override var experimentalFeatures: [ExperimentalFeature] { [.qrLoginParent, .parentQRCodePairing] }
     override var user: UITestUser? { nil }
 
     override func setUp() {

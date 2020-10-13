@@ -92,10 +92,7 @@ class LoginStartViewController: UIViewController {
     func configureButtons() {
         canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
         canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
-
-        let qrCodeEnabled = loginDelegate?.supportsQRCodeLogin == true
-        useQRCodeButton.isHidden = !qrCodeEnabled
-        useQRCodeDivider.isHidden = !qrCodeEnabled || canvasNetworkButton.isHidden
+        useQRCodeDivider.isHidden = canvasNetworkButton.isHidden
     }
 
     @objc func userDefaultsDidChange(_ notification: Notification) {
@@ -221,7 +218,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
-        if ExperimentalFeature.parentQRCodePairing.isEnabled && app == .parent {
+        if app == .parent {
             let sheet = BottomSheetPickerViewController.create()
             sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", comment: "")) { [weak self] in
                 self?.showLoginQRCodeTutorial()

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,11 +17,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20G-jc-QC6" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="187" y="433" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5jz-q4-L5f"/>
+                                    <constraint firstAttribute="width" constant="40" id="yCO-AO-aA3"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="dp4-DX-snF">
-                                <rect key="frame" x="16" y="60" width="382" height="157"/>
+                                <rect key="frame" x="16" y="60" width="382" height="57.333333333333343"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3MM-LR-o7s" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="61"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="57.333333333333336"/>
                                         <string key="text">Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -30,63 +37,8 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EH4-JY-Fzl">
-                                        <rect key="frame" x="0.0" y="85" width="382" height="72"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVC-Xc-ovi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="24" width="382" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" priority="750" constant="30" id="c9e-3L-Tlt"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold24"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20G-jc-QC6" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="171" y="16" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="5jz-q4-L5f"/>
-                                                    <constraint firstAttribute="width" constant="40" id="yCO-AO-aA3"/>
-                                                </constraints>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACR-5K-WJ4">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="72"/>
-                                                <connections>
-                                                    <action selector="actionCopyCode:" destination="3nT-fR-RLM" eventType="primaryActionTriggered" id="HaE-o4-Eds"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" name="backgroundLight"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="tVC-Xc-ovi" secondAttribute="bottom" constant="24" id="1v7-sw-umq"/>
-                                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerX" secondItem="EH4-JY-Fzl" secondAttribute="centerX" id="56c-7B-IYd"/>
-                                            <constraint firstItem="tVC-Xc-ovi" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" constant="24" id="6r0-Ey-kEi"/>
-                                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerY" secondItem="EH4-JY-Fzl" secondAttribute="centerY" id="6uI-9j-5Kk"/>
-                                            <constraint firstAttribute="trailing" secondItem="ACR-5K-WJ4" secondAttribute="trailing" id="Nbb-NU-lI0"/>
-                                            <constraint firstAttribute="bottom" secondItem="ACR-5K-WJ4" secondAttribute="bottom" id="VhH-8S-3tf"/>
-                                            <constraint firstItem="tVC-Xc-ovi" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="caP-jN-0ki"/>
-                                            <constraint firstItem="ACR-5K-WJ4" firstAttribute="leading" secondItem="EH4-JY-Fzl" secondAttribute="leading" id="jDw-wG-TPo"/>
-                                            <constraint firstAttribute="trailing" secondItem="tVC-Xc-ovi" secondAttribute="trailing" id="pHm-Ao-IlV"/>
-                                            <constraint firstItem="ACR-5K-WJ4" firstAttribute="top" secondItem="EH4-JY-Fzl" secondAttribute="top" id="pgO-8W-X5R"/>
-                                            <constraint firstAttribute="height" priority="750" constant="72" id="sSm-YY-Tac"/>
-                                        </constraints>
-                                    </view>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-RC-I4s" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="157" width="382" height="0.0"/>
-                                        <state key="normal" title="Tap to copy"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular16"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="actionCopyCode:" destination="3nT-fR-RLM" eventType="primaryActionTriggered" id="Mjz-9r-GgX"/>
-                                        </connections>
-                                    </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyL-yF-jzV">
-                                        <rect key="frame" x="0.0" y="157" width="382" height="240"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="240"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nh0-Cv-0H5">
                                                 <rect key="frame" x="131" y="34" width="120" height="120"/>
@@ -105,7 +57,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="1sY-Q5-UiD" firstAttribute="top" secondItem="Nh0-Cv-0H5" secondAttribute="bottom" constant="34" id="Ae4-jB-Igf"/>
                                             <constraint firstItem="1sY-Q5-UiD" firstAttribute="leading" secondItem="dyL-yF-jzV" secondAttribute="leading" id="D8r-tG-ThS"/>
@@ -118,36 +70,23 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7p-Jk-zaq" customClass="NotificationView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="954" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="swe-Yj-4eL"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hMf-bc-d56"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hMf-bc-d56" firstAttribute="trailing" secondItem="m7p-Jk-zaq" secondAttribute="trailing" id="1FC-R8-Wv2"/>
+                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerY" secondItem="hMf-bc-d56" secondAttribute="centerY" id="Ez7-Ef-UjH"/>
                             <constraint firstItem="dp4-DX-snF" firstAttribute="top" secondItem="hMf-bc-d56" secondAttribute="top" constant="16" id="Fjm-IK-UMI"/>
-                            <constraint firstItem="hMf-bc-d56" firstAttribute="bottom" secondItem="m7p-Jk-zaq" secondAttribute="bottom" constant="-150" id="QI9-ML-JkL"/>
+                            <constraint firstItem="20G-jc-QC6" firstAttribute="centerX" secondItem="hMf-bc-d56" secondAttribute="centerX" id="OHQ-PW-KjH"/>
                             <constraint firstItem="dp4-DX-snF" firstAttribute="leading" secondItem="hMf-bc-d56" secondAttribute="leading" constant="16" id="aAb-4e-FRs"/>
-                            <constraint firstItem="m7p-Jk-zaq" firstAttribute="leading" secondItem="hMf-bc-d56" secondAttribute="leading" id="dmc-gD-3Z7"/>
                             <constraint firstItem="hMf-bc-d56" firstAttribute="trailing" secondItem="dp4-DX-snF" secondAttribute="trailing" constant="16" id="yV2-4Z-GDS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hMf-bc-d56"/>
                     </view>
                     <connections>
-                        <outlet property="codeContainer" destination="EH4-JY-Fzl" id="f8S-6q-Ayf"/>
-                        <outlet property="codeLabel" destination="tVC-Xc-ovi" id="ufL-7B-U84"/>
                         <outlet property="instructionsLabel" destination="3MM-LR-o7s" id="bbb-mK-Bw9"/>
-                        <outlet property="notificationView" destination="m7p-Jk-zaq" id="NTS-4B-rA3"/>
-                        <outlet property="notificationViewBottomConstraint" destination="QI9-ML-JkL" id="Kgp-Nw-CxX"/>
                         <outlet property="qrCodeContainer" destination="dyL-yF-jzV" id="Av1-aY-1Fd"/>
                         <outlet property="qrCodeImageView" destination="Nh0-Cv-0H5" id="489-eF-NRA"/>
                         <outlet property="qrCodePairingCodeLabel" destination="1sY-Q5-UiD" id="cO4-ck-RbB"/>
                         <outlet property="spinner" destination="20G-jc-QC6" id="iKu-AX-Mrt"/>
-                        <outlet property="tapToCopyButton" destination="jqL-RC-I4s" id="aSG-TW-dAd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMI-jv-djC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -155,9 +94,17 @@
             <point key="canvasLocation" x="139" y="76"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1sY-Q5-UiD">
+            <size key="intrinsicContentSize" width="50" height="24"/>
+        </designable>
+        <designable name="3MM-LR-o7s">
+            <size key="intrinsicContentSize" width="989.33333333333337" height="19.333333333333332"/>
+        </designable>
+    </designables>
     <resources>
-        <namedColor name="backgroundLight">
-            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
