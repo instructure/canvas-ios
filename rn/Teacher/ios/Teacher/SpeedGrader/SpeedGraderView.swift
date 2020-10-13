@@ -95,7 +95,7 @@ struct SpeedGraderView: View {
 
     func findCurrentIndex() -> Int? {
         guard !isLoading, assignment.first?.anonymizeStudents == submissions.useCase.shuffled else { return nil }
-        return submissions.all.firstIndex { $0.userID == userID }
+        return submissions.all.firstIndex { userID == nil || $0.userID == userID }
     }
 
     func dismiss() {
