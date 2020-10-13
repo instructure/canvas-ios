@@ -104,10 +104,10 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         if let submittedAt = submission?.submittedAt {
             pickerButton?.setTitle(DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short), for: .normal)
         }
-        pickerButton?.isEnabled = presenter.submissions.count > 1
-        pickerButtonArrow?.isHidden = !isSubmitted || presenter.submissions.count <= 1
+        pickerButton?.isEnabled = presenter.pickerSubmissions.count > 1
+        pickerButtonArrow?.isHidden = !isSubmitted || presenter.pickerSubmissions.count <= 1
         pickerButtonDivider?.isHidden = !isSubmitted
-        if presenter.submissions.count <= 1 || assignment.isExternalToolAssignment {
+        if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
         }
 
@@ -178,18 +178,18 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return presenter?.submissions.count ?? 0
+        return presenter?.pickerSubmissions.count ?? 0
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let submittedAt = presenter?.submissions[row]?.submittedAt else {
+        guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
             return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
         }
         return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        guard let attempt = presenter?.submissions[row]?.attempt else { return }
+        guard let attempt = presenter?.pickerSubmissions[row].attempt else { return }
         presenter?.select(attempt: attempt)
     }
 }
