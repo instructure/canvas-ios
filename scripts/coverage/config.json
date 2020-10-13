@@ -17,7 +17,7 @@
     "Student\/Canvas\/",
     "Student\/GradesWidget\/",
     "UITestHelpers\/",
-    "rn/Teacher\/src\/modules\/graphql-speed-grader\/",
+    "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift"
   ],
