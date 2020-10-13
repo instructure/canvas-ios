@@ -57,7 +57,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
             api: environment.api,
             sessionID: "a"
         )
-        documentProvider.annotationManager.annotationProviders.insert(provider, at: 0)
+        documentProvider.annotationManager.annotationProviders.append(provider)
         return provider
     }
 
