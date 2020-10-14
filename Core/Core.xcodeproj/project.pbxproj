@@ -782,6 +782,7 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
 		DFE1FF2A212F69B3003F27AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF29212F69B3003F27AA /* ViewController.swift */; };
@@ -1788,6 +1789,7 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
 		DD44F6EDD0A85E0D8AFC1EF4 /* Pods_needs_pspdfkit_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5B10F40238556EA8BA6B6A /* Pods_defaults_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3137,6 +3139,7 @@
 				7D80AC14212B67E100C40ECE /* APIUserTests.swift */,
 				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				9F10A66E22931E7900E3360C /* GetUserSettingsTests.swift */,
+				CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */,
 				7D8E820E23C8E0AE00A8DA2C /* PeopleListViewControllerTests.swift */,
 				9F10A66A2293191200E3360C /* UserSettingsTests.swift */,
 				B1CA3347233948870015CBB4 /* UserTests.swift */,
@@ -4246,6 +4249,7 @@
 				7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */,
 				7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */,
 				3BEA6CCA24588D1400BE4589 /* ConversationCoursesActionSheetTests.swift in Sources */,
+				CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */,
 				7D54D6AF24646AF800409520 /* DiscussionParticipantTests.swift in Sources */,
 				B19792F9217699B70000369C /* CourseTests.swift in Sources */,
 				9FA690F223C7A683009D12D9 /* GetConversationCoursesTests.swift in Sources */,

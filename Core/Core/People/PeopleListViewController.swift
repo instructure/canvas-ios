@@ -212,6 +212,11 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         return header
     }
 
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard context.contextType == .course else { return 0 }
+        return UITableView.automaticDimension
+    }
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.hasNextPage ? users.count + 1 : users.count
     }

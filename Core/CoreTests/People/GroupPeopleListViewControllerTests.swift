@@ -1,11 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>FILEHEADER</key>
-	<string>
+//
 // This file is part of Canvas.
-// Copyright (C) ___YEAR:deletingTrailingDot___-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,7 +13,22 @@
 // GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.
-//</string>
-</dict>
-</plist>
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import XCTest
+@testable import Core
+@testable import TestsFoundation
+
+class GroupPeopleListViewControllerTests: CoreTestCase {
+    private let group = Context(.group, id: "1")
+
+    func testSectionHeaderAbovePeopleRowsHidden() {
+        let testee = PeopleListViewController.create(context: group)
+        testee.loadView()
+
+        let sectionHeight = testee.tableView?.delegate?.tableView?(testee.tableView!, heightForHeaderInSection: 0) ?? -1
+
+        XCTAssertEqual(sectionHeight, 0)
+    }
+}
