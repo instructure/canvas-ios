@@ -19,28 +19,21 @@
 import XCTest
 @testable import Student
 @testable import Core
-import TestsFoundation
 
 class SubmissionDetailsPickerTests: StudentTestCase {
     private let context = Context.course("1")
-    private let assignment = APIAssignment.make()
-    private let APISubmissionWithoutDate = APISubmission.make(assignment_id: "1", attempt: 0, submitted_at: nil, user_id: "1")
-    private let APISubmissionWithDate = APISubmission.make(assignment_id: "1", attempt: 1, submitted_at: Date(), user_id: "1")
-    private let APISubmissionWithDate_2 = APISubmission.make(assignment_id: "1", attempt: 2, submitted_at: Date(), user_id: "1")
 
     override func setUp() {
         super.setUp()
 
-        let getAssignment = GetAssignment(courseID: context.id, assignmentID: "1")
-        getAssignment.write(response: assignment, urlResponse: nil, to: databaseClient)
-        api.mock(getAssignment)
+        api.mock(GetAssignment(courseID: context.id, assignmentID: "1"), value: .make())
     }
 
     func testPickerHiddenWithTwoSubmissionsOneWithoutDate() {
-        let mockGetSubmission = GetSubmission(context: context, assignmentID: "1", userID: "1")
-        mockGetSubmission.write(response: APISubmissionWithoutDate, urlResponse: nil, to: databaseClient)
-        mockGetSubmission.write(response: APISubmissionWithDate, urlResponse: nil, to: databaseClient)
-        api.mock(mockGetSubmission)
+        let submission = APISubmission.make(attempt: 0, submission_history: [
+            .make(attempt: 1, submitted_at: Date())
+        ], submitted_at: nil)
+        api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 
         let testee = SubmissionDetailsViewController.create(context: context, assignmentID: "1", userID: "1")
         testee.loadViewIfNeeded()
@@ -50,11 +43,11 @@ class SubmissionDetailsPickerTests: StudentTestCase {
     }
 
     func testPickerOffersOnlySubmissionsWithDate() {
-        let mockGetSubmission = GetSubmission(context: context, assignmentID: "1", userID: "1")
-        mockGetSubmission.write(response: APISubmissionWithoutDate, urlResponse: nil, to: databaseClient)
-        mockGetSubmission.write(response: APISubmissionWithDate, urlResponse: nil, to: databaseClient)
-        mockGetSubmission.write(response: APISubmissionWithDate_2, urlResponse: nil, to: databaseClient)
-        api.mock(mockGetSubmission)
+        let submission = APISubmission.make(attempt: 2, submission_history: [
+            .make(attempt: 1, submitted_at: Date()),
+            .make(attempt: 0, submitted_at: nil)
+        ], submitted_at: Date())
+        api.mock(GetSubmission(context: context, assignmentID: "1", userID: "1"), value: submission)
 
         let testee = SubmissionDetailsViewController.create(context: context, assignmentID: "1", userID: "1")
         testee.loadViewIfNeeded()
