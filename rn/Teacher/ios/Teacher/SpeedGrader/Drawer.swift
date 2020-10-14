@@ -18,7 +18,10 @@
 
 import SwiftUI
 
-enum DrawerState { case min, mid, max }
+enum DrawerState {
+    case min, mid, max
+    static let transaction = Transaction.exclusive(.spring(response: 0.5, dampingFraction: 0.7))
+}
 
 // Place after the main content in a ZStack(alignment: .bottom)
 struct Drawer<Content: View>: View {
@@ -29,7 +32,7 @@ struct Drawer<Content: View>: View {
     var height: CGFloat {
         switch state {
         case .min: return minHeight
-        case .mid: return minHeight + ((maxHeight - minHeight) * 0.5)
+        case .mid: return (minHeight + maxHeight) / 2
         case .max: return maxHeight
         }
     }
@@ -40,7 +43,7 @@ struct Drawer<Content: View>: View {
         self.content = content()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
-        self._state = state
+        self._state = state.transaction(DrawerState.transaction)
     }
 
     var body: some View {
@@ -55,8 +58,9 @@ struct Drawer<Content: View>: View {
             } })
                 .padding(.top, -16)
                 .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                    .updating($translation) { value, state, _ in
+                    .updating($translation) { value, state, transaction in
                         state = -value.translation.height
+                        transaction = DrawerState.transaction
                     }
                     .onEnded { value in
                         let y = height - value.predictedEndTranslation.height - minHeight
@@ -68,12 +72,11 @@ struct Drawer<Content: View>: View {
                 .accessibility(label: buttonA11yText)
             content
         }
-            .frame(height: max(minHeight, min(maxHeight, height + translation)))
-            .animation(.interactiveSpring())
             .background(DrawerBackground()
                 .fill(Color.backgroundLightest)
                 .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
             )
+            .frame(height: max(minHeight, min(maxHeight, height + translation)))
     }
 
     func buttonAction() {

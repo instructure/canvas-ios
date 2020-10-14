@@ -63,8 +63,9 @@ public struct Pages<Item: Identifiable, Content: View>: View {
                 .offset(x: self.translation)
                 .animation(.interactiveSpring())
                 .gesture(DragGesture()
-                    .updating(self.$translation) { value, state, _ in
+                    .updating(self.$translation) { value, state, transaction in
                         state = value.translation.width * self.dx
+                        transaction.disablesAnimations = true
                     }
                     .onEnded { value in
                         let offset = Int((value.translation.width * self.dx / max(1, geometry.size.width)).rounded())
