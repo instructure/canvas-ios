@@ -263,4 +263,73 @@ class FileListViewControllerTests: CoreTestCase {
         File.make(from: .make(id: "1", folder_id: "2"), batchID: controller.batchID, session: currentSession)
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 0)
     }
+
+    func testDeleteFile() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        let indexPath = IndexPath(row: 1, section: 2)
+        let swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions
+        XCTAssertEqual(swipes?.count, 1)
+        swipes?.first?.handler(swipes!.first!, UIView()) { success in XCTAssertTrue(success) }
+
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Are you sure you want to delete File?")
+        api.mock(DeleteFileRequest(fileID: "1"), error: nil)
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, nil)
+
+        api.mock(DeleteFileRequest(fileID: "1"), error: NSError.instructureError("Oops"))
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
+    }
+
+    func testDeleteFileFromSearch() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        api.mock(GetFilesRequest(context: .currentUser, searchTerm: "File"), value: [
+            .make(),
+        ])
+        controller.searchTerm = "File"
+        controller.search()
+        XCTAssertEqual(controller.tableView.numberOfRows(inSection: 1), 1)
+
+        let indexPath = IndexPath(row: 0, section: 1)
+        let swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions
+        XCTAssertEqual(swipes?.count, 1)
+        swipes?.first?.handler(swipes!.first!, UIView()) { success in XCTAssertTrue(success) }
+
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Are you sure you want to delete File?")
+        api.mock(DeleteFileRequest(fileID: "1"), error: nil)
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, nil)
+    }
+
+    func testDeleteFolder() {
+        api.mock(GetFoldersRequest(context: Context(.folder, id: "2")), value: [
+            .make(full_name: "my files/Folder A/B", id: "3", name: "B", parent_folder_id: "2"),
+            .make(files_count: 0, full_name: "my files/Folder A/EmptyFolder", id: "4", name: "EmptyFolder", parent_folder_id: "2"),
+        ])
+
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        var indexPath = IndexPath(row: 0, section: 2)
+        var swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions
+        XCTAssertNil(swipes)
+
+        indexPath = IndexPath(row: 1, section: 2)
+        swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions
+        XCTAssertEqual(swipes?.count, 1)
+
+        swipes?.first?.handler(swipes!.first!, UIView()) { success in XCTAssertTrue(success) }
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Are you sure you want to delete EmptyFolder?")
+
+        api.mock(DeleteFolderRequest(folderID: "4", force: true), error: NSError.instructureError("Oops"))
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Oops")
+    }
 }
