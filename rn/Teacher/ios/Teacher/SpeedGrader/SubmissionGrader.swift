@@ -27,15 +27,21 @@ struct SubmissionGrader: View {
     @Environment(\.appEnvironment) var env
     var bottomInset: CGFloat { env.window?.safeAreaInsets.bottom ?? 0 }
 
+    @Binding var isPagingEnabled: Bool
+
     @State var attempt: Int?
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
     @State var tab: GraderTab = .grades
 
-    var selected: Submission { attempts.first(where: { attempt == $0.attempt }) ?? submission }
+    var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
+    var file: File? {
+        selected.attachments?.first { fileID == $0.id } ??
+        selected.attachments?.sorted(by: File.idCompare).first
+    }
 
-    init(assignment: Assignment, submission: Submission) {
+    init(assignment: Assignment, submission: Submission, isPagingEnabled: Binding<Bool>) {
         self.assignment = assignment
         self.submission = submission
         self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
@@ -46,6 +52,7 @@ struct SubmissionGrader: View {
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
+        self._isPagingEnabled = isPagingEnabled
     }
 
     var body: some View {
@@ -59,10 +66,12 @@ struct SubmissionGrader: View {
                     HStack(spacing: 0) {
                         VStack(alignment: .leading, spacing: 0) {
                             attemptToggle
-                            // TODO: SimilarityScore()
                             Divider()
                             ZStack(alignment: .top) {
-                                SubmissionViewer(submission: selected, fileID: fileID)
+                                VStack(spacing: 0) {
+                                    SimilarityScore(selected, file: file)
+                                    SubmissionViewer(submission: selected, fileID: fileID)
+                                }
                                 attemptPicker
                             }
                         }
@@ -78,10 +87,12 @@ struct SubmissionGrader: View {
                     VStack(alignment: .leading, spacing: 0) {
                         SubmissionHeader(assignment: assignment, submission: submission)
                         attemptToggle
-                        // TODO: SimilarityScore()
                         Divider()
                         ZStack(alignment: .top) {
-                            SubmissionViewer(submission: selected, fileID: fileID)
+                            VStack(spacing: 0) {
+                                SimilarityScore(selected, file: file)
+                                SubmissionViewer(submission: selected, fileID: fileID)
+                            }
                             attemptPicker
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
@@ -103,7 +114,10 @@ struct SubmissionGrader: View {
                 .font(.medium14).foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
         } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
-            Button(action: { self.showAttempts.toggle() }, label: {
+            Button(action: {
+                showAttempts.toggle()
+                isPagingEnabled = !showAttempts
+            }, label: {
                 HStack {
                     Text(selected.submittedAt?.dateTimeString ?? "")
                         .font(.medium14)
@@ -123,6 +137,7 @@ struct SubmissionGrader: View {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
                     withTransaction(.exclusive()) { attempt = newValue }
                     showAttempts = false
+                    isPagingEnabled = true
                 }), label: Text(verbatim: "")) {
                     ForEach(attempts.all, id: \.attempt) { attempt in
                         Text(attempt.submittedAt?.dateTimeString ?? "")

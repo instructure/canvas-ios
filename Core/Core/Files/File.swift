@@ -75,6 +75,11 @@ final public class File: NSManagedObject {
     @NSManaged public var userRaw: Data?
     @NSManaged public var usageRights: UsageRights?
 
+    // Submission TurnItIn data
+    @NSManaged public var similarityScore: Double
+    @NSManaged public var similarityStatus: String?
+    @NSManaged public var similarityURL: URL?
+
     @NSManaged public var items: Set<FolderItem>?
 
     /// Used to group together files being attached to the same content

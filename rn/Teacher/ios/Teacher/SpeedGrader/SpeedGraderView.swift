@@ -31,6 +31,7 @@ struct SpeedGraderView: View {
     @ObservedObject var submissions: Store<GetSubmissions>
 
     @State var currentIndex: Int = -1
+    @State var isPagingEnabled = true
 
     init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
         self.assignmentID = assignmentID
@@ -44,11 +45,12 @@ struct SpeedGraderView: View {
         ZStack {
             if currentIndex >= 0 && currentIndex < submissions.count && assignment.first != nil {
                 Pages(items: submissions.all, currentIndex: $currentIndex) { submission in
-                    SubmissionGrader(assignment: self.assignment.first!, submission: submission)
+                    SubmissionGrader(assignment: self.assignment.first!, submission: submission, isPagingEnabled: $isPagingEnabled)
                         .testID("SpeedGrader.submission.\(submission.id)")
                 }
                     .spaceBetween(10)
                     .scaleEach { max(0.9, (1 - abs($0 * 0.5))) }
+                    .pan(isEnabled: isPagingEnabled)
                     .background(Color.backgroundMedium)
                     .edgesIgnoringSafeArea(.bottom)
             } else if !isLoading {

@@ -47,6 +47,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_history: [APISubmission]? // include[]=submission_history
     let submission_type: SubmissionType?
     let submitted_at: Date?
+    let turnitin_data: [String: APITurnItIn]?
     let url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
@@ -87,6 +88,16 @@ public struct APISubmissionSummary: Codable, Equatable {
     let not_submitted: Int
 }
 
+public struct APITurnItIn: Codable, Equatable {
+    let status: String
+    let similarity_score: Double?
+    let outcome_response: APITurnItInOutcome?
+}
+
+public struct APITurnItInOutcome: Codable, Equatable {
+    let outcomes_tool_placement_url: APIURL?
+}
+
 #if DEBUG
 extension APISubmission {
     public static func make(
@@ -117,6 +128,7 @@ extension APISubmission {
         submission_history: [APISubmission]? = nil,
         submission_type: SubmissionType? = nil,
         submitted_at: Date? = Date(fromISOString: "2019-03-13T21:00:00Z"),
+        turnitin_data: [String: APITurnItIn]? = nil,
         url: URL? = nil,
         user: APIUser? = nil,
         user_id: String = "1",
@@ -150,6 +162,7 @@ extension APISubmission {
             submission_history: submission_history,
             submission_type: submission_type,
             submitted_at: submitted_at,
+            turnitin_data: turnitin_data,
             url: url,
             user: user,
             user_id: ID(user_id),
@@ -239,6 +252,26 @@ extension APISubmissionSummary {
             ungraded: ungraded,
             not_submitted: not_submitted
         )
+    }
+}
+
+extension APITurnItIn {
+    public static func make(
+        status: String = "scored",
+        similarity_score: Double? = 86,
+        outcome_response: APITurnItInOutcome? = .make()
+    ) -> APITurnItIn {
+        APITurnItIn(
+            status: status,
+            similarity_score: similarity_score,
+            outcome_response: outcome_response
+        )
+    }
+}
+
+extension APITurnItInOutcome {
+    public static func make(outcomes_tool_placement_url: URL? = nil) -> APITurnItInOutcome {
+        APITurnItInOutcome(outcomes_tool_placement_url: APIURL(rawValue: outcomes_tool_placement_url))
     }
 }
 #endif

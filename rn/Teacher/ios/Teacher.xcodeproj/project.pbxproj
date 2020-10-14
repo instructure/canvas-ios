@@ -42,6 +42,7 @@
 		7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */; };
 		7D0D7AE2251E6E6C00550AEC /* SubmissionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0D7AE1251E6E6C00550AEC /* SubmissionListViewController.swift */; };
 		7D0D7B36251EA41B00550AEC /* SubmissionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D0D7B35251EA41B00550AEC /* SubmissionListViewController.storyboard */; };
+		7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */; };
 		7D344E1B241160D100C052E6 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7D344E1D241160D100C052E6 /* Localizable.stringsdict */; };
 		7D3DA83A2187615E000D828F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; };
 		7D3DA83B2187615E000D828F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -410,6 +411,7 @@
 		7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionHeader.swift; sourceTree = "<group>"; };
 		7D0D7AE1251E6E6C00550AEC /* SubmissionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewController.swift; sourceTree = "<group>"; };
 		7D0D7B35251EA41B00550AEC /* SubmissionListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionListViewController.storyboard; sourceTree = "<group>"; };
+		7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarityScore.swift; sourceTree = "<group>"; };
 		7D344E1C241160D100C052E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7D344E1F2411613200C052E6 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-AU"; path = "en-AU.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		7D349D0D21430F5E004C1074 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
 				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
+				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1491,6 +1494,7 @@
 				7D7126C025374446000DEDE4 /* GradesTab.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
+				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
