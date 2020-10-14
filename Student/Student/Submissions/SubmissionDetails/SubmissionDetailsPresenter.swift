@@ -47,6 +47,9 @@ class SubmissionDetailsPresenter: PageViewLoggerPresenterProtocol {
         self?.update()
     }
 
+    /** The purpose of this property is to filter out placeholder `Submission` objects returned by the API in case there are no submissions yet. After the first submission, these entities are still in the database but we don't want to show them in the submission picker. */
+    var pickerSubmissions: [Submission] { submissions.all.filter { $0.submittedAt != nil } }
+
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) { [weak self] in
         self?.update()
     }

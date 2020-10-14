@@ -16,7 +16,9 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   - Canvas # Student/Canvas
 
-line_length: 200
+line_length:
+  warning: 200
+  ignores_comments: true
 function_body_length: 100
 
 type_name:
