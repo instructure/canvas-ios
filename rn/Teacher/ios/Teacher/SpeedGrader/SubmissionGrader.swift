@@ -22,101 +22,158 @@ import Core
 struct SubmissionGrader: View {
     let assignment: Assignment
     let submission: Submission
+    @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-
-    @State var selectedDrawerTab: DrawerTab = .grades
-    @State var drawerState: DrawerState = .min
-
     var bottomInset: CGFloat { env.window?.safeAreaInsets.bottom ?? 0 }
 
+    @State var attempt: Int?
+    @State var drawerState: DrawerState = .min
+    @State var fileID: String?
+    @State var showAttempts = false
+    @State var tab: GraderTab = .grades
+
+    var selected: Submission { attempts.first(where: { attempt == $0.attempt }) ?? submission }
+
+    init(assignment: Assignment, submission: Submission) {
+        self.assignment = assignment
+        self.submission = submission
+        self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
+                NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
+                NSPredicate(format: "%K != nil", #keyPath(Submission.submittedAt)),
+            ]),
+            orderBy: #keyPath(Submission.attempt)
+        ))
+    }
+
     var body: some View {
-        if horizontalSizeClass == .compact {
-            graderWithDrawer
-        } else {
-            graderWithSplit
-        }
-    }
-
-    var graderWithDrawer: some View {
-        GeometryReader { geometry in ZStack(alignment: .bottom) {
-            VStack(spacing: 0) {
-                SubmissionHeader(assignment: assignment, submission: submission)
-                Divider()
-                Text(verbatim: "submission placeholder")
-                Spacer()
-                Spacer().frame(height: bottomInset)
-            }
-            Drawer(state: $drawerState, minHeight: 56 + bottomInset, maxHeight: geometry.size.height - 64) {
-                drawerContent
-                Spacer().frame(height: bottomInset)
-            }
-        } }
-            .background(Color.backgroundLightest)
-    }
-
-    var graderWithSplit: some View {
-        VStack(spacing: 0) {
-            SubmissionHeader(assignment: assignment, submission: submission)
-            Divider()
-            HStack(spacing: 0) {
-                VStack {
-                    Text(verbatim: "submission placeholder")
-                    Spacer()
-                }
-                Spacer()
-                Divider()
+        GeometryReader { geometry in
+            let minHeight = 56 + bottomInset
+            let maxHeight = geometry.size.height - 64
+            if geometry.size.width > 834 {
                 VStack(spacing: 0) {
-                    Spacer().frame(height: 16)
-                    drawerContent
+                    SubmissionHeader(assignment: assignment, submission: submission)
+                    Divider()
+                    HStack(spacing: 0) {
+                        VStack(alignment: .leading, spacing: 0) {
+                            attemptToggle
+                            // TODO: SimilarityScore()
+                            Divider()
+                            ZStack(alignment: .top) {
+                                SubmissionViewer(submission: selected, fileID: fileID)
+                                attemptPicker
+                            }
+                        }
+                        Divider()
+                        tabs
+                            .padding(.top, 16)
+                            .frame(width: 375)
+                    }
+                    Spacer().frame(height: bottomInset)
                 }
-                    .frame(width: 375)
+            } else {
+                ZStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        SubmissionHeader(assignment: assignment, submission: submission)
+                        attemptToggle
+                        // TODO: SimilarityScore()
+                        Divider()
+                        ZStack(alignment: .top) {
+                            SubmissionViewer(submission: selected, fileID: fileID)
+                            attemptPicker
+                        }
+                        Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
+                    }
+                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+                        tabs.clipped()
+                        Spacer().frame(height: bottomInset)
+                    }
+                }
             }
         }
             .background(Color.backgroundLightest)
     }
 
-    enum DrawerTab: Int, CaseIterable, Identifiable {
+    @ViewBuilder
+    var attemptToggle: some View {
+        if let first = attempts.first, attempts.count == 1 {
+            Text(first.submittedAt?.dateTimeString ?? "")
+                .font(.medium14).foregroundColor(.textDark)
+                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+        } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
+            Button(action: { self.showAttempts.toggle() }, label: {
+                HStack {
+                    Text(selected.submittedAt?.dateTimeString ?? "")
+                        .font(.medium14)
+                    Spacer()
+                    Icon.miniArrowDownSolid.rotationEffect(.degrees(showAttempts ? 180 : 0))
+                }
+                    .foregroundColor(.textDark)
+                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+            })
+        }
+    }
+
+    @ViewBuilder
+    var attemptPicker: some View {
+        if showAttempts {
+            VStack(spacing: 0) {
+                Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
+                    withTransaction(.exclusive()) { attempt = newValue }
+                    showAttempts = false
+                }), label: Text(verbatim: "")) {
+                    ForEach(attempts.all, id: \.attempt) { attempt in
+                        Text(attempt.submittedAt?.dateTimeString ?? "")
+                            .tag(Optional(attempt.attempt))
+                    }
+                }
+                    .labelsHidden()
+                Divider()
+            }
+                .background(Color.backgroundLightest)
+        }
+    }
+
+    enum GraderTab: Int, CaseIterable, Identifiable {
         case grades, comments, files
         var id: Int { rawValue }
     }
 
-    @ViewBuilder
-    var drawerContent: some View {
-        Picker(selection: Binding(get: { selectedDrawerTab }, set: {
-            selectedDrawerTab = $0
-            if drawerState == .min { drawerState = .mid }
-        }), label: Text(verbatim: "")) {
-            Text("Grades").tag(DrawerTab.grades)
-            Text("Comments").tag(DrawerTab.comments)
-            filesTabText.tag(DrawerTab.files)
-        }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
-        Divider()
-        Pages(items: DrawerTab.allCases, currentIndex: Binding(
-            get: { selectedDrawerTab.rawValue },
-            set: { selectedDrawerTab = DrawerTab.allCases[$0] }
-        )) { tab in
-            ScrollView {
+    var tabs: some View {
+        VStack(spacing: 0) {
+            Picker(selection: Binding(get: { tab }, set: {
+                tab = $0
+                if drawerState == .min {
+                    withTransaction(DrawerState.transaction) {
+                        drawerState = .mid
+                    }
+                }
+            }), label: Text(verbatim: "")) {
+                Text("Grades").tag(GraderTab.grades)
+                Text("Comments").tag(GraderTab.comments)
+                if let count = selected.attachments?.count, count > 0 {
+                    Text("Files (\(count))").tag(GraderTab.files)
+                } else {
+                    Text("Files").tag(GraderTab.files)
+                }
+            }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+            Divider()
+            Pages(items: GraderTab.allCases, currentIndex: Binding(get: { tab.rawValue }, set: {
+                tab = GraderTab.allCases[$0]
+            })) { tab in
                 switch tab {
                 case .grades:
-                    Text("Grades")
+                    GradesTab(assignment: assignment, submission: submission)
                 case .comments:
-                    Text("Comments")
+                    CommentsTab(assignment: assignment, submission: submission, attempt: $attempt, fileID: $fileID)
                 case .files:
-                    Text("Files")
+                    FilesTab(assignment: assignment, submission: selected, fileID: $fileID)
                 }
             }
         }
-    }
-
-    var filesTabText: Text {
-        let selectedSubmission = submission // TODO: which one in history
-        if let count = selectedSubmission.attachments?.count, count > 0 {
-            return Text("Files (\(count))")
-        }
-        return Text("Files")
     }
 }

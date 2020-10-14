@@ -106,6 +106,7 @@
 		7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */; };
 		7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D20F61A21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift */; };
 		7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE523AC3871005BA31D /* FloatingButtonTests.swift */; };
+		7D264DBD253767C9007CDD90 /* TransactionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */; };
 		7D26B84923A81E5700262380 /* ConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84823A81E5700262380 /* ConversationTests.swift */; };
 		7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84A23A8266800262380 /* ConversationMessageTests.swift */; };
 		7D26B84D23A8267600262380 /* ConversationParticipantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26B84C23A8267600262380 /* ConversationParticipantTests.swift */; };
@@ -1188,6 +1189,7 @@
 		7D231BE223AC30B5005BA31D /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		7D231BE523AC3871005BA31D /* FloatingButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButtonTests.swift; sourceTree = "<group>"; };
 		7D24D27F219E1B1A002F9638 /* CommentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListCell.swift; sourceTree = "<group>"; };
+		7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExtensions.swift; sourceTree = "<group>"; };
 		7D26B84223A7F24400262380 /* GetConversations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversations.swift; sourceTree = "<group>"; };
 		7D26B84823A81E5700262380 /* ConversationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTests.swift; sourceTree = "<group>"; };
 		7D26B84A23A8266800262380 /* ConversationMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessageTests.swift; sourceTree = "<group>"; };
@@ -2969,6 +2971,7 @@
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
+				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
 				789C9BC02138516300B37AC4 /* UIColorExtensions.swift */,
@@ -4679,6 +4682,7 @@
 				7DA2609823F72338005D2121 /* Router.swift in Sources */,
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
 				7DA25FE223F721DA005D2121 /* UserAgent.swift in Sources */,
+				7D264DBD253767C9007CDD90 /* TransactionExtensions.swift in Sources */,
 				7DA260A923F72352005D2121 /* GetAssignments.swift in Sources */,
 				B11AEBB524070F9400B736D6 /* PlannerFilterViewController.swift in Sources */,
 				7DA2602323F722AF005D2121 /* Logger.swift in Sources */,
