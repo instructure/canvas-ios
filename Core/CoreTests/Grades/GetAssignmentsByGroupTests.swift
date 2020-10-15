@@ -35,4 +35,18 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         useCase.reset(context: databaseClient)
         XCTAssertEqual((databaseClient.fetch() as [AssignmentGroup]).count, 0)
     }
+
+    func testInvalidSectionOrderException() {
+        let groups: [APIAssignmentGroup] = [
+            .make(id: "9732", name: "Test Assignment Group", position: 1, assignments: [APIAssignment.make(id: "63603", name: "File Upload", position: 1, assignment_group_id: "9732")]),
+            .make(id: "9734", name: "Middle Group", position: 2, assignments: [APIAssignment.make(id: "63604", name: "File Upload 2", position: 1, assignment_group_id: "9734")]),
+            .make(id: "9733", name: "Test Assignment Group", position: 3, assignments: [APIAssignment.make(id: "63606", name: "File Upload 3", position: 1, assignment_group_id: "9733")]),
+        ]
+
+        let getAssignmentGroupsUseCase = GetAssignmentsByGroup(courseID: "20783")
+        getAssignmentGroupsUseCase.write(response: groups, urlResponse: nil, to: databaseClient)
+
+        // Shouldn't trigger assertionFailure in Store.init with error: Error Domain=NSCocoaErrorDomain Code=134060 "A Core Data error occurred." UserInfo={reason=The fetched object at index 2 has an out of order section name 'Middle Group. Objects must be sorted by section name'}
+        _ = environment.subscribe(getAssignmentGroupsUseCase)
+    }
 }
