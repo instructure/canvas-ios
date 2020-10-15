@@ -28,6 +28,7 @@ public struct Pages<Item: Identifiable, Content: View>: View {
     @Environment(\.layoutDirection) var layoutDirection
     @GestureState var translation: CGFloat = 0
 
+    var isPanEnabled: Bool = true
     var spacing: CGFloat = 0
     var scaling: (CGFloat) -> CGFloat = { _ in 1 }
 
@@ -70,7 +71,8 @@ public struct Pages<Item: Identifiable, Content: View>: View {
                     .onEnded { value in
                         let offset = Int((value.translation.width * self.dx / max(1, geometry.size.width)).rounded())
                         self.show(index: self.currentIndex - offset)
-                    }
+                    },
+                    including: isPanEnabled ? .all : .subviews
                 )
                 .accessibilityScrollAction { edge in
                     let offset = edge == .leading || edge == .top ? -1 : 1
@@ -78,6 +80,12 @@ public struct Pages<Item: Identifiable, Content: View>: View {
                 }
         }
             .clipped()
+    }
+
+    public func pan(isEnabled: Bool) -> Self {
+        var modified = self
+        modified.isPanEnabled = isEnabled
+        return modified
     }
 
     public func spaceBetween(_ spacing: CGFloat) -> Self {
