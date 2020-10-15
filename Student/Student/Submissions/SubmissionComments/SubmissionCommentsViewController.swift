@@ -225,7 +225,7 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
             let submission = submissionPresenter?.submissions.first { $0.attempt == attempt }
             let cell: SubmissionCommentAttemptCell = tableView.dequeue(for: indexPath)
             cell.stackView?.alignment = currentUserID == comment.authorID ? .trailing : .leading
-            cell.update(comment: comment, submission: submission) { [weak self] (submission: Submission?, file: File?) in
+            cell.update(comment: comment, submission: submission, courseColor: submissionPresenter?.course.first?.color) { [weak self] (submission: Submission?, file: File?) in
                 guard let attempt = submission?.attempt else { return }
                 self?.submissionPresenter?.select(attempt: attempt, fileID: file?.id)
             }
