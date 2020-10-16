@@ -20,8 +20,8 @@ import SwiftUI
 import Combine
 
 public struct CourseListView: View {
-    @Environment(\.appEnvironment) var env: AppEnvironment
-    @Environment(\.viewController) var controller: () -> UIViewController?
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
     @ObservedObject var allCourses: Store<GetAllCourses>
 
     public class Props: ObservableObject {
@@ -151,8 +151,8 @@ public struct CourseListView: View {
             section(header: formatHeader(header)) {
                 ForEach(courses, id: \.id) { course in
                     Cell(course: course) {
-                        guard let controller = self.controller() else { return }
-                        self.env.router.route(to: "/courses/\(course.id)", from: controller)
+                        guard let controller = controller else { return }
+                        env.router.route(to: "/courses/\(course.id)", from: controller)
                     }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
                 }
             }.testID(.section, id: testID)
@@ -172,7 +172,7 @@ public struct CourseListView: View {
     }
 
     struct Cell: View {
-        @Environment(\.appEnvironment) var env: AppEnvironment
+        @Environment(\.appEnvironment) var env
         @ObservedObject var course: Course
         @State private var pending: Bool = false
         let didSelect: () -> Void

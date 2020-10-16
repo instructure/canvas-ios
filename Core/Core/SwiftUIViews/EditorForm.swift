@@ -39,7 +39,7 @@ public struct EditorForm<Content: View>: View {
         }
             .avoidKeyboardArea()
             .background(Color.backgroundGrouped)
-            .navBarStyle(.modal)
+            .navigationBarStyle(.modal)
     }
 }
 

@@ -27,7 +27,7 @@ public struct FileEditorView: View {
     }
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var viewController
+    @Environment(\.viewController) var controller
 
     @State var name: String = ""
     @State var access: Access = .published
@@ -106,16 +106,16 @@ public struct FileEditorView: View {
 
             EditorSection(label: Text("Access", bundle: .core)) {
                 ButtonRow(action: {
-                    guard let controller = self.viewController() else { return }
-                    self.env.router.show(ItemPickerViewController.create(
+                    guard let controller = controller else { return }
+                    env.router.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Access", bundle: .core, comment: ""),
                         sections: [ ItemPickerSection(items: Access.allCases.map {
                             ItemPickerItem(title: $0.label)
                         }), ],
-                        selected: Access.allCases.firstIndex(of: self.access).flatMap {
+                        selected: Access.allCases.firstIndex(of: access).flatMap {
                             IndexPath(row: $0, section: 0)
                         },
-                        didSelect: { self.access = Access.allCases[$0.row] }
+                        didSelect: { access = Access.allCases[$0.row] }
                     ), from: controller)
                 }, content: {
                     Text(access.label)
@@ -148,16 +148,16 @@ public struct FileEditorView: View {
                         .identifier("FileEditor.copyrightField")
                     Divider()
                     ButtonRow(action: {
-                        guard let controller = self.viewController() else { return }
-                        self.env.router.show(ItemPickerViewController.create(
+                        guard let controller = controller else { return }
+                        env.router.show(ItemPickerViewController.create(
                             title: NSLocalizedString("Usage Right", bundle: .core, comment: ""),
                             sections: [ ItemPickerSection(items: UseJustification.allCases.map {
                                 ItemPickerItem(title: $0.label)
                             }), ],
-                            selected: UseJustification.allCases.firstIndex(of: self.justification).flatMap {
+                            selected: UseJustification.allCases.firstIndex(of: justification).flatMap {
                                 IndexPath(row: $0, section: 0)
                             },
-                            didSelect: { self.justification = UseJustification.allCases[$0.row] }
+                            didSelect: { justification = UseJustification.allCases[$0.row] }
                         ), from: controller)
                     }, content: {
                         Text(justification.label)
@@ -168,16 +168,16 @@ public struct FileEditorView: View {
                     if justification == .creative_commons {
                         Divider()
                         ButtonRow(action: {
-                            guard let controller = self.viewController() else { return }
-                            self.env.router.show(ItemPickerViewController.create(
+                            guard let controller = controller else { return }
+                            env.router.show(ItemPickerViewController.create(
                                 title: NSLocalizedString("Creative Commons License", bundle: .core, comment: ""),
                                 sections: [ ItemPickerSection(items: License.allCases.map {
                                     ItemPickerItem(title: $0.label)
                                 }), ],
-                                selected: License.allCases.firstIndex(of: self.license).flatMap {
+                                selected: License.allCases.firstIndex(of: license).flatMap {
                                     IndexPath(row: $0, section: 0)
                                 },
-                                didSelect: { self.license = License.allCases[$0.row] }
+                                didSelect: { license = License.allCases[$0.row] }
                             ), from: controller)
                         }, content: {
                             Text(license.label)
@@ -246,7 +246,7 @@ public struct FileEditorView: View {
     }
 
     func save() {
-        viewController()?.view.endEditing(true) // dismiss keyboard
+        controller?.view.endEditing(true) // dismiss keyboard
         isSaving = true
         let name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         let locked = access == .unpublished
@@ -313,7 +313,7 @@ public struct FileEditorView: View {
     }
 
     func dismiss() {
-        guard let controller = viewController() else { return }
+        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 

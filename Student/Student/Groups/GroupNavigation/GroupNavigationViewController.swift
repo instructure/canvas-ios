@@ -59,9 +59,7 @@ class GroupNavigationViewController: UITableViewController, ColoredNavViewProtoc
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
         }

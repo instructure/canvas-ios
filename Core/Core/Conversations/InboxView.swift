@@ -44,7 +44,7 @@ public struct InboxView: View {
         }
     }
 
-    @Environment(\.viewController) var viewController
+    @Environment(\.viewController) var controller
     @ObservedObject var courses: Store<GetAllCourses>
     @State @ObservedObject var conversations: Store<GetConversations>
     @State var selectedCourse: Course?
@@ -138,7 +138,7 @@ public struct InboxView: View {
     }
 
     struct Cell: View {
-        @Environment(\.appEnvironment) var env: AppEnvironment
+        @Environment(\.appEnvironment) var env
 
         static let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()

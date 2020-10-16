@@ -227,9 +227,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         if !screenConfig.config.isEmpty {
             switch screenConfig[PropKeys.navBarStyle] as? String {
             case "context":
-                if let color = screenConfig.navBarColor {
-                    navigationController?.navigationBar.useContextColor(color)
-                }
+                navigationController?.navigationBar.useContextColor(screenConfig.navBarColor)
             case "global":
                 navigationController?.navigationBar.useGlobalNavStyle()
             default:

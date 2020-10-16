@@ -77,9 +77,7 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         env.pageViewLogger.startTrackingTimeOnViewController()
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     open override func viewWillDisappear(_ animated: Bool) {

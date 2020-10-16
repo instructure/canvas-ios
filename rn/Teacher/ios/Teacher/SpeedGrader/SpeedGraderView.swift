@@ -25,7 +25,7 @@ struct SpeedGraderView: View {
     let userID: String?
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var viewController
+    @Environment(\.viewController) var controller
 
     @ObservedObject var assignment: Store<GetAssignment>
     @ObservedObject var submissions: Store<GetSubmissions>
@@ -101,7 +101,7 @@ struct SpeedGraderView: View {
     }
 
     func dismiss() {
-        guard let controller = viewController() else { return }
+        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 }

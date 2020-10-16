@@ -107,7 +107,3 @@ open class AppEnvironment {
         errorHandler?(error, controller ?? topViewController)
     }
 }
-
-extension AppEnvironment: EnvironmentKey {
-    public static var defaultValue: AppEnvironment { AppEnvironment.shared }
-}
