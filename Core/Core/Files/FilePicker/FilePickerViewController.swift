@@ -338,6 +338,7 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: FilePickerCell = tableView.dequeue(for: indexPath)
         cell.file = files[indexPath.row]
         cell.accessibilityIdentifier = "FilePickerListItem.\(indexPath.row)"
+        cell.delegate = self
         return cell
     }
 
@@ -360,5 +361,18 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
                 showError(error)
             }
         }
+    }
+}
+
+extension FilePickerViewController: FilePickerCellDelegate {
+    func removeFile(_ file: File) {
+        let title = NSLocalizedString("Remove File", bundle: .core, comment: "")
+        let message = NSLocalizedString("Are you sure you want to remove this file?", bundle: .core, comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Remove", bundle: .core, comment: ""), style: .default, handler: {_ in
+            UploadManager.shared.cancel(file: file)
+        }))
+        env.router.show(alert, from: self, options: .modal())
     }
 }

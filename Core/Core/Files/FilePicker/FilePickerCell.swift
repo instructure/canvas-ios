@@ -16,21 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import UIKit
 
+protocol FilePickerCellDelegate: class {
+    func removeFile(_ file: File)
+}
+
 class FilePickerCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: DynamicLabel!
+    @IBOutlet weak var subtitleLabel: DynamicLabel!
+    @IBOutlet weak var errorIcon: IconView!
+    @IBOutlet weak var removeButton: DynamicButton!
+
+    weak var delegate: FilePickerCellDelegate?
+
     var file: File? {
         didSet {
             backgroundColor = .backgroundLightest
             nameLabel.text = file?.localFileURL?.lastPathComponent
+            if let filename = file?.filename {
+                removeButton.accessibilityLabel = String.localizedStringWithFormat(NSLocalizedString("Remove %@", bundle: .core, comment: ""), filename)
+            }
             if file?.uploadError != nil {
-                isUserInteractionEnabled = true
                 errorIcon.isHidden = false
                 subtitleLabel.text = NSLocalizedString("Failed upload", bundle: .core, comment: "")
                 subtitleLabel.textColor = .textDanger
             } else {
-                isUserInteractionEnabled = false
                 errorIcon.isHidden = true
                 subtitleLabel.text = file?.size.humanReadableFileSize
                 subtitleLabel.textColor = UIColor.ash
@@ -38,7 +49,8 @@ class FilePickerCell: UITableViewCell {
         }
     }
 
-    @IBOutlet weak var nameLabel: DynamicLabel!
-    @IBOutlet weak var subtitleLabel: DynamicLabel!
-    @IBOutlet weak var errorIcon: IconView!
+    @IBAction func removeTapped() {
+        guard let file = file else { return }
+        delegate?.removeFile(file)
+    }
 }
