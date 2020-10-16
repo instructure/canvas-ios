@@ -51,7 +51,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         addCancelButton(side: .left)
 
         editor.delegate = self
-        editor.placeholder = NSLocalizedString("Enter submission", bundle: .student, comment: "")
+        editor.placeholder = NSLocalizedString("Write...", bundle: .student, comment: "Text submission editor placeholder")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
     }
