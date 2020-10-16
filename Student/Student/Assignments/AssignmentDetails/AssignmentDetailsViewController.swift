@@ -190,7 +190,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func updateGradeCell(_ assignment: Assignment) {
-        self.gradedView?.update(assignment)
+        self.gradedView?.update(assignment, circleColor: presenter?.courses.first?.color)
 
         // Update grade statistics view
         if let presenter = presenter {

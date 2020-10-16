@@ -46,6 +46,7 @@ public class GradeCircleReusableView: UICollectionReusableView {
 public class GradeCircleView: UIView {
     @IBOutlet weak var circlePoints: UILabel!
     @IBOutlet weak var circleLabel: UILabel!
+    /** Displays the checkmark in the middle of the progress circle. */
     @IBOutlet weak var circleComplete: UIImageView!
     @IBOutlet weak var gradeCircle: CircleProgressView!
     @IBOutlet weak var displayGrade: UILabel!
@@ -63,8 +64,18 @@ public class GradeCircleView: UIView {
         loadFromXib()
     }
 
-    public func update(_ assignment: Assignment) {
+    /**
+     - parameters:
+       - circleColor: The color of the grade circle. If not specified it will use the default color specified in `CircleProgressView`.
+     */
+    public func update(_ assignment: Assignment, circleColor: UIColor? = nil) {
         gradeCircle.progress = 1 // make sure it's never spinning
+
+        if let circleColor = circleColor {
+            gradeCircle.color = circleColor
+        }
+
+        circleComplete.tintColor = circleColor
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
