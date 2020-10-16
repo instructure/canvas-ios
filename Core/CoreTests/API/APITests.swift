@@ -312,12 +312,12 @@ class APITests: XCTestCase {
 
     func testNoRefreshToken() {
         API.resetMocks()
-        api.refreshQueue = OperationQueue.main
         AppEnvironment.shared.userDidLogin(session: .make(refreshToken: nil))
         let url = URL(string: "https://canvas.instructure.com/api/v1/courses")!
         let response = HTTPURLResponse(url: url, statusCode: 401, httpVersion: nil, headerFields: nil)
         api.mock(url: url, response: response, error: NSError.internalError())
         api.makeRequest(url) { _, _, error in XCTAssertNotNil(error) }
+        api.refreshQueue.waitUntilAllOperationsAreFinished()
     }
 
     func testExhaust() {

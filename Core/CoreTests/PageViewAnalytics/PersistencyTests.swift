@@ -58,7 +58,7 @@ class PersistencyTests: XCTestCase {
                 self.waitExpectation.fulfill()
             }
         }
-        self.wait(for: [self.waitExpectation], timeout: 0.5)
+        self.wait(for: [self.waitExpectation], timeout: 5)
         XCTAssertEqual(self.p.queueCount, 1)
     }
 
@@ -77,7 +77,7 @@ class PersistencyTests: XCTestCase {
                 self.waitExpectation.fulfill()
             }
         }
-        wait(for: [waitExpectation], timeout: 0.5)
+        wait(for: [waitExpectation], timeout: 5)
 
         XCTAssertEqual(p.queueCount, 3)
 
