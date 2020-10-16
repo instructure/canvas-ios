@@ -27,17 +27,11 @@ class FileEditorViewTests: CoreTestCase {
         return hostSwiftUIController(FileEditorView(context: .course("1"), fileID: "1"))
     }()
 
-    func getTestTree() -> TestTree? {
-        _ = controller
-        drainMainQueue()
-        return controller.testTree
-    }
-
     func testFile() throws {
         api.mock(GetFile(context: .course("1"), fileID: "1"), value: .make(usage_rights: .make(
             use_justification: .creative_commons
         )))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "FileEditor.nameField"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.accessButton"))
         XCTAssertNil(tree?.find(id: "FileEditor.unlockAtButton"))
@@ -49,7 +43,7 @@ class FileEditorViewTests: CoreTestCase {
 
     func testScheduled() throws {
         api.mock(GetFile(context: .course("1"), fileID: "1"), value: .make(unlock_at: Clock.now))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "FileEditor.nameField"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.accessButton"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.unlockAtButton"))
@@ -62,7 +56,7 @@ class FileEditorViewTests: CoreTestCase {
     func testFolder() throws {
         api.mock(GetFolder(context: nil, folderID: "1"), value: .make())
         controller = hostSwiftUIController(FileEditorView(folderID: "1"))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "FileEditor.nameField"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.accessButton"))
         XCTAssertNil(tree?.find(id: "FileEditor.unlockAtButton"))
@@ -75,7 +69,7 @@ class FileEditorViewTests: CoreTestCase {
     func testScheduledFolder() throws {
         api.mock(GetFolder(context: nil, folderID: "1"), value: .make(lock_at: Clock.now))
         controller = hostSwiftUIController(FileEditorView(folderID: "1"))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "FileEditor.nameField"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.accessButton"))
         XCTAssertNotNil(tree?.find(id: "FileEditor.unlockAtButton"))

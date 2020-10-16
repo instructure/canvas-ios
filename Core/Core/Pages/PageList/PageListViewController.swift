@@ -93,9 +93,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
         env.pageViewLogger.startTrackingTimeOnViewController()
     }
 

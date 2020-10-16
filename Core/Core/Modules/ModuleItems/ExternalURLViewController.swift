@@ -61,9 +61,7 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
 
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     public func updateNavBar() {

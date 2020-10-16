@@ -135,7 +135,10 @@ struct SubmissionGrader: View {
         if showAttempts {
             VStack(spacing: 0) {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
-                    withTransaction(.exclusive()) { attempt = newValue }
+                    withTransaction(.exclusive()) {
+                        attempt = newValue
+                        fileID = nil
+                    }
                     showAttempts = false
                     isPagingEnabled = true
                 }), label: Text(verbatim: "")) {
@@ -168,7 +171,7 @@ struct SubmissionGrader: View {
             }), label: Text(verbatim: "")) {
                 Text("Grades").tag(GraderTab.grades)
                 Text("Comments").tag(GraderTab.comments)
-                if let count = selected.attachments?.count, count > 0 {
+                if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
                     Text("Files (\(count))").tag(GraderTab.files)
                 } else {
                     Text("Files").tag(GraderTab.files)
@@ -186,7 +189,12 @@ struct SubmissionGrader: View {
                 case .comments:
                     CommentsTab(assignment: assignment, submission: submission, attempt: $attempt, fileID: $fileID)
                 case .files:
-                    FilesTab(assignment: assignment, submission: selected, fileID: $fileID)
+                    FilesTab(submission: selected, fileID: Binding(get: { fileID }, set: {
+                        fileID = $0
+                        withTransaction(DrawerState.transaction) {
+                            drawerState = .min
+                        }
+                    }))
                 }
             }
         }

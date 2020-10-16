@@ -127,9 +127,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         if let index = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: index, animated: animated)
         }
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
         env.pageViewLogger.startTrackingTimeOnViewController()
     }
 

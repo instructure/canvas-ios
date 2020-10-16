@@ -105,9 +105,7 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     func update() {

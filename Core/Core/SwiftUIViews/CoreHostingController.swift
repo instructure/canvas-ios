@@ -18,61 +18,82 @@
 
 import SwiftUI
 
-public class CoreHostingController<InnerContent: View>: UIHostingController<CoreHostingBaseView<InnerContent>> {
-    public var navBarStyle = NavBarStyle.global
+public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>> {
+    public var navigationBarStyle = UINavigationBar.Style.global
     var testTree: TestTree?
 
-    public init(_ rootView: InnerContent, env: AppEnvironment = .shared) {
-        let selfBox = Box()
-        super.init(rootView: CoreHostingBaseView(rootView: rootView, env: env) {
-            selfBox.value
-        })
-        selfBox.value = self
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        applyNavBarStyle()
-    }
-
-    func applyNavBarStyle(_ style: NavBarStyle? = nil) {
-        navBarStyle = style ?? navBarStyle
-        switch navBarStyle {
-        case .modal:
-            navigationController?.navigationBar.useModalStyle()
-        case .global:
-            navigationController?.navigationBar.useGlobalNavStyle()
-        case .color(let color):
-            guard let color = color else { return }
-            navigationController?.navigationBar.useContextColor(color)
-        }
+    public init(_ rootView: Content) {
+        let ref = WeakReference<CoreHostingController<Content>>()
+        super.init(rootView: CoreHostingBaseView(content: rootView, controller: ref))
+        ref.value = self
     }
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    private class Box {
-        weak var value: CoreHostingController<InnerContent>?
-        init() { }
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.useStyle(navigationBarStyle)
     }
-
 }
 
 public struct CoreHostingBaseView<Content: View>: View {
-    var rootView: Content
-    let env: AppEnvironment
-    let controller: () -> CoreHostingController<Content>?
+    var content: Content
+    let controller: WeakReference<CoreHostingController<Content>>
 
     public var body: some View {
-        rootView
+        content
             .testID()
-            .environment(\.appEnvironment, env)
-            .environment(\.viewController, controller)
-            .onPreferenceChange(NavBarStyle.self) { style in
-                self.controller()?.applyNavBarStyle(style)
-            }.onPreferenceChange(TestTree.self) { testTrees in
-                self.controller()?.testTree = testTrees.first { $0.type == Content.self }
+            .accentColor(Color(Brand.shared.primary))
+            .environment(\.appEnvironment, AppEnvironment.shared)
+            .environment(\.viewController, controller.value)
+            .onPreferenceChange(UINavigationBar.Style.self) { style in
+                controller.value?.navigationBarStyle = style
+                controller.value?.navigationController?.navigationBar.useStyle(style)
             }
+            .onPreferenceChange(TestTree.self) { testTrees in
+                controller.value?.testTree = testTrees.first { $0.type == Content.self }
+            }
+    }
+}
+
+extension AppEnvironment: EnvironmentKey {
+    public static var defaultValue: AppEnvironment { AppEnvironment.shared }
+}
+
+extension UIViewController: EnvironmentKey {
+    public static var defaultValue: WeakReference<UIViewController> { WeakReference() }
+}
+
+extension EnvironmentValues {
+    public var appEnvironment: AppEnvironment {
+        get { self[AppEnvironment.self] }
+        set { self[AppEnvironment.self] = newValue }
+    }
+
+    public var viewController: UIViewController? {
+        get { self[UIViewController.self].value }
+        set { self[UIViewController.self] = WeakReference(newValue) }
+    }
+}
+
+extension UINavigationBar.Style: PreferenceKey {
+    public static var defaultValue = Self.global
+    public static func reduce(value: inout Self, nextValue: () -> Self) {
+        value = nextValue()
+    }
+}
+
+extension View {
+    public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
+        preference(key: UINavigationBar.Style.self, value: style)
+    }
+}
+
+public class WeakReference<Value: AnyObject> {
+    public weak var value: Value?
+    public init(_ value: Value? = nil) {
+        self.value = value
     }
 }

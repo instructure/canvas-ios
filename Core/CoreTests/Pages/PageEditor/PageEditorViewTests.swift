@@ -35,15 +35,9 @@ class PageEditorViewTests: CoreTestCase {
         return hostSwiftUIController(PageEditorView(context: .course("1"), url: "page-1"))
     }()
 
-    func getTestTree() -> TestTree? {
-        _ = controller
-        drainMainQueue()
-        return controller.testTree
-    }
-
     func testStudent() throws {
         environment.app = .student
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNil(tree?.find(id: "PageEditor.titleField"))
         XCTAssertNotNil(tree?.find(id: "PageEditor.titleText"))
         XCTAssertNil(tree?.find(id: "PageEditor.publishedToggle"))
@@ -54,7 +48,7 @@ class PageEditorViewTests: CoreTestCase {
 
     func testTeacher() throws {
         environment.app = .teacher
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "PageEditor.titleField"))
         XCTAssertNil(tree?.find(id: "PageEditor.titleText"))
         XCTAssertNotNil(tree?.find(id: "PageEditor.publishedToggle"))
@@ -74,7 +68,7 @@ class PageEditorViewTests: CoreTestCase {
             url: "page-1"
         ))
         controller = hostSwiftUIController(PageEditorView(context: .group("1"), url: "page-1"))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNil(tree?.find(id: "PageEditor.titleField"))
         XCTAssertNotNil(tree?.find(id: "PageEditor.titleText"))
         XCTAssertNil(tree?.find(id: "PageEditor.publishedToggle"))

@@ -53,23 +53,30 @@ class TeacherTestCase: XCTestCase {
         environment.currentSession = LoginSession.make()
         environment.window = window
         window.rootViewController = UIViewController()
+        window.makeKeyAndVisible()
     }
 
     override func tearDown() {
         super.tearDown()
         LoginSession.clearAll()
+        window.rootViewController = UIViewController()
     }
 }
 
 extension TeacherTestCase {
     open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
-        let controller = CoreHostingController(view, env: environment)
+        let controller = CoreHostingController(view)
         window.rootViewController = controller
-        window.makeKeyAndVisible()
-        RunLoop.current.run(until: Date() + 0.01)
+        var count = 0
+        while controller.testTree == nil, count < 10 {
+            count += 1
+            let expectation = XCTestExpectation()
+            DispatchQueue.main.async { expectation.fulfill() }
+            wait(for: [ expectation ], timeout: 30)
+        }
         return controller
     }
     open func hostSwiftUI<V: View>(_ view: V) -> V {
-        return hostSwiftUIController(view).rootView.rootView
+        return hostSwiftUIController(view).rootView.content
     }
 }

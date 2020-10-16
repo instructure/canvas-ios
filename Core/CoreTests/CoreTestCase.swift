@@ -70,12 +70,14 @@ class CoreTestCase: XCTestCase {
         Analytics.shared.handler = analytics
         environment.app = .student
         environment.window = window
-        window.rootViewController = UIViewController()
+        window.rootViewController = mainViewController
+        window.makeKeyAndVisible()
     }
 
     override func tearDown() {
         super.tearDown()
         LoginSession.clearAll()
+        window.rootViewController = mainViewController
     }
 
     func waitForMainAsync() {
@@ -97,15 +99,22 @@ class TestAnalyticsHandler: AnalyticsHandler {
     }
 }
 
+private let mainViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
+
 extension CoreTestCase {
     open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
-        let controller = CoreHostingController(view, env: environment)
+        let controller = CoreHostingController(view)
         window.rootViewController = controller
-        window.makeKeyAndVisible()
-        RunLoop.current.run(until: Date() + 0.01)
+        var count = 0
+        while controller.testTree == nil, count < 10 {
+            count += 1
+            let expectation = XCTestExpectation()
+            DispatchQueue.main.async { expectation.fulfill() }
+            wait(for: [ expectation ], timeout: 30)
+        }
         return controller
     }
     open func hostSwiftUI<V: View>(_ view: V) -> V {
-        return hostSwiftUIController(view).rootView.rootView
+        return hostSwiftUIController(view).rootView.content
     }
 }

@@ -28,10 +28,10 @@ public enum Panda: String, CaseIterable {
 
 public struct EmptyPanda: View {
     public let panda: Panda
-    public let title: Text
-    public let message: Text
+    public let title: Text?
+    public let message: Text?
 
-    public init(_ panda: Panda, title: Text, message: Text) {
+    public init(_ panda: Panda, title: Text? = nil, message: Text? = nil) {
         self.panda = panda
         self.title = title
         self.message = message
@@ -41,16 +41,16 @@ public struct EmptyPanda: View {
         VStack {
             Spacer()
             Image(panda.name, bundle: .core)
-            Spacer().frame(height: 64)
-            title
+            title?
                 .font(.bold20)
                 .multilineTextAlignment(.center)
                 .identifier("EmptyPanda.titleText")
-            Spacer().frame(height: 8)
-            message
+                .padding(.top, 64)
+            message?
                 .font(.regular16)
                 .multilineTextAlignment(.center)
                 .identifier("EmptyPanda.messageText")
+                .padding(.top, 8)
             Spacer()
         }
             .foregroundColor(.textDarkest)

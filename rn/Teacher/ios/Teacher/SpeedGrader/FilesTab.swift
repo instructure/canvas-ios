@@ -20,11 +20,73 @@ import SwiftUI
 import Core
 
 struct FilesTab: View {
-    let assignment: Assignment
     let submission: Submission
+    let files: [File]
     @Binding var fileID: String?
 
+    init(submission: Submission, fileID: Binding<String?>) {
+        _fileID = fileID
+        files = submission.attachments?.sorted(by: File.idCompare) ?? []
+        self.submission = submission
+    }
+
     var body: some View {
-        ScrollView { Text("Files") }
+        GeometryReader { geometry in
+            ScrollView {
+                if submission.type != .online_upload || files.isEmpty {
+                    EmptyPanda(.Papers, message: Text("This submission has no files."))
+                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                } else if #available(iOS 14, *) {
+                    LazyVStack(alignment: .leading, spacing: 0) { list }
+                } else {
+                    VStack(alignment: .leading, spacing: 0) { list }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    var list: some View {
+        Divider().padding(.top, -1)
+        ForEach(files, id: \.id) { (file: File) in
+            let isSelected = file.id == (fileID ?? files.first?.id)
+            Button(action: { if !isSelected { fileID = file.id } }, label: {
+                HStack(spacing: 0) {
+                    FileThumbnail(file: file)
+                    Text(file.displayName ?? file.filename)
+                        .font(.semibold16).foregroundColor(.textDarkest)
+                        .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 8))
+                    Spacer()
+                    Icon.checkSolid.size(18)
+                        .opacity(isSelected ? 1 : 0)
+                }
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 16)
+            })
+                .accessibility(addTraits: isSelected ? .isSelected : [])
+            Divider()
+        }
+    }
+}
+
+struct FileThumbnail: View {
+    let file: File
+
+    var body: some View {
+        if let url = file.thumbnailURL {
+            RemoteImage(url, width: 24, height: 24).cornerRadius(4)
+        } else if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
+            Icon.audioLine
+        } else if file.mimeClass == "doc" {
+            Icon.documentLine
+        } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
+            Icon.imageLine
+        } else if file.mimeClass == "pdf" {
+            Icon.pdfLine
+        } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
+            Icon.videoLine
+        } else {
+            Icon.documentLine
+        }
     }
 }

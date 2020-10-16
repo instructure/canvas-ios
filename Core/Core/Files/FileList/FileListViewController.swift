@@ -114,7 +114,7 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
         if context.contextType == .user {
             navigationController?.navigationBar.useGlobalNavStyle()
-        } else if let color = color {
+        } else {
             navigationController?.navigationBar.useContextColor(color)
         }
         env.pageViewLogger.startTrackingTimeOnViewController()

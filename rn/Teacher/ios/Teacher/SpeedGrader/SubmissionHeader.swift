@@ -24,7 +24,7 @@ struct SubmissionHeader: View {
     let submission: Submission
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var viewController
+    @Environment(\.viewController) var controller
 
     var body: some View {
         HStack(spacing: 0) {
@@ -86,7 +86,7 @@ struct SubmissionHeader: View {
     }
 
     func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents, let controller = viewController() else { return }
+        guard !assignment.anonymizeStudents, let controller = controller else { return }
         env.router.route(
             to: submission.groupID.flatMap { "/groups/\($0)/users" } ??
                 "/courses/\(assignment.courseID)/users/\(submission.userID)",
@@ -97,7 +97,7 @@ struct SubmissionHeader: View {
     }
 
     func navigateToPostPolicy() {
-        guard let controller = viewController() else { return }
+        guard let controller = controller else { return }
         env.router.route(
             to: "/courses/\(assignment.courseID)/assignments/\(assignment.id)/post_policy",
             from: controller,
@@ -106,7 +106,7 @@ struct SubmissionHeader: View {
     }
 
     func dismiss() {
-        guard let controller = viewController() else { return }
+        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 }

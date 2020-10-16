@@ -92,9 +92,7 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     @objc func refresh() {

@@ -23,7 +23,7 @@ public struct PageEditorView: View {
     let url: String?
 
     @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var viewController
+    @Environment(\.viewController) var controller
 
     @State var title: String = ""
     @State var html: String = ""
@@ -51,8 +51,8 @@ public struct PageEditorView: View {
             .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Page", bundle: .core), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    guard let controller = self.viewController() else { return }
-                    self.env.router.dismiss(controller)
+                    guard let controller = controller else { return }
+                    env.router.dismiss(controller)
                 }, label: {
                     Text("Cancel", bundle: .core)
                 })
@@ -119,8 +119,8 @@ public struct PageEditorView: View {
                         Divider()
                     }
                     ButtonRow(action: {
-                        guard let controller = self.viewController() else { return }
-                        let options: [RoleOption] = self.context.contextType == .group
+                        guard let controller = controller else { return }
+                        let options: [RoleOption] = context.contextType == .group
                             ? [ .members, .public ]
                             : [ .teachers, .teachersAndStudents, .public ]
                         self.env.router.show(ItemPickerViewController.create(
@@ -128,10 +128,10 @@ public struct PageEditorView: View {
                             sections: [ ItemPickerSection(items: options.map {
                                 ItemPickerItem(title: $0.string)
                             }), ],
-                            selected: options.firstIndex(of: self.editingRoles).flatMap {
+                            selected: options.firstIndex(of: editingRoles).flatMap {
                                 IndexPath(row: $0, section: 0)
                             },
-                            didSelect: { self.editingRoles = options[$0.row] }
+                            didSelect: { editingRoles = options[$0.row] }
                         ), from: controller)
                     }, content: {
                         Text("Can Edit", bundle: .core)
@@ -174,7 +174,7 @@ public struct PageEditorView: View {
     }
 
     func save() {
-        viewController()?.view.endEditing(true) // dismiss keyboard
+        controller?.view.endEditing(true) // dismiss keyboard
         isSaving = true
         UpdatePage(
             context: context,
@@ -187,8 +187,8 @@ public struct PageEditorView: View {
         ).fetch { result, _, error in performUIUpdate {
             self.error = error
             self.isSaving = false
-            if result != nil, let controller = self.viewController() {
-                self.env.router.dismiss(controller)
+            if result != nil, let controller = controller {
+                env.router.dismiss(controller)
             }
         } }
     }

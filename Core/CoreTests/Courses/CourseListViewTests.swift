@@ -39,7 +39,7 @@ class CourseListViewTests: CoreTestCase {
         api.mock(allCourses, value: courses)
         return hostSwiftUIController(CourseListView(allCourses: allCourses.exhaust(), props: props, useList: false))
     }()
-    lazy var view = controller.rootView.rootView
+    lazy var view = controller.rootView.content
 
     var tree: TestTree? {
         _ = controller

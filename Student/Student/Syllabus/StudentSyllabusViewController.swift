@@ -59,9 +59,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let color = color {
-            navigationController?.navigationBar.useContextColor(color)
-        }
+        navigationController?.navigationBar.useContextColor(color)
     }
 
     func update() {

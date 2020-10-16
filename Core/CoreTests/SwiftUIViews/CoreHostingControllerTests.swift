@@ -16,19 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import XCTest
+@testable import Core
 import SwiftUI
 
-private class ViewControllerKey: EnvironmentKey {
-    static var defaultValue: () -> UIViewController? = { nil }
-}
-
-extension EnvironmentValues {
-    public var appEnvironment: AppEnvironment {
-        get { self[AppEnvironment.self] }
-        set { self[AppEnvironment.self] = newValue }
+class CoreHostingControllerTests: CoreTestCase {
+    func testNavigationBarStyle() throws {
+        let controller = hostSwiftUIController(
+            Text(verbatim: "SwiftUI!")
+                .navigationBarStyle(.color(.red))
+        )
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.navigationBarStyle, .color(.red))
     }
-    public var viewController: () -> UIViewController? {
-        get { self[ViewControllerKey.self] }
-        set { self[ViewControllerKey.self] = newValue }
+
+    func testNavigationBarStyleReduce() {
+        var style = UINavigationBar.Style.global
+        UINavigationBar.Style.reduce(value: &style, nextValue: { .color(.green) })
+        XCTAssertEqual(style, .color(.green))
     }
 }

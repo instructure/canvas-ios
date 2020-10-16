@@ -31,21 +31,15 @@ class SpeedGraderViewTests: TeacherTestCase {
         return hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "1", filter: []))
     }()
 
-    func getTestTree() -> TestTree? {
-        _ = controller
-        drainMainQueue()
-        return controller.testTree
-    }
-
     func testSpeedGrader() throws {
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "SpeedGrader.submission.1"))
         XCTAssertNil(tree?.find(id: "SpeedGrader.emptyCloseButton"))
     }
 
     func testEmpty() throws {
         controller = hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "bogus", filter: []))
-        let tree = getTestTree()
+        let tree = controller.testTree
         XCTAssertNil(tree?.find(id: "SpeedGrader.submission.1"))
         XCTAssertNotNil(tree?.find(id: "SpeedGrader.emptyCloseButton"))
     }

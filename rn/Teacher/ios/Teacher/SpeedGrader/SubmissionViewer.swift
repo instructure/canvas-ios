@@ -22,6 +22,10 @@ import Core
 struct SubmissionViewer: View {
     let submission: Submission
     let fileID: String?
+    var file: File? {
+        submission.attachments?.first { fileID == $0.id } ??
+        submission.attachments?.sorted(by: File.idCompare).first
+    }
 
     var body: some View {
         VStack {
@@ -33,6 +37,7 @@ struct SubmissionViewer: View {
             }
             Text(verbatim: "Attempt: #\(submission.attempt)")
             Text(submission.submittedAt?.dateTimeString ?? "")
+            Text(verbatim: "Selected File: \(file?.id ?? "none")")
             Spacer()
         }
     }

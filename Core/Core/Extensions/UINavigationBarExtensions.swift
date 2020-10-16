@@ -19,9 +19,23 @@
 import UIKit
 
 extension UINavigationBar {
+    public enum Style: Equatable { case modal, global, color(UIColor?) }
+
+    func useStyle(_ style: Style) {
+        switch style {
+        case .modal:
+            useModalStyle()
+        case .global:
+            useGlobalNavStyle()
+        case .color(let color):
+            useContextColor(color)
+        }
+    }
+
     public func useContextColor(_ color: UIColor?) {
+        guard let color = color else { return }
         let foreground = UIColor.white // always white, even in dark mode
-        let background = color?.ensureContrast(against: foreground)
+        let background = color.ensureContrast(against: foreground)
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
