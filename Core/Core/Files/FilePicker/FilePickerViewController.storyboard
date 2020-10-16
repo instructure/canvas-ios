@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,20 +42,20 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilePickerCell" id="pcl-I5-RWL" customClass="FilePickerCell" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="414" height="89.5"/>
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pcl-I5-RWL" id="ZS2-mP-O7B">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGL-9R-YWD">
-                                                                    <rect key="frame" x="16" y="23" width="382" height="43.5"/>
+                                                                    <rect key="frame" x="16" y="23" width="350" height="39"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Dhw-5t-pcT">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="43.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="326" height="39"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayS-WB-6W3" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="20"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                                                                                     </userDefinedRuntimeAttributes>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbO-YC-yC8" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="22.5" width="334" height="21"/>
+                                                                                    <rect key="frame" x="0.0" y="22" width="326" height="17"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                     <nil key="textColor"/>
                                                                                     <nil key="highlightedColor"/>
@@ -75,7 +75,8 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="troubleSolid" translatesAutoresizingMaskIntoConstraints="NO" id="dQm-mE-bZr" customClass="IconView" customModule="Core" customModuleProvider="target">
-                                                                            <rect key="frame" x="334" y="0.0" width="48" height="43.5"/>
+                                                                            <rect key="frame" x="326" y="0.0" width="24" height="39"/>
+                                                                            <accessibility key="accessibilityConfiguration" identifier="FilePicker.removeButton"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="warning"/>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="textDanger"/>
@@ -83,11 +84,29 @@
                                                                         </imageView>
                                                                     </subviews>
                                                                 </stackView>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhw-j5-5rt" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                                                    <rect key="frame" x="374" y="30.5" width="24" height="24"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="24" id="PDu-SC-Axm"/>
+                                                                        <constraint firstAttribute="width" constant="24" id="bMI-zB-g38"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="xLine"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="removeTapped" destination="pcl-I5-RWL" eventType="touchUpInside" id="NT0-88-gTS"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="mGL-9R-YWD" secondAttribute="trailing" constant="16" id="EIg-La-3tv"/>
                                                                 <constraint firstItem="mGL-9R-YWD" firstAttribute="top" secondItem="ZS2-mP-O7B" secondAttribute="topMargin" constant="12" id="FvY-Iz-QwT"/>
+                                                                <constraint firstItem="lhw-j5-5rt" firstAttribute="leading" secondItem="mGL-9R-YWD" secondAttribute="trailing" constant="8" symbolic="YES" id="Gpi-MZ-z1s"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="mGL-9R-YWD" secondAttribute="bottom" constant="12" id="LBt-dj-Xdo"/>
+                                                                <constraint firstAttribute="trailing" secondItem="lhw-j5-5rt" secondAttribute="trailing" constant="16" id="Mv7-93-a2U"/>
+                                                                <constraint firstItem="lhw-j5-5rt" firstAttribute="centerY" secondItem="ZS2-mP-O7B" secondAttribute="centerY" id="RCk-Fx-0pN"/>
                                                                 <constraint firstItem="mGL-9R-YWD" firstAttribute="leading" secondItem="ZS2-mP-O7B" secondAttribute="leading" constant="16" id="p3Z-Um-aV4"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
@@ -97,6 +116,7 @@
                                                         <connections>
                                                             <outlet property="errorIcon" destination="dQm-mE-bZr" id="r1l-c5-s3I"/>
                                                             <outlet property="nameLabel" destination="ayS-WB-6W3" id="xpv-iw-RfI"/>
+                                                            <outlet property="removeButton" destination="lhw-j5-5rt" id="bir-jO-oGI"/>
                                                             <outlet property="subtitleLabel" destination="TbO-YC-yC8" id="X9O-Te-gXV"/>
                                                         </connections>
                                                     </tableViewCell>
@@ -150,6 +170,7 @@
                                 </connections>
                             </tabBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="lJn-4R-3UW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RNN-Ca-8UT" firstAttribute="top" secondItem="PJu-Wl-5yf" secondAttribute="bottom" id="0Y0-ZF-V7D"/>
@@ -167,7 +188,6 @@
                             <constraint firstItem="lJn-4R-3UW" firstAttribute="trailing" secondItem="PJu-Wl-5yf" secondAttribute="trailing" id="wXN-qV-15y"/>
                             <constraint firstItem="lJn-4R-3UW" firstAttribute="trailing" secondItem="RNN-Ca-8UT" secondAttribute="trailing" id="xU3-VY-gp5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="lJn-4R-3UW"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -185,6 +205,20 @@
             <point key="canvasLocation" x="-655.20000000000005" y="-77.811094452773617"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="TbO-YC-yC8">
+            <size key="intrinsicContentSize" width="36" height="17"/>
+        </designable>
+        <designable name="ayS-WB-6W3">
+            <size key="intrinsicContentSize" width="41.5" height="19.5"/>
+        </designable>
+        <designable name="dQm-mE-bZr">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+        <designable name="lhw-j5-5rt">
+            <size key="intrinsicContentSize" width="32" height="32"/>
+        </designable>
+    </designables>
     <resources>
         <image name="troubleSolid" width="24" height="24"/>
     </resources>

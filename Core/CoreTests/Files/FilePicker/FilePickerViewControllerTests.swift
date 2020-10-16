@@ -149,6 +149,24 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
         XCTAssertNil(router.presented, "document scanner not supported in simulator")
     }
+
+    func testRemoveFile() {
+        let url = URL.temporaryDirectory.appendingPathComponent("FilePickerViewControllerTests-document.txt")
+        controller.view.layoutIfNeeded()
+
+        controller.add(url)
+        let index = IndexPath(row: 0, section: 0)
+        let row = controller.tableView.cellForRow(at: index) as? FilePickerCell
+        XCTAssertEqual(row?.removeButton.isHidden, false)
+        XCTAssertEqual(row?.removeButton.accessibilityLabel, "Remove FilePickerViewControllerTests-document.txt")
+
+        row?.removeTapped()
+        let alert = router.presented as? UIAlertController
+        XCTAssertEqual(alert?.title, "Remove File")
+        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
+
+        XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.cancelWasCalled, true)
+    }
 }
 
 class MockImagePicker: UIImagePickerController {

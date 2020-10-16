@@ -64,7 +64,7 @@ open class EmptyView: UIView {
         set { imageView?.image = newValue }
     }
 
-    public required init() {
+    public override init(frame: CGRect) {
         super.init(frame: .zero)
         loadFromXib()
     }
