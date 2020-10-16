@@ -51,7 +51,7 @@ public class GetAssignmentsByGroup: APIUseCase {
             NSSortDescriptor(key: #keyPath(Assignment.position), ascending: true),
             NSSortDescriptor(key: #keyPath(Assignment.name), ascending: true, naturally: true),
         ],
-        sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.name)
+        sectionNameKeyPath: #keyPath(Assignment.assignmentGroup.position)
     ) }
 
     public func reset(context: NSManagedObjectContext) {
