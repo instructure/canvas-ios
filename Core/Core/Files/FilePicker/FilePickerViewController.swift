@@ -367,7 +367,7 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 extension FilePickerViewController: FilePickerCellDelegate {
     func removeFile(_ file: File) {
         let title = NSLocalizedString("Remove File", bundle: .core, comment: "")
-        let message = NSLocalizedString("Are you sure you want to remove this file from the submission?", bundle: .core, comment: "")
+        let message = NSLocalizedString("Are you sure you want to remove this file?", bundle: .core, comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.addAction(AlertAction(NSLocalizedString("Remove", bundle: .core, comment: ""), style: .default, handler: {_ in
