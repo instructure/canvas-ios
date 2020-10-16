@@ -29,7 +29,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
         backgroundColor = .backgroundLightest
     }
 
-    func update(comment: SubmissionComment, submission: Submission?, courseColor: UIColor?, onFileTap: @escaping (Submission?, File?) -> Void) {
+    func update(comment: SubmissionComment, submission: Submission?, onFileTap: @escaping (Submission?, File?) -> Void) {
         accessibilityIdentifier = "SubmissionComments.attemptCell.\(comment.id)"
         accessibilityLabel = String.localizedStringWithFormat(
             NSLocalizedString("On %@ %@ submitted the following", bundle: .student, comment: ""),
@@ -42,7 +42,7 @@ class SubmissionCommentAttemptCell: UITableViewCell {
         if submission?.type == .online_upload, let files = submission?.attachments?.sorted(by: File.idCompare) {
             for file in files {
                 let view = SubmissionCommentFileView.loadFromXib()
-                view.update(file: file, fileIconColor: courseColor)
+                view.update(file: file)
                 view.onTap = { [weak self] in
                     self?.onFileTap?(submission, file)
                 }

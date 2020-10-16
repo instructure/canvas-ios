@@ -34,7 +34,7 @@ class SubmissionCommentFileView: UIControl {
         addTarget(self, action: #selector(didTapFile), for: .touchUpInside)
     }
 
-    func update(file: File, fileIconColor: UIColor? = nil) {
+    func update(file: File) {
         let id = file.id ?? ""
         accessibilityIdentifier = "SubmissionComments.fileView.\(id)"
         accessibilityLabel = String.localizedStringWithFormat(
@@ -45,10 +45,6 @@ class SubmissionCommentFileView: UIControl {
         iconView?.image = file.icon
         nameLabel?.text = file.displayName
         sizeLabel?.text = file.size.humanReadableFileSize
-
-        if let fileIconColor = fileIconColor {
-            iconView?.tintColor = fileIconColor
-        }
     }
 
     func update(submission: Submission) {
