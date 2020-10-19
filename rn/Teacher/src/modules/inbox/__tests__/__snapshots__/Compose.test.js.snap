@@ -12,7 +12,7 @@ exports[`Compose renders 1`] = `
       },
     ]
   }
-  navBarStyle="global"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -191,7 +191,7 @@ exports[`Compose renders after picking a course 1`] = `
       },
     ]
   }
-  navBarStyle="global"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -452,7 +452,7 @@ exports[`Compose renders reply 1`] = `
       },
     ]
   }
-  navBarStyle="global"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
@@ -711,7 +711,7 @@ exports[`Compose renders with passed in recipients 1`] = `
       },
     ]
   }
-  navBarStyle="global"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {

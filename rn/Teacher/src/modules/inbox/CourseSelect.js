@@ -84,7 +84,7 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
       <Screen
         title={i18n('Select a Course')}
         drawUnderNavBar
-        navBarStyle='context'
+        navBarStyle='modal'
       >
         <SectionList
           sections={this.props.sections}

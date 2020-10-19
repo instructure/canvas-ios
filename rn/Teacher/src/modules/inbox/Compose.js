@@ -236,7 +236,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     return (
       <Screen
         drawUnderNavBar
-        navBarStyle='global'
+        navBarStyle='modal'
         title={this.props.navBarTitle || i18n('New Message')}
         showDismissButton={false}
         leftBarButtons={[{

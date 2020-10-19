@@ -197,7 +197,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
     return (
       <Screen
         drawUnderNavBar
-        navBarStyle='global'
+        navBarStyle='modal'
         title={this.props.name}
         rightBarButtons={[{
           title: i18n('Cancel'),

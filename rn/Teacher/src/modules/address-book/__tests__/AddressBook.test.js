@@ -57,7 +57,7 @@ describe('AddressBook', () => {
   it('renders', () => {
     const screen = shallow(<AddressBook {...props} />)
     expect(screen).toMatchSnapshot()
-    expect(screen.props().navBarStyle).toBe('global')
+    expect(screen.props().navBarStyle).toBe('modal')
   })
 
   it('calls getCoursePermissions when rendered', () => {

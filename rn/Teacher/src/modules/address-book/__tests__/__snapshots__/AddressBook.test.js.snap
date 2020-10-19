@@ -3,7 +3,7 @@
 exports[`AddressBook renders 1`] = `
 <Screen
   drawUnderNavBar={true}
-  navBarStyle="global"
+  navBarStyle="modal"
   rightBarButtons={
     Array [
       Object {
