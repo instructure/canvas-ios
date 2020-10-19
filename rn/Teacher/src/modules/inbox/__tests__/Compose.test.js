@@ -58,6 +58,7 @@ describe('Compose', () => {
   it('renders', () => {
     let tree = shallow(<Compose {...defaultProps} />)
     expect(tree).toMatchSnapshot()
+    expect(tree.props().navBarStyle).toBe('global')
   })
 
   it('allows for a navbar title to be passed in as a prop', () => {
