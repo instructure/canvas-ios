@@ -1340,9 +1340,6 @@
 "Settings" = "Ngā Tautuhinga";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Tuaritia ngā waihere honi e whai ake nei me tētahi kaitirotiro ki te whakāe ia rātou ki te hono ki a koe Ka mutu tēnei waehere i roto i te whitu rā ara i muri o te whakamahi kotahi rānei.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Whakāturia he marama i te wā";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Pātō ki kōnei mo te awhina";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Pātō ki te tārua";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Pātō ki te tīpako ngā akoranga e hiahia ana koe ki te kite i runga i te maramataka.";

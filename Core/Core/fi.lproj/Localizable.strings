@@ -1340,9 +1340,6 @@
 "Settings" = "Asetukset";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Jaa seuraava yhdistämiskoodi havaitsijan kanssa mahdollistaaksesi heidän muodostavan yhteyden kanssasi. Tämä koodi vanhenee seitsemässä päivässä tai yhden käytön jälkeen.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Näytä yksi kuukausi kerrallaan";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Avaa ohje napauttamalla tässä.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Kopioi napauttamalla";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Valitse napauttamalla kurssit, jotka haluat nähdä kalenterissa.";

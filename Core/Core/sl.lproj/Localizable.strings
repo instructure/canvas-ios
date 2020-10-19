@@ -1340,9 +1340,6 @@
 "Settings" = "Nastavitve";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Delite naslednjo kodo za povezovanje s skritim bralcem, da se bo lahko povezal z vami. Ta koda poteče v sedmih dneh ali po eni uporabi.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Prikaži po en mesec naenkrat";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Za pomoč tapnite tukaj.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tapnite za kopiranje";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapnite za izbiro predmetov, ki jih želite prikazane na koledarju.";

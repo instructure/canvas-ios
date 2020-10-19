@@ -1340,9 +1340,6 @@
 "Settings" = "Settings";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Share the following pairing code with an auditor to allow them to connect with you. This code will expire in seven days, or after one use.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Show a month at a time";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tap here for help.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tap to copy";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tap to select the subjects you want to see on the calendar.";

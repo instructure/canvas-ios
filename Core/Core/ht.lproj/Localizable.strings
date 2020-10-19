@@ -1340,9 +1340,6 @@
 "Settings" = "Paramèt";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Pataje kòd kòd kouplaj annapre a ak yon obsèvatè pou pèmèt li konekte ak ou. Kòd sa a ap ekspire nan sèt jou oswa aprè yon itilizasyon.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Afiche pa mwa";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tape la pou èd.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tape pou ka kopye";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";

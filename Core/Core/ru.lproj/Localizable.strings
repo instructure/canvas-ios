@@ -1340,9 +1340,6 @@
 "Settings" = "Настройки";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Сообщите следующий код сопряжения наблюдателю, чтобы он мог связаться с вами. Срок действия этого кода истекает через семь дней или после однократного использования.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Показывать месяц за раз";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Прикоснитесь здесь для получения помощи.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Коснитесь для копирования";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Прикоснитесь для выбора курсов, которые вы хотите видеть в календаре.";

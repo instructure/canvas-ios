@@ -1340,9 +1340,6 @@
 "Settings" = "Configurações";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Partilhe o seguinte código de emparelhamento com um observador para que este se ligue a si. Este código expirará em sete dias, ou após uma utilização.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Mostrar um mês de cada vez";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Toque aqui para ajuda.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Toque para copiar";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Toque para seleccionar as disciplinas que pretende ver no calendário.";
