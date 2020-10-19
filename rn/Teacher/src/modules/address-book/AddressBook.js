@@ -194,6 +194,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
       <Screen
         drawUnderNavBar
         title={this.props.name}
+        showDismissButton={true}
       >
         { this._renderComponent() }
       </Screen>
