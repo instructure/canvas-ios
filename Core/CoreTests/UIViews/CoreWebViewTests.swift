@@ -204,4 +204,18 @@ class CoreWebViewTests: CoreTestCase {
         XCTAssertEqual(CoreWebView.htmlString("html"), "html")
         XCTAssertEqual(CoreWebView.htmlString("&'\"<>"), "&amp;&#39;&quot;&lt;&gt;")
     }
+
+    func testCreateWebViewWithConfigurationForNavigationAction() {
+        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let linkDelegate = LinkDelegate()
+        view.linkDelegate = linkDelegate
+        let webView = view.webView(
+            view,
+            createWebViewWith: WKWebViewConfiguration(),
+            for: WKNavigationAction(),
+            windowFeatures: WKWindowFeatures()
+        )
+        XCTAssertNotNil(webView)
+        XCTAssert(router.presented is CoreWebViewController)
+    }
 }
