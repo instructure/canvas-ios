@@ -25,6 +25,7 @@ import {
   shouldRefresh,
   doRefresh,
   isRefreshing } from '../CourseSelect'
+import { shallow } from 'enzyme'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import i18n from 'format-message'
@@ -83,6 +84,11 @@ describe('CourseSelect', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('matches nav bar style of the context', () => {
+      let tree = shallow(<CourseSelect {...defaultProps} />)
+      expect(tree.props().navBarStyle).toBe('context')
   })
 
   it('renders and then selects a course and then dismisses', () => {
