@@ -87,8 +87,8 @@ describe('CourseSelect', () => {
   })
 
   it('matches nav bar style of the context', () => {
-      let tree = shallow(<CourseSelect {...defaultProps} />)
-      expect(tree.props().navBarStyle).toBe('context')
+    let tree = shallow(<CourseSelect {...defaultProps} />)
+    expect(tree.props().navBarStyle).toBe('context')
   })
 
   it('renders and then selects a course and then dismisses', () => {
