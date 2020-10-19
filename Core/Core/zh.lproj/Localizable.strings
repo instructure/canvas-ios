@@ -1340,9 +1340,6 @@
 "Settings" = "设置";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "与旁听者共享以下配对码以允许其与您建立联系。该代码将在七天后或使用一次后失效。";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "一次显示一个月";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "轻击此处获取帮助。";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "点击以复制";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "点击以选择您要在日历上看到的课程。";
