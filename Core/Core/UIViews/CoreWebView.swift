@@ -401,7 +401,6 @@ extension CoreWebView: WKUIDelegate {
     ) -> WKWebView? {
         guard let from = linkDelegate?.routeLinksFrom else { return nil }
         let controller = CoreWebViewController()
-        configuration.userContentController.removeAllUserScripts()
         // Don't change the processPool of this configuration otherwise it will crash
         controller.webView = CoreWebView(externalConfiguration: configuration)
         AppEnvironment.shared.router.show(
