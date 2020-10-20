@@ -51,3 +51,4 @@ export default class ExperimentalFeature {
 ExperimentalFeature.favoriteGroups = new ExperimentalFeature('favorite_groups')
 ExperimentalFeature.nativeSpeedGrader = new ExperimentalFeature('native_speed_grader')
 ExperimentalFeature.nativeDashboard = new ExperimentalFeature('native_dashboard')
+ExperimentalFeature.nativeTeacherSyllabus = new ExperimentalFeature('native_teacher_syllabus')

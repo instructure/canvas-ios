@@ -91,5 +91,11 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/dev-menu/experimental-features") is ExperimentalFeaturesViewController)
         XCTAssert(router.match("/support/problem") is ErrorReportViewController)
         XCTAssert(router.match("/support/feature") is ErrorReportViewController)
+        ExperimentalFeature.nativeTeacherSyllabus.isEnabled = false
+        XCTAssertNil(router.match( "/courses/1/assignments/syllabus"))
+        XCTAssertNil(router.match( "/courses/1/syllabus"))
+        ExperimentalFeature.nativeTeacherSyllabus.isEnabled = true
+        XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusViewController)
+        XCTAssert(router.match( "/courses/1/syllabus") is SyllabusViewController)
     }
 }

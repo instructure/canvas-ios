@@ -46,6 +46,7 @@ import TabsList from '../tabs/TabsList'
 import { logEvent } from '../../common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 import { getFakeStudent } from '../../canvas-api'
+import ExperimentalFeature from '../../common/ExperimentalFeature'
 
 type RoutingParams = {
   +courseID: string,
@@ -155,6 +156,9 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
           this.props.navigator.show(tab.full_url)
         } else if (tab.id === 'student-view') {
           this.launchStudentView()
+        } else if (tab.id === 'syllabus' && ExperimentalFeature.nativeTeacherSyllabus.isEnabled) {
+          const url = `/courses/${this.props.courseID}/syllabus`
+          this.props.navigator.show(url)
         } else if (isTeacher() || tab.id === 'syllabus') {
           this.props.navigator.show(tab.html_url)
         } else if (tab.id === 'home' && this.props.course && this.props.course.default_view === 'wiki') {
@@ -286,6 +290,7 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
 
   const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people', 'pages', 'files', 'modules']
   if (attendanceTabID) availableCourseTabs.push(attendanceTabID)
+  if (ExperimentalFeature.nativeTeacherSyllabus.isEnabled) availableCourseTabs.push('syllabus')
 
   let tabs = courseState.tabs.tabs
     .filter((tab) => {
