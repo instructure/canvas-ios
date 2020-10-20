@@ -4,15 +4,7 @@ exports[`AddressBook renders 1`] = `
 <Screen
   drawUnderNavBar={true}
   navBarStyle="modal"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "address-book.cancel",
-        "title": "Cancel",
-      },
-    ]
-  }
+  showDismissButton={true}
   title="Address Book Course"
 >
   <View

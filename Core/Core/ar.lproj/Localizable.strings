@@ -1340,9 +1340,6 @@
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "مشاركة رمز الإقران التالي مع مراقب للسماح له بالاتصال بك. ستنتهي صلاحية هذا الرمز خلال سبعة أيام، أو بعد استخدام واحد.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "أظهر شهراً كل مرة";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "اضغط هنا للحصول على المساعدة.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "اضغط للنسخ";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";

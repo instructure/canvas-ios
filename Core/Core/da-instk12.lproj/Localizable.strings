@@ -1340,9 +1340,6 @@
 "Settings" = "Indstillinger";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Del følgende parringskode med en observatør, så de kan oprette forbindelse til dig. Denne kode udløber om 7 dage eller efter en brug.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Vis en måned ad gangen";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tryk her for at få hjælp.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tryk for at kopiere";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tryk for at vælge de fag, du vil se i kalenderen.";

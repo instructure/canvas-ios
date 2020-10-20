@@ -135,10 +135,6 @@ export class AddressBook extends Component<AddressBookProps, State> {
     this.props.onSelect([item])
   }
 
-  _onCancel = () => {
-    this.props.navigator.dismiss()
-  }
-
   keyExtractor (item: AddressBookResult) {
     return item.id
   }
@@ -199,11 +195,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
         drawUnderNavBar
         navBarStyle='modal'
         title={this.props.name}
-        rightBarButtons={[{
-          title: i18n('Cancel'),
-          testID: 'address-book.cancel',
-          action: this._onCancel,
-        }]}
+        showDismissButton={true}
       >
         { this._renderComponent() }
       </Screen>

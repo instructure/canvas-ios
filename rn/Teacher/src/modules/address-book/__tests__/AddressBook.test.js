@@ -198,12 +198,12 @@ describe('AddressBook', () => {
     }])
   })
 
-  it('dismisses on cancel', () => {
-    props.navigator.dismiss = jest.fn()
+  it('shows a single dismiss button', () => {
     const screen = shallow(<AddressBook {...props} />)
-    const cancel = screen.find('Screen').props().rightBarButtons[0]
-    cancel.action()
-    expect(props.navigator.dismiss).toHaveBeenCalled()
+    const props = screen.props()
+    expect(props.showDismissButton).toBe(true)
+    expect(props.rightBarButtons).toBeUndefined()
+    expect(props.leftBarButtons).toBeUndefined()
   })
 
   it('calls next on end reached', () => {

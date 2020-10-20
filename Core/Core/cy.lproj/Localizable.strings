@@ -1340,9 +1340,6 @@
 "Settings" = "Gosodiadau";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Rhannwch y cod paru canlynol gydag arsyllwr i adael iddyn nhw gysylltu â chi. Bydd y cod hwn yn dod i ben mewn saith diwrnod, neu ar ôl cael ei ddefnyddio un waith.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Dangos un mis ar y tro";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tapiwch yma i gael help.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tapich i gopïo";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tapiwch i ddewis y cyrsiau rydych chi am eu gweld ar y calendr.";

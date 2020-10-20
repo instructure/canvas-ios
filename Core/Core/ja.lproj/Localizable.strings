@@ -1340,9 +1340,6 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "次のペアリングコードをオブザーバーと共有してあなたとコネクトさせます。このコードは7日間後または1回使用した後に有効期限が切れます。";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "一度に 1 か月表示する";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "ここをタップしてヘルプを表示します。";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "タップしてコピーする";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "タップして予定表に表示したいコースを選択してください。";

@@ -1340,9 +1340,6 @@
 "Settings" = "Instellingen";
 
 /* No comment provided by engineer. */
-"Share the following pairing code with an observer to allow them to connect with you. This code will expire in seven days, or after one use." = "Deel de volgende koppelingscode met een waarnemer zodat deze verbinding met jou kan maken. Deze code vervalt over zeven dagen of na één keer gebruiken.";
-
-/* No comment provided by engineer. */
 "Show a month at a time" = "Een maand tegelijk tonen";
 
 /* No comment provided by engineer. */
@@ -1443,9 +1440,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for help." = "Tik hier voor hulp.";
-
-/* No comment provided by engineer. */
-"Tap to copy" = "Tik om te kopiëren";
 
 /* No comment provided by engineer. */
 "Tap to select the courses you want to see on the calendar." = "Tik om de cursussen te selecteren die je in de kalender wilt zien.";
