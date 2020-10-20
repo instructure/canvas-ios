@@ -193,6 +193,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
     return (
       <Screen
         drawUnderNavBar
+        navBarStyle='modal'
         title={this.props.name}
         showDismissButton={true}
       >

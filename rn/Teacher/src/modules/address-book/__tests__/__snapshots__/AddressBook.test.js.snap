@@ -3,6 +3,7 @@
 exports[`AddressBook renders 1`] = `
 <Screen
   drawUnderNavBar={true}
+  navBarStyle="modal"
   showDismissButton={true}
   title="Address Book Course"
 >
