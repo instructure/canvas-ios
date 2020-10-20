@@ -62,10 +62,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments": nil,
 
-    "/courses/:courseID/assignments/syllabus": { url, _, _ in
-        Router.open(url: url)
-        return nil
-    },
+    "/courses/:courseID/assignments/syllabus": syllabus,
+    "/courses/:courseID/syllabus": syllabus,
 
     "/courses/:courseID/assignments/:assignmentID": nil,
     "/courses/:courseID/assignments/:assignmentID/edit": nil,
@@ -289,6 +287,15 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
 private func fileEditor(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let fileID = params["fileID"] else { return nil }
     return CoreHostingController(FileEditorView(context: Context(path: url.path), fileID: fileID))
+}
+
+private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
+        Router.open(url: url)
+        return nil
+    }
+    guard let courseID = params["courseID"] else { return nil }
+    return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
 }
 
 // MARK: - HelmModules
