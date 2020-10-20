@@ -157,8 +157,8 @@ export class CourseNavigation extends Component<CourseNavigationProps, any> {
         } else if (tab.id === 'student-view') {
           this.launchStudentView()
         } else if (tab.id === 'syllabus' && ExperimentalFeature.nativeTeacherSyllabus.isEnabled) {
-            const url = `/courses/${this.props.courseID}/syllabus`
-            this.props.navigator.show(url)
+          const url = `/courses/${this.props.courseID}/syllabus`
+          this.props.navigator.show(url)
         } else if (isTeacher() || tab.id === 'syllabus') {
           this.props.navigator.show(tab.html_url)
         } else if (tab.id === 'home' && this.props.course && this.props.course.default_view === 'wiki') {
