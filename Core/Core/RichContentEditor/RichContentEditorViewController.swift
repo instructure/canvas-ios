@@ -192,11 +192,11 @@ public class RichContentEditorViewController: UIViewController {
         let alert = UIAlertController(title: NSLocalizedString("Link to Website URL", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
         alert.addTextField { (field: UITextField) in
             field.placeholder = NSLocalizedString("Text", bundle: .core, comment: "")
-            field.text = href
+            field.text = text
         }
         alert.addTextField { (field: UITextField) in
             field.placeholder = NSLocalizedString("URL", bundle: .core, comment: "")
-            field.text = text
+            field.text = href
             field.keyboardType = .URL
         }
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
