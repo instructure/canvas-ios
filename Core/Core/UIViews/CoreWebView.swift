@@ -56,6 +56,17 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    public init() {
+        let configuration = WKWebViewConfiguration()
+        configuration.processPool = CoreWebView.processPool
+        super.init(frame: .zero, configuration: configuration)
+        setup()
+    }
+
+    init(externalConfiguration: WKWebViewConfiguration) {
+        super.init(frame: .zero, configuration: externalConfiguration)
+    }
+
     func setup() {
         customUserAgent = UserAgent.safari.description
         navigationDelegate = self
@@ -390,8 +401,8 @@ extension CoreWebView: WKUIDelegate {
     ) -> WKWebView? {
         guard let from = linkDelegate?.routeLinksFrom else { return nil }
         let controller = CoreWebViewController()
-        configuration.userContentController.removeAllUserScripts()
-        controller.webView = CoreWebView(frame: .zero, configuration: configuration)
+        // Don't change the processPool of this configuration otherwise it will crash
+        controller.webView = CoreWebView(externalConfiguration: configuration)
         AppEnvironment.shared.router.show(
             controller,
             from: from,
