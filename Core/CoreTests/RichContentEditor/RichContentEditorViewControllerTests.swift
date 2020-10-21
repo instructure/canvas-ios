@@ -126,6 +126,17 @@ class RichContentEditorViewControllerTests: CoreTestCase, RichContentEditorDeleg
         waitUntil { getHTML() == "<a href=\"https://splatoon.ink\">Splatoon 2</a>!" }
     }
 
+    func testEditLinkDialog() {
+        controller.updateState([
+            "linkText": "Link Text",
+            "linkHref": "https://instructure.com",
+        ])
+        controller.toolbar.linkButton!.sendActions(for: .primaryActionTriggered)
+        let alert = router.presented as! UIAlertController
+        XCTAssertEqual(alert.textFields![0].text, "Link Text")
+        XCTAssertEqual(alert.textFields![1].text, "https://instructure.com")
+    }
+
     func testImage() {
         controller.toolbar.libraryButton!.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .photoLibrary)
