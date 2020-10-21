@@ -24,16 +24,15 @@ struct SubmissionGrader: View {
     let submission: Submission
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
-    @Environment(\.appEnvironment) var env
-    var bottomInset: CGFloat { env.window?.safeAreaInsets.bottom ?? 0 }
-
     @Binding var isPagingEnabled: Bool
+    let bottomInset: CGFloat
 
     @State var attempt: Int?
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
     @State var tab: GraderTab = .grades
+    @State var showRecorder: MediaCommentType?
 
     var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     var file: File? {
@@ -41,7 +40,7 @@ struct SubmissionGrader: View {
         selected.attachments?.sorted(by: File.idCompare).first
     }
 
-    init(assignment: Assignment, submission: Submission, isPagingEnabled: Binding<Bool>) {
+    init(assignment: Assignment, submission: Submission, isPagingEnabled: Binding<Bool>, bottomInset: CGFloat) {
         self.assignment = assignment
         self.submission = submission
         self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
@@ -53,11 +52,12 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self._isPagingEnabled = isPagingEnabled
+        self.bottomInset = bottomInset
     }
 
     var body: some View {
         GeometryReader { geometry in
-            let minHeight = 56 + bottomInset
+            let minHeight = 55 + bottomInset
             let maxHeight = geometry.size.height - 64
             if geometry.size.width > 834 {
                 VStack(spacing: 0) {
@@ -74,13 +74,13 @@ struct SubmissionGrader: View {
                                 }
                                 attemptPicker
                             }
+                            Spacer().frame(height: bottomInset)
                         }
                         Divider()
                         tabs
                             .padding(.top, 16)
                             .frame(width: 375)
                     }
-                    Spacer().frame(height: bottomInset)
                 }
             } else {
                 ZStack(alignment: .bottom) {
@@ -97,10 +97,7 @@ struct SubmissionGrader: View {
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
                     }
-                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
-                        tabs.clipped()
-                        Spacer().frame(height: bottomInset)
-                    }
+                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) { tabs }
                 }
             }
         }
@@ -163,11 +160,7 @@ struct SubmissionGrader: View {
         VStack(spacing: 0) {
             Picker(selection: Binding(get: { tab }, set: {
                 tab = $0
-                if drawerState == .min {
-                    withTransaction(DrawerState.transaction) {
-                        drawerState = .mid
-                    }
-                }
+                if drawerState == .min { snapDrawerTo(.mid) }
             }), label: Text(verbatim: "")) {
                 Text("Grades").tag(GraderTab.grades)
                 Text("Comments").tag(GraderTab.comments)
@@ -180,23 +173,51 @@ struct SubmissionGrader: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
             Divider()
+            let drawerAttempt = Binding(get: { attempt }, set: {
+                attempt = $0
+                fileID = nil
+                snapDrawerTo(.min)
+            })
+            let drawerFileID = Binding(get: { fileID }, set: {
+                fileID = $0
+                snapDrawerTo(.min)
+            })
             Pages(items: GraderTab.allCases, currentIndex: Binding(get: { tab.rawValue }, set: {
                 tab = GraderTab.allCases[$0]
             })) { tab in
-                switch tab {
-                case .grades:
-                    GradesTab(assignment: assignment, submission: submission)
-                case .comments:
-                    CommentsTab(assignment: assignment, submission: submission, attempt: $attempt, fileID: $fileID)
-                case .files:
-                    FilesTab(submission: selected, fileID: Binding(get: { fileID }, set: {
-                        fileID = $0
-                        withTransaction(DrawerState.transaction) {
-                            drawerState = .min
+                VStack(spacing: 0) {
+                    switch tab {
+                    case .grades:
+                        SubmissionGrades(assignment: assignment, submission: submission)
+                            .clipped()
+                        Spacer().frame(height: bottomInset)
+                    case .comments:
+                        SubmissionCommentList(
+                            assignment: assignment,
+                            submission: submission,
+                            attempts: attempts,
+                            attempt: drawerAttempt,
+                            fileID: drawerFileID,
+                            showRecorder: $showRecorder
+                        )
+                            .clipped()
+                        if showRecorder != .video || drawerState == .min {
+                            Spacer().frame(height: bottomInset)
                         }
-                    }))
+                    case .files:
+                        SubmissionFileList(submission: selected, fileID: drawerFileID)
+                            .clipped()
+                        Spacer().frame(height: bottomInset)
+                    }
                 }
+                    .background(tab == .comments ? Color.backgroundLight : Color.backgroundLightest)
             }
+        }
+    }
+
+    func snapDrawerTo(_ state: DrawerState) {
+        withTransaction(DrawerState.transaction) {
+            drawerState = state
         }
     }
 }

@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct GradesTab: View {
+struct SubmissionGrades: View {
     let assignment: Assignment
     let submission: Submission
 

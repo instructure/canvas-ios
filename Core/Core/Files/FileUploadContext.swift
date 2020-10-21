@@ -20,7 +20,7 @@ import Foundation
 
 public enum FileUploadContext: Codable {
     enum CodingKeys: String, CodingKey {
-        case type, context, courseID, assignmentID, comment
+        case type, context, courseID, assignmentID, userID, comment
     }
 
     enum Key: String, Codable {
@@ -29,7 +29,7 @@ public enum FileUploadContext: Codable {
 
     case context(Context)
     case submission(courseID: String, assignmentID: String, comment: String?)
-    case submissionComment(courseID: String, assignmentID: String)
+    case submissionComment(courseID: String, assignmentID: String, userID: String)
 
     public static var myFiles: FileUploadContext {
         return .context(Context.currentUser)
@@ -50,7 +50,8 @@ public enum FileUploadContext: Codable {
         case .submissionComment:
             let courseID = try decoder.decode(String.self, forKey: .courseID)
             let assignmentID = try decoder.decode(String.self, forKey: .assignmentID)
-            self = .submissionComment(courseID: courseID, assignmentID: assignmentID)
+            let userID = try decoder.decode(String.self, forKey: .userID)
+            self = .submissionComment(courseID: courseID, assignmentID: assignmentID, userID: userID)
         }
     }
 
@@ -65,10 +66,11 @@ public enum FileUploadContext: Codable {
             try container.encode(courseID, forKey: .courseID)
             try container.encode(assignmentID, forKey: .assignmentID)
             try container.encodeIfPresent(comment, forKey: .comment)
-        case let .submissionComment(courseID, assignmentID):
+        case let .submissionComment(courseID, assignmentID, userID):
             try container.encode(Key.submissionComment, forKey: .type)
             try container.encode(courseID, forKey: .courseID)
             try container.encode(assignmentID, forKey: .assignmentID)
+            try container.encode(userID, forKey: .userID)
         }
     }
 }

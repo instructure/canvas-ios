@@ -22,15 +22,13 @@ import Foundation
 public class GetSubmissionComments: APIUseCase {
     let assignmentID: String
     let context: Context
-    let submissionID: String
     let userID: String
 
     public typealias Model = SubmissionComment
 
-    public init(context: Context, assignmentID: String, userID: String, submissionID: String) {
+    public init(context: Context, assignmentID: String, userID: String) {
         self.assignmentID = assignmentID
         self.context = context
-        self.submissionID = submissionID
         self.userID = userID
     }
 

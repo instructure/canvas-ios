@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadMediaCommentTests: CoreTestCase {
-    lazy var upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
+    lazy var upload = UploadMediaComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, type: .audio, url: URL(string: "data:text/plain,abcde")!)
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?

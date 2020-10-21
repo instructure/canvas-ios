@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>> {
-    public var navigationBarStyle = UINavigationBar.Style.global
+    public var navigationBarStyle = UINavigationBar.Style.modal
     var testTree: TestTree?
 
     public init(_ rootView: Content) {
@@ -79,7 +79,7 @@ extension EnvironmentValues {
 }
 
 extension UINavigationBar.Style: PreferenceKey {
-    public static var defaultValue = Self.global
+    public static var defaultValue = Self.modal
     public static func reduce(value: inout Self, nextValue: () -> Self) {
         value = nextValue()
     }

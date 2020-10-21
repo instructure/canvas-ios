@@ -25,7 +25,6 @@ public class CreateTextComment {
     let courseID: String
     let isGroup: Bool
     var placeholderID: String?
-    let submissionID: String
     let text: String
     let userID: String
     var task: APITask?
@@ -36,14 +35,12 @@ public class CreateTextComment {
         courseID: String,
         assignmentID: String,
         userID: String,
-        submissionID: String,
         isGroup: Bool,
         text: String
     ) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
-        self.submissionID = submissionID
         self.text = text
         self.userID = userID
     }

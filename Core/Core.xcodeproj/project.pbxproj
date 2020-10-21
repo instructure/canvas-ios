@@ -128,6 +128,10 @@
 		7D3A0D3225016F12000C6F42 /* FileListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */; };
 		7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */; };
 		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
+		7D4B2740253CEE6800A98DE3 /* AudioVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B273F253CEE6800A98DE3 /* AudioVideoPlayer.swift */; };
+		7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2744253E3A5700A98DE3 /* TextEditor.swift */; };
+		7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */; };
+		7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
 		7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */; };
 		7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C6F36243BE229003C1728 /* GetEnrollments.swift */; };
@@ -1230,6 +1234,10 @@
 		7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
+		7D4B273F253CEE6800A98DE3 /* AudioVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVideoPlayer.swift; sourceTree = "<group>"; };
+		7D4B2744253E3A5700A98DE3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
+		7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
 		7D4C3A762236FFD2007D6792 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIToolsTests.swift; sourceTree = "<group>"; };
 		7D4C6F36243BE229003C1728 /* GetEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnrollments.swift; sourceTree = "<group>"; };
@@ -3301,11 +3309,14 @@
 				9F6878AE223951EE00E559CE /* APIMediaComment.swift */,
 				7D86286A224D493C003A37DC /* AudioPlayerViewController.storyboard */,
 				7D862868224D4907003A37DC /* AudioPlayerViewController.swift */,
+				7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */,
 				7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */,
 				7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */,
+				7D4B273F253CEE6800A98DE3 /* AudioVideoPlayer.swift */,
 				9F6878B0223952FB00E559CE /* MediaComment.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
+				7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */,
 			);
 			path = AudioVideo;
 			sourceTree = "<group>";
@@ -3717,6 +3728,7 @@
 				7D6C47EA250C1C5B0088ADDE /* Pages.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
+				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4486,6 +4498,7 @@
 			files = (
 				7DA260F623F72397005D2121 /* FilePickerViewController.swift in Sources */,
 				3BA649D7242530470047D8DC /* NotificationView.swift in Sources */,
+				7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */,
 				7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */,
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
@@ -4544,6 +4557,7 @@
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
+				7D4B2740253CEE6800A98DE3 /* AudioVideoPlayer.swift in Sources */,
 				7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */,
 				7DA25FEE23F721DE005D2121 /* GetConversations.swift in Sources */,
 				7DA260D223F72359005D2121 /* CoreWebViewController.swift in Sources */,
@@ -4825,6 +4839,7 @@
 				7DA2605523F722D9005D2121 /* ModuleItemCompletionRequirement.swift in Sources */,
 				977EAC432412A2DC005E1290 /* CreatePlannerNote.swift in Sources */,
 				7DA2603523F722D9005D2121 /* LockStatusViewable.swift in Sources */,
+				7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */,
 				E8A8FA8E24D328C3000B27DF /* SearchBarView.swift in Sources */,
 				7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
@@ -4850,6 +4865,7 @@
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
+				7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */,
 				7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */,
 				7DA2603223F722C9005D2121 /* LTIViewController.swift in Sources */,
 				7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */,

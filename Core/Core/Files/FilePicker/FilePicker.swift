@@ -27,8 +27,9 @@ public protocol FilePickerDelegate: ErrorViewController {
 public class FilePicker: NSObject {
     let env = AppEnvironment.shared
     public weak var delegate: FilePickerDelegate?
+    public var action: ((String) -> Void)?
 
-    public init(delegate: FilePickerDelegate?) {
+    public init(delegate: FilePickerDelegate? = nil) {
         self.delegate = delegate
     }
 
@@ -135,5 +136,35 @@ extension FilePicker: UIImagePickerControllerDelegate, UINavigationControllerDel
 extension FilePicker: UIDocumentPickerDelegate {
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls { delegate?.filePicker(didPick: url) }
+    }
+}
+
+extension FilePicker: FilePickerControllerDelegate {
+    public func pickAttachments(from: UIViewController, action: @escaping (String) -> Void) {
+        self.action = action
+        let uiViewController = FilePickerViewController.create()
+        uiViewController.delegate = self
+        uiViewController.title = NSLocalizedString("Attachments")
+        uiViewController.submitButtonTitle = NSLocalizedString("Send")
+        uiViewController.loadViewIfNeeded()
+        uiViewController.emptyView.bodyText = NSLocalizedString("Attach files by tapping an option below.")
+        env.router.show(uiViewController, from: from, options: .modal(embedInNav: true))
+    }
+
+    public func retry(_ controller: FilePickerViewController) {
+    }
+
+    public func canSubmit(_ controller: FilePickerViewController) -> Bool {
+        return controller.files.isEmpty == false
+    }
+
+    public func cancel(_ controller: FilePickerViewController) {
+        env.router.dismiss(controller)
+    }
+
+    public func submit(_ controller: FilePickerViewController) {
+        env.router.dismiss(controller) {
+            self.action?(controller.batchID)
+        }
     }
 }

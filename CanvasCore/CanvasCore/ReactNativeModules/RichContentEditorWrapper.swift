@@ -70,15 +70,15 @@ public class RichContentEditorWrapper: UIView {
                 return "\(context.pathComponent)/files"
             case let .submission(courseID, assignmentID, _):
                 return "courses/\(courseID)/assignments/\(assignmentID)/submissions/self/files"
-            case let .submissionComment(courseID, assignmentID):
-                return "courses/\(courseID)/assignments/\(assignmentID)/submissions/self/comments/files"
+            case let .submissionComment(courseID, assignmentID, userID):
+                return "courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)/comments/files"
             }
         }
         set {
             guard let context = Context(path: newValue) else { return }
             let components = newValue.split(separator: "/")
             if components.count == 8, components[2] == "assignments", components[4] == "submissions", components[6] == "comments" {
-                controller.uploadContext = .submissionComment(courseID: context.id, assignmentID: String(components[3]))
+                controller.uploadContext = .submissionComment(courseID: context.id, assignmentID: String(components[3]), userID: String(components[5]))
             } else if components.count == 7, components[2] == "assignments", components[4] == "submissions" {
                 controller.uploadContext = .submission(courseID: context.id, assignmentID: String(components[3]), comment: nil)
             } else {

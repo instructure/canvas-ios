@@ -28,12 +28,11 @@ public class UploadFileComment {
     let batchID: String
     var files: UploadManager.Store?
     var placeholderID: String?
-    let submissionID: String
     let userID: String
     var task: APITask?
     lazy var context = env.database.newBackgroundContext()
     var uploadContext: FileUploadContext {
-        return .submissionComment(courseID: courseID, assignmentID: assignmentID)
+        return .submissionComment(courseID: courseID, assignmentID: assignmentID, userID: userID)
     }
 
     private static var placeholderSuffix = 1
@@ -42,14 +41,12 @@ public class UploadFileComment {
         courseID: String,
         assignmentID: String,
         userID: String,
-        submissionID: String,
         isGroup: Bool,
         batchID: String
     ) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
-        self.submissionID = submissionID
         self.userID = userID
         self.batchID = batchID
     }

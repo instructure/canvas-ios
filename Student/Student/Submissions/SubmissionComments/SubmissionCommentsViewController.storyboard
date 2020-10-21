@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-cj-XMP" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="320" y="24" width="40" height="40"/>
+                                                    <rect key="frame" x="319" y="24" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="hBJ-8F-HOS"/>
                                                         <constraint firstAttribute="height" constant="40" id="uJ3-pH-Wnd"/>
@@ -42,7 +42,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="219.5" y="28" width="88.5" height="17"/>
+                                                    <rect key="frame" x="206.5" y="28" width="100.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="183.5" y="45" width="124.5" height="14.5"/>
+                                                    <rect key="frame" x="143.5" y="48.5" width="163.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -61,8 +61,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-ob-ndx" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="320" y="59" width="40" height="40"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFW-ob-ndx" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="319" y="59" width="40" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="electric"/>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="chatBubble"/>
@@ -98,7 +98,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="242" y="-5" width="118" height="34"/>
+                                                    <rect key="frame" x="224" y="-5" width="135" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -108,7 +108,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="254" y="12" width="94" height="9"/>
+                                                    <rect key="frame" x="236" y="12" width="111" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -118,7 +118,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-pd-uUK">
-                                                    <rect key="frame" x="15" y="37" width="345" height="0.0"/>
+                                                    <rect key="frame" x="16" y="37" width="343" height="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -149,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-7P-aDs" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="24" width="40" height="40"/>
+                                                    <rect key="frame" x="16" y="24" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Ygp-kU-9VW"/>
                                                         <constraint firstAttribute="width" constant="40" id="nMx-7b-cVU"/>
@@ -159,7 +159,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thz-j3-Y3K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="67" y="28" width="88.5" height="17"/>
+                                                    <rect key="frame" x="68" y="28" width="100.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2V-PQ-jCT" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="67" y="45" width="124.5" height="14.5"/>
+                                                    <rect key="frame" x="68" y="48.5" width="163.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -178,8 +178,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="medium12"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="59" width="40" height="40"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2V9-9A-X5r" customClass="IconView" customModule="Student" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="59" width="40" height="40"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="backgroundLight"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="mirrorX" value="YES"/>
@@ -216,7 +216,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="-5" width="118" height="34"/>
+                                                    <rect key="frame" x="16" y="-5" width="135" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -227,7 +227,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="27" y="12" width="94" height="9"/>
+                                                    <rect key="frame" x="28" y="12" width="111" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -237,7 +237,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ahz-cJ-JGc">
-                                                    <rect key="frame" x="15" y="37" width="345" height="0.0"/>
+                                                    <rect key="frame" x="16" y="37" width="343" height="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -268,7 +268,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-G9-8Pg">
-                                                    <rect key="frame" x="15" y="13" width="345" height="33"/>
+                                                    <rect key="frame" x="16" y="13" width="343" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="8MA-9C-Duo"/>
                                                     </constraints>
@@ -293,7 +293,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXe-uL-Kl7">
-                                                    <rect key="frame" x="15" y="13" width="345" height="166"/>
+                                                    <rect key="frame" x="16" y="13" width="343" height="166"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="160" id="b6R-hj-1cv"/>
@@ -324,7 +324,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-nm-aak">
-                                                    <rect key="frame" x="15" y="11" width="345" height="51"/>
+                                                    <rect key="frame" x="16" y="11" width="343" height="51"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -355,7 +355,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have questions? Use this area to message your instructor about this assignment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxN-b5-Dqx" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="13.5" y="140" width="316" height="33.5"/>
+                                        <rect key="frame" x="8.5" y="140" width="326" height="41"/>
                                         <viewLayoutGuide key="safeArea" id="pIe-X1-3Uk"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -388,7 +388,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tintColorName" value="borderMedium"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djV-o5-Xt6" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djV-o5-Xt6" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="4.5" width="40" height="40"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.addMediaButton"/>
                                         <constraints>
@@ -408,7 +408,7 @@
                                         <rect key="frame" x="40" y="8" width="319" height="33"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRu-wb-h9t" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="9" y="8" width="63" height="17"/>
+                                                <rect key="frame" x="9" y="8" width="75" height="20.5"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                     <bool key="isElement" value="NO"/>
@@ -431,7 +431,7 @@
                                                     <outlet property="delegate" destination="9pN-2b-voW" id="UnK-Xf-GAt"/>
                                                 </connections>
                                             </textView>
-                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGc-Rr-ieQ" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGc-Rr-ieQ" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                                 <rect key="frame" x="291" y="5" width="24" height="24"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.addCommentButton"/>
                                                 <constraints>
@@ -501,6 +501,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="WpC-Mf-1Fh"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SAr-z8-Qsj" firstAttribute="trailing" secondItem="WpC-Mf-1Fh" secondAttribute="trailing" id="8Vq-lM-gd0"/>
@@ -514,7 +515,6 @@
                             <constraint firstItem="SAr-z8-Qsj" firstAttribute="top" secondItem="z6Z-9B-ukp" secondAttribute="bottom" id="oIV-fd-pdd"/>
                             <constraint firstItem="z6Z-9B-ukp" firstAttribute="leading" secondItem="WpC-Mf-1Fh" secondAttribute="leading" id="vSM-Gr-hxB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="WpC-Mf-1Fh"/>
                     </view>
                     <connections>
                         <outlet property="addCommentBorderView" destination="DjR-oA-G8w" id="rPk-Pa-8P4"/>
@@ -537,4 +537,36 @@
             <point key="canvasLocation" x="-254" y="33"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="5Um-tb-BF2">
+            <size key="intrinsicContentSize" width="100.5" height="20.5"/>
+        </designable>
+        <designable name="S2V-PQ-jCT">
+            <size key="intrinsicContentSize" width="163.5" height="20.5"/>
+        </designable>
+        <designable name="Thz-j3-Y3K">
+            <size key="intrinsicContentSize" width="100.5" height="20.5"/>
+        </designable>
+        <designable name="WRu-wb-h9t">
+            <size key="intrinsicContentSize" width="75" height="20.5"/>
+        </designable>
+        <designable name="brg-4l-HGS">
+            <size key="intrinsicContentSize" width="163.5" height="20.5"/>
+        </designable>
+        <designable name="djV-o5-Xt6">
+            <size key="intrinsicContentSize" width="22" height="40"/>
+        </designable>
+        <designable name="eMn-Vx-0Ll">
+            <size key="intrinsicContentSize" width="111" height="20.5"/>
+        </designable>
+        <designable name="jQO-Zk-01K">
+            <size key="intrinsicContentSize" width="111" height="20.5"/>
+        </designable>
+        <designable name="uGc-Rr-ieQ">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+        <designable name="vxN-b5-Dqx">
+            <size key="intrinsicContentSize" width="614" height="20.5"/>
+        </designable>
+    </designables>
 </document>

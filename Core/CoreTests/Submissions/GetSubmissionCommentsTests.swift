@@ -27,7 +27,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
             user_id: "3"
         )
 
-        let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
+        let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3")
         getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let submissions: [Submission] = databaseClient.fetch()
@@ -53,7 +53,7 @@ class GetSubmissionCommentsTests: CoreTestCase {
             submission_type: .online_text_entry,
             user_id: "3"
         )
-        let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3", submissionID: apiSubmission.id.value)
+        let getSubmission = GetSubmissionComments(context: context, assignmentID: "2", userID: "3")
         getSubmission.write(response: apiSubmission, urlResponse: nil, to: databaseClient)
 
         let comments: [SubmissionComment] = databaseClient.fetch()
@@ -62,17 +62,17 @@ class GetSubmissionCommentsTests: CoreTestCase {
     }
 
     func testCacheKey() {
-        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3")
         XCTAssertEqual(getSubmission.cacheKey, "get-1-2-3-submission")
     }
 
     func testRequest() {
-        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3")
         XCTAssertEqual(getSubmission.request.path, "courses/1/assignments/2/submissions/3")
     }
 
     func testScope() {
-        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3", submissionID: "4")
+        let getSubmission = GetSubmissionComments(context: .course("1"), assignmentID: "2", userID: "3")
         let scope = Scope(
             predicate: NSPredicate(
                 format: "%K == %@ AND %K == %@",
