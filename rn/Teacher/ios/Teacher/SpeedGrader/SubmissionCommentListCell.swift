@@ -216,4 +216,3 @@ struct CommentBackground: Shape {
         path.addRelativeArc(center: CGPoint(x: 20, y: -24), radius: 24, startAngle: .radians(0.5 * .pi), delta: .degrees(56))
     } }
 }
-
