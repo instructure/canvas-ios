@@ -162,6 +162,14 @@ describe('AnnouncementEdit', () => {
     expect(render(props).find('[testID="announcements.edit.delayed-post-at-row"]').exists()).toEqual(true)
   })
 
+  it('offers date and time selection for delayed post', () => {
+    props.delayed_post_at = (new Date()).toISOString()
+    const component = render(props)
+    tapDelayedPostAtRow(component)
+    const datePicker = component.find('[testID="announcements.edit.delayed-post-at-date-picker"]')
+    expect(datePicker.prop('mode')).toEqual('datetime')
+  })
+
   it('toggles delayed post at row options', () => {
     props.delayed_post_at = null
     const component = render(props)

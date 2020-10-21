@@ -239,6 +239,7 @@ export class AnnouncementEdit extends Component<Props, any> {
                         value={extractDateFromString(this.state.delayed_post_at) || this.props.defaultDate || new Date()}
                         onChange={(event, date) => this._valuesChanged({ delayed_post_at: date.toISOString() }, true)}
                         testID='announcements.edit.delayed-post-at-date-picker'
+                        mode='datetime'
                       />
                     }
                   </View>
