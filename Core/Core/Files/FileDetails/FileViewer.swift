@@ -17,15 +17,22 @@
 //
 
 import SwiftUI
-import Core
 
-struct CommentsTab: View {
-    let assignment: Assignment
-    let submission: Submission
-    @Binding var attempt: Int?
-    @Binding var fileID: String?
+public struct FileViewer: UIViewControllerRepresentable {
+    public let fileID: String
 
-    var body: some View {
-        ScrollView { Text("Comments") }
+    public init(fileID: String) {
+        self.fileID = fileID
+    }
+
+    public func makeUIViewController(context: Self.Context) -> UIViewController { UIViewController() }
+
+    public func updateUIViewController(_ uiViewController: UIViewController, context: Self.Context) {
+        let prev = uiViewController.children.first as? FileDetailsViewController
+        if prev?.fileID != fileID {
+            prev?.unembed()
+            let next = FileDetailsViewController.create(context: nil, fileID: fileID)
+            uiViewController.embed(next, in: uiViewController.view)
+        }
     }
 }

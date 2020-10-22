@@ -40,6 +40,7 @@ const jsdom = require('jsdom').JSDOM
 
 const config = require("./config.json")
 const ignoreExps = config.ignorePatterns.map(pattern => new RegExp(pattern))
+const ignoreContent = config.ignoreContent
 
 program
   .version(require('../../package.json').version)
@@ -137,7 +138,8 @@ function reportCoverage () {
   const folders = {}
   for (const target of report.targets) {
     for (const file of target.files) {
-      if (!ignoreExps.some(exp => exp.test(file.path))) {
+      const content = readFileSync(file.path, 'utf8')
+      if (!ignoreExps.some(exp => exp.test(file.path)) && !ignoreContent.some(needle => content.includes(needle))) {
         coveredLines += file.coveredLines
         executableLines += file.executableLines
         summary[relative(process.cwd(), file.path)] = {
@@ -145,7 +147,7 @@ function reportCoverage () {
           coveredLines: file.coveredLines,
         }
       }
-      writeFileHTML(file, cssPath)
+      writeFileHTML(file, content, cssPath)
       updateFolders(folders, file)
     }
   }
@@ -164,7 +166,7 @@ function run (cmd, opts) {
   return execSync(cmd, opts || { encoding: 'utf8' })
 }
 
-function writeFileHTML (file, cssPath) {
+function writeFileHTML (file, content, cssPath) {
   const relPath = relative(process.cwd(), file.path)
   const ext = extname(file.path).replace('.', '')
   const htmlPath = resolve(`${coverageFolder}/${relPath}.html`)
@@ -179,7 +181,7 @@ function writeFileHTML (file, cssPath) {
     ))
   }
 
-  const source = hljs.highlight(ext, readFileSync(file.path, 'utf8')).value
+  const source = hljs.highlight(ext, content).value
   writeFileSync(htmlPath, `<!doctype html>
     <link rel="stylesheet" href="${relative(dirname(htmlPath), cssPath)}" />
     <h1>${header(relPath)}</h1>

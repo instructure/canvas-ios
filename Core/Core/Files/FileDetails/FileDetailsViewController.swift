@@ -45,7 +45,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var context: Context?
     var downloadTask: APITask?
     let env = AppEnvironment.shared
-    var fileID: String = ""
+    public var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
     var localURL: URL?
@@ -263,6 +263,13 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
 
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let localURL = localURL else { return }
+        if let status = (downloadTask.response as? HTTPURLResponse)?.statusCode, status >= 400 {
+            return showError(APIError.from(
+                data: try? Data(contentsOf: location),
+                response: downloadTask.response,
+                error: NSError.internalError()
+            ))
+        }
         do {
             try FileManager.default.createDirectory(at: localURL.deletingLastPathComponent(), withIntermediateDirectories: true)
             if FileManager.default.fileExists(atPath: localURL.path) {

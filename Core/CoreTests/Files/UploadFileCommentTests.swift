@@ -21,7 +21,7 @@ import XCTest
 import TestsFoundation
 
 class UploadFileCommentTests: CoreTestCase {
-    lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, batchID: "5")
+    lazy var upload = UploadFileComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, batchID: "5")
     var comment: SubmissionComment?
     var error: Error?
     var called: XCTestExpectation?

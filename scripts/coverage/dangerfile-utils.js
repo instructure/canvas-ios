@@ -27,10 +27,10 @@ function checkCoverage () {
   ))
 
   if (files.length > 0) {
-    fail(`One or more files are below the minimum test coverage ${percent(fileMinCoverage)}`)
+    warn(`One or more files are below the minimum test coverage ${percent(fileMinCoverage)}`)
   }
   if (pr.total.coveredLines / pr.total.executableLines < totalMinCoverage) {
-    fail(`The total test coverage is below the minimum ${percent(totalMinCoverage)}`)
+    warn(`The total test coverage is below the minimum ${percent(totalMinCoverage)}`)
   }
   markdown(`
     Coverage | New % | Master % | Delta

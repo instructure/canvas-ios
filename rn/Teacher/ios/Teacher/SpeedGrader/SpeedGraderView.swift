@@ -44,15 +44,22 @@ struct SpeedGraderView: View {
     var body: some View {
         ZStack {
             if currentIndex >= 0 && currentIndex < submissions.count && assignment.first != nil {
-                Pages(items: submissions.all, currentIndex: $currentIndex) { submission in
-                    SubmissionGrader(assignment: self.assignment.first!, submission: submission, isPagingEnabled: $isPagingEnabled)
-                        .testID("SpeedGrader.submission.\(submission.id)")
+                GeometryReader { geometry in
+                    Pages(items: submissions.all, currentIndex: $currentIndex) { submission in
+                        SubmissionGrader(
+                            assignment: self.assignment.first!,
+                            submission: submission,
+                            isPagingEnabled: $isPagingEnabled,
+                            bottomInset: geometry.safeAreaInsets.bottom
+                        )
+                            .testID("SpeedGrader.submission.\(submission.id)")
+                    }
+                        .spaceBetween(10)
+                        .scaleEach { max(0.9, (1 - abs($0 * 0.5))) }
+                        .pan(isEnabled: isPagingEnabled)
+                        .background(Color.backgroundMedium)
+                        .edgesIgnoringSafeArea(.bottom)
                 }
-                    .spaceBetween(10)
-                    .scaleEach { max(0.9, (1 - abs($0 * 0.5))) }
-                    .pan(isEnabled: isPagingEnabled)
-                    .background(Color.backgroundMedium)
-                    .edgesIgnoringSafeArea(.bottom)
             } else if !isLoading {
                 VStack {
                     HStack {
@@ -73,6 +80,7 @@ struct SpeedGraderView: View {
                     .identifier("SpeedGrader.spinner")
             }
         }
+            .avoidKeyboardArea()
             .onAppear(perform: load)
     }
 
@@ -101,7 +109,6 @@ struct SpeedGraderView: View {
     }
 
     func dismiss() {
-        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 }

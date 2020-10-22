@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Core
 
 enum DrawerState {
     case min, mid, max

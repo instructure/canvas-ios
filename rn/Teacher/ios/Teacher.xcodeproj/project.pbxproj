@@ -49,6 +49,7 @@
 		7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0BF252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift */; };
 		7D3DC0C7252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0C6252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift */; };
 		7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3DC0CA252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift */; };
+		7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */; };
 		7D630B6024A5003E0039A45D /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B5F24A5003E0039A45D /* FileProviderExtension.swift */; };
 		7D630B6224A5003E0039A45D /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6124A5003E0039A45D /* FileProviderItem.swift */; };
 		7D630B6424A5003E0039A45D /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D630B6324A5003E0039A45D /* FileProviderEnumerator.swift */; };
@@ -69,13 +70,14 @@
 		7D6C47EE250C2BEB0088ADDE /* SpeedGraderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C47ED250C2BEB0088ADDE /* SpeedGraderView.swift */; };
 		7D7126B12534B980000DEDE4 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126B02534B980000DEDE4 /* Drawer.swift */; };
 		7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */; };
-		7D7126C025374446000DEDE4 /* GradesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126BF25374446000DEDE4 /* GradesTab.swift */; };
-		7D7126C425374457000DEDE4 /* CommentsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C325374457000DEDE4 /* CommentsTab.swift */; };
-		7D7126C725374469000DEDE4 /* FilesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C625374469000DEDE4 /* FilesTab.swift */; };
+		7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */; };
+		7D7126C425374457000DEDE4 /* SubmissionCommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */; };
+		7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7126C625374469000DEDE4 /* SubmissionFileList.swift */; };
 		7D7D6D5225102052002B1485 /* SubmissionGrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D6D5125102052002B1485 /* SubmissionGrader.swift */; };
 		7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC7047A24ABFD4800CD1C46 /* GetRootFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */; };
+		7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */; };
 		7DE062A625126E4D00DB49D4 /* SpeedGraderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE062A525126E4D00DB49D4 /* SpeedGraderViewTests.swift */; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
@@ -430,6 +432,7 @@
 		7D3DC0BF252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilterPickerViewController.swift; sourceTree = "<group>"; };
 		7D3DC0C6252432DD00B0EBC1 /* SubmissionFilterPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilterPickerViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3DC0CA252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionListViewControllerTests.swift; sourceTree = "<group>"; };
+		7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListCell.swift; sourceTree = "<group>"; };
 		7D5D1DFC22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7D5D1DFD22BD7DE100371C2F /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		7D630B5D24A5003E0039A45D /* TeacherFiles.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TeacherFiles.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,12 +458,13 @@
 		7D6C47ED250C2BEB0088ADDE /* SpeedGraderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderView.swift; sourceTree = "<group>"; };
 		7D7126B02534B980000DEDE4 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewer.swift; sourceTree = "<group>"; };
-		7D7126BF25374446000DEDE4 /* GradesTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTab.swift; sourceTree = "<group>"; };
-		7D7126C325374457000DEDE4 /* CommentsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTab.swift; sourceTree = "<group>"; };
-		7D7126C625374469000DEDE4 /* FilesTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTab.swift; sourceTree = "<group>"; };
+		7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGrades.swift; sourceTree = "<group>"; };
+		7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentList.swift; sourceTree = "<group>"; };
+		7D7126C625374469000DEDE4 /* SubmissionFileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFileList.swift; sourceTree = "<group>"; };
 		7D7D6D5125102052002B1485 /* SubmissionGrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGrader.swift; sourceTree = "<group>"; };
 		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRootFolders.swift; sourceTree = "<group>"; };
+		7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionViewer.swift; sourceTree = "<group>"; };
 		7DE062A525126E4D00DB49D4 /* SpeedGraderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -641,15 +645,17 @@
 		7D0A28E0251A8104004FB3B6 /* SpeedGrader */ = {
 			isa = PBXGroup;
 			children = (
-				7D7126C325374457000DEDE4 /* CommentsTab.swift */,
 				7D7126B02534B980000DEDE4 /* Drawer.swift */,
-				7D7126C625374469000DEDE4 /* FilesTab.swift */,
-				7D7126BF25374446000DEDE4 /* GradesTab.swift */,
+				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 				7D6C47ED250C2BEB0088ADDE /* SpeedGraderView.swift */,
+				7D7126C325374457000DEDE4 /* SubmissionCommentList.swift */,
+				7D4B2747253F2D1600A98DE3 /* SubmissionCommentListCell.swift */,
+				7D7126C625374469000DEDE4 /* SubmissionFileList.swift */,
 				7D7D6D5125102052002B1485 /* SubmissionGrader.swift */,
+				7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */,
 				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
-				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
+				7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1482,16 +1488,18 @@
 				7D0D7AE2251E6E6C00550AEC /* SubmissionListViewController.swift in Sources */,
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
 				7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */,
-				7D7126C425374457000DEDE4 /* CommentsTab.swift in Sources */,
+				7D7126C425374457000DEDE4 /* SubmissionCommentList.swift in Sources */,
+				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* Drawer.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
 				7D0A28E2251A8284004FB3B6 /* SubmissionHeader.swift in Sources */,
 				3B55FECB22FCB90000FCB7B2 /* PostSettingsViewController.swift in Sources */,
+				7D4B2748253F2D1600A98DE3 /* SubmissionCommentListCell.swift in Sources */,
 				3B55FECD22FCB91800FCB7B2 /* PostGradesViewController.swift in Sources */,
 				7D64A95D23620A27004EAEDF /* AttendanceStatusController.swift in Sources */,
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
-				7D7126C025374446000DEDE4 /* GradesTab.swift in Sources */,
+				7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
@@ -1499,7 +1507,7 @@
 				7D7126BC25366DAB000DEDE4 /* SubmissionViewer.swift in Sources */,
 				7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */,
 				7D64A96223620A27004EAEDF /* RollCallSession.swift in Sources */,
-				7D7126C725374469000DEDE4 /* FilesTab.swift in Sources */,
+				7D7126C725374469000DEDE4 /* SubmissionFileList.swift in Sources */,
 				7D64A96423620A27004EAEDF /* StatusCell.swift in Sources */,
 				3B18E82B230C683D006CAF5C /* PostGradesPresenter.swift in Sources */,
 				7D64A96123620A27004EAEDF /* DatePickerViewController.swift in Sources */,

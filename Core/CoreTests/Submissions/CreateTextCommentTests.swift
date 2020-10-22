@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class CreateTextCommentTests: CoreTestCase {
-    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", submissionID: "4", isGroup: false, text: "comment")
+    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment")
     var comment: SubmissionComment?
     var error: Error?
 

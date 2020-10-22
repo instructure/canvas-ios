@@ -25,7 +25,6 @@ public class UploadMediaComment {
     let courseID: String
     let isGroup: Bool
     var placeholderID: String?
-    let submissionID: String
     let type: MediaCommentType
     let url: URL
     let uploader: UploadMedia
@@ -38,7 +37,6 @@ public class UploadMediaComment {
         courseID: String,
         assignmentID: String,
         userID: String,
-        submissionID: String,
         isGroup: Bool,
         type: MediaCommentType,
         url: URL
@@ -46,7 +44,6 @@ public class UploadMediaComment {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
-        self.submissionID = submissionID
         self.type = type
         self.url = url
         self.uploader = UploadMedia(type: type, url: url)

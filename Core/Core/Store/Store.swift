@@ -20,6 +20,8 @@ import Foundation
 import CoreData
 import Combine
 
+public enum StoreState { case data, empty, error, loading }
+
 public enum StoreChange: Equatable {
     case insertSection(Int)
     case deleteSection(Int)
@@ -72,6 +74,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     public private(set) var pending: Bool = false
     public private(set) var requested: Bool = false
     public private(set) var error: Error?
+
+    public var state: StoreState {
+        error != nil ? .error :
+        !isEmpty ? .data :
+        !requested || pending ? .loading :
+        .empty
+    }
 
     // The default implementation of objectWillChange requires at least one
     // @Published property

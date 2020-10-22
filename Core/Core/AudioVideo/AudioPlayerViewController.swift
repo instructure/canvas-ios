@@ -40,6 +40,7 @@ public class AudioPlayerViewController: UIViewController {
     }()
     var player: AVAudioPlayer?
     var timer: CADisplayLink?
+    var url: URL?
 
     public static func create() -> AudioPlayerViewController {
         let controller = loadFromStoryboard()
@@ -92,6 +93,7 @@ public class AudioPlayerViewController: UIViewController {
     }
 
     public func load(url: URL?) {
+        self.url = url
         currentTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         remainingTimeLabel?.text = NSLocalizedString("--:--", bundle: .core, comment: "Unknown time duration")
         loadingView?.startAnimating()

@@ -21,6 +21,11 @@
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift"
   ],
+  "ignoreContent": [
+    "makeUIViewController(context:",
+    "makeUIView(context:",
+    "var body: some View"
+  ],
   "fileMinCoverage": 0.5,
   "totalMinCoverage": 0.9
 }

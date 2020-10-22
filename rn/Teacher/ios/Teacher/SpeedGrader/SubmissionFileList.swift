@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct FilesTab: View {
+struct SubmissionFileList: View {
     let submission: Submission
     let files: [File]
     @Binding var fileID: String?
@@ -71,22 +71,23 @@ struct FilesTab: View {
 
 struct FileThumbnail: View {
     let file: File
+    var size: CGFloat = 24
 
     var body: some View {
         if let url = file.thumbnailURL {
-            RemoteImage(url, width: 24, height: 24).cornerRadius(4)
+            RemoteImage(url, width: size, height: size).cornerRadius(4)
         } else if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
-            Icon.audioLine
+            Icon.audioLine.size(size)
         } else if file.mimeClass == "doc" {
-            Icon.documentLine
+            Icon.documentLine.size(size)
         } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
-            Icon.imageLine
+            Icon.imageLine.size(size)
         } else if file.mimeClass == "pdf" {
-            Icon.pdfLine
+            Icon.pdfLine.size(size)
         } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
-            Icon.videoLine
+            Icon.videoLine.size(size)
         } else {
-            Icon.documentLine
+            Icon.documentLine.size(size)
         }
     }
 }

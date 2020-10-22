@@ -67,6 +67,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         view.backgroundColor = .backgroundLightest
         sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
+        emptyView.titleText = NSLocalizedString("Choose a File")
+        emptyView.bodyText = NSLocalizedString("Attach files to your submission by tapping an option below.")
 
         var tabBarItems: [UITabBarItem] = []
         if sources.contains(.audio) {
@@ -183,7 +185,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             navigationController?.setToolbarHidden(true, animated: true)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
-            let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .plain, target: self, action: #selector(submit))
+            let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .done, target: self, action: #selector(submit))
             submitButton.isEnabled = delegate?.canSubmit(self) == true
             submitButton.accessibilityIdentifier = "FilePicker.submitButton"
             navigationItem.rightBarButtonItem = submitButton

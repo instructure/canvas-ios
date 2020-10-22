@@ -36,8 +36,7 @@ class SubmissionCommentsPresenter {
     lazy var comments = env.subscribe(GetSubmissionComments(
         context: context,
         assignmentID: assignmentID,
-        userID: userID,
-        submissionID: submissionID
+        userID: userID
     )) { [weak self] in
         self?.update()
     }
@@ -68,7 +67,6 @@ class SubmissionCommentsPresenter {
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,
-            submissionID: submissionID,
             isGroup: assignment.first?.gradedIndividually == false,
             text: text
         ).fetch { [weak self] comment, error in
@@ -83,7 +81,6 @@ class SubmissionCommentsPresenter {
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,
-            submissionID: submissionID,
             isGroup: assignment.first?.gradedIndividually == false,
             type: type,
             url: url
@@ -99,7 +96,6 @@ class SubmissionCommentsPresenter {
             courseID: context.id,
             assignmentID: assignmentID,
             userID: userID,
-            submissionID: submissionID,
             isGroup: assignment.first?.gradedIndividually == false,
             batchID: batchID
         ).fetch { [weak self] comment, error in

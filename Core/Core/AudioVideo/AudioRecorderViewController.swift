@@ -159,9 +159,9 @@ extension AudioRecorderViewController {
         case .denied:
             callback(false)
         default:
-            AVAudioSession.sharedInstance().requestRecordPermission { allowed in DispatchQueue.main.async {
+            AVAudioSession.sharedInstance().requestRecordPermission { allowed in performUIUpdate {
                 callback(allowed)
-            }}
+            } }
         }
     }
 }

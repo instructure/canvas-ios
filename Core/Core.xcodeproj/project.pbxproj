@@ -128,6 +128,10 @@
 		7D3A0D3225016F12000C6F42 /* FileListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */; };
 		7D3A1EEF227BEFD00094531E /* ActAsUserViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */; };
 		7D3E522624059A740092A5F8 /* PlannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */; };
+		7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B273F253CEE6800A98DE3 /* AudioPlayer.swift */; };
+		7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2744253E3A5700A98DE3 /* TextEditor.swift */; };
+		7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */; };
+		7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */; };
 		7D4C3A772236FFD2007D6792 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3A762236FFD2007D6792 /* FileTests.swift */; };
 		7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */; };
 		7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4C6F36243BE229003C1728 /* GetEnrollments.swift */; };
@@ -587,6 +591,11 @@
 		7DC7046A24ABA3C100CD1C46 /* ObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */; };
 		7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047524ABF6D800CD1C46 /* FolderTests.swift */; };
 		7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */; };
+		7DCA31F82540835300458651 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA31F72540835300458651 /* WebView.swift */; };
+		7DCA320325411E8200458651 /* DocViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320225411E8200458651 /* DocViewer.swift */; };
+		7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA32062541C5F700458651 /* VideoPlayer.swift */; };
+		7DCA320F2541D43900458651 /* FileViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320E2541D43900458651 /* FileViewer.swift */; };
+		7DCA32122541DB8B00458651 /* WebSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA32112541DB8B00458651 /* WebSession.swift */; };
 		7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */; };
 		7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */; };
 		7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */; };
@@ -1230,6 +1239,10 @@
 		7D3A0D3125016F12000C6F42 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3A1EEE227BEFD00094531E /* ActAsUserViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUserViewControllerTests.swift; sourceTree = "<group>"; };
 		7D3E522524059A740092A5F8 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
+		7D4B273F253CEE6800A98DE3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		7D4B2744253E3A5700A98DE3 /* TextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditor.swift; sourceTree = "<group>"; };
+		7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
 		7D4C3A762236FFD2007D6792 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		7D4C3D58222D9E41001B1198 /* LTIToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIToolsTests.swift; sourceTree = "<group>"; };
 		7D4C6F36243BE229003C1728 /* GetEnrollments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnrollments.swift; sourceTree = "<group>"; };
@@ -1453,6 +1466,11 @@
 		7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertTests.swift; sourceTree = "<group>"; };
 		7DC7047524ABF6D800CD1C46 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
 		7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolderTests.swift; sourceTree = "<group>"; };
+		7DCA31F72540835300458651 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		7DCA320225411E8200458651 /* DocViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewer.swift; sourceTree = "<group>"; };
+		7DCA32062541C5F700458651 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		7DCA320E2541D43900458651 /* FileViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewer.swift; sourceTree = "<group>"; };
+		7DCA32112541DB8B00458651 /* WebSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSession.swift; sourceTree = "<group>"; };
 		7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummary.swift; sourceTree = "<group>"; };
 		7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
@@ -2681,6 +2699,7 @@
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
 				7D29D308218A5E810036437C /* APIDocViewer.swift */,
+				7DCA320225411E8200458651 /* DocViewer.swift */,
 				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
 				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
@@ -3070,6 +3089,7 @@
 			children = (
 				7D08B1D32371F5510075623A /* FileDetailsViewController.storyboard */,
 				7D08B1D12371E9EA0075623A /* FileDetailsViewController.swift */,
+				7DCA320E2541D43900458651 /* FileViewer.swift */,
 			);
 			path = FileDetails;
 			sourceTree = "<group>";
@@ -3299,13 +3319,17 @@
 			isa = PBXGroup;
 			children = (
 				9F6878AE223951EE00E559CE /* APIMediaComment.swift */,
+				7D4B273F253CEE6800A98DE3 /* AudioPlayer.swift */,
 				7D86286A224D493C003A37DC /* AudioPlayerViewController.storyboard */,
 				7D862868224D4907003A37DC /* AudioPlayerViewController.swift */,
+				7D4B274E253F47EC00A98DE3 /* AudioRecorder.swift */,
 				7DDC81432242E2B2000DD25A /* AudioRecorderViewController.storyboard */,
 				7DDC81452242E2C7000DD25A /* AudioRecorderViewController.swift */,
 				9F6878B0223952FB00E559CE /* MediaComment.swift */,
 				B17855B0226ABDB100B30C80 /* UploadMedia.swift */,
 				7D92D656224ACC7A0015B368 /* UploadMediaComment.swift */,
+				7DCA32062541C5F700458651 /* VideoPlayer.swift */,
+				7D4B2752253F65C600A98DE3 /* VideoRecorder.swift */,
 			);
 			path = AudioVideo;
 			sourceTree = "<group>";
@@ -3717,6 +3741,9 @@
 				7D6C47EA250C1C5B0088ADDE /* Pages.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
+				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
+				7DCA32112541DB8B00458651 /* WebSession.swift */,
+				7DCA31F72540835300458651 /* WebView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4486,6 +4513,7 @@
 			files = (
 				7DA260F623F72397005D2121 /* FilePickerViewController.swift in Sources */,
 				3BA649D7242530470047D8DC /* NotificationView.swift in Sources */,
+				7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */,
 				7DFD5F7623FEF4A800D988E0 /* Plannable.swift in Sources */,
 				7DA2601A23F7227A005D2121 /* UITableViewExtensions.swift in Sources */,
 				B1A76AC024227027000820A8 /* ScannerViewController.swift in Sources */,
@@ -4516,6 +4544,7 @@
 				7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */,
 				7DA260DF23F72359005D2121 /* HorizontalScrollingStackview.swift in Sources */,
 				7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
+				7DCA31F82540835300458651 /* WebView.swift in Sources */,
 				7D7F71E42420147800D6F9CB /* ConferenceDetailsViewController.swift in Sources */,
 				7DA25F9923F72136005D2121 /* APIAccount.swift in Sources */,
 				7D159CED242E556F00A77A15 /* ModuleSectionHeaderView.swift in Sources */,
@@ -4544,6 +4573,7 @@
 				7DA260C523F72352005D2121 /* UploadMediaComment.swift in Sources */,
 				7DA25FA323F72136005D2121 /* APICalendarEvent.swift in Sources */,
 				7DA260E023F72359005D2121 /* IconView.swift in Sources */,
+				7D4B2740253CEE6800A98DE3 /* AudioPlayer.swift in Sources */,
 				7DFD5F7D23FF158700D988E0 /* CalendarViewController.swift in Sources */,
 				7DA25FEE23F721DE005D2121 /* GetConversations.swift in Sources */,
 				7DA260D223F72359005D2121 /* CoreWebViewController.swift in Sources */,
@@ -4589,6 +4619,7 @@
 				7D6C47EB250C1C5B0088ADDE /* Pages.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
+				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
 				7DA260D723F72359005D2121 /* EmptyView.swift in Sources */,
@@ -4673,6 +4704,7 @@
 				7DA2602323F722AF005D2121 /* Logger.swift in Sources */,
 				7DA25FDB23F72148005D2121 /* LocalizationManager.swift in Sources */,
 				7DA260F323F72397005D2121 /* FilePicker.swift in Sources */,
+				7DCA32122541DB8B00458651 /* WebSession.swift in Sources */,
 				7DA2607A23F722FA005D2121 /* PageViewEvent.swift in Sources */,
 				7DA260E323F72359005D2121 /* ListFormatter.swift in Sources */,
 				3BA649CD2423E0080047D8DC /* APIPairingCode.swift in Sources */,
@@ -4733,8 +4765,10 @@
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
+				7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */,
 				7DA2604F23F722D9005D2121 /* LatePolicyStatus.swift in Sources */,
 				7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */,
+				7DCA320325411E8200458651 /* DocViewer.swift in Sources */,
 				7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,
@@ -4825,6 +4859,7 @@
 				7DA2605523F722D9005D2121 /* ModuleItemCompletionRequirement.swift in Sources */,
 				977EAC432412A2DC005E1290 /* CreatePlannerNote.swift in Sources */,
 				7DA2603523F722D9005D2121 /* LockStatusViewable.swift in Sources */,
+				7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */,
 				E8A8FA8E24D328C3000B27DF /* SearchBarView.swift in Sources */,
 				7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
@@ -4850,6 +4885,7 @@
 				7DA260BF23F72352005D2121 /* GetGroups.swift in Sources */,
 				B11AEBB9240724FA00B736D6 /* Planner.swift in Sources */,
 				7DA2601C23F7227A005D2121 /* UIViewExtensions.swift in Sources */,
+				7D4B2745253E3A5700A98DE3 /* TextEditor.swift in Sources */,
 				7DA25FA123F72136005D2121 /* APIBrandVariables.swift in Sources */,
 				7DA2603223F722C9005D2121 /* LTIViewController.swift in Sources */,
 				7DB3A9E624119C0800274EB8 /* PagesViewController.swift in Sources */,
