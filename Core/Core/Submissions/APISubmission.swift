@@ -26,6 +26,8 @@ public struct APISubmission: Codable, Equatable {
     let attempt: Int?
     let body: String?
     let discussion_entries: [APIDiscussionEntry]?
+    let entered_grade: String?
+    let entered_score: Double?
     let excused: Bool?
     let external_tool_url: APIURL?
     var grade: String?
@@ -107,6 +109,8 @@ extension APISubmission {
         attempt: Int? = nil,
         body: String? = nil,
         discussion_entries: [APIDiscussionEntry]? = nil,
+        entered_grade: String? = nil,
+        entered_score: Double? = nil,
         excused: Bool? = false,
         external_tool_url: APIURL? = nil,
         grade: String? = nil,
@@ -141,6 +145,8 @@ extension APISubmission {
             attempt: attempt,
             body: body,
             discussion_entries: discussion_entries,
+            entered_grade: entered_grade,
+            entered_score: entered_score,
             excused: excused,
             external_tool_url: external_tool_url,
             grade: grade,

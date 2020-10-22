@@ -31,6 +31,7 @@ struct SpeedGraderView: View {
     @ObservedObject var submissions: Store<GetSubmissions>
 
     @State var currentIndex: Int = -1
+    @State var drawerState: DrawerState = .min
     @State var isPagingEnabled = true
 
     init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
@@ -49,6 +50,7 @@ struct SpeedGraderView: View {
                         SubmissionGrader(
                             assignment: self.assignment.first!,
                             submission: submission,
+                            drawerState: $drawerState,
                             isPagingEnabled: $isPagingEnabled,
                             bottomInset: geometry.safeAreaInsets.bottom
                         )

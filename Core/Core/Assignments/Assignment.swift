@@ -57,6 +57,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var scoreStatistics: ScoreStatistics?
     @NSManaged public var anonymizeStudents: Bool
+    @NSManaged public var moderatedGrading: Bool
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -145,6 +146,7 @@ extension Assignment {
         allowedAttempts = item.allowed_attempts ?? 0
         externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
         anonymizeStudents = item.anonymize_students == true
+        moderatedGrading = item.moderated_grading == true
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)

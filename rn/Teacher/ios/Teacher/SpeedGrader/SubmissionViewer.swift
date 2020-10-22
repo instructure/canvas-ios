@@ -72,6 +72,7 @@ struct SubmissionViewer: View {
         default:
             VStack {
                 Spacer()
+                HStack { Spacer() }
                 if assignment.submissionTypes.contains(.on_paper) {
                     Text("This assignment only allows on-paper submissions.")
                 } else if assignment.submissionTypes.contains(.none) {

@@ -24,11 +24,11 @@ struct SubmissionGrader: View {
     let submission: Submission
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
+    @Binding var drawerState: DrawerState
     @Binding var isPagingEnabled: Bool
     let bottomInset: CGFloat
 
     @State var attempt: Int?
-    @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
     @State var tab: GraderTab = .grades
@@ -40,7 +40,13 @@ struct SubmissionGrader: View {
         selected.attachments?.sorted(by: File.idCompare).first
     }
 
-    init(assignment: Assignment, submission: Submission, isPagingEnabled: Binding<Bool>, bottomInset: CGFloat) {
+    init(
+        assignment: Assignment,
+        submission: Submission,
+        drawerState: Binding<DrawerState>,
+        isPagingEnabled: Binding<Bool>,
+        bottomInset: CGFloat
+    ) {
         self.assignment = assignment
         self.submission = submission
         self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
@@ -51,6 +57,7 @@ struct SubmissionGrader: View {
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
+        self._drawerState = drawerState
         self._isPagingEnabled = isPagingEnabled
         self.bottomInset = bottomInset
     }
