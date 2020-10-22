@@ -68,6 +68,7 @@ type ComposeState = {
   sendDisabled: boolean,
   sendToAll: boolean,
   recipients: AddressBookResult[],
+  contextId: ?string,
   contextCode: ?string,
   contextName: ?string,
   body: ?string,
@@ -91,6 +92,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
     sendDisabled: true,
     sendToAll: this.props.onlySendIndividualMessages,
     recipients: this.props.recipients || [],
+    contextId: null,
     contextCode: this.props.contextCode || null,
     contextName: this.props.contextName || null,
     body: null,
@@ -108,8 +110,10 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
       '/conversations/course-select',
       undefined,
       {
+        selectedCourseId: this.state.contextId,
         onSelect: (course: Course) => {
           this.props.navigator.pop()
+          const contextId = course.id
           const contextName = course.name
           const contextCode = `course_${course.id}`
           let recipients = []
@@ -117,7 +121,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             const teachers = { id: `course_${course.id}_teachers`, name: i18n('Teachers') }
             recipients = [teachers]
           }
-          this.setStateAndUpdate({ contextName, contextCode, recipients })
+          this.setStateAndUpdate({ contextId, contextName, contextCode, recipients })
         },
       }
     )

@@ -21,10 +21,13 @@
 import React, { PureComponent } from 'react'
 import {
   SectionList,
+  Image,
 } from 'react-native'
 import { connect } from 'react-redux'
+import { createStyleSheet } from '../../common/stylesheet'
 import refresh from '../../utils/refresh'
 import Screen from '../../routing/Screen'
+import icon from '../../images/inst-icons'
 import i18n from 'format-message'
 import CourseActions from '../courses/actions'
 import GroupActions from '../groups/actions'
@@ -49,6 +52,7 @@ type CourseActionProps = {
 
 type CourseSelectProps = {
   navigator: Navigator,
+  selectedCourseId: ?string,
   onSelect: (course: Course) => void,
 } & CourseSelectDataProps
 
@@ -66,7 +70,16 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
       border={border}
       onPress={this.onCourseSelect}
       identifier={item}
-      testID={`inbox.course-select.course-${item.id}`} />
+      testID={`inbox.course-select.course-${item.id}`}
+      accessories={
+        this.props.selectedCourseId === item.id &&
+        <Image
+          style={styles.check}
+          source={icon('check', 'solid')}
+          testID={`inbox.course-select.course-${item.id}-checkmark`}
+        />
+      }
+    />
   }
 
   renderSectionHeader = ({ section }: any) => {
@@ -123,7 +136,7 @@ export function mapStateToProps (state: AppState): CourseSelectDataProps {
   const sections: CourseSelectSection[] = [
     {
       key: 0,
-      title: i18n('Favorite Courses'),
+      title: i18n('Favorited Courses'),
       data: favoriteCourses,
     },
     {
@@ -138,3 +151,13 @@ export function mapStateToProps (state: AppState): CourseSelectDataProps {
 
 const Connected = connect(mapStateToProps, { ...CourseActions, ...GroupActions })(Refreshed)
 export default (Connected: PureComponent<CourseSelectDataProps, any>)
+
+const styles = createStyleSheet((colors, vars) => ({
+  check: {
+    tintColor: colors.primary,
+    height: 20,
+    width: 20,
+    resizeMode: 'contain',
+    marginLeft: vars.padding,
+  },
+}))
