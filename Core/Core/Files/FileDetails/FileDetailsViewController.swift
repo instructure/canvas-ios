@@ -45,7 +45,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var context: Context?
     var downloadTask: APITask?
     let env = AppEnvironment.shared
-    var fileID: String = ""
+    public var fileID: String = ""
     var loadObservation: NSKeyValueObservation?
     var remoteURL: URL?
     var localURL: URL?

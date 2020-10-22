@@ -591,6 +591,8 @@
 		7DC7046A24ABA3C100CD1C46 /* ObserverAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */; };
 		7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047524ABF6D800CD1C46 /* FolderTests.swift */; };
 		7DC7047824ABFC1600CD1C46 /* GetFolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */; };
+		7DCA31F82540835300458651 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA31F72540835300458651 /* WebView.swift */; };
+		7DCA320325411E8200458651 /* DocViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320225411E8200458651 /* DocViewer.swift */; };
 		7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */; };
 		7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */; };
 		7DCB2E9E247DA0380071F172 /* GetSubmissionCommentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */; };
@@ -1461,6 +1463,8 @@
 		7DC7046924ABA3C100CD1C46 /* ObserverAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverAlertTests.swift; sourceTree = "<group>"; };
 		7DC7047524ABF6D800CD1C46 /* FolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTests.swift; sourceTree = "<group>"; };
 		7DC7047724ABFC1600CD1C46 /* GetFolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolderTests.swift; sourceTree = "<group>"; };
+		7DCA31F72540835300458651 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		7DCA320225411E8200458651 /* DocViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewer.swift; sourceTree = "<group>"; };
 		7DCB2E99247D9D740071F172 /* SubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummary.swift; sourceTree = "<group>"; };
 		7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionComments.swift; sourceTree = "<group>"; };
 		7DCB2E9D247DA0380071F172 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
@@ -2689,6 +2693,7 @@
 				7DFFAB18219DDAE1003E71F8 /* Comments */,
 				7D7472DA218CEE4100CE1430 /* Views */,
 				7D29D308218A5E810036437C /* APIDocViewer.swift */,
+				7DCA320225411E8200458651 /* DocViewer.swift */,
 				7D29D31B218B87050036437C /* DocViewerAnnotationProvider.swift */,
 				7D29D302218A54CC0036437C /* DocViewerCommentReplyAnnotation.swift */,
 				7D29D2F8218A2BC60036437C /* DocViewerConstants.swift */,
@@ -3729,6 +3734,7 @@
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
 				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
+				7DCA31F72540835300458651 /* WebView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -4529,6 +4535,7 @@
 				7D8E20CA2450A372000F826B /* TabBarBadgeCounts.swift in Sources */,
 				7DA260DF23F72359005D2121 /* HorizontalScrollingStackview.swift in Sources */,
 				7DA2607D23F722FA005D2121 /* PageViewEventViewControllerLoggingProtocol.swift in Sources */,
+				7DCA31F82540835300458651 /* WebView.swift in Sources */,
 				7D7F71E42420147800D6F9CB /* ConferenceDetailsViewController.swift in Sources */,
 				7DA25F9923F72136005D2121 /* APIAccount.swift in Sources */,
 				7D159CED242E556F00A77A15 /* ModuleSectionHeaderView.swift in Sources */,
@@ -4749,6 +4756,7 @@
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
 				7DA2604F23F722D9005D2121 /* LatePolicyStatus.swift in Sources */,
 				7DCB2E9C247D9FD00071F172 /* GetSubmissionComments.swift in Sources */,
+				7DCA320325411E8200458651 /* DocViewer.swift in Sources */,
 				7DA2603923F722D9005D2121 /* AssignmentGroup.swift in Sources */,
 				7DD6FB3625081CD900DB5286 /* OptionalDatePicker.swift in Sources */,
 				7DA2601423F7227A005D2121 /* InstIconExtensions.swift in Sources */,

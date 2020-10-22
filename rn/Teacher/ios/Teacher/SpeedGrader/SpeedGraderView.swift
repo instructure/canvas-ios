@@ -109,7 +109,6 @@ struct SpeedGraderView: View {
     }
 
     func dismiss() {
-        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 }

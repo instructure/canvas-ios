@@ -70,7 +70,7 @@ struct SubmissionGrader: View {
                             ZStack(alignment: .top) {
                                 VStack(spacing: 0) {
                                     SimilarityScore(selected, file: file)
-                                    SubmissionViewer(submission: selected, fileID: fileID)
+                                    SubmissionViewer(assignment: assignment, submission: selected, fileID: fileID)
                                 }
                                 attemptPicker
                             }
@@ -91,7 +91,7 @@ struct SubmissionGrader: View {
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
                                 SimilarityScore(selected, file: file)
-                                SubmissionViewer(submission: selected, fileID: fileID)
+                                SubmissionViewer(assignment: assignment, submission: selected, fileID: fileID)
                             }
                             attemptPicker
                         }
@@ -109,6 +109,7 @@ struct SubmissionGrader: View {
         if let first = attempts.first, attempts.count == 1 {
             Text(first.submittedAt?.dateTimeString ?? "")
                 .font(.medium14).foregroundColor(.textDark)
+                .frame(minHeight: 24)
                 .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
         } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
             Button(action: {

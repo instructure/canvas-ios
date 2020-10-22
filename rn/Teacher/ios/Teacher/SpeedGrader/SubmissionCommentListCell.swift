@@ -69,7 +69,7 @@ struct SubmissionCommentListCell: View {
                 ForEach(comment.attachments?.sorted(by: File.idCompare) ?? [], id: \.id) { file in
                     Spacer().frame(height: 4)
                     SubmissionCommentFile(file: file) {
-                        guard let id = file.id, let controller = controller else { return }
+                        guard let id = file.id else { return }
                         env.router.route(
                             to: "/files/\(id)",
                             from: controller,
@@ -107,7 +107,7 @@ struct SubmissionCommentListCell: View {
                 .overlay(Circle()
                     .stroke(Color.borderMedium, lineWidth: 1)
                 )
-        } else if let id = comment.authorID, let controller = controller {
+        } else if let id = comment.authorID {
             Button(action: {
                 env.router.route(
                     to: "/courses/\(assignment.courseID)/users/\(id)",

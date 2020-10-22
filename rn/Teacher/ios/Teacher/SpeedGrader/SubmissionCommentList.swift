@@ -217,7 +217,6 @@ struct SubmissionCommentList: View {
     }
 
     func chooseFile() {
-        guard let controller = controller else { return }
         filePicker.pickAttachments(from: controller) {
             sendFileComment(batchID: $0)
         }

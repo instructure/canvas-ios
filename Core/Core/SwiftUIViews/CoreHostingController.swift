@@ -47,7 +47,7 @@ public struct CoreHostingBaseView<Content: View>: View {
             .testID()
             .accentColor(Color(Brand.shared.primary))
             .environment(\.appEnvironment, AppEnvironment.shared)
-            .environment(\.viewController, controller.value)
+            .environment(\.viewController, controller.value ?? UIViewController())
             .onPreferenceChange(UINavigationBar.Style.self) { style in
                 controller.value?.navigationBarStyle = style
                 controller.value?.navigationController?.navigationBar.useStyle(style)
@@ -72,8 +72,8 @@ extension EnvironmentValues {
         set { self[AppEnvironment.self] = newValue }
     }
 
-    public var viewController: UIViewController? {
-        get { self[UIViewController.self].value }
+    public var viewController: UIViewController {
+        get { self[UIViewController.self].value ?? AppEnvironment.shared.topViewController! }
         set { self[UIViewController.self] = WeakReference(newValue) }
     }
 }

@@ -106,7 +106,6 @@ public struct FileEditorView: View {
 
             EditorSection(label: Text("Access", bundle: .core)) {
                 ButtonRow(action: {
-                    guard let controller = controller else { return }
                     env.router.show(ItemPickerViewController.create(
                         title: NSLocalizedString("Access", bundle: .core, comment: ""),
                         sections: [ ItemPickerSection(items: Access.allCases.map {
@@ -148,7 +147,6 @@ public struct FileEditorView: View {
                         .identifier("FileEditor.copyrightField")
                     Divider()
                     ButtonRow(action: {
-                        guard let controller = controller else { return }
                         env.router.show(ItemPickerViewController.create(
                             title: NSLocalizedString("Usage Right", bundle: .core, comment: ""),
                             sections: [ ItemPickerSection(items: UseJustification.allCases.map {
@@ -168,7 +166,6 @@ public struct FileEditorView: View {
                     if justification == .creative_commons {
                         Divider()
                         ButtonRow(action: {
-                            guard let controller = controller else { return }
                             env.router.show(ItemPickerViewController.create(
                                 title: NSLocalizedString("Creative Commons License", bundle: .core, comment: ""),
                                 sections: [ ItemPickerSection(items: License.allCases.map {
@@ -246,7 +243,7 @@ public struct FileEditorView: View {
     }
 
     func save() {
-        controller?.view.endEditing(true) // dismiss keyboard
+        controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
         let name = self.name.trimmingCharacters(in: .whitespacesAndNewlines)
         let locked = access == .unpublished
@@ -313,7 +310,6 @@ public struct FileEditorView: View {
     }
 
     func dismiss() {
-        guard let controller = controller else { return }
         env.router.dismiss(controller)
     }
 

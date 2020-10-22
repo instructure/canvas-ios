@@ -51,7 +51,6 @@ public struct PageEditorView: View {
             .navigationBarTitle(url == nil ? Text("New Page", bundle: .core) : Text("Edit Page", bundle: .core), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    guard let controller = controller else { return }
                     env.router.dismiss(controller)
                 }, label: {
                     Text("Cancel", bundle: .core)
@@ -119,7 +118,6 @@ public struct PageEditorView: View {
                         Divider()
                     }
                     ButtonRow(action: {
-                        guard let controller = controller else { return }
                         let options: [RoleOption] = context.contextType == .group
                             ? [ .members, .public ]
                             : [ .teachers, .teachersAndStudents, .public ]
@@ -174,7 +172,7 @@ public struct PageEditorView: View {
     }
 
     func save() {
-        controller?.view.endEditing(true) // dismiss keyboard
+        controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
         UpdatePage(
             context: context,
@@ -187,7 +185,7 @@ public struct PageEditorView: View {
         ).fetch { result, _, error in performUIUpdate {
             self.error = error
             self.isSaving = false
-            if result != nil, let controller = controller {
+            if result != nil {
                 env.router.dismiss(controller)
             }
         } }

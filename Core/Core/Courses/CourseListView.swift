@@ -151,7 +151,6 @@ public struct CourseListView: View {
             section(header: formatHeader(header)) {
                 ForEach(courses, id: \.id) { course in
                     Cell(course: course) {
-                        guard let controller = controller else { return }
                         env.router.route(to: "/courses/\(course.id)", from: controller)
                     }.listRowInsets(EdgeInsets(top: 16, leading: 18, bottom: 16, trailing: 18))
                 }

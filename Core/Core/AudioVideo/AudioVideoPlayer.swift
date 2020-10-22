@@ -20,9 +20,9 @@ import AVKit
 import SwiftUI
 
 public struct AudioPlayer: View {
-    public let url: URL
+    public let url: URL?
 
-    public init(url: URL) {
+    public init(url: URL?) {
         self.url = url
     }
 
@@ -33,7 +33,7 @@ public struct AudioPlayer: View {
 }
 
 private struct AudioPlayerEmbed: UIViewControllerRepresentable {
-    let url: URL
+    let url: URL?
 
     func makeUIViewController(context: Self.Context) -> AudioPlayerViewController {
         let uiViewController = AudioPlayerViewController.create()
@@ -49,21 +49,21 @@ private struct AudioPlayerEmbed: UIViewControllerRepresentable {
 }
 
 public struct VideoPlayer: UIViewControllerRepresentable {
-    public let url: URL
+    public let url: URL?
 
-    public init(url: URL) {
+    public init(url: URL?) {
         self.url = url
     }
 
     public func makeUIViewController(context: Self.Context) -> AVPlayerViewController {
         let uiViewController = AVPlayerViewController()
-        uiViewController.player = AVPlayer(url: url)
+        uiViewController.player = url.map { AVPlayer(url: $0) } ?? AVPlayer()
         return uiViewController
     }
 
     public func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Self.Context) {
         if url != (uiViewController.player?.currentItem?.asset as? AVURLAsset)?.url {
-            uiViewController.player?.replaceCurrentItem(with: AVPlayerItem(url: url))
+            uiViewController.player?.replaceCurrentItem(with: url.map { AVPlayerItem(url: $0) })
         }
     }
 }
