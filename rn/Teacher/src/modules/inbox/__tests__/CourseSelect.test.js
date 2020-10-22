@@ -73,6 +73,7 @@ let defaultProps = {
       data: [c2, c3],
     },
   ],
+  selectedCourseId: '2',
 }
 
 describe('CourseSelect', () => {
@@ -102,6 +103,13 @@ describe('CourseSelect', () => {
     expect(defaultProps.onSelect).toHaveBeenCalled()
   })
 
+  it('indicates the previously selected course', () => {
+    const tree = renderer.create(<CourseSelect {...defaultProps} />).toJSON()
+    expect(explore(tree).selectByID(`inbox.course-select.course-${c1.id}.checkmark`)).toBeNull()
+    expect(explore(tree).selectByID(`inbox.course-select.course-${c2.id}.checkmark`)).not.toBeNull()
+    expect(explore(tree).selectByID(`inbox.course-select.course-${c3.id}.checkmark`)).toBeNull()
+  })
+
   it('mapStateToProps', () => {
     const appState = template.appState({
       entities: {
@@ -127,7 +135,7 @@ describe('CourseSelect', () => {
       sections: [
         {
           key: 0,
-          title: i18n('Favorite Courses'),
+          title: i18n('Favorited Courses'),
           data: [c1],
         },
         {

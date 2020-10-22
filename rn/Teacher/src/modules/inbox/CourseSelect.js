@@ -76,7 +76,7 @@ export class CourseSelect extends PureComponent<CourseSelectProps> {
         <Image
           style={styles.check}
           source={icon('check', 'solid')}
-          testID={`inbox.course-select.course-${item.id}-checkmark`}
+          testID={`inbox.course-select.course-${item.id}.checkmark`}
         />
       }
     />

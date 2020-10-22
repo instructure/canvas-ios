@@ -254,6 +254,42 @@ exports[`CourseSelect renders 1`] = `
                 Learn React Native
               </Text>
             </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "checkSolid",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 20,
+                      "marginLeft": 16,
+                      "resizeMode": "contain",
+                      "tintColor": "#008EE2",
+                      "width": 20,
+                    }
+                  }
+                  testID="inbox.course-select.course-2.checkmark"
+                />
+              </View>
+            </View>
           </View>
         </TouchableHighlight>
       </item>
@@ -593,6 +629,42 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               >
                 Learn React Native
               </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "checkSolid",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 20,
+                      "marginLeft": 16,
+                      "resizeMode": "contain",
+                      "tintColor": "#008EE2",
+                      "width": 20,
+                    }
+                  }
+                  testID="inbox.course-select.course-2.checkmark"
+                />
+              </View>
             </View>
           </View>
         </TouchableHighlight>
