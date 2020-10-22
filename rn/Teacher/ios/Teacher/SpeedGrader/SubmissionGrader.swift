@@ -70,7 +70,12 @@ struct SubmissionGrader: View {
                             ZStack(alignment: .top) {
                                 VStack(spacing: 0) {
                                     SimilarityScore(selected, file: file)
-                                    SubmissionViewer(assignment: assignment, submission: selected, fileID: fileID)
+                                    SubmissionViewer(
+                                        assignment: assignment,
+                                        submission: selected,
+                                        fileID: fileID,
+                                        isPagingEnabled: $isPagingEnabled
+                                    )
                                 }
                                 attemptPicker
                             }
@@ -91,7 +96,12 @@ struct SubmissionGrader: View {
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
                                 SimilarityScore(selected, file: file)
-                                SubmissionViewer(assignment: assignment, submission: selected, fileID: fileID)
+                                SubmissionViewer(
+                                    assignment: assignment,
+                                    submission: selected,
+                                    fileID: fileID,
+                                    isPagingEnabled: $isPagingEnabled
+                                )
                             }
                             attemptPicker
                         }

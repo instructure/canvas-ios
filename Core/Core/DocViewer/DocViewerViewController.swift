@@ -27,6 +27,7 @@ public class DocViewerViewController: UIViewController {
     let toolbar = UIToolbar()
     let toolbarContainer = FlexibleToolbarContainer()
 
+    public var annotatingDidChange: ((Bool) -> Void)?
     var annotationProvider: DocViewerAnnotationProvider?
     let env = AppEnvironment.shared
     public var fallbackURL: URL!
@@ -143,6 +144,7 @@ public class DocViewerViewController: UIViewController {
             contentView.constraints.first { $0.firstAnchor == pdf.view.topAnchor }? .isActive = false
             pdf.view.topAnchor.constraint(equalTo: toolbar.bottomAnchor).isActive = true
 
+            pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
             annotationToolbar.supportedToolbarPositions = .inTopBar
             annotationToolbar.isDragEnabled = false
@@ -179,7 +181,7 @@ private let disabledMenuItems: [String] = [
     TextMenu.annotationMenuThickness.rawValue,
 ]
 
-extension DocViewerViewController: PDFViewControllerDelegate {
+extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateManagerDelegate {
     // swiftlint:disable function_parameter_count
     public func pdfViewController(
         _ pdfController: PDFViewController,
@@ -245,6 +247,15 @@ extension DocViewerViewController: PDFViewControllerDelegate {
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         return !(controller is StampViewController)
+    }
+
+    public func annotationStateManager(
+        _ manager: AnnotationStateManager,
+        didChangeState oldState: Annotation.Tool?,
+        to newState: Annotation.Tool?,
+        variant oldVariant: Annotation.Variant?,
+        to newVariant: Annotation.Variant?) {
+        annotatingDidChange?(newState?.rawValue.isEmpty == false)
     }
     // swiftlint:enable function_parameter_count
 }

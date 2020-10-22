@@ -18,31 +18,21 @@
 
 import SwiftUI
 
-public struct DocViewer: UIViewControllerRepresentable {
-    public let filename: String
-    public let previewURL: URL?
-    public let fallbackURL: URL
-    public let annotatingDidChange: ((Bool) -> Void)?
+public struct FileViewer: UIViewControllerRepresentable {
+    public let fileID: String
 
-    public init(filename: String, previewURL: URL?, fallbackURL: URL, annotatingDidChange: ((Bool) -> Void)? = nil) {
-        self.filename = filename
-        self.previewURL = previewURL
-        self.fallbackURL = fallbackURL
-        self.annotatingDidChange = annotatingDidChange
+    public init(fileID: String) {
+        self.fileID = fileID
     }
 
     public func makeUIViewController(context: Self.Context) -> UIViewController { UIViewController() }
 
     public func updateUIViewController(_ uiViewController: UIViewController, context: Self.Context) {
-        let prev = uiViewController.children.first as? DocViewerViewController
-        if prev?.filename != filename || prev?.previewURL != previewURL || prev?.fallbackURL != fallbackURL {
+        let prev = uiViewController.children.first as? FileDetailsViewController
+        if prev?.fileID != fileID {
             prev?.unembed()
-            let next = DocViewerViewController.create(filename: filename, previewURL: previewURL, fallbackURL: fallbackURL)
-            next.isAnnotatable = true
-            next.annotatingDidChange = annotatingDidChange
+            let next = FileDetailsViewController.create(context: nil, fileID: fileID)
             uiViewController.embed(next, in: uiViewController.view)
-        } else {
-            prev?.annotatingDidChange = annotatingDidChange
         }
     }
 }

@@ -19,7 +19,7 @@
 import SwiftUI
 
 public struct WebView: UIViewRepresentable {
-    public enum Source: Equatable {
+    enum Source: Equatable {
         case html(String)
         case url(URL)
     }
@@ -97,39 +97,5 @@ public struct WebView: UIViewRepresentable {
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(view: self)
-    }
-}
-
-public struct WebSession<Content: View>: View {
-    public let content: (URL?) -> Content
-    public let url: URL?
-
-    @Environment(\.appEnvironment) var env
-
-    @State var sessionURL: URL?
-    @State var loaded: URL?
-
-    public init(url: URL?, @ViewBuilder content: @escaping (URL?) -> Content) {
-        self.content = content
-        self.url = url
-    }
-
-    public var body: some View {
-        if url == nil || (sessionURL != nil && url == loaded) {
-            content(sessionURL)
-        } else {
-            VStack {
-                Spacer()
-                CircleProgress()
-                Spacer()
-            }
-                .onAppear {
-                    let url = self.url // Ensure loaded is the url requested
-                    env.api.makeRequest(GetWebSessionRequest(to: url)) { (response, _, _) in
-                        loaded = url
-                        sessionURL = response?.session_url ?? url
-                    }
-                }
-        }
     }
 }

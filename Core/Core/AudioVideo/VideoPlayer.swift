@@ -19,35 +19,6 @@
 import AVKit
 import SwiftUI
 
-public struct AudioPlayer: View {
-    public let url: URL?
-
-    public init(url: URL?) {
-        self.url = url
-    }
-
-    public var body: some View {
-        AudioPlayerEmbed(url: url)
-            .frame(height: 32)
-    }
-}
-
-private struct AudioPlayerEmbed: UIViewControllerRepresentable {
-    let url: URL?
-
-    func makeUIViewController(context: Self.Context) -> AudioPlayerViewController {
-        let uiViewController = AudioPlayerViewController.create()
-        uiViewController.load(url: url)
-        return uiViewController
-    }
-
-    func updateUIViewController(_ uiViewController: AudioPlayerViewController, context: Self.Context) {
-        if url != uiViewController.url {
-            uiViewController.load(url: url)
-        }
-    }
-}
-
 public struct VideoPlayer: UIViewControllerRepresentable {
     public let url: URL?
 

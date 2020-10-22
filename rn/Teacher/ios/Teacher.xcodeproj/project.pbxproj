@@ -77,6 +77,7 @@
 		7DA4DA302440EFBA009CA964 /* IBDesignables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */; };
 		7DBF923B2269791600710D0F /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC7047A24ABFD4800CD1C46 /* GetRootFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */; };
+		7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */; };
 		7DE062A625126E4D00DB49D4 /* SpeedGraderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE062A525126E4D00DB49D4 /* SpeedGraderViewTests.swift */; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
@@ -463,6 +464,7 @@
 		7D7D6D5125102052002B1485 /* SubmissionGrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionGrader.swift; sourceTree = "<group>"; };
 		7DA4DA2F2440EFBA009CA964 /* IBDesignables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignables.swift; sourceTree = "<group>"; };
 		7DC7047924ABFD4800CD1C46 /* GetRootFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRootFolders.swift; sourceTree = "<group>"; };
+		7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSubmissionViewer.swift; sourceTree = "<group>"; };
 		7DE062A525126E4D00DB49D4 /* SpeedGraderViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				7D7126BF25374446000DEDE4 /* SubmissionGrades.swift */,
 				7D0A28E1251A8284004FB3B6 /* SubmissionHeader.swift */,
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
+				7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1486,6 +1489,7 @@
 				7D64A96323620A27004EAEDF /* Status.swift in Sources */,
 				7D3DC0C0252291B400B0EBC1 /* SubmissionFilterPickerViewController.swift in Sources */,
 				7D7126C425374457000DEDE4 /* SubmissionCommentList.swift in Sources */,
+				7DCA320C2541D38F00458651 /* URLSubmissionViewer.swift in Sources */,
 				494AE0BA1F843CB5001A8F31 /* Routes.swift in Sources */,
 				7D7126B12534B980000DEDE4 /* Drawer.swift in Sources */,
 				3B55FED522FDE70F00FCB7B2 /* HideGradesViewController.swift in Sources */,
