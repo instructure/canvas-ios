@@ -95,7 +95,7 @@ class RoutesTests: XCTestCase {
         XCTAssertNil(router.match( "/courses/1/assignments/syllabus"))
         XCTAssertNil(router.match( "/courses/1/syllabus"))
         ExperimentalFeature.nativeTeacherSyllabus.isEnabled = true
-        XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusViewController)
-        XCTAssert(router.match( "/courses/1/syllabus") is SyllabusViewController)
+        XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
+        XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
     }
 }

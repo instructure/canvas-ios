@@ -17,17 +17,16 @@
 //
 
 import UIKit
-import Core
 
-class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
-    let titleSubtitleView = TitleSubtitleView.create()
+open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+    public let titleSubtitleView = TitleSubtitleView.create()
+    public var courseID: String = ""
+    public var color: UIColor?
+
+    lazy public var viewControllers: [UIViewController] = [ syllabus, summary ]
+
     lazy var summary = SyllabusSummaryViewController.create(courseID: courseID)
     lazy var syllabus = SyllabusViewController.create(courseID: courseID)
-
-    lazy var viewControllers: [UIViewController] = [ syllabus, summary ]
-
-    var courseID: String = ""
-    var color: UIColor?
     let env = AppEnvironment.shared
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -40,13 +39,13 @@ class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavVie
         self?.update()
     }
 
-    static func create(courseID: String) -> StudentSyllabusViewController {
-        let controller = StudentSyllabusViewController(nibName: nil, bundle: nil)
+    public static func create(courseID: String) -> SyllabusTabViewController {
+        let controller = SyllabusTabViewController(nibName: nil, bundle: nil)
         controller.courseID = courseID
         return controller
     }
 
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         setupTitleViewInNavbar(title: NSLocalizedString("Course Syllabus", comment: ""))
@@ -57,7 +56,7 @@ class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavVie
         course.refresh()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
     }
@@ -76,16 +75,16 @@ class StudentSyllabusViewController: HorizontalMenuViewController, ColoredNavVie
     }
 }
 
-extension StudentSyllabusViewController: HorizontalPagedMenuDelegate {
-    var menuItemSelectedColor: UIColor? { color }
+extension SyllabusTabViewController: HorizontalPagedMenuDelegate {
+    public var menuItemSelectedColor: UIColor? { color }
 
-    func accessibilityIdentifier(at: IndexPath) -> String {
+    public func accessibilityIdentifier(at: IndexPath) -> String {
         return viewControllers.count > at.row && viewControllers[at.row] === syllabus
             ? "Syllabus.syllabusMenuItem"
             : "Syllabus.assignmentsMenuItem"
     }
 
-    func menuItemTitle(at: IndexPath) -> String {
+    public func menuItemTitle(at: IndexPath) -> String {
         return viewControllers.count > at.row && viewControllers[at.row] === syllabus
             ? NSLocalizedString("Syllabus", comment: "")
             : NSLocalizedString("Summary", comment: "")

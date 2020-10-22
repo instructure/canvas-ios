@@ -93,13 +93,13 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/syllabus": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+        return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
     },
 
     "/courses/:courseID/assignments/:assignmentID": { url, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         if assignmentID == "syllabus" {
-            return StudentSyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+            return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
         }
         if !url.originIsModuleItemDetails {
             return ModuleItemSequenceViewController.create(
