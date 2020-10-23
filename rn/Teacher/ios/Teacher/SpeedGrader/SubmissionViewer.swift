@@ -28,35 +28,20 @@ struct SubmissionViewer: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var webView: WeakReference<Core.CoreWebView> = WeakReference()
-    var hasOverflow: Bool {
-        guard let scrollView = webView.value?.scrollView else { return false }
-        return scrollView.contentSize.width > scrollView.frame.width
-    }
-
     var body: some View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url)
-                    .onLink(openInSafari)
-                    .onChangeSize(handleSize)
-                    .highPriorityGesture(DragGesture(), including: hasOverflow ? .all : .subviews)
+                WebView(url: url).onLink(openInSafari)
             }
         case .discussion_topic, .online_quiz:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url)
-                    .onLink(handleLink)
-                    .onChangeSize(handleSize)
-                    .highPriorityGesture(DragGesture(), including: hasOverflow ? .all : .subviews)
+                WebView(url: url).onLink(handleLink)
             }
         case .media_recording:
             VideoPlayer(url: submission.mediaComment?.url)
         case .online_text_entry:
-            WebView(html: submission.body)
-                .onLink(handleLink)
-                .onChangeSize(handleSize)
-                .highPriorityGesture(DragGesture(), including: hasOverflow ? .all : .subviews)
+            WebView(html: submission.body).onLink(handleLink)
         case .online_upload:
             let file = submission.attachments?.first { fileID == $0.id } ??
                 submission.attachments?.sorted(by: File.idCompare).first
@@ -97,12 +82,5 @@ struct SubmissionViewer: View {
     func openInSafari(url: URL) -> Bool {
         env.loginDelegate?.openExternalURL(url)
         return true
-    }
-
-    func handleSize(webView: Core.CoreWebView, height: CGFloat) {
-        guard self.webView.value != webView else { return }
-        let ref = WeakReference<Core.CoreWebView>()
-        ref.value = webView
-        self.webView = ref
     }
 }

@@ -39,7 +39,7 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 }
 
 public struct CoreHostingBaseView<Content: View>: View {
-    var content: Content
+    public var content: Content
     let controller: WeakReference<CoreHostingController<Content>>
 
     public var body: some View {

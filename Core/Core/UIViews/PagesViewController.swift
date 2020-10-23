@@ -54,9 +54,16 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         embedPage(currentPage, at: 0)
     }
 
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        layout()
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let frame = scrollView.frame.inset(by: scrollView.adjustedContentInset)
+        let width = frame.width
+        let height = frame.height
+        let views = scrollView.subviews.filter({ $0.tag == 1 })
+        for (i, subview) in views.enumerated() {
+            subview.frame = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
+        }
+        scrollView.contentSize = CGSize(width: CGFloat(views.count) * width, height: height)
     }
 
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -85,11 +92,11 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             embedPage(right, at: leftPage == nil ? 1 : 2)
             rightPage = right
         }
-        layout()
+        view.setNeedsLayout()
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let frame = scrollView.frame.inset(by: scrollView.safeAreaInsets)
+        let frame = scrollView.frame.inset(by: scrollView.adjustedContentInset)
         let visible = CGRect(
             x: scrollView.contentOffset.x,
             y: 0,
@@ -120,15 +127,18 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             currentPage = left
             notifyUpdated()
         } else if x >= currentPage.view.frame.maxX, let right = rightPage {
+            let removedView = leftPage != nil
             leftPage?.unembed()
             rightPage = nil
             leftPage = currentPage
             currentPage = right
-            scrollView.contentOffset.x -= scrollView.frame.width
-            targetContentOffset.pointee = CGPoint(x: x - scrollView.frame.width, y: 0)
+            if removedView { // only adjust offset when leftPage was there and removed
+                scrollView.contentOffset.x -= scrollView.frame.width
+                targetContentOffset.pointee = CGPoint(x: x - scrollView.frame.width, y: 0)
+            }
             notifyUpdated()
         }
-        layout()
+        view.setNeedsLayout()
     }
 
     public override func accessibilityScroll(_ direction: UIAccessibilityScrollDirection) -> Bool {
@@ -186,18 +196,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
             x = scrollView.frame.width
         }
         currentPage = page
-        layout()
+        view.setNeedsLayout()
         scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: direction != nil)
-    }
-
-    func layout() {
-        let frame = scrollView.frame.inset(by: scrollView.safeAreaInsets)
-        let width = frame.width
-        let height = frame.height
-        let views = scrollView.subviews.filter({ $0.tag == 1 })
-        for (i, subview) in views.enumerated() {
-            subview.frame = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
-        }
-        scrollView.contentSize = CGSize(width: CGFloat(views.count) * width, height: height)
     }
 }
