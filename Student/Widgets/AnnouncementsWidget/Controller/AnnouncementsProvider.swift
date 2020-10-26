@@ -25,16 +25,15 @@ class AnnouncementsProvider: TimelineProvider {
     lazy var activities = env.subscribe(GetActivities())
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
-        AnnouncementsEntry([])
+        AnnouncementsEntry(announcementItems: [])
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
-        let entry = AnnouncementsEntry([])
+        let entry = AnnouncementsEntry(announcementItems: [])
         completion(entry)
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
-
         guard let mostRecentKeyChain = LoginSession.mostRecent else {
             return
         }
@@ -43,7 +42,7 @@ class AnnouncementsProvider: TimelineProvider {
         activities.refresh(force: true) { [weak self] result in
             guard let self = self else { return }
 
-            let announcementsEntry = AnnouncementsEntry(self.activities.all)
+            let announcementsEntry = AnnouncementsEntry(activities: self.activities.all)
             let timeline = Timeline(entries: [announcementsEntry], policy: .after(Date().addMinutes(5)))
             completion(timeline)
         }

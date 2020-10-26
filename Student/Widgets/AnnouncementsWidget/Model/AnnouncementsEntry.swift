@@ -16,27 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
 import WidgetKit
 
-@main
-struct AnnouncementsWidget: Widget {
-    let kind: String = "AnnouncementsWidget"
+struct AnnouncementsEntry: TimelineEntry {
+    var date: Date
+    let announcements: [AnnouncementItem]
 
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: AnnouncementsProvider()) { entry in
-            AnnouncementsWidgetView(entry: entry)
-        }
-        .configurationDisplayName("Latest Announcements")
-        .description("Show latest announcements")
+    init(activities: [Activity]) {
+        date = Date()
+        announcements = activities.compactMap { AnnouncementItem($0) }
     }
-}
 
-struct AnnouncementsWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        let item = AnnouncementItem(message: "Preview announcement")
-        let entry = AnnouncementsEntry(announcementItems: [item, item])
-        AnnouncementsWidgetView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+    init(announcementItems: [AnnouncementItem]) {
+        date = Date()
+        self.announcements = announcementItems
     }
 }

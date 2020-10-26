@@ -16,34 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import WidgetKit
+import SwiftUI
 
-struct AnnouncementItem: Identifiable {
-    let id = UUID()
-    let message: String
+struct AnnouncementsWidgetView : View {
+    var entry: AnnouncementsProvider.Entry
 
-    init?(_ activity: Activity) {
-        guard let title = activity.title else { return nil }
-        message = title
-    }
-
-    init(message: String) {
-        self.message = message
-    }
-}
-
-struct AnnouncementsEntry: TimelineEntry {
-    var date: Date
-    let announcements: [AnnouncementItem]
-
-    init(_ activities: [Activity]) {
-        date = Date()
-        announcements = activities.compactMap { AnnouncementItem($0) }
-    }
-
-    init(announcementItems: [AnnouncementItem]) {
-        date = Date()
-        self.announcements = announcementItems
+    var body: some View {
+        VStack {
+            Image("student-logomark").resizable().frame(width: 24, height: 24, alignment: .center)
+            Divider()
+            ForEach(entry.announcements) { announcementItem in
+                Text(announcementItem.message)
+            }
+        }
     }
 }
