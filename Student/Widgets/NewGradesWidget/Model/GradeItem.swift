@@ -16,19 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import WidgetKit
-import SwiftUI
 
-@main
-struct GradesWidget: Widget {
-    let kind: String = "NewGradesWidget"
+struct GradeItem: Hashable {
+    let assignmentName: String
+    let grade: String
 
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: GradesWidgetController()) { model in
-            GradesWidgetView(model: model)
-        }
-        .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))
-        .description(NSLocalizedString("This widget displays your latest grades", comment: "Description of the grades widget"))
+    init(assignment: Assignment) {
+        assignmentName = assignment.name
+        // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
+        grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
+    }
+
+    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100") {
+        self.assignmentName = assignmentName
+        self.grade = grade
     }
 }
-

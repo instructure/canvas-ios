@@ -19,12 +19,15 @@
 import Core
 import WidgetKit
 
-struct GradesWidgetController {
+class GradesWidgetController {
     private let env = AppEnvironment.shared
     private lazy var submissionList = env.subscribe(GetRecentlyGradedSubmissions(userID: "self"))
 
-    private func fetchGrades(completion: @escaping ([String]) -> Void) {
+    private func update(completion: @escaping ([String]) -> Void) {
         setupLastLoginCredentials()
+        submissionList.refresh { _ in
+            self.submissionList
+        }
     }
 
     private func setupLastLoginCredentials() {
@@ -34,20 +37,19 @@ struct GradesWidgetController {
 }
 
 extension GradesWidgetController: TimelineProvider {
-    typealias Entry = SimpleEntry
+    typealias Entry = GradeModel
 
-    func placeholder(in context: TimelineProvider.Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+    func placeholder(in context: TimelineProvider.Context) -> GradeModel {
+        GradeModel.make()
     }
 
-    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
-        completion(entry)
+    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeModel) -> ()) {
+        completion(GradeModel.make())
     }
 
-    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
-        fetchGrades { grades in
-            let timeline = Timeline(entries: [SimpleEntry(date: Date())], policy: .after(Date().addSeconds(60 * 60 * 2)))
+    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> ()) {
+        update { grades in
+            let timeline = Timeline(entries: [GradeModel.make()], policy: .after(Date().addSeconds(60 * 60 * 2)))
             completion(timeline)
         }
     }

@@ -18,6 +18,24 @@
 
 import WidgetKit
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
+struct GradeModel: TimelineEntry {
+    let date = Date(timeIntervalSince1970: 0)
+    let items: [GradeItem]
+
+    init(items: [GradeItem]) {
+        self.items = items
+    }
 }
+
+#if DEBUG
+extension GradeModel {
+    public static func make() -> GradeModel {
+        GradeModel(items: [
+            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100"),
+            GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines", grade: "20 / 25"),
+            GradeItem(assignmentName: "Introduction to the Solar System", grade: "A-"),
+            GradeItem(assignmentName: "Biology 101", grade: "C+"),
+        ])
+    }
+}
+#endif

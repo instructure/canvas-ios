@@ -20,9 +20,32 @@ import WidgetKit
 import SwiftUI
 
 struct GradesWidgetView : View {
-    var entry: GradesWidgetController.Entry
+    private let model: GradeModel
 
     var body: some View {
-        Text(entry.date, style: .time)
+        VStack {
+            HeaderView(title: NSLocalizedString("Grades", comment: ""))
+            ForEach(model.items, id: \.self) { gradeItem in
+                GradeItemView(item: gradeItem).padding(.top)
+            }
+        }.padding()
+    }
+
+    init(model: GradeModel) {
+        self.model = model
     }
 }
+
+#if DEBUG
+struct GradesWidgetPreviews: PreviewProvider {
+    static var previews: some View {
+        let data = GradeModel.make()
+        GradesWidgetView(model: data)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+        GradesWidgetView(model: data)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+        GradesWidgetView(model: data)
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+    }
+}
+#endif

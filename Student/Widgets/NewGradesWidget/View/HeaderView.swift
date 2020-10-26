@@ -16,19 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
-@main
-struct GradesWidget: Widget {
-    let kind: String = "NewGradesWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: GradesWidgetController()) { model in
-            GradesWidgetView(model: model)
+struct HeaderView : View {
+    var body: some View {
+        HStack {
+            Text(NSLocalizedString(title, comment: ""))
+            Spacer()
+            Image("student-logomark").resizable().frame(width: 24, height: 24)
         }
-        .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))
-        .description(NSLocalizedString("This widget displays your latest grades", comment: "Description of the grades widget"))
+    }
+
+    private let title: String
+
+    init(title: String) {
+        self.title = title
     }
 }
 
+#if DEBUG
+struct HeaderViewPreview: PreviewProvider {
+    static var previews: some View {
+        HeaderView(title: "Test Title").previewContext(WidgetPreviewContext(family: .systemMedium))
+    }
+}
+#endif
