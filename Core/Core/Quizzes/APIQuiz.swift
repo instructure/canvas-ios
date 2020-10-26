@@ -37,6 +37,7 @@ public struct APIQuiz: Codable, Equatable {
     let mobile_url: URL
     let one_question_at_a_time: Bool
     let points_possible: Double?
+    let published: Bool?
     let question_count: Int
     let question_types: [QuizQuestionType]?
     let quiz_type: QuizType
@@ -54,7 +55,6 @@ public struct APIQuiz: Codable, Equatable {
     // let one_time_results: Bool
     // let permissions: APIQuizPermissions?
     // let preview_url: URL
-    // let published: Bool
     // let quiz_extensions_url: URL?
     // let scoring_policy: ScoringPolicy?
     // let show_correct_answers_at: Date?
@@ -181,6 +181,7 @@ extension APIQuiz {
         mobile_url: URL = URL(string: "/courses/1/quizzes/123")!,
         one_question_at_a_time: Bool = false,
         points_possible: Double? = 11.1,
+        published: Bool? = true,
         question_count: Int = 5,
         question_types: [QuizQuestionType]? = nil,
         quiz_type: QuizType = .survey,
@@ -209,6 +210,7 @@ extension APIQuiz {
             mobile_url: mobile_url,
             one_question_at_a_time: one_question_at_a_time,
             points_possible: points_possible,
+            published: published,
             question_count: question_count,
             question_types: question_types,
             quiz_type: quiz_type,

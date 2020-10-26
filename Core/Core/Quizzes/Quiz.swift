@@ -39,6 +39,7 @@ public class Quiz: NSManagedObject {
     @NSManaged public var oneQuestionAtATime: Bool
     @NSManaged public var order: String?
     @NSManaged var pointsPossibleRaw: NSNumber?
+    @NSManaged public var published: Bool
     @NSManaged public var questionCount: Int
     @NSManaged var questionTypesRaw: [String]
     @NSManaged var quizTypeOrder: Int
@@ -157,6 +158,7 @@ extension Quiz {
         model.mobileURL = item.mobile_url
         model.oneQuestionAtATime = item.one_question_at_a_time
         model.pointsPossible = item.points_possible
+        model.published = item.published == true
         model.questionCount = item.question_count
         model.questionTypes = item.question_types ?? []
         model.quizType = item.quiz_type
