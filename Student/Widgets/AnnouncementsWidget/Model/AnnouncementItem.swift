@@ -17,18 +17,29 @@
 //
 
 import Core
-import SwiftUI
 
 struct AnnouncementItem: Identifiable {
-    let id = UUID()
-    public let message: String
+    let id: String
+
+    let message: String?
+    let title: String
+    let date: Date
 
     init?(_ activity: Activity) {
-        guard let title = activity.title else { return nil }
-        message = title
+        guard let title = activity.title,
+              let date = activity.updatedAt
+        else { return nil }
+
+        self.id = activity.id
+        self.title = title
+        self.message = activity.message
+        self.date = date
     }
 
-    init(message: String) {
-        self.message = message
+    init(title: String) {
+        self.id = "1"
+        self.message = "Test"
+        self.title = title
+        self.date = Date()
     }
 }

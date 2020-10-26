@@ -31,12 +31,3 @@ struct AnnouncementsWidget: Widget {
         .description("Show latest announcements")
     }
 }
-
-struct AnnouncementsWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        let item = AnnouncementItem(message: "Preview announcement")
-        let entry = AnnouncementsEntry(announcementItems: [item, item])
-        AnnouncementsWidgetView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-    }
-}
