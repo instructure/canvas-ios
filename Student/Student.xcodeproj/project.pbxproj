@@ -175,6 +175,15 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
+		CF4A4467254700B500F76207 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F352546C3F300C6842B /* WidgetKit.framework */; };
+		CF4A4468254700B500F76207 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
+		CF4A446B254700B500F76207 /* GradesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A446A254700B500F76207 /* GradesWidget.swift */; };
+		CF4A446D254700B600F76207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF4A446C254700B600F76207 /* Assets.xcassets */; };
+		CF4A4471254700B600F76207 /* NewGradesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CF4A4466254700B500F76207 /* NewGradesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CF4A448E254700D600F76207 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF4A448D254700D600F76207 /* Core.framework */; };
+		CF4A44AB254704FA00F76207 /* GradesWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */; };
+		CF4A44C62547059800F76207 /* GradesWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A44C52547059800F76207 /* GradesWidgetController.swift */; };
+		CF4A44CF2547062600F76207 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A44CE2547062600F76207 /* Grades.swift */; };
 		CF7D8A782535E45000DC7D79 /* SubmissionDetailsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */; };
 		D9FD8F362546C3F300C6842B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F352546C3F300C6842B /* WidgetKit.framework */; };
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
@@ -255,6 +264,13 @@
 			remoteGlobalIDString = 492704721CF4AF7100C631C6;
 			remoteInfo = Canvas;
 		};
+		CF4A446F254700B600F76207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF4A4465254700B500F76207;
+			remoteInfo = NewGradesWidgetExtension;
+		};
 		D9FD8F3F2546C3F500C6842B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4927046B1CF4AF7100C631C6 /* Project object */;
@@ -281,6 +297,7 @@
 				B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */,
 				3B6DCCB11FB502CE005EE8D2 /* GradesWidget.appex in Embed App Extensions */,
 				D9FD8F412546C3F500C6842B /* AnnouncementsWidgetExtension.appex in Embed App Extensions */,
+				CF4A4471254700B600F76207 /* NewGradesWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -734,6 +751,14 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF4A4466254700B500F76207 /* NewGradesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NewGradesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4A446A254700B500F76207 /* GradesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidget.swift; sourceTree = "<group>"; };
+		CF4A446C254700B600F76207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CF4A446E254700B600F76207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF4A448D254700D600F76207 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetView.swift; sourceTree = "<group>"; };
+		CF4A44C52547059800F76207 /* GradesWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetController.swift; sourceTree = "<group>"; };
+		CF4A44CE2547062600F76207 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
 		CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
 		D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -845,6 +870,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF4A4463254700B500F76207 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4A4468254700B500F76207 /* SwiftUI.framework in Frameworks */,
+				CF4A448E254700D600F76207 /* Core.framework in Frameworks */,
+				CF4A4467254700B500F76207 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9FD8F312546C3F300C6842B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -933,6 +968,7 @@
 				7DC5717022F8B16200F2E9BB /* StudentUITests.xctest */,
 				E8C6F50023D626220086B865 /* StudentE2ETests.xctest */,
 				D9FD8F342546C3F300C6842B /* AnnouncementsWidgetExtension.appex */,
+				CF4A4466254700B500F76207 /* NewGradesWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -978,6 +1014,7 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF4A448D254700D600F76207 /* Core.framework */,
 				D9FD900F2546CB4C00C6842B /* Core.framework */,
 				2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */,
 				61F438E21DD4E60B00552D14 /* AVFoundation.framework */,
@@ -1643,10 +1680,56 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
+		CF4A4469254700B500F76207 /* NewGradesWidget */ = {
+			isa = PBXGroup;
+			children = (
+				CF4A44CD254705F900F76207 /* Model */,
+				CF4A44A92547041700F76207 /* View */,
+				CF4A44BE2547055800F76207 /* Controller */,
+				CF4A449C2547015C00F76207 /* Resources */,
+				CF4A446A254700B500F76207 /* GradesWidget.swift */,
+			);
+			path = NewGradesWidget;
+			sourceTree = "<group>";
+		};
+		CF4A449C2547015C00F76207 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CF4A446C254700B600F76207 /* Assets.xcassets */,
+				CF4A446E254700B600F76207 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CF4A44A92547041700F76207 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF4A44BE2547055800F76207 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CF4A44C52547059800F76207 /* GradesWidgetController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CF4A44CD254705F900F76207 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF4A44CE2547062600F76207 /* Grades.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D9FD8F2F2546C39D00C6842B /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
 				D9FD8F392546C3F300C6842B /* AnnouncementsWidget */,
+				CF4A4469254700B500F76207 /* NewGradesWidget */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1944,6 +2027,7 @@
 				3B6DCCB01FB502CE005EE8D2 /* PBXTargetDependency */,
 				B1BB7A8B22BAC820006CA068 /* PBXTargetDependency */,
 				D9FD8F402546C3F500C6842B /* PBXTargetDependency */,
+				CF4A4470254700B600F76207 /* PBXTargetDependency */,
 			);
 			name = Student;
 			packageProductDependencies = (
@@ -2028,6 +2112,23 @@
 			productName = SubmitAssignmentTests;
 			productReference = B1CA092E22C4237C008AA352 /* SubmitAssignmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CF4A4465254700B500F76207 /* NewGradesWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF4A4474254700B600F76207 /* Build configuration list for PBXNativeTarget "NewGradesWidgetExtension" */;
+			buildPhases = (
+				CF4A4462254700B500F76207 /* Sources */,
+				CF4A4463254700B500F76207 /* Frameworks */,
+				CF4A4464254700B500F76207 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewGradesWidgetExtension;
+			productName = NewGradesWidgetExtension;
+			productReference = CF4A4466254700B500F76207 /* NewGradesWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		D9FD8F332546C3F300C6842B /* AnnouncementsWidgetExtension */ = {
 			isa = PBXNativeTarget;
@@ -2139,6 +2240,9 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 492704721CF4AF7100C631C6;
 					};
+					CF4A4465254700B500F76207 = {
+						CreatedOnToolsVersion = 12.0.1;
+					};
 					D9FD8F332546C3F300C6842B = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -2222,6 +2326,7 @@
 				7DC5716F22F8B16200F2E9BB /* StudentUITests */,
 				E8C6F4CF23D626220086B865 /* StudentE2ETests */,
 				D9FD8F332546C3F300C6842B /* AnnouncementsWidgetExtension */,
+				CF4A4465254700B500F76207 /* NewGradesWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -2305,6 +2410,14 @@
 			files = (
 				7D1D5BEC2492E4A5009EA317 /* CoursesViewController.storyboard in Resources */,
 				B1CF949E23EB88DD00FD0698 /* AssignmentsViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF4A4464254700B500F76207 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4A446D254700B600F76207 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2834,6 +2947,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF4A4462254700B500F76207 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF4A446B254700B500F76207 /* GradesWidget.swift in Sources */,
+				CF4A44CF2547062600F76207 /* Grades.swift in Sources */,
+				CF4A44C62547059800F76207 /* GradesWidgetController.swift in Sources */,
+				CF4A44AB254704FA00F76207 /* GradesWidgetView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9FD8F302546C3F300C6842B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2897,6 +3021,11 @@
 			isa = PBXTargetDependency;
 			target = 492704721CF4AF7100C631C6 /* Student */;
 			targetProxy = B1CA093322C4237C008AA352 /* PBXContainerItemProxy */;
+		};
+		CF4A4470254700B600F76207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF4A4465254700B500F76207 /* NewGradesWidgetExtension */;
+			targetProxy = CF4A446F254700B600F76207 /* PBXContainerItemProxy */;
 		};
 		D9FD8F402546C3F500C6842B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3658,6 +3787,76 @@
 			};
 			name = Release;
 		};
+		CF4A4472254700B600F76207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Widgets/NewGradesWidget/Resources/NewGradesWidget.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Widgets/NewGradesWidget/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.NewGradesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CF4A4473254700B600F76207 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Widgets/NewGradesWidget/Resources/NewGradesWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B6333T4PXQ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Widgets/NewGradesWidget/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.NewGradesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D9FD8F432546C3F500C6842B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3846,6 +4045,15 @@
 			buildConfigurations = (
 				B1CA093522C4237D008AA352 /* Debug */,
 				B1CA093622C4237D008AA352 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF4A4474254700B600F76207 /* Build configuration list for PBXNativeTarget "NewGradesWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF4A4472254700B600F76207 /* Debug */,
+				CF4A4473254700B600F76207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
