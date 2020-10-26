@@ -166,9 +166,8 @@ test('routes to the right place when submissions dial is tapped', () => {
   ).getInstance()
   details.onSubmissionDialPress('graded')
   expect(navigator.show).toHaveBeenCalledWith(
-    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions`,
-    { modal: false },
-    { filterType: 'graded' }
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/submissions?filter=graded`,
+    { modal: false }
   )
 })
 

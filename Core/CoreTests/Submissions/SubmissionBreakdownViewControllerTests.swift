@@ -61,6 +61,7 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
         controller.button.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions")))
 
+        ExperimentalFeature.nativeSpeedGrader.isEnabled = false
         controller.gradedButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions?filterType=graded")))
 
@@ -69,6 +70,16 @@ class SubmissionBreakdownViewControllerTests: CoreTestCase {
 
         controller.unsubmittedButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions?filterType=not_submitted")))
+
+        ExperimentalFeature.nativeSpeedGrader.isEnabled = true
+        controller.gradedButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions?filter=graded")))
+
+        controller.ungradedButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions?filter=needs_grading")))
+
+        controller.unsubmittedButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/assignments/1/submissions?filter=not_submitted")))
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }

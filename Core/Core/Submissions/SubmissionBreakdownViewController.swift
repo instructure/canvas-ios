@@ -172,14 +172,23 @@ class SubmissionBreakdownViewController: UIViewController {
     }
 
     @IBAction func routeToGraded() {
-        env.router.route(to: "\(submissionsPath)?filterType=graded", from: self)
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return env.router.route(to: "\(submissionsPath)?filterType=graded", from: self)
+        }
+        env.router.route(to: "\(submissionsPath)?filter=graded", from: self)
     }
 
     @IBAction func routeToUngraded() {
-        env.router.route(to: "\(submissionsPath)?filterType=ungraded", from: self)
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return env.router.route(to: "\(submissionsPath)?filterType=ungraded", from: self)
+        }
+        env.router.route(to: "\(submissionsPath)?filter=needs_grading", from: self)
     }
 
     @IBAction func routeToUnsubmitted() {
-        env.router.route(to: "\(submissionsPath)?filterType=not_submitted", from: self)
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return env.router.route(to: "\(submissionsPath)?filterType=not_submitted", from: self)
+        }
+        env.router.route(to: "\(submissionsPath)?filter=not_submitted", from: self)
     }
 }

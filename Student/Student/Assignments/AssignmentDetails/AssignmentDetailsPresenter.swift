@@ -182,7 +182,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             let submission = notification.userInfo?["submission"] as? APISubmission,
             assignmentID == self.assignmentID
         else { return }
-        env.database.performBackgroundTask { context in
+        env.database.performWriteTask { context in
             Submission.save(submission, in: context)
             try? context.save()
         }
