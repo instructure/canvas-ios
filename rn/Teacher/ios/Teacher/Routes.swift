@@ -295,7 +295,7 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
         return nil
     }
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
 }
 
 // MARK: - HelmModules
