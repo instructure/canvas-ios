@@ -21,12 +21,43 @@ import WidgetKit
 
 class GradesWidgetController {
     private let env = AppEnvironment.shared
-    private lazy var submissionList = env.subscribe(GetRecentlyGradedSubmissions(userID: "self"))
+    private lazy var colorStore = env.subscribe(GetCustomColors())
+    private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self"))
+    private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100))
+    private var dispatchGroup: DispatchGroup?
 
-    private func update(completion: @escaping ([String]) -> Void) {
+    private func update(completion: @escaping ([GradeItem]) -> Void) {
+        guard dispatchGroup == nil else { return }
+
         setupLastLoginCredentials()
-        submissionList.refresh { _ in
-            self.submissionList
+        var submissions: [Submission] = []
+        var courses: [Course] = []
+        let dispatchGroup = DispatchGroup()
+        self.dispatchGroup = dispatchGroup
+
+        dispatchGroup.enter()
+        colorStore.refresh { _ in
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        submissionStore.refresh { [weak self] _ in
+            submissions = self?.submissionStore.first?.submissions ?? []
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        courseStore.refresh { [weak self] _ in
+            courses = self?.courseStore.all ?? []
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            let gradeItems: [GradeItem] = submissions.compactMap { $0.assignment }.map { assignment in
+                let courseColor = courses.first { $0.id == assignment.courseID}?.color ?? .textDarkest
+                return GradeItem(assignment: assignment, color: courseColor)
+            }
+            completion(gradeItems)
         }
     }
 
@@ -48,8 +79,9 @@ extension GradesWidgetController: TimelineProvider {
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> ()) {
+        let timeoutSeconds = courseStore.useCase.ttl
         update { grades in
-            let timeline = Timeline(entries: [GradeModel.make()], policy: .after(Date().addSeconds(60 * 60 * 2)))
+            let timeline = Timeline(entries: [GradeModel.make()], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
             completion(timeline)
         }
     }

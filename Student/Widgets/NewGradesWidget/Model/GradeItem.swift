@@ -17,20 +17,28 @@
 //
 
 import Core
+import SwiftUI
 import WidgetKit
 
 struct GradeItem: Hashable {
     let assignmentName: String
     let grade: String
+    let color: Color
 
-    init(assignment: Assignment) {
-        assignmentName = assignment.name
+    init(assignment: Assignment, color: Color) {
+        self.assignmentName = assignment.name
         // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
-        grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
+        self.grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
+        self.color = color
     }
 
-    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100") {
+    init(assignment: Assignment, color: UIColor) {
+        self.init(assignment: assignment, color: Color(color))
+    }
+
+    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest) {
         self.assignmentName = assignmentName
         self.grade = grade
+        self.color = color
     }
 }

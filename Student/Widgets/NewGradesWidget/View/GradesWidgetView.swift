@@ -21,14 +21,29 @@ import SwiftUI
 
 struct GradesWidgetView : View {
     private let model: GradeModel
+    @Environment(\.widgetFamily)
+    private var family
+    private let lineCountByFamily: [WidgetFamily: Int] = [
+        .systemMedium: 2,
+        .systemLarge: 6,
+    ]
 
     var body: some View {
-        VStack {
-            HeaderView(title: NSLocalizedString("Grades", comment: ""))
-            ForEach(model.items, id: \.self) { gradeItem in
-                GradeItemView(item: gradeItem).padding(.top)
-            }
-        }.padding()
+        switch family {
+        case .systemMedium, .systemLarge:
+            VStack {
+                HeaderView(title: NSLocalizedString("Grades", comment: ""))
+                ForEach(model.items.prefix(lineCountByFamily[family]!), id: \.self) { gradeItem in
+                    GradeItemView(item: gradeItem).padding(.top)
+                }
+                Spacer()
+            }.padding()
+        default:
+            VStack {
+                HeaderView(title: NSLocalizedString("Grades", comment: ""))
+                Spacer()
+            }.padding()
+        }
     }
 
     init(model: GradeModel) {
@@ -40,12 +55,9 @@ struct GradesWidgetView : View {
 struct GradesWidgetPreviews: PreviewProvider {
     static var previews: some View {
         let data = GradeModel.make()
-        GradesWidgetView(model: data)
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-        GradesWidgetView(model: data)
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-        GradesWidgetView(model: data)
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
+        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemSmall))
+        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemMedium))
+        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 #endif

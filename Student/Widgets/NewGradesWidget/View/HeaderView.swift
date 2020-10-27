@@ -22,7 +22,7 @@ import WidgetKit
 struct HeaderView : View {
     var body: some View {
         HStack {
-            Text(NSLocalizedString(title, comment: ""))
+            Text(NSLocalizedString(title, comment: "")).font(.semibold12).foregroundColor(.textDark)
             Spacer()
             Image("student-logomark").resizable().frame(width: 24, height: 24)
         }
@@ -38,7 +38,7 @@ struct HeaderView : View {
 #if DEBUG
 struct HeaderViewPreview: PreviewProvider {
     static var previews: some View {
-        HeaderView(title: "Test Title").previewContext(WidgetPreviewContext(family: .systemMedium))
+        HeaderView(title: "Assignment Grades").previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif
