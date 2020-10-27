@@ -198,6 +198,7 @@
 		D9FD90102546CB4C00C6842B /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD900F2546CB4C00C6842B /* Core.framework */; };
 		D9FD908D2547114100C6842B /* AnnouncementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD908C2547114100C6842B /* AnnouncementItem.swift */; };
 		D9FD90A1254712BE00C6842B /* AnnouncementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */; };
+		D9FD90C32548656A00C6842B /* AnnouncementItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */; };
 		DA5C72BF38BB22F39F7FB893 /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DEFAEF2C9B9DFE5512CC77 /* Pods_defaults_StudentUnitTests.framework */; };
 		E809363124C21A5D00D15E9A /* AccountNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363024C21A5D00D15E9A /* AccountNotificationsTests.swift */; };
 		E809363824C21B6F00D15E9A /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363724C21B6F00D15E9A /* InboxTests.swift */; };
@@ -782,6 +783,7 @@
 		D9FD90772546D41D00C6842B /* AnnouncementsWidget.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = AnnouncementsWidget.entitlements; sourceTree = "<group>"; };
 		D9FD908C2547114100C6842B /* AnnouncementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementItem.swift; sourceTree = "<group>"; };
 		D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementWidgetView.swift; sourceTree = "<group>"; };
+		D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementItemView.swift; sourceTree = "<group>"; };
 		E809363024C21A5D00D15E9A /* AccountNotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationsTests.swift; sourceTree = "<group>"; };
 		E809363724C21B6F00D15E9A /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		E809363924C21B9800D15E9A /* DiscussionReplyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionReplyTests.swift; sourceTree = "<group>"; };
@@ -1782,6 +1784,7 @@
 			isa = PBXGroup;
 			children = (
 				D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */,
+				D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3014,6 +3017,7 @@
 			files = (
 				D9FD8F5C2546C93A00C6842B /* AnnouncementsProvider.swift in Sources */,
 				D9FD90A1254712BE00C6842B /* AnnouncementWidgetView.swift in Sources */,
+				D9FD90C32548656A00C6842B /* AnnouncementItemView.swift in Sources */,
 				D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */,
 				D9FD8F552546C7BB00C6842B /* AnnouncementsEntry.swift in Sources */,
 				D9FD908D2547114100C6842B /* AnnouncementItem.swift in Sources */,

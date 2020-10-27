@@ -36,61 +36,31 @@ struct AnnouncementsWidgetView : View {
                         .font(.regular11Monodigit)
                         .foregroundColor(.blue)
                     Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
+                    Spacer()
                 }.padding(8)
             } else {
                 Text("No announcements")
             }
-        case .systemMedium:
-            VStack(alignment: .leading, spacing: 8) {
-                Image("student-logomark")
-                    .resizable()
-                    .frame(width: 24, height: 24).padding(8)
-                if let firstAnnouncement = entry.announcements.first {
-                    singleAnnouncementView(announcement: firstAnnouncement)
-                } else {
-                    Text("No announcements")
-                }
-            }.padding(8)
         default:
+            let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
             VStack(alignment: .leading, spacing: 2) {
                 Image("student-logomark")
                     .resizable()
                     .frame(width: 24, height: 24).padding(8)
-                ForEach(entry.announcements.prefix(3)) { announcementItem in
-                    singleAnnouncementView(announcement: announcementItem)
+                ForEach(announcementsToShow) { announcementItem in
+                    announcementItemView(announcementItem: announcementItem)
                 }
+                Spacer()
             }.padding(8)
         }
     }
 }
 
-struct singleAnnouncementView: View {
-    var announcement: AnnouncementItem
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            HStack {
-                Text("Introduction to the solar system")
-                    .font(.regular11Monodigit)
-                    .foregroundColor(.blue)
-                Spacer()
-                Text(announcement.date.relativeDateOnlyString)
-                    .font(.regular11Monodigit)
-                    .lineLimit(1)
-                    .foregroundColor(.textDark)
-            }
-            Text(announcement.title).font(.bold17).foregroundColor(.textDarkest)
-            Text("Author - TODO")
-                .font(.regular12)
-                .foregroundColor(.textDark)
-        }.padding(8)
-    }
-}
-
+#if DEBUG
 struct AnnouncementsWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        let item = AnnouncementItem(title: "Preview announcement placeholder text, this is long, blablablablabla, jajj de hosszú")
-        let entry = AnnouncementsEntry(announcementItems: [item, item])
+        let item = AnnouncementItem(title: "Preview A PROG  kapcsolás  időpontja ,  amely  nem változtatható meg, csak a hozzárendelt hőfok állítható az egyéni  igények  szerint.  Így  tehát  gyári  alaphelyzetben  a  termosztát naponta csak 1 kapcsolást (PROG) hajt végre, ami -től a következő nap -ig van érvényben")
+        let entry = AnnouncementsEntry(announcementItems: [item, item, item])
         AnnouncementsWidgetView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         AnnouncementsWidgetView(entry: entry)
@@ -99,3 +69,4 @@ struct AnnouncementsWidgetView_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
+#endif
