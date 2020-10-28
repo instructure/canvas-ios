@@ -29,20 +29,15 @@ struct GradesWidgetView : View {
     ]
 
     var body: some View {
-        switch family {
-        case .systemMedium, .systemLarge:
-            VStack {
-                HeaderView(title: NSLocalizedString("Grades", comment: ""))
-                ForEach(model.items.prefix(lineCountByFamily[family]!), id: \.self) { gradeItem in
-                    GradeItemView(item: gradeItem).padding(.top)
-                }
-                Spacer()
-            }.padding()
-        default:
-            VStack {
-                HeaderView(title: NSLocalizedString("Grades", comment: ""))
-                Spacer()
-            }.padding()
+        if let firstGrade = model.items.first {
+            switch family {
+            case .systemMedium, .systemLarge:
+                MediumLargeGradesView(items: model.items, lineCount: lineCountByFamily[family]!)
+            default:
+                SmallGradeView(gradeItem: firstGrade)
+            }
+        } else {
+            NoGradesView()
         }
     }
 

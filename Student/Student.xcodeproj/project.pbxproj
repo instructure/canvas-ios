@@ -188,6 +188,9 @@
 		CF4A44C62547059800F76207 /* GradesWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A44C52547059800F76207 /* GradesWidgetController.swift */; };
 		CF7D8A782535E45000DC7D79 /* SubmissionDetailsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */; };
 		CF80805A2547168200A0B2D3 /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
+		CFC467DE2549628700BC9AEA /* SmallGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467DD2549628700BC9AEA /* SmallGradeView.swift */; };
+		CFC467EC254966A300BC9AEA /* NoGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467EB254966A300BC9AEA /* NoGradesView.swift */; };
+		CFC467FB2549686B00BC9AEA /* MediumLargeGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */; };
 		D9FD8F362546C3F300C6842B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F352546C3F300C6842B /* WidgetKit.framework */; };
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
 		D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F3A2546C3F300C6842B /* AnnouncementsWidget.swift */; };
@@ -769,6 +772,9 @@
 		CF4A44C52547059800F76207 /* GradesWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetController.swift; sourceTree = "<group>"; };
 		CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
 		CF8080592547168200A0B2D3 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
+		CFC467DD2549628700BC9AEA /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
+		CFC467EB254966A300BC9AEA /* NoGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoGradesView.swift; sourceTree = "<group>"; };
+		CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D9FD8F342546C3F300C6842B /* AnnouncementsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AnnouncementsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1716,9 +1722,10 @@
 		CF4A44A92547041700F76207 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CF41CE4825473DA800937432 /* GradeItemView.swift */,
+				CFC4680825496A5F00BC9AEA /* Common */,
+				CFC467F9254967F100BC9AEA /* MediumLarge */,
+				CFC467DC2549626600BC9AEA /* Small */,
 				CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */,
-				CF41CE4025473AA300937432 /* HeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1738,6 +1745,32 @@
 				CF41CE3225472D2F00937432 /* GradeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CFC467DC2549626600BC9AEA /* Small */ = {
+			isa = PBXGroup;
+			children = (
+				CFC467DD2549628700BC9AEA /* SmallGradeView.swift */,
+			);
+			path = Small;
+			sourceTree = "<group>";
+		};
+		CFC467F9254967F100BC9AEA /* MediumLarge */ = {
+			isa = PBXGroup;
+			children = (
+				CF41CE4825473DA800937432 /* GradeItemView.swift */,
+				CF41CE4025473AA300937432 /* HeaderView.swift */,
+				CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */,
+			);
+			path = MediumLarge;
+			sourceTree = "<group>";
+		};
+		CFC4680825496A5F00BC9AEA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CFC467EB254966A300BC9AEA /* NoGradesView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D9FD8F2F2546C39D00C6842B /* Widgets */ = {
@@ -3002,11 +3035,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF41CE3325472D2F00937432 /* GradeModel.swift in Sources */,
+				CFC467EC254966A300BC9AEA /* NoGradesView.swift in Sources */,
 				CF41CE4125473AA300937432 /* HeaderView.swift in Sources */,
 				CF80805A2547168200A0B2D3 /* GradeItem.swift in Sources */,
 				CF4A446B254700B500F76207 /* GradesWidget.swift in Sources */,
+				CFC467FB2549686B00BC9AEA /* MediumLargeGradesView.swift in Sources */,
 				CF41CE4925473DA800937432 /* GradeItemView.swift in Sources */,
 				CF4A44C62547059800F76207 /* GradesWidgetController.swift in Sources */,
+				CFC467DE2549628700BC9AEA /* SmallGradeView.swift in Sources */,
 				CF4A44AB254704FA00F76207 /* GradesWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
