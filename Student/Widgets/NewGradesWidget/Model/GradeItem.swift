@@ -36,6 +36,12 @@ struct GradeItem: Hashable {
         self.init(assignment: assignment, color: Color(color))
     }
 
+    init(course: Course) {
+        self.assignmentName = course.name ?? ""
+        self.grade = course.displayGrade
+        self.color = Color(course.color)
+    }
+
     init(assignmentName: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest) {
         self.assignmentName = assignmentName
         self.grade = grade

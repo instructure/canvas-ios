@@ -22,9 +22,9 @@ import WidgetKit
 struct HeaderView : View {
     var body: some View {
         HStack {
-            Text(NSLocalizedString(title, comment: "")).font(.semibold12).foregroundColor(.textDark)
-            Spacer()
-            Image("student-logomark").resizable().frame(width: 24, height: 24)
+            Text(NSLocalizedString(title, comment: ""))
+                .font(.semibold12).foregroundColor(.textDark)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 

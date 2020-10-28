@@ -22,7 +22,7 @@ import WidgetKit
 struct GradeItemView : View {
     var body: some View {
         HStack {
-            Text("\(item.assignmentName)").lineLimit(2).font(.semibold16).foregroundColor(item.color)
+            Text("\(item.assignmentName)").lineLimit(2).font(.semibold18).foregroundColor(item.color)
             Spacer()
             Text("\(item.grade)").font(.semibold16).foregroundColor(.textDarkest)
         }.fixedSize(horizontal: false, vertical: true)
@@ -38,7 +38,7 @@ struct GradeItemView : View {
 #if DEBUG
 struct GradeItemViewPreview: PreviewProvider {
     static var previews: some View {
-        GradeItemView(item: GradeItem(assignmentName: "Long Test Assignment Name To Test Line Break", grade: "80 / 100")).previewContext(WidgetPreviewContext(family: .systemMedium))
+        GradeItemView(item: GradeItem(assignmentName: "Long Test Assignment Name To Test Line Break", grade: "80 / 100", color: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif

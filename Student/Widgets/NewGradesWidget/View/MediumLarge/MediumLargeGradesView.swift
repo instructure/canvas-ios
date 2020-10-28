@@ -21,30 +21,49 @@ import WidgetKit
 
 struct MediumLargeGradesView : View {
     var body: some View {
-        VStack {
-            HeaderView(title: NSLocalizedString("Grades", comment: ""))
-            ForEach(items.prefix(lineCount), id: \.self) { gradeItem in
-                GradeItemView(item: gradeItem).padding(.top)
+        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
+            Image("student-logomark")
+                .resizable()
+                .frame(width: 24, height: 24)
+            VStack(spacing: 21) {
+                if !model.assignmentGrades.isEmpty {
+                    HeaderView(title: NSLocalizedString("Assignment Grades", comment: ""))
+                    ForEach(model.assignmentGrades, id: \.self) { gradeItem in
+                        GradeItemView(item: gradeItem)
+                    }
+                }
+
+                if !model.courseGrades.isEmpty {
+                    HeaderView(title: NSLocalizedString("Course Grades", comment: ""))
+                    ForEach(model.courseGrades, id: \.self) { gradeItem in
+                        GradeItemView(item: gradeItem)
+                    }
+                }
+
+                if shouldAddBottomSpacer {
+                    Spacer()
+                }
             }
-            Spacer()
         }.padding()
     }
 
-    private let items: [GradeItem]
+    private let model: GradeModel
     private let lineCount: Int
+    private let shouldAddBottomSpacer: Bool
 
-    init(items: [GradeItem], lineCount: Int) {
-        self.items = items
+    init(model: GradeModel, lineCount: Int, shouldAddBottomSpacer: Bool) {
+        self.model = model.trimmed(to: lineCount)
         self.lineCount = lineCount
+        self.shouldAddBottomSpacer = shouldAddBottomSpacer
     }
 }
 
 #if DEBUG
 struct MediumLargeGradesViewPreview: PreviewProvider {
     static var previews: some View {
-        let items = GradeModel.make().items
-        MediumLargeGradesView(items: items, lineCount: 2).previewContext(WidgetPreviewContext(family: .systemMedium))
-        MediumLargeGradesView(items: items, lineCount: 6).previewContext(WidgetPreviewContext(family: .systemLarge))
+        let model = GradeModel.make()
+        MediumLargeGradesView(model: model, lineCount: 2, shouldAddBottomSpacer: false).previewContext(WidgetPreviewContext(family: .systemMedium))
+        MediumLargeGradesView(model: model, lineCount: 5, shouldAddBottomSpacer: true).previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
 #endif

@@ -25,14 +25,16 @@ struct GradesWidgetView : View {
     private var family
     private let lineCountByFamily: [WidgetFamily: Int] = [
         .systemMedium: 2,
-        .systemLarge: 6,
+        .systemLarge: 5,
     ]
 
     var body: some View {
-        if let firstGrade = model.items.first {
+        if let firstGrade = model.assignmentGrades.first ?? model.courseGrades.first {
             switch family {
-            case .systemMedium, .systemLarge:
-                MediumLargeGradesView(items: model.items, lineCount: lineCountByFamily[family]!)
+            case .systemLarge:
+                MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!, shouldAddBottomSpacer: true)
+            case .systemMedium:
+                MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!, shouldAddBottomSpacer: false)
             default:
                 SmallGradeView(gradeItem: firstGrade)
             }
