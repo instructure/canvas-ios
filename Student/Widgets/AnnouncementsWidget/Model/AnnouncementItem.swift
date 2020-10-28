@@ -24,22 +24,34 @@ struct AnnouncementItem: Identifiable {
     let message: String?
     let title: String
     let date: Date
+    let authorName: String
+    let avatarURL: URL?
 
-    init?(_ activity: Activity) {
-        guard let title = activity.title,
-              let date = activity.updatedAt
+    init?(_ discussionTopic: DiscussionTopic) {
+        print(discussionTopic)
+        guard
+            discussionTopic.isAnnouncement,
+            let title = discussionTopic.title,
+            let date = discussionTopic.postedAt,
+            let author = discussionTopic.author
         else { return nil }
 
-        self.id = activity.id
+        self.id = discussionTopic.id
         self.title = title
-        self.message = activity.message
+        self.message = discussionTopic.message
         self.date = date
+        self.authorName = author.displayName
+        self.avatarURL = author.avatarURL
     }
 
+#if DEBUG
     init(title: String) {
         self.id = "1"
         self.message = "Test"
         self.title = title
         self.date = Date()
+        self.authorName = "Professor Snape"
+        self.avatarURL = nil
     }
+#endif
 }

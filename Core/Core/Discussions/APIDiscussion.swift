@@ -21,6 +21,7 @@ import Foundation
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
     let id: ID
+    let context_code: ID?
     let assignment_id: ID?
     var title: String?
     var message: String?
@@ -93,6 +94,7 @@ public struct APIDiscussionView: Codable, Equatable {
 extension APIDiscussionTopic {
     public static func make(
         id: ID = "1",
+        context_code: ID? = nil,
         assignment_id: ID? = nil,
         title: String? = "my discussion topic",
         message: String? = "message",
@@ -117,6 +119,7 @@ extension APIDiscussionTopic {
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             id: id,
+            context_code: context_code,
             assignment_id: assignment_id,
             title: title,
             message: message,

@@ -19,31 +19,54 @@
 import Core
 import WidgetKit
 
-class AnnouncementsProvider: TimelineProvider {
-    typealias Entry = AnnouncementsEntry
+class AnnouncementsProvider {
     let env = AppEnvironment.shared
-    lazy var activities = env.subscribe(GetActivities())
+    var courseContextCodes: [String] = []
+
+    lazy var colors = env.subscribe(GetCustomColors())
+    lazy var courses = env.subscribe(GetAllCourses()) { [weak self] in
+        self?.updateCourses()
+    }
+    lazy var announcements = env.subscribe(GetAnnouncements(contextCodes: courseContextCodes))
+
+    private func updateCourses() {
+        self.courseContextCodes = self.courses.map {
+            Core.Context(.course, id: $0.id).canvasContextID
+        }
+        announcements.refresh()
+    }
+
+    func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+        guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
+        env.userDidLogin(session: mostRecentKeyChain)
+
+        colors.refresh()
+        courses.exhaust()
+        announcements.refresh(force: true) { _ in
+            if self.announcements.all.count > 0 {
+                let announcementsEntry = AnnouncementsEntry(announcements:self.announcements.all)
+                completion(announcementsEntry)
+            }
+        }
+    }
+}
+
+extension AnnouncementsProvider: TimelineProvider {
+    typealias Entry = AnnouncementsEntry
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
         AnnouncementsEntry(announcementItems: [])
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
-        let entry = AnnouncementsEntry(announcementItems: [])
-        completion(entry)
+        completion(placeholder(in: context))
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        guard let mostRecentKeyChain = LoginSession.mostRecent else {
-            return
-        }
-        env.userDidLogin(session: mostRecentKeyChain)
+        let timeoutSeconds = announcements.useCase.ttl
 
-        activities.refresh(force: true) { [weak self] result in
-            guard let self = self else { return }
-
-            let announcementsEntry = AnnouncementsEntry(activities: self.activities.all)
-            let timeline = Timeline(entries: [announcementsEntry], policy: .after(Date().addMinutes(5)))
+        update { announcements in
+            let timeline = Timeline(entries: [announcements], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
             completion(timeline)
         }
     }

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct announcementItemView: View {
@@ -37,9 +38,13 @@ struct announcementItemView: View {
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)
                 .lineLimit(2)
-            Text("Author - TODO")
-                .font(.regular12)
-                .foregroundColor(.textDark)
+            HStack {
+                Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
+                Text(announcementItem.authorName)
+                    .font(.regular11Monodigit)
+                    .foregroundColor(.textDark)
+                Spacer()
+            }
         }.padding(8)
     }
 }

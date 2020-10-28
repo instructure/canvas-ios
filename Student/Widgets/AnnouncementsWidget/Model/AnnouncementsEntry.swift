@@ -20,16 +20,14 @@ import Core
 import WidgetKit
 
 struct AnnouncementsEntry: TimelineEntry {
-    var date: Date
+    var date = Date(timeIntervalSince1970: 0)
     let announcements: [AnnouncementItem]
 
-    init(activities: [Activity]) {
-        date = Date()
-        announcements = activities.compactMap { AnnouncementItem($0) }
+    init(announcements: [DiscussionTopic]) {
+        self.announcements = announcements.compactMap { AnnouncementItem($0) }
     }
 
     init(announcementItems: [AnnouncementItem]) {
-        date = Date()
         self.announcements = announcementItems
     }
 }

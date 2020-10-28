@@ -33,6 +33,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var published: Bool
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String?
+    @NSManaged public var courseID: String?
     @NSManaged public var attachments: Set<File>?
     @NSManaged public var author: DiscussionParticipant?
     @NSManaged public var lockedForUser: Bool
@@ -91,6 +92,10 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.isSectionSpecific = item.is_section_specific
         if let sections = item.sections {
             model.sections = Set(sections.map { CourseSection.save($0, in: context) })
+        }
+        if let contextCode = item.context_code {
+            let context = Context(canvasContextID: contextCode.value)
+            model.courseID = context?.id
         }
         return model
     }
