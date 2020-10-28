@@ -30,15 +30,17 @@ class GradesWidgetController {
         guard dispatchGroup == nil else { return }
 
         setupLastLoginCredentials()
+        colorStore.refresh { [weak self] _ in
+            self?.updateGrades(completion: completion)
+        }
+    }
+
+    private func updateGrades(completion: @escaping ([GradeItem]) -> Void) {
         var submissions: [Submission] = []
         var courses: [Course] = []
+
         let dispatchGroup = DispatchGroup()
         self.dispatchGroup = dispatchGroup
-
-        dispatchGroup.enter()
-        colorStore.refresh { _ in
-            dispatchGroup.leave()
-        }
 
         dispatchGroup.enter()
         submissionStore.refresh { [weak self] _ in
@@ -52,12 +54,13 @@ class GradesWidgetController {
             dispatchGroup.leave()
         }
 
-        dispatchGroup.notify(queue: DispatchQueue.main) {
+        dispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
             let gradeItems: [GradeItem] = submissions.compactMap { $0.assignment }.map { assignment in
-                let courseColor = courses.first { $0.id == assignment.courseID}?.color ?? .textDarkest
+                let courseColor = courses.first { $0.id == assignment.courseID }?.color ?? .textDarkest
                 return GradeItem(assignment: assignment, color: courseColor)
             }
             completion(gradeItems)
+            self?.dispatchGroup = nil
         }
     }
 
@@ -81,7 +84,7 @@ extension GradesWidgetController: TimelineProvider {
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> ()) {
         let timeoutSeconds = courseStore.useCase.ttl
         update { grades in
-            let timeline = Timeline(entries: [GradeModel.make()], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
+            let timeline = Timeline(entries: [GradeModel(items: grades)], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
             completion(timeline)
         }
     }
