@@ -36,8 +36,9 @@ struct AnnouncementsWidgetView : View {
                         .font(.regular11Monodigit)
                         .foregroundColor(firstAnnouncement.courseColor)
                     Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
-                    Spacer()
-                }.padding(8)
+                    Spacer(minLength: 0)
+                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                .padding(16)
                 .widgetURL(firstAnnouncement.url)
             } else {
                 NoAnnouncementView()
@@ -49,13 +50,13 @@ struct AnnouncementsWidgetView : View {
                     .resizable()
                     .frame(width: 24, height: 24).padding(8)
                 if announcementsToShow.count > 0 {
-                    ForEach(announcementsToShow, id: \.self) { announcementItem in
+                    ForEach(announcementsToShow) { announcementItem in
                         AnnouncementItemView(announcementItem: announcementItem)
                     }
                 } else {
                     NoAnnouncementView()
                 }
-                Spacer()
+                Spacer(minLength: 0)
             }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading).padding(8)
         }
     }

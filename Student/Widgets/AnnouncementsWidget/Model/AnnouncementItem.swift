@@ -20,10 +20,11 @@ import Core
 import SwiftUI
 import WidgetKit
 
-struct AnnouncementItem: Hashable {
+struct AnnouncementItem: Identifiable {
+    let id: String
     let title: String
     let date: Date
-    let url: URL?
+    let url: URL
 
     let authorName: String
     let avatarURL: URL?
@@ -37,19 +38,22 @@ struct AnnouncementItem: Hashable {
             let title = discussionTopic.title,
             let date = discussionTopic.postedAt,
             let author = discussionTopic.author,
-            let courseName = course.name
+            let courseName = course.name,
+            let url = discussionTopic.htmlURL
         else { return nil }
 
+        self.id = discussionTopic.id
         self.title = title
         self.date = date
-        self.url = discussionTopic.htmlURL
+        self.url = url
         self.authorName = author.displayName
         self.avatarURL = author.avatarURL
         self.courseName = courseName
         self.courseColor = Color(course.color)
     }
 
-    init(title: String, date: Date, url: URL? = nil, authorName: String, avatarURL: URL? = nil, courseName: String, courseColor: Color) {
+    init(title: String, date: Date, url: URL, authorName: String, avatarURL: URL? = nil, courseName: String, courseColor: Color) {
+        self.id = UUID().uuidString
         self.title = title
         self.date = date
         self.url = url

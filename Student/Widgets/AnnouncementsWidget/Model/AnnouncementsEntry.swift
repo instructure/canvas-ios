@@ -29,11 +29,10 @@ struct AnnouncementsEntry: TimelineEntry {
 
     public static func makePreview() -> AnnouncementsEntry {
         AnnouncementsEntry(announcementItems: [
-            AnnouncementItem(title: "Finals are moving to another week.", date: Date(), authorName: "Thomas McKempis", courseName: "Introduction to the solar system", courseColor: .electric),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock)
+            AnnouncementItem(title: "Finals are moving to another week.", date: Date(), url: URL(string: "https://www.instructure.com/")!, authorName: "Thomas McKempis", courseName: "Introduction to the solar system", courseColor: .electric),
+            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: URL(string: "https://www.instructure.com/")!, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: URL(string: "https://www.instructure.com/")!, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock)
         ])
-
     }
 
 }

@@ -24,36 +24,38 @@ struct AnnouncementItemView: View {
     var announcementItem: AnnouncementItem
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            HStack {
-                Text(announcementItem.courseName)
-                    .font(.regular11Monodigit)
-                    .foregroundColor(announcementItem.courseColor)
-                Spacer()
-                Text(announcementItem.date.relativeDateOnlyString)
-                    .font(.regular11Monodigit)
-                    .lineLimit(1)
-                    .foregroundColor(.textDark)
-            }
-            Text(announcementItem.title)
-                .font(.semibold16)
-                .foregroundColor(.textDarkest)
-                .lineLimit(2)
-            HStack {
-                Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
-                Text(announcementItem.authorName)
-                    .font(.regular11Monodigit)
-                    .foregroundColor(.textDark)
-                Spacer()
-            }
-        }.padding(8).widgetURL(announcementItem.url)
+        Link(destination: announcementItem.url) {
+            VStack(alignment: .leading, spacing: 5) {
+                HStack {
+                    Text(announcementItem.courseName)
+                        .font(.regular11Monodigit)
+                        .foregroundColor(announcementItem.courseColor)
+                    Spacer()
+                    Text(announcementItem.date.relativeDateOnlyString)
+                        .font(.regular11Monodigit)
+                        .lineLimit(1)
+                        .foregroundColor(.textDark)
+                }
+                Text(announcementItem.title)
+                    .font(.semibold16)
+                    .foregroundColor(.textDarkest)
+                    .lineLimit(2)
+                HStack {
+                    Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
+                    Text(announcementItem.authorName)
+                        .font(.regular11Monodigit)
+                        .foregroundColor(.textDark)
+                    Spacer()
+                }
+            }.padding(8)
+        }
     }
 }
 
 #if DEBUG
 struct AnnouncementItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AnnouncementItemView(announcementItem: AnnouncementItem(title: "Finals are moving to another week.", date: Date(), authorName: "Thomas McKempis", avatarURL: nil, courseName: "Introduction to the solar system", courseColor: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
+        AnnouncementItemView(announcementItem: AnnouncementItem(title: "Finals are moving to another week.", date: Date(), url: URL(string: "https://www.instructure.com/")!, authorName: "Thomas McKempis", avatarURL: nil, courseName: "Introduction to the solar system", courseColor: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif
