@@ -33,7 +33,6 @@ class AnnouncementsProvider {
         self.courseContextCodes = self.courses.map {
             Core.Context(.course, id: $0.id).canvasContextID
         }
-        announcements.refresh()
     }
 
     func update(completion: @escaping (AnnouncementsEntry) -> Void) {
@@ -42,11 +41,15 @@ class AnnouncementsProvider {
 
         colors.refresh()
         courses.exhaust()
-        announcements.refresh(force: true) { _ in
-            if self.announcements.all.count > 0 {
-                let announcementsEntry = AnnouncementsEntry(announcements:self.announcements.all)
-                completion(announcementsEntry)
+        announcements.refresh(force: true) { [weak self] _ in
+            guard let self = self else { return }
+
+            let announcementItems: [AnnouncementItem] = self.announcements.compactMap { announcement in
+                guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
+                return AnnouncementItem(discussionTopic: announcement, course: course)
             }
+            let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
+            completion(announcementsEntry)
         }
     }
 }
@@ -55,7 +58,7 @@ extension AnnouncementsProvider: TimelineProvider {
     typealias Entry = AnnouncementsEntry
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
-        AnnouncementsEntry(announcementItems: [])
+        AnnouncementsEntry.makePreview()
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
@@ -63,10 +66,8 @@ extension AnnouncementsProvider: TimelineProvider {
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        let timeoutSeconds = announcements.useCase.ttl
-
-        update { announcements in
-            let timeline = Timeline(entries: [announcements], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
+        update { announcementsEntry in
+            let timeline = Timeline(entries: [announcementsEntry], policy: .after(Date().addMinutes(5)))
             completion(timeline)
         }
     }

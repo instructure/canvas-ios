@@ -191,6 +191,7 @@
 		CFC467DE2549628700BC9AEA /* SmallGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467DD2549628700BC9AEA /* SmallGradeView.swift */; };
 		CFC467EC254966A300BC9AEA /* NoGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467EB254966A300BC9AEA /* NoGradesView.swift */; };
 		CFC467FB2549686B00BC9AEA /* MediumLargeGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */; };
+		D9CD0D86254ACE4900BBB406 /* NoAnnanouncementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD0D85254ACE4900BBB406 /* NoAnnanouncementsView.swift */; };
 		D9FD8F362546C3F300C6842B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F352546C3F300C6842B /* WidgetKit.framework */; };
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
 		D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F3A2546C3F300C6842B /* AnnouncementsWidget.swift */; };
@@ -777,6 +778,7 @@
 		CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9CD0D85254ACE4900BBB406 /* NoAnnanouncementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnnanouncementsView.swift; sourceTree = "<group>"; };
 		D9FD8F342546C3F300C6842B /* AnnouncementsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AnnouncementsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FD8F352546C3F300C6842B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D9FD8F372546C3F300C6842B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -1816,8 +1818,9 @@
 		D9FD908A2547109D00C6842B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */,
+				D9CD0D85254ACE4900BBB406 /* NoAnnanouncementsView.swift */,
 				D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */,
+				D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3053,6 +3056,7 @@
 			files = (
 				D9FD8F5C2546C93A00C6842B /* AnnouncementsProvider.swift in Sources */,
 				D9FD90A1254712BE00C6842B /* AnnouncementWidgetView.swift in Sources */,
+				D9CD0D86254ACE4900BBB406 /* NoAnnanouncementsView.swift in Sources */,
 				D9FD90C32548656A00C6842B /* AnnouncementItemView.swift in Sources */,
 				D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */,
 				D9FD8F552546C7BB00C6842B /* AnnouncementsEntry.swift in Sources */,

@@ -32,14 +32,15 @@ struct AnnouncementsWidgetView : View {
                         .font(.regular11Monodigit)
                         .lineLimit(1)
                         .foregroundColor(.textDark)
-                    Text("Introduction to the solar system")
+                    Text(firstAnnouncement.courseName)
                         .font(.regular11Monodigit)
-                        .foregroundColor(.blue)
+                        .foregroundColor(firstAnnouncement.courseColor)
                     Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
                     Spacer()
                 }.padding(8)
+                .widgetURL(firstAnnouncement.url)
             } else {
-                Text("No announcements")
+                NoAnnouncementView()
             }
         default:
             let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
@@ -47,11 +48,15 @@ struct AnnouncementsWidgetView : View {
                 Image("student-logomark")
                     .resizable()
                     .frame(width: 24, height: 24).padding(8)
-                ForEach(announcementsToShow) { announcementItem in
-                    announcementItemView(announcementItem: announcementItem)
+                if announcementsToShow.count > 0 {
+                    ForEach(announcementsToShow, id: \.self) { announcementItem in
+                        AnnouncementItemView(announcementItem: announcementItem)
+                    }
+                } else {
+                    NoAnnouncementView()
                 }
                 Spacer()
-            }.padding(8)
+            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading).padding(8)
         }
     }
 }
@@ -59,13 +64,14 @@ struct AnnouncementsWidgetView : View {
 #if DEBUG
 struct AnnouncementsWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        let item = AnnouncementItem(title: "Preview A PROG  kapcsolás  időpontja ,  amely  nem változtatható meg, csak a hozzárendelt hőfok állítható az egyéni  igények  szerint.  Így  tehát  gyári  alaphelyzetben  a  termosztát naponta csak 1 kapcsolást (PROG) hajt végre, ami -től a következő nap -ig van érvényben")
-        let entry = AnnouncementsEntry(announcementItems: [item, item, item])
+        let entry = AnnouncementsEntry.makePreview()
         AnnouncementsWidgetView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
         AnnouncementsWidgetView(entry: entry)
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         AnnouncementsWidgetView(entry: entry)
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
+        AnnouncementsWidgetView(entry: AnnouncementsEntry(announcementItems: []))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

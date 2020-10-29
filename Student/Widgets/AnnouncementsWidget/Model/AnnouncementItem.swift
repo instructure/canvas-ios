@@ -17,41 +17,45 @@
 //
 
 import Core
+import SwiftUI
+import WidgetKit
 
-struct AnnouncementItem: Identifiable {
-    let id: String
-
-    let message: String?
+struct AnnouncementItem: Hashable {
     let title: String
     let date: Date
+    let url: URL?
+
     let authorName: String
     let avatarURL: URL?
 
-    init?(_ discussionTopic: DiscussionTopic) {
-        print(discussionTopic)
+    let courseName: String
+    let courseColor: Color
+
+    init?(discussionTopic: DiscussionTopic, course: Course) {
         guard
             discussionTopic.isAnnouncement,
             let title = discussionTopic.title,
             let date = discussionTopic.postedAt,
-            let author = discussionTopic.author
+            let author = discussionTopic.author,
+            let courseName = course.name
         else { return nil }
 
-        self.id = discussionTopic.id
         self.title = title
-        self.message = discussionTopic.message
         self.date = date
+        self.url = discussionTopic.htmlURL
         self.authorName = author.displayName
         self.avatarURL = author.avatarURL
+        self.courseName = courseName
+        self.courseColor = Color(course.color)
     }
 
-#if DEBUG
-    init(title: String) {
-        self.id = "1"
-        self.message = "Test"
+    init(title: String, date: Date, url: URL? = nil, authorName: String, avatarURL: URL? = nil, courseName: String, courseColor: Color) {
         self.title = title
-        self.date = Date()
-        self.authorName = "Professor Snape"
-        self.avatarURL = nil
+        self.date = date
+        self.url = url
+        self.authorName = authorName
+        self.avatarURL = avatarURL
+        self.courseName = courseName
+        self.courseColor = courseColor
     }
-#endif
 }

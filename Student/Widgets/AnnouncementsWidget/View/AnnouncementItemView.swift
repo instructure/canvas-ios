@@ -18,16 +18,17 @@
 
 import Core
 import SwiftUI
+import WidgetKit
 
-struct announcementItemView: View {
+struct AnnouncementItemView: View {
     var announcementItem: AnnouncementItem
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack {
-                Text("Introduction to the solar system")
+                Text(announcementItem.courseName)
                     .font(.regular11Monodigit)
-                    .foregroundColor(.blue)
+                    .foregroundColor(announcementItem.courseColor)
                 Spacer()
                 Text(announcementItem.date.relativeDateOnlyString)
                     .font(.regular11Monodigit)
@@ -45,6 +46,14 @@ struct announcementItemView: View {
                     .foregroundColor(.textDark)
                 Spacer()
             }
-        }.padding(8)
+        }.padding(8).widgetURL(announcementItem.url)
     }
 }
+
+#if DEBUG
+struct AnnouncementItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        AnnouncementItemView(announcementItem: AnnouncementItem(title: "Finals are moving to another week.", date: Date(), authorName: "Thomas McKempis", avatarURL: nil, courseName: "Introduction to the solar system", courseColor: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
+    }
+}
+#endif

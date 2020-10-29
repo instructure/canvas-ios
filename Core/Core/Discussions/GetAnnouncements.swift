@@ -29,7 +29,9 @@ public class GetAnnouncements: CollectionUseCase {
         return "get-announcements-\(codes)"
     }
     public var request: GetAnnouncementsRequest
-    public var scope = Scope(predicate: .all, order: [])//TODO order
+    public var scope = Scope(predicate: .all, order: [
+        NSSortDescriptor(key: #keyPath(DiscussionTopic.postedAt), ascending: false)
+    ])
 
     public init(contextCodes: [String]) {
         self.contextCodes = contextCodes
