@@ -39,17 +39,18 @@ class AnnouncementsProvider {
         guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
         env.userDidLogin(session: mostRecentKeyChain)
 
-        colors.refresh()
-        courses.exhaust()
-        announcements.refresh(force: true) { [weak self] _ in
-            guard let self = self else { return }
-
-            let announcementItems: [AnnouncementItem] = self.announcements.compactMap { announcement in
-                guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
-                return AnnouncementItem(discussionTopic: announcement, course: course)
+        colors.refresh { [weak self] _ in
+            self?.courses.refresh { _ in
+                self?.announcements.refresh(force: true) { _ in
+                    guard let self = self else { return }
+                    let announcementItems: [AnnouncementItem] = self.announcements.compactMap { announcement in
+                        guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
+                        return AnnouncementItem(discussionTopic: announcement, course: course)
+                    }
+                    let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
+                    completion(announcementsEntry)
+                }
             }
-            let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
-            completion(announcementsEntry)
         }
     }
 }
