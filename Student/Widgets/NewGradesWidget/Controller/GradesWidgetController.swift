@@ -25,7 +25,7 @@ class GradesWidgetController {
     private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
     private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
     private lazy var favoriteCoursesStore = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
-    private var completion: ((Timeline<GradeModel>) -> ())?
+    private var completion: ((Timeline<GradeModel>) -> Void)?
 
     private func update() {
         setupLastLoginCredentials()
@@ -66,11 +66,11 @@ extension GradesWidgetController: TimelineProvider {
         GradeModel.make()
     }
 
-    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeModel) -> ()) {
+    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeModel) -> Void) {
         completion(GradeModel.make())
     }
 
-    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> ()) {
+    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> Void) {
         if context.isPreview {
             completion(Timeline(entries: [GradeModel(assignmentGrades: [], courseGrades: [])], policy: .after(Date())))
             return

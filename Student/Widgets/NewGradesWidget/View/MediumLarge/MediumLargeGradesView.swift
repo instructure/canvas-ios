@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct MediumLargeGradesView : View {
+struct MediumLargeGradesView: View {
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             Image("student-logomark")

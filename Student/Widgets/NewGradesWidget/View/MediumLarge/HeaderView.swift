@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct HeaderView : View {
+struct HeaderView: View {
     var body: some View {
         HStack {
             Text(NSLocalizedString(title, comment: ""))

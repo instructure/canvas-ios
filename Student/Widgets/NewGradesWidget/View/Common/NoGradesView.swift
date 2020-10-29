@@ -21,11 +21,9 @@ import SwiftUI
 
 struct NoGradesView: View {
     var body: some View {
-        VStack(spacing: 10) {
-            Text(NSLocalizedString("No Grades To Display", comment: ""))
-                .font(.semibold12)
-                .foregroundColor(.textDark)
-        }.padding()
+        Text(NSLocalizedString("No Grades To Display", comment: ""))
+            .font(.semibold12)
+            .foregroundColor(.textDark)
     }
 }
 

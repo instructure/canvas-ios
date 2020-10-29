@@ -19,8 +19,9 @@
 import WidgetKit
 import SwiftUI
 
-struct GradesWidgetView : View {
+struct GradesWidgetView: View {
     private let model: GradeModel
+    private var firstGrade: GradeItem? { model.assignmentGrades.first ?? model.courseGrades.first }
     @Environment(\.widgetFamily)
     private var family
     private let lineCountByFamily: [WidgetFamily: Int] = [
@@ -29,7 +30,7 @@ struct GradesWidgetView : View {
     ]
 
     var body: some View {
-        if let firstGrade = model.assignmentGrades.first ?? model.courseGrades.first {
+        if let firstGrade = firstGrade {
             switch family {
             case .systemLarge:
                 MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!, shouldAddBottomSpacer: true)

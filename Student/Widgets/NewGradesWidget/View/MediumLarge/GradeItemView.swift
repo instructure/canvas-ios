@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct GradeItemView : View {
+struct GradeItemView: View {
     var body: some View {
         HStack {
             Text("\(item.assignmentName)").lineLimit(2).font(.semibold18).foregroundColor(item.color)

@@ -31,4 +31,3 @@ struct GradesWidget: Widget {
         .description(NSLocalizedString("This widget displays your latest grades", comment: "Description of the grades widget"))
     }
 }
-
