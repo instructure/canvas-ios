@@ -22,56 +22,35 @@ import WidgetKit
 class GradesWidgetController {
     private let env = AppEnvironment.shared
     private lazy var colorStore = env.subscribe(GetCustomColors())
-    private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self"))
-    private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100))
-    private lazy var favoriteCoursesStore = env.subscribe(GetCourses(showFavorites: true))
-    private var dispatchGroup: DispatchGroup?
-    private var isReadyToFetch: Bool { dispatchGroup == nil }
+    private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
+    private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
+    private lazy var favoriteCoursesStore = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
+    private var completion: ((Timeline<GradeModel>) -> ())?
 
-    private func update(completion: @escaping (_ assignmentGrades: [GradeItem], _ courseGrades: [GradeItem]) -> Void) {
-        guard isReadyToFetch else { return }
-
+    private func update() {
         setupLastLoginCredentials()
         colorStore.refresh { [weak self] _ in
-            self?.updateGrades(completion: completion)
+            guard let self = self, !self.colorStore.pending else { return }
+
+            self.submissionStore.refresh()
+            self.courseStore.refresh()
+            self.favoriteCoursesStore.refresh()
         }
     }
 
-    private func updateGrades(completion: @escaping (_ assignmentGrades: [GradeItem], _ courseGrades: [GradeItem]) -> Void) {
-        var submissions: [Submission] = []
-        var courses: [Course] = []
-        var favoriteCourses: [Course] = []
+    private func handleFetchFinished() {
+        guard let completion = completion, !submissionStore.pending, !courseStore.pending, !favoriteCoursesStore.pending else { return }
 
-        let dispatchGroup = DispatchGroup()
-        self.dispatchGroup = dispatchGroup
-        dispatchGroup.enter()
-        dispatchGroup.enter()
-        dispatchGroup.enter()
-
-        submissionStore.refresh { [weak self] _ in
-            submissions = self?.submissionStore.first?.submissions ?? []
-            dispatchGroup.leave()
+        let assignmentGrades: [GradeItem] = (submissionStore.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
+            let courseColor = courseStore.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
+            return GradeItem(assignment: assignment, color: courseColor)
         }
+        let courseGrades = favoriteCoursesStore.all.map { GradeItem(course: $0) }
 
-        courseStore.refresh { [weak self] _ in
-            courses = self?.courseStore.all ?? []
-            dispatchGroup.leave()
-        }
-
-        favoriteCoursesStore.refresh { [weak self] _ in
-            favoriteCourses = self?.favoriteCoursesStore.all ?? []
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.notify(queue: DispatchQueue.main) { [weak self] in
-            let assignmentGrades: [GradeItem] = submissions.compactMap { $0.assignment }.map { assignment in
-                let courseColor = courses.first { $0.id == assignment.courseID }?.color ?? .textDarkest
-                return GradeItem(assignment: assignment, color: courseColor)
-            }
-            let courseGrades = favoriteCourses.map { GradeItem(course: $0) }
-            completion(assignmentGrades, courseGrades)
-            self?.dispatchGroup = nil
-        }
+        let timeoutSeconds = submissionStore.useCase.ttl
+        let timeline = Timeline(entries: [GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades)], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
+        completion(timeline)
+        self.completion = nil
     }
 
     private func setupLastLoginCredentials() {
@@ -92,10 +71,12 @@ extension GradesWidgetController: TimelineProvider {
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> ()) {
-        let timeoutSeconds = courseStore.useCase.ttl
-        update { assignmentGrades, courseGrades in
-            let timeline = Timeline(entries: [GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades)], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
-            completion(timeline)
+        if context.isPreview {
+            completion(Timeline(entries: [GradeModel(assignmentGrades: [], courseGrades: [])], policy: .after(Date())))
+            return
         }
+
+        self.completion = completion
+        update()
     }
 }
