@@ -47,7 +47,7 @@ struct AnnouncementItemView: View {
                             .frame(width: 16, height: 16, alignment: .center)
                             .cornerRadius(8)
                     } else {
-                        Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
+                        Avatar(name: announcementItem.authorName, url: nil, size: 16)
                     }
                     Text(announcementItem.authorName)
                         .font(.regular11Monodigit)
@@ -62,7 +62,7 @@ struct AnnouncementItemView: View {
 #if DEBUG
 struct AnnouncementItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AnnouncementItemView(announcementItem: AnnouncementItem(title: "Finals are moving to another week.", date: Date(), url: URL(string: "https://www.instructure.com/")!, authorName: "Thomas McKempis", avatarURL: nil, courseName: "Introduction to the solar system", courseColor: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
+        AnnouncementItemView(announcementItem: AnnouncementItem(title: "Finals are moving to another week.", date: Date(), url: URL(string: "https://www.instructure.com/")!, authorName: "Thomas McKempis", courseName: "Introduction to the solar system", courseColor: .electric)).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif

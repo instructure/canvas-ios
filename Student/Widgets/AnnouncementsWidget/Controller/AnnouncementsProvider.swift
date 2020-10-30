@@ -40,6 +40,13 @@ class AnnouncementsProvider {
         env.userDidLogin(session: mostRecentKeyChain)
     }
 
+    private func getImage(url: URL?) -> UIImage? {
+        guard let url = url, let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        return UIImage(data: data)
+    }
+
     func update(completion: @escaping (AnnouncementsEntry) -> Void) {
         setupLastLoginCredentials()
 
@@ -49,7 +56,8 @@ class AnnouncementsProvider {
                     guard let self = self else { return }
                     let announcementItems: [AnnouncementItem] = self.announcements.compactMap { announcement in
                         guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
-                        return AnnouncementItem(discussionTopic: announcement, course: course)
+                        let image = self.getImage(url: announcement.author?.avatarURL)
+                        return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
                     }
                     let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
                     completion(announcementsEntry)

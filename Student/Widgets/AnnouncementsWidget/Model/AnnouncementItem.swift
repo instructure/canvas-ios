@@ -27,13 +27,12 @@ struct AnnouncementItem: Identifiable {
     let url: URL
 
     let authorName: String
-    let avatarURL: URL?
     let avatarImage: UIImage?
 
     let courseName: String
     let courseColor: Color
 
-    init?(discussionTopic: DiscussionTopic, course: Course) {
+    init?(discussionTopic: DiscussionTopic, course: Course, avatarImage: UIImage?) {
         guard
             discussionTopic.isAnnouncement,
             let title = discussionTopic.title,
@@ -48,26 +47,19 @@ struct AnnouncementItem: Identifiable {
         self.date = date
         self.url = url
         self.authorName = author.displayName
-        self.avatarURL = author.avatarURL
         self.courseName = courseName
         self.courseColor = Color(course.color)
-
-        if let avatarURL = author.avatarURL, let data = try? Data(contentsOf: avatarURL) {
-            self.avatarImage = UIImage(data: data)
-        } else {
-            self.avatarImage = nil
-        }
+        self.avatarImage = avatarImage
     }
 
-    init(title: String, date: Date, url: URL, authorName: String, avatarURL: URL? = nil, courseName: String, courseColor: Color) {
+    init(title: String, date: Date, url: URL, authorName: String, avatarImage: UIImage? = nil, courseName: String, courseColor: Color) {
         self.id = UUID().uuidString
         self.title = title
         self.date = date
         self.url = url
         self.authorName = authorName
-        self.avatarURL = avatarURL
         self.courseName = courseName
         self.courseColor = courseColor
-        self.avatarImage = UIImage()
+        self.avatarImage = avatarImage
     }
 }
