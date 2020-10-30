@@ -24,12 +24,14 @@ struct GradeItem: Hashable {
     let assignmentName: String
     let grade: String
     let color: Color
+    let route: URL
 
     init(assignment: Assignment, color: Color) {
         self.assignmentName = assignment.name
         // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
         self.grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
         self.color = color
+        self.route = assignment.route
     }
 
     init(assignment: Assignment, color: UIColor) {
@@ -40,11 +42,13 @@ struct GradeItem: Hashable {
         self.assignmentName = course.name ?? ""
         self.grade = course.displayGrade
         self.color = Color(course.color)
+        self.route = course.route
     }
 
-    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest) {
+    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest, route: URL = URL(string: "canvas-courses://")!) {
         self.assignmentName = assignmentName
         self.grade = grade
         self.color = color
+        self.route = route
     }
 }

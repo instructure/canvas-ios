@@ -175,6 +175,7 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
+		CF17F171254C1A0900B79EB6 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17F170254C1A0900B79EB6 /* Routes.swift */; };
 		CF41CE3325472D2F00937432 /* GradeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE3225472D2F00937432 /* GradeModel.swift */; };
 		CF41CE4125473AA300937432 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE4025473AA300937432 /* HeaderView.swift */; };
 		CF41CE4925473DA800937432 /* GradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE4825473DA800937432 /* GradeItemView.swift */; };
@@ -761,6 +762,7 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF17F170254C1A0900B79EB6 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		CF41CE3225472D2F00937432 /* GradeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeModel.swift; sourceTree = "<group>"; };
 		CF41CE4025473AA300937432 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		CF41CE4825473DA800937432 /* GradeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItemView.swift; sourceTree = "<group>"; };
@@ -1745,6 +1747,7 @@
 			children = (
 				CF8080592547168200A0B2D3 /* GradeItem.swift */,
 				CF41CE3225472D2F00937432 /* GradeModel.swift */,
+				CF17F170254C1A0900B79EB6 /* Routes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3045,6 +3048,7 @@
 				CFC467FB2549686B00BC9AEA /* MediumLargeGradesView.swift in Sources */,
 				CF41CE4925473DA800937432 /* GradeItemView.swift in Sources */,
 				CF4A44C62547059800F76207 /* GradesWidgetController.swift in Sources */,
+				CF17F171254C1A0900B79EB6 /* Routes.swift in Sources */,
 				CFC467DE2549628700BC9AEA /* SmallGradeView.swift in Sources */,
 				CF4A44AB254704FA00F76207 /* GradesWidgetView.swift in Sources */,
 			);

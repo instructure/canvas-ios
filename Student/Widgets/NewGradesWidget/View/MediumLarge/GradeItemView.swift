@@ -21,11 +21,13 @@ import WidgetKit
 
 struct GradeItemView: View {
     var body: some View {
-        HStack {
-            Text("\(item.assignmentName)").lineLimit(2).font(.semibold18).foregroundColor(item.color)
-            Spacer()
-            Text("\(item.grade)").font(.semibold16).foregroundColor(.textDarkest)
-        }.fixedSize(horizontal: false, vertical: true)
+        Link(destination: item.route) {
+            HStack {
+                Text("\(item.assignmentName)").lineLimit(2).font(.semibold18).foregroundColor(item.color)
+                Spacer()
+                Text("\(item.grade)").font(.semibold16).foregroundColor(.textDarkest)
+            }.fixedSize(horizontal: false, vertical: true)
+        }
     }
 
     private let item: GradeItem

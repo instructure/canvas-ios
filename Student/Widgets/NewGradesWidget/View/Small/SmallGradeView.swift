@@ -34,7 +34,7 @@ struct SmallGradeView: View {
                 .font(.bold24)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
-        }.padding()
+        }.padding().widgetURL(gradeItem.route)
     }
 
     private let gradeItem: GradeItem
