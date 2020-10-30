@@ -28,6 +28,7 @@ struct AnnouncementItem: Identifiable {
 
     let authorName: String
     let avatarURL: URL?
+    let avatarImage: UIImage?
 
     let courseName: String
     let courseColor: Color
@@ -50,6 +51,12 @@ struct AnnouncementItem: Identifiable {
         self.avatarURL = author.avatarURL
         self.courseName = courseName
         self.courseColor = Color(course.color)
+
+        if let avatarURL = author.avatarURL, let data = try? Data(contentsOf: avatarURL) {
+            self.avatarImage = UIImage(data: data)
+        } else {
+            self.avatarImage = nil
+        }
     }
 
     init(title: String, date: Date, url: URL, authorName: String, avatarURL: URL? = nil, courseName: String, courseColor: Color) {
@@ -61,5 +68,6 @@ struct AnnouncementItem: Identifiable {
         self.avatarURL = avatarURL
         self.courseName = courseName
         self.courseColor = courseColor
+        self.avatarImage = UIImage()
     }
 }

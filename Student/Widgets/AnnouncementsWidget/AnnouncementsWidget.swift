@@ -27,7 +27,7 @@ struct AnnouncementsWidget: Widget {
         StaticConfiguration(kind: kind, provider: AnnouncementsProvider()) { entry in
             AnnouncementsWidgetView(entry: entry)
         }
-        .configurationDisplayName("Latest Announcements")
-        .description("Show latest announcements")
+        .configurationDisplayName(NSLocalizedString("Latest Announcements", comment: "Name of the announcements widget"))
+        .description(NSLocalizedString("This widget displays the latest announcements", comment: "Description of the announcements widget"))
     }
 }

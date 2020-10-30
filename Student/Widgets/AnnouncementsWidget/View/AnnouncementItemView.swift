@@ -41,7 +41,14 @@ struct AnnouncementItemView: View {
                     .foregroundColor(.textDarkest)
                     .lineLimit(2)
                 HStack {
-                    Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
+                    if let image = announcementItem.avatarImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .cornerRadius(8)
+                    } else {
+                        Avatar(name: announcementItem.authorName, url: announcementItem.avatarURL, size: 16)
+                    }
                     Text(announcementItem.authorName)
                         .font(.regular11Monodigit)
                         .foregroundColor(.textDark)

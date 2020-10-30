@@ -35,9 +35,13 @@ class AnnouncementsProvider {
         }
     }
 
-    func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+    private func setupLastLoginCredentials() {
         guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
         env.userDidLogin(session: mostRecentKeyChain)
+    }
+
+    func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+        setupLastLoginCredentials()
 
         colors.refresh { [weak self] _ in
             self?.courses.refresh { _ in
