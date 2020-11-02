@@ -138,7 +138,7 @@ public class GradeFormatter {
     }
 
     // For teachers & graders in submission list
-    public static func graderString(from assignment: Assignment?, submission: Submission?) -> String {
+    public static func shortString(for assignment: Assignment?, submission: Submission?) -> String {
         guard assignment?.gradingType != .not_graded else { return "" }
 
         let placeholder = NSLocalizedString("--", comment: "placeholder for the score of an ungraded submission")
@@ -148,17 +148,22 @@ public class GradeFormatter {
 
         guard submission.excused != true else { return NSLocalizedString("Excused") }
 
+        return gradeString(for: assignment, submission: submission) ?? placeholder
+    }
+
+    public static func gradeString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String? {
+        let grade = final ? submission.grade : submission.enteredGrade
+        let score = final ? submission.score : submission.enteredScore
+
         switch assignment.gradingType {
         case .percent:
-            return (submission.grade?.replacingOccurrences(of: "%", with: "")).flatMap { Double($0) }
+            return (grade?.replacingOccurrences(of: "%", with: "")).flatMap { Double($0) }
                 .flatMap { percentFormatter.string(from: truncate($0 / 100, factor: 10000)) }
-                ?? placeholder
         case .points:
-            return (submission.score ?? submission.grade.flatMap { Double($0) })
+            return (score ?? grade.flatMap { Double($0) })
                 .flatMap { numberFormatter.string(from: truncate($0)) }
-                ?? placeholder
         default:
-            switch submission.grade {
+            switch grade {
             case "pass":
                 return NSLocalizedString("Pass")
             case "fail":
@@ -168,11 +173,27 @@ public class GradeFormatter {
             case "incomplete":
                 return NSLocalizedString("Incomplete")
             default:
-                return submission.grade.flatMap { Double($0) }
+                return grade.flatMap { Double($0) }
                     .flatMap { numberFormatter.string(from: truncate($0)) }
-                    ?? submission.grade
-                    ?? placeholder
+                    ?? grade
             }
         }
+    }
+
+    public static func longString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String {
+        let score = (final ? submission.score : submission.enteredScore) ?? 0
+        let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
+        let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
+        let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)
+        if let grade = grade {
+            return String.localizedStringWithFormat(
+                NSLocalizedString("%@/%@ (%@)", comment: "score/points possible (grade)"),
+                scoreString, possibleString, grade
+            )
+        }
+        return String.localizedStringWithFormat(
+            NSLocalizedString("%@/%@", comment: "score/points"),
+            scoreString, possibleString
+        )
     }
 }

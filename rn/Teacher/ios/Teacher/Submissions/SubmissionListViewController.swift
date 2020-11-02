@@ -256,7 +256,7 @@ class SubmissionListCell: UITableViewCell {
         statusLabel.text = submission?.status.text
         statusLabel.textColor = submission?.status.color
         needsGradingView.isHidden = submission?.needsGrading != true
-        gradeLabel.text = GradeFormatter.graderString(from: assignment, submission: submission)
+        gradeLabel.text = GradeFormatter.shortString(for: assignment, submission: submission)
         hiddenView.isHidden = submission?.postedAt != nil || (submission?.score == nil && submission?.grade == nil)
     }
 }

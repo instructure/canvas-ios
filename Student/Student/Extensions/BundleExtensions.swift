@@ -24,6 +24,6 @@ internal extension Bundle {
     static let student = Bundle(for: Placeholder.self)
 }
 
-internal func NSLocalizedString(_ key: String) -> String {
-    return NSLocalizedString(key, bundle: .student, comment: "")
+internal func NSLocalizedString(_ key: String, comment: String = "") -> String {
+    return NSLocalizedString(key, bundle: .student, comment: comment)
 }

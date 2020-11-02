@@ -23,7 +23,55 @@ struct SubmissionGrades: View {
     let assignment: Assignment
     let submission: Submission
 
+    @State var isSaving = false
+
+    var hasLateDeduction: Bool {
+        submission.late && (submission.pointsDeducted ?? 0) > 0
+    }
+
     var body: some View {
-        ScrollView { Text("Grades") }
+        if assignment.moderatedGrading {
+            GeometryReader { geometry in
+                ScrollView {
+                    EmptyPanda(.Unsupported, message: Text("Moderated Grading Unsupported"))
+                        .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                }
+            }
+        } else {
+            ScrollView {
+                VStack(spacing: 0) {
+                    HStack(spacing: 0) {
+                        Text("Grade")
+                        Spacer()
+                        Button(action: {}, label: {
+                            grade
+                        })
+                        if submission.grade?.isEmpty == false, submission.postedAt == nil {
+                            Icon.offLine.foregroundColor(.textDanger)
+                                .padding(.leading, 12)
+                        }
+                    }
+                        .font(.heavy24)
+                        .foregroundColor(hasLateDeduction ? .textDark : .textDarkest)
+                        .padding(.horizontal, 16).padding(.vertical, 12)
+                    Divider()
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    var grade: some View {
+        if assignment.gradingType == .not_graded {
+            Text("Not Graded")
+        } else if isSaving {
+            CircleProgress(size: 24)
+        } else if submission.excused == true {
+            Text("Excused")
+        } else if submission.grade?.isEmpty == false {
+            Text(GradeFormatter.longString(for: assignment, submission: submission, final: false))
+        } else {
+            Icon.addSolid.foregroundColor(Color(Brand.shared.linkColor))
+        }
     }
 }
