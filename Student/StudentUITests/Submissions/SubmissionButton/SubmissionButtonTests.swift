@@ -96,7 +96,7 @@ class SubmissionButtonTests: CoreUITestCase {
     func testDiscussionTopic() {
         mockBaseRequests()
         let topic = APIDiscussionTopic.make(html_url: URL(string: "/courses/\(course.id)/discussion_topics/1"))
-        let assignment = mock(assignment: .make(submission_types: [ .discussion_topic ], discussion_topic: topic))
+        let assignment = mock(assignment: .make(discussion_topic: topic, submission_types: [ .discussion_topic ]))
         mockData(GetContextPermissionsRequest(context: .course(course.id.value), permissions: [.postToForum]), value: .make())
         mockData(GetGroupsRequest(context: .currentUser), value: [])
         mockData(MarkDiscussionTopicReadRequest(context: .course(course.id.value), topicID: "1", isRead: true), value: APINoContent())

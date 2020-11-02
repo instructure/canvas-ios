@@ -63,7 +63,7 @@ public class MiniCourse {
         state.courses.append(course)
 
         func makeAssignment(name: String) -> MiniAssignment {
-            MiniAssignment(APIAssignment.make(id: state.nextId(), course_id: api.id, name: name), state: state)
+            MiniAssignment(APIAssignment.make(course_id: api.id, id: state.nextId(), name: name), state: state)
         }
 
         course.gradingPeriods = [
@@ -140,8 +140,8 @@ public class MiniCourse {
 
         let topicID = state.nextId()
         let topic = APIDiscussionTopic.make(
-            id: topicID,
             html_url: state.baseUrl.appendingPathComponent("/course/\(course.id)/discussion_topics/\(topicID)"),
+            id: topicID,
             permissions: .make(attach: true, update: true, reply: true, delete: true)
         )
         course.discussions.append(MiniDiscussion.create(topic, populatingState: state))

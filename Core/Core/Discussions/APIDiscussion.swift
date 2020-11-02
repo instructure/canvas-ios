@@ -20,28 +20,34 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
-    let id: ID
+    let allow_rating: Bool
     let assignment_id: ID?
-    var title: String?
-    var message: String?
-    let html_url: URL?
-    let posted_at: Date?
-    let last_reply_at: Date?
-    let discussion_subentry_count: Int
-    let published: Bool
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
-    let permissions: APIDiscussionPermissions?
-    let allow_rating: Bool
-    let sort_by_rating: Bool
-    let only_graders_can_rate: Bool?
-    let locked_for_user: Bool
-    var locked: Bool?
+    let can_unpublish: Bool?
+    let delayed_post_at: Date?
+    let discussion_subentry_count: Int
+    let discussion_type: String?
     let group_category_id: ID?
     let group_topic_children: [APIDiscussionTopicChild]?
-    let subscription_hold: String?
+    let html_url: URL?
+    let id: ID
     let is_section_specific: Bool
+    let last_reply_at: Date?
+    var locked: Bool?
+    let locked_for_user: Bool
+    let lock_at: Date?
+    var message: String?
+    let only_graders_can_rate: Bool?
+    let permissions: APIDiscussionPermissions?
+    let posted_at: Date?
+    let published: Bool
+    let require_initial_post: Bool?
     let sections: [APICourseSection]?
+    let sort_by_rating: Bool
+    let subscribed: Bool?
+    let subscription_hold: String?
+    var title: String?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -92,52 +98,64 @@ public struct APIDiscussionView: Codable, Equatable {
 #if DEBUG
 extension APIDiscussionTopic {
     public static func make(
-        id: ID = "1",
+        allow_rating: Bool = false,
         assignment_id: ID? = nil,
-        title: String? = "my discussion topic",
-        message: String? = "message",
-        html_url: URL? = nil,
-        posted_at: Date? = nil,
-        last_reply_at: Date? = nil,
-        discussion_subentry_count: Int = 1,
-        published: Bool = true,
         attachments: [APIFile]? = nil,
         author: APIDiscussionParticipant = .make(),
-        permissions: APIDiscussionPermissions? = .make(),
-        allow_rating: Bool = false,
-        sort_by_rating: Bool = false,
-        only_graders_can_rate: Bool? = nil,
-        locked_for_user: Bool = false,
-        locked: Bool? = nil,
+        can_unpublish: Bool? = nil,
+        delayed_post_at: Date? = nil,
+        discussion_subentry_count: Int = 1,
+        discussion_type: String? = "threaded",
         group_category_id: ID? = nil,
         group_topic_children: [APIDiscussionTopicChild]? = nil,
-        subscription_hold: String? = nil,
+        html_url: URL? = nil,
+        id: ID = "1",
         is_section_specific: Bool = false,
-        sections: [APICourseSection]? = nil
+        last_reply_at: Date? = nil,
+        locked: Bool? = nil,
+        locked_for_user: Bool = false,
+        lock_at: Date? = nil,
+        message: String? = "message",
+        only_graders_can_rate: Bool? = nil,
+        permissions: APIDiscussionPermissions? = .make(),
+        posted_at: Date? = nil,
+        published: Bool = true,
+        require_initial_post: Bool? = false,
+        sections: [APICourseSection]? = nil,
+        sort_by_rating: Bool = false,
+        subscribed: Bool? = true,
+        subscription_hold: String? = nil,
+        title: String? = "my discussion topic"
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
-            id: id,
+            allow_rating: allow_rating,
             assignment_id: assignment_id,
-            title: title,
-            message: message,
-            html_url: html_url,
-            posted_at: posted_at,
-            last_reply_at: last_reply_at,
-            discussion_subentry_count: discussion_subentry_count,
-            published: published,
             attachments: attachments,
             author: author,
-            permissions: permissions,
-            allow_rating: allow_rating,
-            sort_by_rating: sort_by_rating,
-            only_graders_can_rate: only_graders_can_rate,
-            locked_for_user: locked_for_user,
-            locked: locked,
+            can_unpublish: can_unpublish,
+            delayed_post_at: delayed_post_at,
+            discussion_subentry_count: discussion_subentry_count,
+            discussion_type: discussion_type,
             group_category_id: group_category_id,
             group_topic_children: group_topic_children,
-            subscription_hold: subscription_hold,
+            html_url: html_url,
+            id: id,
             is_section_specific: is_section_specific,
-            sections: sections
+            last_reply_at: last_reply_at,
+            locked: locked,
+            locked_for_user: locked_for_user,
+            lock_at: lock_at,
+            message: message,
+            only_graders_can_rate: only_graders_can_rate,
+            permissions: permissions,
+            posted_at: posted_at,
+            published: published,
+            require_initial_post: require_initial_post,
+            sections: sections,
+            sort_by_rating: sort_by_rating,
+            subscribed: subscribed,
+            subscription_hold: subscription_hold,
+            title: title
         )
     }
 }
@@ -259,31 +277,126 @@ extension APIDiscussionEntry {
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.create
 struct PostDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
-    struct Body: Codable, Equatable {
-        let title: String
-        let message: String
-        let published: Bool
-        let assignment: APIAssignmentParameters?
-    }
 
     let context: Context
-    let body: Body?
+    let form: APIFormData?
     let method = APIMethod.post
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics"
+    var path: String { "\(context.pathComponent)/discussion_topics" }
+
+    // swiftlint:disable:next function_parameter_count
+    init(
+        context: Context,
+        allowRating: Bool,
+        attachment: URL?,
+        delayedPostAt: Date?,
+        discussionType: String,
+        isAnnouncement: Bool,
+        lockAt: Date?,
+        locked: Bool? = nil,
+        message: String,
+        onlyGradersCanRate: Bool,
+        published: Bool?,
+        requireInitialPost: Bool?,
+        sections: [String] = [],
+        sortByRating: Bool,
+        title: String
+    ) {
+        self.context = context
+        var form: APIFormData = [
+            (key: "allow_rating", value: .bool(allowRating)),
+            (key: "delayed_post_at", value: .date(delayedPostAt)),
+            (key: "discussion_type", value: .string(discussionType)),
+            (key: "is_announcement", value: .bool(isAnnouncement)),
+            (key: "lock_at", value: .date(lockAt)),
+            (key: "message", value: .string(message)),
+            (key: "only_graders_can_rate", value: .bool(onlyGradersCanRate)),
+            (key: "sort_by_rating", value: .bool(sortByRating)),
+            (key: "specific_sections", value: .string(sections.isEmpty ? "all" : sections.joined(separator: ","))),
+            (key: "title", value: .string(title)),
+        ]
+        if let url = attachment {
+            form.append((key: "attachment", value: .file(
+                filename: url.lastPathComponent,
+                type: "application/octet-stream",
+                at: url
+            )))
+        }
+        if let locked = locked {
+            form.append((key: "locked", value: .bool(locked)))
+        }
+        if let published = published {
+            form.append((key: "published", value: .bool(published)))
+        }
+        if let requireInitialPost = requireInitialPost {
+            form.append((key: "require_initial_post", value: .bool(requireInitialPost)))
+        }
+        self.form = form
     }
 }
 
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.update
 struct PutDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
     let context: Context
     let topicID: String
-    // let body: Body? = nil
+    let form: APIFormData?
     let method = APIMethod.put
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
 
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics/\(topicID)"
+    // swiftlint:disable:next function_parameter_count
+    init(
+        context: Context,
+        topicID: String,
+        allowRating: Bool,
+        attachment: URL?,
+        delayedPostAt: Date?,
+        discussionType: String,
+        lockAt: Date?,
+        locked: Bool? = nil,
+        message: String,
+        onlyGradersCanRate: Bool,
+        published: Bool?,
+        removeAttachment: Bool?,
+        requireInitialPost: Bool?,
+        sections: [String] = [],
+        sortByRating: Bool,
+        title: String
+    ) {
+        self.context = context
+        self.topicID = topicID
+        var form: APIFormData = [
+            (key: "allow_rating", value: .bool(allowRating)),
+            (key: "delayed_post_at", value: .date(delayedPostAt)),
+            (key: "discussion_type", value: .string(discussionType)),
+            (key: "id", value: .string(topicID)),
+            (key: "lock_at", value: .date(lockAt)),
+            (key: "message", value: .string(message)),
+            (key: "only_graders_can_rate", value: .bool(onlyGradersCanRate)),
+            (key: "sort_by_rating", value: .bool(sortByRating)),
+            (key: "specific_sections", value: .string(sections.isEmpty ? "all" : sections.joined(separator: ","))),
+            (key: "title", value: .string(title)),
+        ]
+        if let url = attachment {
+            form.append((key: "attachment", value: .file(
+                filename: url.lastPathComponent,
+                type: "application/octet-stream",
+                at: url
+            )))
+        }
+        if let locked = locked {
+            form.append((key: "locked", value: .bool(locked)))
+        }
+        if let published = published {
+            form.append((key: "published", value: .bool(published)))
+        }
+        if let removeAttachment = removeAttachment {
+            form.append((key: "remove_attachment", value: .bool(removeAttachment)))
+        }
+        if let requireInitialPost = requireInitialPost {
+            form.append((key: "require_initial_post", value: .bool(requireInitialPost)))
+        }
+        self.form = form
     }
 }
 
@@ -302,6 +415,17 @@ struct DeleteDiscussionTopicRequest: APIRequestable {
     let topicID: String
     let method = APIMethod.delete
     var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.subscribe_topic
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.unsubscribe_topic
+struct SubscribeDiscussionTopicRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let method: APIMethod
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/subscribed" }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.add_entry

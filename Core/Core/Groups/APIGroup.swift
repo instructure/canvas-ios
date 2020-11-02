@@ -116,3 +116,12 @@ public struct GetGroupRequest: APIRequestable {
         return Context(.group, id: id).pathComponent
     }
 }
+
+// https://canvas.instructure.com/doc/api/group_categories.html#method.group_categories.groups
+struct GetGroupsInCategoryRequest: APIRequestable {
+    typealias Response = [APIGroup]
+
+    let groupCategoryID: String
+
+    var path: String { "group_categories/\(groupCategoryID)/groups" }
+}

@@ -18,18 +18,21 @@
 
 import XCTest
 
-public enum DiscussionEdit: String, ElementWrapper {
+public enum DiscussionEditor: String, ElementWrapper {
     case
+        allowRatingToggle,
         attachmentButton,
-        delayPostAtButton, delayPostAtClearButton, delayPostAtPicker,
+        delayedPostAtToggle, delayedPostAtPicker,
         doneButton,
-        gradeAsButton, gradeTypePicker,
-        invalidLabel, invalidPointsLabel, invalidTitleLabel,
-        lockAtButton, lockAtClearButton, lockAtPicker,
+        gradingTypeButton,
+        lockAtPicker,
+        lockedToggle,
+        onlyGradersCanRateToggle,
         pointsField,
-        publishSwitch,
-        requirePostSwitch,
-        subscribeSwitch,
-        threadSwitch,
+        publishedToggle,
+        requireInitialPostToggle,
+        sectionsButton,
+        sortByRatingToggle,
+        threadedToggle,
         titleField
 }

@@ -32,7 +32,7 @@ class SyllabusTests: CoreUITestCase {
             Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
 
-        let assignment = APIAssignment.make(name: assignmentName, description: "hello world", submission: .make())
+        let assignment = APIAssignment.make(description: "hello world", name: assignmentName, submission: .make())
         mock(assignment: assignment)
         mockData(GetCalendarEventsRequest(contexts: [Context(.course, id: course.id.value)], type: .event, allEvents: true), value: [
             .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),

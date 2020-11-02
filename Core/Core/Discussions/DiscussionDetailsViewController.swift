@@ -114,7 +114,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
         optionsButton.accessibilityIdentifier = "DiscussionDetails.options"
-        optionsButton.isEnabled = false
 
         pointsView.isHidden = true
         publishedView.isHidden = true
@@ -152,8 +151,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
             navigationItem.rightBarButtonItem = nil
         }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(topicEdited(_:)), name: .init("topic-edit"), object: nil)
 
         colors.refresh()
         if context.contextType == .course {
@@ -236,8 +233,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             courseSectionsView.isHidden = true
         }
 
-        optionsButton.isEnabled = hasTopicOptions
-
         let pending = topic.pending || entries.pending
         let error = topic.error ?? entries.error
         spinnerView.isHidden = !pending || (!topic.isEmpty && !entries.isEmpty) || error != nil || refreshControl.isRefreshing
@@ -292,11 +287,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         assignment?.refresh(force: true)
         permissions.refresh(force: true)
         groups.exhaust(force: true)
-    }
-
-    @objc func topicEdited(_ notification: NSNotification) {
-        guard notification.userInfo?["id"] as? String == topicID else { return }
-        topic.refresh(force: true)
     }
 
     var canLike: Bool {
@@ -481,12 +471,6 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
 }
 
 extension DiscussionDetailsViewController {
-    var hasTopicOptions: Bool {
-        !entries.isEmpty ||
-        topic.first?.canUpdate == true ||
-        topic.first?.canDelete == true
-    }
-
     @objc func showTopicOptions() {
         guard let topic = topic.first else { return }
 
@@ -507,6 +491,23 @@ extension DiscussionDetailsViewController {
                 accessibilityIdentifier: "DiscussionDetails.markAllUnread"
             ) { [weak self] in
                 self?.markAllRead(isRead: false)
+            }
+        }
+        if topic.subscribed {
+            sheet.addAction(
+                image: .noSolid,
+                title: NSLocalizedString("Unsubscribe"),
+                accessibilityIdentifier: "DiscussionDetails.unsubscribe"
+            ) { [weak self] in
+                self?.subscribe(false)
+            }
+        } else {
+            sheet.addAction(
+                image: .checkSolid,
+                title: NSLocalizedString("Subscribe"),
+                accessibilityIdentifier: "DiscussionDetails.subscribe"
+            ) { [weak self] in
+                self?.subscribe(true)
             }
         }
         if topic.canUpdate {
@@ -548,13 +549,15 @@ extension DiscussionDetailsViewController {
         } }
     }
 
+    func subscribe(_ subscribed: Bool) {
+        SubscribeDiscussionTopic(context: context, topicID: topicID, subscribed: subscribed).fetch()
+    }
+
     func deleteTopic() {
         DeleteDiscussionTopic(context: context, topicID: topicID).fetch { [weak self] _, _, error in performUIUpdate {
             guard let self = self else { return }
             if let error = error { return self.showError(error) }
-            NotificationCenter.default.post(name: .init("topic-delete"), object: nil, userInfo: [
-                "id": self.topicID,
-            ])
+            NotificationCenter.default.post(name: .init("topic-refresh"), object: nil, userInfo: [:])
             self.env.router.dismiss(self)
         } }
     }

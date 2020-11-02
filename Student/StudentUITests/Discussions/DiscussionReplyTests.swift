@@ -118,7 +118,7 @@ class DiscussionReplyTests: CoreUITestCase {
 
         app.find(label: "Reply", type: .link).tap()
         DiscussionEditReply.sendButton.waitToExist()
-        XCTAssertFalse(DiscussionEdit.attachmentButton.exists)
+        XCTAssertFalse(DiscussionEditor.attachmentButton.exists)
         NavBar.dismissButton.tap()
         DiscussionEditReply.sendButton.waitToVanish()
 

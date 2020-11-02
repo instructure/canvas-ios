@@ -20,43 +20,45 @@ import Foundation
 import CoreData
 
 public class Assignment: NSManagedObject {
-    @NSManaged var allowedExtensionsRaw: String
-    @NSManaged public var courseID: String
-    @NSManaged public var quizID: String?
-    @NSManaged public var details: String?
-    @NSManaged public var dueAt: Date?
-    @NSManaged public var dueAtSortNilsAtBottom: Date?
-    @NSManaged public var gradedIndividually: Bool
-    @NSManaged var gradingTypeRaw: String
-    @NSManaged public var htmlURL: URL?
-    @NSManaged public var id: String
-    @NSManaged public var name: String
-    @NSManaged var pointsPossibleRaw: NSNumber?
-    @NSManaged var submissionTypesRaw: String
-    @NSManaged public var position: Int
-    @NSManaged public var lockAt: Date?
-    @NSManaged public var unlockAt: Date?
-    @NSManaged public var lockedForUser: Bool
-    @NSManaged public var lockExplanation: String?
-    @NSManaged public var url: URL?
-    @NSManaged public var discussionTopic: DiscussionTopic?
-    @NSManaged public var rubric: Set<Rubric>?
-    @NSManaged public var useRubricForGrading: Bool
-    @NSManaged public var lastUpdatedAt: Date?
-    @NSManaged public var hideRubricPoints: Bool
-    @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
-    @NSManaged public var assignmentGroupID: String?
-    @NSManaged public var assignmentGroupPosition: Int
-    @NSManaged public var gradingPeriod: GradingPeriod?
-    @NSManaged public var assignmentGroup: AssignmentGroup?
-    @NSManaged public var todo: Todo?
-    @NSManaged public var syllabus: Syllabus?
-    @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
-    @NSManaged public var externalToolContentID: String?
-    @NSManaged public var scoreStatistics: ScoreStatistics?
+    @NSManaged public var allowedExtensionsRaw: String
     @NSManaged public var anonymizeStudents: Bool
+    @NSManaged public var assignmentGroup: AssignmentGroup?
+    @NSManaged public var assignmentGroupID: String?
+    @NSManaged public var assignmentGroupPosition: Int
+    @NSManaged public var courseID: String
+    @NSManaged public var details: String?
+    @NSManaged public var discussionTopic: DiscussionTopic?
+    @NSManaged public var dueAt: Date?
+    @NSManaged public var dueAtSortNilsAtBottom: Date?
+    @NSManaged public var externalToolContentID: String?
+    @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
+    @NSManaged public var gradedIndividually: Bool
+    @NSManaged public var gradingPeriod: GradingPeriod?
+    @NSManaged public var gradingTypeRaw: String
+    @NSManaged public var groupCategoryID: String?
+    @NSManaged public var hideRubricPoints: Bool
+    @NSManaged public var htmlURL: URL?
+    @NSManaged public var id: String
+    @NSManaged public var lastUpdatedAt: Date?
+    @NSManaged public var lockAt: Date?
+    @NSManaged public var lockedForUser: Bool
+    @NSManaged public var lockExplanation: String?
+    @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
+    @NSManaged public var name: String
+    @NSManaged public var overrides: Set<AssignmentOverride>
+    @NSManaged public var pointsPossibleRaw: NSNumber?
+    @NSManaged public var position: Int
+    @NSManaged public var quizID: String?
+    @NSManaged public var rubric: Set<Rubric>?
+    @NSManaged public var scoreStatistics: ScoreStatistics?
+    @NSManaged public var submissionTypesRaw: String
+    @NSManaged public var syllabus: Syllabus?
+    @NSManaged public var todo: Todo?
+    @NSManaged public var unlockAt: Date?
+    @NSManaged public var url: URL?
+    @NSManaged public var useRubricForGrading: Bool
 
     /**
      Use this property (vs. submissions) when you want the most recent submission
@@ -120,31 +122,32 @@ public class Assignment: NSManagedObject {
 
 extension Assignment {
     func update(fromApiModel item: APIAssignment, in client: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) {
-        id = item.id.value
-        name = item.name
+        allowedAttempts = item.allowed_attempts ?? 0
+        allowedExtensions = item.allowed_extensions ?? []
+        anonymizeStudents = item.anonymize_students == true
+        assignmentGroupID = item.assignment_group_id?.value
         courseID = item.course_id.value
-        quizID = item.quiz_id?.value
         details = item.description
-        pointsPossible = item.points_possible
         dueAt = item.due_at
         dueAtSortNilsAtBottom = item.due_at ?? Date.distantFuture
-        htmlURL = item.html_url
-        gradingType = item.grading_type
+        externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
         gradedIndividually = item.grade_group_students_individually ?? true
-        submissionTypes = item.submission_types
-        allowedExtensions = item.allowed_extensions ?? []
-        position = item.position
-        unlockAt = item.unlock_at
+        gradingType = item.grading_type
+        groupCategoryID = item.group_category_id?.value
+        htmlURL = item.html_url
+        id = item.id.value
+        lastUpdatedAt = Date()
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
         lockExplanation = item.lock_explanation
+        name = item.name
+        pointsPossible = item.points_possible
+        position = item.position
+        quizID = item.quiz_id?.value
+        submissionTypes = item.submission_types
+        unlockAt = item.unlock_at
         url = item.url
         useRubricForGrading = item.use_rubric_for_grading ?? false
-        lastUpdatedAt = Date()
-        assignmentGroupID = item.assignment_group_id?.value
-        allowedAttempts = item.allowed_attempts ?? 0
-        externalToolContentID = item.external_tool_tag_attributes?.content_id?.rawValue
-        anonymizeStudents = item.anonymize_students == true
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
@@ -204,6 +207,10 @@ extension Assignment {
             allDates = Set(dates.map {
                 AssignmentDate.save($0, assignmentID: id, in: client)
             })
+        }
+
+        if let items = item.overrides {
+            overrides = Set(items.map { AssignmentOverride.save($0, in: client) })
         }
     }
 
@@ -336,6 +343,38 @@ public final class AssignmentDate: NSManagedObject {
     }
 }
 
+public final class AssignmentOverride: NSManagedObject, WriteableModel {
+    @NSManaged public var assignmentID: String
+    @NSManaged public var courseSectionID: String?
+    @NSManaged public var dueAt: Date?
+    @NSManaged public var id: String
+    @NSManaged public var groupID: String?
+    @NSManaged public var lockAt: Date?
+    @NSManaged var studentIDsRaw: String?
+    @NSManaged public var title: String
+    @NSManaged public var unlockAt: Date?
+
+    public var studentIDs: [String]? {
+        get { studentIDsRaw?.components(separatedBy: ",") }
+        set { studentIDsRaw = newValue?.joined(separator: ",") }
+    }
+
+    @discardableResult
+    public static func save(_ item: APIAssignmentOverride, in context: NSManagedObjectContext) -> AssignmentOverride {
+        let model: AssignmentOverride = context.first(where: #keyPath(AssignmentOverride.id), equals: item.id.value) ?? context.insert()
+        model.assignmentID = item.assignment_id.value
+        model.courseSectionID = item.course_section_id?.value
+        model.dueAt = item.due_at
+        model.groupID = item.group_id?.value
+        model.id = item.id.value
+        model.lockAt = item.lock_at
+        model.studentIDs = item.student_ids?.map { $0.value }
+        model.title = item.title
+        model.unlockAt = item.unlock_at
+        return model
+    }
+}
+
 public final class ScoreStatistics: NSManagedObject {
     @NSManaged internal (set) public var mean: Double
     @NSManaged internal (set) public var min: Double
@@ -346,5 +385,26 @@ public final class ScoreStatistics: NSManagedObject {
         mean = item.mean
         min = item.min
         max = item.max
+    }
+}
+
+public enum GradingType: String, Codable, CaseIterable {
+    case percent, pass_fail, points, letter_grade, gpa_scale, not_graded
+
+    var string: String {
+        switch self {
+        case .percent:
+            return NSLocalizedString("Percentage")
+        case .pass_fail:
+            return NSLocalizedString("Complete/Incomplete")
+        case .points:
+            return NSLocalizedString("Points")
+        case .letter_grade:
+            return NSLocalizedString("Letter Grade")
+        case .gpa_scale:
+            return NSLocalizedString("GPA Scale")
+        case .not_graded:
+            return NSLocalizedString("Not Graded")
+        }
     }
 }

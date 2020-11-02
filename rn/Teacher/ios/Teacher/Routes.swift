@@ -52,8 +52,16 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/user_preferences": nil,
 
     "/:context/:contextID/announcements": nil,
-    "/:context/:contextID/announcements/new": nil,
-    "/:context/:contextID/announcements/:announcementID/edit": nil,
+
+    "/:context/:contextID/announcements/new": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: true))
+    },
+
+    "/:context/:contextID/announcements/:announcementID/edit": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
+    },
 
     "/:context/:contextID/announcements/:announcementID": { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
@@ -107,11 +115,19 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/:context/:contextID/discussions": nil,
     "/:context/:contextID/discussion_topics": nil,
-    "/:context/:contextID/discussion_topics/new": nil,
+
+    "/:context/:contextID/discussion_topics/new": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: false))
+    },
+
     "/:context/:contextID/discussions/:discussionID": discussionDetails,
     "/:context/:contextID/discussion_topics/:discussionID": discussionDetails,
 
-    "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/edit": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: false))
+    },
 
     "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }

@@ -44,9 +44,7 @@ import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import DiscussionsList from '../modules/discussions/list/DiscussionsList'
-import DiscussionEdit from '../modules/discussions/edit/DiscussionEdit'
 import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
-import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
 import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
@@ -57,7 +55,6 @@ import ToDoList from '../modules/to-do/list/ToDoList'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
-import SectionSelector from '../modules/announcements/edit/SectionSelector'
 import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
@@ -80,9 +77,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/lti_collaborations', null, store, { showInWebView: true, deepLink: true })
   registerScreen('/:context/:contextID/discussions', DiscussionsList, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics', DiscussionsList, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/discussion_topics/new', DiscussionEdit, store)
+  registerScreen('/:context/:contextID/discussion_topics/new', null, store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/reply', null, store)
-  registerScreen('/:context/:contextID/discussion_topics/:discussionID/edit', DiscussionEdit, store)
+  registerScreen('/:context/:contextID/discussion_topics/:discussionID/edit', null, store)
   registerScreen('/:context/:contextID/discussion_topics/:discussionID/entries/:entryID/replies', null, store, { deepLink: true })
   registerScreen('/courses/:courseID/users', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/address-book', AddressBook, store)
@@ -99,9 +96,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/attachments', Attachments, store)
   registerScreen('/courses/:courseID/placeholder', CourseDetailsSplitViewPlaceholder, store)
   registerScreen('/:context/:contextID/announcements', AnnouncementsList, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/:context/:contextID/announcements/new', AnnouncementEdit, store)
+  registerScreen('/:context/:contextID/announcements/new', null, store)
   registerScreen('/:context/:contextID/announcements/:announcementID', null, store, { deepLink: true })
-  registerScreen('/:context/:contextID/announcements/:announcementID/edit', AnnouncementEdit, store)
+  registerScreen('/:context/:contextID/announcements/:announcementID/edit', null, store)
   registerScreen('/:context/:contextID/discussions/:discussionID', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/discussion_topics/:discussionID', null, store, { deepLink: true })
 
@@ -120,7 +117,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/:context/:contextID/files/:fileID/preview', null, store, { deepLink: true })
   registerScreen('/:context/:contextID/files/:fileID/edit', null, store)
 
-  registerScreen('/courses/:courseID/section-selector', SectionSelector, store)
   registerScreen('/wrong-app', null, store)
   registerScreen('/filter', Filter, store)
   registerScreen('/to-do', ToDoList, store, { canBecomeMaster: true, deepLink: true })

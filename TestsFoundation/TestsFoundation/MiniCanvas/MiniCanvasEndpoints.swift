@@ -220,7 +220,22 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetDiscussionViewRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
             try lookupDiscussion(forRequest: request).view(state: request.state)
         },
-        .apiRequest(PutDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
+        .apiRequest(PutDiscussionTopicRequest(
+            context: Pattern.courseContext,
+            topicID: Pattern.topicID,
+            allowRating: false,
+            attachment: nil,
+            delayedPostAt: nil,
+            discussionType: "side_comment",
+            lockAt: nil,
+            message: "",
+            onlyGradersCanRate: false,
+            published: nil,
+            removeAttachment: nil,
+            requireInitialPost: nil,
+            sortByRating: false,
+            title: ""
+        )) { request in
             let discussion = try lookupDiscussion(forRequest: request)
             if let title = request.firstMultiPartParam(named: "title") {
                 discussion.api.title = title

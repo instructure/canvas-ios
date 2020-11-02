@@ -368,5 +368,49 @@
 			<string>There are %d assignees without grades.</string>
 		</dict>
 	</dict>
+	<key>%d sections</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@sections@</string>
+		<key>sections</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d section</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d sections</string>
+		</dict>
+	</dict>
+	<key>%d students</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@students@</string>
+		<key>students</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d student</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%d students</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

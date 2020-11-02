@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class DiscussionEditTests: CoreUITestCase {
+class DiscussionEditorTests: CoreUITestCase {
     lazy var course1 = mock(course: .make(id: "1", enrollments: [ .make(type: "TeacherEnrollment") ], permissions: .init(
         create_announcement: true,
         create_discussion_topic: true
@@ -48,65 +48,46 @@ class DiscussionEditTests: CoreUITestCase {
         show("/courses/\(course1.id)/discussion_topics")
         DiscussionList.newButton.tap()
 
-        DiscussionEdit.titleField.waitToExist()
-        XCTAssertFalse(DiscussionEdit.invalidLabel.isVisible)
-        XCTAssertFalse(DiscussionEdit.attachmentButton.isVisible)
-        DiscussionEdit.doneButton.tap()
-        DiscussionEdit.invalidLabel.waitToExist()
-        DiscussionEdit.invalidTitleLabel.waitToExist()
-
-        DiscussionEdit.titleField.typeText("Discuss This")
+        DiscussionEditor.titleField.typeText("Discuss This")
         app.webViews.firstElement.typeText("A new topic")
-        DiscussionEdit.doneButton.tap()
-        DiscussionEdit.titleField.waitToVanish()
+
+        mockData(PostDiscussionTopicRequest(
+            context: .course(course1.id.value),
+            allowRating: false,
+            attachment: nil,
+            delayedPostAt: nil,
+            discussionType: "side_comment",
+            isAnnouncement: false,
+            lockAt: nil,
+            message: "A new topic",
+            onlyGradersCanRate: false,
+            published: true,
+            requireInitialPost: false,
+            sortByRating: false,
+            title: "Discuss This"
+        ), value: .make())
+        DiscussionEditor.doneButton.tap()
+        DiscussionEditor.titleField.waitToVanish()
     }
 
     func testCreateDiscussionWithAttachment() throws {
-        try XCTSkipIf(true, "Works on device but fails in simulator")
         mockBaseRequests()
         mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
         mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
         mockEncodableRequest("conversations?include%5B%5D=participant_avatars&per_page=50", value: [String]())
 
-        let targetUrl = "https://canvas.s3.bucket.com/bucket/1"
-        mockEncodableRequest("users/self/files", value: FileUploadTarget.make(upload_url: URL(string: targetUrl)!))
-        mockEncodableRequest(targetUrl, value: ["id": "1"])
-        mockEncodableRequest("files/1", value: APIFile.make())
-
         show("/courses/\(course1.id)/discussion_topics")
         DiscussionList.newButton.tapUntil {
-            DiscussionEdit.attachmentButton.exists
+            DiscussionEditor.attachmentButton.exists
         }
-        DiscussionEdit.attachmentButton.tap()
-        Attachments.addButton.tap()
+        XCTAssertEqual(DiscussionEditor.attachmentButton.label(), "Add Attachment")
+        DiscussionEditor.attachmentButton.tap()
         allowAccessToPhotos {
-            app.find(label: "Choose From Library").tap()
+            app.find(label: "Photo Library").tap()
         }
 
-        let photo = app.find(labelContaining: "Photo, ")
-        app.find(label: "All Photos").tapUntil { photo.exists }
-        photo.tap()
-
-        app.find(label: "Upload complete").waitToExist()
-        let img = app.find(id: "AttachmentView.image")
-        app.find(label: "Upload complete").tapUntil { img.exists == true }
-        NavBar.dismissButton.tap()
-        app.find(id: "attachments.attachment-row.0.remove.btn").tap()
-        app.find(label: "Remove").tap()
-
-        app.find(label: "No Attachments").waitToExist()
-
-        Attachments.addButton.tap()
-        app.find(label: "Choose From Library").tap()
-        app.find(label: "All Photos").tapUntil { photo.exists }
-        photo.tap()
-        app.find(label: "Upload complete").waitToExist()
-
-        Attachments.dismissButton.tap()
-
-        XCTAssertEqual(DiscussionEdit.attachmentButton.label(), "Edit attachment (1)")
-
-        DiscussionEdit.attachmentButton.tap()
+        app.find(labelContaining: "Photo, ").tap()
+        app.find(label: "Remove Attachment").waitToExist()
     }
 }

@@ -16,27 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import TestsFoundation
+import SwiftUI
 
-class DiscussionEditE2ETests: CoreUITestCase {
+public struct ListSectionHeader<Content: View>: View {
+    public let content: Content
 
-    override func setUp() {
-        super.setUp()
-        Dashboard.courseCard(id: "263").tapUntil {
-            CourseNavigation.discussions.exists
-        }
-        CourseNavigation.discussions.tap()
-        DiscussionListCell.graded.waitToExist()
+    public init(@ViewBuilder content: () -> Content) {
+        self.content = content()
     }
 
-    func testEditDiscussion() throws {
-        DiscussionListCell.cell(id: "14392").tap()
-        app.find(id: "DiscussionDetails.options").tapUntil {
-            app.find(label: "Edit").exists
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Divider()
+            HStack(spacing: 0) { content }
+                .font(.semibold14).foregroundColor(.textDark)
+                .padding(.horizontal, 16).padding(.vertical, 4)
+            Divider()
         }
-        app.find(label: "Edit").tap()
-
-        DiscussionEdit.titleField.waitToExist()
+            .background(Color.backgroundGrouped)
     }
 }

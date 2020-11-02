@@ -49,7 +49,7 @@ import { logEvent } from '../../../common/CanvasAnalytics'
 import { isStudent } from '../../app'
 
 const { NativeNotificationCenter } = NativeModules
-NativeNotificationCenter.addObserver('topic-delete')
+NativeNotificationCenter.addObserver('topic-refresh')
 
 const { refreshCourse } = CourseActions
 const { refreshDiscussions } = ListActions
@@ -84,7 +84,7 @@ export class DiscussionsList extends Component<Props, any> {
 
   componentDidMount () {
     this.onTraitCollectionChange()
-    this.notificationCenter.addListener('topic-delete', () => { this.props.refresh() })
+    this.notificationCenter.addListener('topic-refresh', () => { this.props.refresh() })
   }
 
   onTraitCollectionChange () {

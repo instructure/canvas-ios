@@ -29,7 +29,7 @@ RCT_EXPORT_MODULE()
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[ @"redux-action", @"route", @"file-edit", @"file-delete", @"folder-edit", @"folder-delete", @"topic-delete", @"course-favorite-change" ];
+    return @[ @"redux-action", @"route", @"file-edit", @"file-delete", @"folder-edit", @"folder-delete", @"topic-refresh", @"course-favorite-change" ];
 }
 
 RCT_EXPORT_METHOD(postNotification:(NSString *)name userInfo:(NSDictionary *)userInfo)

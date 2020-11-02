@@ -67,4 +67,24 @@ public struct Avatar: View {
             return "\(value)\(char)"
         }.localizedUppercase
     }
+
+    public struct Anonymous: View {
+        let isGroup: Bool
+        let size: CGFloat
+
+        public init(isGroup: Bool = false, size: CGFloat = 40) {
+            self.isGroup = isGroup
+            self.size = size
+        }
+
+        public var body: some View {
+            (isGroup ? Icon.groupLine : Icon.userLine)
+                .foregroundColor(.textDark)
+                .frame(width: size, height: size)
+                .cornerRadius(size / 2)
+                .overlay(Circle()
+                    .stroke(Color.borderMedium, lineWidth: 1)
+                )
+        }
+    }
 }

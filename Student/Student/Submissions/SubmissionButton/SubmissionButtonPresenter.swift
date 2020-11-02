@@ -23,7 +23,7 @@ import Core
 import WebKit
 import Lottie
 
-protocol SubmissionButtonViewProtocol: ApplicationViewController, ErrorViewController {
+protocol SubmissionButtonViewProtocol: ErrorViewController {
 }
 
 enum ArcID: Equatable {

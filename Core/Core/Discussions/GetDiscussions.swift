@@ -123,6 +123,119 @@ class GetDiscussionEntry: GetDiscussionView {
     }
 }
 
+class UpdateDiscussionTopic: UseCase {
+    typealias Model = DiscussionTopic
+    enum Request {
+        case create(PostDiscussionTopicRequest)
+        case update(PutDiscussionTopicRequest)
+    }
+
+    var cacheKey: String? { nil }
+    let context: Context
+    let topicID: String?
+    let request: Request
+
+    // swiftlint:disable:next function_parameter_count
+    init(
+        context: Context,
+        topicID: String?,
+        allowRating: Bool,
+        attachment: URL?,
+        delayedPostAt: Date?,
+        discussionType: String,
+        isAnnouncement: Bool,
+        lockAt: Date?,
+        locked: Bool? = nil,
+        message: String,
+        onlyGradersCanRate: Bool,
+        published: Bool?,
+        removeAttachment: Bool?,
+        requireInitialPost: Bool?,
+        sections: [String] = [],
+        sortByRating: Bool,
+        title: String
+    ) {
+        self.context = context
+        self.topicID = topicID
+        if let topicID = topicID {
+            self.request = .update(PutDiscussionTopicRequest(
+                context: context,
+                topicID: topicID,
+                allowRating: allowRating,
+                attachment: attachment,
+                delayedPostAt: delayedPostAt,
+                discussionType: discussionType,
+                lockAt: lockAt,
+                locked: locked,
+                message: message,
+                onlyGradersCanRate: onlyGradersCanRate,
+                published: published,
+                removeAttachment: removeAttachment,
+                requireInitialPost: requireInitialPost,
+                sections: sections,
+                sortByRating: sortByRating,
+                title: title
+            ))
+        } else {
+            self.request = .create(PostDiscussionTopicRequest(
+                context: context,
+                allowRating: allowRating,
+                attachment: attachment,
+                delayedPostAt: delayedPostAt,
+                discussionType: discussionType,
+                isAnnouncement: isAnnouncement,
+                lockAt: lockAt,
+                locked: locked,
+                message: message,
+                onlyGradersCanRate: onlyGradersCanRate,
+                published: published,
+                requireInitialPost: requireInitialPost,
+                sections: sections,
+                sortByRating: sortByRating,
+                title: title
+            ))
+        }
+    }
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIDiscussionTopic?, URLResponse?, Error?) -> Void) {
+        switch request {
+        case .create(let request):
+            environment.api.makeRequest(request, callback: completionHandler)
+        case .update(let request):
+            environment.api.makeRequest(request, callback: completionHandler)
+        }
+    }
+
+    func write(response: APIDiscussionTopic?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        if let item = response { DiscussionTopic.save(item, in: client) }
+    }
+}
+
+class SubscribeDiscussionTopic: APIUseCase {
+    typealias Model = DiscussionTopic
+
+    var cacheKey: String? { nil }
+    let context: Context
+    let topicID: String
+    let subscribed: Bool
+
+    init(context: Context, topicID: String, subscribed: Bool) {
+        self.context = context
+        self.topicID = topicID
+        self.subscribed = subscribed
+    }
+
+    var request: SubscribeDiscussionTopicRequest {
+        SubscribeDiscussionTopicRequest(context: context, topicID: topicID, method: subscribed ? .put : .delete)
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let topic: DiscussionTopic? = client.first(where: #keyPath(DiscussionTopic.id), equals: topicID)
+        topic?.subscribed = subscribed
+    }
+}
+
 class CreateDiscussionReply: APIUseCase {
     typealias Model = DiscussionEntry
 

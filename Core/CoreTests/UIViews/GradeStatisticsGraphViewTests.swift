@@ -66,7 +66,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsCorrectLocationNoPressure() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 5.0, min: 2.0, max: 8.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 5.0, min: 2.0, max: 8.0)))
         a.submission = Submission.make(from: .make(
             grade: "6.0",
             score: 6.0,
@@ -76,7 +76,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsCorrectLocationAllZero() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 0.0, min: 0.0, max: 0.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 0.0, min: 0.0, max: 0.0)))
         a.submission = Submission.make(from: .make(
             grade: "0.0",
             score: 0.0,
@@ -86,7 +86,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsCorrectLocationAllMax() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 10.0, min: 10.0, max: 10.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 10.0, min: 10.0, max: 10.0)))
         a.submission = Submission.make(from: .make(
             grade: "10.0",
             score: 10.0,
@@ -96,7 +96,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsCorrectLocationFullSplit() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 0.0, min: 0.0, max: 10.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 0.0, min: 0.0, max: 10.0)))
         a.submission = Submission.make(from: .make(
             grade: "10.0",
             score: 10.0,
@@ -106,7 +106,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsOutOfBounds() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 11.0, min: -5000.0, max: 6000.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 11.0, min: -5000.0, max: 6000.0)))
         a.submission = Submission.make(from: .make(
             grade: "15.0",
             score: 15.0,
@@ -121,7 +121,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
         view.layoutIfNeeded()
 
         // Should appear the same as the layout for min=0, max=max_possible, and mean=max_possible
-        let lookalike = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 10.0, min: 0.0, max: 10.0)))
+        let lookalike = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 10.0, min: 0.0, max: 10.0)))
         lookalike.submission = Submission.make(from: .make(
             grade: "10.0",
             score: 10.0,
@@ -132,7 +132,7 @@ class GradeStatisticsGraphViewTests: XCTestCase {
     }
 
     func testLabelsCorrectText() {
-        let a = Assignment.make(from: .make(points_possible: 10.0, grading_type: .points, score_statistics: .make(mean: 5.0, min: 2.0, max: 8.0)))
+        let a = Assignment.make(from: .make(grading_type: .points, points_possible: 10.0, score_statistics: .make(mean: 5.0, min: 2.0, max: 8.0)))
         a.submission = Submission.make(from: .make(
             grade: "6.0",
             score: 6.0,

@@ -83,7 +83,6 @@
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
 		7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */; };
 		7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */; };
-		7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */; };
 		7DCF0F9922F8A868000AACCE /* GroupNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */; };
 		7DCF0FA522F8A8A9000AACCE /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0ED222F8A03D000AACCE /* QuizListViewController.storyboard */; };
 		7DCF0FA622F8A8A9000AACCE /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0ED322F8A03D000AACCE /* QuizListViewController.swift */; };
@@ -131,7 +130,6 @@
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
 		7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */; };
 		7DE1161822F8AB5C005BFE98 /* QuizListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListViewControllerTests.swift */; };
-		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
 		7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */; };
@@ -178,7 +176,7 @@
 		E809363124C21A5D00D15E9A /* AccountNotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363024C21A5D00D15E9A /* AccountNotificationsTests.swift */; };
 		E809363824C21B6F00D15E9A /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363724C21B6F00D15E9A /* InboxTests.swift */; };
 		E809363B24C21B9800D15E9A /* DiscussionReplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363924C21B9800D15E9A /* DiscussionReplyTests.swift */; };
-		E809363C24C21B9800D15E9A /* DiscussionEditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363A24C21B9800D15E9A /* DiscussionEditTests.swift */; };
+		E809363C24C21B9800D15E9A /* DiscussionEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363A24C21B9800D15E9A /* DiscussionEditorTests.swift */; };
 		E809364024C21BC300D15E9A /* TodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809363E24C21BB400D15E9A /* TodoListTests.swift */; };
 		E809364524C21C0600D15E9A /* UserFilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364424C21C0600D15E9A /* UserFilesTests.swift */; };
 		E809364724C21C2400D15E9A /* SpringBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364624C21C2400D15E9A /* SpringBoardTests.swift */; };
@@ -536,7 +534,6 @@
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
-		7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7DCF0EBE22F8A00D000AACCE /* GroupNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0ED222F8A03D000AACCE /* QuizListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuizListViewController.storyboard; sourceTree = "<group>"; };
 		7DCF0ED322F8A03D000AACCE /* QuizListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
@@ -584,7 +581,6 @@
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
 		7DCF0F1C22F8A096000AACCE /* QuizListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewControllerTests.swift; sourceTree = "<group>"; };
-		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
@@ -720,7 +716,7 @@
 		E809363024C21A5D00D15E9A /* AccountNotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotificationsTests.swift; sourceTree = "<group>"; };
 		E809363724C21B6F00D15E9A /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		E809363924C21B9800D15E9A /* DiscussionReplyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionReplyTests.swift; sourceTree = "<group>"; };
-		E809363A24C21B9800D15E9A /* DiscussionEditTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionEditTests.swift; sourceTree = "<group>"; };
+		E809363A24C21B9800D15E9A /* DiscussionEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionEditorTests.swift; sourceTree = "<group>"; };
 		E809363E24C21BB400D15E9A /* TodoListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListTests.swift; sourceTree = "<group>"; };
 		E809364424C21C0600D15E9A /* UserFilesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFilesTests.swift; sourceTree = "<group>"; };
 		E809364624C21C2400D15E9A /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
@@ -1069,7 +1065,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */,
-				7DCF0EBC22F8A001000AACCE /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1312,14 +1307,6 @@
 			path = Quizzes;
 			sourceTree = "<group>";
 		};
-		7DCF0F2222F8A096000AACCE /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		7DCF0F2722F8A096000AACCE /* ArcSubmission */ = {
 			isa = PBXGroup;
 			children = (
@@ -1391,7 +1378,6 @@
 			children = (
 				7DCF0F0F22F8A096000AACCE /* Assignments */,
 				7DCF0F1522F8A096000AACCE /* Courses */,
-				7DCF0F2222F8A096000AACCE /* Extensions */,
 				7DCF0F1822F8A096000AACCE /* Groups */,
 				9734351323866A59002E9CE5 /* Notifications */,
 				7DC4A0BB24BE5024007A7EAD /* Planner */,
@@ -1584,7 +1570,7 @@
 			isa = PBXGroup;
 			children = (
 				E809363924C21B9800D15E9A /* DiscussionReplyTests.swift */,
-				E809363A24C21B9800D15E9A /* DiscussionEditTests.swift */,
+				E809363A24C21B9800D15E9A /* DiscussionEditorTests.swift */,
 			);
 			path = Discussions;
 			sourceTree = "<group>";
@@ -2616,7 +2602,6 @@
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
 				7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */,
-				7DCF0F9822F8A860000AACCE /* UIViewControllerExtensions.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
@@ -2655,7 +2640,7 @@
 				7DC5718B22F8B1CB00F2E9BB /* SubmissionFiles.swift in Sources */,
 				58595DA7CA74254C40525061 /* DashboardTests.swift in Sources */,
 				E809364724C21C2400D15E9A /* SpringBoardTests.swift in Sources */,
-				E809363C24C21B9800D15E9A /* DiscussionEditTests.swift in Sources */,
+				E809363C24C21B9800D15E9A /* DiscussionEditorTests.swift in Sources */,
 				E809363824C21B6F00D15E9A /* InboxTests.swift in Sources */,
 				E809363124C21A5D00D15E9A /* AccountNotificationsTests.swift in Sources */,
 			);
@@ -2669,7 +2654,6 @@
 				7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */,
 				7D46624324D0C82D00C74DB4 /* QuizWebViewControllerTests.swift in Sources */,
 				9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */,
-				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
 				7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */,
 				B1D40D382368CE7400FA88FE /* AssignmentDetailsViewControllerTests.swift in Sources */,

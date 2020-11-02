@@ -23,8 +23,8 @@ import XCTest
 class DiscussionTopicTests: CoreTestCase {
     func testProperties() {
         let topic = DiscussionTopic.make(from: .make(
-            title: "Graded Discussion",
-            attachments: [.make()]
+            attachments: [.make()],
+            title: "Graded Discussion"
         ))
 
         XCTAssertEqual(topic.id, "1")

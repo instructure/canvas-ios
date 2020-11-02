@@ -23,24 +23,25 @@ class APIDiscussionTests: XCTestCase {
     let context = Context(.course, id: "1")
 
     func testPostDiscussionTopicRequest() {
-        let assignment = APIAssignmentParameters(
-            name: "A",
-            description: "d",
-            points_possible: 10,
-            due_at: Date(),
-            submission_types: [SubmissionType.discussion_topic],
-            allowed_extensions: [],
+        let request = PostDiscussionTopicRequest(
+            context: context,
+            allowRating: true,
+            attachment: Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png"),
+            delayedPostAt: nil,
+            discussionType: "threaded",
+            isAnnouncement: false,
+            lockAt: nil,
+            message: "Discuss this",
+            onlyGradersCanRate: false,
             published: true,
-            grading_type: .percent,
-            lock_at: nil,
-            unlock_at: nil
+            requireInitialPost: true,
+            sortByRating: true,
+            title: "Sorted"
         )
-        let expectedBody = PostDiscussionTopicRequest.Body(title: "T", message: "M", published: true, assignment: assignment)
-        let request = PostDiscussionTopicRequest(context: context, body: expectedBody)
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
         XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.body, expectedBody)
+        XCTAssertNotNil(request.form)
     }
 
     func testPostDiscussionEntryRequest() {
