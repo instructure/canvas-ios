@@ -85,8 +85,8 @@ public struct EditorRow<Content: View>: View {
         HStack(spacing: 0) { content }
             .font(.semibold16).foregroundColor(.textDarkest)
             .padding(.horizontal, 16).padding(.vertical, 12)
-            .background(Color.backgroundLightest)
             .frame(minHeight: 52)
+            .background(Color.backgroundLightest)
     }
 }
 

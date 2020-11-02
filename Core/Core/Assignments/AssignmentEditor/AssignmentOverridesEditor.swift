@@ -22,11 +22,10 @@ struct AssignmentOverridesEditor: View {
     let courseID: String
     let groupCategoryID: String?
     @Binding var overrides: [Override]
+    @Binding var toRemove: Override?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    @State var toRemove: Override?
 
     var body: some View {
         let everyonesCount = overrides.filter { $0.isEveryone } .count
@@ -74,18 +73,6 @@ struct AssignmentOverridesEditor: View {
                 }
             }
         }
-            .alert(item: $toRemove) { override in
-                Alert(
-                    title: Text("Remove Due Date?", bundle: .core),
-                    message: Text("This will remove the due date and all of the associated assignees.", bundle: .core),
-                    primaryButton: .destructive(Text("Remove", bundle: .core)) {
-                        withAnimation(.default) {
-                            overrides = overrides.filter { $0 != override }
-                        }
-                    },
-                    secondaryButton: .cancel()
-                )
-            }
         EditorSection {
             ButtonRow(action: add, content: {
                 Icon.addSolid.size(18)
@@ -131,6 +118,19 @@ struct AssignmentOverridesEditor: View {
             override: override
         )
         env.router.show(CoreHostingController(picker), from: controller)
+    }
+
+    static func alert(toRemove: Override, from overrides: Binding<[Override]>) -> Alert {
+        Alert(
+            title: Text("Remove Due Date?", bundle: .core),
+            message: Text("This will remove the due date and all of the associated assignees.", bundle: .core),
+            primaryButton: .destructive(Text("Remove", bundle: .core)) {
+                withAnimation(.default) {
+                    overrides.wrappedValue = overrides.wrappedValue.filter { $0 != toRemove }
+                }
+            },
+            secondaryButton: .cancel()
+        )
     }
 
     static func overrides(from assignment: Assignment) -> [Override] {

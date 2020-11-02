@@ -79,6 +79,9 @@ struct AssigmentAssigneeList: View {
                     .padding(.trailing, 16)
                 Text(everyone)
                 Spacer()
+                if selection.contains(.everyone) {
+                    Icon.checkSolid.foregroundColor(.accentColor)
+                }
             })
             Divider()
         }
@@ -91,6 +94,9 @@ struct AssigmentAssigneeList: View {
                         .padding(.trailing, 16)
                     Text(section.name)
                     Spacer()
+                    if selection.contains(.section(section.id)) {
+                        Icon.checkSolid.foregroundColor(.accentColor)
+                    }
                 })
                 Divider()
             }
@@ -104,6 +110,9 @@ struct AssigmentAssigneeList: View {
                         .padding(.trailing, 16)
                     Text(group.name)
                     Spacer()
+                    if selection.contains(.group(group.id)) {
+                        Icon.checkSolid.foregroundColor(.accentColor)
+                    }
                 })
                 Divider()
             }
@@ -117,6 +126,9 @@ struct AssigmentAssigneeList: View {
                         .padding(.trailing, 16)
                     Text(student.displayName)
                     Spacer()
+                    if selection.contains(.student(student.id)) {
+                        Icon.checkSolid.foregroundColor(.accentColor)
+                    }
                 })
                 Divider()
             }
@@ -147,7 +159,9 @@ struct AssigmentAssigneeList: View {
     }
 
     func select(_ assignee: Assignee) {
-        selection.append(assignee)
+        if !selection.contains(assignee) {
+            selection.append(assignee)
+        }
         env.router.pop(from: controller)
     }
 }

@@ -24,8 +24,6 @@ struct DiscussionSectionsPicker: View {
 
     @ObservedObject var sections: Store<GetCourseSections>
 
-    @State var isLoaded = false
-
     init(courseID: String, selection: Binding<Set<CourseSection>>) {
         self.courseID = courseID
         sections = AppEnvironment.shared.subscribe(GetCourseSections(courseID: courseID))
@@ -90,8 +88,7 @@ struct DiscussionSectionsPicker: View {
     }
 
     func load() {
-        guard !isLoaded else { return }
-        isLoaded = true
+        guard !sections.requested else { return }
         sections.exhaust()
     }
 }

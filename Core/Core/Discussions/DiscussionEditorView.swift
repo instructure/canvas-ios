@@ -94,7 +94,7 @@ public struct DiscussionEditorView: View {
                 switch alert {
                 case .error(let error):
                     return Alert(title: Text(error.localizedDescription))
-                case .remove(let filename):
+                case .removeFile(let filename):
                     return Alert(
                         title: Text("Remove Attachment?", bundle: .core),
                         message: Text(filename),
@@ -103,6 +103,8 @@ public struct DiscussionEditorView: View {
                         },
                         secondaryButton: .cancel()
                     )
+                case .removeOverride(let override):
+                    return AssignmentOverridesEditor.alert(toRemove: override, from: $overrides)
                 }
             }
 
@@ -111,14 +113,17 @@ public struct DiscussionEditorView: View {
 
     enum AlertItem: Identifiable {
         case error(Error)
-        case remove(String)
+        case removeFile(String)
+        case removeOverride(AssignmentOverridesEditor.Override)
 
         var id: String {
             switch self {
             case .error(let error):
                 return error.localizedDescription
-            case .remove(let filename):
+            case .removeFile(let filename):
                 return "remove \(filename)"
+            case .removeOverride(let override):
+                return "remove override \(override.id)"
             }
         }
     }
@@ -272,7 +277,15 @@ public struct DiscussionEditorView: View {
                 AssignmentOverridesEditor(
                     courseID: assignment.courseID,
                     groupCategoryID: topic?.groupCategoryID,
-                    overrides: $overrides
+                    overrides: $overrides,
+                    toRemove: Binding(get: {
+                        if case .removeOverride(let override) = alert {
+                            return override
+                        }
+                        return nil
+                    }, set: {
+                        alert = $0.map { AlertItem.removeOverride($0) }
+                    })
                 )
             } else if isTeacher, !isAnnouncement {
                 EditorSection(label: Text("Availability", bundle: .core)) {
@@ -292,9 +305,9 @@ public struct DiscussionEditorView: View {
 
     func attach() {
         if let file = topic?.attachments?.first, file.url == attachment {
-            alert = .remove(file.displayName ?? file.filename)
+            alert = .removeFile(file.displayName ?? file.filename)
         } else if let url = attachment {
-            alert = .remove(url.lastPathComponent)
+            alert = .removeFile(url.lastPathComponent)
         } else {
             filePicker.pickAttachment(from: controller) { result in
                 switch result {
