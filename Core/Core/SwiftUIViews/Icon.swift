@@ -22,6 +22,15 @@ public struct Icon: View {
     public let image: Image
     public let size: CGFloat?
 
+    init(_ name: String, size: CGFloat? = 24) {
+        if #available(iOS 14, *) {
+            self.image = Image("\(name)Symbol", bundle: .core)
+        } else {
+            self.image = Image(name, bundle: .core)
+        }
+        self.size = size
+    }
+
     public init(_ image: Image, size: CGFloat? = 24) {
         self.image = image
         self.size = size

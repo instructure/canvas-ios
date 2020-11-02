@@ -262,8 +262,8 @@ public extension UIImage {
 
 public extension Icon {
     ${Array.from(icons).sort().flatMap(name => [
-      `static var ${name}Line: Icon { Icon(Image("${name}LineSymbol", bundle: .core)) }`,
-      `static var ${name}Solid: Icon { Icon(Image("${name}SolidSymbol", bundle: .core)) }`,
+      `static var ${name}Line: Icon { Icon("${name}Line") }`,
+      `static var ${name}Solid: Icon { Icon("${name}Solid") }`,
     ]).join('\n    ')}
 }
 `)

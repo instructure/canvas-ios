@@ -63,15 +63,18 @@ struct DiscussionSectionsPicker: View {
         }
             .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text("Sections", bundle: .core))
+
+            .onAppear(perform: load)
     }
 
     @ViewBuilder
     var list: some View {
         Divider().padding(.top, -1)
         ForEach(sections.all, id: \.id) { section in
+            let isSelected = selection.contains { $0.id == section.id }
             ButtonRow(action: {
-                if selection.contains(section) {
-                    selection = selection.subtracting([ section ])
+                if isSelected {
+                    selection = selection.filter { $0.id != section.id }
                 } else {
                     selection = selection.union([ section ])
                 }
@@ -79,9 +82,9 @@ struct DiscussionSectionsPicker: View {
                 Text(section.name)
                 Spacer()
                 Icon.checkSolid.foregroundColor(.accentColor)
-                    .opacity(selection.contains(section) ? 1 : 0)
+                    .opacity(isSelected ? 1 : 0)
             })
-                .accessibility(addTraits: selection.contains(section) ? .isSelected : [])
+                .accessibility(addTraits: isSelected ? .isSelected : [])
             Divider()
         }
     }

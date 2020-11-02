@@ -221,170 +221,170 @@ public extension UIImage {
 }
 
 public extension Icon {
-    static var addLine: Icon { Icon(Image("addLineSymbol", bundle: .core)) }
-    static var addSolid: Icon { Icon(Image("addSolidSymbol", bundle: .core)) }
-    static var addressBookLine: Icon { Icon(Image("addressBookLineSymbol", bundle: .core)) }
-    static var addressBookSolid: Icon { Icon(Image("addressBookSolidSymbol", bundle: .core)) }
-    static var alertsLine: Icon { Icon(Image("alertsLineSymbol", bundle: .core)) }
-    static var alertsSolid: Icon { Icon(Image("alertsSolidSymbol", bundle: .core)) }
-    static var announcementLine: Icon { Icon(Image("announcementLineSymbol", bundle: .core)) }
-    static var announcementSolid: Icon { Icon(Image("announcementSolidSymbol", bundle: .core)) }
-    static var arrowOpenDownLine: Icon { Icon(Image("arrowOpenDownLineSymbol", bundle: .core)) }
-    static var arrowOpenDownSolid: Icon { Icon(Image("arrowOpenDownSolidSymbol", bundle: .core)) }
-    static var arrowOpenLeftLine: Icon { Icon(Image("arrowOpenLeftLineSymbol", bundle: .core)) }
-    static var arrowOpenLeftSolid: Icon { Icon(Image("arrowOpenLeftSolidSymbol", bundle: .core)) }
-    static var arrowOpenRightLine: Icon { Icon(Image("arrowOpenRightLineSymbol", bundle: .core)) }
-    static var arrowOpenRightSolid: Icon { Icon(Image("arrowOpenRightSolidSymbol", bundle: .core)) }
-    static var assignmentLine: Icon { Icon(Image("assignmentLineSymbol", bundle: .core)) }
-    static var assignmentSolid: Icon { Icon(Image("assignmentSolidSymbol", bundle: .core)) }
-    static var audioLine: Icon { Icon(Image("audioLineSymbol", bundle: .core)) }
-    static var audioSolid: Icon { Icon(Image("audioSolidSymbol", bundle: .core)) }
-    static var boldLine: Icon { Icon(Image("boldLineSymbol", bundle: .core)) }
-    static var boldSolid: Icon { Icon(Image("boldSolidSymbol", bundle: .core)) }
-    static var boxLine: Icon { Icon(Image("boxLineSymbol", bundle: .core)) }
-    static var boxSolid: Icon { Icon(Image("boxSolidSymbol", bundle: .core)) }
-    static var bulletListLine: Icon { Icon(Image("bulletListLineSymbol", bundle: .core)) }
-    static var bulletListSolid: Icon { Icon(Image("bulletListSolidSymbol", bundle: .core)) }
-    static var calendarClockLine: Icon { Icon(Image("calendarClockLineSymbol", bundle: .core)) }
-    static var calendarClockSolid: Icon { Icon(Image("calendarClockSolidSymbol", bundle: .core)) }
-    static var calendarMonthLine: Icon { Icon(Image("calendarMonthLineSymbol", bundle: .core)) }
-    static var calendarMonthSolid: Icon { Icon(Image("calendarMonthSolidSymbol", bundle: .core)) }
-    static var checkLine: Icon { Icon(Image("checkLineSymbol", bundle: .core)) }
-    static var checkSolid: Icon { Icon(Image("checkSolidSymbol", bundle: .core)) }
-    static var clockLine: Icon { Icon(Image("clockLineSymbol", bundle: .core)) }
-    static var clockSolid: Icon { Icon(Image("clockSolidSymbol", bundle: .core)) }
-    static var cloudLockLine: Icon { Icon(Image("cloudLockLineSymbol", bundle: .core)) }
-    static var cloudLockSolid: Icon { Icon(Image("cloudLockSolidSymbol", bundle: .core)) }
-    static var commentLine: Icon { Icon(Image("commentLineSymbol", bundle: .core)) }
-    static var commentSolid: Icon { Icon(Image("commentSolidSymbol", bundle: .core)) }
-    static var completeLine: Icon { Icon(Image("completeLineSymbol", bundle: .core)) }
-    static var completeSolid: Icon { Icon(Image("completeSolidSymbol", bundle: .core)) }
-    static var coursesLine: Icon { Icon(Image("coursesLineSymbol", bundle: .core)) }
-    static var coursesSolid: Icon { Icon(Image("coursesSolidSymbol", bundle: .core)) }
-    static var dashboardLine: Icon { Icon(Image("dashboardLineSymbol", bundle: .core)) }
-    static var dashboardSolid: Icon { Icon(Image("dashboardSolidSymbol", bundle: .core)) }
-    static var discussionLine: Icon { Icon(Image("discussionLineSymbol", bundle: .core)) }
-    static var discussionSolid: Icon { Icon(Image("discussionSolidSymbol", bundle: .core)) }
-    static var documentLine: Icon { Icon(Image("documentLineSymbol", bundle: .core)) }
-    static var documentSolid: Icon { Icon(Image("documentSolidSymbol", bundle: .core)) }
-    static var editLine: Icon { Icon(Image("editLineSymbol", bundle: .core)) }
-    static var editSolid: Icon { Icon(Image("editSolidSymbol", bundle: .core)) }
-    static var emailLine: Icon { Icon(Image("emailLineSymbol", bundle: .core)) }
-    static var emailSolid: Icon { Icon(Image("emailSolidSymbol", bundle: .core)) }
-    static var emptyLine: Icon { Icon(Image("emptyLineSymbol", bundle: .core)) }
-    static var emptySolid: Icon { Icon(Image("emptySolidSymbol", bundle: .core)) }
-    static var exitFullScreenLine: Icon { Icon(Image("exitFullScreenLineSymbol", bundle: .core)) }
-    static var exitFullScreenSolid: Icon { Icon(Image("exitFullScreenSolidSymbol", bundle: .core)) }
-    static var externalLinkLine: Icon { Icon(Image("externalLinkLineSymbol", bundle: .core)) }
-    static var externalLinkSolid: Icon { Icon(Image("externalLinkSolidSymbol", bundle: .core)) }
-    static var eyeLine: Icon { Icon(Image("eyeLineSymbol", bundle: .core)) }
-    static var eyeSolid: Icon { Icon(Image("eyeSolidSymbol", bundle: .core)) }
-    static var folderLine: Icon { Icon(Image("folderLineSymbol", bundle: .core)) }
-    static var folderSolid: Icon { Icon(Image("folderSolidSymbol", bundle: .core)) }
-    static var forwardLine: Icon { Icon(Image("forwardLineSymbol", bundle: .core)) }
-    static var forwardSolid: Icon { Icon(Image("forwardSolidSymbol", bundle: .core)) }
-    static var fullScreenLine: Icon { Icon(Image("fullScreenLineSymbol", bundle: .core)) }
-    static var fullScreenSolid: Icon { Icon(Image("fullScreenSolidSymbol", bundle: .core)) }
-    static var gradebookLine: Icon { Icon(Image("gradebookLineSymbol", bundle: .core)) }
-    static var gradebookSolid: Icon { Icon(Image("gradebookSolidSymbol", bundle: .core)) }
-    static var groupLine: Icon { Icon(Image("groupLineSymbol", bundle: .core)) }
-    static var groupSolid: Icon { Icon(Image("groupSolidSymbol", bundle: .core)) }
-    static var hamburgerLine: Icon { Icon(Image("hamburgerLineSymbol", bundle: .core)) }
-    static var hamburgerSolid: Icon { Icon(Image("hamburgerSolidSymbol", bundle: .core)) }
-    static var highlighterLine: Icon { Icon(Image("highlighterLineSymbol", bundle: .core)) }
-    static var highlighterSolid: Icon { Icon(Image("highlighterSolidSymbol", bundle: .core)) }
-    static var homeLine: Icon { Icon(Image("homeLineSymbol", bundle: .core)) }
-    static var homeSolid: Icon { Icon(Image("homeSolidSymbol", bundle: .core)) }
-    static var imageLine: Icon { Icon(Image("imageLineSymbol", bundle: .core)) }
-    static var imageSolid: Icon { Icon(Image("imageSolidSymbol", bundle: .core)) }
-    static var infoLine: Icon { Icon(Image("infoLineSymbol", bundle: .core)) }
-    static var infoSolid: Icon { Icon(Image("infoSolidSymbol", bundle: .core)) }
-    static var instructureLine: Icon { Icon(Image("instructureLineSymbol", bundle: .core)) }
-    static var instructureSolid: Icon { Icon(Image("instructureSolidSymbol", bundle: .core)) }
-    static var italicLine: Icon { Icon(Image("italicLineSymbol", bundle: .core)) }
-    static var italicSolid: Icon { Icon(Image("italicSolidSymbol", bundle: .core)) }
-    static var linkLine: Icon { Icon(Image("linkLineSymbol", bundle: .core)) }
-    static var linkSolid: Icon { Icon(Image("linkSolidSymbol", bundle: .core)) }
-    static var lockLine: Icon { Icon(Image("lockLineSymbol", bundle: .core)) }
-    static var lockSolid: Icon { Icon(Image("lockSolidSymbol", bundle: .core)) }
-    static var ltiLine: Icon { Icon(Image("ltiLineSymbol", bundle: .core)) }
-    static var ltiSolid: Icon { Icon(Image("ltiSolidSymbol", bundle: .core)) }
-    static var markerLine: Icon { Icon(Image("markerLineSymbol", bundle: .core)) }
-    static var markerSolid: Icon { Icon(Image("markerSolidSymbol", bundle: .core)) }
-    static var masteryPathsLine: Icon { Icon(Image("masteryPathsLineSymbol", bundle: .core)) }
-    static var masteryPathsSolid: Icon { Icon(Image("masteryPathsSolidSymbol", bundle: .core)) }
-    static var miniArrowDownLine: Icon { Icon(Image("miniArrowDownLineSymbol", bundle: .core)) }
-    static var miniArrowDownSolid: Icon { Icon(Image("miniArrowDownSolidSymbol", bundle: .core)) }
-    static var miniArrowEndLine: Icon { Icon(Image("miniArrowEndLineSymbol", bundle: .core)) }
-    static var miniArrowEndSolid: Icon { Icon(Image("miniArrowEndSolidSymbol", bundle: .core)) }
-    static var miniArrowStartLine: Icon { Icon(Image("miniArrowStartLineSymbol", bundle: .core)) }
-    static var miniArrowStartSolid: Icon { Icon(Image("miniArrowStartSolidSymbol", bundle: .core)) }
-    static var miniArrowUpLine: Icon { Icon(Image("miniArrowUpLineSymbol", bundle: .core)) }
-    static var miniArrowUpSolid: Icon { Icon(Image("miniArrowUpSolidSymbol", bundle: .core)) }
-    static var moduleLine: Icon { Icon(Image("moduleLineSymbol", bundle: .core)) }
-    static var moduleSolid: Icon { Icon(Image("moduleSolidSymbol", bundle: .core)) }
-    static var moreLine: Icon { Icon(Image("moreLineSymbol", bundle: .core)) }
-    static var moreSolid: Icon { Icon(Image("moreSolidSymbol", bundle: .core)) }
-    static var noLine: Icon { Icon(Image("noLineSymbol", bundle: .core)) }
-    static var noSolid: Icon { Icon(Image("noSolidSymbol", bundle: .core)) }
-    static var noteLine: Icon { Icon(Image("noteLineSymbol", bundle: .core)) }
-    static var noteSolid: Icon { Icon(Image("noteSolidSymbol", bundle: .core)) }
-    static var numberedListLine: Icon { Icon(Image("numberedListLineSymbol", bundle: .core)) }
-    static var numberedListSolid: Icon { Icon(Image("numberedListSolidSymbol", bundle: .core)) }
-    static var offLine: Icon { Icon(Image("offLineSymbol", bundle: .core)) }
-    static var offSolid: Icon { Icon(Image("offSolidSymbol", bundle: .core)) }
-    static var outcomesLine: Icon { Icon(Image("outcomesLineSymbol", bundle: .core)) }
-    static var outcomesSolid: Icon { Icon(Image("outcomesSolidSymbol", bundle: .core)) }
-    static var paintLine: Icon { Icon(Image("paintLineSymbol", bundle: .core)) }
-    static var paintSolid: Icon { Icon(Image("paintSolidSymbol", bundle: .core)) }
-    static var paperclipLine: Icon { Icon(Image("paperclipLineSymbol", bundle: .core)) }
-    static var paperclipSolid: Icon { Icon(Image("paperclipSolidSymbol", bundle: .core)) }
-    static var pauseLine: Icon { Icon(Image("pauseLineSymbol", bundle: .core)) }
-    static var pauseSolid: Icon { Icon(Image("pauseSolidSymbol", bundle: .core)) }
-    static var pdfLine: Icon { Icon(Image("pdfLineSymbol", bundle: .core)) }
-    static var pdfSolid: Icon { Icon(Image("pdfSolidSymbol", bundle: .core)) }
-    static var peerReviewLine: Icon { Icon(Image("peerReviewLineSymbol", bundle: .core)) }
-    static var peerReviewSolid: Icon { Icon(Image("peerReviewSolidSymbol", bundle: .core)) }
-    static var playLine: Icon { Icon(Image("playLineSymbol", bundle: .core)) }
-    static var playSolid: Icon { Icon(Image("playSolidSymbol", bundle: .core)) }
-    static var prerequisiteLine: Icon { Icon(Image("prerequisiteLineSymbol", bundle: .core)) }
-    static var prerequisiteSolid: Icon { Icon(Image("prerequisiteSolidSymbol", bundle: .core)) }
-    static var publishLine: Icon { Icon(Image("publishLineSymbol", bundle: .core)) }
-    static var publishSolid: Icon { Icon(Image("publishSolidSymbol", bundle: .core)) }
-    static var questionLine: Icon { Icon(Image("questionLineSymbol", bundle: .core)) }
-    static var questionSolid: Icon { Icon(Image("questionSolidSymbol", bundle: .core)) }
-    static var quizLine: Icon { Icon(Image("quizLineSymbol", bundle: .core)) }
-    static var quizSolid: Icon { Icon(Image("quizSolidSymbol", bundle: .core)) }
-    static var refreshLine: Icon { Icon(Image("refreshLineSymbol", bundle: .core)) }
-    static var refreshSolid: Icon { Icon(Image("refreshSolidSymbol", bundle: .core)) }
-    static var replyLine: Icon { Icon(Image("replyLineSymbol", bundle: .core)) }
-    static var replySolid: Icon { Icon(Image("replySolidSymbol", bundle: .core)) }
-    static var replyAllLine: Icon { Icon(Image("replyAllLineSymbol", bundle: .core)) }
-    static var replyAllSolid: Icon { Icon(Image("replyAllSolidSymbol", bundle: .core)) }
-    static var rubricLine: Icon { Icon(Image("rubricLineSymbol", bundle: .core)) }
-    static var rubricSolid: Icon { Icon(Image("rubricSolidSymbol", bundle: .core)) }
-    static var settingsLine: Icon { Icon(Image("settingsLineSymbol", bundle: .core)) }
-    static var settingsSolid: Icon { Icon(Image("settingsSolidSymbol", bundle: .core)) }
-    static var starLine: Icon { Icon(Image("starLineSymbol", bundle: .core)) }
-    static var starSolid: Icon { Icon(Image("starSolidSymbol", bundle: .core)) }
-    static var strikethroughLine: Icon { Icon(Image("strikethroughLineSymbol", bundle: .core)) }
-    static var strikethroughSolid: Icon { Icon(Image("strikethroughSolidSymbol", bundle: .core)) }
-    static var textLine: Icon { Icon(Image("textLineSymbol", bundle: .core)) }
-    static var textSolid: Icon { Icon(Image("textSolidSymbol", bundle: .core)) }
-    static var textColorLine: Icon { Icon(Image("textColorLineSymbol", bundle: .core)) }
-    static var textColorSolid: Icon { Icon(Image("textColorSolidSymbol", bundle: .core)) }
-    static var trashLine: Icon { Icon(Image("trashLineSymbol", bundle: .core)) }
-    static var trashSolid: Icon { Icon(Image("trashSolidSymbol", bundle: .core)) }
-    static var troubleLine: Icon { Icon(Image("troubleLineSymbol", bundle: .core)) }
-    static var troubleSolid: Icon { Icon(Image("troubleSolidSymbol", bundle: .core)) }
-    static var unlockLine: Icon { Icon(Image("unlockLineSymbol", bundle: .core)) }
-    static var unlockSolid: Icon { Icon(Image("unlockSolidSymbol", bundle: .core)) }
-    static var userLine: Icon { Icon(Image("userLineSymbol", bundle: .core)) }
-    static var userSolid: Icon { Icon(Image("userSolidSymbol", bundle: .core)) }
-    static var videoLine: Icon { Icon(Image("videoLineSymbol", bundle: .core)) }
-    static var videoSolid: Icon { Icon(Image("videoSolidSymbol", bundle: .core)) }
-    static var warningLine: Icon { Icon(Image("warningLineSymbol", bundle: .core)) }
-    static var warningSolid: Icon { Icon(Image("warningSolidSymbol", bundle: .core)) }
-    static var xLine: Icon { Icon(Image("xLineSymbol", bundle: .core)) }
-    static var xSolid: Icon { Icon(Image("xSolidSymbol", bundle: .core)) }
+    static var addLine: Icon { Icon("addLine") }
+    static var addSolid: Icon { Icon("addSolid") }
+    static var addressBookLine: Icon { Icon("addressBookLine") }
+    static var addressBookSolid: Icon { Icon("addressBookSolid") }
+    static var alertsLine: Icon { Icon("alertsLine") }
+    static var alertsSolid: Icon { Icon("alertsSolid") }
+    static var announcementLine: Icon { Icon("announcementLine") }
+    static var announcementSolid: Icon { Icon("announcementSolid") }
+    static var arrowOpenDownLine: Icon { Icon("arrowOpenDownLine") }
+    static var arrowOpenDownSolid: Icon { Icon("arrowOpenDownSolid") }
+    static var arrowOpenLeftLine: Icon { Icon("arrowOpenLeftLine") }
+    static var arrowOpenLeftSolid: Icon { Icon("arrowOpenLeftSolid") }
+    static var arrowOpenRightLine: Icon { Icon("arrowOpenRightLine") }
+    static var arrowOpenRightSolid: Icon { Icon("arrowOpenRightSolid") }
+    static var assignmentLine: Icon { Icon("assignmentLine") }
+    static var assignmentSolid: Icon { Icon("assignmentSolid") }
+    static var audioLine: Icon { Icon("audioLine") }
+    static var audioSolid: Icon { Icon("audioSolid") }
+    static var boldLine: Icon { Icon("boldLine") }
+    static var boldSolid: Icon { Icon("boldSolid") }
+    static var boxLine: Icon { Icon("boxLine") }
+    static var boxSolid: Icon { Icon("boxSolid") }
+    static var bulletListLine: Icon { Icon("bulletListLine") }
+    static var bulletListSolid: Icon { Icon("bulletListSolid") }
+    static var calendarClockLine: Icon { Icon("calendarClockLine") }
+    static var calendarClockSolid: Icon { Icon("calendarClockSolid") }
+    static var calendarMonthLine: Icon { Icon("calendarMonthLine") }
+    static var calendarMonthSolid: Icon { Icon("calendarMonthSolid") }
+    static var checkLine: Icon { Icon("checkLine") }
+    static var checkSolid: Icon { Icon("checkSolid") }
+    static var clockLine: Icon { Icon("clockLine") }
+    static var clockSolid: Icon { Icon("clockSolid") }
+    static var cloudLockLine: Icon { Icon("cloudLockLine") }
+    static var cloudLockSolid: Icon { Icon("cloudLockSolid") }
+    static var commentLine: Icon { Icon("commentLine") }
+    static var commentSolid: Icon { Icon("commentSolid") }
+    static var completeLine: Icon { Icon("completeLine") }
+    static var completeSolid: Icon { Icon("completeSolid") }
+    static var coursesLine: Icon { Icon("coursesLine") }
+    static var coursesSolid: Icon { Icon("coursesSolid") }
+    static var dashboardLine: Icon { Icon("dashboardLine") }
+    static var dashboardSolid: Icon { Icon("dashboardSolid") }
+    static var discussionLine: Icon { Icon("discussionLine") }
+    static var discussionSolid: Icon { Icon("discussionSolid") }
+    static var documentLine: Icon { Icon("documentLine") }
+    static var documentSolid: Icon { Icon("documentSolid") }
+    static var editLine: Icon { Icon("editLine") }
+    static var editSolid: Icon { Icon("editSolid") }
+    static var emailLine: Icon { Icon("emailLine") }
+    static var emailSolid: Icon { Icon("emailSolid") }
+    static var emptyLine: Icon { Icon("emptyLine") }
+    static var emptySolid: Icon { Icon("emptySolid") }
+    static var exitFullScreenLine: Icon { Icon("exitFullScreenLine") }
+    static var exitFullScreenSolid: Icon { Icon("exitFullScreenSolid") }
+    static var externalLinkLine: Icon { Icon("externalLinkLine") }
+    static var externalLinkSolid: Icon { Icon("externalLinkSolid") }
+    static var eyeLine: Icon { Icon("eyeLine") }
+    static var eyeSolid: Icon { Icon("eyeSolid") }
+    static var folderLine: Icon { Icon("folderLine") }
+    static var folderSolid: Icon { Icon("folderSolid") }
+    static var forwardLine: Icon { Icon("forwardLine") }
+    static var forwardSolid: Icon { Icon("forwardSolid") }
+    static var fullScreenLine: Icon { Icon("fullScreenLine") }
+    static var fullScreenSolid: Icon { Icon("fullScreenSolid") }
+    static var gradebookLine: Icon { Icon("gradebookLine") }
+    static var gradebookSolid: Icon { Icon("gradebookSolid") }
+    static var groupLine: Icon { Icon("groupLine") }
+    static var groupSolid: Icon { Icon("groupSolid") }
+    static var hamburgerLine: Icon { Icon("hamburgerLine") }
+    static var hamburgerSolid: Icon { Icon("hamburgerSolid") }
+    static var highlighterLine: Icon { Icon("highlighterLine") }
+    static var highlighterSolid: Icon { Icon("highlighterSolid") }
+    static var homeLine: Icon { Icon("homeLine") }
+    static var homeSolid: Icon { Icon("homeSolid") }
+    static var imageLine: Icon { Icon("imageLine") }
+    static var imageSolid: Icon { Icon("imageSolid") }
+    static var infoLine: Icon { Icon("infoLine") }
+    static var infoSolid: Icon { Icon("infoSolid") }
+    static var instructureLine: Icon { Icon("instructureLine") }
+    static var instructureSolid: Icon { Icon("instructureSolid") }
+    static var italicLine: Icon { Icon("italicLine") }
+    static var italicSolid: Icon { Icon("italicSolid") }
+    static var linkLine: Icon { Icon("linkLine") }
+    static var linkSolid: Icon { Icon("linkSolid") }
+    static var lockLine: Icon { Icon("lockLine") }
+    static var lockSolid: Icon { Icon("lockSolid") }
+    static var ltiLine: Icon { Icon("ltiLine") }
+    static var ltiSolid: Icon { Icon("ltiSolid") }
+    static var markerLine: Icon { Icon("markerLine") }
+    static var markerSolid: Icon { Icon("markerSolid") }
+    static var masteryPathsLine: Icon { Icon("masteryPathsLine") }
+    static var masteryPathsSolid: Icon { Icon("masteryPathsSolid") }
+    static var miniArrowDownLine: Icon { Icon("miniArrowDownLine") }
+    static var miniArrowDownSolid: Icon { Icon("miniArrowDownSolid") }
+    static var miniArrowEndLine: Icon { Icon("miniArrowEndLine") }
+    static var miniArrowEndSolid: Icon { Icon("miniArrowEndSolid") }
+    static var miniArrowStartLine: Icon { Icon("miniArrowStartLine") }
+    static var miniArrowStartSolid: Icon { Icon("miniArrowStartSolid") }
+    static var miniArrowUpLine: Icon { Icon("miniArrowUpLine") }
+    static var miniArrowUpSolid: Icon { Icon("miniArrowUpSolid") }
+    static var moduleLine: Icon { Icon("moduleLine") }
+    static var moduleSolid: Icon { Icon("moduleSolid") }
+    static var moreLine: Icon { Icon("moreLine") }
+    static var moreSolid: Icon { Icon("moreSolid") }
+    static var noLine: Icon { Icon("noLine") }
+    static var noSolid: Icon { Icon("noSolid") }
+    static var noteLine: Icon { Icon("noteLine") }
+    static var noteSolid: Icon { Icon("noteSolid") }
+    static var numberedListLine: Icon { Icon("numberedListLine") }
+    static var numberedListSolid: Icon { Icon("numberedListSolid") }
+    static var offLine: Icon { Icon("offLine") }
+    static var offSolid: Icon { Icon("offSolid") }
+    static var outcomesLine: Icon { Icon("outcomesLine") }
+    static var outcomesSolid: Icon { Icon("outcomesSolid") }
+    static var paintLine: Icon { Icon("paintLine") }
+    static var paintSolid: Icon { Icon("paintSolid") }
+    static var paperclipLine: Icon { Icon("paperclipLine") }
+    static var paperclipSolid: Icon { Icon("paperclipSolid") }
+    static var pauseLine: Icon { Icon("pauseLine") }
+    static var pauseSolid: Icon { Icon("pauseSolid") }
+    static var pdfLine: Icon { Icon("pdfLine") }
+    static var pdfSolid: Icon { Icon("pdfSolid") }
+    static var peerReviewLine: Icon { Icon("peerReviewLine") }
+    static var peerReviewSolid: Icon { Icon("peerReviewSolid") }
+    static var playLine: Icon { Icon("playLine") }
+    static var playSolid: Icon { Icon("playSolid") }
+    static var prerequisiteLine: Icon { Icon("prerequisiteLine") }
+    static var prerequisiteSolid: Icon { Icon("prerequisiteSolid") }
+    static var publishLine: Icon { Icon("publishLine") }
+    static var publishSolid: Icon { Icon("publishSolid") }
+    static var questionLine: Icon { Icon("questionLine") }
+    static var questionSolid: Icon { Icon("questionSolid") }
+    static var quizLine: Icon { Icon("quizLine") }
+    static var quizSolid: Icon { Icon("quizSolid") }
+    static var refreshLine: Icon { Icon("refreshLine") }
+    static var refreshSolid: Icon { Icon("refreshSolid") }
+    static var replyLine: Icon { Icon("replyLine") }
+    static var replySolid: Icon { Icon("replySolid") }
+    static var replyAllLine: Icon { Icon("replyAllLine") }
+    static var replyAllSolid: Icon { Icon("replyAllSolid") }
+    static var rubricLine: Icon { Icon("rubricLine") }
+    static var rubricSolid: Icon { Icon("rubricSolid") }
+    static var settingsLine: Icon { Icon("settingsLine") }
+    static var settingsSolid: Icon { Icon("settingsSolid") }
+    static var starLine: Icon { Icon("starLine") }
+    static var starSolid: Icon { Icon("starSolid") }
+    static var strikethroughLine: Icon { Icon("strikethroughLine") }
+    static var strikethroughSolid: Icon { Icon("strikethroughSolid") }
+    static var textLine: Icon { Icon("textLine") }
+    static var textSolid: Icon { Icon("textSolid") }
+    static var textColorLine: Icon { Icon("textColorLine") }
+    static var textColorSolid: Icon { Icon("textColorSolid") }
+    static var trashLine: Icon { Icon("trashLine") }
+    static var trashSolid: Icon { Icon("trashSolid") }
+    static var troubleLine: Icon { Icon("troubleLine") }
+    static var troubleSolid: Icon { Icon("troubleSolid") }
+    static var unlockLine: Icon { Icon("unlockLine") }
+    static var unlockSolid: Icon { Icon("unlockSolid") }
+    static var userLine: Icon { Icon("userLine") }
+    static var userSolid: Icon { Icon("userSolid") }
+    static var videoLine: Icon { Icon("videoLine") }
+    static var videoSolid: Icon { Icon("videoSolid") }
+    static var warningLine: Icon { Icon("warningLine") }
+    static var warningSolid: Icon { Icon("warningSolid") }
+    static var xLine: Icon { Icon("xLine") }
+    static var xSolid: Icon { Icon("xSolid") }
 }

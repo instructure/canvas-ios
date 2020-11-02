@@ -112,6 +112,7 @@ struct AssignmentAssigneePicker: View {
     }
 
     func load() {
+        guard !students.requested else { return }
         groups.exhaust()
         sections.exhaust()
         students.exhaust()
