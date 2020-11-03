@@ -86,22 +86,7 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         DiscussionDetails.edit.tap()
         DiscussionEditor.lockAtPicker.tap()
 
-        let expectation = MiniCanvasServer.shared.expectationFor(request: PutDiscussionTopicRequest(
-            context: .course(firstCourse.id),
-            topicID: discussion.id,
-            allowRating: true,
-            attachment: nil,
-            delayedPostAt: nil,
-            discussionType: "side_comment",
-            lockAt: Date(),
-            message: "",
-            onlyGradersCanRate: false,
-            published: true,
-            removeAttachment: nil,
-            requireInitialPost: false,
-            sortByRating: false,
-            title: ""
-        ))
+        let expectation = MiniCanvasServer.shared.expectationFor(request: PutDiscussionTopicRequest(context: .course(firstCourse.id), topicID: discussion.id))
         DiscussionEditor.doneButton.tap()
         wait(for: [expectation], timeout: 5)
 

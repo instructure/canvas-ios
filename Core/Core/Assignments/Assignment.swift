@@ -38,6 +38,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var gradingPeriod: GradingPeriod?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
+    @NSManaged public var hasOverrides: Bool
     @NSManaged public var hideRubricPoints: Bool
     @NSManaged public var htmlURL: URL?
     @NSManaged public var id: String
@@ -134,6 +135,7 @@ extension Assignment {
         gradedIndividually = item.grade_group_students_individually ?? true
         gradingType = item.grading_type
         groupCategoryID = item.group_category_id?.value
+        hasOverrides = item.has_overrides == true
         htmlURL = item.html_url
         id = item.id.value
         lastUpdatedAt = Date()

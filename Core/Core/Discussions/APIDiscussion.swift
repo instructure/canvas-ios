@@ -21,10 +21,12 @@ import Foundation
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
     let allow_rating: Bool
+    let assignment: APIList<APIAssignment>?
     let assignment_id: ID?
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
     let can_unpublish: Bool?
+    let created_at: Date?
     let delayed_post_at: Date?
     let discussion_subentry_count: Int
     let discussion_type: String?
@@ -40,6 +42,8 @@ public struct APIDiscussionTopic: Codable, Equatable {
     var message: String?
     let only_graders_can_rate: Bool?
     let permissions: APIDiscussionPermissions?
+    let pinned: Bool?
+    let position: Int?
     let posted_at: Date?
     let published: Bool
     let require_initial_post: Bool?
@@ -48,6 +52,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let subscribed: Bool?
     let subscription_hold: String?
     var title: String?
+    let unread_count: Int?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -99,10 +104,12 @@ public struct APIDiscussionView: Codable, Equatable {
 extension APIDiscussionTopic {
     public static func make(
         allow_rating: Bool = false,
+        assignment: APIAssignment? = nil,
         assignment_id: ID? = nil,
         attachments: [APIFile]? = nil,
         author: APIDiscussionParticipant = .make(),
         can_unpublish: Bool? = nil,
+        created_at: Date? = Clock.now,
         delayed_post_at: Date? = nil,
         discussion_subentry_count: Int = 1,
         discussion_type: String? = "threaded",
@@ -118,6 +125,8 @@ extension APIDiscussionTopic {
         message: String? = "message",
         only_graders_can_rate: Bool? = nil,
         permissions: APIDiscussionPermissions? = .make(),
+        pinned: Bool? = false,
+        position: Int? = 1,
         posted_at: Date? = nil,
         published: Bool = true,
         require_initial_post: Bool? = false,
@@ -125,14 +134,17 @@ extension APIDiscussionTopic {
         sort_by_rating: Bool = false,
         subscribed: Bool? = true,
         subscription_hold: String? = nil,
-        title: String? = "my discussion topic"
+        title: String? = "my discussion topic",
+        unread_count: Int? = 0
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
             allow_rating: allow_rating,
+            assignment: assignment.map { APIList($0) },
             assignment_id: assignment_id,
             attachments: attachments,
             author: author,
             can_unpublish: can_unpublish,
+            created_at: created_at,
             delayed_post_at: delayed_post_at,
             discussion_subentry_count: discussion_subentry_count,
             discussion_type: discussion_type,
@@ -148,6 +160,8 @@ extension APIDiscussionTopic {
             message: message,
             only_graders_can_rate: only_graders_can_rate,
             permissions: permissions,
+            pinned: pinned,
+            position: position,
             posted_at: posted_at,
             published: published,
             require_initial_post: require_initial_post,
@@ -155,7 +169,8 @@ extension APIDiscussionTopic {
             sort_by_rating: sort_by_rating,
             subscribed: subscribed,
             subscription_hold: subscription_hold,
-            title: title
+            title: title,
+            unread_count: unread_count
         )
     }
 }
@@ -278,59 +293,26 @@ extension APIDiscussionEntry {
 struct PostDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
+    enum DiscussionKey: String {
+        case attachment, allow_rating, delayed_post_at, discussion_type, id, is_announcement, locked, lock_at,
+            message, only_graders_can_rate, pinned, published, remove_attachment, require_initial_post,
+            sort_by_rating, specific_sections, title
+    }
+
     let context: Context
     let form: APIFormData?
     let method = APIMethod.post
     var path: String { "\(context.pathComponent)/discussion_topics" }
 
-    // swiftlint:disable:next function_parameter_count
-    init(
-        context: Context,
-        allowRating: Bool,
-        attachment: URL?,
-        delayedPostAt: Date?,
-        discussionType: String,
-        isAnnouncement: Bool,
-        lockAt: Date?,
-        locked: Bool? = nil,
-        message: String,
-        onlyGradersCanRate: Bool,
-        published: Bool?,
-        requireInitialPost: Bool?,
-        sections: [String] = [],
-        sortByRating: Bool,
-        title: String
-    ) {
+    init(context: Context, form: [DiscussionKey: APIFormDatum?] = [:]) {
         self.context = context
-        var form: APIFormData = [
-            (key: "allow_rating", value: .bool(allowRating)),
-            (key: "delayed_post_at", value: .date(delayedPostAt)),
-            (key: "discussion_type", value: .string(discussionType)),
-            (key: "is_announcement", value: .bool(isAnnouncement)),
-            (key: "lock_at", value: .date(lockAt)),
-            (key: "message", value: .string(message)),
-            (key: "only_graders_can_rate", value: .bool(onlyGradersCanRate)),
-            (key: "sort_by_rating", value: .bool(sortByRating)),
-            (key: "specific_sections", value: .string(sections.isEmpty ? "all" : sections.joined(separator: ","))),
-            (key: "title", value: .string(title)),
-        ]
-        if let url = attachment {
-            form.append((key: "attachment", value: .file(
-                filename: url.lastPathComponent,
-                type: "application/octet-stream",
-                at: url
-            )))
+        var formData: APIFormData = []
+        for (key, value) in form {
+            if let value = value {
+                formData.append((key: key.rawValue, value: value))
+            }
         }
-        if let locked = locked {
-            form.append((key: "locked", value: .bool(locked)))
-        }
-        if let published = published {
-            form.append((key: "published", value: .bool(published)))
-        }
-        if let requireInitialPost = requireInitialPost {
-            form.append((key: "require_initial_post", value: .bool(requireInitialPost)))
-        }
-        self.form = form
+        self.form = formData
     }
 }
 
@@ -338,65 +320,24 @@ struct PostDiscussionTopicRequest: APIRequestable {
 struct PutDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
+    typealias DiscussionKey = PostDiscussionTopicRequest.DiscussionKey
+
     let context: Context
     let topicID: String
     let form: APIFormData?
     let method = APIMethod.put
     var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
 
-    // swiftlint:disable:next function_parameter_count
-    init(
-        context: Context,
-        topicID: String,
-        allowRating: Bool,
-        attachment: URL?,
-        delayedPostAt: Date?,
-        discussionType: String,
-        lockAt: Date?,
-        locked: Bool? = nil,
-        message: String,
-        onlyGradersCanRate: Bool,
-        published: Bool?,
-        removeAttachment: Bool?,
-        requireInitialPost: Bool?,
-        sections: [String] = [],
-        sortByRating: Bool,
-        title: String
-    ) {
+    init(context: Context, topicID: String, form: [DiscussionKey: APIFormDatum?] = [:]) {
         self.context = context
         self.topicID = topicID
-        var form: APIFormData = [
-            (key: "allow_rating", value: .bool(allowRating)),
-            (key: "delayed_post_at", value: .date(delayedPostAt)),
-            (key: "discussion_type", value: .string(discussionType)),
-            (key: "id", value: .string(topicID)),
-            (key: "lock_at", value: .date(lockAt)),
-            (key: "message", value: .string(message)),
-            (key: "only_graders_can_rate", value: .bool(onlyGradersCanRate)),
-            (key: "sort_by_rating", value: .bool(sortByRating)),
-            (key: "specific_sections", value: .string(sections.isEmpty ? "all" : sections.joined(separator: ","))),
-            (key: "title", value: .string(title)),
-        ]
-        if let url = attachment {
-            form.append((key: "attachment", value: .file(
-                filename: url.lastPathComponent,
-                type: "application/octet-stream",
-                at: url
-            )))
+        var formData: APIFormData = []
+        for (key, value) in form {
+            if let value = value {
+                formData.append((key: key.rawValue, value: value))
+            }
         }
-        if let locked = locked {
-            form.append((key: "locked", value: .bool(locked)))
-        }
-        if let published = published {
-            form.append((key: "published", value: .bool(published)))
-        }
-        if let removeAttachment = removeAttachment {
-            form.append((key: "remove_attachment", value: .bool(removeAttachment)))
-        }
-        if let requireInitialPost = requireInitialPost {
-            form.append((key: "require_initial_post", value: .bool(requireInitialPost)))
-        }
-        self.form = form
+        self.form = formData
     }
 }
 
@@ -413,7 +354,7 @@ struct DeleteDiscussionTopicRequest: APIRequestable {
 
     let context: Context
     let topicID: String
-    let method = APIMethod.delete
+    var method: APIMethod { .delete }
     var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
 }
 
@@ -552,29 +493,33 @@ struct GetDiscussionViewRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.index
-struct ListDiscussionTopicsRequest: APIRequestable {
+struct GetDiscussionTopicsRequest: APIRequestable {
     typealias Response = [APIDiscussionTopic]
 
     let context: Context
     let include: [GetDiscussionTopicRequest.Include]
     let perPage: Int?
+    let isAnnouncement: Bool
 
-    init(context: Context, perPage: Int? = 100, include: [GetDiscussionTopicRequest.Include] = GetDiscussionTopicRequest.defaultIncludes) {
+    init(
+        context: Context,
+        perPage: Int? = 100,
+        include: [GetDiscussionTopicRequest.Include] = GetDiscussionTopicRequest.defaultIncludes,
+        isAnnouncement: Bool = false
+    ) {
         self.context = context
         self.include = include
         self.perPage = perPage
+        self.isAnnouncement = isAnnouncement
     }
 
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics"
-    }
+    public var path: String { "\(context.pathComponent)/discussion_topics" }
 
-    public var query: [APIQueryItem] {
-        [
-            .perPage(perPage),
-            .include(include.map { $0.rawValue }),
-        ]
-    }
+    public var query: [APIQueryItem] { [
+        .perPage(perPage),
+        .include(include.map { $0.rawValue }),
+        .optionalValue("only_announcements", isAnnouncement ? "1" : nil),
+    ] }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_read

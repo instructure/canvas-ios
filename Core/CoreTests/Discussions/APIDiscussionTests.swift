@@ -23,21 +23,9 @@ class APIDiscussionTests: XCTestCase {
     let context = Context(.course, id: "1")
 
     func testPostDiscussionTopicRequest() {
-        let request = PostDiscussionTopicRequest(
-            context: context,
-            allowRating: true,
-            attachment: Bundle(for: Self.self).url(forResource: "TestImage", withExtension: "png"),
-            delayedPostAt: nil,
-            discussionType: "threaded",
-            isAnnouncement: false,
-            lockAt: nil,
-            message: "Discuss this",
-            onlyGradersCanRate: false,
-            published: true,
-            requireInitialPost: true,
-            sortByRating: true,
-            title: "Sorted"
-        )
+        let request = PostDiscussionTopicRequest(context: context, form: [
+            .title: .string("Sorted"),
+        ])
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
         XCTAssertEqual(request.method, .post)
@@ -157,12 +145,12 @@ class GetDiscussionViewRequestTests: XCTestCase {
 
 class ListDiscussionTopicsRequestTests: XCTestCase {
     func testPath() {
-        let request = ListDiscussionTopicsRequest(context: .course("1"))
+        let request = GetDiscussionTopicsRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
     }
 
     func testQuery() {
-        let request = ListDiscussionTopicsRequest(context: .course("1"), perPage: 25, include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        let request = GetDiscussionTopicsRequest(context: .course("1"), perPage: 25, include: [.allDates, .overrides, .sections, .sectionsUserCount])
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "per_page", value: "25"),
             URLQueryItem(name: "include[]", value: "all_dates"),

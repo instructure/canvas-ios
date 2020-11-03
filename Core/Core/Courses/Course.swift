@@ -22,23 +22,25 @@ import CoreData
 final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
 
+    @NSManaged public var accessRestrictedByDate: Bool
+    @NSManaged public var canCreateAnnouncement: Bool
+    @NSManaged public var canCreateDiscussionTopic: Bool
+    @NSManaged var contextColor: ContextColor?
     @NSManaged public var courseCode: String?
     @NSManaged var defaultViewRaw: String?
+    @NSManaged public var enrollments: Set<Enrollment>?
+    @NSManaged public var grades: Set<Grade>?
+    @NSManaged public var hideFinalGrades: Bool
     @NSManaged public var id: String
     @NSManaged public var imageDownloadURL: URL?
     @NSManaged public var isFavorite: Bool
-    @NSManaged public var name: String?
-    @NSManaged public var enrollments: Set<Enrollment>?
-    @NSManaged public var syllabusBody: String?
-    @NSManaged public var grades: Set<Grade>?
-    @NSManaged public var hideFinalGrades: Bool
-    @NSManaged var planner: Planner?
-    @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isFutureEnrollment: Bool
+    @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
+    @NSManaged public var name: String?
+    @NSManaged var planner: Planner?
+    @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
-    @NSManaged public var accessRestrictedByDate: Bool
-    @NSManaged var contextColor: ContextColor?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -94,6 +96,11 @@ final public class Course: NSManagedObject, WriteableModel {
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor
+        }
+
+        if let permissions = item.permissions {
+            model.canCreateAnnouncement = permissions.create_announcement
+            model.canCreateDiscussionTopic = permissions.create_discussion_topic
         }
 
         return model

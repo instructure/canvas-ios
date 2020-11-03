@@ -533,7 +533,7 @@ extension DiscussionDetailsViewController {
 
     func editTopic() {
         let path = "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)/edit"
-        env.router.route(to: path, from: self, options: .modal(.formSheet, embedInNav: true))
+        env.router.route(to: path, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
     }
 
     func markAllRead(isRead: Bool) {
@@ -557,7 +557,6 @@ extension DiscussionDetailsViewController {
         DeleteDiscussionTopic(context: context, topicID: topicID).fetch { [weak self] _, _, error in performUIUpdate {
             guard let self = self else { return }
             if let error = error { return self.showError(error) }
-            NotificationCenter.default.post(name: .init("topic-refresh"), object: nil, userInfo: [:])
             self.env.router.dismiss(self)
         } }
     }

@@ -68,6 +68,18 @@ extension APIGroup {
         )
     }
 }
+
+extension APIGroup.Permissions {
+    public static func make(
+      create_announcement: Bool = false,
+      create_discussion_topic: Bool = false
+    ) -> APIGroup.Permissions {
+        return APIGroup.Permissions(
+          create_announcement: create_announcement,
+          create_discussion_topic: create_discussion_topic
+        )
+    }
+}
 #endif
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.index

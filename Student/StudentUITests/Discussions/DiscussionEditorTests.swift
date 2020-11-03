@@ -32,7 +32,7 @@ class DiscussionEditorTests: CoreUITestCase {
 
     func testCantCreateDiscussion() {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: .course(noPermissionCourse.id.value)), value: [])
+        mockData(GetDiscussionTopicsRequest(context: .course(noPermissionCourse.id.value)), value: [])
 
         show("/courses/\(noPermissionCourse.id.value)/discussion_topics")
         app.find(label: "There are no discussions to display.").waitToExist()
@@ -41,8 +41,8 @@ class DiscussionEditorTests: CoreUITestCase {
 
     func testCreateDiscussion() {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
-        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
+        mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
+        mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": false])
 
         show("/courses/\(course1.id)/discussion_topics")
@@ -51,29 +51,15 @@ class DiscussionEditorTests: CoreUITestCase {
         DiscussionEditor.titleField.typeText("Discuss This")
         app.webViews.firstElement.typeText("A new topic")
 
-        mockData(PostDiscussionTopicRequest(
-            context: .course(course1.id.value),
-            allowRating: false,
-            attachment: nil,
-            delayedPostAt: nil,
-            discussionType: "side_comment",
-            isAnnouncement: false,
-            lockAt: nil,
-            message: "A new topic",
-            onlyGradersCanRate: false,
-            published: true,
-            requireInitialPost: false,
-            sortByRating: false,
-            title: "Discuss This"
-        ), value: .make())
+        mockData(PostDiscussionTopicRequest(context: .course(course1.id.value)), value: .make())
         DiscussionEditor.doneButton.tap()
         DiscussionEditor.titleField.waitToVanish()
     }
 
     func testCreateDiscussionWithAttachment() throws {
         mockBaseRequests()
-        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
-        mockData(ListDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
+        mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
+        mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
         mockEncodableRequest("courses/\(course1.id)/settings", value: ["allow_student_forum_attachments": true])
         mockEncodableRequest("conversations?include%5B%5D=participant_avatars&per_page=50", value: [String]())
 

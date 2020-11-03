@@ -27,13 +27,7 @@ import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import groupCustomColors from '../../utils/group-custom-colors'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
-import DiscussionActions from '../discussions/list/actions'
-import AnnouncementActions from '../announcements/list/actions'
-import { refs as discussions } from '../discussions/reducer'
-import { refs as announcements } from '../announcements/reducer'
 
-const { refreshAnnouncements } = AnnouncementActions
-const { refreshDiscussions } = DiscussionActions
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup, refreshUsersGroups } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
 const { updateContextPermissions } = PermissionsActions
@@ -44,8 +38,6 @@ const permissions = (state) => (state || {})
 const groupContents: Reducer<GroupsState, Action> = combineReducers({
   group,
   color,
-  discussions,
-  announcements,
   permissions,
   // dummys to appease combineReducers
   pending: state => state || 0,
@@ -73,34 +65,6 @@ const groupsData: Reducer<GroupsState, any> = handleActions({
   [refreshGroupsForCourse.toString()]: groupsEntityReducer,
   [refreshGroupsForCategory.toString()]: groupsEntityReducer,
   [refreshUsersGroups.toString()]: groupsEntityReducer,
-  [refreshDiscussions.toString()]: handleAsync({
-    resolved: (state, { result, context, contextID }) => {
-      if (context !== 'groups') return state
-      return {
-        ...state,
-        [contextID]: {
-          ...state[contextID],
-          discussions: {
-            refs: result.data.map(d => d.id),
-          },
-        },
-      }
-    },
-  }),
-  [refreshAnnouncements.toString()]: handleAsync({
-    resolved: (state, { result, context, contextID }) => {
-      if (context !== 'groups') return state
-      return {
-        ...state,
-        [contextID]: {
-          ...state[contextID],
-          announcements: {
-            refs: result.data.map(a => a.id),
-          },
-        },
-      }
-    },
-  }),
   [refreshGroup.toString()]: handleAsync({
     resolved: (state, { result: [group] }) => {
       const { data } = group

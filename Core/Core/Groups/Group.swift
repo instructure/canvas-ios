@@ -23,6 +23,8 @@ public final class Group: NSManagedObject, WriteableModel {
     public typealias JSON = APIGroup
 
     @NSManaged public var avatarURL: URL?
+    @NSManaged public var canCreateAnnouncement: Bool
+    @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged public var concluded: Bool
     @NSManaged public var contextColor: ContextColor?
     @NSManaged public var contextRaw: String?
@@ -60,6 +62,12 @@ public final class Group: NSManagedObject, WriteableModel {
            let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: Context(.course, id: courseID).canvasContextID)).first {
             model.contextColor = contextColor
         }
+
+        if let permissions = item.permissions {
+            model.canCreateAnnouncement = permissions.create_announcement
+            model.canCreateDiscussionTopic = permissions.create_discussion_topic
+        }
+
         return model
     }
 }

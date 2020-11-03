@@ -33,7 +33,7 @@ class DiscussionReplyTests: CoreUITestCase {
 
     @discardableResult
     func mockDiscussion(_ discussion: APIDiscussionTopic = .make(), fullTopic: APIDiscussionView = .make()) -> APIDiscussionTopic {
-        mockData(ListDiscussionTopicsRequest(context: .course(course.id.value)), value: [discussion])
+        mockData(GetDiscussionTopicsRequest(context: .course(course.id.value)), value: [discussion])
         mockData(GetDiscussionTopicRequest(context: .course(course.id.value), topicID: discussion.id.value), value: discussion)
         mockData(GetDiscussionViewRequest(context: .course(course.id.value), topicID: discussion.id.value), value: fullTopic)
         mockData(GetGroupsRequest(context: .currentUser), value: [])

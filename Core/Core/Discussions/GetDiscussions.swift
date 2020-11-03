@@ -19,6 +19,53 @@
 import Foundation
 import CoreData
 
+class GetAnnouncements: CollectionUseCase {
+    typealias Model = DiscussionTopic
+
+    let context: Context
+    init(context: Context) {
+        self.context = context
+    }
+
+    var cacheKey: String? { "\(context.pathComponent)/announcements" }
+    var request: GetDiscussionTopicsRequest {
+        GetDiscussionTopicsRequest(context: context, isAnnouncement: true)
+    }
+    var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: true),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+        ]),
+        orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
+    ) }
+}
+
+class GetDiscussionTopics: CollectionUseCase {
+    typealias Model = DiscussionTopic
+
+    let context: Context
+    init(context: Context) {
+        self.context = context
+    }
+
+    var cacheKey: String? { "\(context.pathComponent)/discussions" }
+    var request: GetDiscussionTopicsRequest {
+        GetDiscussionTopicsRequest(context: context)
+    }
+    var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: false),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+        ]),
+        order: [
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.orderSection), ascending: true),
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.position), ascending: true),
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.order), ascending: false, naturally: true),
+        ],
+        sectionNameKeyPath: #keyPath(DiscussionTopic.orderSection)
+    ) }
+}
+
 public class GetDiscussionTopic: APIUseCase {
     public typealias Model = DiscussionTopic
 
@@ -135,65 +182,13 @@ class UpdateDiscussionTopic: UseCase {
     let topicID: String?
     let request: Request
 
-    // swiftlint:disable:next function_parameter_count
-    init(
-        context: Context,
-        topicID: String?,
-        allowRating: Bool,
-        attachment: URL?,
-        delayedPostAt: Date?,
-        discussionType: String,
-        isAnnouncement: Bool,
-        lockAt: Date?,
-        locked: Bool? = nil,
-        message: String,
-        onlyGradersCanRate: Bool,
-        published: Bool?,
-        removeAttachment: Bool?,
-        requireInitialPost: Bool?,
-        sections: [String] = [],
-        sortByRating: Bool,
-        title: String
-    ) {
+    init(context: Context, topicID: String?, form: [PostDiscussionTopicRequest.DiscussionKey: APIFormDatum?]) {
         self.context = context
         self.topicID = topicID
         if let topicID = topicID {
-            self.request = .update(PutDiscussionTopicRequest(
-                context: context,
-                topicID: topicID,
-                allowRating: allowRating,
-                attachment: attachment,
-                delayedPostAt: delayedPostAt,
-                discussionType: discussionType,
-                lockAt: lockAt,
-                locked: locked,
-                message: message,
-                onlyGradersCanRate: onlyGradersCanRate,
-                published: published,
-                removeAttachment: removeAttachment,
-                requireInitialPost: requireInitialPost,
-                sections: sections,
-                sortByRating: sortByRating,
-                title: title
-            ))
+            self.request = .update(PutDiscussionTopicRequest(context: context, topicID: topicID, form: form))
         } else {
-            self.request = .create(PostDiscussionTopicRequest(
-                context: context,
-                allowRating: allowRating,
-                attachment: attachment,
-                delayedPostAt: delayedPostAt,
-                discussionType: discussionType,
-                isAnnouncement: isAnnouncement,
-                lockAt: lockAt,
-                locked: locked,
-                message: message,
-                onlyGradersCanRate: onlyGradersCanRate,
-                published: published,
-                requireInitialPost: requireInitialPost,
-                sections: sections,
-                sortByRating: sortByRating,
-                title: title
-            ))
+            self.request = .create(PostDiscussionTopicRequest(context: context, form: form))
         }
     }
 

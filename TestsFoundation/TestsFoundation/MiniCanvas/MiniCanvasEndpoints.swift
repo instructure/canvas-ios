@@ -211,7 +211,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Discussion Topics
         // https://canvas.instructure.com/doc/api/discussion_topics.html
-        .apiRequest(ListDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
+        .apiRequest(GetDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
             try lookupCourse(forRequest: request).discussions.map { $0.api }
         },
         .apiRequest(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
@@ -220,22 +220,7 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetDiscussionViewRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
             try lookupDiscussion(forRequest: request).view(state: request.state)
         },
-        .apiRequest(PutDiscussionTopicRequest(
-            context: Pattern.courseContext,
-            topicID: Pattern.topicID,
-            allowRating: false,
-            attachment: nil,
-            delayedPostAt: nil,
-            discussionType: "side_comment",
-            lockAt: nil,
-            message: "",
-            onlyGradersCanRate: false,
-            published: nil,
-            removeAttachment: nil,
-            requireInitialPost: nil,
-            sortByRating: false,
-            title: ""
-        )) { request in
+        .apiRequest(PutDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in
             let discussion = try lookupDiscussion(forRequest: request)
             if let title = request.firstMultiPartParam(named: "title") {
                 discussion.api.title = title

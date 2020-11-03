@@ -402,25 +402,27 @@ public struct DiscussionEditorView: View {
     func save() {
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
-        UpdateDiscussionTopic(
-            context: context,
-            topicID: topicID,
-            allowRating: allowRating,
-            attachment: attachment?.isFileURL == true ? attachment : nil,
-            delayedPostAt: delayedPostAt,
-            discussionType: threaded ? "threaded" : "side_comment",
-            isAnnouncement: isAnnouncement,
-            lockAt: lockAt,
-            locked: isAnnouncement ? locked : nil,
-            message: message,
-            onlyGradersCanRate: allowRating && onlyGradersCanRate,
-            published: isTeacher && !isAnnouncement ? published : true,
-            removeAttachment: attachment == nil && topic?.attachments?.first != nil ? true : nil,
-            requireInitialPost: requireInitialPost,
-            sections: sections.map { $0.id } .sorted(),
-            sortByRating: allowRating && sortByRating,
-            title: title
-        ).fetch { result, _, fetchError in performUIUpdate {
+        UpdateDiscussionTopic(context: context, topicID: topicID, form: [
+            .allow_rating: .bool(allowRating),
+            .attachment: attachment?.isFileURL == true ? attachment.map { APIFormDatum.file(
+                filename: $0.lastPathComponent,
+                type: "application/octet-stream",
+                at: $0
+            ) } : nil,
+            .delayed_post_at: .date(delayedPostAt),
+            .discussion_type: .string(threaded ? "threaded" : "side_comment"),
+            .is_announcement: .bool(isAnnouncement),
+            .locked: isAnnouncement ? .bool(locked) : nil,
+            .lock_at: .date(lockAt),
+            .message: .string(message),
+            .only_graders_can_rate: .bool(allowRating && onlyGradersCanRate),
+            .published: .bool(isTeacher && !isAnnouncement ? published : true),
+            .remove_attachment: attachment == nil && topic?.attachments?.first != nil ? .bool(true) : nil,
+            .require_initial_post: .bool(requireInitialPost),
+            .sort_by_rating: .bool(allowRating && sortByRating),
+            .specific_sections: .string(sections.isEmpty ? "all" : sections.map { $0.id } .sorted().joined(separator: ",")),
+            .title: .string(title),
+        ]).fetch { result, _, fetchError in performUIUpdate {
             alert = fetchError.map { .error($0) }
             if fetchError == nil, result != nil {
                 saveAssignment()
@@ -439,7 +441,6 @@ public struct DiscussionEditorView: View {
             originalOverrides != overrides
         else {
             isSaving = false
-            NotificationCenter.default.post(name: .init("topic-refresh"), object: nil, userInfo: [:])
             return env.router.dismiss(controller)
         }
         let (dueAt, unlockAt, lockAt, apiOverrides) = AssignmentOverridesEditor.apiOverrides(for: assignment.id, from: overrides)
@@ -456,7 +457,6 @@ public struct DiscussionEditorView: View {
             alert = fetchError.map { .error($0) }
             isSaving = false
             if result != nil {
-                NotificationCenter.default.post(name: .init("topic-refresh"), object: nil, userInfo: [:])
                 GetAssignment(courseID: assignment.courseID, assignmentID: assignment.id, include: [ .overrides ])
                     .fetch(force: true) // updated overrides & allDates aren't in result
                 env.router.dismiss(controller)

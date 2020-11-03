@@ -82,7 +82,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ActivityStreamViewController.create()
     },
 
-    "/:context/:contextID/announcements": nil,
+    "/:context/:contextID/announcements": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return AnnouncementListViewController.create(context: context)
+    },
 
     "/:context/:contextID/announcements/new": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -169,8 +172,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return nil
     },
 
-    "/:context/:contextID/discussions": nil,
-    "/:context/:contextID/discussion_topics": nil,
+    "/:context/:contextID/discussions": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionListViewController.create(context: context)
+    },
+    "/:context/:contextID/discussion_topics": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionListViewController.create(context: context)
+    },
 
     "/:context/:contextID/discussion_topics/new": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }

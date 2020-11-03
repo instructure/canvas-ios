@@ -179,6 +179,12 @@
 		7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */; };
 		7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */; };
 		7D6C47EB250C1C5B0088ADDE /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C47EA250C1C5B0088ADDE /* Pages.swift */; };
+		7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E57382550C57F0068D3C3 /* DiscussionListViewController.swift */; };
+		7D6E573C2550C5950068D3C3 /* DiscussionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6E573B2550C5950068D3C3 /* DiscussionListViewController.storyboard */; };
+		7D6E58032551C1530068D3C3 /* AnnouncementListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6E58022551C1530068D3C3 /* AnnouncementListViewController.storyboard */; };
+		7D6E58062551C1610068D3C3 /* AnnouncementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E58052551C1610068D3C3 /* AnnouncementListViewController.swift */; };
+		7D6E580A2551F0510068D3C3 /* AnnouncementListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E58092551F0510068D3C3 /* AnnouncementListViewControllerTests.swift */; };
+		7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E580D255207100068D3C3 /* DiscussionListViewControllerTests.swift */; };
 		7D70DE98233E9F3400F5C3D4 /* APICommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE97233E9F3400F5C3D4 /* APICommunicationChannelTests.swift */; };
 		7D70DE9A233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE99233EA2D200F5C3D4 /* APINotificationPreferencesTests.swift */; };
 		7D70DEA2233EADBB00F5C3D4 /* CommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DEA1233EADBB00F5C3D4 /* CommunicationChannelTests.swift */; };
@@ -1312,6 +1318,12 @@
 		7D6C47EA250C1C5B0088ADDE /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
 		7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivity.swift; sourceTree = "<group>"; };
 		7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodo.swift; sourceTree = "<group>"; };
+		7D6E57382550C57F0068D3C3 /* DiscussionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListViewController.swift; sourceTree = "<group>"; };
+		7D6E573B2550C5950068D3C3 /* DiscussionListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiscussionListViewController.storyboard; sourceTree = "<group>"; };
+		7D6E58022551C1530068D3C3 /* AnnouncementListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnnouncementListViewController.storyboard; sourceTree = "<group>"; };
+		7D6E58052551C1610068D3C3 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
+		7D6E58092551F0510068D3C3 /* AnnouncementListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewControllerTests.swift; sourceTree = "<group>"; };
+		7D6E580D255207100068D3C3 /* DiscussionListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListViewControllerTests.swift; sourceTree = "<group>"; };
 		7D70DE8F233E71A600F5C3D4 /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
 		7D70DE91233E808600F5C3D4 /* GroupedSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedSectionFooterView.swift; sourceTree = "<group>"; };
 		7D70DE93233E8DA800F5C3D4 /* NotificationChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationChannelsViewController.swift; sourceTree = "<group>"; };
@@ -2871,12 +2883,16 @@
 		7D627167245B341800FC1798 /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
+				7D6E58022551C1530068D3C3 /* AnnouncementListViewController.storyboard */,
+				7D6E58052551C1610068D3C3 /* AnnouncementListViewController.swift */,
 				78151DCA21AE75D400692862 /* APIDiscussion.swift */,
 				7D5558692461E75F0039CE43 /* DiscussionDetailsViewController.storyboard */,
 				7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */,
 				7DBD15002547746F00750F52 /* DiscussionEditorView.swift */,
 				787BD02021AE5C28000C90A1 /* DiscussionEntry.swift */,
 				7DDE6E0A2476DF15006523D4 /* DiscussionHTML.swift */,
+				7D6E573B2550C5950068D3C3 /* DiscussionListViewController.storyboard */,
+				7D6E57382550C57F0068D3C3 /* DiscussionListViewController.swift */,
 				7D627169245B422900FC1798 /* DiscussionParticipant.swift */,
 				7D06A2B42469B7EF00D76267 /* DiscussionReplyViewController.storyboard */,
 				7D06A2B22469B7D100D76267 /* DiscussionReplyViewController.swift */,
@@ -2891,9 +2907,11 @@
 		7D627168245B347A00FC1798 /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
+				7D6E58092551F0510068D3C3 /* AnnouncementListViewControllerTests.swift */,
 				78151DCE21AE7E0500692862 /* APIDiscussionTests.swift */,
 				7D54D6B22464705100409520 /* DiscussionDetailsViewControllerTests.swift */,
 				7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */,
+				7D6E580D255207100068D3C3 /* DiscussionListViewControllerTests.swift */,
 				7D54D6AE24646AF800409520 /* DiscussionParticipantTests.swift */,
 				7D5425D1246DDAFF00E166C0 /* DiscussionReplyViewControllerTests.swift */,
 				3BD364AA225D3C02006CEBD8 /* DiscussionTopicTests.swift */,
@@ -4050,6 +4068,7 @@
 				7D2FADC4225BBA5600BCE19E /* RichContentEditor.js in Resources */,
 				B102EEB4243B7989002E04F0 /* ModuleItemDetailsViewController.storyboard in Resources */,
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
+				7D6E573C2550C5950068D3C3 /* DiscussionListViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
 				7D7242622429C473007ED42F /* CourseCardsViewController.storyboard in Resources */,
 				B127C0EE245B2EE3008DB716 /* MasteryPathAssignmentCell.xib in Resources */,
@@ -4087,6 +4106,7 @@
 				7D101949215E8E5F0058FDD1 /* Assets.xcassets in Resources */,
 				7DAC16F624FD8AE6001F48A1 /* FileListViewController.storyboard in Resources */,
 				7DD6CC6D21BD6DCD004C4BB6 /* LoadingViewController.storyboard in Resources */,
+				7D6E58032551C1530068D3C3 /* AnnouncementListViewController.storyboard in Resources */,
 				7D75FF1624081F57000544E7 /* ListErrorView.xib in Resources */,
 				7D101947215E87D40058FDD1 /* defaultHeaderImage.png in Resources */,
 				7DCF1ECF216BFE61003AF358 /* Localizable.stringsdict in Resources */,
@@ -4323,6 +4343,7 @@
 				7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */,
 				7DE4B17F24EAE51100E7935C /* PageEditorViewTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
+				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
 				3B158CB122E167CD0039A568 /* PageViewEventTests.swift in Sources */,
 				9727093B23C8C572008253B2 /* HorizontalMenuViewControllerTests.swift in Sources */,
 				B1487F99243E43C400013404 /* GetModuleItemTests.swift in Sources */,
@@ -4431,6 +4452,7 @@
 				B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */,
 				7D8E821523C8E15A00A8DA2C /* PeopleListViewControllerTests.swift in Sources */,
 				7D80AC56212CF41900C40ECE /* APIRequestableTests.swift in Sources */,
+				7D6E580A2551F0510068D3C3 /* AnnouncementListViewControllerTests.swift in Sources */,
 				7D08B1D92372084B0075623A /* GetFileTests.swift in Sources */,
 				7D8B78FB215EC9BE005E08F1 /* BrandTests.swift in Sources */,
 				E8997906234F7E0600CA7D9B /* XCTestCaseTests.swift in Sources */,
@@ -4582,6 +4604,7 @@
 				7DA2601923F7227A005D2121 /* UITableViewCellExtensions.swift in Sources */,
 				7DA4DA2B2440C94D009CA964 /* GetPages.swift in Sources */,
 				7DA260AB23F72352005D2121 /* GetCalendarEvents.swift in Sources */,
+				7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */,
 				7DA2601F23F7227A005D2121 /* URLResponseExtensions.swift in Sources */,
 				7DA2602423F722B3005D2121 /* LogEventListViewController.swift in Sources */,
 				7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */,
@@ -4977,6 +5000,7 @@
 				49C56C9D24BECA7400E96799 /* ClosedRangeExtensions.swift in Sources */,
 				7D5F103D2429BA5D00803324 /* CardView.swift in Sources */,
 				7DA2609423F72327005D2121 /* RichContentEditorViewController.swift in Sources */,
+				7D6E58062551C1610068D3C3 /* AnnouncementListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
