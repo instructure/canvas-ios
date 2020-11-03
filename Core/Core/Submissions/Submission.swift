@@ -40,6 +40,8 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
     @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @NSManaged public var enteredGrade: String?
+    @NSManaged var enteredScoreRaw: NSNumber?
     @NSManaged var excusedRaw: NSNumber?
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
@@ -79,6 +81,11 @@ final public class Submission: NSManagedObject, Identifiable {
             return map
         }
         return nil
+    }
+
+    public var enteredScore: Double? {
+        get { return enteredScoreRaw?.doubleValue }
+        set { enteredScoreRaw = NSNumber(value: newValue) }
     }
 
     public var excused: Bool? {
@@ -134,6 +141,8 @@ extension Submission: WriteableModel {
         model.assignmentID = item.assignment_id.value
         model.attempt = item.attempt ?? 0
         model.body = item.body
+        model.enteredGrade = item.entered_grade
+        model.enteredScore = item.entered_score
         model.excused = item.excused
         model.externalToolURL = item.external_tool_url?.rawValue
         model.grade = item.grade

@@ -97,7 +97,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter(rawValue: $0)
         } ?? []
-        return CoreHostingController(SpeedGraderView(context: context, assignmentID: assignmentID, userID: userID, filter: filter))
+        return SpeedGraderViewController(context: context, assignmentID: assignmentID, userID: userID, filter: filter)
     },
 
     "/courses/:courseID/attendance/:toolID": { _, params, _ in
@@ -299,7 +299,7 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
         return nil
     }
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusViewController.create(courseID: ID.expandTildeID(courseID))
+    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
 }
 
 // MARK: - HelmModules

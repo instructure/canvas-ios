@@ -54,7 +54,13 @@ class TestDatabase: NSPersistentContainer {
         return context
     }
 
-    override  func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+    override func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        self.viewContext.performAndWait {
+            block(self.viewContext)
+        }
+    }
+
+    override func performWriteTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         self.viewContext.performAndWait {
             block(self.viewContext)
         }

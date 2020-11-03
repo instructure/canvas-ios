@@ -18,13 +18,11 @@
 
 import UIKit
 import XCTest
-import Core
-@testable import Student
 @testable import Core
 @testable import TestsFoundation
 
-class StudentSyllabusViewControllerTests: StudentTestCase {
-    lazy var controller = StudentSyllabusViewController.create(courseID: "1")
+class SyllabusTabViewControllerTests: CoreTestCase {
+    lazy var controller = SyllabusTabViewController.create(courseID: "1")
 
     func testLayout() {
         api.mock(controller.colors, value: APICustomColors(custom_colors: [

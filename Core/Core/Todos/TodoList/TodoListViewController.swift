@@ -145,7 +145,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
             if let error = error {
                 self?.showError(error)
             }
-            self?.env.database.performBackgroundTask { context in
+            self?.env.database.performWriteTask { context in
                 guard let todo: Todo = context.first(where: #keyPath(Todo.id), equals: id) else { return }
                 context.delete(todo)
                 try? context.save()

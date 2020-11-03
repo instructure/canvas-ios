@@ -37,6 +37,7 @@ public struct WebSession<Content: View>: View {
             content(sessionURL)
         } else {
             VStack {
+                HStack { Spacer() }
                 Spacer()
                 CircleProgress()
                 Spacer()

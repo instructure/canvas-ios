@@ -80,7 +80,6 @@
 		7DCF0F8522F8A831000AACCE /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */; };
 		7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9A22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.swift */; };
 		7DCF0F8722F8A831000AACCE /* AssignmentDetailsSectionContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */; };
-		7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */; };
 		7DCF0F8F22F8A84D000AACCE /* CourseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */; };
 		7DCF0F9022F8A84D000AACCE /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */; };
 		7DCF0F9622F8A860000AACCE /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */; };
@@ -143,7 +142,6 @@
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
 		9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2A12383C741006633CA /* ActivityStreamViewController.swift */; };
 		9767F2A42383C741006633CA /* ActivityStreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */; };
-		97A486C6239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */; };
 		97BA196423C82808009AB8AC /* RubricViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */; };
 		9F00A5692245593200C0CC32 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D1D7E04213743D300F7CCFE /* Core.framework */; };
 		9F00A56B2245599800C0CC32 /* GradesWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F00A56A2245599800C0CC32 /* GradesWidgetViewController.swift */; };
@@ -532,7 +530,6 @@
 		7DCF0E9922F89FB0000AACCE /* AssignmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewController.swift; sourceTree = "<group>"; };
 		7DCF0E9A22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsSectionContainerView.swift; sourceTree = "<group>"; };
 		7DCF0E9B22F89FB0000AACCE /* AssignmentDetailsSectionContainerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentDetailsSectionContainerView.xib; sourceTree = "<group>"; };
-		7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA722F89FC2000AACCE /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
 		7DCF0EA822F89FC2000AACCE /* CourseNavigationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenter.swift; sourceTree = "<group>"; };
 		7DCF0EBA22F8A001000AACCE /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
@@ -626,7 +623,6 @@
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2A12383C741006633CA /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
 		9767F2A22383C741006633CA /* ActivityStreamViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ActivityStreamViewController.storyboard; sourceTree = "<group>"; };
-		97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSyllabusViewControllerTests.swift; sourceTree = "<group>"; };
 		97BA196323C82808009AB8AC /* RubricViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewControllerTests.swift; sourceTree = "<group>"; };
 		98F5AEA722584DFE82613E6B /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -906,7 +902,6 @@
 				7DB3C83C24AA613B00B85D35 /* Planner */,
 				7DCF0ED522F8A03D000AACCE /* Quizzes */,
 				7DCF0F0A22F8A050000AACCE /* Submissions */,
-				7DCF0EA622F89FC2000AACCE /* Syllabus */,
 				2CE205B720EBF68F002A6A64 /* GoogleService-Info.plist */,
 				492704821CF4AF7100C631C6 /* Info.plist */,
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
@@ -1045,14 +1040,6 @@
 				7DCF0E9C22F89FB0000AACCE /* AssignmentDetails */,
 			);
 			path = Assignments;
-			sourceTree = "<group>";
-		};
-		7DCF0EA622F89FC2000AACCE /* Syllabus */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF0EA322F89FC2000AACCE /* StudentSyllabusViewController.swift */,
-			);
-			path = Syllabus;
 			sourceTree = "<group>";
 		};
 		7DCF0EA922F89FC2000AACCE /* CourseNavigation */ = {
@@ -1260,14 +1247,6 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
-		7DCF0F1222F8A096000AACCE /* Syllabus */ = {
-			isa = PBXGroup;
-			children = (
-				97A486C5239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift */,
-			);
-			path = Syllabus;
-			sourceTree = "<group>";
-		};
 		7DCF0F1422F8A096000AACCE /* CourseNavigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1393,7 +1372,6 @@
 				7DC4A0BB24BE5024007A7EAD /* Planner */,
 				7DCF0F1E22F8A096000AACCE /* Quizzes */,
 				7DCF0F3322F8A096000AACCE /* Submissions */,
-				7DCF0F1222F8A096000AACCE /* Syllabus */,
 				7DCF0F3622F8A096000AACCE /* Info.plist */,
 				7DCF0F3722F8A096000AACCE /* RoutesTests.swift */,
 				7DCF0F3822F8A096000AACCE /* StudentTestCase.swift */,
@@ -2607,7 +2585,6 @@
 				7DCF0FB022F8A8D7000AACCE /* RubricCircleView.swift in Sources */,
 				7DCF0FAD22F8A8D7000AACCE /* RubricPresenter.swift in Sources */,
 				7DCF0FB922F8A8D7000AACCE /* SubmissionCommentsViewController.swift in Sources */,
-				7DCF0F8C22F8A84D000AACCE /* StudentSyllabusViewController.swift in Sources */,
 				7DCF0F8122F8A82C000AACCE /* AssignmentListViewController.swift in Sources */,
 				7DCF0FC422F8A8D7000AACCE /* SubmissionDetailsViewController.swift in Sources */,
 				3B72B93E243204FF00197BE6 /* AssignmentListModel.swift in Sources */,
@@ -2665,7 +2642,6 @@
 				7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */,
 				7D46624324D0C82D00C74DB4 /* QuizWebViewControllerTests.swift in Sources */,
 				9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */,
-				97A486C6239A5B3D00084499 /* StudentSyllabusViewControllerTests.swift in Sources */,
 				7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */,
 				7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */,
 				7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */,

@@ -20,12 +20,12 @@ import SwiftUI
 import Core
 
 struct SubmissionGrader: View {
+    let index: Int
     let assignment: Assignment
     let submission: Submission
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
     @Binding var isPagingEnabled: Bool
-    let bottomInset: CGFloat
 
     @State var attempt: Int?
     @State var drawerState: DrawerState = .min
@@ -40,7 +40,13 @@ struct SubmissionGrader: View {
         selected.attachments?.sorted(by: File.idCompare).first
     }
 
-    init(assignment: Assignment, submission: Submission, isPagingEnabled: Binding<Bool>, bottomInset: CGFloat) {
+    init(
+        index: Int,
+        assignment: Assignment,
+        submission: Submission,
+        isPagingEnabled: Binding<Bool>
+    ) {
+        self.index = index
         self.assignment = assignment
         self.submission = submission
         self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
@@ -52,13 +58,17 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self._isPagingEnabled = isPagingEnabled
-        self.bottomInset = bottomInset
     }
 
     var body: some View {
         GeometryReader { geometry in
-            let minHeight = 55 + bottomInset
-            let maxHeight = geometry.size.height - 64
+            let bottomInset = geometry.safeAreaInsets.bottom
+            let minHeight = bottomInset + 55
+            let maxHeight = bottomInset + geometry.size.height - 64
+            // At 1/4 of a screen offset, scale to 90% and round corners to 20
+            let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
+            let scale = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 1, toMax: 0.9)
+            let cornerRadius = interpolate(value: delta, fromMin: 0, fromMax: 0.25, toMin: 0, toMax: 20)
             if geometry.size.width > 834 {
                 VStack(spacing: 0) {
                     SubmissionHeader(assignment: assignment, submission: submission)
@@ -82,11 +92,15 @@ struct SubmissionGrader: View {
                             Spacer().frame(height: bottomInset)
                         }
                         Divider()
-                        tabs
+                        tools(bottomInset: bottomInset)
                             .padding(.top, 16)
                             .frame(width: 375)
                     }
                 }
+                    .background(Color.backgroundLightest)
+                    .cornerRadius(cornerRadius)
+                    .scaleEffect(scale)
+                    .edgesIgnoringSafeArea(.bottom)
             } else {
                 ZStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -107,11 +121,17 @@ struct SubmissionGrader: View {
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
                     }
-                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) { tabs }
+                    Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
+                        tools(bottomInset: bottomInset)
+                    }
                 }
+                    .background(Color.backgroundLightest)
+                    .cornerRadius(cornerRadius)
+                    .scaleEffect(scale)
+                    .edgesIgnoringSafeArea(.bottom)
             }
         }
-            .background(Color.backgroundLightest)
+            .avoidKeyboardArea()
     }
 
     @ViewBuilder
@@ -124,7 +144,6 @@ struct SubmissionGrader: View {
         } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
             Button(action: {
                 showAttempts.toggle()
-                isPagingEnabled = !showAttempts
             }, label: {
                 HStack {
                     Text(selected.submittedAt?.dateTimeString ?? "")
@@ -162,16 +181,17 @@ struct SubmissionGrader: View {
         }
     }
 
-    enum GraderTab: Int, CaseIterable, Identifiable {
-        case grades, comments, files
-        var id: Int { rawValue }
-    }
+    enum GraderTab: Int, CaseIterable { case grades, comments, files }
 
-    var tabs: some View {
+    func tools(bottomInset: CGFloat) -> some View {
         VStack(spacing: 0) {
-            Picker(selection: Binding(get: { tab }, set: {
-                tab = $0
-                if drawerState == .min { snapDrawerTo(.mid) }
+            Picker(selection: Binding(get: { tab }, set: { newValue in
+                if drawerState == .min {
+                    snapDrawerTo(.mid)
+                }
+                withAnimation(.default) {
+                    tab = newValue
+                }
             }), label: Text(verbatim: "")) {
                 Text("Grades").tag(GraderTab.grades)
                 Text("Comments").tag(GraderTab.comments)
@@ -193,16 +213,15 @@ struct SubmissionGrader: View {
                 fileID = $0
                 snapDrawerTo(.min)
             })
-            Pages(items: GraderTab.allCases, currentIndex: Binding(get: { tab.rawValue }, set: {
-                tab = GraderTab.allCases[$0]
-            })) { tab in
-                VStack(spacing: 0) {
-                    switch tab {
-                    case .grades:
+            GeometryReader { geometry in
+                HStack(spacing: 0) {
+                    VStack(spacing: 0) {
                         SubmissionGrades(assignment: assignment, submission: submission)
                             .clipped()
                         Spacer().frame(height: bottomInset)
-                    case .comments:
+                    }
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    VStack(spacing: 0) {
                         SubmissionCommentList(
                             assignment: assignment,
                             submission: submission,
@@ -215,14 +234,21 @@ struct SubmissionGrader: View {
                         if showRecorder != .video || drawerState == .min {
                             Spacer().frame(height: bottomInset)
                         }
-                    case .files:
+                    }
+                        .background(Color.backgroundLight)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                    VStack(spacing: 0) {
                         SubmissionFileList(submission: selected, fileID: drawerFileID)
                             .clipped()
                         Spacer().frame(height: bottomInset)
                     }
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                    .background(tab == .comments ? Color.backgroundLight : Color.backgroundLightest)
+                    .background(Color.backgroundLightest)
+                    .frame(width: geometry.size.width, alignment: .leading)
+                    .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
             }
+                .clipped()
         }
     }
 
@@ -231,4 +257,9 @@ struct SubmissionGrader: View {
             drawerState = state
         }
     }
+}
+
+private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
+    let bounded = max(fromMin, min(value, fromMax))
+    return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
 }

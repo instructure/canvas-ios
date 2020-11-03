@@ -78,22 +78,26 @@ struct SubmissionCommentList: View {
                     .background(Color.backgroundLightest)
                     .scaleEffect(y: comments.state == .data ? -1 : 1)
                 Divider()
-                if showRecorder == .audio {
+                switch showRecorder {
+                case .audio:
                     AudioRecorder {
-                        showRecorder = nil
+                        show(recorder: nil)
                         sendMediaComment(type: .audio, url: $0)
                     }
                         .background(Color.backgroundLight)
                         .frame(height: 240)
-                } else if showRecorder == .video {
+                        .transition(.move(edge: .bottom))
+                case .video:
                     VideoRecorder(camera: .front) {
-                        showRecorder = nil
+                        show(recorder: nil)
                         sendMediaComment(type: .video, url: $0)
                     }
                         .background(Color.backgroundLight)
                         .frame(height: geometry.size.height)
-                } else {
+                        .transition(.move(edge: .bottom))
+                case nil:
                     toolbar
+                        .transition(.opacity)
                 }
             }
         }
@@ -183,7 +187,7 @@ struct SubmissionCommentList: View {
     func recordAudio() {
         AudioRecorder.requestPermission { allowed in
             if allowed {
-                showRecorder = .audio
+                show(recorder: .audio)
             } else {
                 error = Text("You must enable Microphone permissions in Settings.")
             }
@@ -193,7 +197,7 @@ struct SubmissionCommentList: View {
     func recordVideo() {
         VideoRecorder.requestPermission { allowed in
             if allowed {
-                showRecorder = .video
+                show(recorder: .video)
             } else {
                 error = Text("You must enable Camera permissions in Settings.")
             }
@@ -233,6 +237,12 @@ struct SubmissionCommentList: View {
             if error != nil || comment == nil {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
             }
+        }
+    }
+
+    func show(recorder: MediaCommentType?) {
+        withAnimation(.default) {
+            showRecorder = recorder
         }
     }
 }
