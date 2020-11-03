@@ -122,9 +122,12 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
             assignment.first?.anonymizeStudents == false && !submissions.isEmpty ? messageUsersButton : nil,
             postPolicyButton,
         ].compactMap { $0 }
-        loadingView.isHidden = !submissions.pending || !submissions.isEmpty || submissions.error != nil || refreshControl.isRefreshing
-        emptyView.isHidden = submissions.pending || !submissions.isEmpty || submissions.error != nil
-        errorView.isHidden = submissions.error == nil
+        loadingView.isHidden = submissions.state != .loading || refreshControl.isRefreshing
+        emptyView.isHidden = submissions.state != .empty
+        errorView.isHidden = submissions.state != .error
+        if let error = submissions.error {
+            print(error)
+        }
         tableView.reloadData()
     }
 
