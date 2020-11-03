@@ -23,3 +23,7 @@ private class Placeholder {}
 extension Bundle {
     @objc internal static let parent = Bundle(for: Placeholder.self)
 }
+
+internal func NSLocalizedString(_ key: String, comment: String = "") -> String {
+    return NSLocalizedString(key, bundle: .parent, comment: comment)
+}

@@ -58,7 +58,7 @@ public class CreateTextComment {
         guard let session = env.currentSession else {
             return self.callback(nil, NSError.internalError()) // There should always be a current user.
         }
-        env.database.performBackgroundTask { client in
+        env.database.performWriteTask { client in
             let placeholder: SubmissionComment = client.insert()
             placeholder.assignmentID = self.assignmentID
             placeholder.authorAvatarURL = session.userAvatarURL
@@ -86,7 +86,7 @@ public class CreateTextComment {
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {
                 return self.callback(nil, error)
             }
-            self.env.database.performBackgroundTask { client in
+            self.env.database.performWriteTask { client in
                 let comment = SubmissionComment.save(comment, for: submission, replacing: self.placeholderID, in: client)
                 var e: Error?
                 defer { self.callback(comment, e) }

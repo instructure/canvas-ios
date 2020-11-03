@@ -47,6 +47,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
     @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
+    @NSManaged public var moderatedGrading: Bool
     @NSManaged public var name: String
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
@@ -142,6 +143,7 @@ extension Assignment {
         lockAt = item.lock_at
         lockedForUser = item.locked_for_user ?? false
         lockExplanation = item.lock_explanation
+        moderatedGrading = item.moderated_grading == true
         name = item.name
         pointsPossible = item.points_possible
         position = item.position

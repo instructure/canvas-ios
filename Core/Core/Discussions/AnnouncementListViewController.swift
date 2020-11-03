@@ -165,8 +165,8 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let htmlURL = topics[indexPath]?.htmlURL else { return }
-        env.router.route(to: htmlURL, from: self, options: .detail)
+        guard let id = topics[indexPath]?.id else { return }
+        env.router.route(to: "\(context.pathComponent)/announcements/\(id)", from: self, options: .detail)
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

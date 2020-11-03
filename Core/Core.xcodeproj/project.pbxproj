@@ -589,6 +589,9 @@
 		7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */; };
 		7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD15002547746F00750F52 /* DiscussionEditorView.swift */; };
 		7DBD150625477CEB00750F52 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD150525477CEB00750F52 /* Badge.swift */; };
+		7DBD14E22547213F00750F52 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBD14E02547213F00750F52 /* QuizListViewController.storyboard */; };
+		7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD14E12547213F00750F52 /* QuizListViewController.swift */; };
+		7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD14EA2547343B00750F52 /* QuizListViewControllerTests.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
@@ -1315,7 +1318,6 @@
 		7D64A978236760A1004EAEDF /* CourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionTests.swift; sourceTree = "<group>"; };
 		7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSectionsTests.swift; sourceTree = "<group>"; };
 		7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
-		7D6C47EA250C1C5B0088ADDE /* Pages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
 		7D6C8C6822EA0A6E00E5ADD8 /* APIActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIActivity.swift; sourceTree = "<group>"; };
 		7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITodo.swift; sourceTree = "<group>"; };
 		7D6E57382550C57F0068D3C3 /* DiscussionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListViewController.swift; sourceTree = "<group>"; };
@@ -1474,6 +1476,9 @@
 		7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		7DBD15002547746F00750F52 /* DiscussionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditorView.swift; sourceTree = "<group>"; };
 		7DBD150525477CEB00750F52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		7DBD14E02547213F00750F52 /* QuizListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuizListViewController.storyboard; sourceTree = "<group>"; };
+		7DBD14E12547213F00750F52 /* QuizListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
+		7DBD14EA2547343B00750F52 /* QuizListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewControllerTests.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		7DBED00D232C252200392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
 		7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountHelpLinks.swift; sourceTree = "<group>"; };
@@ -2573,6 +2578,8 @@
 				7DD371BE22E7B20900C2D0F7 /* GetQuizSubmission.swift */,
 				7DCF2043216D622B003AF358 /* GetQuizzes.swift */,
 				7DF4001C217509D6007E5F81 /* Quiz.swift */,
+				7DBD14E02547213F00750F52 /* QuizListViewController.storyboard */,
+				7DBD14E12547213F00750F52 /* QuizListViewController.swift */,
 				7DCE0C8922AF040200BA549F /* QuizSubmission.swift */,
 			);
 			path = Quizzes;
@@ -2585,6 +2592,7 @@
 				7DD371C022E7B39800C2D0F7 /* GetQuizSubmissionTests.swift */,
 				7D81A000228DC1F000C61EDD /* GetQuizTests.swift */,
 				7DCF2045216D652C003AF358 /* GetQuizzesTests.swift */,
+				7DBD14EA2547343B00750F52 /* QuizListViewControllerTests.swift */,
 				7DCE0C8D22B015DC00BA549F /* QuizSubmissionTests.swift */,
 				B19792FA21769B320000369C /* QuizTests.swift */,
 				7DCF2039216D5712003AF358 /* QuizTypeTests.swift */,
@@ -3784,7 +3792,6 @@
 				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
-				7D6C47EA250C1C5B0088ADDE /* Pages.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBarView.swift */,
 				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
@@ -4052,6 +4059,7 @@
 				97F5520624061B4B005D80FC /* PlannerNoteDetailViewController.storyboard in Resources */,
 				7DF4AAD42487F1EF00B07BB8 /* AssignmentDatesViewController.storyboard in Resources */,
 				3B4D89262450A8E9004ED120 /* ComposeReplyViewController.storyboard in Resources */,
+				7DBD14E22547213F00750F52 /* QuizListViewController.storyboard in Resources */,
 				5BF786A6218599B600471A5F /* InfoPlist.strings in Resources */,
 				B14707AC24379FED00CE1DBD /* LTIViewController.storyboard in Resources */,
 				B17C83292459ED4D00CE1FED /* MasteryPathViewController.storyboard in Resources */,
@@ -4341,6 +4349,7 @@
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				7D89A2CE250A806B009D0FD2 /* FileEditorViewTests.swift in Sources */,
 				7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */,
+				7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */,
 				7DE4B17F24EAE51100E7935C /* PageEditorViewTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
 				7D6E580E255207100068D3C3 /* DiscussionListViewControllerTests.swift in Sources */,
@@ -4671,7 +4680,6 @@
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
-				7D6C47EB250C1C5B0088ADDE /* Pages.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
@@ -4886,6 +4894,7 @@
 				7DA2604923F722D9005D2121 /* Grade.swift in Sources */,
 				7DA25FAF23F72136005D2121 /* APIError.swift in Sources */,
 				97F5520424061AF1005D80FC /* PlannerNoteDetailViewController.swift in Sources */,
+				7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */,
 				7DA2601D23F7227A005D2121 /* URLComponentsExtensions.swift in Sources */,
 				7DA25FFA23F7226E005D2121 /* DocViewerCommentReplyAnnotation.swift in Sources */,
 				7DA260C323F72352005D2121 /* UploadManager.swift in Sources */,

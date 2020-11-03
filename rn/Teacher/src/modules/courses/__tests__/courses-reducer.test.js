@@ -61,10 +61,6 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
-      quizzes: {
-        pending: 0,
-        refs: [],
-      },
       groups: {
         pending: 0,
         refs: [],
@@ -613,7 +609,6 @@ describe('refresh single course', () => {
             'create_announcement': true,
             'create_discussion_topic': true,
           },
-          'quizzes': { 'pending': 0, 'refs': [] },
           'tabs': { 'pending': 0, 'tabs': [] },
         },
       }
@@ -664,7 +659,6 @@ describe('refresh single course', () => {
         'oldColor': '#FFFFFF00',
         'pending': 0,
         'permissions': { 'create_announcement': true, 'create_discussion_topic': false },
-        'quizzes': { 'pending': 0, 'refs': [] },
         'tabs': { 'pending': 0, 'tabs': [] },
       },
     }
@@ -688,7 +682,6 @@ describe('refresh single course', () => {
           'oldColor': '#FFFFFF00',
           'pending': 0,
           'permissions': { 'create_announcement': false, 'create_discussion_topic': true },
-          'quizzes': { 'pending': 0, 'refs': [] },
           'tabs': { 'pending': 0, 'tabs': [] },
         },
       }

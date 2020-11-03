@@ -56,15 +56,15 @@ public struct CircleProgress: View {
                     .trim(from: 0, to: fillWidth)
                     .stroke(Color.accentColor, lineWidth: thickness)
                     .rotationEffect(fillRotate)
-                    .animation(ease)
-                    .onReceive(timer) { _ in
-                        self.fillRotate += Angle(radians: self.fillWidth == 0.1 ? 0.5 * .pi : 1.5 * .pi)
-                        self.fillWidth = self.fillWidth == 0.1 ? 0.725 : 0.1
-                    }
+                    .onReceive(timer) { _ in withAnimation(ease) {
+                        fillRotate += Angle(radians: fillWidth == 0.1 ? 0.5 * .pi : 1.5 * .pi)
+                        fillWidth = fillWidth == 0.1 ? 0.725 : 0.1
+                    } }
 
                     .rotationEffect(rotate)
-                    .animation(Animation.linear(duration: 2.25).repeatForever(autoreverses: false))
-                    .onAppear { self.rotate = Angle(radians: 2 * .pi) }
+                    .onAppear { withAnimation(Animation.linear(duration: 2.25).repeatForever(autoreverses: false)) {
+                        rotate = Angle(radians: 2 * .pi)
+                    } }
             }
         }
             .padding(thickness / 2)

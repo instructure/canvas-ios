@@ -40,6 +40,7 @@ class PagesViewControllerTests: CoreTestCase {
         let scroll = controller.scrollView
         let width = scroll.frame.width
         scroll.delegate?.scrollViewWillBeginDragging?(scroll)
+        controller.view.layoutIfNeeded()
         scroll.delegate?.scrollViewDidScroll?(scroll)
         XCTAssertEqual(visibleTitles, [ 0 ])
         scroll.contentOffset.x = width * 1.5
@@ -54,26 +55,31 @@ class PagesViewControllerTests: CoreTestCase {
 
         var target = CGPoint(x: width * 2, y: 0)
         scroll.delegate?.scrollViewWillEndDragging?(scroll, withVelocity: .zero, targetContentOffset: &target)
+        controller.view.layoutIfNeeded()
         XCTAssertEqual(currentPage?.title, "1")
 
         scroll.semanticContentAttribute = .forceRightToLeft
         scroll.delegate?.scrollViewWillBeginDragging?(scroll)
+        controller.view.layoutIfNeeded()
         scroll.contentOffset.x = width * 1.8
         scroll.delegate?.scrollViewDidScroll?(scroll)
         XCTAssertEqual(visibleTitles, [ 1, 0 ])
 
         target = CGPoint(x: width * 2, y: 0)
         scroll.delegate?.scrollViewWillEndDragging?(scroll, withVelocity: .zero, targetContentOffset: &target)
+        controller.view.layoutIfNeeded()
         XCTAssertEqual(currentPage?.title, "0")
 
         scroll.semanticContentAttribute = .unspecified
         scroll.delegate?.scrollViewWillBeginDragging?(scroll)
+        controller.view.layoutIfNeeded()
         scroll.contentOffset.x = width * 0.5
         scroll.delegate?.scrollViewDidScroll?(scroll)
         XCTAssertEqual(visibleTitles, [ -1, 0 ])
 
         target = CGPoint(x: 0, y: 0)
         scroll.delegate?.scrollViewWillEndDragging?(scroll, withVelocity: .zero, targetContentOffset: &target)
+        controller.view.layoutIfNeeded()
         XCTAssertEqual(currentPage?.title, "-1")
     }
 

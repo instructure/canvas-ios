@@ -22,25 +22,27 @@ import Combine
 @testable import Teacher
 import TestsFoundation
 
-class SpeedGraderViewTests: TeacherTestCase {
-    lazy var controller: CoreHostingController<SpeedGraderView> = {
+class SpeedGraderViewControllerTests: TeacherTestCase {
+    lazy var controller = SpeedGraderViewController(context: .course("1"), assignmentID: "1", userID: "1", filter: [])
+
+    override func setUp() {
+        super.setUp()
         api.mock(GetAssignment(courseID: "1", assignmentID: "1", include: [ .overrides ]), value: .make())
         api.mock(GetSubmissions(context: .course("1"), assignmentID: "1"), value: [
             .make(submission_history: [], user: .make(avatar_url: URL(string: "data:text/plain,"))),
         ])
-        return hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "1", filter: []))
-    }()
+    }
 
-    func testSpeedGrader() throws {
-        let tree = controller.testTree
-        XCTAssertNotNil(tree?.find(id: "SpeedGrader.submission.1"))
-        XCTAssertNil(tree?.find(id: "SpeedGrader.emptyCloseButton"))
+    func testLayout() throws {
+        controller.view.layoutIfNeeded()
+        XCTAssertNotNil(controller.pages.parent)
+        XCTAssertNil(controller.emptyView.parent)
     }
 
     func testEmpty() throws {
-        controller = hostSwiftUIController(SpeedGraderView(context: .course("1"), assignmentID: "1", userID: "bogus", filter: []))
-        let tree = controller.testTree
-        XCTAssertNil(tree?.find(id: "SpeedGrader.submission.1"))
-        XCTAssertNotNil(tree?.find(id: "SpeedGrader.emptyCloseButton"))
+        controller = SpeedGraderViewController(context: .course("1"), assignmentID: "1", userID: "bogus", filter: [])
+        controller.view.layoutIfNeeded()
+        XCTAssertNil(controller.pages.parent)
+        XCTAssertNotNil(controller.emptyView.parent)
     }
 }

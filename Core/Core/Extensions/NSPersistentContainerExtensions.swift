@@ -84,4 +84,23 @@ extension NSPersistentContainer {
             print(error)
         }
     }
+
+    @objc open func performWriteTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
+        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
+            return performBackgroundTask(block)
+        }
+        let context = writeContext ?? {
+            let context = newBackgroundContext()
+            writeContext = context
+            return context
+        }()
+        context.perform { block(context) }
+    }
+
+    var writeContext: NSManagedObjectContext? {
+        get { objc_getAssociatedObject(self, &writeContextKey) as? NSManagedObjectContext }
+        set { objc_setAssociatedObject(self, &writeContextKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
 }
+
+private var writeContextKey: UInt8 = 0

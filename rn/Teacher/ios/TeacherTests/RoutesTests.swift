@@ -74,7 +74,8 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is HelmViewController)
         ExperimentalFeature.nativeSpeedGrader.isEnabled = true
         XCTAssert(router.match("/courses/1/assignments/1/submissions") is SubmissionListViewController)
-        XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is CoreHostingController<SpeedGraderView>)
+        XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is SpeedGraderViewController)
+        XCTAssert(router.match("/courses/1/quizzes") is QuizListViewController)
         XCTAssert(router.match("/files") is FileListViewController)
         XCTAssert(router.match("/users/self/files") is FileListViewController)
         XCTAssert(router.match("/files/folder/f1") is FileListViewController)
