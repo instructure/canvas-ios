@@ -37,7 +37,6 @@ import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
 import RubricDescription from '../modules/speedgrader/RubricDescription'
-import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
@@ -156,7 +155,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/attendance/:toolID')
     registerScreen('/courses/:courseID/gradebook/speed_grader', SpeedGrader, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', RubricDescription, store)
-    registerScreen('/courses/:courseID/quizzes', QuizzesList, store, { canBecomeMaster: true, deepLink: true })
+    registerScreen('/courses/:courseID/quizzes', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', QuizDetails, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', QuizPreview, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', QuizEdit, store)

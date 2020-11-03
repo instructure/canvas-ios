@@ -33,7 +33,6 @@ import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'
 import { enrollments } from '../enrollments/enrollments-refs-reducer'
-import { refs as quizzes } from '../quizzes/reducer'
 import { refs as discussions } from '../discussions/reducer'
 import { refs as announcements } from '../announcements/reducer'
 import attendanceTool from '../external-tools/attendance-tool-reducer'
@@ -59,7 +58,6 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   pending,
   error,
   enrollments,
-  quizzes,
   discussions,
   announcements,
   groups,
@@ -82,7 +80,6 @@ const emptyCourseState: CourseContentState = {
   tabs: { pending: 0, tabs: [] },
   assignmentGroups: { pending: 0, refs: [] },
   enrollments: { pending: 0, refs: [] },
-  quizzes: { pending: 0, refs: [] },
   discussions: { pending: 0, refs: [] },
   announcements: { pending: 0, refs: [] },
   groups: { pending: 0, refs: [] },

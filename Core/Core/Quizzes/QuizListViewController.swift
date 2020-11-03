@@ -18,9 +18,8 @@
 
 import UIKit
 import CoreData
-import Core
 
-class QuizListViewController: UIViewController, ColoredNavViewProtocol {
+public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -28,11 +27,12 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
     let refreshControl = CircleRefreshControl()
-    var titleSubtitleView = TitleSubtitleView.create()
+    public var titleSubtitleView = TitleSubtitleView.create()
 
-    var color: UIColor?
+    public var color: UIColor?
     var courseID = ""
     let env = AppEnvironment.shared
+    var selectedFirstQuiz: Bool = false
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -44,21 +44,19 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         self?.update()
     }
 
-    static func create(courseID: String) -> QuizListViewController {
+    public static func create(courseID: String) -> QuizListViewController {
         let controller = loadFromStoryboard()
         controller.courseID = courseID
         return controller
     }
 
-    // MARK: - Lifecycle
-
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Quizzes", comment: ""))
+        setupTitleViewInNavbar(title: NSLocalizedString("Quizzes"))
 
-        emptyMessageLabel.text = NSLocalizedString("It looks like quizzes haven’t been created in this space yet.", comment: "")
-        emptyTitleLabel.text = NSLocalizedString("No Quizzes", comment: "")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading quizzes. Pull to refresh to try again.", comment: "")
+        emptyMessageLabel.text = NSLocalizedString("It looks like quizzes haven’t been created in this space yet.")
+        emptyTitleLabel.text = NSLocalizedString("No Quizzes")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading quizzes. Pull to refresh to try again.")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
@@ -73,14 +71,14 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         quizzes.exhaust()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
     }
 
-    open override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes", attributes: [:])
     }
@@ -101,35 +99,41 @@ class QuizListViewController: UIViewController, ColoredNavViewProtocol {
             updateNavBar(subtitle: course.name, color: course.color)
             view.tintColor = course.color
         }
-        let isLoading = !quizzes.requested || quizzes.pending
-        loadingView.isHidden = quizzes.error != nil || !isLoading || !quizzes.isEmpty || refreshControl.isRefreshing
-        emptyView.isHidden = quizzes.error != nil || isLoading || !quizzes.isEmpty
-        errorView.isHidden = quizzes.error == nil
+        loadingView.isHidden = quizzes.state != .loading || refreshControl.isRefreshing
+        emptyView.isHidden = quizzes.state != .empty
+        errorView.isHidden = quizzes.state != .error
         tableView.reloadData()
+
+        if !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL {
+            selectedFirstQuiz = true
+            if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
+                env.router.route(to: url, from: self, options: .detail)
+            }
+        }
     }
 }
 
 extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return quizzes.numberOfSections
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let typeRaw = quizzes.sections?[section].name, let type = QuizType(rawValue: typeRaw) else { return nil }
         return SectionHeaderView.create(title: type.sectionTitle, section: section)
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return quizzes.sections?[section].numberOfObjects ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuizListCell = tableView.dequeue(for: indexPath)
-        cell.update(quiz: quizzes[indexPath])
+        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true)
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let htmlURL = quizzes[indexPath]?.htmlURL else { return }
         env.router.route(to: htmlURL, from: self, options: .detail)
     }
@@ -137,14 +141,19 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
 class QuizListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var statusDot: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(quiz: Quiz?) {
+    func update(quiz: Quiz?, isTeacher: Bool) {
+        if isTeacher {
+            iconImageView.published = quiz?.published == true
+        } else {
+            iconImageView.state = nil
+        }
         dateLabel.text = quiz?.dueText
         titleLabel.text = quiz?.title
         pointsLabel.text = quiz?.pointsPossibleText
