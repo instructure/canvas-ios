@@ -69,7 +69,7 @@ public class ModuleItem: NSManagedObject {
     }
 
     public var isLocked: Bool {
-        lockedForUser || masteryPath?.locked == true || module?.state == .locked
+        (lockedForUser && !visibleWhenLocked) || masteryPath?.locked == true || module?.state == .locked
     }
 
     public var pointsPossible: Double? {
