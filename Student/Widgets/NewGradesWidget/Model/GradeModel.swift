@@ -46,7 +46,6 @@ extension GradeModel {
             GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
             GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines", grade: "20 / 25", color: .crimson),
             GradeItem(assignmentName: "American Literature IV", grade: "9.2 / 10", color: .fire),
-            GradeItem(assignmentName: "Quiz #3: Earth", grade: "3 / 5"),
         ], courseGrades: [
             GradeItem(assignmentName: "Introduction to the Solar System", grade: "A-", color: .shamrock),
             GradeItem(assignmentName: "Biology 101", grade: "C+", color: .electric),

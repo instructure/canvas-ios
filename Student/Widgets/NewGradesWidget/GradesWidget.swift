@@ -19,9 +19,8 @@
 import WidgetKit
 import SwiftUI
 
-@main
 struct GradesWidget: Widget {
-    let kind: String = "NewGradesWidget"
+    let kind: String = "GradesWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: GradesWidgetController()) { model in

@@ -19,14 +19,12 @@
 import SwiftUI
 import WidgetKit
 
-struct AnnouncementsWidget: Widget {
-    let kind: String = "AnnouncementsWidget"
+@main
+struct Widgets: WidgetBundle {
 
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: AnnouncementsProvider()) { entry in
-            AnnouncementsWidgetView(entry: entry)
-        }
-        .configurationDisplayName(NSLocalizedString("Latest Announcements", comment: "Name of the announcements widget"))
-        .description(NSLocalizedString("This widget displays the latest announcements", comment: "Description of the announcements widget"))
+    @WidgetBundleBuilder
+    var body: some Widget {
+        AnnouncementsWidget()
+        GradesWidget()
     }
 }
