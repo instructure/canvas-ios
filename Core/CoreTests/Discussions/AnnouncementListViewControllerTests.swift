@@ -101,7 +101,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.dateLabel.text, "Nov 2, 2020 at 12:00 AM")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
-        XCTAssert(router.lastRoutedTo("/courses/1/announcements/3", withOptions: .detail))
+        XCTAssert(router.lastRoutedTo("courses/1/announcements/3", withOptions: .detail))
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
