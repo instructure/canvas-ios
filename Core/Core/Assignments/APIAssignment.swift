@@ -49,6 +49,7 @@ public struct APIAssignment: Codable, Equatable {
     let external_tool_tag_attributes: APIExternalToolTagAttributes?
     let score_statistics: APIAssignmentScoreStatistics?
     let anonymize_students: Bool?
+    let moderated_grading: Bool?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -108,7 +109,8 @@ extension APIAssignment {
         allowed_attempts: Int? = -1,
         external_tool_tag_attributes: APIExternalToolTagAttributes? = nil,
         score_statistics: APIAssignmentScoreStatistics? = nil,
-        anonymize_students: Bool? = nil
+        anonymize_students: Bool? = nil,
+        moderated_grading: Bool? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -147,7 +149,8 @@ extension APIAssignment {
             allowed_attempts: allowed_attempts,
             external_tool_tag_attributes: external_tool_tag_attributes,
             score_statistics: score_statistics,
-            anonymize_students: anonymize_students
+            anonymize_students: anonymize_students,
+            moderated_grading: moderated_grading
         )
     }
 }

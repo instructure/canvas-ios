@@ -59,7 +59,7 @@ public class Logger: LoggerProtocol {
 
     private func logEvent(_ type: LoggableType, message: String) {
         print("[\(type.rawValue)]", message)
-        database.performBackgroundTask { client in
+        database.performWriteTask { client in
             let event: LogEvent = client.insert()
             event.timestamp = Clock.now
             event.type = type
@@ -69,7 +69,7 @@ public class Logger: LoggerProtocol {
     }
 
     public func clearAll() {
-        database.performBackgroundTask { client in
+        database.performWriteTask { client in
             let events: [LogEvent] = client.fetch()
             client.delete(events)
             try? client.save()

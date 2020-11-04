@@ -27,6 +27,15 @@ open class AccessIconView: UIView {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var statusIconView: UIImageView!
 
+    @IBInspectable
+    public var iconName: String = "" {
+        didSet {
+            if let image = UIImage(named: iconName, in: .core, compatibleWith: nil) {
+                icon = image
+            }
+        }
+    }
+
     public var icon: UIImage? {
         didSet {
             iconView.layer.cornerRadius = 0

@@ -25,13 +25,11 @@ public struct WebView: UIViewRepresentable {
     }
 
     var handleLink: ((URL) -> Bool)?
-    var handleSize: ((CoreWebView, CGFloat) -> Void)?
+    var handleSize: ((CGFloat) -> Void)?
     let source: Source?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    @State var loaded: Source?
 
     public init(url: URL?) {
         source = url.map { .url($0) }
@@ -47,7 +45,7 @@ public struct WebView: UIViewRepresentable {
         return modified
     }
 
-    public func onChangeSize(_ handleSize: @escaping (CoreWebView, CGFloat) -> Void) -> Self {
+    public func onChangeSize(_ handleSize: @escaping (CGFloat) -> Void) -> Self {
         var modified = self
         modified.handleSize = handleSize
         return modified
@@ -60,8 +58,8 @@ public struct WebView: UIViewRepresentable {
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
         uiView.linkDelegate = context.coordinator
         uiView.sizeDelegate = context.coordinator
-        if loaded != source {
-            loaded = source
+        if context.coordinator.loaded != source {
+            context.coordinator.loaded = source
             switch source {
             case .html(let html):
                 uiView.loadHTMLString(html)
@@ -74,6 +72,7 @@ public struct WebView: UIViewRepresentable {
     }
 
     public class Coordinator: CoreWebViewLinkDelegate, CoreWebViewSizeDelegate {
+        var loaded: Source?
         let view: WebView
 
         init(view: WebView) {
@@ -91,7 +90,7 @@ public struct WebView: UIViewRepresentable {
         public var routeLinksFrom: UIViewController { view.controller }
 
         public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
-            view.handleSize?(webView, height)
+            view.handleSize?(height)
         }
     }
 

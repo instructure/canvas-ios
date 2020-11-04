@@ -64,6 +64,6 @@ public extension Bundle {
     static var isExtension: Bool { Bundle.main.bundleURL.pathExtension == "appex" }
 }
 
-internal func NSLocalizedString(_ key: String) -> String {
-    return NSLocalizedString(key, bundle: .core, comment: "")
+internal func NSLocalizedString(_ key: String, comment: String = "") -> String {
+    return NSLocalizedString(key, bundle: .core, comment: comment)
 }

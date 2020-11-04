@@ -50,6 +50,7 @@
         <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
+        <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -645,6 +646,7 @@
         <attribute name="oneQuestionAtATime" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="published" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="questionCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="questionTypesRaw" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="quizTypeOrder" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -719,6 +721,8 @@
         <attribute name="assignmentID" attributeType="String"/>
         <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="enteredGrade" optional="YES" attributeType="String"/>
+        <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="externalToolURL" optional="YES" attributeType="URI"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
@@ -847,7 +851,7 @@
         <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="673"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="688"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
@@ -891,14 +895,14 @@
         <element name="Permissions" positionX="-369" positionY="-18" width="128" height="1080"/>
         <element name="Plannable" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
-        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="493"/>
+        <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
         <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
         <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
         <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
-        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="598"/>
+        <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="628"/>
         <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>

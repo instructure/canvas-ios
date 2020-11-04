@@ -45,13 +45,12 @@ struct URLSubmissionViewer: View {
                         .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                         .padding(.vertical, 16)
                 })
-                if let file = submission.attachments?.first, let url = file.url {
+                if let file = submission.attachments?.first, let id = file.id, let url = file.url {
                     if let error = error, url == loaded {
                         Text(error.localizedDescription)
                             .font(.regular16).foregroundColor(.textDanger)
                     } else if let image = image, url == loaded {
                         Button(action: {
-                            guard let id = submission.attachments?.first?.id else { return }
                             env.router.route(
                                 to: "/files/\(id)",
                                 from: controller,

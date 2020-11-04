@@ -77,7 +77,7 @@ struct Drawer<Content: View>: View {
                 .fill(Color.backgroundLightest)
                 .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
             )
-            .frame(height: max(minHeight, min(maxHeight, height + translation)))
+            .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
     }
 
     func buttonAction() {

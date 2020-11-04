@@ -22,22 +22,14 @@ import { Reducer, combineReducers } from 'redux'
 import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
-import { default as ListActions } from './list/actions'
 import { default as DetailsActions } from './details/actions'
 import { default as QuizSubmissionActions } from './submissions/actions'
 import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
 
-const { refreshQuizzes } = ListActions
 const { refreshQuiz } = DetailsActions
 const { refreshQuizSubmissions } = QuizSubmissionActions
 const { quizUpdated } = EditActions
-
-export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
-  refreshQuizzes.toString(),
-  () => i18n('There was a problem loading the quizzes.'),
-  ({ result }) => result.data.map(quiz => quiz.id)
-)
 
 export const quizSubmissions: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshQuizSubmissions.toString(),
@@ -63,27 +55,7 @@ const quizContent = combineReducers({
   error,
 })
 
-const defaultQuizContents = {
-  quizSubmissions: { refs: [], pending: 0 },
-  submissions: { refs: [], pending: 0 },
-}
-
 export const quizData: Reducer<QuizzesState, any> = handleActions({
-  [refreshQuizzes.toString()]: handleAsync({
-    resolved: (state, { result }) => {
-      const incoming = result.data
-        .reduce((incoming, quiz) => ({
-          ...incoming,
-          [quiz.id]: {
-            ...defaultQuizContents,
-            data: quiz,
-            pending: 0,
-            error: null,
-          },
-        }), {})
-      return { ...state, ...incoming }
-    },
-  }),
   [refreshQuiz.toString()]: handleAsync({
     resolved: (state, { result: [quiz], quizID }) => ({
       ...state,
