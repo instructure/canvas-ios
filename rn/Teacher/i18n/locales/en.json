@@ -285,9 +285,6 @@
     "message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}",
     "description": "Number of points possible"
   },
-  "count_plural_one_question_other_questions_309aafa": {
-    "message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
-  },
   "count_plural_one_reply_other_replies_dbf1832a": {
     "message": "{ count, plural,\n    one {# Reply}\n  other {# Replies}\n}",
     "description": "Number of replies"
@@ -1007,9 +1004,6 @@
   "quiz_type_be1633db": {
     "message": "Quiz Type"
   },
-  "quizzes_7e598f57": {
-    "message": "Quizzes"
-  },
   "recent_activity_51239235": {
     "message": "Recent Activity"
   },
@@ -1217,9 +1211,6 @@
   "subscribe_4b301fb7": {
     "message": "Subscribe"
   },
-  "survey_31a240e6": {
-    "message": "Survey"
-  },
   "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
     "message": "Swipe left or right to view other student submissions"
   },
@@ -1268,9 +1259,6 @@
   "there_are_no_files_to_display_d3eeb317": {
     "message": "There are no files to display."
   },
-  "there_are_no_quizzes_to_display_733b28f2": {
-    "message": "There are no quizzes to display."
-  },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
     "message": "There currently is no long description for this item."
   },
@@ -1297,9 +1285,6 @@
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "There was a problem loading the quiz submissions."
-  },
-  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-    "message": "There was a problem loading the quizzes."
   },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "There was a problem saving the grade. Please try again."
