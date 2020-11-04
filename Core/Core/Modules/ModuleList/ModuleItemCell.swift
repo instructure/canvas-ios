@@ -35,7 +35,7 @@ class ModuleItemCell: UITableViewCell {
         backgroundColor = .backgroundLightest
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         nameLabel.text = item.title
-        nameLabel.isEnabled = env.app == .teacher || !(item.lockedForUser || item.module?.state == .locked)
+        nameLabel.isEnabled = isUserInteractionEnabled
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
         nameLabel.font = UIFont.scaledNamedFont(item.masteryPath?.locked == true ? .semibold16Italic : .semibold16)
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
