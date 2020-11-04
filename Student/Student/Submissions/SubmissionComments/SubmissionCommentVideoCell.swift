@@ -46,7 +46,7 @@ class SubmissionCommentVideoCell: UITableViewCell {
             comment.authorName
         )
 
-        playerViewController.player = comment.mediaURL.flatMap { AVPlayer(url: $0) }
+        playerViewController.player = comment.mediaLocalOrRemoteURL.flatMap { AVPlayer(url: $0) }
         if playerViewController.view?.superview == nil, let view = containerView {
             parent.embed(playerViewController, in: view)
         }
