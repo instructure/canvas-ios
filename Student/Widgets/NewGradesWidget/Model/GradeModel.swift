@@ -44,13 +44,13 @@ extension GradeModel {
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
             GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
-            GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines", grade: "20 / 25", color: .crimson),
+            GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
             GradeItem(assignmentName: "American Literature IV", grade: "9.2 / 10", color: .fire),
         ], courseGrades: [
             GradeItem(assignmentName: "Introduction to the Solar System", grade: "A-", color: .shamrock),
-            GradeItem(assignmentName: "Biology 101", grade: "C+", color: .electric),
-            GradeItem(assignmentName: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
             GradeItem(assignmentName: "American Literature IV: All the Books", grade: "B"),
+            GradeItem(assignmentName: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
+            GradeItem(assignmentName: "Biology 101", grade: "C+", color: .electric),
         ])
     }
 }

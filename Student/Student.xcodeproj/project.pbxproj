@@ -170,6 +170,7 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
+		CF79958D2554233900A92A1E /* PreviewSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79958C2554233900A92A1E /* PreviewSimulator.swift */; };
 		CF7D8A782535E45000DC7D79 /* SubmissionDetailsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */; };
 		CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
 		CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17F170254C1A0900B79EB6 /* Routes.swift */; };
@@ -748,6 +749,7 @@
 		CF4A448D254700D600F76207 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetView.swift; sourceTree = "<group>"; };
 		CF4A44C52547059800F76207 /* GradesWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidgetController.swift; sourceTree = "<group>"; };
+		CF79958C2554233900A92A1E /* PreviewSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSimulator.swift; sourceTree = "<group>"; };
 		CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
 		CF8080592547168200A0B2D3 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		CFC467DD2549628700BC9AEA /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
@@ -1670,6 +1672,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CF79958A2554231A00A92A1E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CF79958B2554232200A92A1E /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CF79958B2554232200A92A1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF79958C2554233900A92A1E /* PreviewSimulator.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CFC467DC2549626600BC9AEA /* Small */ = {
 			isa = PBXGroup;
 			children = (
@@ -1699,6 +1717,7 @@
 		D9FD8F2F2546C39D00C6842B /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				CF79958A2554231A00A92A1E /* Common */,
 				D9FD8F392546C3F300C6842B /* AnnouncementsWidget */,
 				CF4A4469254700B500F76207 /* NewGradesWidget */,
 				D9FD90892547108F00C6842B /* Resources */,
@@ -2935,6 +2954,7 @@
 				CFE2C3DD2552CF7600113CFC /* GradeItemView.swift in Sources */,
 				CFE2C3F32552D04C00113CFC /* Widgets.swift in Sources */,
 				D9FD90C32548656A00C6842B /* AnnouncementItemView.swift in Sources */,
+				CF79958D2554233900A92A1E /* PreviewSimulator.swift in Sources */,
 				CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */,
 				CFE2C3EB2552CF7F00113CFC /* GradesWidgetController.swift in Sources */,
 				CFE2C3DC2552CF7600113CFC /* HeaderView.swift in Sources */,

@@ -25,45 +25,73 @@ struct MediumLargeGradesView: View {
             Image("student-logomark")
                 .resizable()
                 .frame(width: 24, height: 24)
-            VStack(spacing: 21) {
+            VStack() {
                 if !model.assignmentGrades.isEmpty {
                     HeaderView(title: NSLocalizedString("Assignment Grades", comment: ""))
+                    Spacer()
                     ForEach(model.assignmentGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)
+
+                        if gradeItem != model.assignmentGrades.last {
+                            Spacer()
+                        }
                     }
                 }
 
                 if !model.courseGrades.isEmpty {
+                    Spacer()
                     HeaderView(title: NSLocalizedString("Course Grades", comment: ""))
+                    Spacer()
                     ForEach(model.courseGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)
+
+                        if gradeItem != model.courseGrades.last {
+                            Spacer()
+                        }
                     }
                 }
 
-                if shouldAddBottomSpacer {
-                    Spacer()
-                }
-            }
+                Spacer()
+            }.padding(.top, 4) // This is to vertically center the first header with the logo
         }.padding()
     }
 
     private let model: GradeModel
     private let lineCount: Int
-    private let shouldAddBottomSpacer: Bool
 
-    init(model: GradeModel, lineCount: Int, shouldAddBottomSpacer: Bool) {
+    init(model: GradeModel, lineCount: Int) {
         self.model = model.trimmed(to: lineCount)
         self.lineCount = lineCount
-        self.shouldAddBottomSpacer = shouldAddBottomSpacer
     }
 }
 
 #if DEBUG
 struct MediumLargeGradesViewPreview: PreviewProvider {
+    private struct Config: Hashable {
+        let lineCount: Int
+        let family: WidgetFamily
+        let device: PreviewSimulator
+    }
+    private static var previewConfigs: [Config] = {
+        var previewConfigs: [Config] = []
+        PreviewSimulator.allCases.forEach {
+            previewConfigs += [
+                Config(lineCount: 2, family: .systemMedium, device: $0),
+                Config(lineCount: 5, family: .systemLarge, device: $0)
+            ]
+        }
+        return previewConfigs
+    }()
+
     static var previews: some View {
         let model = GradeModel.make()
-        MediumLargeGradesView(model: model, lineCount: 2, shouldAddBottomSpacer: false).previewContext(WidgetPreviewContext(family: .systemMedium))
-        MediumLargeGradesView(model: model, lineCount: 5, shouldAddBottomSpacer: true).previewContext(WidgetPreviewContext(family: .systemLarge))
+
+        ForEach(previewConfigs, id: \.self) { config in
+            MediumLargeGradesView(model: model, lineCount: config.lineCount)
+                .previewContext(WidgetPreviewContext(family: config.family))
+                .previewDevice(PreviewDevice(rawValue: config.device.rawValue))
+                .previewDisplayName(config.device.rawValue)
+        }
     }
 }
 #endif
