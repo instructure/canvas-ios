@@ -16,8 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
 
+/**
+ Simulators are listed by widget size, ascending.
+ */
 enum PreviewSimulator: String, CaseIterable {
     case iPhoneSE2 = "iPhone SE (2nd generation)"
     case iPhone12 = "iPhone 12"
@@ -25,3 +30,5 @@ enum PreviewSimulator: String, CaseIterable {
     case iPhone11 = "iPhone 11"
     case iPhone12ProMax = "iPhone 12 Pro Max"
 }
+
+#endif
