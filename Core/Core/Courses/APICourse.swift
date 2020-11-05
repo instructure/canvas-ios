@@ -303,26 +303,34 @@ public struct GetCourseRequest: APIRequestable {
 }
 
 struct APICourseParameters: Codable, Equatable {
-    let name: String
-    let default_view: CourseDefaultView
+    let name: String?
+    let default_view: CourseDefaultView?
+    let syllabus_body: String?
+    let syllabus_course_summary: Bool?
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.update
-struct PutCourseRequest: APIRequestable {
-    typealias Response = APICourse
-    struct Body: Codable, Equatable {
+public struct PutCourseRequest: APIRequestable {
+    public typealias Response = APICourse
+    public struct Body: Codable, Equatable {
         let course: APICourseParameters
     }
 
-    let courseID: String
-
-    let body: Body?
-    let headers: [String: String?] = [
-        "Content-Type": "application/json",
-    ]
-    let method = APIMethod.put
-    var path: String {
+    public let courseID: String
+    public let body: Body?
+    public let method = APIMethod.put
+    public var path: String {
         return Context(.course, id: courseID).pathComponent
+    }
+
+    public init(courseID: String, courseName: String?, defaultView: CourseDefaultView?, syllabusBody: String?, syllabusSummary: Bool?) {
+        self.courseID = courseID
+        let params = APICourseParameters(
+            name: courseName,
+            default_view: defaultView,
+            syllabus_body: syllabusBody,
+            syllabus_course_summary: syllabusSummary)
+        self.body = Body(course: params)
     }
 }
 

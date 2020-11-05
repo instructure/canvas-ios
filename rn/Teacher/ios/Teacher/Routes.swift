@@ -64,6 +64,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/syllabus": syllabus,
     "/courses/:courseID/syllabus": syllabus,
+    "/courses/:courseID/syllabus/edit": { url, params, userInfo in
+        guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
+            Router.open(url: url)
+            return nil
+        }
+        guard let context = Context(path: url.path), let courseID = params["courseID"] else { return nil }
+        return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
+    },
 
     "/courses/:courseID/assignments/:assignmentID": nil,
     "/courses/:courseID/assignments/:assignmentID/edit": nil,
@@ -299,7 +307,7 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
         return nil
     }
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+    return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
 }
 
 // MARK: - HelmModules
