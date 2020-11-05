@@ -28,25 +28,27 @@ struct MediumLargeGradesView: View {
             VStack() {
                 if !model.assignmentGrades.isEmpty {
                     HeaderView(title: NSLocalizedString("Assignment Grades", comment: ""))
-                    Spacer()
+                    Spacer().frame(maxHeight: 20)
                     ForEach(model.assignmentGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)
 
                         if gradeItem != model.assignmentGrades.last {
-                            Spacer()
+                            Spacer().frame(maxHeight: 20)
                         }
                     }
                 }
 
                 if !model.courseGrades.isEmpty {
-                    Spacer()
+                    if !model.assignmentGrades.isEmpty {
+                        Spacer().frame(maxHeight: 20)
+                    }
                     HeaderView(title: NSLocalizedString("Course Grades", comment: ""))
-                    Spacer()
+                    Spacer().frame(maxHeight: 20)
                     ForEach(model.courseGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)
 
                         if gradeItem != model.courseGrades.last {
-                            Spacer()
+                            Spacer().frame(maxHeight: 20)
                         }
                     }
                 }
@@ -66,13 +68,14 @@ struct MediumLargeGradesView: View {
 }
 
 #if DEBUG
-struct MediumLargeGradesViewPreview: PreviewProvider {
-    private struct Config: Hashable {
+private enum PreviewConfig {
+    struct Config: Hashable {
         let lineCount: Int
         let family: WidgetFamily
         let device: PreviewSimulator
     }
-    private static var previewConfigs: [Config] = {
+
+    static var previewConfigs: [Config] = {
         var previewConfigs: [Config] = []
         PreviewSimulator.allCases.forEach {
             previewConfigs += [
@@ -83,10 +86,8 @@ struct MediumLargeGradesViewPreview: PreviewProvider {
         return previewConfigs
     }()
 
-    static var previews: some View {
-        let model = GradeModel.make()
-
-        ForEach(previewConfigs, id: \.self) { config in
+    static func preview(for model: GradeModel) -> some View {
+        ForEach(PreviewConfig.previewConfigs, id: \.self) { config in
             MediumLargeGradesView(model: model, lineCount: config.lineCount)
                 .previewContext(WidgetPreviewContext(family: config.family))
                 .previewDevice(PreviewDevice(rawValue: config.device.rawValue))
@@ -94,4 +95,17 @@ struct MediumLargeGradesViewPreview: PreviewProvider {
         }
     }
 }
+
+struct AssignmentAndCourseGrades: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: GradeModel.make()) }
+}
+
+struct CourseGrades: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: GradeModel.makeWithOneCourse()) }
+}
+
+struct AssignmentGrades: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: GradeModel.makeWithOneAssigmnent()) }
+}
+
 #endif

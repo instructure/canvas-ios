@@ -41,6 +41,21 @@ struct GradeModel: TimelineEntry {
 
 #if DEBUG
 extension GradeModel {
+    public static func makeWithOneAssigmnent() -> GradeModel {
+        GradeModel(assignmentGrades: [
+            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
+        ], courseGrades: [
+        ])
+    }
+
+    public static func makeWithOneCourse() -> GradeModel {
+        GradeModel(assignmentGrades: [
+        ], courseGrades: [
+            GradeItem(assignmentName: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
+        ])
+    }
+
+    
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
             GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
