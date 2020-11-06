@@ -72,6 +72,7 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
         if settings.first?.syllabusCourseSummary == true {
             viewControllers.append(summary)
         }
+        setupPages()
         layoutViewControllers()
         reload()
     }

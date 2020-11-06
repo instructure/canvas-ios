@@ -25,7 +25,6 @@ public struct SyllabusEditorView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @State var course: Course? = nil
     @State var html: String = ""
     @State var showSummary: Bool = false
 
@@ -104,7 +103,7 @@ public struct SyllabusEditorView: View {
         loadCourseSettings()
         let useCase = GetCourse(courseID: courseID)
         useCase.fetch { _, _, error in performUIUpdate {
-            self.course = self.env.database.viewContext.fetch(scope: useCase.scope).first
+            let course: Course? = self.env.database.viewContext.fetch(scope: useCase.scope).first
             self.html = course?.syllabusBody ?? ""
             self.isLoading = false
             self.isLoaded = true
@@ -115,8 +114,7 @@ public struct SyllabusEditorView: View {
     func save() {
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
-        guard let course = self.course else { return }
-        UpdateCourse(courseID: courseID, name: course.name ?? "none", defaultView: course.defaultView ?? .assignments, syllabusBody: html, syllabusSummary: showSummary).fetch { result, _, error in performUIUpdate {
+        UpdateCourse(courseID: courseID, syllabusBody: html, syllabusSummary: showSummary).fetch { result, _, error in performUIUpdate {
                 self.error = error
                 self.isSaving = false
                 if result != nil {
