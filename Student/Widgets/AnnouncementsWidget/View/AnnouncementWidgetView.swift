@@ -32,6 +32,7 @@ struct AnnouncementsWidgetView : View {
                         .font(.regular11Monodigit)
                         .lineLimit(1)
                         .foregroundColor(.textDark)
+                    Spacer(minLength: 0)
                     Text(firstAnnouncement.courseName)
                         .font(.regular11Monodigit)
                         .foregroundColor(firstAnnouncement.courseColor)
@@ -44,36 +45,60 @@ struct AnnouncementsWidgetView : View {
                 NoAnnouncementView()
             }
         default:
-            let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
-            VStack(alignment: .leading, spacing: 2) {
-                Image("student-logomark")
-                    .resizable()
-                    .frame(width: 24, height: 24).padding(8)
-                if announcementsToShow.count > 0 {
-                    ForEach(announcementsToShow) { announcementItem in
-                        AnnouncementItemView(announcementItem: announcementItem)
-                    }
-                } else {
-                    NoAnnouncementView()
+            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
+                HStack {
+                    Text(NSLocalizedString("Announcements", comment: ""))
+                        .font(.semibold12).foregroundColor(.textDark)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Image("student-logomark")
+                        .resizable()
+                        .frame(width: 24, height: 24)
                 }
-                Spacer(minLength: 0)
-            }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading).padding(8)
+                VStack(spacing: 25) {
+                    let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
+                    if announcementsToShow.count > 0 {
+                        ForEach(announcementsToShow) { announcementItem in
+                            AnnouncementItemView(announcementItem: announcementItem)
+
+                            if announcementItem == announcementsToShow.last {
+                                Spacer(minLength: 0)
+                            }
+                        }
+                    } else {
+                        NoAnnouncementView()
+                    }
+                }.padding(.top, 40) // This is move the first entry below the header
+            }.padding()
         }
     }
 }
 
 #if DEBUG
-struct AnnouncementsWidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        let entry = AnnouncementsEntry.makePreview()
-        AnnouncementsWidgetView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-        AnnouncementsWidgetView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-        AnnouncementsWidgetView(entry: entry)
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-        AnnouncementsWidgetView(entry: AnnouncementsEntry(announcementItems: []))
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+private enum PreviewConfig {
+    static func preview(for family: WidgetFamily) -> some View {
+        ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
+            AnnouncementsWidgetView(entry: .makePreview())
+                .previewContext(WidgetPreviewContext(family: family))
+                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
+                .previewDisplayName(simulator.rawValue)
+            AnnouncementsWidgetView(entry: AnnouncementsEntry(announcementItems: []))
+                .previewContext(WidgetPreviewContext(family: family))
+                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
+                .previewDisplayName(simulator.rawValue)
+        }
     }
 }
+
+struct SmallWidgets: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: .systemSmall) }
+}
+
+struct MediumWidgets: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: .systemMedium) }
+}
+
+struct LargeWidgets: PreviewProvider {
+    static var previews: some View { PreviewConfig.preview(for: .systemLarge) }
+}
+
 #endif

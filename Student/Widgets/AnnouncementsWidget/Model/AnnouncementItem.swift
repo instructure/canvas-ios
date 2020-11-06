@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 import WidgetKit
 
-struct AnnouncementItem: Identifiable {
+struct AnnouncementItem: Identifiable, Equatable {
     let id: String
     let title: String
     let date: Date
