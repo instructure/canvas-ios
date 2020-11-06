@@ -28,16 +28,16 @@ struct AnnouncementItemView: View {
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
                     Text(announcementItem.courseName)
-                        .font(.regular11Monodigit)
+                        .font(.semibold12)
                         .foregroundColor(announcementItem.courseColor)
                     Spacer()
                     Text(announcementItem.date.relativeDateOnlyString)
-                        .font(.regular11Monodigit)
+                        .font(.semibold12)
                         .lineLimit(1)
                         .foregroundColor(.textDark)
                 }
                 Text(announcementItem.title)
-                    .font(.semibold16)
+                    .font(.bold17)
                     .foregroundColor(.textDarkest)
                     .lineLimit(2)
                 HStack {
@@ -50,7 +50,7 @@ struct AnnouncementItemView: View {
                         Avatar(name: announcementItem.authorName, url: nil, size: 16)
                     }
                     Text(announcementItem.authorName)
-                        .font(.regular11Monodigit)
+                        .font(.semibold12)
                         .foregroundColor(.textDark)
                     Spacer()
                 }

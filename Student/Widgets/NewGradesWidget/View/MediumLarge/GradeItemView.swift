@@ -23,7 +23,7 @@ struct GradeItemView: View {
     var body: some View {
         Link(destination: item.route) {
             HStack {
-                Text("\(item.assignmentName)").lineLimit(2).font(.semibold18).foregroundColor(item.color)
+                Text("\(item.assignmentName)").lineLimit(2).font(.bold17).foregroundColor(item.color)
                 Spacer()
                 Text("\(item.grade)").font(.semibold16).foregroundColor(.textDarkest)
             }.fixedSize(horizontal: false, vertical: true)

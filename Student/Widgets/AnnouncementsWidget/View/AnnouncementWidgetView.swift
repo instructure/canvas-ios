@@ -29,12 +29,12 @@ struct AnnouncementsWidgetView : View {
             if let firstAnnouncement = entry.announcements.first {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(firstAnnouncement.date.relativeDateOnlyString)
-                        .font(.regular11Monodigit)
+                        .font(.semibold12)
                         .lineLimit(1)
                         .foregroundColor(.textDark)
                     Spacer(minLength: 0)
                     Text(firstAnnouncement.courseName)
-                        .font(.regular11Monodigit)
+                        .font(.semibold12)
                         .foregroundColor(firstAnnouncement.courseColor)
                     Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
                     Spacer(minLength: 0)
