@@ -332,6 +332,11 @@ public struct PutCourseRequest: APIRequestable {
             syllabus_course_summary: syllabusSummary)
         self.body = Body(course: params)
     }
+
+    public init(courseID: String, body: Body) {
+        self.courseID = courseID
+        self.body = body
+    }
 }
 
 // https://canvas.instructure.com/doc/api/courses.html#method.courses.create

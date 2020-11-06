@@ -797,6 +797,7 @@
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
+		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
@@ -1815,6 +1816,7 @@
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
+		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
@@ -2119,6 +2121,7 @@
 				B1EA933823F6FF6200A0231E /* SyllabusTests.swift */,
 				97A486CA239AB2ED00084499 /* SyllabusViewControllerTests.swift */,
 				D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */,
+				D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -4257,6 +4260,7 @@
 				7DF9BF082152AEF10099026B /* UIColorExtensionsTests.swift in Sources */,
 				B191D5E8226E2CBA00D02948 /* CacheManagerTests.swift in Sources */,
 				B1CA3348233948870015CBB4 /* UserTests.swift in Sources */,
+				D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */,
 				B19792FF2176A0F00000369C /* TabTests.swift in Sources */,
 				2C96485B211E30B3002C3255 /* RouterTests.swift in Sources */,
 				97A486C42397826300084499 /* ProfileViewControllerTests.swift in Sources */,

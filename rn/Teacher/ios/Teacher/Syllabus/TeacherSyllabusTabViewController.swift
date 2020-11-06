@@ -21,6 +21,11 @@ import Core
 class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     var context: Context?
+
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent])) { [weak self] in
+        self?.updateNavBar()
+    }
+
     lazy var editButton = UIBarButtonItem(
         title: NSLocalizedString("Edit", bundle: .core, comment: ""), style: .plain,
         target: self, action: #selector(edit)
@@ -35,6 +40,11 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        permissions.refresh()
+    }
+
+    func updateNavBar() {
+        guard permissions.first?.manageContent == true else { return }
         editButton.accessibilityIdentifier = "Syllabus.editButton"
         navigationItem.rightBarButtonItem = editButton
     }

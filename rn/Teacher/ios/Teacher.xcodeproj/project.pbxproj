@@ -90,6 +90,7 @@
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
 		D9DE56CB255030C800CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */; };
+		D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */; };
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
 		E801ED7C2475BADB00DF2CB9 /* DiscussionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */; };
 		E814FC032499273B00CD208A /* SpeedGraderRubricUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */; };
@@ -481,6 +482,7 @@
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D082A88269C8C11CA67734AC /* Pods-needs-pspdfkit-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-needs-pspdfkit-TeacherUITests/Pods-needs-pspdfkit-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
+		D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
 		E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderRubricUITests.swift; sourceTree = "<group>"; };
 		E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditE2ETests.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				7D64A96B23626C0B004EAEDF /* Attendance */,
 				7D3DC0C4252432B000B0EBC1 /* SpeedGrader */,
 				3B1D37C72310855E0017CCA2 /* Submissions */,
+				D9DE56EB255540B000CF8B22 /* Syllabus */,
 				B15CA261221DDB820014FB02 /* Info.plist */,
 				B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */,
 				B1992AAA2264D51200396A1F /* RoutesTests.swift */,
@@ -790,6 +793,14 @@
 			isa = PBXGroup;
 			children = (
 				D9DE56CA255030C800CF8B22 /* TeacherSyllabusTabViewController.swift */,
+			);
+			path = Syllabus;
+			sourceTree = "<group>";
+		};
+		D9DE56EB255540B000CF8B22 /* Syllabus */ = {
+			isa = PBXGroup;
+			children = (
+				D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -1548,6 +1559,7 @@
 				7D64A98123676E36004EAEDF /* RollCallSessionTests.swift in Sources */,
 				7D64A96D23626C22004EAEDF /* StatusCellTests.swift in Sources */,
 				7D64A983236796CC004EAEDF /* AttendanceStatusControllerTests.swift in Sources */,
+				D9DE56ED255540C900CF8B22 /* TeacherSyllabusTabViewController.swift in Sources */,
 				7D64A96F23626F52004EAEDF /* StatusTests.swift in Sources */,
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,

@@ -176,7 +176,7 @@ public class MarkFavoriteCourse: APIUseCase {
 
 struct UpdateCourse: APIUseCase {
     typealias Model = Course
-    
+
     let courseId: String
     let request: PutCourseRequest
     let cacheKey: String? = nil
@@ -195,9 +195,9 @@ struct UpdateCourse: APIUseCase {
     func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard response != nil else { return }
 
-        let model: Course? = client.first(where: #keyPath(Course.id), equals: courseId)
+        let course: Course? = client.first(where: #keyPath(Course.id), equals: courseId)
         if let syllabusBody = request.body?.course.syllabus_body {
-            model?.syllabusBody = syllabusBody
+            course?.syllabusBody = syllabusBody
         }
 
         let settings: CourseSettings? = client.first(where: #keyPath(CourseSettings.courseID), equals: courseId)
