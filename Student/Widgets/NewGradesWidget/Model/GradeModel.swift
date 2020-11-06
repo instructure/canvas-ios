@@ -19,11 +19,13 @@
 import WidgetKit
 
 struct GradeModel: TimelineEntry {
+    let isLoggedIn: Bool
     let date = Date(timeIntervalSince1970: 0)
     let assignmentGrades: [GradeItem]
     let courseGrades: [GradeItem]
 
-    init(assignmentGrades: [GradeItem], courseGrades: [GradeItem]) {
+    init(isLoggedIn: Bool = true, assignmentGrades: [GradeItem] = [], courseGrades: [GradeItem] = []) {
+        self.isLoggedIn = isLoggedIn
         self.assignmentGrades = assignmentGrades
         self.courseGrades = courseGrades
     }

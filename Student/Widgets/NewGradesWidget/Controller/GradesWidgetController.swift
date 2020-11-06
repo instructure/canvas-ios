@@ -19,8 +19,7 @@
 import Core
 import WidgetKit
 
-class GradesWidgetController {
-    private let env = AppEnvironment.shared
+class GradesWidgetController: CommonWidgetController {
     private lazy var colorStore = env.subscribe(GetCustomColors())
     private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
     private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
@@ -28,6 +27,11 @@ class GradesWidgetController {
     private var completion: ((Timeline<GradeModel>) -> Void)?
 
     private func update() {
+        guard isLoggedIn else {
+            updateWidget(model: GradeModel(isLoggedIn: false))
+            return
+        }
+
         setupLastLoginCredentials()
         colorStore.refresh { [weak self] _ in
             guard let self = self, !self.colorStore.pending else { return }
@@ -39,7 +43,7 @@ class GradesWidgetController {
     }
 
     private func handleFetchFinished() {
-        guard let completion = completion, !submissionStore.pending, !courseStore.pending, !favoriteCoursesStore.pending else { return }
+        guard completion != nil, !submissionStore.pending, !courseStore.pending, !favoriteCoursesStore.pending else { return }
 
         let assignmentGrades: [GradeItem] = (submissionStore.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
             let courseColor = courseStore.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
@@ -47,15 +51,13 @@ class GradesWidgetController {
         }
         let courseGrades = favoriteCoursesStore.all.map { GradeItem(course: $0) }
 
-        let timeoutSeconds = submissionStore.useCase.ttl
-        let timeline = Timeline(entries: [GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades)], policy: .after(Date().addingTimeInterval(timeoutSeconds)))
-        completion(timeline)
-        self.completion = nil
+        updateWidget(model: GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
     }
 
-    private func setupLastLoginCredentials() {
-        guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
-        env.userDidLogin(session: mostRecentKeyChain)
+    private func updateWidget(model: GradeModel) {
+        let timeoutSeconds = submissionStore.useCase.ttl
+        completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeoutSeconds))))
+        self.completion = nil
     }
 }
 
