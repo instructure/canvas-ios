@@ -122,6 +122,9 @@
 "Appointment Signups" = "预约注册";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "是否确实要删除（名称）？";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "是否确定要删除 %@？";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "是否确定要退出学生视图？";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "是否确实要移除此文件？";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "是否确定要删除此评论？";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "课程评分低于%d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "课程大纲";
 
 /* No comment provided by engineer. */
 "Courses" = "课程";
@@ -1229,6 +1238,12 @@
 "Remove" = "移除";
 
 /* No comment provided by engineer. */
+"Remove %@" = "移除%@";
+
+/* No comment provided by engineer. */
+"Remove File" = "删除文件";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "已删除%1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "成功！";
 
 /* No comment provided by engineer. */
+"Summary" = "摘要";
+
+/* No comment provided by engineer. */
 "Surveys" = "调查";
+
+/* No comment provided by engineer. */
+"Syllabus" = "教学大纲";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "助教";

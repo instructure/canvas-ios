@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Det finns problem med den";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Det verkar inte som om quiz har skapats här än.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Det är tomt, så vad gör du här?";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Inga aviseringar";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Inga quiz";
 
 /* No comment provided by engineer. */
 "No recipients" = "Inga mottagare";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Ett fel uppstod när Safari skulle startas";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera igen.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Ett fel uppstod när dokumentet skulle läsas in.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Skulle du vilja berätta vilka problem du har haft med appen?";
+
+/* Text submission editor placeholder */
+"Write..." = "Skriv...";
 
 /* No comment provided by engineer. */
 "Yes" = "Ja";

@@ -122,6 +122,9 @@
 "Appointment Signups" = "Skráningar á fund";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Viltu örugglega eyða (nafn)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Viltu örugglega eyða %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Viltu örugglega fara úr nemendaskjá?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Viltu örugglega fjarlægja þessa skrá?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Námskeiðaeinkunn að neðan %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Kennsluáætlun námskeiðs";
 
 /* No comment provided by engineer. */
 "Courses" = "Námskeið";
@@ -1229,6 +1238,12 @@
 "Remove" = "Fjarlægja";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Fjarlægja %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Fjarlægja skrá";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjarlægt %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Árangur!";
 
 /* No comment provided by engineer. */
+"Summary" = "Samantekt";
+
+/* No comment provided by engineer. */
 "Surveys" = "Kannanir";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Kennsluáætlun";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Aðstoðarkennari";

@@ -122,6 +122,9 @@
 "Appointment Signups" = "Registres de cites";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Segur que voleu suprimir (nom)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Segur que voleu suprimir %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Segur que voleu sortir de la Vista d'estudiant?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Segur que voleu eliminar aquest fitxer?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Qualificació del curs per sota de %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Temari del curs";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursos";
@@ -1229,6 +1238,12 @@
 "Remove" = "Elimina";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Elimina %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Elimina el fitxer";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Eliminat %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Operació correcta!";
 
 /* No comment provided by engineer. */
+"Summary" = "Resum";
+
+/* No comment provided by engineer. */
 "Surveys" = "Enquestes";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Temari";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "He raruraru";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Ko te āhua nei kaore anō ngā quizzes i hāngaia i roto i tēnei wāhi.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Kei te kore, he aha tō mahi tonu i konei.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Kaore he whakamōhiotanga";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Kaore nga Quizzes";
 
 /* No comment provided by engineer. */
 "No recipients" = "Kāore ngā kaiwhiwhi";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "He hapa te wā e  whakarewa ana Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā quizzes. Kumea ki te whakahou ki te ngana anō.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "He hapa i te wā e utanga i te tuhinga.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "E whakāro koe ki te whakamōhio mai ki a mātou ngā raruraru e whiwhi ana koe me te taupānga?";
+
+/* Text submission editor placeholder */
+"Write..." = "Tuhi...";
 
 /* No comment provided by engineer. */
 "Yes" = "Ae";

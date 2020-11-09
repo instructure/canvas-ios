@@ -2,6 +2,9 @@
 "Absent" = "Fraværende";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Tilføj vedhæftet fil";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle vurderinger er i øjeblikket skjult.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Vælg dato";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Vælg filer";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Luk skuffe";
+
+/* No comment provided by engineer. */
+"Comment" = "Kommentar";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Kunne ikke gemme kommentaren.";
+
+/* No comment provided by engineer. */
 "Courses" = "Fag";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Udført";
 
+/* No comment provided by engineer. */
+"Error" = "Fejl";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fejl: Ingen data returneret fra navneopkald-api.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Kunne ikke starte navneopkald-LTI-værktøj.";
 
 /* No comment provided by engineer. */
+"Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Bedømt";
+
+/* No comment provided by engineer. */
+"Grades" = "Vurderinger";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Vurderinger vil blive gjort synlige for alle elever";
@@ -98,6 +128,15 @@
 "No Submissions" = "Ingen afleveringer";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Åbn skuffe i fuld skærm";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Åbn skuffe i halv skærm";
+
+/* No comment provided by engineer. */
+"Pending" = "Afventer";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Slå vurderinger op";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Til stede";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Forhåndsvisning ikke tilgængelig";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Optage audio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Optag video";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Vælg for at ændre dato for navneopkald";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Lighedsscore";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specifikke afsnit";
@@ -122,8 +176,44 @@
 "Test Student" = "Prøveelev";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Der er ingen beskeder endnu.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Denne opgave tillader ikke afleveringer.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Denne opgave tillader kun aflevering på papir.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Denne gruppe har ikke nogen aflevering for denne opgave.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Denne elev har ingen aflevering til denne opgave";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Denne aflevering har ingen filer.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Denne aflevering er en URL til en ekstern side. Vi har inkluderet et snapshot af, hvordan siden så ud, da den blev afleveret.";
+
+/* No comment provided by engineer. */
 "To Do" = "Opgaveliste";
 
 /* No comment provided by engineer. */
 "Unmark" = "Fjern markering";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "URL forhåndsvisningsbillede";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Se fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Se afleveringsforsøg %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Du skal aktivere kameratilladelser i indstillinger.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";
 

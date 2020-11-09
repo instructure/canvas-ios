@@ -122,6 +122,9 @@
 "Appointment Signups" = "受講生予約サインアップ";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "ほんとうに (名前を)削除しますか?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "%@を削除してもよろしいですか？";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "本当に 受講生ビューを終了しますか。";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "このファイルを削除してもよろしいですか?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "このコメントを本当に削除しますか？";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "以下のコース成績 %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "コースシラバス";
 
 /* No comment provided by engineer. */
 "Courses" = "コース";
@@ -1229,6 +1238,12 @@
 "Remove" = "削除";
 
 /* No comment provided by engineer. */
+"Remove %@" = "削除%@";
+
+/* No comment provided by engineer. */
+"Remove File" = "ファイルを削除";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "除去済%1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "成功です！";
 
 /* No comment provided by engineer. */
+"Summary" = "概要";
+
+/* No comment provided by engineer. */
 "Surveys" = "調査";
+
+/* No comment provided by engineer. */
+"Syllabus" = "シラバス";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

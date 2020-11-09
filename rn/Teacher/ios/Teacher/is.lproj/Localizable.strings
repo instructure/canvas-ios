@@ -2,6 +2,9 @@
 "Absent" = "Fjarverandi";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Bæta við viðhengi";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Allar einkunnir eru faldar í augnablikinu.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Velja dagsetningu";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Velja skrár";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Loka skúffu";
+
+/* No comment provided by engineer. */
+"Comment" = "Athugasemd";
+
+/* No comment provided by engineer. */
+"Comments" = "Athugasemdir";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Ekki var hægt að vista athugasemdina.";
+
+/* No comment provided by engineer. */
 "Courses" = "Námskeið";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Lokið";
 
+/* No comment provided by engineer. */
+"Error" = "Villa";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Villa: Engin gögn komu frá nafnakalls api.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Ekki tókst að ræsa nafnakalls LTI verkfæri.";
 
 /* No comment provided by engineer. */
+"Files" = "Skrár";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Skrár (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Metið";
+
+/* No comment provided by engineer. */
+"Grades" = "Einkunnir";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Einkunnir verða gerðar sýnilegar öllum nemendum";
@@ -98,6 +128,15 @@
 "No Submissions" = "Engin skil";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Opna skúffu í öllum skjánum";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Opna skúffu í hálfum skjánum";
+
+/* No comment provided by engineer. */
+"Pending" = "Í bið";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Birta einkunnir";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Mætt(ur)";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Forskoðun ótiltæk";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Taka upp hljóð";
+
+/* No comment provided by engineer. */
+"Record Video" = "Taka upp myndband";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Veldu til að breyta dagsetningu nafnakalls";
+
+/* No comment provided by engineer. */
+"Send" = "Senda";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Líkindaútreikningur";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Sérstakir hlutar";
@@ -122,8 +176,44 @@
 "Test Student" = "Prófa nemanda";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Engin skilaboð enn.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Þetta verkefni leyfir ekki skil.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Þetta verkefni leyfir aðeins skil á pappír.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Þessi hópur hefur ekki skil fyrir þetta verkefni.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Þessi nemandi hefur ekki skil fyrir þetta verkefni.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Þessi skil innihalda engar skrár.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Þessi skil eru vefslóð á ytri síðu. Meðfylgjandi er skyndimynd af síðunni eins og hún leit út þegar henni var skilað.";
+
+/* No comment provided by engineer. */
 "To Do" = "Verkefni";
 
 /* No comment provided by engineer. */
 "Unmark" = "Afmerkja";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Forskoðunarmynd vefslóðar";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Skoða skrá %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Skoða skilatilraun %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Þú þarft að virkja aðgang að myndavél í stillingum.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Þú þarft að virkja aðgang að hljóðnema í stillingum.";
 

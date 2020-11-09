@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Té problemes";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Sembla que en aquest espai encara no s'ha creat cap qüestionari.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Està buit; què estàs fent encara aquí?";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "No hi ha cap notificació";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "No hi ha cap qüestionari";
 
 /* No comment provided by engineer. */
 "No recipients" = "No hi ha cap destinatari";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "S'ha produït un problema en iniciar Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar els qüestionaris. Estireu per actualitzar per tornar-ho a provar.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "S'ha produït un error en carregar el document.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Us faria res indicar-nos els problemes que heu tingut amb l'aplicació?";
+
+/* Text submission editor placeholder */
+"Write..." = "Escriviu...";
 
 /* No comment provided by engineer. */
 "Yes" = "Sí";

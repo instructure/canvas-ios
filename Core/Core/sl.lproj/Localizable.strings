@@ -122,6 +122,9 @@
 "Appointment Signups" = "Prijave na sestanke";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Ali ste prepričani, da jih želite izbrisati (ime)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Ali ste prepričani, da želite odstraniti %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Ali ste prepričani, da želite zapustiti pogled študenta?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Ali ste prepričani, da želite odstraniti to datoteko?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ali ste prepričani, da želite odstraniti ta komentar?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Ocena pri predmetu, nižja od  %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Učni načrt predmeta";
 
 /* No comment provided by engineer. */
 "Courses" = "Predmeti";
@@ -1229,6 +1238,12 @@
 "Remove" = "Odstrani";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Odstrani %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Odstrani datoteko";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Odstranjeno %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Uspešno!";
 
 /* No comment provided by engineer. */
+"Summary" = "Povzetek";
+
+/* No comment provided by engineer. */
 "Surveys" = "Ankete";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Učni načrt";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Demonstrator";

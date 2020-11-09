@@ -122,6 +122,9 @@
 "Appointment Signups" = "مواعيد التسجيل";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "هل ترغب بالتأكيد في حذف (الاسم)؟";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "هل تريد بالتأكيد حذف %@؟";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "هل تريد بالتأكيد الخروج من عرض الطالب؟";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "هل تريد بالفعل إزالة هذا الملف؟";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "هل أنت متأكد من أنك ترغب في حذف هذا التعليق؟";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "تقدير المساق أدناه  %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "مناهج المساق";
 
 /* No comment provided by engineer. */
 "Courses" = "المساقات";
@@ -1229,6 +1238,12 @@
 "Remove" = "إزالة";
 
 /* No comment provided by engineer. */
+"Remove %@" = "إزالة %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "إزالة الملف";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "تمت الإزالة %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "نجاح!";
 
 /* No comment provided by engineer. */
+"Summary" = "الملخص";
+
+/* No comment provided by engineer. */
 "Surveys" = "الاستطلاعات";
+
+/* No comment provided by engineer. */
+"Syllabus" = "المنهج الدراسي";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "مساعد المعلم";

@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "؟"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "الوصف مطلوب"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "قبول"
   },
-  "access_9a94f04e": {
-    "message": "الوصول"
-  },
   "access_code_74f4864f": {
     "message": "رمز الوصول"
   },
   "account_group_cb00ca73": {
     "message": "مجموعة الحساب"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "الحساب لا يحتوي على شروط استخدام"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "إضافة بعض مساقاتك المفضلة ليصبح هذا المكان صفحتك الرئيسية."
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "إضافة تاريخ استحقاق"
   },
-  "add_file_e6326e09": {
-    "message": "إضافة ملف"
-  },
-  "add_item_75b67d07": {
-    "message": "إضافة عنصر"
-  },
   "add_media_cfa37b54": {
     "message": "إضافة وسائط "
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "الكل"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "تم حفظ جميع التعليقات التوضيحية."
   },
   "all_courses_a7dbb853": {
     "message": "جميع المساقات"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "حدث خطأ"
   },
-  "announcement_details_81b0bda2": {
-    "message": "تفاصيل الإعلان"
-  },
   "announcements_a4b8ed4a": {
     "message": "إعلانات"
   },
   "anonymous_grading_3083dc0": {
     "message": "منح الدرجات دون الكشف عن الهوية"
   },
-  "anyone_5b8fdf9f": {
-    "message": "أي شخص"
-  },
   "archived_de543437": {
     "message": "تمت الأرشفة"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "هل تريد بالتأكيد حذف { name }؟"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "هل ترغب بالتأكيد في حذف هذا الإعلان؟"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "هل تريد بالتأكيد حذف هذه المناقشة؟"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "هل تريد بالتأكيد حذف هذا الرد؟"
   },
   "assign_to_95404a83": {
     "message": "تعيين إلى"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "فشل تشغيل الصوت"
   },
-  "augment_reality_4d23e2df": {
-    "message": "الواقع المعزز"
-  },
   "availability_8942cde6": {
     "message": "الإتاحة"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "متوفر بدءًا من: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "متوفر بدءًا من"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "متوفر من يجب أن يكون قبل متوفر حتى"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "\"متوفر من\" يجب أن يكون قبل \"متوفر حتى\""
-  },
-  "available_to_b7350e02": {
-    "message": "متاح لـ"
   },
   "available_until_20c0cc5c": {
     "message": "متوفر حتى:"
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "عودة"
   },
-  "back_to_replies_94f3c127": {
-    "message": "العودة إلى الردود"
-  },
-  "black_8d713c75": {
-    "message": "أسود"
-  },
-  "blue_7aca5197": {
-    "message": "أزرق"
-  },
   "blue_daf8fea9": {
     "message": "أزرق"
   },
-  "bold_34b9d97e": {
-    "message": "عامق"
-  },
   "brick_f2656265": {
     "message": "قرميد"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "يمكن التحرير"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "يتعذر إعادة توجيه الرسالة"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "خيارات المحادثة"
   },
-  "copied_880dcb1b": {
-    "message": "تم النسخ!"
-  },
-  "copied_c6518d41": {
-    "message": "تم النسخ"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "نسخ الرابط"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "حامل حقوق النشر"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "تعذر الحصول على قائمة المهام"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 طلاب}\n    one {# طالب}\n  other {# طلاب}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# إعجاب}\n  other {# إعجابات}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    zero {بحاجة إلى تقييم}\n one {بحاجة إلى تقييم}\n two {بحاجة إلى تقييم}\n few {بحاجة إلى تقييم}\n many {بحاجة إلى تقييم}\n other {بحاجة إلى تقييم}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "المساقات"
   },
-  "create_folder_6055d558": {
-    "message": "إنشاء مجلد"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "ملف مشاع إبداعي"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "ترخيص المشاع الإبداعي"
-  },
   "current_grade_6d0b8ef7": {
     "message": "التقدير الحالي"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "حذف"
   },
-  "delete_file_3ca64c1b": {
-    "message": "حذف الملف"
-  },
-  "delete_folder_1700498c": {
-    "message": "حذف المجلد"
-  },
-  "delete_folder_7d84f587": {
-    "message": "هل تريد حذف المجلد؟"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "حذف المتلقي { recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "حذف هذا الرد."
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "سيؤدي أيضًا حذف هذا المجلد إلى حذف جميع الملفات الموجودة داخل المجلد."
   },
   "description_436c48d7": {
     "message": "الوصف"
   },
   "details_98a31b68": {
     "message": "التفاصيل"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "تفاصيل المناقشة"
   },
   "discussion_submission_781d5d33": {
     "message": "إرسال النقاش"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "تحرير لوحة المعلومات"
   },
-  "edit_description_1206e0a8": {
-    "message": "تحرير الوصف"
-  },
-  "edit_file_c560115a": {
-    "message": "تحرير الملف"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "تحرير المجلد"
-  },
-  "edit_page_5df5916a": {
-    "message": "تحرير صفحة"
-  },
   "edit_quiz_details_72cd055": {
     "message": "تحرير تفاصيل الاختبار الموجز"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "طاب يومك!"
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "أدخل مصطلح بحث يحتوي على ثلاثة أحرف أو أكثر."
   },
   "enter_code_c7ab5104": {
     "message": "إدخال الرمز"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "خطأ أثناء حفظ الدرجة"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "خطأ أثناء الحفظ. اضغط لإعادة المحاولة."
   },
   "everyone_854554dd": {
     "message": "الجميع"
@@ -611,10 +491,7 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "فشل تحميل تعليق الوسائط"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "استثناء الاستخدام العادل"
-  },
-  "favorite_courses_fbd356f0": {
+  "favorited_courses_84f383f": {
     "message": "المساقات المفضلة"
   },
   "file_types_6fa69505": {
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "أخضر"
   },
-  "green_d46e687c": {
-    "message": "أخضر"
-  },
-  "grey_56f61c1": {
-    "message": "رمادي"
-  },
   "group_a8f5ed9c": {
     "message": "المجموعة"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "مخفي"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "مخفي. ستتوفر الملفات الداخلية بارتباطات."
-  },
   "hide_content_for_name_aee1723a": {
     "message": "إخفاء محتوى لـ { name }"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "أعلى درجة ممكنة، { pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "أملك إذنًا لاستخدام الملف"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "أمتلك حقوق النشر"
-  },
   "in_progress_9d1ce8b9": {
     "message": "قيد التقدم"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "إدخال"
   },
-  "insert_image_42d30344": {
-    "message": "إدراج صورة"
-  },
-  "insert_link_6dc23cae": {
-    "message": "إدراج ارتباط"
-  },
   "invalid_field_54480fae": {
     "message": "حقل غير صالح"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "يبدو أنه لا توجد أي إرسالات صالحة للدرجة."
-  },
-  "italic_ac45200a": {
-    "message": "مائل"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# عنصر}\n  other {# من العناصر}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }، حقل نصي"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "أزرق فاتح"
   },
-  "like_e8ad74ae": {
-    "message": "إعجاب"
-  },
   "loading_bde52856": {
     "message": "جارٍ التحميل"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "ماجنتا"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "وضع علامة على الكل كمقروء"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "وضع علامة كمقروء"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "وضع علامة كغير مقروء"
-  },
   "me_bf110f4d": {
     "message": "أنا"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "إرسال الوسط"
-  },
-  "message_5c38209d": {
-    "message": "الرسالة"
   },
   "message_details_342e931f": {
     "message": "تفاصيل الرسالة"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "مواعيد استحقاق متعددة"
-  },
-  "my_files_eea33f44": {
-    "message": "ملفاتي"
   },
   "n_a_d6f6c42f": {
     "message": "لا يوجد"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "رسالة جديدة"
-  },
-  "new_page_84b28714": {
-    "message": "صفحة جديدة"
   },
   "nickname_1e6da3ad": {
     "message": "اللقب"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "بلا نتائج"
   },
-  "no_results_found_2ace1494": {
-    "message": "لم يتم العثور على نتائج"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "لا توجد رسائل معلّمة بنجمة"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "لا يوجد شيء آخر يمكن فعله."
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "عدد الإعجابات: { count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    zero {# دقائق}\n one {# دقيقة}\n two {# دقائق}\n few {# دقائق}\n many {# دقائق}\n other {# دقائق}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "عنوان URL عبر الإنترنت"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "متاح فقط للطلاب الذين لديهم رابط. غير متاح في ملفات الطالب."
-  },
-  "only_members_232519d6": {
-    "message": "الأعضاء فقط"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "مرة واحدة فقط بعد كل محاولة"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "المعلمون فقط"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "فتح تفضيلات مستخدم { courseName } "
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "برتقالي"
-  },
-  "orange_86946f54": {
-    "message": "برتقالي"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "قائمة مرتبة"
   },
   "out_of_points_number_42209979": {
     "message": "من أصل { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "نقاط"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "ملف مجال عام"
-  },
   "publish_5211dca3": {
     "message": "نشر"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "يقطين"
-  },
-  "purple_71d4acca": {
-    "message": "أرجواني"
   },
   "purple_7678a9fc": {
     "message": "أرجواني"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "أحمر"
   },
-  "red_ba15ab13": {
-    "message": "أحمر"
-  },
-  "redo_363c58b7": {
-    "message": "إعادة"
-  },
   "remove_attachment_81f30aa3": {
     "message": "إزالة مرفق"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "هل تريد إزالة هذا المرفق؟"
   },
-  "replies_4a8577c8": {
-    "message": "ردود"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "تظهر الردود فقط للأشخاص الذين أرسلوا ردًا واحدًا على الأقل."
-  },
   "reply_389d6fb9": {
     "message": "رد"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "الإبلاغ عن مشكلة"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "تعذر إكمال الطلب."
-  },
   "require_an_access_code_46a02601": {
     "message": "رمز الوصول مطلوب"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "مقيد"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "وصول مقيّد"
   },
   "retry_ebd5f8ba": {
     "message": "إعادة المحاولة"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "جارٍ الحفظ..."
-  },
-  "schedule_student_availability_332154a": {
-    "message": "جدولة توفر الطلاب"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number } من إجمالي { points, plural,\n    one {# نقطة}\n  other {# من النقاط}\n} الممكنة"
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "بحث"
   },
-  "search_files_7e8153fd": {
-    "message": "البحث عن ملفات"
-  },
-  "searching_f330d682": {
-    "message": "جارٍ البحث..."
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    zero {# ثواني}\n one {# ثانية}\n two {# ثواني}\n few {# ثواني}\n many {# ثواني}\n other {# ثواني}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "الأقسام"
-  },
-  "sections_sections_70d64496": {
-    "message": "الأقسام: { sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "عرض الكل"
   },
   "select_a_course_4710371f": {
     "message": "تحديد مساق"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "تم الإرسال"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "تعيين كصفحة أمامية"
-  },
   "set_home_to_82ab5119": {
     "message": "تعيين \"الصفحة الرئيسية\" لـ..."
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "تعيين لون النص لـ { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "الإعدادات"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "درجة التشابه"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "بما أنها مناقشة لمجموعات، فإن لكل مجموعة محادثة خاصة لهذا الموضوع. فيما يلي النقاشات التي يمكنك الوصول إليها:"
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "حدث مشكلة من طرفنا. لا تقلق، لقد سجلنا تلك المشكلة وسنقوم بحلها بعد قليل."
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "المعلمون"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "المعلمون والطلاب"
-  },
   "teal_f729a294": {
     "message": "أزرق مخضر"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "شروط الاستخدام"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "لون النص ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "لون النص { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "إرسال النص"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "حدثت مشكلة أثناء تحميل الاختبارات الموجزة."
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "حدثت مشكلة أثناء استرداد شروط الاستخدام"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "حدثت مشكلة أثناء حفظ الدرجة. يرجى إعادة المحاولة."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "حدث خطأ أثناء تحميل المرفق."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "حدث خطأ أثناء تحميل الملف."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "حدث خطأ أثناء تحميل قائمة التسجيلات"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "تم تأمين هذا الملف حاليًا."
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "يجب أن يتم ضبط حقوق استخدام هذا الملف قبل أن يمكن نشره."
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "هذا المجلد فارغ"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "لا تشتمل هذه المجموعة على إرسال لهذه المهمة."
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "تمت إزالة علامة النجمة"
   },
-  "undo_a7be8fef": {
-    "message": "تراجع"
-  },
   "unexpected_error_93991f40": {
     "message": "خطأ غير متوقع"
   },
   "ungraded_survey_ad7de790": {
     "message": "استطلاع لم يتم تقييم درجاته"
   },
-  "unknown_author_40d64455": {
-    "message": "مؤلف غير معروف"
-  },
   "unlimited_ff19e96d": {
     "message": "غير محدود"
   },
-  "unordered_list_3c1650b3": {
-    "message": "قائمة غير مرتبة"
-  },
   "unpin_a318452a": {
     "message": "إلغاء التثبيت"
-  },
-  "unpublish_9f2d730b": {
-    "message": "إلغاء النشر"
   },
   "unpublished_8b6107d6": {
     "message": "غير منشور"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "التحميل قيد التقدم"
   },
-  "uploading_19e8a4e7": {
-    "message": "جار التحميل"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "يتم الآن تحميل { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "جارٍ تحميل { loaded } من { total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "إرسال عنوان URL"
-  },
-  "usage_right_2b398e0b": {
-    "message": "حق الاستخدام"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "حقوق الاستخدام"
   },
   "use_camera_47a0387b": {
     "message": "استخدام الكاميرا"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "عرض وصف طويل"
   },
-  "view_more_replies_9fef9983": {
-    "message": "عرض المزيد من الردود"
-  },
   "view_responses_d2874266": {
     "message": "عرض الاستجابات"
   },
   "welcome_73d18b4d": {
     "message": "مرحبًا!"
   },
-  "white_463b4bf9": {
-    "message": "أبيض"
-  },
   "whoops_de2cf9fc": {
     "message": "أوبس!"
-  },
-  "yellow_4b5532b3": {
-    "message": "أصفر"
   },
   "yes_dde87d5": {
     "message": "نعم"

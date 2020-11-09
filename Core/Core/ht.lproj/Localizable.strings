@@ -122,6 +122,9 @@
 "Appointment Signups" = "Randevou Enskripsyon";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Èske se vre ou vle efase (non)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Èske se vre ou vle efase %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Èske tout bon ou vle soti nan Afichaj Elèv la?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Èske se vre ou vle elimine fichye sa a?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Èske se tout bon ou vle efase kòmantè sa a?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kou Klas Pi Ba a %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Pwogram Kou";
 
 /* No comment provided by engineer. */
 "Courses" = "Kou";
@@ -1229,6 +1238,12 @@
 "Remove" = "Elimine";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Elimine %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Elimine Fichye";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Elimine %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Reyisi!";
 
 /* No comment provided by engineer. */
+"Summary" = "Rezime";
+
+/* No comment provided by engineer. */
 "Surveys" = "Ankèt";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Pwogram";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

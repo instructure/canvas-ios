@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Siinä on ongelmia";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Näyttää siltä kuin kyselyitä ei vielä olisi luotu tässä tilassa.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Se on tyhjä, mitä sinä vielä teet täällä.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Ei ilmoituksia";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Ei tietovisoja";
 
 /* No comment provided by engineer. */
 "No recipients" = "Ei vastaanottajia";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Safarin käynnityksessä ilmeni ongelma";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Tiedoston lataamisessa ilmeni ongelma.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Voisitko kertoa meille ongelmista, joita sinulla on ollut sovelluksen kanssa?";
+
+/* Text submission editor placeholder */
+"Write..." = "Kirjoita...";
 
 /* No comment provided by engineer. */
 "Yes" = "Kyllä";

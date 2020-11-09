@@ -2,6 +2,9 @@
 "Absent" = "Absennol";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Ychwanegu Atodiad";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Pob gradd wedi'i chuddio ar hyn o bryd.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Dewiswch Ddyddiad";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Dewis Ffeiliau";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Cau Drôr";
+
+/* No comment provided by engineer. */
+"Comment" = "Sylw";
+
+/* No comment provided by engineer. */
+"Comments" = "Sylwadau";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Doedd dim modd cadw'r sylw.";
+
+/* No comment provided by engineer. */
 "Courses" = "Cwrs";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
 
+/* No comment provided by engineer. */
+"Error" = "Gwall";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Gwall: Dim data wedi'i ddychwelyd o API y gofrestr.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Wedi methu llwytho adnodd galw cofrestr LTI.";
 
 /* No comment provided by engineer. */
+"Files" = "Ffeiliau";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Ffeiliau (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Wedi graddio";
+
+/* No comment provided by engineer. */
+"Grades" = "Graddau";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Bydd yr holl fyfyrwyr yn gallu gweld y graddau";
@@ -98,6 +128,15 @@
 "No Submissions" = "Dim Cyflwyniadau";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Agor Drôr sgrin lawn";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Agor Drôr hanner sgrin";
+
+/* No comment provided by engineer. */
+"Pending" = "Yn aros";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Postio Graddau";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Presennol";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Dim rhagolwg ar gael";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Recordio Sain";
+
+/* No comment provided by engineer. */
+"Record Video" = "Recordio Fideo";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Dewiswch i newid dyddiad y gofrestr";
+
+/* No comment provided by engineer. */
+"Send" = "Anfon";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Sgôr Tebygrwydd";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Adrannau Penodol";
@@ -122,8 +176,44 @@
 "Test Student" = "Myfyriwr Prawf";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Does dim negeseuon eto.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau ar bapur.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Does gan y grŵp hwn ddim cyflwyniad ar gyfer yr aseiniad hwn.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Does gan y myfyriwr hwn ddim cyflwyniad ar gyfer yr aseiniad hwn.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Does gan y cyflwyniad hwn ddim ffeiliau.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Mae'r cyflwyniad hwn yn URL i dudalen allanol. Rydym ni wedi cynnwys ciplun o’r dudalen pan gafodd hyn ei gyflwyno.";
+
+/* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";
 
 /* No comment provided by engineer. */
 "Unmark" = "Dad-farcio";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Delwedd Rhagolwg o URL";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Gweld ffeil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Gweld ymgais cyflwyno %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Rhaid i chi alluogi hawliau Camera yn y Gosodiadau.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
 

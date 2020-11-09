@@ -122,6 +122,9 @@
 "Appointment Signups" = "Tapaamisen rekisteröitymiset";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Haluatko varmasti poistaa kohteen (nimi)?:";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Haluatko varmasti poistaa kohteen %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Oletko varma, että haluat poistua opiskelijanäkymästä?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Haluatko varmasti poistaa tämän tiedoston?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kurssin arvosana alla  %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Kurssin opinto-ohjelma";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurssit";
@@ -1229,6 +1238,12 @@
 "Remove" = "Poista";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Poista %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Poista tiedosto";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Poistettu %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Onnistui!";
 
 /* No comment provided by engineer. */
+"Summary" = "Yhteenveto";
+
+/* No comment provided by engineer. */
 "Surveys" = "Kyselyt";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Opinto-ohjelma";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Apuopettaja";
