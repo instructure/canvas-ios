@@ -211,7 +211,7 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
     }
 
     func showDeleteAlert(name: String, handler: @escaping ((UIAlertAction) -> Void)) {
-        let title = String.localizedStringWithFormat(NSLocalizedString("Are you sure you want to delete %@?", bundle: .core, comment: ""), name)
+        let title = String.localizedStringWithFormat(NSLocalizedString("Are you sure you want to delete %@?"), name)
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         alert.addAction(AlertAction(NSLocalizedString("Delete", bundle: .core, comment: ""), style: .default, handler: handler))
