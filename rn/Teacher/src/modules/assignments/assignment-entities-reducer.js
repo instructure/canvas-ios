@@ -29,7 +29,6 @@ import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
 import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 import { default as QuizDetailsActions } from '../quizzes/details/actions'
-import { default as DiscussionDetailsActions } from '../discussions/details/actions'
 import { default as SubmissionActions } from '../submissions/list/actions'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
@@ -42,7 +41,6 @@ const { refreshAssignmentList,
   cancelAssignmentUpdate,
 } = Actions
 const { refreshQuiz } = QuizDetailsActions
-const { refreshDiscussionEntries } = DiscussionDetailsActions
 const { refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 
 const assignment = assignment => assignment || {}
@@ -176,21 +174,6 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   },
   [refreshQuiz.toString()]: handleAsync({
     resolved: (state, { result: [quiz, groups, assignment] }) => {
-      if (!assignment || !assignment.data) return state
-      return {
-        ...state,
-        [assignment.data.id]: {
-          ...state[assignment.data.id],
-          data: {
-            ...(state[assignment.data.id] && state[assignment.data.id].data),
-            ...assignment.data,
-          },
-        },
-      }
-    },
-  }),
-  [refreshDiscussionEntries.toString()]: handleAsync({
-    resolved: (state, { result: [view, discussion, assignment] }) => {
       if (!assignment || !assignment.data) return state
       return {
         ...state,

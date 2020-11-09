@@ -20,7 +20,7 @@ import SwiftUI
 
 public enum Panda: String, CaseIterable {
     case AtLaptop, Blindfold, Blocks, Book, FilePicker, Grades, InboxZero, Locked
-    case NoAlerts, NoComments, NoEvents, NoResults, NoRubric
+    case NoAlerts, NoComments, NoDiscussions, NoEvents, NoResults, NoRubric
     case Papers, Sleeping, Space, Teacher, Welcome, Unsupported
 
     public var name: String { "Panda\(rawValue)" }

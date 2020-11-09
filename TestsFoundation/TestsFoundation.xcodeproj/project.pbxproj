@@ -83,7 +83,7 @@
 		E80936C624C2480B00D15E9A /* ConferencesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366724C21DFE00D15E9A /* ConferencesList.swift */; };
 		E80936C724C2480B00D15E9A /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366924C21DFE00D15E9A /* CourseNavigation.swift */; };
 		E80936C824C2480B00D15E9A /* DiscussionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366E24C21DFE00D15E9A /* DiscussionDetails.swift */; };
-		E80936C924C2480B00D15E9A /* DiscussionEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366F24C21DFE00D15E9A /* DiscussionEdit.swift */; };
+		E80936C924C2480B00D15E9A /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809366F24C21DFE00D15E9A /* DiscussionEditor.swift */; };
 		E80936CA24C2480B00D15E9A /* DiscussionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809367024C21DFE00D15E9A /* DiscussionList.swift */; };
 		E80936CB24C2480B00D15E9A /* DiscussionEditReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809367124C21DFE00D15E9A /* DiscussionEditReply.swift */; };
 		E80936CC24C2480B00D15E9A /* ExternalTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809367324C21DFE00D15E9A /* ExternalTool.swift */; };
@@ -207,7 +207,7 @@
 		E809366B24C21DFE00D15E9A /* AccountNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNotifications.swift; sourceTree = "<group>"; };
 		E809366C24C21DFE00D15E9A /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		E809366E24C21DFE00D15E9A /* DiscussionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetails.swift; sourceTree = "<group>"; };
-		E809366F24C21DFE00D15E9A /* DiscussionEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEdit.swift; sourceTree = "<group>"; };
+		E809366F24C21DFE00D15E9A /* DiscussionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditor.swift; sourceTree = "<group>"; };
 		E809367024C21DFE00D15E9A /* DiscussionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionList.swift; sourceTree = "<group>"; };
 		E809367124C21DFE00D15E9A /* DiscussionEditReply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscussionEditReply.swift; sourceTree = "<group>"; };
 		E809367324C21DFE00D15E9A /* ExternalTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalTool.swift; sourceTree = "<group>"; };
@@ -543,7 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				E809366E24C21DFE00D15E9A /* DiscussionDetails.swift */,
-				E809366F24C21DFE00D15E9A /* DiscussionEdit.swift */,
+				E809366F24C21DFE00D15E9A /* DiscussionEditor.swift */,
 				E809367024C21DFE00D15E9A /* DiscussionList.swift */,
 				E809367124C21DFE00D15E9A /* DiscussionEditReply.swift */,
 			);
@@ -960,7 +960,7 @@
 				E80936D724C2480B00D15E9A /* Planner.swift in Sources */,
 				58595231CA9C074F01E0F6A1 /* MiniCourse.swift in Sources */,
 				E80936CB24C2480B00D15E9A /* DiscussionEditReply.swift in Sources */,
-				E80936C924C2480B00D15E9A /* DiscussionEdit.swift in Sources */,
+				E80936C924C2480B00D15E9A /* DiscussionEditor.swift in Sources */,
 				E80936C824C2480B00D15E9A /* DiscussionDetails.swift in Sources */,
 				58595E26C62900CF858B2B08 /* MiniCanvasUITestCase.swift in Sources */,
 				58595E42B4831A7E2BE0102B /* MiniQuiz.swift in Sources */,

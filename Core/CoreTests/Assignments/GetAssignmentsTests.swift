@@ -23,19 +23,19 @@ import CoreData
 class GetAssignmentsTests: CoreTestCase {
     func testItCreatesAssignment() {
         let apiAssignment = APIAssignment.make(
-            id: "2",
             course_id: "1",
-            name: "Get Assignment Test",
             description: "some description...",
-            points_possible: 10,
             due_at: nil,
-            html_url: URL(string: "https://canvas.instructure.com/courses/1/assignments/2")!,
-            submission: nil,
             grading_type: .pass_fail,
-            submission_types: [ .on_paper, .external_tool ],
+            html_url: URL(string: "https://canvas.instructure.com/courses/1/assignments/2")!,
+            id: "2",
+            lock_at: Date(fromISOString: "2018-11-10T06:59:59Z"),
+            name: "Get Assignment Test",
+            points_possible: 10,
             position: 0,
-            unlock_at: Date(fromISOString: "2018-10-26T06:00:00Z"),
-            lock_at: Date(fromISOString: "2018-11-10T06:59:59Z")
+            submission: nil,
+            submission_types: [ .on_paper, .external_tool ],
+            unlock_at: Date(fromISOString: "2018-10-26T06:00:00Z")
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [.submission])
@@ -117,7 +117,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesSubmission() {
-        Assignment.make(from: .make(id: "1", course_id: "1", submission: .make()))
+        Assignment.make(from: .make(course_id: "1", id: "1", submission: .make()))
         let preCheckAssignments: [Assignment] = databaseClient.fetch()
         let apiAssignment = APIAssignment.make(
             id: "1",
@@ -173,17 +173,17 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testGetAssignmentsList() {
         let apiAssignment = APIAssignment.make(
-            id: "2",
             course_id: "1",
-            name: "Get Assignment Test",
             description: "some description...",
-            points_possible: 10,
             due_at: nil,
-            html_url: URL(string: "https://canvas.instructure.com/courses/1/assignments/2")!,
-            submission: nil,
             grading_type: .pass_fail,
-            submission_types: [ .on_paper, .external_tool ],
-            position: 0
+            html_url: URL(string: "https://canvas.instructure.com/courses/1/assignments/2")!,
+            id: "2",
+            name: "Get Assignment Test",
+            points_possible: 10,
+            position: 0,
+            submission: nil,
+            submission_types: [ .on_paper, .external_tool ]
         )
         let getAssignments = GetAssignments(courseID: "1")
         getAssignments.write(response: [apiAssignment], urlResponse: nil, to: databaseClient)
@@ -206,12 +206,12 @@ class GetAssignmentsTests: CoreTestCase {
     func testGetSubmittableAssignments() {
         let apiAssignments = [
             APIAssignment.make(id: "1", submission_types: [.online_url, .online_upload, .online_text_entry]),
-            APIAssignment.make(id: "2", submission_types: [.online_upload], lock_at: Date.distantFuture),
+            APIAssignment.make(id: "2", lock_at: Date.distantFuture, submission_types: [.online_upload]),
             APIAssignment.make(id: "3", submission_types: [.online_upload], unlock_at: Date.distantPast),
 
-            APIAssignment.make(id: "4", submission_types: [.online_upload], lock_at: Date.distantPast),
+            APIAssignment.make(id: "4", lock_at: Date.distantPast, submission_types: [.online_upload]),
             APIAssignment.make(id: "5", submission_types: [.online_upload], unlock_at: Date.distantFuture),
-            APIAssignment.make(id: "6", submission_types: [.online_upload], locked_for_user: true),
+            APIAssignment.make(id: "6", locked_for_user: true, submission_types: [.online_upload]),
             APIAssignment.make(id: "7", submission_types: [.none]),
         ]
         let getAssignments = GetSubmittableAssignments(courseID: "1")
@@ -225,12 +225,12 @@ class GetAssignmentsTests: CoreTestCase {
         let dateC = Date().addDays(2)
         let dateD = Date().addDays(3)
 
-        let api2 = APIAssignment.make(id: "2", course_id: "1", name: "api2", due_at: nil)
-        let api3 = APIAssignment.make(id: "3", course_id: "1", name: "api3", due_at: nil)
-        let api4 = APIAssignment.make(id: "4", course_id: "1", name: "api4", due_at: dateC)
-        let api5 = APIAssignment.make(id: "5", course_id: "1", name: "api5", due_at: dateD)
-        let api6 = APIAssignment.make(id: "6", course_id: "1", name: "api6", due_at: nil)
-        let api7 = APIAssignment.make(id: "7", course_id: "1", name: "api7", due_at: dateD)
+        let api2 = APIAssignment.make(course_id: "1", due_at: nil, id: "2", name: "api2")
+        let api3 = APIAssignment.make(course_id: "1", due_at: nil, id: "3", name: "api3")
+        let api4 = APIAssignment.make(course_id: "1", due_at: dateC, id: "4", name: "api4")
+        let api5 = APIAssignment.make(course_id: "1", due_at: dateD, id: "5", name: "api5")
+        let api6 = APIAssignment.make(course_id: "1", due_at: nil, id: "6", name: "api6")
+        let api7 = APIAssignment.make(course_id: "1", due_at: dateD, id: "7", name: "api7")
 
         let a2 = Assignment.make(from: .make(id: "2"))
         let a3 = Assignment.make(from: .make(id: "3"))
@@ -300,7 +300,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItChangesRubrics() {
-        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [.make(id: "1")]))
+        Assignment.make(from: .make(course_id: "2", id: "2", rubric: [.make(id: "1")]))
 
         let apiAssignment = APIAssignment.make(
             id: "2",
@@ -322,7 +322,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesRubrics() {
-        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [.make()]))
+        Assignment.make(from: .make(course_id: "2", id: "2", rubric: [.make()]))
 
         let apiAssignment = APIAssignment.make(id: "2")
 
@@ -336,7 +336,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItDeletesRubricRatings() {
-        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [
+        Assignment.make(from: .make(course_id: "2", id: "2", rubric: [
             .make(ratings: [.make(id: "1")]),
         ]))
         var assignments: [Assignment] = databaseClient.fetch()
@@ -358,7 +358,7 @@ class GetAssignmentsTests: CoreTestCase {
     }
 
     func testItChangesRatingsCorrectly() {
-        Assignment.make(from: .make(id: "2", course_id: "2", rubric: [
+        Assignment.make(from: .make(course_id: "2", id: "2", rubric: [
             .make(ratings: [.make(id: "1", assignmentID: "2")], assignmentID: "2"),
         ]))
 

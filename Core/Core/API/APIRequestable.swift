@@ -92,6 +92,13 @@ public enum APIFormDatum: Equatable {
     case string(String)
     case data(filename: String, type: String, data: Data)
     case file(filename: String, type: String, at: URL)
+
+    public static func bool(_ value: Bool) -> APIFormDatum {
+        return .string(value ? "1" : "0")
+    }
+    public static func date(_ value: Date?) -> APIFormDatum {
+        return .string(value?.isoString() ?? "")
+    }
 }
 
 // These errors are all definitely mistakes in our app code

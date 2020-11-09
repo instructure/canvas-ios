@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
+import SwiftUI
 
-extension UIViewController: ApplicationViewController {
-    public func open(_ url: URL) {
-        UIApplication.shared.open(url)
+public struct ListSectionHeader<Content: View>: View {
+    public let content: Content
+
+    public init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Divider()
+            HStack(spacing: 0) { content }
+                .font(.semibold14).foregroundColor(.textDark)
+                .padding(.horizontal, 16).padding(.vertical, 4)
+            Divider()
+        }
+            .background(Color.backgroundGrouped)
     }
 }

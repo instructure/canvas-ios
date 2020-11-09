@@ -43,6 +43,8 @@
         <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="gradingTypeRaw" attributeType="String"/>
+        <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
+        <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="htmlURL" attributeType="URI"/>
         <attribute name="id" attributeType="String"/>
@@ -64,6 +66,7 @@
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
+        <relationship name="overrides" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentOverride" inverseName="assignment" inverseEntity="AssignmentOverride"/>
         <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ScoreStatistics" inverseName="assignment" inverseEntity="ScoreStatistics"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
@@ -85,6 +88,18 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment"/>
+    </entity>
+    <entity name="AssignmentOverride" representedClassName="Core.AssignmentOverride" syncable="YES">
+        <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="courseSectionID" optional="YES" attributeType="String"/>
+        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="groupID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="studentIDsRaw" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="overrides" inverseEntity="Assignment"/>
     </entity>
     <entity name="CalendarEvent" representedClassName="Core.CalendarEvent" syncable="YES">
         <attribute name="contextName" optional="YES" attributeType="String"/>
@@ -188,6 +203,8 @@
         <attribute name="accessRestrictedByDate" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcEnabledRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="arcID" optional="YES" attributeType="String"/>
+        <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="courseCode" optional="YES" attributeType="String"/>
         <attribute name="defaultViewRaw" optional="YES" attributeType="String"/>
         <attribute name="hideFinalGrades" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -253,8 +270,12 @@
         <attribute name="canAttach" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canDelete" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canReply" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canUpdate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="delayedPostAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="discussionType" optional="YES" attributeType="String" defaultValueString="side_comment"/>
         <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
         <attribute name="groupTopicChildren" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="htmlURL" optional="YES" attributeType="URI"/>
@@ -262,12 +283,20 @@
         <attribute name="isAnnouncement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isSectionSpecific" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lastReplyAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="locked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="message" optional="YES" attributeType="String"/>
         <attribute name="onlyGradersCanRate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="order" attributeType="String" defaultValueString=""/>
+        <attribute name="orderSection" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pinned" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="requireInitialPost" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="sortByRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="subscribed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="discussionTopic" inverseEntity="Assignment"/>
@@ -406,9 +435,12 @@
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="groupCategoryID" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -850,9 +882,10 @@
         <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="688"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="718"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
+        <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
@@ -862,12 +895,12 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="328"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="358"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
-        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="433"/>
+        <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
         <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="403"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
@@ -877,7 +910,7 @@
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="163"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="208"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>

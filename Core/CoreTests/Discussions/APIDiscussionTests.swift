@@ -23,24 +23,13 @@ class APIDiscussionTests: XCTestCase {
     let context = Context(.course, id: "1")
 
     func testPostDiscussionTopicRequest() {
-        let assignment = APIAssignmentParameters(
-            name: "A",
-            description: "d",
-            points_possible: 10,
-            due_at: Date(),
-            submission_types: [SubmissionType.discussion_topic],
-            allowed_extensions: [],
-            published: true,
-            grading_type: .percent,
-            lock_at: nil,
-            unlock_at: nil
-        )
-        let expectedBody = PostDiscussionTopicRequest.Body(title: "T", message: "M", published: true, assignment: assignment)
-        let request = PostDiscussionTopicRequest(context: context, body: expectedBody)
+        let request = PostDiscussionTopicRequest(context: context, form: [
+            .title: .string("Sorted"),
+        ])
 
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
         XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.body, expectedBody)
+        XCTAssertNotNil(request.form)
     }
 
     func testPostDiscussionEntryRequest() {
@@ -156,12 +145,12 @@ class GetDiscussionViewRequestTests: XCTestCase {
 
 class ListDiscussionTopicsRequestTests: XCTestCase {
     func testPath() {
-        let request = ListDiscussionTopicsRequest(context: .course("1"))
+        let request = GetDiscussionTopicsRequest(context: .course("1"))
         XCTAssertEqual(request.path, "courses/1/discussion_topics")
     }
 
     func testQuery() {
-        let request = ListDiscussionTopicsRequest(context: .course("1"), perPage: 25, include: [.allDates, .overrides, .sections, .sectionsUserCount])
+        let request = GetDiscussionTopicsRequest(context: .course("1"), perPage: 25, include: [.allDates, .overrides, .sections, .sectionsUserCount])
         XCTAssertEqual(request.queryItems, [
             URLQueryItem(name: "per_page", value: "25"),
             URLQueryItem(name: "include[]", value: "all_dates"),

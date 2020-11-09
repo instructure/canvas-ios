@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/* @flow */
+import XCTest
 
-import { createAction } from 'redux-actions'
-import canvas from '../../../canvas-api'
-
-export let Actions = (api: CanvasApi): * => ({
-  refreshAnnouncements: createAction('announcements.list.refresh', (context: string, contextID: string) => {
-    return {
-      promise: api.getDiscussions(context, contextID, { only_announcements: true }),
-      context,
-      contextID,
-    }
-  }),
-})
-
-export default (Actions(canvas): *)
+public enum DiscussionEditor: String, ElementWrapper {
+    case
+        allowRatingToggle,
+        attachmentButton,
+        delayedPostAtToggle, delayedPostAtPicker,
+        doneButton,
+        gradingTypeButton,
+        lockAtPicker,
+        lockedToggle,
+        onlyGradersCanRateToggle,
+        pointsField,
+        publishedToggle,
+        requireInitialPostToggle,
+        sectionsButton,
+        sortByRatingToggle,
+        threadedToggle,
+        titleField
+}

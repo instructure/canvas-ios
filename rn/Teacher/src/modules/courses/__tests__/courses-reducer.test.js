@@ -61,14 +61,6 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
-      discussions: {
-        pending: 0,
-        refs: [],
-      },
-      announcements: {
-        pending: 0,
-        refs: [],
-      },
       groups: {
         pending: 0,
         refs: [],
@@ -596,7 +588,6 @@ describe('refresh single course', () => {
     expect(newState).toMatchObject(
       {
         '1': {
-          'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
           'color': '#fff',
@@ -607,7 +598,6 @@ describe('refresh single course', () => {
               'create_discussion_topic': true,
             },
           },
-          'discussions': { 'pending': 0, 'refs': [] },
           'enabledFeatures': [],
           'enrollments': { 'pending': 0, 'refs': [] },
           'error': null,
@@ -649,7 +639,6 @@ describe('refresh single course', () => {
 
     let state = {
       '1': {
-        'announcements': { 'pending': 0, 'refs': [] },
         'assignmentGroups': { 'pending': 0, 'refs': [] },
         'attendanceTool': { 'pending': 0 },
         'color': '#FFFFFF00',
@@ -662,7 +651,6 @@ describe('refresh single course', () => {
             'create_discussion_topic': false,
           },
         },
-        'discussions': { 'pending': 0, 'refs': [] },
         'enabledFeatures': [],
         'enrollments': { 'pending': 0, 'refs': [] },
         'error': null,
@@ -678,7 +666,6 @@ describe('refresh single course', () => {
     expect(newState).toMatchObject(
       {
         '1': {
-          'announcements': { 'pending': 0, 'refs': [] },
           'assignmentGroups': { 'pending': 0, 'refs': [] },
           'attendanceTool': { 'pending': 0 },
           'color': '#fff',
@@ -687,7 +674,6 @@ describe('refresh single course', () => {
             'name': 'Course 2',
             'somethingImportant': true,
           },
-          'discussions': { 'pending': 0, 'refs': [] },
           'enabledFeatures': [],
           'enrollments': { 'pending': 0, 'refs': [] },
           'error': null,

@@ -94,7 +94,7 @@
 		E129D94B90ECDAF88591F8AC /* Pods_needs_pspdfkit_TeacherE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18305F11CBA93E3509A535AA /* Pods_needs_pspdfkit_TeacherE2ETests.framework */; };
 		E801ED7C2475BADB00DF2CB9 /* DiscussionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */; };
 		E814FC032499273B00CD208A /* SpeedGraderRubricUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */; };
-		E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */; };
+		E814FC0524993ED900CD208A /* DiscussionEditorE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E814FC0424993ED900CD208A /* DiscussionEditorE2ETests.swift */; };
 		E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829684E24746C88007E7F23 /* PagesUITests.swift */; };
 		E838B69324FD80D800937165 /* SpeedGraderFilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A17D6724F93D1C00B396EB /* SpeedGraderFilesUITests.swift */; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -485,7 +485,7 @@
 		D9DE56EC255540C900CF8B22 /* TeacherSyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherSyllabusTabViewController.swift; sourceTree = "<group>"; };
 		E801ED7B2475BADB00DF2CB9 /* DiscussionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsUITests.swift; sourceTree = "<group>"; };
 		E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderRubricUITests.swift; sourceTree = "<group>"; };
-		E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditE2ETests.swift; sourceTree = "<group>"; };
+		E814FC0424993ED900CD208A /* DiscussionEditorE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditorE2ETests.swift; sourceTree = "<group>"; };
 		E829684E24746C88007E7F23 /* PagesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesUITests.swift; sourceTree = "<group>"; };
 		E8315D3622FC9E60003CD27C /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -856,7 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				E841D8BA23D6472F00685A63 /* Info.plist */,
-				E814FC0424993ED900CD208A /* DiscussionEditE2ETests.swift */,
+				E814FC0424993ED900CD208A /* DiscussionEditorE2ETests.swift */,
 				E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */,
 				E8F4B66524EECA10003FBAFD /* ContextCard.swift */,
 			);
@@ -1598,7 +1598,7 @@
 			files = (
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */,
-				E814FC0524993ED900CD208A /* DiscussionEditE2ETests.swift in Sources */,
+				E814FC0524993ED900CD208A /* DiscussionEditorE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

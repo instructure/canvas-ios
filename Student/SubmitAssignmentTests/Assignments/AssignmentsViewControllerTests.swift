@@ -39,14 +39,14 @@ class AssignmentsViewControllerTests: SubmitAssignmentTestCase {
             controller.assignments.useCase.request,
             value: [
                 .make(
-                    id: "1",
                     course_id: ID(courseID),
+                    id: "1",
                     name: "Assignment 1",
                     submission_types: [.online_upload]
                 ),
                 .make(
-                    id: "2",
                     course_id: ID(courseID),
+                    id: "2",
                     name: "Assignment 2",
                     submission_types: [.online_upload]
                 ),

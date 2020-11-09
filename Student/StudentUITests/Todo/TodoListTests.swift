@@ -26,7 +26,7 @@ class TodoListTests: CoreUITestCase {
         mockData(GetCoursesRequest(enrollmentState: .active), value: [ baseCourse ])
         mockData(GetGroupsRequest(context: .currentUser), value: [])
         mockData(GetTodosRequest(), value: [
-            APITodo.make(assignment: .make(name: "One", due_at: Date().add(.day, number: 1))),
+            APITodo.make(assignment: .make(due_at: Date().add(.day, number: 1), name: "One")),
             APITodo.make(assignment: .make(id: "2", name: "Two")),
         ])
 

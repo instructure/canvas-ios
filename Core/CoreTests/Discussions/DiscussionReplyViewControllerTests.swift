@@ -58,17 +58,17 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
         ))
         api.mock(controller.group, value: .make())
         api.mock(controller.topic, value: .make(
-            id: 1,
+            allow_rating: true,
             assignment_id: 1,
-            title: "What is a sandwich?",
-            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            author: .make(display_name: "Instructor", pronouns: "she/her"),
             html_url: baseURL.appendingPathComponent("courses/1/discussion_topics/1"),
+            id: 1,
+            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            permissions: .make(reply: true),
             posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
             published: true,
-            author: .make(display_name: "Instructor", pronouns: "she/her"),
-            permissions: .make(reply: true),
-            allow_rating: true,
-            sort_by_rating: true
+            sort_by_rating: true,
+            title: "What is a sandwich?"
         ))
     }
 

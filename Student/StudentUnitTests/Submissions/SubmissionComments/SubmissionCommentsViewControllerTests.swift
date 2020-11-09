@@ -68,8 +68,8 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
             user_id: userID
         ))
         api.mock(controller.presenter!.assignment, value: .make(
-            id: ID(assignmentID),
-            course_id: ID(context.id)
+            course_id: ID(context.id),
+            id: ID(assignmentID)
         ))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 6)

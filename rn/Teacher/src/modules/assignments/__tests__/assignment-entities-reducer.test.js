@@ -24,12 +24,10 @@ import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 import SubmissionActions from '../../submissions/list/actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
-import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 import * as template from '../../../__templates__'
 
 const { refreshSubmissions, refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 const { refreshQuiz } = QuizDetailsActions
-const { refreshDiscussionEntries } = DiscussionDetailsActions
 
 test('refresh assignments', async () => {
   const groups = [template.assignmentGroup()]
@@ -194,74 +192,6 @@ test('refresh quiz with no assignment', () => {
     assignments({}, resolved)
   ).toEqual({
 
-  })
-})
-
-test('refreshDiscussionEntries', () => {
-  const assignment = template.assignment({
-    id: '1',
-    name: 'Old',
-  })
-  const initialState = {
-    '1': {
-      data: assignment,
-      pending: 0,
-      submissions: { refs: [], pending: 0 },
-      submissionSummary: { data: {}, pending: 0, error: null },
-      gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
-    },
-  }
-  const refreshedAssignment = {
-    ...assignment,
-    name: 'Refreshed',
-  }
-  const resolved = {
-    type: refreshDiscussionEntries.toString(),
-    payload: {
-      result: [{}, {}, { data: refreshedAssignment }],
-      courseID: '1',
-      discussionID: '1',
-    },
-  }
-  expect(
-    assignments(initialState, resolved)
-  ).toEqual({
-    '1': {
-      ...initialState['1'],
-      data: refreshedAssignment,
-    },
-  })
-})
-
-test('refreshDiscussionEntries with no assignment', () => {
-  const assignment = null
-  const initialState = {
-    '1': {
-      data: assignment,
-      pending: 0,
-      submissions: { refs: [], pending: 0 },
-      submissionSummary: { data: {}, pending: 0, error: null },
-      gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
-    },
-  }
-  const refreshedAssignment = null
-  const resolved = {
-    type: refreshDiscussionEntries.toString(),
-    payload: {
-      result: [{}, {}, { data: refreshedAssignment }],
-      courseID: '1',
-      discussionID: '1',
-    },
-  }
-  expect(
-    assignments(initialState, resolved)
-  ).toEqual({
-    '1': {
-      ...initialState['1'],
-      data: refreshedAssignment,
-    },
   })
 })
 

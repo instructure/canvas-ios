@@ -222,21 +222,21 @@ class SubmissionButtonPresenterTests: StudentTestCase {
     }
 
     func testPickFilesEmptyExtensions() {
-        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: []))
+        let a = Assignment.make(from: .make(allowed_extensions: [], submission_types: [ .online_upload ]))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [.online_upload])
         let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])
     }
 
     func testPickFilesFilesOnly() {
-        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "txt" ]))
+        let a = Assignment.make(from: .make(allowed_extensions: [ "txt" ], submission_types: [ .online_upload ]))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
         let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files])
     }
 
     func testPickFilesImages() {
-        let a = Assignment.make(from: .make(submission_types: [ .online_upload ], allowed_extensions: [ "jpg" ]))
+        let a = Assignment.make(from: .make(allowed_extensions: [ "jpg" ], submission_types: [ .online_upload ]))
         presenter.pickFiles(for: a, selectedSubmissionTypes: [ .online_upload ])
         let filePicker = (router.presented as? UINavigationController)?.viewControllers.first as? FilePickerViewController
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])

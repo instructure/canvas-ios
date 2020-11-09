@@ -25,8 +25,8 @@ class SubmissionCommentsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     lazy var assignment = mock(assignment: .make(
-            submission_types: [ .online_upload ],
-            allowed_extensions: [ "pdf" ]
+        allowed_extensions: [ "pdf" ],
+        submission_types: [ .online_upload ]
     ))
 
     func testFileComments() {

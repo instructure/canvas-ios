@@ -48,5 +48,19 @@ public struct SearchBarView: UIViewRepresentable {
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
         }
+
+        public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+            searchBar.setShowsCancelButton(true, animated: true)
+        }
+
+        public func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+            searchBar.setShowsCancelButton(false, animated: true)
+        }
+
+        public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.text = ""
+            self.searchBar(searchBar, textDidChange: "")
+            searchBar.endEditing(true)
+        }
     }
 }

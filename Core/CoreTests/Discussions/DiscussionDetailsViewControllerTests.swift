@@ -69,7 +69,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             "course_1": "#008",
             "group_1": "#080",
         ]))
-        api.mock(GetAssignment(courseID: "1", assignmentID: "1"), value: .make(points_possible: 95))
+        let assignment = APIAssignment.make(points_possible: 95)
+        api.mock(GetAssignment(courseID: "1", assignmentID: "1"), value: assignment)
         api.mock(controller.course, value: .make())
         api.mock(controller.entries, value: .make(
             participants: [
@@ -98,20 +99,22 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         api.mock(controller.groups, value: [ .make(course_id: 1) ])
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
-            id: 1,
+            allow_rating: true,
+            assignment: assignment,
             assignment_id: 1,
-            title: "What is a sandwich?",
-            message: "<p>Is the cube rule of food valid? What's your take?</p>",
-            html_url: baseURL.appendingPathComponent("courses/1/discussion_topics/1"),
-            posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
-            published: true,
             attachments: [.make()],
             author: .make(display_name: "Instructor", pronouns: "she/her"),
-            permissions: .make(attach: true, update: true, reply: true, delete: true),
-            allow_rating: true,
-            sort_by_rating: true,
+            html_url: baseURL.appendingPathComponent("courses/1/discussion_topics/1"),
+            id: 1,
             is_section_specific: true,
-            sections: [ .make() ]
+            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            permissions: .make(attach: true, update: true, reply: true, delete: true),
+            posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
+            published: true,
+            sections: [ .make() ],
+            sort_by_rating: true,
+            subscribed: true,
+            title: "What is a sandwich?"
         ))
     }
 
@@ -167,7 +170,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssert(controller.optionsButton == controller.navigationItem.rightBarButtonItem)
         _ = controller.optionsButton.target?.perform(controller.optionsButton.action)
         var sheet = router.presented as? BottomSheetPickerViewController
-        XCTAssertEqual(sheet?.actions.count, 4)
+        XCTAssertEqual(sheet?.actions.count, 5)
 
         XCTAssertEqual(sheet?.actions[0].title, "Mark All as Read")
         api.mock(MarkDiscussionEntriesReadRequest(context: course, topicID: "1", isRead: true, isForcedRead: true), response: emptyResponse)
@@ -177,13 +180,25 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         sheet?.actions[1].action()
         XCTAssert(getBodyHTML().contains(unread))
 
-        XCTAssertEqual(sheet?.actions[2].title, "Edit")
+        XCTAssertEqual(sheet?.actions[2].title, "Unsubscribe")
+        api.mock(SubscribeDiscussionTopicRequest(context: course, topicID: "1", method: .delete), response: emptyResponse)
         sheet?.actions[2].action()
+        _ = controller.optionsButton.target?.perform(controller.optionsButton.action)
+        var sheet2 = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet2?.actions[1].title, "Subscribe")
+        api.mock(SubscribeDiscussionTopicRequest(context: course, topicID: "1", method: .put), response: emptyResponse)
+        sheet2?.actions[1].action()
+        _ = controller.optionsButton.target?.perform(controller.optionsButton.action)
+        sheet2 = router.presented as? BottomSheetPickerViewController
+        XCTAssertEqual(sheet2?.actions[1].title, "Unsubscribe")
+
+        XCTAssertEqual(sheet?.actions[3].title, "Edit")
+        sheet?.actions[3].action()
         XCTAssert(router.lastRoutedTo(.parse("courses/1/discussion_topics/1/edit")))
 
         api.mock(DeleteDiscussionTopicRequest(context: course, topicID: "1"), error: NSError.internalError())
-        XCTAssertEqual(sheet?.actions[3].title, "Delete")
-        sheet?.actions[3].action()
+        XCTAssertEqual(sheet?.actions[4].title, "Delete")
+        sheet?.actions[4].action()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Internal Error")
 
         api.mock(RateDiscussionEntry(context: course, topicID: "1", entryID: "1", isLiked: true), response: emptyResponse)
@@ -274,18 +289,18 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         ))
         api.mock(GetContextPermissions(context: group, permissions: [ .postToForum ]), value: .make(post_to_forum: true))
         api.mock(GetDiscussionTopic(context: course, topicID: "1"), value: .make(
-            id: 1,
             assignment_id: 1,
-            title: "What is a sandwich?",
             group_category_id: 7,
-            group_topic_children: [ .make(id: "2", group_id: "1") ]
+            group_topic_children: [ .make(id: "2", group_id: "1") ],
+            id: 1,
+            title: "What is a sandwich?"
         ))
         api.mock(GetDiscussionTopic(context: group, topicID: "2"), value: .make(
-            id: 2,
             assignment_id: 1,
-            title: "What is a sandwich? - Group One",
+            html_url: baseURL.appendingPathComponent("groups/1/discussion_topics/2"),
+            id: 2,
             message: "<p>Is the cube rule of food valid? What's your take?</p>",
-            html_url: baseURL.appendingPathComponent("groups/1/discussion_topics/2")
+            title: "What is a sandwich? - Group One"
         ))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, group.canvasContextID)
@@ -313,12 +328,12 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             ]
         ))
         api.mock(controller.topic, value: .make(
-            id: 1,
             assignment_id: 1,
-            title: "What is a sandwich?",
-            message: "<p>Is the cube rule of food valid? What's your take?</p>",
             group_category_id: 7,
-            group_topic_children: [ .make(id: "2", group_id: "1") ]
+            group_topic_children: [ .make(id: "2", group_id: "1") ],
+            id: 1,
+            message: "<p>Is the cube rule of food valid? What's your take?</p>",
+            title: "What is a sandwich?"
         ))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, course.canvasContextID)
@@ -338,11 +353,11 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             view: []
         ))
         api.mock(controller.topic, value: .make(
-            id: 1,
             assignment_id: 1,
-            title: "What is a sandwich?",
             group_category_id: 7,
-            group_topic_children: [ .make(id: "2", group_id: "1") ]
+            group_topic_children: [ .make(id: "2", group_id: "1") ],
+            id: 1,
+            title: "What is a sandwich?"
         ))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.context.canvasContextID, "course_1")
@@ -378,15 +393,25 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             new_entries: []
         ))
         api.mock(controller.topic, value: .make(
-            id: 1,
             assignment_id: 1,
-            title: "What is a sandwich?",
-            permissions: .make(attach: true, update: false, reply: true, delete: false)
+            id: 1,
+            permissions: .make(attach: true, update: false, reply: true, delete: false),
+            title: "What is a sandwich?"
         ))
         controller.view.layoutIfNeeded()
         controller.showMoreOptions(for: "2")
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.count, 1)
         XCTAssertEqual(sheet?.actions.first?.title, "Mark as Unread")
+    }
+
+    func testDeletedAfterShown() throws {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        databaseClient.delete(controller.topic.all)
+        try databaseClient.save()
+
+        XCTAssert(router.dismissed == controller)
     }
 }

@@ -36,7 +36,6 @@ import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 import { quizzes } from '../modules/quizzes/reducer'
 import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/submissions/reducer'
-import { discussions } from '../modules/discussions/reducer'
 import inbox from '../modules/inbox/reducer'
 import { groups } from '../modules/groups/group-entities-reducer'
 import { asyncActions } from './actions/async-tracker'
@@ -55,7 +54,6 @@ const entities = combineReducers({
   submissions: composeReducers(submissions, quizAssignmentSubmissions),
   quizzes,
   quizSubmissions,
-  discussions,
   courseDetailsTabSelectedRow,
 })
 

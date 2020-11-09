@@ -114,7 +114,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
         optionsButton.accessibilityLabel = NSLocalizedString("Options", bundle: .core, comment: "")
         optionsButton.accessibilityIdentifier = "DiscussionDetails.options"
-        optionsButton.isEnabled = false
 
         pointsView.isHidden = true
         publishedView.isHidden = true
@@ -152,8 +151,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 : NSLocalizedString("Discussion Replies", bundle: .core, comment: "")
             navigationItem.rightBarButtonItem = nil
         }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(topicEdited(_:)), name: .init("topic-edit"), object: nil)
 
         colors.refresh()
         if context.contextType == .course {
@@ -216,10 +213,16 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func update() {
         guard fixStudentGroupTopic() else { return }
+
+        if topic.state == .empty {
+            // Topic was deleted, go back.
+            env.router.dismiss(self)
+        }
+
         let courseID = context.contextType == .group ? group.first?.courseID : context.id
         if assignment?.useCase.assignmentID != topic.first?.assignmentID, let courseID = courseID {
             assignment = topic.first?.assignmentID.map {
-                env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0)) { [weak self] in
+                env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0, include: [ .overrides ])) { [weak self] in
                     self?.update()
                 }
             }
@@ -235,8 +238,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         } else {
             courseSectionsView.isHidden = true
         }
-
-        optionsButton.isEnabled = hasTopicOptions
 
         let pending = topic.pending || entries.pending
         let error = topic.error ?? entries.error
@@ -292,11 +293,6 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         assignment?.refresh(force: true)
         permissions.refresh(force: true)
         groups.exhaust(force: true)
-    }
-
-    @objc func topicEdited(_ notification: NSNotification) {
-        guard notification.userInfo?["id"] as? String == topicID else { return }
-        topic.refresh(force: true)
     }
 
     var canLike: Bool {
@@ -481,12 +477,6 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
 }
 
 extension DiscussionDetailsViewController {
-    var hasTopicOptions: Bool {
-        !entries.isEmpty ||
-        topic.first?.canUpdate == true ||
-        topic.first?.canDelete == true
-    }
-
     @objc func showTopicOptions() {
         guard let topic = topic.first else { return }
 
@@ -507,6 +497,23 @@ extension DiscussionDetailsViewController {
                 accessibilityIdentifier: "DiscussionDetails.markAllUnread"
             ) { [weak self] in
                 self?.markAllRead(isRead: false)
+            }
+        }
+        if topic.subscribed {
+            sheet.addAction(
+                image: .noSolid,
+                title: NSLocalizedString("Unsubscribe"),
+                accessibilityIdentifier: "DiscussionDetails.unsubscribe"
+            ) { [weak self] in
+                self?.subscribe(false)
+            }
+        } else {
+            sheet.addAction(
+                image: .checkSolid,
+                title: NSLocalizedString("Subscribe"),
+                accessibilityIdentifier: "DiscussionDetails.subscribe"
+            ) { [weak self] in
+                self?.subscribe(true)
             }
         }
         if topic.canUpdate {
@@ -532,7 +539,7 @@ extension DiscussionDetailsViewController {
 
     func editTopic() {
         let path = "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)/edit"
-        env.router.route(to: path, from: self, options: .modal(.formSheet, embedInNav: true))
+        env.router.route(to: path, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
     }
 
     func markAllRead(isRead: Bool) {
@@ -548,13 +555,14 @@ extension DiscussionDetailsViewController {
         } }
     }
 
+    func subscribe(_ subscribed: Bool) {
+        SubscribeDiscussionTopic(context: context, topicID: topicID, subscribed: subscribed).fetch()
+    }
+
     func deleteTopic() {
         DeleteDiscussionTopic(context: context, topicID: topicID).fetch { [weak self] _, _, error in performUIUpdate {
             guard let self = self else { return }
             if let error = error { return self.showError(error) }
-            NotificationCenter.default.post(name: .init("topic-delete"), object: nil, userInfo: [
-                "id": self.topicID,
-            ])
             self.env.router.dismiss(self)
         } }
     }

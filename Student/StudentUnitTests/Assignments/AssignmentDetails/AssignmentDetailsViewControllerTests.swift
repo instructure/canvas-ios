@@ -91,7 +91,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
     func testHideDescription() {
         mockCourse()
-        let a = APIAssignment.make( unlock_at: Date().addDays(1), locked_for_user: true )
+        let a = APIAssignment.make( locked_for_user: true, unlock_at: Date().addDays(1) )
         api.mock(viewController.presenter!.assignments, value: a)
 
         load()
@@ -182,8 +182,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
     func testUpdateGradeCellWorkflowStateNeedsGrading() {
         mockCourse()
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: "10",
                 grade_matches_current_submission: false,
@@ -281,8 +281,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: "10",
                 grade_matches_current_submission: false,
@@ -303,8 +303,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: "10",
                 grade_matches_current_submission: false,
@@ -325,8 +325,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 score: nil,
                 submission_type: .discussion_topic,
@@ -346,8 +346,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 excused: true,
                 workflow_state: .pending_review
@@ -365,8 +365,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: "10",
                 score: 10,
@@ -387,15 +387,15 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
+            score_statistics: APIAssignmentScoreStatistics.make(mean: 5.0, min: 1.0, max: 10.0),
             submission: .make(
                 grade: "10",
                 score: 10,
                 submission_type: .discussion_topic,
                 workflow_state: .graded
-            ),
-            score_statistics: APIAssignmentScoreStatistics.make(mean: 5.0, min: 1.0, max: 10.0)
+            )
         )
         api.mock(viewController.presenter!.assignments, value: assignment)
         load()
@@ -410,8 +410,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: nil,
                 score: nil,
@@ -432,8 +432,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)
         let assignment = apiAssignment ?? APIAssignment.make(
-            id: ID(assignmentID),
             course_id: ID(courseID),
+            id: ID(assignmentID),
             submission: .make(
                 grade: "10",
                 grade_matches_current_submission: false,

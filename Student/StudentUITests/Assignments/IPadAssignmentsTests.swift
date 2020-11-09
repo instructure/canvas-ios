@@ -41,14 +41,14 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
 
     func makePointsTextAssignment(submissions: [APISubmission]? = nil) -> APIAssignment {
         return APIAssignment.make(
-            id: 2,
             course_id: firstCourse.api.id,
+            due_at: nil,
+            grading_type: .points,
+            id: 2,
             name: "Points Text Assignment",
             points_possible: 15,
-            due_at: nil,
             submission: submissions?.last ?? APISubmission.make(submitted_at: nil, workflow_state: .unsubmitted),
             submissions: submissions,
-            grading_type: .points,
             submission_types: [.online_text_entry]
         )
     }
@@ -68,25 +68,25 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
             workflow_state: .graded
         )
         let letterGradeTextAssignment = MiniAssignment(.make(
-            id: 3,
             course_id: firstCourse.api.id,
+            due_at: now.addDays(1),
+            grading_type: .letter_grade,
+            id: 3,
             name: "Letter Grade Text Assignment",
             points_possible: 20,
-            due_at: now.addDays(1),
             submission: letterGradeSubmission,
             submissions: [letterGradeSubmission],
-            grading_type: .letter_grade,
             submission_types: [.online_text_entry]
-            ), state: mocked)
+        ), state: mocked)
         let percentFileAssignment = MiniAssignment(.make(
-            id: 4,
             course_id: firstCourse.api.id,
-            name: "Percent File Assignment",
-            points_possible: 25.0,
             due_at: now.addDays(1),
             grading_type: .percent,
+            id: 4,
+            name: "Percent File Assignment",
+            points_possible: 25.0,
             submission_types: [.online_upload]
-            ), state: mocked)
+        ), state: mocked)
         firstCourse.removeAllAssignments()
         firstCourse.add(assignment: pointsTextAssignment)
         firstCourse.add(assignment: letterGradeTextAssignment)

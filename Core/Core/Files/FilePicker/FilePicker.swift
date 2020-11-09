@@ -27,7 +27,8 @@ public protocol FilePickerDelegate: ErrorViewController {
 public class FilePicker: NSObject {
     let env = AppEnvironment.shared
     public weak var delegate: FilePickerDelegate?
-    public var action: ((String) -> Void)?
+    public var batchAction: ((String) -> Void)?
+    public var singleAction: ((Result<URL, Error>) -> Void)?
 
     public init(delegate: FilePickerDelegate? = nil) {
         self.delegate = delegate
@@ -141,7 +142,7 @@ extension FilePicker: UIDocumentPickerDelegate {
 
 extension FilePicker: FilePickerControllerDelegate {
     public func pickAttachments(from: UIViewController, action: @escaping (String) -> Void) {
-        self.action = action
+        batchAction = action
         let uiViewController = FilePickerViewController.create()
         uiViewController.delegate = self
         uiViewController.title = NSLocalizedString("Attachments")
@@ -164,7 +165,27 @@ extension FilePicker: FilePickerControllerDelegate {
 
     public func submit(_ controller: FilePickerViewController) {
         env.router.dismiss(controller) {
-            self.action?(controller.batchID)
+            self.batchAction?(controller.batchID)
         }
     }
+}
+
+extension FilePicker: FilePickerDelegate {
+    public func pickAttachment(from: UIViewController, action: @escaping (Result<URL, Error>) -> Void) {
+        singleAction = action
+        delegate = self
+        pick(from: from)
+    }
+
+    public func showError(_ error: Error) {
+        singleAction?(.failure(error))
+    }
+
+    public func filePicker(didPick url: URL) {
+        singleAction?(.success(url))
+    }
+
+    // Should go unused
+    public func filePicker(didRetry file: File) {}
+    public func showAlert(title: String?, message: String?) {}
 }

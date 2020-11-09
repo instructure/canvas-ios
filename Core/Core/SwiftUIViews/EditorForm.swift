@@ -30,26 +30,38 @@ public struct EditorForm<Content: View>: View {
     public var body: some View {
         ZStack {
             ScrollView { VStack(alignment: .leading, spacing: 0) {
+                HStack { Spacer() } // fill width
                 content
             } }
                 .disabled(isSpinning)
             if isSpinning {
-                CircleProgress()
+                VStack {
+                    HStack { Spacer() }
+                    Spacer()
+                    CircleProgress()
+                    Spacer()
+                }
+                    .background(Color.backgroundGrouped.opacity(0.5).edgesIgnoringSafeArea(.all))
             }
         }
             .avoidKeyboardArea()
-            .background(Color.backgroundGrouped)
+            .background(Color.backgroundGrouped.edgesIgnoringSafeArea(.all))
             .navigationBarStyle(.modal)
     }
 }
 
-public struct EditorSection<Content: View>: View {
+public struct EditorSection<Label: View, Content: View>: View {
     public let content: Content
-    public let label: Text
+    public let label: Label
 
-    public init(label: Text = Text(verbatim: ""), @ViewBuilder content: () -> Content) {
+    public init(label: Label, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.label = label
+    }
+
+    public init(@ViewBuilder content: () -> Content) where Label == Text {
+        self.content = content()
+        self.label = Text(verbatim: "")
     }
 
     public var body: some View { SwiftUI.Group {
@@ -60,6 +72,22 @@ public struct EditorSection<Content: View>: View {
         content.background(Color.backgroundLightest)
         Divider()
     } }
+}
+
+public struct EditorRow<Content: View>: View {
+    public let content: Content
+
+    public init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
+    public var body: some View {
+        HStack(spacing: 0) { content }
+            .font(.semibold16).foregroundColor(.textDarkest)
+            .padding(.horizontal, 16).padding(.vertical, 12)
+            .frame(minHeight: 52)
+            .background(Color.backgroundLightest)
+    }
 }
 
 public struct ButtonRow<Content: View>: View {
@@ -73,9 +101,7 @@ public struct ButtonRow<Content: View>: View {
 
     public var body: some View {
         Button(action: action, label: {
-            HStack(spacing: 0) { content }
-                .font(.semibold16).foregroundColor(.textDarkest)
-                .padding(16)
+            EditorRow { content }
         })
     }
 }
@@ -92,15 +118,42 @@ public struct TextFieldRow: View {
     }
 
     public var body: some View {
-        HStack {
+        EditorRow {
             label
-                .font(.semibold16).foregroundColor(.textDarkest)
                 .accessibility(hidden: true)
+            Spacer()
             TextField(placeholder, text: $text)
                 .multilineTextAlignment(.trailing)
                 .font(.regular16).foregroundColor(.textDarkest)
                 .accessibility(label: label)
         }
-            .padding(16)
     }
+}
+
+public struct DoubleFieldRow: View {
+    public let label: Text
+    public let placeholder: String
+    @Binding public var value: Double?
+
+    public init(label: Text, placeholder: String, value: Binding<Double?>) {
+        self.label = label
+        self.placeholder = placeholder
+        self._value = value
+    }
+
+    public var body: some View {
+        TextFieldRow(label: label, placeholder: placeholder, text: Binding(
+            get: { value.flatMap { DoubleFieldRow.formatter.string(from: NSNumber(value: $0)) } ?? "" },
+            set: { value = DoubleFieldRow.formatter.number(from: $0)?.doubleValue }
+        ))
+            .keyboardType(.decimalPad)
+    }
+
+    static var formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        formatter.isLenient = true
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
 }

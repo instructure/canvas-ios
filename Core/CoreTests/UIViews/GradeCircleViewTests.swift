@@ -81,8 +81,8 @@ class GradeCircleViewTests: XCTestCase {
 
     func testItUpdatesCircle() {
         let a = Assignment.make(from: .make(
-            points_possible: 100,
-            grading_type: .points
+            grading_type: .points,
+            points_possible: 100
         ))
         a.submission = Submission.make(from: .make(
             grade: "80",
@@ -97,8 +97,8 @@ class GradeCircleViewTests: XCTestCase {
 
     func testItShowsLatePenalty() {
         let a = Assignment.make(from: .make(
-            points_possible: 100,
-            grading_type: .points
+            grading_type: .points,
+            points_possible: 100
         ))
         a.submission = Submission.make(from: .make(
             grade: "80",
@@ -116,8 +116,8 @@ class GradeCircleViewTests: XCTestCase {
 
     func testDisplayGrade() {
         let a = Assignment.make(from: .make(
-            points_possible: 100,
-            grading_type: .points
+            grading_type: .points,
+            points_possible: 100
         ))
         a.submission = Submission.make(from: .make(
             grade: "80",
@@ -140,8 +140,8 @@ class GradeCircleViewTests: XCTestCase {
 
     func testItRendersGradeInformation() {
         let a = Assignment.make(from: .make(
-            points_possible: 100,
-            grading_type: .points
+            grading_type: .points,
+            points_possible: 100
         ))
         a.submission = Submission.make(from: .make(
             grade: "80",

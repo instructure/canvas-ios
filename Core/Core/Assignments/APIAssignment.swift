@@ -20,36 +20,39 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/assignments.html#Assignment
 public struct APIAssignment: Codable, Equatable {
-    let id: ID
+    let allowed_attempts: Int?
+    let allowed_extensions: [String]?
+    let all_dates: [APIAssignmentDate]?
+    let anonymize_students: Bool?
+    let assignment_group_id: ID?
     let course_id: ID
-    let quiz_id: ID?
-    let name: String
     let description: String?
-    let points_possible: Double?
+    let discussion_topic: APIDiscussionTopic?
     let due_at: Date?
-    var html_url: URL
+    let external_tool_tag_attributes: APIExternalToolTagAttributes?
     let grade_group_students_individually: Bool?
     let grading_type: GradingType
-    let submission_types: [SubmissionType]
-    let allowed_extensions: [String]?
-    let position: Int
-    let unlock_at: Date?
-    let lock_at: Date?
+    let group_category_id: ID?
+    let has_overrides: Bool?
+    var html_url: URL
+    let id: ID
     let locked_for_user: Bool?
+    let lock_at: Date?
     let lock_explanation: String?
-    let url: URL?
-    let discussion_topic: APIDiscussionTopic?
-    var rubric: [APIRubric]?
-    var submission: APIList<APISubmission>?
-    let use_rubric_for_grading: Bool?
-    var rubric_settings: APIRubricSettings?
-    let assignment_group_id: ID?
-    let all_dates: [APIAssignmentDate]?
-    let allowed_attempts: Int?
-    let external_tool_tag_attributes: APIExternalToolTagAttributes?
-    let score_statistics: APIAssignmentScoreStatistics?
-    let anonymize_students: Bool?
     let moderated_grading: Bool?
+    let name: String
+    let overrides: [APIAssignmentOverride]?
+    let points_possible: Double?
+    let position: Int
+    let quiz_id: ID?
+    var rubric: [APIRubric]?
+    var rubric_settings: APIRubricSettings?
+    let score_statistics: APIAssignmentScoreStatistics?
+    var submission: APIList<APISubmission>?
+    let submission_types: [SubmissionType]
+    let unlock_at: Date?
+    let url: URL?
+    let use_rubric_for_grading: Bool?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#AssignmentDate
@@ -60,6 +63,19 @@ public struct APIAssignmentDate: Codable, Equatable {
     let due_at: Date?
     let unlock_at: Date?
     let lock_at: Date?
+}
+
+// https://canvas.instructure.com/doc/api/assignments.html#AssignmentOverride
+public struct APIAssignmentOverride: Codable, Equatable {
+    let assignment_id: ID
+    let course_section_id: ID?
+    let due_at: Date?
+    let group_id: ID?
+    let id: ID
+    let lock_at: Date?
+    let student_ids: [ID]?
+    let title: String
+    let unlock_at: Date?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#ExternalToolTagAttributes
@@ -73,44 +89,43 @@ public struct APIAssignmentScoreStatistics: Codable, Equatable {
     let max: Double
 }
 
-public enum GradingType: String, Codable {
-    case pass_fail, percent, letter_grade, gpa_scale, points, not_graded
-}
-
 #if DEBUG
 extension APIAssignment {
     public static func make(
-        id: ID = "1",
+        allowed_attempts: Int? = -1,
+        allowed_extensions: [String]? = nil,
+        all_dates: [APIAssignmentDate]? = nil,
+        anonymize_students: Bool? = nil,
+        assignment_group_id: ID? = nil,
         course_id: ID = "1",
-        quiz_id: ID? = nil,
-        name: String = "some assignment",
         description: String? = "<p>Do the following:</p>...",
-        points_possible: Double? = 10,
+        discussion_topic: APIDiscussionTopic? = nil,
         due_at: Date? = nil,
-        html_url: URL? = nil,
-        submission: APISubmission? = .make(submitted_at: nil, workflow_state: .unsubmitted),
-        submissions: [APISubmission]? = nil,
+        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil,
         grade_group_students_individually: Bool? = nil,
         grading_type: GradingType = .points,
-        submission_types: [SubmissionType] = [.online_text_entry],
-        allowed_extensions: [String]? = nil,
-        position: Int = 0,
-        unlock_at: Date? = nil,
-        lock_at: Date? = nil,
+        group_category_id: String? = nil,
+        has_overrides: Bool? = false,
+        html_url: URL? = nil,
+        id: ID = "1",
         locked_for_user: Bool? = false,
+        lock_at: Date? = nil,
         lock_explanation: String? = nil,
-        url: URL? = nil,
-        discussion_topic: APIDiscussionTopic? = nil,
+        moderated_grading: Bool? = nil,
+        name: String = "some assignment",
+        overrides: [APIAssignmentOverride]? = nil,
+        points_possible: Double? = 10,
+        position: Int = 0,
+        quiz_id: ID? = nil,
         rubric: [APIRubric]? = nil,
-        use_rubric_for_grading: Bool? = nil,
         rubric_settings: APIRubricSettings? = .make(),
-        assignment_group_id: ID? = nil,
-        all_dates: [APIAssignmentDate]? = nil,
-        allowed_attempts: Int? = -1,
-        external_tool_tag_attributes: APIExternalToolTagAttributes? = nil,
         score_statistics: APIAssignmentScoreStatistics? = nil,
-        anonymize_students: Bool? = nil,
-        moderated_grading: Bool? = nil
+        submission: APISubmission? = .make(submitted_at: nil, workflow_state: .unsubmitted),
+        submissions: [APISubmission]? = nil,
+        submission_types: [SubmissionType] = [.online_text_entry],
+        unlock_at: Date? = nil,
+        url: URL? = nil,
+        use_rubric_for_grading: Bool? = nil
     ) -> APIAssignment {
 
         var submissionList: APIList<APISubmission>?
@@ -121,36 +136,39 @@ extension APIAssignment {
         }
 
         return APIAssignment(
-            id: id,
+            allowed_attempts: allowed_attempts,
+            allowed_extensions: allowed_extensions,
+            all_dates: all_dates,
+            anonymize_students: anonymize_students,
+            assignment_group_id: assignment_group_id,
             course_id: course_id,
-            quiz_id: quiz_id,
-            name: name,
             description: description,
-            points_possible: points_possible,
+            discussion_topic: discussion_topic,
             due_at: due_at,
-            html_url: html_url ?? URL(string: "/courses/\(course_id)/assignments/\(id)")!,
+            external_tool_tag_attributes: external_tool_tag_attributes,
             grade_group_students_individually: grade_group_students_individually,
             grading_type: grading_type,
-            submission_types: submission_types,
-            allowed_extensions: allowed_extensions,
-            position: position,
-            unlock_at: unlock_at,
-            lock_at: lock_at,
+            group_category_id: ID(group_category_id),
+            has_overrides: has_overrides,
+            html_url: html_url ?? URL(string: "/courses/\(course_id)/assignments/\(id)")!,
+            id: id,
             locked_for_user: locked_for_user,
+            lock_at: lock_at,
             lock_explanation: lock_explanation,
-            url: url,
-            discussion_topic: discussion_topic,
+            moderated_grading: moderated_grading,
+            name: name,
+            overrides: overrides,
+            points_possible: points_possible,
+            position: position,
+            quiz_id: quiz_id,
             rubric: rubric,
-            submission: submissionList,
-            use_rubric_for_grading: use_rubric_for_grading,
             rubric_settings: rubric_settings,
-            assignment_group_id: assignment_group_id,
-            all_dates: all_dates,
-            allowed_attempts: allowed_attempts,
-            external_tool_tag_attributes: external_tool_tag_attributes,
             score_statistics: score_statistics,
-            anonymize_students: anonymize_students,
-            moderated_grading: moderated_grading
+            submission: submissionList,
+            submission_types: submission_types,
+            unlock_at: unlock_at,
+            url: url,
+            use_rubric_for_grading: use_rubric_for_grading
         )
     }
 }
@@ -171,6 +189,32 @@ extension APIAssignmentDate {
             due_at: due_at,
             unlock_at: unlock_at,
             lock_at: lock_at
+        )
+    }
+}
+
+extension APIAssignmentOverride {
+    public func make(
+        assignment_id: ID,
+        course_section_id: ID?,
+        due_at: Date?,
+        group_id: ID?,
+        id: ID,
+        lock_at: Date?,
+        student_ids: [ID]?,
+        title: String,
+        unlock_at: Date?
+    ) -> APIAssignmentOverride {
+        APIAssignmentOverride(
+            assignment_id: assignment_id,
+            course_section_id: course_section_id,
+            due_at: due_at,
+            group_id: group_id,
+            id: id,
+            lock_at: lock_at,
+            student_ids: student_ids,
+            title: title,
+            unlock_at: unlock_at
         )
     }
 }
@@ -233,16 +277,27 @@ public struct GetAssignmentRequest: APIRequestable {
 }
 
 struct APIAssignmentParameters: Codable, Equatable {
-    let name: String
-    let description: String?
-    let points_possible: Double
+    // let allowed_extensions: [String]?
+    let assignment_overrides: [APIAssignmentOverride]?
+    // let description: String?
     let due_at: Date?
-    let submission_types: [SubmissionType]
-    let allowed_extensions: [String]
-    let published: Bool
-    let grading_type: GradingType
+    let grading_type: GradingType?
     let lock_at: Date?
+    // let name: String
+    let points_possible: Double?
+    // let published: Bool?
+    // let submission_types: [SubmissionType]?
     let unlock_at: Date?
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(assignment_overrides, forKey: .assignment_overrides)
+        try container.encode(due_at, forKey: .due_at) // encode null to unset
+        try container.encodeIfPresent(grading_type, forKey: .grading_type)
+        try container.encode(lock_at, forKey: .lock_at) // encode null to unset
+        try container.encode(points_possible, forKey: .points_possible)
+        try container.encode(unlock_at, forKey: .unlock_at) // encode null to unset
+    }
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.create
@@ -254,12 +309,22 @@ struct PostAssignmentRequest: APIRequestable {
 
     let courseID: String
 
-    let body: Body?
     let method = APIMethod.post
-    public var path: String {
-        let context = Context(.course, id: courseID)
-        return "\(context.pathComponent)/assignments"
-    }
+    var path: String { "\(Context(.course, id: courseID).pathComponent)/assignments" }
+    let body: Body?
+}
+
+// https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.update
+struct PutAssignmentRequest: APIRequestable {
+    typealias Response = APIAssignment
+    typealias Body = PostAssignmentRequest.Body
+
+    let courseID: String
+    let assignmentID: String
+
+    var method: APIMethod { .put }
+    var path: String { "courses/\(courseID)/assignments/\(assignmentID)" }
+    let body: Body?
 }
 
 // https://canvas.instructure.com/doc/api/assignments.html#method.assignments_api.index

@@ -23,13 +23,16 @@ public final class Group: NSManagedObject, WriteableModel {
     public typealias JSON = APIGroup
 
     @NSManaged public var avatarURL: URL?
+    @NSManaged public var canCreateAnnouncement: Bool
+    @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged public var concluded: Bool
+    @NSManaged public var contextColor: ContextColor?
+    @NSManaged public var contextRaw: String?
     @NSManaged public var courseID: String?
+    @NSManaged public var groupCategoryID: String
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
-    @NSManaged public var contextRaw: String?
-    @NSManaged public var contextColor: ContextColor?
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -47,10 +50,11 @@ public final class Group: NSManagedObject, WriteableModel {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(Group.id), item.id.value)
         let model: Group = context.fetch(predicate).first ?? context.insert()
         model.avatarURL = item.avatar_url
+        model.concluded = item.concluded
         model.courseID = item.course_id?.value
+        model.groupCategoryID = item.group_category_id.value
         model.id = item.id.value
         model.name = item.name
-        model.concluded = item.concluded
         model.showOnDashboard = !item.concluded
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor
@@ -58,6 +62,12 @@ public final class Group: NSManagedObject, WriteableModel {
            let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: Context(.course, id: courseID).canvasContextID)).first {
             model.contextColor = contextColor
         }
+
+        if let permissions = item.permissions {
+            model.canCreateAnnouncement = permissions.create_announcement
+            model.canCreateDiscussionTopic = permissions.create_discussion_topic
+        }
+
         return model
     }
 }

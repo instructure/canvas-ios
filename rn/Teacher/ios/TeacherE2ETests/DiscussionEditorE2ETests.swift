@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Foundation
+import TestsFoundation
 
-public enum DiscussionEdit: String, ElementWrapper {
-    case
-        attachmentButton,
-        delayPostAtButton, delayPostAtClearButton, delayPostAtPicker,
-        doneButton,
-        gradeAsButton, gradeTypePicker,
-        invalidLabel, invalidPointsLabel, invalidTitleLabel,
-        lockAtButton, lockAtClearButton, lockAtPicker,
-        pointsField,
-        publishSwitch,
-        requirePostSwitch,
-        subscribeSwitch,
-        threadSwitch,
-        titleField
+class DiscussionEditE2ETests: CoreUITestCase {
+
+    override func setUp() {
+        super.setUp()
+        Dashboard.courseCard(id: "263").tapUntil {
+            CourseNavigation.discussions.exists
+        }
+        CourseNavigation.discussions.tap()
+        DiscussionListCell.graded.waitToExist()
+    }
+
+    func testEditDiscussion() throws {
+        DiscussionListCell.cell(id: "14392").tap()
+        app.find(id: "DiscussionDetails.options").tapUntil {
+            app.find(label: "Edit").exists
+        }
+        app.find(label: "Edit").tap()
+
+        DiscussionEditor.titleField.waitToExist()
+    }
 }

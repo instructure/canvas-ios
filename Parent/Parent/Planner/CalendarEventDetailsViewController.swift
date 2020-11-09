@@ -155,7 +155,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
             NotificationManager.shared.requestAuthorization(options: [.alert, .sound]) { success, error in performUIUpdate {
                 guard error == nil && success else {
                     self.reminderSwitch.setOn(false, animated: true)
-                    return self.showPermissionError()
+                    return self.showPermissionError(.notifications)
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
                 self.reminderDatePicker.date = defaultDate
@@ -191,18 +191,5 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
                 self.reminderSwitchChanged()
             }
         } }
-    }
-
-    func showPermissionError() {
-        let title = NSLocalizedString("Permission Needed", comment: "")
-        let message = NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        if let url = URL(string: UIApplication.openSettingsURLString) {
-            alert.addAction(AlertAction(NSLocalizedString("Settings", comment: ""), style: .default) { _ in
-                UIApplication.shared.open(url)
-            })
-        }
-        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
-        env.router.show(alert, from: self, options: .modal())
     }
 }
