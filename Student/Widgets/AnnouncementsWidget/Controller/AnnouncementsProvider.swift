@@ -20,19 +20,9 @@ import Core
 import WidgetKit
 
 class AnnouncementsProvider: CommonWidgetController {
-    var courseContextCodes: [String] = []
-
-    lazy var colors = env.subscribe(GetCustomColors())
-    lazy var courses = env.subscribe(GetAllCourses()) { [weak self] in
-        self?.updateCourses()
-    }
-    lazy var announcements = env.subscribe(GetAnnouncements(contextCodes: courseContextCodes))
-
-    private func updateCourses() {
-        self.courseContextCodes = self.courses.map {
-            Core.Context(.course, id: $0.id).canvasContextID
-        }
-    }
+    private lazy var colors = env.subscribe(GetCustomColors())
+    private lazy var courses = env.subscribe(GetAllCourses())
+    private var announcements: Store<GetAnnouncements>?
 
     private func getImage(url: URL?) -> UIImage? {
         guard let url = url, let data = try? Data(contentsOf: url) else {
@@ -41,7 +31,7 @@ class AnnouncementsProvider: CommonWidgetController {
         return UIImage(data: data)
     }
 
-    func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+    private func update(completion: @escaping (AnnouncementsEntry) -> Void) {
         guard isLoggedIn else {
             completion(AnnouncementsEntry(isLoggedIn: false))
             return
@@ -50,18 +40,33 @@ class AnnouncementsProvider: CommonWidgetController {
         setupLastLoginCredentials()
 
         colors.refresh { [weak self] _ in
-            self?.courses.refresh { _ in
-                self?.announcements.refresh(force: true) { _ in
-                    guard let self = self else { return }
-                    let announcementItems: [AnnouncementItem] = self.announcements.compactMap { announcement in
-                        guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
-                        let image = self.getImage(url: announcement.author?.avatarURL)
-                        return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
-                    }
-                    let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
-                    completion(announcementsEntry)
-                }
+            guard let self = self, !self.colors.pending else { return }
+            self.fetchCourses(completion: completion)
+        }
+    }
+
+    private func fetchCourses(completion: @escaping (AnnouncementsEntry) -> Void) {
+        courses.refresh { [weak self] _ in
+            guard let self = self, !self.courses.pending else { return }
+            let courseContextCodes = self.courses.map { Core.Context(.course, id: $0.id).canvasContextID }
+            self.fetchAnnouncements(courseContextCodes: courseContextCodes, completion: completion)
+        }
+    }
+
+    private func fetchAnnouncements(courseContextCodes: [String], completion: @escaping (AnnouncementsEntry) -> Void) {
+        announcements = env.subscribe(GetAnnouncements(contextCodes: courseContextCodes))
+        announcements?.refresh(force: true) { [weak self] _ in
+            guard let self = self, let announcements = self.announcements, !announcements.pending else { return }
+
+            let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
+                guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
+                let image = self.getImage(url: announcement.author?.avatarURL)
+                return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
             }
+
+            let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
+            completion(announcementsEntry)
+            self.announcements = nil
         }
     }
 }
@@ -78,6 +83,12 @@ extension AnnouncementsProvider: TimelineProvider {
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        if context.isPreview {
+            let timeline = Timeline(entries: [placeholder(in: context)], policy: .after(Date()))
+            completion(timeline)
+            return
+        }
+
         update { announcementsEntry in
             let timeline = Timeline(entries: [announcementsEntry], policy: .after(Date().addMinutes(5)))
             completion(timeline)
