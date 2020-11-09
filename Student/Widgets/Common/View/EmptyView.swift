@@ -24,7 +24,11 @@ struct EmptyView: View {
         VStack {
             HStack {
                 Text(title)
-                    .font(.semibold12).foregroundColor(.textDark)
+                    .font(.semibold12)
+                    .foregroundColor(.textDark)
+                    .allowsTightening(true)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
                 Spacer()
                 Image("student-logomark")
                     .resizable()
@@ -50,9 +54,9 @@ struct EmptyView: View {
 #if DEBUG
 struct EmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(title: "Announcements", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemSmall))
-        EmptyView(title: "Grades", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemMedium))
-        EmptyView(title: "Grades", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemLarge))
+        EmptyView(title: "Announcements", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemSmall)).previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
+        EmptyView(title: "Grades", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemMedium)).previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
+        EmptyView(title: "Grades", message: "Please log in via the application").previewContext(WidgetPreviewContext(family: .systemLarge)).previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
     }
 }
 #endif

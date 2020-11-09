@@ -174,6 +174,8 @@
 		CF799599255589EE00A92A1E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF799598255589ED00A92A1E /* EmptyView.swift */; };
 		CF7995AB2555A55100A92A1E /* CommonWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995AA2555A55100A92A1E /* CommonWidgetController.swift */; };
 		CF7995B82555AA8300A92A1E /* WidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995B72555AA8300A92A1E /* WidgetModel.swift */; };
+		CF7995D625594A2000A92A1E /* SmallAnnouncementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995D525594A2000A92A1E /* SmallAnnouncementsView.swift */; };
+		CF7995E325594AF500A92A1E /* MediumLargeAnnouncementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995E225594AF500A92A1E /* MediumLargeAnnouncementsView.swift */; };
 		CF7D8A782535E45000DC7D79 /* SubmissionDetailsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */; };
 		CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
 		CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17F170254C1A0900B79EB6 /* Routes.swift */; };
@@ -754,6 +756,8 @@
 		CF799598255589ED00A92A1E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		CF7995AA2555A55100A92A1E /* CommonWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWidgetController.swift; sourceTree = "<group>"; };
 		CF7995B72555AA8300A92A1E /* WidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModel.swift; sourceTree = "<group>"; };
+		CF7995D525594A2000A92A1E /* SmallAnnouncementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallAnnouncementsView.swift; sourceTree = "<group>"; };
+		CF7995E225594AF500A92A1E /* MediumLargeAnnouncementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeAnnouncementsView.swift; sourceTree = "<group>"; };
 		CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
 		CF8080592547168200A0B2D3 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		CFC467DD2549628700BC9AEA /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
@@ -1708,6 +1712,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CF7995D425594A0000A92A1E /* Small */ = {
+			isa = PBXGroup;
+			children = (
+				CF7995D525594A2000A92A1E /* SmallAnnouncementsView.swift */,
+			);
+			path = Small;
+			sourceTree = "<group>";
+		};
+		CF7995E125594ABD00A92A1E /* MediumLarge */ = {
+			isa = PBXGroup;
+			children = (
+				CF7995E225594AF500A92A1E /* MediumLargeAnnouncementsView.swift */,
+			);
+			path = MediumLarge;
+			sourceTree = "<group>";
+		};
 		CFC467DC2549626600BC9AEA /* Small */ = {
 			isa = PBXGroup;
 			children = (
@@ -1771,6 +1791,8 @@
 		D9FD908A2547109D00C6842B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF7995E125594ABD00A92A1E /* MediumLarge */,
+				CF7995D425594A0000A92A1E /* Small */,
 				D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */,
 				D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */,
 			);
@@ -2962,11 +2984,13 @@
 				CFE2C3E42552CF7900113CFC /* SmallGradeView.swift in Sources */,
 				CFE2C3E52552CF7D00113CFC /* GradesWidgetView.swift in Sources */,
 				CFE2C3DD2552CF7600113CFC /* GradeItemView.swift in Sources */,
+				CF7995E325594AF500A92A1E /* MediumLargeAnnouncementsView.swift in Sources */,
 				CFE2C3F32552D04C00113CFC /* Widgets.swift in Sources */,
 				D9FD90C32548656A00C6842B /* AnnouncementItemView.swift in Sources */,
 				CF79958D2554233900A92A1E /* PreviewSimulator.swift in Sources */,
 				CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */,
 				CF7995B82555AA8300A92A1E /* WidgetModel.swift in Sources */,
+				CF7995D625594A2000A92A1E /* SmallAnnouncementsView.swift in Sources */,
 				CFE2C3EB2552CF7F00113CFC /* GradesWidgetController.swift in Sources */,
 				CFE2C3DC2552CF7600113CFC /* HeaderView.swift in Sources */,
 				CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */,

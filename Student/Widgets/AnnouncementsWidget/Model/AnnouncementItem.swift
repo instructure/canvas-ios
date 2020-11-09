@@ -18,7 +18,6 @@
 
 import Core
 import SwiftUI
-import WidgetKit
 
 struct AnnouncementItem: Identifiable, Equatable {
     let id: String

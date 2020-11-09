@@ -20,57 +20,20 @@ import SwiftUI
 import WidgetKit
 
 struct AnnouncementsWidgetView : View {
-    var entry: AnnouncementsProvider.Entry
+    var entry: AnnouncementsEntry
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        if entry.isLoggedIn {
+        if let firstAnnouncement = entry.announcements.first {
             switch family {
             case .systemSmall:
-                if let firstAnnouncement = entry.announcements.first {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(firstAnnouncement.date.relativeDateOnlyString)
-                            .font(.semibold12)
-                            .lineLimit(1)
-                            .foregroundColor(.textDark)
-                        Spacer(minLength: 0)
-                        Text(firstAnnouncement.courseName)
-                            .font(.semibold12)
-                            .foregroundColor(firstAnnouncement.courseColor)
-                        Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
-                        Spacer(minLength: 0)
-                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-                    .padding(16)
-                    .widgetURL(firstAnnouncement.url)
-                } else {
-                    EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
-                }
+                SmallAnnouncementsView(announcement: firstAnnouncement)
             default:
-                ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-                    HStack {
-                        Text(NSLocalizedString("Announcements", comment: ""))
-                            .font(.semibold12).foregroundColor(.textDark)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Image("student-logomark")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                    }
-                    VStack(spacing: 25) {
-                        let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
-                        if announcementsToShow.count > 0 {
-                            ForEach(announcementsToShow) { announcementItem in
-                                AnnouncementItemView(announcementItem: announcementItem)
-
-                                if announcementItem == announcementsToShow.last {
-                                    Spacer(minLength: 0)
-                                }
-                            }
-                        } else {
-                            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
-                        }
-                    }.padding(.top, 40) // This is move the first entry below the header
-                }.padding()
+                let announcementsToShow = Array(entry.announcements.prefix((family == .systemMedium) ? 1 : 3))
+                MediumLargeAnnouncementsView(announcements: announcementsToShow)
             }
+        } else if entry.isLoggedIn {
+            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
         } else {
             EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("Please log in via the application", comment: ""))
         }
@@ -79,16 +42,17 @@ struct AnnouncementsWidgetView : View {
 
 #if DEBUG
 private enum PreviewConfig {
+    private static let data = [
+        AnnouncementsEntry(isLoggedIn: false),
+        AnnouncementsEntry(announcementItems: []),
+        .makePreview()
+    ]
+
     static func preview(for family: WidgetFamily) -> some View {
-        ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
-            AnnouncementsWidgetView(entry: .makePreview())
+        ForEach(data) { entry in
+            AnnouncementsWidgetView(entry: entry)
                 .previewContext(WidgetPreviewContext(family: family))
-                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
-                .previewDisplayName(simulator.rawValue)
-            AnnouncementsWidgetView(entry: AnnouncementsEntry(announcementItems: []))
-                .previewContext(WidgetPreviewContext(family: family))
-                .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
-                .previewDisplayName(simulator.rawValue)
+                .previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
         }
     }
 }

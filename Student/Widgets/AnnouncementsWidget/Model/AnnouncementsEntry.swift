@@ -16,8 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import WidgetKit
+import Foundation
 
 class AnnouncementsEntry: WidgetModel {
     let announcements: [AnnouncementItem]
@@ -36,5 +35,13 @@ class AnnouncementsEntry: WidgetModel {
             AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: URL(string: "https://www.instructure.com/")!, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
         ])
     }
+}
 
+extension AnnouncementsEntry: Identifiable {
+    var id: Int {
+        var hasher = Hasher()
+        announcements.forEach { hasher.combine($0.id) }
+        hasher.combine(isLoggedIn)
+        return hasher.finalize()
+    }
 }
