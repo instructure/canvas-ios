@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import SwiftUI
+import WidgetKit
 
 public protocol AppEnvironmentDelegate {
     var environment: AppEnvironment { get }
@@ -55,6 +56,7 @@ open class AppEnvironment {
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
         Logger.shared.database = database
+        refreshWidgets()
     }
 
     public func userDidLogout(session: LoginSession) {
@@ -64,6 +66,7 @@ open class AppEnvironment {
         currentSession = nil
         userDefaults = nil
         Logger.shared.database = database
+        refreshWidgets()
     }
 
     public static var shared = AppEnvironment()
@@ -105,5 +108,11 @@ open class AppEnvironment {
     public func reportError(_ error: Error?, from controller: UIViewController? = nil) {
         guard let error = error else { return }
         errorHandler?(error, controller ?? topViewController)
+    }
+
+    private func refreshWidgets() {
+        if #available(iOS 14, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
 }

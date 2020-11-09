@@ -58,7 +58,7 @@ extension GradeModel {
     
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
+            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95 / 100", color: .barney),
             GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
             GradeItem(assignmentName: "American Literature IV", grade: "9.2 / 10", color: .fire),
         ], courseGrades: [
