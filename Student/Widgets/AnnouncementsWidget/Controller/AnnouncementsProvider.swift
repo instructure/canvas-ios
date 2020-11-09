@@ -20,7 +20,6 @@ import Core
 import WidgetKit
 
 class AnnouncementsProvider: CommonWidgetController {
-    private lazy var colors = env.subscribe(GetCustomColors())
     private lazy var courses = env.subscribe(GetAllCourses())
     private var announcements: Store<GetAnnouncements>?
 

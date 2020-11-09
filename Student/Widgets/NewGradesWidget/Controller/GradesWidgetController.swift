@@ -20,10 +20,9 @@ import Core
 import WidgetKit
 
 class GradesWidgetController: CommonWidgetController {
-    private lazy var colorStore = env.subscribe(GetCustomColors())
-    private lazy var submissionStore = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
-    private lazy var courseStore = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
-    private lazy var favoriteCoursesStore = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
+    private lazy var submissions = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
+    private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
+    private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
     private var completion: ((Timeline<GradeModel>) -> Void)?
 
     private func update() {
@@ -33,29 +32,29 @@ class GradesWidgetController: CommonWidgetController {
         }
 
         setupLastLoginCredentials()
-        colorStore.refresh { [weak self] _ in
-            guard let self = self, !self.colorStore.pending else { return }
+        colors.refresh { [weak self] _ in
+            guard let self = self, !self.colors.pending else { return }
 
-            self.submissionStore.refresh()
-            self.courseStore.refresh()
-            self.favoriteCoursesStore.refresh()
+            self.submissions.refresh()
+            self.courses.refresh()
+            self.favoriteCourses.refresh()
         }
     }
 
     private func handleFetchFinished() {
-        guard completion != nil, !submissionStore.pending, !courseStore.pending, !favoriteCoursesStore.pending else { return }
+        guard completion != nil, !submissions.pending, !courses.pending, !favoriteCourses.pending else { return }
 
-        let assignmentGrades: [GradeItem] = (submissionStore.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
-            let courseColor = courseStore.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
+        let assignmentGrades: [GradeItem] = (submissions.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
+            let courseColor = courses.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
             return GradeItem(assignment: assignment, color: courseColor)
         }
-        let courseGrades = favoriteCoursesStore.all.map { GradeItem(course: $0) }
+        let courseGrades = favoriteCourses.all.map { GradeItem(course: $0) }
 
         updateWidget(model: GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
     }
 
     private func updateWidget(model: GradeModel) {
-        let timeoutSeconds = submissionStore.useCase.ttl
+        let timeoutSeconds = submissions.useCase.ttl
         completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeoutSeconds))))
         self.completion = nil
     }

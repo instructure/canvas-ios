@@ -22,6 +22,7 @@ import WidgetKit
 class CommonWidgetController {
     let env = AppEnvironment.shared
     var isLoggedIn: Bool { LoginSession.mostRecent != nil }
+    lazy var colors = env.subscribe(GetCustomColors())
 
     func setupLastLoginCredentials() {
         guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
