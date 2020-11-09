@@ -49,7 +49,7 @@ struct SmallAnnouncementsView: View {
 struct SmallAnnouncementViewPreviews: PreviewProvider {
     static var previews: some View {
         ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
-            AnnouncementsWidgetView(entry: .makePreview())
+            AnnouncementsWidgetView(entry: .make())
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: simulator.rawValue))
                 .previewDisplayName(simulator.rawValue)

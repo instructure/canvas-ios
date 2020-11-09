@@ -39,6 +39,20 @@ class GradeModel: WidgetModel {
     }
 }
 
+extension GradeModel {
+    /** This data will be presented by the widget on iOS' Add Widget screen. */
+    static var publicPreview: GradeModel {
+        GradeModel(assignmentGrades: [
+            GradeItem(assignmentName: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
+            GradeItem(assignmentName: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
+            GradeItem(assignmentName: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
+        ], courseGrades: [
+            GradeItem(assignmentName: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
+            GradeItem(assignmentName: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
+        ])
+    }
+}
+
 #if DEBUG
 extension GradeModel {
     public static func makeWithOneAssigmnent() -> GradeModel {
@@ -57,7 +71,7 @@ extension GradeModel {
 
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95 / 100", color: .barney),
+            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
             GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
             GradeItem(assignmentName: "American Literature IV", grade: "9.2 / 10", color: .fire),
         ], courseGrades: [

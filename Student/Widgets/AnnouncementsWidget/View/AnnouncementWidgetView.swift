@@ -45,7 +45,7 @@ private enum PreviewConfig {
     private static let data = [
         AnnouncementsEntry(isLoggedIn: false),
         AnnouncementsEntry(announcementItems: []),
-        .makePreview(),
+        .make(),
     ]
 
     static func preview(for family: WidgetFamily) -> some View {

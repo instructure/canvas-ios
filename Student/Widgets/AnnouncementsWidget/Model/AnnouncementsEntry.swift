@@ -25,18 +25,6 @@ class AnnouncementsEntry: WidgetModel {
         self.announcements = announcementItems
         super.init(isLoggedIn: isLoggedIn)
     }
-
-    public static func makePreview() -> AnnouncementsEntry {
-        let url = URL(string: "https://www.instructure.com/")!
-
-        return AnnouncementsEntry(announcementItems: [
-            AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the solar system", courseColor: .electric),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
-            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
-            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
-        ])
-    }
 }
 
 extension AnnouncementsEntry: Identifiable {
@@ -47,3 +35,50 @@ extension AnnouncementsEntry: Identifiable {
         return hasher.finalize()
     }
 }
+
+extension AnnouncementsEntry {
+    /** This data will be presented by the widget on iOS' Add Widget screen. */
+    static var publicPreview: AnnouncementsEntry {
+        let url = URL(string: "https://www.instructure.com/")!
+
+        return AnnouncementsEntry(announcementItems: [
+            AnnouncementItem(
+                title: NSLocalizedString("Finals are moving to next week.", comment: "Example announcement title"),
+                date: Date(),
+                url: url,
+                authorName: NSLocalizedString("Thomas McKempis", comment: "Example author name"),
+                courseName: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"),
+                courseColor: .electric),
+            AnnouncementItem(
+                title: NSLocalizedString("Zoo Field Trip!", comment: "Example announcement title"),
+                date: Date().addDays(-1),
+                url: url,
+                authorName: NSLocalizedString("Susan Jorgenson", comment: "Example author name"),
+                courseName: NSLocalizedString("Biology 201", comment: "Example course name"),
+                courseColor: .barney),
+            AnnouncementItem(
+                title: NSLocalizedString("Read Moby Dick by end of week.", comment: "Example announcement title"),
+                date: Date().addDays(-5),
+                url: url,
+                authorName: NSLocalizedString("Janet Hammond", comment: "Example author name"),
+                courseName: NSLocalizedString("American literature IV", comment: "Example course name"),
+                courseColor: .shamrock),
+        ])
+    }
+}
+
+#if DEBUG
+extension AnnouncementsEntry {
+    public static func make() -> AnnouncementsEntry {
+        let url = URL(string: "https://www.instructure.com/")!
+
+        return AnnouncementsEntry(announcementItems: [
+            AnnouncementItem(title: "Finals are moving to next week.", date: Date(), url: url, authorName: "Thomas McKempis", courseName: "Introduction to the Solar System", courseColor: .electric),
+            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
+            AnnouncementItem(title: "Zoo Field Trip!", date: Date().addDays(-1), url: url, authorName: "Susan Jorgenson", courseName: "Biology 201", courseColor: .barney),
+            AnnouncementItem(title: "Read Moby Dick by end of week.", date: Date().addDays(-5), url: url, authorName: "Janet Hammond", courseName: "American literature IV", courseColor: .shamrock),
+        ])
+    }
+}
+#endif

@@ -74,7 +74,7 @@ extension AnnouncementsProvider: TimelineProvider {
     typealias Entry = AnnouncementsEntry
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
-        AnnouncementsEntry.makePreview()
+        AnnouncementsEntry.publicPreview
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {

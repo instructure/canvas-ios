@@ -64,16 +64,16 @@ extension GradesWidgetProvider: TimelineProvider {
     typealias Entry = GradeModel
 
     func placeholder(in context: TimelineProvider.Context) -> GradeModel {
-        GradeModel.make()
+        GradeModel.publicPreview
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeModel) -> Void) {
-        completion(GradeModel.make())
+        completion(placeholder(in: context))
     }
 
     func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> Void) {
         if context.isPreview {
-            completion(Timeline(entries: [GradeModel(assignmentGrades: [], courseGrades: [])], policy: .after(Date())))
+            completion(Timeline(entries: [placeholder(in: context)], policy: .after(Date())))
             return
         }
 
