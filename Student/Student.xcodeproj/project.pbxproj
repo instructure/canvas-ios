@@ -178,7 +178,6 @@
 		CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
 		CFE2C3D42552CF7000113CFC /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17F170254C1A0900B79EB6 /* Routes.swift */; };
 		CFE2C3D52552CF7000113CFC /* GradeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE3225472D2F00937432 /* GradeModel.swift */; };
-		CFE2C3D62552CF7200113CFC /* NoGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467EB254966A300BC9AEA /* NoGradesView.swift */; };
 		CFE2C3DC2552CF7600113CFC /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE4025473AA300937432 /* HeaderView.swift */; };
 		CFE2C3DD2552CF7600113CFC /* GradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF41CE4825473DA800937432 /* GradeItemView.swift */; };
 		CFE2C3DE2552CF7600113CFC /* MediumLargeGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */; };
@@ -187,7 +186,6 @@
 		CFE2C3EB2552CF7F00113CFC /* GradesWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A44C52547059800F76207 /* GradesWidgetController.swift */; };
 		CFE2C3EC2552CF8200113CFC /* GradesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4A446A254700B500F76207 /* GradesWidget.swift */; };
 		CFE2C3F32552D04C00113CFC /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2C3F22552D04C00113CFC /* Widgets.swift */; };
-		D9CD0D86254ACE4900BBB406 /* NoAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD0D85254ACE4900BBB406 /* NoAnnouncementView.swift */; };
 		D9FD8F362546C3F300C6842B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F352546C3F300C6842B /* WidgetKit.framework */; };
 		D9FD8F382546C3F300C6842B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9FD8F372546C3F300C6842B /* SwiftUI.framework */; };
 		D9FD8F3B2546C3F300C6842B /* AnnouncementsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8F3A2546C3F300C6842B /* AnnouncementsWidget.swift */; };
@@ -759,12 +757,10 @@
 		CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
 		CF8080592547168200A0B2D3 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		CFC467DD2549628700BC9AEA /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
-		CFC467EB254966A300BC9AEA /* NoGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoGradesView.swift; sourceTree = "<group>"; };
 		CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		CFE2C3F22552D04C00113CFC /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
 		D125492B8610602A8B0B08BC /* Pods-needs-pspdfkit-StudentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D668B463DC17BB3443A13DB4 /* Pods-needs-pspdfkit-StudentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-StudentUITests/Pods-needs-pspdfkit-StudentUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		D9CD0D85254ACE4900BBB406 /* NoAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnnouncementView.swift; sourceTree = "<group>"; };
 		D9FD8F342546C3F300C6842B /* Widgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FD8F352546C3F300C6842B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		D9FD8F372546C3F300C6842B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -1652,7 +1648,6 @@
 		CF4A44A92547041700F76207 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CFC4680825496A5F00BC9AEA /* Common */,
 				CFC467F9254967F100BC9AEA /* MediumLarge */,
 				CFC467DC2549626600BC9AEA /* Small */,
 				CF4A44AA254704FA00F76207 /* GradesWidgetView.swift */,
@@ -1731,14 +1726,6 @@
 			path = MediumLarge;
 			sourceTree = "<group>";
 		};
-		CFC4680825496A5F00BC9AEA /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				CFC467EB254966A300BC9AEA /* NoGradesView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		D9FD8F2F2546C39D00C6842B /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -1784,7 +1771,6 @@
 		D9FD908A2547109D00C6842B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D9CD0D85254ACE4900BBB406 /* NoAnnouncementView.swift */,
 				D9FD90C22548656A00C6842B /* AnnouncementItemView.swift */,
 				D9FD90A0254712BE00C6842B /* AnnouncementWidgetView.swift */,
 			);
@@ -2970,11 +2956,9 @@
 			files = (
 				CF799599255589EE00A92A1E /* EmptyView.swift in Sources */,
 				D9FD8F5C2546C93A00C6842B /* AnnouncementsProvider.swift in Sources */,
-				CFE2C3D62552CF7200113CFC /* NoGradesView.swift in Sources */,
 				CFE2C3D52552CF7000113CFC /* GradeModel.swift in Sources */,
 				CFE2C3EC2552CF8200113CFC /* GradesWidget.swift in Sources */,
 				D9FD90A1254712BE00C6842B /* AnnouncementWidgetView.swift in Sources */,
-				D9CD0D86254ACE4900BBB406 /* NoAnnouncementView.swift in Sources */,
 				CFE2C3E42552CF7900113CFC /* SmallGradeView.swift in Sources */,
 				CFE2C3E52552CF7D00113CFC /* GradesWidgetView.swift in Sources */,
 				CFE2C3DD2552CF7600113CFC /* GradeItemView.swift in Sources */,

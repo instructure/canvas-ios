@@ -43,7 +43,7 @@ struct AnnouncementsWidgetView : View {
                     .padding(16)
                     .widgetURL(firstAnnouncement.url)
                 } else {
-                    NoAnnouncementView()
+                    EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
                 }
             default:
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
@@ -66,7 +66,7 @@ struct AnnouncementsWidgetView : View {
                                 }
                             }
                         } else {
-                            NoAnnouncementView()
+                            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
                         }
                     }.padding(.top, 40) // This is move the first entry below the header
                 }.padding()
