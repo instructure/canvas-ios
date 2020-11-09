@@ -69,7 +69,8 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             "course_1": "#008",
             "group_1": "#080",
         ]))
-        api.mock(GetAssignment(courseID: "1", assignmentID: "1"), value: .make(points_possible: 95))
+        let assignment = APIAssignment.make(points_possible: 95)
+        api.mock(GetAssignment(courseID: "1", assignmentID: "1"), value: assignment)
         api.mock(controller.course, value: .make())
         api.mock(controller.entries, value: .make(
             participants: [
@@ -99,6 +100,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         api.mock(controller.permissions, value: .make(post_to_forum: true))
         api.mock(controller.topic, value: .make(
             allow_rating: true,
+            assignment: assignment,
             assignment_id: 1,
             attachments: [.make()],
             author: .make(display_name: "Instructor", pronouns: "she/her"),
@@ -401,5 +403,15 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertEqual(sheet?.actions.count, 1)
         XCTAssertEqual(sheet?.actions.first?.title, "Mark as Unread")
+    }
+
+    func testDeletedAfterShown() throws {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        databaseClient.delete(controller.topic.all)
+        try databaseClient.save()
+
+        XCTAssert(router.dismissed == controller)
     }
 }

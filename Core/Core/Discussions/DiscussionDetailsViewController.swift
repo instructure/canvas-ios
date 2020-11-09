@@ -213,10 +213,16 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
 
     func update() {
         guard fixStudentGroupTopic() else { return }
+
+        if topic.state == .empty {
+            // Topic was deleted, go back.
+            env.router.dismiss(self)
+        }
+
         let courseID = context.contextType == .group ? group.first?.courseID : context.id
         if assignment?.useCase.assignmentID != topic.first?.assignmentID, let courseID = courseID {
             assignment = topic.first?.assignmentID.map {
-                env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0)) { [weak self] in
+                env.subscribe(GetAssignment(courseID: courseID, assignmentID: $0, include: [ .overrides ])) { [weak self] in
                     self?.update()
                 }
             }

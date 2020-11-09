@@ -80,6 +80,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         let model: DiscussionTopic = context.fetch(predicate).first ?? context.insert()
         model.allowRating = item.allow_rating
         if let assignment = item.assignment?.values.first {
+            model.assignment = nil // sever relationship first so assignment doesn't delete me
             model.assignment = Assignment.save(assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
         } else {
             model.assignment = item.assignment_id.flatMap { context.first(where: #keyPath(Assignment.id), equals: $0.value) }
