@@ -122,6 +122,9 @@
 "Appointment Signups" = "Заявления о регистрации";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Вы действительно хотите удалить (имя)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Вы действительно хотите удалить %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Вы действительно хотите выйти из представления для студентов?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Вы действительно хотите удалить этот файл?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Вы действительно хотите удалить этот комментарий?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Оценка за курс ниже %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Программа курса";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
@@ -1229,6 +1238,12 @@
 "Remove" = "Удалить";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Удалить %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Удалить файл";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Удалено %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Успешно!";
 
 /* No comment provided by engineer. */
+"Summary" = "Сводные данные";
+
+/* No comment provided by engineer. */
 "Surveys" = "Опросы";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Содержание курса";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

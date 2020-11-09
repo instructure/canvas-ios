@@ -122,6 +122,9 @@
 "Appointment Signups" = "Haina runga Wāhui";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "E tino hiahia ana koe ki te muku i tēnei (ingoa)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "E tino hiahia ana koe ki te muku %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "E pono ana koe ki te puta Ākonga Titiro?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "E tino hiahia ana koe ki te tango i tēnei kōnae?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "E tino hiahia ana koe ki te muku i tēnei kōrero?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kōeke Akoranga Raro  %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Mahere Akoranga";
 
 /* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
@@ -1229,6 +1238,12 @@
 "Remove" = "Tango";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Tangohia %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Tango Kōnae";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Kua tangohia %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Angitu!";
 
 /* No comment provided by engineer. */
+"Summary" = "Whakarāpopototanga";
+
+/* No comment provided by engineer. */
 "Surveys" = "Rangahau";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Marautanga";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

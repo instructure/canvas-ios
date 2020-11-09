@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "?"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "En beskrivning krävs"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "Acceptera"
   },
-  "access_9a94f04e": {
-    "message": "Åtkomst"
-  },
   "access_code_74f4864f": {
     "message": "Åtkomstkod"
   },
   "account_group_cb00ca73": {
     "message": "Kontogrupp"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "Kontot har inga användningsvillkor"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Lägg till några av dina favoritkurser för att göra det här stället till ditt."
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "Lägg till inlämningsdatum"
   },
-  "add_file_e6326e09": {
-    "message": "Lägg till fil"
-  },
-  "add_item_75b67d07": {
-    "message": "Lägg till objekt"
-  },
   "add_media_cfa37b54": {
     "message": "Lägg till media"
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "Alla"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "Alla noteringar har sparats."
   },
   "all_courses_a7dbb853": {
     "message": "Alla kurser"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "Ett fel uppstod"
   },
-  "announcement_details_81b0bda2": {
-    "message": "Anslagets detaljer"
-  },
   "announcements_a4b8ed4a": {
     "message": "Anslag"
   },
   "anonymous_grading_3083dc0": {
     "message": "Anonym bedömning"
   },
-  "anyone_5b8fdf9f": {
-    "message": "Vem som helst"
-  },
   "archived_de543437": {
     "message": "Arkiverade"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "Vill du ta bort { name }?"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Vill du ta bort det här anslaget?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Vill du ta bort diskussionen?"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "Vill du ta bort det här svaret?"
   },
   "assign_to_95404a83": {
     "message": "Ge i uppdrag till"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "Det gick inte att spela upp ljudet"
   },
-  "augment_reality_4d23e2df": {
-    "message": "Förstärkt verklighet"
-  },
   "availability_8942cde6": {
     "message": "Tillgänglighet"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "Tillgänglig från och med: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "Tillgänglig från"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "”Tillgänglig från” måste vara före ”Tillgänglig till”"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "”Tillgänglig från” måste vara före ”Tillgänglig tills''"
-  },
-  "available_to_b7350e02": {
-    "message": "Tillgänglig till "
   },
   "available_until_20c0cc5c": {
     "message": "Tillgänglig tills:"
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "Tillbaka"
   },
-  "back_to_replies_94f3c127": {
-    "message": "Tillbaka till svar"
-  },
-  "black_8d713c75": {
-    "message": "svart"
-  },
-  "blue_7aca5197": {
-    "message": "blå"
-  },
   "blue_daf8fea9": {
     "message": "Blå"
   },
-  "bold_34b9d97e": {
-    "message": "Fet"
-  },
   "brick_f2656265": {
     "message": "Tegelsten"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "Kan redigera"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "Kan inte vidarebefordra meddelande"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "Konversationsalternativ"
   },
-  "copied_880dcb1b": {
-    "message": "Kopierad!"
-  },
-  "copied_c6518d41": {
-    "message": "Kopierad"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "Kopiera länk"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "Upphovsrättsinnehavare"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Det gick inte att hämta listan över uppgifter"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 studenter}\n    one {# student}\n  other {# studenter}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# gilla-markering}\n  other {# gilla-markeringar}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Behöver bedömning}\n  other {Behöver bedömning}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "Kurser"
   },
-  "create_folder_6055d558": {
-    "message": "Skapa mapp"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "Creative Commons-fil"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "Creative Commons-licens"
-  },
   "current_grade_6d0b8ef7": {
     "message": "Aktuellt omdöme"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "Ta bort"
   },
-  "delete_file_3ca64c1b": {
-    "message": "Ta bort fil"
-  },
-  "delete_folder_1700498c": {
-    "message": "Ta bort mapp"
-  },
-  "delete_folder_7d84f587": {
-    "message": "Ta bort mapp?"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "Ta bort mottagare { recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "Det här svaret togs bort."
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "Om du tar bort den här mappen raderas även alla filer i mappen."
   },
   "description_436c48d7": {
     "message": "Beskrivning"
   },
   "details_98a31b68": {
     "message": "Detaljer"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "Diskussionsinformation"
   },
   "discussion_submission_781d5d33": {
     "message": "Diskussionsinlämning"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "Redigera översikt"
   },
-  "edit_description_1206e0a8": {
-    "message": "Redigera beskrivning"
-  },
-  "edit_file_c560115a": {
-    "message": "Redigera fil"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "Redigera mapp"
-  },
-  "edit_page_5df5916a": {
-    "message": "Redigera sida"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Redigera quizdetaljer"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "Ha en bra dag!"
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "Ange en sökterm med tre eller fler tecken."
   },
   "enter_code_c7ab5104": {
     "message": "Ange kod"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "Det gick inte att spara bedömningen"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "Det gick inte att spara. Tryck för att försöka igen."
   },
   "everyone_854554dd": {
     "message": "Alla"
@@ -611,11 +491,8 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "Det gick inte att ladda upp mediakommentar"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "Undantag till rättvis användning"
-  },
-  "favorite_courses_fbd356f0": {
-    "message": "Favoritkurser"
+  "favorited_courses_84f383f": {
+    "message": "Favoritmärkta kurser"
   },
   "file_types_6fa69505": {
     "message": "Filtyper"
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "Grön"
   },
-  "green_d46e687c": {
-    "message": "grön"
-  },
-  "grey_56f61c1": {
-    "message": "grå"
-  },
   "group_a8f5ed9c": {
     "message": "Grupp"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "Dold"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "Dold. Filer inuti kommer att bli tillgängliga med länkar."
-  },
   "hide_content_for_name_aee1723a": {
     "message": "Dölj innehållet för { name }"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "Högsta möjliga resultat, { pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "Jag har behörighet att använda filen"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "Jag är upphovsrättsinnehavare"
-  },
   "in_progress_9d1ce8b9": {
     "message": "Pågående"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "Inmatning"
   },
-  "insert_image_42d30344": {
-    "message": "Infoga bild"
-  },
-  "insert_link_6dc23cae": {
-    "message": "Infoga länk"
-  },
   "invalid_field_54480fae": {
     "message": "Ogiltigt fält"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Det verkar inte finnas några giltiga inlämningar att bedöma."
-  },
-  "italic_ac45200a": {
-    "message": "Kursiv"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# objekt}\n  other {# objekt}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }, textfält"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "Ljusblå"
   },
-  "like_e8ad74ae": {
-    "message": "Gilla-markering"
-  },
   "loading_bde52856": {
     "message": "Läser in"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "Magenta"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "Markera alla som lästa"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "Markera som läst"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "Markera som oläst"
-  },
   "me_bf110f4d": {
     "message": "jag"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "Mediainlämning"
-  },
-  "message_5c38209d": {
-    "message": "Meddelande"
   },
   "message_details_342e931f": {
     "message": "Meddelandedetaljer"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Flera inlämningsdatum"
-  },
-  "my_files_eea33f44": {
-    "message": "Mina filer"
   },
   "n_a_d6f6c42f": {
     "message": "Ej tillämpligt"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "Nytt meddelande"
-  },
-  "new_page_84b28714": {
-    "message": "Ny sida"
   },
   "nickname_1e6da3ad": {
     "message": "Smeknamn"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "Inga resultat"
   },
-  "no_results_found_2ace1494": {
-    "message": "Inga resultat hittades"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "Inga stjärnmärkta meddelanden"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "Ingenting mer att göra"
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "Antal gilla-markeringar { count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {#minut}\n  other {# minuter}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "Online-URL"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "Endast tillgänglig för studenter med länk. Ej tillgänglig i studentfiler."
-  },
-  "only_members_232519d6": {
-    "message": "Endast medlemmar"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Endast efter varje försök"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "Endast lärare"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "Öppna { courseName } användarinställningar"
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "Orange"
-  },
-  "orange_86946f54": {
-    "message": "orange"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "Ordnad lista"
   },
   "out_of_points_number_42209979": {
     "message": "Av { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "poäng"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "Offentlig domänfil"
-  },
   "publish_5211dca3": {
     "message": "Publicera"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "Pumpa"
-  },
-  "purple_71d4acca": {
-    "message": "lila"
   },
   "purple_7678a9fc": {
     "message": "Lila"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "Röd"
   },
-  "red_ba15ab13": {
-    "message": "röd"
-  },
-  "redo_363c58b7": {
-    "message": "Gör om"
-  },
   "remove_attachment_81f30aa3": {
     "message": "Ta bort bilaga"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "Ta bort denna bilaga?"
   },
-  "replies_4a8577c8": {
-    "message": "Svar"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Svar är endast synliga för de som har publicerat minst ett svar."
-  },
   "reply_389d6fb9": {
     "message": "Svara"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "Rapportera ett problem"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "Begäran kunde inte slutföras."
-  },
   "require_an_access_code_46a02601": {
     "message": "Begär en åtkomstkod"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "Begränsad"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "Begränsad åtkomst"
   },
   "retry_ebd5f8ba": {
     "message": "Försök igen"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "Sparar ..."
-  },
-  "schedule_student_availability_332154a": {
-    "message": "Schemalägg studentens tillgänglighet"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number } av { points, plural,\n    one {# poäng}\n  other {# poäng}\n} möjliga"
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "Sök"
   },
-  "search_files_7e8153fd": {
-    "message": "Sök i filer"
-  },
-  "searching_f330d682": {
-    "message": "Söker ..."
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# sekund}\n  other {# sekunder}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "Sektioner"
-  },
-  "sections_sections_70d64496": {
-    "message": "Sektioner: { sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "Se alla"
   },
   "select_a_course_4710371f": {
     "message": "Välj en kurs"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "Skickat"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "Ställ in som startsida"
-  },
   "set_home_to_82ab5119": {
     "message": "Ställ in ”Startsida” på ..."
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "Ställ in textfärg på { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Inställningar"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Likhetsresultat"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "Eftersom det här är en gruppdiskussion har varje grupp sin egen konversation för det här ämnet. Här är de diskussioner som du har åtkomst till."
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Något gick fel från vår sida. Oroa dig inte, vi har spelat in det här och kommer att ta hand om det inom kort."
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "Lärare"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "Lärare och studenter"
-  },
   "teal_f729a294": {
     "message": "Teal"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "Användningsvillkor"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "Textfärg ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "Textfärg { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Textinlämning"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Ett problem uppstod vid inläsning av quizzen.."
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "Ett problem uppstod vid hämtning av användningsvillkoren"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Ett problem uppstod när omdömen skulle sparas. Försök igen."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Ett fel uppstod vid inläsning av bilagan."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "Ett fel uppstod vid inläsning av filen."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "Ett fel uppstod vid inläsning av listan över registreringar"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Den här filen är låst."
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "Den här filen måste ha användningsrättigheter inställda innan den kan publiceras."
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "Den här mappen är tom"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Denna grupp har ingen inlämning för denna uppgift."
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "Ej stjärnmärkta"
   },
-  "undo_a7be8fef": {
-    "message": "Ångra"
-  },
   "unexpected_error_93991f40": {
     "message": "Oväntat fel"
   },
   "ungraded_survey_ad7de790": {
     "message": "Ej bedömd enkät"
   },
-  "unknown_author_40d64455": {
-    "message": "Okänd skapare"
-  },
   "unlimited_ff19e96d": {
     "message": "Obegränsade"
   },
-  "unordered_list_3c1650b3": {
-    "message": "Ej ordnad lista"
-  },
   "unpin_a318452a": {
     "message": "Plocka bort"
-  },
-  "unpublish_9f2d730b": {
-    "message": "Avpublicera"
   },
   "unpublished_8b6107d6": {
     "message": "Avpublicerad"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "Uppladdning pågår"
   },
-  "uploading_19e8a4e7": {
-    "message": "Laddar upp"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "Laddar upp { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "Laddar upp { loaded } av { total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "URL-överföring"
-  },
-  "usage_right_2b398e0b": {
-    "message": "Användningsrättigheter"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "Användningsrättigheter"
   },
   "use_camera_47a0387b": {
     "message": "Använd kamera"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "Visa lång beskrivning"
   },
-  "view_more_replies_9fef9983": {
-    "message": "Visa fler svar"
-  },
   "view_responses_d2874266": {
     "message": "Visa svar"
   },
   "welcome_73d18b4d": {
     "message": "Välkommen!"
   },
-  "white_463b4bf9": {
-    "message": "vit"
-  },
   "whoops_de2cf9fc": {
     "message": "Hoppsan!"
-  },
-  "yellow_4b5532b3": {
-    "message": "gul"
   },
   "yes_dde87d5": {
     "message": "Ja"

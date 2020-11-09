@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Ma problemy";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Wygląda na to, że w tej przestrzeni nie utworzono testów.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Jest puste, co tu jeszcze robisz.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Brak powiadomień";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Brak testów";
 
 /* No comment provided by engineer. */
 "No recipients" = "Brak odbiorców";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Wystąpił błąd podczas uruchamiania programu Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Wystąpił błąd podczas wczytywania testów. Przeciągnij, aby odświeżyć widok, i spróbuj ponownie.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Wystąpił błąd podczas ładowania dokumentu.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Czy możesz nas poinformować o problemach z daną aplikacją?";
+
+/* Text submission editor placeholder */
+"Write..." = "Napisz...";
 
 /* No comment provided by engineer. */
 "Yes" = "Tak";

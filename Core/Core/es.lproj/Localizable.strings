@@ -122,6 +122,9 @@
 "Appointment Signups" = "Registros para citas";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "¿Está seguro de que desea eliminar (nombre)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "¿Está seguro de que desea eliminar %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "¿Está seguro de que desea salir de la Vista de estudiante?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "¿Está seguro de que desea eliminar este archivo?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "¿Está seguro de que desea eliminar este comentario?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Calificación de curso menor que %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Programa del curso";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursos";
@@ -1229,6 +1238,12 @@
 "Remove" = "Eliminar";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Eliminar %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Eliminar archivo";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Eliminado %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "¡Éxito!";
 
 /* No comment provided by engineer. */
+"Summary" = "Resumen";
+
+/* No comment provided by engineer. */
 "Surveys" = "Encuestas";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Programa del curso";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Profesor auxiliar";

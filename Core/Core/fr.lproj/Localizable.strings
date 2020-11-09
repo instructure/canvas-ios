@@ -122,6 +122,9 @@
 "Appointment Signups" = "Inscriptions aux rendez-vous";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Souhaitez-vous vraiment supprimer (name) ?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Êtes-vous sûr de vouloir supprimer %@ ?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Êtes-vous sûr de vouloir quitter la vue Élève ?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Souhaitez-vous vraiment supprimer ce fichier ?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Êtes-vous sûr de vouloir supprimer ce commentaire ?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Note de cours inférieure à  %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Programme du cours";
 
 /* No comment provided by engineer. */
 "Courses" = "Cours";
@@ -1229,6 +1238,12 @@
 "Remove" = "Supprimer";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Supprimer %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Supprimer le fichier";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Supprimé %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Succès !";
 
 /* No comment provided by engineer. */
+"Summary" = "Résumé";
+
+/* No comment provided by engineer. */
 "Surveys" = "Sondages";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Programme";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "TA";

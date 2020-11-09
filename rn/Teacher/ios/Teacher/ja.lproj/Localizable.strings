@@ -2,6 +2,9 @@
 "Absent" = "欠席";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "添付を追加";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "すべての成績は今、非表示になっています。";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "日付を選択する";
 
 /* No comment provided by engineer. */
+"Choose Files" = "ファイルの選択";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "引き出しを閉じる";
+
+/* No comment provided by engineer. */
+"Comment" = "コメント";
+
+/* No comment provided by engineer. */
+"Comments" = "コメント";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "コメントを保存できませんでした。";
+
+/* No comment provided by engineer. */
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "終了";
 
+/* No comment provided by engineer. */
+"Error" = "エラー";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "エラー:ロールコールAPIから返されたデータはありません。";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "LTI ツールを起動できませんでした。";
 
 /* No comment provided by engineer. */
+"Files" = "ファイル";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "ファイル (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "採点済み";
+
+/* No comment provided by engineer. */
+"Grades" = "成績";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "成績はすべての受講生に表示されます";
@@ -98,6 +128,15 @@
 "No Submissions" = "提出物なし";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "引き出しを全画面で開く";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "引き出しを半画面で開く";
+
+/* No comment provided by engineer. */
+"Pending" = "未定";
+
+/* No comment provided by engineer. */
 "Post Grades" = "成績表の掲示";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Present　現在";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "プレビューできません";
+
+/* No comment provided by engineer. */
+"Record Audio" = "オーディオを録音する";
+
+/* No comment provided by engineer. */
+"Record Video" = "動画を録画する";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "ロールコールの日付を変更するために選択します";
+
+/* No comment provided by engineer. */
+"Send" = "送信";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "類似スコア";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "特定のセクション";
@@ -122,8 +176,44 @@
 "Test Student" = "受講生をテストする";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "メッセージはまだありません。";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "この課題は提出を許可していません。";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "この課題は、論文の提出のみを許可します。";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "このグループには、この課題の提出はありません。";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "この受講生には、この課題の提出はありません。";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "この提出には、ファイルがありません。";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "この提出は、外部ページへのURLです。提出された時点のページの内容をスナップショットにして含めてあります。";
+
+/* No comment provided by engineer. */
 "To Do" = "するべきこと";
 
 /* No comment provided by engineer. */
 "Unmark" = "マークを外す";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "URL プレビュー画像";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "ファイルを表示%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "提出予定 %1$@を閲覧します。%2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "「設定」でカメラの許可を有効にしなければなりません。";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "「設定」でマイクの許可を有効にしなければなりません。";
 

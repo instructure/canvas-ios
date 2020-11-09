@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Имеет проблемы";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Похоже, что в этом разделе пока что не было создано ни одного теста.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Там пусто, что ты до сих пор здесь делаешь.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Уведомления отсутствуют";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Нет тестов";
 
 /* No comment provided by engineer. */
 "No recipients" = "Нет получателей";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Возникла проблема при запуске Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Произошла ошибка при загрузке тестов. Потяните для обновления, чтобы попробовать еще раз.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Возникла ошибка при загрузке документа.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Не могли бы вы сообщить нам о проблемах, которые у вас возникли с приложением?";
+
+/* Text submission editor placeholder */
+"Write..." = "Запись...";
 
 /* No comment provided by engineer. */
 "Yes" = "Да";

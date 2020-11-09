@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Problem";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Mae’n ymddangos nad oes cwisiau wedi cael eu creu yn y gofod hwn eto";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Mae'n wag, does dim angen i chi fod yma.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Dim Hysbysiadau";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Dim Cwisiau";
 
 /* No comment provided by engineer. */
 "No recipients" = "Dim derbynwyr";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Problem wrth gychwyn Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Gwall wrth lwytho cwisiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Gwall wrth lwytho'r ddogfen.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "A fyddai ots gennych chi roi gwybod i ni pa broblemau rydych chi wedi bod yn eu cael â'r ap?";
+
+/* Text submission editor placeholder */
+"Write..." = "Ysgrifennu...";
 
 /* No comment provided by engineer. */
 "Yes" = "Iawn";

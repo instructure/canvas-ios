@@ -2,6 +2,9 @@
 "Absent" = "Absent";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Add Attachment";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "All grades are currently hidden.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Choose Date";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Choose Files";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Close Drawer";
+
+/* No comment provided by engineer. */
+"Comment" = "Comment";
+
+/* No comment provided by engineer. */
+"Comments" = "Comments";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Could not save the comment.";
+
+/* No comment provided by engineer. */
 "Courses" = "Courses";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Done";
 
+/* No comment provided by engineer. */
+"Error" = "Error";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Error: No data returned from the roll call api.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Failed to launch roll call LTI tool.";
 
 /* No comment provided by engineer. */
+"Files" = "Files";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Files (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Marked";
+
+/* No comment provided by engineer. */
+"Grades" = "Marks";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Marks will be made visible to all students";
@@ -98,6 +128,15 @@
 "No Submissions" = "No Submissions";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Open Drawer full screen";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Open Drawer half screen";
+
+/* No comment provided by engineer. */
+"Pending" = "Pending";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Post Marks";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Present";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Preview Unavailable";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Record Audio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Record Video";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Select to change the roll call date";
+
+/* No comment provided by engineer. */
+"Send" = "Send";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Similarity Score";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specific Sections";
@@ -122,8 +176,44 @@
 "Test Student" = "Test Student";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "There are no messages yet.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "This assignment does not allow submissions.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "This assignment only allows on-paper submissions.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "This group does not have a submission for this assignment.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "This student does not have a submission for this assignment.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "This submission has no files.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.";
+
+/* No comment provided by engineer. */
 "To Do" = "To Do";
 
 /* No comment provided by engineer. */
 "Unmark" = "Unmark";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "URL Preview Image";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "View file %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "View submission attempt %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "You must enable Camera permissions in Settings.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
 
