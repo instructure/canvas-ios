@@ -19,7 +19,7 @@
 import SwiftUI
 import WidgetKit
 
-struct AnnouncementsWidgetView : View {
+struct AnnouncementsWidgetView: View {
     var entry: AnnouncementsEntry
     @Environment(\.widgetFamily) var family
 
@@ -45,7 +45,7 @@ private enum PreviewConfig {
     private static let data = [
         AnnouncementsEntry(isLoggedIn: false),
         AnnouncementsEntry(announcementItems: []),
-        .makePreview()
+        .makePreview(),
     ]
 
     static func preview(for family: WidgetFamily) -> some View {

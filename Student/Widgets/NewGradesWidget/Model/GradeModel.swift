@@ -55,7 +55,6 @@ extension GradeModel {
         ])
     }
 
-    
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
             GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95 / 100", color: .barney),

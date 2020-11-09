@@ -19,7 +19,7 @@
 import Core
 import WidgetKit
 
-class GradesWidgetController: CommonWidgetController {
+class GradesWidgetProvider: CommonWidgetController {
     private lazy var submissions = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
     private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
     private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
@@ -60,7 +60,7 @@ class GradesWidgetController: CommonWidgetController {
     }
 }
 
-extension GradesWidgetController: TimelineProvider {
+extension GradesWidgetProvider: TimelineProvider {
     typealias Entry = GradeModel
 
     func placeholder(in context: TimelineProvider.Context) -> GradeModel {

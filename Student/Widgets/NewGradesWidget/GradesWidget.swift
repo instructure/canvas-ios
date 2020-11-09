@@ -23,7 +23,7 @@ struct GradesWidget: Widget {
     let kind: String = "GradesWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: GradesWidgetController()) { model in
+        StaticConfiguration(kind: kind, provider: GradesWidgetProvider()) { model in
             GradesWidgetView(model: model)
         }
         .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))

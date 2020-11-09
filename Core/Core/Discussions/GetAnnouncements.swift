@@ -30,7 +30,7 @@ public class GetAnnouncements: CollectionUseCase {
     }
     public var request: GetAnnouncementsRequest
     public var scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(DiscussionTopic.postedAt), ascending: false)
+        NSSortDescriptor(key: #keyPath(DiscussionTopic.postedAt), ascending: false),
     ])
 
     public init(contextCodes: [String]) {

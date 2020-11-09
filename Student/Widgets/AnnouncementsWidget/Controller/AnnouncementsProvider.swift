@@ -63,7 +63,7 @@ class AnnouncementsProvider: CommonWidgetController {
                 return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
             }
 
-            let announcementsEntry = AnnouncementsEntry(announcementItems:announcementItems)
+            let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
             completion(announcementsEntry)
             self.announcements = nil
         }

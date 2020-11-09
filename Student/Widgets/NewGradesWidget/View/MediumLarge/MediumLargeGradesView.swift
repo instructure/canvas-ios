@@ -25,7 +25,7 @@ struct MediumLargeGradesView: View {
             Image("student-logomark")
                 .resizable()
                 .frame(width: 24, height: 24)
-            VStack() {
+            VStack {
                 if !model.assignmentGrades.isEmpty {
                     HeaderView(title: NSLocalizedString("Assignment Grades", comment: ""))
                     Spacer().frame(maxHeight: 20)
@@ -80,7 +80,7 @@ private enum PreviewConfig {
         PreviewSimulator.allCases.forEach {
             previewConfigs += [
                 Config(lineCount: 2, family: .systemMedium, device: $0),
-                Config(lineCount: 5, family: .systemLarge, device: $0)
+                Config(lineCount: 5, family: .systemLarge, device: $0),
             ]
         }
         return previewConfigs
