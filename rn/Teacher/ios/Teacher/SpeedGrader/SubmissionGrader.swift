@@ -92,7 +92,9 @@ struct SubmissionGrader: View {
                             Spacer().frame(height: bottomInset)
                         }
                         Divider()
-                        tools(bottomInset: bottomInset)
+                        VStack(spacing: 0) {
+                            tools(bottomInset: bottomInset, isDrawer: false)
+                        }
                             .padding(.top, 16)
                             .frame(width: 375)
                     }
@@ -122,7 +124,7 @@ struct SubmissionGrader: View {
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
                     }
                     Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
-                        tools(bottomInset: bottomInset)
+                        tools(bottomInset: bottomInset, isDrawer: true)
                     }
                 }
                     .background(Color.backgroundLightest)
@@ -183,73 +185,73 @@ struct SubmissionGrader: View {
 
     enum GraderTab: Int, CaseIterable { case grades, comments, files }
 
-    func tools(bottomInset: CGFloat) -> some View {
-        VStack(spacing: 0) {
-            Picker(selection: Binding(get: { tab }, set: { newValue in
-                if drawerState == .min {
-                    snapDrawerTo(.mid)
-                }
-                withAnimation(.default) {
-                    tab = newValue
-                }
-            }), label: Text(verbatim: "")) {
-                Text("Grades").tag(GraderTab.grades)
-                Text("Comments").tag(GraderTab.comments)
-                if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
-                    Text("Files (\(count))").tag(GraderTab.files)
-                } else {
-                    Text("Files").tag(GraderTab.files)
-                }
+    @ViewBuilder
+    func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
+        Picker(selection: Binding(get: { isDrawer && drawerState == .min ? nil : tab }, set: { newValue in
+            guard let newValue = newValue else { return }
+            if drawerState == .min {
+                snapDrawerTo(.mid)
             }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
-            Divider()
-            let drawerAttempt = Binding(get: { attempt }, set: {
-                attempt = $0
-                fileID = nil
-                snapDrawerTo(.min)
-            })
-            let drawerFileID = Binding(get: { fileID }, set: {
-                fileID = $0
-                snapDrawerTo(.min)
-            })
-            GeometryReader { geometry in
-                HStack(spacing: 0) {
-                    VStack(spacing: 0) {
-                        SubmissionGrades(assignment: assignment, submission: submission)
-                            .clipped()
-                        Spacer().frame(height: bottomInset)
-                    }
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                    VStack(spacing: 0) {
-                        SubmissionCommentList(
-                            assignment: assignment,
-                            submission: submission,
-                            attempts: attempts,
-                            attempt: drawerAttempt,
-                            fileID: drawerFileID,
-                            showRecorder: $showRecorder
-                        )
-                            .clipped()
-                        if showRecorder != .video || drawerState == .min {
-                            Spacer().frame(height: bottomInset)
-                        }
-                    }
-                        .background(Color.backgroundLight)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                    VStack(spacing: 0) {
-                        SubmissionFileList(submission: selected, fileID: drawerFileID)
-                            .clipped()
-                        Spacer().frame(height: bottomInset)
-                    }
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                }
-                    .background(Color.backgroundLightest)
-                    .frame(width: geometry.size.width, alignment: .leading)
-                    .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
+            withAnimation(.default) {
+                tab = newValue
             }
-                .clipped()
+        }), label: Text(verbatim: "")) {
+            Text("Grades").tag(Optional(GraderTab.grades))
+            Text("Comments").tag(Optional(GraderTab.comments))
+            if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
+                Text("Files (\(count))").tag(Optional(GraderTab.files))
+            } else {
+                Text("Files").tag(Optional(GraderTab.files))
+            }
         }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+        Divider()
+        GeometryReader { geometry in
+            HStack(spacing: 0) {
+                let drawerAttempt = Binding(get: { attempt }, set: {
+                    attempt = $0
+                    fileID = nil
+                    snapDrawerTo(.min)
+                })
+                let drawerFileID = Binding(get: { fileID }, set: {
+                    fileID = $0
+                    snapDrawerTo(.min)
+                })
+                VStack(spacing: 0) {
+                    SubmissionGrades(assignment: assignment, submission: submission)
+                        .clipped()
+                    Spacer().frame(height: bottomInset)
+                }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                VStack(spacing: 0) {
+                    SubmissionCommentList(
+                        assignment: assignment,
+                        submission: submission,
+                        attempts: attempts,
+                        attempt: drawerAttempt,
+                        fileID: drawerFileID,
+                        showRecorder: $showRecorder
+                    )
+                        .clipped()
+                    if showRecorder != .video || drawerState == .min {
+                        Spacer().frame(height: bottomInset)
+                    }
+                }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .background(Color.backgroundLight)
+                VStack(spacing: 0) {
+                    SubmissionFileList(submission: selected, fileID: drawerFileID)
+                        .clipped()
+                    Spacer().frame(height: bottomInset)
+                }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
+                .frame(width: geometry.size.width, alignment: .leading)
+                .background(Color.backgroundLightest)
+                .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
+        }
+            .clipped()
     }
 
     func snapDrawerTo(_ state: DrawerState) {

@@ -19,79 +19,72 @@
 import Foundation
 import CoreData
 
-public final class Rubric: NSManagedObject, WriteableModel {
+public final class Rubric: NSManagedObject {
     public typealias JSON = APIRubric
 
-    @NSManaged public var id: String
     @NSManaged public var assignmentID: String
+    @NSManaged public var criterionUseRange: Bool
     @NSManaged public var desc: String
+    @NSManaged public var id: String
+    @NSManaged public var ignoreForScoring: Bool
     @NSManaged public var longDesc: String
     @NSManaged public var points: Double
-    @NSManaged public var criterionUseRange: Bool
-    @NSManaged public var ratings: Set<RubricRating>?
-    @NSManaged public var position: Int
+    @NSManaged public var ratingsRaw: NSOrderedSet?
+
+    public var ratings: [RubricRating]? {
+        get { ratingsRaw?.array as? [RubricRating] }
+        set { ratingsRaw = newValue.map { NSOrderedSet(array: $0) } }
+    }
 
     @discardableResult
-    public static func save(_ item: APIRubric, in context: NSManagedObjectContext) -> Rubric {
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(Rubric.id), item.id.value, #keyPath(Rubric.assignmentID), item.assignmentID ?? "")
+    public static func save(_ item: APIRubric, assignmentID: String, in context: NSManagedObjectContext) -> Rubric {
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
+            #keyPath(Rubric.id), item.id.value,
+            #keyPath(Rubric.assignmentID), assignmentID
+        )
         let model: Rubric = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id.value
+        model.assignmentID = assignmentID
+        model.criterionUseRange = item.criterion_use_range
         model.desc = item.description
+        model.id = item.id.value
+        model.ignoreForScoring = item.ignore_for_scoring == true
         model.longDesc = item.long_description ?? ""
         model.points = item.points
-        model.criterionUseRange = item.criterion_use_range
-        model.assignmentID = item.assignmentID ?? ""
-        model.position = item.position ?? 0
 
         if let ratings = model.ratings {
             context.delete(Array(ratings))
             model.ratings = nil
         }
-
         if let ratings = item.ratings {
-            model.ratings = Set<RubricRating>()
-            for (index, var r) in ratings.enumerated() {
-                r.assignmentID = item.assignmentID
-                r.position = index
-                let ratingModel = RubricRating.save(r, in: context)
-                model.ratings?.insert(ratingModel)
-            }
+            model.ratings = ratings.map { RubricRating.save($0, assignmentID: assignmentID, in: context) }
         }
 
         return model
     }
 }
 
-extension Rubric {
-    public static func scope(assignmentID: String) -> Scope {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Rubric.assignmentID), assignmentID)
-        let sortOrder = NSSortDescriptor(key: #keyPath(Rubric.position), ascending: true)
-        let scope = Scope(predicate: predicate, order: [sortOrder])
-        return scope
-    }
-}
-
-public final class RubricRating: NSManagedObject, WriteableModel {
+public final class RubricRating: NSManagedObject {
     public typealias JSON = APIRubricRating
 
-    @NSManaged public var id: String
+    @NSManaged public var assignmentID: String
     @NSManaged public var desc: String
+    @NSManaged public var id: String
     @NSManaged public var longDesc: String
     @NSManaged public var points: Double
-    @NSManaged public var assignmentID: String
     @NSManaged public var position: Int
 
     @discardableResult
-    public static func save(_ item: APIRubricRating, in context: NSManagedObjectContext) -> RubricRating {
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(RubricRating.id), item.id.value, #keyPath(RubricRating.assignmentID), item.assignmentID ?? "")
-
+    public static func save(_ item: APIRubricRating, assignmentID: String, in context: NSManagedObjectContext) -> RubricRating {
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
+            #keyPath(RubricRating.id), item.id.value,
+            #keyPath(RubricRating.assignmentID), assignmentID
+        )
         let model: RubricRating = context.fetch(predicate).first ?? context.insert()
-        model.id = item.id.value
+        model.assignmentID = assignmentID
         model.desc = item.description
+        model.id = item.id.value
         model.longDesc = item.long_description
         model.points = item.points ?? 0
-        model.assignmentID = item.assignmentID ?? ""
-        model.position = item.position ?? 0
         return model
     }
 }
@@ -99,11 +92,11 @@ public final class RubricRating: NSManagedObject, WriteableModel {
 public final class RubricAssessment: NSManagedObject {
     public typealias JSON = APIRubricRating
 
-    @NSManaged public var id: String
-    @NSManaged public var submissionID: String
     @NSManaged public var comments: String?
+    @NSManaged public var id: String
     @NSManaged var pointsRaw: NSNumber?
     @NSManaged public var ratingID: String
+    @NSManaged public var submissionID: String
 
     public var points: Double? {
         get { return pointsRaw?.doubleValue }
@@ -112,14 +105,16 @@ public final class RubricAssessment: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIRubricAssessment, in context: NSManagedObjectContext, id: String, submissionID: String) -> RubricAssessment {
-        let predicate = NSPredicate(format: "%K == %@ AND %K == %@", #keyPath(RubricAssessment.submissionID), submissionID, #keyPath(RubricAssessment.id), id)
-
+        let predicate = NSPredicate(format: "%K == %@ AND %K == %@",
+            #keyPath(RubricAssessment.submissionID), submissionID,
+            #keyPath(RubricAssessment.id), id
+        )
         let model: RubricAssessment = context.fetch(predicate).first ?? context.insert()
-        model.id = id
-        model.submissionID = submissionID
         model.comments = item.comments
+        model.id = id
         model.points = item.points
         model.ratingID = item.rating_id ?? "0"
+        model.submissionID = submissionID
         return model
     }
 }

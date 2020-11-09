@@ -180,8 +180,8 @@ public class GradeFormatter {
         }
     }
 
-    public static func longString(for assignment: Assignment, submission: Submission, final: Bool = true) -> String {
-        let score = (final ? submission.score : submission.enteredScore) ?? 0
+    public static func longString(for assignment: Assignment, submission: Submission, rubricScore: Double? = nil, final: Bool = true) -> String {
+        let score = (final ? submission.score : rubricScore ?? submission.enteredScore) ?? 0
         let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
         let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
         let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)

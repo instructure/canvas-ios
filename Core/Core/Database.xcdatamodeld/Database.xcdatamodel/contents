@@ -54,9 +54,10 @@
         <attribute name="lockExplanation" optional="YES" attributeType="String"/>
         <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quizID" optional="YES" attributeType="String"/>
+        <attribute name="rubricPointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
@@ -67,7 +68,7 @@
         <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="overrides" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentOverride" inverseName="assignment" inverseEntity="AssignmentOverride"/>
-        <relationship name="rubric" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
+        <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric"/>
         <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ScoreStatistics" inverseName="assignment" inverseEntity="ScoreStatistics"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Submission" inverseName="assignment" inverseEntity="Submission"/>
         <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Syllabus" inverseName="assignments" inverseEntity="Syllabus"/>
@@ -710,11 +711,11 @@
         <attribute name="criterionUseRange" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="desc" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="ignoreForScoring" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="longDesc" attributeType="String"/>
         <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubric" inverseEntity="Assignment"/>
-        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubricRaw" inverseEntity="Assignment"/>
+        <relationship name="ratingsRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RubricRating" inverseName="rubric" inverseEntity="RubricRating"/>
     </entity>
     <entity name="RubricAssessment" representedClassName="Core.RubricAssessment" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String"/>
@@ -730,8 +731,7 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="longDesc" attributeType="String"/>
         <attribute name="points" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratings" inverseEntity="Rubric"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="ratingsRaw" inverseEntity="Rubric"/>
     </entity>
     <entity name="ScoreStatistics" representedClassName="Core.ScoreStatistics" syncable="YES">
         <attribute name="max" attributeType="Double" usesScalarValueType="YES"/>
@@ -929,9 +929,9 @@
         <element name="Planner" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="Quiz" positionX="-26.7890625" positionY="226.0703125" width="128" height="508"/>
         <element name="QuizSubmission" positionX="-540" positionY="-27" width="128" height="240"/>
-        <element name="Rubric" positionX="-540" positionY="-27" width="128" height="180"/>
+        <element name="Rubric" positionX="-540" positionY="-27" width="128" height="178"/>
         <element name="RubricAssessment" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="150"/>
+        <element name="RubricRating" positionX="-531" positionY="-18" width="128" height="133"/>
         <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="628"/>

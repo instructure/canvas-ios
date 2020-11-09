@@ -72,7 +72,7 @@ struct SubmissionCommentList: View {
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
                         EmptyPanda(.NoComments, message: Text("There are no messages yet."))
-                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
+                            .frame(minWidth: geometry.size.width, minHeight: geometry.size.height - 40)
                     }
                 }
                     .background(Color.backgroundLightest)
@@ -137,29 +137,7 @@ struct SubmissionCommentList: View {
                         .cancel(),
                     ])
                 }
-            HStack(alignment: .bottom) {
-                ZStack(alignment: .leading) {
-                    if comment.isEmpty {
-                        Text("Comment")
-                            .font(.regular16).foregroundColor(.textDark)
-                            .accessibility(hidden: true)
-                    }
-                    TextEditor(text: $comment)
-                        .font(.regular16).foregroundColor(.textDarkest)
-                        .accessibility(label: Text("Comment"))
-                        .padding(.vertical, 2)
-                }
-                Button(action: sendComment, label: {
-                    Icon.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
-                        .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
-                })
-                    .accessibility(label: Text("Send"))
-                    .opacity(comment.isEmpty ? 0.5 : 1)
-                    .disabled(comment.isEmpty)
-            }
-                .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 4))
-                .background(RoundedRectangle(cornerRadius: 16).fill(Color.backgroundLightest))
-                .background(RoundedRectangle(cornerRadius: 16).stroke(Color.borderMedium))
+            CommentEditor(text: $comment, action: sendComment)
                 .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
         }
             .background(Color.backgroundLight)
