@@ -22,12 +22,12 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
     public let titleSubtitleView = TitleSubtitleView.create()
     public var courseID: String = ""
     public var color: UIColor?
+    public let env = AppEnvironment.shared
 
     lazy public var viewControllers: [UIViewController] = [ syllabus, summary ]
 
     lazy var summary = SyllabusSummaryViewController.create(courseID: courseID)
     lazy var syllabus = SyllabusViewController.create(courseID: courseID)
-    let env = AppEnvironment.shared
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -64,12 +64,15 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
     func update() {
         guard !colors.pending, let course = course.first, !settings.pending else { return }
         updateNavBar(subtitle: course.name, color: course.color)
-        if settings.first?.syllabusCourseSummary != true {
-            viewControllers.removeAll { $0 === summary }
+
+        viewControllers = []
+        if course.syllabusBody?.isEmpty == false {
+            viewControllers.append(syllabus)
         }
-        if course.syllabusBody?.isEmpty != false {
-            viewControllers.removeAll { $0 === syllabus }
+        if settings.first?.syllabusCourseSummary == true {
+            viewControllers.append(summary)
         }
+        setupPages()
         layoutViewControllers()
         reload()
     }

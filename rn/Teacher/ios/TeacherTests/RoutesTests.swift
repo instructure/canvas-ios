@@ -98,5 +98,6 @@ class RoutesTests: XCTestCase {
         ExperimentalFeature.nativeTeacherSyllabus.isEnabled = true
         XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
+        XCTAssert(router.match( "/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
     }
 }

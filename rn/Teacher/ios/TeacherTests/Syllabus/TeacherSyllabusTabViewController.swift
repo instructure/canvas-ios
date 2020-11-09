@@ -1,0 +1,45 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2020-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import UIKit
+import XCTest
+@testable import Core
+@testable import Teacher
+
+class TeacherSyllabusTabViewControllerTests: TeacherTestCase {
+    lazy var controller = TeacherSyllabusTabViewController.create(context: .course("1"), courseID: "1")
+
+    func testEditAvailable() {
+        api.mock(controller.permissions, value: .make(manage_content: false))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
+        api.mock(controller.permissions, value: .make(manage_content: true))
+        controller.permissions.refresh(force: true)
+        XCTAssertEqual(controller.navigationItem.rightBarButtonItem?.title, "Edit")
+    }
+
+    func testEditButton() {
+        api.mock(controller.permissions, value: .make(manage_content: true))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        _ = controller.editButton.target?.perform(controller.editButton.action)
+        XCTAssert(router.lastRoutedTo(.parse("courses/1/syllabus/edit")))
+    }
+}

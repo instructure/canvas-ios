@@ -136,4 +136,23 @@ class GetCoursesTest: CoreTestCase {
         XCTAssertEqual(settings.count, 1)
         XCTAssertEqual(settings.first?.courseID, "3")
     }
+
+    func testUpdateCourse() {
+        let useCase = UpdateCourse(courseID: "1", name: "Course", defaultView: .wiki, syllabusBody: "Syllabus", syllabusSummary: true)
+        XCTAssertEqual(useCase.cacheKey, nil)
+        XCTAssertEqual(useCase.request.courseID, "1")
+
+        Course.make(from: .make(id: "1", name: "c"))
+        let settingsUseCase = GetCourseSettings(courseID: "1")
+        settingsUseCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+
+        useCase.write(response: .make(), urlResponse: nil, to: databaseClient)
+
+        let course: Course? = databaseClient.first(where: #keyPath(Course.id), equals: "1")
+        XCTAssertEqual(course?.syllabusBody, "Syllabus")
+
+        let settings: CourseSettings? = databaseClient.first(where: #keyPath(CourseSettings.courseID), equals: "1")
+        XCTAssertEqual(settings?.syllabusCourseSummary, true)
+    }
+
 }
