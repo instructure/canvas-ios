@@ -19,8 +19,7 @@
 import Core
 import WidgetKit
 
-class AnnouncementsProvider {
-    let env = AppEnvironment.shared
+class AnnouncementsProvider: CommonWidgetController {
     var courseContextCodes: [String] = []
 
     lazy var colors = env.subscribe(GetCustomColors())
@@ -35,11 +34,6 @@ class AnnouncementsProvider {
         }
     }
 
-    private func setupLastLoginCredentials() {
-        guard let mostRecentKeyChain = LoginSession.mostRecent else { return }
-        env.userDidLogin(session: mostRecentKeyChain)
-    }
-
     private func getImage(url: URL?) -> UIImage? {
         guard let url = url, let data = try? Data(contentsOf: url) else {
             return nil
@@ -48,6 +42,11 @@ class AnnouncementsProvider {
     }
 
     func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+        guard isLoggedIn else {
+            completion(AnnouncementsEntry(isLoggedIn: false))
+            return
+        }
+
         setupLastLoginCredentials()
 
         colors.refresh { [weak self] _ in

@@ -19,12 +19,12 @@
 import Core
 import WidgetKit
 
-struct AnnouncementsEntry: TimelineEntry {
-    var date = Date(timeIntervalSince1970: 0)
+class AnnouncementsEntry: WidgetModel {
     let announcements: [AnnouncementItem]
 
-    init(announcementItems: [AnnouncementItem]) {
+    init(isLoggedIn: Bool = true, announcementItems: [AnnouncementItem] = []) {
         self.announcements = announcementItems
+        super.init(isLoggedIn: isLoggedIn)
     }
 
     public static func makePreview() -> AnnouncementsEntry {

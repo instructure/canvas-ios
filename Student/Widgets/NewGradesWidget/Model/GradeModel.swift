@@ -18,16 +18,14 @@
 
 import WidgetKit
 
-struct GradeModel: TimelineEntry {
-    let isLoggedIn: Bool
-    let date = Date(timeIntervalSince1970: 0)
+class GradeModel: WidgetModel {
     let assignmentGrades: [GradeItem]
     let courseGrades: [GradeItem]
 
     init(isLoggedIn: Bool = true, assignmentGrades: [GradeItem] = [], courseGrades: [GradeItem] = []) {
-        self.isLoggedIn = isLoggedIn
         self.assignmentGrades = assignmentGrades
         self.courseGrades = courseGrades
+        super.init(isLoggedIn: isLoggedIn)
     }
 
     /**

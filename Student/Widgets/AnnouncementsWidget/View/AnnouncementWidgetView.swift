@@ -24,51 +24,55 @@ struct AnnouncementsWidgetView : View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        switch family {
-        case .systemSmall:
-            if let firstAnnouncement = entry.announcements.first {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(firstAnnouncement.date.relativeDateOnlyString)
-                        .font(.semibold12)
-                        .lineLimit(1)
-                        .foregroundColor(.textDark)
-                    Spacer(minLength: 0)
-                    Text(firstAnnouncement.courseName)
-                        .font(.semibold12)
-                        .foregroundColor(firstAnnouncement.courseColor)
-                    Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
-                    Spacer(minLength: 0)
-                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-                .padding(16)
-                .widgetURL(firstAnnouncement.url)
-            } else {
-                NoAnnouncementView()
-            }
-        default:
-            ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-                HStack {
-                    Text(NSLocalizedString("Announcements", comment: ""))
-                        .font(.semibold12).foregroundColor(.textDark)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Image("student-logomark")
-                        .resizable()
-                        .frame(width: 24, height: 24)
+        if entry.isLoggedIn {
+            switch family {
+            case .systemSmall:
+                if let firstAnnouncement = entry.announcements.first {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(firstAnnouncement.date.relativeDateOnlyString)
+                            .font(.semibold12)
+                            .lineLimit(1)
+                            .foregroundColor(.textDark)
+                        Spacer(minLength: 0)
+                        Text(firstAnnouncement.courseName)
+                            .font(.semibold12)
+                            .foregroundColor(firstAnnouncement.courseColor)
+                        Text(firstAnnouncement.title).font(.bold17).foregroundColor(.textDarkest)
+                        Spacer(minLength: 0)
+                    }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+                    .padding(16)
+                    .widgetURL(firstAnnouncement.url)
+                } else {
+                    NoAnnouncementView()
                 }
-                VStack(spacing: 25) {
-                    let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
-                    if announcementsToShow.count > 0 {
-                        ForEach(announcementsToShow) { announcementItem in
-                            AnnouncementItemView(announcementItem: announcementItem)
-
-                            if announcementItem == announcementsToShow.last {
-                                Spacer(minLength: 0)
-                            }
-                        }
-                    } else {
-                        NoAnnouncementView()
+            default:
+                ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
+                    HStack {
+                        Text(NSLocalizedString("Announcements", comment: ""))
+                            .font(.semibold12).foregroundColor(.textDark)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Image("student-logomark")
+                            .resizable()
+                            .frame(width: 24, height: 24)
                     }
-                }.padding(.top, 40) // This is move the first entry below the header
-            }.padding()
+                    VStack(spacing: 25) {
+                        let announcementsToShow = entry.announcements.prefix((family == .systemMedium) ? 1 : 3)
+                        if announcementsToShow.count > 0 {
+                            ForEach(announcementsToShow) { announcementItem in
+                                AnnouncementItemView(announcementItem: announcementItem)
+
+                                if announcementItem == announcementsToShow.last {
+                                    Spacer(minLength: 0)
+                                }
+                            }
+                        } else {
+                            NoAnnouncementView()
+                        }
+                    }.padding(.top, 40) // This is move the first entry below the header
+                }.padding()
+            }
+        } else {
+            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("Please log in via the application", comment: ""))
         }
     }
 }
