@@ -226,7 +226,7 @@ open class CoreWebView: WKWebView {
                             video.setAttribute('poster', '/media_objects/'+mediaID+'/thumbnail?width=550&height=448')
                             video.setAttribute('controls', '')
                             video.setAttribute('preload', 'none')
-                            iframe.parentNode.parentNode.replaceChild(video, iframe.parentNode)
+                            iframe.replaceWith(video)
                         }
                     } else {
                         iframe.addEventListener('error', event => replace(event.target))
