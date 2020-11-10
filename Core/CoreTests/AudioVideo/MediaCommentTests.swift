@@ -40,6 +40,6 @@ class MediaCommentTests: CoreTestCase {
         XCTAssertEqual(mediaComment.contentType, apiMediaComment.content_type)
         XCTAssertEqual(mediaComment.displayName, apiMediaComment.display_name)
         XCTAssertEqual(mediaComment.mediaID, apiMediaComment.media_id)
-        XCTAssertEqual(mediaComment.mediaType, apiMediaComment.media_type)
+        XCTAssertEqual(mediaComment.mediaType.rawValue, apiMediaComment.media_type)
     }
 }

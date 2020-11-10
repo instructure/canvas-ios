@@ -22,7 +22,7 @@ public struct APIMediaComment: Codable, Equatable {
     let content_type: String
     let display_name: String?
     let media_id: String
-    let media_type: MediaCommentType
+    let media_type: String // "audio", "video", "video/*"
     let url: URL
 
     enum CodingKeys: String, CodingKey {
@@ -61,7 +61,7 @@ extension APIMediaComment {
             content_type: content_type,
             display_name: display_name,
             media_id: media_id,
-            media_type: media_type,
+            media_type: media_type.rawValue,
             url: url
         )
     }
