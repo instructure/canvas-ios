@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Það eru vandamál við hana";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Svo virðist sem enn hafi engin próf verið búin til á þessu svæði.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Þetta er tómt, af hverju ertu ennþá hérna?";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Engar tilkynningar";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Engin próf";
 
 /* No comment provided by engineer. */
 "No recipients" = "Engir móttakendur";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Vandamál kom upp við að opna Safari";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Villa varð við að sækja skjalið.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Værirðu til í að láta okkur vita hvaða vandamál þú hefur átt við með appið?";
+
+/* Text submission editor placeholder */
+"Write..." = "Skrifa...";
 
 /* No comment provided by engineer. */
 "Yes" = "Já";

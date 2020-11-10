@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "？"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "描述為必填"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "接受"
   },
-  "access_9a94f04e": {
-    "message": "訪問"
-  },
   "access_code_74f4864f": {
     "message": "訪問碼"
   },
   "account_group_cb00ca73": {
     "message": "帳戶群組"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "帳戶未有使用條款"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "添加一些自己喜愛的課程以使此處有如家的感覺。"
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "添加截止日期"
   },
-  "add_file_e6326e09": {
-    "message": "添加檔案"
-  },
-  "add_item_75b67d07": {
-    "message": "添加項目"
-  },
   "add_media_cfa37b54": {
     "message": "添加媒體"
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "全部"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "所有注釋已儲存。"
   },
   "all_courses_a7dbb853": {
     "message": "所有課程"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "出現了一個錯誤"
   },
-  "announcement_details_81b0bda2": {
-    "message": "通告詳細資料"
-  },
   "announcements_a4b8ed4a": {
     "message": "宣告"
   },
   "anonymous_grading_3083dc0": {
     "message": "匿名評分"
   },
-  "anyone_5b8fdf9f": {
-    "message": "任何人"
-  },
   "archived_de543437": {
     "message": "已存檔"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "是否確定要刪除 { name }？"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "是否確定要刪除此通告？"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "是否確定要刪除此討論？"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "您是否確定要刪除此回覆？"
   },
   "assign_to_95404a83": {
     "message": "分配至"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "音頻播放失敗"
   },
-  "augment_reality_4d23e2df": {
-    "message": "擴增實境"
-  },
   "availability_8942cde6": {
     "message": "可用期"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "可用起始日期：{ date }"
   },
-  "available_from_f84e4611": {
-    "message": "可用起始日期"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "可用開始時間必須位於可用截止時間前"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "「可用起始日期」必須早於「可用截止時間」"
-  },
-  "available_to_b7350e02": {
-    "message": "可用於"
   },
   "available_until_20c0cc5c": {
     "message": "可用截止時間："
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "返回"
   },
-  "back_to_replies_94f3c127": {
-    "message": "返回回覆"
-  },
-  "black_8d713c75": {
-    "message": "黑色"
-  },
-  "blue_7aca5197": {
-    "message": "藍色"
-  },
   "blue_daf8fea9": {
     "message": "藍色"
   },
-  "bold_34b9d97e": {
-    "message": "粗體"
-  },
   "brick_f2656265": {
     "message": "磚頭"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "可編輯"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "無法轉寄訊息"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "交談選項"
   },
-  "copied_880dcb1b": {
-    "message": "已複製！"
-  },
-  "copied_c6518d41": {
-    "message": "已複製"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "複製連結"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "版權持有人"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "無法獲得作業清單"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 學生}\n    one {# 學生}\n  other {# 學生}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# 個「讚好」}\n  other {# 個「讚好」}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    other {需要評分}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "課程"
   },
-  "create_folder_6055d558": {
-    "message": "創建資料夾"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "Creative Commons 檔案"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "Creative Commons 許可"
-  },
   "current_grade_6d0b8ef7": {
     "message": "目前評分"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "刪除"
   },
-  "delete_file_3ca64c1b": {
-    "message": "刪除檔案"
-  },
-  "delete_folder_1700498c": {
-    "message": "刪除資料夾"
-  },
-  "delete_folder_7d84f587": {
-    "message": "要刪除資料夾？"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "刪除收件者{ recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "已刪除此回覆。"
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "刪除此資料夾也將刪除資料夾內的所有文件。"
   },
   "description_436c48d7": {
     "message": "說明"
   },
   "details_98a31b68": {
     "message": "詳情"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "討論詳細資料"
   },
   "discussion_submission_781d5d33": {
     "message": "討論區提交項目"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "編輯控制面板"
   },
-  "edit_description_1206e0a8": {
-    "message": "編輯說明"
-  },
-  "edit_file_c560115a": {
-    "message": "編輯檔案"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "編輯資料夾"
-  },
-  "edit_page_5df5916a": {
-    "message": "編輯頁面"
-  },
   "edit_quiz_details_72cd055": {
     "message": "編輯測驗詳情"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "祝您愉快！"
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "輸入三個或更多字元的搜尋字詞。"
   },
   "enter_code_c7ab5104": {
     "message": "輸入代碼"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "保存評分時出現錯誤"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "儲存錯誤。點選以重試。"
   },
   "everyone_854554dd": {
     "message": "所有人"
@@ -611,11 +491,8 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "未能上傳媒體評論"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "合理使用例外情況"
-  },
-  "favorite_courses_fbd356f0": {
-    "message": "最喜愛的課程"
+  "favorited_courses_84f383f": {
+    "message": "已標記為最喜愛的課程"
   },
   "file_types_6fa69505": {
     "message": "檔案類型"
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "綠色"
   },
-  "green_d46e687c": {
-    "message": "綠色"
-  },
-  "grey_56f61c1": {
-    "message": "灰色"
-  },
   "group_a8f5ed9c": {
     "message": "群組"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "已隱藏"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "已隱藏。透過連結可獲取裡面的檔案。"
-  },
   "hide_content_for_name_aee1723a": {
     "message": "隱藏 { name } 的內容"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "最高可能分數，{ pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "我擁有該檔案的使用權限。"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "我持有該版權"
-  },
   "in_progress_9d1ce8b9": {
     "message": "進行中"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "輸入"
   },
-  "insert_image_42d30344": {
-    "message": "插入圖片"
-  },
-  "insert_link_6dc23cae": {
-    "message": "插入連結"
-  },
   "invalid_field_54480fae": {
     "message": "無效字段"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "好像沒有任何有效的提交項目可以評分。"
-  },
-  "italic_ac45200a": {
-    "message": "斜體"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# 項目}\n  other {# 項目}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }，文字欄位"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "淺藍色"
   },
-  "like_e8ad74ae": {
-    "message": "讚好"
-  },
   "loading_bde52856": {
     "message": "正在載入"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "品紅"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "全部標記為已讀"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "標記為已讀"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "標記為未讀"
-  },
   "me_bf110f4d": {
     "message": "我"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "媒體提交"
-  },
-  "message_5c38209d": {
-    "message": "訊息"
   },
   "message_details_342e931f": {
     "message": "訊息詳細資料"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "多個到期日"
-  },
-  "my_files_eea33f44": {
-    "message": "我的檔案"
   },
   "n_a_d6f6c42f": {
     "message": "不適用"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "新郵件"
-  },
-  "new_page_84b28714": {
-    "message": "新頁面"
   },
   "nickname_1e6da3ad": {
     "message": "暱稱"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "無結果"
   },
-  "no_results_found_2ace1494": {
-    "message": "找不到成績"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "無已加星號訊息"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "沒有待辦事項。"
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "按讚次數：{ count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    other {# 分鐘}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "線上 URL"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "只有持有連結的學生方可使用。不包括於學生檔案。"
-  },
-  "only_members_232519d6": {
-    "message": "僅成員"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "每次嘗試之後僅一次"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "僅限教師"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "打開 { courseName } 用戶偏好設定"
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "橙色"
-  },
-  "orange_86946f54": {
-    "message": "橙色"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "有序列表"
   },
   "out_of_points_number_42209979": {
     "message": "滿分為 { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "分數"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "公用網域檔案"
-  },
   "publish_5211dca3": {
     "message": "發佈"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "南瓜色"
-  },
-  "purple_71d4acca": {
-    "message": "紫色"
   },
   "purple_7678a9fc": {
     "message": "紫色"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "紅色"
   },
-  "red_ba15ab13": {
-    "message": "紅色"
-  },
-  "redo_363c58b7": {
-    "message": "重做"
-  },
   "remove_attachment_81f30aa3": {
     "message": "刪除附件"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "確定刪除此附件？"
   },
-  "replies_4a8577c8": {
-    "message": "回覆"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "只有曾發送一個或以上回覆的才能查閱回覆。"
-  },
   "reply_389d6fb9": {
     "message": "回覆"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "報告問題"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "無法完成請求。"
-  },
   "require_an_access_code_46a02601": {
     "message": "需要訪問碼"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "受限"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "訪問受限"
   },
   "retry_ebd5f8ba": {
     "message": "重試"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "正在保存..."
-  },
-  "schedule_student_availability_332154a": {
-    "message": "排程學生可用性"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number }滿分為 { points, plural,\n    one {# 分 }\n  other {# 分 可能 }\n} 分 "
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "搜索"
   },
-  "search_files_7e8153fd": {
-    "message": "搜尋檔案"
-  },
-  "searching_f330d682": {
-    "message": "正在搜尋..."
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    other {# 秒}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "分班"
-  },
-  "sections_sections_70d64496": {
-    "message": "分班：{ sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "檢視所有"
   },
   "select_a_course_4710371f": {
     "message": "選擇課程"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "已發送"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "設定為標題頁"
-  },
   "set_home_to_82ab5119": {
     "message": "將「首頁」設為…"
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "將文字顏色設定為 { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "設定"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "相似性分數"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "由於這是群組討論，每個群組都有其自己針對此主題的交談。以下是您可以訪問的討論區。"
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "結束時出現問題。別擔心，我們已經記錄了這種情況，並會很快處理。"
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "教師"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "教師和學生"
-  },
   "teal_f729a294": {
     "message": "深青色"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "使用條款"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "文字顏色 ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "文字顏色 { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "文字提交件"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "載入測驗時發生問題。"
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "取得使用條款時出現問題。"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "保存評分時出現問題。請重試。"
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "載入附件時出現錯誤。"
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "載入檔案時出現錯誤。"
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "載入註冊清單時出現錯誤"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "此檔案目前已鎖定。"
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "該檔案必須具有使用權限才能發佈。"
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "此資料夾為空"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "本群組沒有該作業的提交項目。"
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "移除星號"
   },
-  "undo_a7be8fef": {
-    "message": "撤銷"
-  },
   "unexpected_error_93991f40": {
     "message": "意外錯誤"
   },
   "ungraded_survey_ad7de790": {
     "message": "未評分的調查"
   },
-  "unknown_author_40d64455": {
-    "message": "未知作者"
-  },
   "unlimited_ff19e96d": {
     "message": "未受限的"
   },
-  "unordered_list_3c1650b3": {
-    "message": "無序列表"
-  },
   "unpin_a318452a": {
     "message": "取消釘選"
-  },
-  "unpublish_9f2d730b": {
-    "message": "取消發佈"
   },
   "unpublished_8b6107d6": {
     "message": "已取消發佈"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "正在上傳"
   },
-  "uploading_19e8a4e7": {
-    "message": "正在上傳"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "正在上傳 { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "正在上傳第 { loaded } / 個檔案{ total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "URL 提交"
-  },
-  "usage_right_2b398e0b": {
-    "message": "使用權"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "使用權"
   },
   "use_camera_47a0387b": {
     "message": "使用攝像頭"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "查看完整描述"
   },
-  "view_more_replies_9fef9983": {
-    "message": "檢視更多回覆"
-  },
   "view_responses_d2874266": {
     "message": "檢視回應"
   },
   "welcome_73d18b4d": {
     "message": "歡迎！"
   },
-  "white_463b4bf9": {
-    "message": "白色"
-  },
   "whoops_de2cf9fc": {
     "message": "抱歉！"
-  },
-  "yellow_4b5532b3": {
-    "message": "黃色"
   },
   "yes_dde87d5": {
     "message": "是"

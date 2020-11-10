@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "問題があります";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "このスペースにはまだクイズが作成されていないようです。";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "空白です。まだここで何をしているのですか。";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "通知なし";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "クイズなし";
 
 /* No comment provided by engineer. */
 "No recipients" = "受信者がいません";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "サファリの起動中に問題が発生しました";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "クイズの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "ドキュメントのロード中にエラーが発生しました。";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "このアプリの使用に関する問題を教えていただけますか？";
+
+/* Text submission editor placeholder */
+"Write..." = "書き込み...";
 
 /* No comment provided by engineer. */
 "Yes" = "はい";

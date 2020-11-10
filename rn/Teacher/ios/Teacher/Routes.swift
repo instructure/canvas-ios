@@ -51,9 +51,20 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/settings": nil,
     "/courses/:courseID/user_preferences": nil,
 
-    "/:context/:contextID/announcements": nil,
-    "/:context/:contextID/announcements/new": nil,
-    "/:context/:contextID/announcements/:announcementID/edit": nil,
+    "/:context/:contextID/announcements": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return AnnouncementListViewController.create(context: context)
+    },
+
+    "/:context/:contextID/announcements/new": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: true))
+    },
+
+    "/:context/:contextID/announcements/:announcementID/edit": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
+    },
 
     "/:context/:contextID/announcements/:announcementID": { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
@@ -64,6 +75,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/syllabus": syllabus,
     "/courses/:courseID/syllabus": syllabus,
+    "/courses/:courseID/syllabus/edit": { url, params, userInfo in
+        guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
+            Router.open(url: url)
+            return nil
+        }
+        guard let context = Context(path: url.path), let courseID = params["courseID"] else { return nil }
+        return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
+    },
 
     "/courses/:courseID/assignments/:assignmentID": nil,
     "/courses/:courseID/assignments/:assignmentID/edit": nil,
@@ -105,13 +124,27 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return AttendanceViewController(context: .course(courseID), toolID: toolID)
     },
 
-    "/:context/:contextID/discussions": nil,
-    "/:context/:contextID/discussion_topics": nil,
-    "/:context/:contextID/discussion_topics/new": nil,
+    "/:context/:contextID/discussions": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionListViewController.create(context: context)
+    },
+    "/:context/:contextID/discussion_topics": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return DiscussionListViewController.create(context: context)
+    },
+
+    "/:context/:contextID/discussion_topics/new": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: nil, isAnnouncement: false))
+    },
+
     "/:context/:contextID/discussions/:discussionID": discussionDetails,
     "/:context/:contextID/discussion_topics/:discussionID": discussionDetails,
 
-    "/:context/:contextID/discussion_topics/:discussionID/edit": nil,
+    "/:context/:contextID/discussion_topics/:discussionID/edit": { url, params, _ in
+        guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
+        return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: false))
+    },
 
     "/:context/:contextID/discussion_topics/:discussionID/reply": { url, params, _ in
         guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
@@ -299,7 +332,7 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
         return nil
     }
     guard let courseID = params["courseID"] else { return nil }
-    return SyllabusTabViewController.create(courseID: ID.expandTildeID(courseID))
+    return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
 }
 
 // MARK: - HelmModules

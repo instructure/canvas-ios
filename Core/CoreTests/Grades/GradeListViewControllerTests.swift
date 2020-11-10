@@ -25,11 +25,13 @@ class GradeListViewControllerTests: CoreTestCase {
 
     lazy var groups: [APIAssignmentGroup] = [
         .make(id: "1", name: "Worksheets", position: 2, assignments: [ .make(
-            id: "1",
+            assignment_group_id: "1",
             course_id: "1",
+            due_at: DateComponents(calendar: .current, year: 2020, month: 1, day: 1).date,
+            grading_type: .points,
+            id: "1",
             name: "Complex Numbers",
             points_possible: 25,
-            due_at: DateComponents(calendar: .current, year: 2020, month: 1, day: 1).date,
             submission: APISubmission.make(
                 assignment_id: "1",
                 attempt: 1,
@@ -43,15 +45,13 @@ class GradeListViewControllerTests: CoreTestCase {
                 submitted_at: DateComponents(calendar: .current, year: 2020, month: 1, day: 2).date,
                 user_id: currentSession.userID,
                 workflow_state: .submitted
-            ),
-            grading_type: .points,
-            assignment_group_id: "1"
+            )
         ), ]),
         .make(id: "2", name: "Essays", position: 1, assignments: [ .make(
-            id: "2",
+            assignment_group_id: "2",
             course_id: "1",
-            name: "Proof that proofs are useful",
-            assignment_group_id: "2"
+            id: "2",
+            name: "Proof that proofs are useful"
         ), ]),
     ]
 

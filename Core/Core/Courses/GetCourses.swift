@@ -173,3 +173,36 @@ public class MarkFavoriteCourse: APIUseCase {
         NotificationCenter.default.post(name: NSNotification.Name("course-favorite-change"), object: nil, userInfo: [:])
     }
 }
+
+struct UpdateCourse: APIUseCase {
+    typealias Model = Course
+
+    let courseId: String
+    let request: PutCourseRequest
+    let cacheKey: String? = nil
+
+    init(
+        courseID: String,
+        name: String? = nil,
+        defaultView: CourseDefaultView? = nil,
+        syllabusBody: String? = nil,
+        syllabusSummary: Bool? = nil
+    ) {
+        self.courseId = courseID
+        self.request = PutCourseRequest(courseID: courseID, courseName: name, defaultView: defaultView, syllabusBody: syllabusBody, syllabusSummary: syllabusSummary)
+    }
+
+    func write(response: APICourse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard response != nil else { return }
+
+        let course: Course? = client.first(where: #keyPath(Course.id), equals: courseId)
+        if let syllabusBody = request.body?.course.syllabus_body {
+            course?.syllabusBody = syllabusBody
+        }
+
+        let settings: CourseSettings? = client.first(where: #keyPath(CourseSettings.courseID), equals: courseId)
+        if let syllabusSummary = request.body?.course.syllabus_course_summary {
+            settings?.syllabusCourseSummary = syllabusSummary
+        }
+    }
+}

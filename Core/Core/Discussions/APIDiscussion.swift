@@ -20,29 +20,40 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
-    let id: ID
-    let context_code: ID?
+    let allow_rating: Bool
+    let assignment: APIList<APIAssignment>?
     let assignment_id: ID?
-    var title: String?
-    var message: String?
-    let html_url: URL?
-    let posted_at: Date?
-    let last_reply_at: Date?
-    let discussion_subentry_count: Int
-    let published: Bool
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
-    let permissions: APIDiscussionPermissions?
-    let allow_rating: Bool
-    let sort_by_rating: Bool
-    let only_graders_can_rate: Bool?
-    let locked_for_user: Bool
-    var locked: Bool?
+    let can_unpublish: Bool?
+    let context_code: ID?
+    let created_at: Date?
+    let delayed_post_at: Date?
+    let discussion_subentry_count: Int
+    let discussion_type: String?
     let group_category_id: ID?
     let group_topic_children: [APIDiscussionTopicChild]?
-    let subscription_hold: String?
+    let html_url: URL?
+    let id: ID
     let is_section_specific: Bool
+    let last_reply_at: Date?
+    var locked: Bool?
+    let locked_for_user: Bool
+    let lock_at: Date?
+    var message: String?
+    let only_graders_can_rate: Bool?
+    let permissions: APIDiscussionPermissions?
+    let pinned: Bool?
+    let position: Int?
+    let posted_at: Date?
+    let published: Bool
+    let require_initial_post: Bool?
     let sections: [APICourseSection]?
+    let sort_by_rating: Bool
+    let subscribed: Bool?
+    let subscription_hold: String?
+    var title: String?
+    let unread_count: Int?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -93,54 +104,76 @@ public struct APIDiscussionView: Codable, Equatable {
 #if DEBUG
 extension APIDiscussionTopic {
     public static func make(
-        id: ID = "1",
-        context_code: ID? = nil,
+        allow_rating: Bool = false,
+        assignment: APIAssignment? = nil,
         assignment_id: ID? = nil,
-        title: String? = "my discussion topic",
-        message: String? = "message",
-        html_url: URL? = nil,
-        posted_at: Date? = nil,
-        last_reply_at: Date? = nil,
-        discussion_subentry_count: Int = 1,
-        published: Bool = true,
         attachments: [APIFile]? = nil,
         author: APIDiscussionParticipant = .make(),
-        permissions: APIDiscussionPermissions? = .make(),
-        allow_rating: Bool = false,
-        sort_by_rating: Bool = false,
-        only_graders_can_rate: Bool? = nil,
-        locked_for_user: Bool = false,
-        locked: Bool? = nil,
+        can_unpublish: Bool? = nil,
+        context_code: ID? = nil,
+        created_at: Date? = Clock.now,
+        delayed_post_at: Date? = nil,
+        discussion_subentry_count: Int = 1,
+        discussion_type: String? = "threaded",
         group_category_id: ID? = nil,
         group_topic_children: [APIDiscussionTopicChild]? = nil,
-        subscription_hold: String? = nil,
+        html_url: URL? = nil,
+        id: ID = "1",
         is_section_specific: Bool = false,
-        sections: [APICourseSection]? = nil
+        last_reply_at: Date? = nil,
+        locked: Bool? = nil,
+        locked_for_user: Bool = false,
+        lock_at: Date? = nil,
+        message: String? = "message",
+        only_graders_can_rate: Bool? = nil,
+        permissions: APIDiscussionPermissions? = .make(),
+        pinned: Bool? = false,
+        position: Int? = 1,
+        posted_at: Date? = nil,
+        published: Bool = true,
+        require_initial_post: Bool? = false,
+        sections: [APICourseSection]? = nil,
+        sort_by_rating: Bool = false,
+        subscribed: Bool? = true,
+        subscription_hold: String? = nil,
+        title: String? = "my discussion topic",
+        unread_count: Int? = 0
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
-            id: id,
-            context_code: context_code,
+            allow_rating: allow_rating,
+            assignment: assignment.map { APIList($0) },
             assignment_id: assignment_id,
-            title: title,
-            message: message,
-            html_url: html_url,
-            posted_at: posted_at,
-            last_reply_at: last_reply_at,
-            discussion_subentry_count: discussion_subentry_count,
-            published: published,
             attachments: attachments,
             author: author,
-            permissions: permissions,
-            allow_rating: allow_rating,
-            sort_by_rating: sort_by_rating,
-            only_graders_can_rate: only_graders_can_rate,
-            locked_for_user: locked_for_user,
-            locked: locked,
+            can_unpublish: can_unpublish,
+            context_code: context_code,
+            created_at: created_at,
+            delayed_post_at: delayed_post_at,
+            discussion_subentry_count: discussion_subentry_count,
+            discussion_type: discussion_type,
             group_category_id: group_category_id,
             group_topic_children: group_topic_children,
-            subscription_hold: subscription_hold,
+            html_url: html_url,
+            id: id,
             is_section_specific: is_section_specific,
-            sections: sections
+            last_reply_at: last_reply_at,
+            locked: locked,
+            locked_for_user: locked_for_user,
+            lock_at: lock_at,
+            message: message,
+            only_graders_can_rate: only_graders_can_rate,
+            permissions: permissions,
+            pinned: pinned,
+            position: position,
+            posted_at: posted_at,
+            published: published,
+            require_initial_post: require_initial_post,
+            sections: sections,
+            sort_by_rating: sort_by_rating,
+            subscribed: subscribed,
+            subscription_hold: subscription_hold,
+            title: title,
+            unread_count: unread_count
         )
     }
 }
@@ -262,31 +295,52 @@ extension APIDiscussionEntry {
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.create
 struct PostDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
-    struct Body: Codable, Equatable {
-        let title: String
-        let message: String
-        let published: Bool
-        let assignment: APIAssignmentParameters?
+
+    enum DiscussionKey: String {
+        case attachment, allow_rating, delayed_post_at, discussion_type, id, is_announcement, locked, lock_at,
+            message, only_graders_can_rate, pinned, published, remove_attachment, require_initial_post,
+            sort_by_rating, specific_sections, title
     }
 
     let context: Context
-    let body: Body?
+    let form: APIFormData?
     let method = APIMethod.post
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics"
+    var path: String { "\(context.pathComponent)/discussion_topics" }
+
+    init(context: Context, form: [DiscussionKey: APIFormDatum?] = [:]) {
+        self.context = context
+        var formData: APIFormData = []
+        for (key, value) in form {
+            if let value = value {
+                formData.append((key: key.rawValue, value: value))
+            }
+        }
+        self.form = formData
     }
 }
 
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.update
 struct PutDiscussionTopicRequest: APIRequestable {
     typealias Response = APIDiscussionTopic
 
+    typealias DiscussionKey = PostDiscussionTopicRequest.DiscussionKey
+
     let context: Context
     let topicID: String
-    // let body: Body? = nil
+    let form: APIFormData?
     let method = APIMethod.put
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
 
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics/\(topicID)"
+    init(context: Context, topicID: String, form: [DiscussionKey: APIFormDatum?] = [:]) {
+        self.context = context
+        self.topicID = topicID
+        var formData: APIFormData = []
+        for (key, value) in form {
+            if let value = value {
+                formData.append((key: key.rawValue, value: value))
+            }
+        }
+        self.form = formData
     }
 }
 
@@ -303,8 +357,19 @@ struct DeleteDiscussionTopicRequest: APIRequestable {
 
     let context: Context
     let topicID: String
-    let method = APIMethod.delete
+    var method: APIMethod { .delete }
     var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)" }
+}
+
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.subscribe_topic
+// https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.unsubscribe_topic
+struct SubscribeDiscussionTopicRequest: APIRequestable {
+    typealias Response = APINoContent
+
+    let context: Context
+    let topicID: String
+    let method: APIMethod
+    var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/subscribed" }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.add_entry
@@ -431,29 +496,33 @@ struct GetDiscussionViewRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics.index
-struct ListDiscussionTopicsRequest: APIRequestable {
+struct GetDiscussionTopicsRequest: APIRequestable {
     typealias Response = [APIDiscussionTopic]
 
     let context: Context
     let include: [GetDiscussionTopicRequest.Include]
     let perPage: Int?
+    let isAnnouncement: Bool
 
-    init(context: Context, perPage: Int? = 100, include: [GetDiscussionTopicRequest.Include] = GetDiscussionTopicRequest.defaultIncludes) {
+    init(
+        context: Context,
+        perPage: Int? = 100,
+        include: [GetDiscussionTopicRequest.Include] = GetDiscussionTopicRequest.defaultIncludes,
+        isAnnouncement: Bool = false
+    ) {
         self.context = context
         self.include = include
         self.perPage = perPage
+        self.isAnnouncement = isAnnouncement
     }
 
-    public var path: String {
-        "\(context.pathComponent)/discussion_topics"
-    }
+    public var path: String { "\(context.pathComponent)/discussion_topics" }
 
-    public var query: [APIQueryItem] {
-        [
-            .perPage(perPage),
-            .include(include.map { $0.rawValue }),
-        ]
-    }
+    public var query: [APIQueryItem] { [
+        .perPage(perPage),
+        .include(include.map { $0.rawValue }),
+        .optionalValue("only_announcements", isAnnouncement ? "1" : nil),
+    ] }
 }
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#method.discussion_topics_api.mark_topic_read

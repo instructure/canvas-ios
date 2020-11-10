@@ -77,3 +77,32 @@ public struct GetDashboardGroups: CollectionUseCase {
 
     public let cacheKey: String? = "get-user-groups"
 }
+
+class GetGroupsInCategory: CollectionUseCase {
+    typealias Model = Group
+    let cacheKey: String?
+    let request: GetGroupsInCategoryRequest
+    let scope: Scope
+
+    init(_ groupCategoryID: String?) {
+        let groupCategoryID = groupCategoryID ?? ""
+        cacheKey = "group_categories/\(groupCategoryID)/groups"
+        request = GetGroupsInCategoryRequest(groupCategoryID: groupCategoryID)
+        scope = .where(
+            #keyPath(Group.groupCategoryID), equals: groupCategoryID,
+            orderBy: #keyPath(Group.name), naturally: true
+        )
+    }
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APIGroup]?, URLResponse?, Error?) -> Void) {
+        // Skip making a request for empty groupCategoryID so this can be an empty list
+        guard !request.groupCategoryID.isEmpty else { return completionHandler(nil, nil, nil) }
+        environment.api.makeRequest(request, callback: completionHandler)
+    }
+
+    func write(response: [APIGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.forEach { item in
+            Group.save(item, in: client)
+        }
+    }
+}

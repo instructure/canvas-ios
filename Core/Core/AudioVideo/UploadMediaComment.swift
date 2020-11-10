@@ -74,6 +74,7 @@ public class UploadMediaComment {
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadMediaComment.placeholderSuffix)"
             placeholder.mediaID = "_"
+            placeholder.mediaLocalURL = self.url
             placeholder.mediaType = self.type
             placeholder.mediaURL = self.url
             placeholder.userID = self.userID

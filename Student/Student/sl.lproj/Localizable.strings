@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Ima težave.";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Videti je, da v tem prostoru ni bil ustvarjen še noben kviz.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Prazno je, kaj še počnete tu?";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Ni sporočil.";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Ni kvizov.";
 
 /* No comment provided by engineer. */
 "No recipients" = "Ni prejemnikov.";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Prišlo je do težave z zagonom brskalnika Safari.";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Pri nalaganju kvizov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Prišlo je do napake pri nalaganju dokumenta.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Ali vas lahko prosimo, da nas obvestite o težavah, ki jih imate z aplikacijo?";
+
+/* Text submission editor placeholder */
+"Write..." = "Piši ...";
 
 /* No comment provided by engineer. */
 "Yes" = "Da";

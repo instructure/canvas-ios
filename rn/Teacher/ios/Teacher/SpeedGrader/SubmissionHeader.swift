@@ -62,13 +62,7 @@ struct SubmissionHeader: View {
 
     @ViewBuilder var avatar: some View {
         if assignment.anonymizeStudents {
-            (submission.groupID != nil ? Icon.groupLine : Icon.userLine)
-                .foregroundColor(.textDark)
-                .frame(width: 40, height: 40)
-                .cornerRadius(20)
-                .overlay(Circle()
-                    .stroke(Color.borderMedium, lineWidth: 1)
-                )
+            Avatar.Anonymous(isGroup: submission.groupID != nil)
         } else if let name = submission.groupName {
             Avatar(name: name, url: nil)
         } else {

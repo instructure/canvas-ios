@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "它有问题";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "此区域似乎尚未创建测验。";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "是空的，您还在这里干什么。";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "无通知";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "无测验";
 
 /* No comment provided by engineer. */
 "No recipients" = "没有收件人";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "启动Safari时出现问题";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "加载测验时发生错误。下拉刷新以重试。";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "加载文档时出现错误。";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "您介意让我们知道您已遇到的应用程序问题吗？";
+
+/* Text submission editor placeholder */
+"Write..." = "撰写...";
 
 /* No comment provided by engineer. */
 "Yes" = "是";

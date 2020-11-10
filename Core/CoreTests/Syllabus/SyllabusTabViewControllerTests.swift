@@ -67,4 +67,16 @@ class SyllabusTabViewControllerTests: CoreTestCase {
         let cell = controller.collectionView(controller.menu!, cellForItemAt: IndexPath(item: 0, section: 0)) as? HorizontalMenuViewController.MenuCell
         XCTAssertEqual(cell?.title?.text, "Syllabus")
     }
+
+    func testSummaryAppear() {
+        api.mock(controller.course, value: .make(syllabus_body: "not empty"))
+        api.mock(controller.settings, value: .make(syllabus_course_summary: false))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertEqual(controller.menu?.numberOfItems(inSection: 0), 1)
+        api.mock(controller.settings, value: .make(syllabus_course_summary: true))
+        controller.settings.refresh(force: true)
+        XCTAssertEqual(controller.menu?.numberOfItems(inSection: 0), 2)
+    }
 }

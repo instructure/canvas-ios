@@ -98,7 +98,7 @@ public struct FileEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Name", bundle: .core)) {
-                TextField(NSLocalizedString("Name", bundle: .core, comment: ""), text: $name)
+                TextField(NSLocalizedString("Name"), text: $name)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("FileEditor.nameField")
@@ -107,7 +107,7 @@ public struct FileEditorView: View {
             EditorSection(label: Text("Access", bundle: .core)) {
                 ButtonRow(action: {
                     env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Access", bundle: .core, comment: ""),
+                        title: NSLocalizedString("Access"),
                         sections: [ ItemPickerSection(items: Access.allCases.map {
                             ItemPickerItem(title: $0.label)
                         }), ],
@@ -126,12 +126,12 @@ public struct FileEditorView: View {
                 if access == .scheduled {
                     Divider()
                     OptionalDatePicker(selection: $unlockAt, max: lockAt, initial: Clock.now.startOfDay()) {
-                        Text("Available from")
+                        Text("Available from", bundle: .core)
                     }
                         .identifier("FileEditor.unlockAtButton")
                     Divider()
                     OptionalDatePicker(selection: $lockAt, min: unlockAt, initial: Clock.now.endOfDay()) {
-                        Text("Available to")
+                        Text("Available until", bundle: .core)
                     }
                         .identifier("FileEditor.lockAtButton")
                 }
@@ -141,14 +141,14 @@ public struct FileEditorView: View {
                 EditorSection(label: Text("Usage Rights", bundle: .core)) {
                     TextFieldRow(
                         label: Text("Copyright Holder", bundle: .core),
-                        placeholder: NSLocalizedString("Name", bundle: .core, comment: ""),
+                        placeholder: NSLocalizedString("Name"),
                         text: $copyright
                     )
                         .identifier("FileEditor.copyrightField")
                     Divider()
                     ButtonRow(action: {
                         env.router.show(ItemPickerViewController.create(
-                            title: NSLocalizedString("Usage Right", bundle: .core, comment: ""),
+                            title: NSLocalizedString("Usage Right"),
                             sections: [ ItemPickerSection(items: UseJustification.allCases.map {
                                 ItemPickerItem(title: $0.label)
                             }), ],
@@ -167,7 +167,7 @@ public struct FileEditorView: View {
                         Divider()
                         ButtonRow(action: {
                             env.router.show(ItemPickerViewController.create(
-                                title: NSLocalizedString("Creative Commons License", bundle: .core, comment: ""),
+                                title: NSLocalizedString("Creative Commons License"),
                                 sections: [ ItemPickerSection(items: License.allCases.map {
                                     ItemPickerItem(title: $0.label)
                                 }), ],
@@ -319,13 +319,13 @@ public struct FileEditorView: View {
         var label: String {
             switch self {
             case .published:
-                return NSLocalizedString("Publish", bundle: .core, comment: "")
+                return NSLocalizedString("Publish")
             case .unpublished:
-                return NSLocalizedString("Unpublish", bundle: .core, comment: "")
+                return NSLocalizedString("Unpublish")
             case .hidden:
-                return NSLocalizedString("Only available to students with link", bundle: .core, comment: "")
+                return NSLocalizedString("Only available to students with link")
             case .scheduled:
-                return NSLocalizedString("Schedule student availability", bundle: .core, comment: "")
+                return NSLocalizedString("Schedule student availability")
             }
         }
     }
@@ -337,17 +337,17 @@ public struct FileEditorView: View {
         var label: String {
             switch self {
             case .cc_by:
-                return NSLocalizedString("Attribution", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution")
             case .cc_by_sa:
-                return NSLocalizedString("Attribution Share Alike", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution Share Alike")
             case .cc_by_nc:
-                return NSLocalizedString("Attribution Non-Commercial", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution Non-Commercial")
             case .cc_by_nc_sa:
-                return NSLocalizedString("Attribution Non-Commercial Share Alike", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution Non-Commercial Share Alike")
             case .cc_by_nd:
-                return NSLocalizedString("Attribution No Derivatives", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution No Derivatives")
             case .cc_by_nc_nd:
-                return NSLocalizedString("Attribution Non-Commercial No Derivatives", bundle: .core, comment: "")
+                return NSLocalizedString("Attribution Non-Commercial No Derivatives")
             }
         }
     }

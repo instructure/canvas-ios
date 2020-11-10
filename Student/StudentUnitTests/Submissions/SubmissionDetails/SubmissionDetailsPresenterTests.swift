@@ -329,11 +329,13 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
     }
 
     func testLockedEmptyViewIsNotHidden() {
-        Assignment.make(from: .make(submission_types: [ .online_upload ],
-                                    allowed_extensions: ["png"],
-                                    unlock_at: Date().addYears(1),
-                                    locked_for_user: true,
-                                    lock_explanation: "this is locked"))
+        Assignment.make(from: .make(
+            allowed_extensions: ["png"],
+            locked_for_user: true,
+            lock_explanation: "this is locked",
+            submission_types: [ .online_upload ],
+            unlock_at: Date().addYears(1)
+        ))
         XCTAssertFalse( presenter.lockedEmptyViewIsHidden() )
     }
 
@@ -344,34 +346,37 @@ class SubmissionDetailsPresenterTests: StudentTestCase {
 
     func testLockedEmptyViewIsHiddenWithUntilDateInThePast() {
         Assignment.make(from: .make(
-            submission: .make(assignment_id: "1", id: "1", user_id: "1", workflow_state: SubmissionWorkflowState.submitted),
-            submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
-            lock_at: Date().addDays(-5),
             locked_for_user: true,
-            lock_explanation: "this is locked"
-            )
-        )
+            lock_at: Date().addDays(-5),
+            lock_explanation: "this is locked",
+            submission: .make(assignment_id: "1", id: "1", user_id: "1", workflow_state: SubmissionWorkflowState.submitted),
+            submission_types: [ .online_upload ]
+        ))
         XCTAssertTrue( presenter.lockedEmptyViewIsHidden() )
     }
 
     func testLockedEmptyViewHeaderWithQuiz() {
-        Assignment.make(from: .make(quiz_id: "1",
-                                    submission_types: [ .online_upload ],
-                                    allowed_extensions: ["png"],
-                                    unlock_at: Date().addYears(1),
-                                    locked_for_user: true,
-                                    lock_explanation: "this is locked"))
+        Assignment.make(from: .make(
+            allowed_extensions: ["png"],
+            locked_for_user: true,
+            lock_explanation: "this is locked",
+            quiz_id: "1",
+            submission_types: [ .online_upload ],
+            unlock_at: Date().addYears(1)
+        ))
 
         XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Quiz Locked" )
     }
 
     func testLockedEmptyViewHeaderWithAssignment() {
-        Assignment.make(from: .make(submission_types: [ .online_upload ],
-                                    allowed_extensions: ["png"],
-                                    unlock_at: Date().addYears(1),
-                                    locked_for_user: true,
-                                    lock_explanation: "this is locked"))
+        Assignment.make(from: .make(
+            allowed_extensions: ["png"],
+            locked_for_user: true,
+            lock_explanation: "this is locked",
+            submission_types: [ .online_upload ],
+            unlock_at: Date().addYears(1)
+        ))
 
         XCTAssertEqual( presenter.lockedEmptyViewHeader(), "Assignment Locked" )
     }

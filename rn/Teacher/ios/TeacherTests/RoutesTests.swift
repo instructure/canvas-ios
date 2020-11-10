@@ -57,9 +57,16 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/7/modules/5/items/6") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/7/modules/items/6") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/9/module_item_redirect/8") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
+        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
+        XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
         XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
         ExperimentalFeature.nativeSpeedGrader.isEnabled = false
@@ -98,5 +105,6 @@ class RoutesTests: XCTestCase {
         ExperimentalFeature.nativeTeacherSyllabus.isEnabled = true
         XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
+        XCTAssert(router.match( "/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
     }
 }

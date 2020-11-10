@@ -122,6 +122,9 @@
 "Appointment Signups" = "Mötesbokningar";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Vill du ta bort (namn)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Vill du radera %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Är du säker på att du vill avsluta elevens vyn?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Vill du ta bort den här filen?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Kursbedömning Under %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Kursöversikt";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurser";
@@ -1229,6 +1238,12 @@
 "Remove" = "Ta bort";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Ta bort %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Ta bort fil";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Tog bort %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Klar!";
 
 /* No comment provided by engineer. */
+"Summary" = "Sammanfattning";
+
+/* No comment provided by engineer. */
 "Surveys" = "Enkäter";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Kursöversikt";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Lärarassistent";

@@ -122,6 +122,9 @@
 "Appointment Signups" = "Aanmeldingen voor afspraak";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Weet je zeker dat je (naam) wilt verwijderen?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Weet je zeker dat je %@ wilt verwijderen?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Weet je zeker dat je de Cursistweergave wilt afsluiten?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Weet je zeker dat je dit bestand wilt verwijderen?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Cursuscijfer lager dan %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Cursussyllabus";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursussen";
@@ -1229,6 +1238,12 @@
 "Remove" = "Verwijderen";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Verwijderen %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Bestand verwijderen";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Verwijderd %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Gelukt!";
 
 /* No comment provided by engineer. */
+"Summary" = "Samenvatting";
+
+/* No comment provided by engineer. */
 "Surveys" = "Enquêtes";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Syllabus";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Onderwijsassistent";

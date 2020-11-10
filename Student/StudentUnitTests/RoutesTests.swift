@@ -43,71 +43,46 @@ class RoutesTests: XCTestCase {
         AppEnvironment.shared.router = router
     }
 
-    func testActAsUser() {
+    func testRoutes() {
         XCTAssert(router.match("/act-as-user") is ActAsUserViewController)
-    }
-
-    func testActAsUserID() {
         XCTAssertEqual((router.match("/act-as-user/3") as? ActAsUserViewController)?.initialUserID, "3")
-    }
 
-    func testCalendar() {
         XCTAssert(router.match("/calendar") is PlannerViewController)
         XCTAssert(router.match("/calendar?event_id=7") is CalendarEventDetailsViewController)
-    }
-
-    func testCalendarEvents() {
         XCTAssert(router.match("/calendar_events/7") is CalendarEventDetailsViewController)
-    }
 
-    func testConversation() {
         XCTAssertEqual((router.match("/conversations/1") as? HelmViewController)?.moduleName, "/conversations/:conversationID")
-    }
 
-    func testCourses() {
         ExperimentalFeature.nativeDashboard.isEnabled = false
         XCTAssertEqual((router.match("/courses") as? HelmViewController)?.moduleName, "/courses")
         ExperimentalFeature.nativeDashboard.isEnabled = true
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
-    }
 
-    func testCourseAssignment() {
-        XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
-    }
-
-    func testGroup() {
-        XCTAssert(router.match("/groups/7") is GroupNavigationViewController)
-    }
-
-    func testQuizzes() {
-        XCTAssert(router.match("/courses/3/quizzes") is QuizListViewController)
-    }
-
-    func testAssignmentList() {
-        XCTAssert(router.match("/courses/1/assignments") is HelmViewController)
-    }
-
-    func testCourseNavTab() {
         XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
-    }
 
-    func testSubmission() {
+        XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
+        XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
+        XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
+
+        XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
+        XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
+
+        XCTAssert(router.match("/courses/1/assignments") is HelmViewController)
+        XCTAssert(router.match("/courses/2/assignments/3") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/2") is SubmissionDetailsViewController)
-    }
 
-    func testLogs() {
+        XCTAssert(router.match("/courses/3/quizzes") is QuizListViewController)
+
+        XCTAssert(router.match("/groups/7") is GroupNavigationViewController)
+
         XCTAssert(router.match("/logs") is LogEventListViewController)
-    }
 
-    func testPeopleListCourse() {
         XCTAssert(router.match("/courses/1/users") is PeopleListViewController)
-    }
-
-    func testPeopleListGroup() {
         XCTAssert(router.match("/groups/1/users") is PeopleListViewController)
-    }
 
-    func testModules() {
         XCTAssert(router.match("/courses/1/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/1/modules/1") is ModuleListViewController)
     }

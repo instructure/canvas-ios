@@ -2,6 +2,9 @@
 "Absent" = "Frånvarande";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Lägg till bilaga";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Alla omdömen döljs för tillfället.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Välj datum";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Välj filer";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Stäng lådan";
+
+/* No comment provided by engineer. */
+"Comment" = "Kommentar";
+
+/* No comment provided by engineer. */
+"Comments" = "Kommentarer";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Det gick inte att spara kommentaren.";
+
+/* No comment provided by engineer. */
 "Courses" = "Kurser";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Klar";
 
+/* No comment provided by engineer. */
+"Error" = "Fel";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Fel: Ingen data returnerades från närvaro-API.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Det gick inte att starta LTI-verktyget för närvaro.";
 
 /* No comment provided by engineer. */
+"Files" = "Filer";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Har bedömts";
+
+/* No comment provided by engineer. */
+"Grades" = "Bedömningar";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Omdömen kan ses av alla elever";
@@ -98,6 +128,15 @@
 "No Submissions" = "Inga inlämningar";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Öppna lådan i helskärm";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Öppna lådan i halv skärm";
+
+/* No comment provided by engineer. */
+"Pending" = "Väntar";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Publicera omdömen";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Närvarande";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Förhandsvisning ej tillgänglig";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Spela in ljud";
+
+/* No comment provided by engineer. */
+"Record Video" = "Spela in video";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Välj för att ändra roll call-datum";
+
+/* No comment provided by engineer. */
+"Send" = "Skicka";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Likhetsresultat";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Specifika sektioner";
@@ -122,8 +176,44 @@
 "Test Student" = "Testelev";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Det finns inga medlemmar än.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Den här uppgiften tillåter inte inlämningar.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Den här uppgiften tillåter endast inlämningar på papper.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Denna grupp har ingen inlämning för denna uppgift.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Den här eleven har ingen inlämning för denna uppgift.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Den här inlämningen har inga filer.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Denna inlämning är en URL till en extern sida. Vi har inkluderat en bild på hur sidan ser ut när den lämnades in.";
+
+/* No comment provided by engineer. */
 "To Do" = "Att göra";
 
 /* No comment provided by engineer. */
 "Unmark" = "Avmarkera";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Förhandsvisningsbild för URL";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Visa fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Visa inlämningsförsök %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Du måste aktivera behörigheter för kameran i Inställningar.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
 

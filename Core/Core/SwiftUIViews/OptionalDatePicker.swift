@@ -19,47 +19,111 @@
 import SwiftUI
 
 public struct OptionalDatePicker<Label: View>: View {
+    let initial: Date
     let label: Label
     let min: Date
     let max: Date
-    let initial: Date
+    let placeholder: Text
+
     @Binding var selection: Date?
+
     @State var showDatePicker = false
 
-    public init(selection: Binding<Date?>, min: Date? = nil, max: Date? = nil, initial: Date, @ViewBuilder label: () -> Label) {
+    public init(
+        placeholder: Text = Text("--", bundle: .core),
+        selection: Binding<Date?>,
+        min: Date? = nil,
+        max: Date? = nil,
+        initial: Date,
+        @ViewBuilder label: () -> Label
+    ) {
         self.label = label()
         self.min = min ?? .distantPast
         self.max = max ?? .distantFuture
-        self.initial = initial
+        self.initial = Swift.min(self.max, Swift.max(self.min, initial))
+        self.placeholder = placeholder
         self._selection = selection
     }
 
-    public var body: some View { VStack(spacing: 0) {
-        ButtonRow(action: {
-            if self.showDatePicker == false, self.selection == nil {
-                self.selection = self.initial
-            }
-            self.showDatePicker.toggle()
-        }, content: {
-            label
-            Spacer()
-            Text(selection?.dateTimeString ?? NSLocalizedString("--", bundle: .core, comment: ""))
-                .font(.regular14)
-            Spacer().frame(width: 12)
-            if selection != nil {
-                Button(action: { self.selection = nil }, label: {
+    public var body: some View {
+        if #available(iOSApplicationExtension 14, *) {
+            compact
+        } else {
+            wheel
+        }
+    }
+
+    @ViewBuilder
+    var compact: some View {
+        if let current = selection {
+            HStack(spacing: 0) {
+                DatePicker(
+                    selection: Binding(get: { current }, set: { selection = $0 }),
+                    in: min...max
+                ) {
+                    label
+                }
+                    .padding(.vertical, -4)
+                Button(action: { withAnimation(.default) {
+                    showDatePicker = false
+                    selection = nil
+                } }, label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.textDark)
                 })
+                    .accessibility(label: Text("Remove date", bundle: .core))
+                    .padding(.leading, 12)
             }
-        })
-
-        if showDatePicker {
-            Divider()
-            DatePicker(selection: Binding(get: { self.selection ?? self.initial }, set: { self.selection = $0 }), in: self.min...self.max) {
-                self.label
-            }
-                .labelsHidden()
+                .font(.semibold16).foregroundColor(.textDarkest)
+                .padding(.horizontal, 16).padding(.vertical, 12)
+                .frame(minHeight: 52)
+        } else {
+            ButtonRow(action: {
+                withAnimation(.default) { selection = initial }
+            }, content: {
+                label
+                Spacer()
+                placeholder
+                    .font(.medium16).foregroundColor(.textDark)
+            })
         }
-    } }
+    }
+
+    public var wheel: some View {
+        VStack(spacing: 0) {
+            ButtonRow(action: {
+                if showDatePicker == false, selection == nil {
+                    selection = initial
+                }
+                withAnimation(.default) { showDatePicker.toggle() }
+            }, content: {
+                label
+                Spacer()
+                (selection.map { Text($0.dateTimeString) } ?? placeholder)
+                    .font(.regular14)
+                if selection != nil {
+                    Button(action: { withAnimation(.default) {
+                        showDatePicker = false
+                        selection = nil
+                    } }, label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.textDark)
+                    })
+                        .accessibility(label: Text("Remove date", bundle: .core))
+                        .padding(.leading, 12)
+                }
+            })
+
+            if showDatePicker {
+                Divider()
+                DatePicker(
+                    selection: Binding(get: { selection ?? initial }, set: { selection = $0 }),
+                    in: min...max
+                ) {
+                    label
+                }
+                    .labelsHidden()
+            }
+        }
+    }
 }

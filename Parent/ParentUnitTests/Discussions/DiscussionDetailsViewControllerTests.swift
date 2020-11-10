@@ -28,8 +28,8 @@ class DiscussionDetailsViewControllerTests: ParentTestCase {
         super.setUp()
         api.mock(controller.course, value: .make())
         api.mock(controller.topic, value: .make(
-            title: "Pandemic",
-            message: "Class is cancelled until further notice."
+            message: "Class is cancelled until further notice.",
+            title: "Pandemic"
         ))
     }
 

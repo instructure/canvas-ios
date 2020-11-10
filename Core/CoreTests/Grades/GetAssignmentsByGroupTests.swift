@@ -38,9 +38,9 @@ class GetAssignmentsByGroupTests: CoreTestCase {
 
     func testInvalidSectionOrderException() {
         let groups: [APIAssignmentGroup] = [
-            .make(id: "9732", name: "Test Assignment Group", position: 1, assignments: [APIAssignment.make(id: "63603", name: "File Upload", position: 1, assignment_group_id: "9732")]),
-            .make(id: "9734", name: "Middle Group", position: 2, assignments: [APIAssignment.make(id: "63604", name: "File Upload 2", position: 1, assignment_group_id: "9734")]),
-            .make(id: "9733", name: "Test Assignment Group", position: 3, assignments: [APIAssignment.make(id: "63606", name: "File Upload 3", position: 1, assignment_group_id: "9733")]),
+            .make(id: "9732", name: "Test Assignment Group", position: 1, assignments: [APIAssignment.make(assignment_group_id: "9732", id: "63603", name: "File Upload", position: 1)]),
+            .make(id: "9734", name: "Middle Group", position: 2, assignments: [APIAssignment.make(assignment_group_id: "9734", id: "63604", name: "File Upload 2", position: 1)]),
+            .make(id: "9733", name: "Test Assignment Group", position: 3, assignments: [APIAssignment.make(assignment_group_id: "9733", id: "63606", name: "File Upload 3", position: 1)]),
         ]
 
         let getAssignmentGroupsUseCase = GetAssignmentsByGroup(courseID: "20783")

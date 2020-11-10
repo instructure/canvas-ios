@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "?"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "Cal una descripció"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "Accepta"
   },
-  "access_9a94f04e": {
-    "message": "Accés"
-  },
   "access_code_74f4864f": {
     "message": "Codi d'accés"
   },
   "account_group_cb00ca73": {
     "message": "Grup del compte"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "El compte no té condicions d'ús"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Afegiu alguns dels cursos preferits per tal que aquest espai sigui més vostre."
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "Afegeix una data de venciment"
   },
-  "add_file_e6326e09": {
-    "message": "Afegeix un fitxer"
-  },
-  "add_item_75b67d07": {
-    "message": "Afegeix un element"
-  },
   "add_media_cfa37b54": {
     "message": "Afegeix un element multimèdia"
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "Tot"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "S'han desat totes les anotacions."
   },
   "all_courses_a7dbb853": {
     "message": "Tots els cursos"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "S'ha produït un error"
   },
-  "announcement_details_81b0bda2": {
-    "message": "Informació de l'anunci"
-  },
   "announcements_a4b8ed4a": {
     "message": "Anuncis"
   },
   "anonymous_grading_3083dc0": {
     "message": "Qualificacions anònimes"
   },
-  "anyone_5b8fdf9f": {
-    "message": "Qualsevol persona"
-  },
   "archived_de543437": {
     "message": "Arxivat"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "Segur que voleu suprimir { name }?"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Segur que voleu suprimir aquest anunci?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Segur que voleu suprimir aquest debat?"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "Segur que voleu suprimir aquesta resposta?"
   },
   "assign_to_95404a83": {
     "message": "Assigna a"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "No s'ha pogut reproduir el so"
   },
-  "augment_reality_4d23e2df": {
-    "message": "Realitat augmentada"
-  },
   "availability_8942cde6": {
     "message": "Disponibilitat"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "Disponible de: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "Disponible de"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "Disponible de ha d'anar abans que Disponible a"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "\"Disponible de\" ha d'anar abans que \"Disponible fins a\""
-  },
-  "available_to_b7350e02": {
-    "message": "Disponible per a"
   },
   "available_until_20c0cc5c": {
     "message": "Disponible fins a:"
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "Enrere"
   },
-  "back_to_replies_94f3c127": {
-    "message": "Torna a les respostes"
-  },
-  "black_8d713c75": {
-    "message": "negre"
-  },
-  "blue_7aca5197": {
-    "message": "blau"
-  },
   "blue_daf8fea9": {
     "message": "Blau"
   },
-  "bold_34b9d97e": {
-    "message": "Negreta"
-  },
   "brick_f2656265": {
     "message": "Totxo"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "Es pot editar"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "No es pot reenviar el missatge"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "Opcions de conversa"
   },
-  "copied_880dcb1b": {
-    "message": "Copiat."
-  },
-  "copied_c6518d41": {
-    "message": "Copiat"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "Copia l'enllaç"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "Titular dels drets d'autor"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "No s'ha pogut obtenir la llista de tasques"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 estudiants}\n    one {# estudiant}\n  other {# estudiants}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# M'agrada}\n  other {# entrades de M'agrada}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {S'ha de qualificar}\n  other {S'han de qualificar}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "Cursos"
   },
-  "create_folder_6055d558": {
-    "message": "Crea una carpeta"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "Fitxer Creative Commons"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "Llicència de Creative Commons"
-  },
   "current_grade_6d0b8ef7": {
     "message": "Qualificació actual"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "Suprimeix"
   },
-  "delete_file_3ca64c1b": {
-    "message": "Suprimeix el fitxer"
-  },
-  "delete_folder_1700498c": {
-    "message": "Suprimeix la carpeta"
-  },
-  "delete_folder_7d84f587": {
-    "message": "Voleu suprimir la carpeta?"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "Suprimeix el destinatari { recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "Suprimida aquesta resposta."
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "Si se suprimeix aquesta carpeta també se suprimiran tots els fitxers que conté."
   },
   "description_436c48d7": {
     "message": "Descripció"
   },
   "details_98a31b68": {
     "message": "Detalls"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "Informació sobre el debat"
   },
   "discussion_submission_781d5d33": {
     "message": "Entrega de debat"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "Edita el tauler de control"
   },
-  "edit_description_1206e0a8": {
-    "message": "Edita la descripció"
-  },
-  "edit_file_c560115a": {
-    "message": "Edita el fitxer"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "Edita la carpeta"
-  },
-  "edit_page_5df5916a": {
-    "message": "Edita la pàgina"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Edita la informació del qüestionari"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "Que tingueu bon dia."
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "Introduïu un terme de cerca de tres o més caràcters."
   },
   "enter_code_c7ab5104": {
     "message": "Introduïu el codi"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "S'ha produït un error en desar la qualificació"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "S'ha produït un error en desar. Toqueu per tornar a provar-ho."
   },
   "everyone_854554dd": {
     "message": "Tothom"
@@ -611,10 +491,7 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "No s'ha pogut penjar el comentari sobre l'element multimèdia"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "Excepció d'ús raonable"
-  },
-  "favorite_courses_fbd356f0": {
+  "favorited_courses_84f383f": {
     "message": "Cursos preferits"
   },
   "file_types_6fa69505": {
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "Verd"
   },
-  "green_d46e687c": {
-    "message": "verd"
-  },
-  "grey_56f61c1": {
-    "message": "gris"
-  },
   "group_a8f5ed9c": {
     "message": "Grup"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "Amagat"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "Amagat. Els fitxers de l'interior estaran disponibles a través d'enllaços."
-  },
   "hide_content_for_name_aee1723a": {
     "message": "Amaga el contingut per a { name }"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "Puntuació màxima possible, { pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "Tinc permís per utilitzar el fitxer"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "Soc el titular dels drets d'autor"
-  },
   "in_progress_9d1ce8b9": {
     "message": "En curs"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "Entrada"
   },
-  "insert_image_42d30344": {
-    "message": "Insereix una imatge"
-  },
-  "insert_link_6dc23cae": {
-    "message": "Insereix un enllaç"
-  },
   "invalid_field_54480fae": {
     "message": "Camp no vàlid"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Sembla que no hi ha cap entrega vàlida per qualificar."
-  },
-  "italic_ac45200a": {
-    "message": "Cursiva"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# element}\n  other {# elements}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }, camp de text"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "Blau clar"
   },
-  "like_e8ad74ae": {
-    "message": "M'agrada"
-  },
   "loading_bde52856": {
     "message": "S'està carregant"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "Magenta"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "Marca tots com a Llegit"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "Marca-ho com a llegit"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "Marca-ho com a no llegit"
-  },
   "me_bf110f4d": {
     "message": "mi"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "Entrega de l'element multimèdia"
-  },
-  "message_5c38209d": {
-    "message": "Missatge"
   },
   "message_details_342e931f": {
     "message": "Detalls del missatge"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Dates de venciment múltiples"
-  },
-  "my_files_eea33f44": {
-    "message": "Els meus fitxers"
   },
   "n_a_d6f6c42f": {
     "message": "N/A"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "Missatge nou"
-  },
-  "new_page_84b28714": {
-    "message": "Pàgina nova"
   },
   "nickname_1e6da3ad": {
     "message": "Àlies"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "Sense resultats"
   },
-  "no_results_found_2ace1494": {
-    "message": "No s'ha trobat cap resultat"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "No hi ha cap missatge marcat amb estrelles"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "Ja no s'ha de fer res més."
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "Nombre de M'agrada: { count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# minut}\n  other {# minuts}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "URL en línia"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "Només està disponible per als estudiants a través d'un enllaç. No està disponible en els fitxers dels estudiants."
-  },
-  "only_members_232519d6": {
-    "message": "Només membres"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Només una vegada després de cada intent"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "Només professors"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "Obre les preferències d'usuari per a { courseName }"
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "Taronja"
-  },
-  "orange_86946f54": {
-    "message": "taronja"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "Llista ordenada"
   },
   "out_of_points_number_42209979": {
     "message": "De { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "punts"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "Fitxer de domini públic"
-  },
   "publish_5211dca3": {
     "message": "Publica"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "Carabassa"
-  },
-  "purple_71d4acca": {
-    "message": "porpra"
   },
   "purple_7678a9fc": {
     "message": "Porpra"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "Vermell"
   },
-  "red_ba15ab13": {
-    "message": "vermell"
-  },
-  "redo_363c58b7": {
-    "message": "Refés"
-  },
   "remove_attachment_81f30aa3": {
     "message": "Elimina el fitxer adjunt"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "Voleu eliminar aquest fitxer adjunt?"
   },
-  "replies_4a8577c8": {
-    "message": "Respostes"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Només aquells que han publicat almenys una resposta poden veure les respostes."
-  },
   "reply_389d6fb9": {
     "message": "Respon"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "Informeu d'un problema"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "No s'ha pogut completar la sol·licitud."
-  },
   "require_an_access_code_46a02601": {
     "message": "Sol·liciteu un codi d'accés"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "Restringit"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "Accés restringit"
   },
   "retry_ebd5f8ba": {
     "message": "Torna a provar-ho"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "S'està desant…"
-  },
-  "schedule_student_availability_332154a": {
-    "message": "Planifica la disponibilitat dels estudiants"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number } de { points, plural,\n    one {# punt}\n  other {# punts}\n} possibles"
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "Cerca"
   },
-  "search_files_7e8153fd": {
-    "message": "Cerca fitxers"
-  },
-  "searching_f330d682": {
-    "message": "S'està cercant…"
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# segon}\n  other {# segons}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "Seccions"
-  },
-  "sections_sections_70d64496": {
-    "message": "Seccions: { sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "Consulta-ho tot"
   },
   "select_a_course_4710371f": {
     "message": "Seleccioneu un curs"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "Enviat"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "Estableix com a pàgina frontal"
-  },
   "set_home_to_82ab5119": {
     "message": "Estableix \"Inici\" en…"
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "Establiu el color del text en { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Configuració"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Puntuació similar"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "Atès que aquest és un debat de grup, cada grup té la seva conversa per a aquest tema. Aquests són els debats als quals teniu accés."
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Alguna cosa no ha anat bé per part nostra. No patiu; ho hem enregistrat i ens n'ocuparem ben aviat."
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "Professors"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "Professors i estudiants"
-  },
   "teal_f729a294": {
     "message": "Verd blavós"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "Condicions d'ús"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "Color del text ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "Color del text { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Entrega de text"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "S'ha produït un problema en carregar els qüestionaris."
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "S'ha produït un problema en recuperar les condicions d'ús"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "S'ha produït un problema en desar la qualificació. Torneu a provar-ho."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "S'ha produït un error en carregar el fitxer adjunt."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "S'ha produït un error en carregar el fitxer."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "S'ha produït un error en carregar la llista d'inscripcions"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Aquest fitxer està bloquejat actualment."
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "Cal establir drets d'ús per a aquest fitxer abans que es pugui publicar."
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "Aquesta carpeta està buida"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Aquest grup no té cap entrega per a aquesta tasca."
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "Sense marca d'estrella"
   },
-  "undo_a7be8fef": {
-    "message": "Desfés"
-  },
   "unexpected_error_93991f40": {
     "message": "Error inesperat"
   },
   "ungraded_survey_ad7de790": {
     "message": "Estudi sense qualificació"
   },
-  "unknown_author_40d64455": {
-    "message": "Autor desconegut"
-  },
   "unlimited_ff19e96d": {
     "message": "Il·limitat"
   },
-  "unordered_list_3c1650b3": {
-    "message": "Llista sense ordenar"
-  },
   "unpin_a318452a": {
     "message": "Desancora"
-  },
-  "unpublish_9f2d730b": {
-    "message": "Anul·la la publicació"
   },
   "unpublished_8b6107d6": {
     "message": "No publicat"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "Penjada en curs"
   },
-  "uploading_19e8a4e7": {
-    "message": "S'està penjant"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "S'està penjant { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "S'estan penjant { loaded } de { total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "Entrega d'URL"
-  },
-  "usage_right_2b398e0b": {
-    "message": "Drets d'ús"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "Drets d'ús"
   },
   "use_camera_47a0387b": {
     "message": "Utilitza la càmera"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "Mostra la descripció llarga"
   },
-  "view_more_replies_9fef9983": {
-    "message": "Mostra més respostes"
-  },
   "view_responses_d2874266": {
     "message": "Mostra les respostes"
   },
   "welcome_73d18b4d": {
     "message": "Benvingut!"
   },
-  "white_463b4bf9": {
-    "message": "blanc"
-  },
   "whoops_de2cf9fc": {
     "message": "Ui!"
-  },
-  "yellow_4b5532b3": {
-    "message": "groc"
   },
   "yes_dde87d5": {
     "message": "Sí"

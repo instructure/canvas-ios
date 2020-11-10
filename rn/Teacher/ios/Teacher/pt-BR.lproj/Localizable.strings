@@ -2,6 +2,9 @@
 "Absent" = "Ausente";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Adicionar anexo";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Todas as notas estão atualmente ocultas.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Escolher data";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Escolher arquivos";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Fechar Drawer";
+
+/* No comment provided by engineer. */
+"Comment" = "Comentário";
+
+/* No comment provided by engineer. */
+"Comments" = "Comentários";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Não foi possível salvar o comentário.";
+
+/* No comment provided by engineer. */
 "Courses" = "Cursos";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Feito";
 
+/* No comment provided by engineer. */
+"Error" = "Erro";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Erro: Nenhum dado retornado do api da Lista de chamada.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Falhou em lançar ferramenta LTI de lista de chamada.";
 
 /* No comment provided by engineer. */
+"Files" = "Arquivos";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Arquivo (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "Avaliado";
+
+/* No comment provided by engineer. */
+"Grades" = "Notas";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Notas estarão visíveis para todos os alunos";
@@ -98,6 +128,15 @@
 "No Submissions" = "Nenhum envio";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Abrir Drawer em tela cheia";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Abrir Drawer em meia-tela";
+
+/* No comment provided by engineer. */
+"Pending" = "Pendente";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Postar notas";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Presente";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Pré-visualização indisponível";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Gravar Áudio";
+
+/* No comment provided by engineer. */
+"Record Video" = "Gravar Vídeo";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Selecionar para alterar a data da lista de chamada";
+
+/* No comment provided by engineer. */
+"Send" = "Enviar";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Pontuação semelhante";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Turmas específicas";
@@ -122,8 +176,44 @@
 "Test Student" = "Testar aluno";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Ainda não há mensagens.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Esta tarefa não permite envios.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Esta tarefa permite apenas envios em papel.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Este grupo não tem um envio para esta tarefa.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Este aluno não tem um envio para esta tarefa.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Este envio não possui arquivos.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Este envio era uma URL para uma página externa. Incluímos um snapshot de como a página aparecia quando foi enviada.";
+
+/* No comment provided by engineer. */
 "To Do" = "Lista de Tarefas";
 
 /* No comment provided by engineer. */
 "Unmark" = "Não marcado";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "Imagem de pré-visualização da URL";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Visualizar arquivo %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Visualizar tentativa de envio %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Você deve habilitar as permissões da câmera em Configurações.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Você deve habilitar permissões de Microfone nas Configurações.";
 

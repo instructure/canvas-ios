@@ -211,7 +211,7 @@ enum MiniCanvasEndpoints {
 
         // MARK: Discussion Topics
         // https://canvas.instructure.com/doc/api/discussion_topics.html
-        .apiRequest(ListDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
+        .apiRequest(GetDiscussionTopicsRequest(context: Pattern.courseContext)) { request in
             try lookupCourse(forRequest: request).discussions.map { $0.api }
         },
         .apiRequest(GetDiscussionTopicRequest(context: Pattern.courseContext, topicID: Pattern.topicID)) { request in

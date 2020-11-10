@@ -732,9 +732,6 @@
 /* No comment provided by engineer. */
 "It has problems" = "Li gen pwoblèm";
 
-/* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Ta sanble poko gen quiz ki kreye nan espas sa a.";
-
 /* It’s empty, what are you still doing here. */
 "It’s empty, what are you still doing here." = "Li vid, sa w ap fè la a toujou.";
 
@@ -910,9 +907,6 @@
 
 /* No comment provided by engineer. */
 "No Notifications" = "Okenn Notifikasyon";
-
-/* No comment provided by engineer. */
-"No Quizzes" = "Okenn Quiz";
 
 /* No comment provided by engineer. */
 "No recipients" = "Pa gen destinat";
@@ -1400,9 +1394,6 @@
 /* No comment provided by engineer. */
 "There was a problem launching Safari" = "Te gen yon pwoblèm nan lansman Safari a";
 
-/* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Te gen yon erè nan chajman quiz yo. Rale pou aktyalize pou ka eseye ankò.";
-
 /* Web browser error handling message */
 "There was an error loading the document." = "Te gen yon erè nan chajman dokiman an.";
 
@@ -1586,6 +1577,9 @@
 
 /* No comment provided by engineer. */
 "Would you mind letting us know the problems you have been having with the app?" = "Sa pa p deranje w pou fè nou konnen ki pwoblèm ou genyen ak app sa a?";
+
+/* Text submission editor placeholder */
+"Write..." = "Ekri...";
 
 /* No comment provided by engineer. */
 "Yes" = "Wi";

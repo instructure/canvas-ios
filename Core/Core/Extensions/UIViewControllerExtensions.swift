@@ -154,34 +154,28 @@ extension UIViewController {
             },
         ]
     }
-}
 
-public enum PermissionError {
-    case microphone
-
-    var message: String {
-        switch self {
-        case .microphone:
-            return NSLocalizedString("You must enable Microphone permissions in Settings.", bundle: .core, comment: "")
-        }
-    }
-}
-
-public protocol ApplicationViewController {
-    func open(_ url: URL)
-    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)?)
-}
-
-extension ApplicationViewController {
     public func showPermissionError(_ error: PermissionError) {
-        let title = NSLocalizedString("Permission Needed", bundle: .core, comment: "")
-        let alert = UIAlertController(title: title, message: error.message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Settings", bundle: .core, comment: ""), style: .default) { _ in
-            guard let url = URL(string: "app-settings:") else { return }
-            self.open(url)
+        let alert = UIAlertController(title: NSLocalizedString("Permission Needed"), message: error.message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Settings"), style: .default) { _ in
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            AppEnvironment.shared.loginDelegate?.openExternalURL(url)
         })
-        present(alert, animated: true, completion: nil)
+        alert.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        AppEnvironment.shared.router.show(alert, from: self, options: .modal())
+    }
+
+    public enum PermissionError {
+        case microphone, notifications
+
+        var message: String {
+            switch self {
+            case .microphone:
+                return NSLocalizedString("You must enable Microphone permissions in Settings.")
+            case .notifications:
+                return NSLocalizedString("You must allow notifications in Settings to set reminders.")
+            }
+        }
     }
 }
 

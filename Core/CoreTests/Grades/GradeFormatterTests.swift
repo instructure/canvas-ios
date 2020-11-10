@@ -33,9 +33,9 @@ class GradeFormatterTests: CoreTestCase {
 
     func testFromAssignment() {
         let assignment = Assignment.make(from: .make(
+            grading_type: .pass_fail,
             points_possible: 11,
-            submission: .make(grade: "complete", score: 1),
-            grading_type: .pass_fail
+            submission: .make(grade: "complete", score: 1)
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment), "Complete / 11")
         XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
@@ -43,9 +43,9 @@ class GradeFormatterTests: CoreTestCase {
 
     func testFromAssignmentMultipleSubmissions() {
         let assignment = Assignment.make(from: .make(
+            grading_type: .pass_fail,
             points_possible: 10,
-            submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")],
-            grading_type: .pass_fail
+            submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")]
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete / 10")
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")

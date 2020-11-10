@@ -69,7 +69,7 @@ class APICourseTests: XCTestCase {
     }
 
     func testUpdateCourseRequest() {
-        let params = APICourseParameters(name: "Cracking Wise", default_view: .wiki)
+        let params = APICourseParameters(name: "Cracking Wise", default_view: .wiki, syllabus_body: "Syllabus", syllabus_course_summary: true)
         let body = PutCourseRequest.Body(course: params)
         XCTAssertEqual(PutCourseRequest(courseID: "2", body: body).method, .put)
         XCTAssertEqual(PutCourseRequest(courseID: "2", body: body).path, "courses/2")
@@ -77,7 +77,7 @@ class APICourseTests: XCTestCase {
     }
 
     func testCreateCourseRequest() {
-        let params = APICourseParameters(name: "name", default_view: .assignments)
+        let params = APICourseParameters(name: "name", default_view: .assignments, syllabus_body: nil, syllabus_course_summary: nil)
         let body = PostCourseRequest.Body(course: params)
         let request = PostCourseRequest(accountID: "1", body: body)
 

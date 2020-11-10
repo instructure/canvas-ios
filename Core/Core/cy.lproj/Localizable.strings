@@ -122,6 +122,9 @@
 "Appointment Signups" = "Archebu Apwyntiadau";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Ydych chi’n siŵr eich bod chi am ddileu (enw)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Ydych chi’n siŵr eich bod am ddileu %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Ydych chi'n siŵr eich bod am adael Gwedd Myfyriwr?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Ydych chi’n siŵr eich bod chi am dynnu’r ffeil hon?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Gradd y Cwrs yn Is na %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Maes Llafur y Cwrs";
 
 /* No comment provided by engineer. */
 "Courses" = "Cyrsiau";
@@ -1229,6 +1238,12 @@
 "Remove" = "Tynnu";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Tynnu %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Tynnu Ffeil";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Wedi tynnu %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Wedi llwyddo!";
 
 /* No comment provided by engineer. */
+"Summary" = "Crynodeb";
+
+/* No comment provided by engineer. */
 "Surveys" = "Arolygon";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Maes Llafur";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Cynorthwyydd Dysgu";

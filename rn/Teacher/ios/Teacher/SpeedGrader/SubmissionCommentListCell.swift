@@ -49,10 +49,10 @@ struct SubmissionCommentListCell: View {
                     Spacer().frame(height: 12)
                     SubmissionAttempt(submission: submission) { self.attempt = attempt }
                 }
-            } else if let url = comment.mediaURL, comment.mediaType == .some(.audio) {
+            } else if comment.mediaType == .some(.audio), let url = comment.mediaLocalOrRemoteURL {
                 Spacer().frame(height: 12)
                 AudioPlayer(url: url)
-            } else if let url = comment.mediaURL, comment.mediaType == .some(.video) {
+            } else if comment.mediaType == .some(.video), let url = comment.mediaLocalOrRemoteURL {
                 Spacer().frame(height: 12)
                 VideoPlayer(url: url)
                     .cornerRadius(4)

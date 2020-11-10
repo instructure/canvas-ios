@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "?"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "Yon deskripsyon obligatwa"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "Aksepte"
   },
-  "access_9a94f04e": {
-    "message": "Aksè"
-  },
   "access_code_74f4864f": {
     "message": "Kòd Aksè"
   },
   "account_group_cb00ca73": {
     "message": "Gwoup Kont"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "Kont lan pa gen Kondisyon Itilizasyon yo"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Ajoute kèk nan kou favori ou yo pou w ka fè plas sa a akèy ou."
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "Ajoute Delè"
   },
-  "add_file_e6326e09": {
-    "message": "Ajoute Fichye"
-  },
-  "add_item_75b67d07": {
-    "message": "Ajoute Eleman"
-  },
   "add_media_cfa37b54": {
     "message": "Ajoute Medya"
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "Tout"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "Tout anotasyon anrejistre."
   },
   "all_courses_a7dbb853": {
     "message": "Tout Kou"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "Gen yon erè ki fèt"
   },
-  "announcement_details_81b0bda2": {
-    "message": "Detay Anons"
-  },
   "announcements_a4b8ed4a": {
     "message": "Anons"
   },
   "anonymous_grading_3083dc0": {
     "message": "Klasman anomin"
   },
-  "anyone_5b8fdf9f": {
-    "message": "Nenpòt"
-  },
   "archived_de543437": {
     "message": "Stoke"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "Èske se vre ou vle efase { name }?"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Ou kwè vrèman ou vle efase anons sa a?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Ou kwè vrèman ou vle efase diskisyon sa a?"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "Ou kwè vrèman ou vle efase kòmantè sa a?"
   },
   "assign_to_95404a83": {
     "message": "Asiyen A"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "Echèk lekti odyo"
   },
-  "augment_reality_4d23e2df": {
-    "message": "Ogmante Reyalite a"
-  },
   "availability_8942cde6": {
     "message": "Disponibilite"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "Disponib depi: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "Disponib depi"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "Disponid depi dwe anvan Disponib jiska"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "\"Disponib Depi\" dwe anvan \"Disponib Jiska\" "
-  },
-  "available_to_b7350e02": {
-    "message": "Disponib pou"
   },
   "available_until_20c0cc5c": {
     "message": "Disponib Jiska:"
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "Retounen"
   },
-  "back_to_replies_94f3c127": {
-    "message": "Retounen nan kòmantè"
-  },
-  "black_8d713c75": {
-    "message": "nwa"
-  },
-  "blue_7aca5197": {
-    "message": "ble"
-  },
   "blue_daf8fea9": {
     "message": "Ble"
   },
-  "bold_34b9d97e": {
-    "message": "Gra"
-  },
   "brick_f2656265": {
     "message": "Brik"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "Kapab Modifye"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "Paka transfere mesaj"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "Opsyon konvèsasyon"
   },
-  "copied_880dcb1b": {
-    "message": "Kopye!"
-  },
-  "copied_c6518d41": {
-    "message": "Kopye"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "Kopye Lyen"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "Detantè Dwa dotè"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Paka jwenn lis sesyon yo"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 elèv}\n    one {# elèv}\n  other {# elèv}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# jèm}\n  other {# jèm}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Bezwen Klasman}\n other {Bezwen Klasman}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "Kou"
   },
-  "create_folder_6055d558": {
-    "message": "Kreye Dosye"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "Fichye Kreyatif Komen"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "Lisans Kreyatif Komen"
-  },
   "current_grade_6d0b8ef7": {
     "message": "Klas Aktyèl"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "Efase"
   },
-  "delete_file_3ca64c1b": {
-    "message": "Efase Fichye"
-  },
-  "delete_folder_1700498c": {
-    "message": "Efase Dosye"
-  },
-  "delete_folder_7d84f587": {
-    "message": "Efase Dosye?"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "Efase destinatè { recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "Elimine kòmantè sa a."
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "Efase dosye sa a ap tou efase tout fichye ki andedan dosye a."
   },
   "description_436c48d7": {
     "message": "Deskripsyon"
   },
   "details_98a31b68": {
     "message": "Detay"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "Detay Diskisyon"
   },
   "discussion_submission_781d5d33": {
     "message": "Soumisyon Diskisyon"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "Modifye Tablo"
   },
-  "edit_description_1206e0a8": {
-    "message": "Modifye Deskripsyon"
-  },
-  "edit_file_c560115a": {
-    "message": "Modifye Fichye"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "Modifye Fichye"
-  },
-  "edit_page_5df5916a": {
-    "message": "Modifye Paj"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Modifye Detay Quiz"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "Pwofite jounen an!"
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "Antre yon tèm rechèch ki gen twa karaktè oswa plis."
   },
   "enter_code_c7ab5104": {
     "message": "Antre Kòd"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "Erè Anrejistreman Nòt"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "Erè Anrejistreman. Tape pou re eseye."
   },
   "everyone_854554dd": {
     "message": "Tout Moun"
@@ -611,10 +491,7 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "Echèk transfè kòmantè miltimedya"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "Eksepsyon Itilizasyon Ekitab"
-  },
-  "favorite_courses_fbd356f0": {
+  "favorited_courses_84f383f": {
     "message": "Kou Prefere"
   },
   "file_types_6fa69505": {
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "Vèt"
   },
-  "green_d46e687c": {
-    "message": "vèt"
-  },
-  "grey_56f61c1": {
-    "message": "gri"
-  },
   "group_a8f5ed9c": {
     "message": "Gwoup"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "Kache"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "Kache. Fichye andedan yo ap disponib ak lyen."
-  },
   "hide_content_for_name_aee1723a": {
     "message": "Kache kontni pou { name }"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "Pi gwo nòt posib, { pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "Mwen gen pèmisyon pou itilize fichye"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "Mwen gen dwa dotè a"
-  },
   "in_progress_9d1ce8b9": {
     "message": "Ap Avanse"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "Antre"
   },
-  "insert_image_42d30344": {
-    "message": "Ensere Imaj"
-  },
-  "insert_link_6dc23cae": {
-    "message": "Ensere Lyen"
-  },
   "invalid_field_54480fae": {
     "message": "Chan envalid"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Ta sanble pa gen okenn soumisyon valid pou klase."
-  },
-  "italic_ac45200a": {
-    "message": "Italik"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# eleman}\n  other {# eleman}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }, espas tèks"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "Limyè Ble"
   },
-  "like_e8ad74ae": {
-    "message": "Jèm"
-  },
   "loading_bde52856": {
     "message": "Chajman"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "Magenta"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "Make Tout Ke yo Li"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "Make tankou Li"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "Make tankou Poko Li"
-  },
   "me_bf110f4d": {
     "message": "mwen menm"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "Soumisyon Medya"
-  },
-  "message_5c38209d": {
-    "message": "Mesaj"
   },
   "message_details_342e931f": {
     "message": "Detay Mesaj"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Plizyè Delè"
-  },
-  "my_files_eea33f44": {
-    "message": "Fichye Mwen"
   },
   "n_a_d6f6c42f": {
     "message": "N/A"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "Nouvo Mesaj"
-  },
-  "new_page_84b28714": {
-    "message": "Nouvo Paj"
   },
   "nickname_1e6da3ad": {
     "message": "Ti Non Jwèt"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "Okenn rezilta"
   },
-  "no_results_found_2ace1494": {
-    "message": "Nou pa jwenn rezilta"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "Pa gen Mesaj ki Make"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "Pa gen anyen pou fè ankò."
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "Kantite likes: { count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minit}\n other {# Minit}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "URL an liy"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "Disponib pou elèv ki gen lyen sèlman. Pa disponib nan fichye elèv yo."
-  },
-  "only_members_232519d6": {
-    "message": "Manm sèlman"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Yon Fwa Sèlman Aprè Chak Tantativ"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "Pwofesè sèlman"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "Ouvri { courseName } preferans itilizatè"
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "Zoranj"
-  },
-  "orange_86946f54": {
-    "message": "oranj"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "Lis Kòmande"
   },
   "out_of_points_number_42209979": {
     "message": "Sou { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "pts"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "Fichye Domèn Piblik"
-  },
   "publish_5211dca3": {
     "message": "Pibliye"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "Pumpkin"
-  },
-  "purple_71d4acca": {
-    "message": "mov"
   },
   "purple_7678a9fc": {
     "message": "Mov"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "Wouj"
   },
-  "red_ba15ab13": {
-    "message": "wouj"
-  },
-  "redo_363c58b7": {
-    "message": "Refè"
-  },
   "remove_attachment_81f30aa3": {
     "message": "Retire atachman"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "Elimine atachman sa a?"
   },
-  "replies_4a8577c8": {
-    "message": "Repons"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Sèlman moun ki poste yon repons pou pi piti k ap ka wè repons yo."
-  },
   "reply_389d6fb9": {
     "message": "Reponn"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "Rapòte yon Pwoblèm"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "Remann paka konplete."
-  },
   "require_an_access_code_46a02601": {
     "message": "Yon Kòd Aksè Nesesè"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "Limite"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "Aksè Limite"
   },
   "retry_ebd5f8ba": {
     "message": "Reeseye"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "Anrejistreman..."
-  },
-  "schedule_student_availability_332154a": {
-    "message": "Orè Disponibilite Elèv"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number } sou { points, plural,\n    one {# pwen}\n  other {# pwen}\n} posib"
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "Chèche"
   },
-  "search_files_7e8153fd": {
-    "message": "Rechèch fichye"
-  },
-  "searching_f330d682": {
-    "message": "Chèche..."
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# segond}\n other {# segond}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "Seksyon"
-  },
-  "sections_sections_70d64496": {
-    "message": "Seksyon: { sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "Gade Tout"
   },
   "select_a_course_4710371f": {
     "message": "Seleksyone yon Kou"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "Voye"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "Defini kòm Premye Paj"
-  },
   "set_home_to_82ab5119": {
     "message": "Defini \"Akèy\" nan..."
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "Defini koulè tèks la an { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Reglaj"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Nòt Resanblans"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "Lefèt ke sa a se yon gwoup diskisyon, chak gwoup gen pwòp konvèsasyon pa li pou sijè sa a. Men a ki diskisyon ou gen aksè."
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Gen yon bagay ki pase mal bò kote nou. Pa enkyete w, nou anrejistre sa e nap travay sou li nan yon tan ki pa lwen."
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "Pwofesè"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "Pwofesè ak elèv"
-  },
   "teal_f729a294": {
     "message": "Ble vèt"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "Kondisyon Itilizasyon yo"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "Koulè Tèks ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "Koulè Tèks { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Soumisyon Tèks"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Te gen yon pwoblèm nan chajman quiz yo."
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "Gen yon pwoblèm ki pase pandan rekiperasyon Kondisyon Itilizasyon an"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Te gen yon pwoblèm pou anrejistre nòt la. Tanpri eseye ankò."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Te gen erè nan chajman atachman an."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "Te gen yon erè nan chajman fichye a."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "Gen yon erè ki pase pandan chajman lis enskripsyon yo"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Fichye sa a bloke pou kounye a."
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "Fichye sa a dwe genyen dwa itiizasyon ki defini anvan li ka pibliye."
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "Dosye sa a vid"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Gwoup sa a pa gen soumisyon pou sesyon sa a."
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "Demake"
   },
-  "undo_a7be8fef": {
-    "message": "Defèt"
-  },
   "unexpected_error_93991f40": {
     "message": "Erè Sanzatann"
   },
   "ungraded_survey_ad7de790": {
     "message": "Ankèt san Klase"
   },
-  "unknown_author_40d64455": {
-    "message": "Otè Enkoni"
-  },
   "unlimited_ff19e96d": {
     "message": "San limit"
   },
-  "unordered_list_3c1650b3": {
-    "message": "Lis non Òdone"
-  },
   "unpin_a318452a": {
     "message": "Detache"
-  },
-  "unpublish_9f2d730b": {
-    "message": "Pa Pibliye"
   },
   "unpublished_8b6107d6": {
     "message": "Pa Pibliye"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "Transfè an pwosesis"
   },
-  "uploading_19e8a4e7": {
-    "message": "Chajman"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "Chajman { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "Transfè { loaded } sou { total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "Soumisyon URL"
-  },
-  "usage_right_2b398e0b": {
-    "message": "Dwa Itilizasyon"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "Dwa Itilizasyon"
   },
   "use_camera_47a0387b": {
     "message": "Itilize Kamera"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "Afiche Deskripsyon Long"
   },
-  "view_more_replies_9fef9983": {
-    "message": "Afiche plis kòmantè"
-  },
   "view_responses_d2874266": {
     "message": "Afiche Repons"
   },
   "welcome_73d18b4d": {
     "message": "Bienveni!"
   },
-  "white_463b4bf9": {
-    "message": "blan"
-  },
   "whoops_de2cf9fc": {
     "message": "Whoops!"
-  },
-  "yellow_4b5532b3": {
-    "message": "jòn"
   },
   "yes_dde87d5": {
     "message": "Wi"

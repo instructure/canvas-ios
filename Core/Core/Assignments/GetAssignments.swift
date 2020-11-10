@@ -126,7 +126,7 @@ public class GetAssignment: APIUseCase {
     }
 
     public var cacheKey: String? {
-        return "get-\(courseID)-\(assignmentID)-assignment"
+        return "get-\(courseID)-\(assignmentID)-assignment-\(include.map { $0.rawValue } .sorted().joined())"
     }
 
     public var request: GetAssignmentRequest {
@@ -146,5 +146,42 @@ public class GetAssignment: APIUseCase {
         let updateSubmission = include.contains(.submission)
         let updateScoreStatistics = include.contains(.score_statistics)
         model.update(fromApiModel: response, in: client, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
+    }
+}
+
+class UpdateAssignment: APIUseCase {
+    typealias Model = Assignment
+
+    let request: PutAssignmentRequest
+
+    init(
+        courseID: String,
+        assignmentID: String,
+        dueAt: Date?,
+        gradingType: GradingType?,
+        lockAt: Date?,
+        overrides: [APIAssignmentOverride]?,
+        pointsPossible: Double?,
+        unlockAt: Date?
+    ) {
+        request = PutAssignmentRequest(
+            courseID: courseID,
+            assignmentID: assignmentID,
+            body: .init(assignment: APIAssignmentParameters(
+                assignment_overrides: overrides,
+                due_at: dueAt,
+                grading_type: gradingType,
+                lock_at: lockAt,
+                points_possible: pointsPossible,
+                unlock_at: unlockAt
+            ))
+        )
+    }
+
+    var cacheKey: String? { nil }
+
+    func write(response: APIAssignment?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        Assignment.save(item, in: client, updateSubmission: false, updateScoreStatistics: false)
     }
 }

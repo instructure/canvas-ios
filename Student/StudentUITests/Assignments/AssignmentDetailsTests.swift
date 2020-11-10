@@ -31,12 +31,12 @@ class AssignmentDetailsTests: CoreUITestCase {
             Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
         let assignment = mock(assignment: .make(
+            allowed_extensions: [ "doc", "docx", "pdf" ],
             description: "A description",
-            points_possible: 12.3,
             due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            points_possible: 12.3,
             submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
-            submission_types: [ .online_upload ],
-            allowed_extensions: [ "doc", "docx", "pdf" ]
+            submission_types: [ .online_upload ]
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -62,15 +62,15 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testUnsubmittedDiscussion() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
-            name: "Discuss this",
             description: "Say it like you mean it",
-            points_possible: 15.1,
-            due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
-            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
-            submission_types: [ .discussion_topic ],
             discussion_topic: APIDiscussionTopic.make(
                 message: "Say something I'm giving up on you."
-            )
+            ),
+            due_at: DateComponents(calendar: Calendar.current, year: 2035, month: 1, day: 1, hour: 8).date,
+            name: "Discuss this",
+            points_possible: 15.1,
+            submission: .make(submitted_at: nil, workflow_state: .unsubmitted),
+            submission_types: [ .discussion_topic ]
         ))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -173,11 +173,11 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
-            submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
-            lock_at: Date().addDays(-1),
             locked_for_user: true,
-            lock_explanation: "this is locked"
+            lock_at: Date().addDays(-1),
+            lock_explanation: "this is locked",
+            submission_types: [ .online_upload ]
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.lockSection.waitToExist().isVisible)
@@ -191,11 +191,11 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
-            submission_types: [ .online_upload ],
             allowed_extensions: ["png"],
-            unlock_at: Date().addDays(1),
             locked_for_user: true,
-            lock_explanation: "this is locked"
+            lock_explanation: "this is locked",
+            submission_types: [ .online_upload ],
+            unlock_at: Date().addDays(1)
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.lockIcon.waitToExist().isVisible)
@@ -267,13 +267,13 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testDisplayGradeAs() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
+            grading_type: .percent,
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
                 score: 8,
                 workflow_state: .graded
-            ),
-            grading_type: .percent
+            )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 8 out of 10 points possible")
@@ -283,8 +283,8 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testGradeCellShowsLatePenalty() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
-            points_possible: 100,
             due_at: Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
+            points_possible: 100,
             submission: APISubmission.make(
                 grade: "85",
                 late: true,
@@ -335,13 +335,13 @@ class AssignmentDetailsTests: CoreUITestCase {
     func testGradeCellNavigatesToSubmission() {
         mockBaseRequests()
         let assignment = mock(assignment: .make(
+            grading_type: .percent,
             points_possible: 10,
             submission: APISubmission.make(
                 grade: "80%",
                 score: 8,
                 workflow_state: .graded
-            ),
-            grading_type: .percent
+            )
         ))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.gradeCell.tap()

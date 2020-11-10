@@ -122,6 +122,9 @@
 "Appointment Signups" = "Tilmeldinger til aftaler";
 
 /* No comment provided by engineer. */
+"Are you sure you want to delete (name)?" = "Er du sikker på, at du vil slette (navn)?";
+
+/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Er du sikker på, at du vil slette %@?";
 
 /* No comment provided by engineer. */
@@ -129,6 +132,9 @@
 
 /* No comment provided by engineer. */
 "Are you sure you want to exit Student View?" = "Er du sikker på, at du vil afslutte visning for studerende?";
+
+/* No comment provided by engineer. */
+"Are you sure you want to remove this file?" = "Er du sikker på, at du vil fjerne denne fil?";
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker på, at du vil slette denne kommentar?";
@@ -402,6 +408,9 @@
 
 /* No comment provided by engineer. */
 "Course Grade Below %d" = "Fagkarakter under %d";
+
+/* No comment provided by engineer. */
+"Course Syllabus" = "Fagets læseplan";
 
 /* No comment provided by engineer. */
 "Courses" = "Fag";
@@ -1229,6 +1238,12 @@
 "Remove" = "Fjern";
 
 /* No comment provided by engineer. */
+"Remove %@" = "Fjern %@";
+
+/* No comment provided by engineer. */
+"Remove File" = "Fjern fil";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjernet %1$@";
 
 /* No comment provided by engineer. */
@@ -1430,7 +1445,13 @@
 "Success!" = "Succes!";
 
 /* No comment provided by engineer. */
+"Summary" = "Sammendrag";
+
+/* No comment provided by engineer. */
 "Surveys" = "Spørgeundersøgelser";
+
+/* No comment provided by engineer. */
+"Syllabus" = "Læseplan";
 
 /* Teacher's Assistant (abbreviated) */
 "TA" = "Undervisningsassistent";

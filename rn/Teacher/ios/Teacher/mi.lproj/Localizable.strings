@@ -2,6 +2,9 @@
 "Absent" = "Ngaro";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Tāpiri Āpitihanga";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Kei te hungaia ngā kōeke katoa i tēnei wā";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Kōwhiri te rā";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Kōwhiri ngā kōnae";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Katia te pouaka";
+
+/* No comment provided by engineer. */
+"Comment" = "Kōrero";
+
+/* No comment provided by engineer. */
+"Comments" = "Ngā kōrero";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Kaore i taea te tiaki i te kōrero.";
+
+/* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Kua mahia";
 
+/* No comment provided by engineer. */
+"Error" = "Hapa";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Hapa: Kaore he raraunga i whakahokia mai i rollcall.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "I hapa te tuku rollcall LTI taputapu.";
 
 /* No comment provided by engineer. */
+"Files" = "Ngā Kōnae";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Ngā kōnae (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "kōekehia";
+
+/* No comment provided by engineer. */
+"Grades" = "Ngā Kōeke";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Ka kitea e ngā ākonga katoa ngā koeke";
@@ -98,6 +128,15 @@
 "No Submissions" = "Kahore ngā tāpaetanga";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Huaki Pouaka Mata Nui";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Huaki Pouaka Mmata Hawhe";
+
+/* No comment provided by engineer. */
+"Pending" = "Tārewa";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Whakairi ngā kōeke";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Nāianei";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Kaore i te wātea te arokite";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Tāhopu Ororongo";
+
+/* No comment provided by engineer. */
+"Record Video" = "Tāhopu Ataata";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Tīpako ki te huri te rā roll call";
+
+/* No comment provided by engineer. */
+"Send" = "Tukua";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Kaute ōrite";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Ngā Wāhanga Motuhake";
@@ -122,8 +176,44 @@
 "Test Student" = "Whakamātau Ākonga";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Kaore noa ngā karere.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Kāore tēnei whakataunga e whakāe ngā tukunga.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Tēnei tukunga e whakaae ana pepa tukunga anake.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Kaore he tukunga mo tēnei rōpū mo tēnei whakataunga.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Kāore he tukunga mo tēnei whakataunga mo tēnei ākoranga.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Kaore he kōnae mo tēnei tāpaetanga.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Ko tēnei tukunga he URL ki tētahi whārangi o waho. Kua whakaurua e mātou he hopuāhua o ta titiro te whārangi rite, i te tuku i te reira.";
+
+/* No comment provided by engineer. */
 "To Do" = "Hei mahi";
 
 /* No comment provided by engineer. */
 "Unmark" = "Kaore i mākāhia";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "URL Arokite Āhua";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Titiro tāpaetanga ngana %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Me whakahohetia e koe Kāmera whakaaetanga i roto i Tautuhinga";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Me whakahohetia e koe Orooro whakaaetanga i roto i Tautuhinga.";
 

@@ -207,12 +207,12 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testLockStatusBefore() {
-        let assignment = Assignment.make(from: .make(unlock_at: Date().addYears(1), locked_for_user: true))
+        let assignment = Assignment.make(from: .make(locked_for_user: true, unlock_at: Date().addYears(1)))
         XCTAssertEqual(assignment.lockStatus, .before)
     }
 
     func testLockStatusAfter() {
-        let assignment = Assignment.make(from: .make(lock_at: Date().addYears(-1), locked_for_user: true))
+        let assignment = Assignment.make(from: .make(locked_for_user: true, lock_at: Date().addYears(-1)))
         XCTAssertEqual(assignment.lockStatus, .after)
     }
 
@@ -245,7 +245,7 @@ class AssignmentTests: CoreTestCase {
     }
 
     func testIconForLocked() {
-        let a = Assignment.make(from: .make(id: "1", submission_types: [ .external_tool ], locked_for_user: true))
+        let a = Assignment.make(from: .make(id: "1", locked_for_user: true, submission_types: [ .external_tool ]))
         let icon = a.icon
         let expected = UIImage.lockLine
         XCTAssertEqual(icon, expected)
@@ -278,7 +278,7 @@ class AssignmentTests: CoreTestCase {
 
     func testIsOpenForSubmissions() {
         let df = ISO8601DateFormatter()
-        let a = Assignment.make(from: .make(unlock_at: nil, lock_at: nil))
+        let a = Assignment.make(from: .make(lock_at: nil, unlock_at: nil))
         let now = df.date(from: "2018-10-01T06:00:00Z")!
         Clock.mockNow(now)
 

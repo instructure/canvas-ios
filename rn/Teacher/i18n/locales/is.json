@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "_4927a5f1": {
-    "message": "?"
-  },
   "a_description_is_required_54b5f1f6": {
     "message": "Lýsingar er krafist"
   },
@@ -14,17 +11,11 @@
   "accept_2fdd362e": {
     "message": "Samþykkja"
   },
-  "access_9a94f04e": {
-    "message": "aðgangur"
-  },
   "access_code_74f4864f": {
     "message": "Aðgangskóði"
   },
   "account_group_cb00ca73": {
     "message": "Hópreikningur"
-  },
-  "account_has_no_terms_of_use_1048a785": {
-    "message": "Reikningur er ekki með neina notandaskilmála"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Bættu við nokkrum uppáhalds námskeiðum til að gera þetta að heimili þínu."
@@ -53,12 +44,6 @@
   "add_due_date_65b08f6c": {
     "message": "Bæta við skiladegi"
   },
-  "add_file_e6326e09": {
-    "message": "Bæta við skrá"
-  },
-  "add_item_75b67d07": {
-    "message": "Bæta við atriði"
-  },
   "add_media_cfa37b54": {
     "message": "Bæta við margmiðlunarefni"
   },
@@ -79,9 +64,6 @@
   },
   "all_4321c3a1": {
     "message": "Allt"
-  },
-  "all_annotations_saved_c0c650ab": {
-    "message": "Allar textaskýringar voru vistaðar."
   },
   "all_courses_a7dbb853": {
     "message": "Öll námskeið"
@@ -119,32 +101,17 @@
   "an_error_occurred_a4e1cda4": {
     "message": "Villa kom upp"
   },
-  "announcement_details_81b0bda2": {
-    "message": "Upplýsingar tilkynningar"
-  },
   "announcements_a4b8ed4a": {
     "message": "Tilkynningar"
   },
   "anonymous_grading_3083dc0": {
     "message": "Nafnlaus einkunnagjöf"
   },
-  "anyone_5b8fdf9f": {
-    "message": "Hver sem er"
-  },
   "archived_de543437": {
     "message": "Sett í safn"
   },
-  "are_you_sure_you_want_to_delete_name_908230d3": {
-    "message": "Viltu örugglega eyða { name }?"
-  },
-  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-    "message": "Viltu örugglega eyða þessum tilkynningum?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Viltu örugglega eyða þessum umræðum?"
-  },
-  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-    "message": "Viltu örugglega eyða þessu svari?"
   },
   "assign_to_95404a83": {
     "message": "Úthluta til"
@@ -185,9 +152,6 @@
   "audio_playback_failed_912bcb82": {
     "message": "Spilun hljóðs mistókst"
   },
-  "augment_reality_4d23e2df": {
-    "message": "Bættur raunveruleiki"
-  },
   "availability_8942cde6": {
     "message": "Tiltækileiki"
   },
@@ -206,17 +170,8 @@
   "available_from_date_bb9d5115": {
     "message": "Tiltækt frá: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "Tiltækt frá"
-  },
-  "available_from_must_be_before_available_to_b73ad479": {
-    "message": "Tiltækt frá þarf að vera á undan tiltækt til"
-  },
   "available_from_must_be_before_available_until_38d313cc": {
     "message": "„Tiltækt frá“ þarf að vera á undan „Tiltækt til“"
-  },
-  "available_to_b7350e02": {
-    "message": "Tiltækt til"
   },
   "available_until_20c0cc5c": {
     "message": "Tiltækt til:"
@@ -233,26 +188,11 @@
   "back_2900f52a": {
     "message": "Til baka"
   },
-  "back_to_replies_94f3c127": {
-    "message": "Aftur í svör"
-  },
-  "black_8d713c75": {
-    "message": "svart"
-  },
-  "blue_7aca5197": {
-    "message": "blátt"
-  },
   "blue_daf8fea9": {
     "message": "Blár"
   },
-  "bold_34b9d97e": {
-    "message": "Feitletrað"
-  },
   "brick_f2656265": {
     "message": "Kubbur"
-  },
-  "can_edit_5a1e8dbf": {
-    "message": "Getur breytt"
   },
   "can_not_forward_message_2a4d4953": {
     "message": "Ekki hægt að áframsenda skilaboð"
@@ -326,18 +266,6 @@
   "conversation_options_8be926f3": {
     "message": "Valkostir samræða"
   },
-  "copied_880dcb1b": {
-    "message": "Afritað!"
-  },
-  "copied_c6518d41": {
-    "message": "Afritað"
-  },
-  "copy_link_1ffb11a4": {
-    "message": "Afrita tengil"
-  },
-  "copyright_holder_386cc8b8": {
-    "message": "Handhafi útgáfuréttar"
-  },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Ekki var hægt að fá lista yfir verkefni"
   },
@@ -346,9 +274,6 @@
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 nemendur}\n    one {# nemandi}\n  other {# nemendur}\n}"
-  },
-  "count_plural_one_like_other_likes_338617e5": {
-    "message": "{ count, plural,\n    one {# líkar við}\n  other {# líkar við}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
     "message": "{ count, plural,\n    one {Þarfnast einkunnagjafar}\n  other {Þarfnast einkunnagjafar}\n}"
@@ -392,15 +317,6 @@
   "courses_43204aae": {
     "message": "Námskeið"
   },
-  "create_folder_6055d558": {
-    "message": "Stofna möppu"
-  },
-  "creative_commons_file_f0ace8ca": {
-    "message": "Creative Commons skrá"
-  },
-  "creative_commons_license_ba94fd4d": {
-    "message": "Creative Commons leyfi"
-  },
   "current_grade_6d0b8ef7": {
     "message": "Núverandi einkunn"
   },
@@ -443,32 +359,14 @@
   "delete_a6efa79d": {
     "message": "Eyða"
   },
-  "delete_file_3ca64c1b": {
-    "message": "Eyða skrá"
-  },
-  "delete_folder_1700498c": {
-    "message": "Eyða möppu"
-  },
-  "delete_folder_7d84f587": {
-    "message": "Eyða möppu?"
-  },
   "delete_recipient_recipient_22a1e3dd": {
     "message": "Eyða móttakanda { recipient }"
-  },
-  "deleted_this_reply_8b5b0ddc": {
-    "message": "Eyddi þessu svari."
-  },
-  "deleting_this_folder_will_also_delete_all_of_the_f_8017926e": {
-    "message": "Ef þessari möppu verður eytt, eyðast líka allar skrárnar í möppunni."
   },
   "description_436c48d7": {
     "message": "Lýsing"
   },
   "details_98a31b68": {
     "message": "Upplýsingar"
-  },
-  "discussion_details_5728ea3d": {
-    "message": "Upplýsingar umræðu"
   },
   "discussion_submission_781d5d33": {
     "message": "Umræðuskil"
@@ -539,26 +437,11 @@
   "edit_dashboard_7e5b7043": {
     "message": "Breyta stjórnborði"
   },
-  "edit_description_1206e0a8": {
-    "message": "Breyta lýsingu"
-  },
-  "edit_file_c560115a": {
-    "message": "Breyta skrá"
-  },
-  "edit_folder_f12b1b3c": {
-    "message": "Breyta möppu"
-  },
-  "edit_page_5df5916a": {
-    "message": "Breyta síðu"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Breyta prófsupplýsingum"
   },
   "enjoy_your_day_a4cb2c1": {
     "message": "Njóttu dagsins!"
-  },
-  "enter_a_search_term_with_three_or_more_characters_1577ec2": {
-    "message": "Settu inn leitarorð sem er þrír stafir eða lengra."
   },
   "enter_code_c7ab5104": {
     "message": "Settu inn kóða"
@@ -568,9 +451,6 @@
   },
   "error_saving_grade_367dd920": {
     "message": "Villa við að vista einkunn"
-  },
-  "error_saving_tap_to_retry_a66b9c5f": {
-    "message": "Villa við að vista. Smelltu til að reyna aftur."
   },
   "everyone_854554dd": {
     "message": "Allir"
@@ -611,11 +491,8 @@
   "failed_to_upload_media_comment_c43f581a": {
     "message": "Ekki tókst að hlaða upp miðilsathugasemd"
   },
-  "fair_use_exception_d8683c6f": {
-    "message": "Undanþága fyrir ásættanlega notkun"
-  },
-  "favorite_courses_fbd356f0": {
-    "message": "Uppáhalds námskeið"
+  "favorited_courses_84f383f": {
+    "message": "Eftirlætisnámskeið"
   },
   "file_types_6fa69505": {
     "message": "Skráartegundir"
@@ -716,12 +593,6 @@
   "green_15af4778": {
     "message": "Grænn"
   },
-  "green_d46e687c": {
-    "message": "grænt"
-  },
-  "grey_56f61c1": {
-    "message": "grátt"
-  },
   "group_a8f5ed9c": {
     "message": "Hópur"
   },
@@ -746,9 +617,6 @@
   "hidden_14a032a7": {
     "message": "Falið"
   },
-  "hidden_files_inside_will_be_available_with_links_e9e3d233": {
-    "message": "Falið. Innifaldar skrár verða tiltækar með tenglum."
-  },
   "hide_content_for_name_aee1723a": {
     "message": "Fela efni fyrir { name }"
   },
@@ -764,12 +632,6 @@
   "highest_possible_score_pointspossible_number_c03ce29a": {
     "message": "Hæsta mögulega einkunn, { pointsPossible, number }"
   },
-  "i_have_permission_to_use_file_d19a1a29": {
-    "message": "Ég hef heimild til að nota skrá"
-  },
-  "i_hold_the_copyright_71ee91b1": {
-    "message": "Ég hef höfundarréttinn"
-  },
   "in_progress_9d1ce8b9": {
     "message": "Í gangi"
   },
@@ -782,12 +644,6 @@
   "input_1d1d9b8e": {
     "message": "Inntak"
   },
-  "insert_image_42d30344": {
-    "message": "Setja inn mynd"
-  },
-  "insert_link_6dc23cae": {
-    "message": "Setja inn tengil"
-  },
   "invalid_field_54480fae": {
     "message": "Ógildur reitur"
   },
@@ -799,12 +655,6 @@
   },
   "it_seems_there_aren_t_any_valid_submissions_to_gra_f136675": {
     "message": "Það virðast ekki vera nein gild skil til að meta."
-  },
-  "italic_ac45200a": {
-    "message": "Skáletrað"
-  },
-  "item_count_plural_one_item_other_items_88319c63": {
-    "message": "{ item_count, plural,\n    one {# atriði}\n  other {# atriði}\n}"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }, textareitur"
@@ -845,9 +695,6 @@
   "light_blue_5374f600": {
     "message": "Ljósblár"
   },
-  "like_e8ad74ae": {
-    "message": "líka við"
-  },
   "loading_bde52856": {
     "message": "Sæki"
   },
@@ -863,15 +710,6 @@
   "magenta_4a65993c": {
     "message": "Blárauður"
   },
-  "mark_all_as_read_8f3bdf57": {
-    "message": "Merkja allt sem lesið"
-  },
-  "mark_as_read_47ec83dd": {
-    "message": "Merkja sem lesið"
-  },
-  "mark_as_unread_4ded3977": {
-    "message": "Merkja sem ólesið"
-  },
   "me_bf110f4d": {
     "message": "ég"
   },
@@ -880,9 +718,6 @@
   },
   "media_submission_464829f0": {
     "message": "Miðilsskil"
-  },
-  "message_5c38209d": {
-    "message": "Skilaboð"
   },
   "message_details_342e931f": {
     "message": "Skilaboða upplýsingar"
@@ -910,9 +745,6 @@
   },
   "multiple_due_dates_283dd861": {
     "message": "Margir skiladagar"
-  },
-  "my_files_eea33f44": {
-    "message": "Mínar skrár"
   },
   "n_a_d6f6c42f": {
     "message": "Á ekki við"
@@ -946,9 +778,6 @@
   },
   "new_message_f9bbd1c0": {
     "message": "Ný skilaboð"
-  },
-  "new_page_84b28714": {
-    "message": "Ný síða"
   },
   "nickname_1e6da3ad": {
     "message": "Gælunafn"
@@ -986,9 +815,6 @@
   "no_results_f36777ee": {
     "message": "Engar niðurstöður"
   },
-  "no_results_found_2ace1494": {
-    "message": "Engar niðurstöður fundust"
-  },
   "no_starred_messages_e1b28bca": {
     "message": "Engin stjörnumerkt skilaboð"
   },
@@ -1025,9 +851,6 @@
   "nothing_more_to_do_b017e8bb": {
     "message": "Ekkert annað á dagskrá."
   },
-  "number_of_likes_count_b5355a14": {
-    "message": "Fjöldi sem líkar við: { count }"
-  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# mínúta}\n  other {# mínútur}\n}"
   },
@@ -1061,17 +884,8 @@
   "online_url_37830a72": {
     "message": "Vefslóð á netinu"
   },
-  "only_available_to_students_with_link_not_available_c12278d2": {
-    "message": "Aðeins aðgengilegt nemendum með tengil. Ekki tiltækilegt í skrám nemanda."
-  },
-  "only_members_232519d6": {
-    "message": "Aðeins meðlimir"
-  },
   "only_once_after_each_attempt_cc842738": {
     "message": "Aðeins einu sinni eftir hverja tilraun"
-  },
-  "only_teachers_1628d9b9": {
-    "message": "Aðeins kennarar"
   },
   "open_coursename_user_preferences_430b877e": {
     "message": "Opna { courseName } kjörstillingar notanda"
@@ -1090,12 +904,6 @@
   },
   "orange_81386a62": {
     "message": "Appelsínugulur"
-  },
-  "orange_86946f54": {
-    "message": "appelsínugulur"
-  },
-  "ordered_list_5fb1ce41": {
-    "message": "Raðaður listi"
   },
   "out_of_points_number_42209979": {
     "message": "Af { points, number }"
@@ -1172,9 +980,6 @@
   "pts_699bd9aa": {
     "message": "punktar"
   },
-  "public_domain_file_eb5a0de": {
-    "message": "Skrá á opinberu léni"
-  },
   "publish_5211dca3": {
     "message": "Birta"
   },
@@ -1183,9 +988,6 @@
   },
   "pumpkin_904428d5": {
     "message": "Grasker"
-  },
-  "purple_71d4acca": {
-    "message": "fjólublár"
   },
   "purple_7678a9fc": {
     "message": "Fjólublár"
@@ -1226,12 +1028,6 @@
   "red_8258edf3": {
     "message": "Rauður"
   },
-  "red_ba15ab13": {
-    "message": "rauður"
-  },
-  "redo_363c58b7": {
-    "message": "Endurtaka"
-  },
   "remove_attachment_81f30aa3": {
     "message": "Fjarlægja viðhengi"
   },
@@ -1247,12 +1043,6 @@
   "remove_this_attachment_90a6665c": {
     "message": "Fjarlægja þetta viðhengi?"
   },
-  "replies_4a8577c8": {
-    "message": "Svör"
-  },
-  "replies_are_only_visible_to_those_who_have_posted__30e58953": {
-    "message": "Svör eru bara sýnileg þeim sem hafa birt minnst eitt svar."
-  },
   "reply_389d6fb9": {
     "message": "Svara"
   },
@@ -1262,9 +1052,6 @@
   "report_a_problem_4d48624a": {
     "message": "Tilkynna vandamál"
   },
-  "request_could_not_be_completed_157615ef": {
-    "message": "Ekki var hægt að ljúka beiðni."
-  },
   "require_an_access_code_46a02601": {
     "message": "Krefjast aðgangskóða"
   },
@@ -1273,9 +1060,6 @@
   },
   "restricted_606cbc55": {
     "message": "Takmarkað"
-  },
-  "restricted_access_d3e99a39": {
-    "message": "Takmarkaður aðgangur"
   },
   "retry_ebd5f8ba": {
     "message": "Reyna aftur"
@@ -1291,9 +1075,6 @@
   },
   "saving_d55dd90e": {
     "message": "Vista..."
-  },
-  "schedule_student_availability_332154a": {
-    "message": "Velja tiltækni nemanda"
   },
   "score_number_out_of_points_plural_one_point_other__9993235e": {
     "message": "{ score, number } af { points, plural,\n    one {# stig}\n  other {# stigum}\n} mögulegum"
@@ -1322,12 +1103,6 @@
   "search_280d00bd": {
     "message": "Leita"
   },
-  "search_files_7e8153fd": {
-    "message": "Leita í skrám"
-  },
-  "searching_f330d682": {
-    "message": "Leita..."
-  },
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# sekúnda}\n  other {# sekúndur}\n}"
   },
@@ -1336,12 +1111,6 @@
   },
   "sections_94731e51": {
     "message": "Fylki"
-  },
-  "sections_sections_70d64496": {
-    "message": "Hlutar: { sections }"
-  },
-  "see_all_ffa422ef": {
-    "message": "Sjá allt"
   },
   "select_a_course_4710371f": {
     "message": "Veldu námskeið"
@@ -1367,14 +1136,8 @@
   "sent_fe0a1eb4": {
     "message": "Sent"
   },
-  "set_as_front_page_c851ec5e": {
-    "message": "Setja sem forsíðu"
-  },
   "set_home_to_82ab5119": {
     "message": "Stilla „Heima“ á…"
-  },
-  "set_text_color_to_colorname_hexcode_e178505b": {
-    "message": "Stilla lit á texta á { colorName } ({ hexCode })"
   },
   "settings_5aa0fd0c": {
     "message": "Stillingar"
@@ -1399,9 +1162,6 @@
   },
   "similarity_score_f4b5c343": {
     "message": "Líkindaútreikningur"
-  },
-  "since_this_is_a_group_discussion_each_group_has_it_b25db5cd": {
-    "message": "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að."
   },
   "something_went_wrong_on_our_end_don_t_worry_we_ve__be005c38": {
     "message": "Eitthvað fór úrskeiðis okkar megin. Engar áhyggjur, við tókum þetta upp og við sjáum þetta bráðlega."
@@ -1481,20 +1241,8 @@
   "teachers_52e2423f": {
     "message": "Kennarar"
   },
-  "teachers_and_students_ba2db3e4": {
-    "message": "Kennarar og nemendur"
-  },
   "teal_f729a294": {
     "message": "Blágrænn"
-  },
-  "terms_of_use_62ee73ad": {
-    "message": "Notandaskilmálar"
-  },
-  "text_color_colorhex_62e206a5": {
-    "message": "Textalitur ({ colorHex })"
-  },
-  "text_color_colorname_colorhex_2dc366ad": {
-    "message": "Textalitur { colorName } ({ colorHex })"
   },
   "text_submission_935eeb5": {
     "message": "Textaskil"
@@ -1553,17 +1301,11 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Vandamál kom upp við að sækja próf."
   },
-  "there_was_a_problem_retrieving_the_terms_of_use_df58f7b9": {
-    "message": "Vandamál kom upp við að endurheimta notandaskilmála"
-  },
   "there_was_a_problem_saving_the_grade_please_try_ag_e46045bd": {
     "message": "Vandamál kom upp við að vista einkunnina. Vinsamlegast reynið aftur."
   },
   "there_was_an_error_loading_the_attachment_840a55ee": {
     "message": "Villa varð við að sækja viðhengið."
-  },
-  "there_was_an_error_loading_the_file_a046378e": {
-    "message": "Villa varð við að sækja skránna."
   },
   "there_was_an_error_loading_the_list_of_enrollments_7dc8bafe": {
     "message": "Villa varð við að sækja lista yfir innritun"
@@ -1600,12 +1342,6 @@
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "Þessi skrá er læst eins og er."
-  },
-  "this_file_must_have_usage_rights_set_before_it_can_e4bf8bae": {
-    "message": "Stilla þarf inn notkunarréttindi fyrir þessa skrá fyrir birtingu."
-  },
-  "this_folder_is_empty_89c70e89": {
-    "message": "Þessi mappa er tóm"
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "Þessi hópur hefur ekki skil fyrir þetta verkefni."
@@ -1661,29 +1397,17 @@
   "un_starred_8fef021f": {
     "message": "Stjörnumerki tekið af"
   },
-  "undo_a7be8fef": {
-    "message": "Hætta við"
-  },
   "unexpected_error_93991f40": {
     "message": "Óvænt villa"
   },
   "ungraded_survey_ad7de790": {
     "message": "Ómetin könnun"
   },
-  "unknown_author_40d64455": {
-    "message": "Óþekktur höfundur"
-  },
   "unlimited_ff19e96d": {
     "message": "Ótakmarkað"
   },
-  "unordered_list_3c1650b3": {
-    "message": "Óraðaður listi"
-  },
   "unpin_a318452a": {
     "message": "Losa"
-  },
-  "unpublish_9f2d730b": {
-    "message": "Taka úr birtingu"
   },
   "unpublished_8b6107d6": {
     "message": "Óbirt"
@@ -1719,12 +1443,6 @@
   "upload_in_progress_57b96797": {
     "message": "Upphleðsla í gangi"
   },
-  "uploading_19e8a4e7": {
-    "message": "Hlaða upp"
-  },
-  "uploading_amountuploaded_amounttotal_cd97306a": {
-    "message": "Hleð upp { amountUploaded }/{ amountTotal }"
-  },
   "uploading_loaded_of_total_d5c3d555": {
     "message": "Hleð upp { loaded } af { total }"
   },
@@ -1733,12 +1451,6 @@
   },
   "url_submission_f76327e3": {
     "message": "Skilaslóð"
-  },
-  "usage_right_2b398e0b": {
-    "message": "Notkunarréttindi"
-  },
-  "usage_rights_f0960ad6": {
-    "message": "Notkunarréttindi"
   },
   "use_camera_47a0387b": {
     "message": "Nota myndavél"
@@ -1758,23 +1470,14 @@
   "view_long_description_2b592c0e": {
     "message": "Skoða langa lýsingu"
   },
-  "view_more_replies_9fef9983": {
-    "message": "Skoða fleiri svör"
-  },
   "view_responses_d2874266": {
     "message": "Skoða svör"
   },
   "welcome_73d18b4d": {
     "message": "Velkomin(n)!"
   },
-  "white_463b4bf9": {
-    "message": "hvítur"
-  },
   "whoops_de2cf9fc": {
     "message": "Úbbs!"
-  },
-  "yellow_4b5532b3": {
-    "message": "gulur"
   },
   "yes_dde87d5": {
     "message": "Já"

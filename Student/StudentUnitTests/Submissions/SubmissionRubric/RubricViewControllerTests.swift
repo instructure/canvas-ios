@@ -53,7 +53,7 @@ class RubricViewControllerTests: StudentTestCase {
         let map: [String: APIRubricAssessment] = [rubric.id.value: assessment]
         let s = APISubmission.make(rubric_assessment: map)
 
-        let a = APIAssignment.make(submission: s, rubric: [rubric])
+        let a = APIAssignment.make(rubric: [rubric], submission: s)
         api.mock(vc.presenter!.assignments, value: a)
 
         loadView()
@@ -78,7 +78,7 @@ class RubricViewControllerTests: StudentTestCase {
 
         let s = APISubmission.make()
         let rubricSettings: APIRubricSettings = .make(hides_points: true, free_form_criterion_comments: true)
-        let a = APIAssignment.make(submission: s, rubric: [rubric], rubric_settings: rubricSettings)
+        let a = APIAssignment.make(rubric: [rubric], rubric_settings: rubricSettings, submission: s)
 
         api.mock(vc.presenter!.assignments, value: a)
 

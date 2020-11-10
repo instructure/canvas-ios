@@ -26,7 +26,6 @@ import * as submissionsApi from './submissions'
 import * as assignmentsApi from './assignments'
 import * as quizzesApi from './quizzes'
 import * as assignmentGroupsApi from './assignmentGroups'
-import * as discussionsApi from './discussions'
 import * as conversationApi from './conversations'
 import * as groupsApi from './groups'
 import * as loginApi from './login'
@@ -47,7 +46,6 @@ export default {
   ...assignmentsApi,
   ...quizzesApi,
   ...assignmentGroupsApi,
-  ...discussionsApi,
   ...conversationApi,
   ...loginApi,
   ...externalTools,

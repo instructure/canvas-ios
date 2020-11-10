@@ -2,6 +2,9 @@
 "Absent" = "Отсутствует";
 
 /* No comment provided by engineer. */
+"Add Attachment" = "Добавить вложение";
+
+/* No comment provided by engineer. */
 "All grades are currently hidden." = "Все скрытые в настоящее время оценки.";
 
 /* No comment provided by engineer. */
@@ -35,6 +38,21 @@
 "Choose Date" = "Выбрать дату";
 
 /* No comment provided by engineer. */
+"Choose Files" = "Выберите файлы";
+
+/* No comment provided by engineer. */
+"Close Drawer" = "Закрыть панель";
+
+/* No comment provided by engineer. */
+"Comment" = "Комментарий";
+
+/* No comment provided by engineer. */
+"Comments" = "Комментарии";
+
+/* No comment provided by engineer. */
+"Could not save the comment." = "Не удалось сохранить комментарий.";
+
+/* No comment provided by engineer. */
 "Courses" = "Курсы";
 
 /* No comment provided by engineer. */
@@ -46,6 +64,9 @@
 /* No comment provided by engineer. */
 "Done" = "Готово";
 
+/* No comment provided by engineer. */
+"Error" = "Ошибка";
+
 /* rollcall status error */
 "Error: No data returned from the rollcall api." = "Ошибка: Не получены данные от api проверки присутствия.";
 
@@ -56,7 +77,16 @@
 "Failed to launch rollcall LTI tool." = "Не удалось запустить инструмент переклички LTI.";
 
 /* No comment provided by engineer. */
+"Files" = "Файлы";
+
+/* No comment provided by engineer. */
+"Files (%@)" = "Файлы (%@)";
+
+/* No comment provided by engineer. */
 "Graded" = "С оценкой";
+
+/* No comment provided by engineer. */
+"Grades" = "Оценки";
 
 /* No comment provided by engineer. */
 "Grades will be made visible to all students" = "Оценки будут видны для всех учащихся";
@@ -98,6 +128,15 @@
 "No Submissions" = "Нет отправок";
 
 /* No comment provided by engineer. */
+"Open Drawer full screen" = "Полноэкранный режим «Открыть панель»";
+
+/* No comment provided by engineer. */
+"Open Drawer half screen" = "Режим «Открыть панель» в половину экрана";
+
+/* No comment provided by engineer. */
+"Pending" = "Ожидает обработки";
+
+/* No comment provided by engineer. */
 "Post Grades" = "Опубликовать оценки";
 
 /* No comment provided by engineer. */
@@ -110,7 +149,22 @@
 "Present" = "Настоящий";
 
 /* No comment provided by engineer. */
+"Preview Unavailable" = "Предпросмотр недоступен";
+
+/* No comment provided by engineer. */
+"Record Audio" = "Записать аудио";
+
+/* No comment provided by engineer. */
+"Record Video" = "Записать видео";
+
+/* No comment provided by engineer. */
 "Select to change the roll call date" = "Выберите для изменения даты проверки присутствия";
+
+/* No comment provided by engineer. */
+"Send" = "Отправить";
+
+/* No comment provided by engineer. */
+"Similarity Score" = "Оценка сходства";
 
 /* No comment provided by engineer. */
 "Specific Sections" = "Специальные разделы";
@@ -122,8 +176,44 @@
 "Test Student" = "Тестовый студент";
 
 /* No comment provided by engineer. */
+"There are no messages yet." = "Сообщений пока нет.";
+
+/* No comment provided by engineer. */
+"This assignment does not allow submissions." = "Это задание не может быть отправлено.";
+
+/* No comment provided by engineer. */
+"This assignment only allows on-paper submissions." = "Это задание может быть отправлено только в печатном виде.";
+
+/* No comment provided by engineer. */
+"This group does not have a submission for this assignment." = "Эта группа не имеет отправки для этого задания.";
+
+/* No comment provided by engineer. */
+"This student does not have a submission for this assignment." = "Этот студент не имеет отправки для этого задания.";
+
+/* No comment provided by engineer. */
+"This submission has no files." = "Данная отправка не содержит файлов.";
+
+/* No comment provided by engineer. */
+"This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Эта отправка представляет собой URL к внешней странице. Мы включили скриншот того, как выглядела страница, когда она была представлена.";
+
+/* No comment provided by engineer. */
 "To Do" = "Для выполнения";
 
 /* No comment provided by engineer. */
 "Unmark" = "Снять выделение";
+
+/* No comment provided by engineer. */
+"URL Preview Image" = "URL изображения для предварительного просмотра";
+
+/* No comment provided by engineer. */
+"View file %@ %@" = "Просмотреть файл %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View submission attempt %@. %@" = "Просмотреть попытку отправки %1$@. %2$@";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Вы должны активировать разрешения для камеры в настройках.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
 

@@ -19,6 +19,53 @@
 import Foundation
 import CoreData
 
+class GetAnnouncements: CollectionUseCase {
+    typealias Model = DiscussionTopic
+
+    let context: Context
+    init(context: Context) {
+        self.context = context
+    }
+
+    var cacheKey: String? { "\(context.pathComponent)/announcements" }
+    var request: GetDiscussionTopicsRequest {
+        GetDiscussionTopicsRequest(context: context, isAnnouncement: true)
+    }
+    var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: true),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+        ]),
+        orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
+    ) }
+}
+
+class GetDiscussionTopics: CollectionUseCase {
+    typealias Model = DiscussionTopic
+
+    let context: Context
+    init(context: Context) {
+        self.context = context
+    }
+
+    var cacheKey: String? { "\(context.pathComponent)/discussions" }
+    var request: GetDiscussionTopicsRequest {
+        GetDiscussionTopicsRequest(context: context)
+    }
+    var scope: Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(DiscussionTopic.isAnnouncement), equals: false),
+            NSPredicate(key: #keyPath(DiscussionTopic.canvasContextID), equals: context.canvasContextID),
+        ]),
+        order: [
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.orderSection), ascending: true),
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.position), ascending: true),
+            NSSortDescriptor(key: #keyPath(DiscussionTopic.order), ascending: false, naturally: true),
+        ],
+        sectionNameKeyPath: #keyPath(DiscussionTopic.orderSection)
+    ) }
+}
+
 public class GetDiscussionTopic: APIUseCase {
     public typealias Model = DiscussionTopic
 
@@ -120,6 +167,67 @@ class GetDiscussionEntry: GetDiscussionView {
 
     override var scope: Scope {
         .where(#keyPath(DiscussionEntry.id), equals: entryID)
+    }
+}
+
+class UpdateDiscussionTopic: UseCase {
+    typealias Model = DiscussionTopic
+    enum Request {
+        case create(PostDiscussionTopicRequest)
+        case update(PutDiscussionTopicRequest)
+    }
+
+    var cacheKey: String? { nil }
+    let context: Context
+    let topicID: String?
+    let request: Request
+
+    init(context: Context, topicID: String?, form: [PostDiscussionTopicRequest.DiscussionKey: APIFormDatum?]) {
+        self.context = context
+        self.topicID = topicID
+        if let topicID = topicID {
+            self.request = .update(PutDiscussionTopicRequest(context: context, topicID: topicID, form: form))
+        } else {
+            self.request = .create(PostDiscussionTopicRequest(context: context, form: form))
+        }
+    }
+
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIDiscussionTopic?, URLResponse?, Error?) -> Void) {
+        switch request {
+        case .create(let request):
+            environment.api.makeRequest(request, callback: completionHandler)
+        case .update(let request):
+            environment.api.makeRequest(request, callback: completionHandler)
+        }
+    }
+
+    func write(response: APIDiscussionTopic?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        if let item = response { DiscussionTopic.save(item, in: client) }
+    }
+}
+
+class SubscribeDiscussionTopic: APIUseCase {
+    typealias Model = DiscussionTopic
+
+    var cacheKey: String? { nil }
+    let context: Context
+    let topicID: String
+    let subscribed: Bool
+
+    init(context: Context, topicID: String, subscribed: Bool) {
+        self.context = context
+        self.topicID = topicID
+        self.subscribed = subscribed
+    }
+
+    var request: SubscribeDiscussionTopicRequest {
+        SubscribeDiscussionTopicRequest(context: context, topicID: topicID, method: subscribed ? .put : .delete)
+    }
+
+    func write(response: APINoContent?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard (urlResponse as? HTTPURLResponse)?.statusCode == 204 else { return }
+        let topic: DiscussionTopic? = client.first(where: #keyPath(DiscussionTopic.id), equals: topicID)
+        topic?.subscribed = subscribed
     }
 }
 
