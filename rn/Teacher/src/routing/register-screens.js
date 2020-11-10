@@ -25,7 +25,6 @@ import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePrefe
 import AssignmentList from '../modules/assignments/AssignmentList'
 import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
-import AssignmentDetailsEdit from '../modules/assignment-details/AssignmentDetailsEdit'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
 import AddressBook from '../modules/address-book/AddressBook'
@@ -140,7 +139,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/syllabus', null, store, ExperimentalFeature.nativeTeacherSyllabus.isEnabled ? { deepLink: true } : { showInWebView: true, deepLink: true })
     registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', AssignmentDetails, store, { deepLink: true })
-    registerScreen('/courses/:courseID/assignments/:assignmentID/edit', AssignmentDetailsEdit, store)
+    registerScreen('/courses/:courseID/assignments/:assignmentID/edit', null, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', AssignmentDueDates, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', AssigneePicker, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', AssigneeSearch, store)

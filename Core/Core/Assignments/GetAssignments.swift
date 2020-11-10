@@ -157,11 +157,14 @@ class UpdateAssignment: APIUseCase {
     init(
         courseID: String,
         assignmentID: String,
+        description: String? = nil,
         dueAt: Date?,
         gradingType: GradingType?,
         lockAt: Date?,
+        name: String? = nil,
         overrides: [APIAssignmentOverride]?,
         pointsPossible: Double?,
+        published: Bool? = nil,
         unlockAt: Date?
     ) {
         request = PutAssignmentRequest(
@@ -169,10 +172,13 @@ class UpdateAssignment: APIUseCase {
             assignmentID: assignmentID,
             body: .init(assignment: APIAssignmentParameters(
                 assignment_overrides: overrides,
+                description: description,
                 due_at: dueAt,
                 grading_type: gradingType,
                 lock_at: lockAt,
+                name: name,
                 points_possible: pointsPossible,
+                published: published,
                 unlock_at: unlockAt
             ))
         )
