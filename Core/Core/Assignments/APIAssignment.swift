@@ -44,6 +44,7 @@ public struct APIAssignment: Codable, Equatable {
     let overrides: [APIAssignmentOverride]?
     let points_possible: Double?
     let position: Int
+    let published: Bool?
     let quiz_id: ID?
     var rubric: [APIRubric]?
     var rubric_settings: APIRubricSettings?
@@ -116,6 +117,7 @@ extension APIAssignment {
         overrides: [APIAssignmentOverride]? = nil,
         points_possible: Double? = 10,
         position: Int = 0,
+        published: Bool? = true,
         quiz_id: ID? = nil,
         rubric: [APIRubric]? = nil,
         rubric_settings: APIRubricSettings? = .make(),
@@ -160,6 +162,7 @@ extension APIAssignment {
             overrides: overrides,
             points_possible: points_possible,
             position: position,
+            published: published,
             quiz_id: quiz_id,
             rubric: rubric,
             rubric_settings: rubric_settings,

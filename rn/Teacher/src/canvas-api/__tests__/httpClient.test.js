@@ -371,25 +371,6 @@ describe('httpCache', () => {
     expect(listener).not.toHaveBeenCalled()
   })
 
-  it('persists to async storage', async () => {
-    const course = templates.courseModel()
-    httpCache.handle('GET', '/courses', [ course ])
-    httpCache.handle('GET', 'expired', null, { ttl: -1 })
-    expect(AsyncStorage.setItem).toHaveBeenCalledWith(
-      httpCache.storageKey,
-      expect.stringContaining('"modelConstructor":"CourseModel"'),
-    )
-    const item = AsyncStorage.setItem.mock.calls.slice(-1)[0][1]
-    AsyncStorage.getItem.mockImplementationOnce(() => Promise.resolve(item))
-    httpCache.clear()
-    await httpCache.hydrate()
-    expect(httpCache.get('/courses')).toEqual({
-      value: [ course ],
-      expiresAt: 1000003600000,
-    })
-    expect(httpCache.get('expired')).toEqual(httpCache.notFound)
-  })
-
   it('clears stale items from async storage when no item is found', async () => {
     AsyncStorage.getAllKeys.mockImplementationOnce(() => [
       'http.cache.0.1',

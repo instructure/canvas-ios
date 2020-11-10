@@ -21,12 +21,10 @@
 import { NativeModules } from 'react-native'
 import canvas from '../../../canvas-api'
 import { beginUpdatingBadgeCounts, stopUpdatingBadgeCounts, updateBadgeCounts, interval } from '../badge-counts'
-import App from '../../app/index'
 
 jest.mock('../../../canvas-api', () => {
   return {
     getUnreadConversationsCount: jest.fn(() => Promise.resolve({ data: {} })),
-    getToDoCount: jest.fn(() => Promise.resolve({ data: {} })),
   }
 })
 
@@ -41,19 +39,9 @@ describe('update counts', () => {
     expect(interval).toBeDefined()
   })
 
-  it('fetches unread count and todo count for teachers', async () => {
-    await updateBadgeCounts()
-    expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
-    expect(canvas.getToDoCount).toHaveBeenCalled()
-    expect(NativeModules.TabBarBadgeCounts.updateUnreadMessageCount).toHaveBeenCalled()
-    expect(NativeModules.TabBarBadgeCounts.updateTodoListCount).toHaveBeenCalled()
-  })
-
   it('fetches unread count for student', async () => {
-    App.setCurrentApp('student')
     await updateBadgeCounts()
     expect(canvas.getUnreadConversationsCount).toHaveBeenCalled()
-    expect(canvas.getToDoCount).not.toHaveBeenCalled()
     expect(NativeModules.TabBarBadgeCounts.updateUnreadMessageCount).toHaveBeenCalled()
   })
 

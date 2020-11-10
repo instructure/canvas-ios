@@ -293,8 +293,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ErrorReportViewController.create(type: .feature)
     },
 
-    "/to-do": nil,
-
     "/wrong-app": { _, _, _ in
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)

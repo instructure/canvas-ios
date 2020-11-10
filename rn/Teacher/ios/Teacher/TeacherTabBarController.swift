@@ -55,15 +55,14 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func toDoTab() -> UIViewController {
-        let toDoVC = HelmViewController(moduleName: "/to-do", props: [:])
-        toDoVC.view.accessibilityIdentifier = "to-do-list.view"
-        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: .todoTab, selectedImage: .todoTabActive)
-        toDoVC.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
-        TabBarBadgeCounts.todoItem = toDoVC.tabBarItem
-        toDoVC.navigationItem.titleView = Brand.shared.headerImageView()
-        let navigation = HelmNavigationController(rootViewController: toDoVC)
-        navigation.navigationBar.useGlobalNavStyle()
-        return navigation
+        let todo = UINavigationController(rootViewController: TodoListViewController.create())
+        todo.tabBarItem.title = NSLocalizedString("To Do")
+        todo.tabBarItem.image = .todoTab
+        todo.tabBarItem.selectedImage = .todoTabActive
+        todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
+        TabBarBadgeCounts.todoItem = todo.tabBarItem
+        todo.viewControllers.first?.loadViewIfNeeded() // start fetching todos immediately
+        return todo
     }
 
     func inboxTab() -> UIViewController {

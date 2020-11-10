@@ -21,7 +21,6 @@
 
 import AsyncStorage from '@react-native-community/async-storage'
 import { getSession } from './session'
-import * as models from './model'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
@@ -233,14 +232,14 @@ export const httpCache = {
     for (const fn of listeners) fn(promise)
     return AsyncStorage.setItem(
       httpCache.storageKey,
-      JSON.stringify([ ...cache ], modelReplacer)
+      JSON.stringify([ ...cache ])
     )
   },
   async hydrate () {
     const state = await AsyncStorage.getItem(httpCache.storageKey)
     if (state) {
       try {
-        for (const [ key, entry ] of JSON.parse(state, modelReviver)) {
+        for (const [ key, entry ] of JSON.parse(state)) {
           if (entry.expiresAt > Date.now()) cache.set(key, entry)
         }
       } catch (err) {}
@@ -254,27 +253,4 @@ export const httpCache = {
     }
     httpCache.notify()
   },
-}
-
-const modelReplacer = (key: string, value: any) => {
-  if (value instanceof models.Model) {
-    for (const name of Object.keys(models)) {
-      if (name === 'Model') continue
-      if (value instanceof models[name]) {
-        return {
-          ...value.raw,
-          modelConstructor: name,
-        }
-      }
-    }
-  }
-  return value
-}
-
-const modelReviver = (key: string, value: any) => {
-  if (value && value.modelConstructor && models[value.modelConstructor]) {
-    const { modelConstructor, ...raw } = value
-    return new models[modelConstructor](raw)
-  }
-  return value
 }

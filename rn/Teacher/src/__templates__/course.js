@@ -18,7 +18,6 @@
 
 /* @flow */
 
-import { CourseModel } from '../canvas-api/model'
 import template, { type Template } from '../utils/template'
 import { section } from './section'
 
@@ -59,9 +58,6 @@ export const course: Template<Course> = template({
   },
   end_at: '2030-02-08T23:13:39Z',
 })
-
-export const courseModel: Template<CourseModel> = overrides =>
-  Object.assign(new CourseModel(course()), overrides)
 
 export const courseWithSection: Template<Course> = function (defaults) {
   return course({

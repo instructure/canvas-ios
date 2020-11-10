@@ -25,11 +25,11 @@ class TodoUITests: MiniCanvasUITestCase {
         let course = mocked.courses[0]
         for assignment in course.assignments {
             mocked.todos.append(APITodo.make(
-                type: .grading,
+                assignment: assignment.api,
+                course_id: course.api.id,
                 html_url: assignment.api.html_url,
                 needs_grading_count: 2,
-                assignment: assignment.api,
-                course_id: course.api.id
+                type: .grading
             ))
         }
     }

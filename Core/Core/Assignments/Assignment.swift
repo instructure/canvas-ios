@@ -52,6 +52,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
+    @NSManaged public var published: Bool
     @NSManaged public var quizID: String?
     @NSManaged public var rubric: Set<Rubric>?
     @NSManaged public var scoreStatistics: ScoreStatistics?
@@ -147,6 +148,7 @@ extension Assignment {
         name = item.name
         pointsPossible = item.points_possible
         position = item.position
+        published = item.published != false
         quizID = item.quiz_id?.value
         submissionTypes = item.submission_types
         unlockAt = item.unlock_at

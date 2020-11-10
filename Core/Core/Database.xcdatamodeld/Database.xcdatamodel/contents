@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -56,6 +56,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="quizID" optional="YES" attributeType="String"/>
         <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -221,6 +222,7 @@
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="planner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="courses" inverseEntity="Planner"/>
         <relationship name="plannerHidden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="hiddenCourses" inverseEntity="Planner"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
@@ -445,6 +447,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo"/>
     </entity>
     <entity name="HelpLink" representedClassName="Core.HelpLink" syncable="YES">
         <attribute name="availableToRaw" attributeType="String" defaultValueString="unenrolled"/>
@@ -839,6 +842,8 @@
         <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="todos" inverseEntity="Course"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="todos" inverseEntity="Group"/>
     </entity>
     <entity name="TTL" representedClassName="Core.TTL" syncable="YES">
         <attribute name="key" attributeType="String"/>
@@ -883,7 +888,7 @@
         <element name="AccountNotification" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="Activity" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="AlertThreshold" positionX="-540" positionY="-27" width="128" height="118"/>
-        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="718"/>
+        <element name="Assignment" positionX="-507.2109375" positionY="194.3515625" width="128" height="748"/>
         <element name="AssignmentDate" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="AssignmentGroup" positionX="-540" positionY="-27" width="128" height="120"/>
         <element name="AssignmentOverride" positionX="-540" positionY="-18" width="128" height="193"/>
@@ -896,7 +901,7 @@
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="358"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="373"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
@@ -911,7 +916,7 @@
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="208"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="223"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
@@ -941,7 +946,7 @@
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
-        <element name="Todo" positionX="-540" positionY="-18" width="128" height="148"/>
+        <element name="Todo" positionX="-540" positionY="-18" width="128" height="178"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>
