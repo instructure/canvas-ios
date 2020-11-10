@@ -812,7 +812,6 @@
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
-		D9FD90D72548924100C6842B /* GetAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD90D62548924100C6842B /* GetAnnouncements.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
 		DFE1FF28212F69B3003F27AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF27212F69B3003F27AA /* AppDelegate.swift */; };
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
@@ -1843,7 +1842,6 @@
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
-		D9FD90D62548924100C6842B /* GetAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAnnouncements.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
 		DD44F6EDD0A85E0D8AFC1EF4 /* Pods_needs_pspdfkit_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5B10F40238556EA8BA6B6A /* Pods_defaults_CoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2915,7 +2913,6 @@
 				7D531D50254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift */,
 				3B635B28225C13DD001F353D /* DiscussionTopic.swift */,
 				7D62716B245B591E00FC1798 /* GetDiscussions.swift */,
-				D9FD90D62548924100C6842B /* GetAnnouncements.swift */,
 				7DDE6E0C24770E8F006523D4 /* preact.min.js */,
 			);
 			path = Discussions;
@@ -4723,7 +4720,6 @@
 				7DA260E423F72359005D2121 /* LoadingViewController.swift in Sources */,
 				7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */,
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
-				D9FD90D72548924100C6842B /* GetAnnouncements.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
 				7D531D51254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift in Sources */,

@@ -21,7 +21,7 @@ import WidgetKit
 
 class AnnouncementsProvider: CommonWidgetController {
     private lazy var courses = env.subscribe(GetAllCourses())
-    private var announcements: Store<GetAnnouncements>?
+    private var announcements: Store<GetAllAnnouncements>?
 
     private func getImage(url: URL?) -> UIImage? {
         guard let url = url, let data = try? Data(contentsOf: url) else {
@@ -53,7 +53,7 @@ class AnnouncementsProvider: CommonWidgetController {
     }
 
     private func fetchAnnouncements(courseContextCodes: [String], completion: @escaping (AnnouncementsEntry) -> Void) {
-        announcements = env.subscribe(GetAnnouncements(contextCodes: courseContextCodes))
+        announcements = env.subscribe(GetAllAnnouncements(contextCodes: courseContextCodes))
         announcements?.refresh(force: true) { [weak self] _ in
             guard let self = self, let announcements = self.announcements, !announcements.pending else { return }
 

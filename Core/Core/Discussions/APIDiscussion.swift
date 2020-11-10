@@ -593,3 +593,18 @@ struct DeleteDiscussionEntryRequest: APIRequestable {
     var method: APIMethod { .delete }
     var path: String { "\(context.pathComponent)/discussion_topics/\(topicID)/entries/\(entryID)" }
 }
+
+// https://canvas.instructure.com/doc/api/announcements.html#method.announcements_api.index
+public struct GetAllAnnouncementsRequest: APIRequestable {
+    public typealias Response = [APIDiscussionTopic]
+    var contextCodes: [String] = []
+
+    public init(contextCodes: [String]) {
+        self.contextCodes = contextCodes
+    }
+
+    public var path = "announcements"
+    public var query: [APIQueryItem] {[
+        .array("context_codes", contextCodes),
+    ]}
+}
