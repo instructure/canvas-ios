@@ -1638,7 +1638,7 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
-		CF4A4469254700B500F76207 /* NewGradesWidget */ = {
+		CF4A4469254700B500F76207 /* GradesWidget */ = {
 			isa = PBXGroup;
 			children = (
 				CF4A44CD254705F900F76207 /* Model */,
@@ -1646,7 +1646,7 @@
 				CF4A44BE2547055800F76207 /* Controller */,
 				CF4A446A254700B500F76207 /* GradesWidget.swift */,
 			);
-			path = NewGradesWidget;
+			path = GradesWidget;
 			sourceTree = "<group>";
 		};
 		CF4A44A92547041700F76207 /* View */ = {
@@ -1752,7 +1752,7 @@
 			children = (
 				CF79958A2554231A00A92A1E /* Common */,
 				D9FD8F392546C3F300C6842B /* AnnouncementsWidget */,
-				CF4A4469254700B500F76207 /* NewGradesWidget */,
+				CF4A4469254700B500F76207 /* GradesWidget */,
 				D9FD90892547108F00C6842B /* Resources */,
 				CFE2C3F22552D04C00113CFC /* Widgets.swift */,
 			);
