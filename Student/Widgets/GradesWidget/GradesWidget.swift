@@ -27,6 +27,6 @@ struct GradesWidget: Widget {
             GradesWidgetView(model: model)
         }
         .configurationDisplayName(NSLocalizedString("Grades", comment: "Name of the grades widget"))
-        .description(NSLocalizedString("This widget displays your latest grades", comment: "Description of the grades widget"))
+        .description(NSLocalizedString("View the latest grades from assignments and your favorite courses.", comment: "Description of the grades widget"))
     }
 }

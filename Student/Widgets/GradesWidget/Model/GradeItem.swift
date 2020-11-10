@@ -21,13 +21,13 @@ import SwiftUI
 import WidgetKit
 
 struct GradeItem: Hashable {
-    let assignmentName: String
+    let name: String
     let grade: String
     let color: Color
     let route: URL
 
     init(assignment: Assignment, color: Color) {
-        self.assignmentName = assignment.name
+        self.name = assignment.name
         // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
         self.grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
         self.color = color
@@ -39,14 +39,14 @@ struct GradeItem: Hashable {
     }
 
     init(course: Course) {
-        self.assignmentName = course.name ?? ""
+        self.name = course.name ?? ""
         self.grade = course.displayGrade
         self.color = Color(course.color)
         self.route = course.route
     }
 
-    init(assignmentName: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest, route: URL = URL(string: "canvas-courses://")!) {
-        self.assignmentName = assignmentName
+    init(name: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest, route: URL = URL(string: "canvas-courses://")!) {
+        self.name = name
         self.grade = grade
         self.color = color
         self.route = route

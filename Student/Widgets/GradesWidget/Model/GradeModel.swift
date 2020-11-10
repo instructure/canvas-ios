@@ -43,12 +43,12 @@ extension GradeModel {
     /** This data will be presented by the widget on iOS' Add Widget screen. */
     static var publicPreview: GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(assignmentName: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
-            GradeItem(assignmentName: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
-            GradeItem(assignmentName: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
+            GradeItem(name: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
+            GradeItem(name: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
+            GradeItem(name: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
         ], courseGrades: [
-            GradeItem(assignmentName: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
-            GradeItem(assignmentName: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
+            GradeItem(name: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
+            GradeItem(name: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
         ])
     }
 }
@@ -57,7 +57,7 @@ extension GradeModel {
 extension GradeModel {
     public static func makeWithOneAssigmnent() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
+            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
         ], courseGrades: [
         ])
     }
@@ -65,20 +65,20 @@ extension GradeModel {
     public static func makeWithOneCourse() -> GradeModel {
         GradeModel(assignmentGrades: [
         ], courseGrades: [
-            GradeItem(assignmentName: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
+            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
         ])
     }
 
     public static func make() -> GradeModel {
         GradeModel(assignmentGrades: [
-            GradeItem(assignmentName: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
-            GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
-            GradeItem(assignmentName: "American Literature IV", grade: "9.2 / 10", color: .fire),
+            GradeItem(name: "Essay #1: The Rocky Planets", grade: "95.75 / 100", color: .barney),
+            GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "20 / 25", color: .crimson),
+            GradeItem(name: "American Literature IV", grade: "9.2 / 10", color: .fire),
         ], courseGrades: [
-            GradeItem(assignmentName: "Introduction to the Solar System", grade: "A-", color: .shamrock),
-            GradeItem(assignmentName: "American Literature IV: All the Books", grade: "B"),
-            GradeItem(assignmentName: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
-            GradeItem(assignmentName: "Biology 101", grade: "C+", color: .electric),
+            GradeItem(name: "Introduction to the Solar System", grade: "A-", color: .shamrock),
+            GradeItem(name: "American Literature IV: All the Books", grade: "B"),
+            GradeItem(name: "Introduction to Neighboring Stars", grade: "A+", color: .licorice),
+            GradeItem(name: "Biology 101", grade: "C+", color: .electric),
         ])
     }
 }

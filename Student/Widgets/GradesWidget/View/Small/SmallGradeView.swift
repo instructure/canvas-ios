@@ -26,7 +26,7 @@ struct SmallGradeView: View {
                 .font(.semibold12)
                 .foregroundColor(.textDark)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(gradeItem.assignmentName)
+            Text(gradeItem.name)
                 .font(.semibold12)
                 .foregroundColor(gradeItem.color)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -50,7 +50,7 @@ struct SmallGradeView: View {
 struct SmallGradeViewPreviews: PreviewProvider {
     static var previews: some View {
         ForEach(PreviewSimulator.allCases, id: \.self) { device in
-            SmallGradeView(gradeItem: GradeItem(assignmentName: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "95.50 / 100", color: .crimson))
+            SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "95.50 / 100", color: .crimson))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .previewDevice(PreviewDevice(rawValue: device.rawValue))
                 .previewDisplayName(device.rawValue)
