@@ -36,10 +36,10 @@ public struct APISubmission: Codable, Equatable {
     let group_id: ID?
     let group_name: String?
     let id: ID
-    let late: Bool
+    let late: Bool?
     let late_policy_status: LatePolicyStatus?
     let media_comment: APIMediaComment?
-    let missing: Bool
+    let missing: Bool?
     let points_deducted: Double?
     let posted_at: Date?
     let preview_url: URL?
