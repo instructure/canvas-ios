@@ -800,6 +800,7 @@
         <attribute name="editedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="mediaID" optional="YES" attributeType="String"/>
+        <attribute name="mediaLocalURL" optional="YES" attributeType="URI"/>
         <attribute name="mediaName" optional="YES" attributeType="String"/>
         <attribute name="mediaTypeRaw" optional="YES" attributeType="String"/>
         <attribute name="mediaURL" optional="YES" attributeType="URI"/>
@@ -935,7 +936,7 @@
         <element name="ScoreStatistics" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="SearchRecipient" positionX="-540" positionY="-27" width="128" height="148"/>
         <element name="Submission" positionX="-312.484375" positionY="260.38671875" width="128" height="628"/>
-        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="268"/>
+        <element name="SubmissionComment" positionX="-369" positionY="-18" width="128" height="283"/>
         <element name="SubmissionList" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>

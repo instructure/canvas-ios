@@ -30,11 +30,19 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var createdAt: Date?
     @NSManaged public var editedAt: Date?
     @NSManaged public var mediaID: String?
+    @NSManaged public var mediaLocalURL: URL?
     @NSManaged public var mediaName: String?
     @NSManaged public var mediaTypeRaw: String?
     @NSManaged public var mediaURL: URL?
     @NSManaged public var userID: String
     @NSManaged public var attachments: Set<File>?
+
+    public var mediaLocalOrRemoteURL: URL? {
+        if let url = mediaLocalURL, FileManager.default.fileExists(atPath: url.path) {
+            return url
+        }
+        return mediaURL
+    }
 
     public var mediaType: MediaCommentType? {
         get { return mediaTypeRaw.flatMap { MediaCommentType(rawValue: $0) } }
@@ -57,8 +65,7 @@ final public class SubmissionComment: NSManagedObject {
 
     @discardableResult
     static public func save(_ item: APISubmissionComment, for submission: APISubmission, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(SubmissionComment.id), id ?? item.id)
-        let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
+        let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
         model.authorAvatarURL = item.author.avatar_image_url
