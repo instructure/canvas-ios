@@ -49,7 +49,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_history: [APISubmission]? // include[]=submission_history
     let submission_type: SubmissionType?
     let submitted_at: Date?
-    let turnitin_data: [String: APITurnItIn]?
+    let turnitin_data: APITurnItInData?
     let url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
@@ -88,6 +88,37 @@ public struct APISubmissionSummary: Codable, Equatable {
     let graded: Int
     let ungraded: Int
     let not_submitted: Int
+}
+
+public struct APITurnItInData: Codable, Equatable {
+    let rawValue: [String: APITurnItIn]
+
+    struct DynamicCodingKeys: CodingKey {
+        var stringValue: String
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+
+        var intValue: Int?
+        init?(intValue: Int) {
+            return nil
+        }
+    }
+
+    init(rawValue: [String: APITurnItIn]) {
+        self.rawValue = rawValue
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
+        var data: [String: APITurnItIn] = [:]
+        for key in container.allKeys {
+            if let codingKey = DynamicCodingKeys(stringValue: key.stringValue), let turnItIn = try? container.decode(APITurnItIn.self, forKey: codingKey) {
+                data[key.stringValue] = turnItIn
+            }
+        }
+        self.rawValue = data
+    }
 }
 
 public struct APITurnItIn: Codable, Equatable {
@@ -168,7 +199,7 @@ extension APISubmission {
             submission_history: submission_history,
             submission_type: submission_type,
             submitted_at: submitted_at,
-            turnitin_data: turnitin_data,
+            turnitin_data: turnitin_data.flatMap { APITurnItInData(rawValue: $0) },
             url: url,
             user: user,
             user_id: ID(user_id),
