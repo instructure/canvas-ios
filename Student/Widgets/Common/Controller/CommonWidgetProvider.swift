@@ -19,15 +19,16 @@
 import Core
 import WidgetKit
 
-class CommonWidgetController<Model: WidgetModel> {
+class CommonWidgetProvider<Model: WidgetModel> {
     let env = AppEnvironment.shared
     lazy var colors = env.subscribe(GetCustomColors())
-    /** Subclasses can store the completion block received from iOS here to invoke it later, when data fetch is ready. */
-    var completion: ((Timeline<Model>) -> Void)?
 
+    /** The model to present in case the user is logged out from the app and there's no session we could use to fetch data. */
     private let loggedOutModel: Model
     /** We store the last state of the widget and display it in case a refresh is requested when the device is locked and we have no access to the session in keychain. */
     private var cachedModel: Model?
+    /** This is the completion block received from iOS. Invoked from `updateWidget(model:)`, when data fetch is ready. After one invocation this property is set to nil because subsequent invocations on the same completion handler causes a crash in WidgetKit. */
+    private var completion: ((Timeline<Model>) -> Void)?
     private let timeout: TimeInterval
     private var isLoggedIn: Bool { LoginSession.mostRecent != nil }
     private var isDeviceUnlocked: Bool {
@@ -54,6 +55,8 @@ class CommonWidgetController<Model: WidgetModel> {
         }
     }
 
+    // MARK: - Public Interface
+
     init(loggedOutModel: Model, timeout: TimeInterval) {
         self.loggedOutModel = loggedOutModel
         self.timeout = timeout
@@ -63,7 +66,18 @@ class CommonWidgetController<Model: WidgetModel> {
         assertionFailure("This method should be overridden in subclasses.")
     }
 
-    final func update() {
+    /**
+     This method should be called at the end of the `fetchData()`method when data is ready. This method calls the saved `completion` block (if any) with the given `model` and `timeout`. Also sets this property to nil and saves the received `model` to the `cachedModel` property.
+     */
+    final func updateWidget(model: Model) {
+        completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeout))))
+        self.completion = nil
+        cachedModel = model
+    }
+
+    // MARK: - Private Methods
+
+    private func update() {
         guard isDeviceUnlocked else {
             if let cachedModel = cachedModel {
                 updateWidget(model: cachedModel)
@@ -81,17 +95,30 @@ class CommonWidgetController<Model: WidgetModel> {
         fetchData()
     }
 
-    /**
-     This method calls the saved `completion` block (if any) with the given `model` and `timeout`. Also sets this property to nil and saves the received `model` to the `cachedModel` property.
-     */
-    final func updateWidget(model: Model) {
-        completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeout))))
-        self.completion = nil
-        cachedModel = model
-    }
-
     private func setupLastLoginCredentials() {
         guard let session = LoginSession.mostRecent else { return }
         env.userDidLogin(session: session)
+    }
+}
+
+extension CommonWidgetProvider: TimelineProvider {
+    typealias Entry = Model
+
+    func placeholder(in context: TimelineProvider.Context) -> Entry {
+        Model.publicPreview as! CommonWidgetProvider<Model>.Entry
+    }
+
+    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
+        completion(placeholder(in: context))
+    }
+
+    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        if context.isPreview {
+            completion(Timeline(entries: [placeholder(in: context)], policy: .after(Date())))
+            return
+        }
+
+        self.completion = completion
+        update()
     }
 }

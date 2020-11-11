@@ -19,6 +19,9 @@
 import WidgetKit
 
 class WidgetModel: TimelineEntry {
+    /** This entity will be presented by the widget on iOS' Add Widget screen. */
+    class var publicPreview: WidgetModel { WidgetModel(isLoggedIn: true) }
+
     let isLoggedIn: Bool
     let date = Date(timeIntervalSince1970: 0)
 

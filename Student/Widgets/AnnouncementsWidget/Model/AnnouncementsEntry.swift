@@ -19,26 +19,7 @@
 import Foundation
 
 class AnnouncementsEntry: WidgetModel {
-    let announcements: [AnnouncementItem]
-
-    init(isLoggedIn: Bool = true, announcementItems: [AnnouncementItem] = []) {
-        self.announcements = announcementItems
-        super.init(isLoggedIn: isLoggedIn)
-    }
-}
-
-extension AnnouncementsEntry: Identifiable {
-    var id: Int {
-        var hasher = Hasher()
-        announcements.forEach { hasher.combine($0.id) }
-        hasher.combine(isLoggedIn)
-        return hasher.finalize()
-    }
-}
-
-extension AnnouncementsEntry {
-    /** This data will be presented by the widget on iOS' Add Widget screen. */
-    static var publicPreview: AnnouncementsEntry {
+    override class var publicPreview: AnnouncementsEntry {
         let url = URL(string: "https://www.instructure.com/")!
 
         return AnnouncementsEntry(announcementItems: [
@@ -64,6 +45,22 @@ extension AnnouncementsEntry {
                 courseName: NSLocalizedString("American literature IV", comment: "Example course name"),
                 courseColor: .shamrock),
         ])
+    }
+
+    let announcements: [AnnouncementItem]
+
+    init(isLoggedIn: Bool = true, announcementItems: [AnnouncementItem] = []) {
+        self.announcements = announcementItems
+        super.init(isLoggedIn: isLoggedIn)
+    }
+}
+
+extension AnnouncementsEntry: Identifiable {
+    var id: Int {
+        var hasher = Hasher()
+        announcements.forEach { hasher.combine($0.id) }
+        hasher.combine(isLoggedIn)
+        return hasher.finalize()
     }
 }
 

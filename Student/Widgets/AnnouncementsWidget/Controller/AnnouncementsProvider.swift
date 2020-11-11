@@ -19,7 +19,7 @@
 import Core
 import WidgetKit
 
-class AnnouncementsProvider: CommonWidgetController<AnnouncementsEntry> {
+class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     private lazy var courses = env.subscribe(GetAllCourses())
     private var announcements: Store<GetAllAnnouncements>?
 
@@ -64,28 +64,5 @@ class AnnouncementsProvider: CommonWidgetController<AnnouncementsEntry> {
             return nil
         }
         return UIImage(data: data)
-    }
-}
-
-extension AnnouncementsProvider: TimelineProvider {
-    typealias Entry = AnnouncementsEntry
-
-    func placeholder(in context: TimelineProvider.Context) -> Entry {
-        AnnouncementsEntry.publicPreview
-    }
-
-    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
-        completion(placeholder(in: context))
-    }
-
-    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<Entry>) -> Void) {
-        if context.isPreview {
-            let timeline = Timeline(entries: [placeholder(in: context)], policy: .after(Date()))
-            completion(timeline)
-            return
-        }
-
-        self.completion = completion
-        update()
     }
 }

@@ -19,7 +19,7 @@
 import Core
 import WidgetKit
 
-class GradesWidgetProvider: CommonWidgetController<GradeModel> {
+class GradesWidgetProvider: CommonWidgetProvider<GradeModel> {
     private lazy var submissions = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
     private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
     private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
@@ -39,7 +39,7 @@ class GradesWidgetProvider: CommonWidgetController<GradeModel> {
     }
 
     private func handleFetchFinished() {
-        guard completion != nil, !submissions.pending, !courses.pending, !favoriteCourses.pending else { return }
+        guard !submissions.pending, !courses.pending, !favoriteCourses.pending else { return }
 
         let assignmentGrades: [GradeItem] = (submissions.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
             let courseColor = courses.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
@@ -48,27 +48,5 @@ class GradesWidgetProvider: CommonWidgetController<GradeModel> {
         let courseGrades = favoriteCourses.all.map { GradeItem(course: $0) }
 
         updateWidget(model: GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
-    }
-}
-
-extension GradesWidgetProvider: TimelineProvider {
-    typealias Entry = GradeModel
-
-    func placeholder(in context: TimelineProvider.Context) -> GradeModel {
-        GradeModel.publicPreview
-    }
-
-    func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (GradeModel) -> Void) {
-        completion(placeholder(in: context))
-    }
-
-    func getTimeline(in context: TimelineProvider.Context, completion: @escaping (Timeline<GradeModel>) -> Void) {
-        if context.isPreview {
-            completion(Timeline(entries: [placeholder(in: context)], policy: .after(Date())))
-            return
-        }
-
-        self.completion = completion
-        update()
     }
 }

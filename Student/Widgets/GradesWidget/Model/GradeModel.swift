@@ -19,6 +19,17 @@
 import WidgetKit
 
 class GradeModel: WidgetModel {
+    override class var publicPreview: GradeModel {
+        GradeModel(assignmentGrades: [
+            GradeItem(name: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
+            GradeItem(name: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
+            GradeItem(name: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
+        ], courseGrades: [
+            GradeItem(name: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
+            GradeItem(name: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
+        ])
+    }
+
     let assignmentGrades: [GradeItem]
     let courseGrades: [GradeItem]
 
@@ -36,20 +47,6 @@ class GradeModel: WidgetModel {
         let courseSlots = count - trimmedAssignmentGrades.count
         let trimmedCourseGrades = Array(courseGrades.prefix(courseSlots))
         return GradeModel(assignmentGrades: trimmedAssignmentGrades, courseGrades: trimmedCourseGrades)
-    }
-}
-
-extension GradeModel {
-    /** This data will be presented by the widget on iOS' Add Widget screen. */
-    static var publicPreview: GradeModel {
-        GradeModel(assignmentGrades: [
-            GradeItem(name: NSLocalizedString("Essay #1: The Rocky Planets", comment: "Example exam name"), grade: "95 / 100", color: .electric),
-            GradeItem(name: NSLocalizedString("American Literature IV", comment: "Example exam name"), grade: "9.2 / 10", color: .shamrock),
-            GradeItem(name: NSLocalizedString("Biology Exam 2", comment: "Example exam name"), grade: "20 / 25", color: .barney),
-        ], courseGrades: [
-            GradeItem(name: NSLocalizedString("Introduction to the Solar System", comment: "Example course name"), grade: "A-", color: .electric),
-            GradeItem(name: NSLocalizedString("American Literature IV: All the Books", comment: "Example course name"), grade: "B", color: .shamrock),
-        ])
     }
 }
 
