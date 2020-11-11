@@ -19,42 +19,30 @@
 import Core
 import WidgetKit
 
-class AnnouncementsProvider: CommonWidgetController {
+class AnnouncementsProvider: CommonWidgetController<AnnouncementsEntry> {
     private lazy var courses = env.subscribe(GetAllCourses())
     private var announcements: Store<GetAllAnnouncements>?
-    private var cachedModel: AnnouncementsEntry?
 
-    private func update(completion: @escaping (AnnouncementsEntry) -> Void) {
-        guard isDeviceUnlocked else {
-            if let cachedModel = cachedModel {
-                completion(cachedModel)
-            } else {
-                completion(AnnouncementsEntry(isLoggedIn: false))
-            }
-            return
-        }
-        guard isLoggedIn else {
-            completion(AnnouncementsEntry(isLoggedIn: false))
-            return
-        }
+    init() {
+        super.init(loggedOutModel: AnnouncementsEntry(isLoggedIn: false), timeout: 15 * 60)
+    }
 
-        setupLastLoginCredentials()
-
+    override func fetchData() {
         colors.refresh { [weak self] _ in
             guard let self = self, !self.colors.pending else { return }
-            self.fetchCourses(completion: completion)
+            self.fetchCourses()
         }
     }
 
-    private func fetchCourses(completion: @escaping (AnnouncementsEntry) -> Void) {
+    private func fetchCourses() {
         courses.refresh { [weak self] _ in
             guard let self = self, !self.courses.pending else { return }
             let courseContextCodes = self.courses.map { Core.Context(.course, id: $0.id).canvasContextID }
-            self.fetchAnnouncements(courseContextCodes: courseContextCodes, completion: completion)
+            self.fetchAnnouncements(courseContextCodes: courseContextCodes)
         }
     }
 
-    private func fetchAnnouncements(courseContextCodes: [String], completion: @escaping (AnnouncementsEntry) -> Void) {
+    private func fetchAnnouncements(courseContextCodes: [String]) {
         announcements = env.subscribe(GetAllAnnouncements(contextCodes: courseContextCodes))
         announcements?.refresh(force: true) { [weak self] _ in
             guard let self = self, let announcements = self.announcements, !announcements.pending else { return }
@@ -66,9 +54,8 @@ class AnnouncementsProvider: CommonWidgetController {
             }
 
             let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
-            completion(announcementsEntry)
+            self.updateWidget(model: announcementsEntry)
             self.announcements = nil
-            self.cachedModel = announcementsEntry
         }
     }
 
@@ -98,9 +85,7 @@ extension AnnouncementsProvider: TimelineProvider {
             return
         }
 
-        update { announcementsEntry in
-            let timeline = Timeline(entries: [announcementsEntry], policy: .after(Date().addMinutes(5)))
-            completion(timeline)
-        }
+        self.completion = completion
+        update()
     }
 }

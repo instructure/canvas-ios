@@ -19,28 +19,16 @@
 import Core
 import WidgetKit
 
-class GradesWidgetProvider: CommonWidgetController {
+class GradesWidgetProvider: CommonWidgetController<GradeModel> {
     private lazy var submissions = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
     private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
     private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
-    private var completion: ((Timeline<GradeModel>) -> Void)?
-    private var cachedModel: GradeModel?
 
-    private func update() {
-        guard isDeviceUnlocked else {
-            if let cachedModel = cachedModel {
-                updateWidget(model: cachedModel)
-            } else {
-                updateWidget(model: GradeModel(isLoggedIn: false))
-            }
-            return
-        }
-        guard isLoggedIn else {
-            updateWidget(model: GradeModel(isLoggedIn: false))
-            return
-        }
+    init() {
+        super.init(loggedOutModel: GradeModel(isLoggedIn: false), timeout: 2 * 60 * 60)
+    }
 
-        setupLastLoginCredentials()
+    override func fetchData() {
         colors.refresh { [weak self] _ in
             guard let self = self, !self.colors.pending else { return }
 
@@ -60,13 +48,6 @@ class GradesWidgetProvider: CommonWidgetController {
         let courseGrades = favoriteCourses.all.map { GradeItem(course: $0) }
 
         updateWidget(model: GradeModel(assignmentGrades: assignmentGrades, courseGrades: courseGrades))
-    }
-
-    private func updateWidget(model: GradeModel) {
-        let timeoutSeconds = submissions.useCase.ttl
-        completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeoutSeconds))))
-        self.completion = nil
-        cachedModel = model
     }
 }
 
