@@ -21,7 +21,6 @@ import WidgetKit
 
 class CommonWidgetProvider<Model: WidgetModel> {
     let env = AppEnvironment.shared
-    lazy var colors = env.subscribe(GetCustomColors())
 
     /** The model to present in case the user is logged out from the app and there's no session we could use to fetch data. */
     private let loggedOutModel: Model

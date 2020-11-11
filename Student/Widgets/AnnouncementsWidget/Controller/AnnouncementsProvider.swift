@@ -20,7 +20,8 @@ import Core
 import WidgetKit
 
 class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
-    private lazy var courses = env.subscribe(GetAllCourses())
+    private var colors: Store<GetCustomColors>?
+    private var courses: Store<GetAllCourses>?
     private var announcements: Store<GetAllAnnouncements>?
 
     init() {
@@ -28,27 +29,30 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     }
 
     override func fetchData() {
-        colors.refresh { [weak self] _ in
-            guard let self = self, !self.colors.pending else { return }
+        colors = env.subscribe(GetCustomColors())
+        colors?.refresh { [weak self] _ in
+            guard let self = self, let colors = self.colors, !colors.pending else { return }
             self.fetchCourses()
         }
     }
 
     private func fetchCourses() {
-        courses.refresh { [weak self] _ in
-            guard let self = self, !self.courses.pending else { return }
-            let courseContextCodes = self.courses.map { Core.Context(.course, id: $0.id).canvasContextID }
+        courses = env.subscribe(GetAllCourses())
+        courses?.refresh { [weak self] _ in
+            guard let self = self, let courses = self.courses, !courses.pending else { return }
+            let courseContextCodes = courses.map { Core.Context(.course, id: $0.id).canvasContextID }
             self.fetchAnnouncements(courseContextCodes: courseContextCodes)
         }
     }
 
     private func fetchAnnouncements(courseContextCodes: [String]) {
         announcements = env.subscribe(GetAllAnnouncements(contextCodes: courseContextCodes))
+        // We always force refresh since the widget's timeout is lower than the cache's TTL
         announcements?.refresh(force: true) { [weak self] _ in
             guard let self = self, let announcements = self.announcements, !announcements.pending else { return }
 
             let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
-                guard let course = (self.courses.first { $0.id == announcement.courseID }) else { return nil }
+                guard let course = (self.courses?.first { $0.id == announcement.courseID }) else { return nil }
                 let image = self.getImage(url: announcement.author?.avatarURL)
                 return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
             }

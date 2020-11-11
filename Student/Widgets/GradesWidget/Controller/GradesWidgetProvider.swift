@@ -20,26 +20,37 @@ import Core
 import WidgetKit
 
 class GradesWidgetProvider: CommonWidgetProvider<GradeModel> {
-    private lazy var submissions = env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
-    private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
-    private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
+    private var colors: Store<GetCustomColors>?
+    private var submissions: Store<GetRecentlyGradedSubmissions>?
+    private var courses: Store<GetCourses>?
+    private var favoriteCourses: Store<GetCourses>?
 
     init() {
         super.init(loggedOutModel: GradeModel(isLoggedIn: false), timeout: 2 * 60 * 60)
     }
 
     override func fetchData() {
-        colors.refresh { [weak self] _ in
-            guard let self = self, !self.colors.pending else { return }
+        colors = env.subscribe(GetCustomColors())
+        colors?.refresh { [weak self] _ in
+            guard let self = self, let colors = self.colors, !colors.pending else { return }
 
-            self.submissions.refresh()
-            self.courses.refresh()
-            self.favoriteCourses.refresh()
+            self.submissions = self.env.subscribe(GetRecentlyGradedSubmissions(userID: "self")) { [weak self] in self?.handleFetchFinished() }
+            self.submissions?.refresh()
+            self.courses = self.env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
+            self.courses?.refresh()
+            self.favoriteCourses = self.env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
+            self.favoriteCourses?.refresh()
         }
     }
 
     private func handleFetchFinished() {
-        guard !submissions.pending, !courses.pending, !favoriteCourses.pending else { return }
+        guard
+            let submissions = submissions, !submissions.pending,
+            let courses = courses, !courses.pending,
+            let favoriteCourses = favoriteCourses, !favoriteCourses.pending
+        else {
+            return
+        }
 
         let assignmentGrades: [GradeItem] = (submissions.first?.submissions ?? []).compactMap { $0.assignment }.map { assignment in
             let courseColor = courses.all.first { $0.id == assignment.courseID }?.color ?? .textDarkest
