@@ -43,13 +43,13 @@ class RubricViewControllerTests: StudentTestCase {
         api.mock(vc.presenter!.courses, value: .make())
 
         let ratings: [APIRubricRating] = [
-            APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
-            APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
-            APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
+            APIRubricRating.make(description: "A", id: "1", long_description: "this is A", points: 10),
+            APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
+            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30),
         ]
         let rubric = APIRubric.make(ratings: ratings)
 
-        let assessment = APIRubricAssessment.make(submissionID: "1", points: 30, comments: "meh", rating_id: "3")
+        let assessment = APIRubricAssessment.make(comments: "meh", points: 30, rating_id: "3")
         let map: [String: APIRubricAssessment] = [rubric.id.value: assessment]
         let s = APISubmission.make(rubric_assessment: map)
 
@@ -70,14 +70,14 @@ class RubricViewControllerTests: StudentTestCase {
         api.mock(vc.presenter!.courses, value: .make())
 
         let ratings: [APIRubricRating] = [
-            APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
-            APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
-            APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
+            APIRubricRating.make(description: "A", id: "1", long_description: "this is A", points: 10),
+            APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
+            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30),
         ]
         let rubric = APIRubric.make(ratings: ratings)
 
         let s = APISubmission.make()
-        let rubricSettings: APIRubricSettings = .make(hides_points: true, free_form_criterion_comments: true)
+        let rubricSettings: APIRubricSettings = .make(free_form_criterion_comments: true, hides_points: true)
         let a = APIAssignment.make(rubric: [rubric], rubric_settings: rubricSettings, submission: s)
 
         api.mock(vc.presenter!.assignments, value: a)

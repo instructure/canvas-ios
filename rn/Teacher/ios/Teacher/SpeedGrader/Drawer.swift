@@ -38,13 +38,13 @@ struct Drawer<Content: View>: View {
         }
     }
     @Binding var state: DrawerState
-    @GestureState var translation: CGFloat = 0
+    @State var translation: CGFloat = 0
 
     init(state: Binding<DrawerState>, minHeight: CGFloat, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
         self.content = content()
         self.minHeight = minHeight
         self.maxHeight = maxHeight
-        self._state = state.transaction(DrawerState.transaction)
+        self._state = state
     }
 
     var body: some View {
@@ -59,34 +59,32 @@ struct Drawer<Content: View>: View {
             } })
                 .padding(.top, -16)
                 .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                    .updating($translation) { value, state, transaction in
-                        state = -value.translation.height
-                        transaction = DrawerState.transaction
-                    }
-                    .onEnded { value in
+                    .onChanged { value in translation = -value.translation.height }
+                    .onEnded { value in withTransaction(DrawerState.transaction) {
                         let y = height - value.predictedEndTranslation.height - minHeight
                         let dy = maxHeight - minHeight
                         state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
-                    }
+                        translation = 0
+                    } }
                 )
                 .accessibility(identifier: "SpeedGrader.drawerGripper")
                 .accessibility(label: buttonA11yText)
             content
         }
+            .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
             .background(DrawerBackground()
                 .fill(Color.backgroundLightest)
                 .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
             )
-            .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
     }
 
-    func buttonAction() {
+    func buttonAction() { withTransaction(DrawerState.transaction) {
         switch state {
         case .min: state = .mid
         case .mid: state = .max
         case .max: state = .min
         }
-    }
+    } }
 
     var buttonA11yText: Text {
         switch state {

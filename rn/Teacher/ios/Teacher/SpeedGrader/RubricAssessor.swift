@@ -1,0 +1,207 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2020-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import SwiftUI
+import Core
+
+struct RubricAssessor: View {
+    let assignment: Assignment
+    let submission: Submission
+    let currentScore: Double
+    @Binding var comment: String
+    @Binding var commentID: String?
+    @Binding var assessments: APIRubricAssessmentMap
+
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack { Spacer() }
+            Text("Rubric")
+                .font(.heavy24).foregroundColor(.textDarkest)
+            Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
+                .font(.medium14).foregroundColor(.textDark)
+        }
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal, 16).padding(.vertical, 12)
+
+        VStack(spacing: 12) {
+            ForEach(assignment.rubric ?? [], id: \.id) { criteria in
+                RubricCriteriaAssessor(criteria: criteria)
+            }
+        }
+            .multilineTextAlignment(.leading)
+            .padding(.horizontal, 16)
+    }
+
+    func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
+        let assessment = assessments[criteria.id] ?? submission.rubricAssessments?[criteria.id].map {
+            APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
+        }
+
+        HStack { Spacer() }
+        Text(criteria.desc)
+            .font(.semibold16).foregroundColor(.textDarkest)
+        if criteria.ignoreForScoring {
+            Text("This criterion will not impact the score.")
+                .font(.regular12).foregroundColor(.textDark)
+                .padding(.top, 2)
+        }
+
+        FlowStack(spacing: UIOffset(horizontal: 8, vertical: 8)) { leading, top in
+            if !assignment.freeFormCriterionCommentsOnRubric, let ratings = criteria.ratings {
+                ForEach(ratings.reversed(), id: \.id) { rating in
+                    let isSelected = assessment?.rating_id == rating.id
+                    CircleToggle(isOn: Binding(get: { isSelected }, set: { newValue in
+                        assessments[criteria.id] = newValue ? APIRubricAssessment(
+                            comments: assessment?.comments,
+                            points: rating.points,
+                            rating_id: rating.id
+                        ) : APIRubricAssessment(comments: assessment?.comments)
+                    })) {
+                        Text((isSelected ? assessment?.points : nil) ?? rating.points)
+                    }
+                        .alignmentGuide(.leading, computeValue: leading)
+                        .alignmentGuide(.top, computeValue: top)
+                }
+            }
+
+            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil)
+                ? assessment?.points : nil
+            CircleToggle(isOn: Binding(get: { customGrade != nil }, set: { newValue in
+                if newValue {
+                    promptCustomGrade(criteria, assessment: assessment)
+                } else {
+                    assessments[criteria.id] = APIRubricAssessment(comments: assessment?.comments)
+                }
+            })) {
+                if let grade = customGrade {
+                    Text(grade)
+                } else {
+                    Icon.addSolid
+                }
+            }
+                .accessibility(label: Text("Customize Grade"))
+                .alignmentGuide(.leading, computeValue: leading)
+                .alignmentGuide(.top, computeValue: top)
+        }
+            .padding(.top, 8)
+
+        let showAdd = assignment.freeFormCriterionCommentsOnRubric && assessment?.comments?.isEmpty != false
+        let showLong = criteria.longDesc.isEmpty == false
+        if showAdd || showLong {
+            HStack(spacing: 6) {
+                if showAdd {
+                    Button(action: { withAnimation(.default) {
+                        comment = ""
+                        commentID = criteria.id
+                    } }, label: {
+                        Text("Add Comment")
+                            .font(.medium14).foregroundColor(.accentColor)
+                    })
+                }
+                if showAdd, showLong {
+                    Text(verbatim: "•")
+                        .font(.regular12).foregroundColor(.textDark)
+                }
+                if showLong {
+                    Button(action: {
+                        let web = CoreWebViewController()
+                        web.title = criteria.desc
+                        web.webView.loadHTMLString(criteria.longDesc)
+                        web.addDoneButton(side: .right)
+                        env.router.show(web, from: controller, options: .modal(embedInNav: true))
+                    }, label: {
+                        Text("View Long Description")
+                            .font(.medium14).foregroundColor(.accentColor)
+                    })
+                }
+            }
+                .padding(.top, 8)
+        }
+
+        if let comments = assessment?.comments, !comments.isEmpty {
+            HStack {
+                Text(comments)
+                    .font(.regular14).foregroundColor(.textDarkest)
+                    .padding(.horizontal, 12).padding(.vertical, 8)
+                    .background(CommentBackground()
+                        .fill(Color.backgroundLight)
+                    )
+                Spacer()
+                Button(action: { withAnimation(.default) {
+                    comment = comments
+                    commentID = criteria.id
+                } }, label: {
+                    Text("Edit")
+                        .font(.medium14).foregroundColor(.accentColor)
+                })
+            }
+                .padding(.top, 8)
+        }
+    } }
+
+    struct CircleToggle<Content: View>: View {
+        let content: Content
+        @Binding var isOn: Bool
+
+        init(isOn: Binding<Bool>, @ViewBuilder content: () -> Content) {
+            self.content = content()
+            self._isOn = isOn
+        }
+
+        var body: some View {
+            Button(action: { isOn.toggle() }, label: {
+                content
+                    .font(.medium20)
+                    .foregroundColor(isOn ? Color(Brand.shared.buttonPrimaryText) : .textDark)
+                    .frame(minWidth: 48, minHeight: 48, maxHeight: 48)
+                    .background(isOn ?
+                        RoundedRectangle(cornerRadius: 24).fill(Color(Brand.shared.buttonPrimaryBackground)) :
+                        nil
+                    )
+                    .background(!isOn ?
+                        RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium) :
+                        nil
+                    )
+            })
+                .accessibility(addTraits: isOn ? .isSelected : [])
+        }
+    }
+
+    func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
+        let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
+        let message = String.localizedStringWithFormat(format, criteria.points)
+        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade"), message: message, preferredStyle: .alert)
+        prompt.addTextField { field in
+            field.placeholder = NSLocalizedString("")
+            field.returnKeyType = .done
+            field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
+        }
+        prompt.addAction(AlertAction(NSLocalizedString("OK")) { _ in
+            let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            assessments[criteria.id] = APIRubricAssessment(
+                comments: assessment?.comments,
+                points: DoubleFieldRow.formatter.number(from: text)?.doubleValue
+            )
+        })
+        prompt.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        env.router.show(prompt, from: controller, options: .modal())
+    }
+}

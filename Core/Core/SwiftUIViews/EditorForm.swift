@@ -149,7 +149,7 @@ public struct DoubleFieldRow: View {
             .keyboardType(.decimalPad)
     }
 
-    static var formatter: NumberFormatter = {
+    public static var formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.allowsFloats = true
         formatter.isLenient = true

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
 
-public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
-
-public struct APIRubricAssessment: Codable, Equatable {
-    let submissionID: String?
-    let points: Double?
-    let comments: String?
-    let rating_id: String?
+public extension Text {
+    init(_ value: Double, number: NumberFormatter.Style = .decimal) {
+        self.init(NumberFormatter.localizedString(from: NSNumber(value: value), number: number))
+    }
 }

@@ -57,10 +57,6 @@ class RubricPresenter {
         self?.update()
     }
 
-    lazy var rubrics: Store<LocalUseCase<Rubric>> = env.subscribe(scope: Rubric.scope(assignmentID: assignmentID)) { [weak self] in
-        self?.update()
-    }
-
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
     }
@@ -86,18 +82,19 @@ class RubricPresenter {
     func viewIsReady() {
         assignments.refresh(force: true)
         submissions.refresh(force: true)
-        rubrics.refresh(force: true)
         courses.refresh()
         colors.refresh()
     }
 
     func update() {
-        if rubrics.count > 0, let assignment = assignments.first, courses.first?.color != nil {
+        if let assignment = assignments.first, let rubrics = assignment.rubric, !rubrics.isEmpty, courses.first?.color != nil {
             let assessments = submissions.first?.rubricAssessments
-            let models = transformRubricsToViewModels(rubrics.all,
-                                                      assessments: assessments,
-                                                      hideRubricPoints: assignment.hideRubricPoints,
-                                                      freeFormCriterionComments: assignment.freeFormCriterionCommentsOnRubric)
+            let models = transformRubricsToViewModels(
+                rubrics,
+                assessments: assessments,
+                hideRubricPoints: assignment.hideRubricPoints,
+                freeFormCriterionComments: assignment.freeFormCriterionCommentsOnRubric
+            )
             view?.update(models)
         } else {
             view?.showEmptyState(true)

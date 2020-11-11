@@ -37,7 +37,7 @@ public struct RemoteImage: View {
 
     public var body: some View {
         if let image = image?.image.images?[index] ?? image?.image {
-            Image(uiImage: image)
+            Image(uiImage: image.withRenderingMode(.alwaysOriginal))
                 .resizable()
                 .frame(width: width, height: height)
         } else {

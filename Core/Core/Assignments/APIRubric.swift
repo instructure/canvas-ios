@@ -18,95 +18,110 @@
 
 import Foundation
 
+// https://canvas.instructure.com/doc/api/assignments.html#RubricCriteria
 public struct APIRubric: Codable, Equatable {
-    let id: ID
-    let points: Double
-    let description: String
-    let long_description: String?
     let criterion_use_range: Bool
+    let description: String
+    let id: ID
+    let ignore_for_scoring: Bool?
+    let long_description: String?
+    let points: Double
     let ratings: [APIRubricRating]?
-    var assignmentID: String?
-    var position: Int?
 }
 
+// https://canvas.instructure.com/doc/api/assignments.html#RubricRating
 public struct APIRubricRating: Codable, Equatable {
-    let id: ID
-    let points: Double?
     let description: String
+    let id: ID
     let long_description: String
-    var assignmentID: String?
-    var position: Int?
+    let points: Double?
 }
 
 public struct APIRubricSettings: Codable, Equatable {
-    var hide_points: Bool
     var free_form_criterion_comments: Bool?
+    var hide_points: Bool
+    let points_possible: Double
+}
+
+public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
+
+// https://canvas.instructure.com/doc/api/rubrics.html#RubricAssessment
+public struct APIRubricAssessment: Codable, Equatable {
+    public let comments: String?
+    public let points: Double?
+    public let rating_id: String?
+
+    public init(comments: String? = nil, points: Double? = nil, rating_id: String? = nil) {
+        self.comments = comments
+        self.points = points
+        self.rating_id = rating_id
+    }
 }
 
 #if DEBUG
 extension APIRubric {
     public static func make(
-        id: ID = "1",
-        points: Double = 25.0,
-        description: String = "Effort",
-        long_description: String? = "Did you even try?",
         criterion_use_range: Bool = false,
-        ratings: [APIRubricRating]? = [ .make() ],
-        assignmentID: String? = "1",
-        position: Int? = nil
+        description: String = "Effort",
+        id: ID = "1",
+        ignore_for_scoring: Bool? = false,
+        long_description: String? = "Did you even try?",
+        points: Double = 25.0,
+        ratings: [APIRubricRating]? = [ .make() ]
     ) -> APIRubric {
         return APIRubric(
-            id: id,
-            points: points,
-            description: description,
-            long_description: long_description,
             criterion_use_range: criterion_use_range,
-            ratings: ratings,
-            assignmentID: assignmentID,
-            position: position
+            description: description,
+            id: id,
+            ignore_for_scoring: ignore_for_scoring,
+            long_description: long_description,
+            points: points,
+            ratings: ratings
         )
     }
 }
 
 extension APIRubricRating {
     public static func make(
-        id: ID = "1",
-        points: Double? = 25.0,
         description: String = "Excellent",
+        id: ID = "1",
         long_description: String = "Like the best!",
-        assignmentID: String? = nil,
-        position: Int? = nil
+        points: Double? = 25.0
     ) -> APIRubricRating {
         return APIRubricRating(
-            id: id,
-            points: points,
             description: description,
+            id: id,
             long_description: long_description,
-            assignmentID: assignmentID,
-            position: position
+            points: points
         )
     }
 }
 
 extension APIRubricAssessment {
     public static func make(
-        submissionID: String? = "1",
-        points: Double? = 25.0,
         comments: String? = "You failed at punctuation!",
+        points: Double? = 25.0,
         rating_id: String? = "1"
     ) -> APIRubricAssessment {
         return APIRubricAssessment(
-            submissionID: submissionID,
-            points: points,
             comments: comments,
+            points: points,
             rating_id: rating_id
         )
     }
 }
 
 extension APIRubricSettings {
-    public static func make(hides_points: Bool = false, free_form_criterion_comments: Bool? = false) -> APIRubricSettings {
-        return APIRubricSettings(hide_points: hides_points, free_form_criterion_comments: free_form_criterion_comments)
+    public static func make(
+        free_form_criterion_comments: Bool? = false,
+        hides_points: Bool = false,
+        points_possible: Double = 0
+    ) -> APIRubricSettings {
+        return APIRubricSettings(
+            free_form_criterion_comments: free_form_criterion_comments,
+            hide_points: hides_points,
+            points_possible: points_possible
+        )
     }
 }
 #endif
