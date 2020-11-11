@@ -110,7 +110,7 @@ open class AppEnvironment {
         errorHandler?(error, controller ?? topViewController)
     }
 
-    private func refreshWidgets() {
+    public func refreshWidgets() {
         if #available(iOS 14, *) {
             WidgetCenter.shared.reloadAllTimelines()
         }

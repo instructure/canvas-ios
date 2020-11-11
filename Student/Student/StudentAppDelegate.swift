@@ -125,6 +125,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
+        environment.refreshWidgets()
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }

@@ -24,8 +24,17 @@ class GradesWidgetProvider: CommonWidgetController {
     private lazy var courses = env.subscribe(GetCourses(showFavorites: false, perPage: 100)) { [weak self] in self?.handleFetchFinished() }
     private lazy var favoriteCourses = env.subscribe(GetCourses(showFavorites: true)) { [weak self] in self?.handleFetchFinished() }
     private var completion: ((Timeline<GradeModel>) -> Void)?
+    private var cachedModel: GradeModel?
 
     private func update() {
+        guard isDeviceUnlocked else {
+            if let cachedModel = cachedModel {
+                updateWidget(model: cachedModel)
+            } else {
+                updateWidget(model: GradeModel(isLoggedIn: false))
+            }
+            return
+        }
         guard isLoggedIn else {
             updateWidget(model: GradeModel(isLoggedIn: false))
             return
@@ -57,6 +66,7 @@ class GradesWidgetProvider: CommonWidgetController {
         let timeoutSeconds = submissions.useCase.ttl
         completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeoutSeconds))))
         self.completion = nil
+        cachedModel = model
     }
 }
 

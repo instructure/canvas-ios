@@ -22,15 +22,17 @@ import WidgetKit
 class AnnouncementsProvider: CommonWidgetController {
     private lazy var courses = env.subscribe(GetAllCourses())
     private var announcements: Store<GetAllAnnouncements>?
-
-    private func getImage(url: URL?) -> UIImage? {
-        guard let url = url, let data = try? Data(contentsOf: url) else {
-            return nil
-        }
-        return UIImage(data: data)
-    }
+    private var cachedModel: AnnouncementsEntry?
 
     private func update(completion: @escaping (AnnouncementsEntry) -> Void) {
+        guard isDeviceUnlocked else {
+            if let cachedModel = cachedModel {
+                completion(cachedModel)
+            } else {
+                completion(AnnouncementsEntry(isLoggedIn: false))
+            }
+            return
+        }
         guard isLoggedIn else {
             completion(AnnouncementsEntry(isLoggedIn: false))
             return
@@ -66,7 +68,15 @@ class AnnouncementsProvider: CommonWidgetController {
             let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
             completion(announcementsEntry)
             self.announcements = nil
+            self.cachedModel = announcementsEntry
         }
+    }
+
+    private func getImage(url: URL?) -> UIImage? {
+        guard let url = url, let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        return UIImage(data: data)
     }
 }
 
