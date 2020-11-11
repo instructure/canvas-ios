@@ -2,9 +2,6 @@
   "_376f89ea": {
     "message": "--"
   },
-  "a_description_is_required_54b5f1f6": {
-    "message": "A description is required"
-  },
   "a_title_is_required_71222850": {
     "message": "A title is required"
   },
@@ -35,12 +32,6 @@
   "add_courses_fd45abf": {
     "message": "Add Courses"
   },
-  "add_description_5321f1d": {
-    "message": "Add description"
-  },
-  "add_description_required_e222e483": {
-    "message": "Add description (required)"
-  },
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
   },
@@ -49,12 +40,6 @@
   },
   "add_recipient_7de2dc74": {
     "message": "Add recipient"
-  },
-  "add_title_4f788d37": {
-    "message": "Add title"
-  },
-  "add_title_required_8d9bdeaa": {
-    "message": "Add title (required)"
   },
   "after_date_e5d9b0e1": {
     "message": "After { date }"
@@ -83,12 +68,6 @@
   "allow_multiple_attempts_e67a0a37": {
     "message": "Allow Multiple Attempts"
   },
-  "allow_threaded_replies_43b2311e": {
-    "message": "Allow threaded replies"
-  },
-  "allow_users_to_comment_45b8f753": {
-    "message": "Allow users to comment"
-  },
   "allowed_attempts_4e229caa": {
     "message": "Allowed Attempts"
   },
@@ -101,17 +80,11 @@
   "an_error_occurred_a4e1cda4": {
     "message": "An error occurred"
   },
-  "announcements_a4b8ed4a": {
-    "message": "Announcements"
-  },
   "anonymous_grading_3083dc0": {
     "message": "Anonymous grading"
   },
   "archived_de543437": {
     "message": "Archived"
-  },
-  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-    "message": "Are you sure you want to delete this discussion?"
   },
   "assign_to_95404a83": {
     "message": "Assign To"
@@ -151,9 +124,6 @@
   },
   "audio_playback_failed_912bcb82": {
     "message": "Audio playback failed"
-  },
-  "availability_8942cde6": {
-    "message": "Availability"
   },
   "availability_closed_429d1ba5": {
     "message": "Availability: Closed"
@@ -200,9 +170,6 @@
   "cancel_caeb1e68": {
     "message": "Cancel"
   },
-  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-    "message": "Change { discussionTitle } to different grouping"
-  },
   "choose_color_11148181": {
     "message": "Choose { color }"
   },
@@ -227,14 +194,8 @@
   "close_d634289d": {
     "message": "Close"
   },
-  "close_for_comments_ce0e5d00": {
-    "message": "Close for comments"
-  },
   "closed_983a96fe": {
     "message": "Closed"
-  },
-  "closed_for_comments_e395b42f": {
-    "message": "Closed for Comments"
   },
   "color_a363e1b0": {
     "message": "Color"
@@ -283,11 +244,7 @@
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
     "message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}",
-    "description": "Number of points possible"
-  },
-  "count_plural_one_reply_other_replies_dbf1832a": {
-    "message": "{ count, plural,\n    one {# Reply}\n  other {# Replies}\n}",
-    "description": "Number of replies"
+    "description": "Number of points deducted."
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
     "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}",
@@ -307,9 +264,6 @@
   },
   "course_settings_f6d0bbf8": {
     "message": "Course Settings"
-  },
-  "coursename_sections_faeee6fc": {
-    "message": "{ courseName } Sections"
   },
   "courses_43204aae": {
     "message": "Courses"
@@ -347,12 +301,6 @@
   "deep_purple_bb3e2907": {
     "message": "Deep Purple"
   },
-  "delay_posting_f45eed7d": {
-    "message": "Delay Posting"
-  },
-  "delayed_until_8f9c2bb1": {
-    "message": "Delayed until: "
-  },
   "delete_a6efa79d": {
     "message": "Delete"
   },
@@ -371,9 +319,6 @@
   "discussion_topic_dc85ad4c": {
     "message": "Discussion Topic"
   },
-  "discussions_a5f96392": {
-    "message": "Discussions"
-  },
   "dismiss_dacdb625": {
     "message": "Dismiss"
   },
@@ -385,9 +330,6 @@
   },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As"
-  },
-  "display_grade_as_c165e9a6": {
-    "message": "Display Grade as..."
   },
   "done_54e3d4b6": {
     "message": "Done"
@@ -415,9 +357,6 @@
   },
   "edit_assignment_ebf22a72": {
     "message": "Edit Assignment"
-  },
-  "edit_attachment_count_ae907c46": {
-    "message": "Edit attachment ({ count })"
   },
   "edit_attachments_count_5e9276ea": {
     "message": "Edit attachments ({ count })"
@@ -659,9 +598,6 @@
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
     "message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
   },
-  "last_post_lastreplydatestr_55fbe7ce": {
-    "message": "Last post { lastReplyDateStr }"
-  },
   "late_2be42b88": {
     "message": "Late"
   },
@@ -764,15 +700,6 @@
   "needs_grading_9143d47c": {
     "message": "Needs Grading"
   },
-  "new_13daf639": {
-    "message": "New"
-  },
-  "new_announcement_23af4598": {
-    "message": "New Announcement"
-  },
-  "new_discussion_dae4fae3": {
-    "message": "New Discussion"
-  },
   "new_message_f9bbd1c0": {
     "message": "New Message"
   },
@@ -827,14 +754,8 @@
   "no_time_limit_2147d9bf": {
     "message": "No Time Limit"
   },
-  "no_title_4921a961": {
-    "message": "No Title"
-  },
   "none_3b5e34d2": {
     "message": "None"
-  },
-  "none_9b6c9bec": {
-    "message": "none"
   },
   "not_graded_e027c866": {
     "message": "Not Graded"
@@ -890,14 +811,8 @@
   "open_drawer_f3c8b11": {
     "message": "Open Drawer"
   },
-  "open_for_comments_1810648": {
-    "message": "Open for comments"
-  },
   "opens_in_canvas_student_5f299948": {
     "message": "Opens in Canvas Student"
-  },
-  "options_3ab0ea65": {
-    "message": "Options"
   },
   "orange_81386a62": {
     "message": "Orange"
@@ -929,14 +844,8 @@
   "permission_needed_7e971495": {
     "message": "Permission Needed"
   },
-  "pin_cdbc9f8f": {
-    "message": "Pin"
-  },
   "pink_68ad45cb": {
     "message": "Pink"
-  },
-  "pinned_discussions_a55c0cea": {
-    "message": "Pinned Discussions"
   },
   "please_try_again_5d872e78": {
     "message": "Please try again."
@@ -952,9 +861,6 @@
   },
   "pointspossible_number_pts_2d9f157d": {
     "message": "{ pointsPossible, number } pts"
-  },
-  "post_at_a9e0fecb": {
-    "message": "Post at..."
   },
   "practice_quiz_19a8505d": {
     "message": "Practice Quiz"
@@ -1103,9 +1009,6 @@
   "section_sectionname_a455be11": {
     "message": "Section: { sectionName }"
   },
-  "sections_94731e51": {
-    "message": "Sections"
-  },
   "select_a_course_4710371f": {
     "message": "Select a Course"
   },
@@ -1184,9 +1087,6 @@
   "students_1b8cd07b": {
     "message": "Students"
   },
-  "students_must_post_before_seeing_replies_1a57eeb2": {
-    "message": "Students must post before seeing replies"
-  },
   "subject_114b2e98": {
     "message": "Subject"
   },
@@ -1207,9 +1107,6 @@
   },
   "submitted_late_3741af29": {
     "message": "Submitted late"
-  },
-  "subscribe_4b301fb7": {
-    "message": "Subscribe"
   },
   "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
     "message": "Swipe left or right to view other student submissions"
@@ -1244,17 +1141,11 @@
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "The value of possible points must be zero or greater"
   },
-  "there_are_no_announcements_to_display_a91880": {
-    "message": "There are no announcements to display."
-  },
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "There are no assignments to display."
   },
   "there_are_no_comments_to_display_bde58f70": {
     "message": "There are no comments to display."
-  },
-  "there_are_no_discussions_to_display_37bc437f": {
-    "message": "There are no discussions to display."
   },
   "there_are_no_files_to_display_d3eeb317": {
     "message": "There are no files to display."
@@ -1264,9 +1155,6 @@
   },
   "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
     "message": "There was a problem dismissing the announcement."
-  },
-  "there_was_a_problem_loading_discussions_ce5318af": {
-    "message": "There was a problem loading discussions."
   },
   "there_was_a_problem_loading_the_announcements_4871afc4": {
     "message": "There was a problem loading the announcements."
@@ -1352,12 +1240,6 @@
   "time_limit_a6f1a51e": {
     "message": "Time Limit"
   },
-  "title_announcement_c0cdaa10": {
-    "message": "{ title } Announcement"
-  },
-  "title_discussion_4cff9841": {
-    "message": "{ title } Discussion"
-  },
   "title_ee03d132": {
     "message": "Title"
   },
@@ -1391,18 +1273,11 @@
   "unlimited_ff19e96d": {
     "message": "Unlimited"
   },
-  "unpin_a318452a": {
-    "message": "Unpin"
-  },
   "unpublished_8b6107d6": {
     "message": "Unpublished"
   },
   "unread_e9c1b19c": {
     "message": "Unread"
-  },
-  "unread_plural_one_unread_other_unread_5d48c74f": {
-    "message": "{ unread, plural,\n    one {# Unread}\n  other {# Unread}\n}",
-    "description": "Number of unread discussion posts"
   },
   "unrecognized_file_format_def0881c": {
     "message": "Unrecognized file format"

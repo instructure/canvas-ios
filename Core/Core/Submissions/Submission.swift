@@ -151,9 +151,9 @@ extension Submission: WriteableModel {
         model.groupID = item.group_id?.value
         model.groupName = item.group_name
         model.id = item.id.value
-        model.late = item.late
+        model.late = item.late == true
         model.latePolicyStatus = item.late_policy_status
-        model.missing = item.missing
+        model.missing = item.missing == true
         model.pointsDeducted = item.points_deducted
         model.postedAt = item.posted_at
         model.previewUrl = item.preview_url

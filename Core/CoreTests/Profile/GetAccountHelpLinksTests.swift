@@ -64,4 +64,19 @@ class GetAccountHelpLinksTests: CoreTestCase {
         XCTAssertEqual(student[2].text, "Student")
         XCTAssertEqual(student[2].availableTo, [.student])
     }
+
+    func testAvailableTo() {
+        GetAccountHelpLinks(for: .student).write(response: .make(custom_help_links: [
+            .make(id: "1", text: "Parent", subtext: nil, available_to: [.observer, .unenrolled], url: URL(string: "/")!),
+            .make(id: "2", text: "Teacher", subtext: nil, available_to: [.teacher, .unenrolled], url: URL(string: "/")!),
+            .make(id: "3", text: "Student", subtext: nil, available_to: [.student, .unenrolled], url: URL(string: "/")!),
+        ]), urlResponse: nil, to: databaseClient)
+
+        let observer: [HelpLink] = databaseClient.fetch(scope: GetAccountHelpLinks(for: .observer).scope)
+        XCTAssertEqual(observer.count, 2)
+        let teacher: [HelpLink] = databaseClient.fetch(scope: GetAccountHelpLinks(for: .teacher).scope)
+        XCTAssertEqual(teacher.count, 2)
+        let student: [HelpLink] = databaseClient.fetch(scope: GetAccountHelpLinks(for: .student).scope)
+        XCTAssertEqual(student.count, 2)
+    }
 }
