@@ -27,7 +27,7 @@ struct MediumLargeGradesView: View {
                 .frame(width: 24, height: 24)
             VStack {
                 if !model.assignmentGrades.isEmpty {
-                    HeaderView(title: NSLocalizedString("Assignment Grades", comment: ""))
+                    HeaderView(title: Text("Assignment Grades"))
                     Spacer().frame(maxHeight: 20)
                     ForEach(model.assignmentGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)
@@ -42,7 +42,7 @@ struct MediumLargeGradesView: View {
                     if !model.assignmentGrades.isEmpty {
                         Spacer().frame(maxHeight: 20)
                     }
-                    HeaderView(title: NSLocalizedString("Course Grades", comment: ""))
+                    HeaderView(title: Text("Course Grades"))
                     Spacer().frame(maxHeight: 20)
                     ForEach(model.courseGrades, id: \.self) { gradeItem in
                         GradeItemView(item: gradeItem)

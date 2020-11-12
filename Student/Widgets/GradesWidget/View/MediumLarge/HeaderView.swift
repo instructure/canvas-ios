@@ -22,15 +22,15 @@ import WidgetKit
 struct HeaderView: View {
     var body: some View {
         HStack {
-            Text(NSLocalizedString(title, comment: ""))
+            title
                 .font(.semibold12).foregroundColor(.textDark)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 
-    private let title: String
+    private let title: Text
 
-    init(title: String) {
+    init(title: Text) {
         self.title = title
     }
 }
@@ -38,7 +38,7 @@ struct HeaderView: View {
 #if DEBUG
 struct HeaderViewPreview: PreviewProvider {
     static var previews: some View {
-        HeaderView(title: "Assignment Grades").previewContext(WidgetPreviewContext(family: .systemMedium))
+        HeaderView(title: Text("Assignment Grades")).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
 #endif

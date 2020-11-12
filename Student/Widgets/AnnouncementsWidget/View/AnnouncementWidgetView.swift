@@ -33,9 +33,9 @@ struct AnnouncementsWidgetView: View {
                 MediumLargeAnnouncementsView(announcements: announcementsToShow)
             }
         } else if entry.isLoggedIn {
-            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
+            EmptyView(title: Text("Announcements"), message: Text("No Announcements"))
         } else {
-            EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("Please log in via the application", comment: ""))
+            EmptyView(title: Text("Announcements"), message: Text("Please log in via the application"))
         }
     }
 }

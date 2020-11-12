@@ -22,7 +22,7 @@ import SwiftUI
 struct SmallGradeView: View {
     var body: some View {
         VStack(spacing: 10) {
-            Text(NSLocalizedString("Grades", comment: ""))
+            Text("Grades")
                 .font(.semibold12)
                 .foregroundColor(.textDark)
                 .frame(maxWidth: .infinity, alignment: .leading)

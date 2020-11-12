@@ -50,7 +50,7 @@ public class GetAllAnnouncements: CollectionUseCase {
         return "get-announcements-\(codes)"
     }
     public var request: GetAllAnnouncementsRequest
-    public var scope :Scope { .where(
+    public var scope: Scope { .where(
         #keyPath(DiscussionTopic.isAnnouncement), equals: true,
         orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
     )}

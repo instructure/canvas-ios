@@ -40,7 +40,7 @@ struct MediumLargeAnnouncementsView: View {
                         }
                     }
                 } else {
-                    EmptyView(title: NSLocalizedString("Announcements", comment: ""), message: NSLocalizedString("No Announcements", comment: ""))
+                    EmptyView(title: Text("Announcements"), message: Text("No Announcements"))
                 }
             }.padding(.top, 40) // This is to move the first entry below the header
         }.padding()

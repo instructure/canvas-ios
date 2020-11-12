@@ -38,9 +38,9 @@ struct GradesWidgetView: View {
                 SmallGradeView(gradeItem: firstGrade)
             }
         } else if model.isLoggedIn {
-            EmptyView(title: NSLocalizedString("Grades", comment: ""), message: NSLocalizedString("No Grades To Display", comment: ""))
+            EmptyView(title: Text("Grades"), message: Text("No Grades To Display"))
         } else {
-            EmptyView(title: NSLocalizedString("Grades", comment: ""), message: NSLocalizedString("Please log in via the application", comment: ""))
+            EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
         }
     }
 

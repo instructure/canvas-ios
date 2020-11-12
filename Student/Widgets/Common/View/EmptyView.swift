@@ -23,7 +23,7 @@ struct EmptyView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(title)
+                title
                     .font(.semibold12)
                     .foregroundColor(.textDark)
                     .allowsTightening(true)
@@ -34,7 +34,7 @@ struct EmptyView: View {
                     .resizable()
                     .frame(width: 24, height: 24)
             }
-            Text(message)
+            message
                 .font(.semibold12)
                 .foregroundColor(.textDark)
                 .multilineTextAlignment(.center)
@@ -42,10 +42,10 @@ struct EmptyView: View {
         }.padding()
     }
 
-    private let title: String
-    private let message: String
+    private let title: Text
+    private let message: Text
 
-    init(title: String, message: String) {
+    init(title: Text, message: Text) {
         self.title = title
         self.message = message
     }
@@ -54,13 +54,13 @@ struct EmptyView: View {
 #if DEBUG
 struct EmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(title: "Announcements", message: "Please log in via the application")
+        EmptyView(title: Text("Announcements"), message: Text("Please log in via the application"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
             .previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
-        EmptyView(title: "Grades", message: "Please log in via the application")
+        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
             .previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
-        EmptyView(title: "Grades", message: "Please log in via the application")
+        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
             .previewDevice(PreviewDevice(rawValue: PreviewSimulator.allCases[0].rawValue))
     }
