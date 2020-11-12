@@ -191,6 +191,9 @@
 		7D72425F2429BEE9007ED42F /* DashboardCardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */; };
 		7D7242602429BEE9007ED42F /* DashboardCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7242592429BEE8007ED42F /* DashboardCardViewController.swift */; };
 		7D724267242A6EBA007ED42F /* DashboardCardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D724266242A6EBA007ED42F /* DashboardCardViewControllerTests.swift */; };
+		7D742F34255471D800FD6CF1 /* GradeSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F33255471D800FD6CF1 /* GradeSubmission.swift */; };
+		7D742F3D25563EFD00FD6CF1 /* FlowStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */; };
+		7D742F4025564CF200FD6CF1 /* SwiftUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */; };
 		7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */; };
 		7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */; };
 		7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1324081E42000544E7 /* ListErrorView.swift */; };
@@ -288,7 +291,6 @@
 		7DA25FC923F72136005D2121 /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF2033216D5458003AF358 /* APIQuiz.swift */; };
 		7DA25FCA23F72136005D2121 /* APIRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8262EA212B1A7B00BD268D /* APIRequestable.swift */; };
 		7DA25FCB23F72136005D2121 /* APIRubric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6386A42264F6AC002DEE72 /* APIRubric.swift */; };
-		7DA25FCC23F72136005D2121 /* APIRubricAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */; };
 		7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A32BDB21599F1C0071B41E /* APISubmission.swift */; };
 		7DA25FCF23F72136005D2121 /* APITab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80AC0B212B4C6F00C40ECE /* APITab.swift */; };
 		7DA25FD123F72136005D2121 /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AAC3C237A2428002BC41F /* APIURL.swift */; };
@@ -981,7 +983,6 @@
 		3B6386A42264F6AC002DEE72 /* APIRubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubric.swift; sourceTree = "<group>"; };
 		3B6386A82264FB17002DEE72 /* Rubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubric.swift; sourceTree = "<group>"; };
 		3B69253F21A12E020023ED75 /* Int64Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64Extensions.swift; sourceTree = "<group>"; };
-		3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubricAssessment.swift; sourceTree = "<group>"; };
 		3B801BF92322F64900D143F0 /* AlertThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThreshold.swift; sourceTree = "<group>"; };
 		3B8F23CC23274FC500788730 /* AlertThresholdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertThresholdTests.swift; sourceTree = "<group>"; };
 		3BA649CC2423E0080047D8DC /* APIPairingCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPairingCode.swift; sourceTree = "<group>"; };
@@ -1338,6 +1339,9 @@
 		7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardCardViewController.storyboard; sourceTree = "<group>"; };
 		7D7242592429BEE8007ED42F /* DashboardCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCardViewController.swift; sourceTree = "<group>"; };
 		7D724266242A6EBA007ED42F /* DashboardCardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardViewControllerTests.swift; sourceTree = "<group>"; };
+		7D742F33255471D800FD6CF1 /* GradeSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSubmission.swift; sourceTree = "<group>"; };
+		7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowStack.swift; sourceTree = "<group>"; };
+		7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensions.swift; sourceTree = "<group>"; };
 		7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerTests.swift; sourceTree = "<group>"; };
 		7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFAnnotationExtensionTests.swift; sourceTree = "<group>"; };
 		7D75FF1324081E42000544E7 /* ListErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListErrorView.swift; sourceTree = "<group>"; };
@@ -3037,6 +3041,7 @@
 				B1911CF021C851AD00F42F91 /* ProcessInfoExtensions.swift */,
 				E888382924DDD20D00DDF691 /* SequenceExtensions.swift */,
 				3B158C8C22E12DC50039A568 /* StringExtensions.swift */,
+				7D742F3F25564CF200FD6CF1 /* SwiftUIExtensions.swift */,
 				7D264DBC253767C9007CDD90 /* TransactionExtensions.swift */,
 				97D9400D23DFEA6A00A9D274 /* UIButtonExtensions.swift */,
 				7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */,
@@ -3324,6 +3329,7 @@
 				7DCB2E9B247D9FD00071F172 /* GetSubmissionComments.swift */,
 				9FCD79D72188DFD00054293A /* GetSubmissions.swift */,
 				7DB94972247DA160006FB025 /* GetSubmissionSummary.swift */,
+				7D742F33255471D800FD6CF1 /* GradeSubmission.swift */,
 				7DF4FFDE21713919007E5F81 /* Submission.swift */,
 				7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */,
 				7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */,
@@ -3423,7 +3429,6 @@
 				3B5542432369F3EE007D3CE0 /* APIAssignmentList.swift */,
 				B1A6BC81218A5066000515E3 /* APILatePolicy.swift */,
 				3B6386A42264F6AC002DEE72 /* APIRubric.swift */,
-				3B6D23E62267B9000040D3FE /* APIRubricAssessment.swift */,
 				7DF4FFDA21713636007E5F81 /* Assignment.swift */,
 				7DF4AAD32487F1EF00B07BB8 /* AssignmentDatesViewController.storyboard */,
 				7DF4AACF2486F3BF00B07BB8 /* AssignmentDatesViewController.swift */,
@@ -3791,6 +3796,7 @@
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
+				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
 				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
@@ -4595,6 +4601,7 @@
 				7DA25FEA23F721DE005D2121 /* Conversation.swift in Sources */,
 				7DA2600323F7227A005D2121 /* BundleExtensions.swift in Sources */,
 				3B4D89412450AD58004ED120 /* UITextViewExtensions.swift in Sources */,
+				7D742F3D25563EFD00FD6CF1 /* FlowStack.swift in Sources */,
 				B1A7848F24411F19001A2B50 /* BackgroundVideoPlayer.swift in Sources */,
 				7DA2606823F722D9005D2121 /* TabVisibility.swift in Sources */,
 				7DA2609923F7233D005D2121 /* Scope.swift in Sources */,
@@ -4671,6 +4678,7 @@
 				7DA2600523F7227A005D2121 /* DispatchExtensions.swift in Sources */,
 				7DA260DD23F72359005D2121 /* GroupedSectionHeaderView.swift in Sources */,
 				7DA25FB523F72136005D2121 /* APIGradingPeriod.swift in Sources */,
+				7D742F4025564CF200FD6CF1 /* SwiftUIExtensions.swift in Sources */,
 				7DA25FB623F72136005D2121 /* APIGraphQLRequestable.swift in Sources */,
 				7DA2600F23F7227A005D2121 /* UICollectionViewExtensions.swift in Sources */,
 				7DA260D623F72359005D2121 /* DynamicTextField.swift in Sources */,
@@ -4887,7 +4895,6 @@
 				7DA2609A23F7233D005D2121 /* Store.swift in Sources */,
 				7DA2601523F7227A005D2121 /* UIImageViewExtensions.swift in Sources */,
 				7DA25FE923F721DE005D2121 /* APISearchRecipient.swift in Sources */,
-				7DA25FCC23F72136005D2121 /* APIRubricAssessment.swift in Sources */,
 				7DA2601323F7227A005D2121 /* UIImageExtensions.swift in Sources */,
 				7DA25FC923F72136005D2121 /* APIQuiz.swift in Sources */,
 				7DA2606023F722D9005D2121 /* Rubric.swift in Sources */,
@@ -4963,6 +4970,7 @@
 				7D7BA23524D8959300B1A68B /* PageEditorView.swift in Sources */,
 				7DA2601723F7227A005D2121 /* UIScrollViewExtensions.swift in Sources */,
 				7DA25FA723F72136005D2121 /* APICourseSection.swift in Sources */,
+				7D742F34255471D800FD6CF1 /* GradeSubmission.swift in Sources */,
 				7DA2608523F7230F005D2121 /* ColoredNavViewProtocol.swift in Sources */,
 				7DA2601B23F7227A005D2121 /* UIViewControllerExtensions.swift in Sources */,
 				7DA25FD823F72148005D2121 /* Clock.swift in Sources */,

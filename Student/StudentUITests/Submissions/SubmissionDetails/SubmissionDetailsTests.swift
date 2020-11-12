@@ -360,9 +360,9 @@ class SubmissionDetailsTests: CoreUITestCase {
     func testRubric() {
         mockBaseRequests()
         let ratings: [APIRubricRating] = [
-            APIRubricRating.make(id: "1", points: 10, description: "A", long_description: "this is A", assignmentID: "1", position: 0),
-            APIRubricRating.make(id: "2", points: 20, description: "B", long_description: "this is B", assignmentID: "1", position: 1),
-            APIRubricRating.make(id: "3", points: 30, description: "C", long_description: "this is C", assignmentID: "1", position: 2),
+            APIRubricRating.make(description: "A", id: "1", long_description: "this is A", points: 10),
+            APIRubricRating.make(description: "B", id: "2", long_description: "this is B", points: 20),
+            APIRubricRating.make(description: "C", id: "3", long_description: "this is C", points: 30),
         ]
         let rubric = APIRubric.make(ratings: ratings)
         let assignment = mock(assignment: .make(id: "2", rubric: [rubric]))

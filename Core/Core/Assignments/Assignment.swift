@@ -53,7 +53,8 @@ public class Assignment: NSManagedObject {
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
     @NSManaged public var quizID: String?
-    @NSManaged public var rubric: Set<Rubric>?
+    @NSManaged public var rubricPointsPossibleRaw: NSNumber?
+    @NSManaged public var rubricRaw: NSOrderedSet?
     @NSManaged public var scoreStatistics: ScoreStatistics?
     @NSManaged public var submissionTypesRaw: String
     @NSManaged public var syllabus: Syllabus?
@@ -100,6 +101,16 @@ public class Assignment: NSManagedObject {
     public var pointsPossible: Double? {
         get { return pointsPossibleRaw?.doubleValue }
         set { pointsPossibleRaw = NSNumber(value: newValue) }
+    }
+
+    public var rubric: [Rubric]? {
+        get { rubricRaw?.array as? [Rubric] }
+        set { rubricRaw = newValue.map { NSOrderedSet(array: $0) } }
+    }
+
+    public var rubricPointsPossible: Double? {
+        get { return rubricPointsPossibleRaw?.doubleValue }
+        set { rubricPointsPossibleRaw = NSNumber(value: newValue) }
     }
 
     public var submissionTypes: [SubmissionType] {
@@ -165,18 +176,13 @@ extension Assignment {
             self.rubric = nil
         }
 
-        if let apiRubrics = item.rubric, apiRubrics.count > 0 {
-            self.rubric = Set<Rubric>()
-            for (index, var r) in apiRubrics.enumerated() {
-                r.assignmentID = item.id.value
-                r.position = index
-                let rubricModel = Rubric.save(r, in: client)
-                self.rubric?.insert(rubricModel)
-            }
+        if let apiRubrics = item.rubric, !apiRubrics.isEmpty {
+            rubric = apiRubrics.map { Rubric.save($0, assignmentID: item.id.value, in: client) }
         }
 
-        hideRubricPoints = item.rubric_settings?.hide_points == true
         freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
+        hideRubricPoints = item.rubric_settings?.hide_points == true
+        rubricPointsPossible = item.rubric_settings?.points_possible
 
         if let assignmentGroupID = item.assignment_group_id?.value,
             let assignmentGroup: AssignmentGroup = client.first(where: #keyPath(AssignmentGroup.id), equals: assignmentGroupID) {

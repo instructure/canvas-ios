@@ -24,9 +24,10 @@ extension Rubric {
     @discardableResult
     public static func make(
         from api: APIRubric = .make(),
+        assignmentID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Rubric {
-        let model = Rubric.save(api, in: context)
+        let model = Rubric.save(api, assignmentID: assignmentID, in: context)
         try! context.save()
         return model
     }
@@ -36,9 +37,10 @@ extension RubricRating {
     @discardableResult
     public static func make(
         from api: APIRubricRating = .make(),
+        assignmentID: String = "1",
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> RubricRating {
-        let model = RubricRating.save(api, in: context)
+        let model = RubricRating.save(api, assignmentID: assignmentID, in: context)
         try! context.save()
         return model
     }
