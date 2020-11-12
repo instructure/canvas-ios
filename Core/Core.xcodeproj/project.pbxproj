@@ -599,6 +599,7 @@
 		7DC35324255BA07B00B36CD3 /* DashboardCourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35323255BA07B00B36CD3 /* DashboardCourseSection.swift */; };
 		7DC35327255BA08B00B36CD3 /* DashboardGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35326255BA08B00B36CD3 /* DashboardGroupSection.swift */; };
 		7DC35385255C9ABF00B36CD3 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */; };
+		7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC3530C255B3DD900B36CD3 /* AssignmentEditorView.swift */; };
 		7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */; };
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
 		7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */; };
@@ -1493,6 +1494,7 @@
 		7DC35323255BA07B00B36CD3 /* DashboardCourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseSection.swift; sourceTree = "<group>"; };
 		7DC35326255BA08B00B36CD3 /* DashboardGroupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupSection.swift; sourceTree = "<group>"; };
 		7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
+		7DC3530C255B3DD900B36CD3 /* AssignmentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentEditorView.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2867,6 +2869,7 @@
 			children = (
 				7D531D47254C606800CBFCA6 /* AssignmentAssigneeList.swift */,
 				7D531D43254B105700CBFCA6 /* AssignmentAssigneePicker.swift */,
+				7DC3530C255B3DD900B36CD3 /* AssignmentEditorView.swift */,
 				7D531D3A2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift */,
 			);
 			path = AssignmentEditor;
@@ -4865,6 +4868,7 @@
 				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
+				7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */,
 				7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
