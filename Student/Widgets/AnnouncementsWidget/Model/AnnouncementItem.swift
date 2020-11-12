@@ -33,7 +33,6 @@ struct AnnouncementItem: Identifiable, Equatable {
 
     init?(discussionTopic: DiscussionTopic, course: Course, avatarImage: UIImage?) {
         guard
-            discussionTopic.isAnnouncement,
             let title = discussionTopic.title,
             let date = discussionTopic.postedAt,
             let author = discussionTopic.author,

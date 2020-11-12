@@ -50,9 +50,10 @@ public class GetAllAnnouncements: CollectionUseCase {
         return "get-announcements-\(codes)"
     }
     public var request: GetAllAnnouncementsRequest
-    public var scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(DiscussionTopic.postedAt), ascending: false),
-    ])
+    public var scope :Scope { .where(
+        #keyPath(DiscussionTopic.isAnnouncement), equals: true,
+        orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
+    )}
 
     public init(contextCodes: [String]) {
         self.contextCodes = contextCodes

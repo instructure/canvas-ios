@@ -172,5 +172,6 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
         let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"])
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
-        ])    }
+        ])
+    }
 }
