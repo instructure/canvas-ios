@@ -27,6 +27,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
+    @NSManaged public var canUnpublish: Bool
     @NSManaged public var courseID: String
     @NSManaged public var details: String?
     @NSManaged public var discussionTopic: DiscussionTopic?
@@ -52,6 +53,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
+    @NSManaged public var published: Bool
     @NSManaged public var quizID: String?
     @NSManaged public var rubricPointsPossibleRaw: NSNumber?
     @NSManaged public var rubricRaw: NSOrderedSet?
@@ -139,6 +141,7 @@ extension Assignment {
         allowedExtensions = item.allowed_extensions ?? []
         anonymizeStudents = item.anonymize_students == true
         assignmentGroupID = item.assignment_group_id?.value
+        canUnpublish = item.unpublishable == true
         courseID = item.course_id.value
         details = item.description
         dueAt = item.due_at
@@ -158,6 +161,7 @@ extension Assignment {
         name = item.name
         pointsPossible = item.points_possible
         position = item.position
+        published = item.published != false
         quizID = item.quiz_id?.value
         submissionTypes = item.submission_types
         unlockAt = item.unlock_at
