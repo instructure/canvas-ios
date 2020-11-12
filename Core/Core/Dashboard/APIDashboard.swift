@@ -18,8 +18,8 @@
 
 import Foundation
 
-// undocumented, see rn/Teacher/src/canvas-api/flow/dashboard.js
-public struct APIDashboardCardLink: Codable, Equatable {
+// undocumented
+struct APIDashboardCardLink: Codable, Equatable {
     let css_class: String
     let hidden: Bool?
     let icon: String
@@ -27,7 +27,7 @@ public struct APIDashboardCardLink: Codable, Equatable {
     let path: String
 }
 
-public struct APIDashboardCard: Codable, Equatable {
+struct APIDashboardCard: Codable, Equatable {
     let assetString: String
     let courseCode: String
     let enrollmentType: String
@@ -43,14 +43,9 @@ public struct APIDashboardCard: Codable, Equatable {
     let term: String?
 }
 
-public struct GetDashboardCardsRequest: APIRequestable {
-    public typealias Response = [APIDashboardCard]
-    public var path = "dashboard/dashboard_cards"
-}
-
 #if DEBUG
 extension APIDashboardCard {
-    public static func make(
+    static func make(
         assetString: String = "course_1",
         courseCode: String = "C1",
         enrollmentType: String = "StudentEnrollment",
@@ -83,3 +78,8 @@ extension APIDashboardCard {
     }
 }
 #endif
+
+struct GetDashboardCardsRequest: APIRequestable {
+    typealias Response = [APIDashboardCard]
+    var path: String { "dashboard/dashboard_cards" }
+}

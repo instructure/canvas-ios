@@ -89,15 +89,8 @@ public struct GetGroupsRequest: APIRequestable {
 
     let context: Context
 
-    public var path: String {
-        return "\(context.pathComponent)/groups"
-    }
-
-    public let query: [APIQueryItem] = [
-        .array("include", [
-            "users",
-        ]),
-    ]
+    public var path: String { "\(context.pathComponent)/groups" }
+    public var query: [APIQueryItem] { [ .perPage(100) ] }
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users

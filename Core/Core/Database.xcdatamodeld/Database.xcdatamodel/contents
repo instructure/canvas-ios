@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H15" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -160,6 +160,7 @@
     <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
         <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="contextColor" inverseEntity="DashboardCard"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
     </entity>
@@ -218,7 +219,9 @@
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
+        <relationship name="dashboardCard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="planner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="courses" inverseEntity="Planner"/>
         <relationship name="plannerHidden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="hiddenCourses" inverseEntity="Planner"/>
     </entity>
@@ -235,6 +238,21 @@
         <attribute name="courseID" attributeType="String"/>
         <attribute name="syllabusCourseSummary" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
+        <attribute name="courseCode" attributeType="String"/>
+        <attribute name="enrollmentType" attributeType="String"/>
+        <attribute name="href" optional="YES" attributeType="URI"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI"/>
+        <attribute name="longName" attributeType="String"/>
+        <attribute name="originalName" attributeType="String"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shortName" attributeType="String"/>
+        <attribute name="subtitle" attributeType="String"/>
+        <attribute name="term" optional="YES" attributeType="String"/>
+        <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="card" inverseEntity="ContextColor"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="dashboardCard" inverseEntity="Course"/>
     </entity>
     <entity name="DiscussionEntry" representedClassName="Core.DiscussionEntry" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -445,6 +463,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="groups" inverseEntity="Course"/>
     </entity>
     <entity name="HelpLink" representedClassName="Core.HelpLink" syncable="YES">
         <attribute name="availableToRaw" attributeType="String" defaultValueString="unenrolled"/>
@@ -892,11 +911,11 @@
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
         <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>
         <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="148"/>
-        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="103"/>
+        <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="118"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="358"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="388"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
@@ -911,7 +930,7 @@
         <element name="FolderItem" positionX="-540" positionY="-18" width="128" height="118"/>
         <element name="Grade" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="GradingPeriod" positionX="-540" positionY="-27" width="128" height="133"/>
-        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="208"/>
+        <element name="Group" positionX="-366.25" positionY="-174.85546875" width="128" height="223"/>
         <element name="HelpLink" positionX="-540" positionY="-27" width="128" height="135"/>
         <element name="LogEvent" positionX="-743.51953125" positionY="192.92578125" width="128" height="90"/>
         <element name="MasteryPath" positionX="-540" positionY="-18" width="128" height="103"/>
@@ -947,5 +966,6 @@
         <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
+        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

@@ -187,12 +187,15 @@ public class ProfileViewController: UIViewController {
             let colorOverlay = settings.first?.hideDashcardColorOverlays != true
             cells.append(ProfileViewCell("colorOverlay", type: .toggle(colorOverlay), name: NSLocalizedString("Color Overlay", bundle: .core, comment: "")) { cell in
                 let colorOverlay = (cell.accessoryView as? UISwitch)?.isOn == true
-                NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
-                    "type": "userInfo.updateUserSettings",
-                    "pending": true,
-                    "payload": [ "hideOverlay": !colorOverlay ],
-                ])
+                if !ExperimentalFeature.nativeDashboard.isEnabled {
+                    NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
+                        "type": "userInfo.updateUserSettings",
+                        "pending": true,
+                        "payload": [ "hideOverlay": !colorOverlay ],
+                    ])
+                }
                 UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch { (settings, _, _) in
+                    guard !ExperimentalFeature.nativeDashboard.isEnabled else { return }
                     guard settings == nil else { return }
                     NotificationCenter.default.post(name: NSNotification.Name("redux-action"), object: nil, userInfo: [
                         "type": "userInfo.updateUserSettings",

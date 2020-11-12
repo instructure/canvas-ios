@@ -62,20 +62,18 @@ public class GetGroup: APIUseCase {
     }
 }
 
-public struct GetDashboardGroups: CollectionUseCase {
+public class GetDashboardGroups: CollectionUseCase {
     public typealias Model = Group
 
-    public init() {}
-
-    public var request: GetGroupsRequest {
-        return GetGroupsRequest(context: .currentUser)
-    }
-
-    public var scope: Scope {
-        return .where(#keyPath(Group.showOnDashboard), equals: true, orderBy: #keyPath(Group.name))
-    }
-
-    public let cacheKey: String? = "get-user-groups"
+    public var cacheKey: String? { "users/self/groups" }
+    public var request: GetGroupsRequest { GetGroupsRequest(context: .currentUser) }
+    public var scope: Scope { .where(
+        #keyPath(Group.showOnDashboard), equals: true,
+        sortDescriptors: [
+            NSSortDescriptor(key: #keyPath(Group.name), ascending: true, naturally: true),
+            NSSortDescriptor(key: #keyPath(Group.id), ascending: true, naturally: true),
+        ]
+    ) }
 }
 
 class GetGroupsInCategory: CollectionUseCase {

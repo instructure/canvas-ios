@@ -22,6 +22,7 @@ import UIKit
 
 public final class ContextColor: NSManagedObject {
     @NSManaged public var canvasContextID: String
+    @NSManaged var card: DashboardCard?
     @NSManaged public var colorRaw: UInt32
     @NSManaged public var course: Course?
 
@@ -47,6 +48,9 @@ public final class ContextColor: NSManagedObject {
                 case .course:
                     if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: canvasContext.id)).first {
                         model.course = course
+                    }
+                    if let card: DashboardCard = context.fetch(scope: .where(#keyPath(DashboardCard.id), equals: canvasContext.id)).first {
+                        model.card = card
                     }
                 case .group:
                     if let group: Group = context.fetch(scope: .where(#keyPath(Group.id), equals: canvasContext.id)).first {

@@ -160,10 +160,7 @@
 		7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5A2BC322CD0D8C0029B6AC /* APIListTests.swift */; };
 		7D5AA3C822959D5D00438667 /* GetSSOLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */; };
 		7D5C87212239A99E00D99651 /* SubmissionCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */; };
-		7D5F103A2429BA2700803324 /* CourseCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F10372429BA2600803324 /* CourseCardCell.swift */; };
-		7D5F103B2429BA2700803324 /* CourseCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F10392429BA2700803324 /* CourseCardsViewController.swift */; };
 		7D5F103D2429BA5D00803324 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5F103C2429BA5D00803324 /* CardView.swift */; };
-		7D5F103E2429BAAB00803324 /* CourseCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D5F10382429BA2600803324 /* CourseCardCell.xib */; };
 		7D62716A245B422900FC1798 /* DiscussionParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D627169245B422900FC1798 /* DiscussionParticipant.swift */; };
 		7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716B245B591E00FC1798 /* GetDiscussions.swift */; };
 		7D62716E245B735A00FC1798 /* DiscussionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D62716D245B735A00FC1798 /* DiscussionDetailsViewController.swift */; };
@@ -178,7 +175,6 @@
 		7D64A979236760A1004EAEDF /* CourseSectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A978236760A1004EAEDF /* CourseSectionTests.swift */; };
 		7D64A97B23676179004EAEDF /* GetCourseSectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */; };
 		7D67C26B242E6BF100BC5CD1 /* ModuleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67C268242E6BE900BC5CD1 /* ModuleListViewControllerTests.swift */; };
-		7D6C47EB250C1C5B0088ADDE /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C47EA250C1C5B0088ADDE /* Pages.swift */; };
 		7D6E57392550C57F0068D3C3 /* DiscussionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E57382550C57F0068D3C3 /* DiscussionListViewController.swift */; };
 		7D6E573C2550C5950068D3C3 /* DiscussionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6E573B2550C5950068D3C3 /* DiscussionListViewController.storyboard */; };
 		7D6E58032551C1530068D3C3 /* AnnouncementListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6E58022551C1530068D3C3 /* AnnouncementListViewController.storyboard */; };
@@ -192,13 +188,9 @@
 		7D7110C12138910D0085C2E5 /* RouteHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110C02138910D0085C2E5 /* RouteHandlerTests.swift */; };
 		7D7110CC2139AB310085C2E5 /* URLComponentsExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */; };
 		7D71807B233FCD0A0053FC7A /* UserProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */; };
-		7D72425B2429BEE9007ED42F /* DashboardGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7242542429BEE8007ED42F /* DashboardGroupCell.swift */; };
-		7D72425C2429BEE9007ED42F /* DashboardSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7242552429BEE8007ED42F /* DashboardSectionHeaderView.swift */; };
-		7D72425F2429BEE9007ED42F /* DashboardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7242582429BEE8007ED42F /* DashboardViewController.storyboard */; };
-		7D7242602429BEE9007ED42F /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7242592429BEE8007ED42F /* DashboardViewController.swift */; };
-		7D7242622429C473007ED42F /* CourseCardsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D5F10362429BA2500803324 /* CourseCardsViewController.storyboard */; };
-		7D724265242A5871007ED42F /* CourseCardsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D724264242A5871007ED42F /* CourseCardsViewControllerTests.swift */; };
-		7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D724266242A6EBA007ED42F /* DashboardViewControllerTests.swift */; };
+		7D72425F2429BEE9007ED42F /* DashboardCardViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */; };
+		7D7242602429BEE9007ED42F /* DashboardCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7242592429BEE8007ED42F /* DashboardCardViewController.swift */; };
+		7D724267242A6EBA007ED42F /* DashboardCardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D724266242A6EBA007ED42F /* DashboardCardViewControllerTests.swift */; };
 		7D7472D6218CC4B200CE1430 /* APIDocViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */; };
 		7D7472D9218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */; };
 		7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D75FF1324081E42000544E7 /* ListErrorView.swift */; };
@@ -587,11 +579,11 @@
 		7DB94979247DCC51006FB025 /* SubmissionBreakdownViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB94976247DC8E8006FB025 /* SubmissionBreakdownViewController.storyboard */; };
 		7DBA77C624F9BE6300B4D6B3 /* FileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA77C524F9BE6300B4D6B3 /* FileEditorView.swift */; };
 		7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */; };
-		7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD15002547746F00750F52 /* DiscussionEditorView.swift */; };
-		7DBD150625477CEB00750F52 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD150525477CEB00750F52 /* Badge.swift */; };
 		7DBD14E22547213F00750F52 /* QuizListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBD14E02547213F00750F52 /* QuizListViewController.storyboard */; };
 		7DBD14E32547213F00750F52 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD14E12547213F00750F52 /* QuizListViewController.swift */; };
 		7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD14EA2547343B00750F52 /* QuizListViewControllerTests.swift */; };
+		7DBD15012547746F00750F52 /* DiscussionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD15002547746F00750F52 /* DiscussionEditorView.swift */; };
+		7DBD150625477CEB00750F52 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD150525477CEB00750F52 /* Badge.swift */; };
 		7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */; };
 		7DBED017232FDDB700392F3C /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */; };
 		7DBED01D2330332800392F3C /* UploadAvatarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED01C2330332800392F3C /* UploadAvatarTests.swift */; };
@@ -599,6 +591,12 @@
 		7DBF9235226975B100710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
 		7DBF9236226975B100710D0F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */; };
+		7DC3531B255BA03800B36CD3 /* DashboardConferenceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC3531A255BA03800B36CD3 /* DashboardConferenceSection.swift */; };
+		7DC3531E255BA04F00B36CD3 /* DashboardInviteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC3531D255BA04F00B36CD3 /* DashboardInviteSection.swift */; };
+		7DC35321255BA06900B36CD3 /* DashboardAnnouncementSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */; };
+		7DC35324255BA07B00B36CD3 /* DashboardCourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35323255BA07B00B36CD3 /* DashboardCourseSection.swift */; };
+		7DC35327255BA08B00B36CD3 /* DashboardGroupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35326255BA08B00B36CD3 /* DashboardGroupSection.swift */; };
+		7DC35385255C9ABF00B36CD3 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */; };
 		7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */; };
 		7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */; };
 		7DC4A55B222EFE0E00FA03DC /* NSErrorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */; };
@@ -1293,10 +1291,6 @@
 		7D5AA3C52294AF9400438667 /* GetSSOLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSSOLogin.swift; sourceTree = "<group>"; };
 		7D5AA3C722959D5D00438667 /* GetSSOLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSSOLoginTests.swift; sourceTree = "<group>"; };
 		7D5C87202239A99E00D99651 /* SubmissionCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentTests.swift; sourceTree = "<group>"; };
-		7D5F10362429BA2500803324 /* CourseCardsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CourseCardsViewController.storyboard; sourceTree = "<group>"; };
-		7D5F10372429BA2600803324 /* CourseCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardCell.swift; sourceTree = "<group>"; };
-		7D5F10382429BA2600803324 /* CourseCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseCardCell.xib; sourceTree = "<group>"; };
-		7D5F10392429BA2700803324 /* CourseCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCardsViewController.swift; sourceTree = "<group>"; };
 		7D5F103C2429BA5D00803324 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7D627169245B422900FC1798 /* DiscussionParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionParticipant.swift; sourceTree = "<group>"; };
 		7D62716B245B591E00FC1798 /* GetDiscussions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussions.swift; sourceTree = "<group>"; };
@@ -1341,12 +1335,9 @@
 		7D7110C92139A57A0085C2E5 /* URLComponentsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsExtensions.swift; sourceTree = "<group>"; };
 		7D7110CB2139AB310085C2E5 /* URLComponentsExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLComponentsExtensionsTests.swift; sourceTree = "<group>"; };
 		7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTests.swift; sourceTree = "<group>"; };
-		7D7242542429BEE8007ED42F /* DashboardGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardGroupCell.swift; sourceTree = "<group>"; };
-		7D7242552429BEE8007ED42F /* DashboardSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeaderView.swift; sourceTree = "<group>"; };
-		7D7242582429BEE8007ED42F /* DashboardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardViewController.storyboard; sourceTree = "<group>"; };
-		7D7242592429BEE8007ED42F /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		7D724264242A5871007ED42F /* CourseCardsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCardsViewControllerTests.swift; sourceTree = "<group>"; };
-		7D724266242A6EBA007ED42F /* DashboardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewControllerTests.swift; sourceTree = "<group>"; };
+		7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DashboardCardViewController.storyboard; sourceTree = "<group>"; };
+		7D7242592429BEE8007ED42F /* DashboardCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCardViewController.swift; sourceTree = "<group>"; };
+		7D724266242A6EBA007ED42F /* DashboardCardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardViewControllerTests.swift; sourceTree = "<group>"; };
 		7D7472D5218CC4B200CE1430 /* APIDocViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDocViewerTests.swift; sourceTree = "<group>"; };
 		7D7472D8218CD77C00CE1430 /* PSPDFAnnotationExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFAnnotationExtensionTests.swift; sourceTree = "<group>"; };
 		7D75FF1324081E42000544E7 /* ListErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListErrorView.swift; sourceTree = "<group>"; };
@@ -1476,11 +1467,11 @@
 		7DB94977247DC8E8006FB025 /* SubmissionBreakdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewController.swift; sourceTree = "<group>"; };
 		7DBA77C524F9BE6300B4D6B3 /* FileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorView.swift; sourceTree = "<group>"; };
 		7DBA77C724F9C2D400B4D6B3 /* FileListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
-		7DBD15002547746F00750F52 /* DiscussionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditorView.swift; sourceTree = "<group>"; };
-		7DBD150525477CEB00750F52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7DBD14E02547213F00750F52 /* QuizListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuizListViewController.storyboard; sourceTree = "<group>"; };
 		7DBD14E12547213F00750F52 /* QuizListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
 		7DBD14EA2547343B00750F52 /* QuizListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewControllerTests.swift; sourceTree = "<group>"; };
+		7DBD15002547746F00750F52 /* DiscussionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditorView.swift; sourceTree = "<group>"; };
+		7DBD150525477CEB00750F52 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		7DBED00D232C252200392F3C /* APIHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpLinks.swift; sourceTree = "<group>"; };
 		7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountHelpLinks.swift; sourceTree = "<group>"; };
@@ -1492,6 +1483,12 @@
 		7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
 		7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacementTests.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
+		7DC3531A255BA03800B36CD3 /* DashboardConferenceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferenceSection.swift; sourceTree = "<group>"; };
+		7DC3531D255BA04F00B36CD3 /* DashboardInviteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInviteSection.swift; sourceTree = "<group>"; };
+		7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAnnouncementSection.swift; sourceTree = "<group>"; };
+		7DC35323255BA07B00B36CD3 /* DashboardCourseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseSection.swift; sourceTree = "<group>"; };
+		7DC35326255BA08B00B36CD3 /* DashboardGroupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardGroupSection.swift; sourceTree = "<group>"; };
+		7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
 		7DC4A554222EF87300FA03DC /* DiscussionEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntryTests.swift; sourceTree = "<group>"; };
 		7DC4A558222EFC9900FA03DC /* Int64ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64ExtensionsTests.swift; sourceTree = "<group>"; };
 		7DC4A55A222EFE0E00FA03DC /* NSErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2396,10 +2393,14 @@
 			children = (
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
-				7D7242542429BEE8007ED42F /* DashboardGroupCell.swift */,
-				7D7242552429BEE8007ED42F /* DashboardSectionHeaderView.swift */,
-				7D7242582429BEE8007ED42F /* DashboardViewController.storyboard */,
-				7D7242592429BEE8007ED42F /* DashboardViewController.swift */,
+				7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */,
+				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
+				7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */,
+				7D7242592429BEE8007ED42F /* DashboardCardViewController.swift */,
+				7DC3531A255BA03800B36CD3 /* DashboardConferenceSection.swift */,
+				7DC35323255BA07B00B36CD3 /* DashboardCourseSection.swift */,
+				7DC35326255BA08B00B36CD3 /* DashboardGroupSection.swift */,
+				7DC3531D255BA04F00B36CD3 /* DashboardInviteSection.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2409,7 +2410,7 @@
 			children = (
 				E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */,
 				7D80AC1A212B6A7700C40ECE /* APIFavoriteTests.swift */,
-				7D724266242A6EBA007ED42F /* DashboardViewControllerTests.swift */,
+				7D724266242A6EBA007ED42F /* DashboardCardViewControllerTests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2882,10 +2883,6 @@
 				7D8262EE212B228F00BD268D /* APICourse.swift */,
 				7D8262F8212B3B2000BD268D /* APICourseSection.swift */,
 				7DF4FFC8217116BC007E5F81 /* Course.swift */,
-				7D5F10372429BA2600803324 /* CourseCardCell.swift */,
-				7D5F10382429BA2600803324 /* CourseCardCell.xib */,
-				7D5F10362429BA2500803324 /* CourseCardsViewController.storyboard */,
-				7D5F10392429BA2700803324 /* CourseCardsViewController.swift */,
 				7D64A9722363732D004EAEDF /* CourseSection.swift */,
 				B1EA5AEA212E641900DABC5F /* GetCourses.swift */,
 				7D64A974236759FA004EAEDF /* GetCourseSections.swift */,
@@ -2957,7 +2954,6 @@
 			children = (
 				7D64A97623676025004EAEDF /* APICourseSectionTests.swift */,
 				7D80AC1C212B6B6200C40ECE /* APICourseTests.swift */,
-				7D724264242A5871007ED42F /* CourseCardsViewControllerTests.swift */,
 				7D64A978236760A1004EAEDF /* CourseSectionTests.swift */,
 				B19792F8217699B70000369C /* CourseTests.swift */,
 				7D64A97A23676179004EAEDF /* GetCourseSectionsTests.swift */,
@@ -4055,7 +4051,7 @@
 				7DA260F923F723AE005D2121 /* FileDetailsViewController.storyboard in Resources */,
 				7D0215A721BB1750009A8E69 /* LoginStartViewController.storyboard in Resources */,
 				7D7F71D8241C35C900D6F9CB /* ConferenceListViewController.storyboard in Resources */,
-				7D72425F2429BEE9007ED42F /* DashboardViewController.storyboard in Resources */,
+				7D72425F2429BEE9007ED42F /* DashboardCardViewController.storyboard in Resources */,
 				B1B4C1C9219631AC00FA9E0E /* EmptyView.xib in Resources */,
 				7D8E821223C8E14D00A8DA2C /* PeopleListViewController.storyboard in Resources */,
 				3BC8426A247D795000BE96D7 /* PairWithStudentQRCodeTutorialViewController.storyboard in Resources */,
@@ -4084,7 +4080,6 @@
 				7DD6CC6921BCCE20004C4BB6 /* LoginFindSchoolViewController.storyboard in Resources */,
 				7D6E573C2550C5950068D3C3 /* DiscussionListViewController.storyboard in Resources */,
 				7DCF1ECC216BFE5D003AF358 /* Localizable.strings in Resources */,
-				7D7242622429C473007ED42F /* CourseCardsViewController.storyboard in Resources */,
 				B127C0EE245B2EE3008DB716 /* MasteryPathAssignmentCell.xib in Resources */,
 				B14707B52437BC1C00CE1DBD /* ExternalURLViewController.storyboard in Resources */,
 				7DBED00C232C031C00392F3C /* ProfileViewController.storyboard in Resources */,
@@ -4092,7 +4087,6 @@
 				7D06A2B52469B7EF00D76267 /* DiscussionReplyViewController.storyboard in Resources */,
 				7DD694892195F7A200BA4984 /* DocViewerViewController.storyboard in Resources */,
 				7D842A8E22A818C800484B92 /* WrongAppLinkView.xib in Resources */,
-				7D5F103E2429BAAB00803324 /* CourseCardCell.xib in Resources */,
 				B1E789AB21B0EF130087FE4A /* LogEventListViewController.storyboard in Resources */,
 				3B4D89282450A8E9004ED120 /* ComposeViewController.storyboard in Resources */,
 				EE584C7E22F2048D00D1E201 /* PageListViewController.storyboard in Resources */,
@@ -4355,7 +4349,7 @@
 				3B5542462369F401007D3CE0 /* APIAssignmentListTests.swift in Sources */,
 				9FE4032D237EF6B800469B45 /* PageListViewControllerTests.swift in Sources */,
 				7D89A2CE250A806B009D0FD2 /* FileEditorViewTests.swift in Sources */,
-				7D724267242A6EBA007ED42F /* DashboardViewControllerTests.swift in Sources */,
+				7D724267242A6EBA007ED42F /* DashboardCardViewControllerTests.swift in Sources */,
 				7DBD14EB2547343B00750F52 /* QuizListViewControllerTests.swift in Sources */,
 				7DE4B17F24EAE51100E7935C /* PageEditorViewTests.swift in Sources */,
 				B119B4BD2307208200A74062 /* GetEnabledFeatureFlagsTests.swift in Sources */,
@@ -4396,7 +4390,6 @@
 				9FE84DE2215037A000B95A68 /* GetContextTabsTest.swift in Sources */,
 				9FE84DDC214FE5C500B95A68 /* GetGroupsTests.swift in Sources */,
 				7D7F71E224200AB100D6F9CB /* ConferenceListViewControllerTests.swift in Sources */,
-				7D724265242A5871007ED42F /* CourseCardsViewControllerTests.swift in Sources */,
 				B11AEBBD24082E2F00B736D6 /* PlannerFilterViewControllerTests.swift in Sources */,
 				B1A32BE22159A3100071B41E /* APIAssignmentTests.swift in Sources */,
 				7DC7046A24ABA3C100CD1C46 /* ObserverAlertTests.swift in Sources */,
@@ -4674,6 +4667,7 @@
 				7DA260B323F72352005D2121 /* GetFrontPage.swift in Sources */,
 				7DA25FE623F721DE005D2121 /* AddMessage.swift in Sources */,
 				7D7BA23924DB57BD00B1A68B /* CircleProgress.swift in Sources */,
+				7DC35385255C9ABF00B36CD3 /* DashboardCard.swift in Sources */,
 				7DA2600523F7227A005D2121 /* DispatchExtensions.swift in Sources */,
 				7DA260DD23F72359005D2121 /* GroupedSectionHeaderView.swift in Sources */,
 				7DA25FB523F72136005D2121 /* APIGradingPeriod.swift in Sources */,
@@ -4683,13 +4677,13 @@
 				7DA2600A23F7227A005D2121 /* NSManagedObjectContextExtensions.swift in Sources */,
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
-				7D5F103A2429BA2700803324 /* CourseCardCell.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
+				7DC35321255BA06900B36CD3 /* DashboardAnnouncementSection.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
 				7DA260D723F72359005D2121 /* EmptyView.swift in Sources */,
@@ -4740,12 +4734,12 @@
 				7DA25FEC23F721DE005D2121 /* ConversationParticipant.swift in Sources */,
 				7D7D6D5025100D11002B1485 /* EmptyPanda.swift in Sources */,
 				7DA25FCD23F72136005D2121 /* APISubmission.swift in Sources */,
+				7DC3531E255BA04F00B36CD3 /* DashboardInviteSection.swift in Sources */,
 				7DDE6E0B2476DF15006523D4 /* DiscussionHTML.swift in Sources */,
 				E8A0193224D36D3D009185DC /* PreviewStore.swift in Sources */,
 				7DA2609523F72327005D2121 /* RichContentToolbarView.swift in Sources */,
 				7DA260AA23F72352005D2121 /* GetBrandVariables.swift in Sources */,
 				7DA2608223F72303005D2121 /* GetContextUsers.swift in Sources */,
-				7D72425C2429BEE9007ED42F /* DashboardSectionHeaderView.swift in Sources */,
 				7D531D48254C606800CBFCA6 /* AssignmentAssigneeList.swift in Sources */,
 				B1128B582450CF96008EA17E /* ModuleItemSequence.swift in Sources */,
 				3BC84268247D792C00BE96D7 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */,
@@ -4766,7 +4760,6 @@
 				7DA2603A23F722D9005D2121 /* Assignment.swift in Sources */,
 				7DA25FDF23F72148005D2121 /* UUID.swift in Sources */,
 				7DA2606523F722D9005D2121 /* Syllabus.swift in Sources */,
-				7D5F103B2429BA2700803324 /* CourseCardsViewController.swift in Sources */,
 				7DA2609823F72338005D2121 /* Router.swift in Sources */,
 				7DA260D823F72359005D2121 /* EmptyViewController.swift in Sources */,
 				7DA25FE223F721DA005D2121 /* UserAgent.swift in Sources */,
@@ -4824,7 +4817,7 @@
 				7DA2603D23F722D9005D2121 /* ContextColor.swift in Sources */,
 				7D62716C245B591E00FC1798 /* GetDiscussions.swift in Sources */,
 				7DA2603423F722D9005D2121 /* GradeViewable.swift in Sources */,
-				7D7242602429BEE9007ED42F /* DashboardViewController.swift in Sources */,
+				7D7242602429BEE9007ED42F /* DashboardCardViewController.swift in Sources */,
 				7DA2605723F722D9005D2121 /* Page.swift in Sources */,
 				7DA25FBC23F72136005D2121 /* APILoginWeb.swift in Sources */,
 				7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */,
@@ -4911,6 +4904,7 @@
 				E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */,
 				B17F27652459EDF100CD47A1 /* MasteryPathViewController.swift in Sources */,
 				7DA25FEB23F721DE005D2121 /* ConversationMessage.swift in Sources */,
+				7DC35327255BA08B00B36CD3 /* DashboardGroupSection.swift in Sources */,
 				7DA2604D23F722D9005D2121 /* Group.swift in Sources */,
 				3B4D893A2450A8FC004ED120 /* EditComposeRecipientsViewController.swift in Sources */,
 				7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */,
@@ -4918,7 +4912,6 @@
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
-				7D72425B2429BEE9007ED42F /* DashboardGroupCell.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
 				7DA2601123F7227A005D2121 /* InstColorExtensions.swift in Sources */,
@@ -4936,6 +4929,8 @@
 				7D4B274F253F47EC00A98DE3 /* AudioRecorder.swift in Sources */,
 				E8A8FA8E24D328C3000B27DF /* SearchBarView.swift in Sources */,
 				7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */,
+				7DC3531B255BA03800B36CD3 /* DashboardConferenceSection.swift in Sources */,
+				7DC35324255BA07B00B36CD3 /* DashboardCourseSection.swift in Sources */,
 				D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */,
 				7DA2606C23F722D9005D2121 /* Activity.swift in Sources */,
 				3B4D89272450A8E9004ED120 /* ComposeReplyViewController.swift in Sources */,
