@@ -26,7 +26,6 @@ public struct APIDiscussionTopic: Codable, Equatable {
     let attachments: [APIFile]?
     let author: APIDiscussionParticipant
     let can_unpublish: Bool?
-    let context_code: ID?
     let created_at: Date?
     let delayed_post_at: Date?
     let discussion_subentry_count: Int
@@ -110,7 +109,6 @@ extension APIDiscussionTopic {
         attachments: [APIFile]? = nil,
         author: APIDiscussionParticipant = .make(),
         can_unpublish: Bool? = nil,
-        context_code: ID? = nil,
         created_at: Date? = Clock.now,
         delayed_post_at: Date? = nil,
         discussion_subentry_count: Int = 1,
@@ -146,7 +144,6 @@ extension APIDiscussionTopic {
             attachments: attachments,
             author: author,
             can_unpublish: can_unpublish,
-            context_code: context_code,
             created_at: created_at,
             delayed_post_at: delayed_post_at,
             discussion_subentry_count: discussion_subentry_count,

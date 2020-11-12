@@ -97,9 +97,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         }
         model.canUnpublish = item.can_unpublish != false
         model.context = item.html_url.flatMap { Context(path: $0.path) }
-        if let contextCode = item.context_code {
-            let context = Context(canvasContextID: contextCode.value)
-            model.courseID = context?.id
+        if model.context?.contextType == .course {
+            model.courseID = model.context?.id
         }
         model.delayedPostAt = item.delayed_post_at
         model.discussionSubEntryCount = item.discussion_subentry_count
