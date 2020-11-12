@@ -68,15 +68,18 @@ struct RubricAssessor: View {
             if !assignment.freeFormCriterionCommentsOnRubric, let ratings = criteria.ratings {
                 ForEach(ratings.reversed(), id: \.id) { rating in
                     let isSelected = assessment?.rating_id == rating.id
+                    let value = Text((isSelected ? assessment?.points : nil) ?? rating.points)
                     CircleToggle(isOn: Binding(get: { isSelected }, set: { newValue in
                         assessments[criteria.id] = newValue ? APIRubricAssessment(
                             comments: assessment?.comments,
                             points: rating.points,
                             rating_id: rating.id
                         ) : APIRubricAssessment(comments: assessment?.comments)
-                    })) {
-                        Text((isSelected ? assessment?.points : nil) ?? rating.points)
+                    }), tooltip: rating.desc) {
+                        value
                     }
+                        .accessibility(value: value)
+                        .accessibility(label: rating.desc.isEmpty ? value : Text(rating.desc))
                         .alignmentGuide(.leading, computeValue: leading)
                         .alignmentGuide(.top, computeValue: top)
                 }
@@ -160,28 +163,53 @@ struct RubricAssessor: View {
     struct CircleToggle<Content: View>: View {
         let content: Content
         @Binding var isOn: Bool
+        let tooltip: String
 
-        init(isOn: Binding<Bool>, @ViewBuilder content: () -> Content) {
+        @GestureState var showTooltip = false
+
+        init(isOn: Binding<Bool>, tooltip: String = "", @ViewBuilder content: () -> Content) {
             self.content = content()
             self._isOn = isOn
+            self.tooltip = tooltip
         }
 
         var body: some View {
-            Button(action: { isOn.toggle() }, label: {
-                content
-                    .font(.medium20)
-                    .foregroundColor(isOn ? Color(Brand.shared.buttonPrimaryText) : .textDark)
-                    .frame(minWidth: 48, minHeight: 48, maxHeight: 48)
-                    .background(isOn ?
-                        RoundedRectangle(cornerRadius: 24).fill(Color(Brand.shared.buttonPrimaryBackground)) :
-                        nil
-                    )
-                    .background(!isOn ?
-                        RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium) :
-                        nil
-                    )
-            })
-                .accessibility(addTraits: isOn ? .isSelected : [])
+            content
+                .font(.medium20)
+                .foregroundColor(isOn ? Color(Brand.shared.buttonPrimaryText) : .textDark)
+                .frame(minWidth: 48, minHeight: 48, maxHeight: 48)
+                .background(isOn ?
+                    RoundedRectangle(cornerRadius: 24).fill(Color(Brand.shared.buttonPrimaryBackground)) :
+                    nil
+                )
+                .background(!isOn ?
+                    RoundedRectangle(cornerRadius: 24).stroke(Color.borderMedium) :
+                    nil
+                )
+                .accessibility(addTraits: isOn ? [ .isButton, .isSelected ] : .isButton)
+                .onTapGesture { isOn.toggle() }
+                .gesture(LongPressGesture(minimumDuration: .infinity)
+                    .updating($showTooltip) { _, state, transation in
+                        state = true
+                        transation.animation = .spring()
+                    }
+                )
+                .overlay(!showTooltip || tooltip.isEmpty ? nil : GeometryReader { geometry in
+                    let screenWidth = UIScreen.main.bounds.width
+                    let midX = geometry.frame(in: .global).midX
+                    Text(tooltip + "More Long Tesxt to see about wrapping in the tooltip")
+                        .foregroundColor(.textLightest)
+                        .padding(8)
+                        .background(RoundedRectangle(cornerRadius: 5).fill(Color.backgroundDarkest))
+                        .offset(x: geometry.size.width / 2, y: -40) // align bottomLeft to circle's top center
+                        .alignmentGuide(.leading) { size in
+                            min(midX - 8, // don't go more left than 8 from leading
+                                max(size.width - (screenWidth - midX) + 8, // 8 from trailing
+                                    size.width / 2
+                            ))
+                        }
+                        .frame(width: screenWidth - 16, alignment: .bottomLeading)
+                }, alignment: .bottomLeading)
         }
     }
 

@@ -228,16 +228,18 @@ struct SubmissionGrades: View {
     }
 
     func sliderChangedValue(_ value: Double) {
+        let previous = sliderValue.map { round($0) }
         sliderValue = value
+        guard previous != round(value) || sliderTimer == nil else { return }
         sliderTimer?.invalidate()
         sliderTimer = nil
-        if value == 0 {
+        if round(value) == 0 {
             sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 sliderCleared = true
                 sliderExcused = false
                 UISelectionFeedbackGenerator().selectionChanged()
             }
-        } else if value == assignment.pointsPossible {
+        } else if round(value) == round(assignment.pointsPossible ?? 0) {
             sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 sliderCleared = false
                 sliderExcused = true
