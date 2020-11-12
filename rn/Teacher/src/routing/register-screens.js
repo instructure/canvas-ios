@@ -31,11 +31,8 @@ import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
-import SubmissionList from '../modules/submissions/list/SubmissionList'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
-import SpeedGrader from '../modules/speedgrader/SpeedGrader'
-import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
@@ -143,11 +140,9 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', AssignmentDueDates, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', AssigneePicker, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', AssigneeSearch, store)
-    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', ExperimentalFeature.nativeSpeedGrader.isEnabled ? null : SubmissionList, store, { deepLink: true })
+    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/post_policy')
     registerScreen('/courses/:courseID/attendance/:toolID')
-    registerScreen('/courses/:courseID/gradebook/speed_grader', SpeedGrader, store)
-    registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', RubricDescription, store)
     registerScreen('/courses/:courseID/quizzes', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID', QuizDetails, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', QuizPreview, store)
@@ -161,7 +156,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/modules/:moduleID/items/:itemID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/module_item_redirect/:itemID', null, store, { deepLink: true })
 
-    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', ExperimentalFeature.nativeSpeedGrader.isEnabled ? null : SpeedGrader, store, { deepLink: true })
+    registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', null, store, { deepLink: true })
   }
 
   if (isStudent()) {

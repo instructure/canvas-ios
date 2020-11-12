@@ -69,10 +69,6 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
-        ExperimentalFeature.nativeSpeedGrader.isEnabled = false
-        XCTAssert(router.match("/courses/1/assignments/1/submissions") is HelmViewController)
-        XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is HelmViewController)
-        ExperimentalFeature.nativeSpeedGrader.isEnabled = true
         XCTAssert(router.match("/courses/1/assignments/1/submissions") is SubmissionListViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is SpeedGraderViewController)
         XCTAssert(router.match("/courses/1/quizzes") is QuizListViewController)

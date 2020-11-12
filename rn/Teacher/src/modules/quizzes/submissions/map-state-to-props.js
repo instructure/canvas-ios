@@ -18,7 +18,6 @@
 
 /* eslint-disable flowtype/require-valid-file-annotation */
 
-import { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
 import { gradeProp, statusProp } from '../../submissions/list/get-submissions-props'
 import { type QuizSubmissionListDataProps } from './QuizSubmissionList'
 import shuffle from 'knuth-shuffle-seeded'

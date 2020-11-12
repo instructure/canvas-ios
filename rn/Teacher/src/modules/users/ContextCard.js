@@ -35,7 +35,6 @@ import { graphql } from 'react-apollo'
 import { courseQuery } from '../../canvas-api-v2/queries/ContextCard'
 import * as app from '../app'
 import { personDisplayName } from '../../common/formatters'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
 
 export class ContextCard extends Component {
   renderHeader () {
@@ -268,17 +267,10 @@ export class ContextCard extends Component {
   _navigateToSpeedGrader = (assignment: Assignment) => {
     const user = this.props.user
     const url = `${assignment.html_url}/submissions/${user.id}`
-    if (ExperimentalFeature.nativeSpeedGrader.isEnabled) {
-      return this.props.navigator.show(
-        `${url}?filter=user_${user.id}`,
-        { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false }
-      )
-    }
-    let filter = (submissions: any) => submissions.filter((s) => s.userID === user.id)
-    this.props.navigator.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
-      studentIndex: 0,
-      filter,
-    })
+    return this.props.navigator.show(
+      `${url}?filter=user_${user.id}`,
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false }
+    )
   }
 }
 

@@ -99,9 +99,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/courses/:courseID/assignments/:assignmentID/submissions": { url, params, userInfo in
-        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
-            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions", url: url, params: params, userInfo: userInfo)
-        }
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter(rawValue: $0)
@@ -109,11 +106,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return SubmissionListViewController.create(context: context, assignmentID: assignmentID, filter: filter)
     },
 
-    "/courses/:courseID/gradebook/speed_grader": nil,
     "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params, userInfo in
-        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
-            return HelmViewController(moduleName: "/courses/:courseID/assignments/:assignmentID/submissions/:userID", url: url, params: params, userInfo: userInfo)
-        }
         guard let context = Context(path: url.path) else { return nil }
         guard let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
