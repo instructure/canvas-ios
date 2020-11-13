@@ -275,6 +275,7 @@
         <attribute name="canReply" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canUpdate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="delayedPostAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

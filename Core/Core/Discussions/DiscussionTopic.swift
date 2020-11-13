@@ -25,6 +25,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var allowRating: Bool
     @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String?
+    @NSManaged public var courseID: String?
     @NSManaged public var attachments: Set<File>?
     @NSManaged public var author: DiscussionParticipant?
     @NSManaged public var canAttach: Bool
@@ -96,6 +97,9 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         }
         model.canUnpublish = item.can_unpublish != false
         model.context = item.html_url.flatMap { Context(path: $0.path) }
+        if model.context?.contextType == .course {
+            model.courseID = model.context?.id
+        }
         model.delayedPostAt = item.delayed_post_at
         model.discussionSubEntryCount = item.discussion_subentry_count
         model.discussionType = item.discussion_type
