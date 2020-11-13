@@ -25,6 +25,8 @@ extension NSNotification.Name {
     public static let quizRefresh = Notification.Name( "com.instructure.core.notification.quizRefresh")
 
     public static let celebrateSubmission = Notification.Name( "com.instructure.core.notification.celebrateSubmission")
+
+    public static let showGradesOnDashboardDidChange = Notification.Name( "com.instructure.core.notification.showGradesOnDashboardDidChange")
 }
 
 extension NotificationCenter {

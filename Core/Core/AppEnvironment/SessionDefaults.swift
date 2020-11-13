@@ -47,7 +47,10 @@ public struct SessionDefaults {
 
     public var showGradesOnDashboard: Bool? {
         get { return self["showGradesOnDashboard"] as? Bool }
-        set { self["showGradesOnDashboard"] = newValue }
+        set {
+            self["showGradesOnDashboard"] = newValue
+            NotificationCenter.default.post(name: .showGradesOnDashboardDidChange, object: nil)
+        }
     }
 
     public var landingPath: String? {

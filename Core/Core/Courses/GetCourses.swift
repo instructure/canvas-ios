@@ -77,7 +77,7 @@ public class GetCourses: CollectionUseCase {
         return "get-courses"
     }
 
-    public init(showFavorites: Bool = false, enrollmentState: GetCoursesRequest.EnrollmentState? = .active, perPage: Int = 10) {
+    public init(showFavorites: Bool = false, enrollmentState: GetCoursesRequest.EnrollmentState? = .active, perPage: Int = 100) {
         self.showFavorites = showFavorites
         self.enrollmentState = enrollmentState
         self.perPage = perPage

@@ -43,19 +43,29 @@ class StudentTabBarController: UITabBarController {
     }
 
     func dashboardTab() -> UIViewController {
-        let dashboardVC = HelmViewController(moduleName: "/", props: [:])
-        let dashboardNav = HelmNavigationController(rootViewController: dashboardVC)
-        let dashboardSplit = HelmSplitViewController()
-        let emptyNav = UINavigationController(rootViewController: EmptyViewController())
-        dashboardNav.delegate = dashboardSplit
-        dashboardNav.navigationBar.useGlobalNavStyle()
-        dashboardSplit.viewControllers = [dashboardNav, emptyNav]
-        dashboardSplit.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
-        dashboardSplit.tabBarItem.image = .dashboardTab
-        dashboardSplit.tabBarItem.selectedImage = .dashboardTabActive
-        dashboardSplit.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        dashboardSplit.navigationItem.titleView = Brand.shared.headerImageView()
-        return dashboardSplit
+        let split = HelmSplitViewController()
+        split.viewControllers = [
+            HelmNavigationController(rootViewController: DashboardCardViewController.create()),
+            HelmNavigationController(rootViewController: EmptyViewController()),
+        ]
+        if !ExperimentalFeature.nativeDashboard.isEnabled {
+            let dashboard = HelmViewController(moduleName: "/", props: [:])
+            dashboard.navigationItem.titleView = Brand.shared.headerImageView()
+
+            let master = HelmNavigationController(rootViewController: dashboard)
+            master.navigationBar.useGlobalNavStyle()
+            split.viewControllers = [
+                master,
+                HelmNavigationController(rootViewController: EmptyViewController()),
+            ]
+        }
+        split.masterNavigationController?.delegate = split
+        split.tabBarItem.title = NSLocalizedString("Dashboard", comment: "dashboard page title")
+        split.tabBarItem.image = .dashboardTab
+        split.tabBarItem.selectedImage = .dashboardTabActive
+        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+        split.preferredDisplayMode = .allVisible
+        return split
     }
 
     func calendarTab() -> UIViewController {

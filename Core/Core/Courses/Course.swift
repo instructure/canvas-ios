@@ -147,6 +147,15 @@ extension Course {
         return scoreString
     }
 
+    public var hideTotalGrade: Bool {
+        let enrollment = enrollments?.filter({ $0.isStudent }).first
+        return hideFinalGrades == true || (
+            enrollment?.multipleGradingPeriodsEnabled == true &&
+            enrollment?.totalsForAllGradingPeriodsOption == false &&
+            enrollment?.currentGradingPeriodID == nil
+        )
+    }
+
     public func showColorOverlay(hideOverlaySetting: Bool) -> Bool {
         if imageDownloadURL == nil {
             return true
