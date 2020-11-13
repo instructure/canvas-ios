@@ -102,6 +102,7 @@ exports[`GlobalAnnouncementRow renders calendar announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,
@@ -216,6 +217,7 @@ exports[`GlobalAnnouncementRow renders error announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,
@@ -330,6 +332,7 @@ exports[`GlobalAnnouncementRow renders information announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,
@@ -444,6 +447,7 @@ exports[`GlobalAnnouncementRow renders question announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,
@@ -558,6 +562,7 @@ exports[`GlobalAnnouncementRow renders unexpected icon as information 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,
@@ -672,6 +677,7 @@ exports[`GlobalAnnouncementRow renders warning announcements 1`] = `
             "traitCollection": [MockFunction],
           }
         }
+        onNavigation={[Function]}
         style={
           Object {
             "height": 0,

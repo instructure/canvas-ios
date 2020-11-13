@@ -85,6 +85,9 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/courses/1/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/1/modules/1") is ModuleListViewController)
+
+        XCTAssert(router.match("/users/1/files/2") is FileDetailsViewController)
+        XCTAssert(router.match("/users/1/files/2?origin=globalAnnouncement") is CoreWebViewController)
     }
 
     func testModuleItems() {
