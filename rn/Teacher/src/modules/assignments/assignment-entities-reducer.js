@@ -27,7 +27,6 @@ import { gradeableStudentsRefs as gradeableStudents } from './assignment-gradeab
 import flatMap from 'lodash/flatMap'
 import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
-import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 import { default as QuizDetailsActions } from '../quizzes/details/actions'
 import { default as SubmissionActions } from '../submissions/list/actions'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
@@ -55,14 +54,12 @@ const assignmentContent = combineReducers({
   gradeableStudents,
   pending,
   error,
-  pendingComments,
 })
 
 const defaultAssignmentContents: AssignmentContentState = {
   submissions: { refs: [], pending: 0 },
   submissionSummary: { pending: 0, error: null, data: { graded: 0, ungraded: 0, not_submitted: 0 } },
   gradeableStudents: { refs: [], pending: 0 },
-  pendingComments: {},
 }
 
 const assignmentsData: Reducer<AssignmentsState, any> = handleActions({

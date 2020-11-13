@@ -86,9 +86,6 @@ extension NSPersistentContainer {
     }
 
     @objc open func performWriteTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        guard ExperimentalFeature.nativeSpeedGrader.isEnabled else {
-            return performBackgroundTask(block)
-        }
         let context = writeContext ?? {
             let context = newBackgroundContext()
             writeContext = context

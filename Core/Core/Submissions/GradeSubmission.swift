@@ -52,4 +52,42 @@ public class GradeSubmission: APIUseCase {
         self.grade = grade
         self.rubricAssessment = rubricAssessment
     }
+
+    public func write(response: APISubmission?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        let predicate = NSPredicate(
+            format: "%K == %@ AND %K == %@ AND %K == %d",
+            #keyPath(Submission.assignmentID),
+            item.assignment_id.value,
+            #keyPath(Submission.userID),
+            item.user_id.value,
+            #keyPath(Submission.attempt),
+            item.attempt ?? 0
+        )
+        guard let model: Submission = client.fetch(predicate).first else { return }
+        model.enteredGrade = item.entered_grade
+        model.enteredScore = item.entered_score
+        model.excused = item.excused
+        model.grade = item.grade
+        model.gradedAt = item.graded_at
+        model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
+        model.late = item.late == true
+        model.latePolicyStatus = item.late_policy_status
+        model.missing = item.missing == true
+        model.pointsDeducted = item.points_deducted
+        model.postedAt = item.posted_at
+        model.score = item.score
+        model.workflowState = item.workflow_state
+        if let rubricAssessmentMap = item.rubric_assessment {
+            let allPredicate = NSPredicate(format: "%K == %@", #keyPath(RubricAssessment.submissionID), item.id.value)
+            let all: [RubricAssessment] = client.fetch(allPredicate)
+            client.delete(all)
+            model.rubricAssesmentRaw = Set()
+            for (k, v) in rubricAssessmentMap {
+                let i = v as APIRubricAssessment
+                let a = RubricAssessment.save(i, in: client, id: k, submissionID: item.id.value)
+                model.rubricAssesmentRaw?.insert(a)
+            }
+        }
+    }
 }

@@ -45,7 +45,6 @@ import * as LTITools from '../../common/LTITools'
 import { isTeacher, isStudent } from '../app'
 import { formattedDueDate } from '../../common/formatters'
 import AssignmentDatesParser from '../../common/AssignmentDates'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
 
 import {
   View,
@@ -253,11 +252,9 @@ export class AssignmentDetails extends Component<AssignmentDetailsProps, any> {
 
   viewSubmissions = (filterType: ?string) => {
     const { courseID, assignmentDetails } = this.props
-    if (ExperimentalFeature.nativeSpeedGrader.isEnabled && filterType) {
+    if (filterType) {
       const filter = filterType === 'ungraded' ? 'needs_grading' : filterType
       this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions?filter=${filter}`, { modal: false })
-    } else if (filterType) {
-      this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { modal: false }, { filterType })
     } else {
       this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
     }
