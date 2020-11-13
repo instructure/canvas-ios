@@ -80,7 +80,8 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: assignment.useRubricForGrading ? currentRubricScore : nil,
+                                        rubricScore: assignment.useRubricForGrading && !rubricAssessments.isEmpty
+                                            ? currentRubricScore : nil,
                                         final: false
                                     ))
                                 } else {

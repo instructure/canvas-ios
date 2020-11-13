@@ -190,26 +190,33 @@ struct RubricAssessor: View {
                 .onTapGesture { isOn.toggle() }
                 .gesture(LongPressGesture(minimumDuration: .infinity)
                     .updating($showTooltip) { _, state, transation in
+                        transation.animation = .spring(response: 0.2, dampingFraction: 0.6)
                         state = true
-                        transation.animation = .spring()
                     }
                 )
-                .overlay(!showTooltip || tooltip.isEmpty ? nil : GeometryReader { geometry in
-                    let screenWidth = UIScreen.main.bounds.width
-                    let midX = geometry.frame(in: .global).midX
-                    Text(tooltip + "More Long Tesxt to see about wrapping in the tooltip")
-                        .foregroundColor(.textLightest)
-                        .padding(8)
-                        .background(RoundedRectangle(cornerRadius: 5).fill(Color.backgroundDarkest))
-                        .offset(x: geometry.size.width / 2, y: -40) // align bottomLeft to circle's top center
-                        .alignmentGuide(.leading) { size in
-                            min(midX - 8, // don't go more left than 8 from leading
-                                max(size.width - (screenWidth - midX) + 8, // 8 from trailing
-                                    size.width / 2
-                            ))
-                        }
-                        .frame(width: screenWidth - 16, alignment: .bottomLeading)
-                }, alignment: .bottomLeading)
+                .overlay(!showTooltip || tooltip.isEmpty ? nil :
+                    GeometryReader { geometry in
+                        let screenWidth = UIScreen.main.bounds.width
+                        let maxWidth = min(600, screenWidth - 32)
+                        let maxHeight: CGFloat = 300
+                        let midX = geometry.frame(in: .global).midX
+                        Text(tooltip)
+                            .foregroundColor(.textLightest)
+                            .padding(8)
+                            .background(RoundedRectangle(cornerRadius: 5).fill(Color.backgroundDarkest))
+                            .offset(x: geometry.size.width / 2) // start with align leading to circle's center
+                            .alignmentGuide(.leading) { size in
+                                min(midX - 16, // don't go more left than 16 from leading
+                                    max(size.width - (screenWidth - midX) + 16, // 16 from trailing
+                                        size.width / 2
+                                ))
+                            }
+                            .alignmentGuide(.bottom) { size in size.height + maxHeight + 8 }
+                            .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
+                    }
+                        .transition(.scale),
+                    alignment: .bottomLeading
+                )
         }
     }
 
