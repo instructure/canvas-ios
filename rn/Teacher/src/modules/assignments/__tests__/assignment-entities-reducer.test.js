@@ -41,7 +41,6 @@ test('refresh assignments', async () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, error: null, pending: 0 },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
     },
   }])
 })
@@ -116,7 +115,6 @@ test('reduces assignment content', () => {
       gradeableStudents: { pending: 0, refs: [] },
       pending: 0,
       error: null,
-      pendingComments: {},
     },
   })
 })
@@ -154,7 +152,6 @@ test('refreshQuiz', () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
     },
   }
   const refreshedAssignment = {
@@ -208,7 +205,6 @@ test('refreshSubmissionSummary', () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
   }
@@ -240,7 +236,6 @@ test('refreshSubmissionSummary with error object', async () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
   }
@@ -277,7 +272,6 @@ test('refreshSubmissionSummary with error type', async () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
   }
@@ -312,7 +306,6 @@ test('refreshSubmissionSummary pending', async () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
   }
@@ -354,7 +347,6 @@ test('getUserSubmissions adds a submission ref to the assignment', () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
     '2': {
@@ -363,7 +355,6 @@ test('getUserSubmissions adds a submission ref to the assignment', () => {
       submissions: { refs: [], pending: 0 },
       submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
-      pendingComments: {},
       error: null,
     },
   }

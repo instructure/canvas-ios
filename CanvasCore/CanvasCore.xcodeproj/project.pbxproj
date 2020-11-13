@@ -21,7 +21,6 @@
 		3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */; };
 		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
 		494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0871F8436C0001A8F31 /* NativeLoginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */; };
 		494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0911F843A02001A8F31 /* HapticFeedback.m */; };
 		494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0921F843A02001A8F31 /* NativeAccessibility.m */; };
 		494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0931F843A02001A8F31 /* PushNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,14 +45,9 @@
 		7D81F3FE24F04DD000C482D2 /* CoreWebViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81F3FD24F04DD000C482D2 /* CoreWebViewWrapper.swift */; };
 		7D98611E24EDB2CD008F262F /* RichContentEditorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D98611D24EDB2CD008F262F /* RichContentEditorManager.m */; };
 		7D98612024EDB6EC008F262F /* RichContentEditorWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D98611F24EDB6EC008F262F /* RichContentEditorWrapper.swift */; };
-		7DD3C3A824F4485E001CE618 /* DocViewerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3C3A724F4485E001CE618 /* DocViewerManager.m */; };
-		7DD3C3AA24F44871001CE618 /* DocViewerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD3C3A924F44871001CE618 /* DocViewerWrapper.swift */; };
 		7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD89E8A20AB626600650227 /* AppStoreReview.m */; };
 		9F544E051FBB766E00BB2D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E071FBB766E00BB2D84 /* InfoPlist.strings */; };
 		9F544E0A1FBB766E00BB2D84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F544E0C1FBB766E00BB2D84 /* Localizable.strings */; };
-		9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA866962086820D000ECFC9 /* Adjustable.swift */; };
-		9FB85499208677DB007499DA /* AdjustableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB85498208677DB007499DA /* AdjustableManager.m */; };
-		9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */; };
 		9FD18B6B2052DE6800119927 /* LTITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD18B6A2052DE6800119927 /* LTITools.m */; };
 		B157F370232C1C2B003B6D53 /* HTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */; };
 		B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C316FE2463348700CA368C /* NativeUserDefaults.m */; };
@@ -83,7 +77,6 @@
 		3BDE87751FD76BE600912CB3 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
 		494AE0881F8436C1001A8F31 /* NativeLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
-		494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerHandleViewManager.m; sourceTree = "<group>"; };
 		494AE0911F843A02001A8F31 /* HapticFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
 		494AE0921F843A02001A8F31 /* NativeAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeAccessibility.m; sourceTree = "<group>"; };
 		494AE0931F843A02001A8F31 /* PushNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
@@ -125,8 +118,6 @@
 		7D98611D24EDB2CD008F262F /* RichContentEditorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichContentEditorManager.m; sourceTree = "<group>"; };
 		7D98611F24EDB6EC008F262F /* RichContentEditorWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorWrapper.swift; sourceTree = "<group>"; };
 		7D9DF28B22BD7F4D003110B9 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		7DD3C3A724F4485E001CE618 /* DocViewerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocViewerManager.m; sourceTree = "<group>"; };
-		7DD3C3A924F44871001CE618 /* DocViewerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerWrapper.swift; sourceTree = "<group>"; };
 		7DD89E8A20AB626600650227 /* AppStoreReview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStoreReview.m; sourceTree = "<group>"; };
 		801BC15BB71585F55A4CD6C8 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0A6C871FBB768A009CA750 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -151,15 +142,12 @@
 		9F544E0B1FBB766E00BB2D84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F5BA8591FBB76A800BDC402 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F5BA85A1FBB76A800BDC402 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9FA866962086820D000ECFC9 /* Adjustable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adjustable.swift; sourceTree = "<group>"; };
 		9FB32E191FBB76700049DA58 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9FB32E1A1FBB76700049DA58 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9FB85498208677DB007499DA /* AdjustableManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdjustableManager.m; sourceTree = "<group>"; };
 		9FBCE5EF1FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FBCE5F01FBB767300D0CB43 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FC5F3571FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FC5F3581FBB7676007F4B9D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertControls.m; sourceTree = "<group>"; };
 		9FCE57151FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9FCE57161FBB767900971B28 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9FD18B6A2052DE6800119927 /* LTITools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTITools.m; sourceTree = "<group>"; };
@@ -265,18 +253,12 @@
 			isa = PBXGroup;
 			children = (
 				494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */,
-				9FA866962086820D000ECFC9 /* Adjustable.swift */,
-				9FB85498208677DB007499DA /* AdjustableManager.m */,
-				9FCA1A10205AC2FC00ECB5E9 /* AlertControls.m */,
 				7DD89E8A20AB626600650227 /* AppStoreReview.m */,
 				2CE2059020EAC5BD002A6A64 /* CanvasAnalytics.m */,
 				78C610CB21C9FFFC00913B93 /* CanvasCrashlytics.h */,
 				78C610CC21CA022400913B93 /* CanvasCrashlytics.m */,
 				B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */,
 				7D81F3FD24F04DD000C482D2 /* CoreWebViewWrapper.swift */,
-				7DD3C3A724F4485E001CE618 /* DocViewerManager.m */,
-				7DD3C3A924F44871001CE618 /* DocViewerWrapper.swift */,
-				494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */,
 				494AE0911F843A02001A8F31 /* HapticFeedback.m */,
 				7D6C8C7422F2335A00E5ADD8 /* HTTPRequestHandler.m */,
 				B157F36F232C1C2B003B6D53 /* HTTPRequestHandler.swift */,
@@ -469,14 +451,12 @@
 				7D6C8C7522F2335A00E5ADD8 /* HTTPRequestHandler.m in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* BundleExtensions.swift in Sources */,
-				9FCA1A11205AC2FC00ECB5E9 /* AlertControls.m in Sources */,
 				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
 				494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */,
 				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
 				7DD89E8B20AB626600650227 /* AppStoreReview.m in Sources */,
 				B1C316FF2463348700CA368C /* NativeUserDefaults.m in Sources */,
-				9FB85499208677DB007499DA /* AdjustableManager.m in Sources */,
 				2C4FAD3220487DD6000551EB /* UINavigationControllerExtensions.swift in Sources */,
 				7D98612024EDB6EC008F262F /* RichContentEditorWrapper.swift in Sources */,
 				3BC3E0222315BC8F00E15C6D /* CanvasAnalytics.m in Sources */,
@@ -499,13 +479,9 @@
 				7D98611E24EDB2CD008F262F /* RichContentEditorManager.m in Sources */,
 				B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */,
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
-				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
-				9FA866972086820D000ECFC9 /* Adjustable.swift in Sources */,
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
-				7DD3C3A824F4485E001CE618 /* DocViewerManager.m in Sources */,
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
-				7DD3C3AA24F44871001CE618 /* DocViewerWrapper.swift in Sources */,
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
 				9FD18B6B2052DE6800119927 /* LTITools.m in Sources */,

@@ -57,6 +57,13 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
         submissions.exhaust()
     }
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if traitCollection.verticalSizeClass == .compact || traitCollection.horizontalSizeClass == .compact {
+            return .portrait
+        }
+        return super.supportedInterfaceOrientations
+    }
+
     func update() {
         if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
             submissions.useCase.shuffled = true

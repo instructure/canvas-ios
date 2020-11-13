@@ -231,7 +231,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func openExternalURL(_ url: URL) {
-        guard let from = environment.topViewController else {
+        guard let from = environment.topViewController, url.scheme?.hasPrefix("http") == true else {
             return UIApplication.shared.open(url, options: [:])
         }
         let safari = SFSafariViewController(url: url)

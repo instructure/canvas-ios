@@ -26,5 +26,4 @@ export * from './section'
 export * from './groupSet'
 
 // QUERIES
-export * from '../queries/__templates__/SubmissionList'
 export * from '../queries/__templates__/ContextCard'

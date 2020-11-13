@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -75,7 +75,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="white"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbN-YA-6BI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbN-YA-6BI">
                                         <rect key="frame" x="124" y="28" width="143" height="107.5"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES" header="YES"/>
@@ -174,6 +174,7 @@
                                 <rect key="frame" x="0.0" y="240" width="375" height="427"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vFv-WE-Vix"/>
                         <color key="backgroundColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tQz-mz-EdB" firstAttribute="top" secondItem="BbJ-cb-Nm6" secondAttribute="bottom" id="3JD-H8-igh"/>
@@ -187,7 +188,6 @@
                             <constraint firstAttribute="trailing" secondItem="BbJ-cb-Nm6" secondAttribute="trailing" id="jYE-xU-4ey"/>
                             <constraint firstItem="hGu-9a-NfW" firstAttribute="top" secondItem="utC-55-lT3" secondAttribute="top" id="qHd-rs-hR1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vFv-WE-Vix"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -209,6 +209,20 @@
             <point key="canvasLocation" x="181.59999999999999" y="48.125937031484263"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1H7-XX-br0">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+        <designable name="jRj-oQ-b9O">
+            <size key="intrinsicContentSize" width="95" height="19.5"/>
+        </designable>
+        <designable name="kl9-zX-8z7">
+            <size key="intrinsicContentSize" width="12" height="12"/>
+        </designable>
+        <designable name="tdi-oP-0Eu">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+    </designables>
     <resources>
         <image name="addSolid" width="24" height="24"/>
         <image name="dropdown" width="12" height="12"/>

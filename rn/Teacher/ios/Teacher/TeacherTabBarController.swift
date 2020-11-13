@@ -35,20 +35,25 @@ class TeacherTabBarController: UITabBarController {
 
     func coursesTab() -> UIViewController {
         let split = HelmSplitViewController()
-        let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
+        split.viewControllers = [
+            HelmNavigationController(rootViewController: DashboardCardViewController.create()),
+            HelmNavigationController(rootViewController: EmptyViewController()),
+        ]
+        if !ExperimentalFeature.nativeDashboard.isEnabled {
+            let dashboard = HelmViewController(moduleName: "/", props: [:])
+            dashboard.navigationItem.titleView = Brand.shared.headerImageView()
 
-        let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
-        enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view1"
-        enrollmentsVC.navigationItem.titleView = Brand.shared.headerImageView()
-
-        let masterNav = HelmNavigationController(rootViewController: enrollmentsVC)
-        masterNav.view.backgroundColor = .white
-        masterNav.delegate = split
-        masterNav.navigationBar.useGlobalNavStyle()
-        emptyNav.navigationBar.useGlobalNavStyle()
-        split.viewControllers = [masterNav, emptyNav]
-        split.view.accessibilityIdentifier = "favorited-course-list.view2"
-        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: .coursesTab, selectedImage: .coursesTabActive)
+            let master = HelmNavigationController(rootViewController: dashboard)
+            master.navigationBar.useGlobalNavStyle()
+            split.viewControllers = [
+                master,
+                HelmNavigationController(rootViewController: EmptyViewController()),
+            ]
+        }
+        split.masterNavigationController?.delegate = split
+        split.tabBarItem.title = NSLocalizedString("Courses")
+        split.tabBarItem.image = .coursesTab
+        split.tabBarItem.selectedImage = .coursesTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
         split.preferredDisplayMode = .allVisible
         return split

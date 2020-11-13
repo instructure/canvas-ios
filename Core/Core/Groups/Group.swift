@@ -28,6 +28,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var concluded: Bool
     @NSManaged public var contextColor: ContextColor?
     @NSManaged public var contextRaw: String?
+    @NSManaged public var course: Course?
     @NSManaged public var courseID: String?
     @NSManaged public var groupCategoryID: String
     @NSManaged public var id: String
@@ -44,6 +45,13 @@ public final class Group: NSManagedObject, WriteableModel {
     }
 
     public var color: UIColor { contextColor?.color ?? .ash }
+
+    public func getCourse() -> Course? {
+        if let id = courseID, course == nil {
+            course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id)
+        }
+        return course
+    }
 
     @discardableResult
     public static func save(_ item: APIGroup, in context: NSManagedObjectContext) -> Group {

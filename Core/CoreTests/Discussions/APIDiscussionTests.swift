@@ -160,3 +160,18 @@ class ListDiscussionTopicsRequestTests: XCTestCase {
         ])
     }
 }
+
+class GetAllAnnouncementsRequestTests: XCTestCase {
+    func testPath() {
+        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"])
+        XCTAssertEqual(request.method, .get)
+        XCTAssertEqual(request.path, "announcements")
+    }
+
+    func testQuery() {
+        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"])
+        XCTAssertEqual(request.query, [
+            .array("context_codes", ["1", "2"]),
+        ])
+    }
+}
