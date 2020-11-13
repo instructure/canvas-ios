@@ -151,9 +151,9 @@ extension Submission: WriteableModel {
         model.groupID = item.group_id?.value
         model.groupName = item.group_name
         model.id = item.id.value
-        model.late = item.late
+        model.late = item.late == true
         model.latePolicyStatus = item.late_policy_status
-        model.missing = item.missing
+        model.missing = item.missing == true
         model.pointsDeducted = item.points_deducted
         model.postedAt = item.posted_at
         model.previewUrl = item.preview_url
@@ -172,14 +172,14 @@ extension Submission: WriteableModel {
             Insecure.MD5.hash(data: $0).map { String(format: "%02x", $0) } .joined()
         } ?? ""
 
-        let turnitin = item.turnitin_data?["submission_\(model.id)"]
+        let turnitin = item.turnitin_data?.rawValue["submission_\(model.id)"]
         model.similarityScore = turnitin?.similarity_score ?? 0
         model.similarityStatus = turnitin?.status
         model.similarityURL = turnitin?.outcome_response?.outcomes_tool_placement_url?.rawValue
 
         model.attachments = Set(item.attachments?.map { attachment in
             let file = File.save(attachment, in: client)
-            let turnitin = item.turnitin_data?["attachment_\(attachment.id)"]
+            let turnitin = item.turnitin_data?.rawValue["attachment_\(attachment.id)"]
             file.similarityScore = turnitin?.similarity_score ?? 0
             file.similarityStatus = turnitin?.status
             file.similarityURL = turnitin?.outcome_response?.outcomes_tool_placement_url?.rawValue

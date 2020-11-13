@@ -21,7 +21,7 @@ import UIKit
 
 public class AlertAction: UIAlertAction {
     public var handler: ((UIAlertAction) -> Void)?
-    public convenience init(_ title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) {
+    public convenience init(_ title: String?, style: UIAlertAction.Style = .default, handler: ((UIAlertAction) -> Void)? = nil) {
         self.init(title: title, style: style, handler: handler)
         self.handler = handler
     }

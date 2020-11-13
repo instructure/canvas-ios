@@ -58,10 +58,13 @@ class APIAssignmentRequestableTests: XCTestCase {
     func testCreateAssignmentRequest() {
         let assignment = APIAssignmentParameters(
             assignment_overrides: nil,
+            description: nil,
             due_at: Date(),
             grading_type: .percent,
             lock_at: nil,
+            name: nil,
             points_possible: 10,
+            published: nil,
             unlock_at: nil
         )
         let expectedBody = PostAssignmentRequest.Body(assignment: assignment)

@@ -359,12 +359,12 @@ class GetAssignmentsTests: CoreTestCase {
 
     func testItChangesRatingsCorrectly() {
         Assignment.make(from: .make(course_id: "2", id: "2", rubric: [
-            .make(ratings: [.make(id: "1", assignmentID: "2")], assignmentID: "2"),
+            .make(ratings: [.make(id: "1")]),
         ]))
 
         let apiAssignment = APIAssignment.make(
             id: "2",
-            rubric: [APIRubric.make(ratings: [APIRubricRating.make(id: "2")], assignmentID: "2")]
+            rubric: [APIRubric.make(ratings: [APIRubricRating.make(id: "2")])]
         )
 
         let getAssignment = GetAssignment(courseID: "1", assignmentID: "2", include: [])

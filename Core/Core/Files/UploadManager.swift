@@ -310,7 +310,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                         userInfo: ["assignmentID": assignmentID, "submission": submission]
                     )
                     NotificationCenter.default.post(name: .moduleItemRequirementCompleted, object: nil)
-                    if !submission.late {
+                    if submission.late != true {
                         NotificationCenter.default.post(name: .celebrateSubmission, object: nil, userInfo: [
                             "assignmentID": assignmentID,
                         ])

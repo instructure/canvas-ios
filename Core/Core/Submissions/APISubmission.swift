@@ -36,10 +36,10 @@ public struct APISubmission: Codable, Equatable {
     let group_id: ID?
     let group_name: String?
     let id: ID
-    let late: Bool
+    let late: Bool?
     let late_policy_status: LatePolicyStatus?
     let media_comment: APIMediaComment?
-    let missing: Bool
+    let missing: Bool?
     let points_deducted: Double?
     let posted_at: Date?
     let preview_url: URL?
@@ -49,7 +49,7 @@ public struct APISubmission: Codable, Equatable {
     let submission_history: [APISubmission]? // include[]=submission_history
     let submission_type: SubmissionType?
     let submitted_at: Date?
-    let turnitin_data: [String: APITurnItIn]?
+    let turnitin_data: APITurnItInData?
     let url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
@@ -88,6 +88,37 @@ public struct APISubmissionSummary: Codable, Equatable {
     let graded: Int
     let ungraded: Int
     let not_submitted: Int
+}
+
+public struct APITurnItInData: Codable, Equatable {
+    let rawValue: [String: APITurnItIn]
+
+    struct DynamicCodingKeys: CodingKey {
+        var stringValue: String
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+
+        var intValue: Int?
+        init?(intValue: Int) {
+            return nil
+        }
+    }
+
+    init(rawValue: [String: APITurnItIn]) {
+        self.rawValue = rawValue
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: DynamicCodingKeys.self)
+        var data: [String: APITurnItIn] = [:]
+        for key in container.allKeys {
+            if let codingKey = DynamicCodingKeys(stringValue: key.stringValue), let turnItIn = try? container.decode(APITurnItIn.self, forKey: codingKey) {
+                data[key.stringValue] = turnItIn
+            }
+        }
+        self.rawValue = data
+    }
 }
 
 public struct APITurnItIn: Codable, Equatable {
@@ -168,7 +199,7 @@ extension APISubmission {
             submission_history: submission_history,
             submission_type: submission_type,
             submitted_at: submitted_at,
-            turnitin_data: turnitin_data,
+            turnitin_data: turnitin_data.flatMap { APITurnItInData(rawValue: $0) },
             url: url,
             user: user,
             user_id: ID(user_id),
@@ -391,17 +422,17 @@ public struct CreateSubmissionRequest: APIRequestable {
 }
 
 // https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.update
-struct PutSubmissionGradeRequest: APIRequestable {
-    typealias Response = APISubmission
-    struct Body: Codable, Equatable {
-        struct Comment: Codable, Equatable {
+public struct PutSubmissionGradeRequest: APIRequestable {
+    public typealias Response = APISubmission
+    public struct Body: Codable, Equatable {
+        public struct Comment: Codable, Equatable {
             let group_comment: Bool
             let media_comment_id: String?
             let media_comment_type: MediaCommentType?
             let text_comment: String?
             let file_ids: [String]?
 
-            init(text: String, forGroup: Bool = false) {
+            public init(text: String, forGroup: Bool = false) {
                 group_comment = forGroup
                 media_comment_id = nil
                 media_comment_type = nil
@@ -409,7 +440,7 @@ struct PutSubmissionGradeRequest: APIRequestable {
                 text_comment = text
             }
 
-            init(mediaID: String, type: MediaCommentType, forGroup: Bool = false) {
+            public init(mediaID: String, type: MediaCommentType, forGroup: Bool = false) {
                 group_comment = forGroup
                 media_comment_id = mediaID
                 media_comment_type = type
@@ -417,7 +448,7 @@ struct PutSubmissionGradeRequest: APIRequestable {
                 file_ids = nil
             }
 
-            init(fileIDs: [String], forGroup: Bool = false) {
+            public init(fileIDs: [String], forGroup: Bool = false) {
                 group_comment = forGroup
                 file_ids = fileIDs
                 media_comment_id = nil
@@ -425,15 +456,21 @@ struct PutSubmissionGradeRequest: APIRequestable {
                 text_comment = nil
             }
         }
-        struct Submission: Codable, Equatable {
+        public struct Submission: Codable, Equatable {
+            let excuse: Bool?
             let posted_grade: String?
+
+            public init(excuse: Bool?, posted_grade: String?) {
+                self.excuse = excuse
+                self.posted_grade = posted_grade
+            }
         }
 
         let comment: Comment?
         let submission: Submission?
         let rubric_assessment: APIRubricAssessmentMap?
 
-        init(comment: Comment? = nil, submission: Submission? = nil, rubric_assessment: APIRubricAssessmentMap? = nil) {
+        public init(comment: Comment? = nil, submission: Submission? = nil, rubric_assessment: APIRubricAssessmentMap? = nil) {
             self.comment = comment
             self.submission = submission
             self.rubric_assessment = rubric_assessment
@@ -444,16 +481,16 @@ struct PutSubmissionGradeRequest: APIRequestable {
     let assignmentID: String
     let userID: String
 
-    init(courseID: String, assignmentID: String, userID: String, body: Body? = nil) {
+    public init(courseID: String, assignmentID: String, userID: String, body: Body? = nil) {
         self.courseID = courseID
         self.assignmentID = assignmentID
         self.userID = userID
         self.body = body
     }
 
-    let body: Body?
-    let method = APIMethod.put
-    var path: String {
+    public let body: Body?
+    public var method: APIMethod { .put }
+    public var path: String {
         let context = Context(.course, id: courseID)
         return "\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"
     }

@@ -52,6 +52,7 @@ public struct APIAssignment: Codable, Equatable {
     var submission: APIList<APISubmission>?
     let submission_types: [SubmissionType]
     let unlock_at: Date?
+    let unpublishable: Bool?
     let url: URL?
     let use_rubric_for_grading: Bool?
 }
@@ -126,6 +127,7 @@ extension APIAssignment {
         submissions: [APISubmission]? = nil,
         submission_types: [SubmissionType] = [.online_text_entry],
         unlock_at: Date? = nil,
+        unpublishable: Bool? = true,
         url: URL? = nil,
         use_rubric_for_grading: Bool? = nil
     ) -> APIAssignment {
@@ -170,6 +172,7 @@ extension APIAssignment {
             submission: submissionList,
             submission_types: submission_types,
             unlock_at: unlock_at,
+            unpublishable: unpublishable,
             url: url,
             use_rubric_for_grading: use_rubric_for_grading
         )
@@ -282,23 +285,26 @@ public struct GetAssignmentRequest: APIRequestable {
 struct APIAssignmentParameters: Codable, Equatable {
     // let allowed_extensions: [String]?
     let assignment_overrides: [APIAssignmentOverride]?
-    // let description: String?
+    let description: String?
     let due_at: Date?
     let grading_type: GradingType?
     let lock_at: Date?
-    // let name: String
+    let name: String?
     let points_possible: Double?
-    // let published: Bool?
+    let published: Bool?
     // let submission_types: [SubmissionType]?
     let unlock_at: Date?
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(assignment_overrides, forKey: .assignment_overrides)
+        try container.encodeIfPresent(description, forKey: .description)
         try container.encode(due_at, forKey: .due_at) // encode null to unset
         try container.encodeIfPresent(grading_type, forKey: .grading_type)
         try container.encode(lock_at, forKey: .lock_at) // encode null to unset
+        try container.encodeIfPresent(name, forKey: .name)
         try container.encode(points_possible, forKey: .points_possible)
+        try container.encodeIfPresent(published, forKey: .published)
         try container.encode(unlock_at, forKey: .unlock_at) // encode null to unset
     }
 }

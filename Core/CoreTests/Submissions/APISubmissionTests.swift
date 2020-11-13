@@ -51,7 +51,7 @@ class APISubmissionTests: CoreTestCase {
     }
 
     func testPutSubmissionGradeRequest() {
-        let submission = PutSubmissionGradeRequest.Body.Submission(posted_grade: "10")
+        let submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10")
         let body = PutSubmissionGradeRequest.Body(comment: nil, submission: submission)
         let request = PutSubmissionGradeRequest(courseID: "1", assignmentID: "2", userID: "3", body: body)
 
@@ -108,5 +108,31 @@ class APISubmissionTests: CoreTestCase {
     func testGetSubmissionSummaryRequest() {
         let req = GetSubmissionSummaryRequest(context: .course("1"), assignmentID: "2")
         XCTAssertEqual(req.path, "courses/1/assignments/2/submission_summary")
+    }
+
+    func testDecodeAPITurnItInData() {
+        let json: Any = [
+            "eula_agreement_timestamp": "123456",
+            "attachment_1": [
+                "status": "scored",
+                "similarity_score": 0,
+                "outcome_response": [
+                    "outcomes_tool_placement_url": "https://canvas.instructure.com/tool/1",
+                ],
+            ],
+            "submission_1": [
+                "status": "scored",
+            ],
+        ]
+        let data = try! JSONSerialization.data(withJSONObject: json, options: [])
+        let turnItInData = try! JSONDecoder().decode(APITurnItInData.self, from: data)
+        XCTAssertEqual(turnItInData.rawValue.keys.count, 2)
+        XCTAssertEqual(turnItInData.rawValue["attachment_1"]?.status, "scored")
+        XCTAssertEqual(turnItInData.rawValue["attachment_1"]?.similarity_score, 0)
+        XCTAssertEqual(
+            turnItInData.rawValue["attachment_1"]?.outcome_response?.outcomes_tool_placement_url?.rawValue.absoluteString,
+            "https://canvas.instructure.com/tool/1"
+        )
+        XCTAssertEqual(turnItInData.rawValue["submission_1"]?.status, "scored")
     }
 }

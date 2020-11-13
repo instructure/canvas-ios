@@ -39,7 +39,7 @@ final public class MediaComment: NSManagedObject, WriteableModel {
         model.contentType = item.content_type
         model.displayName = item.display_name
         model.mediaID = item.media_id
-        model.mediaType = item.media_type
+        model.mediaType = MediaCommentType(rawValue: item.media_type) ?? .video
         model.url = item.url
         return model
     }
