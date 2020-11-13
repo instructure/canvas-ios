@@ -19,9 +19,7 @@
 import Foundation
 import CoreData
 
-public final class Todo: NSManagedObject, WriteableModel {
-    public typealias JSON = APITodo
-
+public final class Todo: NSManagedObject {
     @NSManaged public var assignment: Assignment
     @NSManaged var contextRaw: String
     @NSManaged public var course: Course?
@@ -30,6 +28,7 @@ public final class Todo: NSManagedObject, WriteableModel {
     @NSManaged public var ignoreURL: URL?
     @NSManaged public var ignorePermanentlyURL: URL?
     @NSManaged public var needsGradingCount: UInt
+    @NSManaged public var position: Int
     @NSManaged var typeRaw: String
 
     public var context: Context {
@@ -59,7 +58,8 @@ public final class Todo: NSManagedObject, WriteableModel {
         return group
     }
 
-    public static func save(_ item: APITodo, in context: NSManagedObjectContext) -> Todo {
+    @discardableResult
+    public static func save(_ item: APITodo, position: Int, in context: NSManagedObjectContext) -> Todo {
         let id = item.assignment.id.value
         let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: id) ?? context.insert()
         assignment.update(fromApiModel: item.assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
@@ -77,6 +77,7 @@ public final class Todo: NSManagedObject, WriteableModel {
         model.ignoreURL = item.ignore
         model.ignorePermanentlyURL = item.ignore_permanently
         model.needsGradingCount = item.needs_grading_count ?? 0
+        model.position = position
         model.type = item.type
         return model
     }
@@ -100,10 +101,14 @@ class GetTodos: CollectionUseCase {
 
     var cacheKey: String? { nil }
     var request: GetTodosRequest { GetTodosRequest() }
-    var scope: Scope { Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(Todo.assignment.dueAtSortNilsAtBottom), ascending: true),
-        NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, naturally: true),
-    ]) }
+    var scope: Scope { Scope(predicate: .all, orderBy: #keyPath(Todo.position), ascending: true) }
+
+    func write(response: [APITodo]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let items = response else { return }
+        for (index, item) in items.enumerated() {
+            Todo.save(item, position: index, in: client)
+        }
+    }
 }
 
 class DeleteTodo: DeleteUseCase {

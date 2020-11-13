@@ -294,8 +294,8 @@
         <attribute name="canReply" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="canUpdate" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="delayedPostAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="discussionSubEntryCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="discussionType" optional="YES" attributeType="String" defaultValueString="side_comment"/>
@@ -468,8 +468,8 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
-        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="groups" inverseEntity="Course"/>
+        <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="group" inverseEntity="Todo"/>
     </entity>
     <entity name="HelpLink" representedClassName="Core.HelpLink" syncable="YES">
         <attribute name="availableToRaw" attributeType="String" defaultValueString="unenrolled"/>
@@ -861,6 +861,7 @@
         <attribute name="ignorePermanentlyURL" attributeType="URI"/>
         <attribute name="ignoreURL" attributeType="URI"/>
         <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="todos" inverseEntity="Course"/>
@@ -925,6 +926,7 @@
         <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="388"/>
         <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
+        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
@@ -967,12 +969,11 @@
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
-        <element name="Todo" positionX="-540" positionY="-18" width="128" height="178"/>
+        <element name="Todo" positionX="-540" positionY="-18" width="128" height="193"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
-        <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

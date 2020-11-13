@@ -188,6 +188,21 @@ public class GetSubmissions: CollectionUseCase {
         ]
     ) }
 
+    public func scopeKeepingIDs(_ ids: [String]) -> Scope { Scope(
+        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
+            NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSCompoundPredicate(andPredicateWithSubpredicates: filter.map { $0.predicate }),
+                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids)
+            ]),
+        ]),
+        order: [ shuffled ?
+            NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+        ]
+    ) }
+
     public enum Filter: RawRepresentable, Equatable {
         case late, notSubmitted, needsGrading, graded
         case scoreAbove(Double)
