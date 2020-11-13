@@ -212,9 +212,6 @@
   "complete_fd828dea": {
     "message": "Complete"
   },
-  "complete_incomplete_15b3a89c": {
-    "message": "Complete/Incomplete"
-  },
   "compose_message_8abd180a": {
     "message": "Compose Message"
   },
@@ -310,9 +307,6 @@
   "description_436c48d7": {
     "message": "Description"
   },
-  "details_98a31b68": {
-    "message": "Details"
-  },
   "discussion_submission_781d5d33": {
     "message": "Discussion Submission"
   },
@@ -327,9 +321,6 @@
   },
   "dismiss_name_8646b9fd": {
     "message": "Dismiss { name }"
-  },
-  "display_grade_as_7b5376a6": {
-    "message": "Display Grade As"
   },
   "done_54e3d4b6": {
     "message": "Done"
@@ -354,9 +345,6 @@
   },
   "due_datestring_be4410c7": {
     "message": "Due { dateString }"
-  },
-  "edit_assignment_ebf22a72": {
-    "message": "Edit Assignment"
   },
   "edit_attachments_count_5e9276ea": {
     "message": "Edit attachments ({ count })"
@@ -483,9 +471,6 @@
   },
   "gpa_71809a99": {
     "message": "GPA"
-  },
-  "gpa_scale_a6d1cdea": {
-    "message": "GPA Scale"
   },
   "grade_9c6f076d": {
     "message": "Grade"
@@ -618,9 +603,6 @@
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
     "message": "Let Students See Their Quiz Responses"
-  },
-  "letter_grade_29ff1938": {
-    "message": "Letter Grade"
   },
   "letter_grade_e83e363c": {
     "message": "Letter grade"
@@ -838,9 +820,6 @@
   "percent_d7ddd35b": {
     "message": "Percent (%)"
   },
-  "percentage_34ab7c2c": {
-    "message": "Percentage"
-  },
   "permission_needed_7e971495": {
     "message": "Permission Needed"
   },
@@ -850,14 +829,8 @@
   "please_try_again_5d872e78": {
     "message": "Please try again."
   },
-  "points_bb475533": {
-    "message": "Points"
-  },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
-  },
-  "points_possible_must_be_a_number_4a592dc6": {
-    "message": "Points possible must be a number"
   },
   "pointspossible_number_pts_2d9f157d": {
     "message": "{ pointsPossible, number } pts"
@@ -1137,9 +1110,6 @@
   },
   "that_message_can_not_be_forwarded_76cb2b1a": {
     "message": "That message can not be forwarded."
-  },
-  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-    "message": "The value of possible points must be zero or greater"
   },
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "There are no assignments to display."
