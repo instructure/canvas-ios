@@ -194,7 +194,7 @@ public class GetSubmissions: CollectionUseCase {
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSCompoundPredicate(andPredicateWithSubpredicates: filter.map { $0.predicate }),
-                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids)
+                NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids),
             ]),
         ]),
         order: [ shuffled ?
