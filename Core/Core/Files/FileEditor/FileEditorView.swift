@@ -98,7 +98,7 @@ public struct FileEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Name", bundle: .core)) {
-                TextField(NSLocalizedString("Name"), text: $name)
+                TextField(NSLocalizedString("Name", comment: ""), text: $name)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("FileEditor.nameField")
@@ -107,7 +107,7 @@ public struct FileEditorView: View {
             EditorSection(label: Text("Access", bundle: .core)) {
                 ButtonRow(action: {
                     env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Access"),
+                        title: NSLocalizedString("Access", comment: ""),
                         sections: [ ItemPickerSection(items: Access.allCases.map {
                             ItemPickerItem(title: $0.label)
                         }), ],
@@ -141,14 +141,14 @@ public struct FileEditorView: View {
                 EditorSection(label: Text("Usage Rights", bundle: .core)) {
                     TextFieldRow(
                         label: Text("Copyright Holder", bundle: .core),
-                        placeholder: NSLocalizedString("Name"),
+                        placeholder: NSLocalizedString("Name", comment: ""),
                         text: $copyright
                     )
                         .identifier("FileEditor.copyrightField")
                     Divider()
                     ButtonRow(action: {
                         env.router.show(ItemPickerViewController.create(
-                            title: NSLocalizedString("Usage Right"),
+                            title: NSLocalizedString("Usage Right", comment: ""),
                             sections: [ ItemPickerSection(items: UseJustification.allCases.map {
                                 ItemPickerItem(title: $0.label)
                             }), ],
@@ -167,7 +167,7 @@ public struct FileEditorView: View {
                         Divider()
                         ButtonRow(action: {
                             env.router.show(ItemPickerViewController.create(
-                                title: NSLocalizedString("Creative Commons License"),
+                                title: NSLocalizedString("Creative Commons License", comment: ""),
                                 sections: [ ItemPickerSection(items: License.allCases.map {
                                     ItemPickerItem(title: $0.label)
                                 }), ],
@@ -319,13 +319,13 @@ public struct FileEditorView: View {
         var label: String {
             switch self {
             case .published:
-                return NSLocalizedString("Publish")
+                return NSLocalizedString("Publish", comment: "")
             case .unpublished:
-                return NSLocalizedString("Unpublish")
+                return NSLocalizedString("Unpublish", comment: "")
             case .hidden:
-                return NSLocalizedString("Only available to students with link")
+                return NSLocalizedString("Only available to students with link", comment: "")
             case .scheduled:
-                return NSLocalizedString("Schedule student availability")
+                return NSLocalizedString("Schedule student availability", comment: "")
             }
         }
     }
@@ -337,17 +337,17 @@ public struct FileEditorView: View {
         var label: String {
             switch self {
             case .cc_by:
-                return NSLocalizedString("Attribution")
+                return NSLocalizedString("Attribution", comment: "")
             case .cc_by_sa:
-                return NSLocalizedString("Attribution Share Alike")
+                return NSLocalizedString("Attribution Share Alike", comment: "")
             case .cc_by_nc:
-                return NSLocalizedString("Attribution Non-Commercial")
+                return NSLocalizedString("Attribution Non-Commercial", comment: "")
             case .cc_by_nc_sa:
-                return NSLocalizedString("Attribution Non-Commercial Share Alike")
+                return NSLocalizedString("Attribution Non-Commercial Share Alike", comment: "")
             case .cc_by_nd:
-                return NSLocalizedString("Attribution No Derivatives")
+                return NSLocalizedString("Attribution No Derivatives", comment: "")
             case .cc_by_nc_nd:
-                return NSLocalizedString("Attribution Non-Commercial No Derivatives")
+                return NSLocalizedString("Attribution Non-Commercial No Derivatives", comment: "")
             }
         }
     }

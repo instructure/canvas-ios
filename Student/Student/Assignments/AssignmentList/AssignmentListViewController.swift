@@ -28,7 +28,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     @IBOutlet weak var gradingPeriodLabel: DynamicLabel!
     @IBOutlet weak var filterButton: DynamicButton!
     var selectedGradingPeriod: GradingPeriod?
-    var filterButtonTitle: String = NSLocalizedString("Clear filter")
+    var filterButtonTitle: String = NSLocalizedString("Clear filter", comment: "")
     var gradingPeriodTitle: String?
     let tableRefresher = CircleRefreshControl()
     var tableViewDefaultOffset: CGPoint = .zero
@@ -67,7 +67,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTitleViewInNavbar(title: NSLocalizedString("Assignments"))
+        setupTitleViewInNavbar(title: NSLocalizedString("Assignments", comment: ""))
         configureTableView()
 
         showSpinner()
@@ -142,7 +142,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
         if selectedGradingPeriod != nil {
             filterByGradingPeriod(nil)
         } else {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:"), preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", comment: ""), preferredStyle: .actionSheet)
 
             for period in gradingPeriods {
                 let action = AlertAction(period.title, style: .default) { [weak self] _ in
@@ -150,7 +150,7 @@ class AssignmentListViewController: UIViewController, ColoredNavViewProtocol, Er
                 }
                 alert.addAction(action)
             }
-            let cancel = UIAlertAction(title: NSLocalizedString("Cancel"), style: .destructive, handler: nil)
+            let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .destructive, handler: nil)
             alert.addAction(cancel)
 
             alert.popoverPresentationController?.sourceRect = sender.bounds
@@ -189,7 +189,7 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
         let loadingCell = model.hasNext(forSection: indexPath.section) && (indexPath.row == model.assignmentCount(forSection: indexPath.section))
 
         if loadingCell {
-            cell.textLabel?.text = NSLocalizedString("Loading...")
+            cell.textLabel?.text = NSLocalizedString("Loading...", comment: "")
             cell.detailTextLabel?.text = nil
             cell.imageView?.image = nil
             cell.accessibilityIdentifier = nil
@@ -250,9 +250,9 @@ extension AssignmentListViewController: UITableViewDataSource, UITableViewDelega
 
 extension AssignmentListViewController {
     func updateLabels() {
-        let buttonTitle = selectedGradingPeriod == nil ? NSLocalizedString("Filter") : NSLocalizedString("Clear filter")
+        let buttonTitle = selectedGradingPeriod == nil ? NSLocalizedString("Filter", comment: "") : NSLocalizedString("Clear filter", comment: "")
         filterButton.setTitle(buttonTitle, for: .normal)
-        gradingPeriodLabel.text = selectedGradingPeriod?.title ?? NSLocalizedString("All Grading Periods")
+        gradingPeriodLabel.text = selectedGradingPeriod?.title ?? NSLocalizedString("All Grading Periods", comment: "")
     }
 
     func updateFilterButton() {

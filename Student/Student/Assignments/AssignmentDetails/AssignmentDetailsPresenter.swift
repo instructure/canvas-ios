@@ -283,6 +283,6 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
     func assignmentDescription() -> String {
         if let desc = assignments.first?.descriptionHTML, !desc.isEmpty { return desc }
-        return NSLocalizedString("No Content")
+        return NSLocalizedString("No Content", comment: "")
     }
 }

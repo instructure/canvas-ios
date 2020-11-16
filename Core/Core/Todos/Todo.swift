@@ -84,14 +84,14 @@ public final class Todo: NSManagedObject {
 
     public var dueText: String {
         guard let dueAt = assignment.dueAt else {
-            return NSLocalizedString("No Due Date")
+            return NSLocalizedString("No Due Date", comment: "")
         }
-        let format = NSLocalizedString("Due %@")
+        let format = NSLocalizedString("Due %@", comment: "")
         return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
     }
 
     public var needsGradingText: String {
-        let format = NSLocalizedString("d_needs_grading")
+        let format = NSLocalizedString("d_needs_grading", comment: "")
         return String.localizedStringWithFormat(format, needsGradingCount).localizedUppercase
     }
 }

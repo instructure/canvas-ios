@@ -223,20 +223,20 @@ struct RubricAssessor: View {
     func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
         let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
         let message = String.localizedStringWithFormat(format, criteria.points)
-        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade"), message: message, preferredStyle: .alert)
+        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade", comment: ""), message: message, preferredStyle: .alert)
         prompt.addTextField { field in
-            field.placeholder = NSLocalizedString("")
+            field.placeholder = ""
             field.returnKeyType = .done
             field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
         }
-        prompt.addAction(AlertAction(NSLocalizedString("OK")) { _ in
+        prompt.addAction(AlertAction(NSLocalizedString("OK", comment: "")) { _ in
             let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             assessments[criteria.id] = APIRubricAssessment(
                 comments: assessment?.comments,
                 points: DoubleFieldRow.formatter.number(from: text)?.doubleValue
             )
         })
-        prompt.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(prompt, from: controller, options: .modal())
     }
 }

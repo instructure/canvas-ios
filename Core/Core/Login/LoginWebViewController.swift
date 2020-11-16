@@ -91,8 +91,8 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         webView.uiDelegate = self
         webView.handle("selfRegistrationError") { [weak self] _ in performUIUpdate {
             self?.showAlert(
-                title: NSLocalizedString("Self Registration Not Allowed"),
-                message: NSLocalizedString("Contact your school to create an account.")
+                title: NSLocalizedString("Self Registration Not Allowed", comment: ""),
+                message: NSLocalizedString("Contact your school to create an account.", comment: "")
             )
         } }
         canGoBackObservation = webView.observe(\.canGoBack) { [weak self] webView, _ in

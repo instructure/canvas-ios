@@ -86,7 +86,7 @@ struct AssignmentOverridesEditor: View {
     }
 
     var everyone: String {
-        overrides.count <= 1 ? NSLocalizedString("Everyone") : NSLocalizedString("Everyone else")
+        overrides.count <= 1 ? NSLocalizedString("Everyone", comment: "") : NSLocalizedString("Everyone else", comment: "")
     }
 
     func add() {
@@ -199,7 +199,7 @@ struct AssignmentOverridesEditor: View {
         var isEveryone: Bool { groupID == nil && sectionID == nil && studentIDs == nil }
 
         static func studentsString(_ count: Int) -> String {
-            return String.localizedStringWithFormat(NSLocalizedString("%d students"), count)
+            return String.localizedStringWithFormat(NSLocalizedString("%d students", comment: ""), count)
         }
     }
 }

@@ -55,13 +55,13 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Discussions"))
+        setupTitleViewInNavbar(title: NSLocalizedString("Discussions", comment: ""))
 
-        addButton.accessibilityLabel = NSLocalizedString("Create Discussion")
+        addButton.accessibilityLabel = NSLocalizedString("Create Discussion", comment: "")
 
-        emptyMessageLabel.text = NSLocalizedString("It looks like discussions haven’t been created in this space yet.")
-        emptyTitleLabel.text = NSLocalizedString("No Discussions")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading discussions. Pull to refresh to try again.")
+        emptyMessageLabel.text = NSLocalizedString("It looks like discussions haven’t been created in this space yet.", comment: "")
+        emptyTitleLabel.text = NSLocalizedString("No Discussions", comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading discussions. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
@@ -159,17 +159,17 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
     func deleteTopic(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
         guard let topicID = topics[indexPath]?.id else { return completionHandler(false) }
         let alert = UIAlertController(
-            title: NSLocalizedString("Delete Discussion"),
-            message: NSLocalizedString("Are you sure you would like to delete this discussion?"),
+            title: NSLocalizedString("Delete Discussion", comment: ""),
+            message: NSLocalizedString("Are you sure you would like to delete this discussion?", comment: ""),
             preferredStyle: .alert
         )
-        alert.addAction(AlertAction(NSLocalizedString("Delete"), style: .destructive) { _ in
+        alert.addAction(AlertAction(NSLocalizedString("Delete", comment: ""), style: .destructive) { _ in
             let useCase = DeleteDiscussionTopic(context: self.context, topicID: topicID)
             useCase.fetch { [weak self] _, _, error in performUIUpdate {
                 if let error = error { self?.showError(error) }
             } }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
         completionHandler(true)
     }
@@ -183,11 +183,11 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch topics.sections?[section].name {
         case "0":
-            return SectionHeaderView.create(title: NSLocalizedString("Pinned Discussions"), section: section)
+            return SectionHeaderView.create(title: NSLocalizedString("Pinned Discussions", comment: ""), section: section)
         case "1":
-            return SectionHeaderView.create(title: NSLocalizedString("Discussions"), section: section)
+            return SectionHeaderView.create(title: NSLocalizedString("Discussions", comment: ""), section: section)
         case "2":
-            return SectionHeaderView.create(title: NSLocalizedString("Closed for Comments"), section: section)
+            return SectionHeaderView.create(title: NSLocalizedString("Closed for Comments", comment: ""), section: section)
         default:
             return nil
         }
@@ -211,20 +211,20 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         var actions: [UIContextualAction] = []
         if topics[indexPath]?.canDelete == true {
-            let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete")) { [weak self] (_, _, handler) in
+            let action = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { [weak self] (_, _, handler) in
                 self?.deleteTopic(at: indexPath, completionHandler: handler)
             }
             action.backgroundColor = .backgroundDanger
             actions.append(action)
         }
         if course?.first?.hasTeacherEnrollment == true {
-            var title = topics[indexPath]?.locked == true ? NSLocalizedString("Open") : NSLocalizedString("Close")
+            var title = topics[indexPath]?.locked == true ? NSLocalizedString("Open", comment: "") : NSLocalizedString("Close", comment: "")
             var action = UIContextualAction(style: .normal, title: title) { [weak self] (_, _, handler) in
                 self?.toggleLocked(at: indexPath, completionHandler: handler)
             }
             action.backgroundColor = .backgroundWarning
             actions.append(action)
-            title = topics[indexPath]?.pinned == true ? NSLocalizedString("Unpin") : NSLocalizedString("Pin")
+            title = topics[indexPath]?.pinned == true ? NSLocalizedString("Unpin", comment: "") : NSLocalizedString("Pin", comment: "")
             action = UIContextualAction(style: .normal, title: title) { [weak self] (_, _, handler) in
                 self?.togglePinned(at: indexPath, completionHandler: handler)
             }
@@ -263,12 +263,12 @@ class DiscussionListCell: UITableViewCell {
         statusDot.isHidden = true
         statusLabel.isHidden = true
         if topic?.assignment?.dueAt == nil, let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@"), replyAt.dateTimeString)
+            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else if isTeacher, topic?.assignment?.dueAt != nil, topic?.assignment?.hasOverrides == true {
-            dateLabel.text = NSLocalizedString("Multiple Due Dates")
+            dateLabel.text = NSLocalizedString("Multiple Due Dates", comment: "")
         } else if topic?.assignment?.dueAt != nil, let lockAt = topic?.assignment?.lockAt, lockAt < Clock.now {
             dateLabel.text = topic?.assignment?.dueText
-            statusLabel.text = NSLocalizedString("Closed")
+            statusLabel.text = NSLocalizedString("Closed", comment: "")
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {

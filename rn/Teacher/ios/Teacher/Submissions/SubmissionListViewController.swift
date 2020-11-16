@@ -70,11 +70,11 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: NSLocalizedString("Submissions"))
+        setupTitleViewInNavbar(title: NSLocalizedString("Submissions", comment: ""))
 
-        emptyMessageLabel.text = NSLocalizedString("It seems there aren't any valid submissions to grade.")
-        emptyTitleLabel.text = NSLocalizedString("No Submissions")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading submissions. Pull to refresh to try again.")
+        emptyMessageLabel.text = NSLocalizedString("It seems there aren't any valid submissions to grade.", comment: "")
+        emptyTitleLabel.text = NSLocalizedString("No Submissions", comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading submissions. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         tableView.backgroundColor = .backgroundLightest
@@ -183,13 +183,13 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
 extension SubmissionListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
-        header.titleLabel.text = filter.isEmpty ? NSLocalizedString("All submissions") :
+        header.titleLabel.text = filter.isEmpty ? NSLocalizedString("All submissions", comment: "") :
             filter.compactMap { $0.name } .joined(separator: " - ")
         header.filterButton.removeTarget(self, action: nil, for: .primaryActionTriggered)
         header.filterButton.addTarget(self, action: #selector(showFilters), for: .primaryActionTriggered)
         header.filterButton.setTitle(
-            filter.isEmpty ? NSLocalizedString("Filter") :
-                String.localizedStringWithFormat(NSLocalizedString("Filter (%d)"), filter.count),
+            filter.isEmpty ? NSLocalizedString("Filter", comment: "") :
+                String.localizedStringWithFormat(NSLocalizedString("Filter (%d)", comment: ""), filter.count),
             for: .normal
         )
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
@@ -229,7 +229,7 @@ class SubmissionListCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        needsGradingLabel.text = NSLocalizedString("Needs Grading").localizedUppercase
+        needsGradingLabel.text = NSLocalizedString("Needs Grading", comment: "").localizedUppercase
         needsGradingView.layer.borderColor = UIColor.borderInfo.cgColor
         needsGradingView.layer.borderWidth = 1
         needsGradingView.layer.cornerRadius = needsGradingView.frame.height / 2
@@ -240,10 +240,10 @@ class SubmissionListCell: UITableViewCell {
         if assignment?.anonymizeStudents != false {
             if submission?.groupID != nil {
                 avatarView.icon = .groupLine
-                nameLabel.text = NSLocalizedString("Group")
+                nameLabel.text = NSLocalizedString("Group", comment: "")
             } else {
                 avatarView.icon = .userLine
-                nameLabel.text = NSLocalizedString("Student")
+                nameLabel.text = NSLocalizedString("Student", comment: "")
             }
         } else if let name = submission?.groupName {
             avatarView.name = name

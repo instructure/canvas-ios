@@ -37,7 +37,7 @@ class DashboardGroupSection: DashboardSection, DashboardSectionDelegate {
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header: DashboardSectionHeaderView = collectionView.dequeue(ofKind: kind, for: indexPath)
-        header.update(title: NSLocalizedString("Groups"))
+        header.update(title: NSLocalizedString("Groups", comment: ""))
         header.isHidden = groups.isEmpty
         return header
     }
@@ -83,7 +83,7 @@ class DashboardGroupCell: UICollectionViewCell {
         cardView.accessibilityLabel = group?.name
         let color = group?.color.ensureContrast(against: .white)
         let course = group?.getCourse()
-        courseNameLabel.text = course?.name ?? NSLocalizedString("Account Group")
+        courseNameLabel.text = course?.name ?? NSLocalizedString("Account Group", comment: "")
         courseNameLabel.textColor = color
         groupNameLabel.text = group?.name
         leftColorView?.backgroundColor = color

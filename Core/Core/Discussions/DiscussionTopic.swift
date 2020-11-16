@@ -68,11 +68,11 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     }
 
     public var nRepliesString: String {
-        String.localizedStringWithFormat(NSLocalizedString("%d Replies"), discussionSubEntryCount)
+        String.localizedStringWithFormat(NSLocalizedString("%d Replies", comment: ""), discussionSubEntryCount)
     }
 
     public var nUnreadString: String {
-        String.localizedStringWithFormat(NSLocalizedString("%d Unread"), unreadCount)
+        String.localizedStringWithFormat(NSLocalizedString("%d Unread", comment: ""), unreadCount)
     }
 
     @discardableResult

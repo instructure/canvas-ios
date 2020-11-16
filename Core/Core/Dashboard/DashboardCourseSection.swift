@@ -55,8 +55,8 @@ class DashboardCourseSection: DashboardSection, DashboardSectionDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header: DashboardSectionHeaderView = collectionView.dequeue(ofKind: kind, for: indexPath)
         header.update(
-            title: NSLocalizedString("Courses"),
-            rightText: NSLocalizedString("All Courses")
+            title: NSLocalizedString("Courses", comment: ""),
+            rightText: NSLocalizedString("All Courses", comment: "")
         ) { [weak self] in
             guard let self = self, let from = self.controller else { return }
             self.env.router.route(to: "/courses", from: from, options: .push)
@@ -129,7 +129,7 @@ class DashboardCourseCell: UICollectionViewCell {
         cardView.accessibilityLabel = card?.shortName
         optionsButton.accessibilityIdentifier = "DashboardCourseCell.\(id).optionsButton"
         optionsButton.accessibilityLabel = String.localizedStringWithFormat(
-            NSLocalizedString("Open %@ user preferences"),
+            NSLocalizedString("Open %@ user preferences", comment: ""),
             card?.shortName ?? ""
         )
 

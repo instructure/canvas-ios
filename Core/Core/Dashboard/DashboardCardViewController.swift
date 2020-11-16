@@ -39,7 +39,7 @@ public class DashboardCardViewController: UIViewController {
 
         navigationItem.leftBarButtonItem = profileButton
         profileButton.accessibilityIdentifier = "Dashboard.profileButton"
-        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu")
+        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", comment: "")
         navigationItem.titleView = Brand.shared.headerImageView()
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
