@@ -167,7 +167,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ConferenceDetailsViewController.create(context: context, conferenceID: id)
     },
 
-    "/:context/:contextID/conferences/:conferenceID/join": { url, params, _ in
+    "/:context/:contextID/conferences/:conferenceID/join": { url, _, _ in
         Router.open(url: url)
         return nil
     },
@@ -206,7 +206,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/:context/:contextID/discussions/:discussionID": discussionViewController,
     "/:context/:contextID/discussion_topics/:discussionID": discussionViewController,
 
-    "/courses/:courseID/external_tools/:toolID": { url, params, _ in
+    "/courses/:courseID/external_tools/:toolID": { _, params, _ in
         guard let courseID = params["courseID"], let toolID = params["toolID"] else { return nil }
         guard let vc = HelmManager.shared.topMostViewController() else { return nil }
         let tools = LTITools(context: .course(courseID), id: toolID)
@@ -218,7 +218,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/:context/:contextID/files": fileList,
     "/files/folder/*subFolder": fileList,
     "/:context/:contextID/files/folder/*subFolder": fileList,
-    "/folders/:folderID/edit": { url, params, _ in
+    "/folders/:folderID/edit": { _, params, _ in
         guard let folderID = params["folderID"] else { return nil }
         return CoreHostingController(FileEditorView(folderID: folderID))
     },
@@ -280,7 +280,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     // No native support, fall back to web
     // "/courses/:courseID/outcomes": { url, _ in },
 
-    "/:context/:contextID/pages": { url, params, _ in
+    "/:context/:contextID/pages": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return PageListViewController.create(context: context, app: .student)
     },
@@ -296,17 +296,17 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return AppEnvironment.shared.router.match(url)
     },
 
-    "/:context/:contextID/pages/new": { url, params, userInfo in
+    "/:context/:contextID/pages/new": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return CoreHostingController(PageEditorView(context: context))
     },
     "/:context/:contextID/pages/:url": pageViewController,
     "/:context/:contextID/wiki/:url": pageViewController,
-    "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
+    "/:context/:contextID/pages/:url/edit": { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
-    "/:context/:contextID/wiki/:url/edit": { url, params, userInfo in
+    "/:context/:contextID/wiki/:url/edit": { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
@@ -332,12 +332,12 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     // No native support, fall back to web
     // "/courses/:courseID/settings": { url, _ in },
 
-    "/courses/:courseID/users": { url, params, _ in
+    "/courses/:courseID/users": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
         return PeopleListViewController.create(context: .course(courseID))
     },
 
-    "/groups/:groupID/users": { url, params, _ in
+    "/groups/:groupID/users": { _, params, _ in
         guard let groupID = params["groupID"] else { return nil }
         return PeopleListViewController.create(context: .group(groupID))
     },

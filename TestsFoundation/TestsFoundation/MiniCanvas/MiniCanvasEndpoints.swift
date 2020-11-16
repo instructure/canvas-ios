@@ -491,7 +491,7 @@ enum MiniCanvasEndpoints {
             assignment.submissions.append(MiniSubmission(api))
             return api
         },
-        .apiRequest(GetSubmissionSummaryRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { request in
+        .apiRequest(GetSubmissionSummaryRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID)) { _ in
             .init(graded: 42, ungraded: 42, not_submitted: 42)
         },
         .apiRequest(GetSubmissionRequest(context: Pattern.courseContext, assignmentID: Pattern.assignmentID, userID: Pattern.userID)) { request in

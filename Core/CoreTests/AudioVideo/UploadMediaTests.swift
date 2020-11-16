@@ -30,7 +30,7 @@ class UploadMediaTests: CoreTestCase {
         super.setUp()
         UUID.mock("zzxxzz")
         upload.mediaAPI = API()
-        upload.callback = { [weak self] (comment, error) in
+        upload.callback = { [weak self] _, error in
             self?.error = error
             self?.called?.fulfill()
         }

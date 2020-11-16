@@ -84,7 +84,7 @@ class NotificationManagerTests: CoreTestCase {
         notificationManager.remoteToken = nil // reset
         let lost = NSError(domain: NSURLErrorDomain, code: NSURLErrorNetworkConnectionLost)
         api.mock(PostCommunicationChannelRequest(pushToken: token), error: lost)
-        environment.errorHandler = { e, v in XCTAssertEqual(e as NSError, lost) }
+        environment.errorHandler = { e, _ in XCTAssertEqual(e as NSError, lost) }
         notificationManager.subscribeToPushChannel(token: token, session: .make())
 
         api.mock(DeletePushChannelRequest(pushToken: token), value: .init())
