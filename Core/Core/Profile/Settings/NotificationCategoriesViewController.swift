@@ -108,37 +108,41 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         let conferences = NSLocalizedString("Conferences", bundle: .core, comment: "")
         let alerts = NSLocalizedString("Alerts", bundle: .core, comment: "")
 
-        return [
-            "course_content": (0, NSLocalizedString("Course Content", bundle: .core, comment: ""), courseActivities),
-            "files": (0, NSLocalizedString("Files", bundle: .core, comment: ""), courseActivities),
+        var map =  [
             "all_submissions": (0, NSLocalizedString("All Submissions", bundle: .core, comment: ""), courseActivities),
-            "submission_comment": (0, NSLocalizedString("Submission Comment", bundle: .core, comment: ""), courseActivities),
             "announcement": (0, NSLocalizedString("Announcement", bundle: .core, comment: ""), courseActivities),
             "announcement_created_by_you": (0, NSLocalizedString("Announcement Created By You", bundle: .core, comment: ""), courseActivities),
-            "grading": (0, NSLocalizedString("Grading", bundle: .core, comment: ""), courseActivities),
-            "due_date": (0, NSLocalizedString("Due Date", bundle: .core, comment: ""), courseActivities),
-            "late_grading": (0, NSLocalizedString("Late Grading", bundle: .core, comment: ""), courseActivities),
-            "invitation": (0, NSLocalizedString("Invitation", bundle: .core, comment: ""), courseActivities),
-            "grading_policies": (0, NSLocalizedString("Grading Policies", bundle: .core, comment: ""), courseActivities),
-
-            "discussion_entry": (1, NSLocalizedString("Discussion Post", bundle: .core, comment: ""), discussions),
-            "discussion": (1, NSLocalizedString("Discussion", bundle: .core, comment: ""), discussions),
-
-            "added_to_conversation": (2, NSLocalizedString("Added To Conversation", bundle: .core, comment: ""), conversations),
-            "conversation_message": (2, NSLocalizedString("Conversation Message", bundle: .core, comment: ""), conversations),
-            "conversation_created": (2, NSLocalizedString("Conversation Created By Me", bundle: .core, comment: ""), conversations),
-
             "appointment_availability": (3, NSLocalizedString("Appointment Availability", bundle: .core, comment: ""), scheduling),
-            "appointment_signups": (3, NSLocalizedString("Appointment Signups", bundle: .core, comment: ""), scheduling),
             "appointment_cancelations": (3, NSLocalizedString("Appointment Cancellations", bundle: .core, comment: ""), scheduling),
-            "student_appointment_signups": (3, NSLocalizedString("Student Appointment Signups", bundle: .core, comment: ""), scheduling),
             "calendar": (3, NSLocalizedString("Calendar", bundle: .core, comment: ""), scheduling),
-
-            "membership_update": (4, NSLocalizedString("Membership Update", bundle: .core, comment: ""), groups),
-
-            "other": (5, NSLocalizedString("Administrative Notifications", bundle: .core, comment: ""), alerts),
-            "content_link_error": (5, NSLocalizedString("Content Link Error", bundle: .core, comment: ""), alerts),
+            "conversation_message": (2, NSLocalizedString("Conversation Message", bundle: .core, comment: ""), conversations),
+            "course_content": (0, NSLocalizedString("Course Content", bundle: .core, comment: ""), courseActivities),
+            "due_date": (0, NSLocalizedString("Due Date", bundle: .core, comment: ""), courseActivities),
+            "grading": (0, NSLocalizedString("Grading", bundle: .core, comment: ""), courseActivities),
+            "invitation": (0, NSLocalizedString("Invitation", bundle: .core, comment: ""), courseActivities),
+            "student_appointment_signups": (3, NSLocalizedString("Student Appointment Signups", bundle: .core, comment: ""), scheduling),
+            "submission_comment": (0, NSLocalizedString("Submission Comment", bundle: .core, comment: ""), courseActivities),
         ]
+
+        guard channelType != .push else {
+            return map
+        }
+
+        map.merge( [
+            "added_to_conversation": (2, NSLocalizedString("Added To Conversation", bundle: .core, comment: ""), conversations),
+            "appointment_signups": (3, NSLocalizedString("Appointment Signups", bundle: .core, comment: ""), scheduling),
+            "conversation_created": (2, NSLocalizedString("Conversation Created By Me", bundle: .core, comment: ""), conversations),
+            "content_link_error": (5, NSLocalizedString("Content Link Error", bundle: .core, comment: ""), alerts),
+            "discussion": (1, NSLocalizedString("Discussion", bundle: .core, comment: ""), discussions),
+            "discussion_entry": (1, NSLocalizedString("Discussion Post", bundle: .core, comment: ""), discussions),
+            "files": (0, NSLocalizedString("Files", bundle: .core, comment: ""), courseActivities),
+            "grading_policies": (0, NSLocalizedString("Grading Policies", bundle: .core, comment: ""), courseActivities),
+            "late_grading": (0, NSLocalizedString("Late Grading", bundle: .core, comment: ""), courseActivities),
+            "membership_update": (4, NSLocalizedString("Membership Update", bundle: .core, comment: ""), groups),
+            "other": (5, NSLocalizedString("Administrative Notifications", bundle: .core, comment: ""), alerts),
+        ]){ (_, new) in new }
+
+        return map
     }()
 }
 
