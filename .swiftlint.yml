@@ -13,6 +13,12 @@ disabled_rules: # rule identifiers to exclude from running
 opt_in_rules: # some rules are only opt-in
   - yoda_condition
 included: # paths to include during linting. `--path` is ignored if present.
+  - Core
+  - Student
+  - rn/Teacher/ios
+  - Parent
+  - TestsFoundation
+  - scripts/swift
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods
   - Canvas # Student/Canvas
