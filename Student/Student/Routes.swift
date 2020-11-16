@@ -400,7 +400,7 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     // Show files from global announcements in a web view because they are not available via the api.
-    if let urlRaw = url.url, url.queryItems?.first(where: { $0.name == "origin" })?.value == "globalAnnouncement" {
+    if let urlRaw = url.url, url.originIsGlobalAnnouncement {
         let controller = CoreWebViewController()
         controller.webView.load(URLRequest(url: urlRaw))
         return controller
