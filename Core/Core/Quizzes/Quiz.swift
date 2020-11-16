@@ -142,30 +142,30 @@ extension Quiz {
     static func save(_ item: APIQuiz, in context: NSManagedObjectContext) -> Quiz {
         let model: Quiz = context.first(where: #keyPath(Quiz.id), equals: item.id.value) ?? context.insert()
         model.accessCode = item.access_code
-        model.allowedAttempts = item.allowed_attempts
+        model.allowedAttempts = item.allowed_attempts ?? 0
         model.assignmentID = item.assignment_id?.value
         model.cantGoBack = item.cant_go_back ?? false
         model.details = item.description
         model.dueAt = item.due_at
-        model.hasAccessCode = item.has_access_code
+        model.hasAccessCode = item.has_access_code ?? false
         model.hideResults = item.hide_results
         model.htmlURL = item.html_url
         model.id = item.id.value
         model.ipFilter = item.ip_filter
         model.lockAt = item.lock_at
         model.lockExplanation = item.lock_explanation
-        model.lockedForUser = item.locked_for_user
+        model.lockedForUser = item.locked_for_user ?? false
         model.mobileURL = item.mobile_url
-        model.oneQuestionAtATime = item.one_question_at_a_time
+        model.oneQuestionAtATime = item.one_question_at_a_time ?? false
         model.pointsPossible = item.points_possible
         model.published = item.published == true
-        model.questionCount = item.question_count
+        model.questionCount = item.question_count ?? 0
         model.questionTypes = item.question_types ?? []
         model.quizType = item.quiz_type
         model.quizTypeOrder = QuizType.allCases.firstIndex(of: item.quiz_type) ?? QuizType.allCases.count
         model.requireLockdownBrowser = item.require_lockdown_browser
         model.requireLockdownBrowserForResults = item.require_lockdown_browser_for_results
-        model.shuffleAnswers = item.shuffle_answers
+        model.shuffleAnswers = item.shuffle_answers ?? false
         model.timeLimit = item.time_limit
         model.title = item.title
         model.unlockAt = item.unlock_at
@@ -186,7 +186,7 @@ public enum QuizHideResults: String, Codable, CaseIterable {
 }
 
 public enum QuizType: String, Codable, CaseIterable {
-    case assignment, practice_quiz, graded_survey, survey
+    case assignment, practice_quiz, graded_survey, survey, quizzes_next = "quizzes.next"
 
     public var sectionTitle: String {
         switch self {
@@ -198,6 +198,8 @@ public enum QuizType: String, Codable, CaseIterable {
             return NSLocalizedString("Graded Surveys", bundle: .core, comment: "")
         case .survey:
             return NSLocalizedString("Surveys", bundle: .core, comment: "")
+        case .quizzes_next:
+            return NSLocalizedString("New Quizzes", bundle: .core, comment: "")
         }
     }
 }

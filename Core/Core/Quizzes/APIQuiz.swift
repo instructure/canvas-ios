@@ -21,29 +21,35 @@ import Foundation
 // https://canvas.instructure.com/doc/api/quizzes.html#Quiz
 public struct APIQuiz: Codable, Equatable {
     let access_code: String?
-    let allowed_attempts: Int
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let allowed_attempts: Int?
     let assignment_id: ID?
     let cant_go_back: Bool?
     let description: String?
     let due_at: Date?
-    let has_access_code: Bool
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let has_access_code: Bool?
     let hide_results: QuizHideResults?
     let html_url: URL
     let id: ID
     let ip_filter: String?
     let lock_at: Date?
     let lock_explanation: String?
-    let locked_for_user: Bool
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let locked_for_user: Bool?
     let mobile_url: URL
-    let one_question_at_a_time: Bool
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let one_question_at_a_time: Bool?
     let points_possible: Double?
     let published: Bool?
-    let question_count: Int
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let question_count: Int?
     let question_types: [QuizQuestionType]?
     let quiz_type: QuizType
     let require_lockdown_browser_for_results: Bool
     let require_lockdown_browser: Bool
-    let shuffle_answers: Bool
+    /** Nil when `quiz_type` is `quizzes.next`. */
+    let shuffle_answers: Bool?
     let time_limit: Double? // minutes
     let title: String
     let unlock_at: Date?
@@ -315,7 +321,7 @@ public struct GetQuizzesRequest: APIRequestable {
 
     public var path: String {
         let context = Context(.course, id: courseID)
-        return "\(context.pathComponent)/quizzes?per_page=100"
+        return "\(context.pathComponent)/all_quizzes?per_page=100"
     }
 }
 
