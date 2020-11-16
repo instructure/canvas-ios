@@ -75,7 +75,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/assignments/syllabus": syllabus,
     "/courses/:courseID/syllabus": syllabus,
-    "/courses/:courseID/syllabus/edit": { url, params, userInfo in
+    "/courses/:courseID/syllabus/edit": { url, params, _ in
         guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
             Router.open(url: url)
             return nil
@@ -98,7 +98,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PostSettingsViewController.create(courseID: courseID, assignmentID: assignmentID)
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions": { url, params, userInfo in
+    "/courses/:courseID/assignments/:assignmentID/submissions": { url, params, _ in
         guard let context = Context(path: url.path), let assignmentID = params["assignmentID"] else { return nil }
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
             GetSubmissions.Filter(rawValue: $0)
@@ -106,7 +106,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return SubmissionListViewController.create(context: context, assignmentID: assignmentID, filter: filter)
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params, userInfo in
+    "/courses/:courseID/assignments/:assignmentID/submissions/:userID": { url, params, _ in
         guard let context = Context(path: url.path) else { return nil }
         guard let assignmentID = params["assignmentID"], let userID = params["userID"] else { return nil }
         let filter = url.queryItems?.first { $0.name == "filter" }? .value?.components(separatedBy: ",").compactMap {
@@ -223,7 +223,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PageListViewController.create(context: context, app: .teacher)
     },
 
-    "/:context/:contextID/pages/new": { url, params, userInfo in
+    "/:context/:contextID/pages/new": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return CoreHostingController(PageEditorView(context: context))
     },
@@ -237,11 +237,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PageDetailsViewController.create(context: context, pageURL: pageURL, app: .teacher)
     },
 
-    "/:context/:contextID/pages/:url/edit": { url, params, userInfo in
+    "/:context/:contextID/pages/:url/edit": { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
-    "/:context/:contextID/wiki/:url/edit": { url, params, userInfo in
+    "/:context/:contextID/wiki/:url/edit": { url, params, _ in
         guard let context = Context(path: url.path), let slug = params["url"] else { return nil }
         return CoreHostingController(PageEditorView(context: context, url: slug))
     },
