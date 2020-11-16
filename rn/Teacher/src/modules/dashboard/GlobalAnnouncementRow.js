@@ -128,6 +128,7 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
               automaticallySetHeight
               html={message}
               navigator={this.props.navigator}
+              onNavigation={this.onNavigation}
               style={collapsed ? styles.collapsed : styles.expanded}
               isOpaque={false}
             />
@@ -145,6 +146,11 @@ export default class GlobalAnnouncementRow extends React.Component<Props, State>
         </View>
       </DashboardContent>
     )
+  }
+
+  onNavigation = (url) => {
+    url += (url.includes('?') ? '&' : '?') + 'origin=globalAnnouncement'
+    this.props.navigator.show(url, { deepLink: true })
   }
 }
 

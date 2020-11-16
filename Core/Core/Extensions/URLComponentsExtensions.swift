@@ -69,7 +69,11 @@ public extension URLComponents {
     }
 
     var originIsModuleItemDetails: Bool {
-        return queryItems?.contains(URLQueryItem(name: "origin", value: "module_item_details")) == true
+        queryItems?.contains(URLQueryItem(name: "origin", value: "module_item_details")) == true
+    }
+
+    var originIsGlobalAnnouncement: Bool {
+        queryItems?.contains(URLQueryItem(name: "origin", value: "globalAnnouncement")) == true
     }
 
     var originIsNotification: Bool {

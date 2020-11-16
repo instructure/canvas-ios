@@ -311,6 +311,13 @@ private func fileList(url: URLComponents, params: [String: String], userInfo: [S
 }
 
 private func fileDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    // Show files from global announcements in a web view because they are not available via the api.
+    if let urlRaw = url.url, url.originIsGlobalAnnouncement {
+        let controller = CoreWebViewController()
+        controller.webView.load(URLRequest(url: urlRaw))
+        return controller
+    }
+
     guard let fileID = url.queryItems?.first(where: { $0.name == "preview" })?.value ?? params["fileID"] else { return nil }
     return FileDetailsViewController.create(context: Context(path: url.path), fileID: fileID)
 }

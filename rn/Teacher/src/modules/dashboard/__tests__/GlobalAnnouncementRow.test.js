@@ -103,4 +103,19 @@ describe('GlobalAnnouncementRow', () => {
     tree.find('[testID="AccountNotification.34.dismissButton"]').simulate('Press')
     expect(onDismiss).toHaveBeenCalledWith('34')
   })
+
+  it('appends origin on navigation', () => {
+    const show = jest.fn()
+    const tree = shallow(
+      <GlobalAnnouncementRow
+        {...defaults}
+        notification={templates.accountNotification({ id: '34' })}
+        navigator={templates.navigator({ show })}
+      />
+    )
+    tree.find('CoreWebView').simulate('Navigation', '/files/1')
+    expect(show).toHaveBeenCalledWith('/files/1?origin=globalAnnouncement', { deepLink: true })
+    tree.find('CoreWebView').simulate('Navigation', '/files/1?verifier=abc')
+    expect(show).toHaveBeenCalledWith('/files/1?verifier=abc&origin=globalAnnouncement', { deepLink: true })
+  })
 })
