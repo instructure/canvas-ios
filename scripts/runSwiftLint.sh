@@ -22,8 +22,6 @@ set -e -o pipefail
 # debug log
 # set -x
 
-LINT_CONFIG_FILE_PATH="$(pwd .swiftlint.yml)/.swiftlint.yml"
-
 FIX=""
 STRICT="--strict"
 COMMAND="LINTING"
