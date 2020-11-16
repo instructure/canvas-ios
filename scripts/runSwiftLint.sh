@@ -22,8 +22,6 @@ set -e -o pipefail
 # debug log
 # set -x
 
-LINT_CONFIG_FILE_PATH="$(pwd .swiftlint.yml)/.swiftlint.yml"
-
 FIX=""
 STRICT="--strict"
 COMMAND="LINTING"
@@ -34,22 +32,7 @@ if [[ "$#" -eq 1 && $1 = "fix" ]]; then
     COMMAND="FIXING"
 fi
 
-declare -a names=("core" "student" "teacher" "parent" "TestsFoundation" "scripts")
-declare -a paths=("Core" "Student" "rn/Teacher/ios" "Parent" "TestsFoundation" "scripts/swift")
-arraylength=${#paths[@]}
-
 echo "${COMMAND}"
 echo ""
-
-ret=0
-for (( i=0; i<${arraylength}; i++ )); do
-    echo "[${names[$i]}]"
-    pushd ${paths[$i]} > /dev/null 2>&1
-    CONFIG="$LINT_CONFIG_FILE_PATH"
-    if [[ -f .swiftlint.yml ]]; then
-       CONFIG=.swiftlint.yml
-    fi
-    swiftlint ${FIX} --config "${CONFIG}" ${STRICT} 2>/dev/null || ret=$?
-    popd > /dev/null 2>&1
-done
-exit $ret
+swiftlint ${FIX} ${STRICT} 2>/dev/null
+exit $?

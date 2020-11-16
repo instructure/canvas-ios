@@ -68,7 +68,6 @@ workflows:
 
             brew reinstall swiftlint jq xcbeautify
 
-            pip3 install awscli
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - &yarn-install-root
       yarn:
@@ -154,6 +153,10 @@ workflows:
             cat tmp/report_to_danger_subbuild.md >> tmp/report_to_danger.md || true
     - script:
         title: Report Coverage
+        deps:
+            brew:
+            - name: awscli
+              bin_name: aws
         inputs:
         - runner_bin: "/bin/zsh"
         - content: |-
