@@ -127,8 +127,6 @@
 		7DE1161222F8AB5C005BFE98 /* AssignmentDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */; };
 		7DE1161522F8AB5C005BFE98 /* CourseNavigationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */; };
 		7DE1161622F8AB5C005BFE98 /* GroupNavigationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */; };
-		7DE1161822F8AB5C005BFE98 /* QuizListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F1C22F8A096000AACCE /* QuizListViewControllerTests.swift */; };
-		7DE1161A22F8AB5C005BFE98 /* UIViewControllerExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */; };
 		7DE1161D22F8AB5C005BFE98 /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */; };
 		7DE1161E22F8AB5C005BFE98 /* SubmissionButtonPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */; };
 		7DE1161F22F8AB5C005BFE98 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */; };
@@ -613,8 +611,6 @@
 		7DCF0F0D22F8A096000AACCE /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1322F8A096000AACCE /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F1622F8A096000AACCE /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
-		7DCF0F1C22F8A096000AACCE /* QuizListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizListViewControllerTests.swift; sourceTree = "<group>"; };
-		7DCF0F2122F8A096000AACCE /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		7DCF0F2622F8A096000AACCE /* ArcSubmissionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcSubmissionPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2822F8A096000AACCE /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		7DCF0F2A22F8A096000AACCE /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };

@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "S'han desat totes les anotacions.";
 
-/* All Courses screen title */
-"All Courses" = "Tots els cursos";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Tots els períodes de qualificació";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Registres de cites";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Segur que voleu suprimir (nom)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Segur que voleu suprimir %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Intent %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Reconeixement";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Reconeixement Sense Obres Derivades";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Reconeixement No Comercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Reconeixement No Comercial Sense Obres Derivades";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Reconeixement No Comercial Compartir Igual";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Reconeixement Compartir Igual";
-
-/* No comment provided by engineer. */
 "Audio" = "Àudio";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Disponible de:";
-
-/* No comment provided by engineer. */
-"Available to" = "Disponible per a";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponible fins a:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Crea un compte";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Llicència de Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Inscripcions actuals";
@@ -1106,16 +1076,10 @@
 "On Paper" = "En paper";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Només està disponible per als estudiants a través d'un enllaç";
-
-/* No comment provided by engineer. */
 "Only members" = "Només membres";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Només professors";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Obre les preferències d'usuari per a %@";
 
 /* No comment provided by engineer. */
 "Options" = "Opcions";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Persones";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Cal permís";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Biblioteca de fotos";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "No s'admet l'escaneig";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Planifica la disponibilitat dels estudiants";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planificació";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Seccions: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Mostra-ho tot";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Mostra tots els cursos";
 
 /* No comment provided by engineer. */
 "See attached files." = "Consulteu els fitxers adjunts.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Llista sense ordenar";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Anul·la la publicació";
-
-/* No comment provided by engineer. */
 "unpublished" = "no publicat";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Drets d'ús";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Drets d'ús";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificacions de Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre compte.";

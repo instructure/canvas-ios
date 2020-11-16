@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Alla noteringar har sparats.";
 
-/* All Courses screen title */
-"All Courses" = "Alla kurser";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Alla bedömningsperioder";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Mötesbokningar";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Vill du ta bort (namn)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Vill du radera %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Försök %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Attribut";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribut – Inga bearbetningar";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribut – Ej kommersiellt";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribut – Ej kommersiellt/inga bearbetningar";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribut – Ej kommersiellt/dela lika";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribut – Dela lika";
-
-/* No comment provided by engineer. */
 "Audio" = "Ljud";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Tillgänglig från och med:";
-
-/* No comment provided by engineer. */
-"Available to" = "Tillgänglig för";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tillgänglig tills:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Skapa konto";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons-licens";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Nuvarande registreringar";
@@ -1106,16 +1076,10 @@
 "On Paper" = "På papper";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Endast tillgängligt för elever via länk";
-
-/* No comment provided by engineer. */
 "Only members" = "Endast medlemmar";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Endast lärare";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Öppna %@ användarinställningar";
 
 /* No comment provided by engineer. */
 "Options" = "Alternativ";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Personer";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Tillstånd behövs";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Bildbibliotek";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Skanning stöds inte";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Schemalägg elevens tillgänglighet";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Schemaläggning";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Sektioner: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Se alla";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Se alla kurser";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se bifogade filer.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Ej ordnad lista";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Avpublicera";
-
-/* No comment provided by engineer. */
 "unpublished" = "avpublicerad";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Användningsrättigheter";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Användningsrättigheter";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-aviseringar";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du kommer att sluta att agera som %@, och gå tillbaka till ditt konto.";

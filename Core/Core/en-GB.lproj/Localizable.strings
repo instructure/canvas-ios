@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "All annotations saved.";
 
-/* All Courses screen title */
-"All Courses" = "All courses";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "All Grading Periods";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Appointment signups";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Are you sure you want to delete (name)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Are you sure you want to delete %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Attempt %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution Non-Commercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution Non-Commercial No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution Non-Commercial Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Available From:";
-
-/* No comment provided by engineer. */
-"Available to" = "Available to";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Available Until:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Create account";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons license";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Current enrolments";
@@ -1106,16 +1076,10 @@
 "On Paper" = "On paper";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Only available to students with link";
-
-/* No comment provided by engineer. */
 "Only members" = "Only members";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Only teachers";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Open %@ user preferences";
 
 /* No comment provided by engineer. */
 "Options" = "Options";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "People";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Permission needed";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Photo library";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Scanning not supported";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Schedule student availability";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Scheduling";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Sections: %@";
-
-/* No comment provided by engineer. */
-"See All" = "See all";
-
-/* No comment provided by engineer. */
-"See All Courses" = "See All Courses";
 
 /* No comment provided by engineer. */
 "See attached files." = "See attached files.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Unordered list";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Unpublish";
-
-/* No comment provided by engineer. */
 "unpublished" = "unpublished";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Usage Right";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Usage rights";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo Notifications";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";

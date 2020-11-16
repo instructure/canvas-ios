@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Ngā tuhinga katoa kua tiakina.";
 
-/* All Courses screen title */
-"All Courses" = "Ngā akoranga katoa";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Takiwā kōeke katoa";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Haina runga Wāhui";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "E tino hiahia ana koe ki te muku i tēnei (ingoa)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "E tino hiahia ana koe ki te muku %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Whakamātau %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Tukunga";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Tukunga Kaore ngā Pārōnaki";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Tukunga Non-Commercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Tukunga Non-Commercial Kaore Ngā Pārōnaki";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Tukunga Non-Commercial Tuari Rite Tonu";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Tukunga Tuari Rite";
-
-/* No comment provided by engineer. */
 "Audio" = "Ororongo";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Wātea mai:";
-
-/* No comment provided by engineer. */
-"Available to" = "Wātea ki";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Wātea kī:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Waihanga Pūkete";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Ko te Raihana Whaiaro Whaimana";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Whakaurunga o nāianei";
@@ -1106,16 +1076,10 @@
 "On Paper" = "I runga i te Pepa";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "E wātea ana anake ki ngā ākonga me ngā hononga";
-
-/* No comment provided by engineer. */
 "Only members" = "Ngā mema anake";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Kaiako anake";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Huaki %@ ngā manakohanga o ngā kaiwhakamahi";
 
 /* No comment provided by engineer. */
 "Options" = "Ngā kōwhiringa";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Tāngata";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "E hiahiatia ana he whakāetanga";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Whakāhua Pukapuka";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "kaore i te tautokotia";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Wātea ngā ākonga Apiti";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Hōtaka";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Wāhanga: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Titiro ki te katoa";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Titiro ki ngā akoranga katoa";
 
 /* No comment provided by engineer. */
 "See attached files." = "Tirohia te kōnae piri.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Rārangi kaore e whakahautia";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Kaore i tāngia";
-
-/* No comment provided by engineer. */
 "unpublished" = "kaore i pānuitia";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Ngā Raihana Tika";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Raihana Tika";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo whakamōhiotanga";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Me whakahohetia e koe Orooro whakaaetanga i roto i Tautuhinga";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Ka mutu tō mahi hei %@ ka hoki ki tāu pūkete.";

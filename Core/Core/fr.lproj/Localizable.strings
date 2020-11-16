@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Toutes les annotations sont sauvegardées.";
 
-/* All Courses screen title */
-"All Courses" = "Tous les cours";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Toutes les périodes de notation";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Inscriptions aux rendez-vous";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Souhaitez-vous vraiment supprimer (name) ?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Êtes-vous sûr de vouloir supprimer %@ ?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Tentative %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Paternité";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Paternité - Pas de travaux dérivés";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Paternité - Pas d'Utilisation Commerciale";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Paternité - Pas de travaux dérivés - Pas d'Utilisation Commerciale";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Paternité - Pas d'Utilisation Commerciale - Partage des Conditions Initiales à l'Identique ";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Paternité - Partage des Conditions Initiales à l'Identique ";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Disponible à partir du :";
-
-/* No comment provided by engineer. */
-"Available to" = "Disponible pour";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponible jusqu’au :";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Créer un compte";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Licence Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Inscriptions actuelles";
@@ -1106,16 +1076,10 @@
 "On Paper" = "Sur papier";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Disponible aux élèves uniquement par un lien";
-
-/* No comment provided by engineer. */
 "Only members" = "Uniquement les membres";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Uniquement les enseignants";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Ouvrir %@ préférences de l'utilisateur";
 
 /* No comment provided by engineer. */
 "Options" = "Options";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Personnes";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Autorisation requise";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Photothèque";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Numérisation non prise en charge";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Calendrier de disponibilités de l’étudiant";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planification";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Sections : %@";
-
-/* No comment provided by engineer. */
-"See All" = "Tout voir";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Voir tous les cours";
 
 /* No comment provided by engineer. */
 "See attached files." = "Voir les fichiers joints.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Liste dans le désordre";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Ne pas publier";
-
-/* No comment provided by engineer. */
 "unpublished" = "non publié(e)(s)";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Droit d’utilisation";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Droits d’utilisation";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notifications Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Vous devez activer les permissions du microphone dans les paramètres.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Vous cesserez d'agir en tant que %@ et retournerez sur votre compte.";

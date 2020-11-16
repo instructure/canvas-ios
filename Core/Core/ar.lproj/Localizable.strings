@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "تم حفظ جميع التعليقات التوضيحية.";
 
-/* All Courses screen title */
-"All Courses" = "جميع المساقات";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "جميع فترات تقييم الدرجات";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "مواعيد التسجيل";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "هل ترغب بالتأكيد في حذف (الاسم)؟";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "هل تريد بالتأكيد حذف %@؟";
@@ -170,24 +164,6 @@
 "Attempt %d" = "المحاولة %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "السمة";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "سمة بدون مشتقات";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "سمة غير تجارية";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "سمة غير تجارية بدون مشتقات";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "سمة غير تجارية بمشاركة المتشابهين";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "سمة المشاركة أيضًا";
-
-/* No comment provided by engineer. */
 "Audio" = "صوت";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "متوفر من:";
-
-/* No comment provided by engineer. */
-"Available to" = "متوفر لـ";
 
 /* No comment provided by engineer. */
 "Available Until:" = "متوفر حتى:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "إنشاء حساب";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "ترخيص المشاع الإبداعي";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "التسجيلات الحالية";
@@ -1106,16 +1076,10 @@
 "On Paper" = "على الورق";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "متاح فقط للطلاب الذين لديهم رابط";
-
-/* No comment provided by engineer. */
 "Only members" = "الأعضاء فقط";
 
 /* No comment provided by engineer. */
 "Only teachers" = "المعلمون فقط";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
 
 /* No comment provided by engineer. */
 "Options" = "الخيارات";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "الأشخاص";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "مطلوب إذن";
 
 /* No comment provided by engineer. */
 "Photo Library" = "مكتبة الصور";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "المسح الضوئي غير مدعوم";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "جدولة توفر الطلاب";
-
-/* No comment provided by engineer. */
 "Scheduling" = "الجدولة";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "الأقسام: %@";
-
-/* No comment provided by engineer. */
-"See All" = "عرض الكل";
-
-/* No comment provided by engineer. */
-"See All Courses" = "رؤية جميع المساقات";
 
 /* No comment provided by engineer. */
 "See attached files." = "انظر الملفات المرفقة.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "قائمة غير مرتبة";
 
 /* No comment provided by engineer. */
-"Unpublish" = "إلغاء النشر";
-
-/* No comment provided by engineer. */
 "unpublished" = "غير منشور";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "حق الاستخدام";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "حقوق الاستخدام";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "لا توجد إعلامات";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "ستتوقف عن التصرف باعتبارك %@ وستعود إلى حسابك.";

@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle merknader er lagret.";
 
-/* All Courses screen title */
-"All Courses" = "Alle fag";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Alle vurderingsperioder";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Avtalepåmeldinger";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Er du sikker på at du vil slette (navn)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Er du sikker på at du vil slette %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Forsøk %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution ingen derivater";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution ikke-kommersiell";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution ikke-kommersiell, ingen derivater";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution ikke-kommersiell, Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Lyd";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Tilgjengelig fra:";
-
-/* No comment provided by engineer. */
-"Available to" = "Tilgjengelig til";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tilgjengelig til:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Opprett konto";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons-lisens";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Gjeldende påmeldinger";
@@ -1106,16 +1076,10 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Kun tilgjengelig for elever med lenke";
-
-/* No comment provided by engineer. */
 "Only members" = "Kun medlemmer";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Kun faglærer, lærer";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Åpne %@ brukerinnstillinger";
 
 /* No comment provided by engineer. */
 "Options" = "Valg";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Deltakere";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Tillatelse kreves";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Bildebibliotek";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Ikke støttet skanning";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Planlegg elevtilgjengelighet";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planlegger";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Seksjoner %@";
-
-/* No comment provided by engineer. */
-"See All" = "Se alle";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Se alle fag";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se vedlagte filer.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Ikke sortert liste";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Avpubliser";
-
-/* No comment provided by engineer. */
 "unpublished" = "ikke publisert";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Brukerrettigheter";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Brukerrettigheter:";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Varslinger for Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Du må aktivere mikrofontillatelse fra innstillinger.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";

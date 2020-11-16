@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "所有注释已保存。";
 
-/* All Courses screen title */
-"All Courses" = "所有课程";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "所有评分周期";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "预约注册";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "是否确实要删除（名称）？";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "是否确定要删除 %@？";
@@ -170,24 +164,6 @@
 "Attempt %d" = "尝试%d";
 
 /* No comment provided by engineer. */
-"Attribution" = "属性";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "属性 禁止派生";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "属性 非商业使用";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "属性 非商业使用 禁止派生";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "属性 非商业使用 相同方式共享";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "属性 相同方式共享";
-
-/* No comment provided by engineer. */
 "Audio" = "音频";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "起始可用日期：";
-
-/* No comment provided by engineer. */
-"Available to" = "结束日期";
 
 /* No comment provided by engineer. */
 "Available Until:" = "截止可用日期：";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "创建帐户";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "创作性公用许可证";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "当前注册";
@@ -1106,16 +1076,10 @@
 "On Paper" = "纸上";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "仅面向有链接的学生";
-
-/* No comment provided by engineer. */
 "Only members" = "仅成员";
 
 /* No comment provided by engineer. */
 "Only teachers" = "仅教师";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "打开%@用户首选项";
 
 /* No comment provided by engineer. */
 "Options" = "选项";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "人员";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "需要权限";
 
 /* No comment provided by engineer. */
 "Photo Library" = "照片库";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "不支持扫描";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "学生时间表的可用性";
-
-/* No comment provided by engineer. */
 "Scheduling" = "日程安排";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "班级：%@";
-
-/* No comment provided by engineer. */
-"See All" = "查看全部";
-
-/* No comment provided by engineer. */
-"See All Courses" = "查看所有课程";
 
 /* No comment provided by engineer. */
 "See attached files." = "查看附件文件。";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "无序的列表";
 
 /* No comment provided by engineer. */
-"Unpublish" = "未发布";
-
-/* No comment provided by engineer. */
 "unpublished" = "取消发布";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "使用权限";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "使用权限";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo通知";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "您必须在“设置”中启用麦克风权限。";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "你将停止担当%@并返回至帐号。";

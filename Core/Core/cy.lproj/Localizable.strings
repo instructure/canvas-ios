@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Mae’r holl anodiadau wedi’u cadw.";
 
-/* All Courses screen title */
-"All Courses" = "Pob Cwrs";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Pob Cyfnod Graddio";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Archebu Apwyntiadau";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Ydych chi’n siŵr eich bod chi am ddileu (enw)?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Ydych chi’n siŵr eich bod am ddileu %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Ymgais %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Trwydded Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution Non-Commercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution Non-Commercial No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution Non-Commercial Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Sain";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Ar gael o:";
-
-/* No comment provided by engineer. */
-"Available to" = "Ar gael tan";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Ar gael Tan:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Creu Cyfrif";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Trwydded Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Ymrestriad presennol";
@@ -1106,16 +1076,10 @@
 "On Paper" = "Ar bapur";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Dim ond ar gael i fyfyrwyr sydd â dolen";
-
-/* No comment provided by engineer. */
 "Only members" = "Dim ond aelodau";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Dim ond athrawon";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Agor dewisiadau defnyddiwr ar gyfer %@";
 
 /* No comment provided by engineer. */
 "Options" = "Opsiynau";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Pobl";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Angen Caniatâd";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Llyfrgell Luniau";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Does dim modd delio â sganio";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Trefnu bod myfyrwyr ar gael";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Trefnu";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Adrannau: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Gweld y cyfan";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Gweld Pob Cwrs";
 
 /* No comment provided by engineer. */
 "See attached files." = "Gweler y ffeiliau sydd wedi’u hatodi.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Rhestr ddim mewn trefn";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Dad-gyhoeddi";
-
-/* No comment provided by engineer. */
 "unpublished" = "heb gyhoeddi";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Hawl Defnyddio";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Hawliau Defnyddio";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Hysbysiadau Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";

@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle Anmerkungen gespeichert.";
 
-/* All Courses screen title */
-"All Courses" = "Alle Kurse";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Alle Benotungszeiträume";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Terminanmeldungen";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Möchten Sie wirklich (Name) löschen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Möchten Sie %@ wirklich löschen?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Versuch %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution, keine Derivate";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution, nichtgewerblich";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution, nichtgewerblich, keine Derivate";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution, nichtgewerblich, Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution, Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Verfügbar von:";
-
-/* No comment provided by engineer. */
-"Available to" = "Verfügbar für";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Verfügbar bis:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Konto erstellen";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative-Commons-Lizenz";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Aktuelle Einschreibungen";
@@ -1106,16 +1076,10 @@
 "On Paper" = "Als Papierdokument";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Nur verfügbar für Studenten mit Link";
-
-/* No comment provided by engineer. */
 "Only members" = "Nur Mitglieder";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Nur Dozenten";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "%@-Benutzereinstellungen öffnen";
 
 /* No comment provided by engineer. */
 "Options" = "Optionen";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Teilnehmer";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Berechtigung erforderlich";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Fotobibliothek";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Scannen wird nicht unterstützt";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Studentenverfügbarkeit planen";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Zeitplanung";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Abschnitte: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Alle ansehen";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Alle Kurse anzeigen";
 
 /* No comment provided by engineer. */
 "See attached files." = "Siehe Dateianhang";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Unsortierte Liste";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Veröffentlichung rückgängig machen";
-
-/* No comment provided by engineer. */
 "unpublished" = "nicht veröffentlicht";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Nutzungsrecht";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Nutzungsrechte";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-Benachrichtigungen";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Sie müssen in den Einstellungen die Zugriffsberechtigungen auf das Mikrofon aktivieren.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Sie hören auf, als %@ zu handeln, und kehren zu Ihrem Konto zurück.";

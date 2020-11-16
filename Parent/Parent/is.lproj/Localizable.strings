@@ -146,9 +146,6 @@
 "Pairing Code" = "Pörunarkóði";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Leyfis krafist";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR kóði";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ekki er hægt að setja inn lágmark sem er hærra eða jafnt og hámark sem er búið að setja inn.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Þú verður að leyfa tilkynningar í stillingum til að setja inn áminningar.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Þú ert búin(n) með allt";

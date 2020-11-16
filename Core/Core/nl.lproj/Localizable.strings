@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Alle aantekeningen opgeslagen.";
 
-/* All Courses screen title */
-"All Courses" = "Alle cursussen";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Alle beoordelingsperioden";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Aanmeldingen voor afspraak";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Weet je zeker dat je (naam) wilt verwijderen?";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Weet je zeker dat je %@ wilt verwijderen?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Poging %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Bijdrage";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Bijdrage, geen afgeleiden";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Bijdrage, niet-commercieel";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Bijdrage, niet-commercieel, geen afgeleiden";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Bijdrage, niet-commercieel, gelijke delen";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Bijdrage, gelijke delen";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Beschikbaar vanaf:";
-
-/* No comment provided by engineer. */
-"Available to" = "Beschikbaar voor";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Beschikbaar tot:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Account maken";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons-licentie";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Huidige inschrijvingen";
@@ -1106,16 +1076,10 @@
 "On Paper" = "Op papier";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Alleen beschikbaar voor cursisten met koppeling";
-
-/* No comment provided by engineer. */
 "Only members" = "Alleen leden";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Alleen docenten";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Gebruikersvoorkeuren %@ openen";
 
 /* No comment provided by engineer. */
 "Options" = "Opties";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Personen";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Toestemming vereist";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Fotobibliotheek";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Scannen wordt niet ondersteund";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Schema met beschikbaarheid van cursist";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planning";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Secties: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Alles weergeven";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Alle cursussen weergeven";
 
 /* No comment provided by engineer. */
 "See attached files." = "Bijgevoegde bestanden zien.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Ongeordende lijst";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Publicatie ongedaan maken";
-
-/* No comment provided by engineer. */
 "unpublished" = "niet-gepubliceerd";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Gebruiksrecht";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Gebruiksrechten";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-meldingen";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Je moet Microfoon-toestemmingen inschakelen in Instellingen.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";

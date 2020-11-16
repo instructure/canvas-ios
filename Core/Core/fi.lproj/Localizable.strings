@@ -85,9 +85,6 @@
 /* No comment provided by engineer. */
 "All annotations saved." = "Kaikki huomautukset tallennettiin.";
 
-/* All Courses screen title */
-"All Courses" = "Kaikki kurssit";
-
 /* No comment provided by engineer. */
 "All Grading Periods" = "Kaikki arvosanojen antojaksot";
 
@@ -120,9 +117,6 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Tapaamisen rekisteröitymiset";
-
-/* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Haluatko varmasti poistaa kohteen (nimi)?:";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Haluatko varmasti poistaa kohteen %@?";
@@ -170,24 +164,6 @@
 "Attempt %d" = "Yritys %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Määrite";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Määrite Ei johdannaisia";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Määrite Ei kaupallisia";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Määrite Ei kaupallisia Ei-johdannaisia";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Määrite Ei kaupallisia Jaa yhtäläisyys";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Määrite Jaa yhtäläisyys";
-
-/* No comment provided by engineer. */
 "Audio" = "Ääni";
 
 /* No comment provided by engineer. */
@@ -207,9 +183,6 @@
 
 /* No comment provided by engineer. */
 "Available From:" = "Saatavissa alkaen:";
-
-/* No comment provided by engineer. */
-"Available to" = "Saatavissa";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Saatavissa asti:";
@@ -417,9 +390,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Luo tili";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons -lisenssi";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Tämänhetkiset ilmoittautumiset";
@@ -1106,16 +1076,10 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Saatavissa opiskelijoille, joilla on linkki";
-
-/* No comment provided by engineer. */
 "Only members" = "Vain jäsenet";
 
 /* No comment provided by engineer. */
 "Only teachers" = "Vain opettajat";
-
-/* No comment provided by engineer. */
-"Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
 
 /* No comment provided by engineer. */
 "Options" = "Asetukset";
@@ -1158,9 +1122,6 @@
 
 /* No comment provided by engineer. */
 "People" = "Henkilöt";
-
-/* No comment provided by engineer. */
-"Permission Needed" = "Käyttöoikeus tarvitaan";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Valokuvakirjasto";
@@ -1289,9 +1250,6 @@
 "Scanning not supported" = "Skannausta ei tueta";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Aikatauluta opiskelijan saatavissa olo";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Aikatauluttaminen";
 
 /* No comment provided by engineer. */
@@ -1305,12 +1263,6 @@
 
 /* No comment provided by engineer. */
 "Sections: %@" = "Osat: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Katso kaikki";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Katso kaikki kurssit";
 
 /* No comment provided by engineer. */
 "See attached files." = "Katso liitetyt tiedostot.";
@@ -1604,9 +1556,6 @@
 "Unordered List" = "Tilaamattomien luettelo";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Peruuta julkaisu";
-
-/* No comment provided by engineer. */
 "unpublished" = "julkaisematon";
 
 /* No comment provided by engineer. */
@@ -1635,9 +1584,6 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
-
-/* No comment provided by engineer. */
-"Usage Right" = "Käyttöoikeus";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Käyttöoikeudet";
@@ -1725,9 +1671,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-ilmoitukset";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Mikrofonin käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";
