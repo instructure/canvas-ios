@@ -25,11 +25,11 @@ public struct InboxView: View {
 
         var text: String {
             switch self {
-            case .all: return NSLocalizedString("All")
-            case .unread: return NSLocalizedString("Unread")
-            case .starred: return NSLocalizedString("Starred")
-            case .sent: return NSLocalizedString("Sent")
-            case .archived: return NSLocalizedString("Archived")
+            case .all: return NSLocalizedString("All", comment: "")
+            case .unread: return NSLocalizedString("Unread", comment: "")
+            case .starred: return NSLocalizedString("Starred", comment: "")
+            case .sent: return NSLocalizedString("Sent", comment: "")
+            case .archived: return NSLocalizedString("Archived", comment: "")
             }
         }
 
@@ -110,7 +110,7 @@ public struct InboxView: View {
             Divider()
             if courses.count > 0 {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(verbatim: selectedCourse?.name ?? NSLocalizedString("All courses"))
+                    Text(verbatim: selectedCourse?.name ?? NSLocalizedString("All courses", comment: ""))
                         .font(.heavy24)
                         .lineLimit(1)
                     Spacer()
@@ -208,8 +208,8 @@ public struct InboxView: View {
                 .accessibility(label: Text(verbatim: [
                     Self.accessibilityDateFormatter.string(for: conversation.lastMessageAt),
                     subject,
-                    conversation.starred ? NSLocalizedString("Starred") : nil,
-                    conversation.workflowState == .unread ? NSLocalizedString("Unread") : nil,
+                    conversation.starred ? NSLocalizedString("Starred", comment: "") : nil,
+                    conversation.workflowState == .unread ? NSLocalizedString("Unread", comment: "") : nil,
                 ].compactMap { $0 }.joined(separator: ", ")))
             }.buttonStyle(PlainButtonStyle())
         }

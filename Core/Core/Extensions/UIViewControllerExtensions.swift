@@ -156,12 +156,12 @@ extension UIViewController {
     }
 
     public func showPermissionError(_ error: PermissionError) {
-        let alert = UIAlertController(title: NSLocalizedString("Permission Needed"), message: error.message, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("Settings"), style: .default) { _ in
+        let alert = UIAlertController(title: NSLocalizedString("Permission Needed", comment: ""), message: error.message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Settings", comment: ""), style: .default) { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
         })
-        alert.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         AppEnvironment.shared.router.show(alert, from: self, options: .modal())
     }
 
@@ -171,9 +171,9 @@ extension UIViewController {
         var message: String {
             switch self {
             case .microphone:
-                return NSLocalizedString("You must enable Microphone permissions in Settings.")
+                return NSLocalizedString("You must enable Microphone permissions in Settings.", comment: "")
             case .notifications:
-                return NSLocalizedString("You must allow notifications in Settings to set reminders.")
+                return NSLocalizedString("You must allow notifications in Settings to set reminders.", comment: "")
             }
         }
     }

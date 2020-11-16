@@ -258,46 +258,46 @@ struct SubmissionGrades: View {
         var message: String?
         switch assignment.gradingType {
         case .gpa_scale:
-            message = NSLocalizedString("GPA")
+            message = NSLocalizedString("GPA", comment: "")
         case .letter_grade:
-            message = NSLocalizedString("Letter grade")
+            message = NSLocalizedString("Letter grade", comment: "")
         case .not_graded, .pass_fail:
             message = nil
         case .percent:
-            message = NSLocalizedString("Percent (%)")
+            message = NSLocalizedString("Percent (%)", comment: "")
         case .points:
             message = assignment.outOfText
         }
-        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade"), message: message, preferredStyle: .alert)
+        let prompt = UIAlertController(title: NSLocalizedString("Customize Grade", comment: ""), message: message, preferredStyle: .alert)
         if assignment.gradingType == .pass_fail {
-            prompt.addAction(AlertAction(NSLocalizedString("Complete")) { _ in saveGrade("complete") })
-            prompt.addAction(AlertAction(NSLocalizedString("Incomplete")) { _ in saveGrade("incomplete") })
+            prompt.addAction(AlertAction(NSLocalizedString("Complete", comment: "")) { _ in saveGrade("complete") })
+            prompt.addAction(AlertAction(NSLocalizedString("Incomplete", comment: "")) { _ in saveGrade("incomplete") })
         } else {
             prompt.addTextField { field in
-                field.placeholder = NSLocalizedString("")
+                field.placeholder = ""
                 field.returnKeyType = .done
-                field.text = submission.excused == true ? NSLocalizedString("Excused") :
+                field.text = submission.excused == true ? NSLocalizedString("Excused", comment: "") :
                     hasLateDeduction ? submission.enteredGrade : submission.grade
                 field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
             }
         }
-        prompt.addAction(AlertAction(NSLocalizedString("No Grade")) { _ in saveGrade("") })
+        prompt.addAction(AlertAction(NSLocalizedString("No Grade", comment: "")) { _ in saveGrade("") })
         if submission.excused != true {
-            prompt.addAction(AlertAction(NSLocalizedString("Excuse Student")) { _ in saveGrade(excused: true) })
+            prompt.addAction(AlertAction(NSLocalizedString("Excuse Student", comment: "")) { _ in saveGrade(excused: true) })
         }
         if assignment.gradingType != .pass_fail {
-            prompt.addAction(AlertAction(NSLocalizedString("OK")) { _ in
+            prompt.addAction(AlertAction(NSLocalizedString("OK", comment: "")) { _ in
                 saveGrade(prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
             })
         }
-        prompt.addAction(AlertAction(NSLocalizedString("Cancel"), style: .cancel))
+        prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(prompt, from: controller, options: .modal())
     }
 
     // MARK: Save
 
     func saveGrade(excused: Bool? = nil, _ grade: String? = nil) {
-        guard !(submission.excused == true && grade == NSLocalizedString("Excused")) else { return }
+        guard !(submission.excused == true && grade == NSLocalizedString("Excused", comment: "")) else { return }
         var grade = grade
         if assignment.gradingType == .percent, let percent = grade, !percent.hasSuffix("%") {
             grade = "\(percent)%"
@@ -338,14 +338,14 @@ struct SubmissionGrades: View {
 
     func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(AlertAction(NSLocalizedString("OK"), style: .default))
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
         env.router.show(alert, from: controller, options: .modal())
     }
 }
 
 extension UIAlertController: UITextFieldDelegate {
     @objc public func performOKAlertAction() {
-        if let ok = actions.first(where: { $0.title == NSLocalizedString("OK") }) as? AlertAction {
+        if let ok = actions.first(where: { $0.title == NSLocalizedString("OK", comment: "") }) as? AlertAction {
             ok.handler?(ok)
             AppEnvironment.shared.router.dismiss(self)
         }

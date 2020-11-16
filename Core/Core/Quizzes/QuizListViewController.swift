@@ -52,11 +52,11 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: NSLocalizedString("Quizzes"))
+        setupTitleViewInNavbar(title: NSLocalizedString("Quizzes", comment: ""))
 
-        emptyMessageLabel.text = NSLocalizedString("It looks like quizzes haven’t been created in this space yet.")
-        emptyTitleLabel.text = NSLocalizedString("No Quizzes")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading quizzes. Pull to refresh to try again.")
+        emptyMessageLabel.text = NSLocalizedString("It looks like quizzes haven’t been created in this space yet.", comment: "")
+        emptyTitleLabel.text = NSLocalizedString("No Quizzes", comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading quizzes. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil

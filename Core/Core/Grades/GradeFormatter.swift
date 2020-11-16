@@ -146,7 +146,7 @@ public class GradeFormatter {
             submission.workflowState != .unsubmitted, !submission.needsGrading
         else { return placeholder }
 
-        guard submission.excused != true else { return NSLocalizedString("Excused") }
+        guard submission.excused != true else { return NSLocalizedString("Excused", comment: "") }
 
         return gradeString(for: assignment, submission: submission) ?? placeholder
     }
@@ -165,13 +165,13 @@ public class GradeFormatter {
         default:
             switch grade {
             case "pass":
-                return NSLocalizedString("Pass")
+                return NSLocalizedString("Pass", comment: "")
             case "fail":
-                return NSLocalizedString("Fail")
+                return NSLocalizedString("Fail", comment: "")
             case "complete":
-                return NSLocalizedString("Complete")
+                return NSLocalizedString("Complete", comment: "")
             case "incomplete":
-                return NSLocalizedString("Incomplete")
+                return NSLocalizedString("Incomplete", comment: "")
             default:
                 return grade.flatMap { Double($0) }
                     .flatMap { numberFormatter.string(from: truncate($0)) }

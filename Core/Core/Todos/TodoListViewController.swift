@@ -51,16 +51,16 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        title = NSLocalizedString("To Do")
+        title = NSLocalizedString("To Do", comment: "")
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.titleView = Brand.shared.headerImageView()
 
-        emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.")
-        emptyTitleLabel.text = NSLocalizedString("Well Done!")
-        errorView.messageLabel.text = NSLocalizedString("There was an error loading items to do. Pull to refresh to try again.")
+        emptyDescLabel.text = NSLocalizedString("Your to do list is empty. Time to recharge.", comment: "")
+        emptyTitleLabel.text = NSLocalizedString("Well Done!", comment: "")
+        errorView.messageLabel.text = NSLocalizedString("There was an error loading items to do. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu")
+        profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", comment: "")
 
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = CircleRefreshControl()
@@ -127,7 +127,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let ignore = UIContextualAction(style: .destructive, title: NSLocalizedString("Done")) { [weak self] _, _, done in
+        let ignore = UIContextualAction(style: .destructive, title: NSLocalizedString("Done", comment: "")) { [weak self] _, _, done in
             self?.ignoreTodo(at: indexPath)
             done(true)
         }

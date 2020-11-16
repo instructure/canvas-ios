@@ -51,7 +51,7 @@ class TeacherTabBarController: UITabBarController {
             ]
         }
         split.masterNavigationController?.delegate = split
-        split.tabBarItem.title = NSLocalizedString("Courses")
+        split.tabBarItem.title = NSLocalizedString("Courses", comment: "")
         split.tabBarItem.image = .coursesTab
         split.tabBarItem.selectedImage = .coursesTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
@@ -61,7 +61,7 @@ class TeacherTabBarController: UITabBarController {
 
     func toDoTab() -> UIViewController {
         let todo = UINavigationController(rootViewController: TodoListViewController.create())
-        todo.tabBarItem.title = NSLocalizedString("To Do")
+        todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"

@@ -30,7 +30,7 @@ struct AssigmentAssigneeList: View {
 
     @Binding var selection: [Assignee]
 
-    let everyone = NSLocalizedString("Everyone")
+    let everyone = NSLocalizedString("Everyone", comment: "")
     @State var search: String = ""
 
     var isEveryoneMatching: Bool {
@@ -53,7 +53,7 @@ struct AssigmentAssigneeList: View {
         GeometryReader { geometry in VStack(spacing: 0) {
             SearchBarView(
                 text: Binding(get: { search }, set: { updateSearch($0) }),
-                placeholder: NSLocalizedString("Search")
+                placeholder: NSLocalizedString("Search", comment: "")
             )
             ScrollView {
                 if isEmpty {

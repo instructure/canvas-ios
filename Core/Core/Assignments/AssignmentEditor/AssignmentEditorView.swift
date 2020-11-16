@@ -93,7 +93,7 @@ public struct AssignmentEditorView: View {
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
             EditorSection(label: Text("Title", bundle: .core)) {
-                TextField(NSLocalizedString("Add Title"), text: $name)
+                TextField(NSLocalizedString("Add Title", comment: ""), text: $name)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("AssignmentEditor.titleField")
@@ -101,7 +101,7 @@ public struct AssignmentEditorView: View {
 
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
-                    placeholder: NSLocalizedString("Add description"),
+                    placeholder: NSLocalizedString("Add description", comment: ""),
                     html: $description,
                     context: .course(courseID),
                     uploadTo: .context(.course(courseID)),
@@ -128,7 +128,7 @@ public struct AssignmentEditorView: View {
                 ButtonRow(action: {
                     let options = GradingType.allCases
                     self.env.router.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Display Grade as"),
+                        title: NSLocalizedString("Display Grade as", comment: ""),
                         sections: [ ItemPickerSection(items: options.map {
                             ItemPickerItem(title: $0.string)
                         }), ],
