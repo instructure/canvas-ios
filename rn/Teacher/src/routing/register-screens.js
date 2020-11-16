@@ -44,7 +44,6 @@ import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import Filter from '../modules/filter/Filter'
-import ToDoList from '../modules/to-do/list/ToDoList'
 import PickerPage from '../common/components/PickerPage'
 import Dashboard from '../modules/dashboard/Dashboard'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
@@ -112,7 +111,6 @@ export function registerScreens (store: Store): void {
 
   registerScreen('/wrong-app', null, store)
   registerScreen('/filter', Filter, store)
-  registerScreen('/to-do', ToDoList, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/pages', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/:context/:contextID/pages/new', null, store)
   registerScreen('/:context/:contextID/pages/:url', null, store, { deepLink: true })

@@ -25,16 +25,18 @@ class TodoListViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.app = .teacher
         api.mock(controller.colors, value: APICustomColors(custom_colors: [
             "course_1": "#f00",
             "group_1": "#0f0",
         ]))
-        api.mock(controller.courses, value: [.make(course_code: "Code")])
-        api.mock(controller.groups, value: [.make(name: "Group")])
+        api.mock(controller.courses, value: [.make()])
+        api.mock(controller.groups, value: [.make()])
         api.mock(controller.todos, value: [
-            .make(assignment: .make(id: "1", due_at: Date()), course_id: "1", group_id: nil),
-            .make(assignment: .make(id: "2", due_at: Date().add(.day, number: 1)), course_id: nil, group_id: "1"),
-            .make(assignment: .make(id: "3", due_at: nil)),
+            .make(assignment: .make(due_at: Date(), id: "1"), course_id: "1", group_id: nil),
+            .make(assignment: .make(due_at: Date().add(.day, number: 1), id: "2"), course_id: nil, group_id: "1"),
+            .make(assignment: .make(due_at: Date().add(.day, number: 2), id: "3")),
+            .make(assignment: .make(due_at: nil, id: "4"), needs_grading_count: 2, type: .grading),
         ])
     }
 
@@ -43,23 +45,29 @@ class TodoListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(navigation.navigationBar.barTintColor, Brand.shared.navBackground)
-        XCTAssertEqual(controller.view.backgroundColor, .named(.backgroundLightest))
-        XCTAssertEqual(controller.tableView.backgroundColor, .named(.backgroundLightest))
+        XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
+        XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
         var cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#f00"))
-        XCTAssertEqual(cell?.contextLabel.text, "Code")
+        XCTAssertEqual(cell?.contextLabel.text, "Course One")
         cell = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? TodoListCell
         XCTAssertEqual(cell?.contextLabel.textColor, UIColor(hexString: "#0f0"))
-        XCTAssertEqual(cell?.contextLabel.text, "Group")
+        XCTAssertEqual(cell?.contextLabel.text, "Group One")
     }
 
     func testSelect() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssert(router.lastRoutedTo(.parse("https://canvas.instructure.com/courses/1/assignments/1")))
+        XCTAssert(router.lastRoutedTo("/courses/1/assignments/1"))
+
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 3, section: 0))
+        XCTAssert(router.lastRoutedTo("/courses/1/assignments/4/submissions/speedgrader"))
+
+        _ = controller.profileButton.target?.perform(controller.profileButton.action)
+        XCTAssert(router.lastRoutedTo("/profile"))
     }
 
     func testIgnore() {
@@ -89,6 +97,6 @@ class TodoListViewControllerTests: CoreTestCase {
         api.mock(controller.todos, error: NSError.instructureError("Break it"))
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual((router.presented as? UIAlertController)?.message, "Break it")
+        XCTAssertEqual(controller.errorView.isHidden, false)
     }
 }

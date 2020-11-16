@@ -593,6 +593,7 @@
 		7DBF9235226975B100710D0F /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; };
 		7DBF9236226975B100710D0F /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C96482E211E2F1A002C3255 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DC23092213D710000318ED0 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */; };
+		7DC35305255B316C00B36CD3 /* TodoListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35304255B316C00B36CD3 /* TodoListViewControllerTests.swift */; };
 		7DC3531B255BA03800B36CD3 /* DashboardConferenceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC3531A255BA03800B36CD3 /* DashboardConferenceSection.swift */; };
 		7DC3531E255BA04F00B36CD3 /* DashboardInviteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC3531D255BA04F00B36CD3 /* DashboardInviteSection.swift */; };
 		7DC35321255BA06900B36CD3 /* DashboardAnnouncementSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */; };
@@ -1488,6 +1489,7 @@
 		7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
 		7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalToolLaunchPlacementTests.swift; sourceTree = "<group>"; };
 		7DC23091213D710000318ED0 /* UIImageViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensionsTests.swift; sourceTree = "<group>"; };
+		7DC35304255B316C00B36CD3 /* TodoListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListViewControllerTests.swift; sourceTree = "<group>"; };
 		7DC3531A255BA03800B36CD3 /* DashboardConferenceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferenceSection.swift; sourceTree = "<group>"; };
 		7DC3531D255BA04F00B36CD3 /* DashboardInviteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInviteSection.swift; sourceTree = "<group>"; };
 		7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAnnouncementSection.swift; sourceTree = "<group>"; };
@@ -2879,6 +2881,7 @@
 			isa = PBXGroup;
 			children = (
 				7D57629F23849D46001F980D /* APITodoTests.swift */,
+				7DC35304255B316C00B36CD3 /* TodoListViewControllerTests.swift */,
 				7DE9497F2385E08000B27F93 /* TodoTests.swift */,
 			);
 			path = Todos;
@@ -3240,20 +3243,12 @@
 		7DA667F023835C500062F7B9 /* Todos */ = {
 			isa = PBXGroup;
 			children = (
-				7DA667F323835F860062F7B9 /* TodoList */,
 				7D6C8C6C22EFA0D400E5ADD8 /* APITodo.swift */,
 				7DA667EE23834D150062F7B9 /* Todo.swift */,
-			);
-			path = Todos;
-			sourceTree = "<group>";
-		};
-		7DA667F323835F860062F7B9 /* TodoList */ = {
-			isa = PBXGroup;
-			children = (
 				7DA667F423835FF60062F7B9 /* TodoListViewController.storyboard */,
 				7DA667F6238360930062F7B9 /* TodoListViewController.swift */,
 			);
-			path = TodoList;
+			path = Todos;
 			sourceTree = "<group>";
 		};
 		7DAFBE6E2318567300E9A37D /* ErrorReports */ = {
@@ -4291,6 +4286,7 @@
 				7D5762A023849D46001F980D /* APITodoTests.swift in Sources */,
 				B1571E69230756D2009CAA58 /* APIFeatureFlagTests.swift in Sources */,
 				7D88EA2A23A96EA600D5F8FD /* AvatarGroupViewTests.swift in Sources */,
+				7DC35305255B316C00B36CD3 /* TodoListViewControllerTests.swift in Sources */,
 				7D4C3D59222D9E41001B1198 /* LTIToolsTests.swift in Sources */,
 				3BE2C76F219335FA004B8E5E /* ColoredNavViewProtocol.swift in Sources */,
 				7DFB2CF921C978D40077DEEE /* GetCustomColorsTests.swift in Sources */,

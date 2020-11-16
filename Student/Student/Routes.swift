@@ -377,8 +377,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ErrorReportViewController.create(type: .feature)
     },
 
-    "/to-do": nil,
-
     "/native-route/*route": nativeFactory,
     "/native-route-master/*route": nativeFactory,
 ]))

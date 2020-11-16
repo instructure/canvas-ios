@@ -73,7 +73,6 @@ const images = {
   attachment80: require('./attachment-80.png'),
   smallMail: require('./mail-small.png'),
   share: require('./share.png'),
-  relax: require('./relax.png'),
   invisible: require('./invisible.png'),
   off: require('./off.png'),
 }

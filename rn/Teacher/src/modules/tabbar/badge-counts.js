@@ -19,7 +19,6 @@
 // @flow
 import { NativeModules } from 'react-native'
 import canvas from '../../canvas-api'
-import { isTeacher } from '../app'
 
 export let interval: ?any
 
@@ -30,11 +29,6 @@ export async function updateBadgeCounts () {
     const unread = canvas.getUnreadConversationsCount().then(({ data: unread }) =>
       TabBarBadgeCounts.updateUnreadMessageCount(+unread.unread_count || 0)
     )
-    if (isTeacher()) {
-      await canvas.getToDoCount().then(({ data: todo }) =>
-        TabBarBadgeCounts.updateTodoListCount(+todo.needs_grading_count)
-      )
-    }
     await unread
   } catch (e) {}
 }

@@ -41,23 +41,12 @@ class TodoTests: CoreTestCase {
         XCTAssertEqual(todo.type, TodoType.submitting)
     }
 
-    func testSubtitleText() {
-        let todo = Todo.make(from: .make(type: .submitting, assignment: .make(due_at: nil)))
-        let date = DateComponents(calendar: .current, timeZone: .current, year: 2019, month: 12, day: 25, hour: 8).date!
-        XCTAssertEqual(todo.subtitleText, "No Due Date")
-        todo.assignment.dueAt = date
-        XCTAssertEqual(todo.subtitleText, "Due Wednesday, December 25, 2019 at 8:00 AM")
-        todo.type = .grading
-        XCTAssertEqual(todo.subtitleText, "0 need grading")
-        todo.needsGradingCount = 1
-        XCTAssertEqual(todo.subtitleText, "1 needs grading")
-    }
-
     func testCourse() {
         let todo = Todo.make(from: .make(course_id: "1", group_id: nil))
         XCTAssertNil(todo.course)
         XCTAssertNil(todo.group)
         Course.make()
+        XCTAssertNotNil(todo.getCourse())
         XCTAssertNotNil(todo.course)
     }
 
@@ -66,6 +55,7 @@ class TodoTests: CoreTestCase {
         XCTAssertNil(todo.course)
         XCTAssertNil(todo.group)
         Group.make()
+        XCTAssertNotNil(todo.getGroup())
         XCTAssertNotNil(todo.group)
     }
 }

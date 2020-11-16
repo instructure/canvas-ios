@@ -30,6 +30,8 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
     var initialIndex: Int?
     let userID: String?
 
+    var keepIDs: [String] = []
+
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID, include: [ .overrides ])) { [weak self] in
         self?.update()
     }
@@ -68,6 +70,13 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
         if !submissions.useCase.shuffled, assignment.first?.anonymizeStudents == true {
             submissions.useCase.shuffled = true
             submissions.setScope(submissions.useCase.scope)
+        }
+
+        // Make sure a submission can't disappear as it gets graded.
+        let ids = submissions.map { $0.userID }
+        if keepIDs != ids {
+            keepIDs = ids
+            submissions.setScope(submissions.useCase.scopeKeepingIDs(ids))
         }
 
         if initialIndex == nil, let current = findCurrentIndex() {

@@ -63,6 +63,7 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Notifications", comment: "Notifications tab title")
+        navigationItem.titleView = Brand.shared.headerImageView()
         view.backgroundColor = .backgroundLightest
         setupTableView()
         emptyStateHeader.text = NSLocalizedString("No Notifications", comment: "")

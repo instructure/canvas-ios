@@ -92,6 +92,8 @@ class StudentTabBarController: UITabBarController {
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
+        TabBarBadgeCounts.todoItem = todo.tabBarItem
+        todo.viewControllers.first?.loadViewIfNeeded() // start fetching todos immediately
         return todo
     }
 

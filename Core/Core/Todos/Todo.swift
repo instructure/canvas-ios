@@ -19,23 +19,16 @@
 import Foundation
 import CoreData
 
-public final class Todo: NSManagedObject, WriteableModel {
-    public typealias JSON = APITodo
-
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .short
-        formatter.doesRelativeDateFormatting = true
-        return formatter
-    }()
-
+public final class Todo: NSManagedObject {
     @NSManaged public var assignment: Assignment
     @NSManaged var contextRaw: String
+    @NSManaged public var course: Course?
+    @NSManaged public var group: Group?
     @NSManaged public var id: String
     @NSManaged public var ignoreURL: URL?
     @NSManaged public var ignorePermanentlyURL: URL?
     @NSManaged public var needsGradingCount: UInt
+    @NSManaged public var position: Int
     @NSManaged var typeRaw: String
 
     public var context: Context {
@@ -43,22 +36,30 @@ public final class Todo: NSManagedObject, WriteableModel {
         set { contextRaw = newValue.canvasContextID }
     }
 
-    public var course: Course? {
-        guard context.contextType == .course else { return nil }
-        return managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id)
-    }
-
-    public var group: Group? {
-       guard context.contextType == .group else { return nil }
-       return managedObjectContext?.first(where: #keyPath(Group.id), equals: context.id)
-    }
+    public var contextColor: UIColor? { getCourse()?.color ?? getGroup()?.color }
+    public var contextName: String? { getCourse()?.name ?? getGroup()?.name }
 
     public var type: TodoType {
         get { return TodoType(rawValue: typeRaw) ?? .submitting }
         set { typeRaw = newValue.rawValue }
     }
 
-    public static func save(_ item: APITodo, in context: NSManagedObjectContext) -> Todo {
+    func getCourse() -> Course? {
+        if context.contextType == .course, course == nil {
+            course = managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id)
+        }
+        return course
+    }
+
+    func getGroup() -> Group? {
+        if context.contextType == .group, group == nil {
+            group = managedObjectContext?.first(where: #keyPath(Group.id), equals: context.id)
+        }
+        return group
+    }
+
+    @discardableResult
+    public static func save(_ item: APITodo, position: Int, in context: NSManagedObjectContext) -> Todo {
         let id = item.assignment.id.value
         let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: id) ?? context.insert()
         assignment.update(fromApiModel: item.assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
@@ -67,40 +68,65 @@ public final class Todo: NSManagedObject, WriteableModel {
         model.assignment = assignment
         if let id = item.course_id?.value {
             model.context = Context(.course, id: id)
+            model.course = context.first(where: #keyPath(Course.id), equals: id)
         } else if let id = item.group_id?.value {
             model.context = Context(.group, id: id)
+            model.group = context.first(where: #keyPath(Group.id), equals: id)
         }
         model.id = id
         model.ignoreURL = item.ignore
         model.ignorePermanentlyURL = item.ignore_permanently
         model.needsGradingCount = item.needs_grading_count ?? 0
+        model.position = position
         model.type = item.type
         return model
     }
 
-    public var subtitleText: String {
-        switch type {
-        case .submitting:
-            guard let dueAt = assignment.dueAt else {
-                return NSLocalizedString("No Due Date", bundle: .core, comment: "")
-            }
-            let format = NSLocalizedString("Due %@", bundle: .core, comment: "")
-            let dueText = Todo.dateFormatter.string(from: dueAt)
-            return String.localizedStringWithFormat(format, dueText)
-        case .grading:
-            let format = NSLocalizedString("d_needs_grading", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, needsGradingCount)
+    public var dueText: String {
+        guard let dueAt = assignment.dueAt else {
+            return NSLocalizedString("No Due Date")
         }
+        let format = NSLocalizedString("Due %@")
+        return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+    }
+
+    public var needsGradingText: String {
+        let format = NSLocalizedString("d_needs_grading")
+        return String.localizedStringWithFormat(format, needsGradingCount).localizedUppercase
     }
 }
 
 class GetTodos: CollectionUseCase {
     typealias Model = Todo
 
-    let cacheKey: String? = nil
-    let request = GetTodosRequest()
-    let scope = Scope(predicate: .all, order: [
-        NSSortDescriptor(key: #keyPath(Todo.assignment.dueAtSortNilsAtBottom), ascending: true),
-        NSSortDescriptor(key: #keyPath(Todo.assignment.name), ascending: true, selector: #selector(NSString.localizedStandardCompare)),
-    ])
+    var cacheKey: String? { nil }
+    var request: GetTodosRequest { GetTodosRequest() }
+    var scope: Scope { Scope(predicate: .all, orderBy: #keyPath(Todo.position), ascending: true) }
+
+    func write(response: [APITodo]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let items = response else { return }
+        for (index, item) in items.enumerated() {
+            Todo.save(item, position: index, in: client)
+        }
+    }
+}
+
+class DeleteTodo: DeleteUseCase {
+    typealias Model = Todo
+    typealias Response = APINoContent
+
+    let id: String
+    let ignoreURL: URL
+    init(id: String, ignoreURL: URL) {
+        self.id = id
+        self.ignoreURL = ignoreURL
+    }
+
+    var cacheKey: String? { nil }
+    var request: DeleteTodoRequest { DeleteTodoRequest(ignoreURL: ignoreURL) }
+    var scope: Scope { .where(#keyPath(Todo.id), equals: id) }
+}
+
+public enum TodoType: String, Codable {
+    case grading, submitting
 }
