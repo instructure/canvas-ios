@@ -34,7 +34,7 @@ class APIQuizTests: XCTestCase {
     }
 
     func testGetQuizzesRequest() {
-        XCTAssertEqual(GetQuizzesRequest(courseID: "7").path, "courses/7/quizzes?per_page=100")
+        XCTAssertEqual(GetQuizzesRequest(courseID: "7").path, "courses/7/all_quizzes?per_page=100")
     }
 
     func testGetQuizRequest() {
