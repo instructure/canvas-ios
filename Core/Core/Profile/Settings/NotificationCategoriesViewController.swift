@@ -108,7 +108,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         let conferences = NSLocalizedString("Conferences", bundle: .core, comment: "")
         let alerts = NSLocalizedString("Alerts", bundle: .core, comment: "")
 
-        var map =  [
+        var map = [
             "all_submissions": (0, NSLocalizedString("All Submissions", bundle: .core, comment: ""), courseActivities),
             "announcement": (0, NSLocalizedString("Announcement", bundle: .core, comment: ""), courseActivities),
             "announcement_created_by_you": (0, NSLocalizedString("Announcement Created By You", bundle: .core, comment: ""), courseActivities),
@@ -140,8 +140,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
             "late_grading": (0, NSLocalizedString("Late Grading", bundle: .core, comment: ""), courseActivities),
             "membership_update": (4, NSLocalizedString("Membership Update", bundle: .core, comment: ""), groups),
             "other": (5, NSLocalizedString("Administrative Notifications", bundle: .core, comment: ""), alerts),
-        ]){ (_, new) in new }
-
+        ]) { (_, new) in new }
         return map
     }()
 }
