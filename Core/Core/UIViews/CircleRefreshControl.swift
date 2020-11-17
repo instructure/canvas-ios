@@ -20,6 +20,7 @@ import UIKit
 import SwiftUI
 
 public class CircleRefreshControl: UIRefreshControl {
+    var action: ((@escaping () -> Void) -> Void)?
     var offsetObservation: NSKeyValueObservation?
     let progressView = CircleProgressView()
     let snappingPoint: CGFloat = -64
@@ -76,6 +77,7 @@ public class CircleRefreshControl: UIRefreshControl {
             if scrollView.isDragging, y < snappingPoint {
                 beginRefreshing()
                 sendActions(for: .valueChanged)
+                action?({ [weak self] in self?.endRefreshing() })
             } else {
                 let progress = min(1, max(0, y / snappingPoint))
                 progressView.alpha = min(1, progress * 2)
@@ -118,44 +120,6 @@ public class CircleRefreshControl: UIRefreshControl {
                 return
             }
             parent = parent?.superview
-        }
-    }
-
-    public struct AsView: UIViewRepresentable {
-        typealias Callback = (_ control: CircleRefreshControl) -> Void
-        let action: Callback
-
-        public func makeUIView(context: Self.Context) -> CircleRefreshControl {
-            let control = CircleRefreshControl()
-            control.selfAdding = true
-            context.coordinator.bindToControl(control)
-            return control
-        }
-
-        public func updateUIView(_ uiView: CircleRefreshControl, context: Self.Context) {
-        }
-
-        public func makeCoordinator() -> Coordinator {
-            Coordinator(action: action)
-        }
-
-        public class Coordinator: NSObject {
-            let action: AsView.Callback
-            weak var control: CircleRefreshControl?
-
-            init(action: @escaping Callback) {
-                self.action = action
-            }
-
-            func bindToControl(_ control: CircleRefreshControl) {
-                control.addTarget(self, action: #selector(controlRefreshed), for: .primaryActionTriggered)
-                self.control = control
-            }
-
-            @objc func controlRefreshed() {
-                guard let control = control else { return }
-                action(control)
-            }
         }
     }
 }

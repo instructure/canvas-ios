@@ -257,21 +257,20 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         publishedView.isHidden = env.app != .teacher || isAnnouncement || showRepliesToEntryID != nil
 
         if env.app == .teacher, let courseID = courseID, let assignmentID = topic.first?.assignmentID {
-            if dueSection.isHidden {
-                let controller = AssignmentDatesViewController.create(
-                    courseID: courseID,
-                    assignmentID: assignmentID
-                )
+            if dueSection.isHidden, let assignment = topic.first?.assignment {
+                let controller = CoreHostingController(AssignmentDateSection(assignment: assignment))
+                controller.view.backgroundColor = nil
                 embed(controller, in: dueSection)
                 dueSection.isHidden = false
             }
 
             if topic.first?.groupTopicChildren == nil, submissionsSection.isHidden {
-                let controller = SubmissionBreakdownViewController.create(
+                let controller = CoreHostingController(SubmissionBreakdown(
                     courseID: courseID,
                     assignmentID: assignmentID,
                     submissionTypes: [.discussion_topic]
-                )
+                ))
+                controller.view.backgroundColor = nil
                 embed(controller, in: submissionsSection)
                 submissionsSection.isHidden = false
             }

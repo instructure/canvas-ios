@@ -51,6 +51,22 @@ public struct WebView: UIViewRepresentable {
         return modified
     }
 
+    public func frameToFit() -> some View {
+        FrameToFit(view: self)
+    }
+
+    struct FrameToFit: View {
+        let view: WebView
+
+        @State var height: CGFloat = 0
+
+        var body: some View {
+            view
+                .onChangeSize { height = $0 }
+                .frame(height: height)
+        }
+    }
+
     public func makeUIView(context: Self.Context) -> CoreWebView {
         CoreWebView()
     }

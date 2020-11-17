@@ -115,12 +115,11 @@ public struct CourseListView: View {
             self.list {
                 self.section {
                     ZStack {
-                        CircleRefreshControl.AsView { control in
-                            control.beginRefreshing()
-                            self.allCourses.refresh(force: true) { _ in
-                                control.endRefreshing()
+                        CircleRefresh { endRefreshing in
+                            allCourses.refresh(force: true) { _ in
+                                endRefreshing()
                             }
-                        }.frame(height: 0)
+                        }
                         SearchBarView(text: self.$props.filter, placeholder: NSLocalizedString("Search", comment: ""))
                             .testID(info: ["filter": self.props.filter])
                     }.listRowInsets(EdgeInsets())

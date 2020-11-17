@@ -19,7 +19,7 @@
 import SwiftUI
 
 public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>> {
-    public var navigationBarStyle = UINavigationBar.Style.modal
+    public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
     var testTree: TestTree?
 
     public init(_ rootView: Content) {
@@ -85,9 +85,31 @@ extension UINavigationBar.Style: PreferenceKey {
     }
 }
 
+struct TitleSubtitleModifier: ViewModifier {
+    let title: String
+    let subtitle: String?
+
+    @Environment(\.viewController) var controller
+
+    func body(content: Content) -> some View {
+        let view = controller.navigationItem.titleView as? TitleSubtitleView ?? {
+            let view = TitleSubtitleView.create()
+            controller.navigationItem.titleView = view
+            return view
+        }()
+        view.title = title
+        view.subtitle = subtitle
+        return content.navigationBarTitle(Text(title))
+    }
+}
+
 extension View {
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         preference(key: UINavigationBar.Style.self, value: style)
+    }
+
+    public func navigationTitle(_ title: String, subtitle: String?) -> some View {
+        modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
     }
 }
 
