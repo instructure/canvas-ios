@@ -280,25 +280,15 @@ public class ProfileViewController: UIViewController {
     public func showHelpMenu(from cell: UITableViewCell) {
         guard let root = helpLinks.first, helpLinks.count > 1 else { return }
 
-        let helpMenu = UIAlertController(title: root.text, message: nil, preferredStyle: .actionSheet)
-        for link in helpLinks.dropFirst() {
-            helpMenu.addAction(AlertAction(link.text, style: .default) { [weak self] _ in
-                switch link.id {
-                case "instructor_question":
-                    self?.route(to: "/conversations/compose?instructorQuestion=1&canAddRecipients=", options: .modal(.formSheet, embedInNav: true))
-                case "report_a_problem":
-                    self?.route(to: "/support/problem", options: .modal(.formSheet, embedInNav: true))
-                default:
-                    guard let url = link.url else { return }
-                    self?.route(to: url.absoluteString, options: .modal(embedInNav: true))
-                }
-            })
-        }
-        helpMenu.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-
-        helpMenu.popoverPresentationController?.sourceView = cell
-        helpMenu.popoverPresentationController?.sourceRect = CGRect(origin: CGPoint(x: cell.bounds.maxX, y: cell.bounds.midY), size: .zero)
-        env.router.show(helpMenu, from: self, options: .modal())
+        let helpView = HelpView(helpLinks: Array(helpLinks.dropFirst()), tapAction: { [weak self] helpLink in
+            guard let route = helpLink.route, let self = self else { return }
+            self.env.router.dismiss(self) {
+                self.route(to: route.path, options: route.options)
+            }
+        })
+        let helpViewController = CoreHostingController(helpView)
+        helpViewController.title = root.text
+        env.router.show(helpViewController, from: self, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
     }
 }
 
