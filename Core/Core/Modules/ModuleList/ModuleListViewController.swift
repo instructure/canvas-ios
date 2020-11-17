@@ -145,8 +145,8 @@ public class ModuleListViewController: UIViewController, ColoredNavViewProtocol,
 
     func scrollToModule() {
         if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }), section < tableView.numberOfSections {
-            let rect = tableView.rect(forSection: section)
-            tableView.setContentOffset(CGPoint(x: 0, y: rect.minY), animated: true)
+            let indexPath = IndexPath(row: 0, section: section)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             self.moduleID = nil
         }
     }
