@@ -353,6 +353,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             view: []
         ))
         api.mock(controller.topic, value: .make(
+            assignment: .make(),
             assignment_id: 1,
             group_category_id: 7,
             group_topic_children: [ .make(id: "2", group_id: "1") ],
