@@ -812,6 +812,7 @@
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
@@ -1848,6 +1849,7 @@
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
@@ -3297,6 +3299,7 @@
 		7DBED015232FDD8000392F3C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CFB50C49256432D400E4AD72 /* Help */,
 				9F4D65B02396A3C200660038 /* Settings */,
 				7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */,
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
@@ -3758,6 +3761,22 @@
 				B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */,
 			);
 			path = ModuleItems;
+			sourceTree = "<group>";
+		};
+		CFB50C49256432D400E4AD72 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				CFB50C4A256432E300E4AD72 /* Model */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		CFB50C4A256432E300E4AD72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CFC01CC02563FE7300178E98 /* Help */ = {
@@ -4316,6 +4335,7 @@
 				7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
+				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
