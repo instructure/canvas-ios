@@ -51,7 +51,7 @@ struct AssigmentAssigneeList: View {
 
     var body: some View {
         GeometryReader { geometry in VStack(spacing: 0) {
-            SearchBarView(
+            SearchBar(
                 text: Binding(get: { search }, set: { updateSearch($0) }),
                 placeholder: NSLocalizedString("Search", comment: "")
             )

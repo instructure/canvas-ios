@@ -25,6 +25,8 @@ class DashboardCourseSection: DashboardSection, DashboardSectionDelegate {
     let shadowMargin: CGFloat = 5
     let cardMinWidth: CGFloat = 150
 
+    var needsRefresh = false
+
     lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
         self?.controller?.update()
     }
@@ -38,15 +40,36 @@ class DashboardCourseSection: DashboardSection, DashboardSectionDelegate {
     override init(_ controller: DashboardCardViewController) {
         super.init(controller)
         NotificationCenter.default.addObserver(self, selector: #selector(showGradesChanged(_:)), name: .showGradesOnDashboardDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesChanged(_:)), name: .favoritesDidChange, object: nil)
     }
 
     @objc func showGradesChanged(_ notification: Notification) {
         controller?.update()
     }
 
+    @objc func favoritesChanged(_ notification: Notification) {
+        if cards.pending {
+            needsRefresh = true
+        } else {
+            refreshCards()
+        }
+    }
+
+    func refreshCards() {
+        needsRefresh = false
+        cards.refresh(force: true) { [weak self] _ in
+            if self?.needsRefresh == true {
+                self?.refreshCards()
+            }
+        }
+    }
+
     func refresh(force: Bool) {
         cards.refresh(force: force) { [weak self] _ in
             self?.controller?.refreshControl.endRefreshing()
+            if self?.needsRefresh == true {
+                self?.refreshCards()
+            }
         }
         courses.exhaust(force: force)
         settings.refresh(force: force)
