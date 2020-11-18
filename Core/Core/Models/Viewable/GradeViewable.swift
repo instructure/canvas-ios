@@ -26,7 +26,7 @@ public protocol GradeViewable {
 }
 
 extension GradeViewable {
-    public var pointsPossibleText: String? {
+    public var pointsPossibleText: String {
         guard let points = pointsPossible else {
             return NSLocalizedString("Not Graded", bundle: .core, comment: "")
         }
