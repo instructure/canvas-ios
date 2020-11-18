@@ -25,7 +25,7 @@ struct AssignmentDateSection: View {
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: route, label: {
+        Button(action: route, label: { HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 4) {
                     Icon.calendarClockLine
@@ -73,7 +73,7 @@ struct AssignmentDateSection: View {
                 .padding(16)
             Spacer()
             DisclosureIndicator().padding(.trailing, 16)
-        })
+        } })
             .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))
     }
 

@@ -93,6 +93,7 @@ public struct AssignmentDetailsView: View {
                     Text("Unpublished", bundle: .core)
                         .font(.medium16).foregroundColor(.textDark)
                 }
+                Spacer()
             }
                 .padding(.top, 2)
         }
