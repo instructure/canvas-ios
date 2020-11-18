@@ -77,10 +77,10 @@ public struct CircleProgress: View {
 struct CircleProgress_Previews: PreviewProvider {
     @ViewBuilder
     static var previews: some View {
-        CircleProgress(progress: nil)
-        CircleProgress(progress: 0.25)
-        CircleProgress(progress: 0.5)
-        CircleProgress(progress: 0.9)
+        CircleProgress(progress: nil).previewLayout(.sizeThatFits)
+        CircleProgress(progress: 0.25).previewLayout(.sizeThatFits)
+        CircleProgress(progress: 0.5).previewLayout(.sizeThatFits)
+        CircleProgress(progress: 0.9).previewLayout(.sizeThatFits)
     }
 }
 #endif

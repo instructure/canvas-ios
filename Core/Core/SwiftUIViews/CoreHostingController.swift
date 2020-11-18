@@ -73,7 +73,7 @@ extension EnvironmentValues {
     }
 
     public var viewController: UIViewController {
-        get { self[UIViewController.self].value ?? AppEnvironment.shared.topViewController! }
+        get { self[UIViewController.self].value ?? AppEnvironment.shared.topViewController ?? UIViewController() }
         set { self[UIViewController.self] = WeakReference(newValue) }
     }
 }
