@@ -22,18 +22,22 @@ struct HelpItemView: View {
     var body: some View {
         Button(action: {
             tapAction(model)
-        }) {
+        }, label: {
             VStack(alignment: .leading, spacing: 5) {
                 Text(model.text)
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
+                    .testID()
                 if let subtext = model.subtext {
                     Text(subtext)
                         .font(.subheadline)
                         .foregroundColor(.textDark)
+                        .testID()
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
-        }.frame(maxWidth: .infinity)
+        })
+        .frame(maxWidth: .infinity)
+        .testID(.cell)
     }
     private let model: HelpLink
     private let tapAction: (HelpLink) -> Void
