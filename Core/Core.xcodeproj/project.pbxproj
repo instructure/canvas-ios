@@ -807,7 +807,12 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
+		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
+		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
+		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
@@ -1838,7 +1843,12 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
+		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
+		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
+		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
@@ -3296,6 +3306,7 @@
 		7DBED015232FDD8000392F3C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CFB50C49256432D400E4AD72 /* Help */,
 				9F4D65B02396A3C200660038 /* Settings */,
 				7DBED03523344EDE00392F3C /* ExternalToolLaunchPlacementTests.swift */,
 				7DBED016232FDDB700392F3C /* GetAccountHelpLinksTests.swift */,
@@ -3535,13 +3546,12 @@
 		9FAA58FE223A987600FEC3F8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CFC01CC02563FE7300178E98 /* Help */,
 				7D9E80C0233C61DA003C608B /* Settings */,
 				7DBED00D232C252200392F3C /* APIHelpLinks.swift */,
 				9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */,
 				7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */,
-				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
 				7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */,
-				7DBED011232C32CD00392F3C /* HelpLink.swift */,
 				7DBED00B232C031C00392F3C /* ProfileViewController.storyboard */,
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
@@ -3754,6 +3764,67 @@
 				B1487F92243E333200013404 /* ModuleItemDetailsViewControllerTests.swift */,
 			);
 			path = ModuleItems;
+			sourceTree = "<group>";
+		};
+		CFB50C49256432D400E4AD72 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				CFB50C4A256432E300E4AD72 /* Model */,
+				CFB50C4F256439BD00E4AD72 /* View */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		CFB50C4A256432E300E4AD72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFB50C4F256439BD00E4AD72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CFB50C50256439D100E4AD72 /* HelpViewTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFC01CC02563FE7300178E98 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				CFC01CC22563FEC900178E98 /* Model */,
+				CFC01CC12563FE9A00178E98 /* View */,
+				CFC01CC42563FEED00178E98 /* Controller */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		CFC01CC12563FE9A00178E98 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */,
+				CF326B342563D4D3005ABAAA /* HelpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CFC01CC22563FEC900178E98 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DBED011232C32CD00392F3C /* HelpLink.swift */,
+				CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFC01CC42563FEED00178E98 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
@@ -4275,6 +4346,7 @@
 				7D26B84B23A8266800262380 /* ConversationMessageTests.swift in Sources */,
 				3B3467DA2136FFBA00F9BC2E /* APILoginWebTests.swift in Sources */,
 				B1EA5AEE212E656100DABC5F /* GetCoursesTest.swift in Sources */,
+				CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */,
 				7DCF1EBC216BC94E003AF358 /* LatePolicyStatusTests.swift in Sources */,
 				7DC4A555222EF87300FA03DC /* DiscussionEntryTests.swift in Sources */,
 				7DA2610023FC6D5A005D2121 /* SyllabusTests.swift in Sources */,
@@ -4557,6 +4629,7 @@
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
 				7DC7047624ABF6D800CD1C46 /* FolderTests.swift in Sources */,
 				7DD371C122E7B39800C2D0F7 /* GetQuizSubmissionTests.swift in Sources */,
+				CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */,
 				7D8E820723C79B8700A8DA2C /* AddMessageTests.swift in Sources */,
 				7DD4763C23FF21B600AB045C /* CalendarDaysViewControllerTests.swift in Sources */,
 				7D54D6B32464705100409520 /* DiscussionDetailsViewControllerTests.swift in Sources */,
@@ -4690,6 +4763,7 @@
 				7DCA320F2541D43900458651 /* FileViewer.swift in Sources */,
 				7DC35321255BA06900B36CD3 /* DashboardAnnouncementSection.swift in Sources */,
 				3B4D892B2450A8E9004ED120 /* ComposeViewController.swift in Sources */,
+				CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */,
 				7DA2606923F722D9005D2121 /* TTL.swift in Sources */,
 				7DA260D723F72359005D2121 /* EmptyView.swift in Sources */,
 				7DFD5F7C23FF158700D988E0 /* PlannerViewController.swift in Sources */,
@@ -4721,6 +4795,7 @@
 				B1A7848C2441136C001A2B50 /* GetModuleItem.swift in Sources */,
 				7D159CEB242E556100A77A15 /* ModuleItemSubHeaderCell.swift in Sources */,
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
+				CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */,
 				7D531D51254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift in Sources */,
 				7DA260E523F72359005D2121 /* PublishedIconView.swift in Sources */,
 				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
@@ -4917,6 +4992,7 @@
 				7D4C6F37243BE229003C1728 /* GetEnrollments.swift in Sources */,
 				7DCB2E9A247D9D740071F172 /* SubmissionSummary.swift in Sources */,
 				7DA260EC23F7235F005D2121 /* WrongAppLinkView.swift in Sources */,
+				CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */,
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,

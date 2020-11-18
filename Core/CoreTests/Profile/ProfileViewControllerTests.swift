@@ -215,21 +215,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         api.mock(controller.helpLinks, value: .make())
         controller.view.layoutIfNeeded()
         controller.cells.first(where: { $0.id == "help" })?.block(UITableViewCell())
-        let alert = router.presented as? UIAlertController
-        XCTAssertEqual(alert?.title, "Help")
-        XCTAssertEqual(alert?.actions[0].title, "Ask Your Instructor a Question")
-        (alert?.actions[0] as? AlertAction)?.handler?(AlertAction())
-        XCTAssert(router.lastRoutedTo(
-            "/conversations/compose?instructorQuestion=1&canAddRecipients="
-        ))
-        XCTAssertEqual(alert?.actions[1].title, "Search the Canvas Guides")
-        (alert?.actions[1] as? AlertAction)?.handler?(AlertAction())
-        XCTAssert(router.lastRoutedTo(URL(string:
-            "http://community.canvaslms.com/community/answers/guides"
-        )!))
-        XCTAssertEqual(alert?.actions[2].title, "Report a Problem")
-        (alert?.actions[2] as? AlertAction)?.handler?(AlertAction())
-        XCTAssert(router.lastRoutedTo("/support/problem"))
+        XCTAssertEqual(router.presented?.title, "Help")
     }
 
     func testLTI() {
