@@ -28,6 +28,10 @@ line_length:
   ignores_comments: true
 function_body_length: 100
 
+large_tuple:
+  warning: 4
+  error: 4
+
 type_name:
   min_length: 3
   max_length: 50
