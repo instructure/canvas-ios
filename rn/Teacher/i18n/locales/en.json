@@ -89,9 +89,6 @@
   "assignees_required_1b9218fb": {
     "message": "Assignees required"
   },
-  "assignment_details_bc488179": {
-    "message": "Assignment Details"
-  },
   "assignment_group_1a781505": {
     "message": "Assignment Group"
   },
@@ -208,10 +205,6 @@
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
     "message": "{ count, plural,\n    one {# Needs Grading}\n  other {# Need Grading}\n}"
-  },
-  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-    "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}",
-    "description": "Number of assignees without grades."
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -330,9 +323,6 @@
   "excused_cf8792eb": {
     "message": "Excused"
   },
-  "extensions_and_lastextension_f45d68e7": {
-    "message": "{ extensions } and { lastExtension }"
-  },
   "external_tool_c5a6410a": {
     "message": "External Tool"
   },
@@ -347,9 +337,6 @@
   },
   "favorited_courses_84f383f": {
     "message": "Favorited Courses"
-  },
-  "file_types_6fa69505": {
-    "message": "File Types"
   },
   "filter_by_2f4368a8": {
     "message": "Filter by"
@@ -491,9 +478,6 @@
   },
   "latest_f604a75": {
     "message": "Latest"
-  },
-  "launch_external_tool_672c0409": {
-    "message": "Launch External Tool"
   },
   "length_in_minutes_eca69868": {
     "message": "Length in minutes"
@@ -692,9 +676,6 @@
   },
   "please_try_again_5d872e78": {
     "message": "Please try again."
-  },
-  "pointspossible_number_pts_2d9f157d": {
-    "message": "{ pointsPossible, number } pts"
   },
   "practice_quiz_19a8505d": {
     "message": "Practice Quiz"
@@ -900,9 +881,6 @@
   "submission_settings_f57b0cf8": {
     "message": "Submission Settings"
   },
-  "submission_types_af57bf0": {
-    "message": "Submission Types"
-  },
   "submissions_11e96106": {
     "message": "Submissions"
   },
@@ -920,9 +898,6 @@
   },
   "tap_to_view_announcement_6724a5d": {
     "message": "Tap to view announcement"
-  },
-  "tap_to_view_submissions_list_5bfe32f3": {
-    "message": "Tap to view submissions list."
   },
   "teachers_52e2423f": {
     "message": "Teachers"
@@ -980,9 +955,6 @@
   },
   "this_action_can_not_be_undone_eb8a297b": {
     "message": "This action can not be undone."
-  },
-  "this_assignment_doesn_t_have_a_description_e2f37ec3": {
-    "message": "This assignment doesn''t have a description."
   },
   "this_file_is_currently_locked_6dc6635f": {
     "message": "This file is currently locked."
@@ -1076,9 +1048,6 @@
   },
   "video_recording_90d21249": {
     "message": "Video Recording"
-  },
-  "view_all_submissions_915a8b78": {
-    "message": "View all submissions"
   },
   "view_responses_d2874266": {
     "message": "View Responses"
