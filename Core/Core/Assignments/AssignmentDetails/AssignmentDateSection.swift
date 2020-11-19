@@ -31,6 +31,7 @@ struct AssignmentDateSection: View {
                     Icon.calendarClockLine
                     Text("Due", bundle: .core)
                         .font(.medium16)
+                    Spacer()
                 }
                     .foregroundColor(.textDark)
                 if assignment.allDates.count > 1 {
@@ -71,7 +72,6 @@ struct AssignmentDateSection: View {
             }
                 .font(.regular16).foregroundColor(.textDarkest)
                 .padding(16)
-            Spacer()
             DisclosureIndicator().padding(.trailing, 16)
         } })
             .accessibility(hint: Text("Due Dates, Double tap for details.", bundle: .core))

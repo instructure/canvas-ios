@@ -113,11 +113,11 @@ public struct AssignmentDetailsView: View {
                 .multilineTextAlignment(.leading)
         }
         if assignment.isLTIAssignment {
-            Button(action: launchLTITool, label: {
+            Button(action: launchLTITool, label: { HStack {
                 types
                 Spacer()
                 DisclosureIndicator().padding(.trailing, 16)
-            })
+            } })
         } else {
             types
         }
@@ -141,6 +141,7 @@ public struct AssignmentDetailsView: View {
                 HStack {
                     Text("Help your students with this assignment by adding instructions.", bundle: .core)
                         .font(.regular14).foregroundColor(.textDark)
+                        .fixedSize(horizontal: false, vertical: true)
                     Spacer()
                 }
                     .padding(.horizontal, 12).padding(.vertical, 8)
