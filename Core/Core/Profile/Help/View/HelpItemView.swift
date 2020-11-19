@@ -28,11 +28,13 @@ struct HelpItemView: View {
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
                     .testID()
+                    .fixedSize(horizontal: false, vertical: true) // iOS 13.0 multi line support
                 if let subtext = model.subtext {
                     Text(subtext)
                         .font(.subheadline)
                         .foregroundColor(.textDark)
                         .testID()
+                        .fixedSize(horizontal: false, vertical: true) // iOS 13.0 multi line support
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
         })
