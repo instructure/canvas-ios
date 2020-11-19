@@ -8,14 +8,14 @@ require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_po
 
 def firebase_pods
   pod 'GoogleUtilities', '~> 6.0'
-  pod 'Firebase/Crashlytics', '~> 6.20.0'
-  pod 'Firebase/RemoteConfig', '~> 6.20.0'
-  pod 'Firebase/Analytics', '~> 6.20.0'
+  pod 'Firebase/Crashlytics', '~> 6.34.0'
+  pod 'Firebase/RemoteConfig', '~> 6.34.0'
+  pod 'Firebase/Analytics', '~> 6.34.0'
 end
 
 def canvas_crashlytics_rn_firebase_pods
   pod 'GoogleUtilities', '~> 6.0'
-  pod 'Firebase/Crashlytics', '~> 6.20.0'
+  pod 'Firebase/Crashlytics', '~> 6.34.0'
 end
 
 def pspdfkit

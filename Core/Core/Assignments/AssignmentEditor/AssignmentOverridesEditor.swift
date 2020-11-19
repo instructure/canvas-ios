@@ -161,7 +161,6 @@ struct AssignmentOverridesEditor: View {
         return overrides
     }
 
-    // swiftlint:disable:next large_tuple
     static func apiOverrides(for assignmentID: String, from: [Override]) -> (dueAt: Date?, unlockAt: Date?, lockAt: Date?, overrides: [APIAssignmentOverride]) {
         var dueAt: Date?, unlockAt: Date?, lockAt: Date?, overrides: [APIAssignmentOverride] = []
         for override in from where override.studentIDs?.isEmpty != true {

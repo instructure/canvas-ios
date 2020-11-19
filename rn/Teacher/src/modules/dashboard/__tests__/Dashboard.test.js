@@ -271,21 +271,6 @@ describe('Dashboard', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses')
   })
 
-  it('calls navigator.show when the edit button is pressed', () => {
-    let navigator = template.navigator({
-      show: jest.fn(),
-    })
-    let tree = renderAndLayout(
-      <Dashboard {...defaultProps} navigator={navigator} />
-    )
-
-    tree.getInstance().showFavoritesList()
-    expect(navigator.show).toHaveBeenCalledWith(
-      '/course_favorites',
-      { modal: true }
-    )
-  })
-
   it('Only renders courses when !isFullDashboard', () => {
     let tree = renderAndLayout(
       <Dashboard {...defaultProps} isFullDashboard={false} />

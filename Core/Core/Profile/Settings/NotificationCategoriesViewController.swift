@@ -20,8 +20,6 @@ import Foundation
 import UIKit
 import UserNotifications
 
-// swiftlint:disable large_tuple
-
 class NotificationCategoriesViewController: UIViewController, ErrorViewController {
     var channelID: String = ""
     var channelType = CommunicationChannelType.push

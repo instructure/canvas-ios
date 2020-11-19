@@ -170,7 +170,7 @@ public class MarkFavoriteCourse: APIUseCase {
             return
         }
         course.isFavorite = markAsFavorite
-        NotificationCenter.default.post(name: NSNotification.Name("course-favorite-change"), object: nil, userInfo: [:])
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil, userInfo: [:])
     }
 }
 

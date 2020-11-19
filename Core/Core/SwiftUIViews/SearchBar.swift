@@ -19,34 +19,36 @@
 import UIKit
 import SwiftUI
 
-public struct SearchBarView: UIViewRepresentable {
-    @Binding var text: String
+public struct SearchBar: UIViewRepresentable {
+    let onCancel: () -> Void
     let placeholder: String
+    @Binding var text: String
 
-    public func makeUIView(context: Self.Context) -> UISearchBar {
-        let bar = UISearchBar()
-        bar.delegate = context.coordinator
-        bar.placeholder = placeholder
-        return bar
+    public init(text: Binding<String>, placeholder: String, onCancel: @escaping () -> Void = {}) {
+        self.onCancel = onCancel
+        self.placeholder = placeholder
+        self._text = text
     }
 
+    public func makeUIView(context: Self.Context) -> UISearchBar { UISearchBar() }
+
     public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
+        uiView.delegate = context.coordinator
+        uiView.placeholder = placeholder
         uiView.text = text
     }
 
-    public func makeCoordinator() -> Coordinator {
-        Coordinator(text: $text)
-    }
+    public func makeCoordinator() -> Coordinator { Coordinator(view: self) }
 
     public class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
+        let view: SearchBar
 
-        init(text: Binding<String>) {
-            _text = text
+        init(view: SearchBar) {
+            self.view = view
         }
 
         public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
+            view.text = searchText
         }
 
         public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -61,6 +63,7 @@ public struct SearchBarView: UIViewRepresentable {
             searchBar.text = ""
             self.searchBar(searchBar, textDidChange: "")
             searchBar.endEditing(true)
+            view.onCancel()
         }
     }
 }
