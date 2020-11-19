@@ -17,8 +17,6 @@
 //
 
 // @flow
-import AllCourseList from '../modules/courses/all/AllCourseList'
-import EditFavorites from '../modules/courses/edit-favorites/EditFavorites'
 import CourseNavigation from '../modules/courses/CourseNavigation'
 import CourseSettings from '../modules/courses/settings/CourseSettings'
 import UserCoursePreferences from '../modules/courses/user-prefs/UserCoursePreferences'
@@ -57,8 +55,7 @@ import { isTeacher, isStudent } from '../modules/app'
 export function registerScreens (store: Store): void {
   registerScreen('', Dashboard, store, { deepLink: true })
   registerScreen('/', Dashboard, store, { deepLink: true })
-  registerScreen('/courses', ExperimentalFeature.nativeDashboard.isEnabled ? null : AllCourseList, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/course_favorites', EditFavorites, store, { deepLink: true })
+  registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/settings', CourseSettings, store)

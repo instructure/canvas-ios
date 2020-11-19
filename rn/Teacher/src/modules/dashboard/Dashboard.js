@@ -302,7 +302,7 @@ export class Dashboard extends React.Component<Props, State> {
       <View onLayout={this.measureNoCourses} ref={this.captureNoCourses}>
         <NoCourses
           key='no-courses'
-          onAddCoursePressed={this.showFavoritesList}
+          onAddCoursePressed={this.showAllCourses}
           style={[styles.noCourses, { width: contentWidth, height: calculatedHeight }]}
         />
       </View>
@@ -454,10 +454,6 @@ export class Dashboard extends React.Component<Props, State> {
     )
   }
 
-  showFavoritesList = () => {
-    this.props.navigator.show('/course_favorites', { modal: true })
-  }
-
   showUserCoursePreferences = (courseId: string) => {
     this.props.navigator.show(`/courses/${courseId}/user_preferences`, { modal: true })
   }
@@ -485,13 +481,6 @@ export class Dashboard extends React.Component<Props, State> {
       ? { title: i18n('All Courses') }
       : {
         navBarLogo: true,
-        rightBarButtons: [{
-          title: i18n('Edit'),
-          testID: 'Dashboard.editFavoritesButton',
-          accessibilityLabel: i18n('Edit Dashboard'),
-          action: this.showFavoritesList,
-          disabled: !this.props.totalCourseCount || Boolean(this.props.pending),
-        }],
         leftBarButtons: [{
           image: icon('hamburger', 'solid'),
           width: 24,

@@ -37,14 +37,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
 
-    "/course_favorites": nil,
-
-    "/courses": { url, params, userInfo in
-        guard ExperimentalFeature.nativeDashboard.isEnabled else {
-            return HelmViewController(moduleName: "/courses", url: url, params: params, userInfo: userInfo)
-        }
-        return CoreHostingController(CourseListView())
-    },
+    "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
 
     "/courses/:courseID": nil,
     "/courses/:courseID/tabs": nil,

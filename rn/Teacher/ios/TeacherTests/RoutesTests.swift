@@ -44,7 +44,6 @@ class RoutesTests: XCTestCase {
     }
 
     func testRoutes() {
-        ExperimentalFeature.nativeDashboard.isEnabled = true
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
         XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)

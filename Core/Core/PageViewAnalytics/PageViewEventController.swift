@@ -172,7 +172,6 @@ public class PageViewEventController: NSObject {
          }
     }
 
-    // swiftlint:disable:next large_tuple
     private func parsePageViewParts(_ url: String) -> (domain: String?, context: String?, contextID: String?)? {
         guard let urlObj = URL(string: url) else { return nil }
         let comps = urlObj.pathComponents

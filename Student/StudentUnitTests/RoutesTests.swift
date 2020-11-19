@@ -53,9 +53,6 @@ class RoutesTests: XCTestCase {
 
         XCTAssertEqual((router.match("/conversations/1") as? HelmViewController)?.moduleName, "/conversations/:conversationID")
 
-        ExperimentalFeature.nativeDashboard.isEnabled = false
-        XCTAssertEqual((router.match("/courses") as? HelmViewController)?.moduleName, "/courses")
-        ExperimentalFeature.nativeDashboard.isEnabled = true
         XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
 
         XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")

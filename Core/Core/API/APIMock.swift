@@ -19,7 +19,6 @@
 #if DEBUG
 import Foundation
 
-// swiftlint:disable large_tuple
 // swiftlint:disable force_try
 
 extension API {
