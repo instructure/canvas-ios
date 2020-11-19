@@ -183,7 +183,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     func configureRemoteConfig() {
         let remoteConfig = RemoteConfig.remoteConfig()
         remoteConfig.fetch(withExpirationDuration: 0) { _, _ in
-            remoteConfig.activate { _ in
+            remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
