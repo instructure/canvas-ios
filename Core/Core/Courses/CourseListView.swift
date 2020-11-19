@@ -147,7 +147,6 @@ public struct CourseListView: View {
                         Cell(course: course)
                     }
                 }
-                    .lineLimit(2)
             }
         }
     }
@@ -178,6 +177,8 @@ public struct CourseListView: View {
                     VStack(alignment: .leading) {
                         Text(course.name ?? "")
                             .font(.semibold16).foregroundColor(.textDarkest)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(2)
                         HStack(spacing: 8) {
                             let role = course.enrollments?.first?.formattedRole
                             course.termName.map { Text($0) }
@@ -185,12 +186,11 @@ public struct CourseListView: View {
                                 Text(verbatim: "|")
                             }
                             role.map { Text($0) }
+                            Spacer()
                         }
                             .font(.medium14).foregroundColor(.textDark)
                     }
                         .padding(.vertical, 16)
-
-                    Spacer()
 
                     if course.hasTeacherEnrollment {
                         let icon = course.isPublished ? Icon.completeSolid.foregroundColor(.textSuccess) :
