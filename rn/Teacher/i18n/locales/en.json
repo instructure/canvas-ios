@@ -302,9 +302,6 @@
   "edit_course_settings_9736fd1f": {
     "message": "Edit course settings"
   },
-  "edit_dashboard_7e5b7043": {
-    "message": "Edit Dashboard"
-  },
   "edit_quiz_details_72cd055": {
     "message": "Edit Quiz Details"
   },
@@ -805,9 +802,6 @@
   },
   "select_a_course_4710371f": {
     "message": "Select a Course"
-  },
-  "select_which_courses_you_would_like_to_see_on_the__97d7e732": {
-    "message": "Select which courses you would like to see on the Dashboard."
   },
   "send_e3bd0ed0": {
     "message": "Send"
