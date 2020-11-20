@@ -26,8 +26,12 @@ struct SubmissionBreakdown: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    @ObservedObject var summary: Store<GetSubmissionSummary>
-    @State var waiting = true
+    var summary: Store<GetSubmissionSummary>
+
+    @State var graded = 0
+    @State var ungraded = 0
+    @State var unsubmitted = 0
+    @State var submissionCount = 0
 
     init(courseID: String, assignmentID: String, submissionTypes: [SubmissionType]) {
         self.assignmentID = assignmentID
@@ -40,67 +44,81 @@ struct SubmissionBreakdown: View {
     }
 
     var body: some View {
-        Button(action: routeToAll, label: { HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Submissions", bundle: .core)
-                    .font(.medium16).foregroundColor(.textDark)
-                    .padding(.bottom, 4)
-                if submissionTypes.contains(.not_graded) || submissionTypes.contains(.none) {
-                    Text("Tap to view submissions list.")
-                        .font(.regular16).foregroundColor(.textDarkest)
-                } else if submissionTypes.contains(.on_paper) {
-                    HStack(alignment: .top, spacing: 0) {
-                        Graph(
-                            action: routeToGraded,
-                            label: Text("Graded", bundle: .core),
-                            count: waiting ? 0 : summary.first?.graded ?? 0,
-                            total: waiting ? 0 : summary.first?.submissionCount ?? 0
-                        )
-                        Text(String.localizedStringWithFormat(
-                            NSLocalizedString("there_are_d_assignees_without_grades", comment: ""),
-                            (summary.first?.ungraded ?? 0) + (summary.first?.unsubmitted ?? 0)
-                        ))
-                            .font(.regular14).foregroundColor(.textDarkest)
-                            .padding(.leading, 22)
+        Button(action: routeToAll, label: {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text("Submissions", bundle: .core)
+                            .font(.medium16).foregroundColor(.textDark)
+                        Spacer()
                     }
-                } else {
-                    HStack(alignment: .top, spacing: 0) {
-                        Graph(
-                            action: routeToGraded,
-                            label: Text("Graded", bundle: .core),
-                            count: waiting ? 0 : summary.first?.graded ?? 0,
-                            total: waiting ? 0 : summary.first?.submissionCount ?? 0
-                        )
-                            .frame(maxWidth: .infinity)
-                        Graph(
-                            action: routeToUngraded,
-                            label: Text("Needs Grading", bundle: .core),
-                            count: waiting ? 0 : summary.first?.ungraded ?? 0,
-                            total: waiting ? 0 : summary.first?.submissionCount ?? 0
-                        )
-                            .frame(maxWidth: .infinity)
-                        Graph(
-                            action: routeToUnsubmitted,
-                            label: Text("Not Submitted", bundle: .core),
-                            count: waiting ? 0 : summary.first?.unsubmitted ?? 0,
-                            total: waiting ? 0 : summary.first?.submissionCount ?? 0
-                        )
-                            .frame(maxWidth: .infinity)
+                    if submissionTypes.contains(.not_graded) || submissionTypes.contains(.none) {
+                        Text("Tap to view submissions list.")
+                            .font(.regular16).foregroundColor(.textDarkest)
+                    } else if submissionTypes.contains(.on_paper) {
+                        HStack(alignment: .top, spacing: 0) {
+                            Graph(
+                                action: routeToGraded,
+                                label: Text("Graded", bundle: .core),
+                                count: graded,
+                                total: submissionCount
+                            )
+                            Text(String.localizedStringWithFormat(
+                                NSLocalizedString("there_are_d_assignees_without_grades", comment: ""),
+                                ungraded + unsubmitted
+                            ))
+                                .font(.regular14).foregroundColor(.textDarkest)
+                                .padding(.leading, 22)
+                            Spacer()
+                        }
+                    } else {
+                        HStack(alignment: .top, spacing: 0) {
+                            Graph(
+                                action: routeToGraded,
+                                label: Text("Graded", bundle: .core),
+                                count: graded,
+                                total: submissionCount
+                            )
+                                .frame(maxWidth: .infinity)
+                            Graph(
+                                action: routeToUngraded,
+                                label: Text("Needs Grading", bundle: .core),
+                                count: ungraded,
+                                total: submissionCount
+                            )
+                                .frame(maxWidth: .infinity)
+                            Graph(
+                                action: routeToUnsubmitted,
+                                label: Text("Not Submitted", bundle: .core),
+                                count: unsubmitted,
+                                total: submissionCount
+                            )
+                                .frame(maxWidth: .infinity)
+                        }
+                            .frame(maxWidth: 400)
                     }
-                        .frame(maxWidth: 400)
                 }
+                    .padding(16)
+                DisclosureIndicator().padding(.trailing, 16)
             }
-                .padding(16)
-            Spacer()
-            DisclosureIndicator().padding(.trailing, 16)
-        } })
+                // Fix tapping in whitespace, without covering divider in DiscussionDetails
+                .background(Color.backgroundLightest.padding(.bottom, 1))
+        })
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text("View all submissions", bundle: .core))
             .onAppear {
-                summary.refresh(force: true) { _ in performUIUpdate {
-                    waiting = false
-                } }
+                summary.eventHandler = update
+                summary.refresh(force: true)
             }
+    }
+
+    func update() {
+        withAnimation(Animation.easeOut(duration: 0.5).delay(0.2)) {
+            graded = summary.first?.graded ?? 0
+            ungraded = summary.first?.ungraded ?? 0
+            unsubmitted = summary.first?.unsubmitted ?? 0
+            submissionCount = summary.first?.submissionCount ?? 0
+        }
     }
 
     struct Graph: View {
@@ -112,14 +130,22 @@ struct SubmissionBreakdown: View {
         var body: some View {
             Button(action: action, label: {
                 VStack(spacing: 8) {
-                    CircleProgress(
+                    let circle = CircleProgress(
                         progress: total == 0 ? 0 : CGFloat(count) / CGFloat(total),
                         size: 70,
                         thickness: 7
                     )
-                        .modifier(Counter(count: Double(count)))
-                        .animation(Animation.easeOut(duration: 0.5).delay(0.2))
-                        .padding(.horizontal, 10)
+                    if #available(iOS 14, *) {
+                        circle
+                            .modifier(Counter(count: Double(count)))
+                            .padding(.horizontal, 10).padding(.top, 4)
+                    } else {
+                        circle
+                            .overlay(Text(Double(count))
+                                .font(.medium16).foregroundColor(.textDarkest)
+                            )
+                            .padding(.horizontal, 10).padding(.top, 4)
+                    }
                     label
                         .font(.medium12).foregroundColor(.textDarkest)
                 }
@@ -150,7 +176,7 @@ struct SubmissionBreakdown: View {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .scaleEffect(configuration.isPressed ? scale : 1)
-                .animation(.default)
+                .animation(.default, value: configuration.isPressed)
         }
     }
 
