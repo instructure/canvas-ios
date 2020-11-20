@@ -58,6 +58,12 @@ public struct APICustomColors: Codable, Equatable {
     let custom_colors: [String: String]
 }
 
+public struct APICourseNickname: Codable {
+    let course_id: ID
+    let name: String
+    let nickname: String
+}
+
 public struct APIUserSettings: Codable, Equatable {
     let manual_mark_as_read: Bool
     let collapse_global_nav: Bool
@@ -189,6 +195,36 @@ public struct GetCustomColorsRequest: APIRequestable {
     public typealias Response = APICustomColors
 
     public let path = "users/self/colors"
+}
+
+// https://canvas.instructure.com/doc/api/users.html#method.users.set_custom_color
+struct PutCustomColorRequest: APIRequestable {
+    typealias Response = Body
+    struct Body: Codable {
+        let hexcode: String
+    }
+
+    let context: Context
+    let color: String
+
+    var method: APIMethod { .put }
+    var path: String { "users/self/colors/\(context.canvasContextID)" }
+    var body: Body? { Body(hexcode: color) }
+}
+
+// https://canvas.instructure.com/doc/api/users.html#method.course_nicknames.update
+struct PutCourseNicknameRequest: APIRequestable {
+    typealias Response = APICourseNickname
+    struct Body: Codable {
+        let nickname: String
+    }
+
+    let courseID: String
+    let nickname: String
+
+    var method: APIMethod { .put }
+    var path: String { "users/self/course_nicknames/\(courseID)" }
+    var body: Body? { Body(nickname: nickname) }
 }
 
 // https://canvas.instructure.com/doc/api/users.html#method.users.api_show

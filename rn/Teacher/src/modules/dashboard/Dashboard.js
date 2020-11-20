@@ -481,6 +481,12 @@ export class Dashboard extends React.Component<Props, State> {
       ? { title: i18n('All Courses') }
       : {
         navBarLogo: true,
+        rightBarButtons: [{
+          title: i18n('Edit'),
+          testID: 'Dashboard.editFavoritesButton',
+          accessibilityLabel: i18n('Edit Dashboard'),
+          action: this.showAllCourses,
+        }],
         leftBarButtons: [{
           image: icon('hamburger', 'solid'),
           width: 24,

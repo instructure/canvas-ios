@@ -23,6 +23,7 @@ public class DashboardCardViewController: UIViewController {
     let refreshControl = CircleRefreshControl()
 
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
+    lazy var editButton = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(openCourseList))
 
     let env = AppEnvironment.shared
 
@@ -40,10 +41,14 @@ public class DashboardCardViewController: UIViewController {
         navigationItem.leftBarButtonItem = profileButton
         profileButton.accessibilityIdentifier = "Dashboard.profileButton"
         profileButton.accessibilityLabel = NSLocalizedString("Profile Menu", comment: "")
+        navigationItem.rightBarButtonItem = editButton
+        editButton.accessibilityIdentifier = "Dashboard.editButton"
         navigationItem.titleView = Brand.shared.headerImageView()
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         collectionView.refreshControl = refreshControl
+
+        colors.refresh()
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -73,6 +78,10 @@ public class DashboardCardViewController: UIViewController {
 
     @objc func openProfile() {
         env.router.route(to: "/profile", from: self, options: .modal())
+    }
+
+    @objc func openCourseList() {
+        env.router.route(to: "/courses", from: self)
     }
 
     lazy var conferenceSection = DashboardConferenceSection(self)

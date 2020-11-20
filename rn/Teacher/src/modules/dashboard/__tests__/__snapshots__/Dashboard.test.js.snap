@@ -18,6 +18,16 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />
@@ -1426,6 +1436,16 @@ exports[`Dashboard render 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />
@@ -2065,6 +2085,16 @@ exports[`Dashboard render while pending 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />
@@ -2704,6 +2734,16 @@ exports[`Dashboard render without courses and *zero* total courses 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />
@@ -2922,6 +2962,16 @@ exports[`Dashboard render without favorite courses 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />
@@ -3140,6 +3190,16 @@ exports[`Dashboard renders course invites 1`] = `
   }
   navBarLogo={true}
   navBarStyle="global"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Edit Dashboard",
+        "action": [Function],
+        "testID": "Dashboard.editFavoritesButton",
+        "title": "Edit",
+      },
+    ]
+  }
 >
   <list>
     <section />

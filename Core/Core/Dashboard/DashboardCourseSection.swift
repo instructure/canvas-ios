@@ -94,13 +94,16 @@ class DashboardCourseSection: DashboardSection, DashboardSectionDelegate {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.item]
-        let courseID = card?.id
         let cell: DashboardCourseCell = collectionView.dequeue(for: indexPath)
         let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
         let showGrade = env.userDefaults?.showGradesOnDashboard == true
         cell.update(card, hideColorOverlay: hideColorOverlay, showGrade: showGrade) { [weak self] in
-            guard let courseID = courseID, let self = self, let from = self.controller  else { return }
-            self.env.router.route(to: "/courses/\(courseID)/user_preferences", from: from, options: .modal(embedInNav: true))
+            guard let course = card?.getCourse(), let self = self, let from = self.controller  else { return }
+            self.env.router.show(
+                CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
+                from: from,
+                options: .modal(isDismissable: false, embedInNav: true)
+            )
         }
 
         let width = collectionView.bounds.width

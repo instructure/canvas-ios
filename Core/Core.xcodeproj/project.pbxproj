@@ -102,6 +102,9 @@
 		7D1758B621598CA400F88613 /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1758B521598CA400F88613 /* TitleSubtitleView.xib */; };
 		7D1758C4215A995200F88613 /* ListFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758C3215A995200F88613 /* ListFormatterTests.swift */; };
 		7D1758C8215A9A7800F88613 /* TitleSubtitleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */; };
+		7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */; };
+		7D1E85662567294A00D093C5 /* ScaleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E85652567294A00D093C5 /* ScaleButtonStyle.swift */; };
+		7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1E856A2567356400D093C5 /* JustifiedGrid.swift */; };
 		7D1F704821CAE4E700E78D69 /* AppEnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */; };
 		7D20F61B21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D20F61A21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift */; };
 		7D231BE623AC3871005BA31D /* FloatingButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D231BE523AC3871005BA31D /* FloatingButtonTests.swift */; };
@@ -1208,6 +1211,9 @@
 		7D1758C0215A8F5600F88613 /* ListFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFormatter.swift; sourceTree = "<group>"; };
 		7D1758C3215A995200F88613 /* ListFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFormatterTests.swift; sourceTree = "<group>"; };
 		7D1758C7215A9A7800F88613 /* TitleSubtitleViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleViewTests.swift; sourceTree = "<group>"; };
+		7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeCourseView.swift; sourceTree = "<group>"; };
+		7D1E85652567294A00D093C5 /* ScaleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleButtonStyle.swift; sourceTree = "<group>"; };
+		7D1E856A2567356400D093C5 /* JustifiedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedGrid.swift; sourceTree = "<group>"; };
 		7D1F704721CAE4E700E78D69 /* AppEnvironmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironmentTests.swift; sourceTree = "<group>"; };
 		7D20F61821C3166800B77E5E /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
 		7D20F61A21C31CE900B77E5E /* UICollectionViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -2405,6 +2411,7 @@
 			children = (
 				E88EA0182385B0B4008A587A /* APIDashboard.swift */,
 				7D80AC0D212B4D4100C40ECE /* APIFavorite.swift */,
+				7D1E85612566E80100D093C5 /* CustomizeCourseView.swift */,
 				7DC35320255BA06900B36CD3 /* DashboardAnnouncementSection.swift */,
 				7DC35384255C9ABF00B36CD3 /* DashboardCard.swift */,
 				7D7242582429BEE8007ED42F /* DashboardCardViewController.storyboard */,
@@ -3866,9 +3873,11 @@
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
 				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
 				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
+				7D1E856A2567356400D093C5 /* JustifiedGrid.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
 				7D0A28DC251952A2004FB3B6 /* RemoteImage.swift */,
+				7D1E85652567294A00D093C5 /* ScaleButtonStyle.swift */,
 				E8A8FA8D24D328C3000B27DF /* SearchBar.swift */,
 				7D4B2744253E3A5700A98DE3 /* TextEditor.swift */,
 				7DCA32112541DB8B00458651 /* WebSession.swift */,
@@ -4869,6 +4878,7 @@
 				7DA2609323F72315005D2121 /* UserProfile.swift in Sources */,
 				7DA260FE23F773D9005D2121 /* PlannerListViewController.swift in Sources */,
 				7DA2605023F722D9005D2121 /* LogEvent.swift in Sources */,
+				7D1E85662567294A00D093C5 /* ScaleButtonStyle.swift in Sources */,
 				7DA260B923F72352005D2121 /* GetQuizSubmission.swift in Sources */,
 				7DA260F023F72391005D2121 /* FileUploadContext.swift in Sources */,
 				7D2E812925631BEC008C568F /* AssignmentDateSection.swift in Sources */,
@@ -4909,6 +4919,7 @@
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
+				7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
 				7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */,
 				7DA2604F23F722D9005D2121 /* LatePolicyStatus.swift in Sources */,
@@ -4999,6 +5010,7 @@
 				7DA25FC223F72136005D2121 /* APIPage.swift in Sources */,
 				7DA260C123F72352005D2121 /* GetGradingPeriods.swift in Sources */,
 				7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */,
+				7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */,
 				7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */,
 				7DA260BC23F72352005D2121 /* GetSSOLogin.swift in Sources */,
 				7DA25FBB23F72136005D2121 /* APIList.swift in Sources */,

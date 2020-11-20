@@ -66,6 +66,14 @@ extension UIColor {
         return (toInt(alpha) << 24) + (toInt(red) << 16) + (toInt(green) << 8) + toInt(blue)
     }
 
+    public func difference(to other: UIColor) -> CGFloat {
+        var ared: CGFloat = 0, agreen: CGFloat = 0, ablue: CGFloat = 0, aalpha: CGFloat = 1
+        getRed(&ared, green: &agreen, blue: &ablue, alpha: &aalpha) // assume success
+        var bred: CGFloat = 0, bgreen: CGFloat = 0, bblue: CGFloat = 0, balpha: CGFloat = 1
+        other.getRed(&bred, green: &bgreen, blue: &bblue, alpha: &balpha) // assume success
+        return abs(ared - bred) + abs(agreen - bgreen) + abs(ablue - bblue) + abs(aalpha - balpha)
+    }
+
     // MARK: App Logo Colors
     public static var parentLogoColor = UIColor(hexString: "#008EE2")!
     public static var studentLogoColor = UIColor(hexString: "#D64027")!
