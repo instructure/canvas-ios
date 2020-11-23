@@ -211,7 +211,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const courseCard = explore(tree).selectByID('CourseCardCell.' + course.id) || {}
+    const courseCard = explore(tree).selectByID('DashboardCourseCell.' + course.id) || {}
     courseCard.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1')
   })
@@ -229,7 +229,7 @@ describe('Dashboard', () => {
       <Dashboard {...props} />
     ).toJSON()
 
-    const kabob = explore(tree).selectByID(`CourseCardCell.${course.id}.optionsButton`) || {}
+    const kabob = explore(tree).selectByID(`DashboardCourseCell.${course.id}.optionsButton`) || {}
     kabob.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith(
       '/courses/1/user_preferences',

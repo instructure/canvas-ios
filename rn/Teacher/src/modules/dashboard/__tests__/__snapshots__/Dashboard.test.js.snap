@@ -116,7 +116,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.1"
+            testID="DashboardCourseCell.1"
             underlayColor="transparent"
           >
             <View
@@ -241,7 +241,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.1.optionsButton"
+            testID="DashboardCourseCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -296,7 +296,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.2"
+            testID="DashboardCourseCell.2"
             underlayColor="transparent"
           >
             <View
@@ -421,7 +421,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.2.optionsButton"
+            testID="DashboardCourseCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -476,7 +476,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.3"
+            testID="DashboardCourseCell.3"
             underlayColor="transparent"
           >
             <View
@@ -601,7 +601,7 @@ exports[`Dashboard Doesnt render groups when in the teacher app 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.3.optionsButton"
+            testID="DashboardCourseCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -668,7 +668,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.1"
+            testID="DashboardCourseCell.1"
             underlayColor="transparent"
           >
             <View
@@ -793,7 +793,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.1.optionsButton"
+            testID="DashboardCourseCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -848,7 +848,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.2"
+            testID="DashboardCourseCell.2"
             underlayColor="transparent"
           >
             <View
@@ -973,7 +973,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.2.optionsButton"
+            testID="DashboardCourseCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1028,7 +1028,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.3"
+            testID="DashboardCourseCell.3"
             underlayColor="transparent"
           >
             <View
@@ -1153,7 +1153,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.3.optionsButton"
+            testID="DashboardCourseCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1245,7 +1245,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.4"
+            testID="DashboardCourseCell.4"
             underlayColor="transparent"
           >
             <View
@@ -1370,7 +1370,7 @@ exports[`Dashboard Only renders courses when !isFullDashboard 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.4.optionsButton"
+            testID="DashboardCourseCell.4.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1524,7 +1524,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.1"
+            testID="DashboardCourseCell.1"
             underlayColor="transparent"
           >
             <View
@@ -1649,7 +1649,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.1.optionsButton"
+            testID="DashboardCourseCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1704,7 +1704,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.2"
+            testID="DashboardCourseCell.2"
             underlayColor="transparent"
           >
             <View
@@ -1829,7 +1829,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.2.optionsButton"
+            testID="DashboardCourseCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -1884,7 +1884,7 @@ exports[`Dashboard render 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.3"
+            testID="DashboardCourseCell.3"
             underlayColor="transparent"
           >
             <View
@@ -2009,7 +2009,7 @@ exports[`Dashboard render 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.3.optionsButton"
+            testID="DashboardCourseCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2163,7 +2163,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.1"
+            testID="DashboardCourseCell.1"
             underlayColor="transparent"
           >
             <View
@@ -2288,7 +2288,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.1.optionsButton"
+            testID="DashboardCourseCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2343,7 +2343,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.2"
+            testID="DashboardCourseCell.2"
             underlayColor="transparent"
           >
             <View
@@ -2468,7 +2468,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.2.optionsButton"
+            testID="DashboardCourseCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -2523,7 +2523,7 @@ exports[`Dashboard render while pending 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.3"
+            testID="DashboardCourseCell.3"
             underlayColor="transparent"
           >
             <View
@@ -2648,7 +2648,7 @@ exports[`Dashboard render while pending 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.3.optionsButton"
+            testID="DashboardCourseCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -3722,7 +3722,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.1"
+            testID="DashboardCourseCell.1"
             underlayColor="transparent"
           >
             <View
@@ -3847,7 +3847,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.1.optionsButton"
+            testID="DashboardCourseCell.1.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -3902,7 +3902,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.2"
+            testID="DashboardCourseCell.2"
             underlayColor="transparent"
           >
             <View
@@ -4027,7 +4027,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.2.optionsButton"
+            testID="DashboardCourseCell.2.optionsButton"
             underlayColor="#ffffff00"
           >
             <View
@@ -4082,7 +4082,7 @@ exports[`Dashboard renders course invites 1`] = `
                 },
               ]
             }
-            testID="CourseCardCell.3"
+            testID="DashboardCourseCell.3"
             underlayColor="transparent"
           >
             <View
@@ -4207,7 +4207,7 @@ exports[`Dashboard renders course invites 1`] = `
                 "width": 43,
               }
             }
-            testID="CourseCardCell.3.optionsButton"
+            testID="DashboardCourseCell.3.optionsButton"
             underlayColor="#ffffff00"
           >
             <View

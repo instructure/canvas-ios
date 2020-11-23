@@ -120,7 +120,7 @@ export default class CourseCard extends Component<Props, State> {
         <TouchableHighlight
           onLayout={this.onLayout}
           style={[styles.card, this.props.style, { height: this.state.height }]}
-          testID={'CourseCardCell.' + course.id}
+          testID={'DashboardCourseCell.' + course.id}
           onPress={this.onPress}
           accessibilityTraits='button'
           accessibilityLabel={`${course.name} ${gradeDisplay || ''}`.trim()}
@@ -165,7 +165,7 @@ export default class CourseCard extends Component<Props, State> {
           accessible={true}
           accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
           underlayColor='#ffffff00'
-          testID={`CourseCardCell.${course.id}.optionsButton`}
+          testID={`DashboardCourseCell.${course.id}.optionsButton`}
         >
           <View style={this.createKabobWrapperStyles()}>
             <Image style={styles.kabob} source={icon('more')} />

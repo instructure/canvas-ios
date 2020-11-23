@@ -64,7 +64,7 @@ it('it calls props.onPress when it is selected', () => {
     <CourseCard {...defaultProps} onPress={onPress} />
   ).toJSON()
 
-  let button: any = explore(tree).selectByID('CourseCardCell.' + defaultProps.course.id)
+  let button: any = explore(tree).selectByID('DashboardCourseCell.' + defaultProps.course.id)
   button.props.onPress()
 
   expect(onPress).toHaveBeenCalledWith(defaultProps.course)
@@ -76,7 +76,7 @@ it('calls props.onCoursePreferencesPressed when the kabob is selected', () => {
     <CourseCard {...defaultProps} onCoursePreferencesPressed={onCoursePreferencesPressed} />
   ).toJSON()
 
-  let button = explore(tree).selectByID(`CourseCardCell.${defaultProps.course.id}.optionsButton`) || {}
+  let button = explore(tree).selectByID(`DashboardCourseCell.${defaultProps.course.id}.optionsButton`) || {}
   button.props.onPress()
 
   expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.course.id)
