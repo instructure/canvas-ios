@@ -62,7 +62,7 @@ struct CourseCard: View {
             })
                 .buttonStyle(ScaleButtonStyle(scale: 1))
                 .accessibility(label: Text(verbatim: "\(card.shortName) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-                .identifier("CourseCardCell.\(card.id)")
+                .identifier("DashboardCourseCell.\(card.id)")
 
             gradePill
                 .accessibility(hidden: true) // handled in the button label
@@ -89,7 +89,7 @@ struct CourseCard: View {
                 .frame(width: 44, height: 44)
         })
             .accessibility(label: Text("Open \(card.shortName) user preferences", bundle: .core))
-            .identifier("CourseCardCell.\(card.id).optionsButton")
+            .identifier("DashboardCourseCell.\(card.id).optionsButton")
     }
 
     @ViewBuilder var gradePill: some View {

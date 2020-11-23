@@ -23,8 +23,8 @@ import XCTest
 @testable import Core
 
 class ConferencesUITests: MiniCanvasUITestCase {
-    let date = Date(timeIntervalSinceReferenceDate: 0)
-    lazy var liveConference = APIConference.make(context_type: "Course", started_at: date)
+    let date = Clock.now.addMinutes(-1)
+    lazy var liveConference = APIConference.make(context_id: "16", context_type: "Course", started_at: date)
 
     override func setUpState() {
         super.setUpState()
