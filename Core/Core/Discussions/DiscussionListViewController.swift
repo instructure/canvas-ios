@@ -58,6 +58,7 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         setupTitleViewInNavbar(title: NSLocalizedString("Discussions", comment: ""))
 
         addButton.accessibilityLabel = NSLocalizedString("Create Discussion", comment: "")
+        addButton.accessibilityIdentifier = "DiscussionList.newButton"
 
         emptyMessageLabel.text = NSLocalizedString("It looks like discussions haven’t been created in this space yet.", comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Discussions", comment: "")

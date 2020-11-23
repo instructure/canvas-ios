@@ -35,7 +35,7 @@ class DiscussionEditorTests: CoreUITestCase {
         mockData(GetDiscussionTopicsRequest(context: .course(noPermissionCourse.id.value)), value: [])
 
         show("/courses/\(noPermissionCourse.id.value)/discussion_topics")
-        app.find(label: "There are no discussions to display.").waitToExist()
+        app.find(label: "It looks like discussions haven’t been created in this space yet.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
