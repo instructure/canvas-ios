@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ punktar";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ hlutar";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, í %2$@, síðustu skilaboðin voru þann %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, ólesið";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Bregðast við sem notandi";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Bæta við viðtakanda";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Bæta við viðhengi";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Bæta við viðhengjum";
 
 /* No comment provided by engineer. */
 "Add content" = "Bæta við efni";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Bæta við skiladegi";
 
 /* No comment provided by engineer. */
 "Add File" = "Bæta við skrá";
@@ -83,9 +101,12 @@
 "Alerts" = "Viðvaranir";
 
 /* No comment provided by engineer. */
+"All" = "Allt";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "Allar textaskýringar voru vistaðar.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Öll skil";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Heimila að líka við";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Heimila svaraþráð";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Leyfa notendum að gera athugasemdir";
 
 /* No comment provided by engineer. */
 "Announcement" = "Tilkynning";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Skráningar á fund";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Viltu örugglega eyða (nafn)?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Viltu örugglega eyða %@?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
+
+/* No comment provided by engineer. */
+"Assign" = "Úthluta";
+
+/* No comment provided by engineer. */
+"Assign to" = "Úthluta til";
 
 /* No comment provided by engineer. */
 "assignment" = "verkefni";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Tilraun %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Eiginleiki";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Eiginleiki án afleiða";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Eiginleiki utan viðskiptahagsmuna";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Eiginleiki utan viðskiptahagsmuna án afleiða";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Eiginleiki utan viðskiptahagsmuna Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Eiginleiki Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Hljóð";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Staðfesting tókst ekki. Líklega neitaði notandi aðgangsbeiðninni.";
+
+/* No comment provided by engineer. */
+"Availability" = "Tiltækileiki";
 
 /* No comment provided by engineer. */
 "Availability:" = "Tiltækileiki:";
@@ -209,7 +227,7 @@
 "Available From:" = "Tiltækt frá:";
 
 /* No comment provided by engineer. */
-"Available to" = "Tiltækt til";
+"Available until" = "Tiltækt til";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tiltækt til:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Námskeiðaeinkunn að neðan %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Hlutar námskeiðs";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Kennsluáætlun námskeiðs";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Stofna reikning";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons leyfi";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Núverandi innritanir";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Seinka birtingu";
 
 /* No comment provided by engineer. */
 "Delete" = "Eyða";
@@ -524,6 +545,9 @@
 "Dismiss" = "Sleppa";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Sýna einkunn sem";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "Ekki senda mér neitt";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Breyta";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Breyta tilkynningu";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Breyta viðhengi (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Breyta viðhengi (ekkert)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Breyta umræðu";
 
 /* No comment provided by engineer. */
 "Edit File" = "Breyta skrá";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Breyta viðtakendum";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Breyta kennsluáætlun";
 
 /* Description for email communication channel */
 "Email Notifications" = "Tilkynningar í tölvupósti";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Allir";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Allir aðrir";
 
 /* No comment provided by engineer. */
 "Excused" = "Undanþegið";
@@ -995,7 +1031,13 @@
 "Never" = "Aldrei";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Ný tilkynning";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Nýjar ráðstefnur";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Ný umræða";
 
 /* No comment provided by engineer. */
 "New Message" = "Ný skilaboð";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "Engin mynd fannst í myndavali okkar";
 
 /* No comment provided by engineer. */
-"No matching courses" = "Engin samsvarandi námskeið";
-
-/* No comment provided by engineer. */
 "No Modules" = "Engar einingar";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Engar niðurstöður";
+
+/* No comment provided by engineer. */
+"No Sections" = "Engir hlutar";
 
 /* No comment provided by engineer. */
 "No Subject" = "Ekkert efnisheiti";
@@ -1106,7 +1148,7 @@
 "On Paper" = "Á blaði";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Aðeins aðgengilegt nemendum með tengil";
+"Only graders can like" = "Aðeins matsaðilar geta líkað";
 
 /* No comment provided by engineer. */
 "Only members" = "Aðeins meðlimir";
@@ -1160,9 +1202,6 @@
 "People" = "Fólk";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Leyfis krafist";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Myndasafn";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Punktar";
+
+/* No comment provided by engineer. */
+"Post at" = "Birta";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Æfingapróf";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Fjarlægja %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Fjarlægja viðhengi";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Fjarlægja viðhengi?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Fjarlægja dagsetningu";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Fjarlægja skiladag?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Fjarlægja skrá";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "Skönnun er ekki studd";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Velja tiltækni nemanda";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Tímasett";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Leita";
 
 /* No comment provided by engineer. */
+"Sections" = "Hlutar";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Hlutar: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Sjá allt";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Sjá öll námskeið";
 
 /* No comment provided by engineer. */
 "See attached files." = "Sjá viðhengdar skrár.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Sýna mánuð í einu";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Sýna skil sem hafa fengið einkunnagjöf";
+"Show Course Summary" = "Sýna námskeiðsyfirlit";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Sýna einkunnir";
 
 /* No comment provided by engineer. */
 "Show more options" = "Sýna fleiri möguleika";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Sýna skil sem ekki hafa verið send inn";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Sýna skil sem þurfa einkunn";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Þar sem þetta er hópumræða, hefur hver hópur eigið samtal um þetta efni. Þetta er það sem þú hefur aðgang að.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Eitthvað er ekki í lagi";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
 "Start recording" = "Hefja upptöku";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Skiladagur þessa verkefnis var %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Þetta námskeið inniheldur enga hluta.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Þessi mappa er tóm.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Slökkt hefur verið á þessari síðu fyrir þetta námskeið.";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Þetta fjarlægir skiladag og alla tengda viðtakendur.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Liðinn tími";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Óraðaður listi";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Fela";
-
-/* No comment provided by engineer. */
 "unpublished" = "óbirt";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "Vefslóð";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Notkunarréttindi";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Notkunarréttindi";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Notandanafn";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Notendur verða að birta áður en svör sjást";
+
+/* No comment provided by engineer. */
 "Video" = "Myndband";
 
 /* No comment provided by engineer. */
 "View" = "Skoða";
-
-/* No comment provided by engineer. */
-"View all dates" = "Skoða allar dagsetningar";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Skoða öll skil";
 
 /* No comment provided by engineer. */
 "View Less" = "Sjá minna";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo tilkynningar";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Þú þarft að virkja hljóðnemaleyfi í stillingum.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Þú munt hætta að virka sem %@ og fara aftur í þinn reikning.";

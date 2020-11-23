@@ -146,9 +146,6 @@
 "Pairing Code" = "Codice accoppiamento";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Autorizzazione necessaria";
-
-/* No comment provided by engineer. */
 "QR Code" = "Codice QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Impossibile impostare una soglia bassa che è superiore o pari alla soglia alta precedentemente impostata.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Devi consentire le notifiche in Impostazioni per impostare i promemoria.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Sei in pari";

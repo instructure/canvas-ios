@@ -146,9 +146,6 @@
 "Pairing Code" = "Cod Paru";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Angen Caniatâd";
-
-/* No comment provided by engineer. */
 "QR Code" = "Cod QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Does dim modd i chi osod trothwy isel sy’n uwch neu’n gyfartal â throthwy uchel sydd wedi’i osod yn barod.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Rydych chi wedi dal i fyny";

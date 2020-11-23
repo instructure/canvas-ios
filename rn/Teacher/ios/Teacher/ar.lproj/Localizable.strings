@@ -65,6 +65,9 @@
 "Done" = "تم";
 
 /* No comment provided by engineer. */
+"Edit" = "تحرير";
+
+/* No comment provided by engineer. */
 "Error" = "خطأ";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "الجميع";
 
 /* No comment provided by engineer. */
+"Excused" = "معفى";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "تعذر إطلاق أداة LTI للتحقق من الحضور.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "الملفات (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "التقدير";
 
 /* No comment provided by engineer. */
 "Graded" = "تم تقييم الدرجة";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "وضع علامة موجود للبقية";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "تقييم الدرجات تحت الإشراف غير مدعوم";
+
+/* No comment provided by engineer. */
 "No Submissions" = "لا توجد إرسالات";
+
+/* No comment provided by engineer. */
+"Not Graded" = "لم يتم التقييم";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "فتح الدرج في ملء الشاشة";

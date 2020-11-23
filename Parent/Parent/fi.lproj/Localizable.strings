@@ -146,9 +146,6 @@
 "Pairing Code" = "Parinmuodostuskoodi";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Käyttöoikeus tarvitaan";
-
-/* No comment provided by engineer. */
 "QR Code" = "Viivakoodi";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Et voi määrittää alhaista kynnystä, joka on korkeampi tai yhtä suuri kuin aikaisemmin määritetty korkea kynnys.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Olet ajan tasalla";

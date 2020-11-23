@@ -146,9 +146,6 @@
 "Pairing Code" = "Koda za seznanjanje naprave";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Potrebno je dovoljenje.";
-
-/* No comment provided by engineer. */
 "QR Code" = "Koda QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ni mogoče nastaviti spodnje mejne vrednosti, ki je višja ali enaka predhodno nastavljeni zgornji mejni vrednosti.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Za nastavitev opomnikov morate v možnosti »Nastavitve« dovoliti sporočila.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Seznanjeni ste z vsem";

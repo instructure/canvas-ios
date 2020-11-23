@@ -146,9 +146,6 @@
 "Pairing Code" = "Pairing Code";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Permission needed";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR Code";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "You cannot set a low threshold that is higher or equal to a previously set high threshold.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "You must allow notifications in settings to set reminders.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "You’re all caught up";

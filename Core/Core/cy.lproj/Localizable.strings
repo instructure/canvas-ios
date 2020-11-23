@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pwynt";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ adran";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, yn %2$@, roedd y neges ddiwethaf am %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, heb eu darllen";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Gweithredu fel Defnyddiwr";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Ychwanegu Aseinî";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Ychwanegu Atodiad";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Ychwanegu Atodiadau";
 
 /* No comment provided by engineer. */
 "Add content" = "Ychwanegu cynnwys";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Ychwanegu Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
 "Add File" = "Ychwanegu Ffeil";
@@ -83,9 +101,12 @@
 "Alerts" = "Negeseuon Hysbysu";
 
 /* No comment provided by engineer. */
+"All" = "Y cyfan";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "Mae’r holl anodiadau wedi’u cadw.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Pob Cwrs";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Pob Cyflwyniad";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Caniatáu hoffi";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Caniatáu atebion aml-drywydd";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Caniatáu i ddefnyddwyr wneud sylw";
 
 /* No comment provided by engineer. */
 "Announcement" = "Cyhoeddiad";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Archebu Apwyntiadau";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Ydych chi’n siŵr eich bod chi am ddileu (enw)?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Ydych chi’n siŵr eich bod am ddileu %@?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Ydych chi’n siŵr eich bod am ddileu’r sylw hwn?";
+
+/* No comment provided by engineer. */
+"Assign" = "Dyrannu";
+
+/* No comment provided by engineer. */
+"Assign to" = "Dyrannu i";
 
 /* No comment provided by engineer. */
 "assignment" = "aseiniad";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Ymgais %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Trwydded Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution Non-Commercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution Non-Commercial No Derivatives";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution Non-Commercial Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Sain";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Wedi methu dilysu. Mae’n bur debyg bod y defnyddiwr wedi gwrthod y cais am fynediad.";
+
+/* No comment provided by engineer. */
+"Availability" = "Argaeledd";
 
 /* No comment provided by engineer. */
 "Availability:" = "Argaeledd:";
@@ -209,7 +227,7 @@
 "Available From:" = "Ar gael o:";
 
 /* No comment provided by engineer. */
-"Available to" = "Ar gael tan";
+"Available until" = "Ar gael tan";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Ar gael Tan:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Gradd y Cwrs yn Is na %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Adrannau Cwrs";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Maes Llafur y Cwrs";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Creu Cyfrif";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Trwydded Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Ymrestriad presennol";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Oedi cyn postio";
 
 /* No comment provided by engineer. */
 "Delete" = "Dileu";
@@ -524,6 +545,9 @@
 "Dismiss" = "Gwrthod";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Dangos Gradd fel";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "Peidio ag anfon dim ataf fi";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Golygu";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Golygu Cyhoeddiad";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Golygu atodiad (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Golygu atodiad (dim)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Golygu Trafodaeth";
 
 /* No comment provided by engineer. */
 "Edit File" = "Golygu Ffeil";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Golygu Derbynwyr";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Golygu Maes Llafur";
 
 /* Description for email communication channel */
 "Email Notifications" = "Hysbysiadau E-bost";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Pawb";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Pawb arall";
 
 /* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
@@ -995,7 +1031,13 @@
 "Never" = "Byth";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Cyhoeddiad Newydd";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Cynadleddau Newydd";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Trafodaeth Newydd";
 
 /* No comment provided by engineer. */
 "New Message" = "Neges Newydd";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "Heb ddod o hyd i ddelwedd o'r dewisydd delwedd";
 
 /* No comment provided by engineer. */
-"No matching courses" = "Dim cyrsiau cyfatebol";
-
-/* No comment provided by engineer. */
 "No Modules" = "Dim Modiwlau";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Dim Canlyniadau";
+
+/* No comment provided by engineer. */
+"No Sections" = "Dim Adrannau";
 
 /* No comment provided by engineer. */
 "No Subject" = "Dim Pwnc";
@@ -1106,7 +1148,7 @@
 "On Paper" = "Ar bapur";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Dim ond ar gael i fyfyrwyr sydd â dolen";
+"Only graders can like" = "Dim ond graddwyr sy’n gallu hoffi";
 
 /* No comment provided by engineer. */
 "Only members" = "Dim ond aelodau";
@@ -1160,9 +1202,6 @@
 "People" = "Pobl";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Angen Caniatâd";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Llyfrgell Luniau";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Pwynt";
+
+/* No comment provided by engineer. */
+"Post at" = "Postio at";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Cwisiau Ymarfer";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Tynnu %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Tynnu Atodiad";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Tynnu Atodiad?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Tynnu dyddiad";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Tynnu Dyddiad Erbyn?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Tynnu Ffeil";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "Does dim modd delio â sganio";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Trefnu bod myfyrwyr ar gael";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Trefnu";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Chwilio";
 
 /* No comment provided by engineer. */
+"Sections" = "Adrannau";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Adrannau: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Gweld y cyfan";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Gweld Pob Cwrs";
 
 /* No comment provided by engineer. */
 "See attached files." = "Gweler y ffeiliau sydd wedi’u hatodi.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Dangos un mis ar y tro";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Dangos cyflwyniadau wedi’u graddio";
+"Show Course Summary" = "Dangos Crynodeb Cwrs";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Dangos Graddau";
 
 /* No comment provided by engineer. */
 "Show more options" = "Dangos mwy o ddewisiadau";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Dangos cyflwyniadau heb eu cyflwyno";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Dangos cyflwyniadau sydd angen eu graddio";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Gan fod hon yn drafodaeth grŵp, mae gan bob grŵp ei sgwrs ei hun ar gyfer y pwnc hwn. Dyma’r trafodaethau mae gennych chi fynediad atyn nhw.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Mae rhywbeth o'i le";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
 
 /* No comment provided by engineer. */
 "Start recording" = "Dechrau'r recordiad";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Roedd yr aseiniad hwn yn fod i gael ei gyflwyno erbyn %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Does gan y cwrs hwn ddim adrannau.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Mae’r ffolder hon yn wag.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Mae’r dudalen hon wedi’i hanalluogi ar gyfer y cwrs hwn";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Bydd hyn yn tynnu'r dyddiad erbyn a phob aseinî cysylltiedig.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Amser wedi mynd heibio";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Rhestr ddim mewn trefn";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Dad-gyhoeddi";
-
-/* No comment provided by engineer. */
 "unpublished" = "heb gyhoeddi";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Hawl Defnyddio";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Hawliau Defnyddio";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Enw defnyddiwr";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Mae’n rhaid i ddefnyddwyr gyflwyno postiadau cyn gweld atebion";
+
+/* No comment provided by engineer. */
 "Video" = "Fideo";
 
 /* No comment provided by engineer. */
 "View" = "Gweld";
-
-/* No comment provided by engineer. */
-"View all dates" = "Gweld pob dyddiad";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Gweld Pob Cyflwyniad";
 
 /* No comment provided by engineer. */
 "View Less" = "Gweld Llai";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Hysbysiadau Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Byddwch yn stopio gweithredu fel %@ ac yn dychwelyd i’ch cyfrif eich hun.";

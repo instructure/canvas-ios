@@ -65,6 +65,9 @@
 "Done" = "Fet";
 
 /* No comment provided by engineer. */
+"Edit" = "Edita";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Tothom";
 
 /* No comment provided by engineer. */
+"Excused" = "Excusat";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "No s'ha pogut iniciar l'eina LTI de passar llista.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Fitxers (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Qualificació";
 
 /* No comment provided by engineer. */
 "Graded" = "Qualificat";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Marca la resta com a Present";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "No s'admet la qualificació moderada";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Cap entrega";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Sense qualificació";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Obre el calaix a pantalla completa";

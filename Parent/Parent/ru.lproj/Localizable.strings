@@ -146,9 +146,6 @@
 "Pairing Code" = "Код сопряжения";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Требуется разрешение";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR-код";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Вы не можете задать нижний порог, который выше или равен ранее заданному верхнему порогу.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Вы должны разрешить уведомления в настройках для задания напоминаний.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Вы все нагнали";

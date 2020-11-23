@@ -65,6 +65,9 @@
 "Done" = "Kua mahia";
 
 /* No comment provided by engineer. */
+"Edit" = "Whakatika";
+
+/* No comment provided by engineer. */
 "Error" = "Hapa";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "tāngata katoa";
 
 /* No comment provided by engineer. */
+"Excused" = "Whakawātea";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "I hapa te tuku rollcall LTI taputapu.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Ngā kōnae (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Kōeke";
 
 /* No comment provided by engineer. */
 "Graded" = "kōekehia";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Tohua ngā toenga o nāianei";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Kōeke whakaōrite tautokona";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Kahore ngā tāpaetanga";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Kāore i kōekehia";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Huaki Pouaka Mata Nui";

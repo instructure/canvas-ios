@@ -65,6 +65,9 @@
 "Done" = "Udført";
 
 /* No comment provided by engineer. */
+"Edit" = "Redigér";
+
+/* No comment provided by engineer. */
 "Error" = "Fejl";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Alle";
 
 /* No comment provided by engineer. */
+"Excused" = "Undskyldt";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Kunne ikke starte navneopkald-LTI-værktøj.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Vurdering";
 
 /* No comment provided by engineer. */
 "Graded" = "Bedømt";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Marker de resterende som tilstedeværende";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Samlet vurdering ikke understøttet";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ingen afleveringer";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ikke bedømt";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Åbn skuffe i fuld skærm";
