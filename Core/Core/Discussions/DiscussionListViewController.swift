@@ -284,5 +284,8 @@ class DiscussionListCell: UITableViewCell {
         unreadLabel.text = topic?.nUnreadString
         unreadDot.isHidden = topic?.unreadCount == 0
         unreadDot.backgroundColor = .backgroundInfo
+
+        accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
+        accessibilityLabel = "\(titleLabel.text ?? "") \(statusLabel.text ?? "") \(dateLabel.text ?? "") \(pointsLabel.text ?? "") \(repliesLabel.text ?? "") \(unreadLabel.text ?? "")"
     }
 }
