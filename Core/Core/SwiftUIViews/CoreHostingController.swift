@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>> {
+public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>, NavigationBarStyled {
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
     var testTree: TestTree?
 
@@ -48,10 +48,6 @@ public struct CoreHostingBaseView<Content: View>: View {
             .accentColor(Color(Brand.shared.primary))
             .environment(\.appEnvironment, AppEnvironment.shared)
             .environment(\.viewController, controller.value ?? UIViewController())
-            .onPreferenceChange(UINavigationBar.Style.self) { style in
-                controller.value?.navigationBarStyle = style
-                controller.value?.navigationController?.navigationBar.useStyle(style)
-            }
             .onPreferenceChange(TestTree.self) { testTrees in
                 controller.value?.testTree = testTrees.first { $0.type == Content.self }
             }
@@ -78,10 +74,22 @@ extension EnvironmentValues {
     }
 }
 
-extension UINavigationBar.Style: PreferenceKey {
-    public static var defaultValue = Self.modal
-    public static func reduce(value: inout Self, nextValue: () -> Self) {
-        value = nextValue()
+protocol NavigationBarStyled: class {
+    var navigationBarStyle: UINavigationBar.Style { get set }
+}
+struct NavigationBarStyleModifier: ViewModifier {
+    let style: UINavigationBar.Style
+
+    @Environment(\.viewController) var controller
+
+    func body(content: Content) -> some View {
+        (controller as? NavigationBarStyled)?.navigationBarStyle = style
+        if #available(iOS 14, *) {
+            controller.navigationController?.navigationBar.useStyle(style)
+        } else { DispatchQueue.main.async {
+            controller.navigationController?.navigationBar.useStyle(style)
+        } }
+        return content.overlay(Color?.none) // needs something modified to actually run
     }
 }
 
@@ -103,13 +111,27 @@ struct TitleSubtitleModifier: ViewModifier {
     }
 }
 
+struct GlobalNavigationBarModifier: ViewModifier {
+    @Environment(\.viewController) var controller
+
+    func body(content: Content) -> some View {
+        controller.navigationItem.titleView = Brand.shared.headerImageView()
+        return content.navigationBarStyle(.global)
+    }
+
+}
+
 extension View {
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
-        preference(key: UINavigationBar.Style.self, value: style)
+        modifier(NavigationBarStyleModifier(style: style))
     }
 
     public func navigationTitle(_ title: String, subtitle: String?) -> some View {
         modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
+    }
+
+    public func navigationBarGlobal() -> some View {
+        modifier(GlobalNavigationBarModifier())
     }
 }
 

@@ -19,6 +19,7 @@
 import Foundation
 import CoreData
 import Combine
+import SwiftUI
 
 public enum StoreState { case data, empty, error, loading }
 
@@ -86,9 +87,9 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     // @Published property
     public var objectWillChange = ObservableObjectPublisher()
     private func willChange() {
-        performUIUpdate {
+        performUIUpdate { withAnimation {
             self.objectWillChange.send()
-        }
+        } }
     }
 
     public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {

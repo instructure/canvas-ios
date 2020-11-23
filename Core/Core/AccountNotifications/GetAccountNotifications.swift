@@ -19,6 +19,14 @@
 import Foundation
 import CoreData
 
+struct GetAccountNotifications: CollectionUseCase {
+    typealias Model = AccountNotification
+
+    var cacheKey: String? { "accounts/self/account_notifications" }
+    var request: GetAccountNotificationsRequest { GetAccountNotificationsRequest() }
+    var scope: Scope { .all(orderBy: #keyPath(AccountNotification.endAt), ascending: false) }
+}
+
 public class GetAccountNotification: APIUseCase {
     public typealias Model = AccountNotification
 
@@ -33,4 +41,15 @@ public class GetAccountNotification: APIUseCase {
         GetAccountNotificationRequest(id: notificationID)
     }
     public var scope: Scope { .where(#keyPath(AccountNotification.id), equals: notificationID) }
+}
+
+struct DeleteAccountNotification: DeleteUseCase {
+    typealias Model = AccountNotification
+    typealias Response = APINoContent
+
+    let id: String
+
+    var cacheKey: String? { nil }
+    var request: DeleteAccountNotificationRequest { DeleteAccountNotificationRequest(id: id) }
+    var scope: Scope { .where(#keyPath(AccountNotification.id), equals: id) }
 }

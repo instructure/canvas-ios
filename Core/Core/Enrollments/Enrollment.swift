@@ -34,6 +34,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var courseSectionID: String?
     @NSManaged public var grades: Set<Grade>
     @NSManaged public var observedUser: User?
+    @NSManaged public var isFromInvitation: Bool
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?

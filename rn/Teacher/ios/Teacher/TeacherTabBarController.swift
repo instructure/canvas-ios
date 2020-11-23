@@ -36,7 +36,7 @@ class TeacherTabBarController: UITabBarController {
     func coursesTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: DashboardCardViewController.create()),
+            HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView())),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         if !ExperimentalFeature.nativeDashboard.isEnabled {
