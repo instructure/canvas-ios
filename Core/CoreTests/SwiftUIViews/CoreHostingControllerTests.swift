@@ -29,10 +29,4 @@ class CoreHostingControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.navigationBarStyle, .color(.red))
     }
-
-    func testNavigationBarStyleReduce() {
-        var style = UINavigationBar.Style.global
-        UINavigationBar.Style.reduce(value: &style, nextValue: { .color(.green) })
-        XCTAssertEqual(style, .color(.green))
-    }
 }
