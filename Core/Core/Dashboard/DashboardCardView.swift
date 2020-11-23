@@ -97,8 +97,7 @@ public struct DashboardCardView: View {
         ForEach(conferences.all, id: \.id) { conference in
             if let contextName = conference.context.contextType == .group ?
                 groups.first(where: { $0.id == conference.context.id })?.name :
-                courses.first(where: { $0.id == conference.context.id })?.name
-            {
+                courses.first(where: { $0.id == conference.context.id })?.name {
                 ConferenceCard(conference: conference, contextName: contextName)
                     .padding(.top, 16)
             }

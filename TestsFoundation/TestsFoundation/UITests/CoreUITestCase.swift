@@ -563,10 +563,8 @@ open class CoreUITestCase: XCTestCase {
 
     @discardableResult
     open func mock(courses: [APICourse]) -> [APICourse] {
-        if Bundle.main.isStudentApp {
-            mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed]), value: courses)
-        } else if Bundle.main.isTeacherApp {
-            mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed, .unpublished]), value: courses)
+        if Bundle.main.isStudentApp || Bundle.main.isTeacherApp {
+            mockData(GetCoursesRequest(enrollmentState: nil, perPage: 100), value: courses)
         } else if Bundle.main.isParentApp {
             mockData(GetCoursesRequest(include: [
                 .course_image,
@@ -603,9 +601,9 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetAccountNotificationsRequest(), value: [])
         mock(courses: [ baseCourse ])
         mockData(GetDashboardCardsRequest(), value: [APIDashboardCard.make()])
-        mockEncodableRequest("users/self/custom_data/favorites/groups?ns=com.canvas.canvas-app", value: [String: String]())
         mockEncodableRequest("users/self/enrollments?include[]=avatar_url", value: [baseEnrollment])
-        mockEncodableRequest("users/self/groups", value: [String]())
+        mockData(GetEnrollmentsRequest(context: .currentUser, states: [ .invited ]), value: [])
+        mockData(GetGroupsRequest(context: .currentUser), value: [])
         mockEncodableRequest("users/self/todo_item_count", value: ["needs_grading_count": 0])
         mockEncodableRequest("users/self/todo", value: [String]())
         mockEncodableRequest("conversations/unread_count", value: ["unread_count": 0])

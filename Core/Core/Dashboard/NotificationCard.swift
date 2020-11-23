@@ -49,11 +49,13 @@ struct NotificationCard: View {
                     }
                         .padding(.horizontal, 16).padding(.top, 12)
                 })
-                    .identifier("AccountNotification.\(notification.id).toggleButton")
                 if isExpanded {
-                    button.accessibility(label: Text("Hide content for \(notification.subject)", bundle: .core))
+                    button
+                        .accessibility(label: Text("Hide content for \(notification.subject)", bundle: .core))
+                        .identifier("AccountNotification.\(notification.id).toggleButton")
                 } else {
                     button
+                        .identifier("AccountNotification.\(notification.id).toggleButton")
                 }
                 WebView(html: notification.message)
                     .onLink { url in

@@ -21,12 +21,6 @@
 import template, { type Template } from '../../utils/template'
 
 export const entities: Template<Entities> = template({
-  accountNotifications: {
-    pending: 0,
-    list: [],
-    closing: [],
-    error: '',
-  },
   courses: {},
   groups: {},
   assignmentGroups: {},
