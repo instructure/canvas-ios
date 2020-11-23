@@ -65,6 +65,9 @@
 "Done" = "Gereed";
 
 /* No comment provided by engineer. */
+"Edit" = "Bewerken";
+
+/* No comment provided by engineer. */
 "Error" = "Fout";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Iedereen";
 
 /* No comment provided by engineer. */
+"Excused" = "Vrijgesteld";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Roll Call LTI Tool kan niet worden gestart.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Bestanden (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Cijfer";
 
 /* No comment provided by engineer. */
 "Graded" = "Beoordeeld";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Rest markeren als aanwezig";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Gemodereerd beoordelen wordt niet ondersteund";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Geen inleveringen";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Niet beoordeeld";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Lade openen, volledig scherm";

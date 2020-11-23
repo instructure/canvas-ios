@@ -65,6 +65,9 @@
 "Done" = "Готово";
 
 /* No comment provided by engineer. */
+"Edit" = "Редактировать";
+
+/* No comment provided by engineer. */
 "Error" = "Ошибка";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Все";
 
 /* No comment provided by engineer. */
+"Excused" = "По уважительной причине";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Не удалось запустить инструмент переклички LTI.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Файлы (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Оценка";
 
 /* No comment provided by engineer. */
 "Graded" = "С оценкой";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Отметить остальных как присутствующих";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Модерированное выставление оценок не поддерживается";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Нет отправок";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Оценка не выставлена";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Полноэкранный режим «Открыть панель»";

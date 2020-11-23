@@ -146,9 +146,6 @@
 "Pairing Code" = "Kòd Kouplaj";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Otorizasyon Nesesè";
-
-/* No comment provided by engineer. */
 "QR Code" = "Kòd QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Ou pa pakab fikse yon plafon ki ba ki siperyè oswa egal a plafon wo ki te fikse anvan an.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Yo pran w";

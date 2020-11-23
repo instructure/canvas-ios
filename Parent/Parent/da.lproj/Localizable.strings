@@ -146,9 +146,6 @@
 "Pairing Code" = "Parringskode";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tilladelse nødvendig";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR-kode";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Du kan ikke indstille en lav tærskel, der er højere end eller lig med en tidligere indstillet høj tærskel.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Du skal tillade meddelelser i Indstillinger for at indstille påmindelser.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Du er ajour";

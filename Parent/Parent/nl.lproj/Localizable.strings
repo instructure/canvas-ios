@@ -146,9 +146,6 @@
 "Pairing Code" = "Koppelingscode";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Toestemming vereist";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR-code";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Je kunt geen lage drempel instellen die hoger is dan of gelijk aan een voorheen ingestelde hoge drempel.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Je moet in Instellingen meldingen activeren om herinneringen in te stellen.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Je bent helemaal bij!";

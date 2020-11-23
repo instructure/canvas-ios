@@ -146,9 +146,6 @@
 "Pairing Code" = "ペアリングコード";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "許可が必要";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR コード";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "以前に設定した高しきい値以上の低しきい値を設定することはできません。";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "[設定]で通知を許可して、リマインダを設定しなければなりません。";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "これで完了です";

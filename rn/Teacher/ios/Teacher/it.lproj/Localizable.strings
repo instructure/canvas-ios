@@ -65,6 +65,9 @@
 "Done" = "Fatto";
 
 /* No comment provided by engineer. */
+"Edit" = "Modifica";
+
+/* No comment provided by engineer. */
 "Error" = "Errore";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Tutti";
 
 /* No comment provided by engineer. */
+"Excused" = "Giustificato";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Impossibile avviare strumento LTI di votazione.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "File (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Voto";
 
 /* No comment provided by engineer. */
 "Graded" = "Valutato";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Contrassegna il resto come presente";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Valutazione moderata non supportata";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Nessuna consegna";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Non valutato";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Apri riquadro a tutto schermo";

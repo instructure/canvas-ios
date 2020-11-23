@@ -146,9 +146,6 @@
 "Pairing Code" = "S'està aparellant el codi";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Cal permís";
-
-/* No comment provided by engineer. */
 "QR Code" = "Codi QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "No podeu definir un llindar inferior que sigui superior o igual a un llindar superior definit prèviament.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Esteu completament al dia";

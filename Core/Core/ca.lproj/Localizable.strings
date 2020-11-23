@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ punts";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ seccions";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, a %2$@, l'últim missatge va ser el %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, sense llegir";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Actua com a usuari";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Afegeix el beneficiari";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Afegeix un fitxer adjunt";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Afegeix fitxers adjunts";
 
 /* No comment provided by engineer. */
 "Add content" = "Afegeix el contingut";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Afegeix una data de venciment";
 
 /* No comment provided by engineer. */
 "Add File" = "Afegeix un fitxer";
@@ -83,9 +101,12 @@
 "Alerts" = "Avisos";
 
 /* No comment provided by engineer. */
+"All" = "Tot";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "S'han desat totes les anotacions.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Tots els cursos";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Totes les entregues";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Permet els M'agrada";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Permet les respostes enllaçades";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Permet que els usuaris facin comentaris";
 
 /* No comment provided by engineer. */
 "Announcement" = "Anunci";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Registres de cites";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Segur que voleu suprimir (nom)?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Segur que voleu suprimir %@?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Segur que voldríeu suprimir aquest comentari?";
+
+/* No comment provided by engineer. */
+"Assign" = "Assigna";
+
+/* No comment provided by engineer. */
+"Assign to" = "Assigna a";
 
 /* No comment provided by engineer. */
 "assignment" = "tasca";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Intent %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Reconeixement";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Reconeixement Sense Obres Derivades";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Reconeixement No Comercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Reconeixement No Comercial Sense Obres Derivades";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Reconeixement No Comercial Compartir Igual";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Reconeixement Compartir Igual";
-
-/* No comment provided by engineer. */
 "Audio" = "Àudio";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "No s'ha pogut dur a terme l'autenticació. El més probable és que l'usuari hagi denegat la sol·licitud d'accés.";
+
+/* No comment provided by engineer. */
+"Availability" = "Disponibilitat";
 
 /* No comment provided by engineer. */
 "Availability:" = "Disponibilitat:";
@@ -209,7 +227,7 @@
 "Available From:" = "Disponible de:";
 
 /* No comment provided by engineer. */
-"Available to" = "Disponible per a";
+"Available until" = "Disponible fins al";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponible fins a:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Qualificació del curs per sota de %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Seccions del curs";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Temari del curs";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Crea un compte";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Llicència de Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Inscripcions actuals";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Retarda la publicació";
 
 /* No comment provided by engineer. */
 "Delete" = "Suprimeix";
@@ -524,6 +545,9 @@
 "Dismiss" = "Descarta";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Mostra la qualificació com";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "No m'envieu res";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Edita";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Edita l'anunci";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Edita el fitxer adjunt (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Edita el fitxer adjunt (cap)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Edita el debat";
 
 /* No comment provided by engineer. */
 "Edit File" = "Edita el fitxer";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edita els destinataris";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Edita el temari";
 
 /* Description for email communication channel */
 "Email Notifications" = "Notificacions per correu electrònic";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Tothom";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Tots els altres";
 
 /* No comment provided by engineer. */
 "Excused" = "Excusat";
@@ -995,7 +1031,13 @@
 "Never" = "Mai";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Anunci nou";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Conferències noves";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Debat nou";
 
 /* No comment provided by engineer. */
 "New Message" = "Missatge nou";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "No s'ha trobat cap imatge al selector d'imatges";
 
 /* No comment provided by engineer. */
-"No matching courses" = "No s’ha trobat cap curs coincident";
-
-/* No comment provided by engineer. */
 "No Modules" = "No hi ha cap mòdul";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "No hi ha cap resultat";
+
+/* No comment provided by engineer. */
+"No Sections" = "Cap secció";
 
 /* No comment provided by engineer. */
 "No Subject" = "Sense assumpte";
@@ -1106,7 +1148,7 @@
 "On Paper" = "En paper";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Només està disponible per als estudiants a través d'un enllaç";
+"Only graders can like" = "Només els qualificadors poden marcar com a M'agrada";
 
 /* No comment provided by engineer. */
 "Only members" = "Només membres";
@@ -1160,9 +1202,6 @@
 "People" = "Persones";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Cal permís";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Biblioteca de fotos";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Punts";
+
+/* No comment provided by engineer. */
+"Post at" = "Publica el";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Qüestionaris de pràctica";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Elimina %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Suprimeix el fitxer adjunt";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Voleu suprimir el fitxer adjunt?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Elimina la data";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Voleu suprimir la data de venciment?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Elimina el fitxer";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "No s'admet l'escaneig";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Planifica la disponibilitat dels estudiants";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planificació";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Cerca";
 
 /* No comment provided by engineer. */
+"Sections" = "Seccions";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Seccions: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Mostra-ho tot";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Mostra tots els cursos";
 
 /* No comment provided by engineer. */
 "See attached files." = "Consulteu els fitxers adjunts.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Mostra un mes a la vegada";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Mostra les entregues qualificades";
+"Show Course Summary" = "Mostra el resum del curs";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Mostra les qualificacions";
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostra més opcions";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Mostra les entregues no realitzades";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Mostra les entregues que requereixen qualificació";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Atès que aquest és un debat de grup, cada grup té la seva conversa per a aquest tema. Aquests són els debats als quals teniu accés.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Alguna cosa no va bé";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Ordena per número de M'agrada";
 
 /* No comment provided by engineer. */
 "Start recording" = "Comença a enregistrar";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Aquesta tasca ha vençut el %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Aquest curs no té cap secció.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Aquesta carpeta està buida.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Aquesta pàgina s'ha inhabilitat per a aquest curs.";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Amb aquesta acció s'eliminaran la data de venciment i tots els beneficiaris associats.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps transcorregut";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Llista sense ordenar";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Anul·la la publicació";
-
-/* No comment provided by engineer. */
 "unpublished" = "no publicat";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Drets d'ús";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Drets d'ús";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Nom d'usuari";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Els usuaris han de publicar per poder veure les respostes";
+
+/* No comment provided by engineer. */
 "Video" = "Vídeo";
 
 /* No comment provided by engineer. */
 "View" = "Mostra";
-
-/* No comment provided by engineer. */
-"View all dates" = "Mostra totes les dates";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Mostra totes les entregues";
 
 /* No comment provided by engineer. */
 "View Less" = "Visualitza'n menys";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificacions de Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Deixareu de fer de %@ i tornareu al vostre compte.";

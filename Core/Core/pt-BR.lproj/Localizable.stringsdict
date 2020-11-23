@@ -2,6 +2,86 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>%d Replies</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replies@</string>
+		<key>replies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Responder</string>
+			<key>other</key>
+			<string>%d Respostas</string>
+		</dict>
+	</dict>
+	<key>%d Unread</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@unread@</string>
+		<key>unread</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Não lido</string>
+			<key>other</key>
+			<string>%d Não lido</string>
+		</dict>
+	</dict>
+	<key>%d sections</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@sections@</string>
+		<key>sections</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d turma</string>
+			<key>other</key>
+			<string>%d seções</string>
+		</dict>
+	</dict>
+	<key>%d students</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@students@</string>
+		<key>students</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d aluno</string>
+			<key>other</key>
+			<string>%d alunos</string>
+		</dict>
+	</dict>
+	<key>%g pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
 	<key>conversation_recipients_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

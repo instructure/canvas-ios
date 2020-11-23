@@ -65,6 +65,9 @@
 "Done" = "完成";
 
 /* No comment provided by engineer. */
+"Edit" = "编辑";
+
+/* No comment provided by engineer. */
 "Error" = "错误";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "所有人";
 
 /* No comment provided by engineer. */
+"Excused" = "已免除";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "无法启动点名LTI工具。";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "文件(%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "评分";
 
 /* No comment provided by engineer. */
 "Graded" = "已评分";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "将其余的标记为出勤";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "不支持审核后的评分";
+
+/* No comment provided by engineer. */
 "No Submissions" = "无提交项";
+
+/* No comment provided by engineer. */
+"Not Graded" = "未评分";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "打开全屏抽屉";

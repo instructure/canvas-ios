@@ -2,6 +2,126 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>%d Replies</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replies@</string>
+		<key>replies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d Whakautu</string>
+			<key>other</key>
+			<string>%d Ngā whakautu</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d Replies</string>
+		</dict>
+	</dict>
+	<key>%d Unread</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@unread@</string>
+		<key>unread</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d Kia pānuitia</string>
+			<key>other</key>
+			<string>%d Kia pānuitia</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d Unread</string>
+		</dict>
+	</dict>
+	<key>%d sections</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@sections@</string>
+		<key>sections</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d wāhanga</string>
+			<key>other</key>
+			<string>%d ngā wāhanga</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d sections</string>
+		</dict>
+	</dict>
+	<key>%d students</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@students@</string>
+		<key>students</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%d ākonga</string>
+			<key>other</key>
+			<string>%d Ngā Ākonga</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%d students</string>
+		</dict>
+	</dict>
+	<key>%g pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+			<key>two</key>
+			<string></string>
+			<key>zero</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
 	<key>conversation_recipients_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -403,7 +523,7 @@
 			<key>one</key>
 			<string>Kōinga</string>
 			<key>other</key>
-			<string>Ngā Kōinga</string>
+			<string>Ngā Koinga</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

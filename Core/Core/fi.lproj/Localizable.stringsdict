@@ -2,6 +2,86 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>%d Replies</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replies@</string>
+		<key>replies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Vastaa</string>
+			<key>other</key>
+			<string>%d Vastausta</string>
+		</dict>
+	</dict>
+	<key>%d Unread</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@unread@</string>
+		<key>unread</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d Lukematon</string>
+			<key>other</key>
+			<string>%d Lukematon</string>
+		</dict>
+	</dict>
+	<key>%d sections</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@sections@</string>
+		<key>sections</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d osio</string>
+			<key>other</key>
+			<string>%d osat</string>
+		</dict>
+	</dict>
+	<key>%d students</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@students@</string>
+		<key>students</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d opiskelija, koululainen</string>
+			<key>other</key>
+			<string>%d opiskelijaa</string>
+		</dict>
+	</dict>
+	<key>%g pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
 	<key>conversation_recipients_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -271,7 +351,7 @@
 			<key>one</key>
 			<string>Piste</string>
 			<key>other</key>
-			<string>Pistettä</string>
+			<string>Pisteet</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>

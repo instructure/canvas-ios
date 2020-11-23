@@ -65,6 +65,9 @@
 "Done" = "Valmis";
 
 /* No comment provided by engineer. */
+"Edit" = "Muokkaa";
+
+/* No comment provided by engineer. */
 "Error" = "Virhe";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Kaikki";
 
 /* No comment provided by engineer. */
+"Excused" = "Vapautettu";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Roll LTI -työkalun lanseeraaminen epäonnistui.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Tiedostot (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Arvosana";
 
 /* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Merkitse jäljellä olevat läsnä olevina";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Valvottua arvosanojen antoa ei tueta";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ei lähetyksiä";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ei arvioida";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Avaa vetolaatikko koko näyttö";

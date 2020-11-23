@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ ptn";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ secties";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, ongelezen";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Optreden als gebruiker";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Toegewezen persoon toevoegen";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Bijlage toevoegen";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Bijlagen toevoegen";
 
 /* No comment provided by engineer. */
 "Add content" = "Inhoud toevoegen";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Inleverdatum toevoegen";
 
 /* No comment provided by engineer. */
 "Add File" = "Bestand toevoegen";
@@ -83,9 +101,12 @@
 "Alerts" = "Waarschuwingen";
 
 /* No comment provided by engineer. */
+"All" = "Alle";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "Alle aantekeningen opgeslagen.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Alle cursussen";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Alle inzendingen";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Likes toestaan";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Antwoorden op antwoorden toestaan";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Geef gebruikers de mogelijkheid om opmerkingen te geven";
 
 /* No comment provided by engineer. */
 "Announcement" = "Aankondiging";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Aanmeldingen voor afspraak";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Weet je zeker dat je (naam) wilt verwijderen?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Weet je zeker dat je %@ wilt verwijderen?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Weet je zeker dat je deze opmerking wilt verwijderen?";
+
+/* No comment provided by engineer. */
+"Assign" = "Toewijzen";
+
+/* No comment provided by engineer. */
+"Assign to" = "Toewijzen aan";
 
 /* No comment provided by engineer. */
 "assignment" = "opdracht";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Poging %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Bijdrage";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Bijdrage, geen afgeleiden";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Bijdrage, niet-commercieel";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Bijdrage, niet-commercieel, geen afgeleiden";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Bijdrage, niet-commercieel, gelijke delen";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Bijdrage, gelijke delen";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Verificatie mislukt. Hoogstwaarschijnlijk heeft de gebruiker de aanvraag voor toegang geweigerd.";
+
+/* No comment provided by engineer. */
+"Availability" = "Beschikbaarheid";
 
 /* No comment provided by engineer. */
 "Availability:" = "Beschikbaarheid:";
@@ -209,7 +227,7 @@
 "Available From:" = "Beschikbaar vanaf:";
 
 /* No comment provided by engineer. */
-"Available to" = "Beschikbaar voor";
+"Available until" = "Beschikbaar tot";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Beschikbaar tot:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Cursuscijfer lager dan %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Cursussecties";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Cursussyllabus";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Account maken";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons-licentie";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Huidige inschrijvingen";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Berichten plaatsen uitstellen";
 
 /* No comment provided by engineer. */
 "Delete" = "Verwijderen";
@@ -524,6 +545,9 @@
 "Dismiss" = "Afwijzen";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Geef cijfer aan als";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "Me niets sturen";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Bewerken";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Aankondiging bewerken";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Bijlage bewerken (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Bijlage bewerken (geen)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Discussie bewerken";
 
 /* No comment provided by engineer. */
 "Edit File" = "Bestand bewerken";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Ontvangers bewerken";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Syllabus bewerken";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-mail meldingen";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Iedereen";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Alle anderen";
 
 /* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
@@ -995,7 +1031,13 @@
 "Never" = "Nooit";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Nieuwe aankondiging";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Nieuwe vergaderingen";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Nieuwe discussie";
 
 /* No comment provided by engineer. */
 "New Message" = "Nieuw bericht";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "Er is geen afbeelding gevonden van afbeeldingkiezer";
 
 /* No comment provided by engineer. */
-"No matching courses" = "Geen overeenkomende cursussen";
-
-/* No comment provided by engineer. */
 "No Modules" = "Geen modules";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Geen resultaten";
+
+/* No comment provided by engineer. */
+"No Sections" = "Geen secties";
 
 /* No comment provided by engineer. */
 "No Subject" = "Geen onderwerp";
@@ -1106,7 +1148,7 @@
 "On Paper" = "Op papier";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Alleen beschikbaar voor cursisten met koppeling";
+"Only graders can like" = "Alleen beoordelaars mogen liken";
 
 /* No comment provided by engineer. */
 "Only members" = "Alleen leden";
@@ -1160,9 +1202,6 @@
 "People" = "Personen";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Toestemming vereist";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Fotobibliotheek";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Punten";
+
+/* No comment provided by engineer. */
+"Post at" = "Plaatsen op";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Oefentoetsen";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Verwijderen %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Bijlage verwijderen";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Bijlage verwijderen?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Datum verwijderen";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Inleverdatum verwijderen?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Bestand verwijderen";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "Scannen wordt niet ondersteund";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Schema met beschikbaarheid van cursist";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planning";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Zoeken";
 
 /* No comment provided by engineer. */
+"Sections" = "Secties";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Secties: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Alles weergeven";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Alle cursussen weergeven";
 
 /* No comment provided by engineer. */
 "See attached files." = "Bijgevoegde bestanden zien.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Een maand tegelijk tonen";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Beoordeelde inleveringen tonen";
+"Show Course Summary" = "Cursusoverzicht weergeven";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Cijfers tonen";
 
 /* No comment provided by engineer. */
 "Show more options" = "Meer opties weergeven";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Niet ingezonden inleveringen tonen";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Inleveringen tonen die moeten worden beoordeeld";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Aangezien dit een groepsdiscussie is, voert elke groep zijn eigen gesprek over dit onderwerp. Hier zijn de discussies waartoe je toegang tot hebt.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Er is iets mis";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Op likes sorteren";
 
 /* No comment provided by engineer. */
 "Start recording" = "Opname starten";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Deze opdracht moest ingeleverd zijn op %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Deze cursus heeft geen secties.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Deze map is leeg.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Deze pagina is uitgeschakeld voor deze cursus.";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Hiermee worden de inleverdatum en alle daaraan gekoppelde ontvangers verwijderd.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Verstreken tijd";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Ongeordende lijst";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Publicatie ongedaan maken";
-
-/* No comment provided by engineer. */
 "unpublished" = "niet-gepubliceerd";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Gebruiksrecht";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Gebruiksrechten";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Gebruikersnaam";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Gebruikers moeten een bericht plaatsen voordat ze antwoorden kunnen zien";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
 "View" = "Bekijken";
-
-/* No comment provided by engineer. */
-"View all dates" = "Alle datums bekijken";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Alle inleveringen bekijken";
 
 /* No comment provided by engineer. */
 "View Less" = "Minder weergeven";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-meldingen";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Je moet Microfoon-toestemmingen inschakelen in Instellingen.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Je stopt met optreden als %@ en keert terug naar je account.";
