@@ -286,6 +286,6 @@ class DiscussionListCell: UITableViewCell {
         unreadDot.backgroundColor = .backgroundInfo
 
         accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
-        accessibilityLabel = "\(titleLabel.text ?? "") \(statusLabel.text ?? "") \(dateLabel.text ?? "") \(pointsLabel.text ?? "") \(repliesLabel.text ?? "") \(unreadLabel.text ?? "")"
+        accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].compactMap { $0 }.joined(separator: " ")
     }
 }
