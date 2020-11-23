@@ -160,6 +160,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
+        cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
         cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true)
         return cell
     }
@@ -209,5 +210,7 @@ class AnnouncementListCell: UITableViewCell {
         } else {
             dateLabel.text = topic?.postedAt?.dateTimeString
         }
+
+        accessibilityLabel = "\(titleLabel.text ?? "") \(dateLabel.text ?? "")"
     }
 }
