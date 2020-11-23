@@ -146,9 +146,6 @@
 "Pairing Code" = "Kopplingskod";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tillstånd behövs";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR-kod";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Du kan inte se en låg tröskel som är högre eller lika med en tidigare inställd hög tröskel.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Du är helt i kapp!";

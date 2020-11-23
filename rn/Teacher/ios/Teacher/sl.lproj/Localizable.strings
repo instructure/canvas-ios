@@ -65,6 +65,9 @@
 "Done" = "Dokončano";
 
 /* No comment provided by engineer. */
+"Edit" = "Uredi";
+
+/* No comment provided by engineer. */
 "Error" = "Napaka";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Vsi";
 
 /* No comment provided by engineer. */
+"Excused" = "Opravičeno";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Preverjanja prisotnosti orodja LTI ni bilo mogoče zagnati.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Datoteke (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Ocena";
 
 /* No comment provided by engineer. */
 "Graded" = "Ocenjeno";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Označi preostale kot prisotne";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Moderirano ocenjevanje ni podprto.";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ni oddaj";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ni ocenjeno";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Odpri predal na celoten zaslon";

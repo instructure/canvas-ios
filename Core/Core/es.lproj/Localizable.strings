@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ secciones";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, en %2$@, el último mensaje fue el %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, no leído";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Actuar en nombre de Usuario";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Agregar persona asignada";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Agregar adjunto";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Agregar adjuntos";
 
 /* No comment provided by engineer. */
 "Add content" = "Agregar contenido";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Agregar fecha límite";
 
 /* No comment provided by engineer. */
 "Add File" = "Agregar archivo";
@@ -83,9 +101,12 @@
 "Alerts" = "Alertas";
 
 /* No comment provided by engineer. */
+"All" = "Todo";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "Se guardaron todas las anotaciones.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Todos los cursos";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Todas las entregas";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Permitir darle clic a \"me gusta\"";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Permitir respuestas agrupadas";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Permitir que los usuarios comenten";
 
 /* No comment provided by engineer. */
 "Announcement" = "Anuncio";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Registros para citas";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "¿Está seguro de que desea eliminar (nombre)?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "¿Está seguro de que desea eliminar %@?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "¿Está seguro de que desea eliminar este comentario?";
+
+/* No comment provided by engineer. */
+"Assign" = "Asignar";
+
+/* No comment provided by engineer. */
+"Assign to" = "Asignar a";
 
 /* No comment provided by engineer. */
 "assignment" = "tarea";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Intento %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Atribución";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Atribución-SinDerivadas";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Atribución-NoComercial";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Atribución-NoComercial-SinDerivadas";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Atribución-NoComercial-CompartirIgual";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Atribución-CompartirIgual";
-
-/* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Falló la autenticación. Es muy probable que el usuario haya rechazado la solicitud de acceso.";
+
+/* No comment provided by engineer. */
+"Availability" = "Disponibilidad";
 
 /* No comment provided by engineer. */
 "Availability:" = "Disponibilidad:";
@@ -209,7 +227,7 @@
 "Available From:" = "Disponible desde:";
 
 /* No comment provided by engineer. */
-"Available to" = "Disponible para";
+"Available until" = "Disponible hasta";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponible hasta:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Calificación de curso menor que %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Secciones del curso";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Programa del curso";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Crear cuenta";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Licencia de Creative Commons";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Inscripciones actuales";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Atrasar la publicación";
 
 /* No comment provided by engineer. */
 "Delete" = "Eliminar";
@@ -524,6 +545,9 @@
 "Dismiss" = "Descartar";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Mostrar calificación como";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "No enviarme nada";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Editar";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Editar anuncio";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Editar adjunto (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Editar adjunto (ninguno)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Editar foro de discusión";
 
 /* No comment provided by engineer. */
 "Edit File" = "Editar archivo";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Editar destinatarios";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Editar programa del curso";
 
 /* Description for email communication channel */
 "Email Notifications" = "Notificaciones por correo electrónico";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Todos";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Todos los demás";
 
 /* No comment provided by engineer. */
 "Excused" = "Justificado";
@@ -995,7 +1031,13 @@
 "Never" = "Nunca";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Nuevo anuncio";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Nuevas conferencias";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Nuevo foro de discusión";
 
 /* No comment provided by engineer. */
 "New Message" = "Mensaje nuevo";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "No se encontraron imágenes en el selector de imágenes";
 
 /* No comment provided by engineer. */
-"No matching courses" = "No hay ningún curso que coincida";
-
-/* No comment provided by engineer. */
 "No Modules" = "No hay módulos";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Sin resultados";
+
+/* No comment provided by engineer. */
+"No Sections" = "No hay secciones";
 
 /* No comment provided by engineer. */
 "No Subject" = "Sin asunto";
@@ -1106,7 +1148,7 @@
 "On Paper" = "En papel";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Disponible solo para estudiantes con enlace";
+"Only graders can like" = "Solo los calificadores pueden darle \"me gusta\"";
 
 /* No comment provided by engineer. */
 "Only members" = "Solo miembros";
@@ -1160,9 +1202,6 @@
 "People" = "Personas";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Se necesita permiso";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Biblioteca de fotos";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Puntos";
+
+/* No comment provided by engineer. */
+"Post at" = "Publicar a las";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Exámenes de práctica";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Eliminar %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Eliminar el archivo adjunto";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "¿Eliminar el archivo adjunto?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Eliminar fecha";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "¿Eliminar la fecha límite?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Eliminar archivo";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "No se admite el escaneo";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Programar la disponibilidad de los alumnos";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planificación";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Buscar";
 
 /* No comment provided by engineer. */
+"Sections" = "Secciones";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Secciones: %@";
-
-/* No comment provided by engineer. */
-"See All" = "Ver todos";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Ver todos los cursos";
 
 /* No comment provided by engineer. */
 "See attached files." = "Ver archivos adjuntos.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Mostrar un mes por vez";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Mostrar las entregas calificadas";
+"Show Course Summary" = "Mostrar Resumen del curso";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Mostrar calificaciones";
 
 /* No comment provided by engineer. */
 "Show more options" = "Mostrar más opciones";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Mostrar las entregas no presentadas";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Mostrar las entregas que requieren calificación";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Al tratarse de un foro grupal, cada grupo tiene su propia conversación en este foro. Estos son los foros a los que puede acceder.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Algo está mal";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Ordenar por \"me gusta\"";
 
 /* No comment provided by engineer. */
 "Start recording" = "Comenzar grabación";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Esta tarea debía presentarse antes del %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Este curso no tiene ninguna sección.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Esta carpeta está vacía.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Se deshabilitó está página para este curso.";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Esto eliminará la fecha límite y todas las personas asignadas asociadas.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Tiempo transcurrido";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Lista no ordenada";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Cancelar publicación";
-
-/* No comment provided by engineer. */
 "unpublished" = "no publicado";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Derecho de uso";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Derechos de uso";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Nombre de usuario";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Los usuarios deben publicar antes de ver las respuestas";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
 "View" = "Ver";
-
-/* No comment provided by engineer. */
-"View all dates" = "Ver todas las fechas";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Ver todas las entregas";
 
 /* No comment provided by engineer. */
 "View Less" = "Ver menos";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificaciones de Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Debe habilitar los permisos del micrófono en Configuraciones.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Usted dejará de actuar en nombre de %@ y volverá a su cuenta.";

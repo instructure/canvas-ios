@@ -146,9 +146,6 @@
 "Pairing Code" = "Waihere Hono";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "E hiahiatia ana he whakāetanga";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR Waehere";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Kaore e taea te whakatau he paepa o raro kei te teitei ara ōrite rānei ki te paepae teitei kua whakatautia i muri.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Kua mau katoa koe";

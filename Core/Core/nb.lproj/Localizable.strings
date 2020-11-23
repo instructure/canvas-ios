@@ -28,11 +28,20 @@
 /* No comment provided by engineer. */
 "%@ pts" = "%@ poeng";
 
+/* No comment provided by engineer. */
+"%@ sections" = "%@ seksjoner";
+
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, den siste meldingen var %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, ulest";
+
+/* score/points */
+"%@/%@" = "%1$@/%2$@";
+
+/* score/points possible (grade) */
+"%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
@@ -53,10 +62,19 @@
 "Act as User" = "Opptre som bruker";
 
 /* No comment provided by engineer. */
+"Add Assignee" = "Legg til mottaker";
+
+/* No comment provided by engineer. */
+"Add Attachment" = "Legg til vedlegg";
+
+/* No comment provided by engineer. */
 "Add Attachments" = "Legg til vedlegg";
 
 /* No comment provided by engineer. */
 "Add content" = "Legg til innhold";
+
+/* No comment provided by engineer. */
+"Add Due Date" = "Legg til forfallsdato";
 
 /* No comment provided by engineer. */
 "Add File" = "Legg til fil";
@@ -83,9 +101,12 @@
 "Alerts" = "Varsler";
 
 /* No comment provided by engineer. */
+"All" = "Alle";
+
+/* No comment provided by engineer. */
 "All annotations saved." = "Alle merknader er lagret.";
 
-/* All Courses screen title */
+/* No comment provided by engineer. */
 "All Courses" = "Alle emner";
 
 /* No comment provided by engineer. */
@@ -96,6 +117,15 @@
 
 /* No comment provided by engineer. */
 "All Submissions" = "Alle innleveringer";
+
+/* No comment provided by engineer. */
+"Allow liking" = "Tillat liking";
+
+/* No comment provided by engineer. */
+"Allow threaded replies" = "Tillat svartråder";
+
+/* No comment provided by engineer. */
+"Allow users to comment" = "Lar brukere kommentere";
 
 /* No comment provided by engineer. */
 "Announcement" = "Kunngjøring";
@@ -122,9 +152,6 @@
 "Appointment Signups" = "Avtalepåmeldinger";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete (name)?" = "Er du sikker på at du vil slette (navn)?";
-
-/* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Er du sikker på at du vil slette %@?";
 
 /* No comment provided by engineer. */
@@ -138,6 +165,12 @@
 
 /* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Er du sikker du ønsker å slette denne kommentaren?";
+
+/* No comment provided by engineer. */
+"Assign" = "Tilordne";
+
+/* No comment provided by engineer. */
+"Assign to" = "Tildel til";
 
 /* No comment provided by engineer. */
 "assignment" = "oppgave";
@@ -170,24 +203,6 @@
 "Attempt %d" = "Forsøk %d";
 
 /* No comment provided by engineer. */
-"Attribution" = "Attribution";
-
-/* No comment provided by engineer. */
-"Attribution No Derivatives" = "Attribution ingen derivater";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Attribution ikke-kommersiell";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Attribution ikke-kommersiell, ingen derivater";
-
-/* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Attribution ikke-kommersiell, Share Alike";
-
-/* No comment provided by engineer. */
-"Attribution Share Alike" = "Attribution Share Alike";
-
-/* No comment provided by engineer. */
 "Audio" = "Lyd";
 
 /* No comment provided by engineer. */
@@ -195,6 +210,9 @@
 
 /* No comment provided by engineer. */
 "Authentication failed. Most likely the user denied the request for access." = "Autentisering mislyktes. Mest sannsynlig nektet bruker forespørselen om tilgang.";
+
+/* No comment provided by engineer. */
+"Availability" = "Tilgjengelighet";
 
 /* No comment provided by engineer. */
 "Availability:" = "Tilgjengelighet:";
@@ -209,7 +227,7 @@
 "Available From:" = "Tilgjengelig fra:";
 
 /* No comment provided by engineer. */
-"Available to" = "Tilgjengelig til";
+"Available until" = "Tilgjengelig til";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tilgjengelig til:";
@@ -410,6 +428,9 @@
 "Course Grade Below %d" = "Emnevurdering under  %d";
 
 /* No comment provided by engineer. */
+"Course Sections" = "Emneseksjoner";
+
+/* No comment provided by engineer. */
 "Course Syllabus" = "Emneoversikt";
 
 /* No comment provided by engineer. */
@@ -417,9 +438,6 @@
 
 /* No comment provided by engineer. */
 "Create Account" = "Opprett konto";
-
-/* No comment provided by engineer. */
-"Creative Commons License" = "Creative Commons-lisens";
 
 /* No comment provided by engineer. */
 "Current Enrollments" = "Gjeldende påmeldinger";
@@ -453,6 +471,9 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Delay posting" = "Avvent posting";
 
 /* No comment provided by engineer. */
 "Delete" = "Slett";
@@ -524,6 +545,9 @@
 "Dismiss" = "Avvise";
 
 /* No comment provided by engineer. */
+"Display Grade as" = "Vis karakteren som";
+
+/* No comment provided by engineer. */
 "Do not send me anything" = "Ikke send meg noe";
 
 /* No comment provided by engineer. */
@@ -548,10 +572,16 @@
 "Edit" = "Rediger";
 
 /* No comment provided by engineer. */
+"Edit Announcement" = "Rediger kunngjøring";
+
+/* No comment provided by engineer. */
 "Edit attachment (1)" = "Legg til vedlegg (1)";
 
 /* No comment provided by engineer. */
 "Edit attachment (none)" = "Legg til vedlegg (ingen)";
+
+/* No comment provided by engineer. */
+"Edit Discussion" = "Rediger diskusjon";
 
 /* No comment provided by engineer. */
 "Edit File" = "Endre fil";
@@ -564,6 +594,9 @@
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Rediger mottakere";
+
+/* No comment provided by engineer. */
+"Edit Syllabus" = "Rediger emneoversikt";
 
 /* Description for email communication channel */
 "Email Notifications" = "E-post varslinger";
@@ -585,6 +618,9 @@
 
 /* No comment provided by engineer. */
 "Everyone" = "Alle";
+
+/* No comment provided by engineer. */
+"Everyone else" = "Alle andre";
 
 /* No comment provided by engineer. */
 "Excused" = "Fritatt";
@@ -995,7 +1031,13 @@
 "Never" = "Aldri";
 
 /* No comment provided by engineer. */
+"New Announcement" = "Ny kunngjøring";
+
+/* No comment provided by engineer. */
 "New Conferences" = "Nye konferanser";
+
+/* No comment provided by engineer. */
+"New Discussion" = "Ny diskusjon";
 
 /* No comment provided by engineer. */
 "New Message" = "Ny melding";
@@ -1046,9 +1088,6 @@
 "No image found from image picker" = "Det ble ikke funnet noen bilder i bildevelger";
 
 /* No comment provided by engineer. */
-"No matching courses" = "Ingen matchende emner";
-
-/* No comment provided by engineer. */
 "No Modules" = "Ingen emner";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1095,9 @@
 
 /* No comment provided by engineer. */
 "No Results" = "Ingen resultater";
+
+/* No comment provided by engineer. */
+"No Sections" = "Ingen seksjoner";
 
 /* No comment provided by engineer. */
 "No Subject" = "Intet tittel";
@@ -1106,7 +1148,7 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Kun tilgjengelig for studenter med lenken.";
+"Only graders can like" = "Kun de som setter karakterer kan like";
 
 /* No comment provided by engineer. */
 "Only members" = "Kun medlemmer";
@@ -1160,9 +1202,6 @@
 "People" = "Personer";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Tillatelse kreves";
-
-/* No comment provided by engineer. */
 "Photo Library" = "Bildebibliotek";
 
 /* No comment provided by engineer. */
@@ -1176,6 +1215,12 @@
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
+
+/* No comment provided by engineer. */
+"Points" = "Poeng";
+
+/* No comment provided by engineer. */
+"Post at" = "Publiser kl.";
 
 /* No comment provided by engineer. */
 "Practice Quizzes" = "Øvelsestester";
@@ -1241,6 +1286,18 @@
 "Remove %@" = "Fjern %@";
 
 /* No comment provided by engineer. */
+"Remove Attachment" = "Fjern vedlegg";
+
+/* No comment provided by engineer. */
+"Remove Attachment?" = "Fjerne vedlegg?";
+
+/* No comment provided by engineer. */
+"Remove date" = "Fjern dato";
+
+/* No comment provided by engineer. */
+"Remove Due Date?" = "Fjerne forfallsdato?";
+
+/* No comment provided by engineer. */
 "Remove File" = "Fjern fil";
 
 /* No comment provided by engineer. */
@@ -1289,9 +1346,6 @@
 "Scanning not supported" = "Ikke støttet skanning";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Planlegg studenttilgjengelighet";
-
-/* No comment provided by engineer. */
 "Scheduling" = "Planlegger";
 
 /* No comment provided by engineer. */
@@ -1304,13 +1358,10 @@
 "Search" = "Søk";
 
 /* No comment provided by engineer. */
+"Sections" = "Seksjoner";
+
+/* No comment provided by engineer. */
 "Sections: %@" = "Seksjoner %@";
-
-/* No comment provided by engineer. */
-"See All" = "Se alle";
-
-/* No comment provided by engineer. */
-"See All Courses" = "Se alle emner";
 
 /* No comment provided by engineer. */
 "See attached files." = "Se vedlagte filer.";
@@ -1358,19 +1409,13 @@
 "Show a month at a time" = "Vis ett måned om gangen";
 
 /* No comment provided by engineer. */
-"Show graded submissions" = "Vis vurderte innleveringer";
+"Show Course Summary" = "Vis emnesammendrag";
 
 /* No comment provided by engineer. */
 "Show Grades" = "Vis karakterer";
 
 /* No comment provided by engineer. */
 "Show more options" = "Vis flere alternativer";
-
-/* No comment provided by engineer. */
-"Show submissions not turned in" = "Vis innleveringer som ikke er levert";
-
-/* No comment provided by engineer. */
-"Show submissions that need grading" = "Vis innleveringer som må vurderes";
 
 /* No comment provided by engineer. */
 "Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Siden dette er en gruppe diskusjon, har hver gruppe en egen samtale for dette emne. Her er diskusjonene du har tilgang til.";
@@ -1392,6 +1437,9 @@
 
 /* No comment provided by engineer. */
 "Something is Wrong" = "Noe er galt";
+
+/* No comment provided by engineer. */
+"Sort by likes" = "Sorter etter likes";
 
 /* No comment provided by engineer. */
 "Start recording" = "Start opptak";
@@ -1553,6 +1601,9 @@
 "This assignment was due by %@" = "Denne oppgaven hadde frist %@";
 
 /* No comment provided by engineer. */
+"This course does not have any sections." = "Dette emnet har ingen seksjoner.";
+
+/* No comment provided by engineer. */
 "This folder is empty." = "Mappen er tom.";
 
 /* No comment provided by engineer. */
@@ -1563,6 +1614,9 @@
 
 /* No comment provided by engineer. */
 "This page has been disabled for this course." = "Denne siden er deaktivert for dette emnet:";
+
+/* No comment provided by engineer. */
+"This will remove the due date and all of the associated assignees." = "Dette vil fjerne forfallsdatoen og alle tilknyttede stedfortredere.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Brukt tid";
@@ -1604,9 +1658,6 @@
 "Unordered List" = "Ikke sortert liste";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Fjernet fra publisering";
-
-/* No comment provided by engineer. */
 "unpublished" = "ikke publisert";
 
 /* No comment provided by engineer. */
@@ -1637,9 +1688,6 @@
 "URL" = "URL";
 
 /* No comment provided by engineer. */
-"Usage Right" = "Brukerrettigheter";
-
-/* No comment provided by engineer. */
 "Usage Rights" = "Brukerrettigheter:";
 
 /* No comment provided by engineer. */
@@ -1658,16 +1706,13 @@
 "Username" = "Brukernavn";
 
 /* No comment provided by engineer. */
+"Users must post before seeing replies" = "Brukere må publisere før de kan se svar";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
 "View" = "Vis";
-
-/* No comment provided by engineer. */
-"View all dates" = "Vis alle datoer";
-
-/* No comment provided by engineer. */
-"View All Submissions" = "Vis alle innleveringer";
 
 /* No comment provided by engineer. */
 "View Less" = "Vis mindre";
@@ -1725,9 +1770,6 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Varslinger for Yo";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Du må aktivere mikrofontillatelse fra innstillinger.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du vil slutte å opptre som %@ og gå tilbake til din egen konto.";

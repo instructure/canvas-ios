@@ -65,6 +65,9 @@
 "Done" = "Wedi gorffen";
 
 /* No comment provided by engineer. */
+"Edit" = "Golygu";
+
+/* No comment provided by engineer. */
 "Error" = "Gwall";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Pawb";
 
 /* No comment provided by engineer. */
+"Excused" = "Wedi esgusodi";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Wedi methu llwytho adnodd galw cofrestr LTI.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Ffeiliau (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Gradd";
 
 /* No comment provided by engineer. */
 "Graded" = "Wedi graddio";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Marcio bod y Gweddill yn Bresennol";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Does dim modd delio â'r broses safoni graddau";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Dim Cyflwyniadau";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Heb eu graddio";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Agor Drôr sgrin lawn";

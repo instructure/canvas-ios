@@ -146,9 +146,6 @@
 "Pairing Code" = "Código de emparelhamento";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Permissão necessária";
-
-/* No comment provided by engineer. */
 "QR Code" = "Código QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "Não é possível definir um limite baixo que seja superior ou igual a um limite alto definido anteriormente.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Você deve permitir notificações nas Configurações para definir lembretes.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "Você está em dia";
