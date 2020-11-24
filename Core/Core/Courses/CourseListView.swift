@@ -203,6 +203,7 @@ public struct CourseListView: View {
                     .accessibilityElement(children: .ignore)
                     .accessibility(label: accessibilityLabel)
             }
+            .accessibility(identifier: "DashboardCourseCell.\(course.id)")
         }
 
         var accessibilityLabel: Text {
