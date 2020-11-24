@@ -31,7 +31,7 @@ class DeepLinkE2ETests: CoreUITestCase {
 
     func testDeepLinkToGroupAnnouncements() {
         app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "There are no announcements to display.").waitToExist()
+        app.find(labelContaining: "It looks like announcements haven’t been created in this space yet.").waitToExist()
     }
 
     func testDeepLinkToGroup() {
