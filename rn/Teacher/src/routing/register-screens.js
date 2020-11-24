@@ -42,7 +42,6 @@ import ContextCard from '../modules/users/ContextCard'
 import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import Filter from '../modules/filter/Filter'
 import PickerPage from '../common/components/PickerPage'
-import Dashboard from '../modules/dashboard/Dashboard'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
@@ -53,8 +52,6 @@ import { registerScreen } from './'
 import { isTeacher, isStudent } from '../modules/app'
 
 export function registerScreens (store: Store): void {
-  registerScreen('', Dashboard, store, { deepLink: true })
-  registerScreen('/', Dashboard, store, { deepLink: true })
   registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/tabs', CourseNavigation, store, { canBecomeMaster: true, deepLink: true })

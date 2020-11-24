@@ -24,7 +24,6 @@ import CourseListActions, { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTI
 import CourseSettingsActions from './settings/actions'
 import EnrollmentsActions from '../enrollments/actions'
 import PermissionsActions from '../permissions/actions'
-import DashboardActions from '../dashboard/actions'
 import GroupActions from '../groups/actions'
 import handleAsync from '../../utils/handleAsync'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
@@ -67,7 +66,6 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
 const { refreshCourses, refreshCourse, updateCourseColor, getCourseEnabledFeatures, getCoursePermissions, updateCourseNickname, getCourseSettings } = CourseListActions
 const { updateCourse } = CourseSettingsActions
 const { updateContextPermissions } = PermissionsActions
-const { getDashboardCards } = DashboardActions
 const { refreshGroup } = GroupActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
@@ -355,26 +353,6 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           },
         },
       }
-    },
-  }),
-  [getDashboardCards.toString()]: handleAsync({
-    resolved: (state, { result }) => {
-      let clearedState = Object.keys(state)
-        .reduce((newState, id) => {
-          newState[id] = {
-            ...newState[id],
-            dashboardPosition: undefined,
-          }
-          return newState
-        }, { ...state })
-
-      return result.data.reduce((newState, card, i) => {
-        newState[card.id] = {
-          ...(newState[card.id] || courseContents(undefined, {})),
-          dashboardPosition: card.position || i,
-        }
-        return newState
-      }, clearedState)
     },
   }),
 }, defaultState)

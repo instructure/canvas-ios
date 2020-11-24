@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import CoreData
 
 public struct GetUserSettings: APIUseCase {
     public typealias Model = UserSettings
@@ -53,5 +53,38 @@ public struct UpdateUserSettings: APIUseCase {
             collapse_global_nav: collapse_global_nav,
             hide_dashcard_color_overlays: hide_dashcard_color_overlays
         )
+    }
+}
+
+struct UpdateCourseNickname: APIUseCase {
+    typealias Model = Course
+
+    let courseID: String
+    let nickname: String
+
+    var cacheKey: String? { nil }
+    var request: PutCourseNicknameRequest { PutCourseNicknameRequest(courseID: courseID, nickname: nickname) }
+
+    func write(response: APICourseNickname?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else { return }
+        let course: Course? = client.first(where: #keyPath(Course.id), equals: item.course_id.value)
+        course?.name = item.nickname
+        let card: DashboardCard? = client.first(where: #keyPath(DashboardCard.id), equals: item.course_id.value)
+        card?.shortName = item.nickname
+    }
+}
+
+struct UpdateCustomColor: APIUseCase {
+    typealias Model = ContextColor
+
+    let context: Context
+    let color: String
+
+    var cacheKey: String? { nil }
+    var request: PutCustomColorRequest { PutCustomColorRequest(context: context, color: color) }
+
+    func write(response: PutCustomColorRequest.Body?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let color = response?.hexcode else { return }
+        ContextColor.save(APICustomColors(custom_colors: [ context.canvasContextID: color ]), in: client)
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2017-present  Instructure, Inc.
+// Copyright (C) 2020-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// @flow
+import SwiftUI
 
-import React from 'react'
-import 'react-native'
-import DashboardContent from '../DashboardContent'
-import renderer from 'react-test-renderer'
+public struct ScaleButtonStyle: ButtonStyle {
+    public let scale: CGFloat
 
-test('dashboard content renders', () => {
-  const tree = renderer.create(
-    <DashboardContent />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
+    public init(scale: CGFloat) {
+        self.scale = scale
+    }
+
+    public func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scale : 1)
+            .animation(.default, value: configuration.isPressed)
+    }
+}

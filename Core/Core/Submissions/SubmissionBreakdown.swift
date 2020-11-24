@@ -170,16 +170,6 @@ struct SubmissionBreakdown: View {
         }
     }
 
-    struct ScaleButtonStyle: ButtonStyle {
-        let scale: CGFloat
-
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-                .scaleEffect(configuration.isPressed ? scale : 1)
-                .animation(.default, value: configuration.isPressed)
-        }
-    }
-
     var submissionsPath: String { "courses/\(courseID)/assignments/\(assignmentID)/submissions" }
 
     func routeToAll() {

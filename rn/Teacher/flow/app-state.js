@@ -177,7 +177,6 @@ export type QuizSubmissionsState = { [string]: QuizSubmissionState }
 export type DiscussionsState = { [string]: DiscussionState & PendingDiscussionReplyState }
 
 export type Entities = {
-  accountNotifications: AccountNotificationState,
   courses: CoursesState,
   groups: GroupsState,
   assignmentGroups: AssignmentGroupsState,

@@ -46,4 +46,16 @@ public final class CourseSection: NSManagedObject, WriteableModel {
         model.totalStudents = item.total_students
         return model
     }
+
+    @discardableResult
+    public static func save(_ item: APICourse.SectionRef, courseID: String, in context: NSManagedObjectContext) -> CourseSection {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CourseSection.id), item.id.value)
+        let model: CourseSection = context.fetch(predicate).first ?? context.insert()
+        model.courseID = courseID
+        model.id = item.id.value
+        model.name = item.name
+        model.startAt = item.start_at
+        model.endAt = item.end_at
+        return model
+    }
 }

@@ -143,6 +143,8 @@
         <attribute name="endedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isConcluded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isIgnored" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isLive" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isLongRunning" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="joinURL" optional="YES" attributeType="URI"/>
         <attribute name="order" attributeType="String"/>
@@ -227,6 +229,7 @@
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="planner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="courses" inverseEntity="Planner"/>
         <relationship name="plannerHidden" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Planner" inverseName="hiddenCourses" inverseEntity="Planner"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
@@ -236,6 +239,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="startAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="totalStudentsRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="sections" inverseEntity="Course"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="sections" inverseEntity="DiscussionTopic"/>
     </entity>
     <entity name="CourseSettings" representedClassName="Core.CourseSettings" syncable="YES">
@@ -340,6 +344,7 @@
         <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isFromInvitation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="role" optional="YES" attributeType="String"/>
         <attribute name="roleID" optional="YES" attributeType="String"/>
@@ -917,20 +922,20 @@
         <element name="CalendarEvent" positionX="-531" positionY="-18" width="128" height="253"/>
         <element name="CommonCourse" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="CommunicationChannel" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Conference" positionX="-540" positionY="-18" width="128" height="268"/>
+        <element name="Conference" positionX="-540" positionY="-18" width="128" height="298"/>
         <element name="ConferenceRecording" positionX="-531" positionY="-9" width="128" height="148"/>
         <element name="ContextColor" positionX="-177.3046875" positionY="-36" width="128" height="118"/>
         <element name="Conversation" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="ConversationMessage" positionX="-522" positionY="0" width="128" height="208"/>
         <element name="ConversationParticipant" positionX="-531" positionY="-9" width="128" height="133"/>
-        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="388"/>
-        <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="148"/>
+        <element name="Course" positionX="-365.20703125" positionY="2.984375" width="128" height="418"/>
+        <element name="CourseSection" positionX="-540" positionY="-18" width="128" height="163"/>
         <element name="CourseSettings" positionX="-540" positionY="-18" width="128" height="88"/>
         <element name="DashboardCard" positionX="-540" positionY="-18" width="128" height="238"/>
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="403"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="418"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>

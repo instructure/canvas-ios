@@ -19,7 +19,6 @@
 // @flow
 
 import { combineReducers, Reducer, Action } from 'redux'
-import { accountNotifications } from '../modules/dashboard/account-notification-reducer'
 import { courses, courseDetailsTabSelectedRow } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
 import { favoriteGroups } from '../modules/groups/favorites/favorite-groups-reducer'
@@ -42,7 +41,6 @@ import { asyncActions } from './actions/async-tracker'
 import { userInfo } from '../modules/userInfo/reducer'
 
 const entities = combineReducers({
-  accountNotifications,
   courses,
   groups,
   assignmentGroups,

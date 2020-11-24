@@ -102,6 +102,8 @@ public extension UIImage {
     static var infoSolid: UIImage { UIImage(named: "infoSolid", in: .core, compatibleWith: nil)! }
     static var instructureLine: UIImage { UIImage(named: "instructureLine", in: .core, compatibleWith: nil)! }
     static var instructureSolid: UIImage { UIImage(named: "instructureSolid", in: .core, compatibleWith: nil)! }
+    static var invitationLine: UIImage { UIImage(named: "invitationLine", in: .core, compatibleWith: nil)! }
+    static var invitationSolid: UIImage { UIImage(named: "invitationSolid", in: .core, compatibleWith: nil)! }
     static var italicLine: UIImage { UIImage(named: "italicLine", in: .core, compatibleWith: nil)! }
     static var italicSolid: UIImage { UIImage(named: "italicSolid", in: .core, compatibleWith: nil)! }
     static var linkLine: UIImage { UIImage(named: "linkLine", in: .core, compatibleWith: nil)! }
@@ -301,6 +303,8 @@ public extension Icon {
     static var infoSolid: Icon { Icon("infoSolid") }
     static var instructureLine: Icon { Icon("instructureLine") }
     static var instructureSolid: Icon { Icon("instructureSolid") }
+    static var invitationLine: Icon { Icon("invitationLine") }
+    static var invitationSolid: Icon { Icon("invitationSolid") }
     static var italicLine: Icon { Icon("italicLine") }
     static var italicSolid: Icon { Icon("italicSolid") }
     static var linkLine: Icon { Icon("linkLine") }

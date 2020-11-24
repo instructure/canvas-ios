@@ -69,3 +69,44 @@ public class GetEnrollments: CollectionUseCase {
         }
     }
 }
+
+struct GetCourseInvitations: CollectionUseCase {
+    typealias Model = Enrollment
+
+    var cacheKey: String? { "users/self/enrollments?state[]=invited" }
+
+    var request: GetEnrollmentsRequest {
+        GetEnrollmentsRequest(context: .currentUser, states: [ .invited ])
+    }
+
+    var scope: Scope { .where(#keyPath(Enrollment.isFromInvitation), equals: true, orderBy: #keyPath(Enrollment.id)) }
+
+    func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        response?.forEach { item in
+            guard let id = item.id?.value, item.course_id != nil else { return }
+            let model: Enrollment = client.first(where: #keyPath(Enrollment.id), equals: id) ?? client.insert()
+            model.update(fromApiModel: item, course: nil, in: client)
+            model.isFromInvitation = true
+        }
+    }
+}
+
+struct HandleCourseInvitation: APIUseCase {
+    typealias Model = Course
+
+    let courseID: String
+    let enrollmentID: String
+    let isAccepted: Bool
+
+    var cacheKey: String? { nil }
+
+    var request: HandleCourseInvitationRequest {
+        HandleCourseInvitationRequest(courseID: courseID, enrollmentID: enrollmentID, isAccepted: isAccepted)
+    }
+
+    func write(response: HandleCourseInvitationRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard response?.success == true else { return }
+        let enrollment: Enrollment? = client.first(where: #keyPath(Enrollment.id), equals: enrollmentID)
+        enrollment?.state = isAccepted ? .active : .rejected
+    }
+}

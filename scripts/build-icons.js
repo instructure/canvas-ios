@@ -81,6 +81,7 @@ const whitelist = [
   'info',
   'instructure',
   'italic',
+  'invitation',
   'link',
   'lock',
   'lti',
