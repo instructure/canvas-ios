@@ -188,8 +188,8 @@ enum MiniCanvasEndpoints {
             try GetConferencesRequest.Response(conferences: lookupCourse(forRequest: request).conferences)
         },
 
-        .rest("/api/v1/conferences") { request in
-            return .json(GetConferencesRequest.Response(conferences: request.state.liveConferences))
+        .apiRequest(GetLiveConferencesRequest()) { request in
+            .init(conferences: request.state.liveConferences)
         },
 
         // MARK: Conversations

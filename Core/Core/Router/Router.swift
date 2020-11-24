@@ -186,7 +186,7 @@ open class Router {
         guard let url = components.url(relativeTo: AppEnvironment.shared.currentSession?.baseURL) else { return }
 
         // Handle tel:, mailto:, or anything else that isn't https:
-        guard components.scheme?.hasPrefix("http") == true else {
+        guard url.scheme?.hasPrefix("http") == true else {
             performUIUpdate {
                 AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             }

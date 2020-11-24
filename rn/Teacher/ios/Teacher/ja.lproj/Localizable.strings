@@ -65,6 +65,9 @@
 "Done" = "終了";
 
 /* No comment provided by engineer. */
+"Edit" = "編集";
+
+/* No comment provided by engineer. */
 "Error" = "エラー";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "全員";
 
 /* No comment provided by engineer. */
+"Excused" = "免除";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "LTI ツールを起動できませんでした。";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "ファイル (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "成績";
 
 /* No comment provided by engineer. */
 "Graded" = "採点済み";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "出席としてマークする";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "修正された採点はサポートされていません";
+
+/* No comment provided by engineer. */
 "No Submissions" = "提出物なし";
+
+/* No comment provided by engineer. */
+"Not Graded" = "未採点";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "引き出しを全画面で開く";

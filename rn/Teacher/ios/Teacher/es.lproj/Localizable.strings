@@ -65,6 +65,9 @@
 "Done" = "Listo";
 
 /* No comment provided by engineer. */
+"Edit" = "Editar";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Todos";
 
 /* No comment provided by engineer. */
+"Excused" = "Justificado";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Error al iniciar la herramienta LTI de la lista de asistencia.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Archivos (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Calificación";
 
 /* No comment provided by engineer. */
 "Graded" = "Calificado";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Marcar los restantes como Presentes";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Calificación moderada no compatible";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Sin entregas";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Sin calificar";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Abrir menú lateral en pantalla completa";

@@ -65,6 +65,9 @@
 "Done" = "Klar";
 
 /* No comment provided by engineer. */
+"Edit" = "Redigera";
+
+/* No comment provided by engineer. */
 "Error" = "Fel";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Alla";
 
 /* No comment provided by engineer. */
+"Excused" = "Ursäktad";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Det gick inte att starta LTI-verktyget för närvaro.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Omdöme";
 
 /* No comment provided by engineer. */
 "Graded" = "Har bedömts";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Markera återstående som närvarande";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Modererad bedömning stöds inte";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Inga inlämningar";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Inte bedömd";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Öppna lådan i helskärm";

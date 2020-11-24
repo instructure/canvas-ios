@@ -146,9 +146,6 @@
 "Pairing Code" = "配對代碼";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "需要權限";
-
-/* No comment provided by engineer. */
 "QR Code" = "QR 碼";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "您設定的低臨界值不得高於或等於之前設定的高臨界值。";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "您必須允許設定內的通知，方可設定提醒。";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "您已讀完所有新訊息";

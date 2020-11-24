@@ -22,6 +22,7 @@ import Foundation
 public struct APIConference: Codable {
     let conference_key: String?
     let conference_type: String
+    let context_id: ID?
     let context_type: String?
     let description: String?
     let duration: Double? // minutes
@@ -60,6 +61,7 @@ extension APIConference {
     public static func make(
         conference_key: String? = "a",
         conference_type: String = "BigBlueButton",
+        context_id: ID? = nil,
         context_type: String? = nil,
         description: String? = "test description",
         duration: Double? = 60,
@@ -77,6 +79,7 @@ extension APIConference {
         return APIConference(
             conference_key: conference_key,
             conference_type: conference_type,
+            context_id: context_id,
             context_type: context_type,
             description: description,
             duration: duration,
@@ -144,4 +147,11 @@ struct GetConferencesRequest: APIRequestable {
         path = "\(context.pathComponent)/conferences"
         query = [.perPage(perPage)]
     }
+}
+
+// https://canvas.instructure.com/doc/api/conferences.html#method.conferences.for_user
+struct GetLiveConferencesRequest: APIRequestable {
+    typealias Response = GetConferencesRequest.Response
+
+    var path: String { "conferences?state=live" }
 }

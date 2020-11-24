@@ -146,9 +146,6 @@
 "Pairing Code" = "رمز الإقران";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "مطلوب إذن";
-
-/* No comment provided by engineer. */
 "QR Code" = "رمز QR";
 
 /* No comment provided by engineer. */
@@ -212,9 +209,6 @@
 
 /* No comment provided by engineer. */
 "You cannot set a low threshold that is higher or equal to a previously set high threshold." = "لا يمكنك تعيين حد منخفض أعلى أو يساوي حداً مرتفعاً تم تعيينه مسبقاً.";
-
-/* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";
 
 /* No comment provided by engineer. */
 "You’re all caught up" = "لقد اطلعت عليها جميعًا";

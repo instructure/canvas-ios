@@ -36,20 +36,9 @@ class TeacherTabBarController: UITabBarController {
     func coursesTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: DashboardCardViewController.create()),
+            HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView())),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
-        if !ExperimentalFeature.nativeDashboard.isEnabled {
-            let dashboard = HelmViewController(moduleName: "/", props: [:])
-            dashboard.navigationItem.titleView = Brand.shared.headerImageView()
-
-            let master = HelmNavigationController(rootViewController: dashboard)
-            master.navigationBar.useGlobalNavStyle()
-            split.viewControllers = [
-                master,
-                HelmNavigationController(rootViewController: EmptyViewController()),
-            ]
-        }
         split.masterNavigationController?.delegate = split
         split.tabBarItem.title = NSLocalizedString("Courses", comment: "")
         split.tabBarItem.image = .coursesTab

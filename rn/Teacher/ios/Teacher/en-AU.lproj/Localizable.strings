@@ -65,6 +65,9 @@
 "Done" = "Done";
 
 /* No comment provided by engineer. */
+"Edit" = "Edit";
+
+/* No comment provided by engineer. */
 "Error" = "Error";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Everyone";
 
 /* No comment provided by engineer. */
+"Excused" = "Excused";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Failed to launch roll call LTI tool.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Files (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Mark";
 
 /* No comment provided by engineer. */
 "Graded" = "Marked";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Mark Remaining as Present";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Moderated Grading Unsupported";
+
+/* No comment provided by engineer. */
 "No Submissions" = "No Submissions";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Not Marked";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Open Drawer full screen";

@@ -65,6 +65,9 @@
 "Done" = "Lokið";
 
 /* No comment provided by engineer. */
+"Edit" = "Breyta";
+
+/* No comment provided by engineer. */
 "Error" = "Villa";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Allir";
 
 /* No comment provided by engineer. */
+"Excused" = "Undanþegið";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Ekki tókst að ræsa nafnakalls LTI verkfæri.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Skrár (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Einkunn";
 
 /* No comment provided by engineer. */
 "Graded" = "Metið";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Merkja mætt við alla sem eftir eru";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Stýrð einkunnagjöf óstudd";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Engin skil";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Ekki metið";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Opna skúffu í öllum skjánum";

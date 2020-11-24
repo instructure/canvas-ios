@@ -65,6 +65,9 @@
 "Done" = "Terminé";
 
 /* No comment provided by engineer. */
+"Edit" = "Modifier";
+
+/* No comment provided by engineer. */
 "Error" = "Erreur";
 
 /* rollcall status error */
@@ -74,6 +77,9 @@
 "Everyone" = "Tous";
 
 /* No comment provided by engineer. */
+"Excused" = "Exempté";
+
+/* No comment provided by engineer. */
 "Failed to launch rollcall LTI tool." = "Impossible de lancer l'outil LTI d’appel nominal.";
 
 /* No comment provided by engineer. */
@@ -81,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Fichiers (%@)";
+
+/* No comment provided by engineer. */
+"Grade" = "Note";
 
 /* No comment provided by engineer. */
 "Graded" = "Noté";
@@ -125,7 +134,13 @@
 "Mark Remaining as Present" = "Marquer comme « Restant comme présent »";
 
 /* No comment provided by engineer. */
+"Moderated Grading Unsupported" = "Notation modérée non prise en charge";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Aucun envoi";
+
+/* No comment provided by engineer. */
+"Not Graded" = "Non noté";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Ouvrir le tiroir en plein écran";

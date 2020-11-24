@@ -68,7 +68,7 @@ public struct APICourse: Codable, Equatable {
     // let blueprint_restrictions_by_object_type: ?
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     var is_favorite: Bool? // include[]=favorites
-    // let sections: [APISection]? // include[]=sections
+    let sections: [SectionRef]? // include[]=sections
 
     // https://canvas.instructure.com/doc/api/courses.html#Term
     public struct Term: Codable, Equatable {
@@ -81,6 +81,14 @@ public struct APICourse: Codable, Equatable {
     public struct Permissions: Codable, Equatable {
         let create_announcement: Bool
         let create_discussion_topic: Bool
+    }
+
+    public struct SectionRef: Codable, Equatable {
+        let end_at: Date?
+        let enrollment_role: String
+        let id: ID
+        let name: String
+        let start_at: Date?
     }
 }
 
@@ -123,7 +131,8 @@ extension APICourse {
         hide_final_grades: Bool? = false,
         access_restricted_by_date: Bool? = nil,
         image_download_url: String? = nil,
-        is_favorite: Bool? = nil
+        is_favorite: Bool? = nil,
+        sections: [SectionRef]? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -142,7 +151,8 @@ extension APICourse {
             hide_final_grades: hide_final_grades,
             access_restricted_by_date: access_restricted_by_date,
             image_download_url: image_download_url,
-            is_favorite: is_favorite
+            is_favorite: is_favorite,
+            sections: sections
         )
     }
 }

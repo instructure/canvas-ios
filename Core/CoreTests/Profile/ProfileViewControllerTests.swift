@@ -65,7 +65,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
             pronouns: nil
         ))
         api.mock(GetUserRequest(userID: "self"), value: .make())
-        api.mock(PutUserSettingsRequest(), value: .make())
+        api.mock(PutUserSettingsRequest(), value: .make(hide_dashcard_color_overlays: true))
 
         let n = NSNotification.Name("redux-action")
         NotificationCenter.default.addObserver(self, selector: #selector(reduxActionCalled(notification:)), name: n, object: nil)
@@ -102,10 +102,7 @@ class ProfileViewControllerTests: CoreTestCase, LoginDelegate {
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
         XCTAssertEqual(cell?.nameLabel.text, "Color Overlay")
         controller.tableView(controller.tableView, didSelectRowAt: index)
-        let type = notificationPayload?["type"] as? String
-        let payload = notificationPayload?["payload"] as? [String: Bool]
-        XCTAssertEqual(type, "userInfo.updateUserSettings")
-        XCTAssertEqual(payload?["hideOverlay"], true)
+        XCTAssertEqual(controller.settings.first?.hideDashcardColorOverlays, true)
 
         index = IndexPath(row: 3, section: 0)
         cell = controller.tableView.cellForRow(at: index) as? ProfileTableViewCell
