@@ -26,7 +26,6 @@ class SyllabusTests: CoreUITestCase {
     lazy var course = mock(course: .make(syllabus_body: html))
 
     func testSyllabusLoad() {
-        mockBaseRequests()
         let assignmentName = "Foobar"
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             Context(.course, id: course.id.value).canvasContextID: "#123456",
@@ -38,6 +37,7 @@ class SyllabusTests: CoreUITestCase {
             .make(html_url: assignment.html_url, title: assignment.name, type: .assignment, assignment: assignment),
         ])
         mockData(GetCourseSettingsRequest(courseID: course.id.value), value: .make())
+        mockData(GetCourseRequest(courseID: course.id.value), value: course)
 
         show("/courses/\(course.id)/assignments/syllabus")
 
