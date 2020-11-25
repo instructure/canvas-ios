@@ -62,7 +62,7 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
     }
 
     func update() {
-        guard !colors.pending, let course = course.first, !settings.pending else { return }
+        guard !colors.pending, !course.pending, let course = course.first, !settings.pending else { return }
         updateNavBar(subtitle: course.name, color: course.color)
 
         layoutViewControllers()
