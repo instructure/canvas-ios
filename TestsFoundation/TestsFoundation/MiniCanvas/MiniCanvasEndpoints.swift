@@ -239,7 +239,23 @@ enum MiniCanvasEndpoints {
         // MARK: Enrollments
         // https://canvas.instructure.com/doc/api/enrollments.html
         .apiRequest(GetEnrollmentsRequest(context: .currentUser)) { request in
-            request.state.userEnrollments()
+            let states = request.allQueryParams(named: "state%5B%5D").compactMap { GetEnrollmentsRequest.State(rawValue: $0) }
+            var enrollmentStates: [EnrollmentState] = []
+            for state in states {
+            switch state {
+            case .creation_pending:
+                enrollmentStates.append(.creation_pending)
+            case .active:
+                enrollmentStates.append(.active)
+            case .invited:
+                enrollmentStates.append(.invited)
+            case .current_and_future:
+                enrollmentStates.append(contentsOf: [ .active, .creation_pending ])
+            case .completed:
+                enrollmentStates.append(.completed)
+            }
+            }
+            return request.state.userEnrollments(state: Set(enrollmentStates))
         },
         .apiRequest(GetEnrollmentsRequest(context: Pattern.courseContext)) { request in
             request.state.enrollments.filter { $0.course_id?.value == request[Pattern.courseID]! }

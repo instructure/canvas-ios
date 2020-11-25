@@ -52,11 +52,13 @@ struct SubmissionCommentListCell: View {
             } else if comment.mediaType == .some(.audio), let url = comment.mediaLocalOrRemoteURL {
                 Spacer().frame(height: 12)
                 AudioPlayer(url: url)
+                    .identifier("SubmissionComments.audioCell.\(comment.id)")
             } else if comment.mediaType == .some(.video), let url = comment.mediaLocalOrRemoteURL {
                 Spacer().frame(height: 12)
                 VideoPlayer(url: url)
                     .cornerRadius(4)
                     .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
+                    .identifier("SubmissionComments.videoCell.\(comment.id)")
             } else {
                 Spacer().frame(height: 4)
                 Text(comment.comment)
@@ -66,6 +68,7 @@ struct SubmissionCommentListCell: View {
                         .fill(isAuthor ? Color.backgroundInfo : Color.backgroundLight)
                         .scaleEffect(x: isAuthor ? -1: 1)
                     )
+                    .identifier("SubmissionComments.textCell.\(comment.id)")
                 ForEach(comment.attachments?.sorted(by: File.idCompare) ?? [], id: \.id) { file in
                     Spacer().frame(height: 4)
                     SubmissionCommentFile(file: file) {
@@ -153,6 +156,7 @@ struct SubmissionCommentFile: View {
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium))
         })
             .accessibility(label: Text("View file \(file.displayName ?? file.filename) \(file.size.humanReadableFileSize)"))
+            .identifier("SubmissionComments.fileView.\(file.id ?? "")")
     }
 }
 

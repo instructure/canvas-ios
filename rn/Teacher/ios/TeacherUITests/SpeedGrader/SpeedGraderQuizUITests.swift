@@ -24,11 +24,10 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
     func testQuizLoadsWebView() {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.quizzes.tap()
-        app.find(id: "quiz-row-0").tap()
+        app.find(id: "QuizListCell.0.0").tap()
         app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
         let student = mocked.students[1]
-        SubmissionsList.row(contextID: student.id.value).tap()
-        SpeedGrader.dismissTutorial()
+        app.find(id: "submission-\(student.id)").tap()
         XCTAssertFalse(app.find(label: "A webview submission from \(student.name)").waitToExist().isOffscreen())
     }
 
@@ -39,11 +38,11 @@ class SpeedGraderQuizUITests: MiniCanvasUITestCase {
 
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.quizzes.tap()
-        app.find(id: "quiz-row-0").tap()
+        app.find(id: "QuizListCell.0.0").tap()
         app.find(id: "quizzes.details.viewAllSubmissionsRow").tap()
-        SubmissionsList.row(contextID: student.id.value).tap()
+        app.find(id: "submission-\(student.id)").tap()
         SpeedGrader.Segment.grades.tap()
-        SpeedGrader.gradePickerButton.tap()
+        SpeedGrader.gradeButton.tap()
         app.textFields.firstElement.typeText("6")
 
         let expectation = MiniCanvasServer.shared.expectationFor(request: PutSubmissionGradeRequest(

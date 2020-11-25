@@ -107,7 +107,7 @@ describe('QuizSubmissionList', () => {
     instance.navigateToSubmission(33)('1')
     expect(navigator.show).toHaveBeenCalledWith(
       '/courses/12/assignments/1/submissions/1',
-      { modal: true, modalPresentationStyle: 'fullscreen' },
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
       { filter: instance.state.filter, studentIndex: 33 }
     )
   })

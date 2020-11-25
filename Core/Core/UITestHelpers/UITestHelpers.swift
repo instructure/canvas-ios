@@ -26,7 +26,7 @@ public class UITestHelpers {
     public enum Helper: Codable {
         case reset(useMocks: Bool)
         case login(LoginSession)
-        case show(String)
+        case show(String, RouteOptions)
         case mockNow(Date)
         case tearDown
         case currentSession
@@ -36,7 +36,7 @@ public class UITestHelpers {
         case showKeyboard
 
         private enum CodingKeys: String, CodingKey {
-            case reset, login, show, tearDown, currentSession, setAnimationsEnabled, debug, mockNow, experimentalFeatures, showKeyboard
+            case reset, login, show, options, tearDown, currentSession, setAnimationsEnabled, debug, mockNow, experimentalFeatures, showKeyboard
         }
 
         public init(from decoder: Decoder) throws {
@@ -46,7 +46,7 @@ public class UITestHelpers {
             } else if let session = try container.decodeIfPresent(LoginSession.self, forKey: .login) {
                 self = .login(session)
             } else if let route = try container.decodeIfPresent(String.self, forKey: .show) {
-                self = .show(route)
+                self = .show(route, try container.decode(RouteOptions.self, forKey: .options))
             } else if container.contains(.tearDown) {
                 self = .tearDown
             } else if container.contains(.currentSession) {
@@ -72,8 +72,9 @@ public class UITestHelpers {
                 try container.encode(useMocks, forKey: .reset)
             case .login(let session):
                 try container.encode(session, forKey: .login)
-            case .show(let route):
+            case .show(let route, let options):
                 try container.encode(route, forKey: .show)
+                try container.encode(options, forKey: .options)
             case .tearDown:
                 try container.encode(nil as Int?, forKey: .tearDown)
             case .currentSession:
@@ -141,8 +142,8 @@ public class UITestHelpers {
             reset(useMocks: useMocks)
         case .login(let entry):
             logIn(entry)
-        case .show(let route):
-            show(route)
+        case .show(let route, let options):
+            show(route, options: options)
         case .tearDown:
             tearDown()
         case .currentSession:
@@ -216,9 +217,9 @@ public class UITestHelpers {
         resetDatabase()
     }
 
-    func show(_ route: String) {
+    func show(_ route: String, options: RouteOptions) {
         guard let root = window?.rootViewController else { return }
-        AppEnvironment.shared.router.route(to: route, from: root, options: .modal(.fullScreen, embedInNav: true))
+        AppEnvironment.shared.router.route(to: route, from: root, options: options)
     }
 
     func tearDown() {

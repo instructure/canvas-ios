@@ -100,8 +100,8 @@ extension MiniCanvasState {
 
     public var selfUser: APIUser { user(byId: selfId)! }
 
-    public func userEnrollments(forId id: String? = nil) -> [APIEnrollment] {
-        enrollments.filter { $0.user_id.value == id ?? selfId }
+    public func userEnrollments(forId id: String? = nil, state: Set<EnrollmentState> = []) -> [APIEnrollment] {
+        enrollments.filter { $0.user_id.value == id ?? selfId && (state.isEmpty || state.contains($0.enrollment_state)) }
     }
 
     public func nextId() -> ID {

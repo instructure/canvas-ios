@@ -118,6 +118,7 @@ struct RubricAssessor: View {
                         Text("Add Comment")
                             .font(.medium14).foregroundColor(.accentColor)
                     })
+                        .identifier("SpeedGrader.Rubric.\(criteria.id).addCommentButton")
                 }
                 if showAdd, showLong {
                     Text(verbatim: "•")

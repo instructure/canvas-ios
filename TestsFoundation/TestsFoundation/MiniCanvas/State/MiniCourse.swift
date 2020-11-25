@@ -85,6 +85,7 @@ public class MiniCourse {
                 attempt: 1,
                 body: "A submission from \(student.name)",
                 id: state.nextId().value,
+                submission_history: [],
                 submission_type: .online_text_entry,
                 user_id: student.id.value
             ))

@@ -26,7 +26,7 @@ class SpeedGraderUITests: MiniCanvasUITestCase {
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: firstAssignment.id).tap()
         AssignmentDetails.viewAllSubmissionsButton.tap()
-        SubmissionsList.row(contextID: mocked.students[1].id.value).tap()
-        SpeedGrader.dismissTutorial()
+        SubmissionsList.cell(userID: mocked.students[1].id.value).tap()
+        SpeedGrader.doneButton.waitToExist()
     }
 }
