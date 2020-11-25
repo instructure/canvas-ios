@@ -19,9 +19,22 @@
 import Foundation
 import XCTest
 
-public enum SpeedGrader: String, RawElementWrapper {
-    case doneButton = "header.navigation-done"
-    case gradePickerButton = "grade-picker.button"
+public enum SpeedGrader: String, ElementWrapper {
+    case doneButton, drawerGripper, gradeButton, postPolicyButton, toolPicker, userButton
+
+    public enum DrawerState {
+        case min, mid, max
+        var label: String {
+            switch self {
+            case .min: return "Open Drawer half screen"
+            case .mid: return "Open Drawer full screen"
+            case .max: return "Close Drawer"
+            }
+        }
+    }
+    public static func setDrawerState(_ state: DrawerState) {
+        drawerGripper.tapUntil { drawerGripper.label() == state.label }
+    }
 
     public enum Segment {
         public static var grades: Element { withLabel(label: "Grades") }
@@ -29,19 +42,14 @@ public enum SpeedGrader: String, RawElementWrapper {
         public static var files: Element { withLabel(label: "Files") }
 
         public static func withLabel(label: String) -> Element {
-            let segmentControl = app.find(id: "speedgrader.segment-control").waitToExist()
+            let segmentControl = SpeedGrader.toolPicker.waitToExist()
             return segmentControl.rawElement.find(labelContaining: label)
         }
     }
 
-    public static func userName(userID: String) -> Element {
-        return app.find(id: "header.context.button.\(userID)")
-    }
-
-    public static func dismissTutorial() {
-        let button = app.find(idStartingWith: "tutorial.button")
-        while button.rawElement.waitForExistence(timeout: 3) {
-            button.tap()
+    public enum Rubric {
+        public static func addCommentButton(id: String) -> Element {
+            app.find(id: "SpeedGrader.Rubric.\(id).addCommentButton")
         }
     }
 }

@@ -92,7 +92,7 @@ export class QuizSubmissionList extends Component<QuizSubmissionListProps, any> 
 
     this.props.navigator.show(
       path,
-      { modal: true, modalPresentationStyle: 'fullscreen' },
+      { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: false },
       { filter: this.state.filter, studentIndex: index }
     )
   }

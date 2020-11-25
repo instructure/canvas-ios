@@ -89,6 +89,7 @@ struct SubmissionGrades: View {
                                 }
                             })
                                 .accessibility(hint: Text("Prompts for an updated grade"))
+                                .identifier("SpeedGrader.gradeButton")
                         }
                         if submission.grade?.isEmpty == false, submission.postedAt == nil {
                             Icon.offLine.foregroundColor(.textDanger)

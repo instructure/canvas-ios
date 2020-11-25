@@ -205,6 +205,7 @@ struct SubmissionGrader: View {
             }
         }
             .pickerStyle(SegmentedPickerStyle())
+            .identifier("SpeedGrader.toolPicker")
             .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
         Divider()
         GeometryReader { geometry in

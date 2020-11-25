@@ -129,6 +129,15 @@ public extension Element {
     }
 
     @discardableResult
+    func pasteText(_ text: String, file: StaticString = #file, line: UInt = #line) -> Element {
+        UIPasteboard.general.string = text
+        let paste = app.find(label: "Paste")
+        tapUntil { paste.exists }
+        paste.tap()
+        return self
+    }
+
+    @discardableResult
     func cutText(file: StaticString = #file, line: UInt = #line) -> Element {
         let selectAll = app.find(label: "Select All")
         tapUntil { selectAll.exists }

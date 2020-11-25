@@ -129,6 +129,7 @@ struct SubmissionCommentList: View {
                     .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
             })
                 .accessibility(label: Text("Add Attachment"))
+                .identifier("SubmissionComments.addMediaButton")
                 .actionSheet(isPresented: $showMediaOptions) {
                     ActionSheet(title: Text("Add Attachment"), buttons: [
                         .default(Text("Record Audio"), action: recordAudio),

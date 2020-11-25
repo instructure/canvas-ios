@@ -28,7 +28,6 @@ class ContextCardE2ETests: CoreUITestCase {
         AssignmentsList.assignment(id: "1831").tap()
         AssignmentDetails.Submissions.gradedDial.tap()
         app.find(id: "submission-613").tap()
-        SpeedGrader.dismissTutorial()
         app.find(id: "header.context.button.613").tap()
     }
 

@@ -24,8 +24,7 @@ class SpeedGraderFilesUITests: MiniCanvasUITestCase {
     lazy var submission = firstAssignment.submission(byUserId: student.id.value)!
 
     func showSubmission() {
-        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(submission.api.id)")
-        SpeedGrader.dismissTutorial()
+        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(student.id)", options: .modal(.fullScreen))
     }
 
     func testShowFile() throws {
@@ -45,6 +44,7 @@ class SpeedGraderFilesUITests: MiniCanvasUITestCase {
                 ],
                 attempt: 1,
                 id: mocked.nextId().value,
+                submission_history: [],
                 submission_type: .online_upload,
                 user: student,
                 user_id: student.id.value,

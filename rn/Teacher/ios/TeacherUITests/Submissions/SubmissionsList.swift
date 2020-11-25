@@ -20,9 +20,9 @@ import Foundation
 import TestsFoundation
 
 enum SubmissionsList: String, CaseIterable, ElementWrapper {
-    case postpolicy
+    case postPolicyButton
 
-    static func row(contextID: String) -> Element {
-        return app.find(id: "submission-\(contextID)")
+    static func cell(userID: String) -> Element {
+        return app.find(id: "SubmissionListCell.\(userID)")
     }
 }

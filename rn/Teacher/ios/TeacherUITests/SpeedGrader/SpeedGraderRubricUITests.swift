@@ -25,8 +25,7 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
     lazy var submission = firstAssignment.submission(byUserId: student.id.value)!
 
     func showSubmission() {
-        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(submission.api.id)")
-        SpeedGrader.dismissTutorial()
+        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(student.id.value)", options: .modal(.fullScreen))
     }
 
     func testAddComment() throws {
@@ -34,12 +33,10 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
         firstAssignment.api.rubric = [ APIRubric.make() ]
 
         showSubmission()
+        SpeedGrader.setDrawerState(.max)
         SpeedGrader.Segment.grades.tap()
-        app.find(id: "rubric-item.add-comment-1").tapUntil {
-            SubmissionComments.commentTextView.exists
-        }
-        SubmissionComments.commentTextView.typeText(":facepalm:")
-        SubmissionComments.addCommentButton.tap()
+        SpeedGrader.Rubric.addCommentButton(id: "1").tap()
+        SubmissionComments.commentTextView.pasteText(":facepalm:") // typeText fails to think it's focused in SwiftUI
 
         let expectation = MiniCanvasServer.shared.expectationFor(
             request: PutSubmissionGradeRequest(
@@ -48,8 +45,9 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
                 userID: student.id.value
             )
         )
-        SpeedGrader.doneButton.tap()
-        wait(for: [expectation], timeout: 5)
+        SubmissionComments.addCommentButton.tap()
+        SpeedGrader.doneButton.tapUntil { !SpeedGrader.doneButton.exists }
+        wait(for: [expectation], timeout: 9)
 
         XCTAssertEqual(submission.api.rubric_assessment?["1"]?.comments, ":facepalm:")
     }

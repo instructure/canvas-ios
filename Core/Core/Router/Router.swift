@@ -52,6 +52,46 @@ public enum RouteOptions: Equatable {
     }
 }
 
+#if DEBUG
+extension RouteOptions: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type, style, isDissmissable, embedInNav, addDoneButton
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        switch try container.decode(String.self, forKey: .type) {
+        case "push":
+            self = .push
+        case "detail":
+            self = .detail
+        default:
+            self = try .modal(
+                container.decodeIfPresent(Int.self, forKey: .style).flatMap { UIModalPresentationStyle(rawValue: $0) },
+                isDismissable: container.decode(Bool.self, forKey: .isDissmissable),
+                embedInNav: container.decode(Bool.self, forKey: .embedInNav),
+                addDoneButton: container.decode(Bool.self, forKey: .addDoneButton)
+            )
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .push:
+            try container.encode("push", forKey: .type)
+        case .detail:
+            try container.encode("push", forKey: .type)
+        case .modal(let style, let isDismissable, let embedInNav, let addDoneButton):
+            try container.encode("modal", forKey: .type)
+            try container.encodeIfPresent(style?.rawValue, forKey: .style)
+            try container.encode(isDismissable, forKey: .isDissmissable)
+            try container.encode(embedInNav, forKey: .embedInNav)
+            try container.encode(addDoneButton, forKey: .addDoneButton)
+        }
+    }
+}
+#endif
+
 // The Router stores all routes that can be routed to in the app
 open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void

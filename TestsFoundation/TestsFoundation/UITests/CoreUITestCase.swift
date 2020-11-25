@@ -296,11 +296,11 @@ open class CoreUITestCase: XCTestCase {
         }
     }
 
-    open func show(_ route: String) {
+    open func show(_ route: String, options: RouteOptions = .modal(.fullScreen, embedInNav: true)) {
         if currentSession() == nil {
             logIn()
         }
-        send(.show(route))
+        send(.show(route, options))
     }
 
     open func pullToRefresh() {

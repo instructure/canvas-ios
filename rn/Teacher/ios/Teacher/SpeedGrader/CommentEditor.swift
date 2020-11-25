@@ -34,15 +34,17 @@ struct CommentEditor: View {
                 TextEditor(text: $text)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .accessibility(label: Text("Comment"))
+                    .identifier("SubmissionComments.commentTextView")
                     .padding(.vertical, 2)
             }
             Button(action: action, label: {
                 Icon.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
             })
-                .accessibility(label: Text("Send"))
                 .opacity(text.isEmpty ? 0.5 : 1)
                 .disabled(text.isEmpty)
+                .accessibility(label: Text("Send"))
+                .identifier("SubmissionComments.addCommentButton")
         }
             .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 4))
             .background(RoundedRectangle(cornerRadius: 16).fill(Color.backgroundLightest))

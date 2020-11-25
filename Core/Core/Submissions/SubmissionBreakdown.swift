@@ -79,6 +79,7 @@ struct SubmissionBreakdown: View {
                                 count: graded,
                                 total: submissionCount
                             )
+                                .identifier("AssignmentDetails.gradedDial")
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUngraded,
@@ -86,6 +87,7 @@ struct SubmissionBreakdown: View {
                                 count: ungraded,
                                 total: submissionCount
                             )
+                                .identifier("AssignmentDetails.ungradedDial")
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUnsubmitted,
@@ -93,6 +95,7 @@ struct SubmissionBreakdown: View {
                                 count: unsubmitted,
                                 total: submissionCount
                             )
+                                .identifier("AssignmentDetails.notSubmittedDial")
                                 .frame(maxWidth: .infinity)
                         }
                             .frame(maxWidth: 400)
@@ -106,6 +109,7 @@ struct SubmissionBreakdown: View {
         })
             .buttonStyle(ScaleButtonStyle(scale: 1))
             .accessibility(label: Text("View all submissions", bundle: .core))
+            .identifier("AssignmentDetails.viewAllSubmissionsButton")
             .onAppear {
                 summary.eventHandler = update
                 summary.refresh(force: true)
