@@ -130,11 +130,12 @@ public struct DashboardCardView: View {
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Courses", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
+                        .accessibility(identifier: "dashboard.courses.heading-lbl")
                     Spacer()
                     Button(action: showAllCourses, label: {
                         Text("All Courses", bundle: .core)
                             .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    })
+                    }).accessibility(identifier: "dashboard.courses.see-all-btn")
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
