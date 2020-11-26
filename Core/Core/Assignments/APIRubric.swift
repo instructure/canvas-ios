@@ -40,7 +40,7 @@ public struct APIRubricRating: Codable, Equatable {
 public struct APIRubricSettings: Codable, Equatable {
     var free_form_criterion_comments: Bool?
     var hide_points: Bool
-    let points_possible: Double
+    let points_possible: Double?
 }
 
 public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
