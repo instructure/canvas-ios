@@ -43,7 +43,6 @@ class TodoUITests: MiniCanvasUITestCase {
         XCTAssertEqual(row.label(), "Published, Assignment 1, Course One, No Due Date, 2 NEED GRADING")
 
         row.tap()
-        SpeedGrader.dismissTutorial()
         app.find(label: "A submission from Student 10").waitToExist()
     }
 }

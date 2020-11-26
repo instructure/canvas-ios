@@ -68,10 +68,8 @@ class IPCAppServer: IPCServer {
     }
 
     override func handler(msgid: Int32, data: Data?) -> Data? {
-        guard
-            let data = data,
-            let helper = try? JSONDecoder().decode(UITestHelpers.Helper.self, from: data)
-        else {
+        guard let helper = data.flatMap({ try? JSONDecoder().decode(UITestHelpers.Helper.self, from: $0) }) else {
+            print(data.flatMap { String(data: $0, encoding: .utf8) } ?? "No data")
             fatalError("bad IPC request")
         }
         return UITestHelpers.shared?.run(helper)

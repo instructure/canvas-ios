@@ -77,6 +77,9 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.messageLabel.text = NSLocalizedString("There was an error loading submissions. Pull to refresh to try again.", comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
+        postPolicyButton.accessibilityIdentifier = "SubmissionsList.postPolicyButton"
+        postPolicyButton.accessibilityLabel = NSLocalizedString("Grade post policy", comment: "")
+
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
@@ -236,6 +239,7 @@ class SubmissionListCell: UITableViewCell {
     }
 
     func update(_ assignment: Assignment?, submission: Submission?) {
+        accessibilityIdentifier = "SubmissionListCell.\(submission?.userID ?? "")"
         backgroundColor = .backgroundLightest
         if assignment?.anonymizeStudents != false {
             if submission?.groupID != nil {

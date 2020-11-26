@@ -32,7 +32,7 @@ class AssignmentPostPolicyTests: CoreUITestCase {
 
         mockGraphQL(operationName: "SubmissionList", SubmissionListFixture.submissionList)
 
-        SubmissionsList.postpolicy.tap()
+        SubmissionsList.postPolicyButton.tap()
 
         XCTAssertEqual(PostPolicy.postToValue.label(), "Everyone")
         PostPolicy.postTo.tap()
@@ -51,8 +51,8 @@ class AssignmentPostPolicyTests: CoreUITestCase {
                     value: .make(submissions: [.make(postedAt: Date())]))
         PostPolicy.postGradesButton.tap()
 
-        SubmissionsList.postpolicy.waitToExist()
-        SubmissionsList.postpolicy.tap()
+        SubmissionsList.postPolicyButton.waitToExist()
+        SubmissionsList.postPolicyButton.tap()
         app.find(id: "PostSettings.hideMenuItem").tap()
 
         PostPolicy.toggleHideGradeSections.toggleOn()
@@ -63,6 +63,6 @@ class AssignmentPostPolicyTests: CoreUITestCase {
         ])
         PostPolicy.hideGradesButton.tap()
 
-        SubmissionsList.postpolicy.waitToExist()
+        SubmissionsList.postPolicyButton.waitToExist()
     }
 }

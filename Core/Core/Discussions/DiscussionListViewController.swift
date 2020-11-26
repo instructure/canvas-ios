@@ -252,6 +252,7 @@ class DiscussionListCell: UITableViewCell {
     @IBOutlet weak var unreadLabel: UILabel!
 
     func update(topic: DiscussionTopic?, isTeacher: Bool) {
+        accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
         iconImageView.icon = topic?.assignmentID == nil ? .discussionLine : .assignmentLine
         if isTeacher {
             iconImageView.published = topic?.published == true

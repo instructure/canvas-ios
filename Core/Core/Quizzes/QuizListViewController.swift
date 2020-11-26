@@ -130,6 +130,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuizListCell = tableView.dequeue(for: indexPath)
         cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true)
+        cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
         return cell
     }
 

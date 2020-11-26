@@ -38,9 +38,10 @@ public enum AssignmentDetails: String, ElementWrapper {
     case lockIcon
     case lockSection
     case replyButton // parent
+    case viewAllSubmissionsButton // teacher
 
     public enum Submissions: String, ElementWrapper {
-        public var typeName: String { "AssignmentDetails.Submissions" }
+        public var typeName: String { "AssignmentDetails" }
         case gradedDial
         case ungradedDial
         case notSubmittedDial
@@ -52,10 +53,6 @@ public enum AssignmentDetails: String, ElementWrapper {
 
     public static func link(_ description: String) -> Element {
         return app.webViews.staticTexts.matching(label: description).firstElement
-    }
-
-    public static var viewAllSubmissionsButton: Element {
-        return app.find(id: "assignment-details.assignment-section.submissions")
     }
 }
 

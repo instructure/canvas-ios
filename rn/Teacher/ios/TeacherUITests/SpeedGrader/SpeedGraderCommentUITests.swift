@@ -25,8 +25,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
     lazy var submission = firstAssignment.submission(byUserId: student.id.value)!
 
     func showSubmission() {
-        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(submission.api.id)")
-        SpeedGrader.dismissTutorial()
+        show("/courses/\(firstCourse.id)/assignments/\(firstAssignment.id)/submissions/\(student.id.value)", options: .modal(.fullScreen))
     }
 
     func testSubmissionCommentAttachments() {
@@ -39,12 +38,10 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
 
         showSubmission()
         SpeedGrader.Segment.comments.tap()
-        app.find(id: "CommentAttachment-1").tap()
-        app.find(id: "AttachmentView.image").waitToExist()
-        app.find(id: "attachment-view.share-btn").waitToExist()
-        app.find(label: "Attachment").waitToExist()
+        SubmissionComments.fileView(fileID: "1").tap()
+        FileDetails.imageView.waitToExist()
         NavBar.dismissButton.tap()
-        app.find(id: "AttachmentView.image").waitToVanish()
+        FileDetails.imageView.waitToVanish()
     }
 
     func testDisplayStudentAndTeacherComments() {
@@ -69,11 +66,11 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         SpeedGrader.Segment.comments.tap()
 
         XCTAssertEqual(
-            SubmissionComments.textCell(commentID: "comment-\(teacherComment.id)").label(),
+            SubmissionComments.textCell(commentID: teacherComment.id).label(),
             teacherComment.comment
         )
         XCTAssertEqual(
-            SubmissionComments.textCell(commentID: "comment-\(studentComment.id)").label(),
+            SubmissionComments.textCell(commentID: studentComment.id).label(),
             studentComment.comment
         )
     }
@@ -83,7 +80,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
 
         showSubmission()
         SpeedGrader.Segment.comments.tap()
-        SubmissionComments.commentTextView.typeText(testString)
+        SubmissionComments.commentTextView.pasteText(testString)
 
         XCTAssert((submission.api.submission_comments ?? []).isEmpty)
         SubmissionComments.addCommentButton.tap()
@@ -95,7 +92,9 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
     func testNewAudioComment() {
         showSubmission()
         SpeedGrader.Segment.comments.tap()
-        SubmissionComments.addMediaButton.tap()
+        SubmissionComments.addMediaButton.tapUntil {
+            app.find(label: "Record Audio").exists
+        }
         allowAccessToMicrophone {
             app.find(label: "Record Audio").tap()
         }
@@ -103,6 +102,6 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         AudioRecorder.stopButton.tap()
         AudioRecorder.sendButton.tap()
 
-        XCTAssertTrue(app.find(id: "audio-comment.label").waitToExist().isVisible)
+        XCTAssertTrue(app.find(idStartingWith: "SubmissionComments.audioCell").waitToExist().isVisible)
     }
 }

@@ -43,6 +43,7 @@ struct SubmissionHeader: View {
                     .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 0))
             })
                 .buttonStyle(PlainButtonStyle())
+                .identifier("SpeedGrader.userButton")
 
             Spacer()
 
@@ -51,12 +52,14 @@ struct SubmissionHeader: View {
                     .foregroundColor(Color(Brand.shared.linkColor))
                     .padding(16)
             })
+                .identifier("SpeedGrader.postPolicyButton")
 
             Button(action: dismiss, label: {
                 Text("Done")
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
                     .padding(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 16))
             })
+                .identifier("SpeedGrader.doneButton")
         }
     }
 

@@ -5,17 +5,8 @@
   "a_title_is_required_71222850": {
     "message": "A title is required"
   },
-  "accept_2fdd362e": {
-    "message": "Accept"
-  },
   "access_code_74f4864f": {
     "message": "Access Code"
-  },
-  "account_group_cb00ca73": {
-    "message": "Account Group"
-  },
-  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Add a few of your favorite courses to make this place your home."
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
     "message": "Add an attachment by tapping the plus at the top right."
@@ -25,9 +16,6 @@
   },
   "add_attachment_dcdb8bf8": {
     "message": "Add attachment"
-  },
-  "add_courses_fd45abf": {
-    "message": "Add Courses"
   },
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
@@ -182,12 +170,6 @@
   "compose_message_8abd180a": {
     "message": "Compose Message"
   },
-  "conference_in_progress_bed08457": {
-    "message": "Conference in progress"
-  },
-  "conference_name_is_in_progress_tap_to_view_details_86ffeb1": {
-    "message": "Conference { name } is in progress, tap to view details"
-  },
   "conversation_options_8be926f3": {
     "message": "Conversation options"
   },
@@ -245,9 +227,6 @@
   "date_date_mmm_d_date_time_short_e82719d6": {
     "message": "{ date, date, 'MMM d' } { date, time, short }"
   },
-  "decline_7eeb5ff4": {
-    "message": "Decline"
-  },
   "deep_purple_bb3e2907": {
     "message": "Deep Purple"
   },
@@ -265,12 +244,6 @@
   },
   "dismiss_dacdb625": {
     "message": "Dismiss"
-  },
-  "dismiss_invitation_to_name_a650b2c4": {
-    "message": "Dismiss invitation to { name }"
-  },
-  "dismiss_name_8646b9fd": {
-    "message": "Dismiss { name }"
   },
   "done_54e3d4b6": {
     "message": "Done"
@@ -431,9 +404,6 @@
   "hidden_14a032a7": {
     "message": "Hidden"
   },
-  "hide_content_for_name_aee1723a": {
-    "message": "Hide content for { name }"
-  },
   "hide_correct_answers_at_b1a59408": {
     "message": "Hide Correct Answers At"
   },
@@ -454,12 +424,6 @@
   },
   "invalid_field_54480fae": {
     "message": "Invalid field"
-  },
-  "invite_accepted_290abc90": {
-    "message": "Invite accepted!"
-  },
-  "invite_declined_d0a9e398": {
-    "message": "Invite declined!"
   },
   "label_text_field_6677ab6f": {
     "message": "{ label }, text field"
@@ -638,9 +602,6 @@
   "only_once_after_each_attempt_cc842738": {
     "message": "Only Once After Each Attempt"
   },
-  "open_coursename_user_preferences_430b877e": {
-    "message": "Open { courseName } user preferences"
-  },
   "opens_in_canvas_student_5f299948": {
     "message": "Opens in Canvas Student"
   },
@@ -661,9 +622,6 @@
   },
   "pass_8abee039": {
     "message": "Pass"
-  },
-  "past_enrollments_a846da48": {
-    "message": "Past Enrollments"
   },
   "permission_needed_7e971495": {
     "message": "Permission Needed"
@@ -890,9 +848,6 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Tap the \"+\" to create a new conversation"
   },
-  "tap_to_view_announcement_6724a5d": {
-    "message": "Tap to view announcement"
-  },
   "teachers_52e2423f": {
     "message": "Teachers"
   },
@@ -905,12 +860,6 @@
   "there_are_no_assignments_to_display_83b52cf3": {
     "message": "There are no assignments to display."
   },
-  "there_was_a_problem_dismissing_the_announcement_9c5fb4c": {
-    "message": "There was a problem dismissing the announcement."
-  },
-  "there_was_a_problem_loading_the_announcements_4871afc4": {
-    "message": "There was a problem loading the announcements."
-  },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "There was a problem loading the assignment submissions."
   },
@@ -919,9 +868,6 @@
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
     "message": "There was a problem loading the groups."
-  },
-  "there_was_a_problem_loading_the_live_conferences_d80f2f9e": {
-    "message": "There was a problem loading the live conferences."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
     "message": "There was a problem loading the quiz submissions."
@@ -1046,17 +992,11 @@
   "view_responses_d2874266": {
     "message": "View Responses"
   },
-  "welcome_73d18b4d": {
-    "message": "Welcome!"
-  },
   "whoops_de2cf9fc": {
     "message": "Whoops!"
   },
   "yes_dde87d5": {
     "message": "Yes"
-  },
-  "you_have_been_invited_a724be1a": {
-    "message": "You have been invited"
   },
   "you_must_enable_camera_and_microphone_permissions__bf35451f": {
     "message": "You must enable Camera and Microphone permissions in Settings to use the camera."
