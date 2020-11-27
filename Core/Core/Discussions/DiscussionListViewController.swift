@@ -58,6 +58,7 @@ public class DiscussionListViewController: UIViewController, ColoredNavViewProto
         setupTitleViewInNavbar(title: NSLocalizedString("Discussions", comment: ""))
 
         addButton.accessibilityLabel = NSLocalizedString("Create Discussion", comment: "")
+        addButton.accessibilityIdentifier = "DiscussionList.newButton"
 
         emptyMessageLabel.text = NSLocalizedString("It looks like discussions haven’t been created in this space yet.", comment: "")
         emptyTitleLabel.text = NSLocalizedString("No Discussions", comment: "")
@@ -284,5 +285,8 @@ class DiscussionListCell: UITableViewCell {
         unreadLabel.text = topic?.nUnreadString
         unreadDot.isHidden = topic?.unreadCount == 0
         unreadDot.backgroundColor = .backgroundInfo
+
+        accessibilityIdentifier = "DiscussionListCell.\(topic?.id ?? "")"
+        accessibilityLabel = [titleLabel.text, statusLabel.text, dateLabel.text, pointsLabel.text, repliesLabel.text, unreadLabel.text].compactMap { $0 }.joined(separator: " ")
     }
 }

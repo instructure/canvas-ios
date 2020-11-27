@@ -88,6 +88,8 @@ extension NSPersistentContainer {
     @objc open func performWriteTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         let context = writeContext ?? {
             let context = newBackgroundContext()
+            context.automaticallyMergesChangesFromParent = true
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
             writeContext = context
             return context
         }()

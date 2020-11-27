@@ -93,7 +93,7 @@ public class GetAllCourses: CollectionUseCase {
         return GetCoursesRequest(enrollmentState: nil, state: [ .available, .completed, .unpublished ], perPage: 100)
     }
 
-    public let scope = Scope(predicate: .all, order: [
+    public let scope = Scope(predicate: NSPredicate(format: "ANY %K != %@", #keyPath(Course.enrollments.stateRaw), EnrollmentState.invited.rawValue), order: [
         NSSortDescriptor(key: #keyPath(Course.isPastEnrollment), ascending: true),
         NSSortDescriptor(key: #keyPath(Course.name), ascending: true, naturally: true),
         NSSortDescriptor(key: #keyPath(Course.id), ascending: true),

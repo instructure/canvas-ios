@@ -30,6 +30,7 @@ class InboxTests: CoreUITestCase {
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: nil, filter: nil), value: [conversation1])
         mockData(GetConversationsRequest(include: [.participant_avatars], perPage: 50, scope: .sent, filter: nil), value: [])
         mockURL(avatarURL)
+        mockData(GetCoursesRequest(enrollmentState: nil, state: [.available, .completed], perPage: 10), value: [baseCourse])
     }
 
     func testReply() {

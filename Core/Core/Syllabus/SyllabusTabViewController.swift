@@ -62,9 +62,10 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
     }
 
     func update() {
-        guard !colors.pending, let course = course.first, !settings.pending else { return }
+        guard !colors.pending, !course.pending, let course = course.first, !settings.pending else { return }
         updateNavBar(subtitle: course.name, color: course.color)
 
+        layoutViewControllers()
         viewControllers = []
         if course.syllabusBody?.isEmpty == false {
             viewControllers.append(syllabus)
@@ -72,8 +73,7 @@ open class SyllabusTabViewController: HorizontalMenuViewController, ColoredNavVi
         if settings.first?.syllabusCourseSummary == true {
             viewControllers.append(summary)
         }
-        setupPages()
-        layoutViewControllers()
+        updateFrames()
         reload()
     }
 }

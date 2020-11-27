@@ -130,11 +130,12 @@ public struct DashboardCardView: View {
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Courses", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
+                        .accessibility(identifier: "dashboard.courses.heading-lbl")
                     Spacer()
                     Button(action: showAllCourses, label: {
                         Text("All Courses", bundle: .core)
                             .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-                    })
+                    }).accessibility(identifier: "dashboard.courses.see-all-btn")
                 }
                     .padding(.top, 16).padding(.bottom, 8)
             ) {
@@ -142,7 +143,8 @@ public struct DashboardCardView: View {
                 let spacing: CGFloat = 16
                 let columns = max(2, floor(size.width / minCardWidth))
                 let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
-                JustifiedGrid(cards.all, id: \.id, itemSize: cardSize, spacing: spacing, width: size.width) { card in
+                JustifiedGrid(itemCount: cards.all.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
+                    let card = cards.all[cardIndex]
                     CourseCard(
                         card: card,
                         hideColorOverlay: settings.first?.hideDashcardColorOverlays == true,

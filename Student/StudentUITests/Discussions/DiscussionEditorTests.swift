@@ -35,7 +35,7 @@ class DiscussionEditorTests: CoreUITestCase {
         mockData(GetDiscussionTopicsRequest(context: .course(noPermissionCourse.id.value)), value: [])
 
         show("/courses/\(noPermissionCourse.id.value)/discussion_topics")
-        app.find(label: "There are no discussions to display.").waitToExist()
+        app.find(label: "It looks like discussions haven’t been created in this space yet.").waitToExist()
         XCTAssertFalse(DiscussionList.newButton.isVisible)
     }
 
@@ -57,6 +57,7 @@ class DiscussionEditorTests: CoreUITestCase {
     }
 
     func testCreateDiscussionWithAttachment() throws {
+        try XCTSkipIf(true, "Photo library picker doesn't work on bitrise simulator.")
         mockBaseRequests()
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
