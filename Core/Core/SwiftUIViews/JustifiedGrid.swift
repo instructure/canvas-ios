@@ -18,25 +18,22 @@
 
 import SwiftUI
 
-public struct JustifiedGrid<Item, Content: View>: View {
-    let content: (Item) -> Content
-    let id: KeyPath<Item, String>
-    let items: [Item]
+public struct JustifiedGrid<Content: View>: View {
+    let itemCount: Int
+    let content: (Int) -> Content
     let itemSize: CGSize
     let spacing: CGFloat
     let width: CGFloat
 
     public init(
-        _ items: [Item],
-        id: KeyPath<Item, String>,
+        itemCount: Int,
         itemSize: CGSize,
         spacing: CGFloat = 0,
         width: CGFloat,
-        @ViewBuilder content: @escaping (Item) -> Content
+        @ViewBuilder content: @escaping (Int) -> Content
     ) {
+        self.itemCount = itemCount
         self.content = content
-        self.id = id
-        self.items = items
         self.itemSize = itemSize
         self.spacing = spacing
         self.width = width
@@ -44,18 +41,19 @@ public struct JustifiedGrid<Item, Content: View>: View {
 
     struct Row {
         let id: String
-        let items: [Item]
-        let placeholders: [Int]
+        let itemIndexes: [Int]
+        let placeholderCount: Int
     }
 
     var rows: [Row] {
-        let spacing: CGFloat = 8
         let columns = max(1, Int(floor((width + spacing) / (itemSize.width + spacing))))
-        return stride(from: 0, to: items.count, by: columns).map {
-            Row(
+
+        return stride(from: 0, to: itemCount, by: columns).map {
+            let itemIndexes = stride(from: $0, to: min($0 + columns, itemCount), by: 1).map { $0 }
+            return Row(
                 id: "\(columns)-\($0)",
-                items: Array(items[$0..<min($0 + columns, items.count)]),
-                placeholders: Array(min(0, items.count - $0 - columns)..<0)
+                itemIndexes: itemIndexes,
+                placeholderCount: columns - itemIndexes.count
             )
         }
     }
@@ -64,17 +62,36 @@ public struct JustifiedGrid<Item, Content: View>: View {
         VStack(spacing: spacing) {
             ForEach(rows, id: \.id) { row in
                 HStack(spacing: spacing) {
-                    ForEach(row.items, id: id) { item in
-                        content(item)
+                    ForEach(row.itemIndexes, id: \.self) { itemIndex in
+                        content(itemIndex)
                             .frame(width: itemSize.width, height: itemSize.height)
                             .frame(maxWidth: .infinity)
                     }
-                    ForEach(row.placeholders, id: \.self) { _ in
+                    ForEach(0..<row.placeholderCount, id: \.self) { _ in
                         Color.clear
                             .frame(width: itemSize.width, height: itemSize.height)
+                            .frame(maxWidth: .infinity)
                     }
                 }
             }
         }
     }
 }
+
+#if DEBUG
+struct JustifiedGridPreviews: PreviewProvider {
+    static var previews: some View {
+        let values = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        GeometryReader { geometry in
+            ScrollView {
+                JustifiedGrid(itemCount: values.count, itemSize: CGSize(width: 50, height: 50), spacing: 8, width: geometry.size.width) { index in
+
+                    Color.red.overlay(
+                        Text(verbatim: "\(values[index])")
+                    )
+                }
+            }
+        }
+    }
+}
+#endif

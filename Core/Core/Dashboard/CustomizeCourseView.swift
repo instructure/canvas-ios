@@ -87,10 +87,11 @@ struct CustomizeCourseView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 JustifiedGrid(
-                    Array(Self.colors), id: \.key,
+                    itemCount: Self.colors.count,
                     itemSize: CGSize(width: 48, height: 48), spacing: 8,
                     width: width - 32 // account for padding
-                ) { item in
+                ) { itemIndex in
+                    let item = Self.colors[itemIndex]
                     let uiColor = UIColor(hexString: item.key) ?? .ash
                     let isSelected = uiColor.difference(to: color) < 0.02
                     Button(action: { color = uiColor }, label: {
