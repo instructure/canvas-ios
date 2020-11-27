@@ -28,7 +28,7 @@ struct CourseCard: View {
     @Environment(\.viewController) var controller
 
     var a11yGrade: String {
-        guard let course = card.getCourse(), !course.hideTotalGrade else { return "" }
+        guard let course = card.getCourse(), showGrade else { return "" }
         return course.displayGrade
     }
 
