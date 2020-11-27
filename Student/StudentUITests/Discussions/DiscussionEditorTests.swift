@@ -57,6 +57,7 @@ class DiscussionEditorTests: CoreUITestCase {
     }
 
     func testCreateDiscussionWithAttachment() throws {
+        try XCTSkipIf(true, "Photo library picker doesn't work on bitrise simulator.")
         mockBaseRequests()
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value)), value: [])
         mockData(GetDiscussionTopicsRequest(context: .course(course1.id.value), perPage: nil, include: []), value: [])
