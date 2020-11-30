@@ -26,19 +26,15 @@ class ContextCardE2ETests: CoreUITestCase {
         }
         CourseNavigation.assignments.tap()
         AssignmentsList.assignment(id: "1831").tap()
-        AssignmentDetails.Submissions.gradedDial.tap()
-        app.find(id: "submission-613").tap()
-        app.find(id: "header.context.button.613").tap()
-    }
-
-    func testContextCardEmail() throws {
-        try XCTSkipIf(Date() < Date(fromISOString: "2020-11-01T00:00:00Z")!, "blocked on https://instructure.atlassian.net/browse/INTEROP-6137")
-        XCTAssertEqual(ContextCard.userEmailLabel.label(), "ios+student1@instructure.com")
+        // Simulate a tap on the "Graded" circle since it's not visible to accessibility because it's a button inside another button
+        AssignmentDetails.viewAllSubmissionsButton.tapAt(CGPoint(x: 50, y: 50))
+        app.find(id: "SubmissionListCell.613").tap()
+        SpeedGrader.userButton.tap()
     }
 
     func testContextCard() throws {
         XCTAssertEqual(ContextCard.userNameLabel.label(), "Student One")
-//        XCTAssertEqual(ContextCard.userEmailLabel.label(), "ios+student1@instructure.com")
+        XCTAssertEqual(ContextCard.userEmailLabel.label(), "ios+student1@instructure.com")
         XCTAssert(ContextCard.lastActivityLabel.label().hasPrefix("Last activity on "))
         XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
         XCTAssertEqual(ContextCard.sectionLabel.label(), "Section: Assignments")
