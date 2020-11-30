@@ -106,6 +106,6 @@ class DiscussionsUITests: MiniCanvasUITestCase {
         Dashboard.courseCard(id: firstCourse.id).tap()
         CourseNavigation.discussions.tap()
 
-        app.find(label: "There are no discussions to display.").waitToExist()
+        app.find(label: "It looks like discussions haven’t been created in this space yet.").waitToExist()
     }
 }
