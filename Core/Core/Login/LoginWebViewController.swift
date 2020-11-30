@@ -102,8 +102,15 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
         progressView.progress = 0
         progressView.progressTintColor = Brand.shared.primary
         loadObservation = webView.observe(\.estimatedProgress, options: .new) { [weak self] webView, _ in
-            self?.progressView.setProgress(Float(webView.estimatedProgress), animated: true)
-            self?.progressView.isHidden = webView.estimatedProgress >= 1
+            guard let progressView = self?.progressView else { return }
+            let newValue = Float(webView.estimatedProgress)
+            progressView.setProgress(newValue, animated: newValue >= progressView.progress)
+            guard newValue >= 1 else { return }
+            UIView.animate(withDuration: 0.3, animations: {
+                progressView.alpha = 0
+            }, completion: { _ in
+                progressView.isHidden = true
+            })
         }
 
         // Manual OAuth provided mobileVerifyModel
@@ -189,6 +196,7 @@ extension LoginWebViewController: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.alpha = 1
         progressView.isHidden = false
     }
 
