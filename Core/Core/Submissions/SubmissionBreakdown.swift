@@ -79,7 +79,6 @@ struct SubmissionBreakdown: View {
                                 count: graded,
                                 total: submissionCount
                             )
-                                .identifier("AssignmentDetails.gradedDial")
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUngraded,
@@ -87,7 +86,6 @@ struct SubmissionBreakdown: View {
                                 count: ungraded,
                                 total: submissionCount
                             )
-                                .identifier("AssignmentDetails.ungradedDial")
                                 .frame(maxWidth: .infinity)
                             Graph(
                                 action: routeToUnsubmitted,
@@ -95,7 +93,6 @@ struct SubmissionBreakdown: View {
                                 count: unsubmitted,
                                 total: submissionCount
                             )
-                                .identifier("AssignmentDetails.notSubmittedDial")
                                 .frame(maxWidth: .infinity)
                         }
                             .frame(maxWidth: 400)
