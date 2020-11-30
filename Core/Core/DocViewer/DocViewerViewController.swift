@@ -270,8 +270,9 @@ extension DocViewerViewController: UIGestureRecognizerDelegate {
 
     @objc func tapGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
         guard gestureRecognizer.state == .ended, let documentViewController = pdf.documentViewController else { return }
-        let viewPoint = gestureRecognizer.location(in: documentViewController.view)
-        guard let pageView = documentViewController.visiblePageView(at: viewPoint) else { return }
+        let pageViewPoint = gestureRecognizer.location(in: gestureRecognizer.view)
+        guard let pageView = documentViewController.visiblePageView(at: pageViewPoint) else { return }
+        let viewPoint = gestureRecognizer.location(in: pageView)
         performTap(pageView: pageView, at: viewPoint)
     }
 
