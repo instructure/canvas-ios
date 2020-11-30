@@ -70,6 +70,7 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         colors.refresh()
         courses.exhaust()
         groups.exhaust()
+        todos.refresh(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -174,5 +175,7 @@ class TodoListCell: UITableViewCell {
         contextLabel.text = todo?.contextName
         needsGradingView.isHidden = todo?.type != .grading
         needsGradingLabel.text = todo?.needsGradingText
+        accessibilityIdentifier = "to-do.list.\(todo?.assignment.htmlURL?.absoluteString ?? "unknown").row"
+        accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.assignment.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")
     }
 }
