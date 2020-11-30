@@ -153,7 +153,7 @@ extension APISubmission {
         late: Bool = false,
         late_policy_status: LatePolicyStatus? = nil,
         media_comment: APIMediaComment? = nil,
-        missing: Bool = false,
+        missing: Bool? = false,
         points_deducted: Double? = nil,
         posted_at: Date? = nil,
         preview_url: URL? = nil,
