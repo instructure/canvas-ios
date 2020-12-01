@@ -31,3 +31,16 @@ extension Submission {
         return model
     }
 }
+
+extension SubmissionSummary {
+    @discardableResult
+    public static func make(
+        from api: APISubmissionSummary = .make(),
+        assignmentID: String = "1",
+        in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
+    ) -> SubmissionSummary {
+        let model = SubmissionSummary.save(api, assignmentID: assignmentID, in: context)
+        try! context.save()
+        return model
+    }
+}
