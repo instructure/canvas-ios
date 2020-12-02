@@ -30,7 +30,6 @@ class ActAsUserE2ETests: CoreUITestCase {
         XCTAssertEqual(ActAsUser.domainField.value(), "https://\(user!.host)")
         ActAsUser.actAsUserButton.tap()
 
-        Dashboard.courseCard(id: "263").waitToExist()
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
         Profile.close()
