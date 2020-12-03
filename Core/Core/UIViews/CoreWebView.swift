@@ -25,7 +25,7 @@ public protocol CoreWebViewLinkDelegate: class {
 }
 
 extension CoreWebViewLinkDelegate {
-    public func finishedNavigation(){}
+    public func finishedNavigation() {}
 }
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
