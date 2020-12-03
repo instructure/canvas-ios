@@ -26,6 +26,7 @@ public struct WebView: UIViewRepresentable {
 
     var handleLink: ((URL) -> Bool)?
     var handleSize: ((CGFloat) -> Void)?
+    var handleNavigationFinished: (() -> Void)?
     let source: Source?
 
     @Environment(\.appEnvironment) var env
@@ -48,6 +49,12 @@ public struct WebView: UIViewRepresentable {
     public func onChangeSize(_ handleSize: @escaping (CGFloat) -> Void) -> Self {
         var modified = self
         modified.handleSize = handleSize
+        return modified
+    }
+
+    public func onNavigationFinished(_ handleNavigationFinished: (() -> Void)?) -> Self {
+        var modified = self
+        modified.handleNavigationFinished = handleNavigationFinished
         return modified
     }
 
@@ -107,6 +114,10 @@ public struct WebView: UIViewRepresentable {
 
         public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
             view.handleSize?(height)
+        }
+
+        public func finishedNavigation() {
+            view.handleNavigationFinished?()
         }
     }
 

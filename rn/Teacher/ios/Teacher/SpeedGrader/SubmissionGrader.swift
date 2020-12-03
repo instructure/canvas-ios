@@ -34,6 +34,8 @@ struct SubmissionGrader: View {
     @State var tab: GraderTab = .grades
     @State var showRecorder: MediaCommentType?
 
+    var handleRefresh: (() -> Void)?
+
     var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
@@ -44,7 +46,8 @@ struct SubmissionGrader: View {
         index: Int,
         assignment: Assignment,
         submission: Submission,
-        isPagingEnabled: Binding<Bool>
+        isPagingEnabled: Binding<Bool>,
+        handleRefresh: (() -> Void)?
     ) {
         self.index = index
         self.assignment = assignment
@@ -58,6 +61,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self._isPagingEnabled = isPagingEnabled
+        self.handleRefresh = handleRefresh
     }
 
     var body: some View {
@@ -84,7 +88,8 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
-                                        isPagingEnabled: $isPagingEnabled
+                                        isPagingEnabled: $isPagingEnabled,
+                                        handleRefresh: handleRefresh
                                     )
                                 }
                                 attemptPicker
@@ -116,7 +121,8 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
-                                    isPagingEnabled: $isPagingEnabled
+                                    isPagingEnabled: $isPagingEnabled,
+                                    handleRefresh: handleRefresh
                                 )
                             }
                             attemptPicker
