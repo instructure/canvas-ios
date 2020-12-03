@@ -177,6 +177,7 @@ public class MiniCourse {
                     attempt: 1,
                     id: submissionId.value,
                     preview_url: previewUrl,
+                    submission_history: [],
                     submission_type: .online_quiz,
                     user_id: student.id.value
                 ),

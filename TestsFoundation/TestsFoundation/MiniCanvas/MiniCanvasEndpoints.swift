@@ -517,6 +517,7 @@ enum MiniCanvasEndpoints {
             try lookupAssignment(forRequest: request).submissions.map { $0.api }
         },
         .apiRequest(PutSubmissionGradeRequest(courseID: Pattern.courseID, assignmentID: Pattern.assignmentID, userID: Pattern.userID)) { request in
+            // The next line is throwing which means it's failing to find the submission. Break here to find out why.
             let submission = try lookupSubmission(forRequest: request)
             guard let body: PutSubmissionGradeRequest.Body = request.body else { return nil }
             if let comment = body.comment {
@@ -587,6 +588,15 @@ enum MiniCanvasEndpoints {
             APIVerifyClient.make(base_url: request.baseUrl)
         },
         .rest("/users/self") { _ in .ok(.htmlBody("")) },
+        /* I thought this was going to help but it didn't.
+        .rest("/login/session_token") { request in
+            // Return the original `return_to` url as the `session_url` for simplicity.
+            assert(request.httpRequest.queryParams.count == 1)
+            assert(request.httpRequest.queryParams.first!.0 == "return_to")
+            let returnTo = request.httpRequest.queryParams.first!.1
+            return .json(GetWebSessionRequest.Response(session_url: URL(string: "/hello-world")!))
+        },
+        */
         .apiRequest(GetDashboardCardsRequest()) { request in
             let courses: [(MiniCourse, String)] = try request.state.userEnrollments().map { enrollment in
                 guard let course = request.state.course(byId: enrollment.course_id!.value) else {
