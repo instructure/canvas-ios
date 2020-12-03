@@ -204,6 +204,9 @@ public struct GetWebSessionRequest: APIRequestable {
 
     public let path = "/login/session_token"
     public var query: [APIQueryItem] {
+        // Inline data content URLs need no extra query params
+        if to?.scheme == "data" { return [] }
+
         if let returnTo = to?.appendingQueryItems(URLQueryItem(name: "display", value: "borderless")) {
             return [ .value("return_to", returnTo.absoluteString) ]
         }
