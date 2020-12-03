@@ -151,6 +151,7 @@ public class MiniCourse {
     func createQuizAssignment(state: MiniCanvasState) {
         let assignmentId = state.nextId()
         let assignment = MiniAssignment(APIAssignment.make(
+            course_id: api.id,
             id: assignmentId,
             name: "quiz assignment \(assignmentId)",
             submission_types: [ .online_quiz ]

@@ -517,7 +517,6 @@ enum MiniCanvasEndpoints {
             try lookupAssignment(forRequest: request).submissions.map { $0.api }
         },
         .apiRequest(PutSubmissionGradeRequest(courseID: Pattern.courseID, assignmentID: Pattern.assignmentID, userID: Pattern.userID)) { request in
-            // The next line is throwing which means it's failing to find the submission. Break here to find out why.
             let submission = try lookupSubmission(forRequest: request)
             guard let body: PutSubmissionGradeRequest.Body = request.body else { return nil }
             if let comment = body.comment {
