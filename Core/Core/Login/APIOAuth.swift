@@ -139,6 +139,29 @@ struct GetMobileVerifyRequest: APIRequestable {
 // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html#post-login-oauth2-token
 struct PostLoginOAuthRequest: APIRequestable {
     typealias Response = APIOAuthToken
+    struct Body: Codable {
+        let client_id: String
+        let client_secret: String
+        let grant_type: String
+        let code: String?
+        let refresh_token: String?
+
+        init(client: APIVerifyClient, grantType: GrantType) {
+            self.client_id = client.client_id ?? ""
+            self.client_secret = client.client_secret ?? ""
+
+            switch grantType {
+            case .code(let code):
+                self.grant_type = "authorization_code"
+                self.code = code
+                self.refresh_token = nil
+            case .refreshToken(let token):
+                self.grant_type = "refresh_token"
+                self.refresh_token = token
+                self.code = nil
+            }
+        }
+    }
 
     enum GrantType {
         case code(String)
@@ -146,39 +169,23 @@ struct PostLoginOAuthRequest: APIRequestable {
     }
 
     let client: APIVerifyClient
-    let grantType: GrantType
 
     init(client: APIVerifyClient, code: String) {
         self.client = client
-        self.grantType = .code(code)
+        self.body = Body(client: client, grantType: .code(code))
     }
 
     init(client: APIVerifyClient, refreshToken: String) {
         self.client = client
-        self.grantType = .refreshToken(refreshToken)
+        self.body = Body(client: client, grantType: .refreshToken(refreshToken))
     }
 
+    let body: Body?
     let method = APIMethod.post
     var path: String {
         return URL(string: "login/oauth2/token", relativeTo: client.base_url)?.absoluteString ?? "login/oauth2/token"
     }
-    var query: [APIQueryItem] {
-        var query: [APIQueryItem] = [
-            .value("client_id", client.client_id ?? ""),
-            .value("client_secret", client.client_secret ?? ""),
-        ]
 
-        switch grantType {
-        case .code(let code):
-            query.append(.value("grant_type", "authorization_code"))
-            query.append(.value("code", code))
-        case .refreshToken(let token):
-            query.append(.value("grant_type", "refresh_token"))
-            query.append(.value("refresh_token", token))
-        }
-
-        return query
-    }
     let headers: [String: String?] = [
         HttpHeader.authorization: nil,
     ]
