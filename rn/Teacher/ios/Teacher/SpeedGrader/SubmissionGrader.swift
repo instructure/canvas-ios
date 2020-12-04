@@ -21,8 +21,10 @@ import Core
 
 struct SubmissionGrader: View {
     let index: Int
-    let assignment: Assignment
-    let submission: Submission
+    private let assignment: Assignment
+    private let submission: Submission
+    private var handleRefresh: (() -> Void)?
+
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
     @Binding var isPagingEnabled: Bool
@@ -34,8 +36,8 @@ struct SubmissionGrader: View {
     @State var tab: GraderTab = .grades
     @State var showRecorder: MediaCommentType?
 
-    var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
-    var file: File? {
+    private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
+    private var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
         selected.attachments?.sorted(by: File.idCompare).first
     }
@@ -44,7 +46,8 @@ struct SubmissionGrader: View {
         index: Int,
         assignment: Assignment,
         submission: Submission,
-        isPagingEnabled: Binding<Bool>
+        isPagingEnabled: Binding<Bool>,
+        handleRefresh: (() -> Void)?
     ) {
         self.index = index
         self.assignment = assignment
@@ -58,6 +61,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self._isPagingEnabled = isPagingEnabled
+        self.handleRefresh = handleRefresh
     }
 
     var body: some View {
@@ -84,7 +88,8 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
-                                        isPagingEnabled: $isPagingEnabled
+                                        isPagingEnabled: $isPagingEnabled,
+                                        handleRefresh: handleRefresh
                                     )
                                 }
                                 attemptPicker
@@ -116,7 +121,8 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
-                                    isPagingEnabled: $isPagingEnabled
+                                    isPagingEnabled: $isPagingEnabled,
+                                    handleRefresh: handleRefresh
                                 )
                             }
                             attemptPicker
@@ -255,7 +261,7 @@ struct SubmissionGrader: View {
             .clipped()
     }
 
-    func snapDrawerTo(_ state: DrawerState) {
+    private func snapDrawerTo(_ state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
         }

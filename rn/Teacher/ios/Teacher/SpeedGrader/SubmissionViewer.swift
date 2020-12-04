@@ -24,6 +24,7 @@ struct SubmissionViewer: View {
     let submission: Submission
     let fileID: String?
     @Binding var isPagingEnabled: Bool
+    var handleRefresh: (() -> Void)?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -36,7 +37,9 @@ struct SubmissionViewer: View {
             }
         case .discussion_topic, .online_quiz:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url).onLink(handleLink)
+                WebView(url: url)
+                    .onLink(handleLink)
+                    .onNavigationFinished(handleRefresh)
             }
         case .media_recording:
             VideoPlayer(url: submission.mediaComment?.url)

@@ -256,6 +256,7 @@ struct SubmissionGrades: View {
     // MARK: Prompt for an updated grade
 
     func promptNewGrade() {
+        sliderValue = nil
         var message: String?
         switch assignment.gradingType {
         case .gpa_scale:

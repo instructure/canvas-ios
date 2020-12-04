@@ -20,7 +20,12 @@ import WebKit
 
 public protocol CoreWebViewLinkDelegate: class {
     func handleLink(_ url: URL) -> Bool
+    func finishedNavigation()
     var routeLinksFrom: UIViewController { get }
+}
+
+extension CoreWebViewLinkDelegate {
+    public func finishedNavigation() {}
 }
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
@@ -309,6 +314,7 @@ extension CoreWebView: WKNavigationDelegate {
     }
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        linkDelegate?.finishedNavigation()
         if let fragment = url?.fragment {
             scrollIntoView(fragment: fragment)
         }

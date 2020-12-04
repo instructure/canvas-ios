@@ -163,7 +163,10 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
                 self?.pages.scrollView.isScrollEnabled ?? false
             }, set: { [weak self] newValue in
                 self?.pages.scrollView.isScrollEnabled = newValue
-            })
+            }),
+            handleRefresh: { [weak self] in
+                self?.submissions.refresh(force: true)
+            }
         )
     }
 
