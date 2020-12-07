@@ -321,7 +321,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func allowAccessToPhotos(block: () -> Void) {
-        _ = setSimulatorPermission(.photos)
+        setSimulatorPermission(.photos)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
             alert.buttons["OK"].tap()
@@ -333,7 +333,7 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func allowAccessToMicrophone(block: () -> Void) {
-        _ = setSimulatorPermission(.microphone)
+        setSimulatorPermission(.microphone)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
             alert.buttons["OK"].tap()
@@ -354,29 +354,33 @@ open class CoreUITestCase: XCTestCase {
     }
 
     // Don't rely on this, it won't work on device. It does make simulator tests more reliable
-    open func setSimulatorPermission(_ permission: Permission, allowed: Bool = true) -> Bool {
+    open func setSimulatorPermission(_ permission: Permission, allowed: Bool = true) {
         let dbPath = Bundle.main.bundlePath + "/../../../../../Library/TCC/TCC.db"
-        XCTAssert(FileManager.default.fileExists(atPath: dbPath), "couldn't find TCC.db")
+        XCTAssert(FileManager.default.fileExists(atPath: dbPath), "Couldn't find TCC.db")
 
         var db: OpaquePointer?
         let service = permission.rawValue
         let client = Bundle.main.testTargetBundleID!
+        // swiftlint:disable line_length
         let query = """
-        delete from access where service = '\(service)' and client = '\(client)';
-        insert into
-        access (service, client, client_type, allowed, prompt_count, csreq, policy_id)
-        values('\(service)', '\(client)', 0, \(allowed ? 1 : 0), 0, 0, 0);
+        DELETE FROM access WHERE service = '\(service)' AND client = '\(client)';
+        INSERT INTO
+        access (service, client, client_type, auth_value, auth_reason, auth_version, csreq, policy_id, indirect_object_identifier_type, indirect_object_identifier, indirect_object_code_identity, flags, last_modified)
+        VALUES('\(service)', '\(client)', 0, \(allowed ? 2 : 0), 5, 1, NULL, NULL, NULL, 'UNUSED', NULL, 0, 0);
         """
-        print(query)
-        guard sqlite3_open(dbPath, &db) == SQLITE_OK else { return false }
-        defer { sqlite3_close(db) }
-        var err: UnsafeMutablePointer<Int8>?
-        guard sqlite3_exec(db, query, nil, nil, &err) == SQLITE_OK else {
-            let msg = err.map { String(cString: $0) } ?? "unknown error"
-            print("Error setting permission: \(msg)")
-            return false
+        // swiftlint:enable line_length
+
+        if sqlite3_open(dbPath, &db) != SQLITE_OK {
+            XCTFail("Failed to open file at \(dbPath)")
+            return
         }
-        return true
+        defer { sqlite3_close(db) }
+
+        var err: UnsafeMutablePointer<Int8>?
+        if sqlite3_exec(db, query, nil, nil, &err) != SQLITE_OK {
+            let msg = err.map { String(cString: $0) } ?? "unknown error"
+            XCTFail("Error setting permission: \(msg).\nQuery: \(query)")
+        }
     }
 
     open func navBarColorHex() -> String? {
