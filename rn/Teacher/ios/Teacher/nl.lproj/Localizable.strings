@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g van de %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g ptn";
+
+/* No comment provided by engineer. */
 "Absent" = "Afwezig";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Bijlage toevoegen";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Opmerking toevoegen";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle cijfers zijn momenteel verborgen.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Alle geposte cijfers";
+
+/* No comment provided by engineer. */
+"All submissions" = "Alle inleveringen";
 
 /* No comment provided by engineer. */
 "Attendance" = "Aanwezigheid";
@@ -50,10 +62,16 @@
 "Comments" = "Opmerkingen";
 
 /* No comment provided by engineer. */
+"Complete" = "Voltooid";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Kan de opmerking niet opslaan.";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursussen";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Cijfer aanpassen";
 
 /* No comment provided by engineer. */
 "Date picker" = "Datumkiezer";
@@ -77,6 +95,9 @@
 "Everyone" = "Iedereen";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Cursist vrijstellen";
+
+/* No comment provided by engineer. */
 "Excused" = "Vrijgesteld";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Bestanden (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filter (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filteren op";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Eindcijfer";
+
+/* No comment provided by engineer. */
+"GPA" = "Gemiddelde";
 
 /* No comment provided by engineer. */
 "Grade" = "Cijfer";
@@ -119,10 +155,16 @@
 "Inbox" = "Inbox";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Onvoltooid";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Het lijkt erop dat er geen geldige inleveringen zijn om te beoordelen.";
 
 /* No comment provided by engineer. */
 "Late" = "Te laat";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Beoordeling in lettervorm";
 
 /* No comment provided by engineer. */
 "Loading" = "Bezig met laden";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Gemodereerd beoordelen wordt niet ondersteund";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Moet worden beoordeeld";
+
+/* No comment provided by engineer. */
+"No Grade" = "Geen cijfer";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Geen inleveringen";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Niet beoordeeld";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Lade openen, volledig scherm";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Lade openen, half scherm";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "In behandeling";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Percentage (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Cijfers posten";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Voorbeeld niet beschikbaar";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Vraagt voor een bijgewerkt cijfer";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Audio opnemen";
 
 /* No comment provided by engineer. */
 "Record Video" = "Video opnemen";
+
+/* No comment provided by engineer. */
+"Reset" = "Opnieuw instellen";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubriek";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Hoger gescoord...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Lager gescoord...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Selecteer om de stemmingsdatum te wijzigen";
@@ -188,16 +260,25 @@
 "Student" = "Cursist";
 
 /* No comment provided by engineer. */
+"Submissions" = "Inleveringen";
+
+/* No comment provided by engineer. */
 "Test Student" = "Cursist toetsen";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Er zijn nog geen berichten.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van inleveringen. Ophalen om te vernieuwen en het nogmaals te proberen.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Voor deze opdracht zijn geen inleveringen toegestaan.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Voor deze opdracht zijn alleen inleveringen op papier toegestaan.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Dit criterium is niet van invloed op de score.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Deze groep heeft geen inlevering voor deze opdracht.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Bestand bekijken %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Uitgebreide beschrijving bekijken";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Inleveringspoging %1$@ bekijken. %2$@";

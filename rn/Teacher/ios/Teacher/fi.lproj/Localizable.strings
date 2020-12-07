@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g / %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g pistetä";
+
+/* No comment provided by engineer. */
 "Absent" = "Poissa";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Lisää liite";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Lisää kommentti";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Kaikki arvosanat on parhaillaan piilotettu.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Kaikki lähetetty";
+
+/* No comment provided by engineer. */
+"All submissions" = "Kaikki lähetykset";
 
 /* No comment provided by engineer. */
 "Attendance" = "Osallistuminen";
@@ -50,10 +62,16 @@
 "Comments" = "Kommentit";
 
 /* No comment provided by engineer. */
+"Complete" = "Valmis";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Kommentin tallentaminen ei onnistunut";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurssit";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Mukautettu arvosana";
 
 /* No comment provided by engineer. */
 "Date picker" = "Päivämäärän valitsin";
@@ -77,6 +95,9 @@
 "Everyone" = "Kaikki";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Anna opiskelijalle anteeksi";
+
+/* No comment provided by engineer. */
 "Excused" = "Vapautettu";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Tiedostot (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Suodatin";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Suodatin (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Suodatusperuste";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Lopullinen arvosana";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Arvosana";
@@ -119,10 +155,16 @@
 "Inbox" = "Viestit";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Keskeneräinen";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Näyttää siltä, että arvosanalle ei ole voimassa olevia lähetyksiä.";
 
 /* No comment provided by engineer. */
 "Late" = "Myöhään";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Kirjainarvosana";
 
 /* No comment provided by engineer. */
 "Loading" = "Ladataan";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Valvottua arvosanojen antoa ei tueta";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Täytyy arvioida";
+
+/* No comment provided by engineer. */
+"No Grade" = "Ei arvosanaa";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ei lähetyksiä";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ei arvioida";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Avaa vetolaatikko koko näyttö";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Avaa vetolaatikko puoleen väliin";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Odottaa";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Prosentti (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Lähetä arvosanoja";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Esikatselua ei saatavissa";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Kehotukset päivitetylle arvosanalle";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Nauhoita ääni";
 
 /* No comment provided by engineer. */
 "Record Video" = "Nauhoita video";
+
+/* No comment provided by engineer. */
+"Reset" = "Nollaa";
+
+/* No comment provided by engineer. */
+"Rubric" = "Arviointitaulukko";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Pisteytetty edellä...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Pisteytetty alla...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Valitse vaihtaaksesi roll call -päivämäärä";
@@ -188,16 +260,25 @@
 "Student" = "Opiskelija";
 
 /* No comment provided by engineer. */
+"Submissions" = "Tehtäväpalautukset";
+
+/* No comment provided by engineer. */
 "Test Student" = "Testaa opiskelijaa";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Viestijä ei vielä ole.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Lähetysten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Tämä tehtävä ei salli lähetyksiä.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Tämä tehtävä sallii vain paperilla tehtävät lähetykset.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Kriteeri ei vaikuta myymälään.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Tällä ryhmällä ei ole lähetystä tähän tehtävään.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Näytä tiedosto %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Tarkastele pitkää kuvausta";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Näytä lähetysyritykset %1$@. %2$@";

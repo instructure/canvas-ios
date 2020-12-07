@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g allan o %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g pwynt";
+
+/* No comment provided by engineer. */
 "Absent" = "Absennol";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Ychwanegu Atodiad";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Ychwanegu Sylw";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Pob gradd wedi'i chuddio ar hyn o bryd.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Pob un wedi'i Bostio";
+
+/* No comment provided by engineer. */
+"All submissions" = "Pob cyflwyniad";
 
 /* No comment provided by engineer. */
 "Attendance" = "Presenoldeb";
@@ -50,10 +62,16 @@
 "Comments" = "Sylwadau";
 
 /* No comment provided by engineer. */
+"Complete" = "Cwblhau";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Doedd dim modd cadw'r sylw.";
 
 /* No comment provided by engineer. */
 "Courses" = "Cwrs";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Personoli Gradd";
 
 /* No comment provided by engineer. */
 "Date picker" = "Dewiswr dyddiadau";
@@ -77,6 +95,9 @@
 "Everyone" = "Pawb";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Esgusodi Myfyriwr";
+
+/* No comment provided by engineer. */
 "Excused" = "Wedi esgusodi";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Ffeiliau (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Hidlo";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Hidlo (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Hidlo yn ôl";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Gradd Derfynol";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Gradd";
@@ -119,10 +155,16 @@
 "Inbox" = "Blwch Derbyn";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Heb Gwblhau";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Mae’n ymddangos nad oes yno unrhyw gyflwyniadau dilys i’w graddio.";
 
 /* No comment provided by engineer. */
 "Late" = "Yn Hwyr";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Gradd llythyren";
 
 /* No comment provided by engineer. */
 "Loading" = "Wrthi’n llwytho";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Does dim modd delio â'r broses safoni graddau";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Angen Graddio";
+
+/* No comment provided by engineer. */
+"No Grade" = "Dim Gradd";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Dim Cyflwyniadau";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";
+
+/* No comment provided by engineer. */
+"OK" = "Iawn";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Agor Drôr sgrin lawn";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Agor Drôr hanner sgrin";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Yn aros";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Canran (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Postio Graddau";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Dim rhagolwg ar gael";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Awgrymiadau ar gyfer gradd wedi’i diweddaru";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Recordio Sain";
 
 /* No comment provided by engineer. */
 "Record Video" = "Recordio Fideo";
+
+/* No comment provided by engineer. */
+"Reset" = "Ailosod";
+
+/* No comment provided by engineer. */
+"Rubric" = "Cyfarwyddyd sgorio";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Wedi sgorio dros...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Wedi sgorio o dan...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Dewiswch i newid dyddiad y gofrestr";
@@ -188,16 +260,25 @@
 "Student" = "Myfyriwr";
 
 /* No comment provided by engineer. */
+"Submissions" = "Cyflwyniadau";
+
+/* No comment provided by engineer. */
 "Test Student" = "Myfyriwr Prawf";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Does dim negeseuon eto.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Gwall wrth lwytho cyflwyniadau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Dydy’r cwrs hwn ddim yn caniatáu cyflwyniadau ar bapur.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Ni fydd y maen prawf hwn yn effeithio ar y sgôr.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Does gan y grŵp hwn ddim cyflwyniad ar gyfer yr aseiniad hwn.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Gweld ffeil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Gweld Disgrifiad Hir";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Gweld ymgais cyflwyno %1$@. %2$@";

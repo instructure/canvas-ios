@@ -113,9 +113,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pwynt</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g pwynt</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

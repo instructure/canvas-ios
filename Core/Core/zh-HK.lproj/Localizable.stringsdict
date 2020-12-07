@@ -69,7 +69,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g分數</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>

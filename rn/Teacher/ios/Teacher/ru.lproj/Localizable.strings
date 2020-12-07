@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g из %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g баллы";
+
+/* No comment provided by engineer. */
 "Absent" = "Отсутствует";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Добавить вложение";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Добавить комментарий";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Все скрытые в настоящее время оценки.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Все размещенные";
+
+/* No comment provided by engineer. */
+"All submissions" = "Все отправки";
 
 /* No comment provided by engineer. */
 "Attendance" = "Посещаемость";
@@ -50,10 +62,16 @@
 "Comments" = "Комментарии";
 
 /* No comment provided by engineer. */
+"Complete" = "Завершить";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Не удалось сохранить комментарий.";
 
 /* No comment provided by engineer. */
 "Courses" = "Курсы";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Персонализировать оценку";
 
 /* No comment provided by engineer. */
 "Date picker" = "Элемент выбора даты";
@@ -77,6 +95,9 @@
 "Everyone" = "Все";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Освободить студента";
+
+/* No comment provided by engineer. */
 "Excused" = "По уважительной причине";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Файлы (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Фильтровать";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Фильтр (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Фильтровать по";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Итоговая оценка";
+
+/* No comment provided by engineer. */
+"GPA" = "Балл GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Оценка";
@@ -119,10 +155,16 @@
 "Inbox" = "Входящие";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Не завершено";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Похоже, что действительных отправок для оценивания нет.";
 
 /* No comment provided by engineer. */
 "Late" = "Поздно";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Успеваемость";
 
 /* No comment provided by engineer. */
 "Loading" = "Загрузка";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Модерированное выставление оценок не поддерживается";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Требует оценки";
+
+/* No comment provided by engineer. */
+"No Grade" = "Нет оценки";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Нет отправок";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Полноэкранный режим «Открыть панель»";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Режим «Открыть панель» в половину экрана";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Ожидает обработки";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Процент (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Опубликовать оценки";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Предпросмотр недоступен";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Предлагает обновить оценку";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Записать аудио";
 
 /* No comment provided by engineer. */
 "Record Video" = "Записать видео";
+
+/* No comment provided by engineer. */
+"Reset" = "Восстановить";
+
+/* No comment provided by engineer. */
+"Rubric" = "Рубрика";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Оценены выше...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Оценены ниже...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Выберите для изменения даты проверки присутствия";
@@ -188,16 +260,25 @@
 "Student" = "Студент";
 
 /* No comment provided by engineer. */
+"Submissions" = "Отправки";
+
+/* No comment provided by engineer. */
 "Test Student" = "Тестовый студент";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Сообщений пока нет.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Произошла ошибка при загрузке отправок. Потяните для обновления, чтобы попробовать еще раз.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Это задание не может быть отправлено.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Это задание может быть отправлено только в печатном виде.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Этот критерий не повлияет на оценку.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Эта группа не имеет отправки для этого задания.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Просмотреть файл %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Просмотреть длинное описание";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Просмотреть попытку отправки %1$@. %2$@";

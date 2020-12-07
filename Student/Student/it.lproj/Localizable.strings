@@ -203,6 +203,9 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Aggiungi destinatari";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Tutti i periodi di valutazione";
+
 /* Button to select all members of a group */
 "All members" = "Tutti i membri";
 
@@ -360,6 +363,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Scegli video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Cancella filtro";
 
 /* No comment provided by engineer. */
 "Close" = "Chiudi";
@@ -628,6 +634,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "File (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtra";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtra per:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Download completato";

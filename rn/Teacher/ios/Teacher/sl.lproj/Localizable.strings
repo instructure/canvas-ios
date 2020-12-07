@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g od %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g točk";
+
+/* No comment provided by engineer. */
 "Absent" = "Odsoten";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Dodaj prilogo";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Dodaj komentar";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Trenutno so vse ocene skrite.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Vse objavljene";
+
+/* No comment provided by engineer. */
+"All submissions" = "Vse oddaje";
 
 /* No comment provided by engineer. */
 "Attendance" = "Prisotnost";
@@ -50,10 +62,16 @@
 "Comments" = "Komentarji";
 
 /* No comment provided by engineer. */
+"Complete" = "Zaključeno";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Komentarja ni bilo mogoče shraniti.";
 
 /* No comment provided by engineer. */
 "Courses" = "Predmeti";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Prilagodi oceno po meri";
 
 /* No comment provided by engineer. */
 "Date picker" = "Orodje za izbiro podatkov";
@@ -77,6 +95,9 @@
 "Everyone" = "Vsi";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Opraviči študenta";
+
+/* No comment provided by engineer. */
 "Excused" = "Opravičeno";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Datoteke (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filter (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filtriraj glede na";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Končna ocena";
+
+/* No comment provided by engineer. */
+"GPA" = "Lestvica GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Ocena";
@@ -119,10 +155,16 @@
 "Inbox" = "Pošta";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Nezaključeno";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Videti je, da za ocenjevanje ni na voljo nobene veljavne oddaje.";
 
 /* No comment provided by engineer. */
 "Late" = "Zamuda";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Črkovna ocena";
 
 /* No comment provided by engineer. */
 "Loading" = "Nalaganje";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Moderirano ocenjevanje ni podprto.";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Je treba oceniti.";
+
+/* No comment provided by engineer. */
+"No Grade" = "Ni ocen";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ni oddaj";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ni ocenjeno";
+
+/* No comment provided by engineer. */
+"OK" = "V redu";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Odpri predal na celoten zaslon";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Odpri predal na polovico zaslona";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "V čakanju";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Odstotek (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Pošlji ocene v SIS";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Predogled ni na voljo.";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Pozivi za posodobljeno oceno";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Posnemi zvok";
 
 /* No comment provided by engineer. */
 "Record Video" = "Posnemi videoposnetek";
+
+/* No comment provided by engineer. */
+"Reset" = "Obnovi";
+
+/* No comment provided by engineer. */
+"Rubric" = "Ocenjevalni vodnik";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Rezultat nad ...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Rezultat pod ...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Izberite, da spremenite datum preverjanja prisotnosti.";
@@ -188,16 +260,25 @@
 "Student" = "Študent";
 
 /* No comment provided by engineer. */
+"Submissions" = "Oddaje";
+
+/* No comment provided by engineer. */
 "Test Student" = "Testni študent";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Trenutno ni še nobenega sporočila.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Pri nalaganju oddaj je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Pri tej nalogi oddaje niso dovoljene.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Pri tej nalogi so dovoljene le oddaje na papirju.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "To merilo ne bo vplivalo na rezultat.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Pri tej skupini ni oddaje za to nalogo.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Ogled datoteke %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Ogled dolgega opisa";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Ogled poskusa oddaje %1$@. %2$@";

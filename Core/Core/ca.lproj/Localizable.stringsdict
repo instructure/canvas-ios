@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g punt</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g punts</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>

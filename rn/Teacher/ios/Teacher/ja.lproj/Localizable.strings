@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g中%2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%gポイント";
+
+/* No comment provided by engineer. */
 "Absent" = "欠席";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "添付を追加";
+
+/* No comment provided by engineer. */
+"Add Comment" = "コメントを追加";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "すべての成績は今、非表示になっています。";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "すべて掲示済";
+
+/* No comment provided by engineer. */
+"All submissions" = "すべての提出物";
 
 /* No comment provided by engineer. */
 "Attendance" = "出席状況";
@@ -50,10 +62,16 @@
 "Comments" = "コメント";
 
 /* No comment provided by engineer. */
+"Complete" = "完了";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "コメントを保存できませんでした。";
 
 /* No comment provided by engineer. */
 "Courses" = "コース";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "グレードを最適化";
 
 /* No comment provided by engineer. */
 "Date picker" = "日付ピッカー";
@@ -77,6 +95,9 @@
 "Everyone" = "全員";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "学生を免除する";
+
+/* No comment provided by engineer. */
 "Excused" = "免除";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "ファイル (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "フィルタ";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "フィルター (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "フィルタ条件";
+
+/* No comment provided by engineer. */
+"Final Grade" = "最終的な成績";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "成績";
@@ -119,10 +155,16 @@
 "Inbox" = "受信トレイ";
 
 /* No comment provided by engineer. */
+"Incomplete" = "未完了";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "採点する有効な提出物がないようです。";
 
 /* No comment provided by engineer. */
 "Late" = "遅れている";
+
+/* No comment provided by engineer. */
+"Letter grade" = "ABC...評価";
 
 /* No comment provided by engineer. */
 "Loading" = "読み込み中";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "修正された採点はサポートされていません";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "採点が必要です";
+
+/* No comment provided by engineer. */
+"No Grade" = "成績はありません";
+
+/* No comment provided by engineer. */
 "No Submissions" = "提出物なし";
 
 /* No comment provided by engineer. */
 "Not Graded" = "未採点";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "引き出しを全画面で開く";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "引き出しを半画面で開く";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "未定";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "パーセント (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "成績表の掲示";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "プレビューできません";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "更新された成績のプロンプト";
+
+/* No comment provided by engineer. */
 "Record Audio" = "オーディオを録音する";
 
 /* No comment provided by engineer. */
 "Record Video" = "動画を録画する";
+
+/* No comment provided by engineer. */
+"Reset" = "リセット";
+
+/* No comment provided by engineer. */
+"Rubric" = "ルービック";
+
+/* No comment provided by engineer. */
+"Scored above..." = "...超えのスコア";
+
+/* No comment provided by engineer. */
+"Scored below..." = "...未満のスコア";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "ロールコールの日付を変更するために選択します";
@@ -188,16 +260,25 @@
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
+"Submissions" = "提出物";
+
+/* No comment provided by engineer. */
 "Test Student" = "受講生をテストする";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "メッセージはまだありません。";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "提出物の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "この課題は提出を許可していません。";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "この課題は、論文の提出のみを許可します。";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "この基準はスコアに影響を与えません。";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "このグループには、この課題の提出はありません。";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "ファイルを表示%1$@%2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "長い説明を表示";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "提出予定 %1$@を閲覧します。%2$@";

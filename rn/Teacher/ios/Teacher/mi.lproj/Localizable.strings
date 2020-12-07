@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g i waho i te %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g ngā koinga";
+
+/* No comment provided by engineer. */
 "Absent" = "Ngaro";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Tāpiri Āpitihanga";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Tāpiri Kōrero";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Kei te hungaia ngā kōeke katoa i tēnei wā";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Kua whakairihia katoa";
+
+/* No comment provided by engineer. */
+"All submissions" = "Ngā tukunga katoa";
 
 /* No comment provided by engineer. */
 "Attendance" = "Taenga mai";
@@ -50,10 +62,16 @@
 "Comments" = "Ngā kōrero";
 
 /* No comment provided by engineer. */
+"Complete" = "Oti";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Kaore i taea te tiaki i te kōrero.";
 
 /* No comment provided by engineer. */
 "Courses" = "Ngā Akoranga";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Whakarite kōeke";
 
 /* No comment provided by engineer. */
 "Date picker" = "Rā Kaitoi";
@@ -77,6 +95,9 @@
 "Everyone" = "tāngata katoa";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Whakawātea ākoranga";
+
+/* No comment provided by engineer. */
 "Excused" = "Whakawātea";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Ngā kōnae (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Tātari";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Tātari (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Tātari mā";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Kōeke whakamutunga";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Kōeke";
@@ -119,10 +155,16 @@
 "Inbox" = "Pouakauru";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Kaore i te oti";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Anō nei kaore he tukuna whaimana hei kōeke.";
 
 /* No comment provided by engineer. */
 "Late" = "Tūreiti";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Koeke reta";
 
 /* No comment provided by engineer. */
 "Loading" = "E tukuake ana";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Kōeke whakaōrite tautokona";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "E hiahiatia ana mo te kōeke";
+
+/* No comment provided by engineer. */
+"No Grade" = "Kaore he Kōeke";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Kahore ngā tāpaetanga";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Kāore i kōekehia";
+
+/* No comment provided by engineer. */
+"OK" = "Ae";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Huaki Pouaka Mata Nui";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Huaki Pouaka Mmata Hawhe";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Tārewa";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Ōrau (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Whakairi ngā kōeke";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Kaore i te wātea te arokite";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Tono mo te whakahōu kōeke";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Tāhopu Ororongo";
 
 /* No comment provided by engineer. */
 "Record Video" = "Tāhopu Ataata";
+
+/* No comment provided by engineer. */
+"Reset" = "Tautuhi anō";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubric";
+
+/* No comment provided by engineer. */
+"Scored above..." = "I Kaute runga ake ...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "I Kaute raro iho ...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Tīpako ki te huri te rā roll call";
@@ -188,16 +260,25 @@
 "Student" = "Ākonga";
 
 /* No comment provided by engineer. */
+"Submissions" = "Tukunga";
+
+/* No comment provided by engineer. */
 "Test Student" = "Whakamātau Ākonga";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Kaore noa ngā karere.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā tukunga. Kumea ki te whakahou ki te ngana anō.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Kāore tēnei whakataunga e whakāe ngā tukunga.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Tēnei tukunga e whakaae ana pepa tukunga anake.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Kaore tēnei tohu e pā ki te kaute.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Kaore he tukunga mo tēnei rōpū mo tēnei whakataunga.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Titiro ki te kōnae %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Tirohia te whakāturanga roa";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Titiro tāpaetanga ngana %1$@. %2$@";

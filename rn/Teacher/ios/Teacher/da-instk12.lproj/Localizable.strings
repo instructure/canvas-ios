@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g ud af %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g point";
+
+/* No comment provided by engineer. */
 "Absent" = "Fraværende";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Tilføj vedhæftet fil";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Tilføj kommentar";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Alle vurderinger er i øjeblikket skjult.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Alle slået op";
+
+/* No comment provided by engineer. */
+"All submissions" = "Alle afleveringer";
 
 /* No comment provided by engineer. */
 "Attendance" = "Tilstedeværelse";
@@ -50,10 +62,16 @@
 "Comments" = "Kommentarer";
 
 /* No comment provided by engineer. */
+"Complete" = "Fuldført";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Kunne ikke gemme kommentaren.";
 
 /* No comment provided by engineer. */
 "Courses" = "Fag";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Tilpas vurdering";
 
 /* No comment provided by engineer. */
 "Date picker" = "Datovælger";
@@ -77,6 +95,9 @@
 "Everyone" = "Alle";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Fritag elev";
+
+/* No comment provided by engineer. */
 "Excused" = "Undskyldt";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filter";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filtrer (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filtrere efter";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Endelig vurdering";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Vurdering";
@@ -119,10 +155,16 @@
 "Inbox" = "Indbakke";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Ufuldstændig";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Det ser ud til, at der ikke er nogen gyldige afleveringer at bedømme.";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Bogstavvurdering";
 
 /* No comment provided by engineer. */
 "Loading" = "Indlæser";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Samlet vurdering ikke understøttet";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Mangler bedømmelse";
+
+/* No comment provided by engineer. */
+"No Grade" = "Ingen vurdering";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Ingen afleveringer";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Ikke bedømt";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Åbn skuffe i fuld skærm";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Åbn skuffe i halv skærm";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Afventer";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Procentdel (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Slå vurderinger op";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Forhåndsvisning ikke tilgængelig";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Beder om en opdateret vurdering";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Optage audio";
 
 /* No comment provided by engineer. */
 "Record Video" = "Optag video";
+
+/* No comment provided by engineer. */
+"Reset" = "Nulstil";
+
+/* No comment provided by engineer. */
+"Rubric" = "Vurderingskriterie";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Fik over ...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Fik under ...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Vælg for at ændre dato for navneopkald";
@@ -188,16 +260,25 @@
 "Student" = "Elev";
 
 /* No comment provided by engineer. */
+"Submissions" = "Afleveringer";
+
+/* No comment provided by engineer. */
 "Test Student" = "Prøveelev";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Der er ingen beskeder endnu.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af afleveringer. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Denne opgave tillader ikke afleveringer.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Denne opgave tillader kun aflevering på papir.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Dette kriterie påvirker ikke resultatet.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Denne gruppe har ikke nogen aflevering for denne opgave.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Se fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Se lang beskrivelse";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Se afleveringsforsøg %1$@. %2$@";

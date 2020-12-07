@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        ";
 
+/* No comment provided by engineer. */
+"-" = "-";
+
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -44,6 +47,15 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Replies";
+
+/* No comment provided by engineer. */
+"%d students" = "%d students";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Unread";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -59,6 +71,9 @@
 "Access" = "Access";
 
 /* No comment provided by engineer. */
+"Account Group" = "Account Group";
+
+/* No comment provided by engineer. */
 "Act as User" = "Act as User";
 
 /* No comment provided by engineer. */
@@ -72,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Add content";
+
+/* No comment provided by engineer. */
+"Add description" = "Add description";
 
 /* No comment provided by engineer. */
 "Add Due Date" = "Add Due Date";
@@ -107,6 +125,9 @@
 "All annotations saved." = "All annotations saved.";
 
 /* No comment provided by engineer. */
+"All courses" = "All courses";
+
+/* No comment provided by engineer. */
 "All Courses" = "All Courses";
 
 /* No comment provided by engineer. */
@@ -140,6 +161,9 @@
 "Announcement Replies" = "Announcement Replies";
 
 /* No comment provided by engineer. */
+"Announcements" = "Announcements";
+
+/* No comment provided by engineer. */
 "Anyone" = "Anyone";
 
 /* No comment provided by engineer. */
@@ -150,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Appointment Signups";
+
+/* No comment provided by engineer. */
+"Archived" = "Archived";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Are you sure you want to delete %@?";
@@ -164,7 +191,13 @@
 "Are you sure you want to remove this file?" = "Are you sure you want to remove this file?";
 
 /* No comment provided by engineer. */
+"Are you sure you would like to delete this announcement?" = "Are you sure you would like to delete this announcement?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Are you sure you would like to delete this comment?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this discussion?" = "Are you sure you would like to delete this discussion?";
 
 /* No comment provided by engineer. */
 "Assign" = "Assign";
@@ -200,7 +233,34 @@
 "Assignments" = "Assignments";
 
 /* No comment provided by engineer. */
+"Attach files by tapping an option below." = "Attach files by tapping an option below.";
+
+/* No comment provided by engineer. */
+"Attach files to your submission by tapping an option below." = "Attach files to your submission by tapping an option below.";
+
+/* No comment provided by engineer. */
+"Attachments" = "Attachments";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Attempt %d";
+
+/* No comment provided by engineer. */
+"Attribution" = "Attribution";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Attribution No Derivatives";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Attribution Non-Commercial";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Attribution Non-Commercial No Derivatives";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Attribution Non-Commercial Share Alike";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Attribution Share Alike";
 
 /* No comment provided by engineer. */
 "Audio" = "Audio";
@@ -305,6 +365,9 @@
 "Choose a course to message" = "Choose a course to message";
 
 /* No comment provided by engineer. */
+"Choose a File" = "Choose a File";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Choose Photo";
 
 /* No comment provided by engineer. */
@@ -335,6 +398,9 @@
 "Closed" = "Closed";
 
 /* No comment provided by engineer. */
+"Closed for Comments" = "Closed for Comments";
+
+/* No comment provided by engineer. */
 "Collapse" = "Collapse";
 
 /* No comment provided by engineer. */
@@ -352,6 +418,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Complete";
 
+/* No comment provided by engineer. */
+"Complete/Incomplete" = "Complete/Incomplete";
+
 /* concluded datetime */
 "Concluded %@" = "Concluded %@";
 
@@ -363,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferences";
+
+/* No comment provided by engineer. */
+"Contact your school to create an account." = "Contact your school to create an account.";
 
 /* No comment provided by engineer. */
 "Content" = "Content";
@@ -440,6 +512,15 @@
 "Create Account" = "Create Account";
 
 /* No comment provided by engineer. */
+"Create Announcement" = "Create Announcement";
+
+/* No comment provided by engineer. */
+"Create Discussion" = "Create Discussion";
+
+/* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons licence";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Current Enrolments";
 
 /* No comment provided by engineer. */
@@ -476,13 +557,22 @@
 "Delay posting" = "Delay posting";
 
 /* No comment provided by engineer. */
+"Delayed until %@" = "Delayed until %@";
+
+/* No comment provided by engineer. */
 "Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Delete Announcement" = "Delete Announcement";
 
 /* No comment provided by engineer. */
 "Delete comment" = "Delete comment";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Delete Comment";
+
+/* No comment provided by engineer. */
+"Delete Discussion" = "Delete Discussion";
 
 /* No comment provided by engineer. */
 "Delete File" = "Delete File";
@@ -566,6 +656,9 @@
 "Due Date" = "Due Date";
 
 /* No comment provided by engineer. */
+"Due Dates, Double tap for details." = "Due Dates, Double tap for details.";
+
+/* No comment provided by engineer. */
 "Due:" = "Due:";
 
 /* No comment provided by engineer. */
@@ -573,6 +666,9 @@
 
 /* No comment provided by engineer. */
 "Edit Announcement" = "Edit Announcement";
+
+/* No comment provided by engineer. */
+"Edit Assignment" = "Edit Assignment";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Edit attachment (1)";
@@ -648,6 +744,9 @@
 
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Extremely critical emergency";
+
+/* No comment provided by engineer. */
+"Fail" = "Fail";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Failed to save image";
@@ -740,6 +839,9 @@
 "Go to today" = "Go to today";
 
 /* No comment provided by engineer. */
+"GPA Scale" = "GPA Scale";
+
+/* No comment provided by engineer. */
 "Graded" = "Marked";
 
 /* No comment provided by engineer. */
@@ -768,6 +870,9 @@
 
 /* No comment provided by engineer. */
 "Help" = "Help";
+
+/* No comment provided by engineer. */
+"Help your students with this assignment by adding instructions." = "Help your students with this assignment by adding instructions.";
 
 /* No comment provided by engineer. */
 "High: %@" = "High: %@";
@@ -839,7 +944,16 @@
 "It looks like a great day to rest, relax, and recharge." = "It looks like a great day to rest, relax, and recharge.";
 
 /* No comment provided by engineer. */
+"It looks like announcements haven’t been created in this space yet." = "It looks like announcements haven’t been created in this space yet.";
+
+/* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "It looks like assignments haven’t been created in this space yet.";
+
+/* No comment provided by engineer. */
+"It looks like discussions haven’t been created in this space yet." = "It looks like discussions haven’t been created in this space yet.";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "It looks like quizzes haven’t been created in this space yet.";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.";
@@ -855,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "Landing Page" = "Landing Page";
+
+/* No comment provided by engineer. */
+"Last post %@" = "Last post %@";
 
 /* No comment provided by engineer. */
 "Late" = "Late";
@@ -873,6 +990,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Legal";
+
+/* No comment provided by engineer. */
+"Letter Grade" = "Letter Grade";
 
 /* No comment provided by engineer. */
 "Library" = "Library";
@@ -1046,10 +1166,16 @@
 "New Page" = "New Page";
 
 /* No comment provided by engineer. */
+"New Quizzes" = "New Quizzes";
+
+/* No comment provided by engineer. */
 "New To Do" = "New To Do";
 
 /* No comment provided by engineer. */
 "Next" = "Next";
+
+/* No comment provided by engineer. */
+"No Announcements" = "No announcements";
 
 /* No comment provided by engineer. */
 "No Assignments" = "No Assignments";
@@ -1073,6 +1199,9 @@
 "No description" = "No description";
 
 /* No comment provided by engineer. */
+"No Discussions" = "No Discussions";
+
+/* No comment provided by engineer. */
 "No Due Date" = "No Due Date";
 
 /* No comment provided by engineer. */
@@ -1092,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "No Pages" = "No Pages";
+
+/* No comment provided by engineer. */
+"No Quizzes" = "No Quizzes";
 
 /* No comment provided by engineer. */
 "No Results" = "No Results";
@@ -1148,6 +1280,9 @@
 "On Paper" = "On Paper";
 
 /* No comment provided by engineer. */
+"Only available to students with link" = "Only available to students with link";
+
+/* No comment provided by engineer. */
 "Only graders can like" = "Only graders can like";
 
 /* No comment provided by engineer. */
@@ -1155,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Only teachers" = "Only teachers";
+
+/* No comment provided by engineer. */
+"Open" = "Open";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Open %@ user preferences";
@@ -1190,6 +1328,9 @@
 "Pairing Code: " = "Pairing Code: ";
 
 /* No comment provided by engineer. */
+"Pass" = "Pass";
+
+/* No comment provided by engineer. */
 "Password" = "Password";
 
 /* No comment provided by engineer. */
@@ -1202,7 +1343,19 @@
 "People" = "People";
 
 /* No comment provided by engineer. */
+"Percentage" = "Percentage";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Permission Needed";
+
+/* No comment provided by engineer. */
 "Photo Library" = "Photo Library";
+
+/* No comment provided by engineer. */
+"Pin" = "Pin";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Pinned Discussions";
 
 /* No comment provided by engineer. */
 "Play" = "Play";
@@ -1263,6 +1416,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quiz Details";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quizzes";
 
 /* No comment provided by engineer. */
 "Recipients" = "Recipients";
@@ -1346,13 +1502,22 @@
 "Scanning not supported" = "Scanning not supported";
 
 /* No comment provided by engineer. */
+"Schedule student availability" = "Schedule student availability";
+
+/* No comment provided by engineer. */
 "Scheduling" = "Scheduling";
 
 /* No comment provided by engineer. */
 "Score at least %@" = "Score at least %@";
 
 /* No comment provided by engineer. */
+"Scored above %g" = "Scored above %g";
+
+/* No comment provided by engineer. */
 "Scored at least %@" = "Scored at least %@";
+
+/* No comment provided by engineer. */
+"Scored below %g" = "Scored below %g";
 
 /* No comment provided by engineer. */
 "Search" = "Search";
@@ -1385,6 +1550,9 @@
 "Selected!" = "Selected!";
 
 /* No comment provided by engineer. */
+"Self Registration Not Allowed" = "Self Registration Not Allowed";
+
+/* No comment provided by engineer. */
 "Send" = "Send";
 
 /* No comment provided by engineer. */
@@ -1395,6 +1563,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Send weekly summary";
+
+/* No comment provided by engineer. */
+"Sent" = "Sent";
 
 /* No comment provided by engineer. */
 "Set as Front Page" = "Set as Front Page";
@@ -1442,6 +1613,9 @@
 "Sort by likes" = "Sort by likes";
 
 /* No comment provided by engineer. */
+"Starred" = "Starred";
+
+/* No comment provided by engineer. */
 "Start recording" = "Start recording";
 
 /* started datetime */
@@ -1475,6 +1649,9 @@
 "Submission Comment" = "Submission Comment";
 
 /* No comment provided by engineer. */
+"Submission Types" = "Submission Types";
+
+/* No comment provided by engineer. */
 "Submissions" = "Submissions";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1662,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Submitted %@";
+
+/* No comment provided by engineer. */
+"Subscribe" = "Subscribe";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Subscribe to Calendar Feed";
@@ -1562,10 +1742,16 @@
 "There was a problem retrieving the Terms of Use." = "There was a problem retrieving the Terms of Use.";
 
 /* No comment provided by engineer. */
+"There was an error loading announcements. Pull to refresh to try again." = "There was an error loading announcements. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
 "There was an error loading conferences. Pull to refresh to try again." = "There was an error loading conferences. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "There was an error loading courses. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading discussions. Pull to refresh to try again." = "There was an error loading discussions. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "There was an error loading events. Pull to refresh to try again.";
@@ -1577,6 +1763,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "There was an error loading grades. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
+"There was an error loading items to do. Pull to refresh to try again." = "There was an error loading items to do. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules." = "There was an error loading modules.";
 
 /* No comment provided by engineer. */
@@ -1584,6 +1773,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "There was an error loading people. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "There was an error loading quizzes. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "There was an error with Act as User. Please try again later.";
@@ -1658,6 +1850,12 @@
 "Unordered List" = "Unordered List";
 
 /* No comment provided by engineer. */
+"Unpin" = "Unpin";
+
+/* No comment provided by engineer. */
+"Unpublish" = "Unpublish";
+
+/* No comment provided by engineer. */
 "unpublished" = "unpublished";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Unread";
+
+/* No comment provided by engineer. */
+"Unsubscribe" = "Unsubscribe";
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Unsupported Item";
@@ -1686,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Usage Right";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Usage Rights";
@@ -1715,6 +1919,9 @@
 "View" = "View";
 
 /* No comment provided by engineer. */
+"View all submissions" = "View all submissions";
+
+/* No comment provided by engineer. */
 "View Less" = "View Less";
 
 /* No comment provided by engineer. */
@@ -1728,6 +1935,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Viewed";
+
+/* No comment provided by engineer. */
+"We couldn't find any courses like that." = "We couldn't find any courses like that.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "We couldn’t find any files like that.";
@@ -1770,6 +1980,12 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo Notifications";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "You must allow notifications in Settings to set reminders.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "You must enable Microphone permissions in Settings.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "You will stop acting as %@ and return to your account.";

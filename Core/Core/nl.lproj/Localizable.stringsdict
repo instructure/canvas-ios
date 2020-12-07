@@ -79,7 +79,7 @@
 			<key>one</key>
 			<string>%g pt</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptn</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>

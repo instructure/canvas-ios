@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Jos haluat luoda tilin, pidä käsillä opiskelijan sinulle luoma parinmuodostuskoodi Canvas Student -sovelluksen Asetukset-osasta alla esitetyn mukaisesti ja skannaa koodi sitten tästä.\n        Jos opiskelijasi ei näe vaihtoehtoa luoda parinmuodostuskoodi, ota yhteyttä kouluusi tilin luomiseksi.\n        ";
 
+/* No comment provided by engineer. */
+"-" = "-";
+
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -44,6 +47,15 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Vastausta";
+
+/* No comment provided by engineer. */
+"%d students" = "%d opiskelijaa";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Lukematon";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -59,6 +71,9 @@
 "Access" = "Pääsy";
 
 /* No comment provided by engineer. */
+"Account Group" = "Tilin ryhmä";
+
+/* No comment provided by engineer. */
 "Act as User" = "Toimi käyttäjänä";
 
 /* No comment provided by engineer. */
@@ -72,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Lisää sisältö";
+
+/* No comment provided by engineer. */
+"Add description" = "Lisää kuvaus";
 
 /* No comment provided by engineer. */
 "Add Due Date" = "Lisää määräpäivä";
@@ -107,6 +125,9 @@
 "All annotations saved." = "Kaikki huomautukset tallennettiin.";
 
 /* No comment provided by engineer. */
+"All courses" = "Kaikki kurssit";
+
+/* No comment provided by engineer. */
 "All Courses" = "Kaikki kurssit";
 
 /* No comment provided by engineer. */
@@ -140,6 +161,9 @@
 "Announcement Replies" = "Ilmoituksen vastaukset";
 
 /* No comment provided by engineer. */
+"Announcements" = "Ilmoitukset";
+
+/* No comment provided by engineer. */
 "Anyone" = "Kuka tahansa";
 
 /* No comment provided by engineer. */
@@ -150,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Tapaamisen rekisteröitymiset";
+
+/* No comment provided by engineer. */
+"Archived" = "Arkistoitu";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Haluatko varmasti poistaa kohteen %@?";
@@ -164,7 +191,13 @@
 "Are you sure you want to remove this file?" = "Haluatko varmasti poistaa tämän tiedoston?";
 
 /* No comment provided by engineer. */
+"Are you sure you would like to delete this announcement?" = "Haluatko varmasti poistaa tämän ilmoituksen?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Haluatko varmasti poistaa tämän kommentin?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this discussion?" = "Haluatko varmasti poistaa tämän keskustelun?";
 
 /* No comment provided by engineer. */
 "Assign" = "Anna tehtäväksi";
@@ -200,7 +233,34 @@
 "Assignments" = "Tehtävät";
 
 /* No comment provided by engineer. */
+"Attach files by tapping an option below." = "Liitä tiedostoja kommenttiisi napauttamalla alla olevaa vaihtoehtoa.";
+
+/* No comment provided by engineer. */
+"Attach files to your submission by tapping an option below." = "Liitä tiedostoja lähetykseesi napauttamalla alla olevaa asetusta.";
+
+/* No comment provided by engineer. */
+"Attachments" = "Liitteet";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Yritys %d";
+
+/* No comment provided by engineer. */
+"Attribution" = "Määrite";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Määrite Ei johdannaisia";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Määrite Ei kaupallisia";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Määrite Ei kaupallisia Ei-johdannaisia";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Määrite Ei kaupallisia Jaa yhtäläisyys";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Määrite Jaa yhtäläisyys";
 
 /* No comment provided by engineer. */
 "Audio" = "Ääni";
@@ -305,6 +365,9 @@
 "Choose a course to message" = "Valitse kurssi, jolle lähetetään viesti";
 
 /* No comment provided by engineer. */
+"Choose a File" = "Valitse tiedosto";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Valitse valokuva";
 
 /* No comment provided by engineer. */
@@ -335,6 +398,9 @@
 "Closed" = "Suljettu";
 
 /* No comment provided by engineer. */
+"Closed for Comments" = "Suljettu kommenteilta";
+
+/* No comment provided by engineer. */
 "Collapse" = "Kutista";
 
 /* No comment provided by engineer. */
@@ -352,6 +418,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Valmis";
 
+/* No comment provided by engineer. */
+"Complete/Incomplete" = "Valmis/keskeneräinen";
+
 /* concluded datetime */
 "Concluded %@" = "Viety päätökseen %@";
 
@@ -363,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenssit";
+
+/* No comment provided by engineer. */
+"Contact your school to create an account." = "Ota yhteyttä kouluusi luodaksesi tili.";
 
 /* No comment provided by engineer. */
 "Content" = "Sisältö";
@@ -440,6 +512,15 @@
 "Create Account" = "Luo tili";
 
 /* No comment provided by engineer. */
+"Create Announcement" = "Luo ilmoitus";
+
+/* No comment provided by engineer. */
+"Create Discussion" = "Luo keskustelu";
+
+/* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons -lisenssi";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Tämänhetkiset ilmoittautumiset";
 
 /* No comment provided by engineer. */
@@ -476,13 +557,22 @@
 "Delay posting" = "Viivästytä lähetystä";
 
 /* No comment provided by engineer. */
+"Delayed until %@" = "Viivästetty asti %@";
+
+/* No comment provided by engineer. */
 "Delete" = "Poista";
+
+/* No comment provided by engineer. */
+"Delete Announcement" = "Poista ilmoitus";
 
 /* No comment provided by engineer. */
 "Delete comment" = "Poista kommentti";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Poista kommentti";
+
+/* No comment provided by engineer. */
+"Delete Discussion" = "Poista keskustelu";
 
 /* No comment provided by engineer. */
 "Delete File" = "Poista tiedosto";
@@ -566,6 +656,9 @@
 "Due Date" = "Määräpäivä";
 
 /* No comment provided by engineer. */
+"Due Dates, Double tap for details." = "Määräajat, näet tiedot kaksoisnapauttamalla.";
+
+/* No comment provided by engineer. */
 "Due:" = "Määräpäivä:";
 
 /* No comment provided by engineer. */
@@ -573,6 +666,9 @@
 
 /* No comment provided by engineer. */
 "Edit Announcement" = "Muokkaa ilmoitusta";
+
+/* No comment provided by engineer. */
+"Edit Assignment" = "Muokkaa tehtävää";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Muokkaa liitettä (1)";
@@ -648,6 +744,9 @@
 
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Erittäin kiireellinen hätätapaus";
+
+/* No comment provided by engineer. */
+"Fail" = "Hylätty";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Kuvan tallennus epäonnistui";
@@ -740,6 +839,9 @@
 "Go to today" = "Siirry tähän päivään";
 
 /* No comment provided by engineer. */
+"GPA Scale" = "GPA-asteikko";
+
+/* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
 
 /* No comment provided by engineer. */
@@ -768,6 +870,9 @@
 
 /* No comment provided by engineer. */
 "Help" = "Ohje";
+
+/* No comment provided by engineer. */
+"Help your students with this assignment by adding instructions." = "Auta opiskelijoitasi tämän tehtävän kanssa lisäämällä ohjeet.";
 
 /* No comment provided by engineer. */
 "High: %@" = "Korkea: %@";
@@ -839,7 +944,16 @@
 "It looks like a great day to rest, relax, and recharge." = "Näyttää olevan hyvä päivä levätä, rentoutua ja latautua.";
 
 /* No comment provided by engineer. */
+"It looks like announcements haven’t been created in this space yet." = "Näyttää siltä kuin ilmoituksia ei vielä olisi luotu tässä tilassa.";
+
+/* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Näyttää siltä kuin tehtäviä ei vielä olisi luotu tässä tilassa.";
+
+/* No comment provided by engineer. */
+"It looks like discussions haven’t been created in this space yet." = "Näyttää siltä kuin keskusteluita ei vielä olisi luotu tässä tilassa.";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Näyttää siltä kuin kyselyitä ei vielä olisi luotu tässä tilassa.";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Näyttää siltä kuin tähän tiliin ei ole liitetty yhtään kurssia. Käy verkossa luodaksesi kurssi tänään";
@@ -855,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "Landing Page" = "Aloitussivu";
+
+/* No comment provided by engineer. */
+"Last post %@" = "Viimeinen lähetys %@";
 
 /* No comment provided by engineer. */
 "Late" = "Myöhään";
@@ -873,6 +990,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Lakitiedot";
+
+/* No comment provided by engineer. */
+"Letter Grade" = "Kirjainarvosana";
 
 /* No comment provided by engineer. */
 "Library" = "Kirjasto";
@@ -1046,10 +1166,16 @@
 "New Page" = "Uusi sivu";
 
 /* No comment provided by engineer. */
+"New Quizzes" = "Uudet testit";
+
+/* No comment provided by engineer. */
 "New To Do" = "Uusi tehtävä";
 
 /* No comment provided by engineer. */
 "Next" = "Seuraava";
+
+/* No comment provided by engineer. */
+"No Announcements" = "Ei ilmoituksia";
 
 /* No comment provided by engineer. */
 "No Assignments" = "Ei tehtäviä";
@@ -1073,6 +1199,9 @@
 "No description" = "Ei kuvausta";
 
 /* No comment provided by engineer. */
+"No Discussions" = "Keskustelut";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Ei määräpäivää";
 
 /* No comment provided by engineer. */
@@ -1092,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "No Pages" = "Ei sivuja";
+
+/* No comment provided by engineer. */
+"No Quizzes" = "Ei tietovisoja";
 
 /* No comment provided by engineer. */
 "No Results" = "Ei tuloksia";
@@ -1148,6 +1280,9 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
+"Only available to students with link" = "Saatavissa opiskelijoille, joilla on linkki";
+
+/* No comment provided by engineer. */
 "Only graders can like" = "Vain arvioijat voivat tykätä";
 
 /* No comment provided by engineer. */
@@ -1155,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Only teachers" = "Vain opettajat";
+
+/* No comment provided by engineer. */
+"Open" = "Avaa";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Avaa %@ käyttäjäasetukset";
@@ -1190,6 +1328,9 @@
 "Pairing Code: " = "Parinmuodostuskoodi: ";
 
 /* No comment provided by engineer. */
+"Pass" = "Hyväksytty";
+
+/* No comment provided by engineer. */
 "Password" = "Salasana";
 
 /* No comment provided by engineer. */
@@ -1202,7 +1343,19 @@
 "People" = "Henkilöt";
 
 /* No comment provided by engineer. */
+"Percentage" = "Prosenttimäärä";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Käyttöoikeus tarvitaan";
+
+/* No comment provided by engineer. */
 "Photo Library" = "Valokuvakirjasto";
+
+/* No comment provided by engineer. */
+"Pin" = "Kiinnitä";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Kiinnitetyt keskustelut";
 
 /* No comment provided by engineer. */
 "Play" = "Toista";
@@ -1263,6 +1416,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Tietovisan tiedot";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Testit";
 
 /* No comment provided by engineer. */
 "Recipients" = "Vastaanottajat";
@@ -1346,13 +1502,22 @@
 "Scanning not supported" = "Skannausta ei tueta";
 
 /* No comment provided by engineer. */
+"Schedule student availability" = "Aikatauluta opiskelijan saatavissa olo";
+
+/* No comment provided by engineer. */
 "Scheduling" = "Aikatauluttaminen";
 
 /* No comment provided by engineer. */
 "Score at least %@" = "Saa pisteitä vähintään  %@";
 
 /* No comment provided by engineer. */
+"Scored above %g" = "Pisteytetty yllä %g";
+
+/* No comment provided by engineer. */
 "Scored at least %@" = "Saatu pisteitä vähintään %@";
+
+/* No comment provided by engineer. */
+"Scored below %g" = "Pisteytetty alla %g";
 
 /* No comment provided by engineer. */
 "Search" = "Hae";
@@ -1385,6 +1550,9 @@
 "Selected!" = "Valittu!";
 
 /* No comment provided by engineer. */
+"Self Registration Not Allowed" = "Itserekisteröintiä ei sallittu";
+
+/* No comment provided by engineer. */
 "Send" = "Lähetä";
 
 /* No comment provided by engineer. */
@@ -1395,6 +1563,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Lähetä viikoittainen yhteenveto";
+
+/* No comment provided by engineer. */
+"Sent" = "Lähetetty";
 
 /* No comment provided by engineer. */
 "Set as Front Page" = "Määritä etusivuksi";
@@ -1442,6 +1613,9 @@
 "Sort by likes" = "Lajittele tykkäysten perusteella";
 
 /* No comment provided by engineer. */
+"Starred" = "Tähdellä merkityt";
+
+/* No comment provided by engineer. */
 "Start recording" = "Aloita nauhoitus";
 
 /* started datetime */
@@ -1475,6 +1649,9 @@
 "Submission Comment" = "Lähetyksen kommentti";
 
 /* No comment provided by engineer. */
+"Submission Types" = "Lähetystyypit";
+
+/* No comment provided by engineer. */
 "Submissions" = "Lähetykset";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1662,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Lähetetty %@";
+
+/* No comment provided by engineer. */
+"Subscribe" = "Tilaa";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Tilaa kalenterin syöte";
@@ -1562,10 +1742,16 @@
 "There was a problem retrieving the Terms of Use." = "Ilmeni ongelma käyttöehtoja noudettaessa.";
 
 /* No comment provided by engineer. */
+"There was an error loading announcements. Pull to refresh to try again." = "Ilmoitusten latauksessa ilmeni virheitä. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
 "There was an error loading conferences. Pull to refresh to try again." = "Konferenssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Kurssien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading discussions. Pull to refresh to try again." = "Keskusteluiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Tapahtumien latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
@@ -1577,6 +1763,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Arvosanojenn latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
+"There was an error loading items to do. Pull to refresh to try again." = "Ilmeni virhe, kun ladattiin kohteita tehtäviksi. Vedä päivittääksesi ja yritä uudelleen.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules." = "Moduulien latauksessa ilmeni virhe.";
 
 /* No comment provided by engineer. */
@@ -1584,6 +1773,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Ihmisten latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ilmeni virhe toiminnossa Toimi käyttäjänä. Yritä myöhemmin uudelleen.";
@@ -1658,6 +1850,12 @@
 "Unordered List" = "Tilaamattomien luettelo";
 
 /* No comment provided by engineer. */
+"Unpin" = "Poista kiinnitys";
+
+/* No comment provided by engineer. */
+"Unpublish" = "Peruuta julkaisu";
+
+/* No comment provided by engineer. */
 "unpublished" = "julkaisematon";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Lukematon";
+
+/* No comment provided by engineer. */
+"Unsubscribe" = "Peruuta tilaus";
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Tukematon kohde";
@@ -1686,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Käyttöoikeus";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Käyttöoikeudet";
@@ -1715,6 +1919,9 @@
 "View" = "Näytä";
 
 /* No comment provided by engineer. */
+"View all submissions" = "Näytä kaikki lähetykset";
+
+/* No comment provided by engineer. */
 "View Less" = "Näytä vähemmän";
 
 /* No comment provided by engineer. */
@@ -1728,6 +1935,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Tarkasteltu";
+
+/* No comment provided by engineer. */
+"We couldn't find any courses like that." = "Emme löytäneet mitään sellaisia kursseja.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Emme löytäneet sellaisia tiedostoja.";
@@ -1770,6 +1980,12 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-ilmoitukset";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Kamperan käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Lopetat toimimasta käyttäjänä %@ ja palaat tilillesi.";
