@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pto.</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptos.</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>
@@ -253,9 +253,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pto.</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptos.</string>
 		</dict>
 	</dict>
 	<key>g_out_of_g_points_possible</key>
@@ -301,9 +301,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pto.</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptos.</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -317,9 +317,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pto.</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptos.</string>
 		</dict>
 	</dict>
 	<key>out_of_g_pts</key>
@@ -333,9 +333,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g pto.</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g ptos.</string>
 		</dict>
 	</dict>
 	<key>plural_points</key>

@@ -113,9 +113,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g نقطة</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g النقاط</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -379,7 +379,7 @@
 			<key>one</key>
 			<string>%g نقطة</string>
 			<key>other</key>
-			<string>%g نقاط</string>
+			<string>%g النقاط</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -451,7 +451,7 @@
 			<key>one</key>
 			<string>%g نقطة</string>
 			<key>other</key>
-			<string>%g نقاط</string>
+			<string>%g النقاط</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -475,7 +475,7 @@
 			<key>one</key>
 			<string>%g نقطة</string>
 			<key>other</key>
-			<string>%g نقاط</string>
+			<string>%g النقاط</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>
@@ -499,7 +499,7 @@
 			<key>one</key>
 			<string>%g نقطة</string>
 			<key>other</key>
-			<string>%g نقاط</string>
+			<string>%g النقاط</string>
 			<key>two</key>
 			<string></string>
 			<key>zero</key>

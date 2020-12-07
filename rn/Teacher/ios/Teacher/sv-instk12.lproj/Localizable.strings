@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g av %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g poäng";
+
+/* No comment provided by engineer. */
 "Absent" = "Frånvarande";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Lägg till bilaga";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Lägg till kommentar";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Alla omdömen döljs för tillfället.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Alla publicerade";
+
+/* No comment provided by engineer. */
+"All submissions" = "Alla inlämningar";
 
 /* No comment provided by engineer. */
 "Attendance" = "Närvaro";
@@ -50,10 +62,16 @@
 "Comments" = "Kommentarer";
 
 /* No comment provided by engineer. */
+"Complete" = "Fullgjord";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Det gick inte att spara kommentaren.";
 
 /* No comment provided by engineer. */
 "Courses" = "Kurser";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Anpassa bedömning";
 
 /* No comment provided by engineer. */
 "Date picker" = "Datumväljare";
@@ -77,6 +95,9 @@
 "Everyone" = "Alla";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Låt eleven slippa göra";
+
+/* No comment provided by engineer. */
 "Excused" = "Ursäktad";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Filer (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtrera";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filtrera (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filtrera efter";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Totalt bedömning";
+
+/* No comment provided by engineer. */
+"GPA" = "Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
 "Grade" = "Bedömning";
@@ -119,10 +155,16 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Ej fullständig";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Det verkar inte finnas några giltiga inlämningar att bedöma.";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Bokstavsbedömning";
 
 /* No comment provided by engineer. */
 "Loading" = "Läser in";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Modererad bedömning stöds inte";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Måste bedömas";
+
+/* No comment provided by engineer. */
+"No Grade" = "Ingen bedömning";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Inga inlämningar";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Inte bedömd";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Öppna lådan i helskärm";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Öppna lådan i halv skärm";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Väntar";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Procent (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publicera omdömen";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Förhandsvisning ej tillgänglig";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Frågar efter ett uppdaterat bedömning";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Spela in ljud";
 
 /* No comment provided by engineer. */
 "Record Video" = "Spela in video";
+
+/* No comment provided by engineer. */
+"Reset" = "Återställ";
+
+/* No comment provided by engineer. */
+"Rubric" = "Matris";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Resultat över...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Resultat under...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Välj för att ändra roll call-datum";
@@ -188,16 +260,25 @@
 "Student" = "Elev";
 
 /* No comment provided by engineer. */
+"Submissions" = "Inlämningar";
+
+/* No comment provided by engineer. */
 "Test Student" = "Testelev";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Det finns inga medlemmar än.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Det gick inte att läsa in inlämningar. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Den här uppgiften tillåter inte inlämningar.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Den här uppgiften tillåter endast inlämningar på papper.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Detta kriterium påverkar inte resultatet.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Denna grupp har ingen inlämning för denna uppgift.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Visa fil %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Visa lång beskrivning";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Visa inlämningsförsök %1$@. %2$@";

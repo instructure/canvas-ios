@@ -203,6 +203,9 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Ychwanegu derbynwyr";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Pob Cyfnod Graddio";
+
 /* Button to select all members of a group */
 "All members" = "Pob aelod";
 
@@ -360,6 +363,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Dewiswch Fideo";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Clirio’r hidlydd";
 
 /* No comment provided by engineer. */
 "Close" = "Cau";
@@ -628,6 +634,12 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Ffeiliau (%d)";
+
+/* No comment provided by engineer. */
+"Filter" = "Hidlo";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Hidlo yn ôl:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Wedi gorffen llwytho i lawr";

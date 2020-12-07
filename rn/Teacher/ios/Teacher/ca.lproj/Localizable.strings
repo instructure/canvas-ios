@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g de %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g punts";
+
+/* No comment provided by engineer. */
 "Absent" = "Absent";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Afegeix un fitxer adjunt";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Afegeix un comentari";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Totes les qualificacions estan amagades en aquest moment.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Totes publicades";
+
+/* No comment provided by engineer. */
+"All submissions" = "Totes les entregues";
 
 /* No comment provided by engineer. */
 "Attendance" = "Assistència";
@@ -50,10 +62,16 @@
 "Comments" = "Comentaris";
 
 /* No comment provided by engineer. */
+"Complete" = "Complet";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "No s'ha pogut desar el comentari.";
 
 /* No comment provided by engineer. */
 "Courses" = "Cursos";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Personalitza la qualificació";
 
 /* No comment provided by engineer. */
 "Date picker" = "Selector de dates";
@@ -77,6 +95,9 @@
 "Everyone" = "Tothom";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Excusa l'estudiant";
+
+/* No comment provided by engineer. */
 "Excused" = "Excusat";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Fitxers (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtre";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filtre (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filtra per";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Qualificació final";
+
+/* No comment provided by engineer. */
+"GPA" = "GPA";
 
 /* No comment provided by engineer. */
 "Grade" = "Qualificació";
@@ -119,10 +155,16 @@
 "Inbox" = "Safata d'entrada";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Incomplet";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Sembla que no hi ha cap entrega vàlida per qualificar.";
 
 /* No comment provided by engineer. */
 "Late" = "Tardà";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Qualificació amb lletra";
 
 /* No comment provided by engineer. */
 "Loading" = "S'està carregant";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "No s'admet la qualificació moderada";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "S'ha de qualificar";
+
+/* No comment provided by engineer. */
+"No Grade" = "Sense qualificació";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Cap entrega";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Sense qualificació";
+
+/* No comment provided by engineer. */
+"OK" = "D'acord";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Obre el calaix a pantalla completa";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Obre el calaix a mitja pantalla";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "Pendent";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Percentatge (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publica les qualificacions";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "La visualització prèvia no està disponible";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Sol·licituds per a una qualificació actualitzada";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Enregistra so";
 
 /* No comment provided by engineer. */
 "Record Video" = "Enregistra vídeo";
+
+/* No comment provided by engineer. */
+"Reset" = "Restableix";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rúbrica";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Puntuat per sobre...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Puntuat per sota...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Selecciona per canviar la data de passar llista";
@@ -188,16 +260,25 @@
 "Student" = "Estudiant";
 
 /* No comment provided by engineer. */
+"Submissions" = "Entregues";
+
+/* No comment provided by engineer. */
 "Test Student" = "Prova l'estudiant";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Encara no hi ha cap missatge.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "S'ha produït un error en carregar les entregues. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Amb aquesta tasca no es permet fer entregues.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Amb aquesta tasca només es permet fer entregues en paper.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Aquest criteri no influirà en la puntuació.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Aquest grup no té cap entrega per a aquesta tasca.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Mostra el fitxer %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Mostra la descripció llarga";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Mireu l'intent d'entrega de %1$@. %2$@";

@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        För att skapa ett konto ska du be din elev att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-elevappen som visas nedan. Skanna sedan koden därifrån.\n        Om din elev inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.\n        ";
 
+/* No comment provided by engineer. */
+"-" = "-";
+
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -44,6 +47,15 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Svar";
+
+/* No comment provided by engineer. */
+"%d students" = "%d elever";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Olästa";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -59,6 +71,9 @@
 "Access" = "Åtkomst";
 
 /* No comment provided by engineer. */
+"Account Group" = "Kontogrupp";
+
+/* No comment provided by engineer. */
 "Act as User" = "Agera som användare";
 
 /* No comment provided by engineer. */
@@ -72,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Lägg till innehåll";
+
+/* No comment provided by engineer. */
+"Add description" = "Lägg till beskrivning";
 
 /* No comment provided by engineer. */
 "Add Due Date" = "Lägg till inlämningsdatum";
@@ -107,6 +125,9 @@
 "All annotations saved." = "Alla noteringar har sparats.";
 
 /* No comment provided by engineer. */
+"All courses" = "Alla kurser";
+
+/* No comment provided by engineer. */
 "All Courses" = "Alla kurser";
 
 /* No comment provided by engineer. */
@@ -140,6 +161,9 @@
 "Announcement Replies" = "Meddelandesvar";
 
 /* No comment provided by engineer. */
+"Announcements" = "Meddelande";
+
+/* No comment provided by engineer. */
 "Anyone" = "Vem som helst";
 
 /* No comment provided by engineer. */
@@ -150,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Mötesbokningar";
+
+/* No comment provided by engineer. */
+"Archived" = "Arkiverade";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Vill du radera %@?";
@@ -164,7 +191,13 @@
 "Are you sure you want to remove this file?" = "Vill du ta bort den här filen?";
 
 /* No comment provided by engineer. */
+"Are you sure you would like to delete this announcement?" = "Är du säker på att du vill ta bort det här meddelandet?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Vill du ta bort den här kommentaren?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this discussion?" = "Är du säker på att du vill ta bort den här diskussionen?";
 
 /* No comment provided by engineer. */
 "Assign" = "Tilldela";
@@ -200,7 +233,34 @@
 "Assignments" = "Uppgifter";
 
 /* No comment provided by engineer. */
+"Attach files by tapping an option below." = "Bifoga filer genom att trycka på ett alternativ nedan.";
+
+/* No comment provided by engineer. */
+"Attach files to your submission by tapping an option below." = "Bifoga filer med din inlämning genom att trycka på ett alternativ nedan.";
+
+/* No comment provided by engineer. */
+"Attachments" = "Bilagor";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Försök %d";
+
+/* No comment provided by engineer. */
+"Attribution" = "Attribut";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Attribut – Inga bearbetningar";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Attribut – Ej kommersiellt";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Attribut – Ej kommersiellt/inga bearbetningar";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Attribut – Ej kommersiellt/dela lika";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Attribut – Dela lika";
 
 /* No comment provided by engineer. */
 "Audio" = "Ljud";
@@ -305,6 +365,9 @@
 "Choose a course to message" = "Välj en kurs att skicka meddelande till";
 
 /* No comment provided by engineer. */
+"Choose a File" = "Välj en fil";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Välj foto";
 
 /* No comment provided by engineer. */
@@ -335,6 +398,9 @@
 "Closed" = "Stängda";
 
 /* No comment provided by engineer. */
+"Closed for Comments" = "Stängt för kommentarer";
+
+/* No comment provided by engineer. */
 "Collapse" = "Stäng";
 
 /* No comment provided by engineer. */
@@ -352,6 +418,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Färdig";
 
+/* No comment provided by engineer. */
+"Complete/Incomplete" = "Fullgjord/Ej fullständig";
+
 /* concluded datetime */
 "Concluded %@" = "Avslutad %@";
 
@@ -363,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenser";
+
+/* No comment provided by engineer. */
+"Contact your school to create an account." = "Kontakta din skola för att skapa ett konto.";
 
 /* No comment provided by engineer. */
 "Content" = "Innehåll";
@@ -440,6 +512,15 @@
 "Create Account" = "Skapa konto";
 
 /* No comment provided by engineer. */
+"Create Announcement" = "Skapa meddelande";
+
+/* No comment provided by engineer. */
+"Create Discussion" = "Skapa diskussion";
+
+/* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons-licens";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Nuvarande registreringar";
 
 /* No comment provided by engineer. */
@@ -476,13 +557,22 @@
 "Delay posting" = "Senarelägg publicering";
 
 /* No comment provided by engineer. */
+"Delayed until %@" = "Försenad till %@";
+
+/* No comment provided by engineer. */
 "Delete" = "Ta bort";
+
+/* No comment provided by engineer. */
+"Delete Announcement" = "Ta bort meddelandet";
 
 /* No comment provided by engineer. */
 "Delete comment" = "Ta bort kommentar";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Ta bort kommentar";
+
+/* No comment provided by engineer. */
+"Delete Discussion" = "Ta bort diskussion";
 
 /* No comment provided by engineer. */
 "Delete File" = "Ta bort fil";
@@ -566,6 +656,9 @@
 "Due Date" = "Inlämningsdatum";
 
 /* No comment provided by engineer. */
+"Due Dates, Double tap for details." = "Inlämningsdatum, dubbelklicka för detaljer.";
+
+/* No comment provided by engineer. */
 "Due:" = "Inlämningsdatum:";
 
 /* No comment provided by engineer. */
@@ -573,6 +666,9 @@
 
 /* No comment provided by engineer. */
 "Edit Announcement" = "Redigera meddelande";
+
+/* No comment provided by engineer. */
+"Edit Assignment" = "Redigera uppgift";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Redigera bilaga (1)";
@@ -648,6 +744,9 @@
 
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Extremt kritiskt nödsituation";
+
+/* No comment provided by engineer. */
+"Fail" = "Misslyckades";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Det gick inte att spara bilden";
@@ -740,6 +839,9 @@
 "Go to today" = "Gå till i dag";
 
 /* No comment provided by engineer. */
+"GPA Scale" = "Skala för genomsnittsbetyg";
+
+/* No comment provided by engineer. */
 "Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
@@ -768,6 +870,9 @@
 
 /* No comment provided by engineer. */
 "Help" = "Hjälp";
+
+/* No comment provided by engineer. */
+"Help your students with this assignment by adding instructions." = "Hjälp dina elever med denna uppgift genom att lägga till instruktioner.";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hög: %@";
@@ -839,7 +944,16 @@
 "It looks like a great day to rest, relax, and recharge." = "Det verkar vara en bra dag för vila, avslappning och omladdning.";
 
 /* No comment provided by engineer. */
+"It looks like announcements haven’t been created in this space yet." = "Det verkar som om inga meddelanden har skapats i det här utrymmet än.";
+
+/* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Det verkar som om inga uppgifter har skapats för den här platsen än.";
+
+/* No comment provided by engineer. */
+"It looks like discussions haven’t been created in this space yet." = "Det verkar som om inga diskussioner har skapats i det här utrymmet än.";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Det verkar inte som om quiz har skapats här än.";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Det verkar inte finnas några kurser kopplade till det här kontot. Besök webben för att skapa en kurs idag.";
@@ -855,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "Landing Page" = "Landningssida";
+
+/* No comment provided by engineer. */
+"Last post %@" = "Senaste inlägg %@";
 
 /* No comment provided by engineer. */
 "Late" = "Sen";
@@ -873,6 +990,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Juridik";
+
+/* No comment provided by engineer. */
+"Letter Grade" = "Bokstavsbedömning";
 
 /* No comment provided by engineer. */
 "Library" = "Bibliotek";
@@ -1046,10 +1166,16 @@
 "New Page" = "Ny sida";
 
 /* No comment provided by engineer. */
+"New Quizzes" = "New Quizzes";
+
+/* No comment provided by engineer. */
 "New To Do" = "Ny att-göra";
 
 /* No comment provided by engineer. */
 "Next" = "Nästa";
+
+/* No comment provided by engineer. */
+"No Announcements" = "Inga meddelanden";
 
 /* No comment provided by engineer. */
 "No Assignments" = "Inga uppgifter";
@@ -1073,6 +1199,9 @@
 "No description" = "Ingen beskrivning";
 
 /* No comment provided by engineer. */
+"No Discussions" = "Inga diskussioner";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Inget inlämningsdatum";
 
 /* No comment provided by engineer. */
@@ -1092,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "No Pages" = "Inga sidor";
+
+/* No comment provided by engineer. */
+"No Quizzes" = "Inga quiz";
 
 /* No comment provided by engineer. */
 "No Results" = "Inga resultat";
@@ -1148,6 +1280,9 @@
 "On Paper" = "På papper";
 
 /* No comment provided by engineer. */
+"Only available to students with link" = "Endast tillgängligt för elever via länk";
+
+/* No comment provided by engineer. */
 "Only graders can like" = "Endast bedömare kan gilla";
 
 /* No comment provided by engineer. */
@@ -1155,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Only teachers" = "Endast lärare";
+
+/* No comment provided by engineer. */
+"Open" = "Öppna";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Öppna %@ användarinställningar";
@@ -1190,6 +1328,9 @@
 "Pairing Code: " = "Parkopplingskod: ";
 
 /* No comment provided by engineer. */
+"Pass" = "Godkänd";
+
+/* No comment provided by engineer. */
 "Password" = "Lösenord";
 
 /* No comment provided by engineer. */
@@ -1202,7 +1343,19 @@
 "People" = "Personer";
 
 /* No comment provided by engineer. */
+"Percentage" = "Procent";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Tillstånd behövs";
+
+/* No comment provided by engineer. */
 "Photo Library" = "Bildbibliotek";
+
+/* No comment provided by engineer. */
+"Pin" = "Nåla fast";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Nålade diskussioner";
 
 /* No comment provided by engineer. */
 "Play" = "Spela upp";
@@ -1263,6 +1416,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Quizdetaljer";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recipients" = "Mottagare";
@@ -1346,13 +1502,22 @@
 "Scanning not supported" = "Skanning stöds inte";
 
 /* No comment provided by engineer. */
+"Schedule student availability" = "Schemalägg elevens tillgänglighet";
+
+/* No comment provided by engineer. */
 "Scheduling" = "Schemaläggning";
 
 /* No comment provided by engineer. */
 "Score at least %@" = "Lägsta poäng %@";
 
 /* No comment provided by engineer. */
+"Scored above %g" = "Resultat över %g";
+
+/* No comment provided by engineer. */
 "Scored at least %@" = "Fick minst %@";
+
+/* No comment provided by engineer. */
+"Scored below %g" = "Resultat under %g";
 
 /* No comment provided by engineer. */
 "Search" = "Sök";
@@ -1385,6 +1550,9 @@
 "Selected!" = "Valda!";
 
 /* No comment provided by engineer. */
+"Self Registration Not Allowed" = "Självregistrering är inte tillåten";
+
+/* No comment provided by engineer. */
 "Send" = "Skicka";
 
 /* No comment provided by engineer. */
@@ -1395,6 +1563,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Skicka veckovis sammanfattning";
+
+/* No comment provided by engineer. */
+"Sent" = "Skickade";
 
 /* No comment provided by engineer. */
 "Set as Front Page" = "Ställ in som framsida";
@@ -1442,6 +1613,9 @@
 "Sort by likes" = "Sortera efter antal ”gilla”";
 
 /* No comment provided by engineer. */
+"Starred" = "Stjärnmärkta";
+
+/* No comment provided by engineer. */
 "Start recording" = "Starta inspelning";
 
 /* started datetime */
@@ -1475,6 +1649,9 @@
 "Submission Comment" = "Inlämningskommentar";
 
 /* No comment provided by engineer. */
+"Submission Types" = "Inlämningstyper";
+
+/* No comment provided by engineer. */
 "Submissions" = "Inlämningar";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1662,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Inskickat %@";
+
+/* No comment provided by engineer. */
+"Subscribe" = "Prenumerera";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Prenumerera på kalenderflöde";
@@ -1562,10 +1742,16 @@
 "There was a problem retrieving the Terms of Use." = "Det gick inte att hämta användningsvillkoren.";
 
 /* No comment provided by engineer. */
+"There was an error loading announcements. Pull to refresh to try again." = "Det gick inte att läsa in meddelanden. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
 "There was an error loading conferences. Pull to refresh to try again." = "Det gick inte att läsa in konferenser. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Det gick inte att läsa in kurser. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading discussions. Pull to refresh to try again." = "Det gick inte att läsa in diskussioner. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Det gick inte att läsa in händelser. Dra för att uppdatera igen.";
@@ -1577,6 +1763,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Det gick inte att läsa in bedömningar. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
+"There was an error loading items to do. Pull to refresh to try again." = "Det gick inte att läsa in att-göra-objekt. Dra för att uppdatera och försöka igen.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules." = "Det gick inte att läsa in modulerna.";
 
 /* No comment provided by engineer. */
@@ -1584,6 +1773,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Det gick inte att läsa in personer. Dra för att uppdatera igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera igen.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ett fel uppstod med funktionen Agera som användare. Försök igen senare.";
@@ -1658,6 +1850,12 @@
 "Unordered List" = "Ej ordnad lista";
 
 /* No comment provided by engineer. */
+"Unpin" = "Plocka bort";
+
+/* No comment provided by engineer. */
+"Unpublish" = "Avpublicera";
+
+/* No comment provided by engineer. */
 "unpublished" = "avpublicerad";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Olästa";
+
+/* No comment provided by engineer. */
+"Unsubscribe" = "Avsluta prenumeration";
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Objektet stöds inte";
@@ -1686,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "URL";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Användningsrättigheter";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Användningsrättigheter";
@@ -1715,6 +1919,9 @@
 "View" = "Visa";
 
 /* No comment provided by engineer. */
+"View all submissions" = "Visa alla inlämningar";
+
+/* No comment provided by engineer. */
 "View Less" = "Visa mindre";
 
 /* No comment provided by engineer. */
@@ -1728,6 +1935,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Visad";
+
+/* No comment provided by engineer. */
+"We couldn't find any courses like that." = "Vi hittade inte några sådana kurser.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Vi hittade inte några sådana filer.";
@@ -1770,6 +1980,12 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-aviseringar";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Du måste tillåta aviseringar i Inställningar för att ställa in påminnelser.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofon i Inställningar.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Du kommer att sluta att agera som %@, och gå tillbaka till ditt konto.";

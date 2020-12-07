@@ -69,7 +69,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g得分</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>
@@ -223,7 +223,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g分</string>
+			<string>%g得分</string>
 		</dict>
 	</dict>
 	<key>g_out_of_g_points_possible</key>
@@ -265,7 +265,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g分</string>
+			<string>%g得分</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -279,7 +279,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g分</string>
+			<string>%g得分</string>
 		</dict>
 	</dict>
 	<key>out_of_g_pts</key>
@@ -293,7 +293,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>g</string>
 			<key>other</key>
-			<string>%g分</string>
+			<string>%g得分</string>
 		</dict>
 	</dict>
 	<key>plural_points</key>

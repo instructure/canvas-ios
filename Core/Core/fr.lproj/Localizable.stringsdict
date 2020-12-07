@@ -63,7 +63,7 @@
 			<key>one</key>
 			<string>%d étudiant</string>
 			<key>other</key>
-			<string>%d étudiants</string>
+			<string>%d élèves</string>
 		</dict>
 	</dict>
 	<key>%g pts</key>

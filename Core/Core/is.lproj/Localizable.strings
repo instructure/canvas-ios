@@ -1,6 +1,9 @@
 /* No comment provided by engineer. */
 "\n        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\n        If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.\n        " = "\n        Til þess að stofna reikning skaltu biðja nemandann þinn um að búa til pörunarkóða fyrir þig úr hlutanum Stillingar í Canvas Student-forritinu, eins og sýnt er hér fyrir neðan, síðan er hægt að skanna kóðann héðan.\n        Ef nemandinn finnur ekki valmöguleikann til að búa til pörunarkóða þarftu að hafa samband við skólann þinn til að stofna reikning fyrir þig.\n        ";
 
+/* No comment provided by engineer. */
+"-" = "-";
+
 /* placeholder for the score of an ungraded submission */
 "--" = "--";
 
@@ -44,6 +47,15 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* No comment provided by engineer. */
+"%d Replies" = "%d Svör";
+
+/* No comment provided by engineer. */
+"%d students" = "%d nemendur";
+
+/* No comment provided by engineer. */
+"%d Unread" = "%d Ólesið";
+
+/* No comment provided by engineer. */
 "+%d" = "+%d";
 
 /* Embedded in 'enrolled in any courses as %@' */
@@ -59,6 +71,9 @@
 "Access" = "Aðgangur";
 
 /* No comment provided by engineer. */
+"Account Group" = "Hópreikningur";
+
+/* No comment provided by engineer. */
 "Act as User" = "Bregðast við sem notandi";
 
 /* No comment provided by engineer. */
@@ -72,6 +87,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Bæta við efni";
+
+/* No comment provided by engineer. */
+"Add description" = "Bæta við lýsingu";
 
 /* No comment provided by engineer. */
 "Add Due Date" = "Bæta við skiladegi";
@@ -107,6 +125,9 @@
 "All annotations saved." = "Allar textaskýringar voru vistaðar.";
 
 /* No comment provided by engineer. */
+"All courses" = "Öll námskeið";
+
+/* No comment provided by engineer. */
 "All Courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
@@ -140,6 +161,9 @@
 "Announcement Replies" = "Svör við tilkynningum";
 
 /* No comment provided by engineer. */
+"Announcements" = "Tilkynningar";
+
+/* No comment provided by engineer. */
 "Anyone" = "Hver sem er";
 
 /* No comment provided by engineer. */
@@ -150,6 +174,9 @@
 
 /* No comment provided by engineer. */
 "Appointment Signups" = "Skráningar á fund";
+
+/* No comment provided by engineer. */
+"Archived" = "Sett í safn";
 
 /* No comment provided by engineer. */
 "Are you sure you want to delete %@?" = "Viltu örugglega eyða %@?";
@@ -164,7 +191,13 @@
 "Are you sure you want to remove this file?" = "Viltu örugglega fjarlægja þessa skrá?";
 
 /* No comment provided by engineer. */
+"Are you sure you would like to delete this announcement?" = "Viltu örugglega eyða þessari tilkynningu?";
+
+/* No comment provided by engineer. */
 "Are you sure you would like to delete this comment?" = "Viltu örugglega eyða þessari athugasemd?";
+
+/* No comment provided by engineer. */
+"Are you sure you would like to delete this discussion?" = "Viltu örugglega eyða þessari umræðu?";
 
 /* No comment provided by engineer. */
 "Assign" = "Úthluta";
@@ -200,7 +233,34 @@
 "Assignments" = "Verkefni";
 
 /* No comment provided by engineer. */
+"Attach files by tapping an option below." = "Settu skrár í viðhengi með því að pikka á valkost fyrir neðan.";
+
+/* No comment provided by engineer. */
+"Attach files to your submission by tapping an option below." = "Settu skrár í viðhengi í skilum þínum með því að pikka á valkost fyrir neðan.";
+
+/* No comment provided by engineer. */
+"Attachments" = "Viðhengi";
+
+/* No comment provided by engineer. */
 "Attempt %d" = "Tilraun %d";
+
+/* No comment provided by engineer. */
+"Attribution" = "Eiginleiki";
+
+/* No comment provided by engineer. */
+"Attribution No Derivatives" = "Eiginleiki án afleiða";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial" = "Eiginleiki utan viðskiptahagsmuna";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial No Derivatives" = "Eiginleiki utan viðskiptahagsmuna án afleiða";
+
+/* No comment provided by engineer. */
+"Attribution Non-Commercial Share Alike" = "Eiginleiki utan viðskiptahagsmuna Share Alike";
+
+/* No comment provided by engineer. */
+"Attribution Share Alike" = "Eiginleiki Share Alike";
 
 /* No comment provided by engineer. */
 "Audio" = "Hljóð";
@@ -305,6 +365,9 @@
 "Choose a course to message" = "Veldu námskeið til að senda skilaboð til";
 
 /* No comment provided by engineer. */
+"Choose a File" = "Velja skrá";
+
+/* No comment provided by engineer. */
 "Choose Photo" = "Veldu mynd";
 
 /* No comment provided by engineer. */
@@ -335,6 +398,9 @@
 "Closed" = "Lokað";
 
 /* No comment provided by engineer. */
+"Closed for Comments" = "Lokað fyrir athugasemdir";
+
+/* No comment provided by engineer. */
 "Collapse" = "Fella";
 
 /* No comment provided by engineer. */
@@ -352,6 +418,9 @@
 /* No comment provided by engineer. */
 "Complete" = "Lokið";
 
+/* No comment provided by engineer. */
+"Complete/Incomplete" = "Lokið/Ólokið";
+
 /* concluded datetime */
 "Concluded %@" = "Lokið %@";
 
@@ -363,6 +432,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Ráðstefnur";
+
+/* No comment provided by engineer. */
+"Contact your school to create an account." = "Hafðu samband við skólann þinn til að búa til reikning.";
 
 /* No comment provided by engineer. */
 "Content" = "Efni";
@@ -440,6 +512,15 @@
 "Create Account" = "Stofna reikning";
 
 /* No comment provided by engineer. */
+"Create Announcement" = "Búa til tilkynningu";
+
+/* No comment provided by engineer. */
+"Create Discussion" = "Búa til umræður";
+
+/* No comment provided by engineer. */
+"Creative Commons License" = "Creative Commons leyfi";
+
+/* No comment provided by engineer. */
 "Current Enrollments" = "Núverandi innritanir";
 
 /* No comment provided by engineer. */
@@ -476,13 +557,22 @@
 "Delay posting" = "Seinka birtingu";
 
 /* No comment provided by engineer. */
+"Delayed until %@" = "Tefst til %@";
+
+/* No comment provided by engineer. */
 "Delete" = "Eyða";
+
+/* No comment provided by engineer. */
+"Delete Announcement" = "Eyða tilkynningu";
 
 /* No comment provided by engineer. */
 "Delete comment" = "Eyða athugasemd";
 
 /* No comment provided by engineer. */
 "Delete Comment" = "Eyða athugasemd";
+
+/* No comment provided by engineer. */
+"Delete Discussion" = "Eyða umræðu";
 
 /* No comment provided by engineer. */
 "Delete File" = "Eyða skrá";
@@ -566,6 +656,9 @@
 "Due Date" = "Skiladagur";
 
 /* No comment provided by engineer. */
+"Due Dates, Double tap for details." = "Skiladagar, tvísmelltu fyrir upplýsingar.";
+
+/* No comment provided by engineer. */
 "Due:" = "Skil:";
 
 /* No comment provided by engineer. */
@@ -573,6 +666,9 @@
 
 /* No comment provided by engineer. */
 "Edit Announcement" = "Breyta tilkynningu";
+
+/* No comment provided by engineer. */
+"Edit Assignment" = "Breyta verkefni";
 
 /* No comment provided by engineer. */
 "Edit attachment (1)" = "Breyta viðhengi (1)";
@@ -648,6 +744,9 @@
 
 /* No comment provided by engineer. */
 "Extremely critical emergency" = "Gífurlegt neyðarástand";
+
+/* No comment provided by engineer. */
+"Fail" = "Tókst ekki";
 
 /* No comment provided by engineer. */
 "Failed to save image" = "Ekki tókst að vista mynd";
@@ -740,6 +839,9 @@
 "Go to today" = "Fara í daginn í dag";
 
 /* No comment provided by engineer. */
+"GPA Scale" = "Meðaleinkunnakvarði";
+
+/* No comment provided by engineer. */
 "Graded" = "Metið";
 
 /* No comment provided by engineer. */
@@ -768,6 +870,9 @@
 
 /* No comment provided by engineer. */
 "Help" = "Hjálp";
+
+/* No comment provided by engineer. */
+"Help your students with this assignment by adding instructions." = "Hjálpaðu nemendum þínum með þetta verkefni með því að bæta við leiðbeiningum.";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
@@ -839,7 +944,16 @@
 "It looks like a great day to rest, relax, and recharge." = "Þetta virðist vera góður dagur til að hvílast, slaka á og hlaða batteríin.";
 
 /* No comment provided by engineer. */
+"It looks like announcements haven’t been created in this space yet." = "Svo virðist sem engar tilkynningar hafi verið búnar til á þessu svæði.";
+
+/* No comment provided by engineer. */
 "It looks like assignments haven’t been created in this space yet." = "Það virðast ekki vera nein verkefni búin til í þessu rými enn.";
+
+/* No comment provided by engineer. */
+"It looks like discussions haven’t been created in this space yet." = "Svo virðist sem engar umræður hafi verið búnar til á þessu svæði.";
+
+/* No comment provided by engineer. */
+"It looks like quizzes haven’t been created in this space yet." = "Svo virðist sem engin próf hafi verið búin til á þessu svæði.";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Svo virðist sem engin námskeið séu tengd við þennan reikning. Heimsæktu vefinn til að búa til námskeið strax í dag.";
@@ -855,6 +969,9 @@
 
 /* No comment provided by engineer. */
 "Landing Page" = "Lendingarsíða";
+
+/* No comment provided by engineer. */
+"Last post %@" = "Síðasti póstur %@";
 
 /* No comment provided by engineer. */
 "Late" = "Seint";
@@ -873,6 +990,9 @@
 
 /* No comment provided by engineer. */
 "Legal" = "Lögfræði";
+
+/* No comment provided by engineer. */
+"Letter Grade" = "Bókstafseinkunn";
 
 /* No comment provided by engineer. */
 "Library" = "Skráasafn";
@@ -1046,10 +1166,16 @@
 "New Page" = "Ný síða";
 
 /* No comment provided by engineer. */
+"New Quizzes" = "Ný próf";
+
+/* No comment provided by engineer. */
 "New To Do" = "Nýtt að gera";
 
 /* No comment provided by engineer. */
 "Next" = "Næsti";
+
+/* No comment provided by engineer. */
+"No Announcements" = "Engar tilkynningar";
 
 /* No comment provided by engineer. */
 "No Assignments" = "Engin verkefni";
@@ -1073,6 +1199,9 @@
 "No description" = "Engin lýsing";
 
 /* No comment provided by engineer. */
+"No Discussions" = "Engar umræður";
+
+/* No comment provided by engineer. */
 "No Due Date" = "Enginn skiladagur";
 
 /* No comment provided by engineer. */
@@ -1092,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "No Pages" = "Engar síður";
+
+/* No comment provided by engineer. */
+"No Quizzes" = "Engin próf";
 
 /* No comment provided by engineer. */
 "No Results" = "Engar niðurstöður";
@@ -1148,6 +1280,9 @@
 "On Paper" = "Á blaði";
 
 /* No comment provided by engineer. */
+"Only available to students with link" = "Aðeins aðgengilegt nemendum með tengil";
+
+/* No comment provided by engineer. */
 "Only graders can like" = "Aðeins matsaðilar geta líkað";
 
 /* No comment provided by engineer. */
@@ -1155,6 +1290,9 @@
 
 /* No comment provided by engineer. */
 "Only teachers" = "Aðeins kennarar";
+
+/* No comment provided by engineer. */
+"Open" = "Opið";
 
 /* No comment provided by engineer. */
 "Open %@ user preferences" = "Opna %@ kjörstillingar notanda";
@@ -1190,6 +1328,9 @@
 "Pairing Code: " = "Pörunarkóði: ";
 
 /* No comment provided by engineer. */
+"Pass" = "Staðið";
+
+/* No comment provided by engineer. */
 "Password" = "Lykilorð";
 
 /* No comment provided by engineer. */
@@ -1202,7 +1343,19 @@
 "People" = "Fólk";
 
 /* No comment provided by engineer. */
+"Percentage" = "Hlutfall";
+
+/* No comment provided by engineer. */
+"Permission Needed" = "Leyfis krafist";
+
+/* No comment provided by engineer. */
 "Photo Library" = "Myndasafn";
+
+/* No comment provided by engineer. */
+"Pin" = "Festa";
+
+/* No comment provided by engineer. */
+"Pinned Discussions" = "Festar umræður";
 
 /* No comment provided by engineer. */
 "Play" = "Spila";
@@ -1263,6 +1416,9 @@
 
 /* No comment provided by engineer. */
 "Quiz Details" = "Prófupplýsingar";
+
+/* No comment provided by engineer. */
+"Quizzes" = "Próf";
 
 /* No comment provided by engineer. */
 "Recipients" = "Viðtakendur";
@@ -1346,13 +1502,22 @@
 "Scanning not supported" = "Skönnun er ekki studd";
 
 /* No comment provided by engineer. */
+"Schedule student availability" = "Velja tiltækni nemanda";
+
+/* No comment provided by engineer. */
 "Scheduling" = "Tímasett";
 
 /* No comment provided by engineer. */
 "Score at least %@" = "Ná minnst %@";
 
 /* No comment provided by engineer. */
+"Scored above %g" = "Einkunn gefin fyrir ofan %g";
+
+/* No comment provided by engineer. */
 "Scored at least %@" = "Náði minnst %@";
+
+/* No comment provided by engineer. */
+"Scored below %g" = "Einkunn gefin fyrir neðan %g";
 
 /* No comment provided by engineer. */
 "Search" = "Leita";
@@ -1385,6 +1550,9 @@
 "Selected!" = "Valið!";
 
 /* No comment provided by engineer. */
+"Self Registration Not Allowed" = "Sjálfsskráning er ekki leyfð";
+
+/* No comment provided by engineer. */
 "Send" = "Senda";
 
 /* No comment provided by engineer. */
@@ -1395,6 +1563,9 @@
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Senda vikulega samantekt";
+
+/* No comment provided by engineer. */
+"Sent" = "Sent";
 
 /* No comment provided by engineer. */
 "Set as Front Page" = "Setja sem forsíðu";
@@ -1442,6 +1613,9 @@
 "Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
+"Starred" = "Stjörnumerkt";
+
+/* No comment provided by engineer. */
 "Start recording" = "Hefja upptöku";
 
 /* started datetime */
@@ -1475,6 +1649,9 @@
 "Submission Comment" = "Athugasemd með skilum";
 
 /* No comment provided by engineer. */
+"Submission Types" = "Tegundir skila";
+
+/* No comment provided by engineer. */
 "Submissions" = "Skil";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1662,9 @@
 
 /* Submitted date */
 "Submitted %@" = "Skilað %@";
+
+/* No comment provided by engineer. */
+"Subscribe" = "Gerast áskrifandi";
 
 /* No comment provided by engineer. */
 "Subscribe to Calendar Feed" = "Gerast áskrifandi að dagatalsveitu";
@@ -1562,10 +1742,16 @@
 "There was a problem retrieving the Terms of Use." = "Vandamál kom upp við að endurheimta notandaskilmála.";
 
 /* No comment provided by engineer. */
+"There was an error loading announcements. Pull to refresh to try again." = "Villa kom upp við að hlaða tilkynningum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
 "There was an error loading conferences. Pull to refresh to try again." = "Villa kom við að sækja ráðstefnur. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading courses. Pull to refresh to try again." = "Villa kom upp við að sækja námskeiðin. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading discussions. Pull to refresh to try again." = "Villa kom upp við að hlaða umræðum. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error loading events. Pull to refresh to try again." = "Villa kom upp við að sækja viðburði. Dragðu til að endurglæða til að reyna aftur.";
@@ -1577,6 +1763,9 @@
 "There was an error loading grades. Pull to refresh to try again." = "Villa kom upp við að sækja einkunnir. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
+"There was an error loading items to do. Pull to refresh to try again." = "Villa kom upp við að hlaða atriðum sem þarf að gera. Dragðu til að endurnýja og reyna aftur.";
+
+/* No comment provided by engineer. */
 "There was an error loading modules." = "Villa kom upp við að sækja einingar.";
 
 /* No comment provided by engineer. */
@@ -1584,6 +1773,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading people. Pull to refresh to try again." = "Villa kom upp við að sækja fólk. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Villa kom upp við bregðast við sem notandi. Vinsamlegast reyndu aftur seinna.";
@@ -1658,6 +1850,12 @@
 "Unordered List" = "Óraðaður listi";
 
 /* No comment provided by engineer. */
+"Unpin" = "Losa";
+
+/* No comment provided by engineer. */
+"Unpublish" = "Fela";
+
+/* No comment provided by engineer. */
 "unpublished" = "óbirt";
 
 /* No comment provided by engineer. */
@@ -1665,6 +1863,9 @@
 
 /* No comment provided by engineer. */
 "Unread" = "Ólesið";
+
+/* No comment provided by engineer. */
+"Unsubscribe" = "Áskrift hætt";
 
 /* No comment provided by engineer. */
 "Unsupported Item" = "Óstutt atriði";
@@ -1686,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "URL" = "Vefslóð";
+
+/* No comment provided by engineer. */
+"Usage Right" = "Notkunarréttindi";
 
 /* No comment provided by engineer. */
 "Usage Rights" = "Notkunarréttindi";
@@ -1715,6 +1919,9 @@
 "View" = "Skoða";
 
 /* No comment provided by engineer. */
+"View all submissions" = "Skoða öll skil";
+
+/* No comment provided by engineer. */
 "View Less" = "Sjá minna";
 
 /* No comment provided by engineer. */
@@ -1728,6 +1935,9 @@
 
 /* No comment provided by engineer. */
 "Viewed" = "Skoðað";
+
+/* No comment provided by engineer. */
+"We couldn't find any courses like that." = "Engin slík námskeið fundust.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Ekki fundust neinar þannig skrár.";
@@ -1770,6 +1980,12 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo tilkynningar";
+
+/* No comment provided by engineer. */
+"You must allow notifications in Settings to set reminders." = "Þú þarft að leyfa tilkynningar í stillingum til að setja inn áminningar.";
+
+/* No comment provided by engineer. */
+"You must enable Microphone permissions in Settings." = "Þú þarft að virkja aðgang að hljóðnema í stillingum.";
 
 /* No comment provided by engineer. */
 "You will stop acting as %@ and return to your account." = "Þú munt hætta að virka sem %@ og fara aftur í þinn reikning.";

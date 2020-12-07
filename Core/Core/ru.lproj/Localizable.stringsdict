@@ -97,9 +97,9 @@
 			<key>many</key>
 			<string></string>
 			<key>one</key>
-			<string>%g pt</string>
+			<string>%g балл</string>
 			<key>other</key>
-			<string>%g pts</string>
+			<string>%g баллы</string>
 		</dict>
 	</dict>
 	<key>conversation_recipients_to</key>

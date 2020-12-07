@@ -1,8 +1,17 @@
 /* No comment provided by engineer. */
+"%g out of %g" = "%1$g sur %2$g";
+
+/* No comment provided by engineer. */
+"%g pts" = "%g pts";
+
+/* No comment provided by engineer. */
 "Absent" = "Absent";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Ajouter une pièce jointe";
+
+/* No comment provided by engineer. */
+"Add Comment" = "Ajouter un commentaire";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Toutes les notes sont actuellement masquées.";
@@ -15,6 +24,9 @@
 
 /* No comment provided by engineer. */
 "All Posted" = "Tous publiés";
+
+/* No comment provided by engineer. */
+"All submissions" = "Tous les envois";
 
 /* No comment provided by engineer. */
 "Attendance" = "Participation";
@@ -50,10 +62,16 @@
 "Comments" = "Commentaires";
 
 /* No comment provided by engineer. */
+"Complete" = "Terminé";
+
+/* No comment provided by engineer. */
 "Could not save the comment." = "Impossible d’enregistrer le commentaire.";
 
 /* No comment provided by engineer. */
 "Courses" = "Cours";
+
+/* No comment provided by engineer. */
+"Customize Grade" = "Personnaliser la notation";
 
 /* No comment provided by engineer. */
 "Date picker" = "Sélecteur de date";
@@ -77,6 +95,9 @@
 "Everyone" = "Tous";
 
 /* No comment provided by engineer. */
+"Excuse Student" = "Dispenser l’étudiant";
+
+/* No comment provided by engineer. */
 "Excused" = "Exempté";
 
 /* No comment provided by engineer. */
@@ -87,6 +108,21 @@
 
 /* No comment provided by engineer. */
 "Files (%@)" = "Fichiers (%@)";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtre";
+
+/* No comment provided by engineer. */
+"Filter (%d)" = "Filtrer (%d)";
+
+/* No comment provided by engineer. */
+"Filter by" = "Filtrer par";
+
+/* No comment provided by engineer. */
+"Final Grade" = "Note finale";
+
+/* No comment provided by engineer. */
+"GPA" = "Moyenne cumulative";
 
 /* No comment provided by engineer. */
 "Grade" = "Note";
@@ -119,10 +155,16 @@
 "Inbox" = "Boîte de réception";
 
 /* No comment provided by engineer. */
+"Incomplete" = "Incomplet";
+
+/* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Il semble qu’il n’y ait pas de soumissions valides à noter.";
 
 /* No comment provided by engineer. */
 "Late" = "En retard";
+
+/* No comment provided by engineer. */
+"Letter grade" = "Notation par lettre";
 
 /* No comment provided by engineer. */
 "Loading" = "En cours de chargement";
@@ -137,10 +179,19 @@
 "Moderated Grading Unsupported" = "Notation modérée non prise en charge";
 
 /* No comment provided by engineer. */
+"Needs Grading" = "Requiert une notation";
+
+/* No comment provided by engineer. */
+"No Grade" = "Non noté";
+
+/* No comment provided by engineer. */
 "No Submissions" = "Aucun envoi";
 
 /* No comment provided by engineer. */
 "Not Graded" = "Non noté";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Ouvrir le tiroir en plein écran";
@@ -149,7 +200,13 @@
 "Open Drawer half screen" = "Ouvrir le tiroir en demi-écran";
 
 /* No comment provided by engineer. */
+"out_of_g_pts" = "out_of_g_pts";
+
+/* No comment provided by engineer. */
 "Pending" = "En attente";
+
+/* No comment provided by engineer. */
+"Percent (%)" = "Pourcentage (%)";
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publier les notes";
@@ -167,10 +224,25 @@
 "Preview Unavailable" = "Aperçu non disponible";
 
 /* No comment provided by engineer. */
+"Prompts for an updated grade" = "Invites pour une notation mise à jour";
+
+/* No comment provided by engineer. */
 "Record Audio" = "Enregistrer le son";
 
 /* No comment provided by engineer. */
 "Record Video" = "Enregistrer la vidéo";
+
+/* No comment provided by engineer. */
+"Reset" = "Réinitialiser";
+
+/* No comment provided by engineer. */
+"Rubric" = "Rubrique";
+
+/* No comment provided by engineer. */
+"Scored above..." = "Note supérieure à...";
+
+/* No comment provided by engineer. */
+"Scored below..." = "Note inférieure à...";
 
 /* No comment provided by engineer. */
 "Select to change the roll call date" = "Sélectionnez pour modifier la date d'appel nominal";
@@ -188,16 +260,25 @@
 "Student" = "Étudiant(e)";
 
 /* No comment provided by engineer. */
+"Submissions" = "Envois";
+
+/* No comment provided by engineer. */
 "Test Student" = "Étudiant test";
 
 /* No comment provided by engineer. */
 "There are no messages yet." = "Il n’y a pas de message pour le moment.";
 
 /* No comment provided by engineer. */
+"There was an error loading submissions. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des envois. Tirez pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
 "This assignment does not allow submissions." = "Cette tâche ne permet pas d’envoi.";
 
 /* No comment provided by engineer. */
 "This assignment only allows on-paper submissions." = "Cette tâche permet uniquement des envois sur support papier.";
+
+/* No comment provided by engineer. */
+"This criterion will not impact the score." = "Ce critère n'aura pas de répercussions sur le score.";
 
 /* No comment provided by engineer. */
 "This group does not have a submission for this assignment." = "Ce groupe n’a pas d’envoi pour cette tâche.";
@@ -222,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "View file %@ %@" = "Voir le fichier %1$@ %2$@";
+
+/* No comment provided by engineer. */
+"View Long Description" = "Voir description longue";
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Voir la tentative d’envoi %1$@. %2$@";

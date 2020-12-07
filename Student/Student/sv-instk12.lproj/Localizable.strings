@@ -203,6 +203,9 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Lägg till mottagare";
 
+/* No comment provided by engineer. */
+"All Grading Periods" = "Alla bedömningsperioder";
+
 /* Button to select all members of a group */
 "All members" = "Alla medlemmar";
 
@@ -217,7 +220,7 @@
 
 /* Announcements title
    Title for the announcements view controller */
-"Announcements" = "Anslag";
+"Announcements" = "Meddelande";
 
 /* Archive selected messages button
    mark a message as archived */
@@ -360,6 +363,9 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Välj video";
+
+/* No comment provided by engineer. */
+"Clear filter" = "Rensa filter";
 
 /* No comment provided by engineer. */
 "Close" = "Stäng";
@@ -629,6 +635,12 @@
 /* No comment provided by engineer. */
 "Files (%d)" = "Filer (%d)";
 
+/* No comment provided by engineer. */
+"Filter" = "Filtrera";
+
+/* No comment provided by engineer. */
+"Filter by:" = "Filtrerat efter:";
+
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Nedladdning slutförd";
 
@@ -678,7 +690,7 @@
 "Graded discussion. %g points possible." = "Bedömd diskussion. %g möjliga poäng.";
 
 /* Title for Grades view controller */
-"Grades" = "Omdömen";
+"Grades" = "Bedömningar";
 
 /* Button title for starting a group conversation */
 "Group conversation" = "Gruppkonversation";
