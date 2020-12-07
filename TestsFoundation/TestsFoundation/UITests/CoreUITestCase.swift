@@ -361,12 +361,14 @@ open class CoreUITestCase: XCTestCase {
         var db: OpaquePointer?
         let service = permission.rawValue
         let client = Bundle.main.testTargetBundleID!
+        // swiftlint:disable line_length
         let query = """
         DELETE FROM access WHERE service = '\(service)' AND client = '\(client)';
         INSERT INTO
         access (service, client, client_type, auth_value, auth_reason, auth_version, csreq, policy_id, indirect_object_identifier_type, indirect_object_identifier, indirect_object_code_identity, flags, last_modified)
         VALUES('\(service)', '\(client)', 0, \(allowed ? 2 : 0), 5, 1, NULL, NULL, NULL, 'UNUSED', NULL, 0, 0);
         """
+        // swiftlint:enable line_length
 
         if sqlite3_open(dbPath, &db) != SQLITE_OK {
             XCTFail("Failed to open file at \(dbPath)")
