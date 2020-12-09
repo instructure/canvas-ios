@@ -818,8 +818,12 @@
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
+		D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020BC257FB554002B7B73 /* ContextCardView.swift */; };
+		D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
+		D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */; };
+		D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
@@ -1858,8 +1862,12 @@
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
+		D97020BC257FB554002B7B73 /* ContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardView.swift; sourceTree = "<group>"; };
+		D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardHeaderView.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
+		D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardGradesView.swift; sourceTree = "<group>"; };
+		D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardBoxView.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
@@ -3225,6 +3233,7 @@
 		7D8E820C23C8E09500A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				D97020BB257FB536002B7B73 /* ContextCard */,
 				7D80AC04212B461F00C40ECE /* APIUser.swift */,
 				B1CA333F23392A140015CBB4 /* GetContextUsers.swift */,
 				9F84595B228F33620031034E /* GetUserSettings.swift */,
@@ -3835,6 +3844,17 @@
 				7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		D97020BB257FB536002B7B73 /* ContextCard */ = {
+			isa = PBXGroup;
+			children = (
+				D97020BC257FB554002B7B73 /* ContextCardView.swift */,
+				D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */,
+				D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */,
+				D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */,
+			);
+			path = ContextCard;
 			sourceTree = "<group>";
 		};
 		DFE1FF26212F69B3003F27AA /* CoreTester */ = {
@@ -4770,6 +4790,7 @@
 				7DA2600A23F7227A005D2121 /* NSManagedObjectContextExtensions.swift in Sources */,
 				7DA260CD23F72359005D2121 /* BottomSheetTransitioning.swift in Sources */,
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
+				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
 				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
@@ -4962,6 +4983,7 @@
 				7DA260E923F72359005D2121 /* SwitchTableViewCell.swift in Sources */,
 				7DA2608723F72315005D2121 /* NotificationCategoriesViewController.swift in Sources */,
 				7DA25F9523F7212C005D2121 /* ActAsUserWindow.swift in Sources */,
+				D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */,
 				7DA25FFC23F7226E005D2121 /* DocViewerPointAnnotation.swift in Sources */,
 				7DC7045A24AA8B2600CD1C46 /* ObserverAlert.swift in Sources */,
 				7DA25FD723F72148005D2121 /* CacheManager.swift in Sources */,
@@ -5081,6 +5103,7 @@
 				7DA25FF723F7226E005D2121 /* DocViewerAnnotationStateManager.swift in Sources */,
 				7DA2602923F722C2005D2121 /* LoginManualOAuthViewController.swift in Sources */,
 				7DA25FFE23F7226E005D2121 /* DocViewerSession.swift in Sources */,
+				D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */,
 				7D8E265B24A1026E00A678E7 /* UsageRights.swift in Sources */,
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
@@ -5102,6 +5125,7 @@
 				3B4D89342450A8F4004ED120 /* ConversationDetailViewController.swift in Sources */,
 				7DA2603623F722D9005D2121 /* SubmissionViewable.swift in Sources */,
 				7DA2603023F722C9005D2121 /* GoogleCloudAssignmentViewController.swift in Sources */,
+				D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */,
 				7DA2607923F722FA005D2121 /* AppBackgroundHelperProtocol.swift in Sources */,
 				7D531D3B2549CF0500CBFCA6 /* AssignmentOverridesEditor.swift in Sources */,
 				7DA260EA23F72359005D2121 /* TitleSubtitleView.swift in Sources */,

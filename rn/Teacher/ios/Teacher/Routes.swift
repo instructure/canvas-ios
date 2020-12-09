@@ -257,7 +257,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PeopleListViewController.create(context: .course(courseID))
     },
 
-    "/courses/:courseID/users/:userID": nil,
+    "/courses/:courseID/users/:userID": { _, params, _ in
+        guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
+        return CoreHostingController(ContextCardView(courseID:courseID, userID: userID))
+    },
 
     "/dev-menu": nil,
 
