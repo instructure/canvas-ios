@@ -35,35 +35,19 @@ public struct ContextCardView: View {
         ScrollView {
             if let course = course.first, let user = user.first {
                 ContextCardHeaderView(user: user, course: course)
+                ContextCardGradesView(user: user, course: course)
+                ContextCardSubmissionsView()
+                ForEach(0 ..< 5) { i in
+                    Divider()
+                    ContextCardSubmissionRow()
+                }
             } else {
                 CircleProgress()
             }
-            gradesView
         }
         .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
         .onAppear {
             self.user.refresh()
-        }
-    }
-
-    @ViewBuilder var gradesView: some View {
-        VStack(alignment: .leading) {
-            Text("Grades")
-            HStack() {
-                Text("Grade before posting")
-                Text("Grade after posting")
-
-            }
-        }
-    }
-    @ViewBuilder var submissionView: some View {
-        VStack(alignment: .leading) {
-            Text("Submissions")
-            HStack() {
-                Text("Grade before posting")
-                Text("Grade after posting")
-
-            }
         }
     }
 }

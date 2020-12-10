@@ -18,20 +18,17 @@
 
 import SwiftUI
 
-struct ContextCardGradesView: View {
-
-    let user: UserProfile
-    let course: Course
+struct ContextCardSubmissionsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Grades")
+            Text("Submissions")
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack() {
-                ContextCardBoxView(title: "98%", subTitle: "Grade before posting")
-                ContextCardBoxView(title: "94.5%", subTitle: "Grade after posting")
-                ContextCardBoxView(title: "96.25%", subTitle: "Grade Override")
+                ContextCardBoxView(title: "27", subTitle: "Submitted")
+                ContextCardBoxView(title: "3", subTitle: "Late")
+                ContextCardBoxView(title: "1", subTitle: "Missing")
             }
         }.padding(.horizontal, 16).padding(.vertical, 8)
 
@@ -39,7 +36,7 @@ struct ContextCardGradesView: View {
 }
 
 #if DEBUG
-struct ContextCardGradesView_Previews: PreviewProvider {
+struct ContextCardSubmissionsView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let context = env.globalDatabase.viewContext
 
@@ -48,7 +45,7 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         let user = UserProfile.save(apiProfile, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
-        return ContextCardGradesView(user: user, course: course)
+        return ContextCardSubmissionsView()
     }
 }
 #endif

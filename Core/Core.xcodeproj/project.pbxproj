@@ -820,10 +820,13 @@
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
 		D97020BD257FB554002B7B73 /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020BC257FB554002B7B73 /* ContextCardView.swift */; };
 		D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */; };
+		D9DBA60325825E1B001C76ED /* AccessIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBA60225825E1B001C76ED /* AccessIcon.swift */; };
 		D9DE56D2255053B700CF8B22 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */; };
 		D9DE56E9255454D300CF8B22 /* SyllabusEditorViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */; };
 		D9E1BAB7258114C40034C01E /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */; };
 		D9E1BABA25811BD70034C01E /* ContextCardBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */; };
+		D9E1BABD258163DC0034C01E /* ContextCardSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */; };
+		D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */; };
 		D9FD8EF5254185DF00C6842B /* SyllabusTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */; };
 		D9FD8EF8254187D600C6842B /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */; };
 		DFE1FF20212F5E41003F27AA /* LoginSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE1FF1F212F5E41003F27AA /* LoginSessionTests.swift */; };
@@ -1864,10 +1867,13 @@
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
 		D97020BC257FB554002B7B73 /* ContextCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardView.swift; sourceTree = "<group>"; };
 		D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardHeaderView.swift; sourceTree = "<group>"; };
+		D9DBA60225825E1B001C76ED /* AccessIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessIcon.swift; sourceTree = "<group>"; };
 		D9DE56D1255053B700CF8B22 /* SyllabusEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorView.swift; sourceTree = "<group>"; };
 		D9DE56E8255454D300CF8B22 /* SyllabusEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusEditorViewTests.swift; sourceTree = "<group>"; };
 		D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardGradesView.swift; sourceTree = "<group>"; };
 		D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardBoxView.swift; sourceTree = "<group>"; };
+		D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionsView.swift; sourceTree = "<group>"; };
+		D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardSubmissionRow.swift; sourceTree = "<group>"; };
 		D9FD8EF4254185DF00C6842B /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		D9FD8EF7254187D600C6842B /* SyllabusTabViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewControllerTests.swift; sourceTree = "<group>"; };
 		DA9CB84219E4586BF79FBBAA /* Pods-needs-pspdfkit-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-Core.release.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-Core/Pods-needs-pspdfkit-Core.release.xcconfig"; sourceTree = "<group>"; };
@@ -3852,6 +3858,8 @@
 				D97020BC257FB554002B7B73 /* ContextCardView.swift */,
 				D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */,
 				D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */,
+				D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */,
+				D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */,
 				D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */,
 			);
 			path = ContextCard;
@@ -3898,6 +3906,7 @@
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
 				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
+				D9DBA60225825E1B001C76ED /* AccessIcon.swift */,
 				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 				7D1E856A2567356400D093C5 /* JustifiedGrid.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
@@ -4806,6 +4815,7 @@
 				7DA25FF523F72268005D2121 /* CommentListCell.swift in Sources */,
 				7DA2609B23F7233D005D2121 /* UseCase.swift in Sources */,
 				7D4F44FA241BF26700233B92 /* APIConference.swift in Sources */,
+				D9E1BABD258163DC0034C01E /* ContextCardSubmissionsView.swift in Sources */,
 				7DA2607F23F722FA005D2121 /* Persistency.swift in Sources */,
 				7DA25F9B23F72136005D2121 /* APIActivity.swift in Sources */,
 				7D2E812F25632C34008C568F /* SubmissionBreakdown.swift in Sources */,
@@ -5060,6 +5070,7 @@
 				7DA2606223F722D9005D2121 /* SubmissionComment.swift in Sources */,
 				7DA25FF323F72260005D2121 /* DeveloperMenuViewController.swift in Sources */,
 				7DA25FFF23F7226E005D2121 /* DocViewerViewController.swift in Sources */,
+				D9E1BAC12581666B0034C01E /* ContextCardSubmissionRow.swift in Sources */,
 				7DA25FF623F72268005D2121 /* CommentListViewController.swift in Sources */,
 				7DA25FB023F72136005D2121 /* APIExternalTool.swift in Sources */,
 				7DA2608F23F72315005D2121 /* HelpLink.swift in Sources */,
@@ -5084,6 +5095,7 @@
 				7DA2601723F7227A005D2121 /* UIScrollViewExtensions.swift in Sources */,
 				7D70869D256C1C6500647D37 /* ConferenceCard.swift in Sources */,
 				7DA25FA723F72136005D2121 /* APICourseSection.swift in Sources */,
+				D9DBA60325825E1B001C76ED /* AccessIcon.swift in Sources */,
 				7D742F34255471D800FD6CF1 /* GradeSubmission.swift in Sources */,
 				7DA2608523F7230F005D2121 /* ColoredNavViewProtocol.swift in Sources */,
 				7DA2601B23F7227A005D2121 /* UIViewControllerExtensions.swift in Sources */,
