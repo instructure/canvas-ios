@@ -22,6 +22,7 @@ struct ContextCardHeaderView: View {
 
     let user: UserProfile
     let course: Course
+    let enrollment: Enrollment
 
     var body: some View {
         VStack(spacing: 10) {
@@ -33,18 +34,20 @@ struct ContextCardHeaderView: View {
             Text(user.email ?? "")
                 .font(.regular14)
                 .foregroundColor(.textDarkest)
-            //TODO get enrollment
-            Text("Last activity on December 8 at 1:11PM")
-                .font(.regular12)
-                .foregroundColor(.textDark)
+            if let activityTime = enrollment.lastActivityAt?.dateTimeString {
+                Text("Last activity on \(activityTime)")
+                    .font(.regular12)
+                    .foregroundColor(.textDark)
+            }
             ZStack() {
                 Divider()
                 VStack() {
                     Text(course.name ?? "")
                         .font(.semibold16)
-                    //TODO get section name
-                    Text("section name")
-                        .font(.semibold12)
+                    if let sectionName = course.sections.first(where: {$0.id == enrollment.courseSectionID})?.name {
+                        Text(sectionName)
+                            .font(.semibold12)
+                    }
                 }.padding(.horizontal, 16).padding(.vertical, 8)
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDarkest, lineWidth: 1 / UIScreen.main.scale))
                 .foregroundColor(.textDarkest)
@@ -65,7 +68,10 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let user = UserProfile.save(apiProfile, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
-        return ContextCardHeaderView(user: user, course: course)
+        let apiEnrollment = APIEnrollment.make()
+        let enrollment = Enrollment()
+        enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
+        return ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
     }
 }
 #endif

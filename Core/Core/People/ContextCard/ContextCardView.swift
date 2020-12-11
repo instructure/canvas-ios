@@ -22,19 +22,28 @@ public struct ContextCardView: View {
 
     @ObservedObject var user: Store<GetUserProfile>
     @ObservedObject var course: Store<GetCourse>
+    @ObservedObject var colors: Store<GetCustomColors>
+    @ObservedObject var enrollments: Store<GetEnrollments>
+    @ObservedObject var sections: Store<GetCourseSections>
+    //@ObservedObject var submissions: Store<GetSubmissions>
 
     @Environment(\.appEnvironment) var env
+    let userID: String
 
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
+        self.userID = userID
         user = env.subscribe(GetUserProfile(userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
+        colors = env.subscribe(GetCustomColors())
+        enrollments = env.subscribe(GetEnrollments(context: Context(.course, id: courseID)))
+        sections = env.subscribe(GetCourseSections(courseID: courseID))
     }
 
     public var body: some View {
         ScrollView {
-            if let course = course.first, let user = user.first {
-                ContextCardHeaderView(user: user, course: course)
+            if !isPending, let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+                ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
                 ContextCardGradesView(user: user, course: course)
                 ContextCardSubmissionsView()
                 ForEach(0 ..< 5) { i in
@@ -48,11 +57,17 @@ public struct ContextCardView: View {
         .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
         .onAppear {
             self.user.refresh()
+            self.course.refresh()
+            self.colors.refresh()
+            self.enrollments.refresh(force: true)
+            self.sections.refresh()
         }
     }
+
+    private var isPending: Bool {
+        return user.pending || course.pending || colors.pending || enrollments.pending || sections.pending
+    }
 }
-
-
 
 #if DEBUG
 struct ContextCardView_Previews: PreviewProvider {

@@ -42,7 +42,7 @@ public struct APIEnrollment: Codable, Equatable {
     // let updated_at: Date
     let start_at: Date?
     let end_at: Date?
-    // let last_activity_at: Date?
+    let last_activity_at: Date?
     // let last_attended_at: Date?
     // let total_activity_time: TimeInterval
     // let html_url: String
@@ -104,6 +104,7 @@ extension APIEnrollment {
         role_id: String = "3",
         start_at: Date? = nil,
         end_at: Date? = nil,
+        last_activity_at: Date? = nil,
         grades: Grades? = nil,
         computed_current_score: Double? = nil,
         computed_final_score: Double? = nil,
@@ -131,6 +132,7 @@ extension APIEnrollment {
             role_id: role_id,
             start_at: start_at,
             end_at: end_at,
+            last_activity_at: last_activity_at,
             grades: grades,
             user: user,
             computed_current_score: computed_current_score,
