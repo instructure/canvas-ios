@@ -430,7 +430,7 @@ public struct PostFileUploadRequest: APIRequestable {
             (key: key, value: .string(value ?? ""))
         }
         form.append((key: "file", value: .file(
-            filename: target.upload_params["filename"] as? String ?? "",
+            filename: (target.upload_params["filename"] ?? target.upload_params["Filename"]) as? String ?? "",
             type: target.upload_params["content_type"] as? String ?? "application/octet-stream",
             at: fileURL
         )))

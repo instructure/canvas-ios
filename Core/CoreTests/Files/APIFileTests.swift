@@ -247,13 +247,8 @@ class PostFileUploadTargetRequestTests: XCTestCase {
 }
 
 class PostFileUploadRequestTests: XCTestCase {
-    var bundle: Bundle {
-        return Bundle(for: type(of: self))
-    }
-
-    var fileURL: URL {
-        return bundle.url(forResource: "fileupload", withExtension: "txt")!
-    }
+    var bundle: Bundle { Bundle(for: type(of: self)) }
+    var fileURL: URL { bundle.url(forResource: "fileupload", withExtension: "txt")! }
 
     func expectedPostBody() throws -> String {
         // Note: the ^M characters in file-post-body.txt file are needed!!
@@ -276,5 +271,27 @@ class PostFileUploadRequestTests: XCTestCase {
         ])
         XCTAssertEqual(requestable.form?.count, 2)
         XCTAssertEqual(requestable.form?.last?.key, "file")
+
+        switch requestable.form?.last?.value {
+        case .file(let filename, _, _):
+            XCTAssertEqual(filename, "fileupload.txt")
+        default:
+            XCTFail("Failed to extract filename.")
+        }
+    }
+
+    func testUpperCaseFilenameParam() {
+        let target = PostFileUploadTargetRequest.Response(
+            upload_url: URL(string: "s3://some/bucket/")!,
+            upload_params: ["Filename": "fileupload.txt"]
+        )
+        let requestable = PostFileUploadRequest(fileURL: fileURL, target: target)
+
+        switch requestable.form?.last?.value {
+        case .file(let filename, _, _):
+            XCTAssertEqual(filename, "fileupload.txt")
+        default:
+            XCTFail("Failed to extract filename.")
+        }
     }
 }
