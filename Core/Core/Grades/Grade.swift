@@ -23,9 +23,25 @@ public class Grade: NSManagedObject {
     @NSManaged public var gradingPeriodID: String?
     @NSManaged public var enrollment: Enrollment?
 
+    @NSManaged public var currentGrade: String?
     @NSManaged var currentScoreRaw: NSNumber?
     public var currentScore: Double? {
         get { currentScoreRaw?.doubleValue }
         set { currentScoreRaw = NSNumber(value: newValue) }
     }
+
+    @NSManaged public var overrideGrade: String?
+    @NSManaged var overrideScoreRaw: NSNumber?
+    public var overrideScore: Double? {
+        get { return overrideScoreRaw?.doubleValue }
+        set { overrideScoreRaw = NSNumber(value: newValue) }
+    }
+
+    @NSManaged public var unpostedCurrentGrade: String?
+    @NSManaged var unpostedCurrentScoreRaw: NSNumber?
+    public var unpostedCurrentScore: Double? {
+        get { return unpostedCurrentScoreRaw?.doubleValue }
+        set { unpostedCurrentScoreRaw = NSNumber(value: newValue) }
+    }
+
 }

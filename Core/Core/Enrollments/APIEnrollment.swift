@@ -79,9 +79,11 @@ public struct APIEnrollment: Codable, Equatable {
         let final_grade: String?
         let current_score: Double?
         let final_score: Double?
-        // let unposted_current_grade: String?
+        let override_grade: String?
+        let override_score: Double?
+        let unposted_current_grade: String?
+        let unposted_current_score: Double?
         // let unposted_final_grade: String?
-        // let unposted_current_score: Double?
         // let unposted_final_score: Double?
     }
 }
@@ -157,14 +159,23 @@ extension APIEnrollment.Grades {
         current_grade: String? = nil,
         final_grade: String? = nil,
         current_score: Double? = nil,
-        final_score: Double? = nil
+        final_score: Double? = nil,
+        override_grade: String? = nil,
+        override_score: Double? = nil,
+        unposted_current_grade: String? = nil,
+        unposted_current_score: Double? = nil
+
     ) -> Self {
         return Self(
             html_url: html_url,
             current_grade: current_grade,
             final_grade: final_grade,
             current_score: current_score,
-            final_score: final_score
+            final_score: final_score,
+            override_grade: override_grade,
+            override_score: override_score,
+            unposted_current_grade: unposted_current_grade,
+            unposted_current_score: unposted_current_score
         )
     }
 }

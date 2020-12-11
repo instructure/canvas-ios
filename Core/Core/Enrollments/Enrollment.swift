@@ -133,7 +133,13 @@ extension Enrollment {
 
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
+            grade.currentGrade = apiGrades.current_grade
             grade.currentScore = apiGrades.current_score
+            grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
+            grade.unpostedCurrentScore = apiGrades.unposted_current_score
+            grade.overrideGrade = apiGrades.override_grade
+            grade.overrideScore = apiGrades.override_score
+
             grade.gradingPeriodID = gradingPeriodID
             grades.insert(grade)
         } else {
