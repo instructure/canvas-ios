@@ -19,6 +19,8 @@
 import SwiftUI
 
 struct ContextCardSubmissionRow: View {
+    private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
+
     var body: some View {
         Button(action: { /*route to */}, label: {
             HStack(alignment: .top, spacing: 0) {
@@ -30,20 +32,29 @@ struct ContextCardSubmissionRow: View {
                         .lineLimit(2)
                     Text("Submitted")
                         .font(.semibold14).foregroundColor(.textDark)
-                    progressView
+                    progressView(progress: 0.66, label: Text("66/100"))
                 }
             }
         })
         .padding(16)
     }
-}
 
-var progressView: some View {
-    HStack {
-        Rectangle()
-            .fill(Color.blue)
-            .frame(height: 18)
-        Text("66/100")
+    private func progressView(progress: CGFloat, label: Text) -> some View {
+        HStack {
+            GeometryReader { proxy in
+                HStack(spacing: 0) {
+                    let gradientWidth = proxy.size.width * progress
+                    Rectangle()
+                        .fill(gradient)
+                        .frame(width: gradientWidth)
+                    Rectangle()
+                        .fill(Color.backgroundLight)
+                        .frame(width: proxy.size.width - gradientWidth)
+
+                }
+            }.frame(height: 18)
+            label
+        }
     }
 }
 
