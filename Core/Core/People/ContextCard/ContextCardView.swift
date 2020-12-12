@@ -41,8 +41,8 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-        ScrollView {
-            if !isPending, let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+        if !isPending, let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+            ScrollView {
                 ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
                 ContextCardGradesView(user: user, course: course)
                 ContextCardSubmissionsView()
@@ -50,17 +50,16 @@ public struct ContextCardView: View {
                     Divider()
                     ContextCardSubmissionRow()
                 }
-            } else {
-                CircleProgress()
+            }.navigationTitle(user.name, subtitle: course.name ?? "")
+        } else {
+            CircleProgress()
+            .onAppear {
+                self.user.refresh()
+                self.course.refresh()
+                self.colors.refresh()
+                self.enrollments.refresh(force: true)
+                self.sections.refresh()
             }
-        }
-        .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
-        .onAppear {
-            self.user.refresh()
-            self.course.refresh()
-            self.colors.refresh()
-            self.enrollments.refresh(force: true)
-            self.sections.refresh()
         }
     }
 
