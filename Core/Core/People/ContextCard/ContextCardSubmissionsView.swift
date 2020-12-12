@@ -45,7 +45,7 @@ struct ContextCardSubmissionsView_Previews: PreviewProvider {
         let user = UserProfile.save(apiProfile, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
-        return ContextCardSubmissionsView()
+        return ContextCardSubmissionsView().previewLayout(.sizeThatFits)
     }
 }
 #endif

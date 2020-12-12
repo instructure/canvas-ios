@@ -50,7 +50,7 @@ var progressView: some View {
 #if DEBUG
 struct ContextCardSubmissionRow_Previews: PreviewProvider {
     static var previews: some View {
-        ContextCardSubmissionRow()
+        ContextCardSubmissionRow().previewLayout(.sizeThatFits)
     }
 }
 #endif

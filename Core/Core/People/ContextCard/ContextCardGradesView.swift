@@ -48,7 +48,7 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         let user = UserProfile.save(apiProfile, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
-        return ContextCardGradesView(user: user, course: course)
+        return ContextCardGradesView(user: user, course: course).previewLayout(.sizeThatFits)
     }
 }
 #endif

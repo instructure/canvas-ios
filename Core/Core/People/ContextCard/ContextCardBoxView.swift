@@ -53,7 +53,7 @@ struct ContextCardBoxView_Previews: PreviewProvider {
         ContextCardBoxView(title: "56,5%", subTitle: "Grade before posting", selectedColor: .blue)
         ContextCardBoxView(title: "86,5%", subTitle: "Grade after posting")
         ContextCardBoxView(title: "86,5%", subTitle: "Grade override")
-        }
+        }.previewLayout(.sizeThatFits)
     }
 }
 #endif
