@@ -53,7 +53,7 @@ struct ContextCardSubmissionRow: View {
 
                 }
             }.frame(height: 18)
-            label
+            label.foregroundColor(.textDark).font(.semibold14)
         }
     }
 }
