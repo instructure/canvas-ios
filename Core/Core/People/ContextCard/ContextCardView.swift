@@ -41,17 +41,7 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-        if !isPending, let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
-            ScrollView {
-                ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
-                ContextCardGradesView(user: user, course: course)
-                ContextCardSubmissionsView()
-                ForEach(0 ..< 5) { i in
-                    Divider()
-                    ContextCardSubmissionRow()
-                }
-            }.navigationTitle(user.name, subtitle: course.name ?? "")
-        } else {
+        if isPending {
             CircleProgress()
             .onAppear {
                 self.user.refresh()
@@ -59,6 +49,22 @@ public struct ContextCardView: View {
                 self.colors.refresh()
                 self.enrollments.refresh(force: true)
                 self.sections.refresh()
+            }
+        } else {
+            if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+                ScrollView {
+                    ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
+                    ContextCardGradesView(user: user, course: course)
+                    ContextCardSubmissionsView()
+                    ForEach(0 ..< 5) { i in
+                        Divider()
+                        ContextCardSubmissionRow()
+                    }
+                }.navigationTitle(user.name, subtitle: course.name ?? "")
+            } else if user.first == nil { // TODO: HTTP 401 is returned but user.error is nil. Might be just a network issue.
+                EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
+            } else {
+                EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
             }
         }
     }
