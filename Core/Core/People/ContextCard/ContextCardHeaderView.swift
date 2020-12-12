@@ -69,9 +69,9 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
         let apiEnrollment = APIEnrollment.make()
-        let enrollment = Enrollment()
+        let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
-        return ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
+        return ContextCardHeaderView(user: user, course: course, enrollment: enrollment).previewLayout(.sizeThatFits)
     }
 }
 #endif
