@@ -416,7 +416,7 @@
 "Comments" = "Kommentarer";
 
 /* No comment provided by engineer. */
-"Complete" = "Fullført";
+"Complete" = "Godkjent";
 
 /* No comment provided by engineer. */
 "Complete/Incomplete" = "Godkjent/Ikke godkjent";
@@ -1853,7 +1853,7 @@
 "Unpin" = "Fjern festing";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Fjernet fra publisering";
+"Unpublish" = "Avpubliser";
 
 /* No comment provided by engineer. */
 "unpublished" = "ikke publisert";
