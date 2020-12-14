@@ -30,12 +30,15 @@ public struct ContextCardView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    let userID: String
+
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
+        self.userID = userID
         user = env.subscribe(GetUserProfile(userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
-        enrollments = env.subscribe(GetEnrollments(context: Context(.course, id: courseID), userID: userID))
+        enrollments = env.subscribe(GetEnrollments(context: Context(.course, id: courseID)))
         sections = env.subscribe(GetCourseSections(courseID: courseID))
     }
 
@@ -50,7 +53,7 @@ public struct ContextCardView: View {
                 self.sections.refresh()
             }
         } else {
-            if let course = course.first, let user = user.first, let enrollment = enrollments.first {
+            if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
                 ScrollView {
                     ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
                     ContextCardGradesView(user: user, course: course)
