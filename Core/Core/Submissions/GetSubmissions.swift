@@ -161,10 +161,20 @@ public class GetSubmissionsForStudent: CollectionUseCase {
 
     public let cacheKey: String?
     public let request: GetSubmissionsForStudentRequest
+    public var scope: Scope
 
     init(context: Context, studentID: String) {
         cacheKey = "\(context.pathComponent)/students/\(studentID)/submissions"
         request = GetSubmissionsForStudentRequest(context: context, studentID: studentID)
+        scope = Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
+                NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
+            ]),
+            order: [
+                NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+            ]
+        )
     }
 }
 

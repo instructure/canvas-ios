@@ -350,6 +350,7 @@ public struct GetSubmissionsForStudentRequest: APIRequestable {
         self.query = [
             .perPage(100),
             .array("student_ids", [studentID]),
+            .include(["assignment"])
         ]
     }
 }

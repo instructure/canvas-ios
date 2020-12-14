@@ -62,7 +62,7 @@ public struct ContextCardView: View {
                     ContextCardSubmissionsView()
                     ForEach(submissions.all) { submission in
                         Divider()
-                        ContextCardSubmissionRow(submission: submission)
+                        ContextCardSubmissionRow(assignment: submission.assignment!, submission: submission)
                     }
                 }.navigationTitle(user.name, subtitle: course.name ?? "")
                 .navigationBarItems(
