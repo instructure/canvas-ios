@@ -28,6 +28,7 @@ public struct ContextCardView: View {
     //@ObservedObject var submissions: Store<GetSubmissions>
 
     @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
 
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
@@ -59,6 +60,11 @@ public struct ContextCardView: View {
                         ContextCardSubmissionRow()
                     }
                 }.navigationTitle(user.name, subtitle: course.name ?? "")
+                .navigationBarItems(
+                    trailing: Button(action: {emailContact(user: user, course: course)}, label: {
+                        Icon.emailLine
+                    })
+                )
             } else if user.first == nil { // TODO: HTTP 401 is returned but user.error is nil. Might be just a network issue.
                 EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
             } else {
@@ -69,6 +75,20 @@ public struct ContextCardView: View {
 
     private var isPending: Bool {
         return user.pending || course.pending || colors.pending || enrollments.pending || sections.pending
+    }
+
+    private func emailContact(user: UserProfile, course: Course) {
+        let recipient: [String: Any?] = [
+            "id": user.id,
+            "name": user.name,
+            "avatar_url": user.avatarURL?.absoluteString
+        ]
+        env.router.route(to: "/conversations/compose", userInfo: [
+            "recipients": [recipient],
+            "contextName": course.name ?? "",
+            "contextCode": course.id,
+            "canSelectCourse": false
+        ], from: controller, options: .modal())
     }
 }
 
