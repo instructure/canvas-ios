@@ -156,6 +156,18 @@ public class GetSubmission: APIUseCase {
     }
 }
 
+public class GetSubmissionsForStudent: CollectionUseCase {
+    public typealias Model = Submission
+
+    public let cacheKey: String?
+    public let request: GetSubmissionsForStudentRequest
+
+    init(context: Context, studentID: String) {
+        cacheKey = "\(context.pathComponent)/students/\(studentID)/submissions"
+        request = GetSubmissionsForStudentRequest(context: context, studentID: studentID)
+    }
+}
+
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
 

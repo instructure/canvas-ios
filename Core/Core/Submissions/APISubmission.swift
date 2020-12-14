@@ -330,6 +330,30 @@ public struct GetSubmissionRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.for_students
+public struct GetSubmissionsForStudentRequest: APIRequestable {
+    public typealias Response = [APISubmission]
+
+    public let path: String
+    public let query: [APIQueryItem]
+
+    /**
+     - Parameters:
+        - context: Supported `ContextType`s are:
+            - `course`
+            - `section`
+     */
+    init(context: Context, studentID: String) {
+        guard [.course, .section].contains(context.contextType) else { fatalError("Unsupported ContextType") }
+
+        self.path = "\(context.pathComponent)/students/submissions"
+        self.query = [
+            .perPage(100),
+            .array("student_ids", [studentID]),
+        ]
+    }
+}
+
 // https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.index
 public struct GetSubmissionsRequest: APIRequestable {
     public typealias Response = [APISubmission]

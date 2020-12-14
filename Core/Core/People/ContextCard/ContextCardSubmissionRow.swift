@@ -20,6 +20,7 @@ import SwiftUI
 
 struct ContextCardSubmissionRow: View {
     private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
+    private let submission: Submission
 
     var body: some View {
         Button(action: { /*route to */}, label: {
@@ -30,13 +31,17 @@ struct ContextCardSubmissionRow: View {
                     Text("Beginning of the Biological Existence of Mankind in the Jungles of South Beginning of the Biological Existence of Mankind in the Jungles of South")
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
-                    Text("Submitted")
+                    Text(submission.status.text)
                         .font(.semibold14).foregroundColor(.textDark)
-                    progressView(progress: 0.66, label: Text("66/100"))
+                    progressView(progress: 0.66, label: Text(GradeFormatter().string(from: submission) ?? ""))
                 }
             }
         })
         .padding(16)
+    }
+
+    init(submission: Submission) {
+        self.submission = submission
     }
 
     private func progressView(progress: CGFloat, label: Text) -> some View {
@@ -60,8 +65,13 @@ struct ContextCardSubmissionRow: View {
 
 #if DEBUG
 struct ContextCardSubmissionRow_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        ContextCardSubmissionRow().previewLayout(.sizeThatFits)
+        let submission = Submission(context: context)
+        submission.submittedAt = Date()
+        return ContextCardSubmissionRow(submission: submission).previewLayout(.sizeThatFits)
     }
 }
 #endif

@@ -25,7 +25,7 @@ public struct ContextCardView: View {
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var enrollments: Store<GetEnrollments>
     @ObservedObject var sections: Store<GetCourseSections>
-    //@ObservedObject var submissions: Store<GetSubmissions>
+    @ObservedObject var submissions: Store<GetSubmissionsForStudent>
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -40,6 +40,7 @@ public struct ContextCardView: View {
         colors = env.subscribe(GetCustomColors())
         enrollments = env.subscribe(GetEnrollments(context: Context(.course, id: courseID)))
         sections = env.subscribe(GetCourseSections(courseID: courseID))
+        submissions = env.subscribe(GetSubmissionsForStudent(context: Context(.course, id: courseID), studentID: userID))
     }
 
     public var body: some View {
@@ -51,6 +52,7 @@ public struct ContextCardView: View {
                 self.colors.refresh()
                 self.enrollments.refresh(force: true)
                 self.sections.refresh()
+                self.submissions.refresh()
             }
         } else {
             if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
@@ -58,9 +60,9 @@ public struct ContextCardView: View {
                     ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
                     ContextCardGradesView(user: user, course: course)
                     ContextCardSubmissionsView()
-                    ForEach(0 ..< 5) { i in
+                    ForEach(submissions.all) { submission in
                         Divider()
-                        ContextCardSubmissionRow()
+                        ContextCardSubmissionRow(submission: submission)
                     }
                 }.navigationTitle(user.name, subtitle: course.name ?? "")
                 .navigationBarItems(
@@ -77,7 +79,7 @@ public struct ContextCardView: View {
     }
 
     private var isPending: Bool {
-        return !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending
+        return !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending || submissions.pending
     }
 
     private func emailContact(user: UserProfile, course: Course) {
