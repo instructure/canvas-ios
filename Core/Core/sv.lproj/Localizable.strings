@@ -419,7 +419,7 @@
 "Complete" = "Färdig";
 
 /* No comment provided by engineer. */
-"Complete/Incomplete" = "Färdiga/ofullständiga";
+"Complete/Incomplete" = "Färdig/ofullständig";
 
 /* concluded datetime */
 "Concluded %@" = "Avslutad %@";

@@ -906,7 +906,7 @@
     "message": "Oranje"
   },
   "out_of_points_number_42209979": {
-    "message": "Vanuit { points, number }"
+    "message": "Max { points, number }"
   },
   "override_3de65b2c": {
     "message": "Overschrijving"
