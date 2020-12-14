@@ -74,7 +74,7 @@ public struct ContextCardView: View {
     }
 
     private var isPending: Bool {
-        return user.pending || course.pending || colors.pending || enrollments.pending || sections.pending
+        return !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending
     }
 
     private func emailContact(user: UserProfile, course: Course) {
