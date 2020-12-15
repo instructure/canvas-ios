@@ -20,24 +20,48 @@ import SwiftUI
 
 struct ContextCardGradesView: View {
 
-    let user: UserProfile
-    let course: Course
+    let grades: Grade
 
+    private var grade: String
+    private var unpostedGrade: String? = nil
+    private var overrideGrade: String? = nil
+    init(grades: Grade) {
+        self.grades = grades
+
+        grade = grades.currentGrade ?? "\(grades.currentScore!)%"
+
+        if grades.unpostedCurrentGrade != nil {
+            unpostedGrade = grades.unpostedCurrentGrade
+        } else if let unpostedScore = grades.unpostedCurrentScore {
+            unpostedGrade = "\(unpostedScore)%"
+        }
+
+        if grades.overrideGrade != nil {
+            overrideGrade = grades.overrideGrade
+        } else if let overrideScore = grades.overrideScore {
+            overrideGrade = "\(overrideScore)%"
+        }
+
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Grades")
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack() {
-                ContextCardBoxView(title: "98%", subTitle: "Grade before posting")
-                ContextCardBoxView(title: "94.5%", subTitle: "Grade after posting")
-                ContextCardBoxView(title: "96.25%", subTitle: "Grade Override")
+                ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade")
+                if let unpostedGrade = unpostedGrade {
+                    ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting")
+                }
+                if let overrideGrade = overrideGrade {
+                    ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override")
+                }
             }
         }.padding(.horizontal, 16).padding(.vertical, 8)
 
     }
 }
-
+/*
 #if DEBUG
 struct ContextCardGradesView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
@@ -52,3 +76,4 @@ struct ContextCardGradesView_Previews: PreviewProvider {
     }
 }
 #endif
+*/

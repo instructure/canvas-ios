@@ -35,7 +35,7 @@ struct ContextCardBoxView: View {
                 .font(.bold20)
             Text(subTitle)
                 .lineLimit(2)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
                 .font(.semibold12)
         }
         .foregroundColor(selectedColor != nil ? .textLight : .textDarkest)

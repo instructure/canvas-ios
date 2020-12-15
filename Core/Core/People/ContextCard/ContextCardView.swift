@@ -58,7 +58,9 @@ public struct ContextCardView: View {
             if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
                 ScrollView {
                     ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
-                    ContextCardGradesView(user: user, course: course)
+                    if enrollment.isStudent, let grades = enrollment.grades.first {
+                        ContextCardGradesView(grades: grades)
+                    }
                     ContextCardSubmissionsView()
                     ForEach(submissions.all) { submission in
                         Divider()
