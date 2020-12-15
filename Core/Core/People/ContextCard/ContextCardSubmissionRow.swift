@@ -36,9 +36,14 @@ struct ContextCardSubmissionRow: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
                     Text(submission.status.text)
-                        .font(.semibold14).foregroundColor(.textDark)
-                    progressView(progress: progressRatio, label: Text(grade))
-                }
+                        .font(.regular14).foregroundColor(.textDark)
+
+                    if submission.needsGrading {
+                        needsGradingCapsule()
+                    } else {
+                        progressView(progress: progressRatio, label: Text(grade))
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading)
             }
         })
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
@@ -67,6 +72,16 @@ struct ContextCardSubmissionRow: View {
         }()
     }
 
+    private func needsGradingCapsule() -> some View {
+        Text("NEEDS GRADING")
+            .font(.regular12)
+            .foregroundColor(.textWarning)
+            .background(Color.clear)
+            .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
+            .overlay(Capsule(style: .continuous)
+                        .stroke(Color.textWarning, style: StrokeStyle(lineWidth: 1)))
+    }
+
     private func progressView(progress: CGFloat, label: Text) -> some View {
         HStack {
             GeometryReader { proxy in
@@ -92,11 +107,15 @@ struct ContextCardSubmissionRow_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
     static var testData: [Submission] {
         let submission = Submission(context: context)
+        submission.id = "1"
         submission.submittedAt = Date()
         submission.score = 1
-        let excused = Submission(context: context)
-        excused.excused = true
-        return [submission, excused]
+        let needsGrading = Submission(context: context)
+        needsGrading.id = "2"
+        needsGrading.workflowStateRaw = "pending_review"
+        needsGrading.typeRaw = "online_quiz"
+        needsGrading.submittedAt = Date()
+        return [submission, needsGrading]
     }
 
     static var previews: some View {
