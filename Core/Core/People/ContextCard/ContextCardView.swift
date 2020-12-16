@@ -61,10 +61,12 @@ public struct ContextCardView: View {
                     if enrollment.isStudent, let grades = enrollment.grades.first {
                         ContextCardGradesView(grades: grades, color: Color(course.color))
                     }
-                    ContextCardSubmissionsView()
+                    ContextCardSubmissionsView(submissions: submissions.all)
                     ForEach(submissions.all) { submission in
-                        Divider()
-                        ContextCardSubmissionRow(assignment: submission.assignment!, submission: submission)
+                        if let assignment = submission.assignment {
+                            Divider()
+                            ContextCardSubmissionRow(assignment: assignment, submission: submission)
+                        }
                     }
                 }.navigationTitle(user.name, subtitle: course.name ?? "")
                 .navigationBarItems(

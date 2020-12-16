@@ -71,6 +71,17 @@ public class GradeFormatter {
         return formatter.string(from: assignment.submission)
     }
 
+    public static func string(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
+        let formatter = GradeFormatter()
+        formatter.pointsPossible = assignment.pointsPossible ?? 0
+        formatter.gradingType = assignment.gradingType
+        formatter.gradeStyle = style
+        if assignment.gradingType == .letter_grade {
+            formatter.gradeStyle = .short
+        }
+        return formatter.string(from: submission)
+    }
+
     public func string(from submission: Submission?) -> String? {
         let isExcused = submission?.excused == true
         guard let submission = submission, let score = submission.score, !isExcused else {

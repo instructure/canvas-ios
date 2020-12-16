@@ -19,6 +19,9 @@
 import SwiftUI
 
 struct ContextCardSubmissionRow: View {
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
+
     private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
     private let assignment: Assignment
     private let submission: Submission
@@ -27,7 +30,7 @@ struct ContextCardSubmissionRow: View {
     private let icon: Icon
 
     var body: some View {
-        Button(action: { /*route to */}, label: {
+        Button(action: navigateToSpeedGrader, label: {
             HStack(alignment: .top, spacing: 0) {
                 icon
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
@@ -36,8 +39,8 @@ struct ContextCardSubmissionRow: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
                     Text(submission.status.text)
-                        .font(.regular14).foregroundColor(.textDark)
-
+                        .font(.regular14).foregroundColor(
+                            Color(submission.status.color))
                     if submission.needsGrading {
                         needsGradingCapsule()
                     } else {
@@ -59,7 +62,7 @@ struct ContextCardSubmissionRow: View {
             return CGFloat(min(1, score / maxPoints))
         }()
         self.grade = {
-            GradeFormatter.gradeString(for: assignment, submission: submission) ?? ""
+            GradeFormatter.string(from: assignment, submission: submission) ?? ""
         }()
         self.icon = {
             if assignment.submissionTypes.contains(.online_quiz) {
@@ -96,8 +99,13 @@ struct ContextCardSubmissionRow: View {
 
                 }
             }.frame(height: 18)
-            label.foregroundColor(.textDark).font(.semibold14)
+            label.foregroundColor(.textDark).font(.semibold14).frame(width: 60, alignment: .leading)
         }
+    }
+
+    private func navigateToSpeedGrader() {
+        guard let urlString = assignment.htmlURL?.absoluteString else { return }
+        env.router.route(to: "\(urlString)/submissions/\(submission.userID)", from: controller, options: .modal(.fullScreen))
     }
 }
 
@@ -114,6 +122,7 @@ struct ContextCardSubmissionRow_Previews: PreviewProvider {
         needsGrading.id = "2"
         needsGrading.workflowStateRaw = "pending_review"
         needsGrading.typeRaw = "online_quiz"
+        needsGrading.late = true
         needsGrading.submittedAt = Date()
         return [submission, needsGrading]
     }

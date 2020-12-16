@@ -19,6 +19,25 @@
 import SwiftUI
 
 struct ContextCardSubmissionsView: View {
+    private var submitted = 0
+    private var late = 0
+    private var missing = 0
+
+    init(submissions: [Submission]) {
+        for submission in submissions {
+            submitted += 1
+            switch submission.status {
+            case .submitted:
+                break
+            case .late:
+                late += 1
+            case .missing:
+                missing += 1
+            case .notSubmitted:
+                submitted -= 1
+            }
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -26,12 +45,11 @@ struct ContextCardSubmissionsView: View {
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack() {
-                ContextCardBoxView(title: "27", subTitle: "Submitted")
-                ContextCardBoxView(title: "3", subTitle: "Late")
-                ContextCardBoxView(title: "1", subTitle: "Missing")
+                ContextCardBoxView(title: "\(submitted)", subTitle: "Submitted")
+                ContextCardBoxView(title: "\(late)", subTitle: "Late")
+                ContextCardBoxView(title: "\(missing)", subTitle: "Missing")
             }
         }.padding(.horizontal, 16).padding(.vertical, 8)
-
     }
 }
 
@@ -40,12 +58,18 @@ struct ContextCardSubmissionsView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let context = env.globalDatabase.viewContext
 
+    static var submissions: [Submission] {
+        let submission = Submission(context: context)
+        submission.submittedAt = Date()
+        let late = Submission(context: context)
+        late.late = true
+        let missing = Submission(context: context)
+        missing.missing = true
+        return [submission, late, missing]
+    }
+
     static var previews: some View {
-        let apiProfile = APIProfile.make(id: "1", name: "Test Student", primary_email: "test@instucture.com", login_id: nil, avatar_url: nil, calendar: nil, pronouns: nil)
-        let user = UserProfile.save(apiProfile, in: context)
-        let apiCourse = APICourse.make()
-        let course = Course.save(apiCourse, in: context)
-        return ContextCardSubmissionsView().previewLayout(.sizeThatFits)
+        return ContextCardSubmissionsView(submissions: submissions).previewLayout(.sizeThatFits)
     }
 }
 #endif
