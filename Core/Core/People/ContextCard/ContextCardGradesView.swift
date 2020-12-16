@@ -21,59 +21,69 @@ import SwiftUI
 struct ContextCardGradesView: View {
 
     let grades: Grade
+    let color: Color
 
     private var grade: String
     private var unpostedGrade: String? = nil
     private var overrideGrade: String? = nil
-    init(grades: Grade) {
-        self.grades = grades
 
-        grade = grades.currentGrade ?? "\(grades.currentScore!)%"
+    private var gradeSelected = false
+    private var unpostedSelected = false
+
+    init(grades: Grade, color: Color) {
+        self.grades = grades
+        self.color = color
+        grade = grades.currentGrade ?? "\(GradeFormatter.truncate(grades.currentScore ?? 0))%"
 
         if grades.unpostedCurrentGrade != nil {
             unpostedGrade = grades.unpostedCurrentGrade
         } else if let unpostedScore = grades.unpostedCurrentScore {
-            unpostedGrade = "\(unpostedScore)%"
+            unpostedGrade = "\(GradeFormatter.truncate(unpostedScore))%"
+        }
+        if unpostedGrade == grade {
+            unpostedGrade = nil
         }
 
         if grades.overrideGrade != nil {
             overrideGrade = grades.overrideGrade
         } else if let overrideScore = grades.overrideScore {
-            overrideGrade = "\(overrideScore)%"
+            overrideGrade = "\(GradeFormatter.truncate(overrideScore))%"
         }
 
+        gradeSelected = unpostedGrade == nil && overrideGrade == nil
+        unpostedSelected = unpostedGrade != nil && overrideGrade == nil
     }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Grades")
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack() {
-                ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade")
+                ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade", selectedColor: gradeSelected ? color : nil)
                 if let unpostedGrade = unpostedGrade {
-                    ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting")
+                    ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting", selectedColor: unpostedSelected ? color : nil)
                 }
                 if let overrideGrade = overrideGrade {
-                    ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override")
+                    ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override", selectedColor: color)
                 }
             }
         }.padding(.horizontal, 16).padding(.vertical, 8)
-
     }
 }
-/*
+
 #if DEBUG
 struct ContextCardGradesView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let apiProfile = APIProfile.make(id: "1", name: "Test Student", primary_email: "test@instucture.com", login_id: nil, avatar_url: nil, calendar: nil, pronouns: nil)
-        let user = UserProfile.save(apiProfile, in: context)
-        let apiCourse = APICourse.make()
-        let course = Course.save(apiCourse, in: context)
-        return ContextCardGradesView(user: user, course: course).previewLayout(.sizeThatFits)
+        let grade = Grade(context: context)
+        grade.currentScore = 11
+        grade.overrideScore = 99
+        grade.overrideGrade = "C"
+        grade.unpostedCurrentScore = 33
+        return ContextCardGradesView(grades: grade, color: .blue).previewLayout(.sizeThatFits)
     }
 }
 #endif
-*/

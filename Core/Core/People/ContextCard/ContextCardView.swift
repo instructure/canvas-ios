@@ -59,7 +59,7 @@ public struct ContextCardView: View {
                 ScrollView {
                     ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
                     if enrollment.isStudent, let grades = enrollment.grades.first {
-                        ContextCardGradesView(grades: grades)
+                        ContextCardGradesView(grades: grades, color: Color(course.color))
                     }
                     ContextCardSubmissionsView()
                     ForEach(submissions.all) { submission in

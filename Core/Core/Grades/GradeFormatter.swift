@@ -128,7 +128,7 @@ public class GradeFormatter {
         return "\(score) / \(pointsPossible)"
     }
 
-    private static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
+    public static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
         var rounded = round(value * factor) / factor
         // We don't want to round to next integer
         if (trunc(rounded) != trunc(value)) {
