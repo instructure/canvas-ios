@@ -33,12 +33,12 @@ struct ContextCardGradesView: View {
     init(grades: Grade, color: Color) {
         self.grades = grades
         self.color = color
-        grade = grades.currentGrade ?? "\(GradeFormatter.truncate(grades.currentScore ?? 0))%"
+        grade = grades.currentGrade ?? "\(Int(grades.currentScore ?? 0))%"
 
         if grades.unpostedCurrentGrade != nil {
             unpostedGrade = grades.unpostedCurrentGrade
         } else if let unpostedScore = grades.unpostedCurrentScore {
-            unpostedGrade = "\(GradeFormatter.truncate(unpostedScore))%"
+            unpostedGrade = "\(Int(unpostedScore))%"
         }
         if unpostedGrade == grade {
             unpostedGrade = nil
@@ -47,7 +47,7 @@ struct ContextCardGradesView: View {
         if grades.overrideGrade != nil {
             overrideGrade = grades.overrideGrade
         } else if let overrideScore = grades.overrideScore {
-            overrideGrade = "\(GradeFormatter.truncate(overrideScore))%"
+            overrideGrade = "\(Int(overrideScore))%"
         }
 
         gradeSelected = unpostedGrade == nil && overrideGrade == nil
