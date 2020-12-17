@@ -54,7 +54,9 @@ public struct ContextCardView: View {
                         if enrollment.isStudent, let grades = enrollment.grades.first {
                             ContextCardGradesView(grades: grades, color: Color(course.color))
                         }
-                        ContextCardSubmissionsView(submissions: submissions.all)
+                        if enrollment.isStudent, submissions.all.count != 0 {
+                            ContextCardSubmissionsView(submissions: submissions.all)
+                        }
                         ForEach(submissions.all) { submission in
                             if let assignment = submission.assignment {
                                 Divider()
@@ -67,7 +69,7 @@ public struct ContextCardView: View {
                             Icon.emailLine
                         })
                     )
-                } else if user.first == nil { // TODO: HTTP 401 is returned but user.error is nil. Might be just a network issue.
+                } else if user.first == nil {
                     EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
                 } else {
                     EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))

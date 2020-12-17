@@ -172,7 +172,7 @@ public class GetSubmissionsForStudent: CollectionUseCase {
                 NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
             ]),
             order: [
-                NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+                NSSortDescriptor(key: #keyPath(Submission.gradedAt), ascending: false, selector: #selector(NSDate.compare(_:))),
             ]
         )
     }
