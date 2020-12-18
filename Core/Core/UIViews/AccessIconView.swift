@@ -94,8 +94,4 @@ open class AccessIconView: UIView {
         super.init(coder: aDecoder)
         loadFromXib()
     }
-    
-    public static func create() -> AccessIconView {
-        return loadFromXib()
-    }
 }
