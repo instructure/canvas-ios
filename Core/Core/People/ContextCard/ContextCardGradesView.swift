@@ -23,7 +23,7 @@ struct ContextCardGradesView: View {
     let grades: Grade
     let color: Color
 
-    private var grade: String
+    private var grade: String? = nil
     private var unpostedGrade: String? = nil
     private var overrideGrade: String? = nil
 
@@ -33,6 +33,9 @@ struct ContextCardGradesView: View {
     init(grades: Grade, color: Color) {
         self.grades = grades
         self.color = color
+
+        guard grades.currentGrade != nil || grades.currentScore != nil else { return }
+
         grade = grades.currentGrade ?? "\(Int(grades.currentScore ?? 0))%"
 
         if grades.unpostedCurrentGrade != nil {
@@ -55,20 +58,22 @@ struct ContextCardGradesView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Grades")
-                .font(.semibold14)
-                .foregroundColor(.textDark)
-            HStack() {
-                ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade", selectedColor: gradeSelected ? color : nil)
-                if let unpostedGrade = unpostedGrade {
-                    ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting", selectedColor: unpostedSelected ? color : nil)
+        if let grade = grade {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Grades")
+                    .font(.semibold14)
+                    .foregroundColor(.textDark)
+                HStack() {
+                    ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade", selectedColor: gradeSelected ? color : nil)
+                    if let unpostedGrade = unpostedGrade {
+                        ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting", selectedColor: unpostedSelected ? color : nil)
+                    }
+                    if let overrideGrade = overrideGrade {
+                        ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override", selectedColor: color)
+                    }
                 }
-                if let overrideGrade = overrideGrade {
-                    ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override", selectedColor: color)
-                }
-            }
-        }.padding(.horizontal, 16).padding(.vertical, 8)
+            }.padding(.horizontal, 16).padding(.vertical, 8)
+        }
     }
 }
 

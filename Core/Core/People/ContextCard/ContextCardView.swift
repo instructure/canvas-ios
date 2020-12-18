@@ -44,44 +44,48 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-        VStack {
-            if isPending {
-                CircleProgress()
-            } else {
-                if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
-                    ScrollView {
-                        ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
-                        if enrollment.isStudent, let grades = enrollment.grades.first {
-                            ContextCardGradesView(grades: grades, color: Color(course.color))
-                        }
-                        if enrollment.isStudent, submissions.all.count != 0 {
-                            ContextCardSubmissionsView(submissions: submissions.all)
-                        }
-                        ForEach(submissions.all) { submission in
-                            if let assignment = submission.assignment {
-                                Divider()
-                                ContextCardSubmissionRow(assignment: assignment, submission: submission)
-                            }
-                        }
-                    }.navigationTitle(user.name, subtitle: course.name ?? "")
-                    .navigationBarItems(
-                        trailing: Button(action: {emailContact(user: user, course: course)}, label: {
-                            Icon.emailLine
-                        })
-                    )
-                } else if user.first == nil {
-                    EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
-                } else {
-                    EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
-                }
+        contextCard
+            .navigationBarItems(
+                trailing: Button(action: emailContact, label: {
+                    Icon.emailLine
+                })
+            )
+            .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
+            .onAppear() {
+                self.user.refresh()
+                self.course.refresh()
+                self.colors.refresh()
+                self.enrollments.refresh(force: true)
+                self.sections.refresh()
+                self.submissions.refresh(force: true)
             }
-        }.onAppear() {
-            self.user.refresh()
-            self.course.refresh()
-            self.colors.refresh()
-            self.enrollments.refresh(force: true)
-            self.sections.refresh()
-            self.submissions.refresh(force: true)
+    }
+
+    @ViewBuilder var contextCard: some View {
+        if isPending {
+            CircleProgress()
+        } else {
+            if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+                ScrollView {
+                    ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
+                    if enrollment.isStudent, let grades = enrollment.grades.first {
+                        ContextCardGradesView(grades: grades, color: Color(course.color))
+                    }
+                    if enrollment.isStudent, submissions.all.count != 0 {
+                        ContextCardSubmissionsView(submissions: submissions.all)
+                    }
+                    ForEach(submissions.all) { submission in
+                        if let assignment = submission.assignment {
+                            Divider()
+                            ContextCardSubmissionRow(assignment: assignment, submission: submission)
+                        }
+                    }
+                }
+            } else if user.first == nil {
+                EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
+            } else {
+                EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
+            }
         }
     }
 
@@ -89,7 +93,8 @@ public struct ContextCardView: View {
         return !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending || submissions.pending
     }
 
-    private func emailContact(user: UserProfile, course: Course) {
+    private func emailContact() {
+        guard let course = course.first, let user = user.first else { return }
         let recipient: [String: Any?] = [
             "id": user.id,
             "name": user.name,
