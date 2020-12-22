@@ -38,9 +38,9 @@ public struct ContextCardView: View {
         user = env.subscribe(GetUserProfile(userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
-        enrollments = env.subscribe(GetEnrollments(context: Context(.course, id: courseID)))
+        enrollments = env.subscribe(GetEnrollments(context: .course(courseID)))
         sections = env.subscribe(GetCourseSections(courseID: courseID))
-        submissions = env.subscribe(GetSubmissionsForStudent(context: Context(.course, id: courseID), studentID: userID))
+        submissions = env.subscribe(GetSubmissionsForStudent(context: .course(courseID), studentID: userID))
     }
 
     public var body: some View {
