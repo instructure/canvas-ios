@@ -64,12 +64,22 @@ struct ContextCardGradesView: View {
                     .font(.semibold14)
                     .foregroundColor(.textDark)
                 HStack() {
-                    ContextCardBoxView(title: grade, subTitle: unpostedGrade != nil ? "Grade before posting" : "Current Grade", selectedColor: gradeSelected ? color : nil)
+                    let subTitle = unpostedGrade != nil ? NSLocalizedString("Grade before posting", comment: "") : NSLocalizedString("Current Grade", comment: "")
+                    ContextCardBoxView(title: grade, subTitle: subTitle, selectedColor: gradeSelected ? color : nil)
+                        .accessibility(label: Text("\(subTitle) \(grade)", bundle: .core))
+                        .identifier("ContextCard.currentGradeLabel")
                     if let unpostedGrade = unpostedGrade {
-                        ContextCardBoxView(title: unpostedGrade, subTitle: "Grade after posting", selectedColor: unpostedSelected ? color : nil)
+                        let subTitle = NSLocalizedString("Grade after posting", comment: "")
+                        ContextCardBoxView(title: unpostedGrade, subTitle: subTitle, selectedColor: unpostedSelected ? color : nil)
+                            .accessibility(label: Text("\(subTitle) \(unpostedGrade)", bundle: .core))
+                            .identifier("ContextCard.unpostedGradeLabel")
                     }
                     if let overrideGrade = overrideGrade {
-                        ContextCardBoxView(title: overrideGrade, subTitle: "Grade Override", selectedColor: color)
+                        let subTitle = NSLocalizedString("Grade Override",  comment: "")
+
+                        ContextCardBoxView(title: overrideGrade, subTitle: subTitle, selectedColor: color)
+                            .accessibility(label: Text("\(subTitle) \(overrideGrade)", bundle: .core))
+                            .identifier("ContextCard.overrideGradeLabel")
                     }
                 }
             }.padding(.horizontal, 16).padding(.vertical, 8)

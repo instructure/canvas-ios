@@ -43,6 +43,7 @@ struct ContextCardBoxView: View {
         .frame(height: 80.0)
         .frame(minWidth: 0, maxWidth: .infinity)
         .background(RoundedRectangle(cornerRadius: 8).foregroundColor(selectedColor ?? .backgroundLight))
+        .accessibilityElement(children: .combine)
     }
 }
 

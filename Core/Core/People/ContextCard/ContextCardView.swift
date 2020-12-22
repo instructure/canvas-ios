@@ -49,6 +49,8 @@ public struct ContextCardView: View {
                 trailing: Button(action: emailContact, label: {
                     Icon.emailLine
                 })
+                .accessibility(label: Text("Send message", bundle: .core))
+                .identifier("ContextCard.emailContact")
             )
             .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
             .onAppear() {

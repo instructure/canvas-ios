@@ -50,6 +50,8 @@ struct ContextCardSubmissionRow: View {
             }
         })
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+        .accessibility(label: Text(assignment.name))
+        .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 
     init(assignment: Assignment, submission: Submission) {
