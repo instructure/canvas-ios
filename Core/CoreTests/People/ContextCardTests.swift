@@ -21,7 +21,7 @@ import SwiftUI
 import TestsFoundation
 
 class ContextCardTests: CoreTestCase {
-    lazy var controller: CoreHostingController<ContextCardView> = {
+    private func mockApiCalls() {
         api.mock(GetUserProfile(userID: "1"), value: APIProfile.make(id: "1", name: "Test User", primary_email: "test@test", login_id: "test", avatar_url: nil, calendar: nil, pronouns: nil)
         )
         api.mock(GetCourse(courseID: "1"), value: .make())
@@ -40,16 +40,82 @@ class ContextCardTests: CoreTestCase {
             )
         ) ])
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
-        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"))
-        return hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
-    }()
+        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1")])
+    }
 
-    func testLayout() {
+    func testHeader() {
+        mockApiCalls()
+        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.userNameLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.userEmailLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.lastActivityLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.courseLabel"))
+    }
+
+    func testCurrentGrade() {
+        mockApiCalls()
+        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
+        let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
+        XCTAssertNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
+        XCTAssertNil(tree?.find(id: "ContextCard.overrideGradeLabel"))
+    }
+
+    func testUnpostedGrade() {
+        mockApiCalls()
+        api.mock(GetEnrollments(context: .course("1")), value: [ .make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "1",
+            last_activity_at: Date(),
+            grades: .make(
+                current_grade: "A",
+                final_grade: "B",
+                current_score: 77,
+                final_score: 88,
+                unposted_current_grade: "B"
+            )
+        ) ])
+        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
+        let tree = controller.testTree
+        XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
+        XCTAssertNotNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
+        XCTAssertNil(tree?.find(id: "ContextCard.overrideGradeLabel"))
+    }
+
+    func testOverrideGrade() {
+        mockApiCalls()
+        api.mock(GetEnrollments(context: .course("1")), value: [ .make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "1",
+            last_activity_at: Date(),
+            grades: .make(
+                current_grade: "A",
+                final_grade: "B",
+                current_score: 77,
+                final_score: 88,
+                override_grade: "C",
+                unposted_current_grade: "B"
+            )
+        ) ])
+        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
+        let tree = controller.testTree
+        XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
+        XCTAssertNotNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
+        XCTAssertNotNil(tree?.find(id: "ContextCard.overrideGradeLabel"))
+    }
+
+    func testSubmissions() {
+        mockApiCalls()
+        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
+        let tree = controller.testTree
+        XCTAssertNotNil(tree?.find(id: "ContextCard.submissionsTotalLabel"))
+        XCTAssertNotNil(tree?.find(id: "ContextCard.submissionCell(1)"))
     }
 }
