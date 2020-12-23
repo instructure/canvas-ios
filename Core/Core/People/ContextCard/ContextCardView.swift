@@ -48,7 +48,7 @@ public struct ContextCardView: View {
 
     public var body: some View {
         contextCard
-            .navigationBarItems (trailing: emailButton)
+            .navigationBarItems(trailing: emailButton)
             .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
             .onAppear {
                 self.user.refresh()
