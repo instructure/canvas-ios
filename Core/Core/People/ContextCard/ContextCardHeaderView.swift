@@ -22,6 +22,7 @@ struct ContextCardHeaderView: View {
 
     let user: UserProfile
     let course: Course
+    let sections: [CourseSection]
     let enrollment: Enrollment
 
     var body: some View {
@@ -32,7 +33,6 @@ struct ContextCardHeaderView: View {
                 .font(.bold20)
                 .foregroundColor(.textDarkest)
                 .testID("ContextCard.userNameLabel")
-
             Text(user.email ?? "")
                 .font(.regular14)
                 .foregroundColor(.textDarkest)
@@ -43,13 +43,13 @@ struct ContextCardHeaderView: View {
                     .foregroundColor(.textDark)
                     .testID("ContextCard.lastActivityLabel")
             }
-            ZStack() {
+            ZStack {
                 Divider()
-                VStack() {
+                VStack {
                     Text(course.name ?? "")
                         .font(.semibold16)
                         .testID("ContextCard.courseLabel")
-                    if let sectionName = course.sections.first(where: {$0.id == enrollment.courseSectionID})?.name {
+                    if let sectionName = sections.first(where: {$0.id == enrollment.courseSectionID})?.name {
                         Text(sectionName)
                             .font(.semibold12)
                             .accessibility(label: Text("Section:  \(sectionName)", bundle: .core))
@@ -78,7 +78,7 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let apiEnrollment = APIEnrollment.make()
         let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
-        return ContextCardHeaderView(user: user, course: course, enrollment: enrollment).previewLayout(.sizeThatFits)
+        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment).previewLayout(.sizeThatFits)
     }
 }
 #endif

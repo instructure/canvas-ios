@@ -30,7 +30,7 @@ struct ContextCardBoxView: View {
     }
 
     var body: some View {
-        VStack() {
+        VStack {
             Text(title)
                 .font(.bold20)
             Text(subTitle)
@@ -50,7 +50,7 @@ struct ContextCardBoxView: View {
 #if DEBUG
 struct ContextCardBoxView_Previews: PreviewProvider {
     static var previews: some View {
-        HStack() {
+        HStack {
         ContextCardBoxView(title: "56,5%", subTitle: "Grade before posting", selectedColor: .blue)
         ContextCardBoxView(title: "86,5%", subTitle: "Grade after posting")
         ContextCardBoxView(title: "86,5%", subTitle: "Grade override")

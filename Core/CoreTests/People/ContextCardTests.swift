@@ -38,7 +38,7 @@ class ContextCardTests: CoreTestCase {
                 current_score: 77,
                 final_score: 88
             )
-        ) ])
+        ), ])
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
         api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1")])
     }
@@ -78,7 +78,7 @@ class ContextCardTests: CoreTestCase {
                 final_score: 88,
                 unposted_current_grade: "B"
             )
-        ) ])
+        ), ])
         let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
@@ -103,7 +103,7 @@ class ContextCardTests: CoreTestCase {
                 override_grade: "C",
                 unposted_current_grade: "B"
             )
-        ) ])
+        ), ])
         let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1"))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))

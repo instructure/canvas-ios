@@ -53,7 +53,7 @@ public struct ContextCardView: View {
                 .identifier("ContextCard.emailContact")
             )
             .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
-            .onAppear() {
+            .onAppear {
                 self.user.refresh()
                 self.course.refresh()
                 self.colors.refresh()
@@ -69,7 +69,7 @@ public struct ContextCardView: View {
         } else {
             if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
                 ScrollView {
-                    ContextCardHeaderView(user: user, course: course, enrollment: enrollment)
+                    ContextCardHeaderView(user: user, course: course, sections: sections.all, enrollment: enrollment)
                     if enrollment.isStudent, let grades = enrollment.grades.first {
                         ContextCardGradesView(grades: grades, color: Color(course.color))
                     }
@@ -100,13 +100,13 @@ public struct ContextCardView: View {
         let recipient: [String: Any?] = [
             "id": user.id,
             "name": user.name,
-            "avatar_url": user.avatarURL?.absoluteString
+            "avatar_url": user.avatarURL?.absoluteString,
         ]
         env.router.route(to: "/conversations/compose", userInfo: [
             "recipients": [recipient],
             "contextName": course.name ?? "",
             "contextCode": course.id,
-            "canSelectCourse": false
+            "canSelectCourse": false,
         ], from: controller, options: .modal())
     }
 }

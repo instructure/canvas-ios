@@ -23,9 +23,9 @@ struct ContextCardGradesView: View {
     let grades: Grade
     let color: Color
 
-    private var grade: String? = nil
-    private var unpostedGrade: String? = nil
-    private var overrideGrade: String? = nil
+    private var grade: String?
+    private var unpostedGrade: String?
+    private var overrideGrade: String?
 
     private var gradeSelected = false
     private var unpostedSelected = false
@@ -63,7 +63,7 @@ struct ContextCardGradesView: View {
                 Text("Grades")
                     .font(.semibold14)
                     .foregroundColor(.textDark)
-                HStack() {
+                HStack {
                     let subTitle = unpostedGrade != nil ? NSLocalizedString("Grade before posting", comment: "") : NSLocalizedString("Current Grade", comment: "")
                     ContextCardBoxView(title: grade, subTitle: subTitle, selectedColor: gradeSelected ? color : nil)
                         .accessibility(label: Text("\(subTitle) \(grade)", bundle: .core))
@@ -75,7 +75,7 @@ struct ContextCardGradesView: View {
                             .identifier("ContextCard.unpostedGradeLabel")
                     }
                     if let overrideGrade = overrideGrade {
-                        let subTitle = NSLocalizedString("Grade Override",  comment: "")
+                        let subTitle = NSLocalizedString("Grade Override", comment: "")
 
                         ContextCardBoxView(title: overrideGrade, subTitle: subTitle, selectedColor: color)
                             .accessibility(label: Text("\(subTitle) \(overrideGrade)", bundle: .core))

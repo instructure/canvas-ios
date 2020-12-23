@@ -44,7 +44,7 @@ struct ContextCardSubmissionsView: View {
             Text("Submissions")
                 .font(.semibold14)
                 .foregroundColor(.textDark)
-            HStack() {
+            HStack {
                 ContextCardBoxView(title: "\(submitted)", subTitle: NSLocalizedString("Submitted", comment: "Submitted submissions"))
                     .accessibility(label: Text("Total Submissions \(submitted)", bundle: .core))
                     .identifier("ContextCard.submissionsTotalLabel")
