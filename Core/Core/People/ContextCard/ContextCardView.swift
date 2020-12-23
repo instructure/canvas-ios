@@ -26,6 +26,7 @@ public struct ContextCardView: View {
     @ObservedObject var enrollments: Store<GetEnrollments>
     @ObservedObject var sections: Store<GetCourseSections>
     @ObservedObject var submissions: Store<GetSubmissionsForStudent>
+    @ObservedObject var permissions: Store<GetContextPermissions>
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -34,24 +35,20 @@ public struct ContextCardView: View {
 
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
+        let context = Context.course(courseID)
         self.userID = userID
         user = env.subscribe(GetUserProfile(userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
-        enrollments = env.subscribe(GetEnrollments(context: .course(courseID)))
+        enrollments = env.subscribe(GetEnrollments(context: context))
         sections = env.subscribe(GetCourseSections(courseID: courseID))
-        submissions = env.subscribe(GetSubmissionsForStudent(context: .course(courseID), studentID: userID))
+        submissions = env.subscribe(GetSubmissionsForStudent(context: context, studentID: userID))
+        permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ]))
     }
 
     public var body: some View {
         contextCard
-            .navigationBarItems(
-                trailing: Button(action: emailContact, label: {
-                    Icon.emailLine
-                })
-                .accessibility(label: Text("Send message", bundle: .core))
-                .identifier("ContextCard.emailContact")
-            )
+            .navigationBarItems (trailing: emailButton)
             .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
             .onAppear {
                 self.user.refresh()
@@ -60,7 +57,18 @@ public struct ContextCardView: View {
                 self.enrollments.refresh(force: true)
                 self.sections.refresh()
                 self.submissions.refresh(force: true)
+                self.permissions.refresh()
             }
+    }
+
+    @ViewBuilder var emailButton: some View {
+        if permissions.first?.sendMessages == true {
+            Button(action: emailContact, label: {
+                Icon.emailLine
+            })
+            .accessibility(label: Text("Send message", bundle: .core))
+            .identifier("ContextCard.emailContact")
+        }
     }
 
     @ViewBuilder var contextCard: some View {
