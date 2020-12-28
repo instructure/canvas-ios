@@ -68,6 +68,9 @@
 "a teacher" = "教师";
 
 /* No comment provided by engineer. */
+"Accept" = "接受";
+
+/* No comment provided by engineer. */
 "Access" = "访问";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "添加内容";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "添加课程别称";
 
 /* No comment provided by engineer. */
 "Add description" = "添加说明";
@@ -302,7 +308,13 @@
 "blue" = "蓝色";
 
 /* No comment provided by engineer. */
+"Blue" = "蓝色";
+
+/* No comment provided by engineer. */
 "Bold" = "粗体";
+
+/* No comment provided by engineer. */
+"Brick" = "砖块";
 
 /* No comment provided by engineer. */
 "Calendar" = "日历";
@@ -407,6 +419,9 @@
 "collapsed" = "折叠";
 
 /* No comment provided by engineer. */
+"Color" = "颜色";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "颜色覆盖";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "已结束的会议";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "会议 %@ 正在进行，点击以查看详情";
+
+/* No comment provided by engineer. */
 "Conference Details" = "会议详情";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "会议进行中";
 
 /* No comment provided by engineer. */
 "Conferences" = "会议";
@@ -527,6 +548,12 @@
 "Current position" = "当前位置";
 
 /* No comment provided by engineer. */
+"Customize Course" = "自定义课程";
+
+/* No comment provided by engineer. */
+"Cyan" = "青色";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "拒绝";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "深紫色";
 
 /* No comment provided by engineer. */
 "Delay posting" = "延迟发布";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "撤销";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "撤销%@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "撤销对...的邀请%@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "计分显示为";
@@ -860,6 +899,9 @@
 "green" = "绿色";
 
 /* No comment provided by engineer. */
+"Green" = "绿色";
+
+/* No comment provided by engineer. */
 "grey" = "灰色";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "通过添加说明给您的学生提供完成此作业的帮助。";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "隐藏...的内容%@";
 
 /* No comment provided by engineer. */
 "High: %@" = "高：%@";
@@ -920,6 +965,9 @@
 "Incomplete" = "未完成";
 
 /* No comment provided by engineer. */
+"Indigo" = "靛蓝色";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "机构公告";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "邀请";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "已接受邀请！";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "已拒绝邀请！";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "这是正当使用或类似例外";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "库";
+
+/* No comment provided by engineer. */
+"Light Blue" = "浅蓝色";
 
 /* like action */
 "Like" = "赞";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "LTI工具";
+
+/* No comment provided by engineer. */
+"Magenta" = "品红色";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "请务必在设置中启用摄像头权限";
@@ -1175,6 +1235,9 @@
 "Next" = "下一步";
 
 /* No comment provided by engineer. */
+"Nickname" = "昵称";
+
+/* No comment provided by engineer. */
 "No Announcements" = "无公告";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "确定";
 
 /* No comment provided by engineer. */
+"Olive" = "橄榄";
+
+/* No comment provided by engineer. */
 "On Paper" = "纸上";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "桔黄色";
+
+/* No comment provided by engineer. */
+"Orange" = "橙色";
 
 /* No comment provided by engineer. */
 "Ordered List" = "有序列表";
@@ -1355,6 +1424,9 @@
 "Pin" = "置顶";
 
 /* No comment provided by engineer. */
+"Pink" = "粉红色";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "置顶讨论";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "已发布";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "南瓜";
+
+/* No comment provided by engineer. */
 "purple" = "紫色";
+
+/* No comment provided by engineer. */
+"Purple" = "紫色";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "推送通知";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "红色";
+
+/* No comment provided by engineer. */
+"Red" = "红色";
 
 /* No comment provided by engineer. */
 "Redo" = "重新操作";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "点击以选择您要在日历上看到的课程。";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "单击以查看公告";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "单击以查看提交项列表。";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "助教";
+
+/* No comment provided by engineer. */
+"Teal" = "青色";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "使用条款";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "这是一条媒体评论";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "这是您的个人颜色设置。只有您自己可以看到此课程颜色。";
 
 /* No comment provided by engineer. */
 "This module is empty." = "该单元为空。";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo通知";
+
+/* No comment provided by engineer. */
+"You have been invited" = "您已获得邀请";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "您必须允许“设置”中的通知设置提醒。";
