@@ -81,7 +81,6 @@ struct ContextCardSubmissionRow: View {
         Text("NEEDS GRADING")
             .font(.regular12)
             .foregroundColor(.textWarning)
-            .background(Color.clear)
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
             .overlay(Capsule(style: .continuous)
                         .stroke(Color.textWarning, style: StrokeStyle(lineWidth: 1)))
