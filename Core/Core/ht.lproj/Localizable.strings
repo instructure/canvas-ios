@@ -68,6 +68,9 @@
 "a teacher" = "yon pwofesè";
 
 /* No comment provided by engineer. */
+"Accept" = "Aksepte";
+
+/* No comment provided by engineer. */
 "Access" = "Aksè";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Ajoute kontni";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "Ajoute ti Non Kou";
 
 /* No comment provided by engineer. */
 "Add description" = "Ajoute deskripsyon";
@@ -302,7 +308,13 @@
 "blue" = "ble";
 
 /* No comment provided by engineer. */
+"Blue" = "Ble";
+
+/* No comment provided by engineer. */
 "Bold" = "Gra";
+
+/* No comment provided by engineer. */
+"Brick" = "Brik";
 
 /* No comment provided by engineer. */
 "Calendar" = "Kalandriye";
@@ -407,6 +419,9 @@
 "collapsed" = "retresi";
 
 /* No comment provided by engineer. */
+"Color" = "Koulè";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Sipèpozisyon Koulè";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "Konferans Fini";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "Konferans %@ ap fèt, tape pou ka afiche detay yo";
+
+/* No comment provided by engineer. */
 "Conference Details" = "Detay Konferans";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "Konferans ap fèt";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferans";
@@ -527,6 +548,12 @@
 "Current position" = "Pozisyon aktyèl";
 
 /* No comment provided by engineer. */
+"Customize Course" = "Pèsonalize Kou";
+
+/* No comment provided by engineer. */
+"Cyan" = "Blesyèl";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "Refize";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "Mov Fonse";
 
 /* No comment provided by engineer. */
 "Delay posting" = "Retade piblikasyon";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "Rejte";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "Rejte %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "Rejte envitasyon a %@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Afiche Klas tankou";
@@ -860,6 +899,9 @@
 "green" = "vèt";
 
 /* No comment provided by engineer. */
+"Green" = "Vèt";
+
+/* No comment provided by engineer. */
 "grey" = "gri";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Ajoute enstriksyon pou ede elèv ou yo ak sesyon sa a.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "Kache kontni pou %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "Wo: %@";
@@ -920,6 +965,9 @@
 "Incomplete" = "Enkonplè";
 
 /* No comment provided by engineer. */
+"Indigo" = "Indigo";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "Anons Enstitisyon";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Envitasyon";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "Envitasyon an aksepte!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "Envitasyon an refize!";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "Se yon eksepsyon pou itilizasyon akseptab oswa parèy";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Bibliyotèk";
+
+/* No comment provided by engineer. */
+"Light Blue" = "Limyè Ble";
 
 /* like action */
 "Like" = "Jèm";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "Zouti LTI";
+
+/* No comment provided by engineer. */
+"Magenta" = "Magenta";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Asire w ou aktive pèmisyon kamera a nan Paramèt.";
@@ -1175,6 +1235,9 @@
 "Next" = "Pwochen";
 
 /* No comment provided by engineer. */
+"Nickname" = "Ti Non Jwèt";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Okenn Anons";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "DAKO";
 
 /* No comment provided by engineer. */
+"Olive" = "Oliv";
+
+/* No comment provided by engineer. */
 "On Paper" = "Sou Papye";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "oranj";
+
+/* No comment provided by engineer. */
+"Orange" = "Zoranj";
 
 /* No comment provided by engineer. */
 "Ordered List" = "Lis Kòmande";
@@ -1355,6 +1424,9 @@
 "Pin" = "Tache";
 
 /* No comment provided by engineer. */
+"Pink" = "Woz";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "Diskisyon Epengle";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "Pibliye";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "Pumpkin";
+
+/* No comment provided by engineer. */
 "purple" = "mov";
+
+/* No comment provided by engineer. */
+"Purple" = "Mov";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Notifikasyon Push";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "wouj";
+
+/* No comment provided by engineer. */
+"Red" = "Wouj";
 
 /* No comment provided by engineer. */
 "Redo" = "Refè";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "Tape pou ka seleksyone kou ou vle wè nan kalandriye a.";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "Tape pou afiche anons.";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "tape pou afiche lis soumisyon.";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Asistan Ansèyman";
+
+/* No comment provided by engineer. */
+"Teal" = "Ble vèt";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Kondisyon Itilizasyon";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Sa se yon kòmantè miltimedya";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "Sa se paramèt koulè pèsonèl ou. Sèlman ou menm k ap wè koulè sa a pou kou a.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Modil sa a vid.";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notifikasyon Yo";
+
+/* No comment provided by engineer. */
+"You have been invited" = "Ou jwenn envitasyon";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Ou dwe otorize notifikasyon nan Paramèt yo pou ka regle èd memwa yo.";

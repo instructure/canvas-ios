@@ -68,6 +68,9 @@
 "a teacher" = "a teacher";
 
 /* No comment provided by engineer. */
+"Accept" = "Accept";
+
+/* No comment provided by engineer. */
 "Access" = "Access";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Add content";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "Add Course Nickname";
 
 /* No comment provided by engineer. */
 "Add description" = "Add description";
@@ -302,7 +308,13 @@
 "blue" = "blue";
 
 /* No comment provided by engineer. */
+"Blue" = "Blue";
+
+/* No comment provided by engineer. */
 "Bold" = "Bold";
+
+/* No comment provided by engineer. */
+"Brick" = "Brick";
 
 /* No comment provided by engineer. */
 "Calendar" = "Calendar";
@@ -407,6 +419,9 @@
 "collapsed" = "collapsed";
 
 /* No comment provided by engineer. */
+"Color" = "Color";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Color Overlay";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "Concluded Conferences";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "Conference %@ is in progress, tap to view details";
+
+/* No comment provided by engineer. */
 "Conference Details" = "Conference Details";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "Conference in progress";
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferences";
@@ -527,6 +548,12 @@
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
+"Customize Course" = "Customize Course";
+
+/* No comment provided by engineer. */
+"Cyan" = "Cyan";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "Decline";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "Deep Purple";
 
 /* No comment provided by engineer. */
 "Delay posting" = "Delay posting";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "Dismiss";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "Dismiss %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "Dismiss invitation to %@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Display Grade as";
@@ -860,6 +899,9 @@
 "green" = "green";
 
 /* No comment provided by engineer. */
+"Green" = "Green";
+
+/* No comment provided by engineer. */
 "grey" = "grey";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Help your students with this assignment by adding instructions.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "Hide content for %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "High: %@";
@@ -920,6 +965,9 @@
 "Incomplete" = "Incomplete";
 
 /* No comment provided by engineer. */
+"Indigo" = "Indigo";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "Institution Announcement";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Invitation";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "Invite accepted!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "Invite declined!";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "It is a fair dealing or similar exception";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Library";
+
+/* No comment provided by engineer. */
+"Light Blue" = "Light Blue";
 
 /* like action */
 "Like" = "Like";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "LTI Tool";
+
+/* No comment provided by engineer. */
+"Magenta" = "Magenta";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Make sure you enable camera permissions in Settings";
@@ -1175,6 +1235,9 @@
 "Next" = "Next";
 
 /* No comment provided by engineer. */
+"Nickname" = "Nickname";
+
+/* No comment provided by engineer. */
 "No Announcements" = "No Announcements";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
+"Olive" = "Olive";
+
+/* No comment provided by engineer. */
 "On Paper" = "On Paper";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "orange";
+
+/* No comment provided by engineer. */
+"Orange" = "Orange";
 
 /* No comment provided by engineer. */
 "Ordered List" = "Ordered List";
@@ -1355,6 +1424,9 @@
 "Pin" = "Pin";
 
 /* No comment provided by engineer. */
+"Pink" = "Pink";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "Pinned Discussions";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "Published";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "Pumpkin";
+
+/* No comment provided by engineer. */
 "purple" = "purple";
+
+/* No comment provided by engineer. */
+"Purple" = "Purple";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Push Notifications";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "red";
+
+/* No comment provided by engineer. */
+"Red" = "Red";
 
 /* No comment provided by engineer. */
 "Redo" = "Redo";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "Tap to select the courses you want to see on the calendar.";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "Tap to view announcement";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "Tap to view submissions list.";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Teaching Assistants";
+
+/* No comment provided by engineer. */
+"Teal" = "Teal";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Terms of Use";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "This is a media comment";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "This is your personal color setting. Only you will see this color for the course.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "This module is empty.";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo Notifications";
+
+/* No comment provided by engineer. */
+"You have been invited" = "You have been invited";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "You must allow notifications in Settings to set reminders.";
