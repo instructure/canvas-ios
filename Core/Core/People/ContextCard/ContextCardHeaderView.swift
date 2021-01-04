@@ -24,6 +24,7 @@ struct ContextCardHeaderView: View {
     let course: Course
     let sections: [CourseSection]
     let enrollment: Enrollment
+    let showLastActivity: Bool
 
     var body: some View {
         VStack(spacing: 10) {
@@ -37,7 +38,7 @@ struct ContextCardHeaderView: View {
                 .font(.regular14)
                 .foregroundColor(.textDarkest)
                 .testID("ContextCard.userEmailLabel")
-            if let activityTime = enrollment.lastActivityAt?.dateTimeString {
+            if showLastActivity, let activityTime = enrollment.lastActivityAt?.dateTimeString {
                 Text("Last activity on \(activityTime)")
                     .font(.regular12)
                     .foregroundColor(.textDark)
@@ -78,7 +79,7 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let apiEnrollment = APIEnrollment.make()
         let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
-        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment).previewLayout(.sizeThatFits)
+        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true).previewLayout(.sizeThatFits)
     }
 }
 #endif

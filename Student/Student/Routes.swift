@@ -334,8 +334,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PeopleListViewController.create(context: .group(groupID))
     },
 
-    "/courses/:courseID/users/:userID": nil,
-    "/groups/:groupID/users/:userID": nil,
+    "/courses/:courseID/users/:userID": contextCard,
+    "/groups/:groupID/users/:userID": contextCard,
 
     "/courses/:courseID/user_preferences": nil,
 
@@ -442,4 +442,9 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
     return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
+}
+
+private func contextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
+    return CoreHostingController(ContextCardView(courseID: courseID, userID: userID))
 }
