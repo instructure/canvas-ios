@@ -64,21 +64,21 @@ struct ContextCardGradesView: View {
                     .font(.semibold14)
                     .foregroundColor(.textDark)
                 HStack {
-                    let subTitle = unpostedGrade != nil ? NSLocalizedString("Grade before posting", comment: "") : NSLocalizedString("Current Grade", comment: "")
-                    ContextCardBoxView(title: grade, subTitle: subTitle, selectedColor: gradeSelected ? color : nil)
-                        .accessibility(label: Text("\(subTitle) \(grade)", bundle: .core))
+                    let subTitle = unpostedGrade != nil ? Text("Grade before posting") : Text("Current Grade")
+                    ContextCardBoxView(title: Text(grade), subTitle: subTitle, selectedColor: gradeSelected ? color : nil)
+                        .accessibility(label: Text("\(subTitle.key ?? "") \(grade)", bundle: .core))
                         .identifier("ContextCard.currentGradeLabel")
                     if let unpostedGrade = unpostedGrade {
-                        let subTitle = NSLocalizedString("Grade after posting", comment: "")
-                        ContextCardBoxView(title: unpostedGrade, subTitle: subTitle, selectedColor: unpostedSelected ? color : nil)
-                            .accessibility(label: Text("\(subTitle) \(unpostedGrade)", bundle: .core))
+                        let subTitle = Text("Grade after posting")
+                        ContextCardBoxView(title: Text(unpostedGrade), subTitle: subTitle, selectedColor: unpostedSelected ? color : nil)
+                            .accessibility(label: Text("\(subTitle.key ?? "") \(unpostedGrade)", bundle: .core))
                             .identifier("ContextCard.unpostedGradeLabel")
                     }
                     if let overrideGrade = overrideGrade {
-                        let subTitle = NSLocalizedString("Grade Override", comment: "")
+                        let subTitle = Text("Grade Override")
 
-                        ContextCardBoxView(title: overrideGrade, subTitle: subTitle, selectedColor: color)
-                            .accessibility(label: Text("\(subTitle) \(overrideGrade)", bundle: .core))
+                        ContextCardBoxView(title: Text(overrideGrade), subTitle: subTitle, selectedColor: color)
+                            .accessibility(label: Text("\(subTitle.key ?? "") \(overrideGrade)", bundle: .core))
                             .identifier("ContextCard.overrideGradeLabel")
                     }
                 }

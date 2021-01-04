@@ -45,13 +45,13 @@ struct ContextCardSubmissionsView: View {
                 .font(.semibold14)
                 .foregroundColor(.textDark)
             HStack {
-                ContextCardBoxView(title: "\(submitted)", subTitle: NSLocalizedString("Submitted", comment: "Submitted submissions"))
+                ContextCardBoxView(title: Text("\(submitted)"), subTitle: Text("Submitted"))
                     .accessibility(label: Text("Total Submissions \(submitted)", bundle: .core))
                     .identifier("ContextCard.submissionsTotalLabel")
-                ContextCardBoxView(title: "\(late)", subTitle: NSLocalizedString("Late", comment: "Late submissions"))
+                ContextCardBoxView(title: Text("\(late)"), subTitle: Text("Late"))
                     .accessibility(label: Text("Late Submissions \(late)", bundle: .core))
                     .identifier("ContextCard.submissionsLateLabel")
-                ContextCardBoxView(title: "\(missing)", subTitle: NSLocalizedString("Missing", comment: "Missing submissions"))
+                ContextCardBoxView(title: Text("\(missing)"), subTitle: Text("Missing"))
                     .accessibility(label: Text("Missing Submissions \(late)", bundle: .core))
                     .identifier("ContextCard.submissionsMissingLabel")
             }
