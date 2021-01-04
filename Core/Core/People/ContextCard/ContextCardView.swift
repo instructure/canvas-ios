@@ -31,7 +31,8 @@ public struct ContextCardView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    let userID: String
+    private let userID: String
+    @State private var isFirstAppear = true
 
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
@@ -51,6 +52,8 @@ public struct ContextCardView: View {
             .navigationBarItems(trailing: emailButton)
             .navigationTitle(user.first?.name ?? "", subtitle: course.first?.name ?? "")
             .onAppear {
+                guard isFirstAppear else { return }
+                self.isFirstAppear = false
                 self.user.refresh()
                 self.course.refresh()
                 self.colors.refresh()
