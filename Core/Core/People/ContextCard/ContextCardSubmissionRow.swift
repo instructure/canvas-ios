@@ -19,8 +19,8 @@
 import SwiftUI
 
 struct ContextCardSubmissionRow: View {
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
 
     private let gradient = LinearGradient(gradient: Gradient(colors: [Color(hexString: "#008EE2")!, Color(hexString: "#00C1F3")!]), startPoint: .leading, endPoint: .trailing)
     private let assignment: Assignment

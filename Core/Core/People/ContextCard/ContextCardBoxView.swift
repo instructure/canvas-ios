@@ -19,9 +19,9 @@
 import SwiftUI
 
 struct ContextCardBoxView: View {
-    let title: Text
-    let subTitle: Text
-    let selectedColor: Color?
+    private let title: Text
+    private let subTitle: Text
+    private let selectedColor: Color?
 
     init(title: Text, subTitle: Text, selectedColor: Color? = nil) {
         self.title = title
@@ -51,9 +51,9 @@ struct ContextCardBoxView: View {
 struct ContextCardBoxView_Previews: PreviewProvider {
     static var previews: some View {
         HStack {
-        ContextCardBoxView(title: Text("56,5%"), subTitle: Text("Grade before posting"), selectedColor: .blue)
-        ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade after posting"))
-        ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade override"))
+            ContextCardBoxView(title: Text("56,5%"), subTitle: Text("Grade before posting"), selectedColor: .blue)
+            ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade after posting"))
+            ContextCardBoxView(title: Text("86,5%"), subTitle: Text("Grade override"))
         }.previewLayout(.sizeThatFits)
     }
 }

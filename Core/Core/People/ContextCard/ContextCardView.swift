@@ -19,20 +19,19 @@
 import SwiftUI
 
 public struct ContextCardView: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
 
-    @ObservedObject var user: Store<GetUserProfile>
-    @ObservedObject var course: Store<GetCourse>
-    @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var enrollments: Store<GetEnrollments>
-    @ObservedObject var sections: Store<GetCourseSections>
-    @ObservedObject var submissions: Store<GetSubmissionsForStudent>
-    @ObservedObject var permissions: Store<GetContextPermissions>
+    @ObservedObject private var user: Store<GetUserProfile>
+    @ObservedObject private var course: Store<GetCourse>
+    @ObservedObject private var colors: Store<GetCustomColors>
+    @ObservedObject private var enrollments: Store<GetEnrollments>
+    @ObservedObject private var sections: Store<GetCourseSections>
+    @ObservedObject private var submissions: Store<GetSubmissionsForStudent>
+    @ObservedObject private var permissions: Store<GetContextPermissions>
 
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
-
-    private let userID: String
     @State private var isFirstAppear = true
+    private let userID: String
 
     public init(courseID: String, userID: String) {
         let env = AppEnvironment.shared
@@ -105,7 +104,7 @@ public struct ContextCardView: View {
     }
 
     private var isPending: Bool {
-        return !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending || submissions.pending
+        !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending || submissions.pending
     }
 
     private func emailContact() {

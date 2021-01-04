@@ -19,14 +19,12 @@
 import SwiftUI
 
 struct ContextCardGradesView: View {
-
-    let grades: Grade
-    let color: Color
+    private let grades: Grade
+    private let color: Color
 
     private var grade: String?
     private var unpostedGrade: String?
     private var overrideGrade: String?
-
     private var gradeSelected = false
     private var unpostedSelected = false
 

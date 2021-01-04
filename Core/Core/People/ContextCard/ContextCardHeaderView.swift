@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct ContextCardHeaderView: View {
-
     let user: UserProfile
     let course: Course
     let sections: [CourseSection]
@@ -62,7 +61,6 @@ struct ContextCardHeaderView: View {
                 .background(Color.backgroundLightest)
             }
         }.padding(.vertical, 16)
-
     }
 }
 
