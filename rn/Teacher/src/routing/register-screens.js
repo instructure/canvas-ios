@@ -38,7 +38,6 @@ import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/compon
 import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
-import ContextCard from '../modules/users/ContextCard'
 import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import Filter from '../modules/filter/Filter'
 import PickerPage from '../common/components/PickerPage'
