@@ -125,7 +125,7 @@ public struct ContextCardView: View {
             "contextName": course.name ?? "",
             "contextCode": course.id,
             "canSelectCourse": false,
-        ], from: controller, options: .modal())
+        ], from: controller, options: .modal(embedInNav: true))
     }
 }
 
