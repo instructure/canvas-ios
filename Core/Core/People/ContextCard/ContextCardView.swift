@@ -32,11 +32,13 @@ public struct ContextCardView: View {
 
     @State private var isFirstAppear = true
     private let userID: String
+    private let isViewingAnotherUser: Bool
 
-    public init(courseID: String, userID: String) {
+    public init(courseID: String, userID: String, currentUserID: String) {
         let env = AppEnvironment.shared
         let context = Context.course(courseID)
         self.userID = userID
+        self.isViewingAnotherUser = (userID != currentUserID)
         user = env.subscribe(GetUserProfile(userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
@@ -64,7 +66,7 @@ public struct ContextCardView: View {
     }
 
     @ViewBuilder var emailButton: some View {
-        if permissions.first?.sendMessages == true {
+        if permissions.first?.sendMessages == true, isViewingAnotherUser {
             Button(action: emailContact, label: {
                 Icon.emailLine
             })
@@ -132,7 +134,7 @@ public struct ContextCardView: View {
 #if DEBUG
 struct ContextCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ContextCardView(courseID: "1", userID: "1")
+        ContextCardView(courseID: "1", userID: "1", currentUserID: "0")
     }
 }
 #endif
