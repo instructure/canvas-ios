@@ -83,7 +83,7 @@ struct ContextCardSubmissionRow: View {
             .foregroundColor(.textWarning)
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
             .overlay(Capsule(style: .continuous)
-                        .stroke(Color.textWarning, style: StrokeStyle(lineWidth: 1)))
+            .stroke(Color.textWarning, style: StrokeStyle(lineWidth: 1)))
     }
 
     private func progressView(progress: CGFloat, label: Text) -> some View {
@@ -97,7 +97,6 @@ struct ContextCardSubmissionRow: View {
                     Rectangle()
                         .fill(Color.backgroundLight)
                         .frame(width: proxy.size.width - gradientWidth)
-
                 }
             }.frame(height: 18)
             label.foregroundColor(.textDark).font(.semibold14).frame(width: 60, alignment: .leading)

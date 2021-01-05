@@ -80,17 +80,23 @@ public struct ContextCardView: View {
             if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
                 ScrollView {
                     ContextCardHeaderView(user: user, course: course, sections: sections.all, enrollment: enrollment, showLastActivity: env.app == .teacher)
-                    if enrollment.isStudent, let grades = enrollment.grades.first {
-                        ContextCardGradesView(grades: grades, color: Color(course.color))
-                    }
-                    if enrollment.isStudent, submissions.all.count != 0 {
-                        ContextCardSubmissionsView(submissions: submissions.all)
+                    if enrollment.isStudent {
+                        if let grades = enrollment.grades.first {
+                            ContextCardGradesView(grades: grades, color: Color(course.color))
+                        }
+                        if submissions.all.count != 0 {
+                            ContextCardSubmissionsView(submissions: submissions.all)
+                        }
                     }
                     if env.app == .teacher {
                         ForEach(submissions.all) { submission in
                             if let assignment = submission.assignment {
                                 Divider()
                                 ContextCardSubmissionRow(assignment: assignment, submission: submission)
+
+                                if submissions.last == submission {
+                                    Divider()
+                                }
                             }
                         }
                     }
