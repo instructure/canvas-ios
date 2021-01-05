@@ -22,7 +22,7 @@ public struct ContextCardView: View {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
-    @ObservedObject private var user: Store<GetUserProfile>
+    @ObservedObject private var user: Store<GetCourseSingleUser>
     @ObservedObject private var course: Store<GetCourse>
     @ObservedObject private var colors: Store<GetCustomColors>
     @ObservedObject private var enrollments: Store<GetEnrollments>
@@ -39,7 +39,7 @@ public struct ContextCardView: View {
         let context = Context.course(courseID)
         self.userID = userID
         self.isViewingAnotherUser = (userID != currentUserID)
-        user = env.subscribe(GetUserProfile(userID: userID))
+        user = env.subscribe(GetCourseSingleUser(context: context, userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
         enrollments = env.subscribe(GetEnrollments(context: context))

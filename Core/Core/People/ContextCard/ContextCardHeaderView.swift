@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct ContextCardHeaderView: View {
-    let user: UserProfile
+    let user: User
     let course: Course
     let sections: [CourseSection]
     let enrollment: Enrollment
@@ -70,8 +70,8 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let apiProfile = APIProfile.make(id: "1", name: "Test Student", primary_email: "test@instucture.com", login_id: nil, avatar_url: nil, calendar: nil, pronouns: nil)
-        let user = UserProfile.save(apiProfile, in: context)
+        let apiUser = APIUser.make()
+        let user = User.save(apiUser, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
         let apiEnrollment = APIEnrollment.make(last_activity_at: Date())
