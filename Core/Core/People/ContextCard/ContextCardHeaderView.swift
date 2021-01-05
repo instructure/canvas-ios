@@ -52,7 +52,7 @@ struct ContextCardHeaderView: View {
                     if let sectionName = sections.first(where: {$0.id == enrollment.courseSectionID})?.name {
                         Text(sectionName)
                             .font(.semibold12)
-                            .accessibility(label: Text("Section:  \(sectionName)", bundle: .core))
+                            .accessibility(label: Text("Section: \(sectionName)", bundle: .core))
                             .identifier("ContextCard.sectionLabel")
                     }
                 }.padding(.horizontal, 16).padding(.vertical, 8)
@@ -74,7 +74,7 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let user = UserProfile.save(apiProfile, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
-        let apiEnrollment = APIEnrollment.make()
+        let apiEnrollment = APIEnrollment.make(last_activity_at: Date())
         let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
         return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true).previewLayout(.sizeThatFits)
