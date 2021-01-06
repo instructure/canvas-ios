@@ -25,24 +25,23 @@ public struct ContextCardView: View {
     @ObservedObject private var user: Store<GetCourseSingleUser>
     @ObservedObject private var course: Store<GetCourse>
     @ObservedObject private var colors: Store<GetCustomColors>
-    @ObservedObject private var enrollments: Store<GetEnrollments>
     @ObservedObject private var sections: Store<GetCourseSections>
     @ObservedObject private var submissions: Store<GetSubmissionsForStudent>
     @ObservedObject private var permissions: Store<GetContextPermissions>
 
     @State private var isFirstAppear = true
+    private let context: Context
     private let userID: String
     private let isViewingAnotherUser: Bool
 
     public init(courseID: String, userID: String, currentUserID: String) {
         let env = AppEnvironment.shared
-        let context = Context.course(courseID)
+        self.context = Context.course(courseID)
         self.userID = userID
         self.isViewingAnotherUser = (userID != currentUserID)
         user = env.subscribe(GetCourseSingleUser(context: context, userID: userID))
         course = env.subscribe(GetCourse(courseID: courseID))
         colors = env.subscribe(GetCustomColors())
-        enrollments = env.subscribe(GetEnrollments(context: context))
         sections = env.subscribe(GetCourseSections(courseID: courseID))
         submissions = env.subscribe(GetSubmissionsForStudent(context: context, studentID: userID))
         permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ]))
@@ -58,7 +57,6 @@ public struct ContextCardView: View {
                 self.user.refresh()
                 self.course.refresh()
                 self.colors.refresh()
-                self.enrollments.refresh(force: true)
                 self.sections.refresh()
                 self.submissions.refresh(force: true)
                 self.permissions.refresh()
@@ -79,7 +77,7 @@ public struct ContextCardView: View {
         if isPending {
             CircleProgress()
         } else {
-            if let course = course.first, let user = user.first, let enrollment = enrollments.first(where: {$0.userID == userID}) {
+            if let course = course.first, let user = user.first, let enrollment = user.enrollments?.first(where: { $0.canvasContextID == context.canvasContextID }) {
                 ScrollView {
                     ContextCardHeaderView(user: user, course: course, sections: sections.all, enrollment: enrollment, showLastActivity: env.app == .teacher)
                     if enrollment.isStudent {
@@ -112,7 +110,7 @@ public struct ContextCardView: View {
     }
 
     private var isPending: Bool {
-        !user.requested || user.pending || course.pending || colors.pending || enrollments.pending || sections.pending || submissions.pending
+        !user.requested || user.pending || course.pending || colors.pending || sections.pending || submissions.pending
     }
 
     private func emailContact() {

@@ -49,5 +49,5 @@ public struct GetCourseSingleUserRequest: APIRequestable {
     let userID: String
 
     public var path: String { "\(context.pathComponent)/users/\(userID)" }
-    public var query: [APIQueryItem] { [.include(["avatar_url", "email"])] }
+    public var query: [APIQueryItem] { [.include(["avatar_url", "enrollments", "email"])] }
 }
