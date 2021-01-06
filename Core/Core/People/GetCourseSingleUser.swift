@@ -38,7 +38,6 @@ public struct GetCourseSingleUser: APIUseCase {
 
     public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(User.courseID), equals: context.id),
             NSPredicate(key: #keyPath(User.id), equals: userID),
         ]), order: [])}
 }
@@ -49,7 +48,6 @@ public struct GetCourseSingleUserRequest: APIRequestable {
     let context: Context
     let userID: String
 
-    public var path: String {
-        return "\(context.pathComponent)/users/\(userID)"
-    }
+    public var path: String { "\(context.pathComponent)/users/\(userID)" }
+    public var query: [APIQueryItem] { [.include(["avatar_url", "email"])] }
 }
