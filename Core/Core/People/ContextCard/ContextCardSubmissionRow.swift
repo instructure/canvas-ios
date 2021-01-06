@@ -43,7 +43,7 @@ struct ContextCardSubmissionRow: View {
                             Color(submission.status.color))
                     if submission.needsGrading {
                         needsGradingCapsule()
-                    } else {
+                    } else if submission.workflowState == .graded, submission.score != nil {
                         progressView(progress: progressRatio, label: Text(grade))
                     }
                 }.frame(maxWidth: .infinity, alignment: .leading)
