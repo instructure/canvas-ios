@@ -35,13 +35,4 @@ class GetCourseSingleUserTests: CoreTestCase {
         XCTAssertEqual(users.count, 1)
         XCTAssertEqual(one, users.first)
     }
-
-    func testWrongCourse() {
-        let useCase = GetCourseSingleUser(context: .course("1"), userID: "2")
-        User.make(from: .make(id: "2"), courseID: "2")
-        User.make(from: .make(id: "3"), courseID: "1")
-
-        let users: [User] = databaseClient.fetch(scope: useCase.scope)
-        XCTAssertEqual(users.count, 0)
-    }
 }
