@@ -101,8 +101,6 @@ public struct ContextCardView: View {
                         }
                     }
                 }
-            } else if user.first == nil {
-                EmptyPanda(.Locked, title: Text("No permission"), message: Text("You have no permission to view this user's profile"))
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))
             }
