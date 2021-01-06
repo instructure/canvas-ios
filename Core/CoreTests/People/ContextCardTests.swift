@@ -25,6 +25,7 @@ class ContextCardTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockApiCalls()
+        environment.app = .teacher
     }
 
     func testHeader() {
@@ -45,21 +46,9 @@ class ContextCardTests: CoreTestCase {
     }
 
     func testUnpostedGrade() {
-        api.mock(GetEnrollments(context: .course("1")), value: [ .make(
-            id: "1",
-            course_id: "1",
-            enrollment_state: .active,
-            type: "StudentEnrollment",
-            user_id: "1",
-            last_activity_at: Date(),
-            grades: .make(
-                current_grade: "A",
-                final_grade: "B",
-                current_score: 77,
-                final_score: 88,
-                unposted_current_grade: "B"
-            )
-        ), ])
+        let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, unposted_current_grade: "B"))
+        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
+
         let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
@@ -68,22 +57,9 @@ class ContextCardTests: CoreTestCase {
     }
 
     func testOverrideGrade() {
-        api.mock(GetEnrollments(context: .course("1")), value: [ .make(
-            id: "1",
-            course_id: "1",
-            enrollment_state: .active,
-            type: "StudentEnrollment",
-            user_id: "1",
-            last_activity_at: Date(),
-            grades: .make(
-                current_grade: "A",
-                final_grade: "B",
-                current_score: 77,
-                final_score: 88,
-                override_grade: "C",
-                unposted_current_grade: "B"
-            )
-        ), ])
+        let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, override_grade: "C", unposted_current_grade: "B"))
+        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
+
         let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
@@ -99,24 +75,26 @@ class ContextCardTests: CoreTestCase {
     }
 
     private func mockApiCalls() {
-        api.mock(GetUserProfile(userID: "1"), value: APIProfile.make(id: "1", name: "Test User", primary_email: "test@test", login_id: "test", avatar_url: nil, calendar: nil, pronouns: nil)
-        )
+        let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88))
+        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
         api.mock(GetCourse(courseID: "1"), value: .make())
-        api.mock(GetEnrollments(context: .course("1")), value: [ .make(
+        api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
+        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1")])
+    }
+
+    private func makeUser(with enrollment: APIEnrollment) -> APIUser {
+        APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
+    }
+
+    private func makeEnrollment(with grade: APIEnrollment.Grades) -> APIEnrollment {
+        APIEnrollment.make(
             id: "1",
             course_id: "1",
             enrollment_state: .active,
             type: "StudentEnrollment",
             user_id: "1",
             last_activity_at: Date(),
-            grades: .make(
-                current_grade: "A",
-                final_grade: "B",
-                current_score: 77,
-                final_score: 88
-            )
-        ), ])
-        api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
-        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1")])
+            grades: grade
+        )
     }
 }
