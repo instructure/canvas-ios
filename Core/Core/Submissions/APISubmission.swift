@@ -350,7 +350,7 @@ public struct GetSubmissionsForStudentRequest: APIRequestable {
         self.query = [
             .perPage(100),
             .array("student_ids", [studentID]),
-            .include(["assignment", "submission_history"]),
+            .include(GetSubmissionsRequest.Include.allCases.map { $0.rawValue }),
         ]
     }
 }
