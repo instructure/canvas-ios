@@ -32,15 +32,13 @@ struct ContextCardSubmissionRow: View {
     var body: some View {
         Button(action: navigateToSpeedGrader, label: {
             HStack(alignment: .top, spacing: 0) {
-                icon
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
+                icon.padding(EdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 12))
                 VStack(alignment: .leading, spacing: 8) {
                     Text(assignment.name)
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .lineLimit(2)
                     Text(submission.status.text)
-                        .font(.regular14).foregroundColor(
-                            Color(submission.status.color))
+                        .font(.regular14).foregroundColor(Color(submission.status.color))
                     if submission.needsGrading {
                         needsGradingCapsule()
                     } else if submission.workflowState == .graded, submission.score != nil {

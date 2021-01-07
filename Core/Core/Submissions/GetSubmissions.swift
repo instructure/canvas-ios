@@ -170,6 +170,7 @@ public class GetSubmissionsForStudent: CollectionUseCase {
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
                 NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
+                NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             ]),
             order: [
                 NSSortDescriptor(key: #keyPath(Submission.gradedAt), ascending: false, selector: #selector(NSDate.compare(_:))),

@@ -90,7 +90,7 @@ public struct ContextCardView: View {
                     }
                     if env.app == .teacher {
                         ForEach(submissions.all) { submission in
-                            if let assignment = submission.assignment {
+                            if let assignment = assignment(with: submission.assignmentID) {
                                 Divider()
                                 ContextCardSubmissionRow(assignment: assignment, submission: submission)
 
@@ -124,6 +124,10 @@ public struct ContextCardView: View {
             "contextCode": course.id,
             "canSelectCourse": false,
         ], from: controller, options: .modal(embedInNav: true))
+    }
+
+    private func assignment(with id: String) -> Assignment? {
+        env.database.viewContext.first(where: #keyPath(Assignment.id), equals: id)
     }
 }
 
