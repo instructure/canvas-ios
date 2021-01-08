@@ -29,6 +29,7 @@ public struct ContextCardView: View {
     @ObservedObject private var submissions: Store<GetSubmissionsForStudent>
     @ObservedObject private var permissions: Store<GetContextPermissions>
 
+    @State private var apiUser: APIUser?
     @State private var isFirstAppear = true
     private let context: Context
     private let userID: String
@@ -54,7 +55,9 @@ public struct ContextCardView: View {
             .onAppear {
                 guard isFirstAppear else { return }
                 self.isFirstAppear = false
-                self.user.refresh()
+                self.user.refresh(force: true) { response in
+                    self.apiUser = response
+                }
                 self.course.refresh()
                 self.colors.refresh()
                 self.sections.refresh()
@@ -77,9 +80,9 @@ public struct ContextCardView: View {
         if isPending {
             CircleProgress()
         } else {
-            if let course = course.first, let user = user.first, let enrollment = user.enrollments?.first(where: { $0.canvasContextID == context.canvasContextID }) {
+            if let course = course.first, let apiUser = apiUser, let enrollment = user.first?.enrollments?.first(where: { $0.canvasContextID == context.canvasContextID }) {
                 ScrollView {
-                    ContextCardHeaderView(user: user, course: course, sections: sections.all, enrollment: enrollment, showLastActivity: env.app == .teacher)
+                    ContextCardHeaderView(user: apiUser, course: course, sections: sections.all, enrollment: enrollment, showLastActivity: env.app == .teacher)
                     if enrollment.isStudent {
                         if let grades = enrollment.grades.first {
                             ContextCardGradesView(grades: grades, color: Color(course.color))
