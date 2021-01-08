@@ -25,11 +25,10 @@ class ContextCardTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockApiCalls()
-        environment.app = .teacher
     }
 
     func testHeader() {
-        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
+        let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.userNameLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.userEmailLabel"))
@@ -38,7 +37,7 @@ class ContextCardTests: CoreTestCase {
     }
 
     func testCurrentGrade() {
-        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
+        let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
         XCTAssertNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
@@ -49,7 +48,7 @@ class ContextCardTests: CoreTestCase {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, unposted_current_grade: "B"))
         api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
 
-        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
+        let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
@@ -60,7 +59,7 @@ class ContextCardTests: CoreTestCase {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, override_grade: "C", unposted_current_grade: "B"))
         api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
 
-        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
+        let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.currentGradeLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.unpostedGradeLabel"))
@@ -68,7 +67,7 @@ class ContextCardTests: CoreTestCase {
     }
 
     func testSubmissions() {
-        let controller = hostSwiftUIController(ContextCardView(courseID: "1", userID: "1", currentUserID: "0"))
+        let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
         XCTAssertNotNil(tree?.find(id: "ContextCard.submissionsTotalLabel"))
         XCTAssertNotNil(tree?.find(id: "ContextCard.submissionCell(1)"))
@@ -79,7 +78,7 @@ class ContextCardTests: CoreTestCase {
         api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
         api.mock(GetCourse(courseID: "1"), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
-        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1")])
+        api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1", submission_history: [])])
     }
 
     private func makeUser(with enrollment: APIEnrollment) -> APIUser {

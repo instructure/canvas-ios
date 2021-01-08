@@ -816,6 +816,7 @@
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
+		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
 		CFB50C4C2564330600E4AD72 /* HelpLinkRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */; };
 		CFB50C51256439D100E4AD72 /* HelpViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50C50256439D100E4AD72 /* HelpViewTests.swift */; };
 		CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */; };
@@ -1866,6 +1867,7 @@
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		CFB50C4B2564330600E4AD72 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
 		CFB50C50256439D100E4AD72 /* HelpViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewTests.swift; sourceTree = "<group>"; };
 		CFC01CC52563FF5D00178E98 /* HelpLinkRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRoute.swift; sourceTree = "<group>"; };
@@ -3866,6 +3868,7 @@
 			isa = PBXGroup;
 			children = (
 				D97020BC257FB554002B7B73 /* ContextCardView.swift */,
+				CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */,
 				D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */,
 				D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */,
 				D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */,
@@ -4998,6 +5001,7 @@
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
 				7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */,
 				7DBA77C824F9C2D400B4D6B3 /* FileListViewController.swift in Sources */,
+				CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */,
 				7DA260A623F72352005D2121 /* GetActivities.swift in Sources */,
 				7DA2603323F722D9005D2121 /* DueViewable.swift in Sources */,
 				7DA25F9723F72136005D2121 /* APIAssignmentList.swift in Sources */,

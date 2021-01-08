@@ -446,5 +446,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
 
 private func contextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-    return CoreHostingController(ContextCardView(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? ""))
+    let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
+    let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: false, isLastActivityVisible: false)
+    return CoreHostingController(ContextCardView(model: viewModel))
 }

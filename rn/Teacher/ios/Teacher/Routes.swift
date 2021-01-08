@@ -259,7 +259,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/users/:userID": { _, params, _ in
         guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-        return CoreHostingController(ContextCardView(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? ""))
+        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "")
+        return CoreHostingController(ContextCardView(model: viewModel))
     },
 
     "/dev-menu": nil,

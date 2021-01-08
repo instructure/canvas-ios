@@ -90,6 +90,7 @@ class APISubmissionTests: CoreTestCase {
                 "total_scores",
                 "user",
                 "group",
+                "assignment",
             ]),
             .bool("grouped", true),
         ])
