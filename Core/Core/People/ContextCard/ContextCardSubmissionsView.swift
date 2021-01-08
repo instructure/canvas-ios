@@ -46,13 +46,13 @@ struct ContextCardSubmissionsView: View {
                 .foregroundColor(.textDark)
             HStack {
                 ContextCardBoxView(title: Text("\(submitted)"), subTitle: Text("Submitted"))
-                    .accessibility(label: Text("Total Submissions \(submitted)", bundle: .core))
+                    .accessibility(label: Text("\(submitted) submitted", bundle: .core))
                     .identifier("ContextCard.submissionsTotalLabel")
                 ContextCardBoxView(title: Text("\(late)"), subTitle: Text("Late"))
-                    .accessibility(label: Text("Late Submissions \(late)", bundle: .core))
+                    .accessibility(label: Text("\(late) late", bundle: .core))
                     .identifier("ContextCard.submissionsLateLabel")
                 ContextCardBoxView(title: Text("\(missing)"), subTitle: Text("Missing"))
-                    .accessibility(label: Text("Missing Submissions \(late)", bundle: .core))
+                    .accessibility(label: Text("\(missing) missing", bundle: .core))
                     .identifier("ContextCard.submissionsMissingLabel")
             }
         }.padding(.horizontal, 16).padding(.vertical, 8)

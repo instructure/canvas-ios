@@ -103,6 +103,8 @@ public struct ContextCardView: View {
                             }
                         }
                     }
+                }.onAppear {
+                    UIAccessibility.post(notification: .screenChanged, argument: nil)
                 }
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))

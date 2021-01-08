@@ -28,6 +28,7 @@ struct ContextCardSubmissionRow: View {
     private let progressRatio: CGFloat
     private let grade: String
     private let icon: Icon
+    private let a11ySubmissionStatus: String
 
     var body: some View {
         Button(action: navigateToSpeedGrader, label: {
@@ -48,7 +49,7 @@ struct ContextCardSubmissionRow: View {
             }
         })
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .accessibility(label: Text(assignment.name))
+        .accessibility(label: Text("Submission \(assignment.name), \(submission.status.text), \(a11ySubmissionStatus)"))
         .identifier("ContextCard.submissionCell(\(assignment.id))")
     }
 
@@ -73,10 +74,19 @@ struct ContextCardSubmissionRow: View {
                 return .assignmentLine
             }
         }()
+        self.a11ySubmissionStatus = {
+            if submission.needsGrading {
+                return NSLocalizedString("NEEDS GRADING", comment: "")
+            } else if submission.workflowState == .graded, submission.score != nil, let grade = GradeFormatter.string(from: assignment, submission: submission) {
+                return NSLocalizedString("grade", comment: "") + " " + grade
+            } else {
+                return ""
+            }
+        }()
     }
 
     private func needsGradingCapsule() -> some View {
-        Text("NEEDS GRADING")
+        Text("NEEDS GRADING", bundle: .core)
             .font(.regular12)
             .foregroundColor(.textWarning)
             .padding(EdgeInsets(top: 1, leading: 8, bottom: 1, trailing: 8))
