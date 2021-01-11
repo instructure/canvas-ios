@@ -68,6 +68,9 @@
 "a teacher" = "nauczyciel";
 
 /* No comment provided by engineer. */
+"Accept" = "Akceptuj";
+
+/* No comment provided by engineer. */
 "Access" = "Dostęp";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Dodaj zawartość";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "Dodaj pseudonim kursu";
 
 /* No comment provided by engineer. */
 "Add description" = "Dodaj opis";
@@ -302,7 +308,13 @@
 "blue" = "niebieski";
 
 /* No comment provided by engineer. */
+"Blue" = "Niebieski";
+
+/* No comment provided by engineer. */
 "Bold" = "Pogrubiona";
+
+/* No comment provided by engineer. */
+"Brick" = "Cegła";
 
 /* No comment provided by engineer. */
 "Calendar" = "Kalendarz";
@@ -407,6 +419,9 @@
 "collapsed" = "zwinięte";
 
 /* No comment provided by engineer. */
+"Color" = "Kolor";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Kolor nakładki";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "Zakończone konferencje";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "Konferencja %@ jest w toku; stuknij, aby wyświetlić szczegóły";
+
+/* No comment provided by engineer. */
 "Conference Details" = "Szczegóły konferencji";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "Konferencja w toku";
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferencje";
@@ -527,6 +548,12 @@
 "Current position" = "Bieżąca pozycja";
 
 /* No comment provided by engineer. */
+"Customize Course" = "Personalizuj kurs";
+
+/* No comment provided by engineer. */
+"Cyan" = "Cyjan";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "Odrzuć";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "Głęboki fiolet";
 
 /* No comment provided by engineer. */
 "Delay posting" = "Opóźnij ogłaszanie";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "Odrzuć";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "Odrzuć %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "Odrzuć zaproszenie do %@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Wyświetl ocenę jako";
@@ -860,6 +899,9 @@
 "green" = "zielony";
 
 /* No comment provided by engineer. */
+"Green" = "Zielony";
+
+/* No comment provided by engineer. */
 "grey" = "szary";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Pomóż uczestnikom w wykonaniu zadania, dodając instrukcje.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "Ukryj zawartość dla %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "Wysoki: %@";
@@ -920,6 +965,9 @@
 "Incomplete" = "Nie ukończono";
 
 /* No comment provided by engineer. */
+"Indigo" = "Indygo";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "Ogłoszenie instytucji";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Zaproszenie";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "Zaakceptowano zaproszenie!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "Odrzucono zaproszenie!";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "To jest dozwolony użytek lub podobny wyjątek";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Biblioteka";
+
+/* No comment provided by engineer. */
+"Light Blue" = "Jasny niebieski";
 
 /* like action */
 "Like" = "Polubienie";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "Narzędzie LTI";
+
+/* No comment provided by engineer. */
+"Magenta" = "Amarantowy";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Upewnij się, że włączono uprawnienia kamery w Ustawieniach";
@@ -1175,6 +1235,9 @@
 "Next" = "Następny";
 
 /* No comment provided by engineer. */
+"Nickname" = "Przydomek";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Brak ogłoszeń";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
+"Olive" = "Oliwkowy";
+
+/* No comment provided by engineer. */
 "On Paper" = "Na papierze";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "pomarańczowy";
+
+/* No comment provided by engineer. */
+"Orange" = "Pomarańczowy";
 
 /* No comment provided by engineer. */
 "Ordered List" = "Uporządkowana lista";
@@ -1355,6 +1424,9 @@
 "Pin" = "Przypnij";
 
 /* No comment provided by engineer. */
+"Pink" = "Różowy";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "Przypięte dyskusje";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "Opublikowane";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "Dynia";
+
+/* No comment provided by engineer. */
 "purple" = "fioletowy";
+
+/* No comment provided by engineer. */
+"Purple" = "Fioletowy";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Powiadomienia push";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "czerwony";
+
+/* No comment provided by engineer. */
+"Red" = "Czerwony";
 
 /* No comment provided by engineer. */
 "Redo" = "Cofnij";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "Stuknij, aby wybrać kursy, które chcesz zobaczyć w kalendarzu.";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "Stuknij, aby wyświetlić ogłoszenie";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "Stuknij, aby wyświetlić listę przesłanych zadania.";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Asystenci instruktorów";
+
+/* No comment provided by engineer. */
+"Teal" = "Morski";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Warunki korzystania";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "To komentarz w formie multimedialnej";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "To jest twoje osobiste ustawienie koloru. Tylko ty będziesz widzieć ten kurs podczas kursu.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Ten moduł jest pusty.";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Powiadomienia Yo";
+
+/* No comment provided by engineer. */
+"You have been invited" = "Otrzymałeś zaproszenie";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Aby ustawić przypomnienia, musisz zezwolić na powiadomienia w Ustawieniach.";
