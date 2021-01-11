@@ -68,6 +68,9 @@
 "a teacher" = "kennari";
 
 /* No comment provided by engineer. */
+"Accept" = "Samþykkja";
+
+/* No comment provided by engineer. */
 "Access" = "Aðgangur";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "Bæta við efni";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "Bæta við stuttu heiti fyrir námskeið";
 
 /* No comment provided by engineer. */
 "Add description" = "Bæta við lýsingu";
@@ -302,7 +308,13 @@
 "blue" = "blátt";
 
 /* No comment provided by engineer. */
+"Blue" = "Blár";
+
+/* No comment provided by engineer. */
 "Bold" = "Feitletrað";
+
+/* No comment provided by engineer. */
+"Brick" = "Kubbur";
 
 /* No comment provided by engineer. */
 "Calendar" = "Dagatal";
@@ -407,6 +419,9 @@
 "collapsed" = "fellt saman";
 
 /* No comment provided by engineer. */
+"Color" = "Litur";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "Yfirlag litar";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "Loknar ráðstefnur";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "Ráðstefna %@ er í gangi, smelltu til að sjá upplýsingar";
+
+/* No comment provided by engineer. */
 "Conference Details" = "Upplýsingar um ráðstefnu";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "Ráðstefna í gangi";
 
 /* No comment provided by engineer. */
 "Conferences" = "Ráðstefnur";
@@ -527,6 +548,12 @@
 "Current position" = "Núverandi staða";
 
 /* No comment provided by engineer. */
+"Customize Course" = "Sérsníða námskeið";
+
+/* No comment provided by engineer. */
+"Cyan" = "Blágrænn";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "Hafna";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "Dökkfjólublár";
 
 /* No comment provided by engineer. */
 "Delay posting" = "Seinka birtingu";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "Sleppa";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "Sleppa %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "Sleppa boðum til %@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "Sýna einkunn sem";
@@ -860,6 +899,9 @@
 "green" = "grænt";
 
 /* No comment provided by engineer. */
+"Green" = "Grænn";
+
+/* No comment provided by engineer. */
 "grey" = "grátt";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "Hjálpaðu nemendum þínum með þetta verkefni með því að bæta við leiðbeiningum.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "Fela efni fyrir %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "Hátt: %@";
@@ -920,6 +965,9 @@
 "Incomplete" = "Ólokið";
 
 /* No comment provided by engineer. */
+"Indigo" = "Dimmfjólublátt";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "Stofnana tilkynning";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "Boð";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "Boð samþykkt!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "Boði hafnað!";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "Þetta er lögleg notkun eða svipuð undantekning";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "Skráasafn";
+
+/* No comment provided by engineer. */
+"Light Blue" = "Ljósblár";
 
 /* like action */
 "Like" = "líka við";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "LTI verkfæri";
+
+/* No comment provided by engineer. */
+"Magenta" = "Blárauður";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "Passaðu að virkja leyfi fyrir myndavél í stillingum";
@@ -1175,6 +1235,9 @@
 "Next" = "Næsti";
 
 /* No comment provided by engineer. */
+"Nickname" = "Gælunafn";
+
+/* No comment provided by engineer. */
 "No Announcements" = "Engar tilkynningar";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
+"Olive" = "Ólífa";
+
+/* No comment provided by engineer. */
 "On Paper" = "Á blaði";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "appelsínugulur";
+
+/* No comment provided by engineer. */
+"Orange" = "Appelsínugulur";
 
 /* No comment provided by engineer. */
 "Ordered List" = "Raðaður listi";
@@ -1355,6 +1424,9 @@
 "Pin" = "Festa";
 
 /* No comment provided by engineer. */
+"Pink" = "Bleikt";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "Festar umræður";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "Birt";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "Grasker";
+
+/* No comment provided by engineer. */
 "purple" = "fjólublár";
+
+/* No comment provided by engineer. */
+"Purple" = "Fjólublár";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "Þrýstar tilkynningar";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "rauður";
+
+/* No comment provided by engineer. */
+"Red" = "Rauður";
 
 /* No comment provided by engineer. */
 "Redo" = "Endurtaka";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "Smelltu til að velja námskeiðin sem þú vilt sjá á dagatalinu.";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "Smelltu til að skoða tilkynningu";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "Smelltu til að skoða skilalista.";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "Aðstoðarkennarar";
+
+/* No comment provided by engineer. */
+"Teal" = "Blágrænn";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "Notandaskilmálar";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "Þetta er miðilsathugasemd";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "Þetta er persónuleg litastilling þín. Aðeins þú sérð þessa litastillingu fyrir námskeiðið.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Þessi eining er tóm.";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo tilkynningar";
+
+/* No comment provided by engineer. */
+"You have been invited" = "Þér var boðið";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Þú þarft að leyfa tilkynningar í stillingum til að setja inn áminningar.";

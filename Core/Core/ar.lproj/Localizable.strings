@@ -68,6 +68,9 @@
 "a teacher" = "معلم";
 
 /* No comment provided by engineer. */
+"Accept" = "قبول";
+
+/* No comment provided by engineer. */
 "Access" = "الوصول";
 
 /* No comment provided by engineer. */
@@ -87,6 +90,9 @@
 
 /* No comment provided by engineer. */
 "Add content" = "إضافة محتوى";
+
+/* No comment provided by engineer. */
+"Add Course Nickname" = "اسم شهرة المساق";
 
 /* No comment provided by engineer. */
 "Add description" = "إضافة وصف";
@@ -302,7 +308,13 @@
 "blue" = "أزرق";
 
 /* No comment provided by engineer. */
+"Blue" = "أزرق";
+
+/* No comment provided by engineer. */
 "Bold" = "غامق";
+
+/* No comment provided by engineer. */
+"Brick" = "قرميد";
 
 /* No comment provided by engineer. */
 "Calendar" = "التقويم";
@@ -407,6 +419,9 @@
 "collapsed" = "تم الطي";
 
 /* No comment provided by engineer. */
+"Color" = "اللون";
+
+/* No comment provided by engineer. */
 "Color Overlay" = "تراكب لوني";
 
 /* No comment provided by engineer. */
@@ -428,7 +443,13 @@
 "Concluded Conferences" = "المؤتمرات المنجزة";
 
 /* No comment provided by engineer. */
+"Conference %@ is in progress, tap to view details" = "المؤتمر %@ قيد التقدم، اضغط لعرض التفاصيل.";
+
+/* No comment provided by engineer. */
 "Conference Details" = "تفاصيل المؤتمر";
+
+/* No comment provided by engineer. */
+"Conference in progress" = "المؤتمر قيد التقدم";
 
 /* No comment provided by engineer. */
 "Conferences" = "المؤتمرات";
@@ -527,6 +548,12 @@
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
+"Customize Course" = "تخصيص مساق";
+
+/* No comment provided by engineer. */
+"Cyan" = "سماوي";
+
+/* No comment provided by engineer. */
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
@@ -552,6 +579,12 @@
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
+
+/* No comment provided by engineer. */
+"Decline" = "رفض";
+
+/* No comment provided by engineer. */
+"Deep Purple" = "أرجواني داكن";
 
 /* No comment provided by engineer. */
 "Delay posting" = "تأخير النشر";
@@ -633,6 +666,12 @@
 
 /* Dismiss button for error messages */
 "Dismiss" = "تجاهل";
+
+/* No comment provided by engineer. */
+"Dismiss %@" = "تجاهل %@";
+
+/* No comment provided by engineer. */
+"Dismiss invitation to %@" = "تجاهل الدعوة إلى %@";
 
 /* No comment provided by engineer. */
 "Display Grade as" = "عرض التقدير كأنه";
@@ -860,6 +899,9 @@
 "green" = "أخضر";
 
 /* No comment provided by engineer. */
+"Green" = "أخضر";
+
+/* No comment provided by engineer. */
 "grey" = "رمادي";
 
 /* No comment provided by engineer. */
@@ -873,6 +915,9 @@
 
 /* No comment provided by engineer. */
 "Help your students with this assignment by adding instructions." = "ساعد طلابك لإنجاز هذه المهمة من خلال إضافة تعليمات.";
+
+/* No comment provided by engineer. */
+"Hide content for %@" = "إخفاء محتوى لـ %@";
 
 /* No comment provided by engineer. */
 "High: %@" = "المرتفع: %@";
@@ -920,6 +965,9 @@
 "Incomplete" = "غير مكتمل";
 
 /* No comment provided by engineer. */
+"Indigo" = "نيلي";
+
+/* No comment provided by engineer. */
 "Institution Announcement" = "إعلان المؤسسة";
 
 /* No comment provided by engineer. */
@@ -930,6 +978,12 @@
 
 /* No comment provided by engineer. */
 "Invitation" = "دعوة";
+
+/* No comment provided by engineer. */
+"Invite accepted!" = "تم قبول الدعوة!";
+
+/* No comment provided by engineer. */
+"Invite declined!" = "تم رفض الدعوة!";
 
 /* No comment provided by engineer. */
 "It is a fair use or similar exception" = "إنه استخدام عادل أو استثناء مماثل";
@@ -996,6 +1050,9 @@
 
 /* No comment provided by engineer. */
 "Library" = "المكتبة";
+
+/* No comment provided by engineer. */
+"Light Blue" = "أزرق فاتح";
 
 /* like action */
 "Like" = "إعجاب";
@@ -1068,6 +1125,9 @@
 
 /* No comment provided by engineer. */
 "LTI Tool" = "أداة LTI";
+
+/* No comment provided by engineer. */
+"Magenta" = "ماجنتا";
 
 /* No comment provided by engineer. */
 "Make sure you enable camera permissions in Settings" = "تأكد من تمكين أذونات الكاميرا في الإعدادات";
@@ -1175,6 +1235,9 @@
 "Next" = "التالي";
 
 /* No comment provided by engineer. */
+"Nickname" = "اللقب";
+
+/* No comment provided by engineer. */
 "No Announcements" = "لا توجد إعلانات";
 
 /* No comment provided by engineer. */
@@ -1277,6 +1340,9 @@
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
+"Olive" = "زيتي";
+
+/* No comment provided by engineer. */
 "On Paper" = "على الورق";
 
 /* No comment provided by engineer. */
@@ -1302,6 +1368,9 @@
 
 /* No comment provided by engineer. */
 "orange" = "برتقالي";
+
+/* No comment provided by engineer. */
+"Orange" = "برتقالي";
 
 /* No comment provided by engineer. */
 "Ordered List" = "قائمة مرتبة";
@@ -1355,6 +1424,9 @@
 "Pin" = "تثبيت";
 
 /* No comment provided by engineer. */
+"Pink" = "وردي";
+
+/* No comment provided by engineer. */
 "Pinned Discussions" = "مناقشات مثبتة";
 
 /* No comment provided by engineer. */
@@ -1403,7 +1475,13 @@
 "Published" = "منشور";
 
 /* No comment provided by engineer. */
+"Pumpkin" = "يقطين";
+
+/* No comment provided by engineer. */
 "purple" = "أرجواني";
+
+/* No comment provided by engineer. */
+"Purple" = "أرجواني";
 
 /* Description for Push Notification channel */
 "Push Notifications" = "الإعلامات الفورية";
@@ -1431,6 +1509,9 @@
 
 /* No comment provided by engineer. */
 "red" = "أحمر";
+
+/* No comment provided by engineer. */
+"Red" = "أحمر";
 
 /* No comment provided by engineer. */
 "Redo" = "إعادة";
@@ -1694,6 +1775,9 @@
 "Tap to select the courses you want to see on the calendar." = "اضغط لتحديد المساقات التي ترغب في رؤيتها على التقويم.";
 
 /* No comment provided by engineer. */
+"Tap to view announcement" = "انقر لعرض الإعلان";
+
+/* No comment provided by engineer. */
 "Tap to view submissions list." = "اضغط لعرض قائمة الإرسالات.";
 
 /* No comment provided by engineer. */
@@ -1707,6 +1791,9 @@
 
 /* No comment provided by engineer. */
 "Teaching Assistants" = "مساعدو المعلمين";
+
+/* No comment provided by engineer. */
+"Teal" = "أزرق مخضر";
 
 /* No comment provided by engineer. */
 "Terms of Use" = "شروط الاستخدام";
@@ -1800,6 +1887,9 @@
 
 /* No comment provided by engineer. */
 "This is a media comment" = "هذا تعليق وسائط";
+
+/* No comment provided by engineer. */
+"This is your personal color setting. Only you will see this color for the course." = "هذا إعداد اللون الشخصي الخاص بك. أنت فقط من سترى هذا اللون للمساق.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "هذه الوحدة النمطية فارغة.";
@@ -1980,6 +2070,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "لا توجد إعلامات";
+
+/* No comment provided by engineer. */
+"You have been invited" = "تمت دعوتك";
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "يجب السماح بالإعلامات في الإعدادات لتعيين التذكيرات.";
