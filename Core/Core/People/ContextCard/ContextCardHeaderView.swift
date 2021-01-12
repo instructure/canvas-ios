@@ -32,23 +32,23 @@ struct ContextCardHeaderView: View {
             Text(user.name)
                 .font(.bold20)
                 .foregroundColor(.textDarkest)
-                .testID("ContextCard.userNameLabel")
+                .identifier("ContextCard.userNameLabel")
             Text(user.email ?? "")
                 .font(.regular14)
                 .foregroundColor(.textDarkest)
-                .testID("ContextCard.userEmailLabel")
+                .identifier("ContextCard.userEmailLabel")
             if showLastActivity, let activityTime = enrollment.lastActivityAt?.dateTimeString {
                 Text("Last activity on \(activityTime)")
                     .font(.regular12)
                     .foregroundColor(.textDark)
-                    .testID("ContextCard.lastActivityLabel")
+                    .identifier("ContextCard.lastActivityLabel")
             }
             ZStack {
                 Divider()
                 VStack {
                     Text(course.name ?? "")
                         .font(.semibold16)
-                        .testID("ContextCard.courseLabel")
+                        .identifier("ContextCard.courseLabel")
                     if let sectionName = sections.first(where: {$0.id == enrollment.courseSectionID})?.name {
                         Text(sectionName)
                             .font(.semibold12)
