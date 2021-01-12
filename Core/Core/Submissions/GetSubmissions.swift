@@ -156,6 +156,29 @@ public class GetSubmission: APIUseCase {
     }
 }
 
+public class GetSubmissionsForStudent: CollectionUseCase {
+    public typealias Model = Submission
+
+    public let cacheKey: String?
+    public let request: GetSubmissionsForStudentRequest
+    public var scope: Scope
+
+    init(context: Context, studentID: String) {
+        cacheKey = "\(context.pathComponent)/students/\(studentID)/submissions"
+        request = GetSubmissionsForStudentRequest(context: context, studentID: studentID)
+        scope = Scope(
+            predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(Submission.userID), equals: studentID),
+                NSPredicate(format: "%K != %@", #keyPath(Submission.workflowStateRaw), SubmissionWorkflowState.unsubmitted.rawValue),
+                NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            ]),
+            order: [
+                NSSortDescriptor(key: #keyPath(Submission.gradedAt), ascending: false, selector: #selector(NSDate.compare(_:))),
+            ]
+        )
+    }
+}
+
 public class GetSubmissions: CollectionUseCase {
     public typealias Model = Submission
 

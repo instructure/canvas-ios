@@ -73,7 +73,11 @@ class EnrollmentTests: CoreTestCase {
                 current_grade: "A",
                 final_grade: "F",
                 current_score: 100,
-                final_score: 50
+                final_score: 50,
+                override_grade: nil,
+                override_score: nil,
+                unposted_current_grade: nil,
+                unposted_current_score: nil
             )
         )
         let enrollment: Enrollment = databaseClient.insert()

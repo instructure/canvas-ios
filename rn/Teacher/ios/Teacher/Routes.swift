@@ -257,7 +257,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return PeopleListViewController.create(context: .course(courseID))
     },
 
-    "/courses/:courseID/users/:userID": nil,
+    "/courses/:courseID/users/:userID": { _, params, _ in
+        guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
+        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "")
+        return CoreHostingController(ContextCardView(model: viewModel))
+    },
 
     "/dev-menu": nil,
 

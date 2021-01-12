@@ -38,8 +38,6 @@ import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/compon
 import AttachmentView from '../common/components/AttachmentView'
 import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
-import ContextCard from '../modules/users/ContextCard'
-import { StudentContextCardCourse, StudentContextCardGroup } from '../modules/users/StudentContextCard'
 import Filter from '../modules/filter/Filter'
 import PickerPage from '../common/components/PickerPage'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
@@ -139,7 +137,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', QuizPreview, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', QuizEdit, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/submissions', QuizSubmissions, store, { deepLink: true })
-    registerScreen('/courses/:courseID/users/:userID', ContextCard, store, { deepLink: true })
+    registerScreen('/courses/:courseID/users/:userID', null, store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })
     registerScreen('/courses/:courseID/modules/:moduleID', null, null, { canBecomeMaster: true, deepLink: true })
@@ -165,8 +163,8 @@ export function registerScreens (store: Store): void {
     registerScreen('/groups/:groupID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
     registerScreen('/groups/:groupID/users', GroupList, store)
     registerScreen('/courses/:courseID/grades', null, store, { canBecomeMaster: true, deepLink: true })
-    registerScreen('/courses/:courseID/users/:userID', StudentContextCardCourse, store, { deepLink: true })
-    registerScreen('/groups/:groupID/users/:userID', StudentContextCardGroup, store, { deepLink: true })
+    registerScreen('/courses/:courseID/users/:userID', null, store, { deepLink: true })
+    registerScreen('/groups/:groupID/users/:userID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/users', null, store)
     registerScreen('/groups/:groupID/users', null, store)
 

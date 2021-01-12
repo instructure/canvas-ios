@@ -70,6 +70,7 @@ public struct CircleProgress: View {
             .padding(thickness / 2)
             .accentColor(color)
             .frame(width: size, height: size)
+            .accessibility(label: Text("Loading", bundle: .core))
     }
 }
 
