@@ -26,8 +26,8 @@ enum CoursePeople {
 }
 
 enum PersonContextCard {
-    static func emailLabel(_ email: String) -> Element {
-        return app.staticTexts.matching(label: email).firstElement
+    static func text(_ text: String) -> Element {
+        return app.staticTexts.matching(label: text).firstElement
     }
 }
 
@@ -42,6 +42,7 @@ class PeopleE2ETests: CoreUITestCase {
         CoursePeople.person(name: "Student Two").waitToExist()
         CoursePeople.person(name: "Student One").tap()
 
-        PersonContextCard.emailLabel("ios+student1@instructure.com").waitToExist()
+        PersonContextCard.text("Student One").waitToExist()
+        PersonContextCard.text("Announcments").waitToExist()
     }
 }
