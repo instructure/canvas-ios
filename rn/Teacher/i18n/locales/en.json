@@ -206,12 +206,6 @@
   "courses_43204aae": {
     "message": "Courses"
   },
-  "current_grade_6d0b8ef7": {
-    "message": "Current Grade"
-  },
-  "current_grade_grade_5b083a30": {
-    "message": "Current grade { grade }"
-  },
   "customize_course_eefa9c21": {
     "message": "Customize Course"
   },
@@ -344,30 +338,6 @@
   "fw_subject_ebe04db7": {
     "message": "Fw: { subject }"
   },
-  "grade_9c6f076d": {
-    "message": "Grade"
-  },
-  "grade_after_posting_51718245": {
-    "message": "Grade after posting"
-  },
-  "grade_after_posting_grade_d6e10b87": {
-    "message": "Grade after posting { grade }"
-  },
-  "grade_before_posting_fce5a333": {
-    "message": "Grade before posting"
-  },
-  "grade_before_posting_grade_ca67f851": {
-    "message": "Grade before posting { grade }"
-  },
-  "grade_grade_990eb477": {
-    "message": "Grade { grade }"
-  },
-  "grade_override_ff74e3b4": {
-    "message": "Grade Override"
-  },
-  "grade_override_grade_4788faec": {
-    "message": "Grade Override { grade }"
-  },
   "graded_25cd3fcd": {
     "message": "Graded"
   },
@@ -376,9 +346,6 @@
   },
   "graded_survey_c0f0c395": {
     "message": "Graded Survey"
-  },
-  "grades_a61eba0a": {
-    "message": "Grades"
   },
   "green_15af4778": {
     "message": "Green"
@@ -428,14 +395,8 @@
   "label_text_field_6677ab6f": {
     "message": "{ label }, text field"
   },
-  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-    "message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
-  },
   "late_2be42b88": {
     "message": "Late"
-  },
-  "late_submissions_late_number_baedf6cf": {
-    "message": "Late Submissions { late, number }"
   },
   "latest_f604a75": {
     "message": "Latest"
@@ -481,9 +442,6 @@
   },
   "missing_1a256b3b": {
     "message": "Missing"
-  },
-  "missing_submissions_missing_number_ea40423d": {
-    "message": "Missing Submissions { missing, number }"
   },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates"
@@ -610,12 +568,6 @@
   },
   "out_of_points_number_42209979": {
     "message": "Out of { points, number }"
-  },
-  "override_3de65b2c": {
-    "message": "Override"
-  },
-  "override_grade_grade_f33671d4": {
-    "message": "Override Grade { grade }"
   },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
@@ -755,9 +707,6 @@
   "seconds_plural_one_second_other_seconds_d33cf6e3": {
     "message": "{ seconds, plural,\n    one {# second}\n  other {# seconds}\n}"
   },
-  "section_sectionname_a455be11": {
-    "message": "Section: { sectionName }"
-  },
   "select_a_course_4710371f": {
     "message": "Select a Course"
   },
@@ -766,9 +715,6 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
     "message": "Send individual message to each recipient"
-  },
-  "send_message_a371a974": {
-    "message": "Send message"
   },
   "send_recording_82e5a550": {
     "message": "Send recording"
@@ -887,9 +833,6 @@
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "There was an problem loading your messages."
   },
-  "there_was_an_unexepected_error_fd6f2bf": {
-    "message": "There was an unexepected error."
-  },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "There was an unexpected error. Please try again."
   },
@@ -931,9 +874,6 @@
   },
   "total_grade_568e719f": {
     "message": "Total Grade:"
-  },
-  "total_submissions_total_number_dbb28cf9": {
-    "message": "Total Submissions { total, number }"
   },
   "un_starred_8fef021f": {
     "message": "Un-starred"
