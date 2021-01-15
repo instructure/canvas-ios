@@ -23,3 +23,9 @@ public extension Text {
         self.init(NumberFormatter.localizedString(from: NSNumber(value: value), number: number))
     }
 }
+
+public extension Image {
+    func size(_ size: CGFloat?) -> some View {
+        resizable().scaledToFill().frame(width: size, height: size)
+    }
+}

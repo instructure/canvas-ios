@@ -103,7 +103,7 @@ struct SubmissionCommentListCell: View {
 
     @ViewBuilder var avatar: some View {
         if assignment.anonymizeStudents && comment.authorID != currentUserID {
-            (submission.groupID != nil ? Icon.groupLine : Icon.userLine)
+            (submission.groupID != nil ? Image.groupLine : Image.userLine)
                 .foregroundColor(.textDark)
                 .frame(width: 40, height: 40)
                 .cornerRadius(20)
@@ -164,22 +164,22 @@ struct SubmissionAttempt: View {
     let submission: Submission
     let action: () -> Void
 
-    var icon: Icon? {
+    var icon: Image? {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
-            return Icon.ltiLine
+            return Image.ltiLine
         case .discussion_topic:
-            return Icon.discussionLine
+            return Image.discussionLine
         case .media_recording:
-            return submission.mediaComment?.mediaType == .audio ? Icon.audioLine : Icon.videoLine
+            return submission.mediaComment?.mediaType == .audio ? Image.audioLine : Image.videoLine
         case .online_quiz:
-            return Icon.quizLine
+            return Image.quizLine
         case .online_text_entry:
-            return Icon.textLine
+            return Image.textLine
         case .online_url:
-            return Icon.linkLine
+            return Image.linkLine
         case .wiki_page:
-            return Icon.documentLine
+            return Image.documentLine
         case .none?, .not_graded, .on_paper, .online_upload, nil:
             return nil
         }

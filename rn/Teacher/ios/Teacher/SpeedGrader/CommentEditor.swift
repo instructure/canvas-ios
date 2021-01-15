@@ -38,7 +38,7 @@ struct CommentEditor: View {
                     .padding(.vertical, 2)
             }
             Button(action: action, label: {
-                Icon.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
+                Image.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
             })
                 .opacity(text.isEmpty ? 0.5 : 1)

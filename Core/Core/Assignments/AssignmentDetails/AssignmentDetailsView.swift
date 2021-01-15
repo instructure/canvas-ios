@@ -83,12 +83,12 @@ public struct AssignmentDetailsView: View {
                     .font(.medium16).foregroundColor(.textDark)
                     .padding(.trailing, 12)
                 if assignment.published {
-                    Icon.publishSolid.foregroundColor(.textSuccess)
+                    Image.publishSolid.foregroundColor(.textSuccess)
                         .padding(.trailing, 4)
                     Text("Published", bundle: .core)
                         .font(.medium16).foregroundColor(.textSuccess)
                 } else {
-                    Icon.noSolid.foregroundColor(.textDark)
+                    Image.noSolid.foregroundColor(.textDark)
                         .padding(.trailing, 4)
                     Text("Unpublished", bundle: .core)
                         .font(.medium16).foregroundColor(.textDark)

@@ -75,7 +75,7 @@ struct AssignmentOverridesEditor: View {
         }
         EditorSection {
             ButtonRow(action: add, content: {
-                Icon.addSolid.size(18)
+                Image.addSolid.size(18)
                     .foregroundColor(Color(Brand.shared.linkColor))
                     .padding(.trailing, 12)
                 Text("Add Due Date", bundle: .core)

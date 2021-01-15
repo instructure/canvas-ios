@@ -173,7 +173,7 @@ public struct InboxView: View {
                             Circle()
                                 .strokeBorder(lineWidth: 1 / UIScreen.main.scale)
                                 .foregroundColor(.borderMedium)
-                                .overlay(Icon.groupLine.foregroundColor(.borderDark))
+                                .overlay(Image.groupLine.foregroundColor(.borderDark))
                                 .frame(width: 40, height: 40)
                         } else {
                             Avatar(name: participants.first?.name, url: nil)
@@ -183,7 +183,7 @@ public struct InboxView: View {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .firstTextBaseline, spacing: 2) {
                                 if conversation.starred {
-                                    Icon.starSolid.size(14).foregroundColor(.accentColor)
+                                    Image.starSolid.size(14).foregroundColor(.accentColor)
                                 }
                                 if participants.count > 6 {
                                     Text("\(sample.joined(separator: ", ")) + \(participants.count - sample.count) more", bundle: .core)

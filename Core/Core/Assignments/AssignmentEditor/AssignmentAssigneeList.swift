@@ -80,7 +80,7 @@ struct AssigmentAssigneeList: View {
                 Text(everyone)
                 Spacer()
                 if selection.contains(.everyone) {
-                    Icon.checkSolid.foregroundColor(.accentColor)
+                    Image.checkSolid.foregroundColor(.accentColor)
                 }
             })
             Divider()
@@ -95,7 +95,7 @@ struct AssigmentAssigneeList: View {
                     Text(section.name)
                     Spacer()
                     if selection.contains(.section(section.id)) {
-                        Icon.checkSolid.foregroundColor(.accentColor)
+                        Image.checkSolid.foregroundColor(.accentColor)
                     }
                 })
                 Divider()
@@ -111,7 +111,7 @@ struct AssigmentAssigneeList: View {
                     Text(group.name)
                     Spacer()
                     if selection.contains(.group(group.id)) {
-                        Icon.checkSolid.foregroundColor(.accentColor)
+                        Image.checkSolid.foregroundColor(.accentColor)
                     }
                 })
                 Divider()
@@ -127,7 +127,7 @@ struct AssigmentAssigneeList: View {
                     Text(student.displayName)
                     Spacer()
                     if selection.contains(.student(student.id)) {
-                        Icon.checkSolid.foregroundColor(.accentColor)
+                        Image.checkSolid.foregroundColor(.accentColor)
                     }
                 })
                 Divider()

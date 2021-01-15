@@ -88,7 +88,7 @@ struct NotificationCard: View {
             .cornerRadius(4)
     }
 
-    var icon: Icon {
+    var icon: Image {
         switch notification.icon {
         case .error, .warning:
             return .warningLine

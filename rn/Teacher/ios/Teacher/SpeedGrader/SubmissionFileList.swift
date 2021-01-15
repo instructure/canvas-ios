@@ -57,7 +57,7 @@ struct SubmissionFileList: View {
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .padding(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 8))
                     Spacer()
-                    Icon.checkSolid.size(18)
+                    Image.checkSolid.size(18)
                         .opacity(isSelected ? 1 : 0)
                 }
                     .padding(.vertical, 12)
@@ -77,17 +77,17 @@ struct FileThumbnail: View {
         if let url = file.thumbnailURL {
             RemoteImage(url, width: size, height: size).cornerRadius(4)
         } else if file.mimeClass == "audio" || file.contentType?.hasPrefix("audio/") == true {
-            Icon.audioLine.size(size)
+            Image.audioLine.size(size)
         } else if file.mimeClass == "doc" {
-            Icon.documentLine.size(size)
+            Image.documentLine.size(size)
         } else if file.mimeClass == "image" || file.contentType?.hasPrefix("image/") == true {
-            Icon.imageLine.size(size)
+            Image.imageLine.size(size)
         } else if file.mimeClass == "pdf" {
-            Icon.pdfLine.size(size)
+            Image.pdfLine.size(size)
         } else if file.mimeClass == "video" || file.contentType?.hasPrefix("video/") == true {
-            Icon.videoLine.size(size)
+            Image.videoLine.size(size)
         } else {
-            Icon.documentLine.size(size)
+            Image.documentLine.size(size)
         }
     }
 }

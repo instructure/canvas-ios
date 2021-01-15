@@ -48,7 +48,7 @@ struct SubmissionHeader: View {
             Spacer()
 
             Button(action: navigateToPostPolicy, label: {
-                Icon.eyeLine
+                Image.eyeLine
                     .foregroundColor(Color(Brand.shared.linkColor))
                     .padding(16)
             })

@@ -82,7 +82,7 @@ struct CourseCard: View {
                 options: .modal(.formSheet, isDismissable: false, embedInNav: true)
             )
         }, label: {
-            Icon.moreSolid.foregroundColor(.white)
+            Image.moreSolid.foregroundColor(.white)
                 .background(card.imageURL == nil || !hideColorOverlay ? nil :
                     Circle().fill(Color.accentColor).frame(width: 28, height: 28)
                 )
@@ -96,7 +96,7 @@ struct CourseCard: View {
         if showGrade, let course = card.getCourse() {
             HStack {
                 if course.hideTotalGrade {
-                    Icon.lockSolid.size(14)
+                    Image.lockSolid.size(14)
                 } else {
                     Text(course.displayGrade).font(.semibold14)
                 }

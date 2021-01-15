@@ -65,7 +65,7 @@ public struct DashboardCardView: View {
                 leading: Button(action: {
                     env.router.route(to: "/profile", from: controller, options: .modal())
                 }, label: {
-                    Icon.hamburgerSolid
+                    Image.hamburgerSolid
                         .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
                 })
                     .identifier("Dashboard.profileButton")

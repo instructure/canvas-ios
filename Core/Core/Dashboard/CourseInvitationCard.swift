@@ -32,7 +32,7 @@ struct CourseInvitationCard: View {
 
         HStack(spacing: 0) {
             VStack {
-                Icon.invitationLine.foregroundColor(.white)
+                Image.invitationLine.foregroundColor(.white)
                     .padding(.horizontal, 8).padding(.top, 10)
                 Spacer()
             }
@@ -49,7 +49,7 @@ struct CourseInvitationCard: View {
                             .fixedSize(horizontal: false, vertical: true)
                         Spacer()
                         Button(action: dismiss, label: {
-                            Icon.xSolid.foregroundColor(.textDark)
+                            Image.xSolid.foregroundColor(.textDark)
                                 .padding(10)
                         })
                             .accessibility(label: Text("Dismiss invitation to \(course.name ?? "")", bundle: .core))
