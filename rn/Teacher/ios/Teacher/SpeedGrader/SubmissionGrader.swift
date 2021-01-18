@@ -139,7 +139,7 @@ struct SubmissionGrader: View {
                     .edgesIgnoringSafeArea(.bottom)
             }
         }
-            .avoidKeyboardArea()
+            .avoidKeyboardArea(force: true)
     }
 
     @ViewBuilder

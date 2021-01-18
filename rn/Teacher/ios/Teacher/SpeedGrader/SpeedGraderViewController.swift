@@ -89,8 +89,9 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
                 pages.setCurrentPage(page)
             }
             embed(pages, in: view) { pages, view in
-                pages.view.pin(inside: view, top: nil)
+                pages.view.pin(inside: view, top: nil, bottom: nil)
                 pages.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+                pages.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
             }
         }
 
