@@ -33,10 +33,13 @@ struct ContextCardHeaderView: View {
                 .font(.bold20)
                 .foregroundColor(.textDarkest)
                 .identifier("ContextCard.userNameLabel")
-            Text(user.email ?? "")
-                .font(.regular14)
-                .foregroundColor(.textDarkest)
-                .identifier("ContextCard.userEmailLabel")
+            // Only teachers can see user email addresses
+            if let email = user.email {
+                Text(email)
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                    .identifier("ContextCard.userEmailLabel")
+            }
             if showLastActivity, let activityTime = enrollment.lastActivityAt?.dateTimeString {
                 Text("Last activity on \(activityTime)")
                     .font(.regular12)
