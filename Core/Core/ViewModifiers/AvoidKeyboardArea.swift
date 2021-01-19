@@ -43,17 +43,31 @@ struct AvoidKeyboardArea<Content: View>: View {
                 .onReceive(AvoidKeyboardArea.keyboardHeight) { height in
                     let maxY = geometry.frame(in: .global).maxY
                     let distanceToBottom = UIScreen.main.bounds.height - maxY
-                    self.padding = max(0, height - distanceToBottom - geometry.safeAreaInsets.bottom)
+                    // The keyboard uses a private UIView.AnimationCurve type, but the spring animation matches it quite well.
+                    withAnimation(.spring()) {
+                        self.padding = max(0, height - distanceToBottom - geometry.safeAreaInsets.bottom)
+                    }
                 }
         }
     }
 }
 
 extension View {
+
+    /**
+     This method adds a view modifier which pushes content up by modifying its bottom padding in case a keyboard appears on iOS 13. On iOS 14 this method does nothing as this behavior is automatically achieved by SwiftUI. On iOS 14.3 this automatic behavior doesn't work on some layouts, in such case the `force` flag can be used to add this modifier.
+
+     - parameters:
+        - force: On iOS 14.3 this parameter can enforce adding this view modifier which otherwise would be skipped on this iOS version.
+     */
     @ViewBuilder
-    public func avoidKeyboardArea() -> some View {
+    public func avoidKeyboardArea(force: Bool = false) -> some View {
         if #available(iOS 14, *) {
-            self
+            if #available(iOS 14.3, *), force {
+                AvoidKeyboardArea(content: self)
+            } else {
+                self
+            }
         } else {
             AvoidKeyboardArea(content: self)
         }

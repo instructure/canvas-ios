@@ -83,7 +83,7 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         SubmissionComments.commentTextView.pasteText(testString)
 
         XCTAssert((submission.api.submission_comments ?? []).isEmpty)
-        SubmissionComments.addCommentButton.tap()
+        SubmissionComments.addCommentButton.tapUntil { SubmissionComments.commentTextView.value() == "" }
 
         XCTAssertEqual(app.find(idStartingWith: "SubmissionComments.textCell.").label(), testString)
         waitUntil { submission.api.submission_comments?.isEmpty == false }

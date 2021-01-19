@@ -35,7 +35,7 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
         showSubmission()
         SpeedGrader.setDrawerState(.max)
         SpeedGrader.Segment.grades.tap()
-        SpeedGrader.Rubric.addCommentButton(id: "1").tap()
+        SpeedGrader.Rubric.addCommentButton(id: "1").tapAt(CGPoint(x: 0, y: 0)) // tap() couldn't calculate the hit position
         SubmissionComments.commentTextView.pasteText(":facepalm:") // typeText fails to think it's focused in SwiftUI
 
         let expectation = MiniCanvasServer.shared.expectationFor(
@@ -45,7 +45,7 @@ class SpeedGraderRubricUITests: MiniCanvasUITestCase {
                 userID: student.id.value
             )
         )
-        SubmissionComments.addCommentButton.tap()
+        SubmissionComments.addCommentButton.tapUntil { !SubmissionComments.addCommentButton.isEnabled }
         SpeedGrader.doneButton.tapUntil { !SpeedGrader.doneButton.exists }
         wait(for: [expectation], timeout: 9)
 
