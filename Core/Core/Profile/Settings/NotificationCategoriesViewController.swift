@@ -124,7 +124,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
             "submission_comment": (0, NSLocalizedString("Submission Comment", bundle: .core, comment: ""), courseActivities),
         ]
 
-        guard channelType != .push else {
+        if channelType == .push {
             return map
         }
 
