@@ -62,9 +62,17 @@ public struct CircleProgress: View {
                     } }
 
                     .rotationEffect(rotate)
-                    .onAppear { withAnimation(Animation.linear(duration: 2.25).repeatForever(autoreverses: false)) {
-                        rotate = Angle(radians: 2 * .pi)
-                    } }
+                    .onAppear {
+                        // This repeating animation caused other parts of the UI to animate their appearance repeatedly on iOS 14.0 and below.
+                        if #available(iOS 14.1, *) {
+                            withAnimation(Animation.linear(duration: 2.25).repeatForever(autoreverses: false)) {
+                                rotate = Angle(radians: 2 * .pi)
+                            }
+                        }
+                    }
+                    .onDisappear {
+                        timer.upstream.connect().cancel()
+                    }
             }
         }
             .padding(thickness / 2)
