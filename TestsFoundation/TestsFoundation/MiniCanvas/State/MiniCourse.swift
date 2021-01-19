@@ -87,6 +87,7 @@ public class MiniCourse {
                 id: state.nextId().value,
                 submission_history: [],
                 submission_type: .online_text_entry,
+                user: student,
                 user_id: student.id.value
             ))
         }
