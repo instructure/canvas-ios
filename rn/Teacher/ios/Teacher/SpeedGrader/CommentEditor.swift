@@ -20,6 +20,8 @@ import SwiftUI
 import Core
 
 struct CommentEditor: View {
+    @Environment(\.viewController) var controller
+
     @Binding var text: String
     let action: () -> Void
 
@@ -37,7 +39,10 @@ struct CommentEditor: View {
                     .identifier("SubmissionComments.commentTextView")
                     .padding(.vertical, 2)
             }
-            Button(action: action, label: {
+            Button(action: {
+                action()
+                controller.view.endEditing(true)
+            }, label: {
                 Icon.miniArrowUpSolid.foregroundColor(Color(Brand.shared.buttonPrimaryText))
                     .background(Circle().fill(Color(Brand.shared.buttonPrimaryBackground)))
             })

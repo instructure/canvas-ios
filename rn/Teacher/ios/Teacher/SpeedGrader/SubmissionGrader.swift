@@ -25,6 +25,8 @@ struct SubmissionGrader: View {
     private let submission: Submission
     private var handleRefresh: (() -> Void)?
 
+    @Environment(\.viewController) var controller
+
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
     @Binding var isPagingEnabled: Bool
@@ -201,6 +203,7 @@ struct SubmissionGrader: View {
             withAnimation(.default) {
                 tab = newValue
             }
+            controller.view.endEditing(true)
         }), label: Text(verbatim: "")) {
             Text("Grades").tag(Optional(GraderTab.grades))
             Text("Comments").tag(Optional(GraderTab.comments))
