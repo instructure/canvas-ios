@@ -135,7 +135,7 @@ public class MiniCanvasServer {
     }
 
     public func expectationForRequest(_ path: String, method: APIMethod = .get) -> MiniCanvasExpectation {
-        let expectation = MiniCanvasExpectation(description: "waiting for \(method) \(path)")
+        let expectation = MiniCanvasExpectation(description: "waiting for \(method.rawValue.uppercased()) \(path)")
         expectationHooks[path] = expectation
         return expectation
     }

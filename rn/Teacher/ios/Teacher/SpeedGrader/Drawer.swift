@@ -37,7 +37,16 @@ struct Drawer<Content: View>: View {
         case .max: return maxHeight
         }
     }
-    @Binding var state: DrawerState
+
+    @Environment(\.viewController) var controller
+
+    @Binding var state: DrawerState {
+        didSet {
+            if state == .min {
+                controller.view.endEditing(true)
+            }
+        }
+    }
     @State var translation: CGFloat = 0
 
     init(state: Binding<DrawerState>, minHeight: CGFloat, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {

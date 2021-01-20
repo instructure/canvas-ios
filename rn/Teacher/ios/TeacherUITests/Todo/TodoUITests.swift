@@ -43,6 +43,6 @@ class TodoUITests: MiniCanvasUITestCase {
         XCTAssertEqual(row.label(), "Published, Course One, Assignment 1, No Due Date, 2 NEED GRADING")
 
         row.tap()
-        app.find(label: "A submission from Student 12").waitToExist()
+        app.find(label: "A submission from Student 10").waitToExist()
     }
 }

@@ -43,7 +43,7 @@ public class GetSSOLogin {
         case .teacher:
             return "code_ios_teacher"
         case .parent:
-            return "code" //"code_ios_parent"
+            return "code" // "code_ios_parent"
         }
     }
 
