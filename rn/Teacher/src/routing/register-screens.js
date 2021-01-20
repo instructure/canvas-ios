@@ -122,7 +122,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/act-as-user/:userID')
 
   if (isTeacher()) {
-    registerScreen('/courses/:courseID/assignments/syllabus', null, store, ExperimentalFeature.nativeTeacherSyllabus.isEnabled ? { deepLink: true } : { showInWebView: true, deepLink: true })
+    registerScreen('/courses/:courseID/assignments/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', null, store)

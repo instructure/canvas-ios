@@ -28,7 +28,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case favoriteGroups = "favorite_groups"
     case nativeStudentInbox = "native_student_inbox"
     case nativeTeacherInbox = "native_teacher_inbox"
-    case nativeTeacherSyllabus = "native_teacher_syllabus"
 
     public var isEnabled: Bool {
         get { UserDefaults.standard.bool(forKey: userDefaultsKey) }
