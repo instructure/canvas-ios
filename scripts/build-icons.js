@@ -30,7 +30,6 @@ Run this script from the repo root directory
 const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
-const convert = require('./svg2pdf')
 
 const echo = (out) => console.log(out)
 const run = (cmd) => execSync(cmd, { stdio: 'inherit' })
@@ -160,18 +159,23 @@ for (const icon of whitelist) {
     let slug = (overrides[icon] || {})[type] || icon
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
-    const sfolder = `${assetsFolder}/Symbols/${name}${type}Symbol.symbolset`
     if (!skipDownload) {
       run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/c1c7d673/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     }
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24 with 2px internal padding
-    convert(filepath, `${folder}/${name}.pdf`, [ 24, 24 ], 2)
+    // TODO: Could be run through SVGO after resizing for even smaller files
+    fs.writeFileSync(`${folder}/${name}.svg`, `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<g transform="matrix(${20/1920} 0 0 ${20/1920} 2 2)">${
+  fs.readFileSync(filepath, 'utf8').replace(/<\/?svg[^>]*>/gi, '').trim()
+}</g>
+</svg>`.trim().replace(/>\s+</, '><'))
     fs.writeFileSync(`${folder}/Contents.json`, `{
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "${name}.pdf"${ !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? '' : `,
+      "filename" : "${name}.svg"${ !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? '' : `,
       "language-direction" : "left-to-right"` }
     }
   ],
@@ -184,46 +188,6 @@ for (const icon of whitelist) {
     "preserves-vector-representation" : true
   }
 }\n`)
-
-    // Generate symbol image
-    run(`mkdir -p ${sfolder}`)
-    fs.writeFileSync(`${sfolder}/${name}.svg`,
-`<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
- <g id="Guides">
-  <line id="Baseline-S" x1="0" x2="24" y1="18" y2="18"/>
-  <line id="Capline-S"  x1="0" x2="24" y1="6"  y2="6"/>
-  <line id="Baseline-M" x1="0" x2="24" y1="18" y2="18"/>
-  <line id="Capline-M"  x1="0" x2="24" y1="6"  y2="6"/>
-  <line id="Baseline-L" x1="0" x2="24" y1="18" y2="18"/>
-  <line id="Capline-L"  x1="0" x2="24" y1="6"  y2="6"/>
-  <line id="left-margin"  x1="0"  x2="0"  y1="0" y2="24"/>
-  <line id="right-margin" x1="24" x2="24" y1="0" y2="24"/>
- </g>
- <g id="Symbols">
-  <g id="Regular-M">
-   <rect width="24" height="24" opacity="0" />
-   <g transform="matrix(${20/1920} 0 0 ${20/1920} 2 2)">
-     ${fs.readFileSync(filepath, 'utf8').replace(/<\/?svg[^>]*>/gi, '').trim()}
-   </g>
-  </g>
- </g>
-</svg>
-`)
-    fs.writeFileSync(`${sfolder}/Contents.json`, JSON.stringify({
-      "info" : {
-        "author" : "xcode",
-        "version" : 1
-      },
-      "symbols" : [
-        {
-          "filename" : `${name}.svg`,
-          "idiom" : "universal",
-          ... !/right|left|list|play|forward|reply|start|miniArrowEnd/i.test(name) ? {} : {
-            "language-direction" : "left-to-right"
-          }
-        }
-      ]
-    }))
   }
 }
 
@@ -261,10 +225,10 @@ public extension UIImage {
     ).join('\n    ')}
 }
 
-public extension Icon {
+public extension Image {
     ${Array.from(icons).sort().flatMap(name => [
-      `static var ${name}Line: Icon { Icon("${name}Line") }`,
-      `static var ${name}Solid: Icon { Icon("${name}Solid") }`,
+      `static var ${name}Line: Image { Image("${name}Line", bundle: .core) }`,
+      `static var ${name}Solid: Image { Image("${name}Solid", bundle: .core) }`,
     ]).join('\n    ')}
 }
 `)
@@ -308,8 +272,8 @@ class InstIconExtensionTests: XCTestCase {
 
     func testImage() {
         ${Array.from(icons).sort().flatMap(name => [
-          `XCTAssertEqual(Icon.${name}Line.image, Image("${name}LineSymbol", bundle: .core))`,
-          `XCTAssertEqual(Icon.${name}Solid.image, Image("${name}SolidSymbol", bundle: .core))`,
+          `XCTAssertEqual(Image.${name}Line, Image("${name}Line", bundle: .core))`,
+          `XCTAssertEqual(Image.${name}Solid, Image("${name}Solid", bundle: .core))`,
         ]).join('\n        ')}
     }
     // swiftlint:enable function_body_length

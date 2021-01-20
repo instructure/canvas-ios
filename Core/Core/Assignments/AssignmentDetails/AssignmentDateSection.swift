@@ -28,7 +28,7 @@ struct AssignmentDateSection: View {
         Button(action: route, label: { HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 4) {
-                    Icon.calendarClockLine
+                    Image.calendarClockLine
                     Text("Due", bundle: .core)
                         .font(.medium16)
                     Spacer()

@@ -57,12 +57,12 @@ struct SimilarityScore: View {
                     )
                     .cornerRadius(4)
             case "pending":
-                Icon.clockLine
+                Image.clockLine
                     .size(18).foregroundColor(.white)
                     .padding(4).background(Color.backgroundDark).cornerRadius(4)
                     .accessibility(label: Text("Pending"))
             default:
-                Icon.warningLine
+                Image.warningLine
                     .size(18).foregroundColor(.white)
                     .padding(4).background(Color.backgroundDanger).cornerRadius(4)
                     .accessibility(label: Text("Error"))

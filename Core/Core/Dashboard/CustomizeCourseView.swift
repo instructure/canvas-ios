@@ -96,7 +96,7 @@ struct CustomizeCourseView: View {
                     let isSelected = uiColor.difference(to: color) < 0.02
                     Button(action: { color = uiColor }, label: {
                         Circle().fill(Color(uiColor))
-                            .overlay(isSelected ? Icon.checkSolid.foregroundColor(.white) : nil)
+                            .overlay(isSelected ? Image.checkSolid.foregroundColor(.white) : nil)
                     })
                         .buttonStyle(ScaleButtonStyle(scale: 0.9))
                         .accessibility(addTraits: isSelected ? .isSelected : [])

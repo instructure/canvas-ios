@@ -159,7 +159,7 @@ struct SubmissionGrader: View {
                     Text(selected.submittedAt?.dateTimeString ?? "")
                         .font(.medium14)
                     Spacer()
-                    Icon.miniArrowDownSolid.rotationEffect(.degrees(showAttempts ? 180 : 0))
+                    Image.miniArrowDownSolid.rotationEffect(.degrees(showAttempts ? 180 : 0))
                 }
                     .foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))

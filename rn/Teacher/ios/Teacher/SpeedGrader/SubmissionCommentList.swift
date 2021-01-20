@@ -124,7 +124,7 @@ struct SubmissionCommentList: View {
     var toolbar: some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
-                Icon.addSolid.size(18)
+                Image.addSolid.size(18)
                     .foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
             })

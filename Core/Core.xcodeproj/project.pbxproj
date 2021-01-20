@@ -840,7 +840,6 @@
 		DFE1FF2D212F69B3003F27AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2B212F69B3003F27AA /* Main.storyboard */; };
 		DFE1FF2F212F69B4003F27AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF2E212F69B4003F27AA /* Assets.xcassets */; };
 		DFE1FF32212F69B4003F27AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE1FF30212F69B4003F27AA /* LaunchScreen.storyboard */; };
-		E8258E562510040F0033334F /* IconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8258E552510040F0033334F /* IconTests.swift */; };
 		E83BB40625196E2C000E5B00 /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83BB40525196E2B000E5B00 /* ConversationListCell.swift */; };
 		E86CFBD823A2F7CD00EAE487 /* APIDashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */; };
 		E87A5E4024D4B51C0065B2AA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87A5E3F24D4B51C0065B2AA /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -858,7 +857,6 @@
 		E8AC2D3424AE3A220053AA8A /* GetAlertThresholds.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */; };
 		E8AC2D3724AE3A650053AA8A /* GetObservedStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */; };
 		E8D20399250A723E009B2ABE /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86C71AA2509058700DEDA36 /* InboxView.swift */; };
-		E8D54FF8250BB7E7001CEB00 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D54FF7250BB7E7001CEB00 /* Icon.swift */; };
 		E8D6949824D46B1E0080D883 /* CoreHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D6949724D46B1E0080D883 /* CoreHostingController.swift */; };
 		E8D7E6EB24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */; };
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
@@ -1901,7 +1899,6 @@
 		DFE1FF33212F69B4003F27AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFE1FF39212F6D20003F27AA /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
 		E14A7FC270275DE4A9E9263F /* Pods-needs-pspdfkit-CoreTester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; path = "Target Support Files/Pods-needs-pspdfkit-CoreTester/Pods-needs-pspdfkit-CoreTester.debug.xcconfig"; sourceTree = "<group>"; };
-		E8258E552510040F0033334F /* IconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTests.swift; sourceTree = "<group>"; };
 		E83BB40525196E2B000E5B00 /* ConversationListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
 		E86C71AA2509058700DEDA36 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		E86CFBD723A2F7CD00EAE487 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
@@ -1920,7 +1917,6 @@
 		E8AC2D3124AE3A160053AA8A /* APIAlertThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIAlertThreshold.swift; sourceTree = "<group>"; };
 		E8AC2D3324AE3A220053AA8A /* GetAlertThresholds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAlertThresholds.swift; sourceTree = "<group>"; };
 		E8AC2D3624AE3A650053AA8A /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		E8D54FF7250BB7E7001CEB00 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		E8D6949724D46B1E0080D883 /* CoreHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreHostingController.swift; sourceTree = "<group>"; };
 		E8D7E6EA24D9D0EB00D6CCD0 /* AvoidKeyboardArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardArea.swift; sourceTree = "<group>"; };
 		E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardAreaTests.swift; sourceTree = "<group>"; };
@@ -3901,7 +3897,6 @@
 			isa = PBXGroup;
 			children = (
 				7D264DD02538E20C007CDD90 /* CoreHostingControllerTests.swift */,
-				E8258E552510040F0033334F /* IconTests.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -3925,7 +3920,6 @@
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
 				7D742F3C25563EFD00FD6CF1 /* FlowStack.swift */,
-				E8D54FF7250BB7E7001CEB00 /* Icon.swift */,
 				7D1E856A2567356400D093C5 /* JustifiedGrid.swift */,
 				7D531D4B254C664900CBFCA6 /* ListSectionHeader.swift */,
 				7DD6FB3525081CD900DB5286 /* OptionalDatePicker.swift */,
@@ -4678,7 +4672,6 @@
 				7D81A001228DC1F000C61EDD /* GetQuizTests.swift in Sources */,
 				7D7BA23F24DC776000B1A68B /* InstColorExtensionsTests.swift in Sources */,
 				B16E05E4242529D4006B6ADB /* ScannerViewControllerTests.swift in Sources */,
-				E8258E562510040F0033334F /* IconTests.swift in Sources */,
 				7D0215A121B88BDC009A8E69 /* UITabBarExtensionsTests.swift in Sources */,
 				7DC4A559222EFC9900FA03DC /* Int64ExtensionsTests.swift in Sources */,
 				B12151832447A78900D34BE4 /* CompletionRequirementTests.swift in Sources */,
@@ -4844,7 +4837,6 @@
 				7D0A28DA25194CE6004FB3B6 /* Avatar.swift in Sources */,
 				7DA260D423F72359005D2121 /* DynamicButton.swift in Sources */,
 				7DA260A323F7234C005D2121 /* IPC.swift in Sources */,
-				E8D54FF8250BB7E7001CEB00 /* Icon.swift in Sources */,
 				7D06A2B32469B7D100D76267 /* DiscussionReplyViewController.swift in Sources */,
 				7DA2605323F722D9005D2121 /* Module.swift in Sources */,
 				B102EEB6243B862C002E04F0 /* ModuleItemSequenceViewController.swift in Sources */,

@@ -85,14 +85,14 @@ struct SubmissionGrades: View {
                                         final: false
                                     ))
                                 } else {
-                                    Icon.addSolid.foregroundColor(Color(Brand.shared.linkColor))
+                                    Image.addSolid.foregroundColor(Color(Brand.shared.linkColor))
                                 }
                             })
                                 .accessibility(hint: Text("Prompts for an updated grade"))
                                 .identifier("SpeedGrader.gradeButton")
                         }
                         if submission.grade?.isEmpty == false, submission.postedAt == nil {
-                            Icon.offLine.foregroundColor(.textDanger)
+                            Image.offLine.foregroundColor(.textDanger)
                                 .padding(.leading, 12)
                         }
                     }

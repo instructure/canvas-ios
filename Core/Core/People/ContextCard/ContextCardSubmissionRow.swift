@@ -27,7 +27,7 @@ struct ContextCardSubmissionRow: View {
     private let submission: Submission
     private let progressRatio: CGFloat
     private let grade: String
-    private let icon: Icon
+    private let icon: Image
     private let a11ySubmissionStatus: String
 
     var body: some View {

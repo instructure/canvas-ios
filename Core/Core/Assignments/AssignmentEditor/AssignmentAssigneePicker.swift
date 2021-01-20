@@ -96,13 +96,13 @@ struct AssignmentAssigneePicker: View {
                         Button(action: { withAnimation(.default) {
                             selection = selection.filter { $0 != assignee }
                         } }, label: {
-                            Icon.xLine.foregroundColor(.textDark)
+                            Image.xLine.foregroundColor(.textDark)
                         })
                     }
                 }
             } }
             EditorSection { ButtonRow(action: add, content: {
-                Icon.addSolid.size(18)
+                Image.addSolid.size(18)
                     .padding(.trailing, 12)
                 Text("Add Assignee")
                 Spacer()

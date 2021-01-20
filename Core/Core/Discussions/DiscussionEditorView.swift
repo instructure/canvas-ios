@@ -77,7 +77,7 @@ public struct DiscussionEditorView: View {
                     .identifier("screen.dismiss"),
                 trailing: HStack {
                     Button(action: attach, label: {
-                        Icon.paperclipLine.badge(attachment == nil ? nil : 1)
+                        Image.paperclipLine.badge(attachment == nil ? nil : 1)
                     })
                         .accessibility(label: attachment == nil ? Text("Add Attachment", bundle: .core) : Text("Remove Attachment", bundle: .core))
                         .disabled(isLoading || isSaving)

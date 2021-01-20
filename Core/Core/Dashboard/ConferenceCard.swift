@@ -28,7 +28,7 @@ struct ConferenceCard: View {
     var body: some View {
         HStack(spacing: 0) {
             VStack {
-                Icon.infoSolid.foregroundColor(.white)
+                Image.infoSolid.foregroundColor(.white)
                     .padding(.horizontal, 8).padding(.top, 10)
                 Spacer()
             }
@@ -47,7 +47,7 @@ struct ConferenceCard: View {
                 .accessibility(label: Text("Conference \(conference.title) is in progress, tap to view details", bundle: .core))
                 .identifier("LiveConference.\(conference.id).navigateButton")
             Button(action: dismiss, label: {
-                Icon.xSolid.foregroundColor(.textDark)
+                Image.xSolid.foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
             })
                 .accessibility(label: Text("Dismiss \(conference.title)", bundle: .core))

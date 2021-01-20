@@ -97,7 +97,7 @@ struct RubricAssessor: View {
                 if let grade = customGrade {
                     Text(grade)
                 } else {
-                    Icon.addSolid
+                    Image.addSolid
                 }
             }
                 .accessibility(label: Text("Customize Grade"))

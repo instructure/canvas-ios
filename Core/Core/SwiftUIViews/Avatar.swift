@@ -78,7 +78,7 @@ public struct Avatar: View {
         }
 
         public var body: some View {
-            (isGroup ? Icon.groupLine : Icon.userLine)
+            (isGroup ? Image.groupLine : Image.userLine)
                 .foregroundColor(.textDark)
                 .frame(width: size, height: size)
                 .cornerRadius(size / 2)

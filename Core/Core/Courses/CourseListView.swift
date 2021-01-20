@@ -162,9 +162,9 @@ public struct CourseListView: View {
         var body: some View {
             HStack(alignment: .top, spacing: 0) {
                 Button(action: toggleFavorite) {
-                    let icon = pending ? Icon.starSolid.foregroundColor(.textDark) :
-                        course.isFavorite ? Icon.starSolid.foregroundColor(.textInfo) :
-                        Icon.starLine.foregroundColor(.textDark)
+                    let icon = pending ? Image.starSolid.foregroundColor(.textDark) :
+                        course.isFavorite ? Image.starSolid.foregroundColor(.textInfo) :
+                        Image.starLine.foregroundColor(.textDark)
                     icon.padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 12))
                 }
                     .buttonStyle(PlainButtonStyle())
@@ -193,8 +193,8 @@ public struct CourseListView: View {
                         .padding(.vertical, 16)
 
                     if course.hasTeacherEnrollment {
-                        let icon = course.isPublished ? Icon.completeSolid.foregroundColor(.textSuccess) :
-                            Icon.noSolid.foregroundColor(.textDark)
+                        let icon = course.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
+                            Image.noSolid.foregroundColor(.textDark)
                         icon.padding(16)
                     } else {
                         DisclosureIndicator().padding(16)

@@ -79,7 +79,7 @@ struct DiscussionSectionsPicker: View {
             }, content: {
                 Text(section.name)
                 Spacer()
-                Icon.checkSolid.foregroundColor(.accentColor)
+                Image.checkSolid.foregroundColor(.accentColor)
                     .opacity(isSelected ? 1 : 0)
             })
                 .accessibility(addTraits: isSelected ? .isSelected : [])
