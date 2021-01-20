@@ -185,6 +185,11 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         handleStyles()
         startTrackingTimeOnViewController()
     }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        handleStyles()
+    }
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
