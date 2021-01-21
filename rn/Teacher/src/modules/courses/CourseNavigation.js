@@ -46,7 +46,6 @@ import TabsList from '../tabs/TabsList'
 import { logEvent } from '../../common/CanvasAnalytics'
 import showColorOverlayForCourse from '../../common/show-color-overlay-for-course'
 import { getFakeStudent } from '../../canvas-api'
-import ExperimentalFeature from '../../common/ExperimentalFeature'
 
 type RoutingParams = {
   +courseID: string,

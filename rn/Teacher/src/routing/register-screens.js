@@ -41,7 +41,6 @@ import Attachments from '../modules/attachments/Attachments'
 import Filter from '../modules/filter/Filter'
 import PickerPage from '../common/components/PickerPage'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
-import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 
