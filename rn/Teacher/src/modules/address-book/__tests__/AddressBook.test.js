@@ -198,6 +198,32 @@ describe('AddressBook', () => {
     }])
   })
 
+  it('counts single (non-group) recipients in a group', () => {
+    props.context = 'course_1_teachers'
+    props.name = 'Teachers'
+    props.onSelect = jest.fn()
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestFinished([
+      templates.addressBookResult({
+        id: '1',
+        name: 'Teacher 1',
+      }),
+      templates.addressBookResult({
+        id: '2',
+        name: 'Teacher 2',
+      }),
+    ])
+    const list = screen.find('FlatList')
+    const row = shallow(screen.instance()._renderRow({ item: list.props().data[0] }))
+    row.simulate('press')
+    expect(props.onSelect).toHaveBeenCalledWith([{
+      id: 'course_1_teachers',
+      name: 'Teachers',
+      user_count: 2,
+    }])
+  })
+
+
   it('shows a single dismiss button', () => {
     const screen = shallow(<AddressBook {...props} />)
     const props = screen.props()
