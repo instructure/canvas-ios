@@ -86,6 +86,11 @@ describe('AddressBook', () => {
     expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1') // no longer use the permissions from cache
   })
 
+  it('fetches 100 recipients per page for bulk message check', () => {
+      const screen = shallow(<AddressBook {...props} />)
+      expect(screen.instance()._buildParams('testQuery').per_page).toEqual(100)
+  })
+
   it('renders "All in" row', () => {
     props.context = 'course_1'
     props.name = 'React Native for Dummies'
@@ -249,7 +254,7 @@ describe('AddressBook', () => {
       context: 'course_2',
       search: 'Malthael',
       synthetic_contexts: 1,
-      per_page: 10,
+      per_page: 100,
       skip_visibility_checks: 1,
     })
   })

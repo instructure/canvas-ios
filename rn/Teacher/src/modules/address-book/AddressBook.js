@@ -112,7 +112,7 @@ export class AddressBook extends Component<AddressBookProps, State> {
     context: this.props.context,
     search: query,
     synthetic_contexts: 1,
-    per_page: 10,
+    per_page: 100,
     skip_visibility_checks: 1,
   })
 
