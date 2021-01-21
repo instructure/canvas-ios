@@ -86,6 +86,11 @@ describe('AddressBook', () => {
     expect(newProps.getCoursePermissions).toHaveBeenCalledWith('1') // no longer use the permissions from cache
   })
 
+  it('fetches 100 recipients per page for bulk message check', () => {
+    const screen = shallow(<AddressBook {...props} />)
+    expect(screen.instance()._buildParams('testQuery').per_page).toEqual(100)
+  })
+
   it('renders "All in" row', () => {
     props.context = 'course_1'
     props.name = 'React Native for Dummies'
@@ -198,6 +203,31 @@ describe('AddressBook', () => {
     }])
   })
 
+  it('counts single (non-group) recipients in a group', () => {
+    props.context = 'course_1_teachers'
+    props.name = 'Teachers'
+    props.onSelect = jest.fn()
+    const screen = shallow(<AddressBook {...props} />)
+    screen.instance()._requestFinished([
+      templates.addressBookResult({
+        id: '1',
+        name: 'Teacher 1',
+      }),
+      templates.addressBookResult({
+        id: '2',
+        name: 'Teacher 2',
+      }),
+    ])
+    const list = screen.find('FlatList')
+    const row = shallow(screen.instance()._renderRow({ item: list.props().data[0] }))
+    row.simulate('press')
+    expect(props.onSelect).toHaveBeenCalledWith([{
+      id: 'course_1_teachers',
+      name: 'Teachers',
+      user_count: 2,
+    }])
+  })
+
   it('shows a single dismiss button', () => {
     const screen = shallow(<AddressBook {...props} />)
     const props = screen.props()
@@ -223,7 +253,7 @@ describe('AddressBook', () => {
       context: 'course_2',
       search: 'Malthael',
       synthetic_contexts: 1,
-      per_page: 10,
+      per_page: 100,
       skip_visibility_checks: 1,
     })
   })
