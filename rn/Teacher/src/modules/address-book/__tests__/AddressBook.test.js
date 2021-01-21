@@ -87,8 +87,8 @@ describe('AddressBook', () => {
   })
 
   it('fetches 100 recipients per page for bulk message check', () => {
-      const screen = shallow(<AddressBook {...props} />)
-      expect(screen.instance()._buildParams('testQuery').per_page).toEqual(100)
+    const screen = shallow(<AddressBook {...props} />)
+    expect(screen.instance()._buildParams('testQuery').per_page).toEqual(100)
   })
 
   it('renders "All in" row', () => {
@@ -227,7 +227,6 @@ describe('AddressBook', () => {
       user_count: 2,
     }])
   })
-
 
   it('shows a single dismiss button', () => {
     const screen = shallow(<AddressBook {...props} />)
