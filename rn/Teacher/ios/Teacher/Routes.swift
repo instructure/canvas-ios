@@ -69,10 +69,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/assignments/syllabus": syllabus,
     "/courses/:courseID/syllabus": syllabus,
     "/courses/:courseID/syllabus/edit": { url, params, _ in
-        guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
-            Router.open(url: url)
-            return nil
-        }
         guard let context = Context(path: url.path), let courseID = params["courseID"] else { return nil }
         return CoreHostingController(SyllabusEditorView(context: context, courseID: courseID))
     },
@@ -328,10 +324,6 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 }
 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard ExperimentalFeature.nativeTeacherSyllabus.isEnabled else {
-        Router.open(url: url)
-        return nil
-    }
     guard let courseID = params["courseID"] else { return nil }
     return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
 }

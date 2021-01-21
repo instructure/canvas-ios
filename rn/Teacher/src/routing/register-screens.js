@@ -41,7 +41,6 @@ import Attachments from '../modules/attachments/Attachments'
 import Filter from '../modules/filter/Filter'
 import PickerPage from '../common/components/PickerPage'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
-import ExperimentalFeature from '../common/ExperimentalFeature'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 
@@ -122,7 +121,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/act-as-user/:userID')
 
   if (isTeacher()) {
-    registerScreen('/courses/:courseID/assignments/syllabus', null, store, ExperimentalFeature.nativeTeacherSyllabus.isEnabled ? { deepLink: true } : { showInWebView: true, deepLink: true })
+    registerScreen('/courses/:courseID/assignments/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', null, store)
