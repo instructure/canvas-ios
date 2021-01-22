@@ -112,7 +112,7 @@ class InboxTests: CoreUITestCase {
     }
 
     func testCanMessageMultiple() {
-        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 10), value: [
+        mockData(GetSearchRecipientsRequest(context: .course(baseCourse.id.value), skipVisibilityChecks: true, includeContexts: true, perPage: 100), value: [
             .make(id: 1, name: "Recepient One"),
             .make(id: 2, name: "Recepient Two"),
             .make(id: 3, name: "Recepient Three"),
