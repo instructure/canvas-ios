@@ -184,7 +184,7 @@ public enum DiscussionHTML {
 
     static func js(entry: DiscussionEntry, depth: UInt, maxDepth: UInt, overrideLiked: Bool? = nil) -> String {
         """
-        {attachment:\(js(file: entry.attachment)),
+        {attachment:\(entry.isRemoved ? "null" : js(file: entry.attachment)),
         author:\(js(participant: entry.author)),
         date:\(s(entry.updatedAt?.dateTimeString)),
         id:\(s(entry.id)),
