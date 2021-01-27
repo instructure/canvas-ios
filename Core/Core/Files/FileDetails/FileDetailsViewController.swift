@@ -50,16 +50,19 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var remoteURL: URL?
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
+    var originURrl: URLComponents?
+    var openedInWebView: Bool = false
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
 
-    public static func create(context: Context?, fileID: String, assignmentID: String? = nil) -> FileDetailsViewController {
+    public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
         controller.fileID = fileID
+        controller.originURrl = originURL
         return controller
     }
 
@@ -104,6 +107,10 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if openedInWebView {
+            env.router.dismiss(self)
+            return
+        }
         startTrackingTimeOnViewController()
         env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
@@ -124,7 +131,20 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func update() {
         guard let file = files.first else {
             if let error = files.error {
-                showError(error)
+                if var url = originURrl, url.containsVerifier {
+                    if !url.path.hasSuffix("download") {
+                        url.path.append("/download")
+                        url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
+                    }
+                    if let urlRaw = url.url {
+                        let web = CoreWebViewController()
+                        web.webView.load(URLRequest(url: urlRaw))
+                        openedInWebView = true
+                        env.router.show(web, from: self)
+                    }
+                } else {
+                    showError(error)
+                }
             } else if files.requested, !files.pending {
                 // File was deleted, go back.
                 env.router.dismiss(self)
