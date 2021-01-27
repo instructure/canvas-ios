@@ -43,4 +43,8 @@ extension URLResponse {
     public var isUnauthorized: Bool {
         return (self as? HTTPURLResponse)?.statusCode == 401
     }
+
+    public var exceededLimit: Bool {
+        return (self as? HTTPURLResponse)?.statusCode == 403
+    }
 }

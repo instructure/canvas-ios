@@ -36,7 +36,12 @@ public class GetModules: UseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Module.courseID), equals: courseID, orderBy: #keyPath(Module.position), ascending: true)
+        return Scope(
+            predicate: NSPredicate(format: "%K == %@", #keyPath(Module.courseID), courseID),
+            order: [
+                NSSortDescriptor(key: #keyPath(Module.position), ascending: true),
+                NSSortDescriptor(key: #keyPath(Module.id), ascending: true),
+            ])
     }
 
     public init(courseID: String) {
