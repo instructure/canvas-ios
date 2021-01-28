@@ -161,7 +161,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         topic.refresh()
         entries.refresh()
         permissions.refresh()
-        groups.exhaust(force: false)
+        groups.exhaust(force: true)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -304,6 +304,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     // If a topic has children, & current user is a student,
     // they should see their child group topic, not this course one
     func fixStudentGroupTopic() -> Bool {
+        guard groups.requested && !groups.pending else { return false }
         guard
             env.app == .student, context.contextType == .course,
             let topic = topic.first, topic.groupCategoryID != nil,
