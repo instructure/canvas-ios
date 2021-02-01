@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ meer";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ te laat";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ ontbreekt";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ ptn";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ secties";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ ingeleverd";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, was het laatste bericht op %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "een ouder";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Huidige inschrijvingen";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Huidig cijfer";
+
+/* No comment provided by engineer. */
 "Current position" = "Huidige positie";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Gemiddeld eindcijfer";
 
 /* No comment provided by engineer. */
+"grade" = "cijfer";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Beoordelen na posten";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Beoordelen vóór posten";
+
+/* No comment provided by engineer. */
+"Grade override" = "Cijferoverschrijving";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Cijferoverschrijving";
+
+/* No comment provided by engineer. */
 "Graded" = "Beoordeeld";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Landingspagina";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Laatste activiteit op  %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Laatste bericht %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ of %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Bezig met laden";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Meer modules laden...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Moet worden beoordeeld";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "MOET WORDEN BEOORDEELD";
 
 /* No comment provided by engineer. */
 "Network Error" = "Netwerkfout";
@@ -1604,6 +1649,9 @@
 "Search" = "Zoeken";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Sectie: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Secties";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Dagelijkse samenvatting versturen";
+
+/* No comment provided by engineer. */
+"Send message" = "Bericht versturen";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Wekelijkse samenvatting versturen";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Er is iets mis";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Er is iets misgegaan";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Op likes sorteren";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Vak";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Inlevering %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Opmerking over inzending";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van toetsen. Ophalen om te vernieuwen en het nogmaals te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Er was een fout bij het communiceren met de server";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Er is een fout met het instellen van Optreden als gebruiker. Probeer het later opnieuw.";

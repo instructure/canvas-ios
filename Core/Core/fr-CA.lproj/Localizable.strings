@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ %2$@ de plus";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Moyenne cumulative";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ en retard";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ manquant";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sections";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ envoyé";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, dans %2$@, le dernier message était sur %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5 %";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un parent";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Inscriptions actuelles";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Note actuelle";
+
+/* No comment provided by engineer. */
 "Current position" = "Job actuel";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Échelle du GPA";
 
 /* No comment provided by engineer. */
+"grade" = "notation";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Notation après publication";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Notation avant publication";
+
+/* No comment provided by engineer. */
+"Grade override" = "Surclasser la notation";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Surclasser la notation";
+
+/* No comment provided by engineer. */
 "Graded" = "Noté";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Page de renvoi";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Dernière activité le %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Dernière publication %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ ou %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "En cours de chargement";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Chargement de plus de modules";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Requiert une notation";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "REQUIERT UNE NOTATION";
 
 /* No comment provided by engineer. */
 "Network Error" = "Erreur de réseau";
@@ -1604,6 +1649,9 @@
 "Search" = "Rechercher";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Section : %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sections";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Envoyer un résumé quotidien";
+
+/* No comment provided by engineer. */
+"Send message" = "Envoyer un message";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Envoyer un résumé hebdomadaire";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Quelque chose ne va pas";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Une erreur est survenue";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Classer par nombre de rétroactions de type « J’aime »";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Objet";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Envoi %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Commentaire de soumission";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Une erreur est survenue lors du chargement des questionnaires. Tirez pour actualiser et réessayer.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Une erreur est survenue pendant la communication avec le serveur.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Un problème est survenu avec l’action « Agir en tant qu'utilisateur ». Veuillez essayer de nouveau plus tard.";

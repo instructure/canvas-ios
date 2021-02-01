@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ المزيد";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ متأخر";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ مفقود";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ النقاط";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ أقسام";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ تم الإرسال";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@، خلال %2$@، آخر رسالة تمت في %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "ولي أمر";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "التسجيلات الحالية";
 
 /* No comment provided by engineer. */
+"Current Grade" = "التقدير الحالي";
+
+/* No comment provided by engineer. */
 "Current position" = "المركز الحالي";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "مقياس GPA";
 
 /* No comment provided by engineer. */
+"grade" = "التقدير";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "التقدير بعد النشر";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "التقدير قبل النشر";
+
+/* No comment provided by engineer. */
+"Grade override" = "تجاوز التقدير";
+
+/* No comment provided by engineer. */
+"Grade Override" = "تجاوز التقدير";
+
+/* No comment provided by engineer. */
 "Graded" = "تم تقييم الدرجة";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "الصفحة المنتقل إليها";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "آخر نشاط في %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "آخر نشر %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ أو %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "جارٍ التحميل";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "تحميل المزيد من الوحدات النمطية...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "بحاجة إلى تقدير الدرجات";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "بحاجة إلى تقدير الدرجات";
 
 /* No comment provided by engineer. */
 "Network Error" = "خطأ في الشبكة";
@@ -1604,6 +1649,9 @@
 "Search" = "بحث";
 
 /* No comment provided by engineer. */
+"Section: %@" = "القسم: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "الأقسام";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "إرسال ملخص يومي";
+
+/* No comment provided by engineer. */
+"Send message" = "إرسال رسالة";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "إرسال ملخص أسبوعي";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "هناك شيء خطأ";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "حدث خطأ ما";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "الترتيب حسب الإعجابات";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "الموضوع";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "إرسال %1$@، %2$@، %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "تعليق الإرسال";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الاختبارات الموجزة. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "حدث خطأ أثناء الاتصال بالخادم";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "حدث خطأ ما في التصرف كمستخدم. الرجاء إعادة المحاولة لاحقًا.";

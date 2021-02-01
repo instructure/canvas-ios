@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ més";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ endarrerit";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ falta";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ punts";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ seccions";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ entregat";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, a %2$@, l'últim missatge va ser el %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un progenitor";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Inscripcions actuals";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Qualificació actual";
+
+/* No comment provided by engineer. */
 "Current position" = "Posició actual";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Escala GPA";
 
 /* No comment provided by engineer. */
+"grade" = "qualificació";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Qualificació després de la publicació";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Qualificació abans de la publicació";
+
+/* No comment provided by engineer. */
+"Grade override" = "Substitució de la qualificació";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Substitució de la qualificació";
+
+/* No comment provided by engineer. */
 "Graded" = "Qualificat";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Pàgina de destinació";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Darrera activitat el %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Darrera publicació %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ o %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "S'està carregant";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "S'estan carregant més mòduls…";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "S'ha de qualificar";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "S'HA DE QUALIFICAR";
 
 /* No comment provided by engineer. */
 "Network Error" = "Error de xarxa";
@@ -1604,6 +1649,9 @@
 "Search" = "Cerca";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Secció: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Seccions";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Envia el resum diari";
+
+/* No comment provided by engineer. */
+"Send message" = "Envia el missatge";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Envia el resum setmanal";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Alguna cosa no va bé";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Alguna cosa no ha anat bé";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordena per número de M'agrada";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Assumpte";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Entrega %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Comentari sobre l'entrega";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar els qüestionaris. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "S'ha produït un error en comunicar-se amb el servidor";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "S'ha produït un error amb \"Actua com a usuari\". Torneu a provar-ho més endavant.";

@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ mer";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ sen";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ saknad";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ poäng";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sektioner";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ skickad";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@ mottogs det senaste meddelandet %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en vårdnadshavare";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Nuvarande registreringar";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Aktuellt omdöme";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuell position";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Skala för genomsnittsbetyg";
 
 /* No comment provided by engineer. */
+"grade" = "omdöme";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Bedöm efter publicering";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Bedöm före publicering";
+
+/* No comment provided by engineer. */
+"Grade override" = "Åsidosättning av omdöme";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Åsidosättning av omdöme";
+
+/* No comment provided by engineer. */
 "Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Landningssida";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Senaste aktivitet %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Senaste inlägg %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ eller %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Läser in";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Läser in fler moduler...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Måste bedömas";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "BEHÖVER BEDÖMNING";
 
 /* No comment provided by engineer. */
 "Network Error" = "Nätverksfel";
@@ -1604,6 +1649,9 @@
 "Search" = "Sök";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Sektion: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sektioner";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Skicka daglig sammanfattning";
+
+/* No comment provided by engineer. */
+"Send message" = "Skicka meddelandet";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Skicka veckovis sammanfattning";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Något stämmer inte";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Något gick fel";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sortera efter antal ”gilla”";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Ämne";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Inlämning %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Inlämningskommentar";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera och försöka igen.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Ett fel uppstod under kommunikation med servern";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ett fel uppstod med funktionen Agera som användare. Försök igen senare.";
