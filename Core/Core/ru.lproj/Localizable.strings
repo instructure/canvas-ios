@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ дополнительно";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ поздно";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ отсутствует";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ баллы";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ разделы";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ отправлено";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, в %2$@, последнее сообщение было %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "родитель";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Текущие регистрации";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Текущая оценка";
+
+/* No comment provided by engineer. */
 "Current position" = "Текущая позиция";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Шкала GPA";
 
 /* No comment provided by engineer. */
+"grade" = "оценка";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Оценка после публикации";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Оценка до публикации";
+
+/* No comment provided by engineer. */
+"Grade override" = "Игнорировать оценку";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Отклонение оценки";
+
+/* No comment provided by engineer. */
 "Graded" = "С оценкой";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Целевая страница";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Последнее действие включено %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Последний пост %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ или %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Загрузка";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Загрузка других модулей...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Требует оценки";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "ТРЕБУЕТСЯ ОЦЕНКА";
 
 /* No comment provided by engineer. */
 "Network Error" = "Ошибка сети";
@@ -1604,6 +1649,9 @@
 "Search" = "Поиск";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Раздел: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Разделы";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Отправить ежедневный отчет";
+
+/* No comment provided by engineer. */
+"Send message" = "Отправить сообщение";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Отправить еженедельный отчет";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Что-то неверно";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Что-то пошло не так";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Сортировать по лайкам";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Тема";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Отправка %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Комментарий при отправке";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Произошла ошибка при загрузке тестов. Потяните для обновления, чтобы попробовать еще раз.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "При обмене данными с сервером произошла ошибка";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Возникла ошибка использования функции «Действовать как пользователь». Попробуйте еще раз позже.";

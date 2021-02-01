@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@%2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@+ 另外 %2$@";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@迟交";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@缺失";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@得分";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@分组";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@已提交";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@，上一条消息位于%3$@%4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "家长";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "当前注册";
 
 /* No comment provided by engineer. */
+"Current Grade" = "当前评分";
+
+/* No comment provided by engineer. */
 "Current position" = "当前位置";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA 分数";
 
 /* No comment provided by engineer. */
+"grade" = "评分";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "发布后的评分";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "发布前的评分";
+
+/* No comment provided by engineer. */
+"Grade override" = "覆盖评分";
+
+/* No comment provided by engineer. */
+"Grade Override" = "评分覆盖";
+
+/* No comment provided by engineer. */
 "Graded" = "已评分";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "登录页";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "上次活动：%@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "上一次发布%@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@或%2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "正在加载";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "正在加载更多单元……";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "需要评分";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "需要评分";
 
 /* No comment provided by engineer. */
 "Network Error" = "网络错误";
@@ -1604,6 +1649,9 @@
 "Search" = "搜索";
 
 /* No comment provided by engineer. */
+"Section: %@" = "班次：%@";
+
+/* No comment provided by engineer. */
 "Sections" = "班次";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "发送每日摘要";
+
+/* No comment provided by engineer. */
+"Send message" = "发送消息";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "发送每周摘要";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "出错";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "出了些问题";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "主题";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "提交项%1$@，%2$@，%3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "提交评论";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "加载测验时发生错误。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "与服务器通信时发生错误";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "临时代理用户出错。请稍后再试。";

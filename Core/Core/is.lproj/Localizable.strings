@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ meira";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Meðaleinkunn";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ seint";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ vantar";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ punktar";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ hlutar";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ skilað";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, í %2$@, síðustu skilaboðin voru þann %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "foreldri";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Núverandi innritanir";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Núverandi einkunn";
+
+/* No comment provided by engineer. */
 "Current position" = "Núverandi staða";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Meðaleinkunnakvarði";
 
 /* No comment provided by engineer. */
+"grade" = "einkunn";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Gefa einkunn eftir birtingu";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Gefa einkunn fyrir birtingu";
+
+/* No comment provided by engineer. */
+"Grade override" = "Hnekking einkunnar";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Hnekking einkunnar";
+
+/* No comment provided by engineer. */
 "Graded" = "Metið";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Lendingarsíða";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Virkni síðast þann %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Síðasti póstur %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ eða %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Hleður";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Hleð inn fleiri einingum…";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Þarfnast einkunnagjafar";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "EINKUNN VANTAR";
 
 /* No comment provided by engineer. */
 "Network Error" = "Netkerfisvilla";
@@ -1604,6 +1649,9 @@
 "Search" = "Leita";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Hluti: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Hlutar";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Senda daglega samantekt";
+
+/* No comment provided by engineer. */
+"Send message" = "Senda skilaboð";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Senda vikulega samantekt";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Eitthvað er ekki í lagi";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Eitthvað mistókst";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Efni";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Skil %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Athugasemd með skilum";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Villa kom upp við samskipti við þjóninn";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Villa kom upp við bregðast við sem notandi. Vinsamlegast reyndu aftur seinna.";

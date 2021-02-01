@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ arall";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ yn hwyr";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ ar goll";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ pwynt";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ adran";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ wedi cyflwyno";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, yn %2$@, roedd y neges ddiwethaf am %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "rhiant";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Ymrestriad presennol";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Gradd Bresennol";
+
+/* No comment provided by engineer. */
 "Current position" = "Lleoliad presennol";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Graddfa GPA";
 
 /* No comment provided by engineer. */
+"grade" = "gradd";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Gradd ar ôl postio";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Gradd cyn postio";
+
+/* No comment provided by engineer. */
+"Grade override" = "Disodli gradd";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Disodli Gradd";
+
+/* No comment provided by engineer. */
 "Graded" = "Wedi graddio";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Tudalen lanio";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Gweithgaredd diwethaf ar %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Post diwethaf %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ neu %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Wrthi’n llwytho";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Wrthi’n llwytho mwy o fodiwlau...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Angen Graddio";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "ANGEN EU GRADDIO";
 
 /* No comment provided by engineer. */
 "Network Error" = "Gwall ar y Rhwydwaith";
@@ -1604,6 +1649,9 @@
 "Search" = "Chwilio";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Adran: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Adrannau";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Anfon crynodeb dyddiol";
+
+/* No comment provided by engineer. */
+"Send message" = "Anfon neges";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Anfon crynodeb wythnosol";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Mae rhywbeth o'i le";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Aeth rhywbeth o’i le";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Pwnc";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Cyflwyniad %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Sylw ar y cyflwyniad";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Gwall wrth lwytho cwisiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Gwall wrth gyfathrebu â'r gweinydd";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Gwall â'r nodwedd Gweithredu fel Defnyddiwr. Rhowch gynnig arall arni rywbryd eto.";

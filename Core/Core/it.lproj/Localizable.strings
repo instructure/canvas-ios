@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + altri %2$@";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ in ritardo";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ mancante";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ pt";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sezioni";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ inviato";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, l’ultimo messaggio era del %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un genitore";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Iscrizioni attuali";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Voto attuale";
+
+/* No comment provided by engineer. */
 "Current position" = "Posizione attuale";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Scala GPA";
 
 /* No comment provided by engineer. */
+"grade" = "voto";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Voto dopo pubblicazione";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Voto prima della pubblicazione";
+
+/* No comment provided by engineer. */
+"Grade override" = "Sostituzione voto";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Sostituzione valutazione";
+
+/* No comment provided by engineer. */
 "Graded" = "Valutato";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Pagina di destinazione";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Ultima attività del   %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Ultimo post %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ oppure %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Caricamento";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Caricamento di più moduli in corso...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Richiede la valutazione";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "RICHIEDONO LA VALUTAZIONE";
 
 /* No comment provided by engineer. */
 "Network Error" = "Errore di rete";
@@ -1604,6 +1649,9 @@
 "Search" = "Cerca";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Sezione: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sezioni";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Invia riepilogo giornaliero";
+
+/* No comment provided by engineer. */
+"Send message" = "Invia messaggio";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Invia riepilogo settimanale";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Si è verificato un problema";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Si è verificato un problema";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordina per Mi piace";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Oggetto";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Consegna %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Commento consegna";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Si è verificato un errore durante il caricamento dei quiz. Trascinare verso il basso per aggiornare e riprovare.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Si è verificato un errore durante la comunicazione con il server";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Si è verificato un errore durante l’operazione Agisci come utente. Riprova in seguito.";

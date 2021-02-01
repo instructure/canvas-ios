@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@%2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@+ %2$@ 更多";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@逾期";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@缺失";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@分數";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@分班";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@已提交";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@，在 %2$@ 中，最後的訊息在 %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56.5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86.5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "父母";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "當前註冊";
 
 /* No comment provided by engineer. */
+"Current Grade" = "目前評分";
+
+/* No comment provided by engineer. */
 "Current position" = "目前位置";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA 量表系統";
 
 /* No comment provided by engineer. */
+"grade" = "評分";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "公佈後評分";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "公佈前評分";
+
+/* No comment provided by engineer. */
+"Grade override" = "評分重寫";
+
+/* No comment provided by engineer. */
+"Grade Override" = "重寫評分";
+
+/* No comment provided by engineer. */
 "Graded" = "已評分";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "登入頁面";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "上次活躍時間為%@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "最後發布%@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@或者%2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "載入";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "正在載入更多單元...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "需要等級評分";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "需要等級評分";
 
 /* No comment provided by engineer. */
 "Network Error" = "網路錯誤";
@@ -1604,6 +1649,9 @@
 "Search" = "搜尋";
 
 /* No comment provided by engineer. */
+"Section: %@" = "分班：%@";
+
+/* No comment provided by engineer. */
 "Sections" = "分班";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "發送每日摘要";
+
+/* No comment provided by engineer. */
+"Send message" = "傳送訊息";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "發送每週摘要";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "出錯了";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "似乎出問題了";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按點讚分類";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "主題";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "提交項目 %1$@，%2$@，%3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "提交項目評論";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "載入測驗時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "在與伺服器通訊時出現問題";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "作為使用者時出現錯誤。請稍後重試。";

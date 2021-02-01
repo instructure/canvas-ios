@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ več";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ zamuda";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ manjkajoče";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ točk";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sekcij";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ poslano";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, v %2$@, zadnje sporočilo je bilo dne %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5 %";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5 %";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "eden od staršev";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Trenutni vpisi";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Trenutna ocena";
+
+/* No comment provided by engineer. */
 "Current position" = "Trenutni položaj";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "Lestvica GPA";
 
 /* No comment provided by engineer. */
+"grade" = "ocena";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Ocena po objavi";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Ocena pred objavo";
+
+/* No comment provided by engineer. */
+"Grade override" = "Preglasitev ocene";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Preglasitev ocene";
+
+/* No comment provided by engineer. */
 "Graded" = "Ocenjeno";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Ciljna stran";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Zadnja aktivnost dne %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Zadnja objava %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ ali %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Nalaganje";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Nalagam več modulov ...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Je treba oceniti.";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "JE TREBA OCENITI";
 
 /* No comment provided by engineer. */
 "Network Error" = "Napaka v omrežju";
@@ -1604,6 +1649,9 @@
 "Search" = "Iskanje";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Sekcija: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sekcije";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Pošlji dnevni povzetek";
+
+/* No comment provided by engineer. */
+"Send message" = "Pošlji sporočilo";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Pošlji tedenski povzetek";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Prišlo je do težave";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Prišlo je do težav";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Razvrsti po všečkih";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Kratek opis predmeta";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Oddaja %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Komentar k oddaji";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Pri nalaganju kvizov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Med komunikacijo s strežnikom je prišlo do napake";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Prišlo je do napake pri prevzemanju vloge uporabnika. Poskusite znova pozneje.";

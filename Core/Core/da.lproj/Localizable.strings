@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ mere";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ sen";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ mangler";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ point";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sektioner";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ afleveret";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i %2$@, var den sidste besked den %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5 %";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5 %";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en forælder";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Aktuelle tilmeldinger";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Nuværende karakter";
+
+/* No comment provided by engineer. */
 "Current position" = "Aktuel position";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA-scala";
 
 /* No comment provided by engineer. */
+"grade" = "karakter";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Karakter efter opslag";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Karakter inden opslag";
+
+/* No comment provided by engineer. */
+"Grade override" = "Tilsidesættelse af karakter";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Tilsidesættelse af karakter";
+
+/* No comment provided by engineer. */
 "Graded" = "Bedømt";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Landingsside";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Sidste aktivitet den %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Sidste indlæg %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ eller %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Indlæser";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Indlæser flere moduler ...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Mangler bedømmelse";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "MANGLER KARAKTER";
 
 /* No comment provided by engineer. */
 "Network Error" = "Netværk fejl";
@@ -1604,6 +1649,9 @@
 "Search" = "Søg";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Sektion: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sektioner";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Send dagligt sammendrag";
+
+/* No comment provided by engineer. */
+"Send message" = "Send besked";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Send ugentligt sammendrag";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Der er noget galt";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Noget gik galt";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sorter efter 'synes godt om'";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Emne";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Aflevering %1$@, %2$@ %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Afleveringskommentar";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af test. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Der opstod en fejl, mens der blev kommunikeret med serveren";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Der opstod en fejl ved at fungere som bruger. Prøv igen senere.";

@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ lisää";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ myöhässä";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ puuttuu";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ osat";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ palautettu";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@kohdassa %2$@ viimeinen viesti oli %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "vanhempi";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Tämänhetkiset ilmoittautumiset";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Kurssin arvosana";
+
+/* No comment provided by engineer. */
 "Current position" = "Nykyinen asema";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA-asteikko";
 
 /* No comment provided by engineer. */
+"grade" = "arvosana";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Arvosana lähetyksen jälkeen";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Arvosana ennen lähetystä";
+
+/* No comment provided by engineer. */
+"Grade override" = "Korvaa arvosana";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Korvaa arvosana";
+
+/* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Aloitussivu";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Viimeisin aktiviteetti %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Viimeinen lähetys %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ tai %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Ladataan";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Ladataan lisää moduuleita...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Täytyy arvostella";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "TÄYTYY ARVOSTELLA";
 
 /* No comment provided by engineer. */
 "Network Error" = "Verkkovirhe";
@@ -1604,6 +1649,9 @@
 "Search" = "Hae";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Osio: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Osiot";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Lähetä päivittäinen yhteenveto";
+
+/* No comment provided by engineer. */
+"Send message" = "Lähetä viesti";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Lähetä viikoittainen yhteenveto";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Jotakin on väärin";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Jotakin meni pieleen";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Lajittele tykkäysten perusteella";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Aihe";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Tehtäväpalautus %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Lähetyksen kommentti";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "Ilmeni virhe kommunikoitaessa palvelimen kanssa";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ilmeni virhe toiminnossa Toimi käyttäjänä. Yritä myöhemmin uudelleen.";

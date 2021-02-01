@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ more";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Class";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ late";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ missing";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ sections";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ submitted";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, in %2$@, the last message was on %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "a parent";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Current enrolments";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Current Grade";
+
+/* No comment provided by engineer. */
 "Current position" = "Current position";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA scale";
 
 /* No comment provided by engineer. */
+"grade" = "grade";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Grade after posting";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Grade before posting";
+
+/* No comment provided by engineer. */
+"Grade override" = "Grade override";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Grade Override";
+
+/* No comment provided by engineer. */
 "Graded" = "Graded";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Landing page";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Last activity on %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Last post %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ or %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "Loading";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Loading more modules...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "Need grading";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "NEEDS GRADING";
 
 /* No comment provided by engineer. */
 "Network Error" = "Network error";
@@ -1604,6 +1649,9 @@
 "Search" = "Search";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Section: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Sections";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Send daily summary";
+
+/* No comment provided by engineer. */
+"Send message" = "Send message";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Send weekly summary";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Something is Wrong";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "Something went wrong";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sort by 'likes'";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Subject";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Submission %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Submission comment";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "There was an error loading quizzes. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "There was an error while communicating with the server";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "There was an error with act as user. Please try again later.";

@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@%2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@+ %2$@ より多く";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@遅延";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@欠如";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ポイント";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@セクション";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@提出済み";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@、%2$@での最終メッセージ日：%3$@%4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "親";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "現在の登録";
 
 /* No comment provided by engineer. */
+"Current Grade" = "現在の成績";
+
+/* No comment provided by engineer. */
 "Current position" = "現在のポジション";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPAスケール";
 
 /* No comment provided by engineer. */
+"grade" = "成績評価";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "投稿後の成績";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "投稿前の成績";
+
+/* No comment provided by engineer. */
+"Grade override" = "成績上書き";
+
+/* No comment provided by engineer. */
+"Grade Override" = "成績上書き";
+
+/* No comment provided by engineer. */
 "Graded" = "採点済み";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "ランディングページ";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "最新のアクティビティがあった日%@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "最後のポスト%@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@または%2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "読み込み中";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "モジュールをさらにロードしています…";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "採点が必要です";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "採点が必要です";
 
 /* No comment provided by engineer. */
 "Network Error" = "ネットワークエラー";
@@ -1604,6 +1649,9 @@
 "Search" = "検索";
 
 /* No comment provided by engineer. */
+"Section: %@" = "セクション：%@";
+
+/* No comment provided by engineer. */
 "Sections" = "セクション";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "毎日のサマリを送信する";
+
+/* No comment provided by engineer. */
+"Send message" = "メッセージを送信する";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "毎週のサマリを送信する";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "なにか問題があります";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "なにかが失敗しました";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "いいね順";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "件名";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "%1$@、%2$@に提出。%3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "提出コメント";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "クイズの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "サーバーとの通信中にエラーが発生しました";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "ユーザーとして行動する際にエラーが発生しました。後ほどもういちど試してください。";
