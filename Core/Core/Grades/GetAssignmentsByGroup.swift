@@ -24,12 +24,14 @@ public class GetAssignmentsByGroup: APIUseCase {
 
     let courseID: String
     let gradingPeriodID: String?
+    let gradedOnly: Bool
 
     private let include: [GetAssignmentGroupsRequest.Include] = [ .assignments, .observed_users, .submission, .score_statistics ]
 
-    public init(courseID: String, gradingPeriodID: String? = nil) {
+    public init(courseID: String, gradingPeriodID: String? = nil, gradedOnly: Bool = false) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
+        self.gradedOnly = gradedOnly
     }
 
     public var cacheKey: String? {
@@ -43,8 +45,18 @@ public class GetAssignmentsByGroup: APIUseCase {
         perPage: 100
     ) }
 
+    private var predicate: NSPredicate {
+        var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+
+        if gradedOnly {
+            predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
+        }
+
+        return predicate
+    }
+
     public var scope: Scope { Scope(
-        predicate: NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID),
+        predicate: predicate,
         order: [
             NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.position), ascending: true),
             NSSortDescriptor(key: #keyPath(Assignment.assignmentGroup.name), ascending: true, naturally: true),

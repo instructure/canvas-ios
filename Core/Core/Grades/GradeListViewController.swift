@@ -61,7 +61,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     var gradingPeriodLoaded = false
     var userID: String?
 
-    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
         self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -190,7 +190,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         )) { [weak self] in
             self?.update()
         }
-        assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID)) { [weak self] in
+        assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
             self?.update()
         }
         // Delete assignment groups immediately, to see a spinner again

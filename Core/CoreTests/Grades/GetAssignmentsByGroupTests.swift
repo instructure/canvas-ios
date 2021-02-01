@@ -49,4 +49,23 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         // Shouldn't trigger assertionFailure in Store.init with error: Error Domain=NSCocoaErrorDomain Code=134060 "A Core Data error occurred." UserInfo={reason=The fetched object at index 2 has an out of order section name 'Middle Group. Objects must be sorted by section name'}
         _ = environment.subscribe(getAssignmentGroupsUseCase)
     }
+
+    func testgradesOnly() {
+        let groups: [APIAssignmentGroup] = [
+            .make(id: "1", name: "Test", position: 1, assignments: [
+                APIAssignment.make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Points", position: 1),
+                APIAssignment.make(assignment_group_id: "1", grading_type: .not_graded, id: "2", name: "Not Graded", position: 2),
+            ]),
+        ]
+
+        let useCase = GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2")
+        useCase.write(response: groups, urlResponse: nil, to: databaseClient)
+        var results = environment.subscribe(useCase)
+        XCTAssertEqual(results.all.count, 2)
+
+        let useCaseGradedOnly = GetAssignmentsByGroup(courseID: "1", gradingPeriodID: "2", gradedOnly: true)
+        useCaseGradedOnly.write(response: groups, urlResponse: nil, to: databaseClient)
+        results = environment.subscribe(useCaseGradedOnly)
+        XCTAssertEqual(results.all.count, 1)
+    }
 }
