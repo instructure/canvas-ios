@@ -34,4 +34,13 @@ extension NSPredicate {
             self.init(format: "%K == nil", key)
         }
     }
+
+    /**
+     - parameters:
+        - predicate: The predicate to be combined with `self` using the logical AND operation.
+     - returns: A new predicate by combining `self` and the `predicate` received as parameter with the logical AND operation.
+     */
+    public func and(_ predicate: NSPredicate) -> NSPredicate {
+        NSCompoundPredicate(andPredicateWithSubpredicates: [self, predicate])
+    }
 }

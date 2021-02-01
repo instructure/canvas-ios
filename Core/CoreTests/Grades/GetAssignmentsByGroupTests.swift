@@ -67,6 +67,5 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         useCaseGradedOnly.write(response: groups, urlResponse: nil, to: databaseClient)
         results = environment.subscribe(useCaseGradedOnly)
         XCTAssertEqual(results.all.count, 1)
-
     }
 }

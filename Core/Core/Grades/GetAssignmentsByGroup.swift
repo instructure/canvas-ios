@@ -46,15 +46,13 @@ public class GetAssignmentsByGroup: APIUseCase {
     ) }
 
     private var predicate: NSPredicate {
-        let normalPredicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+        var predicate = NSPredicate(key: #keyPath(Assignment.assignmentGroup.courseID), equals: courseID)
+
         if gradedOnly {
-            return NSCompoundPredicate(andPredicateWithSubpredicates: [
-                normalPredicate,
-                NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"),
-            ])
-        } else {
-            return normalPredicate
+            predicate = predicate.and(NSPredicate(format: "%K != %@", #keyPath(Assignment.gradingTypeRaw), "not_graded"))
         }
+
+        return predicate
     }
 
     public var scope: Scope { Scope(
