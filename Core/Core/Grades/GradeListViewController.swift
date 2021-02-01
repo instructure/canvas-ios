@@ -115,7 +115,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
 
-        assignments.refresh(force: true)
+        assignments.refresh()
         colors.refresh()
         courses.refresh()
         enrollments.refresh()
