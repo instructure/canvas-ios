@@ -45,4 +45,31 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertFalse(HTTPURLResponse(url: URL(string: "/")!, statusCode: 201, httpVersion: nil, headerFields: nil)!.isUnauthorized)
         XCTAssertFalse(URLResponse(url: URL(string: "/")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil).isUnauthorized)
     }
+
+    func testExceededLimit() {
+        let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
+        let data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
+
+        XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
+    }
+
+    func testExceededLimitWithoutData() {
+        let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
+
+        XCTAssertFalse(httpResponse.exceededLimit(responseData: nil))
+    }
+
+    func testExceededLimitWithMismatchingData() {
+        let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
+        let data = "403 Forbidden".data(using: .utf8)
+
+        XCTAssertFalse(httpResponse.exceededLimit(responseData: data))
+    }
+
+    func testExceededLimitWithNonHTTPResponse() {
+        let response = URLResponse(url: URL(string: "https://instructure.com")!, mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+        let data = "403 Forbidden (Rate Limit Exceeded)".data(using: .utf8)
+
+        XCTAssertFalse(response.exceededLimit(responseData: data))
+    }
 }

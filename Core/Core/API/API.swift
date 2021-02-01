@@ -58,10 +58,11 @@ public class API {
                     return
                 }
 
-                if response?.exceededLimit == true {
+                if response?.exceededLimit(responseData: data) == true {
                     self?.makeRequest(requestable, callback: callback)
                     return
                 }
+
                 guard let data = data, error == nil, !(Request.Response.self is APINoContent.Type) else {
                     return callback(nil, response, error)
                 }
