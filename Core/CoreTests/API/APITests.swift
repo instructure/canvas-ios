@@ -373,7 +373,7 @@ class APITests: XCTestCase {
             XCTAssertEqual((response as? HTTPURLResponse)?.statusCode, 200)
             responseExpectation.fulfill()
         }
-        api.refreshQueue.waitUntilAllOperationsAreFinished()
+        RunLoop.main.run(until: Date())
 
         let normalResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         api.mock(url, data: nil, response: normalResponse, error: nil)
