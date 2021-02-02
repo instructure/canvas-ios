@@ -73,7 +73,7 @@ public extension URLComponents {
     }
 
     var containsVerifier: Bool {
-        queryItems?.contains(where: { $0.name == "verifier"} ) == true
+        queryItems?.contains(where: { $0.name == "verifier" }) == true
     }
 
     var originIsNotification: Bool {

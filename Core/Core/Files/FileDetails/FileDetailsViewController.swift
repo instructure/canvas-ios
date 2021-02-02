@@ -50,7 +50,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var remoteURL: URL?
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
-    var originURrl: URLComponents?
+    var originURL: URLComponents?
     var openedInWebView: Bool = false
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
@@ -62,7 +62,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         controller.assignmentID = assignmentID
         controller.context = context
         controller.fileID = fileID
-        controller.originURrl = originURL
+        controller.originURL = originURL
         return controller
     }
 
@@ -131,7 +131,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func update() {
         guard let file = files.first else {
             if let error = files.error {
-                if var url = originURrl, url.containsVerifier {
+                if var url = originURL, url.containsVerifier {
                     if !url.path.hasSuffix("download") {
                         url.path.append("/download")
                         url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
