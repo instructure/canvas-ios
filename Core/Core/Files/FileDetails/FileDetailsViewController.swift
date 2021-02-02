@@ -51,7 +51,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     var localURL: URL?
     var pdfAnnotationsMutatedMoveToDocsDirectory = false
     var originURL: URLComponents?
-    var openedInWebView: Bool = false
 
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
@@ -107,10 +106,6 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if openedInWebView {
-            env.router.dismiss(self)
-            return
-        }
         startTrackingTimeOnViewController()
         env.userDefaults?.submitAssignmentCourseID = context?.contextType == .course ? context?.id : nil
         env.userDefaults?.submitAssignmentID = assignmentID
@@ -131,16 +126,16 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
     func update() {
         guard let file = files.first else {
             if let error = files.error {
-                if var url = originURL, url.containsVerifier {
+                // If file download failed because of unauthorization error and we have a verifier token, then we modify the url and try to open the file in a webview.
+                if var url = originURL, url.containsVerifier, error.localizedDescription == "user not authorised to perform that action" {
                     if !url.path.hasSuffix("download") {
                         url.path.append("/download")
                         url.queryItems?.append(URLQueryItem(name: "download_frd", value: "1"))
                     }
                     if let urlRaw = url.url {
-                        let web = CoreWebViewController()
-                        web.webView.load(URLRequest(url: urlRaw))
-                        openedInWebView = true
-                        env.router.show(web, from: self)
+                        embedWebView(for: urlRaw, isLocalURL: false)
+                    } else {
+                        showError(error)
                     }
                 } else {
                     showError(error)
@@ -184,7 +179,7 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
         doneLoading()
     }
 
-    func embedWebView(for url: URL) {
+    func embedWebView(for url: URL, isLocalURL: Bool = true) {
         let webView = CoreWebView()
         contentView.addSubview(webView)
         webView.pin(inside: contentView)
@@ -197,7 +192,12 @@ public class FileDetailsViewController: UIViewController, CoreWebViewLinkDelegat
             self?.loadObservation = nil
             self?.doneLoading()
         }
-        webView.loadFileURL(url, allowingReadAccessTo: url)
+
+        if isLocalURL {
+            webView.loadFileURL(url, allowingReadAccessTo: url)
+        } else {
+            webView.load(URLRequest(url: url))
+        }
     }
 
     func doneLoading() {
