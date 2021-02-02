@@ -43,4 +43,22 @@ extension URLResponse {
     public var isUnauthorized: Bool {
         return (self as? HTTPURLResponse)?.statusCode == 401
     }
+
+    /**
+     - parameters:
+        - responseData: The body received as a response for the API request.
+     - returns: If the API request is throttled (rejected due to exceeding request rate limit).
+     */
+    public func exceededLimit(responseData: Data?) -> Bool {
+        guard
+            let data = responseData,
+            let stringData = String(data: data, encoding: .utf8),
+            let httpResponse = self as? HTTPURLResponse
+        else {
+            return false
+        }
+
+        // hasPrefix is because we don't care about the line break character at the end
+        return httpResponse.statusCode == 403 && stringData.hasPrefix("403 Forbidden (Rate Limit Exceeded)")
+    }
 }

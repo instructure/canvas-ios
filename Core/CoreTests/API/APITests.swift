@@ -357,4 +357,26 @@ class APITests: XCTestCase {
         XCTAssertNil(urlResponse)
         XCTAssertNotNil(error)
     }
+
+    func testRetryOnRateLimitedRequest() {
+        API.resetMocks()
+        api.refreshQueue = OperationQueue.main
+        let responseExpectation = expectation(description: "API response")
+        let url = URL(string: "https://instructure.com/")!
+
+        let rateLimitResponse = HTTPURLResponse(url: url, statusCode: 403, httpVersion: nil, headerFields: nil)
+        let rateLimitData = "403 Forbidden (Rate Limit Exceeded)\n".data(using: .utf8)
+        api.mock(url, data: rateLimitData, response: rateLimitResponse, error: nil)
+
+        api.makeRequest(url) { _, response, _ in
+            // This will be called when the request is re-tried and the mock returns a non rate-limited response.
+            XCTAssertEqual((response as? HTTPURLResponse)?.statusCode, 200)
+            responseExpectation.fulfill()
+        }
+        RunLoop.main.run(until: Date())
+
+        let normalResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        api.mock(url, data: nil, response: normalResponse, error: nil)
+        wait(for: [responseExpectation], timeout: 0.5)
+    }
 }

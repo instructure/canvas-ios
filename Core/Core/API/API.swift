@@ -57,6 +57,15 @@ public class API {
                     }
                     return
                 }
+
+                // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
+                if response?.exceededLimit(responseData: data) == true {
+                    DispatchQueue.main.async {
+                        self?.makeRequest(requestable, callback: callback)
+                    }
+                    return
+                }
+
                 guard let data = data, error == nil, !(Request.Response.self is APINoContent.Type) else {
                     return callback(nil, response, error)
                 }
