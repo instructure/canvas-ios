@@ -72,8 +72,8 @@ public extension URLComponents {
         queryItems?.contains(URLQueryItem(name: "origin", value: "module_item_details")) == true
     }
 
-    var originIsGlobalAnnouncement: Bool {
-        queryItems?.contains(URLQueryItem(name: "origin", value: "globalAnnouncement")) == true
+    var containsVerifier: Bool {
+        queryItems?.contains(where: { $0.name == "verifier" }) == true
     }
 
     var originIsNotification: Bool {
