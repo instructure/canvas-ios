@@ -79,7 +79,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Privacy Policy")
         vc.tableView(vc.tableView, didSelectRowAt: IndexPath(row: 0, section: 1))
-        XCTAssert(router.lastRoutedTo(.parse("https://www.instructure.com/policies/privacy/")))
+        XCTAssert(router.lastRoutedTo(.parse("https://www.instructure.com/canvas/privacy/")))
 
         cell = vc.tableView.cellForRow(at: IndexPath(row: 1, section: 1)) as? RightDetailTableViewCell
         XCTAssertEqual( cell?.textLabel?.text, "Terms of Use")
