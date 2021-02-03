@@ -209,6 +209,17 @@ class RubricPresenterTests: StudentTestCase {
         XCTAssertEqual(models.first, expected.first)
     }
 
+    func testOnlyFreeFormCriterionComments() {
+        Submission.make(from: .make(rubric_assessment: [
+            "1": .make(comments: "this is custom", points: nil, rating_id: "2"),
+        ]))
+        Course.make()
+        ContextColor.make()
+        presenter.update()
+
+        XCTAssertEqual(models.first?.comment, "this is custom")
+    }
+
     func testRubricViewModelRatingBlurb() {
         let r = Rubric.make()
         let rating = RubricRating.make()

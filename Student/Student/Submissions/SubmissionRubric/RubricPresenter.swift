@@ -109,14 +109,13 @@ class RubricPresenter {
             ratings = ratings.sorted { $0.points < $1.points }
             var selected: RubricRating?
             var selectedIndex: Int?
-            var comments: String?
+            let comments = assessment?.comments
             var description = ""
             var isCustomAssessment = false
 
             if let index = ratings.firstIndex(where: { rating in assessment?.ratingID == rating.id && rating.points == assessment?.points }) {
                 selected = ratings[index]
                 selectedIndex = index
-                comments = assessment?.comments
                 description = selected?.desc ?? ""
             }
             var allRatings: [Double] = ratings.map { $0.points }
@@ -127,7 +126,6 @@ class RubricPresenter {
                 selectedIndex = allRatings.count - 1
                 description = NSLocalizedString("Custom Grade", comment: "")
                 allDescriptions.append(description)
-                comments = assessment.comments
                 isCustomAssessment = true
             }
 
