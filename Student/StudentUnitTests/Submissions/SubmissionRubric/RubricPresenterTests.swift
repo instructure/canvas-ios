@@ -214,6 +214,12 @@ class RubricPresenterTests: StudentTestCase {
             "1": .make(comments: "this is custom", points: nil, rating_id: "2"),
         ]))
         Course.make()
+        Assignment.make(from: .make(rubric: [
+            .make(id: "1", ratings:  [
+                .make(id: "1", points: 10),
+                .make(id: "2", points: 25),
+            ]),
+        ], rubric_settings: .make(free_form_criterion_comments: true)))
         ContextColor.make()
         presenter.update()
 
