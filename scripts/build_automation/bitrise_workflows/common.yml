@@ -144,8 +144,8 @@ workflows:
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - deploy-to-itunesconnect-application-loader:
         inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
     - deploy-to-bitrise-io: {}
 
   parent-app-store:
