@@ -18,19 +18,22 @@ workflows:
     steps:
     - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
     - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
     - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Parent'
@@ -211,7 +214,8 @@ workflows:
     - ios-auto-provision:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
     - set-xcode-build-number:
