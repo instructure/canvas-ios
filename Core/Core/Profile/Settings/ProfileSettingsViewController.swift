@@ -131,7 +131,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://www.instructure.com/policies/privacy/", from: self)
+                    self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
                 },
                 Row(NSLocalizedString("Terms of Use", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
