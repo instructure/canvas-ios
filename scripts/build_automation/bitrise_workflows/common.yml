@@ -16,21 +16,24 @@ workflows:
     - _ad-hoc-vars
     - _setup
     steps:
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Parent'
@@ -144,8 +147,8 @@ workflows:
             ./Pods/FirebaseCrashlytics/upload-symbols -gsp "$BITRISE_SOURCE_DIR/rn/Teacher/ios/Teacher/GoogleService-Info.plist" -p ios "$BITRISE_DSYM_PATH"
     - deploy-to-itunesconnect-application-loader:
         inputs:
-        - password: "$APPSTORECONNECT_PASSWORD"
-        - itunescon_user: iosbuilds@instructure.com
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "$APPLE_API_ISSUER"
     - deploy-to-bitrise-io: {}
 
   parent-app-store:
@@ -208,10 +211,11 @@ workflows:
     - cocoapods-install:
         inputs:
         - verbose: 'false'
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
-        - generate_profiles: 'yes'
+        - api_key_path: "$BITRISEIO_apikey_URL"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
     - set-xcode-build-number:
