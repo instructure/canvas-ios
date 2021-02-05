@@ -16,19 +16,19 @@ workflows:
     - _ad-hoc-vars
     - _setup
     steps:
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
-    - ios-auto-provision:
+    - ios-auto-provision-appstoreconnect:
         inputs:
         - generate_profiles: 'yes'
         - distribution_type: "$BITRISE_EXPORT_METHOD"
