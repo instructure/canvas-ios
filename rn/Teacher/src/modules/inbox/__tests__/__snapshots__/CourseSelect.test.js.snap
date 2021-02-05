@@ -54,11 +54,7 @@ exports[`CourseSelect renders 1`] = `
       </View>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [
@@ -178,11 +174,7 @@ exports[`CourseSelect renders 1`] = `
       </View>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [
@@ -295,11 +287,7 @@ exports[`CourseSelect renders 1`] = `
       </item>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [
@@ -430,11 +418,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </View>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [
@@ -554,11 +538,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </View>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [
@@ -671,11 +651,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       </item>
       <item>
         <TouchableHighlight
-          accessibilityTraits={
-            Array [
-              "button",
-            ]
-          }
+          accessibilityRole="button"
           onPress={[Function]}
           style={
             Array [

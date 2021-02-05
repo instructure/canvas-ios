@@ -2,11 +2,7 @@
 
 exports[`AttachmentRow renders 1`] = `
 <TouchableHighlight
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
-  }
+  accessibilityRole="button"
   accessible={false}
   onPress={[Function]}
   style={

@@ -27,10 +27,11 @@ exports[`PickerPage renders the given options as rows 1`] = `
 
 exports[`PickerPage renders the given options as rows: a 1`] = `
 <ForwardRef
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "selected": false,
+    }
   }
   onPress={[Function]}
   style={
@@ -104,11 +105,11 @@ exports[`PickerPage renders the given options as rows: a 1`] = `
 
 exports[`PickerPage renders the given options as rows: b 1`] = `
 <ForwardRef
-  accessibilityTraits={
-    Array [
-      "button",
-      "selected",
-    ]
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "selected": true,
+    }
   }
   onPress={[Function]}
   style={
@@ -217,10 +218,11 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
 
 exports[`PickerPage renders the given options as rows: c 1`] = `
 <ForwardRef
-  accessibilityTraits={
-    Array [
-      "button",
-    ]
+  accessibilityRole="button"
+  accessibilityState={
+    Object {
+      "selected": false,
+    }
   }
   onPress={[Function]}
   style={

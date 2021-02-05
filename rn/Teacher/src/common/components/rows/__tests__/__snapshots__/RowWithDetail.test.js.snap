@@ -3,7 +3,6 @@
 exports[`Render row with detail label 1`] = `
 <View
   accessibilityLabel="Row with a switch in it!, this is a detail label"
-  accessibilityTraits={Array []}
   onPress={[Function]}
   style={
     Array [

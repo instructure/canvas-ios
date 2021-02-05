@@ -61,7 +61,7 @@ export default class PickerPage extends Component<Props> {
                   source={icon('check', 'solid')}
                 />
               }
-              accessibilityTraits={key === selectedValue ? ['button', 'selected'] : 'button'}
+              accessibilityState={{ selected: (key === selectedValue ? true : false) }}
             />
           }
         />
