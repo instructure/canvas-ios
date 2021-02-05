@@ -19,21 +19,21 @@ workflows:
     - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
-        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Student'
     - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
-        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Teacher'
     - ios-auto-provision-appstoreconnect:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
-        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
         - scheme: 'Parent'
@@ -148,7 +148,7 @@ workflows:
     - deploy-to-itunesconnect-application-loader:
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
-        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
+        - api_issuer: "$APPLE_API_ISSUER"
     - deploy-to-bitrise-io: {}
 
   parent-app-store:
@@ -215,7 +215,7 @@ workflows:
         run_if: '{{enveq "BITRISE_SCHEME" "" | not}}'
         inputs:
         - api_key_path: "$BITRISEIO_apikey_URL"
-        - api_issuer: "69a6de70-75ba-47e3-e053-5b8c7c11a4d1"
+        - api_issuer: "$APPLE_API_ISSUER"
         - distribution_type: "$BITRISE_EXPORT_METHOD"
         - configuration: "$BITRISE_CONFIGURATION"
     - set-xcode-build-number:
