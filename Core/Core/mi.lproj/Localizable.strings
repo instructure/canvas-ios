@@ -23,16 +23,28 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
 "%@ + %@ more" = "%1$@ + %2$@ ētahi atu";
 
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
 /* No comment provided by engineer. */
+"%@ late" = "%@ Tōmuri";
+
+/* No comment provided by engineer. */
+"%@ missing" = "%@ ngaro";
+
+/* No comment provided by engineer. */
 "%@ pts" = "%@ ngā koinga";
 
 /* No comment provided by engineer. */
 "%@ sections" = "%@ ngā wāhanga";
+
+/* No comment provided by engineer. */
+"%@ submitted" = "%@ kua tukuna";
 
 /* label for conversation row with context, subject, & last message date & text */
 "%@, in %@, the last message was on %@ %@" = "%1$@, i roto %2$@, te karere whakamutunga i runga %3$@ %4$@";
@@ -57,6 +69,12 @@
 
 /* No comment provided by engineer. */
 "+%d" = "+%d";
+
+/* No comment provided by engineer. */
+"56,5%" = "56,5%";
+
+/* No comment provided by engineer. */
+"86,5%" = "86,5%";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "he matua";
@@ -545,6 +563,9 @@
 "Current Enrollments" = "Whakaurunga o nāianei";
 
 /* No comment provided by engineer. */
+"Current Grade" = "Kōeke ō naianei";
+
+/* No comment provided by engineer. */
 "Current position" = "Te wāhanga o nāianei";
 
 /* No comment provided by engineer. */
@@ -881,6 +902,21 @@
 "GPA Scale" = "GPA Tauine";
 
 /* No comment provided by engineer. */
+"grade" = "kōeke";
+
+/* No comment provided by engineer. */
+"Grade after posting" = "Te kōeke i muri o te whakairi";
+
+/* No comment provided by engineer. */
+"Grade before posting" = "Te kōeke i mua o te whakairi";
+
+/* No comment provided by engineer. */
+"Grade override" = "Whakakorenga kōeke";
+
+/* No comment provided by engineer. */
+"Grade Override" = "Whakakorenga Kōeke";
+
+/* No comment provided by engineer. */
 "Graded" = "Kōekehia";
 
 /* No comment provided by engineer. */
@@ -1025,6 +1061,9 @@
 "Landing Page" = "Whārangi Tauranga";
 
 /* No comment provided by engineer. */
+"Last activity on %@" = "Mahi whakamutunga i runga  ī  %@";
+
+/* No comment provided by engineer. */
 "Last post %@" = "Whakairi whakamutunga %@";
 
 /* No comment provided by engineer. */
@@ -1086,6 +1125,9 @@
 
 /* or list pattern for 2 items */
 "list_or_two" = "%1$@ rānei %2$@";
+
+/* No comment provided by engineer. */
+"Loading" = "E tukuake ana";
 
 /* No comment provided by engineer. */
 "Loading more modules..." = "Uta nui atu ngā kōwae ...";
@@ -1203,6 +1245,9 @@
 
 /* No comment provided by engineer. */
 "Needs Grading" = "E hiahiatia ana mo te kōeke";
+
+/* No comment provided by engineer. */
+"NEEDS GRADING" = "ME KŌEKE";
 
 /* No comment provided by engineer. */
 "Network Error" = "Hapa Whatunga";
@@ -1604,6 +1649,9 @@
 "Search" = "Rapu";
 
 /* No comment provided by engineer. */
+"Section: %@" = "Wāhanga: %@";
+
+/* No comment provided by engineer. */
 "Sections" = "Ngā Wāhanga";
 
 /* No comment provided by engineer. */
@@ -1641,6 +1689,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Tukua whakarāpopototanga ia rā";
+
+/* No comment provided by engineer. */
+"Send message" = "Tuku karere";
 
 /* No comment provided by engineer. */
 "Send weekly summary" = "Tukua whakarāpopototanga ia wiki";
@@ -1691,6 +1742,9 @@
 "Something is Wrong" = "Kei te hē tētahi mea";
 
 /* No comment provided by engineer. */
+"Something went wrong" = "I raruraru tētahi mea";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Kōmaka mā te momo";
 
 /* No comment provided by engineer. */
@@ -1725,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "Subject" = "Kaupapa";
+
+/* No comment provided by engineer. */
+"Submission %@, %@, %@" = "Tāpaetanga: %1$@, %2$@ %3$@";
 
 /* No comment provided by engineer. */
 "Submission Comment" = "Tākupu Tāpaetanga";
@@ -1863,6 +1920,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā quizzes. Kumea ki te whakahou ki te ngana anō.";
+
+/* No comment provided by engineer. */
+"There was an error while communicating with the server" = "He hapa i te wā e kōrero ana ki te tūmau.";
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "He hapa ki te Mahi hei Kaiwhakamahi Tēnā koa ngana anō i muri mai.";
