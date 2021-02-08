@@ -83,7 +83,7 @@ export default class Filter extends Component<FilterProps, FilterState> {
     return (
       <Row
         title={item.title()}
-        accessibilityState={{ selected: item.selected ? true : false }}
+        accessibilityState={{ selected: item.selected }}
         identifier={item.type}
         onPress={this.onFilterPress}
         border='bottom'
