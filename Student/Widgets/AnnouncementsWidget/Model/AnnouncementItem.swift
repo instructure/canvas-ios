@@ -31,20 +31,20 @@ struct AnnouncementItem: Identifiable, Equatable {
     let courseName: String
     let courseColor: Color
 
-    init?(discussionTopic: DiscussionTopic, course: Course, avatarImage: UIImage?) {
+    init?(discussionTopic: APIDiscussionTopic, course: Course, avatarImage: UIImage?) {
         guard
             let title = discussionTopic.title,
-            let date = discussionTopic.postedAt,
-            let author = discussionTopic.author,
+            let date = discussionTopic.posted_at,
+            let authorName = discussionTopic.author.display_name,
             let courseName = course.name,
-            let url = discussionTopic.htmlURL
+            let url = discussionTopic.html_url
         else { return nil }
 
-        self.id = discussionTopic.id
+        self.id = discussionTopic.id.value
         self.title = title
         self.date = date
         self.url = url
-        self.authorName = author.displayName
+        self.authorName = authorName
         self.courseName = courseName
         self.courseColor = Color(course.color)
         self.avatarImage = avatarImage
