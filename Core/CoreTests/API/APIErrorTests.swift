@@ -68,4 +68,23 @@ class APIErrorTests: XCTestCase {
         XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 200, httpVersion: nil, headerFields: nil)), "default")
         XCTAssertEqual(from(response: HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)), "There was an unexpected error. Please try again.")
     }
+
+    func testUnauthorizedAPIError() {
+        let stringData = """
+        {
+            "status": "nicht berechtigt",
+            "errors": [{
+                "message": "Benutzer ist zu dieser Aktion nicht berechtigt."
+            }]
+        }
+        """
+        let data = stringData.data(using: .utf8)
+        let response = HTTPURLResponse(url: URL(string: "/")!, statusCode: 401, httpVersion: nil, headerFields: nil)
+
+        let error = APIError.from(data: data, response: response, error: NSError.instructureError("default"))
+
+        guard let apiError = error as? APIError else { XCTFail("Error is not an APIError"); return }
+        guard case .unauthorized = apiError else { XCTFail("Error is not an APIError.unauthorized"); return }
+        XCTAssertEqual(apiError.localizedDescription, "Benutzer ist zu dieser Aktion nicht berechtigt.")
+    }
 }
