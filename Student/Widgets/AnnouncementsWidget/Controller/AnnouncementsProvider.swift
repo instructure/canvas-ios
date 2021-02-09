@@ -45,8 +45,7 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     }
 
     private func fetchAnnouncements(courseContextCodes: [String]) {
-        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes)) {
-            [weak self] announcements, response, error in
+        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes)) { [weak self] announcements, _, _ in
             guard let self = self, let announcements = announcements else { return }
 
             let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
