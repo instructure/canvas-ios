@@ -22,7 +22,6 @@ import WidgetKit
 class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     private var colors: Store<GetCustomColors>?
     private var courses: Store<GetAllCourses>?
-    private var announcements: Store<GetAllAnnouncements>?
 
     init() {
         super.init(loggedOutModel: AnnouncementsEntry(isLoggedIn: false), timeout: 15 * 60)
@@ -46,20 +45,17 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     }
 
     private func fetchAnnouncements(courseContextCodes: [String]) {
-        announcements = env.subscribe(GetAllAnnouncements(contextCodes: courseContextCodes))
-        // We always force refresh since the widget's timeout is lower than the cache's TTL
-        announcements?.refresh(force: true) { [weak self] _ in
-            guard let self = self, let announcements = self.announcements, !announcements.pending else { return }
+        env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes)) { [weak self] announcements, _, _ in
+            guard let self = self, let announcements = announcements else { return }
 
             let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
-                guard let course = (self.courses?.first { $0.id == announcement.courseID }) else { return nil }
-                let image = self.getImage(url: announcement.author?.avatarURL)
+                guard let course = (self.courses?.first { $0.canvasContextID == announcement.context_code }) else { return nil }
+                let image = self.getImage(url: announcement.author.avatar_image_url?.rawValue)
                 return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
             }
 
             let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
             self.updateWidget(model: announcementsEntry)
-            self.announcements = nil
         }
     }
 

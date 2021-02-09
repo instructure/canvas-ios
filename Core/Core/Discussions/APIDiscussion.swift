@@ -20,39 +20,40 @@ import Foundation
 
 // https://canvas.instructure.com/doc/api/discussion_topics.html#DiscussionTopic
 public struct APIDiscussionTopic: Codable, Equatable {
-    let allow_rating: Bool
-    let assignment: APIList<APIAssignment>?
-    let assignment_id: ID?
-    let attachments: [APIFile]?
-    let author: APIDiscussionParticipant
-    let can_unpublish: Bool?
-    let created_at: Date?
-    let delayed_post_at: Date?
-    let discussion_subentry_count: Int
-    let discussion_type: String?
-    let group_category_id: ID?
-    let group_topic_children: [APIDiscussionTopicChild]?
-    let html_url: URL?
-    let id: ID
-    let is_section_specific: Bool
-    let last_reply_at: Date?
-    var locked: Bool?
-    let locked_for_user: Bool
-    let lock_at: Date?
-    var message: String?
-    let only_graders_can_rate: Bool?
-    let permissions: APIDiscussionPermissions?
-    let pinned: Bool?
-    let position: Int?
-    let posted_at: Date?
-    let published: Bool
-    let require_initial_post: Bool?
-    let sections: [APICourseSection]?
-    let sort_by_rating: Bool
-    let subscribed: Bool?
-    let subscription_hold: String?
-    var title: String?
-    let unread_count: Int?
+    public let allow_rating: Bool
+    public let assignment: APIList<APIAssignment>?
+    public let assignment_id: ID?
+    public let attachments: [APIFile]?
+    public let author: APIDiscussionParticipant
+    public let can_unpublish: Bool?
+    public let created_at: Date?
+    public let context_code: String? // Only populated while using https://canvas.instructure.com/doc/api/announcements.html#method.announcements_api.index
+    public let delayed_post_at: Date?
+    public let discussion_subentry_count: Int
+    public let discussion_type: String?
+    public let group_category_id: ID?
+    public let group_topic_children: [APIDiscussionTopicChild]?
+    public let html_url: URL?
+    public let id: ID
+    public let is_section_specific: Bool
+    public let last_reply_at: Date?
+    public var locked: Bool?
+    public let locked_for_user: Bool
+    public let lock_at: Date?
+    public var message: String?
+    public let only_graders_can_rate: Bool?
+    public let permissions: APIDiscussionPermissions?
+    public let pinned: Bool?
+    public let position: Int?
+    public let posted_at: Date?
+    public let published: Bool
+    public let require_initial_post: Bool?
+    public let sections: [APICourseSection]?
+    public let sort_by_rating: Bool
+    public let subscribed: Bool?
+    public let subscription_hold: String?
+    public var title: String?
+    public let unread_count: Int?
 }
 
 public struct APIDiscussionTopicChild: Codable, Equatable {
@@ -61,11 +62,11 @@ public struct APIDiscussionTopicChild: Codable, Equatable {
 }
 
 public struct APIDiscussionParticipant: Codable, Equatable {
-    let id: ID?
-    let display_name: String?
-    let avatar_image_url: APIURL?
-    let html_url: URL?
-    let pronouns: String?
+    public let id: ID?
+    public let display_name: String?
+    public let avatar_image_url: APIURL?
+    public let html_url: URL?
+    public let pronouns: String?
 }
 
 public struct APIDiscussionEntry: Codable, Equatable {
@@ -110,6 +111,7 @@ extension APIDiscussionTopic {
         author: APIDiscussionParticipant = .make(),
         can_unpublish: Bool? = nil,
         created_at: Date? = Clock.now,
+        context_code: String? = nil,
         delayed_post_at: Date? = nil,
         discussion_subentry_count: Int = 1,
         discussion_type: String? = "threaded",
@@ -145,6 +147,7 @@ extension APIDiscussionTopic {
             author: author,
             can_unpublish: can_unpublish,
             created_at: created_at,
+            context_code: context_code,
             delayed_post_at: delayed_post_at,
             discussion_subentry_count: discussion_subentry_count,
             discussion_type: discussion_type,

@@ -40,27 +40,6 @@ class GetAnnouncements: CollectionUseCase {
     ) }
 }
 
-public class GetAllAnnouncements: CollectionUseCase {
-    public typealias Model = DiscussionTopic
-
-    var contextCodes: [String]?
-
-    public var cacheKey: String? {
-        let codes = contextCodes?.joined(separator: ",") ?? ""
-        return "get-announcements-\(codes)"
-    }
-    public var request: GetAllAnnouncementsRequest
-    public var scope: Scope { .where(
-        #keyPath(DiscussionTopic.isAnnouncement), equals: true,
-        orderBy: #keyPath(DiscussionTopic.postedAt), ascending: false
-    )}
-
-    public init(contextCodes: [String]) {
-        self.contextCodes = contextCodes
-        request = GetAllAnnouncementsRequest(contextCodes: contextCodes)
-    }
-}
-
 class GetDiscussionTopics: CollectionUseCase {
     typealias Model = DiscussionTopic
 
