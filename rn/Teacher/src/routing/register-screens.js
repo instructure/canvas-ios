@@ -119,10 +119,10 @@ export function registerScreens (store: Store): void {
   registerScreen('/logs')
   registerScreen('/act-as-user')
   registerScreen('/act-as-user/:userID')
+  registerScreen('/courses/:courseID/assignments/syllabus', null, store, { deepLink: true })
+  registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
 
   if (isTeacher()) {
-    registerScreen('/courses/:courseID/assignments/syllabus', null, store, { deepLink: true })
-    registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', null, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', AssignmentDueDates, store)
