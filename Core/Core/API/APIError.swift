@@ -18,25 +18,25 @@
 
 import Foundation
 
-public enum APIError: Error {
+public enum APIError: LocalizedError {
+    case unauthorized(localizedMessage: String) // Permission issue even after a successful token refresh
+
+    public var errorDescription: String? {
+        switch self {
+        case .unauthorized(let message): return message
+        }
+    }
+
     public static func from(data: Data?, response: URLResponse?, error: Error) -> Error {
         if let data = data, let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
-            if let message = json["message"] as? String, !message.isEmpty {
-                return NSError.instructureError(message)
+            let message = extractMessage(from: json)
+
+            if response?.isUnauthorized == true {
+                let defaultMessage = NSLocalizedString("You are not authorized to perform this action", bundle: .core, comment: "User is missing a necessary permission")
+                return unauthorized(localizedMessage: message ?? defaultMessage)
             }
-            if let list = json["errors"] as? [[String: Any]], !list.isEmpty {
-                let message = list.map { $0["message"] as? String ?? "" } .joined(separator: "\n")
-                return NSError.instructureError(message)
-            }
-            if let dict = json["errors"] as? [String: Any], !dict.isEmpty {
-                let message = dict.map { _, error in
-                    return error as? String ??
-                        (error as? [String])?.first ??
-                        (error as? [String: Any])?["message"] as? String ??
-                        (error as? [[String: Any]])?.first?["message"] as? String ??
-                        embeddedDict(error) ??
-                        ""
-                } .joined(separator: "\n")
+
+            if let message = message {
                 return NSError.instructureError(message)
             }
         }
@@ -44,6 +44,29 @@ public enum APIError: Error {
             return NSError.instructureError(NSLocalizedString("There was an unexpected error. Please try again.", bundle: .core, comment: ""))
         }
         return error
+    }
+
+    private static func extractMessage(from json: [String: Any]) -> String? {
+        if let message = json["message"] as? String, !message.isEmpty {
+            return message
+        }
+        if let list = json["errors"] as? [[String: Any]], !list.isEmpty {
+            let message = list.map { $0["message"] as? String ?? "" } .joined(separator: "\n")
+            return message
+        }
+        if let dict = json["errors"] as? [String: Any], !dict.isEmpty {
+            let message = dict.map { _, error in
+                return error as? String ??
+                    (error as? [String])?.first ??
+                    (error as? [String: Any])?["message"] as? String ??
+                    (error as? [[String: Any]])?.first?["message"] as? String ??
+                    embeddedDict(error) ??
+                    ""
+            } .joined(separator: "\n")
+            return message
+        }
+
+        return nil
     }
 
     private static func embeddedDict( _ dict: Any?) -> String? {
