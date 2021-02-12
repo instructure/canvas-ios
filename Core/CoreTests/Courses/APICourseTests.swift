@@ -55,7 +55,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "state[]", value: "completed"),
             URLQueryItem(name: "state[]", value: "unpublished"),
         ])
-        let req = GetCoursesRequest(enrollmentState: nil, state: nil,perPage: 10, studentID: "1")
+        let req = GetCoursesRequest(enrollmentState: nil, state: nil, perPage: 10, studentID: "1")
         XCTAssertEqual(req.path, "users/1/courses")
         let noStudent = GetCoursesRequest(enrollmentState: nil, state: nil, perPage: 10, studentID: nil)
         XCTAssertEqual(noStudent.path, "courses")
