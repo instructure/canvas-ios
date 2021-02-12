@@ -89,7 +89,6 @@ class GetPlannablesTests: CoreTestCase {
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
-            include: [],
             perPage: 100
         ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: studentID)])])
         api.mock(GetCalendarEventsRequest(

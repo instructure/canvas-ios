@@ -53,7 +53,6 @@ class GetPlannerCourses: APIUseCase {
         GetCoursesRequest(
             enrollmentState: .active,
             state: [.available],
-            include: [.observed_users],
             perPage: 100,
             studentID: studentID
         )
@@ -89,7 +88,6 @@ class GetPlannerCourses: APIUseCase {
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
-            include: [],
             perPage: 100,
             studentID: nil
         )

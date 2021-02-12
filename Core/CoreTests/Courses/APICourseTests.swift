@@ -26,8 +26,12 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
+            URLQueryItem(name: "include[]", value: "needs_grading_count"),
             URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "include[]", value: "permissions"),
             URLQueryItem(name: "include[]", value: "sections"),
+            URLQueryItem(name: "include[]", value: "syllabus_body"),
+            URLQueryItem(name: "include[]", value: "tabs"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "per_page", value: "10"),
@@ -37,8 +41,12 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
+            URLQueryItem(name: "include[]", value: "needs_grading_count"),
             URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "include[]", value: "permissions"),
             URLQueryItem(name: "include[]", value: "sections"),
+            URLQueryItem(name: "include[]", value: "syllabus_body"),
+            URLQueryItem(name: "include[]", value: "tabs"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "per_page", value: "20"),
@@ -47,9 +55,9 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "state[]", value: "completed"),
             URLQueryItem(name: "state[]", value: "unpublished"),
         ])
-        let req = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: "1")
+        let req = GetCoursesRequest(enrollmentState: nil, state: nil,perPage: 10, studentID: "1")
         XCTAssertEqual(req.path, "users/1/courses")
-        let noStudent = GetCoursesRequest(enrollmentState: nil, state: nil, include: [], perPage: 10, studentID: nil)
+        let noStudent = GetCoursesRequest(enrollmentState: nil, state: nil, perPage: 10, studentID: nil)
         XCTAssertEqual(noStudent.path, "courses")
     }
 

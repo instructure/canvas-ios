@@ -104,7 +104,6 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
-            include: [],
             perPage: 100
         ), value: [.make(id: "1", enrollments: [.make(id: "1", associated_user_id: userID)])])
         api.mock(GetCalendarEventsRequest(
