@@ -181,7 +181,6 @@ public class GetPlannables: UseCase {
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
-            include: [],
             perPage: 100
         )
         env.api.exhaust(request) { response, _, _ in

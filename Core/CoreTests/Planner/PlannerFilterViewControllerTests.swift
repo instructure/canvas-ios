@@ -108,7 +108,6 @@ class PlannerFilterViewControllerTests: CoreTestCase {
             enrollmentState: .active,
             enrollmentType: .observer,
             state: [.available],
-            include: [],
             perPage: 100,
             studentID: nil
         ), value: [notAMatch], response: next)

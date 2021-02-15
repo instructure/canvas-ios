@@ -55,7 +55,7 @@ class PlannerViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.calendar.selectedDate, Clock.now)
 
         // hide first calendar
-        api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], include: [.observed_users], perPage: 100, studentID: "1"), value: [
+        api.mock(GetCoursesRequest(enrollmentState: .active, state: [.available], perPage: 100, studentID: "1"), value: [
             .make(id: "1", name: "BIO 101", enrollments: [.make(associated_user_id: "1")]),
             .make(id: "2", name: "BIO 102", enrollments: [.make(associated_user_id: "1")]),
         ])

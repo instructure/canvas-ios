@@ -570,15 +570,7 @@ open class CoreUITestCase: XCTestCase {
         if Bundle.main.isStudentApp || Bundle.main.isTeacherApp {
             mockData(GetCoursesRequest(enrollmentState: nil, perPage: 100), value: courses)
         } else if Bundle.main.isParentApp {
-            mockData(GetCoursesRequest(include: [
-                .course_image,
-                .current_grading_period_scores,
-                .favorites,
-                .observed_users,
-                .sections,
-                .term,
-                .total_scores,
-            ], perPage: 100), value: courses)
+            mockData(GetCoursesRequest(perPage: 100), value: courses)
         } else {
             XCTFail("Unknown app")
         }

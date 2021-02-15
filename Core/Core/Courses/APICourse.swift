@@ -202,33 +202,22 @@ public struct GetCoursesRequest: APIRequestable {
         case available, completed, unpublished
     }
 
-    public enum Include: String {
+    private enum Include: String, CaseIterable {
         case course_image
         case current_grading_period_scores
         case favorites
         case needs_grading_count
         case observed_users
-        case permissions
         case sections
         case syllabus_body
         case tabs
         case term
         case total_scores
     }
-    public static let defaultIncludes: [Include] = [
-        .course_image,
-        .current_grading_period_scores,
-        .favorites,
-        .observed_users,
-        .sections,
-        .term,
-        .total_scores,
-    ]
 
     let enrollmentState: EnrollmentState?
     let enrollmentType: EnrollmentType?
     let state: [State]?
-    let include: [Include]
     let perPage: Int
     let studentID: String?
 
@@ -236,14 +225,12 @@ public struct GetCoursesRequest: APIRequestable {
         enrollmentState: EnrollmentState? = .active,
         enrollmentType: EnrollmentType? = nil,
         state: [State]? = nil,
-        include: [Include] = Self.defaultIncludes,
         perPage: Int = 10,
         studentID: String? = nil
     ) {
         self.enrollmentState = enrollmentState
         self.enrollmentType = enrollmentType
         self.state = state
-        self.include = include
         self.perPage = perPage
         self.studentID = studentID
     }
@@ -258,7 +245,7 @@ public struct GetCoursesRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         [
-            .include(include.map { $0.rawValue }),
+            .include(Include.allCases.map { $0.rawValue }),
             .perPage(perPage),
             .optionalValue("enrollment_state", enrollmentState?.rawValue),
             .array("state", (state ?? []).map { $0.rawValue }),
