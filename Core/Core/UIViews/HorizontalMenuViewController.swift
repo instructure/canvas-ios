@@ -231,9 +231,10 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-      if scrollView == pages {
-          underlineLeftConstraint?.constant = scrollView.contentOffset.x / CGFloat(itemCount)
-      }
+        if scrollView == pages {
+            underlineLeftConstraint?.constant = scrollView.contentOffset.x / CGFloat(itemCount)
+            fixVoiceOverScrollResetOnFocus()
+        }
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -266,6 +267,24 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
             UIView.animate(withDuration: 0.1) {
                 self?.refreshOnLayoutTransitions()
             }
+        }
+    }
+
+    /**
+     When VoiceOver focus moves from `menu` to `pages` the scroll offset on `pages` resets to 0, no matter which menu item is selected. The same applies if the focus moves from the tab bar up to `pages`, in this case the scroll offset moves to the last page. This method sets back the scroll offset to show the selected menu item's content.
+     */
+    private func fixVoiceOverScrollResetOnFocus() {
+        guard UIAccessibility.isVoiceOverRunning, let pages = pages else { return }
+
+        let scrollPos = pages.contentOffset.x
+        let isScrollOnLastPage = scrollPos == pages.contentSize.width - pages.frame.width
+        let isFirstPageSelected = selectedIndexPath.row == 0
+
+        let isScrolledToFirstPage = scrollPos == 0 && selectedIndexPath.row != 0
+        let isScrolledToLastPage = isScrollOnLastPage && isFirstPageSelected
+
+        if isScrolledToFirstPage || isScrolledToLastPage {
+            pages.scrollToItem(at: selectedIndexPath, at: .left, animated: false)
         }
     }
 
