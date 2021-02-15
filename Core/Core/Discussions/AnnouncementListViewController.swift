@@ -72,7 +72,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         tableView.separatorColor = .borderMedium
 
         colors.refresh()
-        course?.refresh()
+        // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
+        course?.refresh(force: true)
         group?.refresh()
         topics.exhaust()
     }
