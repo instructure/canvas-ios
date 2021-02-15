@@ -77,4 +77,14 @@ class DiscussionEditorTests: CoreUITestCase {
         app.find(labelContaining: "Photo, ").tap()
         app.find(label: "Remove Attachment").waitToExist()
     }
+
+    func testCreateEmptyAnnouncement() {
+        mockBaseRequests()
+
+        show("/courses/\(course1.id)/announcements/new")
+
+        DiscussionEditor.doneButton.tap()
+        app.find(label: "A description is required").waitToExist()
+    }
+
 }

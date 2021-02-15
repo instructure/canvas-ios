@@ -105,6 +105,8 @@ public struct DiscussionEditorView: View {
                     )
                 case .removeOverride(let override):
                     return AssignmentOverridesEditor.alert(toRemove: override, from: $overrides)
+                case .emptyDescription:
+                    return Alert(title: Text("A description is required", bundle: .core))
                 }
             }
 
@@ -115,6 +117,7 @@ public struct DiscussionEditorView: View {
         case error(Error)
         case removeFile(String)
         case removeOverride(AssignmentOverridesEditor.Override)
+        case emptyDescription
 
         var id: String {
             switch self {
@@ -124,6 +127,8 @@ public struct DiscussionEditorView: View {
                 return "remove \(filename)"
             case .removeOverride(let override):
                 return "remove override \(override.id)"
+            case .emptyDescription:
+                return "empty description"
             }
         }
     }
@@ -400,6 +405,10 @@ public struct DiscussionEditorView: View {
     }
 
     func save() {
+        if isAnnouncement && message.isEmpty {
+            alert = .emptyDescription
+            return
+        }
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
         UpdateDiscussionTopic(context: context, topicID: topicID, form: [
