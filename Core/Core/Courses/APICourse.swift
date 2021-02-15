@@ -208,7 +208,6 @@ public struct GetCoursesRequest: APIRequestable {
         case favorites
         case needs_grading_count
         case observed_users
-        case permissions
         case sections
         case syllabus_body
         case tabs
