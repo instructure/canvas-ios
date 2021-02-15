@@ -86,5 +86,4 @@ class DiscussionEditorTests: CoreUITestCase {
         DiscussionEditor.doneButton.tap()
         app.find(label: "A description is required").waitToExist()
     }
-
 }
