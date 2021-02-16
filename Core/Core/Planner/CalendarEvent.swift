@@ -24,7 +24,7 @@ public enum CalendarEventType: String, Codable {
 }
 
 public enum CalendarEventWorkflowState: String, Codable {
-    case active, deleted, locked, published
+    case active, deleted, locked, published, unpublished
 }
 
 final public class CalendarEvent: NSManagedObject, WriteableModel {
