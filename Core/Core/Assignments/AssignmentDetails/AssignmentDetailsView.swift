@@ -199,7 +199,7 @@ public struct AssignmentDetailsView: View {
             url: nil,
             launchType: "assessment",
             assignmentID: assignmentID,
-            from: controller
+            from: controller.value
         )
     }
 }
