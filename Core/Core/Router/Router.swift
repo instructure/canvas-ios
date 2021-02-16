@@ -95,6 +95,7 @@ extension RouteOptions: Codable {
 // The Router stores all routes that can be routed to in the app
 open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
+    public static let DefaultRouteOptions: RouteOptions = .push
 
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
@@ -131,13 +132,13 @@ open class Router {
         return nil
     }
 
-    public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
+    public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
-    public func route(to url: String, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
+    public func route(to url: String, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
-    open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = .push) {
+    open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
@@ -154,7 +155,7 @@ open class Router {
         fallback(url, userInfo, from, options)
     }
 
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = .push, completion: (() -> Void)? = nil) {
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
         if let displayModeButton = from.splitDisplayModeButtonItem,

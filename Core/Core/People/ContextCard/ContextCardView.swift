@@ -37,7 +37,7 @@ public struct ContextCardView: View {
 
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
-            Button(action: { model.openNewMessageComposer(controller: controller) }, label: {
+            Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 Image.emailLine
             })
             .accessibility(label: Text("Send message", bundle: .core))

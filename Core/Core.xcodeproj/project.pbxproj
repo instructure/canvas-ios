@@ -816,6 +816,9 @@
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
 		CF5C5B422534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */; };
+		CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */; };
+		CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */; };
+		CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */; };
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
@@ -1869,6 +1872,9 @@
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
 		CF5C5B412534B9CB009871B9 /* GroupPeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPeopleListViewControllerTests.swift; sourceTree = "<group>"; };
+		CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakViewController.swift; sourceTree = "<group>"; };
+		CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerTheme.swift; sourceTree = "<group>"; };
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
@@ -3811,6 +3817,25 @@
 			path = ModuleItems;
 			sourceTree = "<group>";
 		};
+		CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */ = {
+			isa = PBXGroup;
+			children = (
+				E8D6949724D46B1E0080D883 /* CoreHostingController.swift */,
+				CF5F602D25DBD7D800E7E0ED /* EnvironmentValues.swift */,
+				CF5F603125DBD84700E7E0ED /* UINavigationControllerTheme.swift */,
+				CF5F602925DBD70E00E7E0ED /* WeakViewController.swift */,
+			);
+			path = UIKitSwiftUIBridging;
+			sourceTree = "<group>";
+		};
+		CF5F603525DBD92100E7E0ED /* UIKitSwiftUIBridging */ = {
+			isa = PBXGroup;
+			children = (
+				7D264DD02538E20C007CDD90 /* CoreHostingControllerTests.swift */,
+			);
+			path = UIKitSwiftUIBridging;
+			sourceTree = "<group>";
+		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -3902,7 +3927,7 @@
 		E8258E54251003BE0033334F /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
-				7D264DD02538E20C007CDD90 /* CoreHostingControllerTests.swift */,
+				CF5F603525DBD92100E7E0ED /* UIKitSwiftUIBridging */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -3918,10 +3943,10 @@
 		E8A8FA8C24D3289D000B27DF /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				CF5F602825DBD6EE00E7E0ED /* UIKitSwiftUIBridging */,
 				7D0A28D925194CE6004FB3B6 /* Avatar.swift */,
 				7D7BA23824DB57BD00B1A68B /* CircleProgress.swift */,
 				7D2FA37E255EEC3F00C9552F /* CircleRefresh.swift */,
-				E8D6949724D46B1E0080D883 /* CoreHostingController.swift */,
 				7D89A2C82509326B009D0FD2 /* DisclosureIndicator.swift */,
 				7D89A2CA250A6B3B009D0FD2 /* EditorForm.swift */,
 				7D7D6D4F25100D11002B1485 /* EmptyPanda.swift */,
@@ -4864,6 +4889,7 @@
 				E8809F3424E4775F006DBE0A /* TestIdentifier.swift in Sources */,
 				CFC01CC62563FF5D00178E98 /* HelpLinkRoute.swift in Sources */,
 				7D531D51254CC18F00CBFCA6 /* DiscussionSectionsPicker.swift in Sources */,
+				CF5F602A25DBD70E00E7E0ED /* WeakViewController.swift in Sources */,
 				7DA260E523F72359005D2121 /* PublishedIconView.swift in Sources */,
 				B162469F2445001F00982C52 /* CompletionRequirement.swift in Sources */,
 				7DA25FFB23F7226E005D2121 /* DocViewerConstants.swift in Sources */,
@@ -5066,6 +5092,7 @@
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
 				7D70869925699AAA00647D37 /* CourseInvitationCard.swift in Sources */,
+				CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */,
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
 				7DA2601123F7227A005D2121 /* InstColorExtensions.swift in Sources */,
 				7D70868B2568937D00647D37 /* CourseCard.swift in Sources */,
@@ -5129,6 +5156,7 @@
 				7DA2605F23F722D9005D2121 /* Role.swift in Sources */,
 				B147CCD72409CC6C0064BD3F /* LoadingCell.swift in Sources */,
 				7D75FF1424081E42000544E7 /* ListErrorView.swift in Sources */,
+				CF5F603225DBD84700E7E0ED /* UINavigationControllerTheme.swift in Sources */,
 				7D630B7124A52C050039A45D /* GetFolders.swift in Sources */,
 				7DA25FF423F72260005D2121 /* ExperimentalFeaturesViewController.swift in Sources */,
 				7D7F71DA241C41BC00D6F9CB /* APIDate.swift in Sources */,

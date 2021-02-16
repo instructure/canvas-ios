@@ -110,7 +110,7 @@ public struct WebView: UIViewRepresentable {
             return true
         }
 
-        public var routeLinksFrom: UIViewController { view.controller }
+        public var routeLinksFrom: UIViewController { view.controller.value }
 
         public func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat) {
             view.handleSize?(height)
