@@ -47,8 +47,8 @@ public final class Group: NSManagedObject, WriteableModel {
     public var color: UIColor { contextColor?.color ?? .ash }
 
     public func getCourse() -> Course? {
-        if let id = courseID, course == nil {
-            course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id)
+        if let id = courseID, course == nil, let fetchedCourse: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id) {
+            course = fetchedCourse
         }
         return course
     }
