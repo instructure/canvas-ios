@@ -20,6 +20,7 @@ import SwiftUI
 
 struct GroupCard: View {
     @ObservedObject var group: Group
+    let course: Course?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -35,7 +36,6 @@ struct GroupCard: View {
                     Text(group.name)
                         .font(.semibold18).foregroundColor(.textDarkest)
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
-                    let course = group.getCourse()
                     Text(course?.name ?? NSLocalizedString("Account Group", comment: ""))
                         .font(.semibold16).foregroundColor(.accentColor)
                         .lineLimit(2).fixedSize(horizontal: false, vertical: true)
