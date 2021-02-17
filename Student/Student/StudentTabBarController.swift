@@ -73,8 +73,9 @@ class StudentTabBarController: UITabBarController {
 
     func todoTab() -> UIViewController {
         let todo = HelmSplitViewController()
+        let todoController = TodoListViewController.create()
         todo.viewControllers = [
-            UINavigationController(rootViewController: TodoListViewController.create()),
+            UINavigationController(rootViewController: todoController),
             UINavigationController(rootViewController: EmptyViewController()),
         ]
         todo.tabBarItem.title = NSLocalizedString("To Do", comment: "Title of the Todo screen")
@@ -82,7 +83,7 @@ class StudentTabBarController: UITabBarController {
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
         TabBarBadgeCounts.todoItem = todo.tabBarItem
-        todo.viewControllers.first?.loadViewIfNeeded() // start fetching todos immediately
+        todoController.loadViewIfNeeded() // start fetching todos immediately
         return todo
     }
 
