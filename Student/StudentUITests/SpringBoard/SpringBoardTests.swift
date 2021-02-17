@@ -32,13 +32,15 @@ class SpringBoardTests: CoreUITestCase {
         sleep(2)
         XCTAssertEqual(appToSpringBoardRatio(), 0.5, accuracy: 0.05)
 
-        SpringBoard.shared.moveSplit(toFraction: 0.25)
+        let ratio1per3: CGFloat = 1 / 3.0
+        SpringBoard.shared.moveSplit(toFraction: ratio1per3)
         sleep(2)
-        XCTAssertEqual(appToSpringBoardRatio(), 0.25, accuracy: 0.05)
+        XCTAssertEqual(appToSpringBoardRatio(), ratio1per3, accuracy: 0.05)
 
-        SpringBoard.shared.moveSplit(toFraction: 0.75)
+        let ratio2per3: CGFloat = 2 / 3.0
+        SpringBoard.shared.moveSplit(toFraction: ratio2per3)
         sleep(2)
-        XCTAssertEqual(appToSpringBoardRatio(), 0.75, accuracy: 0.05)
+        XCTAssertEqual(appToSpringBoardRatio(), ratio2per3, accuracy: 0.05)
 
         SpringBoard.shared.moveSplit(toFraction: 0.5)
         sleep(2)
