@@ -45,15 +45,15 @@ public final class Todo: NSManagedObject {
     }
 
     func getCourse() -> Course? {
-        if context.contextType == .course, course == nil {
-            course = managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id)
+        if context.contextType == .course, course == nil, let fetchedCourse: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: context.id) {
+            course = fetchedCourse
         }
         return course
     }
 
     func getGroup() -> Group? {
-        if context.contextType == .group, group == nil {
-            group = managedObjectContext?.first(where: #keyPath(Group.id), equals: context.id)
+        if context.contextType == .group, group == nil, let fetchedGroup: Group = managedObjectContext?.first(where: #keyPath(Group.id), equals: context.id) {
+            group = fetchedGroup
         }
         return group
     }
