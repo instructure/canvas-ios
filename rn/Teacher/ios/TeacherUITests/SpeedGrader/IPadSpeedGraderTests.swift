@@ -38,6 +38,6 @@ class IPadSpeedGraderTests: MiniCanvasUITestCase {
         SubmissionsList.cell(userID: students[1].id.value).tap()
         SpeedGrader.doneButton.waitToExist()
         SpeedGrader.userButton.waitToExist()
-        XCTAssertTrue(SpeedGrader.userButton.label().contains(students[1].short_name))
+        XCTAssertTrue(SpeedGrader.userButton.label().contains(students[1].name))
     }
 }
