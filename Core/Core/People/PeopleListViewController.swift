@@ -52,6 +52,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     lazy var users = env.subscribe(GetContextUsers(context: context)) { [weak self] in
         self?.update()
     }
+    private weak var accessibilityFocusAfterReload: UIView?
 
     public static func create(context: Context) -> PeopleListViewController {
         let controller = loadFromStoryboard()
@@ -133,6 +134,10 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
         emptyView.isHidden = users.pending || !users.isEmpty || users.error != nil
         errorView.isHidden = users.error == nil
         tableView.reloadData()
+
+        if accessibilityFocusAfterReload != nil {
+            UIAccessibility.post(notification: .screenChanged, argument: accessibilityFocusAfterReload)
+        }
     }
 
     @objc func refresh() {
@@ -144,6 +149,7 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     @objc func filter(_ sender: UIButton) {
         guard enrollmentType == nil else {
             enrollmentType = nil
+            accessibilityFocusAfterReload = nil
             return updateUsers()
         }
         let alert = UIAlertController(title: NSLocalizedString("Filter by:", bundle: .core, comment: ""), message: nil, preferredStyle: .actionSheet)
@@ -207,6 +213,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
             : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
+        accessibilityFocusAfterReload = (enrollmentType != nil ? header.filterButton : nil)
         return header
     }
 
