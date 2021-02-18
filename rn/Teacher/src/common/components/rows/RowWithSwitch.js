@@ -20,6 +20,7 @@
 
 import React, { Component } from 'react'
 import {
+  AccessibilityInfo,
   Switch,
 } from 'react-native'
 import Row, { type RowProps } from './Row'
@@ -51,7 +52,11 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
         accessibilityRole='switch'
         accessibilityLabel={accessibilityLabel}
         {...this.props.disabled && { accessibilityState: { disabled: true } } }
-        onPress={() => { this.onValueChange(!this.props.value) }}
+        onPress={() => {
+          const newValue = !this.props.value
+          AccessibilityInfo.announceForAccessibility(newValue ? i18n('On') : i18n('Off'))
+          this.onValueChange(newValue)
+        }}
       />
     )
   }
