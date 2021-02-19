@@ -81,7 +81,7 @@ class RubricCircleView: UIView {
             let color: UIColor
             let bgColor: UIColor
             let format = NSLocalizedString("g_points", bundle: .core, comment: "")
-            var a11yLabel: String = String.localizedStringWithFormat(format, Int(r))
+            var a11yLabel: String = String.localizedStringWithFormat(format, Double(Int(r)))
             a11yLabel += " " + description
 
             if selected {
