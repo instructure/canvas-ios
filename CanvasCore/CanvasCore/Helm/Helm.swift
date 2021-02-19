@@ -212,6 +212,9 @@ open class HelmManager: NSObject {
                 if (viewCanExpandCollapse) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem(splitViewController.displayMode)
                     viewController.navigationItem.leftItemsSupplementBackButton = true
+                    let backButton = UIBarButtonItem(title: NSLocalizedString("Back", comment: ""), style: .plain, target: nil, action: nil)
+                    backButton.accessibilityLabel = NSLocalizedString("Back on detailed view", comment: "")
+                    viewController.navigationItem.backBarButtonItem = backButton
                 }
                 
                 // Check to see if the master view is the one pushing this view controller onto the detail view.
