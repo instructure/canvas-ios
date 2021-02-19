@@ -53,6 +53,7 @@ public struct EditorForm<Content: View>: View {
 public struct EditorSection<Label: View, Content: View>: View {
     public let content: Content
     public let label: Label
+    private var hasLabel = true
 
     public init(label: Label, @ViewBuilder content: () -> Content) {
         self.content = content()
@@ -62,12 +63,14 @@ public struct EditorSection<Label: View, Content: View>: View {
     public init(@ViewBuilder content: () -> Content) where Label == Text {
         self.content = content()
         self.label = Text(verbatim: "")
+        self.hasLabel = false
     }
 
     public var body: some View { SwiftUI.Group {
         label
             .font(.semibold14).foregroundColor(.textDark)
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
+            .accessibility(hidden: !hasLabel)
         Divider()
         content.background(Color.backgroundLightest)
         Divider()
