@@ -26,11 +26,11 @@ exports[`Filter renders the filter options 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -112,11 +112,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -198,11 +198,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -284,11 +284,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -370,11 +370,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -456,11 +456,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -542,11 +542,11 @@ exports[`Filter renders the filter options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -656,11 +656,11 @@ exports[`Filter renders with preselected options 1`] = `
   <list>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -744,11 +744,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -832,11 +832,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -920,11 +920,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1008,11 +1008,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "selected",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": true,
+          }
         }
         onPress={[Function]}
         style={
@@ -1127,11 +1127,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1215,11 +1215,11 @@ exports[`Filter renders with preselected options 1`] = `
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1331,11 +1331,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
   <list>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1419,11 +1419,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1507,11 +1507,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1595,11 +1595,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1683,11 +1683,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "selected",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": true,
+          }
         }
         onPress={[Function]}
         style={
@@ -1802,11 +1802,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={
@@ -1890,11 +1890,11 @@ exports[`Filter updates the selection when pressed for non prompt filter options
     </item>
     <item>
       <TouchableHighlight
-        accessibilityTraits={
-          Array [
-            "none",
-            "button",
-          ]
+        accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "selected": false,
+          }
         }
         onPress={[Function]}
         style={

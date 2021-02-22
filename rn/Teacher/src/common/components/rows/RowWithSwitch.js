@@ -20,6 +20,7 @@
 
 import React, { Component } from 'react'
 import {
+  AccessibilityInfo,
   Switch,
 } from 'react-native'
 import Row, { type RowProps } from './Row'
@@ -39,14 +40,6 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
   }
 
   render () {
-    let traits = []
-    if (this.props.disabled) {
-      traits.push('disabled')
-    }
-    if (this.props.value) {
-      traits.push('selected')
-    }
-
     const accessories = <Switch {...this.props}
       testID={this.props.identifier}
       onValueChange={this.onValueChange}
@@ -56,9 +49,14 @@ export default class RowWithSwitch extends Component<RowWithSwitchProps, any> {
     return (
       <Row {...this.props}
         accessories={accessories}
+        accessibilityRole='switch'
         accessibilityLabel={accessibilityLabel}
-        accessibilityTraits={traits}
-        onPress={() => { this.onValueChange(!this.props.value) }}
+        {...this.props.disabled && { accessibilityState: { disabled: true } } }
+        onPress={() => {
+          const newValue = !this.props.value
+          AccessibilityInfo.announceForAccessibility(newValue ? i18n('On') : i18n('Off'))
+          this.onValueChange(newValue)
+        }}
       />
     )
   }

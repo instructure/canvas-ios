@@ -44,7 +44,8 @@ export type RowProps = {
   identifier?: any, // Passed in as the first parameter to the onPress callback
   accessories?: any,
   accessibilityLabel?: ?string,
-  accessibilityTraits?: React$ElementProps<typeof View>,
+  accessibilityRole?: string,
+  accessibilityState?: any,
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number, accessibilityLabel?: string },
   selected?: ?boolean,
   titleStyles?: any,
@@ -75,14 +76,16 @@ export default class Row extends Component<RowProps> {
       bottomBorder = style.bottomHairline
     }
 
-    let accessibilityTraits = typeof this.props.accessibilityTraits === 'string' ? [this.props.accessibilityTraits] : (this.props.accessibilityTraits || [])
-    if (this.props.onPress && !accessibilityTraits.includes('button')) {
-      accessibilityTraits.push('button')
+    let accessibilityRole = this.props.accessibilityRole
+
+    if (accessibilityRole === undefined && this.props.onPress) {
+      accessibilityRole = 'button'
     }
 
     let traits: {[string]: any} = {
-      accessibilityTraits,
+      accessibilityRole,
       accessibilityLabel: this.props.accessibilityLabel,
+      accessibilityState: this.props.accessibilityState,
     }
 
     if (this.props.accessible !== undefined) {

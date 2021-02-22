@@ -36,3 +36,15 @@ test('Render row with switch', () => {
   aRow.getInstance().onValueChange(true, 'test')
   expect(onValueChange).toHaveBeenLastCalledWith(true, 'test')
 })
+
+test('Render disabled row with switch', () => {
+  const onValueChange = jest.fn()
+  let aRow = renderer.create(
+    <RowWithSwitch
+      title='Row with a switch in it!'
+      onValueChange={onValueChange}
+      identifier='test'
+      disabled={true} />
+  )
+  expect(aRow.toJSON()).toMatchSnapshot()
+})

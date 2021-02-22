@@ -80,11 +80,10 @@ export default class Filter extends Component<FilterProps, FilterState> {
   }
 
   renderRow = ({ item }: { item: SubmissionFilterOption }) => {
-    const traits = item.selected ? 'selected' : 'none'
     return (
       <Row
         title={item.title()}
-        accessibilityTraits={traits}
+        accessibilityState={{ selected: item.selected }}
         identifier={item.type}
         onPress={this.onFilterPress}
         border='bottom'
