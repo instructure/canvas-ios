@@ -63,8 +63,8 @@ public class HelmSplitViewController: UISplitViewController {
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
         let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
         prettyButton.accessibilityLabel = collapse ?
-            NSLocalizedString("Collapse", bundle: .canvas, comment: "") :
-            NSLocalizedString("Expand", bundle: .canvas, comment: "")
+            NSLocalizedString("Collapse detail view", bundle: .canvas, comment: "") :
+            NSLocalizedString("Expand detail view", bundle: .canvas, comment: "")
         return prettyButton
     }
 }
