@@ -82,6 +82,7 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         _ = setDrawerPositionOnce
         drawerContentViewController?.view.accessibilityElementsHidden = drawer?.height == 0
         contentView?.accessibilityElementsHidden = drawer?.height != 0
+        pickerButton?.accessibilityElementsHidden = drawer?.height == drawer?.maxDrawerHeight
     }
 
     func reload() {
