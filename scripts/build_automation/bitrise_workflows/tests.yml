@@ -64,9 +64,8 @@ workflows:
             set -euxo pipefail
 
             brew tap mxcl/made
-            brew tap thii/xcbeautify https://github.com/thii/xcbeautify.git
 
-            brew reinstall swiftlint jq xcbeautify
+            brew reinstall swiftlint jq
 
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - &yarn-install-root
