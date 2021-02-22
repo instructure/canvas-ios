@@ -22,11 +22,11 @@ import Foundation
 public struct APISearchRecipient: Codable, Equatable {
     public let id: ID
     public let name: String
-    public let full_name: String
+    public let full_name: String?
     public let pronouns: String?
     public let avatar_url: APIURL?
     public let type: APISearchRecipientContext?
-    public let common_courses: [String: [String]]
+    public let common_courses: [String: [String]]?
 }
 
 public enum APISearchRecipientContext: String, Codable {
