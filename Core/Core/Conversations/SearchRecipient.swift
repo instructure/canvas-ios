@@ -39,17 +39,20 @@ public final class SearchRecipient: NSManagedObject {
 
         model.id = item.id.value
         model.name = item.name
-        model.fullName = item.full_name
+        model.fullName = item.full_name ?? item.name
         model.pronouns = item.pronouns
         model.avatarURL = item.avatar_url?.rawValue
         model.filter = filter
         model.commonCourses = []
-        for (courseID, roles) in item.common_courses {
-            for role in roles {
-                let commonCourse: CommonCourse = context.insert()
-                commonCourse.courseID = courseID
-                commonCourse.role = role
-                model.commonCourses.insert(commonCourse)
+
+        if let common_courses = item.common_courses {
+            for (courseID, roles) in common_courses {
+                for role in roles {
+                    let commonCourse: CommonCourse = context.insert()
+                    commonCourse.courseID = courseID
+                    commonCourse.role = role
+                    model.commonCourses.insert(commonCourse)
+                }
             }
         }
         return model
