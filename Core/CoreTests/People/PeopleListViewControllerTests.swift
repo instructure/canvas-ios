@@ -35,7 +35,7 @@ class PeopleListViewControllerTests: CoreTestCase {
                 name: "Jane",
                 sortable_name: "jane doe",
                 short_name: "jane",
-                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom") ],
+                enrollments: [ .make(id: "2", role: "StudentEnrollment"), .make(id: "3", role: "Custom"), .make(id: "4", role: "StudentEnrollment"), ],
                 pronouns: "She/Her"
             ),
         ])
