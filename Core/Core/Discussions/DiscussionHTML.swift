@@ -286,7 +286,8 @@ public enum DiscussionHTML {
         return h('div', { style: 'display:flex; margin:24px 0 16px 0;' },
             h('a', {
                 style: '\(Styles.font(.semibold, 16))text-decoration:none',
-                href: `${id}/reply`
+                href: `${id}/reply`,
+                'aria-label': \(s(NSLocalizedString("Reply to main discussion", bundle: .core, comment: "")))
             },
                 \(s(NSLocalizedString("Reply", bundle: .core, comment: "")))
             )
@@ -348,7 +349,8 @@ public enum DiscussionHTML {
             !topic.lockedForUser && topic.canReply && h(Fragment, null,
                 h('a', {
                     href: `${topic.id}/entries/${entry.id}/replies`,
-                    class: \(s(.reply))
+                    class: \(s(.reply)),
+                    'aria-label': \(s(NSLocalizedString("Reply to thread", bundle: .core, comment: "")))
                 },
                     \(s(NSLocalizedString("Reply", bundle: .core, comment: "")))
                 ),

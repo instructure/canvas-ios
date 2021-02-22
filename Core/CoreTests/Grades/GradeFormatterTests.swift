@@ -38,6 +38,7 @@ class GradeFormatterTests: CoreTestCase {
             submission: .make(grade: "complete", score: 1)
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment), "Complete / 11")
+        XCTAssertEqual(GradeFormatter.a11yString(from: assignment), "Complete out of 11")
         XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
     }
 
@@ -48,6 +49,7 @@ class GradeFormatterTests: CoreTestCase {
             submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")]
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete / 10")
+        XCTAssertEqual(GradeFormatter.a11yString(from: assignment, userID: "2", style: .medium), "Incomplete out of 10")
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
     }
 
@@ -75,8 +77,10 @@ class GradeFormatterTests: CoreTestCase {
 
         formatter.gradeStyle = .medium
         XCTAssertEqual(formatter.string(from: submission), "Excused / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Excused out of 10")
         submission.score = nil
         XCTAssertEqual(formatter.string(from: submission), "Excused / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Excused out of 10")
     }
 
     func testPassFail() {
@@ -93,10 +97,13 @@ class GradeFormatterTests: CoreTestCase {
         formatter.gradeStyle = .medium
         submission.grade = "complete"
         XCTAssertEqual(formatter.string(from: submission), "Complete / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Complete out of 10")
         submission.grade = "incomplete"
         XCTAssertEqual(formatter.string(from: submission), "Incomplete / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Incomplete out of 10")
         submission.grade = "something else"
         XCTAssertEqual(formatter.string(from: submission), "- / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "- out of 10")
     }
 
     func testPoints() {
@@ -110,6 +117,7 @@ class GradeFormatterTests: CoreTestCase {
         formatter.gradeStyle = .medium
         formatter.pointsPossible = 10
         XCTAssertEqual(formatter.string(from: submission), "5 / 10")
+        XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10")
     }
 
     func testGPAScale() {
@@ -121,6 +129,7 @@ class GradeFormatterTests: CoreTestCase {
         formatter.gradeStyle = .medium
         submission.score = 5
         XCTAssertEqual(formatter.string(from: submission), "5 / 10 (50%)")
+        XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (50%)")
     }
 
     func testPercent() {
@@ -132,6 +141,7 @@ class GradeFormatterTests: CoreTestCase {
         formatter.gradeStyle = .medium
         submission.score = 5
         XCTAssertEqual(formatter.string(from: submission), "5 / 10 (50%)")
+        XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (50%)")
     }
 
     func testLetterGrade() {
@@ -143,6 +153,7 @@ class GradeFormatterTests: CoreTestCase {
         formatter.gradeStyle = .medium
         submission.score = 5
         XCTAssertEqual(formatter.string(from: submission), "5 / 10 (A)")
+        XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (A)")
     }
 
     func testNotGraded() {

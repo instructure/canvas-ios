@@ -59,6 +59,10 @@ public class GradeFormatter {
     public var pointsPossible: Double = 0
     public var placeholder = "-"
 
+    public static func a11yString(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
+        a11yString(from: string(from: assignment, userID: userID, style: style))
+    }
+
     public static func string(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
         let formatter = GradeFormatter()
         formatter.pointsPossible = assignment.pointsPossible ?? 0
@@ -71,6 +75,10 @@ public class GradeFormatter {
         return formatter.string(from: assignment.submission)
     }
 
+    public static func a11yString(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
+        a11yString(from: string(from: assignment, submission: submission, style: style))
+    }
+
     public static func string(from assignment: Assignment, submission: Submission, style: Style = .medium) -> String? {
         let formatter = GradeFormatter()
         formatter.pointsPossible = assignment.pointsPossible ?? 0
@@ -80,6 +88,19 @@ public class GradeFormatter {
             formatter.gradeStyle = .short
         }
         return formatter.string(from: submission)
+    }
+
+    private static func a11yString(from formattedGrade: String?) -> String? {
+        guard var formattedGrade = formattedGrade else { return nil }
+
+        formattedGrade = formattedGrade.replacingOccurrences(of: " / ", with: "/")
+        formattedGrade = formattedGrade.replacingOccurrences(of: "/", with: " " + NSLocalizedString("out of", comment: "5 out of 10") + " ")
+
+        return formattedGrade
+    }
+
+    public func a11yString(from submission: Submission?) -> String? {
+        GradeFormatter.a11yString(from: string(from: submission))
     }
 
     public func string(from submission: Submission?) -> String? {
