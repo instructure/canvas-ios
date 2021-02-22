@@ -89,7 +89,8 @@ class DiscussionReplyTests: CoreUITestCase {
         app.find(label: "Back").tap()
         app.find(label: "m4 (deep)").waitToVanish()
 
-        XCTAssertEqual(app.find(label: "Reply", type: .link).allElements.count, repliesEnabled ? 5 : 0)
+        XCTAssertEqual(app.find(label: "Reply to thread", type: .link).allElements.count, repliesEnabled ? 4 : 0)
+        XCTAssertEqual(app.find(label: "Reply to main discussion", type: .link).allElements.count, repliesEnabled ? 1 : 0)
     }
 
     func testViewReplies() {
@@ -116,19 +117,19 @@ class DiscussionReplyTests: CoreUITestCase {
         mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", message: ""), value: .make())
         mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", entryID: "2", message: ""), value: .make())
 
-        app.find(label: "Reply", type: .link).tap()
+        app.find(label: "Reply to main discussion", type: .link).tap()
         DiscussionEditReply.sendButton.waitToExist()
         XCTAssertFalse(DiscussionEditor.attachmentButton.exists)
         NavBar.dismissButton.tap()
         DiscussionEditReply.sendButton.waitToVanish()
 
-        app.find(label: "Reply", type: .link).tap()
+        app.find(label: "Reply to main discussion", type: .link).tap()
         RichContentEditor.webView.typeText("hello!")
         DiscussionEditReply.sendButton.tapUntil {
             !DiscussionEditReply.sendButton.isVisible
         }
 
-        app.find(label: "Reply", type: .link)[2].tap()
+        app.find(label: "Reply to thread", type: .link)[1].tap()
         DiscussionEditReply.sendButton.waitToExist()
         XCTAssertFalse(DiscussionEditReply.attachmentButton.exists)
         RichContentEditor.webView.typeText("hello!")
@@ -147,7 +148,7 @@ class DiscussionReplyTests: CoreUITestCase {
         app.find(label: discussion.message!).waitToExist()
 
         mockData(PostDiscussionEntryRequest(context: .course(course.id.value), topicID: "1", message: ""), value: .make())
-        app.find(label: "Reply", type: .link).tap()
+        app.find(label: "Reply to main discussion", type: .link).tap()
         XCTAssertEqual(DiscussionEditReply.attachmentButton.label(), "Edit attachment (none)")
         DiscussionEditReply.attachmentButton.tap()
 
