@@ -335,7 +335,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/courses/:courseID/users/:userID": contextCard,
-    "/groups/:groupID/users/:userID": contextCard,
+    "/groups/:groupID/users/:userID": groupContextCard,
 
     "/courses/:courseID/user_preferences": nil,
 
@@ -442,4 +442,11 @@ private func contextCard(url: URLComponents, params: [String: String], userInfo:
     let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
     let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: currentUserID, isSubmissionRowsVisible: false, isLastActivityVisible: false)
     return CoreHostingController(ContextCardView(model: viewModel))
+}
+
+private func groupContextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let groupID = params["groupID"], let userID = params["userID"] else { return nil }
+    let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
+    let viewModel = GroupContextCardViewModel(groupID: groupID, userID: userID, currentUserID: currentUserID)
+    return CoreHostingController(GroupContextCardView(model: viewModel))
 }
