@@ -3277,8 +3277,8 @@
 		7D8E820F23C8E0AE00A8DA2C /* People */ = {
 			isa = PBXGroup;
 			children = (
+				CF7C6D9C25E5117D00363203 /* ContextCard */,
 				7D80AC14212B67E100C40ECE /* APIUserTests.swift */,
-				D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */,
 				B1CA33452339434A0015CBB4 /* GetContextUsersTests.swift */,
 				D9436D1C25A4CB0C00DD3873 /* GetCourseSingleUserTests.swift */,
 				9F10A66E22931E7900E3360C /* GetUserSettingsTests.swift */,
@@ -3836,6 +3836,43 @@
 			path = UIKitSwiftUIBridging;
 			sourceTree = "<group>";
 		};
+		CF7C6D9A25E5114D00363203 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				D97020BC257FB554002B7B73 /* ContextCardView.swift */,
+				CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */,
+				D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */,
+				D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */,
+				D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */,
+				D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */,
+				D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		CF7C6D9B25E5115800363203 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		CF7C6D9C25E5117D00363203 /* ContextCard */ = {
+			isa = PBXGroup;
+			children = (
+				CF7C6D9D25E5119600363203 /* Course */,
+			);
+			path = ContextCard;
+			sourceTree = "<group>";
+		};
+		CF7C6D9D25E5119600363203 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				D9BFFC7225921C04001B5E7B /* ContextCardTests.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		CFB50C49256432D400E4AD72 /* Help */ = {
 			isa = PBXGroup;
 			children = (
@@ -3900,13 +3937,8 @@
 		D97020BB257FB536002B7B73 /* ContextCard */ = {
 			isa = PBXGroup;
 			children = (
-				D97020BC257FB554002B7B73 /* ContextCardView.swift */,
-				CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */,
-				D97020C42581013C002B7B73 /* ContextCardHeaderView.swift */,
-				D9E1BAB6258114C40034C01E /* ContextCardGradesView.swift */,
-				D9E1BABC258163DC0034C01E /* ContextCardSubmissionsView.swift */,
-				D9E1BAC02581666B0034C01E /* ContextCardSubmissionRow.swift */,
-				D9E1BAB925811BD70034C01E /* ContextCardBoxView.swift */,
+				CF7C6D9A25E5114D00363203 /* Course */,
+				CF7C6D9B25E5115800363203 /* Group */,
 			);
 			path = ContextCard;
 			sourceTree = "<group>";
