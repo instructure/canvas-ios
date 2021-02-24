@@ -812,6 +812,7 @@
 		B1F3780C22499037000B7CAA /* MockMDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3780B22499037000B7CAA /* MockMDMManager.swift */; };
 		B1F614AE243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */; };
 		B1F6D6BA22EB675000CDD44D /* SessionDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */; };
+		CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */; };
 		CF326B352563D4D3005ABAAA /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF326B342563D4D3005ABAAA /* HelpView.swift */; };
 		CF4E5E9025BAF91F008609C5 /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */; };
 		CF4E5E9925C8455A008609C5 /* NSPredicateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */; };
@@ -1871,6 +1872,7 @@
 		B1F614AD243D0BE700F1FBA3 /* ModuleItemSequenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewControllerTests.swift; sourceTree = "<group>"; };
 		B1F6D6B722EB672500CDD44D /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		B1F6D6B922EB675000CDD44D /* SessionDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaultsTests.swift; sourceTree = "<group>"; };
+		CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
 		CF326B342563D4D3005ABAAA /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		CF4E5E8F25BAF91F008609C5 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		CF4E5E9825C8455A008609C5 /* NSPredicateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateExtensionsTests.swift; sourceTree = "<group>"; };
@@ -3886,6 +3888,7 @@
 			isa = PBXGroup;
 			children = (
 				CF7C6DAC25E56A0000363203 /* GroupContextCardTests.swift */,
+				CF00481625E6457500321C8B /* GroupContextCardViewModelTests.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -4684,6 +4687,7 @@
 				7D7F71DC241FD90600D6F9CB /* APIDateTests.swift in Sources */,
 				B11AAC3B237A1EB4002BC41F /* APIURLTests.swift in Sources */,
 				7D016B5D23E883AC00C6E0CA /* FilePickerTests.swift in Sources */,
+				CF00481725E6457500321C8B /* GroupContextCardViewModelTests.swift in Sources */,
 				B1A464BD225669B50052F8DF /* DispatchExtensionsTests.swift in Sources */,
 				3B158CAF22E153120039A568 /* PersistencyTests.swift in Sources */,
 				3B35F06F230EEE1700674FF5 /* APIPostPolicyInfoTests.swift in Sources */,

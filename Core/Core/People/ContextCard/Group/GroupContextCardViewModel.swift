@@ -26,10 +26,11 @@ public class GroupContextCardViewModel: ObservableObject {
     public lazy var group = env.subscribe(GetGroup(groupID: groupID)) { [weak self] in self?.updateLoadingState() }
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in self?.updateLoadingState() }
     public lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ])) { [weak self] in self?.updateLoadingState() }
-    public let isViewingAnotherUser: Bool
+    public var shouldShowMessageButton: Bool { isViewingAnotherUser && permissions.first?.sendMessages == true }
     public let context: Context
 
     @Environment(\.appEnvironment) private var env
+    private let isViewingAnotherUser: Bool
     private var isFirstAppear = true
     private let groupID: String
     private let userID: String
@@ -51,7 +52,7 @@ public class GroupContextCardViewModel: ObservableObject {
     }
 
     public func openNewMessageComposer(controller: UIViewController) {
-        guard let group = group.first, let user = user.first else { return }
+        guard shouldShowMessageButton, let group = group.first, let user = user.first else { return }
         let recipient: [String: Any?] = [
             "id": user.id,
             "name": user.name,

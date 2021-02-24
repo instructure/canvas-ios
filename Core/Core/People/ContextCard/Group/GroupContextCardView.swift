@@ -36,7 +36,7 @@ public struct GroupContextCardView: View {
     }
 
     @ViewBuilder var emailButton: some View {
-        if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
+        if model.shouldShowMessageButton {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 Image.emailLine
             })
