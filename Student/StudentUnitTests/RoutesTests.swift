@@ -78,7 +78,9 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/logs") is LogEventListViewController)
 
         XCTAssert(router.match("/courses/1/users") is PeopleListViewController)
+        XCTAssert(router.match("/courses/1/users/1") is CoreHostingController<ContextCardView>)
         XCTAssert(router.match("/groups/1/users") is PeopleListViewController)
+        XCTAssert(router.match("/groups/1/users/1") is CoreHostingController<GroupContextCardView>)
 
         XCTAssert(router.match("/courses/1/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/1/modules/1") is ModuleListViewController)

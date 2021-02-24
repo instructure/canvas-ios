@@ -170,6 +170,7 @@
 		B1DC259E23DF81CF0005809D /* SubmitAssignment.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BB7A8222BAC820006CA068 /* SubmitAssignment.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1FF02D02404353E004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02CF2404353E004B7B1C /* KeychainTests.swift */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
+		CF00480B25E62D0300321C8B /* GroupContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */; };
 		CF79958D2554233900A92A1E /* PreviewSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79958C2554233900A92A1E /* PreviewSimulator.swift */; };
 		CF799599255589EE00A92A1E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF799598255589ED00A92A1E /* EmptyView.swift */; };
 		CF7995AB2555A55100A92A1E /* CommonWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995AA2555A55100A92A1E /* CommonWidgetProvider.swift */; };
@@ -806,6 +807,7 @@
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDDBB798D4D4EA95C1F9796 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardE2ETests.swift; sourceTree = "<group>"; };
 		CF17F170254C1A0900B79EB6 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		CF41CE3225472D2F00937432 /* GradeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeModel.swift; sourceTree = "<group>"; };
 		CF41CE4025473AA300937432 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -1690,6 +1692,22 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
+		CF00480825E62CAC00321C8B /* ContextCard */ = {
+			isa = PBXGroup;
+			children = (
+				CF00480925E62CCA00321C8B /* Group */,
+			);
+			path = ContextCard;
+			sourceTree = "<group>";
+		};
+		CF00480925E62CCA00321C8B /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				CF00480A25E62D0300321C8B /* GroupContextCardE2ETests.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
 		CF4A4469254700B500F76207 /* GradesWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -2079,6 +2097,7 @@
 		E8EA860C230497AC00E4FD76 /* People */ = {
 			isa = PBXGroup;
 			children = (
+				CF00480825E62CAC00321C8B /* ContextCard */,
 				E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */,
 			);
 			path = People;
@@ -3064,6 +3083,7 @@
 				E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */,
 				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				E841D8C423D6648300685A63 /* AssignmentsE2ETests.swift in Sources */,
+				CF00480B25E62D0300321C8B /* GroupContextCardE2ETests.swift in Sources */,
 				E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserE2ETests.swift in Sources */,
 				E80936E224C24CDD00D15E9A /* AnnouncementE2ETests.swift in Sources */,
