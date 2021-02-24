@@ -38,4 +38,3 @@ class GroupContextCardE2ETests: CoreUITestCase {
         XCTAssertEqual(ContextCard.groupLabel.label(), "Group One")
     }
 }
-

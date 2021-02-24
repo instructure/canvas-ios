@@ -63,7 +63,8 @@ public struct GroupContextCardView: View {
                             Text(group.name)
                                 .font(.semibold16)
                                 .identifier("ContextCard.groupLabel")
-                        }.padding(.horizontal, 16).padding(.vertical, 8)
+                        }
+                        .padding(.horizontal, 16).padding(.vertical, 8)
                         .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDarkest, lineWidth: 1 / UIScreen.main.scale))
                         .foregroundColor(.textDarkest)
                         .background(Color.backgroundLightest)
