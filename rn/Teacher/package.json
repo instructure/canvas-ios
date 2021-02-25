@@ -32,7 +32,7 @@
     "@react-native-community/async-storage": "^1.6.1",
     "@react-native-community/datetimepicker": "^3.0.0",
     "@react-native-community/picker": "^1.6.6",
-    "@react-native-community/segmented-control": "^2.1.1",
+    "@react-native-community/segmented-control": "^2.2.2",
     "apollo-client-preset": "^1.0.8",
     "apollo-link-error": "^1.1.12",
     "create-react-class": "15.6.2",
