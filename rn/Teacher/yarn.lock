@@ -7199,9 +7199,10 @@ react-native-image-picker@^2.3.1:
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.3.tgz#eaacd4a1ed9e9887613be31f0765478ca2f18a51"
   integrity sha512-i/7JDnxKkUGSbFY2i7YqFNn3ncJm1YlcrPKXrXmJ/YUElz8tHkuwknuqBd9QCJivMfHX41cmq4XvdBDwIOtO+A==
 
-react-native-interactable@derrh/react-native-interactable:
-  version "0.0.9"
-  resolved "https://codeload.github.com/derrh/react-native-interactable/tar.gz/8849e730650956a6c658f6314185f812753cd11d"
+react-native-interactable@0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-interactable/-/react-native-interactable-0.1.10.tgz#65b9a68f6a84ba1c0e2ad5478b1f22ffb29c0526"
+  integrity sha512-7sZeX5+6m2BxlV1P7N2HQjjqJndL6YcN5i+OD0RSQ4HLXfzNCrdpFlxZnq5TpD4aEURdm3LOD4DZSiXaSEaXnw==
 
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.1"
