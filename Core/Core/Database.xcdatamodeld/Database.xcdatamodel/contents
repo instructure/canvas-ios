@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -872,7 +872,6 @@
         <attribute name="ignorePermanentlyURL" attributeType="URI"/>
         <attribute name="ignoreURL" attributeType="URI"/>
         <attribute name="needsGradingCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeRaw" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="todo" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="todos" inverseEntity="Course"/>
@@ -980,7 +979,7 @@
         <element name="SubmissionSummary" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="Syllabus" positionX="-540" positionY="-18" width="128" height="73"/>
         <element name="Tab" positionX="108.015625" positionY="177.67578125" width="128" height="165"/>
-        <element name="Todo" positionX="-540" positionY="-18" width="128" height="193"/>
+        <element name="Todo" positionX="-540" positionY="-18" width="128" height="164"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
         <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>

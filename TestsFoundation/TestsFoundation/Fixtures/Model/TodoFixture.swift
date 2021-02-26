@@ -24,10 +24,9 @@ extension Todo {
     @discardableResult
     public static func make(
         from api: APITodo = .make(),
-        position: Int = 0,
         in context: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> Todo {
-        let model = Todo.save(api, position: position, in: context)
+        let model = Todo.save(api, in: context)
         try! context.save()
         return model
     }
