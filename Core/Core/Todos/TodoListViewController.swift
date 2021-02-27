@@ -90,7 +90,9 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         emptyView.isHidden = todos.state != .empty
         errorView.isHidden = todos.state != .error
         loadingView.isHidden = todos.state != .loading || tableView.refreshControl?.isRefreshing == true
-        TabBarBadgeCounts.todoListCount = UInt(todos.count)
+        TabBarBadgeCounts.todoListCount = todos.reduce(into: UInt(0)) { badgeCount, todo in
+            badgeCount += todo.needsGradingCount > 0 ? todo.needsGradingCount : 1
+        }
         tableView.reloadData()
     }
 
