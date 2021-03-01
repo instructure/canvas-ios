@@ -99,4 +99,10 @@ class TodoListViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.errorView.isHidden, false)
     }
+
+    func testBadgeCount() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 5)
+    }
 }
