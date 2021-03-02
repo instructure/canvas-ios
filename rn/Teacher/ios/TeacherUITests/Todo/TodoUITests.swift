@@ -35,7 +35,7 @@ class TodoUITests: MiniCanvasUITestCase {
     }
 
     func testTodos() {
-        XCTAssertEqual(TabBar.todoTab.value(), "4 items")
+        XCTAssertEqual(TabBar.todoTab.value(), "8 items")
         TabBar.todoTab.tap()
 
         let assignment = mocked.courses[0].assignments[0]

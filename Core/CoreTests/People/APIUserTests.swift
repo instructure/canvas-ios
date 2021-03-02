@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2016-present  Instructure, Inc.
+// Copyright (C) 2021-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,52 +19,90 @@
 import XCTest
 @testable import Core
 
-class APIUserRequestableTests: XCTestCase {
-    func testGetCustomColorsRequest() {
-        XCTAssertEqual(GetCustomColorsRequest().path, "users/self/colors")
+class APIUserTests: XCTestCase {
+
+    func testDecoding() {
+        let json = """
+        {
+            "id": "8765",
+            "name": "Test Json",
+            "sortable_name": "Json, Test",
+            "short_name": "TJ",
+            "login_id": "jstest01",
+            "avatar_url": "https://instructure.com",
+            "email": "testemail@test.com",
+            "locale": "en-US",
+            "effective_locale": "en-GB",
+            "bio": "Short test description",
+            "pronouns": "mr",
+            "permissions": {
+                "can_update_name": true,
+                "can_update_avatar": true,
+                "limit_parent_app_web_access": true
+            },
+            "enrollments": [
+                {
+                    "enrollment_state": "active",
+                    "type": "test",
+                    "user_id": "8765",
+                    "role": "student",
+                    "role_id": "1"
+                }
+            ]
+        }
+        """
+
+        guard let testee = decode(json) else { return }
+        XCTAssertEqual(testee.id, ID("8765"))
+        XCTAssertEqual(testee.name, "Test Json")
+        XCTAssertEqual(testee.sortable_name, "Json, Test")
+        XCTAssertEqual(testee.short_name, "TJ")
+        XCTAssertEqual(testee.login_id, "jstest01")
+        XCTAssertEqual(testee.avatar_url, APIURL(rawValue: URL(string: "https://instructure.com")!))
+        XCTAssertEqual(testee.email, "testemail@test.com")
+        XCTAssertEqual(testee.locale, "en-US")
+        XCTAssertEqual(testee.effective_locale, "en-GB")
+        XCTAssertEqual(testee.bio, "Short test description")
+        XCTAssertEqual(testee.pronouns, "mr")
+        XCTAssertNotNil(testee.permissions)
+        XCTAssertEqual(testee.enrollments?.count, 1)
     }
 
-    func testGetUserRequest() {
-        XCTAssertEqual(GetUserRequest(userID: "2").path, "users/2")
+    func testMinimalJSONDecoding() {
+        let json = """
+        {
+            "id": "8765",
+            "name": "Test Json",
+            "sortable_name": "Json, Test",
+            "short_name": "TJ"
+        }
+        """
+
+        XCTAssertNotNil(decode(json))
     }
 
-    func testCreateUserRequest() {
-        let user = CreateUserRequest.Body.User(name: "name")
-        let pseudonym = CreateUserRequest.Body.Pseudonym(unique_id: "user@gmail.com", password: "password")
-        let body = CreateUserRequest.Body(user: user, pseudonym: pseudonym)
-        let request = CreateUserRequest(accountID: "1", body: body)
+    func testDecodingOnEmptyAvatarUrl() {
+        let json = """
+        {
+            "id": "1234",
+            "name": "Test Json",
+            "sortable_name": "Json, Test",
+            "short_name": "TJ",
+            "avatar_url": ""
+        }
+        """
 
-        XCTAssertEqual(request.path, "accounts/1/users")
-        XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.body, body)
+        guard let testee = decode(json) else { return }
+        XCTAssertNil(testee.avatar_url)
     }
 
-    func testUpdateCustomColorRequest() {
-        let body = UpdateCustomColorRequest.Body(hexcode: "fffeee")
-        let context = Context(.course, id: "1")
-        let request = UpdateCustomColorRequest(userID: "1", context: context, body: body)
+    private func decode(_ json: String) -> APIUser? {
+        do {
+            return try JSONDecoder().decode(APIUser.self, from: json.data(using: .utf8)!)
+        } catch {
+            XCTFail("APIUser decoding shouldn't raise an exception.")
+        }
 
-        XCTAssertEqual(request.path, "users/1/colors/course_1")
-        XCTAssertEqual(request.method, .put)
-        XCTAssertEqual(request.body, body)
-    }
-
-    func testGetUserSettingsRequest() {
-        let request = GetUserSettingsRequest(userID: "self")
-        XCTAssertEqual(request.path, "users/self/settings")
-        XCTAssertEqual(request.method, .get)
-    }
-
-    func testGetUserProfileRequest() {
-        let request = GetUserProfileRequest(userID: "2")
-        XCTAssertEqual(request.path, "users/2/profile")
-        XCTAssertEqual(request.method, .get)
-    }
-
-    func testPostObserveesRequest() {
-        let request = PostObserveesRequest(userID: "self", pairingCode: "abc")
-        XCTAssertEqual(request.method, .post)
-        XCTAssertEqual(request.path, "users/self/observees")
-        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "pairing_code", value: "abc")])
+        return nil
     }
 }

@@ -52,6 +52,53 @@ public struct APIUser: Codable, Equatable {
         public let can_update_avatar: Bool?
         public let limit_parent_app_web_access: Bool?
     }
+
+    public init(
+        id: ID,
+        name: String,
+        sortable_name: String,
+        short_name: String,
+        login_id: String?,
+        avatar_url: APIURL?,
+        enrollments: [APIEnrollment]?,
+        email: String?,
+        locale: String?,
+        effective_locale: String?,
+        bio: String?,
+        pronouns: String?,
+        permissions: Permissions?
+    ) {
+        self.id = id
+        self.name = name
+        self.sortable_name = sortable_name
+        self.short_name = short_name
+        self.login_id = login_id
+        self.avatar_url = avatar_url
+        self.enrollments = enrollments
+        self.email = email
+        self.locale = locale
+        self.effective_locale = effective_locale
+        self.bio = bio
+        self.pronouns = pronouns
+        self.permissions = permissions
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(ID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        sortable_name = try container.decode(String.self, forKey: .sortable_name)
+        short_name = try container.decode(String.self, forKey: .short_name)
+        login_id = try container.decodeIfPresent(String.self, forKey: .login_id)
+        avatar_url = try container.decodeURLIfPresent(forKey: .avatar_url)
+        enrollments = try container.decodeIfPresent([APIEnrollment].self, forKey: .enrollments)
+        email = try container.decodeIfPresent(String.self, forKey: .email)
+        locale = try container.decodeIfPresent(String.self, forKey: .locale)
+        effective_locale = try container.decodeIfPresent(String.self, forKey: .effective_locale)
+        bio = try container.decodeIfPresent(String.self, forKey: .bio)
+        pronouns = try container.decodeIfPresent(String.self, forKey: .pronouns)
+        permissions = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
+    }
 }
 
 public struct APICustomColors: Codable, Equatable {
