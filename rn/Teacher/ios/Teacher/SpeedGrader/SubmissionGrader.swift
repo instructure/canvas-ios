@@ -29,8 +29,6 @@ struct SubmissionGrader: View {
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
 
-    @Binding var isPagingEnabled: Bool
-
     @State var attempt: Int?
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
@@ -48,7 +46,6 @@ struct SubmissionGrader: View {
         index: Int,
         assignment: Assignment,
         submission: Submission,
-        isPagingEnabled: Binding<Bool>,
         handleRefresh: (() -> Void)?
     ) {
         self.index = index
@@ -62,7 +59,6 @@ struct SubmissionGrader: View {
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
-        self._isPagingEnabled = isPagingEnabled
         self.handleRefresh = handleRefresh
     }
 
@@ -90,7 +86,6 @@ struct SubmissionGrader: View {
                                         assignment: assignment,
                                         submission: selected,
                                         fileID: fileID,
-                                        isPagingEnabled: $isPagingEnabled,
                                         handleRefresh: handleRefresh
                                     )
                                 }
@@ -124,7 +119,6 @@ struct SubmissionGrader: View {
                                     assignment: assignment,
                                     submission: selected,
                                     fileID: fileID,
-                                    isPagingEnabled: $isPagingEnabled,
                                     handleRefresh: handleRefresh
                                 )
                             }
@@ -178,7 +172,6 @@ struct SubmissionGrader: View {
                         fileID = nil
                     }
                     showAttempts = false
-                    isPagingEnabled = true
                 }), label: Text(verbatim: "")) {
                     ForEach(attempts.all, id: \.attempt) { attempt in
                         Text(attempt.submittedAt?.dateTimeString ?? "")

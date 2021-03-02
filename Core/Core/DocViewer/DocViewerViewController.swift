@@ -27,7 +27,6 @@ public class DocViewerViewController: UIViewController {
     let toolbar = UIToolbar()
     let toolbarContainer = FlexibleToolbarContainer()
 
-    public var annotatingDidChange: ((Bool) -> Void)?
     var annotationProvider: DocViewerAnnotationProvider?
     let env = AppEnvironment.shared
     public var fallbackURL: URL!
@@ -247,15 +246,6 @@ extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateMan
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         return !(controller is StampViewController)
-    }
-
-    public func annotationStateManager(
-        _ manager: AnnotationStateManager,
-        didChangeState oldState: Annotation.Tool?,
-        to newState: Annotation.Tool?,
-        variant oldVariant: Annotation.Variant?,
-        to newVariant: Annotation.Variant?) {
-        annotatingDidChange?(newState?.rawValue.isEmpty == false)
     }
     // swiftlint:enable function_parameter_count
 }
