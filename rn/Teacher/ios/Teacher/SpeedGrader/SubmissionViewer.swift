@@ -23,7 +23,6 @@ struct SubmissionViewer: View {
     let assignment: Assignment
     let submission: Submission
     let fileID: String?
-    @Binding var isPagingEnabled: Bool
     var handleRefresh: (() -> Void)?
 
     @Environment(\.appEnvironment) var env
@@ -49,9 +48,7 @@ struct SubmissionViewer: View {
             let file = submission.attachments?.first { fileID == $0.id } ??
                 submission.attachments?.sorted(by: File.idCompare).first
             if let file = file, let url = file.url, let previewURL = file.previewURL {
-                DocViewer(filename: file.filename, previewURL: previewURL, fallbackURL: url) {
-                    isPagingEnabled = !$0
-                }
+                DocViewer(filename: file.filename, previewURL: previewURL, fallbackURL: url)
             } else if let id = file?.id {
                 FileViewer(fileID: id)
             }

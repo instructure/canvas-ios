@@ -22,13 +22,11 @@ public struct DocViewer: UIViewControllerRepresentable {
     public let filename: String
     public let previewURL: URL?
     public let fallbackURL: URL
-    public let annotatingDidChange: ((Bool) -> Void)?
 
-    public init(filename: String, previewURL: URL?, fallbackURL: URL, annotatingDidChange: ((Bool) -> Void)? = nil) {
+    public init(filename: String, previewURL: URL?, fallbackURL: URL) {
         self.filename = filename
         self.previewURL = previewURL
         self.fallbackURL = fallbackURL
-        self.annotatingDidChange = annotatingDidChange
     }
 
     public func makeUIViewController(context: Self.Context) -> UIViewController { UIViewController() }
@@ -39,10 +37,7 @@ public struct DocViewer: UIViewControllerRepresentable {
             prev?.unembed()
             let next = DocViewerViewController.create(filename: filename, previewURL: previewURL, fallbackURL: fallbackURL)
             next.isAnnotatable = true
-            next.annotatingDidChange = annotatingDidChange
             uiViewController.embed(next, in: uiViewController.view)
-        } else {
-            prev?.annotatingDidChange = annotatingDidChange
         }
     }
 }
