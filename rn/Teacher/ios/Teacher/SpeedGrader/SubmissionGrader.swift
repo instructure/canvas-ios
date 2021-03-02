@@ -98,6 +98,7 @@ struct SubmissionGrader: View {
                             }
                             Spacer().frame(height: bottomInset)
                         }
+                            .zIndex(1)
                         Divider()
                         VStack(spacing: 0) {
                             tools(bottomInset: bottomInset, isDrawer: false)
