@@ -52,6 +52,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var showEntryID: String?
     var showRepliesToEntryID: String?
     var topicID = ""
+    private(set) var newReplyIDFromCurrentUser: String?
 
     var assignment: Store<GetAssignment>?
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -61,6 +62,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         self?.updateNavBar()
     }
     lazy var entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
+        self?.findNewReplyFromCurrentUser()
         self?.update()
     }
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
@@ -374,6 +376,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 self?.showError(error)
             } else {
                 self?.rendered()
+                self?.focusOnNewReplyIfNecessary()
             }
         }
     }
@@ -398,6 +401,30 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             AppStoreReview.handleNavigateToAssignment()
         }
         scrollViewDidScroll(scrollView) // read initial
+    }
+
+    private func findNewReplyFromCurrentUser() {
+        let firstInsertedMessageIndex: Int? = {
+            for change in entries.changes {
+                if case .insertRow(let insertIndex) = change {
+                    return insertIndex.row
+                }
+            }
+
+            return nil
+        }()
+
+        if let firstInsertedMessageIndex = firstInsertedMessageIndex,
+           let currentUserID = env.currentSession?.actAsUserID ?? env.currentSession?.userID,
+           entries.all[firstInsertedMessageIndex].userID == currentUserID {
+            newReplyIDFromCurrentUser = entries.all[firstInsertedMessageIndex].id
+        }
+    }
+
+    private func focusOnNewReplyIfNecessary() {
+        guard let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser else { return }
+        webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
+        self.newReplyIDFromCurrentUser = nil
     }
 }
 

@@ -415,4 +415,24 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         XCTAssert(router.dismissed == controller)
     }
+
+    func testDetectsNewReplyFromUser() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+
+        // Simulate reply to thread, this will generate a context change of 1 insert and 1 update
+        databaseClient.performAndWait {
+            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, message: "New reply from the current user")
+
+            let parentEntry: DiscussionEntry = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")!
+            let newEntry = DiscussionEntry.save(newAPIEntry, topicID: "1", parent: parentEntry, unreadIDs: nil, forcedIDs: nil, entryRatings: nil, in: databaseClient)
+            parentEntry.replies.append(newEntry)
+        }
+
+        waitUntil(1) { controller.newReplyIDFromCurrentUser == "5" }
+        waitForWebView()
+        waitUntil(1) { controller.newReplyIDFromCurrentUser == nil }
+    }
 }

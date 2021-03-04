@@ -280,9 +280,10 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
             showError(error)
             return
         }
+
+        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
         env.router.dismiss(self)
     }
-
 }
 
 extension DiscussionReplyViewController: FilePickerDelegate, QLPreviewControllerDataSource {
