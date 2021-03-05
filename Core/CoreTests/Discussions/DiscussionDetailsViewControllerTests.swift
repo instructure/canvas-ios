@@ -431,9 +431,9 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
             parentEntry.replies.append(newEntry)
         }
 
-        waitUntil(1) { controller.newReplyIDFromCurrentUser == "5" }
+        waitUntil(2) { controller.newReplyIDFromCurrentUser == "5" }
         waitForWebView()
-        waitUntil(1) { controller.newReplyIDFromCurrentUser == nil }
+        waitUntil(2) { controller.newReplyIDFromCurrentUser == nil }
     }
 
     func testDoesntDetectOldReplyFromUser() {
