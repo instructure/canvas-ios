@@ -45,7 +45,7 @@ class StudentTabBarController: UITabBarController {
     func dashboardTab() -> UIViewController {
         let split = HelmSplitViewController()
         split.viewControllers = [
-            HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView())),
+            HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView(shouldShowGroupList: true))),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
         split.masterNavigationController?.delegate = split
