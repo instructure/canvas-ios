@@ -435,4 +435,25 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         waitForWebView()
         waitUntil(1) { controller.newReplyIDFromCurrentUser == nil }
     }
+
+    func testDoesntDetectOldReplyFromUser() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+
+        // Simulate reply to thread, this will generate a context change of 1 insert and 1 update
+        databaseClient.performAndWait {
+            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date().addSeconds(-6), message: "New reply from the current user")
+
+            let parentEntry: DiscussionEntry = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")!
+            let newEntry = DiscussionEntry.save(newAPIEntry, topicID: "1", parent: parentEntry, unreadIDs: nil, forcedIDs: nil, entryRatings: nil, in: databaseClient)
+            parentEntry.replies.append(newEntry)
+        }
+
+        RunLoop.current.run(until: Date() + 0.1) // Wait until CoreData notification reaches the view
+        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+        waitForWebView()
+        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+    }
 }
