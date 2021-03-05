@@ -34,7 +34,10 @@ public struct DashboardCardView: View {
     @State var needsRefresh = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
-    public init() {
+    private let shouldShowGroupList: Bool
+
+    public init(shouldShowGroupList: Bool) {
+        self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
         cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
@@ -172,7 +175,7 @@ public struct DashboardCardView: View {
     }
 
     @ViewBuilder var groupCards: some View {
-        if !groups.isEmpty {
+        if !groups.isEmpty && shouldShowGroupList {
             Section(
                 header: HStack(alignment: .lastTextBaseline) {
                     Text("Groups", bundle: .core)
