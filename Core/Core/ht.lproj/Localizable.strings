@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "Yon deskripsyon obligatwa";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "yon paran";
 
@@ -2130,6 +2133,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notifikasyon Yo";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Ou pa gen otorizasyon pou fè aksyon sa a.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Ou jwenn envitasyon";

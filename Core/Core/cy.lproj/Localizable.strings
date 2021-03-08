@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "Rhaid rhoi disgrifiad";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "rhiant";
 
@@ -2130,6 +2133,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Hysbysiadau Yo";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Does gennych chi ddim hawl i wneud hyn";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Rydych chi wedi cael gwahoddiad";
