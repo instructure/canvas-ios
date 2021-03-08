@@ -26,6 +26,8 @@ struct SubmissionHeader: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    private(set) var isGroupSubmission: Bool { submission.groupID != nil }
+
     var body: some View {
         HStack(spacing: 0) {
             Button(action: navigateToSubmitter, label: {
@@ -65,7 +67,7 @@ struct SubmissionHeader: View {
 
     @ViewBuilder var avatar: some View {
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: submission.groupID != nil)
+            Avatar.Anonymous(isGroup: isGroupSubmission)
         } else if let name = submission.groupName {
             Avatar(name: name, url: nil)
         } else {
@@ -75,7 +77,7 @@ struct SubmissionHeader: View {
 
     var nameText: Text {
         if assignment.anonymizeStudents {
-            return submission.groupID != nil ? Text("Group") : Text("Student")
+            return isGroupSubmission ? Text("Group") : Text("Student")
         }
         return Text(submission.groupName ?? submission.user.flatMap {
             User.displayName($0.name, pronouns: $0.pronouns)
