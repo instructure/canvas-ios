@@ -281,7 +281,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
             return
         }
 
-        UIAccessibility.post(notification: .announcement, argument: NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
+        UIAccessibility.announce(NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
         env.router.dismiss(self)
     }
 }
