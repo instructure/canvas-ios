@@ -281,7 +281,9 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
             return
         }
 
-        UIAccessibility.announce(NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            UIAccessibility.announce(NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
+        }
         env.router.dismiss(self)
     }
 }
