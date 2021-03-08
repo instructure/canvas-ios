@@ -52,7 +52,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var showEntryID: String?
     var showRepliesToEntryID: String?
     var topicID = ""
-    private(set) var newReplyIDFromCurrentUser: String?
+    private var newReplyIDFromCurrentUser: String?
 
     var assignment: Store<GetAssignment>?
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -62,7 +62,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         self?.updateNavBar()
     }
     lazy var entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
-        self?.findNewReplyFromCurrentUser()
+        self?.newReplyIDFromCurrentUser = self?.findNewReplyIDFromCurrentUser()
         self?.update()
     }
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
@@ -403,7 +403,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         scrollViewDidScroll(scrollView) // read initial
     }
 
-    private func findNewReplyFromCurrentUser() {
+    func findNewReplyIDFromCurrentUser() -> String? {
         let firstInsertedMessageIndex: Int? = {
             let currentDate = Date()
             for change in entries.changes {
@@ -420,8 +420,10 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         if let firstInsertedMessageIndex = firstInsertedMessageIndex,
            let currentUserID = env.currentSession?.actAsUserID ?? env.currentSession?.userID,
            entries.all[firstInsertedMessageIndex].userID == currentUserID {
-            newReplyIDFromCurrentUser = entries.all[firstInsertedMessageIndex].id
+            return entries.all[firstInsertedMessageIndex].id
         }
+
+        return nil
     }
 
     private func focusOnNewReplyIfNecessary() {

@@ -418,42 +418,43 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
     func testDetectsNewReplyFromUser() {
         controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
 
-        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+        let newDiscussionNotification = expectation(description: "New discussion detected")
+        controller.entries.eventHandler = { [weak self] in
+            XCTAssertEqual(self?.controller.findNewReplyIDFromCurrentUser(), "5")
+            newDiscussionNotification.fulfill()
+        }
 
         // Simulate reply to thread, this will generate a context change of 1 insert and 1 update
         databaseClient.performAndWait {
-            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, message: "New reply from the current user")
+            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date(), message: "New reply from the current user")
 
             let parentEntry: DiscussionEntry = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")!
             let newEntry = DiscussionEntry.save(newAPIEntry, topicID: "1", parent: parentEntry, unreadIDs: nil, forcedIDs: nil, entryRatings: nil, in: databaseClient)
             parentEntry.replies.append(newEntry)
         }
 
-        waitUntil(2) { controller.newReplyIDFromCurrentUser == "5" }
-        waitForWebView()
-        waitUntil(2) { controller.newReplyIDFromCurrentUser == nil }
+        wait(for: [newDiscussionNotification], timeout: 1)
     }
 
     func testDoesntDetectOldReplyFromUser() {
         controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
 
-        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+        let newDiscussionNotification = expectation(description: "New discussion detected")
+        controller.entries.eventHandler = { [weak self] in
+            XCTAssertNil(self?.controller.findNewReplyIDFromCurrentUser())
+            newDiscussionNotification.fulfill()
+        }
 
         // Simulate reply to thread, this will generate a context change of 1 insert and 1 update
         databaseClient.performAndWait {
-            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date().addSeconds(-6), message: "New reply from the current user")
+            let newAPIEntry = APIDiscussionEntry.make(id: 5, user_id: 1, parent_id: 1, created_at: Date().addSeconds(-6), message: "Old reply from the current user")
 
             let parentEntry: DiscussionEntry = databaseClient.first(where: #keyPath(DiscussionEntry.id), equals: "1")!
             let newEntry = DiscussionEntry.save(newAPIEntry, topicID: "1", parent: parentEntry, unreadIDs: nil, forcedIDs: nil, entryRatings: nil, in: databaseClient)
             parentEntry.replies.append(newEntry)
         }
 
-        RunLoop.current.run(until: Date() + 0.1) // Wait until CoreData notification reaches the view
-        XCTAssertNil(controller.newReplyIDFromCurrentUser)
-        waitForWebView()
-        XCTAssertNil(controller.newReplyIDFromCurrentUser)
+        wait(for: [newDiscussionNotification], timeout: 1)
     }
 }
