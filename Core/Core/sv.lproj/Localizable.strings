@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "En beskrivning krävs";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "en vårdnadshavare";
 
@@ -2130,6 +2133,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-aviseringar";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Du har inte behörighet att utföra den här åtgärden";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du har blivit inbjuden";

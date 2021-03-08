@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "Se requiere una descripción";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "un padre";
 
@@ -2130,6 +2133,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificaciones de Yo";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "No tiene autorización para realizar esta acción";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Ha recibido una invitación";

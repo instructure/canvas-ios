@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86.5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "描述為必填";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "父母";
 
@@ -2130,6 +2133,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo 通知";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "您沒有權限進行此操作";
 
 /* No comment provided by engineer. */
 "You have been invited" = "您已被邀請";
