@@ -46,7 +46,7 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
     }
 
     private func postAnnouncementNotification(isSuccessful: Bool) {
-        let userInfo: [String : Any] = [
+        let userInfo: [String: Any] = [
             UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement",
             UIAccessibility.announcementWasSuccessfulUserInfoKey: isSuccessful,
         ]
