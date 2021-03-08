@@ -30,4 +30,15 @@ class SubmissionHeaderTests: TeacherTestCase {
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
         XCTAssertTrue(testee.isGroupSubmission)
     }
+
+    func testGroupName() {
+        let submission = Submission(context: databaseClient)
+        let assignment = Assignment(context: databaseClient)
+        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+
+        assignment.name = "TestGroup Name"
+        XCTAssertEqual(testee.groupName, nil)
+        assignment.assignmentGroupID = "TestGroupID"
+        XCTAssertEqual(testee.groupName, "TestGroup Name")
+    }
 }
