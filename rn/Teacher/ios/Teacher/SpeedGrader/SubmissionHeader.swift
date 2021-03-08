@@ -26,7 +26,7 @@ struct SubmissionHeader: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    private(set) var isGroupSubmission: Bool { submission.groupID != nil }
+    var isGroupSubmission: Bool { assignment.assignmentGroupID != nil }
 
     var body: some View {
         HStack(spacing: 0) {
