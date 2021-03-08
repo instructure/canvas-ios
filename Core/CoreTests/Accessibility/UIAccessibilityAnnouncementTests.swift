@@ -34,14 +34,22 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
         })
 
         // Simulate that announcement gets interrupted by a system sound, this should trigger a retry
-        NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: [UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement", UIAccessibility.announcementWasSuccessfulUserInfoKey: false])
+        postAnnouncementNotification(isSuccessful: false)
 
         // Simulate that announcement was successfully announced
-        NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: [UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement", UIAccessibility.announcementWasSuccessfulUserInfoKey: true])
+        postAnnouncementNotification(isSuccessful: true)
 
         // After successful announcement no more retries should occur
-        NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: [UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement", UIAccessibility.announcementWasSuccessfulUserInfoKey: false])
+        postAnnouncementNotification(isSuccessful: false)
 
         wait(for: [announcementReceived], timeout: 1)
+    }
+
+    private func postAnnouncementNotification(isSuccessful: Bool) {
+        let userInfo: [String : Any] = [
+            UIAccessibility.announcementStringValueUserInfoKey: "Test Announcement",
+            UIAccessibility.announcementWasSuccessfulUserInfoKey: isSuccessful,
+        ]
+        NotificationCenter.default.post(name: UIAccessibility.announcementDidFinishNotification, object: nil, userInfo: userInfo)
     }
 }
