@@ -94,23 +94,35 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             AudioRecorderViewController.requestPermission { allowed in
-                if allowed {
-                    let controller = AudioRecorderViewController.create()
-                    controller.delegate = self
-                    self?.showMediaController(controller)
-                } else {
+                guard allowed else {
                     self?.showPermissionError(.microphone)
+                    return
                 }
+                let controller = AudioRecorderViewController.create()
+                controller.delegate = self
+                self?.showMediaController(controller)
             }
         })
         alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
-            let picker = UIImagePickerController()
-            picker.allowsEditing = true
-            picker.delegate = self
-            picker.mediaTypes = [ kUTTypeMovie as String ]
-            picker.sourceType = .camera
-            picker.cameraDevice = .front
-            self?.present(picker, animated: true)
+            VideoRecorder.requestPermission { allowed in
+                guard allowed else {
+                    self?.showPermissionError(.camera)
+                    return
+                }
+                AudioRecorderViewController.requestPermission { allowed in
+                    guard allowed else {
+                        self?.showPermissionError(.microphone)
+                        return
+                    }
+                    let picker = UIImagePickerController()
+                    picker.allowsEditing = true
+                    picker.delegate = self
+                    picker.mediaTypes = [ kUTTypeMovie as String ]
+                    picker.sourceType = .camera
+                    picker.cameraDevice = .front
+                    self?.present(picker, animated: true)
+                }
+            }
         })
         alert.addAction(AlertAction(NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             let picker = FilePickerViewController.create()

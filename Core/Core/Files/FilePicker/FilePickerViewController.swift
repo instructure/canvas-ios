@@ -247,12 +247,24 @@ extension FilePickerViewController: UITabBarDelegate {
         guard let source = FilePickerSource(rawValue: item.tag) else { return }
         switch source {
         case .camera:
-            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
-            let cameraController = UIImagePickerController()
-            cameraController.delegate = self
-            cameraController.sourceType = .camera
-            cameraController.mediaTypes = mediaTypes
-            env.router.show(cameraController, from: self, options: .modal())
+            VideoRecorder.requestPermission { allowed in
+                guard allowed else {
+                    self.showPermissionError(.camera)
+                    return
+                }
+                AudioRecorder.requestPermission { allowed in
+                    guard allowed else {
+                        self.showPermissionError(.microphone)
+                        return
+                    }
+                    guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+                    let cameraController = UIImagePickerController()
+                    cameraController.delegate = self
+                    cameraController.sourceType = .camera
+                    cameraController.mediaTypes = self.mediaTypes
+                    self.env.router.show(cameraController, from: self, options: .modal())
+                }
+            }
         case .library:
             guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = UIImagePickerController()
@@ -266,11 +278,17 @@ extension FilePickerViewController: UITabBarDelegate {
             documentPicker.delegate = self
             env.router.show(documentPicker, from: self, options: .modal())
         case .audio:
-            let audioRecorder = AudioRecorderViewController.create()
-            audioRecorder.delegate = self
-            audioRecorder.view.backgroundColor = UIColor.backgroundLightest
-            audioRecorder.modalPresentationStyle = .formSheet
-            env.router.show(audioRecorder, from: self, options: .modal())
+            AudioRecorder.requestPermission { allowed in
+                guard allowed else {
+                    self.showPermissionError(.microphone)
+                    return
+                }
+                let audioRecorder = AudioRecorderViewController.create()
+                audioRecorder.delegate = self
+                audioRecorder.view.backgroundColor = UIColor.backgroundLightest
+                audioRecorder.modalPresentationStyle = .formSheet
+                self.env.router.show(audioRecorder, from: self, options: .modal())
+            }
         case .documentScan:
             if VNDocumentCameraViewController.isSupported {
                 let scanner = VNDocumentCameraViewController()
