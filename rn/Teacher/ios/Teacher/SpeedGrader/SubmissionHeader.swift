@@ -26,10 +26,15 @@ struct SubmissionHeader: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    var isGroupSubmission: Bool { assignment.assignmentGroupID != nil }
+    var isGroupSubmission: Bool { !assignment.gradedIndividually && assignment.assignmentGroupID != nil }
     var groupName: String? { isGroupSubmission ? assignment.name : nil }
-    var routeToSubmitter: String { assignment.assignmentGroupID.flatMap { "/groups/\($0)/users" } ??
-        "/courses/\(assignment.courseID)/users/\(submission.userID)" } // TODO group route leads to 404
+    var routeToSubmitter: String {
+        if isGroupSubmission {
+            return assignment.assignmentGroupID.flatMap { "/groups/\($0)/users" } ?? ""// TODO group route leads to 404
+        } else {
+            return "/courses/\(assignment.courseID)/users/\(submission.userID)"
+        }
+    }
 
     var body: some View {
         HStack(spacing: 0) {

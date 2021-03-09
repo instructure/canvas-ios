@@ -26,6 +26,7 @@ class SubmissionHeaderTests: TeacherTestCase {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
         assignment.assignmentGroupID = "TestGroupID"
+        assignment.gradedIndividually = false
 
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
         XCTAssertTrue(testee.isGroupSubmission)
@@ -36,22 +37,34 @@ class SubmissionHeaderTests: TeacherTestCase {
         let assignment = Assignment(context: databaseClient)
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
 
+        assignment.gradedIndividually = false
         assignment.name = "TestGroup Name"
         XCTAssertEqual(testee.groupName, nil)
         assignment.assignmentGroupID = "TestGroupID"
         XCTAssertEqual(testee.groupName, "TestGroup Name")
     }
 
-    func testRouteToSubmitter() {
+    func testRouteToGroupSubmitter() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
 
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
 
+        assignment.gradedIndividually = false
         assignment.assignmentGroupID = "TestGroupID"
+        assignment.courseID = "testCourseID"
+        submission.userID = "testUserID"
         XCTAssertEqual(testee.routeToSubmitter, "/groups/TestGroupID/users")
+    }
 
-        assignment.assignmentGroupID = nil
+    func testRouteToIndividialInGroupSubmission() {
+        let submission = Submission(context: databaseClient)
+        let assignment = Assignment(context: databaseClient)
+
+        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+
+        assignment.gradedIndividually = true
+        assignment.assignmentGroupID = "TestGroupID"
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
