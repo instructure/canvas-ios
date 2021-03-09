@@ -28,9 +28,9 @@ struct SubmissionHeader: View {
 
     var isGroupSubmission: Bool { !assignment.gradedIndividually && assignment.assignmentGroupID != nil }
     var groupName: String? { isGroupSubmission ? assignment.name : nil }
-    var routeToSubmitter: String {
+    var routeToSubmitter: String? {
         if isGroupSubmission {
-            return assignment.assignmentGroupID.flatMap { "/groups/\($0)/users" } ?? ""// TODO group route leads to 404
+            return nil
         } else {
             return "/courses/\(assignment.courseID)/users/\(submission.userID)"
         }
@@ -93,7 +93,7 @@ struct SubmissionHeader: View {
     }
 
     func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents else { return }
+        guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
         env.router.route(
             to: routeToSubmitter,
             userInfo: [ "courseID": assignment.courseID ],

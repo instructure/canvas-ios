@@ -54,7 +54,7 @@ class SubmissionHeaderTests: TeacherTestCase {
         assignment.assignmentGroupID = "TestGroupID"
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
-        XCTAssertEqual(testee.routeToSubmitter, "/groups/TestGroupID/users")
+        XCTAssertNil(testee.routeToSubmitter)
     }
 
     func testRouteToIndividialInGroupSubmission() {
