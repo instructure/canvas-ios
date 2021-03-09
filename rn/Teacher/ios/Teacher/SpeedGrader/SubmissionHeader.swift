@@ -28,6 +28,8 @@ struct SubmissionHeader: View {
 
     var isGroupSubmission: Bool { assignment.assignmentGroupID != nil }
     var groupName: String? { isGroupSubmission ? assignment.name : nil }
+    var routeToSubmitter: String { assignment.assignmentGroupID.flatMap { "/groups/\($0)/users" } ??
+        "/courses/\(assignment.courseID)/users/\(submission.userID)" } // TODO group route leads to 404
 
     var body: some View {
         HStack(spacing: 0) {
@@ -88,8 +90,7 @@ struct SubmissionHeader: View {
     func navigateToSubmitter() {
         guard !assignment.anonymizeStudents else { return }
         env.router.route(
-            to: submission.groupID.flatMap { "/groups/\($0)/users" } ??
-                "/courses/\(assignment.courseID)/users/\(submission.userID)",
+            to: routeToSubmitter,
             userInfo: [ "courseID": assignment.courseID ],
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)

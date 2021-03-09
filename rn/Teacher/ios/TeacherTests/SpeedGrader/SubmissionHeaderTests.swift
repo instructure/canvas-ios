@@ -41,4 +41,19 @@ class SubmissionHeaderTests: TeacherTestCase {
         assignment.assignmentGroupID = "TestGroupID"
         XCTAssertEqual(testee.groupName, "TestGroup Name")
     }
+
+    func testRouteToSubmitter() {
+        let submission = Submission(context: databaseClient)
+        let assignment = Assignment(context: databaseClient)
+
+        let testee = SubmissionHeader(assignment: assignment, submission: submission)
+
+        assignment.assignmentGroupID = "TestGroupID"
+        XCTAssertEqual(testee.routeToSubmitter, "/groups/TestGroupID/users")
+
+        assignment.assignmentGroupID = nil
+        assignment.courseID = "testCourseID"
+        submission.userID = "testUserID"
+        XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
+    }
 }
