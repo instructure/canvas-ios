@@ -52,6 +52,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
     var showEntryID: String?
     var showRepliesToEntryID: String?
     var topicID = ""
+    private var newReplyIDFromCurrentUser: String?
 
     var assignment: Store<GetAssignment>?
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -61,6 +62,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
         self?.updateNavBar()
     }
     lazy var entries = env.subscribe(GetDiscussionView(context: context, topicID: topicID)) { [weak self] in
+        self?.newReplyIDFromCurrentUser = self?.findNewReplyIDFromCurrentUser()
         self?.update()
     }
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
@@ -374,6 +376,7 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
                 self?.showError(error)
             } else {
                 self?.rendered()
+                self?.focusOnNewReplyIfNecessary()
             }
         }
     }
@@ -398,6 +401,35 @@ public class DiscussionDetailsViewController: UIViewController, ColoredNavViewPr
             AppStoreReview.handleNavigateToAssignment()
         }
         scrollViewDidScroll(scrollView) // read initial
+    }
+
+    func findNewReplyIDFromCurrentUser() -> String? {
+        let firstInsertedMessageIndex: Int? = {
+            let currentDate = Date()
+            for change in entries.changes {
+                if case .insertRow(let insertIndex) = change,
+                   let entryDate = entries[insertIndex]?.createdAt,
+                   currentDate.timeIntervalSince(entryDate) < 5 { // We check the date because pull-to-refresh and TTL expiration also cause insert type context changes.
+                    return insertIndex.row
+                }
+            }
+
+            return nil
+        }()
+
+        if let firstInsertedMessageIndex = firstInsertedMessageIndex,
+           let currentUserID = env.currentSession?.actAsUserID ?? env.currentSession?.userID,
+           entries.all[firstInsertedMessageIndex].userID == currentUserID {
+            return entries.all[firstInsertedMessageIndex].id
+        }
+
+        return nil
+    }
+
+    private func focusOnNewReplyIfNecessary() {
+        guard let newReplyIDFromCurrentUser = newReplyIDFromCurrentUser else { return }
+        webView.scrollIntoView(fragment: "entry-\(newReplyIDFromCurrentUser)")
+        self.newReplyIDFromCurrentUser = nil
     }
 }
 
@@ -452,11 +484,13 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             return true
         }
         let path = Array(url.pathComponents.dropFirst(5))
+        // Reply to main discussion
         if path.count == 1, path[0] == "reply" {
             Analytics.shared.logEvent(isAnnouncement ? "announcement_replied" : "discussion_topic_replied")
             env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
+        // Reply to thread
         if path.count == 3, path[0] == "entries", !path[1].isEmpty, path[2] == "replies" {
             env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
