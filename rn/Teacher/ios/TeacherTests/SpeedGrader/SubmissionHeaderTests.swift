@@ -38,7 +38,7 @@ class SubmissionHeaderTests: TeacherTestCase {
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = false
-        assignment.name = "TestGroup Name"
+        submission.groupName = "TestGroup Name"
         XCTAssertEqual(testee.groupName, nil)
         assignment.assignmentGroupID = "TestGroupID"
         XCTAssertEqual(testee.groupName, "TestGroup Name")
