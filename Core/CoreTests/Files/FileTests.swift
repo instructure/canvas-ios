@@ -86,5 +86,9 @@ class FileTests: CoreTestCase {
 
         XCTAssertNotNil(submission1.attachments?.first)
         XCTAssertNotNil(submission2.attachments?.first)
+
+        databaseClient.delete(submission1)
+        try? databaseClient.save()
+        XCTAssertNotNil(submission2.attachments?.first)
     }
 }
