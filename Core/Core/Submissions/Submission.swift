@@ -148,8 +148,8 @@ extension Submission: WriteableModel {
         model.grade = item.grade
         model.gradedAt = item.graded_at
         model.gradeMatchesCurrentSubmission = item.grade_matches_current_submission
-        model.groupID = item.group_id?.value
-        model.groupName = item.group_name
+        model.groupID = item.group?.id?.value
+        model.groupName = item.group?.name
         model.id = item.id.value
         model.late = item.late == true
         model.latePolicyStatus = item.late_policy_status
@@ -158,7 +158,7 @@ extension Submission: WriteableModel {
         model.postedAt = item.posted_at
         model.previewUrl = item.preview_url
         model.score = item.score
-        model.sortableName = item.group_name ?? item.user?.sortable_name
+        model.sortableName = item.group?.name ?? item.user?.sortable_name
         model.submittedAt = item.submitted_at
         model.type = item.submission_type
         model.url = item.url
