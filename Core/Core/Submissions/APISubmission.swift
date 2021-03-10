@@ -33,8 +33,7 @@ public struct APISubmission: Codable, Equatable {
     var grade: String?
     var graded_at: Date?
     let grade_matches_current_submission: Bool
-    let group_id: ID?
-    let group_name: String?
+    let group: APISubmissionGroup?
     let id: ID
     let late: Bool?
     let late_policy_status: LatePolicyStatus?
@@ -54,6 +53,11 @@ public struct APISubmission: Codable, Equatable {
     var user: APIUser? // include[]=user
     let user_id: ID
     let workflow_state: SubmissionWorkflowState
+}
+
+public struct APISubmissionGroup: Codable, Equatable {
+    let id: ID?
+    let name: String?
 }
 
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
@@ -147,8 +151,7 @@ extension APISubmission {
         grade: String? = nil,
         graded_at: Date? = nil,
         grade_matches_current_submission: Bool = true,
-        group_id: String? = nil,
-        group_name: String? = nil,
+        group: APISubmissionGroup? = nil,
         id: String = "1",
         late: Bool = false,
         late_policy_status: LatePolicyStatus? = nil,
@@ -183,8 +186,7 @@ extension APISubmission {
             grade: grade,
             graded_at: graded_at,
             grade_matches_current_submission: grade_matches_current_submission,
-            group_id: ID(group_id),
-            group_name: group_name,
+            group: group,
             id: ID(id),
             late: late,
             late_policy_status: late_policy_status,

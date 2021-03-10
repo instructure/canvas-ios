@@ -136,4 +136,24 @@ class APISubmissionTests: CoreTestCase {
         )
         XCTAssertEqual(turnItInData.rawValue["submission_1"]?.status, "scored")
     }
+
+    func testSubmissionGroupDecode() {
+        let json = """
+            {
+                "id": "28302",
+                "assignment_id": "6799",
+                "grade_matches_current_submission": true,
+                "group": {
+                    "id": "284",
+                    "name": "Assignment 2"
+                },
+                "user_id": "12166",
+                "workflow_state": "submitted"
+            }
+        """
+
+        let testee = try? JSONDecoder().decode(APISubmission.self, from: json.data(using: .utf8)!)
+        XCTAssertEqual(testee?.group?.id?.value, "284")
+        XCTAssertEqual(testee?.group?.name, "Assignment 2")
+    }
 }

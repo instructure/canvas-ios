@@ -26,6 +26,16 @@ struct SubmissionHeader: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    var isGroupSubmission: Bool { !assignment.gradedIndividually && assignment.assignmentGroupID != nil }
+    var groupName: String? { isGroupSubmission ? submission.groupName : nil }
+    var routeToSubmitter: String? {
+        if isGroupSubmission {
+            return nil
+        } else {
+            return "/courses/\(assignment.courseID)/users/\(submission.userID)"
+        }
+    }
+
     var body: some View {
         HStack(spacing: 0) {
             Button(action: navigateToSubmitter, label: {
@@ -65,9 +75,9 @@ struct SubmissionHeader: View {
 
     @ViewBuilder var avatar: some View {
         if assignment.anonymizeStudents {
-            Avatar.Anonymous(isGroup: submission.groupID != nil)
-        } else if let name = submission.groupName {
-            Avatar(name: name, url: nil)
+            Avatar.Anonymous(isGroup: isGroupSubmission)
+        } else if isGroupSubmission {
+            Avatar.Anonymous(isGroup: true)
         } else {
             Avatar(name: submission.user?.name, url: submission.user?.avatarURL)
         }
@@ -75,18 +85,17 @@ struct SubmissionHeader: View {
 
     var nameText: Text {
         if assignment.anonymizeStudents {
-            return submission.groupID != nil ? Text("Group") : Text("Student")
+            return isGroupSubmission ? Text("Group") : Text("Student")
         }
-        return Text(submission.groupName ?? submission.user.flatMap {
+        return Text(groupName ?? submission.user.flatMap {
             User.displayName($0.name, pronouns: $0.pronouns)
         } ?? "")
     }
 
     func navigateToSubmitter() {
-        guard !assignment.anonymizeStudents else { return }
+        guard !assignment.anonymizeStudents, let routeToSubmitter = routeToSubmitter else { return }
         env.router.route(
-            to: submission.groupID.flatMap { "/groups/\($0)/users" } ??
-                "/courses/\(assignment.courseID)/users/\(submission.userID)",
+            to: routeToSubmitter,
             userInfo: [ "courseID": assignment.courseID ],
             from: controller,
             options: .modal(embedInNav: true, addDoneButton: true)
