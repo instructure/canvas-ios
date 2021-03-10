@@ -417,8 +417,8 @@
         <relationship name="discussionEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="attachment" inverseEntity="DiscussionEntry"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="attachments" inverseEntity="DiscussionTopic"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FolderItem" inverseName="file" inverseEntity="FolderItem"/>
-        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="submissionComment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionComment" inverseName="attachments" inverseEntity="SubmissionComment"/>
+        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="attachments" inverseEntity="Submission"/>
         <relationship name="usageRights" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UsageRights" inverseName="file" inverseEntity="UsageRights"/>
     </entity>
     <entity name="Folder" representedClassName="Core.Folder" syncable="YES">
@@ -816,7 +816,7 @@
         <attribute name="userID" optional="YES" attributeType="String"/>
         <attribute name="workflowStateRaw" attributeType="String"/>
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="submissions" inverseEntity="Assignment"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submission" inverseEntity="File"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="submissions" inverseEntity="File"/>
         <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DiscussionEntry" inverseName="submission" inverseEntity="DiscussionEntry"/>
         <relationship name="enrollments" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="submissions" inverseEntity="Enrollment"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubmissionList" inverseName="submissionsRaw" inverseEntity="SubmissionList"/>

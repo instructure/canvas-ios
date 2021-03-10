@@ -66,7 +66,8 @@ final public class File: NSManagedObject {
     @NSManaged public var previewURL: URL?
     @NSManaged public var localFileURL: URL?
     @NSManaged public var discussionTopic: DiscussionTopic?
-    @NSManaged public var submission: Submission?
+    /** In case of a group assignment multiple students can have the same file submitted. */
+    @NSManaged public var submissions: Set<Submission>?
     @NSManaged public var uploadError: String?
     @NSManaged public var bytesSent: Int
     @NSManaged public var taskID: String?
