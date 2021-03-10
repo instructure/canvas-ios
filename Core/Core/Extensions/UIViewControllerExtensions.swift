@@ -166,10 +166,12 @@ extension UIViewController {
     }
 
     public enum PermissionError {
-        case microphone, notifications
+        case camera, microphone, notifications
 
         var message: String {
             switch self {
+            case .camera:
+                return NSLocalizedString("You must enable Camera permissions in Settings.", comment: "")
             case .microphone:
                 return NSLocalizedString("You must enable Microphone permissions in Settings.", comment: "")
             case .notifications:

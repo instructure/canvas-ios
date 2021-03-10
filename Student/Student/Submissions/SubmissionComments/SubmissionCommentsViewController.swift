@@ -92,25 +92,39 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
-            AudioRecorderViewController.requestPermission { allowed in
-                if allowed {
-                    let controller = AudioRecorderViewController.create()
-                    controller.delegate = self
-                    self?.showMediaController(controller)
-                } else {
-                    self?.showPermissionError(.microphone)
+        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { _ in
+            AudioRecorderViewController.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
+                guard allowed else {
+                    self.showPermissionError(.microphone)
+                    return
                 }
+                let controller = AudioRecorderViewController.create()
+                controller.delegate = self
+                self.showMediaController(controller)
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
-            let picker = UIImagePickerController()
-            picker.allowsEditing = true
-            picker.delegate = self
-            picker.mediaTypes = [ kUTTypeMovie as String ]
-            picker.sourceType = .camera
-            picker.cameraDevice = .front
-            self?.present(picker, animated: true)
+        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { _ in
+            VideoRecorder.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
+                guard allowed else {
+                    self.showPermissionError(.camera)
+                    return
+                }
+                AudioRecorderViewController.requestPermission { allowed in
+                    guard allowed else {
+                        self.showPermissionError(.microphone)
+                        return
+                    }
+                    let picker = UIImagePickerController()
+                    picker.allowsEditing = true
+                    picker.delegate = self
+                    picker.mediaTypes = [ kUTTypeMovie as String ]
+                    picker.sourceType = .camera
+                    picker.cameraDevice = .front
+                    self.present(picker, animated: true)
+                }
+            }
         })
         alert.addAction(AlertAction(NSLocalizedString("Choose File", bundle: .student, comment: ""), style: .default) { [weak self] _ in
             let picker = FilePickerViewController.create()

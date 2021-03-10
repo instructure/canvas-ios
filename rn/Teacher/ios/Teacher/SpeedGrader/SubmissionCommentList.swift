@@ -165,20 +165,26 @@ struct SubmissionCommentList: View {
 
     func recordAudio() {
         AudioRecorder.requestPermission { allowed in
-            if allowed {
-                show(recorder: .audio)
-            } else {
-                error = Text("You must enable Microphone permissions in Settings.")
+            guard allowed else {
+                controller.value.showPermissionError(.microphone)
+                return
             }
+            show(recorder: .audio)
         }
     }
 
     func recordVideo() {
         VideoRecorder.requestPermission { allowed in
-            if allowed {
+            guard allowed else {
+                controller.value.showPermissionError(.camera)
+                return
+            }
+            AudioRecorder.requestPermission { allowed in
+                guard allowed else {
+                    controller.value.showPermissionError(.microphone)
+                    return
+                }
                 show(recorder: .video)
-            } else {
-                error = Text("You must enable Camera permissions in Settings.")
             }
         }
     }
