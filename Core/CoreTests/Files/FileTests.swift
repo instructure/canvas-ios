@@ -75,4 +75,16 @@ class FileTests: CoreTestCase {
         XCTAssertNil(file.courseID)
         XCTAssertNil(file.assignmentID)
     }
+
+    func testOneFileToMultipleSubmissions() {
+        let apiFile = APIFile.make()
+        let apiSubmission1 = APISubmission.make(assignment_id: "1", attachments: [apiFile], attempt: 0, user_id: "1")
+        let apiSubmission2 = APISubmission.make(assignment_id: "1", attachments: [apiFile], attempt: 0, user_id: "2")
+
+        let submission1 = Submission.save(apiSubmission1, in: databaseClient)
+        let submission2 = Submission.save(apiSubmission2, in: databaseClient)
+
+        XCTAssertNotNil(submission1.attachments?.first)
+        XCTAssertNotNil(submission2.attachments?.first)
+    }
 }
