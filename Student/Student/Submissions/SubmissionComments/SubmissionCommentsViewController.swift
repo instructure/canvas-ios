@@ -92,26 +92,28 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
 
     @IBAction func addMediaButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { [weak self] _ in
-            AudioRecorderViewController.requestPermission { allowed in
+        alert.addAction(AlertAction(NSLocalizedString("Record Audio", bundle: .student, comment: ""), style: .default) { _ in
+            AudioRecorderViewController.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
                 guard allowed else {
-                    self?.showPermissionError(.microphone)
+                    self.showPermissionError(.microphone)
                     return
                 }
                 let controller = AudioRecorderViewController.create()
                 controller.delegate = self
-                self?.showMediaController(controller)
+                self.showMediaController(controller)
             }
         })
-        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { [weak self] _ in
-            VideoRecorder.requestPermission { allowed in
+        alert.addAction(AlertAction(NSLocalizedString("Record Video", bundle: .student, comment: ""), style: .default) { _ in
+            VideoRecorder.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
                 guard allowed else {
-                    self?.showPermissionError(.camera)
+                    self.showPermissionError(.camera)
                     return
                 }
                 AudioRecorderViewController.requestPermission { allowed in
                     guard allowed else {
-                        self?.showPermissionError(.microphone)
+                        self.showPermissionError(.microphone)
                         return
                     }
                     let picker = UIImagePickerController()
@@ -120,7 +122,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     picker.mediaTypes = [ kUTTypeMovie as String ]
                     picker.sourceType = .camera
                     picker.cameraDevice = .front
-                    self?.present(picker, animated: true)
+                    self.present(picker, animated: true)
                 }
             }
         })

@@ -247,7 +247,8 @@ extension FilePickerViewController: UITabBarDelegate {
         guard let source = FilePickerSource(rawValue: item.tag) else { return }
         switch source {
         case .camera:
-            VideoRecorder.requestPermission { allowed in
+            VideoRecorder.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
                 guard allowed else {
                     self.showPermissionError(.camera)
                     return
@@ -278,14 +279,15 @@ extension FilePickerViewController: UITabBarDelegate {
             documentPicker.delegate = self
             env.router.show(documentPicker, from: self, options: .modal())
         case .audio:
-            AudioRecorder.requestPermission { allowed in
+            AudioRecorder.requestPermission { [weak self] allowed in
+                guard let self = self else { return }
                 guard allowed else {
                     self.showPermissionError(.microphone)
                     return
                 }
                 let audioRecorder = AudioRecorderViewController.create()
                 audioRecorder.delegate = self
-                audioRecorder.view.backgroundColor = UIColor.backgroundLightest
+                audioRecorder.view.backgroundColor = .backgroundLightest
                 audioRecorder.modalPresentationStyle = .formSheet
                 self.env.router.show(audioRecorder, from: self, options: .modal())
             }
