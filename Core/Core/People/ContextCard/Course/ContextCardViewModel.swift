@@ -27,18 +27,35 @@ public class ContextCardViewModel: ObservableObject {
     public lazy var sections = env.subscribe(GetCourseSections(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var submissions = env.subscribe(GetSubmissionsForStudent(context: context, studentID: userID)) { [weak self] in self?.updateLoadingState() }
     public lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ])) { [weak self] in self?.updateLoadingState() }
+    public lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in self?.gradingPeriodsDidUpdate() }
+    public lazy var enrollments = env.subscribe(GetEnrollments(
+        context: context,
+        gradingPeriodID: currentGradingPeriodID,
+        states: [ .active ]
+    )) { [weak self] in
+        self?.updateLoadingState()
+    }
+
     public var apiUser: APIUser?
     public let isViewingAnotherUser: Bool
     public let context: Context
     public let isSubmissionRowsVisible: Bool
     public let isLastActivityVisible: Bool
-    public var enrollment: Enrollment? { user.first?.enrollments?.first(where: { $0.canvasContextID == context.canvasContextID }) }
+
+    public var enrollment: Enrollment? {
+        return enrollments.first {
+            $0.id != nil &&
+            $0.state == .active &&
+            $0.userID == userID
+        }
+    }
 
     @Environment(\.appEnvironment) private var env
     private var isFirstAppear = true
     private let courseID: String
     private let userID: String
     private var userAPICallResponsePending = true
+    private var currentGradingPeriodID: String?
 
     public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true) {
         self.courseID = courseID
@@ -62,6 +79,14 @@ public class ContextCardViewModel: ObservableObject {
         sections.refresh()
         submissions.refresh(force: true)
         permissions.refresh()
+        gradingPeriods.refresh()
+    }
+
+    func gradingPeriodsDidUpdate() {
+        if gradingPeriods.pending == false && gradingPeriods.requested {
+            currentGradingPeriodID = gradingPeriods.all.current?.id
+            enrollments.refresh(force: true)
+        }
     }
 
     public func assignment(with id: String) -> Assignment? {
@@ -84,7 +109,7 @@ public class ContextCardViewModel: ObservableObject {
     }
 
     private func updateLoadingState() {
-        let newPending = !user.requested || user.pending || course.pending || colors.pending || sections.pending || submissions.pending || permissions.pending || userAPICallResponsePending
+        let newPending = !user.requested || user.pending || course.pending || colors.pending || sections.pending || submissions.pending || permissions.pending || gradingPeriods.pending || !enrollments.requested || enrollments.pending || userAPICallResponsePending
         if newPending == true { return }
         pending = newPending
     }
