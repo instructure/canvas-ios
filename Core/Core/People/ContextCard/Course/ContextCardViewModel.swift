@@ -78,7 +78,7 @@ public class ContextCardViewModel: ObservableObject {
         env.router.route(to: "/conversations/compose", userInfo: [
             "recipients": [recipient],
             "contextName": course.name ?? "",
-            "contextCode": course.id,
+            "contextCode": context.canvasContextID,
             "canSelectCourse": false,
         ], from: controller, options: .modal(embedInNav: true))
     }
