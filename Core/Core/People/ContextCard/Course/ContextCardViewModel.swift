@@ -109,7 +109,15 @@ public class ContextCardViewModel: ObservableObject {
     }
 
     private func updateLoadingState() {
-        let newPending = !user.requested || user.pending || course.pending || colors.pending || sections.pending || submissions.pending || permissions.pending || gradingPeriods.pending || !enrollments.requested || enrollments.pending || userAPICallResponsePending
+        let newPending = user.pending || !user.requested ||
+            course.pending ||
+            colors.pending ||
+            sections.pending ||
+            submissions.pending ||
+            permissions.pending ||
+            gradingPeriods.pending ||
+            enrollments.pending || !enrollments.requested ||
+            userAPICallResponsePending
         if newPending == true { return }
         pending = newPending
     }
