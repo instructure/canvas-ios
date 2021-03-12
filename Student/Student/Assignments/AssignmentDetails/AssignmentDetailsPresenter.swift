@@ -268,6 +268,7 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         return (
             features.first(where: { $0.name == "assignment_attempts" })?.enabled != true ||
             assignment?.allowedAttempts == 0 ||
+            assignment?.allowedAttempts == -1 ||
             assignment?.attemptPossible == false ||
             assignment?.lockStatus == .before ||
             assignment?.submissionTypes.contains(.online_quiz) == true // attempts show up elsewhere

@@ -75,7 +75,6 @@ public class GradeCircleView: UIView {
             gradeCircle.color = circleColor
         }
 
-        circleComplete.tintColor = circleColor
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
@@ -94,7 +93,10 @@ public class GradeCircleView: UIView {
         let isPassFail = assignment.gradingType == .pass_fail
         circlePoints.isHidden = isPassFail
         circleLabel.isHidden = isPassFail
-        circleComplete.isHidden = isPassFail ? submission.grade == "incomplete" : true
+        let isFail = isPassFail && submission.grade == "incomplete"
+        circleComplete.image = isFail ? .xLine : .checkSolid
+        circleComplete.tintColor = isFail ? .borderLight : circleColor
+        circleComplete.isHidden = !isPassFail
 
         // Update grade circle
         if let score = submission.score, let pointsPossible = assignment.pointsPossible {
