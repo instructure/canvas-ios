@@ -49,9 +49,10 @@ public typealias APIRubricAssessmentMap = [String: APIRubricAssessment]
 public struct APIRubricAssessment: Codable, Equatable {
     public let comments: String?
     public let points: Double?
+    /** Use empty string to reset a rubric's rating to empty. */
     public let rating_id: String?
 
-    public init(comments: String? = nil, points: Double? = nil, rating_id: String? = nil) {
+    public init(comments: String? = nil, points: Double? = nil, rating_id: String = "") {
         self.comments = comments
         self.points = points
         self.rating_id = rating_id
@@ -101,7 +102,7 @@ extension APIRubricAssessment {
     public static func make(
         comments: String? = "You failed at punctuation!",
         points: Double? = 25.0,
-        rating_id: String? = "1"
+        rating_id: String = "1"
     ) -> APIRubricAssessment {
         return APIRubricAssessment(
             comments: comments,

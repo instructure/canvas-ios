@@ -137,10 +137,10 @@ struct SubmissionGrades: View {
             if let id = rubricCommentID {
                 CommentEditor(text: $rubricComment, action: {
                     var points: Double?
-                    var ratingID: String?
+                    var ratingID = ""
                     if let assessment = rubricAssessments[id] {
                         points = assessment.points
-                        ratingID = assessment.rating_id
+                        ratingID = assessment.rating_id ?? ""
                     } else if let assessment = submission.rubricAssessments?[id] {
                         points = assessment.points
                         ratingID = assessment.ratingID
