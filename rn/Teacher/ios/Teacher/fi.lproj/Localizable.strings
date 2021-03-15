@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Näytä lähetysyritykset %1$@. %2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Kameran käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Kamperan käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
-

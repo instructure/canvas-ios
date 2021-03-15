@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Afiche tantativ soumisyon %1$@. %2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Ou dwe aktive pèmisyon Kamera a nan Paramèt.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Ou dwe aktive pèmisyon Mikwofòn nan Paramèt.";
-

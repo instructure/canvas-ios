@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "عرض محاولة الإرسال %1$@. %2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "يجب أن تقوم بتمكين أذونات الكاميرا في الإعدادات.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "يجب أن تقوم بتمكين أذونات الميكروفون في الإعدادات.";
-

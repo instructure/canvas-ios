@@ -158,7 +158,7 @@
 "Inbox" = "Inkorg";
 
 /* No comment provided by engineer. */
-"Incomplete" = "Ej fullständig";
+"Incomplete" = "ofullständig";
 
 /* No comment provided by engineer. */
 "It seems there aren't any valid submissions to grade." = "Det verkar inte finnas några giltiga inlämningar att bedöma.";
@@ -312,10 +312,4 @@
 
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Visa inlämningsförsök %1$@. %2$@";
-
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Du måste aktivera behörigheter för kameran i Inställningar.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Du måste aktivera behörigheter för mikrofonen i Inställningar.";
 
