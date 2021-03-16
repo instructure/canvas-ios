@@ -252,7 +252,7 @@
     "message": "Färdig"
   },
   "complete_incomplete_15b3a89c": {
-    "message": "Färdig/Ej fullständig"
+    "message": "Färdig/ofullständig"
   },
   "compose_message_8abd180a": {
     "message": "Skriv meddelande"
@@ -636,7 +636,7 @@
     "message": "Pågående"
   },
   "incomplete_da3c2ea2": {
-    "message": "Ej fullständig"
+    "message": "ofullständig"
   },
   "indigo_2035fc55": {
     "message": "Indigo"

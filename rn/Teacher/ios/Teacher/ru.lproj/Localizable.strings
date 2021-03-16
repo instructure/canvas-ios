@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Просмотреть попытку отправки %1$@. %2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Вы должны активировать разрешения для камеры в настройках.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Вы должны активировать разрешения для микрофона в настройках.";
-

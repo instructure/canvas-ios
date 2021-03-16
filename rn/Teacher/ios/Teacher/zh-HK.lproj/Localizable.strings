@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "檢視提交項目的嘗試 %1$@。%2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "您必須在「設定」中啟用攝影機的權限。";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "您必須在「設定」中啟用麥克風的權限。";
-

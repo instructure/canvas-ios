@@ -313,9 +313,3 @@
 /* No comment provided by engineer. */
 "View submission attempt %@. %@" = "Abgabeversuch %1$@ anzeigen. %2$@";
 
-/* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Sie müssen in den Einstellungen die Zugriffsberechtigungen auf die Kamera aktivieren.";
-
-/* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Sie müssen in den Einstellungen die Zugriffsberechtigungen auf das Mikrofon aktivieren.";
-

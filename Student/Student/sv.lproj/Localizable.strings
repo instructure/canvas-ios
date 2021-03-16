@@ -727,7 +727,7 @@
 
 /* Assignment grade: Incomplete
    Pass/fail assignment is incomplete */
-"Incomplete" = "Ej fullständig";
+"Incomplete" = "ofullständig";
 
 /* Button title for sending a direct message; a private conversation */
 "Individual messages" = "Individuella meddelanden";
