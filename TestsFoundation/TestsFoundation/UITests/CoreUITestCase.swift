@@ -520,6 +520,7 @@ open class CoreUITestCase: XCTestCase {
         mockData(GetEnabledFeatureFlagsRequest(context: .course(course.id.value)), value: [
             "rce_enhancements",
             "new_gradebook",
+            "assignment_attempts",
         ])
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true&per_page=100", value: [String]())
         mockEncodableRequest("courses/\(course.id)/external_tools?include_parents=true", value: [String]())

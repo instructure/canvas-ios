@@ -60,10 +60,12 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertTrue(view.circlePoints.isHidden)
         XCTAssertTrue(view.circleLabel.isHidden)
         XCTAssertFalse(view.circleComplete.isHidden)
+        XCTAssertTrue(view.circleComplete.image == UIImage.checkSolid)
 
         a.submission?.grade = "incomplete"
         view.update(a)
-        XCTAssertTrue(view.circleComplete.isHidden)
+        XCTAssertFalse(view.circleComplete.isHidden)
+        XCTAssertTrue(view.circleComplete.image == UIImage.xLine)
     }
 
     func testItShowsCorrectViewsForNonPassFail() {
