@@ -20,25 +20,26 @@ import XCTest
 
 public enum AssignmentDetails: String, ElementWrapper {
     case allowedExtensions
+    case attemptsView
+    case circleComplete
     case due
+    case fileSubmissionButton
     case gradeCell
     case gradeCircle
-    case circleComplete
     case gradeCircleOutOf
     case gradeDisplayGrade
     case gradeLatePenalty
-    case name
-    case points
-    case status
-    case submissionTypes
-    case submittedText
-    case submitAssignmentButton
-    case viewSubmissionButton
-    case fileSubmissionButton
     case lockIcon
     case lockSection
+    case name
+    case points
     case replyButton // parent
+    case status
+    case submissionTypes
+    case submitAssignmentButton
+    case submittedText
     case viewAllSubmissionsButton // teacher
+    case viewSubmissionButton
 
     public static func description(_ description: String) -> Element {
         return app.find(label: description)

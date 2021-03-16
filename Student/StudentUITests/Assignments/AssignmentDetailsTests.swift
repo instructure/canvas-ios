@@ -24,9 +24,13 @@ import XCTest
 class AssignmentDetailsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
+    override func setUp() {
+        super.setUp()
+        mockBaseRequests()
+    }
+
     func testUnsubmittedUpload() {
         // FLAKY: color cache doesn't always get updated
-        mockBaseRequests()
         mockData(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
             Context(.course, id: course.id.value).canvasContextID: "#123456",
         ]))
@@ -60,7 +64,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testUnsubmittedDiscussion() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             description: "Say it like you mean it",
             discussion_topic: APIDiscussionTopic.make(
@@ -92,7 +95,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testSubmittedDiscussion() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(
                 discussion_entries: [ APIDiscussionEntry.make(
@@ -110,7 +112,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testResubmitAssignmentButton() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(),
             submission_types: [ .online_upload ]
@@ -120,7 +121,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testSubmitAssignmentButton() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))
@@ -129,7 +129,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShows() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .none ]
         ))
@@ -139,7 +138,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsForNotGraded() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .not_graded ]
         ))
@@ -149,7 +147,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsWhenExcused() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: .make(excused: true),
             submission_types: [.online_text_entry]
@@ -160,7 +157,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoLockSection() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
         ))
@@ -171,7 +167,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsWhenLockAtLessThanNow() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             allowed_extensions: ["png"],
             locked_for_user: true,
@@ -189,7 +184,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsWhenUnLockAtGreaterThanNow() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             allowed_extensions: ["png"],
             locked_for_user: true,
@@ -208,7 +202,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testNoSubmitAssignmentButtonShowsUserNotStudentEnrollment() {
-        mockBaseRequests()
         mockData(GetCourseRequest(courseID: course.id.value), value: APICourse.make(enrollments: []))
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload ]
@@ -219,7 +212,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testTappingSubmitButtonShowsFileUploadOption() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload, .online_url ]
         ))
@@ -230,7 +222,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testCancelSubmitAction() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .online_upload, .online_url ]
         ))
@@ -241,7 +232,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testGradeCellShowsSubmittedTextWhenNotGraded() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission: APISubmission.make(submission_type: .online_upload, workflow_state: .pending_review)
         ))
@@ -251,7 +241,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testGradeCellShowsDialWhenGraded() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             points_possible: 100,
             submission: APISubmission.make(
@@ -265,7 +254,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testDisplayGradeAs() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             grading_type: .percent,
             points_possible: 10,
@@ -281,7 +269,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testGradeCellShowsLatePenalty() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             due_at: Date(timeIntervalSinceNow: -10000), // less than 1 day should deduct 5 points
             points_possible: 100,
@@ -299,7 +286,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testGradeCellShowsExcused() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             points_possible: 100,
             submission: .make(excused: true)
@@ -310,8 +296,20 @@ class AssignmentDetailsTests: CoreUITestCase {
         XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label(), "Out of 100 pts")
     }
 
+    func testShowsAnyAttemptsCell() {
+        let assignment = mock(assignment: .make(allowed_attempts: 1))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        XCTAssertTrue(AssignmentDetails.attemptsView.waitToExist().isVisible)
+    }
+
+    func testHidesUnlimitedAttemptsCell() {
+        let assignment = mock(assignment: .make(allowed_attempts: -1))
+        show("/courses/\(course.id)/assignments/\(assignment.id)")
+        AssignmentDetails.name.waitToExist()
+        XCTAssertFalse(AssignmentDetails.attemptsView.exists)
+    }
+
     func testViewSubmissionButtonWorksWithNoSubmission() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             points_possible: 10
         ))
@@ -322,7 +320,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testSubmissionButtonNavigatesToSubmission() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             points_possible: 10,
             submission: APISubmission.make(submission_type: .online_upload, workflow_state: .submitted)
@@ -333,7 +330,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testGradeCellNavigatesToSubmission() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             grading_type: .percent,
             points_possible: 10,
@@ -349,7 +345,6 @@ class AssignmentDetailsTests: CoreUITestCase {
     }
 
     func testSubmitUrlSubmission() {
-        mockBaseRequests()
         let assignment = mock(assignment: .make(
             submission_types: [ .online_url ]
         ))
