@@ -23,7 +23,7 @@ import XCTest
 
 class AssignmentDetailsTests: CoreUITestCase {
     lazy var course = mock(course: .make())
-    
+
     override func setUp() {
         super.setUp()
         mockBaseRequests()
@@ -295,13 +295,13 @@ class AssignmentDetailsTests: CoreUITestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Excused")
         XCTAssertEqual(AssignmentDetails.gradeCircleOutOf.label(), "Out of 100 pts")
     }
-    
+
     func testShowsAnyAttemptsCell() {
         let assignment = mock(assignment: .make(allowed_attempts: 1))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         XCTAssertTrue(AssignmentDetails.attemptsView.waitToExist().isVisible)
     }
-    
+
     func testHidesUnlimitedAttemptsCell() {
         let assignment = mock(assignment: .make(allowed_attempts: -1))
         show("/courses/\(course.id)/assignments/\(assignment.id)")
