@@ -25,20 +25,32 @@ struct RubricAssessor: View {
     let currentScore: Double
     @Binding var comment: String
     @Binding var commentID: String?
-    @Binding var assessments: APIRubricAssessmentMap
+    @Binding var assessments: APIRubricAssessmentMap {
+        didSet {
+            rubricAssessmentDidChange()
+        }
+    }
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    @State private var isSaving = false
+    @State private var assessmentsChangedDuringUpload = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack { Spacer() }
-            Text("Rubric")
-                .font(.heavy24).foregroundColor(.textDarkest)
-            Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
-                .font(.medium14).foregroundColor(.textDark)
+        HStack() {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Rubric")
+                    .font(.heavy24).foregroundColor(.textDarkest)
+                Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
+                    .font(.medium14).foregroundColor(.textDark)
+            }
+            Spacer()
+
+            if isSaving {
+                CircleProgress(size: 24)
+            }
         }
-            .multilineTextAlignment(.leading)
             .padding(.horizontal, 16).padding(.vertical, 12)
 
         VStack(spacing: 12) {
@@ -239,5 +251,59 @@ struct RubricAssessor: View {
         })
         prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(prompt, from: controller, options: .modal())
+    }
+
+    private func rubricAssessmentDidChange() {
+        if isSaving {
+            assessmentsChangedDuringUpload = true
+        } else {
+            uploadRubricAssessments()
+        }
+    }
+
+    private func uploadRubricAssessments() {
+        if assessments.isEmpty {
+            isSaving = false
+            return
+        }
+
+        isSaving = true
+        let prevAssessments = submission.rubricAssessments // create map only once
+        var nextAssessments: APIRubricAssessmentMap = [:]
+
+        for criteria in assignment.rubric ?? [] {
+            nextAssessments[criteria.id] = assessments[criteria.id] ?? prevAssessments?[criteria.id].map {
+                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
+            }
+        }
+
+        GradeSubmission(
+            courseID: assignment.courseID,
+            assignmentID: assignment.id,
+            userID: submission.userID,
+            rubricAssessment: nextAssessments
+        ).fetch { _, _, error in performUIUpdate {
+            handleUploadFinished(error: error)
+        } }
+    }
+
+    private func handleUploadFinished(error: Error?) {
+        if assessmentsChangedDuringUpload {
+            assessmentsChangedDuringUpload = false
+            uploadRubricAssessments()
+            return
+        }
+
+        isSaving = false
+
+        if let error = error {
+            showError(error)
+        }
+    }
+
+    private func showError(_ error: Error) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
+        env.router.show(alert, from: controller, options: .modal())
     }
 }

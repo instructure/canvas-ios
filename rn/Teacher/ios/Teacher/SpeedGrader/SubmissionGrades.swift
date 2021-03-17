@@ -130,7 +130,6 @@ struct SubmissionGrades: View {
                             commentID: $rubricCommentID,
                             assessments: $rubricAssessments
                         )
-                            .onDisappear(perform: saveRubric)
                     }
                 }
             }
@@ -314,26 +313,6 @@ struct SubmissionGrades: View {
             grade: grade
         ).fetch { _, _, error in performUIUpdate {
             isSaving = false
-            if let error = error { showError(error) }
-        } }
-    }
-
-    func saveRubric() {
-        guard !rubricAssessments.isEmpty else { return }
-        let prevAssessments = submission.rubricAssessments // create map only once
-        var nextAssessments: APIRubricAssessmentMap = [:]
-        for criteria in assignment.rubric ?? [] {
-            nextAssessments[criteria.id] = rubricAssessments[criteria.id] ?? prevAssessments?[criteria.id].map {
-                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
-            }
-        }
-
-        GradeSubmission(
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            rubricAssessment: nextAssessments
-        ).fetch { _, _, error in performUIUpdate {
             if let error = error { showError(error) }
         } }
     }
