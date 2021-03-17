@@ -153,25 +153,29 @@ struct RubricAssessor: View {
         }
 
         if let comments = assessment?.comments, !comments.isEmpty {
-            HStack {
-                Text(comments)
-                    .font(.regular14).foregroundColor(.textDarkest)
-                    .padding(.horizontal, 12).padding(.vertical, 8)
-                    .background(CommentBackground()
-                        .fill(Color.backgroundLight)
-                    )
-                Spacer()
-                Button(action: { withAnimation(.default) {
-                    comment = comments
-                    commentID = criteria.id
-                } }, label: {
-                    Text("Edit")
-                        .font(.medium14).foregroundColor(.accentColor)
-                })
-            }
-                .padding(.top, 8)
+            freeFormRubricCommentBubbleWithEditButton(comments, criteriaID: criteria.id)
         }
     } }
+
+    func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
+        HStack {
+            Text(comment)
+                .font(.regular14).foregroundColor(.textDarkest)
+                .padding(.horizontal, 12).padding(.vertical, 8)
+                .background(CommentBackground()
+                    .fill(Color.backgroundLight)
+                )
+            Spacer()
+            Button(action: { withAnimation(.default) {
+                self.comment = comment
+                commentID = criteriaID
+            } }, label: {
+                Text("Edit")
+                    .font(.medium14).foregroundColor(.accentColor)
+            })
+        }
+            .padding(.top, 8)
+    }
 
     struct CircleToggle<Content: View>: View {
         let content: Content
