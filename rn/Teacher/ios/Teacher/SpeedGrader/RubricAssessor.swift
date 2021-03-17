@@ -97,7 +97,7 @@ struct RubricAssessor: View {
                 }
             }
 
-            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil)
+            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil || assessment?.rating_id == "")
                 ? assessment?.points : nil
             CircleToggle(isOn: Binding(get: { customGrade != nil }, set: { newValue in
                 if newValue {
