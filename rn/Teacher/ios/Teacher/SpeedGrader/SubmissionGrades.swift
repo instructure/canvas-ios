@@ -38,6 +38,13 @@ struct SubmissionGrades: View {
     @State var rubricCommentID: String?
     @State var rubricAssessments: APIRubricAssessmentMap = [:]
 
+    var isRubricScoreAvailable: Bool {
+        guard assignment.useRubricForGrading else { return false }
+        return rubricAssessments.contains { _, assessment in
+            assessment.points != nil
+        }
+    }
+
     var hasLateDeduction: Bool {
         submission.late &&
         (submission.pointsDeducted ?? 0) > 0 &&
@@ -80,8 +87,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: assignment.useRubricForGrading && !rubricAssessments.isEmpty
-                                            ? currentRubricScore : nil,
+                                        rubricScore: isRubricScoreAvailable ? currentRubricScore : nil,
                                         final: false
                                     ))
                                 } else {
