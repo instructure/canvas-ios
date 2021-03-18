@@ -242,11 +242,6 @@ class SubmissionButtonPresenterTests: StudentTestCase {
         XCTAssertEqual(filePicker?.sources, [.files, .library, .camera, .documentScan])
     }
 
-    func testSubmitFiles() {
-        presenter.submit(filePicker)
-        XCTAssert(filePicker == router.dismissed)
-    }
-
     func testRetryFileUpload() {
         XCTAssertNoThrow(presenter.retry(filePicker))
     }

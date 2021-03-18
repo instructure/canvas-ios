@@ -228,9 +228,22 @@ public class ProfileViewController: UIViewController {
             })
         } else {
             cells.append(ProfileViewCell("logOut", name: NSLocalizedString("Log Out", bundle: .core, comment: "")) { [weak self] _ in
-                guard let self = self, let session = self.env.currentSession else { return }
-                self.env.router.dismiss(self) {
-                    self.env.loginDelegate?.userDidLogout(session: session)
+                UploadManager.shared.isUploading { isUploading in
+                    guard let self = self, let session = self.env.currentSession else { return }
+                    performUIUpdate {
+                        let logoutBlock = {
+                            self.env.router.dismiss(self) {
+                                self.env.loginDelegate?.userDidLogout(session: session)
+                            }
+                        }
+                        if isUploading {
+                            self.showUploadAlert {
+                                logoutBlock()
+                            }
+                        } else {
+                            logoutBlock()
+                        }
+                    }
                 }
             })
         }
@@ -387,6 +400,17 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     public func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default))
+        env.router.show(alert, from: self, options: .modal())
+    }
+
+    public func showUploadAlert(completionHandler: @escaping () -> Void) {
+        let title = NSLocalizedString("Upload in progress", bundle: .core, comment: "")
+        let message = NSLocalizedString("Are you sure you want to log out?", bundle: .core, comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { _ in
+            completionHandler()
+        })
+        alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         env.router.show(alert, from: self, options: .modal())
     }
 }
