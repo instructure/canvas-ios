@@ -25,11 +25,7 @@ struct RubricAssessor: View {
     let currentScore: Double
     @Binding var comment: String
     @Binding var commentID: String?
-    @Binding var assessments: APIRubricAssessmentMap {
-        didSet {
-            rubricAssessmentDidChange()
-        }
-    }
+    @Binding var assessments: APIRubricAssessmentMap
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -60,6 +56,9 @@ struct RubricAssessor: View {
         }
             .multilineTextAlignment(.leading)
             .padding(.horizontal, 16)
+            .onDataChange(of: assessments) { _ in
+                rubricAssessmentDidChange()
+            }
     }
 
     func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
