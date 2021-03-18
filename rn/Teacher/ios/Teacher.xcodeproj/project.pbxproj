@@ -112,6 +112,7 @@
 		E8F20FB924BFC27500F82129 /* TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F20FB824BFC27500F82129 /* TodoUITests.swift */; };
 		E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */; };
 		E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66524EECA10003FBAFD /* ContextCard.swift */; };
+		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -506,6 +507,7 @@
 		E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardE2ETests.swift; sourceTree = "<group>"; };
 		E8F4B66524EECA10003FBAFD /* ContextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCard.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -658,6 +660,7 @@
 			children = (
 				7D742F442556566F00FD6CF1 /* CommentEditor.swift */,
 				7D7126B02534B980000DEDE4 /* Drawer.swift */,
+				EB12071E2601F2C50038E875 /* GradeSlider.swift */,
 				7D742F372554D01400FD6CF1 /* RubricAssessor.swift */,
 				7D264DC62537A6E1007CDD90 /* SimilarityScore.swift */,
 				7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */,
@@ -1532,6 +1535,7 @@
 				B15CA29D221F16C90014FB02 /* BundleExtensions.swift in Sources */,
 				7D7126C025374446000DEDE4 /* SubmissionGrades.swift in Sources */,
 				7D64A96023620A27004EAEDF /* DatePickerCollectionView.swift in Sources */,
+				EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* TeacherAppDelegate.swift in Sources */,
