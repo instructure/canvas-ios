@@ -256,7 +256,7 @@ describe('AssignmentList', () => {
     expect(clearButton.props().children).toEqual('Clear filter')
     clearButton.simulate('press')
     tree.update()
-    expect(tree.find('Heading1').props().children).toEqual('All Grading Periods')
+    expect(tree.find('Heading1').props().children).toEqual('All')
   })
 
   it('selects first item on regular horizontal trait collection', () => {

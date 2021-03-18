@@ -137,7 +137,7 @@ class AssignmentListViewControllerTests: StudentTestCase {
         cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? AssignmentListViewController.ListCell
         XCTAssertEqual(cell?.textLabel?.text, "how to BBQ")
 
-        XCTAssertEqual( vc.gradingPeriodLabel.text, "All Grading Periods" )
+        XCTAssertEqual( vc.gradingPeriodLabel.text, "All" )
         XCTAssertEqual( vc.filterButton.title(for: .normal), "Filter" )
 
         //  prep for filter button push
