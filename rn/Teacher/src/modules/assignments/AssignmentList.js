@@ -77,7 +77,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
   }
 
   state = {
-    currentFilter: { title: i18n('All Grading Periods') },
+    currentFilter: { title: i18n('All') },
     filterApplied: false,
     currentScore: this.props.currentScore,
     loadingGrade: false,
@@ -217,7 +217,7 @@ export class AssignmentList extends Component<AssignmentListProps, State> {
 
   clearFilter = () => {
     this.setState({
-      currentFilter: { title: i18n('All Grading Periods') },
+      currentFilter: { title: i18n('All') },
       filterApplied: false,
       currentScore: this.props.currentScore,
     })

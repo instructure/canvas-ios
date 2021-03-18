@@ -161,7 +161,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         gradingPeriodLoaded = gradingPeriodLoaded || (courses.requested && !courses.pending)
         gradingPeriodView.isHidden = !gradingPeriodLoaded || courseEnrollment?.multipleGradingPeriodsEnabled == false
         gradingPeriodLabel.text = gradingPeriodID == nil && gradingPeriodLoaded
-            ? NSLocalizedString("All Grading Periods", bundle: .core, comment: "")
+            ? NSLocalizedString("All", bundle: .core, comment: "")
             : gradingPeriods.first(where: { $0.id == gradingPeriodID })?.title
 
         if courses.first?.hideFinalGrades == true {
@@ -202,7 +202,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
 
     @IBAction func filter(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Filter by:", bundle: .core, comment: ""), preferredStyle: .actionSheet)
-        alert.addAction(AlertAction(NSLocalizedString("All Grading Periods", bundle: .core, comment: ""), style: .default) { [weak self] _ in
+        alert.addAction(AlertAction(NSLocalizedString("All", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             self?.updateGradingPeriod(id: nil)
         })
         for period in gradingPeriods where period.title?.isEmpty == false {

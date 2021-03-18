@@ -252,7 +252,7 @@ extension AssignmentListViewController {
     func updateLabels() {
         let buttonTitle = selectedGradingPeriod == nil ? NSLocalizedString("Filter", comment: "") : NSLocalizedString("Clear filter", comment: "")
         filterButton.setTitle(buttonTitle, for: .normal)
-        gradingPeriodLabel.text = selectedGradingPeriod?.title ?? NSLocalizedString("All Grading Periods", comment: "")
+        gradingPeriodLabel.text = selectedGradingPeriod?.title ?? NSLocalizedString("All", comment: "")
     }
 
     func updateFilterButton() {
