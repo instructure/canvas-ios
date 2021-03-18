@@ -34,7 +34,7 @@ struct RubricAssessor: View {
     @State private var assessmentsChangedDuringUpload = false
 
     var body: some View {
-        HStack() {
+        HStack {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Rubric")
                     .font(.heavy24).foregroundColor(.textDarkest)
@@ -61,7 +61,7 @@ struct RubricAssessor: View {
             }
     }
 
-    func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
+    private func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
         let assessment = assessments[criteria.id] ?? submission.rubricAssessments?[criteria.id].map {
             APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
         }
@@ -156,7 +156,7 @@ struct RubricAssessor: View {
         }
     } }
 
-    func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
+    private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
         HStack {
             Text(comment)
                 .font(.regular14).foregroundColor(.textDarkest)
@@ -176,7 +176,7 @@ struct RubricAssessor: View {
             .padding(.top, 8)
     }
 
-    struct CircleToggle<Content: View>: View {
+    private struct CircleToggle<Content: View>: View {
         let content: Content
         @Binding var isOn: Bool
         let tooltip: String
@@ -236,7 +236,7 @@ struct RubricAssessor: View {
         }
     }
 
-    func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
+    private func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
         let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
         let message = String.localizedStringWithFormat(format, criteria.points)
         let prompt = UIAlertController(title: NSLocalizedString("Customize Grade", comment: ""), message: message, preferredStyle: .alert)
