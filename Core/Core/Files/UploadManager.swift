@@ -105,9 +105,9 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
     public func isUploading(completionHandler: @escaping (Bool) -> Void) {
         if let validSession = validSession {
             validSession.getAllTasks { tasks in
-              let runningTaskCount = tasks
-                .filter { $0.state == .running }
-                .count
+                let runningTaskCount = tasks
+                    .filter { $0.state == .running }
+                    .count
                 completionHandler(runningTaskCount > 0)
             }
         } else {
