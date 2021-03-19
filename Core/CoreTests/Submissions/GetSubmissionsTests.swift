@@ -295,4 +295,22 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(Filter.user("1").name, "Me")
         XCTAssertEqual(Filter.section([ "2", "1" ]).name, "One and Two")
     }
+
+    func testGroupSubmissionWithIndividualGradesOrder() {
+        let date = Date()
+        let group = APISubmissionGroup(id: nil, name: "Group 1")
+        Submission.save([
+            APISubmission.make(group: group, id: "1", submission_history: [], submitted_at: date, user: .make(id: "B2", sortable_name: "B"), user_id: "B2"),
+            APISubmission.make(group: group, id: "2", submission_history: [], submitted_at: date, user: .make(id: "B1", sortable_name: "B"), user_id: "B1"),
+            APISubmission.make(group: group, id: "3", submission_history: [], submitted_at: date, user: .make(id: "C", sortable_name: "C"), user_id: "C"),
+            APISubmission.make(group: group, id: "4", submission_history: [], submitted_at: date, user: .make(id: "A", sortable_name: "A"), user_id: "A"),
+        ], in: databaseClient)
+
+        let testee = GetSubmissions(context: .course("1"), assignmentID: "1")
+        let fetchedSubmissions: [Submission] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertEqual(fetchedSubmissions[0].id, "4")
+        XCTAssertEqual(fetchedSubmissions[1].id, "2")
+        XCTAssertEqual(fetchedSubmissions[2].id, "1")
+        XCTAssertEqual(fetchedSubmissions[3].id, "3")
+    }
 }
