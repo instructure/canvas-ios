@@ -61,7 +61,7 @@ public class GroupContextCardViewModel: ObservableObject {
         env.router.route(to: "/conversations/compose", userInfo: [
             "recipients": [recipient],
             "contextName": group.name,
-            "contextCode": group.id,
+            "contextCode": context.canvasContextID,
             "canSelectCourse": false,
         ], from: controller, options: .modal(embedInNav: true))
     }
