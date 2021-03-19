@@ -116,7 +116,14 @@ struct SubmissionGrades: View {
                             .padding(.horizontal, 16).padding(.vertical, 12)
                     }
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
+                        ZStack {
+                            // disables page swipe around the slider
+                            Rectangle()
+                                .contentShape(Rectangle())
+                                .foregroundColor(.clear)
+                                .gesture(DragGesture(minimumDistance: 0).onChanged {_ in})
+                            slider
+                        }
                     }
 
                     if assignment.rubric?.isEmpty == false {
