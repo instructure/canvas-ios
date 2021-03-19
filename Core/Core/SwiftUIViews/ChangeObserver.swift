@@ -23,6 +23,7 @@ public extension View {
     /**
      iOS 13 implementation of the `onChange` method which is iOS 14 only. On iOS 14 this method directly uses `onChange`.
      */
+    @available(iOS, deprecated: 14.0)
     func onDataChange<Value: Equatable>(of value: Value, perform action: @escaping (_ newValue: Value) -> Void) -> some View {
         SwiftUI.Group {
             if #available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *) {
