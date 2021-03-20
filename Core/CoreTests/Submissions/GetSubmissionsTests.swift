@@ -213,7 +213,11 @@ class GetSubmissionsTests: CoreTestCase {
         let useCase = GetSubmissions(context: .course("1"), assignmentID: "1")
         XCTAssertEqual(useCase.cacheKey, "courses/1/assignments/1/submissions")
         XCTAssertEqual(useCase.request.assignmentID, "1")
-        XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true)])
+        XCTAssertEqual(useCase.scope.order, [
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true),
+        ])
         useCase.shuffled = true
         XCTAssertEqual(useCase.scope.order, [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)])
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
