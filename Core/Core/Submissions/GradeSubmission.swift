@@ -78,7 +78,9 @@ public class GradeSubmission: APIUseCase {
         model.postedAt = item.posted_at
         model.score = item.score
         model.workflowState = item.workflow_state
-        if let rubricAssessmentMap = item.rubric_assessment {
+
+        // The API submission response doesn't include rubrics, so we save what we posted.
+        if let rubricAssessmentMap = rubricAssessment {
             let allPredicate = NSPredicate(format: "%K == %@", #keyPath(RubricAssessment.submissionID), item.id.value)
             let all: [RubricAssessment] = client.fetch(allPredicate)
             client.delete(all)
