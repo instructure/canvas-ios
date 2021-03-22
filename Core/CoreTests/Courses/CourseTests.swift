@@ -113,13 +113,15 @@ class CourseTests: CoreTestCase {
 
     func testWidgetDisplayGradeNotInCurrentMGPWithTotals() {
         let c = Course.make(from: .make(enrollments: [ .make(
+            computed_current_score: 90,
             computed_final_score: 85,
+            computed_current_grade: "A",
             computed_final_grade: "B",
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: true,
             current_grading_period_id: nil
         ), ]))
-        XCTAssertEqual(c.displayGrade, "85% - B")
+        XCTAssertEqual(c.displayGrade, "90% - A")
     }
 
     func testWidgetDisplayGradeNotInCurrentMGPWithoutTotals() {

@@ -135,8 +135,8 @@ extension Course {
             grade = enrollment.currentPeriodComputedCurrentGrade
             score = enrollment.currentPeriodComputedCurrentScore
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedFinalGrade
-            score = enrollment.computedFinalScore
+            grade = enrollment.computedCurrentGrade
+            score = enrollment.computedCurrentScore
         } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
             return NSLocalizedString("N/A", bundle: .core, comment: "")
         }
