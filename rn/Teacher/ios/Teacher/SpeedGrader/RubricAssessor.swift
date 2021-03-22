@@ -23,6 +23,7 @@ struct RubricAssessor: View {
     let assignment: Assignment
     let submission: Submission
     let currentScore: Double
+    let containerFrameInGlobal: CGRect
     @Binding var comment: String
     @Binding var commentID: String?
     @Binding var assessments: APIRubricAssessmentMap
@@ -69,13 +70,15 @@ struct RubricAssessor: View {
                 ForEach(ratings.reversed(), id: \.id) { rating in
                     let isSelected = assessment?.rating_id == rating.id
                     let value = Text((isSelected ? assessment?.points : nil) ?? rating.points)
+                    let tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
+
                     CircleToggle(isOn: Binding(get: { isSelected }, set: { newValue in
                         assessments[criteria.id] = newValue ? APIRubricAssessment(
                             comments: assessment?.comments,
                             points: rating.points,
                             rating_id: rating.id
                         ) : APIRubricAssessment(comments: assessment?.comments)
-                    }), tooltip: rating.desc) {
+                    }), tooltip: tooltip, containerFrame: containerFrameInGlobal) {
                         value
                     }
                         .accessibility(value: value)
@@ -162,16 +165,18 @@ struct RubricAssessor: View {
     } }
 
     struct CircleToggle<Content: View>: View {
-        let content: Content
-        @Binding var isOn: Bool
-        let tooltip: String
+        @Binding private var isOn: Bool
+        private let tooltip: String
+        private let content: Content
 
-        @GestureState var showTooltip = false
+        @GestureState private var showTooltip = false
+        private let containerFrame: CGRect
 
-        init(isOn: Binding<Bool>, tooltip: String = "", @ViewBuilder content: () -> Content) {
+        init(isOn: Binding<Bool>, tooltip: String = "", containerFrame: CGRect = .null, @ViewBuilder content: () -> Content) {
             self.content = content()
             self._isOn = isOn
             self.tooltip = tooltip
+            self.containerFrame = containerFrame
         }
 
         var body: some View {
@@ -197,22 +202,39 @@ struct RubricAssessor: View {
                 )
                 .overlay(!showTooltip || tooltip.isEmpty ? nil :
                     GeometryReader { geometry in
-                        let screenWidth = UIScreen.main.bounds.width
-                        let maxWidth = min(600, screenWidth - 32)
+                        let bubbleToCircleOffset: CGFloat = 16
+                        let padding: CGFloat = 16
+                        // Don't go over 600 in width otherwise it will be one long line in portrait mode on iPad
+                        let maxWidth = min(600, containerFrame.width - 2 * padding)
                         let maxHeight: CGFloat = 300
-                        let midX = geometry.frame(in: .global).midX
+
                         Text(tooltip)
                             .foregroundColor(.textLightest)
                             .padding(8)
                             .background(RoundedRectangle(cornerRadius: 5).fill(Color.backgroundDarkest))
                             .offset(x: geometry.size.width / 2) // start with align leading to circle's center
+                            // Center the bubble on the circle and make sure it doesn't go out of the parent
                             .alignmentGuide(.leading) { size in
-                                min(midX - 16, // don't go more left than 16 from leading
-                                    max(size.width - (screenWidth - midX) + 16, // 16 from trailing
-                                        size.width / 2
-                                ))
+                                let circleCenter = geometry.frame(in: .global).midX
+                                let offsetToCenterOnBubble = size.width / 2
+                                let bubbleLeading = circleCenter - offsetToCenterOnBubble
+                                let bubbleTrailing = circleCenter + offsetToCenterOnBubble
+                                let containerLeading = containerFrame.minX + padding
+                                let containerTrailing = containerFrame.maxX - padding
+
+                                if bubbleLeading < containerLeading {
+                                    return offsetToCenterOnBubble - (containerLeading - bubbleLeading)
+                                }
+
+                                if bubbleTrailing > containerTrailing {
+                                    return offsetToCenterOnBubble + (bubbleTrailing - containerTrailing)
+                                }
+
+                                return offsetToCenterOnBubble
                             }
-                            .alignmentGuide(.bottom) { size in size.height + maxHeight + 8 }
+                            // This pushes the bubble on top of the circle
+                            .alignmentGuide(.bottom) { size in size.height + maxHeight + bubbleToCircleOffset }
+                            // Alignment must match the guides we use above otherwise they don't get called
                             .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
                     }
                         .transition(.scale),

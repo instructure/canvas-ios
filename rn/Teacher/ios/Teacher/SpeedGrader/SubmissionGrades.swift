@@ -63,7 +63,7 @@ struct SubmissionGrades: View {
                 }
             }
         } else {
-            ScrollView {
+            GeometryReader { geometry in ScrollView {
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
                         Text("Grade")
@@ -132,14 +132,15 @@ struct SubmissionGrades: View {
                             assignment: assignment,
                             submission: submission,
                             currentScore: currentRubricScore,
+                            containerFrameInGlobal: geometry.frame(in: .global),
                             comment: $rubricComment,
                             commentID: $rubricCommentID,
                             assessments: $rubricAssessments
                         )
                             .onDisappear(perform: saveRubric)
                     }
-                }
-            }
+                }.padding(.bottom, 16)
+            } }
             if let id = rubricCommentID {
                 CommentEditor(text: $rubricComment, action: {
                     var points: Double?
