@@ -158,9 +158,6 @@
 "All Courses" = "Tout Kou";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Tout Peryòd Klasman";
-
-/* No comment provided by engineer. */
 "All People" = "Tout Moun";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "klas";
 
 /* No comment provided by engineer. */
+"Grade" = "Klas";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Nòt aprè piblikasyon";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Lis Kòmande";
 
+/* 5 out of 10 */
+"out of" = "sou";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Reponn Tout";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Reponn diskisyon prensipal la";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reponn anotasyon an oswa ansyen kòmantè yo";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Reponn a fil diskisyon an";
 
 /* Button to report an error */
 "Report" = "Rapòte";

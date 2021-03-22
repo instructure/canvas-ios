@@ -158,9 +158,6 @@
 "All Courses" = "Alla kurser";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Alla bedömningsperioder";
-
-/* No comment provided by engineer. */
 "All People" = "Alla personer";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "bedömning";
 
 /* No comment provided by engineer. */
+"Grade" = "Bedömning";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Bedöm efter publicering";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Ordnad lista";
 
+/* 5 out of 10 */
+"out of" = "av";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Svara alla";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Svara på huvuddiskussion";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svara på noteringen eller tidigare kommentarer";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Svara på tråd";
 
 /* Button to report an error */
 "Report" = "Rapportera";

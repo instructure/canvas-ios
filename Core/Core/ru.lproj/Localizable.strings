@@ -158,9 +158,6 @@
 "All Courses" = "Все курсы";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Все академические периоды";
-
-/* No comment provided by engineer. */
 "All People" = "Все люди";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "оценка";
 
 /* No comment provided by engineer. */
+"Grade" = "Оценка";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Оценка после публикации";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Упорядоченный список";
 
+/* 5 out of 10 */
+"out of" = "из";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Ответить на все";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Ответить в основное обсуждение";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Ответить на аннотацию или предыдущие комментарии";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Ответить в тему";
 
 /* Button to report an error */
 "Report" = "Сообщить";

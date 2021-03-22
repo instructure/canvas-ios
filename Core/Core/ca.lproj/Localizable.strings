@@ -158,9 +158,6 @@
 "All Courses" = "Tots els cursos";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Tots els períodes de qualificació";
-
-/* No comment provided by engineer. */
 "All People" = "Totes les persones";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "qualificació";
 
 /* No comment provided by engineer. */
+"Grade" = "Qualificació";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Qualificació després de la publicació";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Llista ordenada";
 
+/* 5 out of 10 */
+"out of" = "de";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Respon a tots";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Respon al debat principal";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Responeu a l'anotació o als comentaris anteriors";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Respon al fil";
 
 /* Button to report an error */
 "Report" = "Informa";

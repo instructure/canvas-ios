@@ -158,9 +158,6 @@
 "All Courses" = "所有课程";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "所有评分周期";
-
-/* No comment provided by engineer. */
 "All People" = "所有人员";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "评分";
 
 /* No comment provided by engineer. */
+"Grade" = "评分";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "发布后的评分";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "有序列表";
 
+/* 5 out of 10 */
+"out of" = "共";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "回复所有人";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "回复主讨论";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "恢复注释或原来的评论";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "回复会话";
 
 /* Button to report an error */
 "Report" = "报告";

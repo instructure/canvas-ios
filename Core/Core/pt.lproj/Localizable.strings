@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "Uma descrição é necessária";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "um pai";
 
@@ -153,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "All Courses" = "Todas as disciplinas";
-
-/* No comment provided by engineer. */
-"All Grading Periods" = "Todos os períodos de classificação";
 
 /* No comment provided by engineer. */
 "All People" = "Todas as pessoas";
@@ -905,6 +905,9 @@
 "grade" = "classificação";
 
 /* No comment provided by engineer. */
+"Grade" = "Nota";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Classificação após publicação";
 
 /* No comment provided by engineer. */
@@ -1420,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Lista ordenada";
 
+/* 5 out of 10 */
+"out of" = "de";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1598,7 +1604,13 @@
 "Reply All" = "Responder a todos";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Responder à discussão principal";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Responder à anotação ou a comentários anteriores";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Responder ao tópico";
 
 /* Button to report an error */
 "Report" = "Relatar";
@@ -2130,6 +2142,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificações Yo ";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Você não está autorizado a realizar esta ação";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Você foi convidado";

@@ -158,9 +158,6 @@
 "All Courses" = "Kaikki kurssit";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Kaikki arvosanojen antojaksot";
-
-/* No comment provided by engineer. */
 "All People" = "Kaikki henkilöt";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "arvosana";
 
 /* No comment provided by engineer. */
+"Grade" = "Arvosana";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Arvosana lähetyksen jälkeen";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Tilattujen luettelo";
 
+/* 5 out of 10 */
+"out of" = "/";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Vastaa kaikille";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Vastaa pääkeskusteluun";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Vastaa huomautukseen tai edellisiin kommentteihin";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Vastaa viestiketjuun";
 
 /* Button to report an error */
 "Report" = "Raportti";

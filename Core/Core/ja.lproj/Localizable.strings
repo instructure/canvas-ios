@@ -158,9 +158,6 @@
 "All Courses" = "すべてのコース";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "すべての採点期間";
-
-/* No comment provided by engineer. */
 "All People" = "すべての人々";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "成績評価";
 
 /* No comment provided by engineer. */
+"Grade" = "成績";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "投稿後の成績";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "順序リスト";
 
+/* 5 out of 10 */
+"out of" = "中";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "全員に返信";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "メインディスカッションに返信";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "注釈や以前のコメントに返信する";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "スレッドに返信";
 
 /* Button to report an error */
 "Report" = "報告";

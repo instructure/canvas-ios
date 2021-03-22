@@ -158,9 +158,6 @@
 "All Courses" = "Pob Cwrs";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Pob Cyfnod Graddio";
-
-/* No comment provided by engineer. */
 "All People" = "Holl Bobl";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "gradd";
 
 /* No comment provided by engineer. */
+"Grade" = "Gradd";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Gradd ar ôl postio";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Rhestr mewn Trefn";
 
+/* 5 out of 10 */
+"out of" = "allan o";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Ateb Pawb";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Ateb prif drafodaeth";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Ymateb i’r anodiad neu sylwadau blaenorol";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Ateb edefyn";
 
 /* Button to report an error */
 "Report" = "Adroddiad";

@@ -158,9 +158,6 @@
 "All Courses" = "Alle fag";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Alle vurderingsperioder";
-
-/* No comment provided by engineer. */
 "All People" = "Alle deltakere";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "vurdering";
 
 /* No comment provided by engineer. */
+"Grade" = "Vurdering";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Vurder etter publisering";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Sortert liste";
 
+/* 5 out of 10 */
+"out of" = "ut av";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Svar alle";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Svar på hoveddiskusjon";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svar på merknaden eller tidligere kommentar";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Svar på tråd";
 
 /* Button to report an error */
 "Report" = "Rapporter";

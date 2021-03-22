@@ -158,9 +158,6 @@
 "All Courses" = "جميع المساقات";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "جميع فترات تقييم الدرجات";
-
-/* No comment provided by engineer. */
 "All People" = "جميع الأشخاص";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "التقدير";
 
 /* No comment provided by engineer. */
+"Grade" = "التقدير";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "التقدير بعد النشر";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "قائمة مرتبة";
 
+/* 5 out of 10 */
+"out of" = "من إجمالي";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "رد على الكل";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "الرد على النقاش الرئيسي";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "الرد على التعليق التوضيحي أو التعليقات السابقة";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "الرد على سلسلة النقاشات";
 
 /* Button to report an error */
 "Report" = "إنشاء تقرير";
