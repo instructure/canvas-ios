@@ -405,7 +405,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     public func showUploadAlert(completionHandler: @escaping () -> Void) {
         let title = NSLocalizedString("Upload in progress", bundle: .core, comment: "")
-        let message = NSLocalizedString("Are you sure you want to log out?", bundle: .core, comment: "")
+        let message = NSLocalizedString("One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?", bundle: .core, comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Yes", bundle: .core, comment: ""), style: .destructive) { _ in
             completionHandler()
