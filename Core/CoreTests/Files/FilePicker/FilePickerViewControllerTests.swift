@@ -138,7 +138,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         }
 
         let doneItem = controller.navigationItem.rightBarButtonItem
-        XCTAssertEqual(doneItem?.title, "Done")
+        XCTAssertEqual(doneItem?.title, "Dismiss")
         XCTAssertNoThrow(doneItem?.target?.perform(doneItem?.action))
     }
 
