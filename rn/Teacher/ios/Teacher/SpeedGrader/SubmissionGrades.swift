@@ -116,12 +116,18 @@ struct SubmissionGrades: View {
                             .padding(.horizontal, 16).padding(.vertical, 12)
                     }
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        slider
+                        ZStack {
+                            // disables page swipe around the slider
+                            Rectangle()
+                                .contentShape(Rectangle())
+                                .foregroundColor(.clear)
+                                .gesture(DragGesture(minimumDistance: 0).onChanged {_ in})
+                            slider
+                        }
                     }
 
-                    Divider().padding(.horizontal, 16)
-
                     if assignment.rubric?.isEmpty == false {
+                        Divider().padding(.horizontal, 16)
                         RubricAssessor(
                             assignment: assignment,
                             submission: submission,
@@ -167,49 +173,24 @@ struct SubmissionGrades: View {
             sliderExcused ? Text("Excused") :
             assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(round(score))
+
         HStack(spacing: 8) {
-            Text(0)
-
-            Slider(
-                value: Binding(get: { score }, set: sliderChangedValue),
-                in: 0...(assignment.pointsPossible ?? 0),
-                onEditingChanged: sliderChangedState
-            )
-                .overlay(!showTooltip ? nil : GeometryReader { geometry in
-                    let x = CGFloat(score / max(possible, 0.01))
-                        * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
-                    tooltipText
-                        .foregroundColor(.textLightest)
-                        .padding(8)
-                        .background(TooltipBackground().fill(Color.backgroundDarkest))
-                        .position()
-                        .offset(x: x, y: -26)
-                }, alignment: .bottom)
-
+            VStack {
+                Spacer()
+                Text(0)
+                Spacer()
+            }
+            GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
+                           range: 0...(assignment.pointsPossible ?? 0),
+                           showTooltip: showTooltip,
+                           tooltipText: tooltipText,
+                           score: score,
+                           possible: possible,
+                           onEditingChanged: sliderChangedState)
             Text(assignment.gradingType == .percent ? 100 : possible)
         }
-            .font(.medium14).foregroundColor(.textDarkest)
-            .padding(.horizontal, 16).padding(.vertical, 12)
-    }
-
-    struct TooltipBackground: Shape {
-        func path(in rect: CGRect) -> Path { Path { path in
-            let r: CGFloat = 5
-            let arrowHeight: CGFloat = 5
-            let arrowWidth: CGFloat = 10
-            path.move(to: CGPoint(x: r, y: 0)) // top left, almost
-            path.addLine(to: CGPoint(x: rect.maxX - r, y: 0))
-            path.addArc(tangent1End: CGPoint(x: rect.maxX, y: 0), tangent2End: CGPoint(x: rect.maxX, y: r), radius: r)
-            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - r))
-            path.addArc(tangent1End: CGPoint(x: rect.maxX, y: rect.maxY), tangent2End: CGPoint(x: rect.maxX - r, y: rect.maxY), radius: r)
-            path.addLine(to: CGPoint(x: rect.midX + arrowWidth / 2, y: rect.maxY))
-            path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY + arrowHeight))
-            path.addLine(to: CGPoint(x: rect.midX - arrowWidth / 2, y: rect.maxY))
-            path.addLine(to: CGPoint(x: r, y: rect.maxY))
-            path.addArc(tangent1End: CGPoint(x: 0, y: rect.maxY), tangent2End: CGPoint(x: 0, y: rect.maxY - r), radius: r)
-            path.addLine(to: CGPoint(x: 0, y: r))
-            path.addArc(tangent1End: CGPoint(x: 0, y: 0), tangent2End: CGPoint(x: r, y: 0), radius: r)
-        } }
+        .font(.medium14).foregroundColor(.textDarkest)
+        .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
     func sliderChangedState(_ editing: Bool) {
