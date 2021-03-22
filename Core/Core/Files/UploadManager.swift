@@ -102,6 +102,19 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         return Store(env: environment, database: database, useCase: useCase, eventHandler: eventHandler)
     }
 
+    public func isUploading(completionHandler: @escaping (Bool) -> Void) {
+        if let validSession = validSession {
+            validSession.getAllTasks { tasks in
+                let runningTaskCount = tasks
+                    .filter { $0.state == .running }
+                    .count
+                completionHandler(runningTaskCount > 0)
+            }
+        } else {
+            completionHandler(false)
+        }
+    }
+
     @discardableResult
     public func add(url: URL, batchID: String? = nil) throws -> File {
         let file: File = viewContext.insert()

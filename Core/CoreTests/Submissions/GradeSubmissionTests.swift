@@ -22,7 +22,7 @@ import XCTest
 class GradeSubmissionTests: CoreTestCase {
     func testGrading() throws {
         let model = Submission.make()
-        let useCase = GradeSubmission(courseID: "1", assignmentID: model.assignmentID, userID: model.userID)
+        let useCase = GradeSubmission(courseID: "1", assignmentID: model.assignmentID, userID: model.userID, rubricAssessment: [ "1": .make() ])
         api.mock(useCase, value: .make(
             entered_grade: "23",
             entered_score: 23,
@@ -33,7 +33,7 @@ class GradeSubmissionTests: CoreTestCase {
             late_policy_status: .late,
             missing: nil,
             points_deducted: 2,
-            rubric_assessment: [ "1": .make() ],
+            rubric_assessment: nil, // API response doesn't include this field, GradeSubmission saves rubric assessment received during init
             score: 23,
             workflow_state: .graded
         ))

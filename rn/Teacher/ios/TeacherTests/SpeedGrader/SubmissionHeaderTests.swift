@@ -25,10 +25,11 @@ class SubmissionHeaderTests: TeacherTestCase {
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-        assignment.assignmentGroupID = "TestGroupID"
-        assignment.gradedIndividually = false
-
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
+
+        assignment.gradedIndividually = false
+        submission.groupID = "TestGroupID"
+
         XCTAssertTrue(testee.isGroupSubmission)
     }
 
@@ -40,33 +41,32 @@ class SubmissionHeaderTests: TeacherTestCase {
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
         XCTAssertEqual(testee.groupName, nil)
-        assignment.assignmentGroupID = "TestGroupID"
+
+        submission.groupID = "TestGroupID"
         XCTAssertEqual(testee.groupName, "TestGroup Name")
     }
 
     func testRouteToGroupSubmitter() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = false
-        assignment.assignmentGroupID = "TestGroupID"
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
+        submission.groupID = "TestGroupID"
         XCTAssertNil(testee.routeToSubmitter)
     }
 
     func testRouteToIndividialInGroupSubmission() {
         let submission = Submission(context: databaseClient)
         let assignment = Assignment(context: databaseClient)
-
         let testee = SubmissionHeader(assignment: assignment, submission: submission)
 
         assignment.gradedIndividually = true
-        assignment.assignmentGroupID = "TestGroupID"
         assignment.courseID = "testCourseID"
         submission.userID = "testUserID"
+        submission.groupID = "TestGroupID"
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
     }
 }

@@ -158,7 +158,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if inProgress {
             navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
             let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
