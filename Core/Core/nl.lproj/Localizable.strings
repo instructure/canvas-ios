@@ -158,9 +158,6 @@
 "All Courses" = "Alle cursussen";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Alle beoordelingsperioden";
-
-/* No comment provided by engineer. */
 "All People" = "Alle personen";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "cijfer";
 
 /* No comment provided by engineer. */
+"Grade" = "Cijfer";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Beoordelen na posten";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Geordende lijst";
 
+/* 5 out of 10 */
+"out of" = "van de";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Allen beantwoorden";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Reageren op hoofddiscussie";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reageer op de aantekening of op vorige opmerkingen";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Reageren op thread";
 
 /* Button to report an error */
 "Report" = "Melden";

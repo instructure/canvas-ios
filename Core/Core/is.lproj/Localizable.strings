@@ -158,9 +158,6 @@
 "All Courses" = "Öll námskeið";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Öll einkunnatímabil";
-
-/* No comment provided by engineer. */
 "All People" = "Allt fólk";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "einkunn";
 
 /* No comment provided by engineer. */
+"Grade" = "Einkunn";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Gefa einkunn eftir birtingu";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Raðaður listi";
 
+/* 5 out of 10 */
+"out of" = "af";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Svara öllum";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Svara aðalumræðu";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Svara textaskýringu eða fyrri athugasemd";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Svara þræði";
 
 /* Button to report an error */
 "Report" = "Skýrsla";

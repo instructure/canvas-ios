@@ -158,9 +158,6 @@
 "All Courses" = "All Subjects";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "All Grading Periods";
-
-/* No comment provided by engineer. */
 "All People" = "All People";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "grade";
 
 /* No comment provided by engineer. */
+"Grade" = "Grade";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Grade after posting";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Ordered List";
 
+/* 5 out of 10 */
+"out of" = "out of";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Reply All";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Reply to main discussion";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Reply to the annotation or previous comments";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Reply to thread";
 
 /* Button to report an error */
 "Report" = "Report";

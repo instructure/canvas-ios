@@ -76,6 +76,9 @@
 /* No comment provided by engineer. */
 "86,5%" = "86,5%";
 
+/* No comment provided by engineer. */
+"A description is required" = "E hiahia ana he whakāturanga";
+
 /* Embedded in 'enrolled in any courses as %@' */
 "a parent" = "he matua";
 
@@ -153,9 +156,6 @@
 
 /* No comment provided by engineer. */
 "All Courses" = "Ngā akoranga katoa";
-
-/* No comment provided by engineer. */
-"All Grading Periods" = "Takiwā kōeke katoa";
 
 /* No comment provided by engineer. */
 "All People" = "Ngā tāngata katoa";
@@ -2130,6 +2130,9 @@
 
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo whakamōhiotanga";
+
+/* User is missing a necessary permission */
+"You are not authorized to perform this action" = "Kaore koe e whakamanahia ki te whakamahi i tēnei mahi";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Kua tonoa koe";

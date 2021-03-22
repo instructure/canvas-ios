@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Empfänger hinzufügen";
 
-/* No comment provided by engineer. */
-"All Grading Periods" = "Alle Benotungszeiträume";
-
 /* Button to select all members of a group */
 "All members" = "Alle Mitglieder";
 

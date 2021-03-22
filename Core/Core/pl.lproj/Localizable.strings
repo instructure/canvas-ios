@@ -158,9 +158,6 @@
 "All Courses" = "Wszystkie kursy";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Wszystkie okresy oceniania";
-
-/* No comment provided by engineer. */
 "All People" = "Wszystkie osoby";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "ocena";
 
 /* No comment provided by engineer. */
+"Grade" = "Ocena";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Ocena po opublikowaniu";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Uporządkowana lista";
 
+/* 5 out of 10 */
+"out of" = "z";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Odpowiedz wszystkim";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Odpowiedz na dyskusję główną";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Odpowiedz na adnotację lub poprzednie komentarze";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Odpowiedz na wątek";
 
 /* Button to report an error */
 "Report" = "Raport";

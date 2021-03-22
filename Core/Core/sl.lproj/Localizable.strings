@@ -158,9 +158,6 @@
 "All Courses" = "Vsi predmeti";
 
 /* No comment provided by engineer. */
-"All Grading Periods" = "Vsa ocenjevalna obdobja";
-
-/* No comment provided by engineer. */
 "All People" = "Vsi sodelujoči";
 
 /* No comment provided by engineer. */
@@ -908,6 +905,9 @@
 "grade" = "ocena";
 
 /* No comment provided by engineer. */
+"Grade" = "Ocena";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Ocena po objavi";
 
 /* No comment provided by engineer. */
@@ -1423,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Razvrščeni seznam";
 
+/* 5 out of 10 */
+"out of" = "od";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
@@ -1601,7 +1604,13 @@
 "Reply All" = "Odgovori vsem";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Odgovori na glavno razpravo";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Odgovori na opombo ali predhodne komentarje";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Odgovori na pogovor";
 
 /* Button to report an error */
 "Report" = "Poročilo";
