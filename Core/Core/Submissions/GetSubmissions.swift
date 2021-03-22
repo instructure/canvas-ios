@@ -290,7 +290,9 @@ public class GetSubmissions: CollectionUseCase {
             case .late:
                 return NSPredicate(key: #keyPath(Submission.late), equals: true)
             case .notSubmitted:
-                return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
+                let notSubmitted = NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
+                let notInactive = NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive")
+                return NSCompoundPredicate(andPredicateWithSubpredicates: [notSubmitted, notInactive])
             case .needsGrading:
                 return NSPredicate(format: """
                     %K != nil AND (%K == 'pending_review' OR (
