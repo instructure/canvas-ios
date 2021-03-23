@@ -8,6 +8,7 @@ When writing presenter tests there are a few conventions to adhere to in order t
 
 Because a presenter has many integration points, such as the api, router, database, etc... we have created mocks/stubs for each of these integration points. By subclassing `PersistenceTestCase` you will have access to all of these mocked integrations. The less you are exercising these integrations and focusing on the code in the presenter, the more stable your tests will be. These mocks include:
 
+
  - TestRouter
  - TestEnvironment
  - TestLogger
