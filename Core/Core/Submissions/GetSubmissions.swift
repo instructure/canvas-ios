@@ -206,10 +206,7 @@ public class GetSubmissions: CollectionUseCase {
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
             NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
         ] + filter.map { $0.predicate }),
-        order: [ shuffled ?
-            NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
-            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
-        ]
+        order: order
     ) }
 
     public func scopeKeepingIDs(_ ids: [String]) -> Scope { Scope(
@@ -221,11 +218,20 @@ public class GetSubmissions: CollectionUseCase {
                 NSPredicate(format: "%K IN %@", #keyPath(Submission.userID), ids),
             ]),
         ]),
-        order: [ shuffled ?
-            NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true) :
-            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true),
-        ]
+        order: order
     ) }
+
+    private var order: [NSSortDescriptor] {
+        if shuffled {
+            return [NSSortDescriptor(key: #keyPath(Submission.shuffleOrder), ascending: true)]
+        }
+
+        return [
+            NSSortDescriptor(key: #keyPath(Submission.sortableName), naturally: true), // In case of a group submission this is the name of the group
+            NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
+            NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true),
+        ]
+    }
 
     public enum Filter: RawRepresentable, Equatable {
         case late, notSubmitted, needsGrading, graded

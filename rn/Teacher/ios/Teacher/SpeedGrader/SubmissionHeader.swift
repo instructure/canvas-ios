@@ -26,7 +26,7 @@ struct SubmissionHeader: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
-    var isGroupSubmission: Bool { !assignment.gradedIndividually && assignment.assignmentGroupID != nil }
+    var isGroupSubmission: Bool { !assignment.gradedIndividually && submission.groupID != nil }
     var groupName: String? { isGroupSubmission ? submission.groupName : nil }
     var routeToSubmitter: String? {
         if isGroupSubmission {

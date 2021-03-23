@@ -23,6 +23,7 @@ struct RubricAssessor: View {
     let assignment: Assignment
     let submission: Submission
     let currentScore: Double
+    let containerFrameInGlobal: CGRect
     @Binding var comment: String
     @Binding var commentID: String?
     @Binding var assessments: APIRubricAssessmentMap
@@ -30,15 +31,23 @@ struct RubricAssessor: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    @State private var isSaving = false
+    @State private var assessmentsChangedDuringUpload = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack { Spacer() }
-            Text("Rubric")
-                .font(.heavy24).foregroundColor(.textDarkest)
-            Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
-                .font(.medium14).foregroundColor(.textDark)
+        HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Rubric")
+                    .font(.heavy24).foregroundColor(.textDarkest)
+                Text("\(currentScore, specifier: "%g") out of \(assignment.rubricPointsPossible ?? 0, specifier: "%g")")
+                    .font(.medium14).foregroundColor(.textDark)
+            }
+            Spacer()
+
+            if isSaving {
+                CircleProgress(size: 24)
+            }
         }
-            .multilineTextAlignment(.leading)
             .padding(.horizontal, 16).padding(.vertical, 12)
 
         VStack(spacing: 12) {
@@ -48,9 +57,12 @@ struct RubricAssessor: View {
         }
             .multilineTextAlignment(.leading)
             .padding(.horizontal, 16)
+            .onDataChange(of: assessments) { _ in
+                rubricAssessmentDidChange()
+            }
     }
 
-    func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
+    private func RubricCriteriaAssessor(criteria: Rubric) -> some View { VStack(alignment: .leading, spacing: 0) {
         let assessment = assessments[criteria.id] ?? submission.rubricAssessments?[criteria.id].map {
             APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
         }
@@ -69,13 +81,15 @@ struct RubricAssessor: View {
                 ForEach(ratings.reversed(), id: \.id) { rating in
                     let isSelected = assessment?.rating_id == rating.id
                     let value = Text((isSelected ? assessment?.points : nil) ?? rating.points)
+                    let tooltip = rating.desc + (rating.longDesc.isEmpty ? "" : "\n" + rating.longDesc)
+
                     CircleToggle(isOn: Binding(get: { isSelected }, set: { newValue in
                         assessments[criteria.id] = newValue ? APIRubricAssessment(
                             comments: assessment?.comments,
                             points: rating.points,
                             rating_id: rating.id
                         ) : APIRubricAssessment(comments: assessment?.comments)
-                    }), tooltip: rating.desc) {
+                    }), tooltip: tooltip, containerFrame: containerFrameInGlobal) {
                         value
                     }
                         .accessibility(value: value)
@@ -85,7 +99,7 @@ struct RubricAssessor: View {
                 }
             }
 
-            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil)
+            let customGrade = (assignment.freeFormCriterionCommentsOnRubric || assessment?.rating_id == nil || assessment?.rating_id == "")
                 ? assessment?.points : nil
             CircleToggle(isOn: Binding(get: { customGrade != nil }, set: { newValue in
                 if newValue {
@@ -141,37 +155,43 @@ struct RubricAssessor: View {
         }
 
         if let comments = assessment?.comments, !comments.isEmpty {
-            HStack {
-                Text(comments)
-                    .font(.regular14).foregroundColor(.textDarkest)
-                    .padding(.horizontal, 12).padding(.vertical, 8)
-                    .background(CommentBackground()
-                        .fill(Color.backgroundLight)
-                    )
-                Spacer()
-                Button(action: { withAnimation(.default) {
-                    comment = comments
-                    commentID = criteria.id
-                } }, label: {
-                    Text("Edit")
-                        .font(.medium14).foregroundColor(.accentColor)
-                })
-            }
-                .padding(.top, 8)
+            freeFormRubricCommentBubbleWithEditButton(comments, criteriaID: criteria.id)
         }
     } }
 
-    struct CircleToggle<Content: View>: View {
-        let content: Content
-        @Binding var isOn: Bool
-        let tooltip: String
+    private func freeFormRubricCommentBubbleWithEditButton(_ comment: String, criteriaID: String) -> some View {
+        HStack {
+            Text(comment)
+                .font(.regular14).foregroundColor(.textDarkest)
+                .padding(.horizontal, 12).padding(.vertical, 8)
+                .background(CommentBackground()
+                    .fill(Color.backgroundLight)
+                )
+            Spacer()
+            Button(action: { withAnimation(.default) {
+                self.comment = comment
+                commentID = criteriaID
+            } }, label: {
+                Text("Edit")
+                    .font(.medium14).foregroundColor(.accentColor)
+            })
+        }
+            .padding(.top, 8)
+    }
 
-        @GestureState var showTooltip = false
+    private struct CircleToggle<Content: View>: View {
+        @Binding private var isOn: Bool
+        private let tooltip: String
+        private let content: Content
 
-        init(isOn: Binding<Bool>, tooltip: String = "", @ViewBuilder content: () -> Content) {
+        @GestureState private var showTooltip = false
+        private let containerFrame: CGRect
+
+        init(isOn: Binding<Bool>, tooltip: String = "", containerFrame: CGRect = .null, @ViewBuilder content: () -> Content) {
             self.content = content()
             self._isOn = isOn
             self.tooltip = tooltip
+            self.containerFrame = containerFrame
         }
 
         var body: some View {
@@ -197,22 +217,39 @@ struct RubricAssessor: View {
                 )
                 .overlay(!showTooltip || tooltip.isEmpty ? nil :
                     GeometryReader { geometry in
-                        let screenWidth = UIScreen.main.bounds.width
-                        let maxWidth = min(600, screenWidth - 32)
+                        let bubbleToCircleOffset: CGFloat = 16
+                        let padding: CGFloat = 16
+                        // Don't go over 600 in width otherwise it will be one long line in portrait mode on iPad
+                        let maxWidth = min(600, containerFrame.width - 2 * padding)
                         let maxHeight: CGFloat = 300
-                        let midX = geometry.frame(in: .global).midX
+
                         Text(tooltip)
                             .foregroundColor(.textLightest)
                             .padding(8)
                             .background(RoundedRectangle(cornerRadius: 5).fill(Color.backgroundDarkest))
                             .offset(x: geometry.size.width / 2) // start with align leading to circle's center
+                            // Center the bubble on the circle and make sure it doesn't go out of the parent
                             .alignmentGuide(.leading) { size in
-                                min(midX - 16, // don't go more left than 16 from leading
-                                    max(size.width - (screenWidth - midX) + 16, // 16 from trailing
-                                        size.width / 2
-                                ))
+                                let circleCenter = geometry.frame(in: .global).midX
+                                let offsetToCenterOnBubble = size.width / 2
+                                let bubbleLeading = circleCenter - offsetToCenterOnBubble
+                                let bubbleTrailing = circleCenter + offsetToCenterOnBubble
+                                let containerLeading = containerFrame.minX + padding
+                                let containerTrailing = containerFrame.maxX - padding
+
+                                if bubbleLeading < containerLeading {
+                                    return offsetToCenterOnBubble - (containerLeading - bubbleLeading)
+                                }
+
+                                if bubbleTrailing > containerTrailing {
+                                    return offsetToCenterOnBubble + (bubbleTrailing - containerTrailing)
+                                }
+
+                                return offsetToCenterOnBubble
                             }
-                            .alignmentGuide(.bottom) { size in size.height + maxHeight + 8 }
+                            // This pushes the bubble on top of the circle
+                            .alignmentGuide(.bottom) { size in size.height + maxHeight + bubbleToCircleOffset }
+                            // Alignment must match the guides we use above otherwise they don't get called
                             .frame(width: maxWidth, height: maxHeight, alignment: .bottomLeading)
                     }
                         .transition(.scale),
@@ -221,7 +258,7 @@ struct RubricAssessor: View {
         }
     }
 
-    func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
+    private func promptCustomGrade(_ criteria: Rubric, assessment: APIRubricAssessment?) {
         let format = NSLocalizedString("out_of_g_pts", bundle: .core, comment: "")
         let message = String.localizedStringWithFormat(format, criteria.points)
         let prompt = UIAlertController(title: NSLocalizedString("Customize Grade", comment: ""), message: message, preferredStyle: .alert)
@@ -239,5 +276,59 @@ struct RubricAssessor: View {
         })
         prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
         env.router.show(prompt, from: controller, options: .modal())
+    }
+
+    private func rubricAssessmentDidChange() {
+        if isSaving {
+            assessmentsChangedDuringUpload = true
+        } else {
+            uploadRubricAssessments()
+        }
+    }
+
+    private func uploadRubricAssessments() {
+        if assessments.isEmpty {
+            isSaving = false
+            return
+        }
+
+        isSaving = true
+        let prevAssessments = submission.rubricAssessments // create map only once
+        var nextAssessments: APIRubricAssessmentMap = [:]
+
+        for criteria in assignment.rubric ?? [] {
+            nextAssessments[criteria.id] = assessments[criteria.id] ?? prevAssessments?[criteria.id].map {
+                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
+            }
+        }
+
+        GradeSubmission(
+            courseID: assignment.courseID,
+            assignmentID: assignment.id,
+            userID: submission.userID,
+            rubricAssessment: nextAssessments
+        ).fetch { _, _, error in performUIUpdate {
+            handleUploadFinished(error: error)
+        } }
+    }
+
+    private func handleUploadFinished(error: Error?) {
+        if assessmentsChangedDuringUpload {
+            assessmentsChangedDuringUpload = false
+            uploadRubricAssessments()
+            return
+        }
+
+        isSaving = false
+
+        if let error = error {
+            showError(error)
+        }
+    }
+
+    private func showError(_ error: Error) {
+        let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
+        env.router.show(alert, from: controller, options: .modal())
     }
 }

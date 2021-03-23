@@ -202,9 +202,7 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
             submitMediaRecording(controller)
         } else {
             let context = FileUploadContext.submission(courseID: assignment.courseID, assignmentID: assignment.id, comment: nil)
-            env.router.dismiss(controller) {
-                UploadManager.shared.upload(batch: self.batchID, to: context)
-            }
+            UploadManager.shared.upload(batch: self.batchID, to: context)
         }
     }
 

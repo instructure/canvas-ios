@@ -113,7 +113,7 @@ public final class RubricAssessment: NSManagedObject {
         model.comments = item.comments
         model.id = id
         model.points = item.points
-        model.ratingID = item.rating_id ?? "0"
+        model.ratingID = item.rating_id ?? ""
         model.submissionID = submissionID
         return model
     }

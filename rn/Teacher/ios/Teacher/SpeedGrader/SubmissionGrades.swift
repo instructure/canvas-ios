@@ -38,6 +38,13 @@ struct SubmissionGrades: View {
     @State var rubricCommentID: String?
     @State var rubricAssessments: APIRubricAssessmentMap = [:]
 
+    var isRubricScoreAvailable: Bool {
+        guard assignment.useRubricForGrading else { return false }
+        return rubricAssessments.contains { _, assessment in
+            assessment.points != nil
+        }
+    }
+
     var hasLateDeduction: Bool {
         submission.late &&
         (submission.pointsDeducted ?? 0) > 0 &&
@@ -63,7 +70,7 @@ struct SubmissionGrades: View {
                 }
             }
         } else {
-            ScrollView {
+            GeometryReader { geometry in ScrollView {
                 VStack(spacing: 0) {
                     HStack(spacing: 0) {
                         Text("Grade")
@@ -80,8 +87,7 @@ struct SubmissionGrades: View {
                                     Text(GradeFormatter.longString(
                                         for: assignment,
                                         submission: submission,
-                                        rubricScore: assignment.useRubricForGrading && !rubricAssessments.isEmpty
-                                            ? currentRubricScore : nil,
+                                        rubricScore: isRubricScoreAvailable ? currentRubricScore : nil,
                                         final: false
                                     ))
                                 } else {
@@ -132,21 +138,21 @@ struct SubmissionGrades: View {
                             assignment: assignment,
                             submission: submission,
                             currentScore: currentRubricScore,
+                            containerFrameInGlobal: geometry.frame(in: .global),
                             comment: $rubricComment,
                             commentID: $rubricCommentID,
                             assessments: $rubricAssessments
                         )
-                            .onDisappear(perform: saveRubric)
                     }
-                }
-            }
+                }.padding(.bottom, 16)
+            } }
             if let id = rubricCommentID {
                 CommentEditor(text: $rubricComment, action: {
                     var points: Double?
-                    var ratingID: String?
+                    var ratingID = ""
                     if let assessment = rubricAssessments[id] {
                         points = assessment.points
-                        ratingID = assessment.rating_id
+                        ratingID = assessment.rating_id ?? ""
                     } else if let assessment = submission.rubricAssessments?[id] {
                         points = assessment.points
                         ratingID = assessment.ratingID
@@ -295,26 +301,6 @@ struct SubmissionGrades: View {
             grade: grade
         ).fetch { _, _, error in performUIUpdate {
             isSaving = false
-            if let error = error { showError(error) }
-        } }
-    }
-
-    func saveRubric() {
-        guard !rubricAssessments.isEmpty else { return }
-        let prevAssessments = submission.rubricAssessments // create map only once
-        var nextAssessments: APIRubricAssessmentMap = [:]
-        for criteria in assignment.rubric ?? [] {
-            nextAssessments[criteria.id] = rubricAssessments[criteria.id] ?? prevAssessments?[criteria.id].map {
-                APIRubricAssessment(comments: $0.comments, points: $0.points, rating_id: $0.ratingID)
-            }
-        }
-
-        GradeSubmission(
-            courseID: assignment.courseID,
-            assignmentID: assignment.id,
-            userID: submission.userID,
-            rubricAssessment: nextAssessments
-        ).fetch { _, _, error in performUIUpdate {
             if let error = error { showError(error) }
         } }
     }

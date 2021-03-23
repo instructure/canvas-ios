@@ -56,13 +56,14 @@ public struct CircleProgress: View {
                     .trim(from: 0, to: fillWidth)
                     .stroke(Color.accentColor, lineWidth: thickness)
                     .rotationEffect(fillRotate)
-                    .onReceive(timer) { _ in withAnimation(ease) {
-                        fillRotate += Angle(radians: fillWidth == 0.1 ? 0.5 * .pi : 1.5 * .pi)
-                        fillWidth = fillWidth == 0.1 ? 0.725 : 0.1
-                    } }
-
+                    .onReceive(timer) { _ in
+                        progressAnimation()
+                    }
                     .rotationEffect(rotate)
                     .onAppear {
+                        // Until the animation timer's first fire we still need to show some animation
+                        progressAnimation()
+
                         // This repeating animation caused other parts of the UI to animate their appearance repeatedly on iOS 14.0 and below.
                         if #available(iOS 14.1, *) {
                             withAnimation(Animation.linear(duration: 2.25).repeatForever(autoreverses: false)) {
@@ -79,6 +80,13 @@ public struct CircleProgress: View {
             .accentColor(color)
             .frame(width: size, height: size)
             .accessibility(label: Text("Loading", bundle: .core))
+    }
+
+    private func progressAnimation() {
+        withAnimation(ease) {
+            fillRotate += Angle(radians: fillWidth == 0.1 ? 0.5 * .pi : 1.5 * .pi)
+            fillWidth = fillWidth == 0.1 ? 0.725 : 0.1
+        }
     }
 }
 
