@@ -98,6 +98,13 @@ public extension Date {
         formatter.timeStyle = .short
         return formatter
     }()
+    static var relativeDateTimeFormatterWithDayOfWeek: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .full
+        formatter.timeStyle = .short
+        return formatter
+    }()
     static var intervalDateTimeFormatter: DateIntervalFormatter = {
         let formatter = DateIntervalFormatter()
         formatter.dateStyle = .medium
@@ -116,6 +123,9 @@ public extension Date {
     }
     var relativeDateTimeString: String {
         Date.relativeDateTimeFormatter.string(from: self)
+    }
+    var relativeDateTimeStringWithDayOfWeek: String {
+        Date.relativeDateTimeFormatterWithDayOfWeek.string(from: self)
     }
     func intervalStringTo(_ to: Date) -> String {
         return Date.intervalDateTimeFormatter.string(from: self, to: to)
