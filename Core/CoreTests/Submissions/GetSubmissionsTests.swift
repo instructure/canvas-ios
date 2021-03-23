@@ -219,11 +219,13 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
         ]))
         useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
             NSPredicate(key: #keyPath(Submission.late), equals: true),
         ]))
     }
