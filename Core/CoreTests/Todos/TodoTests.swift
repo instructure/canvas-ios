@@ -71,6 +71,10 @@ class TodoTests: CoreTestCase {
 
     func testDistantDueDateString() {
         let todo = Todo.make(from: .make(assignment: .make(due_at: Date(timeIntervalSince1970: 23022000)), course_id: "1", group_id: nil))
-        XCTAssertTrue(todo.dueText.hasPrefix("Due Thursday, September 24, 1970 at 12:00 PM"))
+        XCTAssertTrue(todo.dueText.hasPrefix("Due Thursday, "))
+        XCTAssertTrue(todo.dueText.contains("September"))
+        XCTAssertTrue(todo.dueText.contains("24"))
+        XCTAssertTrue(todo.dueText.contains("1970"))
+        XCTAssertTrue(todo.dueText.contains(":00"))
     }
 }
