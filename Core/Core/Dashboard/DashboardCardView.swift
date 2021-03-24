@@ -146,8 +146,11 @@ public struct DashboardCardView: View {
                 let spacing: CGFloat = 16
                 let columns = max(2, floor(size.width / minCardWidth))
                 let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
-                JustifiedGrid(itemCount: cards.all.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
-                    let card = cards.all[cardIndex]
+                let filteredCards = env.app == .teacher ?
+                    cards.all.filter { $0.isTeacherEnrollment } :
+                    cards.all
+                JustifiedGrid(itemCount: filteredCards.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
+                    let card = filteredCards[cardIndex]
                     CourseCard(
                         card: card,
                         hideColorOverlay: settings.first?.hideDashcardColorOverlays == true,
