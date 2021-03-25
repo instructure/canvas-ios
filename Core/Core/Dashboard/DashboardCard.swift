@@ -38,7 +38,7 @@ final class DashboardCard: NSManagedObject {
     var color: UIColor { contextColor?.color ?? .ash }
 
     var isTeacherEnrollment: Bool {
-        return enrollmentType.lowercased().contains("teacher")
+        enrollmentType.lowercased().contains("teacher")
     }
 
     func getCourse() -> Course? {

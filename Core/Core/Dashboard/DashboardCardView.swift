@@ -35,9 +35,11 @@ public struct DashboardCardView: View {
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private let shouldShowGroupList: Bool
+    private let showOnlyTeacherEnrollment: Bool
 
-    public init(shouldShowGroupList: Bool) {
+    public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
         self.shouldShowGroupList = shouldShowGroupList
+        self.showOnlyTeacherEnrollment = showOnlyTeacherEnrollment
         let env = AppEnvironment.shared
         cards = env.subscribe(GetDashboardCards())
         colors = env.subscribe(GetCustomColors())
@@ -146,7 +148,7 @@ public struct DashboardCardView: View {
                 let spacing: CGFloat = 16
                 let columns = max(2, floor(size.width / minCardWidth))
                 let cardSize = CGSize(width: (size.width - ((columns-1) * spacing)) / columns, height: 160)
-                let filteredCards = env.app == .teacher ?
+                let filteredCards = showOnlyTeacherEnrollment ?
                     cards.all.filter { $0.isTeacherEnrollment } :
                     cards.all
                 JustifiedGrid(itemCount: filteredCards.count, itemSize: cardSize, spacing: spacing, width: size.width) { cardIndex in
