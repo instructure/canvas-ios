@@ -85,7 +85,7 @@ public final class Todo: NSManagedObject, WriteableModel {
             return NSLocalizedString("No Due Date", comment: "")
         }
         let format = NSLocalizedString("Due %@", comment: "")
-        return String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+        return String.localizedStringWithFormat(format, dueAt.relativeDateTimeStringWithDayOfWeek)
     }
 
     public var needsGradingText: String {
