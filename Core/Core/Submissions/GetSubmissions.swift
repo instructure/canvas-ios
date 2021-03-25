@@ -232,6 +232,11 @@ public class GetSubmissions: CollectionUseCase {
         ]
     }
 
+    public func reset(context: NSManagedObjectContext) {
+        let oldSubmissions: [Submission] = context.fetch(NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID), sortDescriptors: nil)
+        context.delete(oldSubmissions)
+    }
+
     public enum Filter: RawRepresentable, Equatable {
         case late, notSubmitted, needsGrading, graded
         case scoreAbove(Double)
