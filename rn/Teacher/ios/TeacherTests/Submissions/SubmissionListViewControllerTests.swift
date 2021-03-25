@@ -31,6 +31,7 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         api.mock(controller.enrollments, value: [
             .make(id: "1", course_id: "1", course_section_id: "1", user_id: "1"),
             .make(id: "2", course_id: "1", course_section_id: "2", user_id: "2"),
+            .make(id: "3", course_id: "1", course_section_id: "2", enrollment_state: .inactive, user_id: "3"),
         ])
         api.mock(controller.sections, value: [
             .make(id: "1", name: "One"),
@@ -47,6 +48,12 @@ class SubmissionListViewControllerTests: TeacherTestCase {
                 submission_history: [],
                 user: .make(id: "2", name: "Alice", sortable_name: "Alice"),
                 user_id: "2"
+            ),
+            .make(
+                submission_history: [],
+                user: .make(id: "3", name: "Christine", sortable_name: "Christine"),
+                user_id: "3",
+                workflow_state: .unsubmitted
             ),
         ])
     }
@@ -69,6 +76,9 @@ class SubmissionListViewControllerTests: TeacherTestCase {
         XCTAssertEqual(cell?.nameLabel.text, "Bob")
         XCTAssertEqual(cell?.statusLabel.text, "Submitted")
         XCTAssertEqual(cell?.needsGradingView.isHidden, false)
+
+        cell = controller.tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? SubmissionListCell
+        XCTAssertNil(cell)
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo("/courses/1/assignments/1/submissions/2"))
