@@ -37,6 +37,10 @@ final class DashboardCard: NSManagedObject {
 
     var color: UIColor { contextColor?.color ?? .ash }
 
+    var isTeacherEnrollment: Bool {
+        enrollmentType.lowercased().contains("teacher")
+    }
+
     func getCourse() -> Course? {
         if course == nil, let fetchedCourse: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id) {
             course = fetchedCourse
