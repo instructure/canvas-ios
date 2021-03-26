@@ -58,4 +58,23 @@ class TodoTests: CoreTestCase {
         XCTAssertNotNil(todo.getGroup())
         XCTAssertNotNil(todo.group)
     }
+
+    func testNoDueDateString() {
+        let todo = Todo.make(from: .make(course_id: "1", group_id: nil))
+        XCTAssertEqual(todo.dueText, "No Due Date")
+    }
+
+    func testNearFutureDueDateString() {
+        let todo = Todo.make(from: .make(assignment: .make(due_at: Date().addDays(1)), course_id: "1", group_id: nil))
+        XCTAssertTrue(todo.dueText.hasPrefix("Due Tomorrow at "))
+    }
+
+    func testDistantDueDateString() {
+        let todo = Todo.make(from: .make(assignment: .make(due_at: Date(timeIntervalSince1970: 23022000)), course_id: "1", group_id: nil))
+        XCTAssertTrue(todo.dueText.hasPrefix("Due Thursday, "))
+        XCTAssertTrue(todo.dueText.contains("September"))
+        XCTAssertTrue(todo.dueText.contains("24"))
+        XCTAssertTrue(todo.dueText.contains("1970"))
+        XCTAssertTrue(todo.dueText.contains(":00"))
+    }
 }

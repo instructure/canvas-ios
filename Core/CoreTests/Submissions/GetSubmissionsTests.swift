@@ -223,11 +223,19 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
+                NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
+            ]),
         ]))
         useCase.filter = [.late]
         XCTAssertEqual(useCase.scope.predicate, NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: "1"),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
+                NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
+            ]),
             NSPredicate(key: #keyPath(Submission.late), equals: true),
         ]))
     }
@@ -316,5 +324,17 @@ class GetSubmissionsTests: CoreTestCase {
         XCTAssertEqual(fetchedSubmissions[1].id, "2")
         XCTAssertEqual(fetchedSubmissions[2].id, "1")
         XCTAssertEqual(fetchedSubmissions[3].id, "3")
+    }
+
+    func testDeletesOldSubmissions() {
+        Submission.save(.make(attempt: 0, workflow_state: .unsubmitted), in: databaseClient)
+        XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
+
+        let testee = GetSubmissions(context: .course("1"), assignmentID: "1", filter: [.needsGrading], shuffled: false)
+        // Simulate Store executing these after API fetch completes
+        testee.reset(context: databaseClient)
+        testee.write(response: [.make(attempt: 1, workflow_state: .submitted)], urlResponse: nil, to: databaseClient)
+
+        XCTAssertEqual((databaseClient.fetch() as [Submission]).count, 1)
     }
 }

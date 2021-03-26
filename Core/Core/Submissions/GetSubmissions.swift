@@ -204,6 +204,10 @@ public class GetSubmissions: CollectionUseCase {
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID),
             NSPredicate(key: #keyPath(Submission.isLatest), equals: true),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(format: "%K.@count == 0", #keyPath(Submission.enrollments)),
+                NSPredicate(format: "ANY %K != %@", #keyPath(Submission.enrollments.stateRaw), "inactive"),
+            ]),
         ] + filter.map { $0.predicate }),
         order: order
     ) }
@@ -230,6 +234,11 @@ public class GetSubmissions: CollectionUseCase {
             NSSortDescriptor(key: #keyPath(Submission.user.sortableName), naturally: true),
             NSSortDescriptor(key: #keyPath(Submission.userID), naturally: true),
         ]
+    }
+
+    public func reset(context: NSManagedObjectContext) {
+        let oldSubmissions: [Submission] = context.fetch(NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignmentID), sortDescriptors: nil)
+        context.delete(oldSubmissions)
     }
 
     public enum Filter: RawRepresentable, Equatable {
