@@ -32,8 +32,10 @@ struct GradeSlider: View {
             Slider(value: value, in: range, onEditingChanged: onEditingChanged)
                 .gesture(DragGesture(minimumDistance: 0).onChanged { changeValue in
                     let percent = min(max(0, Double(changeValue.location.x / geometry.size.width)), 1)
-                    let newValue = range.lowerBound + round(percent * (range.upperBound - range.lowerBound))
-                    value.wrappedValue = newValue
+                    let rangeSize = range.upperBound - range.lowerBound
+                    let roundingRule: FloatingPointRoundingRule = (percent * rangeSize) > rangeSize / 2 ? .up : .down
+                    let newValue = range.lowerBound + (percent * rangeSize).rounded(roundingRule)
+                    value.wrappedValue = min(max(newValue, range.lowerBound), range.upperBound)
                     onEditingChanged(true)
                 }.onEnded { _ in
                     onEditingChanged(false)
