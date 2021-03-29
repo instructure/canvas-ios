@@ -905,6 +905,9 @@
 "grade" = "kōeke";
 
 /* No comment provided by engineer. */
+"Grade" = "Kōeke";
+
+/* No comment provided by engineer. */
 "Grade after posting" = "Te kōeke i muri o te whakairi";
 
 /* No comment provided by engineer. */
@@ -1199,7 +1202,7 @@
 "Mark as Unread" = "Tohu  rite kaore i Pānuitia";
 
 /* No comment provided by engineer. */
-"Mark done" = "tohu mahia";
+"Mark done" = "Tohu mahia";
 
 /* No comment provided by engineer. */
 "Marked done" = "Kua tohua mea ai";
@@ -1420,6 +1423,9 @@
 /* No comment provided by engineer. */
 "Ordered List" = "Rārangi whakahau";
 
+/* 5 out of 10 */
+"out of" = "i waho i te";
+
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts i waho i g ngā koinga";
 
@@ -1598,7 +1604,13 @@
 "Reply All" = "Whakautu ki te katoa";
 
 /* No comment provided by engineer. */
+"Reply to main discussion" = "Whakautu ki te kōrerorero matua";
+
+/* No comment provided by engineer. */
 "Reply to the annotation or previous comments" = "Whakautu ki te whakahuatanga me ngā kōrero o mua";
+
+/* No comment provided by engineer. */
+"Reply to thread" = "Whakautu ki te aho";
 
 /* Button to report an error */
 "Report" = "Pūrongo";
