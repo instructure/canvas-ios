@@ -201,9 +201,9 @@ struct SubmissionGrades: View {
 
     func sliderChangedState(_ editing: Bool) {
         withAnimation(.default) { showTooltip = editing }
-        sliderTimer?.invalidate()
-        sliderTimer = nil
         if editing == false, let value = sliderValue {
+            sliderTimer?.invalidate()
+            sliderTimer = nil
             if sliderCleared {
                 saveGrade("")
             } else if sliderExcused {
@@ -222,22 +222,19 @@ struct SubmissionGrades: View {
         guard previous != value || sliderTimer == nil else { return }
         sliderTimer?.invalidate()
         sliderTimer = nil
-        DispatchQueue.main.async {
-            if value == 0 {
-                sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    sliderCleared = true
-                    sliderExcused = false
-                    UISelectionFeedbackGenerator().selectionChanged()
-                }
-            } else if value == assignment.pointsPossible ?? 0 {
-                sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    sliderCleared = false
-                    sliderExcused = true
-                    UISelectionFeedbackGenerator().selectionChanged()
-                }
-            } else {
-                sliderCleared = false
+        sliderCleared = false
+        sliderExcused = false
+        if value == 0 {
+            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                sliderCleared = true
                 sliderExcused = false
+                UISelectionFeedbackGenerator().selectionChanged()
+            }
+        } else if value == assignment.pointsPossible ?? 0 {
+            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                sliderCleared = false
+                sliderExcused = true
+                UISelectionFeedbackGenerator().selectionChanged()
             }
         }
     }
