@@ -38,4 +38,16 @@ class GradeSliderTests: TeacherTestCase {
         grade = gradeSlider.grade(for: sliderWidth + 1, in: sliderWidth)
         XCTAssertEqual(grade, range.upperBound)
     }
+
+    func testSliderValueEvenRounding() throws {
+        let value = 5.0
+        let range: ClosedRange<Double> = 0...10
+        let sliderWidth: CGFloat = 320
+        let gradeSlider = GradeSlider(value: .constant(value), range: range, showTooltip: false, tooltipText: Text(""), score: value, possible: range.upperBound)
+        let halfRange = range.upperBound.rounded(.down) / 2
+        var grade = gradeSlider.grade(for: sliderWidth/2 + 1, in: sliderWidth)
+        XCTAssertEqual(grade, halfRange)
+        grade = gradeSlider.grade(for: sliderWidth/2 - 1, in: sliderWidth)
+        XCTAssertEqual(grade, halfRange)
+    }
 }
