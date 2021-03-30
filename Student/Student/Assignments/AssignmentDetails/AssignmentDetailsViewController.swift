@@ -308,7 +308,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         showDescription(!presenter.descriptionIsHidden())
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
-        lockedSubheaderWebView.loadHTMLString(assignment.lockExplanation ?? "")
+        lockedSubheaderWebView.loadHTMLString(presenter.lockExplanation)
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)

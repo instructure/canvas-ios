@@ -89,6 +89,18 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             }
         }
     }
+    var lockExplanation: String {
+        guard let assignment = assignment else { return "" }
+
+        switch assignment.lockStatus {
+        case .before:
+            return String.localizedStringWithFormat(NSLocalizedString("This assignment is locked until %@", comment: ""), (assignment.unlockAt ?? Date()).dateTimeString)
+        case .after:
+            return String.localizedStringWithFormat(NSLocalizedString("This assignment was locked %@", comment: ""), (assignment.lockAt ?? Date()).dateTimeString)
+        default:
+            return assignment.lockExplanation ?? ""
+        }
+    }
 
     init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
