@@ -28,7 +28,7 @@ struct CourseCard: View {
     @Environment(\.viewController) var controller
 
     var a11yGrade: String {
-        guard let course = card.getCourse(), showGrade else { return "" }
+        guard let course = card.course, showGrade else { return "" }
         return course.displayGrade
     }
 
@@ -77,7 +77,7 @@ struct CourseCard: View {
 
     @ViewBuilder var customizeButton: some View {
         Button(action: {
-            guard let course = card.getCourse() else { return }
+            guard let course = card.course else { return }
             env.router.show(
                 CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
                 from: controller,
@@ -95,7 +95,7 @@ struct CourseCard: View {
     }
 
     @ViewBuilder var gradePill: some View {
-        if showGrade, let course = card.getCourse() {
+        if showGrade, let course = card.course {
             HStack {
                 if course.hideTotalGrade {
                     Image.lockSolid.size(14)
