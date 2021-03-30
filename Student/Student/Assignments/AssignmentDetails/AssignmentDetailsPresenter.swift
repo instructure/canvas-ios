@@ -94,9 +94,11 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
 
         switch assignment.lockStatus {
         case .before:
-            return String.localizedStringWithFormat(NSLocalizedString("This assignment is locked until %@", comment: ""), (assignment.unlockAt ?? Date()).dateTimeString)
+            guard let unlockAt = assignment.unlockAt else { return "" }
+            return String.localizedStringWithFormat(NSLocalizedString("This assignment is locked until %@", comment: ""), unlockAt.dateTimeString)
         case .after:
-            return String.localizedStringWithFormat(NSLocalizedString("This assignment was locked %@", comment: ""), (assignment.lockAt ?? Date()).dateTimeString)
+            guard let lockAt = assignment.lockAt else { return "" }
+            return String.localizedStringWithFormat(NSLocalizedString("This assignment was locked %@", comment: ""), lockAt.dateTimeString)
         default:
             return assignment.lockExplanation ?? ""
         }
