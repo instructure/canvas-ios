@@ -31,11 +31,7 @@ struct GradeSlider: View {
         GeometryReader { geometry in
             Slider(value: value, in: range, onEditingChanged: onEditingChanged)
                 .gesture(DragGesture(minimumDistance: 0).onChanged { changeValue in
-                    let percent = min(max(0, Double(changeValue.location.x / geometry.size.width)), 1)
-                    let rangeSize = range.upperBound - range.lowerBound
-                    let roundingRule: FloatingPointRoundingRule = (percent * rangeSize) > rangeSize / 2 ? .up : .down
-                    let newValue = range.lowerBound + (percent * rangeSize).rounded(roundingRule)
-                    value.wrappedValue = min(max(newValue, range.lowerBound), range.upperBound)
+                    value.wrappedValue = grade(for: changeValue.location.x, in: geometry.size.width)
                     onEditingChanged(true)
                 }.onEnded { _ in
                     onEditingChanged(false)
@@ -51,6 +47,14 @@ struct GradeSlider: View {
                         .offset(x: x, y: -26)
                 }, alignment: .bottom)
         }
+    }
+    
+    func grade(for position: CGFloat, in width: CGFloat) -> Double {
+        let percent = min(max(0, Double(position / width)), 1)
+        let rangeSize = range.upperBound - range.lowerBound
+        let roundingRule: FloatingPointRoundingRule = (percent * rangeSize) > rangeSize / 2 ? .up : .down
+        let newValue = range.lowerBound + (percent * rangeSize).rounded(roundingRule)
+        return min(max(newValue, range.lowerBound), range.upperBound)
     }
 }
 
