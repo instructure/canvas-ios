@@ -29,7 +29,7 @@ class UserTests: CoreTestCase {
             sortable_name: "Doe, John",
             short_name: "JD",
             avatar_url: URL(string: "/")!,
-            enrollments: [.make(role: "Custom Role")],
+            enrollments: [.make(user_id: "1", role: "Custom Role")],
             email: "john@doe.com"
         )
         let user = User.save(item, in: databaseClient)
@@ -40,17 +40,17 @@ class UserTests: CoreTestCase {
         XCTAssertEqual(user.avatarURL, URL(string: "/")!)
         XCTAssertEqual(user.email, "john@doe.com")
         XCTAssertNotNil(user.enrollments)
-        XCTAssertEqual(user.enrollments?.count, 1)
-        XCTAssertEqual(user.enrollments?.first?.role, "Custom Role")
+        XCTAssertEqual(user.enrollments.count, 1)
+        XCTAssertEqual(user.enrollments.first?.role, "Custom Role")
     }
 
     func testSaveDoesNotOverwriteEnrollments() {
-        let user = User.make(from: .make(id: "1", name: "A", enrollments: [.make()]))
+        let user = User.make(from: .make(id: "1", name: "A", enrollments: [.make(user_id: "1")]))
         let api = APIUser.make(id: "1", name: "B", enrollments: nil)
         User.save(api, in: databaseClient)
         databaseClient.refresh(user, mergeChanges: true)
         XCTAssertEqual(user.name, "B")
-        XCTAssertEqual(user.enrollments?.count, 1)
+        XCTAssertEqual(user.enrollments.count, 1)
     }
 
     func testDisplayName() {

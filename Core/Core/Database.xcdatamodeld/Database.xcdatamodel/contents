@@ -357,7 +357,6 @@
         <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade" inverseName="enrollment" inverseEntity="Grade"/>
         <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="observerEnrollments" inverseEntity="User"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="enrollments" inverseEntity="Submission"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="enrollments" inverseEntity="User"/>
     </entity>
     <entity name="ExternalTool" representedClassName="Core.ExternalTool" syncable="YES">
         <attribute name="arc" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -898,7 +897,6 @@
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
-        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="user" inverseEntity="Enrollment"/>
         <relationship name="observerEnrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="observedUser" inverseEntity="Enrollment"/>
         <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission" inverseName="user" inverseEntity="Submission"/>
     </entity>
@@ -940,7 +938,7 @@
         <element name="DiscussionEntry" positionX="-513.66796875" positionY="535.73828125" width="128" height="313"/>
         <element name="DiscussionParticipant" positionX="-540" positionY="-18" width="128" height="133"/>
         <element name="DiscussionTopic" positionX="-540" positionY="-27" width="128" height="613"/>
-        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="433"/>
+        <element name="Enrollment" positionX="-578.41796875" positionY="2.78125" width="128" height="404"/>
         <element name="ExternalTool" positionX="-540" positionY="-27" width="128" height="90"/>
         <element name="ExternalToolLaunchPlacement" positionX="-513" positionY="0" width="128" height="120"/>
         <element name="FeatureFlag" positionX="-540" positionY="-27" width="128" height="90"/>
@@ -982,7 +980,7 @@
         <element name="Todo" positionX="-540" positionY="-18" width="128" height="164"/>
         <element name="TTL" positionX="-173.30859375" positionY="-128.48046875" width="128" height="75"/>
         <element name="UsageRights" positionX="-540" positionY="-18" width="128" height="103"/>
-        <element name="User" positionX="-540" positionY="-27" width="128" height="238"/>
+        <element name="User" positionX="-540" positionY="-27" width="128" height="209"/>
         <element name="UserProfile" positionX="-540" positionY="-18" width="128" height="148"/>
         <element name="UserSettings" positionX="-540" positionY="-27" width="128" height="90"/>
     </elements>
