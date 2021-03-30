@@ -21,7 +21,7 @@ import SwiftUI
 import TestsFoundation
 
 class GradeSliderTests: TeacherTestCase {
-        
+
     func testSliderValueRounding() throws {
         let value = 9.0
         let range: ClosedRange<Double> = 0...10.5

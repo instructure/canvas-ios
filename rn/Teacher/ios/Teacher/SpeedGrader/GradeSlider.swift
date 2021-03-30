@@ -48,7 +48,7 @@ struct GradeSlider: View {
                 }, alignment: .bottom)
         }
     }
-    
+
     func grade(for position: CGFloat, in width: CGFloat) -> Double {
         let percent = min(max(0, Double(position / width)), 1)
         let rangeSize = range.upperBound - range.lowerBound
