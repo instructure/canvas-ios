@@ -498,6 +498,32 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         try UploadManager.shared.viewContext.save()
         wait(for: [expectation], timeout: 0.1)
     }
+
+    func testLockExplanationBeforeUnlockDate() {
+        Assignment.make(from: APIAssignment.make(
+            locked_for_user: true,
+            lock_explanation: "This doesn't update with the phone's timezone",
+            unlock_at: Date().addDays(1)
+        ))
+        XCTAssertTrue(presenter.lockExplanation.hasPrefix("This assignment is locked until "))
+    }
+
+    func testLockExplanationAfterLockDate() {
+        Assignment.make(from: APIAssignment.make(
+            locked_for_user: true,
+            lock_at: Date().addDays(-1),
+            lock_explanation: "This doesn't update with the phone's timezone"
+        ))
+        XCTAssertTrue(presenter.lockExplanation.hasPrefix("This assignment was locked "))
+    }
+
+    func testLockExplanationBecauseModuleDependency() {
+        Assignment.make(from: APIAssignment.make(
+            locked_for_user: true,
+            lock_explanation: "This assignment is part of an unpublished module and is not available yet."
+        ))
+        XCTAssertEqual(presenter.lockExplanation, "This assignment is part of an unpublished module and is not available yet.")
+    }
 }
 
 class MockView: UIViewController, AssignmentDetailsViewProtocol {
