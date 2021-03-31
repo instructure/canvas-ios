@@ -28,9 +28,12 @@ public final class User: NSManagedObject {
     @NSManaged public var email: String?
     @NSManaged public var courseID: String?
     @NSManaged public var groupID: String?
-    @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var pronouns: String?
     @NSManaged public var observerID: String?
+
+    public var enrollments: Set<Enrollment> {
+        Set(managedObjectContext?.all(where: #keyPath(Enrollment.userID), equals: id) ?? [])
+    }
 }
 
 extension User: WriteableModel {
@@ -45,11 +48,10 @@ extension User: WriteableModel {
         user.avatarURL = item.avatar_url?.rawValue
         user.pronouns = item.pronouns
         if let enrollments = item.enrollments {
-            user.enrollments = Set(enrollments.map { item in
+            for item in enrollments {
                 let enrollment = context.insert() as Enrollment
                 enrollment.update(fromApiModel: item, course: nil, in: context)
-                return enrollment
-            })
+            }
         }
         return user
     }
@@ -67,6 +69,6 @@ extension User {
     }
 
     public func formattedRole(in context: Context) -> String? {
-        enrollments?.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
+        enrollments.first { $0.canvasContextID == context.canvasContextID }?.formattedRole
     }
 }
