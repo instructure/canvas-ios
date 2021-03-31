@@ -113,6 +113,7 @@
 		E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */; };
 		E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66524EECA10003FBAFD /* ContextCard.swift */; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
+		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
 
@@ -508,6 +509,7 @@
 		E8F4B66524EECA10003FBAFD /* ContextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCard.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
+		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -681,6 +683,7 @@
 			children = (
 				7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */,
 				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
+				EB71A24D261206CA0003241C /* GradeSliderTests.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1576,6 +1579,7 @@
 				7D64A98523689DD5004EAEDF /* DatePickerViewControllerTests.swift in Sources */,
 				3B1D37C9231085830017CCA2 /* PostGradesPresenterTests.swift in Sources */,
 				7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */,
+				EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */,
 				B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */,
 				B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */,
 				7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */,

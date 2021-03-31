@@ -178,7 +178,7 @@ struct SubmissionGrades: View {
             sliderCleared ? Text("No Grade") :
             sliderExcused ? Text("Excused") :
             assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(round(score))
+            Text(score)
 
         HStack(spacing: 8) {
             VStack {
@@ -201,9 +201,9 @@ struct SubmissionGrades: View {
 
     func sliderChangedState(_ editing: Bool) {
         withAnimation(.default) { showTooltip = editing }
-        sliderTimer?.invalidate()
-        sliderTimer = nil
         if editing == false, let value = sliderValue {
+            sliderTimer?.invalidate()
+            sliderTimer = nil
             if sliderCleared {
                 saveGrade("")
             } else if sliderExcused {
@@ -211,32 +211,31 @@ struct SubmissionGrades: View {
             } else if assignment.gradingType == .percent {
                 saveGrade("\(round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100))%")
             } else if assignment.gradingType == .points {
-                saveGrade(String(round(value)))
+                saveGrade(String(value))
             }
         }
     }
 
     func sliderChangedValue(_ value: Double) {
-        let previous = sliderValue.map { round($0) }
+        let previous = sliderValue.map { $0 }
         sliderValue = value
-        guard previous != round(value) || sliderTimer == nil else { return }
+        guard previous != value || sliderTimer == nil else { return }
         sliderTimer?.invalidate()
         sliderTimer = nil
-        if round(value) == 0 {
+        sliderCleared = false
+        sliderExcused = false
+        if value == 0 {
             sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 sliderCleared = true
                 sliderExcused = false
                 UISelectionFeedbackGenerator().selectionChanged()
             }
-        } else if round(value) == round(assignment.pointsPossible ?? 0) {
+        } else if value == assignment.pointsPossible ?? 0 {
             sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
                 sliderCleared = false
                 sliderExcused = true
                 UISelectionFeedbackGenerator().selectionChanged()
             }
-        } else {
-            sliderCleared = false
-            sliderExcused = false
         }
     }
 
