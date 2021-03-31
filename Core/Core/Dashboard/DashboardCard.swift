@@ -22,7 +22,6 @@ final class DashboardCard: NSManagedObject {
     typealias JSON = APIDashboardCard
 
     @NSManaged var contextColor: ContextColor?
-    @NSManaged var course: Course?
     @NSManaged var courseCode: String
     @NSManaged var enrollmentType: String
     @NSManaged var href: URL?
@@ -41,12 +40,7 @@ final class DashboardCard: NSManagedObject {
         enrollmentType.lowercased().contains("teacher")
     }
 
-    func getCourse() -> Course? {
-        if course == nil, let fetchedCourse: Course = managedObjectContext?.first(where: #keyPath(Course.id), equals: id) {
-            course = fetchedCourse
-        }
-        return course
-    }
+    var course: Course? { managedObjectContext?.first(where: #keyPath(Course.id), equals: id) }
 
     @discardableResult
     static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
