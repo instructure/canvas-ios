@@ -24,6 +24,7 @@ struct CommentEditor: View {
 
     @Binding var text: String
     let action: () -> Void
+    let containerHeight: CGFloat
 
     var body: some View {
         HStack(alignment: .bottom) {
@@ -33,7 +34,7 @@ struct CommentEditor: View {
                         .font(.regular16).foregroundColor(.textDark)
                         .accessibility(hidden: true)
                 }
-                TextEditor(text: $text)
+                Core.TextEditor(text: $text, maxHeight: containerHeight / 2)
                     .font(.regular16).foregroundColor(.textDarkest)
                     .accessibility(label: Text("Comment"))
                     .identifier("SubmissionComments.commentTextView")

@@ -96,7 +96,7 @@ struct SubmissionCommentList: View {
                         .frame(height: geometry.size.height)
                         .transition(.move(edge: .bottom))
                 case nil:
-                    toolbar
+                    toolbar(containerHeight: geometry.size.height)
                         .transition(.opacity)
                 }
             }
@@ -121,7 +121,7 @@ struct SubmissionCommentList: View {
         }
     }
 
-    var toolbar: some View {
+    func toolbar(containerHeight: CGFloat) -> some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
                 Image.addSolid.size(18)
@@ -138,7 +138,7 @@ struct SubmissionCommentList: View {
                         .cancel(),
                     ])
                 }
-            CommentEditor(text: $comment, action: sendComment)
+            CommentEditor(text: $comment, action: sendComment, containerHeight: containerHeight)
                 .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 16))
         }
             .background(Color.backgroundLight)

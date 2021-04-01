@@ -21,6 +21,7 @@ import Core
 
 struct SubmissionGrades: View {
     let assignment: Assignment
+    let containerHeight: CGFloat
     @ObservedObject var submission: Submission
 
     @Environment(\.appEnvironment) var env
@@ -161,7 +162,7 @@ struct SubmissionGrades: View {
                         rubricCommentID = nil
                         rubricAssessments[id] = .init(comments: rubricComment, points: points, rating_id: ratingID)
                     }
-                })
+                }, containerHeight: containerHeight)
                     .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                     .background(Color.backgroundLight)
             }

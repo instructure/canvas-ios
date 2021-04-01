@@ -89,6 +89,16 @@ class SpeedGraderCommentUITests: MiniCanvasUITestCase {
         waitUntil { submission.api.submission_comments?.isEmpty == false }
     }
 
+    func testLongTextCommentNotBlockingSendButton() {
+        let longText = Array(repeating: "Test sentence to be repeated. ", count: 100).reduce(into: "") { $0 += $1 }
+
+        showSubmission()
+        SpeedGrader.Segment.comments.tap()
+        SubmissionComments.commentTextView.pasteText(longText)
+        waitUntil { SubmissionComments.commentTextView.value() == longText }
+        XCTAssertTrue(SubmissionComments.addCommentButton.isVisible)
+    }
+
     func testNewAudioComment() throws {
         try XCTSkipIf(true, "recordButton.tap() doesn't start recording on bitrise")
         showSubmission()

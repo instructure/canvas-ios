@@ -18,11 +18,12 @@
 
 import SwiftUI
 
-// Meant to be a fill-in for the SwiftUI.TextEditor available in iOS 14.
+// Meant to be a fill-in for the SwiftUI.TextEditor available in iOS 14. This component implements a custom height sizing behavior, make sure when you update to iOS 14 to keep the UX consistent.
 @available(iOS, obsoleted: 14)
 public struct TextEditor: View {
     @Binding var text: String
     @State var height: CGFloat?
+    let maxHeight: CGFloat
 
     private var textFont = UIFont.preferredFont(forTextStyle: .body)
     public func font(_ name: UIFont.Name) -> TextEditor {
@@ -38,13 +39,25 @@ public struct TextEditor: View {
         return copy
     }
 
-    public init(text: Binding<String>) {
+    /**
+     - parameters:
+        - maxHeight: This property limits how large the text box can grow. After reaching this height scrolling is turned on.
+     */
+    public init(text: Binding<String>, maxHeight: CGFloat) {
         _text = text
+        self.maxHeight = maxHeight
     }
 
     public var body: some View {
-        TextView(height: $height, text: $text, color: textColor, font: textFont)
-            .frame(height: height)
+        let textViewHeight: CGFloat? = {
+            if let height = height {
+                return min(height, maxHeight)
+            }
+            return nil
+        }()
+        TextView(height: $height, text: $text, color: textColor, font: textFont, maxHeight: maxHeight)
+            .frame(height: textViewHeight)
+            .clipped()
     }
 
     struct TextView: UIViewRepresentable {
@@ -52,6 +65,7 @@ public struct TextEditor: View {
         @Binding var text: String
         let color: UIColor
         let font: UIFont
+        let maxHeight: CGFloat
 
         func makeUIView(context: Self.Context) -> UITextView {
             let uiView = UITextView()
@@ -109,8 +123,10 @@ public struct TextEditor: View {
 
         func updateHeight(_ uiView: UITextView) {
             let size = uiView.sizeThatFits(CGSize(width: uiView.frame.width, height: .greatestFiniteMagnitude))
+
             if size.height != height {
                 height = size.height
+                uiView.isScrollEnabled = (size.height + 10 >= maxHeight)
             }
         }
     }
