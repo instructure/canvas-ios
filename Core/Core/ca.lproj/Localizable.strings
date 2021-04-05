@@ -1394,6 +1394,9 @@
 "On Paper" = "En paper";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Una de les entregues encara s’està carregant. En tancar la sessió pot ser que s’interrompi.\nSegur que voleu tancar la sessió?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Només està disponible per als estudiants a través d'un enllaç";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Respon a tots";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Resposta enviada";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Respon al debat principal";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Penja el fitxer";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Penjada en curs";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "La càrrega de %1$@ està a %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "groc";
 
+/* No comment provided by engineer. */
+"Yes" = "Sí";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Notificacions de Yo";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Per tal d'establir recordatoris, heu de permetre les notificacions a Configuració.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Heu d'activar els permisos per a la càmera a Configuració.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Heu d'activar els permisos per al micròfon a Configuració.";

@@ -1394,6 +1394,9 @@
 "On Paper" = "Ar bapur";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Mae un o’ch cyflwyniadau yn dal i gael ei lwytho i fyny. Gallai allgofnodi darfu ar hyn.\nYdych chi’n siŵr eich bod am allgofnodi?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Dim ond ar gael i fyfyrwyr sydd â dolen";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Ateb Pawb";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Wedi anfon ymateb";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Ateb prif drafodaeth";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Llwytho Ffeil i Fyny";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Proses lwytho i fyny ar waith";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Mae llwytho %1$@ i fyny ar %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "melyn";
 
+/* No comment provided by engineer. */
+"Yes" = "Iawn";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Hysbysiadau Yo";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Rhaid i chi ganiatáu hysbysiadau yn y Gosodiadau er mwyn gosod nodiadau atgoffa.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Rhaid i chi alluogi hawliau Camera yn y Gosodiadau.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Rhaid i chi alluogi hawliau Microffon yn y Gosodiadau.";
