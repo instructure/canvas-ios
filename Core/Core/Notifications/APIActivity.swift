@@ -86,6 +86,7 @@ public struct GetActivitiesRequest: APIRequestable {
     }
 
     public var query: [APIQueryItem] {
-        [ .perPage(perPage) ]
+        [ .value("only_active_courses", "true"),
+          .perPage(perPage) ]
     }
 }

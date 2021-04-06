@@ -23,7 +23,7 @@ class APIActivityTests: XCTestCase {
     func testGetActivitiesRequest() {
         let request = GetActivitiesRequest()
         XCTAssertEqual(request.path, "users/self/activity_stream")
-        XCTAssertEqual(request.queryItems, [])
-        XCTAssertEqual(GetActivitiesRequest(perPage: 100).queryItems, [URLQueryItem(name: "per_page", value: "100")])
+        XCTAssertEqual(request.queryItems, [URLQueryItem(name: "only_active_courses", value: "true")])
+        XCTAssertEqual(GetActivitiesRequest(perPage: 100).queryItems[1], URLQueryItem(name: "per_page", value: "100"))
     }
 }
