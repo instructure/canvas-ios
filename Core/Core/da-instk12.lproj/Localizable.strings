@@ -1394,6 +1394,9 @@
 "On Paper" = "På papir";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "En af dine afleveringer uploades stadig. Hvis du logger ud, kan processen blive afbrudt.\nEr du sikker på, du vil logge af?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Kun tilgængeligt for elever med link";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Svar til alle";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Svar sendt";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Svar på hoveddiskussion";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Overfør fil";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Overførsel i gang";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Uploaden af %1$@ er på %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "gul";
 
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-meddelelser";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Du skal tillade meddelelser i Indstillinger for at indstille påmindelser.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Du skal aktivere kameratilladelser i indstillinger.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Du skal aktivere mikrofontilladelser i indstillinger.";

@@ -1394,6 +1394,9 @@
 "On Paper" = "Paperilla";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Yhtä lähetyksistä ladataan. Jos kirjaudut ulos, tämä saattaa häiriytyä.\nHaluatko varmasti kirjautua ulos?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Saatavissa opiskelijoille, joilla on linkki";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Vastaa kaikille";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Vastaus lähetetty";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Vastaa pääkeskusteluun";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Lataa tiedosto";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Lataus käynnissä.";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "%1$@ lataus on %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "keltainen";
 
+/* No comment provided by engineer. */
+"Yes" = "Kyllä";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo-ilmoitukset";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Sinun täytyy sallia ilmoitukset asetuksissa määrittääksesi muistutukset.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Kameran käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Kamperan käyttöoikeudet täytyy ottaa käyttöön asetuksissa.";

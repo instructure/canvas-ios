@@ -1394,6 +1394,9 @@
 "On Paper" = "Sur papier";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Un de vos envois est toujours en cours de téléversement. Se déconnecter pourrait l’interrompre.\nVoulez-vous vraiment vous déconnecter?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "Seulement disponible aux étudiants avec un lien";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Répondre à tous";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Réponse envoyée";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Répondre à la discussion principale";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Téléverser le fichier";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Téléversement en cours";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "Le téléversement de %1$@ est à %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "jaune";
 
+/* No comment provided by engineer. */
+"Yes" = "Oui";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Vos notifications";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Vous devez autoriser les notifications dans Réglages pour définir les rappels.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Vous devez activer les autorisations de caméra dans les paramètres.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Vous devez activer les autorisations de microphone dans les paramètres.";

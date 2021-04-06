@@ -1394,6 +1394,9 @@
 "On Paper" = "I runga i te Pepa";
 
 /* No comment provided by engineer. */
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Ko tētahi o tō tāpaetanga kei te tikiake tonu tia. Takiuru ki waho ka whakararutia pea.\nKei te tino hiahia koe ki te takiuru atu?";
+
+/* No comment provided by engineer. */
 "Only available to students with link" = "E wātea ana anake ki ngā ākonga me ngā hononga";
 
 /* No comment provided by engineer. */
@@ -1602,6 +1605,9 @@
 
 /* No comment provided by engineer. */
 "Reply All" = "Whakautu ki te katoa";
+
+/* VoiceOver announcement after a reply was successfully posted. */
+"Reply sent" = "Kua tukuna te whakautu";
 
 /* No comment provided by engineer. */
 "Reply to main discussion" = "Whakautu ki te kōrerorero matua";
@@ -2039,6 +2045,9 @@
 "Upload File" = "Tukuake Kōnae";
 
 /* No comment provided by engineer. */
+"Upload in progress" = "Kei te mahi te tukuake";
+
+/* No comment provided by engineer. */
 "Uploading %@ is at %@" = "E tikiake ana %1$@ kei te %2$@";
 
 /* Uploading X KB of Y MB */
@@ -2140,6 +2149,9 @@
 /* No comment provided by engineer. */
 "yellow" = "kōwhai";
 
+/* No comment provided by engineer. */
+"Yes" = "Ae";
+
 /* Description for Yo communication channel */
 "Yo Notifications" = "Yo whakamōhiotanga";
 
@@ -2151,6 +2163,9 @@
 
 /* No comment provided by engineer. */
 "You must allow notifications in Settings to set reminders." = "Me tukua e koe ngā whakamōhiotanga i roto i ngā Tautuhinga ki te whakatau ngā whakamaharatanga.";
+
+/* No comment provided by engineer. */
+"You must enable Camera permissions in Settings." = "Me whakahohetia e koe Kāmera whakaaetanga i roto i Tautuhinga.";
 
 /* No comment provided by engineer. */
 "You must enable Microphone permissions in Settings." = "Me whakahohetia e koe Orooro whakaaetanga i roto i Tautuhinga.";

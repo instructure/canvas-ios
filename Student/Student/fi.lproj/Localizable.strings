@@ -203,6 +203,9 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Lisää vastaanottajat";
 
+/* No comment provided by engineer. */
+"All" = "Kaikki";
+
 /* Button to select all members of a group */
 "All members" = "Kaikki jäsenet";
 
