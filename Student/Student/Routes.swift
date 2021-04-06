@@ -395,7 +395,7 @@ private func fileDetails(url: URLComponents, params: [String: String], userInfo:
         context = Context(.course, id: courseID)
     }
     let assignmentID = url.queryItems?.first(where: { $0.name == "assignmentID" })?.value
-    if !url.originIsModuleItemDetails, !url.shouldSkipModuleItemSequence, let context = context, context.contextType == .course {
+    if !url.originIsModuleItemDetails, !url.skipModuleItemSequence, let context = context, context.contextType == .course {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .file,
