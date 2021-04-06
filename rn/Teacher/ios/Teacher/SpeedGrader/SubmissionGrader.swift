@@ -223,7 +223,7 @@ struct SubmissionGrader: View {
                     snapDrawerTo(.min)
                 })
                 VStack(spacing: 0) {
-                    SubmissionGrades(assignment: assignment, submission: submission)
+                    SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
