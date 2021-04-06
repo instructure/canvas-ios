@@ -185,7 +185,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         let controller = UIViewController()
         let router = env.router as? TestRouter
         XCTAssertTrue(presenter.route(to: url, from: controller))
-        XCTAssertEqual(router?.calls.last?.0, .parse("/course/1/files/2?courseID=1&assignmentID=1"))
+        XCTAssertEqual(router?.calls.last?.0, .parse("/course/1/files/2?courseID=1&assignmentID=1&skipModuleItemSequence=true"))
     }
 
     func testSubmit() {

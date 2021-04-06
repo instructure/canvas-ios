@@ -372,6 +372,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 }
 
+// MARK: - Link Handling
+
 extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
     public func handleLink(_ url: URL) -> Bool {
         guard let presenter = presenter else { return false }
