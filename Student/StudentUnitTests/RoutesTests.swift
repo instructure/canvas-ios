@@ -101,6 +101,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/files/1") is FileDetailsViewController)
         XCTAssert(router.match("/files/1/download") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/2") is ModuleItemSequenceViewController)
+        XCTAssert(router.match("/courses/1/files/2?skipModuleItemSequence=true") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/2/download") is ModuleItemSequenceViewController)
         XCTAssert(router.match("/groups/1/files/2/download") is FileDetailsViewController)
         XCTAssert(router.match("/courses/1/files/2?module_item_id=2") is ModuleItemSequenceViewController)

@@ -215,7 +215,8 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         if url.path.contains("/files/") {
             dest = url.appendingQueryItems(
                 URLQueryItem(name: "courseID", value: courseID),
-                URLQueryItem(name: "assignmentID", value: assignmentID)
+                URLQueryItem(name: "assignmentID", value: assignmentID),
+                URLQueryItem(name: "skipModuleItemSequence", value: "true")
             )
         }
         env.router.route(to: dest, from: view)

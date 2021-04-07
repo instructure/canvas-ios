@@ -96,6 +96,13 @@ public extension URLComponents {
             }
         }
     }
+
+    /**
+     If this variable is true, then the router shouldn't embed the presented content into a module item sequence.
+     */
+    var skipModuleItemSequence: Bool {
+        queryItems?.contains(URLQueryItem(name: "skipModuleItemSequence", value: "true")) == true
+    }
 }
 
 public extension CharacterSet {
