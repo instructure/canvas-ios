@@ -85,7 +85,8 @@ public struct GetActivitiesRequest: APIRequestable {
         return "\(context.pathComponent)/activity_stream"
     }
 
-    public var query: [APIQueryItem] {
-        [ .perPage(perPage) ]
-    }
+    public var query: [APIQueryItem] {[
+        .value("only_active_courses", "true"),
+        .perPage(perPage),
+    ]}
 }
