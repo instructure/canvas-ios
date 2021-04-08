@@ -63,6 +63,7 @@ struct SubmissionHeader: View {
                     .padding(16)
             })
                 .identifier("SpeedGrader.postPolicyButton")
+                .accessibility(label: Text("Post settings"))
 
             Button(action: dismiss, label: {
                 Text("Done")
