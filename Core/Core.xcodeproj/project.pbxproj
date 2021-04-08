@@ -830,6 +830,7 @@
 		CF80134C25B19DF200E5E744 /* SwiftUIExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */; };
 		CF80135125B1A03700E5E744 /* GetSubmissionSummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */; };
 		CF8ADC562563D96400F3DBA9 /* HelpItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */; };
+		CF95659F261F0D2C00E8954D /* PlannerListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95659E261F0D2C00E8954D /* PlannerListBackgroundView.swift */; };
 		CF9DFB602584F3EE004E27A5 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */; };
 		CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */; };
 		CFB3C4BE25A8A86E003F9AB9 /* ContextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */; };
@@ -1926,6 +1927,7 @@
 		CF80134B25B19DF200E5E744 /* SwiftUIExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtensionsTests.swift; sourceTree = "<group>"; };
 		CF80135025B1A03700E5E744 /* GetSubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		CF8ADC552563D96400F3DBA9 /* HelpItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemView.swift; sourceTree = "<group>"; };
+		CF95659E261F0D2C00E8954D /* PlannerListBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListBackgroundView.swift; sourceTree = "<group>"; };
 		CF9DFB5F2584F3EE004E27A5 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		CFAE973825ECFF8F00DF2102 /* APIUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserTests.swift; sourceTree = "<group>"; };
 		CFB3C4BD25A8A86E003F9AB9 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
@@ -3619,6 +3621,7 @@
 				B11AEBB8240724FA00B736D6 /* Planner.swift */,
 				B11AEBB624070FF100B736D6 /* PlannerFilterViewController.storyboard */,
 				B11AEBB424070F9400B736D6 /* PlannerFilterViewController.swift */,
+				CF95659E261F0D2C00E8954D /* PlannerListBackgroundView.swift */,
 				97F69C4723F3475E009622E3 /* PlannerListViewController.storyboard */,
 				97F69C4523F34734009622E3 /* PlannerListViewController.swift */,
 				97F5520524061B4B005D80FC /* PlannerNoteDetailViewController.storyboard */,
@@ -5293,6 +5296,7 @@
 				7DA2603723F722D9005D2121 /* TabViewable.swift in Sources */,
 				7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */,
 				7DA2604723F722D9005D2121 /* ExternalTool.swift in Sources */,
+				CF95659F261F0D2C00E8954D /* PlannerListBackgroundView.swift in Sources */,
 				7DA25FB723F72136005D2121 /* APIGroup.swift in Sources */,
 				7DB92CA224C5F5ED004A6C16 /* GetAccountNotifications.swift in Sources */,
 				7DA2604123F722D9005D2121 /* CourseSection.swift in Sources */,
