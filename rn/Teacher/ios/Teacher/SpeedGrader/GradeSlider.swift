@@ -36,6 +36,8 @@ struct GradeSlider: View {
                 }.onEnded { _ in
                     onEditingChanged(false)
                 })
+                .accessibility(label: Text("Grade Slider"))
+                .accessibility(value: tooltipText)
                 .overlay(!showTooltip ? nil : GeometryReader { geometry in
                     let x = CGFloat(score / max(possible, 0.01))
                         * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
