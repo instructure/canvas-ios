@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,14 +40,16 @@
                                         <rect key="frame" x="141.5" y="35" width="92" height="120"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="92" id="8uC-vN-VGQ"/>
-                                            <constraint firstAttribute="height" constant="120" id="piC-Fr-Nci"/>
+                                            <constraint firstAttribute="height" constant="120" id="piC-Fr-Nci">
+                                                <variation key="heightClass=compact" constant="0.0"/>
+                                            </constraint>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="ash"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no rubric for this assignment." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-3v-yJh" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="43" y="169.5" width="289" height="20.5"/>
+                                        <rect key="frame" x="62" y="165" width="251" height="17"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.rubricEmptyLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -60,8 +62,9 @@
                                 </subviews>
                                 <accessibility key="accessibilityConfiguration" identifier="SubmisisonDetails.rubricEmptyView"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="vKN-3v-yJh" secondAttribute="bottom" id="0dO-1Q-aC4"/>
-                                    <constraint firstAttribute="bottom" secondItem="vKN-3v-yJh" secondAttribute="bottom" id="Eno-S6-pJB"/>
+                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="top" secondItem="RXI-be-h0l" secondAttribute="bottom" constant="10" id="LKu-XX-NjV">
+                                        <variation key="heightClass=compact" constant="-8"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="190" id="NML-e0-97M"/>
                                     <constraint firstItem="vKN-3v-yJh" firstAttribute="centerX" secondItem="ls2-gZ-h3j" secondAttribute="centerX" id="fTy-a0-MpT"/>
                                     <constraint firstItem="RXI-be-h0l" firstAttribute="centerY" secondItem="ls2-gZ-h3j" secondAttribute="centerY" id="tvj-ph-VcA"/>
@@ -69,6 +72,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="YpA-cs-tZJ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bAG-0O-4w9" firstAttribute="width" secondItem="w0K-cg-DHX" secondAttribute="width" id="DQT-IU-VLc"/>
@@ -79,7 +83,6 @@
                             <constraint firstItem="YpA-cs-tZJ" firstAttribute="trailing" secondItem="ls2-gZ-h3j" secondAttribute="trailing" id="oW4-fw-6kg"/>
                             <constraint firstItem="ls2-gZ-h3j" firstAttribute="leading" secondItem="YpA-cs-tZJ" secondAttribute="leading" id="tOS-FF-M5l"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="YpA-cs-tZJ"/>
                     </view>
                     <connections>
                         <outlet property="contentStackView" destination="NBd-1M-MZg" id="1QJ-ON-flZ"/>
@@ -95,4 +98,9 @@
             <point key="canvasLocation" x="293" y="-210"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="vKN-3v-yJh">
+            <size key="intrinsicContentSize" width="251" height="17"/>
+        </designable>
+    </designables>
 </document>
