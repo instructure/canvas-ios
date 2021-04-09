@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khx-H2-7tu">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="khx-H2-7tu">
                                                     <rect key="frame" x="16" y="15" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="TU8-Xa-SGy"/>
@@ -42,7 +42,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFw-dj-K0O" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="-34" y="17.5" width="0.0" height="19.5"/>
+                                                    <rect key="frame" x="56" y="17.5" width="285" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qsz-NM-gLu" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="-34" y="18" width="18" height="18"/>
+                                                    <rect key="frame" x="341" y="18" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="N5R-YX-edU"/>
                                                         <constraint firstAttribute="width" constant="18" id="uI7-ac-Mdt"/>
@@ -91,12 +91,14 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OSk-fn-QzF">
                                         <rect key="frame" x="60.5" y="35" width="222" height="120"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="JXQ-Ez-0WF"/>
+                                            <constraint firstAttribute="height" constant="120" id="JXQ-Ez-0WF">
+                                                <variation key="heightClass=compact" constant="0.0"/>
+                                            </constraint>
                                             <constraint firstAttribute="width" constant="222" id="roJ-A4-gUf"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no files to display." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc0-x7-4Eo" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="78.5" y="173" width="186" height="17"/>
+                                        <rect key="frame" x="78.5" y="169.5" width="186" height="17"/>
                                         <viewLayoutGuide key="safeArea" id="KDE-ba-Cre"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -110,19 +112,21 @@
                                 <constraints>
                                     <constraint firstItem="yc0-x7-4Eo" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="7XY-kg-TJM"/>
                                     <constraint firstItem="OSk-fn-QzF" firstAttribute="centerX" secondItem="Kvf-sx-Nga" secondAttribute="centerX" id="DzV-6X-ee8"/>
-                                    <constraint firstAttribute="bottom" secondItem="yc0-x7-4Eo" secondAttribute="bottom" id="TX1-EA-QdE"/>
                                     <constraint firstItem="OSk-fn-QzF" firstAttribute="centerY" secondItem="Kvf-sx-Nga" secondAttribute="centerY" id="bO9-3Z-u8p"/>
+                                    <constraint firstItem="yc0-x7-4Eo" firstAttribute="top" secondItem="OSk-fn-QzF" secondAttribute="bottom" constant="14.5" id="sE1-cf-fDI">
+                                        <variation key="heightClass=compact" constant="-8"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="190" id="xtM-cd-Y5A"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="odF-Ka-dPO"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Kvf-sx-Nga" firstAttribute="leading" secondItem="odF-Ka-dPO" secondAttribute="leading" constant="16" id="Uav-Rm-9YB"/>
                             <constraint firstItem="odF-Ka-dPO" firstAttribute="trailing" secondItem="Kvf-sx-Nga" secondAttribute="trailing" constant="16" id="jgf-3O-GwO"/>
                             <constraint firstItem="Kvf-sx-Nga" firstAttribute="centerY" secondItem="tiw-Fm-cKb" secondAttribute="centerY" id="tnC-u6-Hpp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="odF-Ka-dPO"/>
                     </view>
                     <connections>
                         <outlet property="emptyContainer" destination="Kvf-sx-Nga" id="aW2-Vi-QH2"/>
@@ -136,4 +140,15 @@
             <point key="canvasLocation" x="142" y="86"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="JFw-dj-K0O">
+            <size key="intrinsicContentSize" width="41.5" height="19.5"/>
+        </designable>
+        <designable name="qsz-NM-gLu">
+            <size key="intrinsicContentSize" width="24" height="24"/>
+        </designable>
+        <designable name="yc0-x7-4Eo">
+            <size key="intrinsicContentSize" width="186" height="17"/>
+        </designable>
+    </designables>
 </document>
