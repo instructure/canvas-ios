@@ -32,6 +32,15 @@ public class TitleSubtitleView: UIView {
         set { subtitleLabel.text = newValue }
     }
 
+    public var combinedTitle: String? {
+        guard var result = titleLabel.text else { return nil }
+
+        if let subtitle = subtitleLabel.text {
+            result += ", \(subtitle)"
+        }
+        return result
+    }
+
     public static func create() -> Self {
         let view = loadFromXib()
         view.titleLabel.text = ""

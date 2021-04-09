@@ -31,11 +31,13 @@ extension ColoredNavViewProtocol {
     public func setupTitleViewInNavbar(title: String) {
         navigationItem.titleView = titleSubtitleView
         titleSubtitleView.title = title
+        navigationItem.title = titleSubtitleView.combinedTitle
     }
 
     public func updateNavBar(subtitle: String?, color: UIColor?) {
         self.color = color?.ensureContrast(against: .white)
         titleSubtitleView.subtitle = subtitle
         navigationController?.navigationBar.useContextColor(color)
+        navigationItem.title = titleSubtitleView.combinedTitle
     }
 }
