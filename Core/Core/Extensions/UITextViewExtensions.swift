@@ -55,11 +55,6 @@ extension UITextView {
     private func resizePlaceholder() {
         let lineFragmentPadding = textContainer.lineFragmentPadding
         let x: CGFloat = lineFragmentPadding + textContainerInset.left
-
-        print("lineFragmentPadding: \(lineFragmentPadding)")
-        print("textContainerInset.left: \(textContainerInset.left)")
-        print("x: \(x)")
-
         let y: CGFloat = textContainerInset.top
         let width: CGFloat = bounds.width - x - lineFragmentPadding - textContainerInset.right
         let height: CGFloat = placeholderLabel.sizeThatFits(CGSize(width: width, height: 0)).height

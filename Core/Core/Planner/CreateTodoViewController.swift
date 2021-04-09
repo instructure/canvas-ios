@@ -28,6 +28,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var courseSelectionLabel: DynamicLabel!
     @IBOutlet weak var courseChevron: IconView!
     @IBOutlet weak var selectCourseButton: UIButton!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     let datePicker = UIDatePicker()
@@ -42,6 +43,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         DateFormatter.localizedString(from: selectedDate, dateStyle: .medium, timeStyle: .short)
     }
     var plannables: Store<GetPlannables>?
+    private var keyboardListener: KeyboardTransitioning!
 
     public static func create() -> CreateTodoViewController {
         let vc = loadFromStoryboard()
@@ -57,12 +59,14 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
             descTextView.setValue(NSLocalizedString("Description", bundle: .core, comment: ""), forKey: "placeholder")
         }
         descTextView.font = UIFont.scaledNamedFont(.regular16)
+        descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         dateTextField.text = formattedDate
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
+        keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
     }
 
     @objc func actionDone() {
