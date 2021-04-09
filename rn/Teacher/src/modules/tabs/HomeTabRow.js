@@ -20,6 +20,7 @@
 
 import React from 'react'
 import 'react-native'
+import { SafeAreaView, Image, ActivityIndicator } from 'react-native'
 
 import i18n from 'format-message'
 import FeatureRow from '../../common/components/rows/FeatureRow'
@@ -55,14 +56,16 @@ export default class CourseDetailsHomeTab extends React.Component<Props, any> {
   render () {
     const tab = this.props.tab
     return (
-      <FeatureRow
-        title={tab.label}
-        subtitle={this.subtitle()}
-        onPress={this.onPress}
-        disclosureIndicator
-        selected={this.props.selected}
-        testID={`courses-details.${tab.id}-cell`}
-      />
+      <SafeAreaView>
+        <FeatureRow
+          title={tab.label}
+          subtitle={this.subtitle()}
+          onPress={this.onPress}
+          disclosureIndicator
+          selected={this.props.selected}
+          testID={`courses-details.${tab.id}-cell`}
+        />
+      </SafeAreaView>
     )
   }
 }
