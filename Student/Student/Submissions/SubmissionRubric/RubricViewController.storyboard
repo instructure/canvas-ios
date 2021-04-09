@@ -49,7 +49,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no rubric for this assignment." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-3v-yJh" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="62" y="165" width="251" height="17"/>
+                                        <rect key="frame" x="62" y="175" width="251" height="17"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.rubricEmptyLabel"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -62,7 +62,7 @@
                                 </subviews>
                                 <accessibility key="accessibilityConfiguration" identifier="SubmisisonDetails.rubricEmptyView"/>
                                 <constraints>
-                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="top" secondItem="RXI-be-h0l" secondAttribute="bottom" constant="10" id="LKu-XX-NjV">
+                                    <constraint firstItem="vKN-3v-yJh" firstAttribute="top" secondItem="RXI-be-h0l" secondAttribute="bottom" constant="20" id="LKu-XX-NjV">
                                         <variation key="heightClass=compact" constant="-8"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="190" id="NML-e0-97M"/>
