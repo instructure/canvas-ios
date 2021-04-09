@@ -54,6 +54,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         super.viewDidLoad()
         title = NSLocalizedString("New To Do", bundle: .core, comment: "")
         titleLabel.placeholder = NSLocalizedString("Title...", bundle: .core, comment: "")
+        titleLabel.delegate = self
         dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
         if descTextView.responds(to: #selector(setter: UITextField.placeholder)) {  // without this check, it fails unit tests
             descTextView.setValue(NSLocalizedString("Description", bundle: .core, comment: ""), forKey: "placeholder")
@@ -124,6 +125,14 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         let vc = SelectCourseViewController()
         vc.delegate = self
         env.router.show(vc, from: self)
+    }
+}
+
+extension CreateTodoViewController: UITextFieldDelegate {
+
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }
 
