@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "У этого задания отсутствуют подробности.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Это задание заблокировано до %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Это задание было заблокировано %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Эта запись была удалена";
 
 /* Text indicating a file cannot be previewed */

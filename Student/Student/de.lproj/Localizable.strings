@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Die Aufgabe weist keine Details auf.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Diese Aufgabe ist gesperrt bis %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Diese Aufgabe wurde gesperrt %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Der Eintrag wurde gelöscht";
 
 /* Text indicating a file cannot be previewed */

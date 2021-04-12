@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Ta naloga nima podrobnosti.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Ta naloga je zaklenjena do %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Ta naloga je bila zaklenjena ob %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Ta vnos je odstranjen.";
 
 /* Text indicating a file cannot be previewed */

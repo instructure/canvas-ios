@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "This assignment has no details.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "This assignment is locked until %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "This assignment was locked %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "This entry has been deleted.";
 
 /* Text indicating a file cannot be previewed */
