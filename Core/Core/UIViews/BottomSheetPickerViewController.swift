@@ -45,7 +45,9 @@ public class BottomSheetPickerViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.pin(inside: view, top: 8, bottom: nil)
+        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: nil)
+        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         view.frame.size.height = 8
     }
