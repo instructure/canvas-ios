@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Tässä tehtävässä ei ole tietoja.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Tämä tehtävä on lukittu ja avautuu %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Tämä tehtävä lukittiin %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Tuo merkintä on poistettu";
 
 /* Text indicating a file cannot be previewed */

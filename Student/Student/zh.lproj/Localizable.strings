@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "此作业没有细节。";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "此作业已锁定，截至%@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "此作业已锁定%@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "此输入已被删除";
 
 /* Text indicating a file cannot be previewed */

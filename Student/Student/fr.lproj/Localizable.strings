@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Ce travail assigné ne possède aucun détail.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Ce travail est verrouillé jusqu'au %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Ce travail a été verrouillé %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Cette saisie a été supprimée";
 
 /* Text indicating a file cannot be previewed */

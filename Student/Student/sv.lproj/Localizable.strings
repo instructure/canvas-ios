@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Det finns inga detaljer för den här uppgiften.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Den här uppgiften är låst till %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Den här uppgiften var låst %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Det här inlägget har tagits bort";
 
 /* Text indicating a file cannot be previewed */

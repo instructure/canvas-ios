@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Engar upplýsingar eru til um þetta verkefni.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Þetta verkefni er læst til %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Þetta verkefni var læst %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Þessari færslu var eytt";
 
 /* Text indicating a file cannot be previewed */

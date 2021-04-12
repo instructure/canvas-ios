@@ -1425,6 +1425,12 @@
 "This assignment has no details." = "Esta tarefa não tem detalhes.";
 
 /* No comment provided by engineer. */
+"This assignment is locked until %@" = "Esta tarefa está travada até %@";
+
+/* No comment provided by engineer. */
+"This assignment was locked %@" = "Esta tarefa foi travada %@";
+
+/* No comment provided by engineer. */
 "This entry has been deleted" = "Esta entrada foi excluída";
 
 /* Text indicating a file cannot be previewed */
