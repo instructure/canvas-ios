@@ -200,6 +200,7 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
 
     func updateNavBar() {
         titleSubtitleView.subtitle = context.contextType == .course ? course.first?.name : group.first?.name
+        navigationItem.title = titleSubtitleView.combinedTitle
     }
 
     func updateButtons() {

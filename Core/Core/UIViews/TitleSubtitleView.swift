@@ -35,7 +35,7 @@ public class TitleSubtitleView: UIView {
     public var combinedTitle: String? {
         guard var result = titleLabel.text else { return nil }
 
-        if let subtitle = subtitleLabel.text {
+        if let subtitle = subtitleLabel.text, subtitle != "" {
             result += ", \(subtitle)"
         }
         return result

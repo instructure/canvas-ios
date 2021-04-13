@@ -71,6 +71,7 @@ class AttendanceViewController: UIViewController, ColoredNavViewProtocol {
 
         setupTitleViewInNavbar(title: NSLocalizedString("Attendance", comment: ""))
         titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        navigationItem.title = titleSubtitleView.combinedTitle
 
         let datePickerButton = UIButton(type: .custom)
         datePickerButton.accessibilityIdentifier = "Attendance.selectDateButton"
@@ -338,6 +339,7 @@ extension AttendanceViewController: DatePickerDelegate {
         self.date = date
         calendarDayIconView.setDate(date)
         titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        navigationItem.title = titleSubtitleView.combinedTitle
         statuses = []
         tableView.reloadData()
         updateMarkAllButton()

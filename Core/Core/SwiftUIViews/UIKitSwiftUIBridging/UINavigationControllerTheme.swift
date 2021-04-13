@@ -53,7 +53,7 @@ struct TitleSubtitleModifier: ViewModifier {
         view.title = title
         view.subtitle = subtitle
         var combinedTitle = title
-        if let subtitle = subtitle {
+        if let subtitle = subtitle, subtitle != "" {
             combinedTitle += ", \(subtitle)"
         }
         return content.navigationBarTitle(Text(combinedTitle))

@@ -186,6 +186,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
+        navigationItem.title = titleSubtitleView.combinedTitle
         navigationController?.navigationBar.useContextColor(backgroundColor)
     }
 
