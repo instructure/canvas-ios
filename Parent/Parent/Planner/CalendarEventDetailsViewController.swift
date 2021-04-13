@@ -119,7 +119,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
 
     func update() {
         guard let event = events.first else { return }
-        setupTitleViewInNavbar(title: event.contextName)
+        if let title = event.contextName {
+            setupTitleViewInNavbar(title: title)
+        }
 
         titleLabel.text = event.title
         if event.isAllDay {
