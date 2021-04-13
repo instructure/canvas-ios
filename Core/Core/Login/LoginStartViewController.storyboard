@@ -383,6 +383,13 @@
                                     <action selector="helpTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="7VA-YO-tLW"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="beI-15-M65" userLabel="AnimatableLogo">
+                                <rect key="frame" x="149.5" y="295.5" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="76" id="28k-3o-AnI"/>
+                                    <constraint firstAttribute="width" constant="76" id="oSd-vg-gmi"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NxW-YV-uVK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -392,8 +399,10 @@
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" id="0KA-9H-9dZ"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="80" id="1bY-nP-oVY"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" multiplier="0.5" id="7xe-hU-FAq"/>
+                            <constraint firstItem="beI-15-M65" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" id="Foj-WX-Jvg"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="bottom" secondItem="NxW-YV-uVK" secondAttribute="bottom" id="M8R-2q-6VO"/>
                             <constraint firstItem="NxW-YV-uVK" firstAttribute="trailing" secondItem="M3X-mo-TCQ" secondAttribute="trailing" id="Td8-K3-fC7"/>
+                            <constraint firstItem="beI-15-M65" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="VSk-q8-ZkB"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="centerY" secondItem="NxW-YV-uVK" secondAttribute="centerY" constant="-139" id="ZaC-BK-0Te"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" id="akb-Vn-BcQ"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="centerY" secondItem="NxW-YV-uVK" secondAttribute="centerY" id="cAU-Te-0gb"/>
@@ -438,6 +447,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="animatableLogo" destination="beI-15-M65" id="kZR-u9-YbO"/>
+                        <outlet property="animatableLogoPosX" destination="VSk-q8-ZkB" id="nNT-Qr-ays"/>
+                        <outlet property="animatableLogoPosY" destination="Foj-WX-Jvg" id="zzI-bj-Sey"/>
                         <outlet property="authenticationMethodLabel" destination="1pX-Al-xWp" id="WFH-4T-x3J"/>
                         <outlet property="canvasNetworkButton" destination="9EW-4z-2Mo" id="88M-G9-xRu"/>
                         <outlet property="findSchoolButton" destination="K3D-iK-gpK" id="egj-nA-DEx"/>

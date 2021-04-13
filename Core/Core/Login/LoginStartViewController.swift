@@ -23,9 +23,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var canvasNetworkButton: UIButton!
     @IBOutlet weak var findSchoolButton: UIButton!
     @IBOutlet weak var helpButton: UIButton!
-    @IBOutlet weak var logoYCenter: NSLayoutConstraint!
     @IBOutlet weak var logoView: UIImageView!
-    @IBOutlet weak var previousLoginsBottom: NSLayoutConstraint!
     @IBOutlet weak var previousLoginsLabel: UILabel!
     @IBOutlet weak var previousLoginsTableView: UITableView!
     @IBOutlet weak var previousLoginsView: UIView!
@@ -35,6 +33,10 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var wordmarkLabel: UILabel!
     @IBOutlet weak var useQRCodeButton: UIButton!
     @IBOutlet weak var useQRCodeDivider: UIView!
+
+    @IBOutlet weak var animatableLogo: UIImageView!
+    @IBOutlet weak var animatableLogoPosX: NSLayoutConstraint!
+    @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -64,6 +66,7 @@ class LoginStartViewController: UIViewController {
         helpButton.isHidden = !Bundle.main.isParentApp
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
+        animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
@@ -129,66 +132,60 @@ class LoginStartViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        guard shouldAnimateFromLaunchScreen else { return }
-
-        for view in view.subviews {
-            view.alpha = 0
-        }
-        logoView.alpha = 1
-        logoYCenter.constant = 0
-        previousLoginsBottom.constant = -previousLoginsView.frame.height
-        previousLoginsView.alpha = 0
-        view.layoutIfNeeded()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard shouldAnimateFromLaunchScreen else { return }
-        shouldAnimateFromLaunchScreen = false
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.75, delay: 0.25, animations: {
-            self.logoYCenter.constant = -170
-            self.view.layoutIfNeeded()
-        }, completion: fadeIn)
-    }
-
-    func fadeIn(_ completed: Bool) {
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.5, animations: {
-            for view in self.view.subviews {
-                view.alpha = 1
-            }
-            self.view.layoutIfNeeded()
-        }, completion: springPreviousLogins)
-    }
-
-    func springPreviousLogins(_ completed: Bool) {
-        guard previousLoginsView?.isHidden == false else { return }
-        view.layoutIfNeeded()
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0.5,
-            usingSpringWithDamping: 0.75,
-            initialSpringVelocity: 2,
-            options: .curveEaseOut,
-            animations: {
-                self.previousLoginsBottom.constant = 0
-                self.previousLoginsView.alpha = 1
-                self.view.layoutIfNeeded()
-            },
-            completion: nil
-        )
-    }
-
     func update() {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
         previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
         previousLoginsTableView.reloadData()
         configureButtons()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        prepareForAnimation()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateLogoFromCenterToFinalPosition()
+    }
+
+    // MARK: - Animation
+
+    private func prepareForAnimation() {
+        guard shouldAnimateFromLaunchScreen else { return }
+
+        for view in view.subviews {
+            view.alpha = 0
+        }
+        animatableLogo.alpha = 1
+        view.layoutIfNeeded()
+    }
+
+    private func animateLogoFromCenterToFinalPosition() {
+        guard shouldAnimateFromLaunchScreen else { return }
+        shouldAnimateFromLaunchScreen = false
+        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.75, delay: 0.25, animations: {
+            let logoSizeHalf = self.logoView.frame.size.width / 2
+            let logoCenter = self.logoView.convert(CGPoint(x: logoSizeHalf, y: logoSizeHalf), to: self.view)
+            self.animatableLogoPosX.constant = logoCenter.x - self.view.frame.width / 2
+            self.animatableLogoPosY.constant = logoCenter.y - self.view.frame.height / 2
+            self.view.layoutIfNeeded()
+        }, completion: fadeIn)
+    }
+
+    func fadeIn(_ completed: Bool) {
+        UIView.animate(withDuration: 0.5, animations: {
+            for view in self.view.subviews {
+                view.alpha = 1
+            }
+        }, completion: { _ in
+            self.animatableLogo.alpha = 0
+        })
+    }
+
+    // MARK: - User Actions
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {
         let controller = LoginWebViewController.create(host: "learn.canvas.net", loginDelegate: loginDelegate, method: method)
@@ -235,6 +232,35 @@ class LoginStartViewController: UIViewController {
             showLoginQRCodeTutorial()
         }
     }
+
+    @IBAction func helpTapped(_ sender: UIButton) {
+        loginDelegate?.openSupportTicket()
+    }
+
+    @IBAction func whatsNewTapped(_ sender: UIButton) {
+        guard let url = loginDelegate?.whatsNewURL else { return }
+        loginDelegate?.openExternalURL(url)
+    }
+
+    @IBAction func authMethodTapped(_ sender: UIView) {
+        switch method {
+        case .normalLogin:
+            method = .canvasLogin
+            authenticationMethodLabel.text = NSLocalizedString("Canvas Login", bundle: .core, comment: "")
+        case .canvasLogin:
+            method = .siteAdminLogin
+            authenticationMethodLabel.text = NSLocalizedString("Site Admin Login", bundle: .core, comment: "")
+        case .siteAdminLogin:
+            method = .manualOAuthLogin
+            authenticationMethodLabel.text = NSLocalizedString("Manual OAuth Login", bundle: .core, comment: "")
+        case .manualOAuthLogin:
+            method = .normalLogin
+            authenticationMethodLabel.text = nil
+        }
+        authenticationMethodLabel.isHidden = authenticationMethodLabel.text == nil
+    }
+
+    // MARK: - Private Methods
 
     func showInstructionsToPairFromStudentApp() {
         let tutorial = PairWithStudentQRCodeTutorialViewController.create()
@@ -295,33 +321,6 @@ class LoginStartViewController: UIViewController {
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
         )
     }
-
-    @IBAction func helpTapped(_ sender: UIButton) {
-        loginDelegate?.openSupportTicket()
-    }
-
-    @IBAction func whatsNewTapped(_ sender: UIButton) {
-        guard let url = loginDelegate?.whatsNewURL else { return }
-        loginDelegate?.openExternalURL(url)
-    }
-
-    @IBAction func authMethodTapped(_ sender: UIView) {
-        switch method {
-        case .normalLogin:
-            method = .canvasLogin
-            authenticationMethodLabel.text = NSLocalizedString("Canvas Login", bundle: .core, comment: "")
-        case .canvasLogin:
-            method = .siteAdminLogin
-            authenticationMethodLabel.text = NSLocalizedString("Site Admin Login", bundle: .core, comment: "")
-        case .siteAdminLogin:
-            method = .manualOAuthLogin
-            authenticationMethodLabel.text = NSLocalizedString("Manual OAuth Login", bundle: .core, comment: "")
-        case .manualOAuthLogin:
-            method = .normalLogin
-            authenticationMethodLabel.text = nil
-        }
-        authenticationMethodLabel.isHidden = authenticationMethodLabel.text == nil
-    }
 }
 
 extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginStartSessionDelegate {
@@ -365,11 +364,8 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
         previousLoginsTableView?.deleteRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
         loginDelegate?.userDidLogout(session: session)
         if sessions.isEmpty && MDMManager.shared.logins.isEmpty {
-            view.layoutIfNeeded()
             UIView.animate(withDuration: 0.5) {
-                self.previousLoginsBottom?.constant = -self.previousLoginsView.frame.height
                 self.previousLoginsView.alpha = 0
-                self.view.layoutIfNeeded()
             }
         }
     }
