@@ -20,7 +20,7 @@
 
 import React from 'react'
 import 'react-native'
-import { SafeAreaView, Image, ActivityIndicator } from 'react-native'
+import { SafeAreaView } from 'react-native'
 
 import i18n from 'format-message'
 import FeatureRow from '../../common/components/rows/FeatureRow'
