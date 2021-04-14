@@ -198,6 +198,7 @@ export default class AttachmentPicker extends Component<Props, any> {
           transparent={true}
           animationType='fade'
           onLayout={this.onLayout}
+          supportedOrientations={['portrait', 'landscape', 'landscape-left', 'landscape-right']}
         >
           <View style={style.audioRecorderContainer}>
             <View style={{ height: 250 }}>

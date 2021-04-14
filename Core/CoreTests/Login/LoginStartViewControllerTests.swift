@@ -39,13 +39,24 @@ class LoginStartViewControllerTests: CoreTestCase {
     }
 
     func testAnimateIn() {
+        let isUIHiddenButAnimatedLogo = { [self] in
+            controller.view.subviews.allSatisfy { view in
+                if view == controller.animatableLogo {
+                    return true
+                }
+                return view.alpha == 0
+            }
+        }
+
         controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true, app: .student)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.findSchoolButton.alpha, 0)
+        XCTAssertEqual(controller.animatableLogo.alpha, 1)
+        XCTAssertTrue(isUIHiddenButAnimatedLogo())
         controller.viewDidAppear(false)
         drainMainQueue()
-        XCTAssertEqual(controller.findSchoolButton.alpha, 1)
+        XCTAssertEqual(controller.animatableLogo.alpha, 0)
+        XCTAssertFalse(isUIHiddenButAnimatedLogo())
     }
 
     func testLayout() {

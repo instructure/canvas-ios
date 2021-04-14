@@ -14,6 +14,14 @@ exports[`AttachmentPicker renders 1`] = `
   <Modal
     animationType="fade"
     onLayout={[Function]}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+        "landscape-left",
+        "landscape-right",
+      ]
+    }
     transparent={true}
     visible={false}
   >

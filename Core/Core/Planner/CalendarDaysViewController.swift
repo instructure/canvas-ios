@@ -24,8 +24,8 @@ class CalendarDaysViewController: UIViewController {
     static let numberOfDaysInWeek = calendar.maximumRange(of: .weekday)!.count
     var minHeight: CGFloat { weekHeight + 8 }
     var maxHeight: CGFloat { CGFloat(weeksStackView.arrangedSubviews.count) * (weekHeight + weekGap) + 4 }
-    let weekHeight: CGFloat = 40
-    let weekGap: CGFloat = 12
+    var weekHeight: CGFloat { CalendarDayButton.height(isVerticallyShrinked: traitCollection.verticalSizeClass == .compact) }
+    var weekGap: CGFloat { traitCollection.verticalSizeClass == .compact ? 1 : 12 }
 
     var calendar: Calendar { CalendarDaysViewController.calendar }
     weak var delegate: CalendarViewControllerDelegate?
@@ -81,6 +81,15 @@ class CalendarDaysViewController: UIViewController {
         topOffset.constant = -(1 - ratio) * CGFloat(selectedWeekIndex) * (weekHeight + weekGap)
         for (w, week) in weeksStackView.arrangedSubviews.enumerated() {
             week.alpha = w == selectedWeekIndex ? 1 : ratio
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        // Manually refresh the spacing upon rotation
+        if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
+            weeksStackView.spacing = weekGap
         }
     }
 
@@ -165,6 +174,19 @@ class CalendarDayButton: UIButton {
         return formatter
     }()
 
+    private var circleDotSpacing: CGFloat {
+        Self.circleDotSpacing(isVerticallyShrinked: traitCollection.verticalSizeClass == .compact)
+    }
+    private static let circleHeight: CGFloat = 32
+    private static let dotHeight: CGFloat = 4
+    private static func circleDotSpacing(isVerticallyShrinked: Bool) -> CGFloat {
+        isVerticallyShrinked ? 1 : 4
+    }
+    static func height(isVerticallyShrinked: Bool) -> CGFloat {
+        circleHeight + circleDotSpacing(isVerticallyShrinked: isVerticallyShrinked) + dotHeight
+    }
+    private weak var circleDotSpacingConstraint: NSLayoutConstraint?
+
     required init?(coder: NSCoder) { return nil }
 
     init(date: Date, selectedDate: Date, calendar: Calendar) {
@@ -185,7 +207,7 @@ class CalendarDayButton: UIButton {
         addSubview(circleView)
         circleView.isUserInteractionEnabled = false
         circleView.translatesAutoresizingMaskIntoConstraints = false
-        circleView.layer.cornerRadius = 16
+        circleView.layer.cornerRadius = CalendarDayButton.circleHeight / 2
         circleView.layer.borderWidth = 2
 
         addSubview(label)
@@ -199,22 +221,23 @@ class CalendarDayButton: UIButton {
         dotContainer.isUserInteractionEnabled = false
         dotContainer.translatesAutoresizingMaskIntoConstraints = false
 
-        let size: CGFloat = 4
         for _ in 0..<3 {
-            let dot = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+            let dot = UIView(frame: CGRect(x: 0, y: 0, width: Self.dotHeight, height: Self.dotHeight))
             dot.isHidden = true
-            dot.layer.cornerRadius = size / 2
-            dot.widthAnchor.constraint(equalToConstant: size).isActive = true
-            dot.heightAnchor.constraint(equalToConstant: size).isActive = true
+            dot.layer.cornerRadius = Self.dotHeight / 2
+            dot.widthAnchor.constraint(equalToConstant: Self.dotHeight).isActive = true
+            dot.heightAnchor.constraint(equalToConstant: Self.dotHeight).isActive = true
             dotContainer.addArrangedSubview(dot)
         }
 
+        let circleDotSpacingConstraint = bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: circleDotSpacing + Self.dotHeight)
+        self.circleDotSpacingConstraint = circleDotSpacingConstraint
         NSLayoutConstraint.activate([
             circleView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            circleView.widthAnchor.constraint(equalToConstant: 32),
+            circleView.widthAnchor.constraint(equalToConstant: Self.circleHeight),
             circleView.topAnchor.constraint(equalTo: topAnchor),
-            circleView.heightAnchor.constraint(equalToConstant: 32),
-            bottomAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 8),
+            circleView.heightAnchor.constraint(equalToConstant: Self.circleHeight),
+            circleDotSpacingConstraint,
 
             label.centerXAnchor.constraint(equalTo: circleView.centerXAnchor),
             label.centerYAnchor.constraint(equalTo: circleView.centerYAnchor),
@@ -238,6 +261,15 @@ class CalendarDayButton: UIButton {
         )
         for dot in dotContainer.arrangedSubviews {
             dot.backgroundColor = tintColor
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        // Manually refresh constraint upon rotation
+        if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
+            circleDotSpacingConstraint?.constant = circleDotSpacing + Self.dotHeight
         }
     }
 }

@@ -214,6 +214,15 @@ class CalendarViewController: UIViewController {
             })
         })
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        // Manually trigger a calendar height update upon rotation
+        if traitCollection.verticalSizeClass != previousTraitCollection?.verticalSizeClass {
+            updateExpanded()
+        }
+    }
 }
 
 extension CalendarViewController: PagesViewControllerDataSource, PagesViewControllerDelegate {

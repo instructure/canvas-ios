@@ -42,7 +42,8 @@ open class HorizontalMenuViewController: UIViewController {
 
     private var menuCellWidth: CGFloat {
         guard itemCount > 0 else { return 0 }
-        return view.bounds.size.width / CGFloat(itemCount)
+        let safeWidth = view.bounds.size.width - view.safeAreaInsets.left - view.safeAreaInsets.right
+        return safeWidth / CGFloat(itemCount)
     }
 
     override open func viewDidLoad() {
@@ -95,8 +96,6 @@ open class HorizontalMenuViewController: UIViewController {
         assert(delegate != nil)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let width = view.bounds.size.width / CGFloat(itemCount)
-        layout.itemSize = CGSize(width: width, height: menuCellHeight)
         layout.minimumLineSpacing = 0
 
         menu = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -108,7 +107,9 @@ open class HorizontalMenuViewController: UIViewController {
         menu.delegate = self
 
         view.addSubview(menu)
-        menu.pinToLeftAndRightOfSuperview()
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        menu.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         let h = itemCount == 1 && isMultiPage ? 0 : menuCellHeight
         menuHeightConstraint = menu.addConstraintsWithVFL("V:[view(height)]", metrics: ["height": h])?.first
         menu.addConstraintsWithVFL("V:|[view]")
@@ -135,7 +136,9 @@ open class HorizontalMenuViewController: UIViewController {
         }
 
         view.addSubview(pages)
-        pages.pinToLeftAndRightOfSuperview()
+        pages.translatesAutoresizingMaskIntoConstraints = false
+        pages.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        pages.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         pages.addConstraintsWithVFL("V:[menu][view]|", views: ["menu": menu])
     }
 
@@ -145,7 +148,8 @@ open class HorizontalMenuViewController: UIViewController {
         view.addSubview(underlineView)
         let w = view.bounds.size.width / CGFloat(itemCount)
         underlineWidthConstraint = underlineView.addConstraintsWithVFL("H:[view(w)]", metrics: ["w": w])?.first
-        underlineLeftConstraint = underlineView.addConstraintsWithVFL("H:|[view]")?.first
+        underlineLeftConstraint = underlineView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor)
+        underlineLeftConstraint?.isActive = true
         underlineView.addConstraintsWithVFL("V:[view(2)]")
         let bottoms = NSLayoutConstraint(item: underlineView, attribute: .bottom, relatedBy: .equal, toItem: menu, attribute: .bottom, multiplier: 1.0, constant: -1.1)
         view.addConstraint(bottoms)
@@ -217,7 +221,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == menu {
-            return CGSize(width: view.bounds.size.width / CGFloat(itemCount), height: menuCellHeight)
+            return CGSize(width: menuCellWidth, height: menuCellHeight)
         } else {
             return collectionView.bounds.size
         }

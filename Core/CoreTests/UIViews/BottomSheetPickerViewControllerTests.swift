@@ -34,6 +34,7 @@ class BottomSheetPickerViewControllerTests: CoreTestCase {
         XCTAssertFalse(addCalled)
         (controller.stackView.arrangedSubviews[0] as? UIButton)?.sendActions(for: .primaryActionTriggered)
         XCTAssertTrue(addCalled)
+        controller.viewWillLayoutSubviews()
         XCTAssertEqual(controller.view.frame.height, 120)
     }
 }

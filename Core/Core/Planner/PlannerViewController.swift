@@ -49,6 +49,7 @@ public class PlannerViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .backgroundLightest
         navigationItem.titleView = Brand.shared.headerImageView()
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.rightBarButtonItems = [ addNoteButton, todayButton ]
@@ -59,7 +60,12 @@ public class PlannerViewController: UIViewController {
         todayButton.accessibilityIdentifier = "PlannerCalendar.todayButton"
         todayButton.accessibilityLabel = NSLocalizedString("Go to today", bundle: .core, comment: "")
 
-        embed(listPageController, in: view)
+        embed(listPageController, in: view) { listPageController, view in
+            listPageController.view.pin(inside: view, leading: nil, trailing: nil)
+            listPageController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+            listPageController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        }
+
         listPageController.dataSource = self
         listPageController.delegate = self
         listPageController.setCurrentPage(PlannerListViewController.create(

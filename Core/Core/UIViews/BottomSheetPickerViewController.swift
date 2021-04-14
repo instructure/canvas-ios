@@ -45,9 +45,17 @@ public class BottomSheetPickerViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.pin(inside: view, top: 8, bottom: nil)
+        stackView.pin(inside: view, leading: nil, trailing: nil, top: 8, bottom: nil)
+        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        view.frame.size.height = 8
+    }
+
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let topPadding: CGFloat = 8
+        let buttonHeight: CGFloat = 56
+        view.frame.size.height = topPadding + CGFloat(stackView.arrangedSubviews.count) * buttonHeight
     }
 
     public func addAction(image: UIImage?, title: String, accessibilityIdentifier: String? = nil, action: @escaping () -> Void = {}) {
@@ -69,8 +77,6 @@ public class BottomSheetPickerViewController: UIViewController {
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
         }
 
-        button.sizeToFit()
-        view.frame.size.height += button.frame.height
         stackView.addArrangedSubview(button)
         actions.append(BottomSheetAction(action: action, image: image, title: title))
     }
