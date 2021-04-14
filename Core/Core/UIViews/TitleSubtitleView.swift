@@ -41,7 +41,7 @@ public class TitleSubtitleView: UIView {
             }
             return label
         }
-        set {}
+        set { _ = newValue }
     }
 
     public static func create() -> Self {
