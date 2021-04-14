@@ -47,10 +47,7 @@ public class ComposeViewController: UIViewController, ErrorViewController {
     lazy var course: Store<GetCourse>? = {
         guard context.contextType == .course else { return nil }
         return env.subscribe(GetCourse(courseID: context.id)) { [weak self] in
-            if let titleSubtitleView = self?.titleSubtitleView {
-                titleSubtitleView.subtitle = self?.course?.first?.courseCode
-                self?.navigationItem.title = titleSubtitleView.combinedTitle
-            }
+            self?.titleSubtitleView.subtitle = self?.course?.first?.courseCode
         }
     }()
 

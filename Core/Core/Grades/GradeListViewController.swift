@@ -150,7 +150,6 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         guard let course = courses.first else { return }
         color = colorDelegate?.iconColor ?? course.color.ensureContrast(against: .white)
         titleSubtitleView.subtitle = course.name
-        navigationItem.title = titleSubtitleView.combinedTitle
         navigationController?.navigationBar.useContextColor(color)
         view.tintColor = color
     }

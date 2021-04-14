@@ -32,19 +32,24 @@ public class TitleSubtitleView: UIView {
         set { subtitleLabel.text = newValue }
     }
 
-    public var combinedTitle: String? {
-        guard var result = titleLabel.text else { return nil }
+    override public var accessibilityLabel: String? {
+        get {
+            guard var label = titleLabel.text else { return nil }
 
-        if let subtitle = subtitleLabel.text, subtitle != "" {
-            result += ", \(subtitle)"
+            if let subtitle = subtitleLabel.text, subtitle != "" {
+                label += ", \(subtitle)"
+            }
+            return label
         }
-        return result
+        set {}
     }
 
     public static func create() -> Self {
         let view = loadFromXib()
         view.titleLabel.text = ""
         view.subtitleLabel.text = ""
+        view.titleLabel.accessibilityElementsHidden = true
+        view.subtitleLabel.accessibilityElementsHidden = true
         return view
     }
 
