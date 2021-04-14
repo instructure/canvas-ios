@@ -110,7 +110,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         if sources.contains(.documentScan) {
             let item = UITabBarItem(
                 title: NSLocalizedString("Scanner", bundle: .core, comment: ""),
-                image: UIImage(systemName: "doc.text.viewfinder"),
+                image: UIImage(systemName: "doc.text.viewfinder")?.imageWithoutBaseline(),
                 tag: FilePickerSource.documentScan.rawValue
             )
             item.accessibilityIdentifier = "FilePicker.scannerButton"
