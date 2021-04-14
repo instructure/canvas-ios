@@ -63,7 +63,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         }
 
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.layer.bounds
+        updateCameraPreviewOrientation()
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
 
@@ -82,9 +82,13 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         promptContainer.backgroundColor = UIColor.backgroundDarkest.withAlphaComponent(0.9)
         promptContainer.layer.cornerRadius = 8
         view.addSubview(promptContainer)
+        let topPromptConstraint = promptContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80)
+        topPromptConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             promptContainer.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            promptContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            // To prevent getting in front of the guide in landscape mode
+            promptContainer.bottomAnchor.constraint(lessThanOrEqualTo: guide.topAnchor, constant: -15),
+            topPromptConstraint,
         ])
 
         let prompt = UILabel()
@@ -102,11 +106,15 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         cancel.addTarget(self, action: #selector(cancelTapped(_:)), for: .primaryActionTriggered)
         cancel.layer.cornerRadius = 25
         view.addSubview(cancel)
+        let cancelBottomConstraint = cancel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80)
+        cancelBottomConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             cancel.widthAnchor.constraint(equalToConstant: 50),
             cancel.heightAnchor.constraint(equalToConstant: 50),
             cancel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            cancel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            // To prevent getting in front of the guide in landscape mode
+            cancel.topAnchor.constraint(greaterThanOrEqualTo: guide.bottomAnchor, constant: 10),
+            cancelBottomConstraint,
         ])
 
         captureSession.startRunning()
@@ -172,12 +180,25 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         return true
     }
 
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateCameraPreviewOrientation()
     }
 
     @objc func cancelTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+
+    private func updateCameraPreviewOrientation() {
+        previewLayer.frame = view.layer.bounds
+
+        guard
+            let connection = previewLayer.connection,
+            connection.isVideoOrientationSupported,
+            let videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)
+        else { return }
+
+        connection.videoOrientation = videoOrientation
     }
 }
 
