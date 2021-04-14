@@ -190,14 +190,14 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     private func updateCameraPreviewOrientation() {
-        previewLayer.frame = view.layer.bounds
-
         guard
+            let previewLayer = previewLayer,
             let connection = previewLayer.connection,
             connection.isVideoOrientationSupported,
             let videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)
         else { return }
 
+        previewLayer.frame = view.layer.bounds
         connection.videoOrientation = videoOrientation
     }
 }
