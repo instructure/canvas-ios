@@ -397,7 +397,7 @@
                         <constraints>
                             <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" id="0KA-9H-9dZ"/>
-                            <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="80" id="1bY-nP-oVY"/>
+                            <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="100" id="1bY-nP-oVY"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" multiplier="0.5" id="7xe-hU-FAq"/>
                             <constraint firstItem="beI-15-M65" firstAttribute="centerY" secondItem="soV-nE-xVI" secondAttribute="centerY" id="Foj-WX-Jvg"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="bottom" secondItem="NxW-YV-uVK" secondAttribute="bottom" id="M8R-2q-6VO"/>
