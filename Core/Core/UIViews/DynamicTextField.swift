@@ -34,4 +34,9 @@ open class DynamicTextField: UITextField {
             adjustsFontForContentSizeCategory = true
         }
     }
+
+    override public var accessibilityValue: String? {
+        get { return self.text }
+        set { super.accessibilityValue = newValue }
+    }
 }
