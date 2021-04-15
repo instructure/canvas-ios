@@ -44,7 +44,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
-    @IBOutlet weak var scrollviewInsetConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var quizAttemptsLabel: UILabel?
     @IBOutlet weak var quizAttemptsValueLabel: UILabel?
@@ -83,7 +82,6 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var courseID = ""
     let env = AppEnvironment.shared
     var fragment: String?
-    let scrollViewInsetPadding: CGFloat = 24.0
 
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
@@ -329,7 +327,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         if svContent != CGSize.zero {
             let svFrame = scrollView?.frame ?? CGRect.zero
             let originInSV = lockedIconContainerView.superview?.convert(lockedIconContainerView.frame, to: scrollView) ?? CGRect.zero
-            let height = (svFrame.size.height - originInSV.origin.y) - (submitAssignmentButton.bounds.size.height + scrollViewInsetPadding)
+            let height = (svFrame.size.height - originInSV.origin.y) - submitAssignmentButton.bounds.size.height
             lockedIconHeight.constant = max( height, minIconHeight )
             UIView.animate(withDuration: 0.08) {
                 self.lockedIconContainerView?.layoutIfNeeded()
@@ -351,12 +349,16 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     func showSubmitAssignmentButton(title: String?) {
         submitAssignmentButton.setTitle(title, for: .normal)
-        if title != nil {
-            scrollviewInsetConstraint.constant = submitAssignmentButton.bounds.size.height + scrollViewInsetPadding
-            submitAssignmentButton.alpha = 1.0
-        } else {
-            scrollviewInsetConstraint.constant = 0
+
+        if title == nil {
+            scrollView?.scrollIndicatorInsets = .zero
+            scrollView?.contentInset = .zero
             submitAssignmentButton.alpha = 0
+        } else {
+            let inset = UIEdgeInsets(top: 0, left: 0, bottom: submitAssignmentButton.bounds.size.height, right: 0)
+            scrollView?.scrollIndicatorInsets = inset
+            scrollView?.contentInset = inset
+            submitAssignmentButton.alpha = 1.0
         }
     }
 
