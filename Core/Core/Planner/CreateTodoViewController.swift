@@ -72,10 +72,8 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         courseSelectionLabel.textColor = UIColor.textDark
         courseSelectionLabel.accessibilityElementsHidden = true
         courseTitleLabel.accessibilityElementsHidden = true
-        let courseOptionalLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
-        courseTitleLabel.text = courseOptionalLabel
-        selectCourseButton.accessibilityLabel = courseOptionalLabel
-
+        courseTitleLabel.text = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
+        updateCourseAccessibilityLabel()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
         keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
@@ -137,6 +135,10 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         vc.delegate = self
         env.router.show(vc, from: self)
     }
+
+    func updateCourseAccessibilityLabel() {
+        selectCourseButton.accessibilityLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "") + ", " +  (selectedCourseName ?? NSLocalizedString("None", bundle: .core, comment: ""))
+    }
 }
 
 extension CreateTodoViewController: UITextFieldDelegate {
@@ -152,6 +154,7 @@ extension CreateTodoViewController: SelectCourseProtocol {
         selectedCourse = course
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDarkest
+        updateCourseAccessibilityLabel()
         env.router.pop(from: self)
     }
 
@@ -159,6 +162,7 @@ extension CreateTodoViewController: SelectCourseProtocol {
         selectedCourse = nil
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
+        updateCourseAccessibilityLabel()
         env.router.pop(from: self)
     }
 }
