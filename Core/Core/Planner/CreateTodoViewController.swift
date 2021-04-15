@@ -137,7 +137,9 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     }
 
     func updateCourseAccessibilityLabel() {
-        selectCourseButton.accessibilityLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "") + ", " +  (selectedCourseName ?? NSLocalizedString("None", bundle: .core, comment: ""))
+        let courseLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
+        let courseName = selectedCourseName ?? NSLocalizedString("None", bundle: .core, comment: "")
+        selectCourseButton.accessibilityLabel = courseLabel + ", " + courseName
     }
 }
 
