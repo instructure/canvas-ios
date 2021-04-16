@@ -78,6 +78,7 @@ public struct PageEditorView: View {
                         .font(.regular16).foregroundColor(.textDarkest)
                         .padding(16)
                         .identifier("PageEditor.titleField")
+                        .accessibility(label: Text("Title"))
                 }
             } else {
                 Text(title)

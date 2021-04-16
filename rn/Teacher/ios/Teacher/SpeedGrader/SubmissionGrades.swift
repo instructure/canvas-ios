@@ -268,6 +268,7 @@ struct SubmissionGrades: View {
                 field.text = submission.excused == true ? NSLocalizedString("Excused", comment: "") :
                     hasLateDeduction ? submission.enteredGrade : submission.grade
                 field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
+                field.accessibilityLabel = NSLocalizedString("Grade", comment: "")
             }
         }
         prompt.addAction(AlertAction(NSLocalizedString("No Grade", comment: "")) { _ in saveGrade("") })

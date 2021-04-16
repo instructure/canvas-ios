@@ -166,6 +166,7 @@ extension SubmissionFilterPickerViewController: UITableViewDataSource, UITableVi
             )
             prompt.addTextField { field in
                 field.keyboardType = .decimalPad
+                field.accessibilityLabel = NSLocalizedString("Points", comment: "")
             }
             prompt.addAction(AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel))
             prompt.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default) { [weak self] _ in

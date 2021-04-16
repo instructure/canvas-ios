@@ -41,6 +41,7 @@ class UrlSubmissionViewController: UIViewController {
         view.backgroundColor = .backgroundLightest
         loadingView?.backgroundColor = .backgroundLightest
         title = NSLocalizedString("Website Address", comment: "")
+        textField.accessibilityLabel = title
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", comment: ""), style: .plain, target: self, action: #selector(submit))
         navigationItem.rightBarButtonItem?.accessibilityIdentifier = "URLSubmission.submit"

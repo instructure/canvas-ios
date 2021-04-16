@@ -140,6 +140,7 @@ public struct DiscussionEditorView: View {
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("DiscussionEditor.titleField")
+                    .accessibility(label: Text("Title"))
             }
 
             EditorSection(label: Text("Description", bundle: .core)) {
