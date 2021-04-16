@@ -277,7 +277,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
             { Boolean(this.props.showCourseSelect) &&
-              <TouchableHighlight testID='compose.course-select' underlayColor='#ffffff00' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined}>
+              <TouchableHighlight testID='compose.course-select' underlayColor='#ffffff00' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined} accessibilityLabel={i18n('Select a Course')} accessibilityTraits={['button']} accessibilityValue={{text: this.state.contextName}} accessible={this.props.canSelectCourse}>
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
                     { this.state.contextName || i18n('Select a Course') }
@@ -323,6 +323,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 onChangeText={this._subjectChanged}
                 editable={this.props.canEditSubject}
                 testID='compose-message.subject-text-input'
+                accessibilityLabel={i18n('Subject')}
               />
             </View>
             { !this.props.onlySendIndividualMessages && !this.props.conversationID && !this.props.instructorQuestion &&
@@ -342,6 +343,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
               testID='compose-message.body-text-input'
               multiline={true}
               scrollEnabled={false}
+              accessibilityLabel={i18n('Message body')}
             />
             {this.props.includedMessages &&
               <View testID='compose.forwarded-message' style={styles.forwardedMessage}>

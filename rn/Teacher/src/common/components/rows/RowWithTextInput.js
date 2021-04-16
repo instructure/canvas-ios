@@ -34,6 +34,7 @@ type Props = RowProps & {
   inputWidth?: number, // only applies with title, default is 50
   inputHeight?: number, // only applies with title, default is 50
   placeholder?: ?string,
+  accessibilityLabel?: ?string,
   keyboardType?: string,
   onFocus?: Function,
 }
@@ -96,6 +97,7 @@ export default class RowWithTextInput extends Component<Props, any> {
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}
         onFocus={this.props.onFocus}
+        accessibilityLabel={this.props.accessibilityLabel}
         ref={input => { this.input = input }}
       />
     )

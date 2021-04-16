@@ -163,6 +163,7 @@ export class QuizEdit extends Component<Props, any> {
               border='both'
               onChangeText={this._updateQuiz('title')}
               placeholder={i18n('Title')}
+              accessibilityLabel={i18n('Title')}
             />
             <RequiredFieldSubscript title={i18n('A title is required')} visible={!this.state.validation.title} />
 
