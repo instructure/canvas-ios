@@ -90,6 +90,7 @@ public struct PageEditorView: View {
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
+                    a11yLabel: NSLocalizedString("Page content", bundle: .core, comment: ""),
                     html: $html,
                     context: context,
                     uploadTo: .context(context),

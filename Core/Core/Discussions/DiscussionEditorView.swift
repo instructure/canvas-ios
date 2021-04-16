@@ -146,6 +146,7 @@ public struct DiscussionEditorView: View {
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add description", comment: ""),
+                    a11yLabel: NSLocalizedString("Description", comment: ""),
                     html: $message,
                     context: context,
                     uploadTo: .context(context),

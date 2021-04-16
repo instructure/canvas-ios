@@ -172,7 +172,8 @@ export class QuizEdit extends Component<Props, any> {
                 ref={(r) => { this.editor = r }}
                 onFocus={this._scrollToRCE}
                 html={this.state.quiz.description}
-                placeholder={i18n('Description')}
+                placeholder={i18n('Add description')}
+                a11yLabel={i18n('Description')}
                 uploadContext={`courses/${this.props.courseID}/files`}
                 context={`courses/${this.props.courseID}`}
               />

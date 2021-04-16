@@ -103,6 +103,7 @@ public struct AssignmentEditorView: View {
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add description", comment: ""),
+                    a11yLabel: NSLocalizedString("Description", comment: ""),
                     html: $description,
                     context: .course(courseID),
                     uploadTo: .context(.course(courseID)),
