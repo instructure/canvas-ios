@@ -70,6 +70,7 @@ extension UITextView {
             let placeholderLabel = self.placeholderLabel
             placeholderLabel.text = newValue
             placeholderLabel.numberOfLines = 0
+            placeholderLabel.accessibilityElementsHidden = true
             resizePlaceholder()
             textStorage.delegate = self
         }

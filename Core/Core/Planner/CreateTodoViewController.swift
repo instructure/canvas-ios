@@ -23,6 +23,7 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var titleLabel: DynamicTextField!
     @IBOutlet weak var dateTitleLabel: DynamicLabel!
     @IBOutlet weak var dateTextField: DynamicTextField!
+    @IBOutlet weak var selectDateButton: UIButton!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var courseTitleLabel: DynamicLabel!
     @IBOutlet weak var courseSelectionLabel: DynamicLabel!
@@ -55,16 +56,24 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         title = NSLocalizedString("New To Do", bundle: .core, comment: "")
         titleLabel.placeholder = NSLocalizedString("Title...", bundle: .core, comment: "")
         titleLabel.delegate = self
+        titleLabel.accessibilityLabel = NSLocalizedString("Title", bundle: .core, comment: "")
         dateTitleLabel.text = NSLocalizedString("Date", bundle: .core, comment: "")
+        dateTitleLabel.accessibilityElementsHidden = true
         if descTextView.responds(to: #selector(setter: UITextField.placeholder)) {  // without this check, it fails unit tests
             descTextView.setValue(NSLocalizedString("Description", bundle: .core, comment: ""), forKey: "placeholder")
         }
         descTextView.font = UIFont.scaledNamedFont(.regular16)
         descTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        descTextView.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
         dateTextField.text = formattedDate
+        dateTextField.accessibilityElementsHidden = true
+        selectDateButton.accessibilityLabel = NSLocalizedString("Date", bundle: .core, comment: "")
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
-
+        courseSelectionLabel.accessibilityElementsHidden = true
+        courseTitleLabel.accessibilityElementsHidden = true
+        courseTitleLabel.text = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
+        updateCourseAccessibilityLabel()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .plain, target: self, action: #selector(actionCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Done", bundle: .core, comment: ""), style: .done, target: self, action: #selector(actionDone))
         keyboardListener = KeyboardTransitioning(view: view, space: scrollViewBottomConstraint)
@@ -126,6 +135,12 @@ public class CreateTodoViewController: UIViewController, ErrorViewController {
         vc.delegate = self
         env.router.show(vc, from: self)
     }
+
+    func updateCourseAccessibilityLabel() {
+        let courseLabel = NSLocalizedString("Course (optional)", bundle: .core, comment: "")
+        let courseName = selectedCourseName ?? NSLocalizedString("None", bundle: .core, comment: "")
+        selectCourseButton.accessibilityLabel = courseLabel + ", " + courseName
+    }
 }
 
 extension CreateTodoViewController: UITextFieldDelegate {
@@ -141,6 +156,7 @@ extension CreateTodoViewController: SelectCourseProtocol {
         selectedCourse = course
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDarkest
+        updateCourseAccessibilityLabel()
         env.router.pop(from: self)
     }
 
@@ -148,6 +164,7 @@ extension CreateTodoViewController: SelectCourseProtocol {
         selectedCourse = nil
         courseSelectionLabel.text = selectedCourseName
         courseSelectionLabel.textColor = UIColor.textDark
+        updateCourseAccessibilityLabel()
         env.router.pop(from: self)
     }
 }
