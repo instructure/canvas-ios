@@ -22,15 +22,8 @@ public struct SideMenu: View {
     
     @Environment(\.appEnvironment) var env
     @ObservedObject var profile: Store<GetUserProfile>
-    
-    @State var versionText = ""
-    
+
     let enrollment: HelpLinkEnrollment
-    #if DEBUG
-    @State var showDevMenu = true
-    #else
-    @State var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
-    #endif
     
     public init(_ enrollment: HelpLinkEnrollment) {
         self.enrollment = enrollment
@@ -49,7 +42,7 @@ public struct SideMenu: View {
                 Divider()
                 BottomSection(enrollment)
                 Spacer()
-                FooterView(title: versionText)
+                FooterView()
             }.padding(0)
         }
     }
@@ -173,11 +166,7 @@ private struct OptionsSection: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if #available(iOS 14, *) {
-                SubHeaderView(title: Text("Options", bundle: .core).textCase(.uppercase) as! Text)
-            } else {
-                SubHeaderView(title: Text("Options", bundle: .core))
-            }
+            SubHeaderView(title: Text("OPTIONS", bundle: .core))
             if enrollment == .student {
                 let showGrades = env.userDefaults?.showGradesOnDashboard == true
                 ToggleItem(image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: showGrades) {
@@ -319,13 +308,51 @@ private struct BottomSection: View {
 
 private struct FooterView: View {
     
-    var title: String
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var controller
+    
+    #if DEBUG
+    @State var showDevMenu = true
+    #else
+    @State var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
+    #endif
+    
+    var dashboard: UIViewController {
+        guard var dashboard = controller.value.presentingViewController else {
+            return UIViewController()
+        }
+        if let tabs = dashboard as? UITabBarController {
+            dashboard = tabs.selectedViewController ?? tabs
+        }
+        if let split = dashboard as? UISplitViewController {
+            dashboard = split.viewControllers.first ?? split
+        }
+        
+        return dashboard
+    }
     
     var body: some View {
-        HStack {
-            Text(title).padding(.leading, 10).font(.regular14).foregroundColor(.ash)
-            Spacer()
-        }.padding().frame(height: 30)
+        VStack(spacing: 0) {
+            if showDevMenu {
+                Divider()
+                MenuItem(image: .settingsLine, title: Text("Developer menu", bundle: .core)).onTapGesture {
+                    route(to: "/dev-menu", options: .modal(embedInNav: true))
+                }
+            }
+            if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+                HStack {
+                    Text("v. \(version)").padding(.leading, 10).font(.regular14).foregroundColor(.ash)
+                    Spacer()
+                }.padding().frame(height: 30)
+            }
+        }
+    }
+    
+    func route(to: String, options: RouteOptions = .push) {
+        let dashboard = self.dashboard
+        env.router.dismiss(controller) {
+            self.env.router.route(to: to, from: dashboard, options: options)
+        }
     }
 }
 
