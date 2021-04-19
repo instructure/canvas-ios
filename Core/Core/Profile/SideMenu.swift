@@ -347,12 +347,15 @@ private struct HeaderView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            Avatar(name: initials, url: avatarURL, size: 72)
+            let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
+            Avatar(name: initials, url: avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
                     if canUpdateAvatar {
                         isShowingActionSheet = true
                     }
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibility(label: avatarLabel)
                 .actionSheet(isPresented: $isShowingActionSheet) {
                     ActionSheet(title: Text("Choose Profile Picture", bundle: .core), buttons: [
                                     .default(Text("Take Photo", bundle: .core)) {
@@ -484,7 +487,7 @@ private struct ToggleItem: View {
     
     var body: some View {
         HStack(spacing: 20) {
-            image
+            image.accessibility(hidden: true)
             let toggleBinding = Binding(get: { isOn }, set: { newValue in
                 isOn = newValue
                 onToggle(newValue)
@@ -501,7 +504,6 @@ private struct ToggleItem: View {
         .padding(20)
         .frame(height: 48)
         .contentShape(Rectangle())
-        .accessibilityElement(children: .ignore)
         .accessibility(label: title)
     }
 }
