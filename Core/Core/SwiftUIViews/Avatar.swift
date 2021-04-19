@@ -22,24 +22,26 @@ public struct Avatar: View {
     public let initials: String
     public let url: URL?
     public let size: CGFloat
+    private let isAccessible: Bool
 
-    public init(name: String?, url: URL?, size: CGFloat = 40) {
+    public init(name: String?, url: URL?, size: CGFloat = 40, isAccessible: Bool = false) {
         initials = Avatar.initials(for: name ?? "")
         self.url = Avatar.scrubbedURL(url)
         self.size = size
+        self.isAccessible = isAccessible
     }
 
     public var body: some View {
         if let url = url {
             RemoteImage(url, width: size, height: size)
                 .aspectRatio(contentMode: .fill)
-                .accessibility(hidden: true)
+                .accessibility(hidden: !isAccessible)
                 .background(Color.backgroundLight)
                 .cornerRadius(size / 2)
                 .testID("Avatar.imageView")
         } else {
             Text(initials)
-                .accessibility(hidden: true)
+                .accessibility(hidden: !isAccessible)
                 .allowsTightening(true)
                 .font(.system(size: size / 2.25, weight: .semibold))
                 .foregroundColor(.textDark)
