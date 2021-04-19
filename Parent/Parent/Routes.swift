@@ -87,7 +87,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/profile") { _, _, _ in
-        return ProfileViewController.create(enrollment: .observer)
+        return CoreHostingController(SideMenu(.observer), isDrawer: true)
     },
 
     RouteHandler("/profile/observees") { _, _, _ in

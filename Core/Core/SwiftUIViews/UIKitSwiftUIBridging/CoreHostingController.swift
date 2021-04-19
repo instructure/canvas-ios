@@ -26,9 +26,14 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
     var testTree: TestTree?
 
-    public init(_ rootView: Content) {
+    public init(_ rootView: Content, isDrawer: Bool = false) {
         let ref = WeakViewController()
         super.init(rootView: CoreHostingBaseView(content: rootView, controller: ref))
+        if isDrawer {
+            self.modalPresentationStyle = .custom
+            self.modalPresentationCapturesStatusBarAppearance = true
+            self.transitioningDelegate = DrawerTransitioningDelegate.shared
+        }
         ref.setValue(self)
     }
 
