@@ -277,7 +277,16 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
             { Boolean(this.props.showCourseSelect) &&
-              <TouchableHighlight testID='compose.course-select' underlayColor='#ffffff00' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : undefined} accessibilityLabel={i18n('Select a Course')} accessibilityTraits={['button']} accessibilityValue={text: this.state.contextName} accessible={this.props.canSelectCourse}>
+              <TouchableHighlight
+                testID='compose.course-select'
+                underlayColor='#ffffff00'
+                style={styles.wrapper}
+                onPress={this.props.canSelectCourse ? this.selectCourse : undefined}
+                accessibilityLabel={i18n('Select a Course')}
+                accessibilityTraits={['button']}
+                accessibilityValue={{ text: this.state.contextName }}
+                accessible={this.props.canSelectCourse}
+              >
                 <View style={styles.courseSelect}>
                   <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
                     { this.state.contextName || i18n('Select a Course') }
