@@ -42,9 +42,9 @@ public struct SideMenu: View {
                 Divider()
                 BottomSection(enrollment)
                 Spacer()
-                FooterView()
-            }.padding(0)
+            }
         }
+        FooterView()
     }
     
     @ViewBuilder
@@ -203,6 +203,12 @@ private struct BottomSection: View {
         return dashboard
     }
     
+    #if DEBUG
+    @State var showDevMenu = true
+    #else
+    @State var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
+    #endif
+    
     var canActAsUser: Bool {
         if env.currentSession?.baseURL.host?.hasPrefix("siteadmin.") == true {
             return true
@@ -250,6 +256,12 @@ private struct BottomSection: View {
             } else {
                 MenuItem(image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0).onTapGesture {
                     handleLogout()
+                }
+            }
+            
+            if showDevMenu {
+                MenuItem(image: .settingsLine, title: Text("Developer menu", bundle: .core)).onTapGesture {
+                    route(to: "/dev-menu", options: .modal(embedInNav: true))
                 }
             }
         }
@@ -308,50 +320,12 @@ private struct BottomSection: View {
 
 private struct FooterView: View {
     
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
-    
-    #if DEBUG
-    @State var showDevMenu = true
-    #else
-    @State var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
-    #endif
-    
-    var dashboard: UIViewController {
-        guard var dashboard = controller.value.presentingViewController else {
-            return UIViewController()
-        }
-        if let tabs = dashboard as? UITabBarController {
-            dashboard = tabs.selectedViewController ?? tabs
-        }
-        if let split = dashboard as? UISplitViewController {
-            dashboard = split.viewControllers.first ?? split
-        }
-        
-        return dashboard
-    }
-    
     var body: some View {
-        VStack(spacing: 0) {
-            if showDevMenu {
-                Divider()
-                MenuItem(image: .settingsLine, title: Text("Developer menu", bundle: .core)).onTapGesture {
-                    route(to: "/dev-menu", options: .modal(embedInNav: true))
-                }
-            }
-            if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-                HStack {
-                    Text("v. \(version)").padding(.leading, 10).font(.regular14).foregroundColor(.ash)
-                    Spacer()
-                }.padding().frame(height: 30)
-            }
-        }
-    }
-    
-    func route(to: String, options: RouteOptions = .push) {
-        let dashboard = self.dashboard
-        env.router.dismiss(controller) {
-            self.env.router.route(to: to, from: dashboard, options: options)
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            HStack {
+                Text("v. \(version)").padding(.leading, 10).font(.regular14).foregroundColor(.ash)
+                Spacer()
+            }.padding().frame(height: 30)
         }
     }
 }
@@ -479,6 +453,7 @@ private struct MenuItem: View {
         }
         .padding(20)
         .frame(height: 48)
+        .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibility(label: title)
     }
@@ -525,6 +500,9 @@ private struct ToggleItem: View {
         }
         .padding(20)
         .frame(height: 48)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibility(label: title)
     }
 }
 
