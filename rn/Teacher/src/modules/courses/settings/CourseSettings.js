@@ -128,7 +128,7 @@ export class CourseSettings extends Component<Props, State> {
             </View>
             <View style={styles.row}>
               <View style={styles.rowContent}>
-                <Text style={styles.primaryText} testID='course-settings.name-lbl'>
+                <Text style={styles.primaryText} testID='course-settings.name-lbl' accessible={false}>
                   {i18n('Name')}
                 </Text>
                 <TextInput
@@ -136,6 +136,7 @@ export class CourseSettings extends Component<Props, State> {
                   style={styles.inputText}
                   onChangeText={(text) => this.setState({ name: text })}
                   testID='course-settings.name-input-textbox'
+                  accessibilityLabel={i18n('Name')}
                 />
               </View>
             </View>

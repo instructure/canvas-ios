@@ -78,6 +78,7 @@ public struct PageEditorView: View {
                         .font(.regular16).foregroundColor(.textDarkest)
                         .padding(16)
                         .identifier("PageEditor.titleField")
+                        .accessibility(label: Text("Title"))
                 }
             } else {
                 Text(title)
@@ -89,6 +90,7 @@ public struct PageEditorView: View {
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
+                    a11yLabel: NSLocalizedString("Page content", bundle: .core, comment: ""),
                     html: $html,
                     context: context,
                     uploadTo: .context(context),

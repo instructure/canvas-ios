@@ -72,6 +72,7 @@ public struct SyllabusEditorView: View {
             EditorSection(label: Text("Content", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add content", bundle: .core, comment: ""),
+                    a11yLabel: NSLocalizedString("Syllabus content", bundle: .core, comment: ""),
                     html: $html,
                     context: context,
                     uploadTo: .context(context),

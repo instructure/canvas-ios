@@ -35,6 +35,7 @@ RCT_EXPORT_VIEW_PROPERTY(context, NSString)
 RCT_EXPORT_VIEW_PROPERTY(html, NSString)
 RCT_EXPORT_VIEW_PROPERTY(onFocus, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(placeholder, NSString)
+RCT_EXPORT_VIEW_PROPERTY(a11yLabel, NSString)
 RCT_EXPORT_VIEW_PROPERTY(uploadContext, NSString)
 
 RCT_EXPORT_METHOD(getHTML:(nonnull NSNumber *)reactTag resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {

@@ -163,6 +163,7 @@ export class QuizEdit extends Component<Props, any> {
               border='both'
               onChangeText={this._updateQuiz('title')}
               placeholder={i18n('Title')}
+              accessibilityLabel={i18n('Title')}
             />
             <RequiredFieldSubscript title={i18n('A title is required')} visible={!this.state.validation.title} />
 
@@ -172,7 +173,8 @@ export class QuizEdit extends Component<Props, any> {
                 ref={(r) => { this.editor = r }}
                 onFocus={this._scrollToRCE}
                 html={this.state.quiz.description}
-                placeholder={i18n('Description')}
+                placeholder={i18n('Add description')}
+                a11yLabel={i18n('Description')}
                 uploadContext={`courses/${this.props.courseID}/files`}
                 context={`courses/${this.props.courseID}`}
               />

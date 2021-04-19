@@ -104,6 +104,7 @@ exports[`QuizEdit changes assignment group 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -152,10 +153,11 @@ exports[`QuizEdit changes assignment group 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -1886,6 +1888,7 @@ exports[`QuizEdit changes quiz type 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -1934,10 +1937,11 @@ exports[`QuizEdit changes quiz type 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -3674,6 +3678,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -3722,10 +3727,11 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -5671,6 +5677,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -5719,10 +5726,11 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -7705,6 +7713,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -7753,10 +7762,11 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -9468,6 +9478,7 @@ exports[`QuizEdit renders 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -9516,10 +9527,11 @@ exports[`QuizEdit renders 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -11268,6 +11280,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -11316,10 +11329,11 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="html"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -13083,6 +13097,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue=""
               onChangeText={[Function]}
               placeholder="Title"
@@ -13159,10 +13174,11 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -14911,6 +14927,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -14959,10 +14976,11 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -17051,6 +17069,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -17099,10 +17118,11 @@ exports[`QuizEdit saving password displays banner 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -18959,6 +18979,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -19007,10 +19028,11 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -20772,6 +20794,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -20820,10 +20843,11 @@ exports[`QuizEdit shows modal while saving 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -22535,6 +22559,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -22583,10 +22608,11 @@ exports[`QuizEdit shows quiz time picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -24323,6 +24349,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -24371,10 +24398,11 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -26187,6 +26215,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -26235,10 +26264,11 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -28051,6 +28081,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -28099,10 +28130,11 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -29915,6 +29947,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -29963,10 +29996,11 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -31678,6 +31712,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -31726,10 +31761,11 @@ exports[`QuizEdit toggles "access code" 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -33558,6 +33594,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -33606,10 +33643,11 @@ exports[`QuizEdit toggles "access code" 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -35321,6 +35359,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -35369,10 +35408,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -37364,6 +37404,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -37412,10 +37453,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -39400,6 +39442,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -39448,10 +39491,11 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -41163,6 +41207,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -41211,10 +41256,11 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -43027,6 +43073,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -43075,10 +43122,11 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -44790,6 +44838,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -44838,10 +44887,11 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -46553,6 +46603,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -46601,10 +46652,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -48596,6 +48648,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -48644,10 +48697,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -50632,6 +50686,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -50680,10 +50735,11 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -52395,6 +52451,7 @@ exports[`QuizEdit toggles publish 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -52443,10 +52500,11 @@ exports[`QuizEdit toggles publish 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -54158,6 +54216,7 @@ exports[`QuizEdit toggles publish 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -54206,10 +54265,11 @@ exports[`QuizEdit toggles publish 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -55921,6 +55981,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -55969,10 +56030,11 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -57684,6 +57746,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -57732,10 +57795,11 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -59447,6 +59511,7 @@ exports[`QuizEdit toggles time limit 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -59495,10 +59560,11 @@ exports[`QuizEdit toggles time limit 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -61329,6 +61395,7 @@ exports[`QuizEdit toggles time limit 2`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -61377,10 +61444,11 @@ exports[`QuizEdit toggles time limit 2`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -63093,6 +63161,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -63141,10 +63210,11 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>
@@ -65136,6 +65206,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
             }
           >
             <TextInput
+              accessibilityLabel="Title"
               defaultValue="Quiz 1"
               onChangeText={[Function]}
               placeholder="Title"
@@ -65184,10 +65255,11 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
         }
       >
         <RichContentEditor
+          a11yLabel="Description"
           context="courses/1"
           html="This is quiz 1"
           onFocus={[Function]}
-          placeholder="Description"
+          placeholder="Add description"
           uploadContext="courses/1/files"
         />
       </View>

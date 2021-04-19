@@ -37,6 +37,12 @@ public class RichContentEditorViewController: UIViewController {
             webView.evaluateJavaScript("content.setAttribute('placeholder', \(CoreWebView.jsString(placeholder)))")
         }
     }
+    public var a11yLabel: String = "" {
+        didSet {
+            webView.evaluateJavaScript("content.setAttribute('aria-label', \(CoreWebView.jsString(a11yLabel)))")
+        }
+    }
+
     var selection: CGRect = .zero
     public var context = Context.currentUser
     public var uploadContext = FileUploadContext.myFiles
@@ -92,7 +98,7 @@ public class RichContentEditorViewController: UIViewController {
                 font-size: \(UIFont.scaledNamedFont(.medium16).pointSize)px;
             }
             </style>
-            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\"></div>
+            <div id="content" contenteditable=\"true\" placeholder=\"\(placeholder)\" aria-label=\"\(a11yLabel)\"></div>
         """)
     }
 

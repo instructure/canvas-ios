@@ -71,6 +71,7 @@ public struct EditorSection<Label: View, Content: View>: View {
             .font(.semibold14).foregroundColor(.textDark)
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             .accessibility(hidden: !hasLabel)
+            .accessibility(addTraits: .isHeader)
         Divider()
         content.background(Color.backgroundLightest)
         Divider()

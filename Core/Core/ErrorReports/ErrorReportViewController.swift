@@ -98,20 +98,28 @@ public class ErrorReportViewController: UIViewController {
 
         emailField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
         emailLabel?.text = NSLocalizedString("Your Email", bundle: .core, comment: "")
+        emailLabel?.accessibilityElementsHidden = true
         if let email = AppEnvironment.shared.currentSession?.userEmail, !email.isEmpty {
             emailField?.text = email
             emailView?.isHidden = true
         }
+        emailField?.accessibilityLabel = NSLocalizedString("Email address", bundle: .core, comment: "")
 
         subjectField?.textAlignment = view.effectiveUserInterfaceLayoutDirection == .rightToLeft ? .left : .right
         subjectField?.text = initialSubject
-        subjectLabel?.text = NSLocalizedString("Subject", bundle: .core, comment: "")
+        let subjectLabelText = NSLocalizedString("Subject", bundle: .core, comment: "")
+        subjectLabel?.text = subjectLabelText
+        subjectLabel?.accessibilityElementsHidden = true
+        subjectField?.accessibilityLabel = subjectLabelText
 
         impactButton?.setTitle(NSLocalizedString("Select One", bundle: .core, comment: ""), for: .normal)
+        impactButton?.accessibilityLabel = NSLocalizedString("Select Impact", bundle: .core, comment: "")
         impactLabel?.text = NSLocalizedString("Impact", bundle: .core, comment: "")
+        impactLabel?.accessibilityElementsHidden = true
 
         commentsField?.textColor = .textDarkest
         commentsField?.textContainerInset = UIEdgeInsets(top: 11.5, left: 11, bottom: 11, right: 11)
+        commentsField?.accessibilityLabel = NSLocalizedString("Description", bundle: .core, comment: "")
 
         commentsMinHeight = commentsField?.heightAnchor.constraint(greaterThanOrEqualTo: scrollView!.heightAnchor)
         commentsMinHeight?.isActive = true
@@ -175,7 +183,9 @@ extension ErrorReportViewController: ItemPickerDelegate {
 
     public func itemPicker(_ itemPicker: ItemPickerViewController, didSelectRowAt indexPath: IndexPath) {
         selectedImpact = indexPath
-        impactButton?.setTitle(impacts[indexPath.section].items[indexPath.row].title, for: .normal)
+        let impactTitle = impacts[indexPath.section].items[indexPath.row].title
+        impactButton?.setTitle(impactTitle, for: .normal)
+        impactButton?.accessibilityValue = impactTitle
         updateSendButton()
     }
 }

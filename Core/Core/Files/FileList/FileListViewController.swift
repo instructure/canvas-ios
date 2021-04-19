@@ -328,6 +328,7 @@ extension FileListViewController: FilePickerDelegate {
         let prompt = UIAlertController(title: NSLocalizedString("Add Folder", bundle: .core, comment: ""), message: nil, preferredStyle: .alert)
         prompt.addTextField { field in
             field.placeholder = NSLocalizedString("Name", bundle: .core, comment: "")
+            field.accessibilityLabel = NSLocalizedString("Folder Name", bundle: .core, comment: "")
         }
         prompt.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
         prompt.addAction(AlertAction(NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in

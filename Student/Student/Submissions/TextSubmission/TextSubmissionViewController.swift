@@ -52,6 +52,7 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
 
         editor.delegate = self
         editor.placeholder = NSLocalizedString("Write...", bundle: .student, comment: "Text submission editor placeholder")
+        editor.a11yLabel = NSLocalizedString("Submission text", bundle: .student, comment: "Text submission editor accessibility label")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
     }
