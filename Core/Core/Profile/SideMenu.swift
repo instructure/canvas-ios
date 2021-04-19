@@ -365,7 +365,7 @@ private struct HeaderView: View {
                 .foregroundColor(.ash)
         }.padding(20).frame(height: 185).onAppear {
             env.api.makeRequest(GetUserRequest(userID: "self")) {user, _, _ in
-                canUpdateAvatar = user?.permissions?.can_update_avatar == false
+                canUpdateAvatar = user?.permissions?.can_update_avatar == true
             }
         }
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
