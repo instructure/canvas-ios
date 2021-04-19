@@ -68,6 +68,18 @@ exports[`Compose renders 1`] = `
       }
     >
       <ForwardRef
+        accessibilityLabel="Select a Course"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessibilityValue={
+          Object {
+            "text": null,
+          }
+        }
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -116,6 +128,7 @@ exports[`Compose renders 1`] = `
         }
       >
         <TextInput
+          accessibilityLabel="Subject"
           allowFontScaling={true}
           editable={true}
           onChangeText={[Function]}
@@ -153,6 +166,7 @@ exports[`Compose renders 1`] = `
         value={false}
       />
       <TextInput
+        accessibilityLabel="Message body"
         allowFontScaling={true}
         multiline={true}
         onChangeText={[Function]}
@@ -247,6 +261,18 @@ exports[`Compose renders after picking a course 1`] = `
       }
     >
       <ForwardRef
+        accessibilityLabel="Select a Course"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessibilityValue={
+          Object {
+            "text": "Learn React Native",
+          }
+        }
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -377,6 +403,7 @@ exports[`Compose renders after picking a course 1`] = `
         }
       >
         <TextInput
+          accessibilityLabel="Subject"
           allowFontScaling={true}
           editable={true}
           onChangeText={[Function]}
@@ -414,6 +441,7 @@ exports[`Compose renders after picking a course 1`] = `
         value={false}
       />
       <TextInput
+        accessibilityLabel="Message body"
         allowFontScaling={true}
         multiline={true}
         onChangeText={[Function]}
@@ -508,6 +536,18 @@ exports[`Compose renders reply 1`] = `
       }
     >
       <ForwardRef
+        accessibilityLabel="Select a Course"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessibilityValue={
+          Object {
+            "text": "Course 1",
+          }
+        }
+        accessible={false}
         style={
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -636,6 +676,7 @@ exports[`Compose renders reply 1`] = `
         }
       >
         <TextInput
+          accessibilityLabel="Subject"
           allowFontScaling={true}
           editable={false}
           onChangeText={[Function]}
@@ -673,6 +714,7 @@ exports[`Compose renders reply 1`] = `
         value={false}
       />
       <TextInput
+        accessibilityLabel="Message body"
         allowFontScaling={true}
         multiline={true}
         onChangeText={[Function]}
@@ -767,6 +809,18 @@ exports[`Compose renders with passed in recipients 1`] = `
       }
     >
       <ForwardRef
+        accessibilityLabel="Select a Course"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessibilityValue={
+          Object {
+            "text": null,
+          }
+        }
+        accessible={true}
         onPress={[Function]}
         style={
           Object {
@@ -815,6 +869,7 @@ exports[`Compose renders with passed in recipients 1`] = `
         }
       >
         <TextInput
+          accessibilityLabel="Subject"
           allowFontScaling={true}
           editable={true}
           onChangeText={[Function]}
@@ -852,6 +907,7 @@ exports[`Compose renders with passed in recipients 1`] = `
         value={false}
       />
       <TextInput
+        accessibilityLabel="Message body"
         allowFontScaling={true}
         multiline={true}
         onChangeText={[Function]}
