@@ -99,23 +99,23 @@ private struct MainSection: View {
     var body: some View {
         VStack(spacing: 0) {
             if enrollment == .observer {
-                MenuItem(image: .emailLine, title: "Inbox", badgeValue: unreadCount).onAppear {
+                MenuItem(image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: unreadCount).onAppear {
                     env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in
                         self.unreadCount = response?.unread_count ?? 0
                     }
                 }
                 
-                MenuItem(image: .groupLine, title: "Manage Students").onTapGesture {
+                MenuItem(image: .groupLine, title: Text("Manage Students", bundle: .core)).onTapGesture {
                     route(to: "/profile/observees")
                 }
             } else {
-                MenuItem(image: .folderLine, title: "Files").onTapGesture {
+                MenuItem(image: .folderLine, title: Text("Files", bundle: .core)).onTapGesture {
                     route(to: "/users/self/files")
                 }
                 
                 ForEach(Array(tools), id: \.self) { tool in
                     MenuItem(image: imageForDomain(tool.domain),
-                             title: tool.title).onTapGesture {
+                             title: Text("\(tool.title)", bundle: .core)).onTapGesture {
                                 launchLTI(url: tool.url)
                              }
                 }
@@ -123,7 +123,7 @@ private struct MainSection: View {
             
             if enrollment == .student || enrollment == .teacher {
                 MenuItem(image: Image("settings", bundle: .core),
-                         title: "Settings", badgeValue: 0).onTapGesture {
+                         title: Text("Settings", bundle: .core), badgeValue: 0).onTapGesture {
                             self.route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
                          }
             }
@@ -173,17 +173,21 @@ private struct OptionsSection: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SubHeaderView(title: "Options")
+            if #available(iOS 14, *) {
+                SubHeaderView(title: Text("Options", bundle: .core).textCase(.uppercase) as! Text)
+            } else {
+                SubHeaderView(title: Text("Options", bundle: .core))
+            }
             if enrollment == .student {
                 let showGrades = env.userDefaults?.showGradesOnDashboard == true
-                ToggleItem(image: .gradebookLine, title: "Show Grades", isOn: showGrades) {
+                ToggleItem(image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: showGrades) {
                     env.userDefaults?.showGradesOnDashboard = $0
                 }
             }
             
             if enrollment == .student || enrollment == .teacher {
                 let colorOverlay = settings.first?.hideDashcardColorOverlays != true
-                ToggleItem(image: .coursesLine, title: "Color Overlay", isOn: colorOverlay) {
+                ToggleItem(image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: colorOverlay) {
                     UpdateUserSettings(hide_dashcard_color_overlays: !$0).fetch()
                 }
             }
@@ -228,19 +232,19 @@ private struct BottomSection: View {
         VStack(spacing: 0) {
             
             if let root = helpLinks.first, helpLinks.count > 1 {
-                MenuItem(image: Image("question", bundle: .core), title: root.text, badgeValue: 0).onTapGesture {
+                MenuItem(image: Image("question", bundle: .core), title: Text("\(root.text)", bundle: .core), badgeValue: 0).onTapGesture {
                     showHelpMenu()
                 }
             }
             
             if canActAsUser {
-                MenuItem(image: Image("user", bundle: .core), title: "Act as User", badgeValue: 0).onTapGesture {
+                MenuItem(image: Image("user", bundle: .core), title: Text("Act as User", bundle: .core), badgeValue: 0).onTapGesture {
                     self.route(to: "/act-as-user", options: .modal(embedInNav: true))
                 }
             }
             
             if env.currentSession?.isFakeStudent != true {
-                MenuItem(image: Image("user", bundle: .core), title: "Change User", badgeValue: 0).onTapGesture {
+                MenuItem(image: Image("user", bundle: .core), title: Text("Change User", bundle: .core), badgeValue: 0).onTapGesture {
                     guard let delegate = self.env.loginDelegate else { return }
                     env.router.dismiss(controller) {
                         delegate.changeUser()
@@ -249,10 +253,13 @@ private struct BottomSection: View {
             }
             
             if env.currentSession?.actAsUserID != nil {
-                let logoutTitle = env.currentSession?.isFakeStudent == true ? "Leave Student View" : "Stop Act as User"
-                MenuItem(image: Image("logout", bundle: .core), title: logoutTitle, badgeValue: 0)
+                let isFakeStudent = env.currentSession?.isFakeStudent == true
+                let leaveText = Text("Leave Student View", bundle: .core)
+                let stopText = Text("Stop Act as User", bundle: .core)
+                let logoutTitleText = isFakeStudent ? leaveText : stopText
+                MenuItem(image: Image("logout", bundle: .core), title: logoutTitleText, badgeValue: 0)
             } else {
-                MenuItem(image: Image("logout", bundle: .core), title: "Log Out", badgeValue: 0).onTapGesture {
+                MenuItem(image: Image("logout", bundle: .core), title: Text("Log Out", bundle: .core), badgeValue: 0).onTapGesture {
                     handleLogout()
                 }
             }
@@ -292,7 +299,7 @@ private struct BottomSection: View {
             completionHandler()
         })
         alert.addAction(AlertAction(NSLocalizedString("Cancel", bundle: .core, comment: ""), style: .cancel))
-        env.router.show(alert, from: controller, options: .modal())
+        env.router.show(alert, from: controller.value, options: .modal())
     }
     
     public func showHelpMenu() {
@@ -306,7 +313,7 @@ private struct BottomSection: View {
         })
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
-        env.router.show(helpViewController, from: controller, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+        env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
     }
 }
 
@@ -391,7 +398,7 @@ private struct HeaderView: View {
     public func showError(_ error: Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(AlertAction(NSLocalizedString("Dismiss", bundle: .core, comment: ""), style: .default))
-        env.router.show(alert, from: controller, options: .modal())
+        env.router.show(alert, from: controller.value, options: .modal())
     }
 }
 
@@ -415,11 +422,11 @@ extension HeaderView {
 
 private struct SubHeaderView: View {
     
-    var title: String
+    var title: Text
     
     var body: some View {
         HStack {
-            Text(LocalizedStringKey(title.uppercased()), bundle: .core)
+            title
                 .font(.regular12)
                 .foregroundColor(.ash)
             Spacer()
@@ -430,14 +437,13 @@ private struct SubHeaderView: View {
 private struct MenuItem: View {
     
     var image: Image
-    var title: String
+    var title: Text
     @State var badgeValue: UInt = 0
     
     var body: some View {
         HStack(spacing: 20) {
             image
-            Text(LocalizedStringKey(title), bundle: .core)
-                .font(.regular16)
+            title.font(.regular16)
             Spacer()
             
             if badgeValue > 0 {
@@ -446,6 +452,8 @@ private struct MenuItem: View {
         }
         .padding(20)
         .frame(height: 48)
+        .accessibilityElement(children: .ignore)
+        .accessibility(label: title)
     }
 }
 
@@ -468,7 +476,7 @@ private struct Badge: View {
 private struct ToggleItem: View {
     
     var image: Image
-    var title: String
+    var title: Text
     @State var isOn: Bool
     var onToggle: (Bool) -> Void
     
@@ -479,7 +487,7 @@ private struct ToggleItem: View {
                 isOn = newValue
                 onToggle(newValue)
             })
-            let toggle = Toggle(isOn: toggleBinding, label: {Text(LocalizedStringKey(title), bundle: .core)})
+            let toggle = Toggle(isOn: toggleBinding, label: { title })
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
             if #available(iOS 14, *) {
