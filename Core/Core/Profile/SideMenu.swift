@@ -348,7 +348,7 @@ private struct HeaderView: View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
             let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
-            Avatar(name: initials, url: avatarURL, size: 72, isAccessible: true)
+            DynamicAvatar(name: initials, url: $avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
                     if canUpdateAvatar {
                         isShowingActionSheet = true
@@ -387,7 +387,10 @@ private struct HeaderView: View {
                     UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in performUIUpdate {
                         switch result {
                         case .success(let url):
-                            avatarURL = url
+                            let profile = env.subscribe(GetUserProfile(userID: "self"))
+                            profile.refresh(force: true) { _ in
+                                avatarURL = url
+                            }
                         case .failure(let error):
                             showError(error)
                         }

@@ -18,6 +18,18 @@
 
 import SwiftUI
 
+public struct DynamicAvatar: View {
+    
+    public var name: String?
+    @Binding public var url: URL?
+    public var size: CGFloat
+    public var isAccessible: Bool
+    
+    public var body: some View {
+        Avatar(name: name, url: url, size: size, isAccessible: isAccessible)
+    }
+}
+
 public struct Avatar: View {
     public let initials: String
     public let url: URL?
