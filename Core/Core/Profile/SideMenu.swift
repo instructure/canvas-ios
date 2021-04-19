@@ -370,16 +370,17 @@ private struct HeaderView: View {
         }
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ImagePicker(sourceType: viewModel.sourceType) { image in
+                viewModel.isPresentingImagePicker = false
                 guard let image = image else { return }
                 do {
-                    UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in
+                    UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in performUIUpdate {
                         switch result {
                         case .success(let url):
                             avatarURL = url
                         case .failure(let error):
                             showError(error)
                         }
-                    }
+                    }}
                 } catch {
                     showError(error)
                 }
