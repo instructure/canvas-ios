@@ -877,6 +877,7 @@
 		E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */; };
 		E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */; };
 		EB71A2532615AD840003241C /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenu.swift */; };
+		EB989763262ECCB500E1CFE0 /* SideMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ImagePicker.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
@@ -1984,6 +1985,7 @@
 		E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensions.swift; sourceTree = "<group>"; };
 		E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
 		EB71A2522615AD840003241C /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
 		EE424B3322E8DE2E00D083EE /* APIPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageTests.swift; sourceTree = "<group>"; };
@@ -3417,6 +3419,7 @@
 				97A486C32397826300084499 /* ProfileViewControllerTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
 				7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */,
+				EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -4839,6 +4842,7 @@
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
+				EB989763262ECCB500E1CFE0 /* SideMenuTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
