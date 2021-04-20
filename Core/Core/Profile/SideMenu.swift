@@ -32,7 +32,7 @@ public struct SideMenu: View {
     }
     
     public var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 profileHeader()
                 Divider()
