@@ -115,7 +115,7 @@ private struct MainSection: View {
             }
             
             if enrollment == .student || enrollment == .teacher {
-                MenuItem(image: Image("settings", bundle: .core),
+                MenuItem(image: .settingsLine,
                          title: Text("Settings", bundle: .core), badgeValue: 0).onTapGesture {
                             self.route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
                          }
@@ -129,7 +129,7 @@ private struct MainSection: View {
             return image
         }
         if domain == "arc.instructure.com" {
-            image = Image("studio", bundle: .core)
+            image = .studioLine
         }
         return image
     }
@@ -227,19 +227,19 @@ private struct BottomSection: View {
         VStack(spacing: 0) {
             
             if let root = helpLinks.first, helpLinks.count > 1 {
-                MenuItem(image: Image("question", bundle: .core), title: Text("\(root.text)", bundle: .core), badgeValue: 0).onTapGesture {
+                MenuItem(image: .questionLine, title: Text("\(root.text)", bundle: .core), badgeValue: 0).onTapGesture {
                     showHelpMenu()
                 }
             }
             
             if canActAsUser {
-                MenuItem(image: Image("user", bundle: .core), title: Text("Act as User", bundle: .core), badgeValue: 0).onTapGesture {
+                MenuItem(image: .userLine, title: Text("Act as User", bundle: .core), badgeValue: 0).onTapGesture {
                     self.route(to: "/act-as-user", options: .modal(embedInNav: true))
                 }
             }
             
             if env.currentSession?.isFakeStudent != true {
-                MenuItem(image: Image("user", bundle: .core), title: Text("Change User", bundle: .core), badgeValue: 0).onTapGesture {
+                MenuItem(image: .userLine, title: Text("Change User", bundle: .core), badgeValue: 0).onTapGesture {
                     guard let delegate = self.env.loginDelegate else { return }
                     env.router.dismiss(controller) {
                         delegate.changeUser()
