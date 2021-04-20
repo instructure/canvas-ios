@@ -32,19 +32,21 @@ public struct SideMenu: View {
     }
     
     public var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading) {
-                profileHeader()
-                Divider()
-                MainSection(enrollment)
-                Divider()
-                OptionsSection(enrollment)
-                Divider()
-                BottomSection(enrollment)
-                Spacer()
-            }
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    profileHeader()
+                    Divider()
+                    MainSection(enrollment)
+                    Divider()
+                    OptionsSection(enrollment)
+                    Divider()
+                    BottomSection(enrollment)
+                    Spacer()
+                }
+            }.clipped()
+            FooterView()
         }
-        FooterView()
     }
     
     @ViewBuilder
