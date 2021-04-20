@@ -341,9 +341,10 @@ private struct HeaderView: View {
     var email: String
     @State var canUpdateAvatar: Bool = false
     @State var isShowingActionSheet = false
+    @State var isUploadingImage = false
     
     @ObservedObject var viewModel = ImagePickerViewModel()
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
@@ -368,6 +369,8 @@ private struct HeaderView: View {
                                         isShowingActionSheet = false
                                     }])
                 }
+                .opacity(isUploadingImage ? 0.4 : 1)
+                .overlay(isUploadingImage ? CircleProgress() : nil)
             Text(name)
                 .font(.bold20)
                 .padding(.bottom, 2)
@@ -382,11 +385,14 @@ private struct HeaderView: View {
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false
+                isUploadingImage = true
                 guard let image = image else { return }
                 do {
                     UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in performUIUpdate {
+                        isUploadingImage = false
                         switch result {
                         case .success(let url):
+                            // Trigger save to CoreData
                             let profile = env.subscribe(GetUserProfile(userID: "self"))
                             profile.refresh(force: true) { _ in
                                 avatarURL = url
