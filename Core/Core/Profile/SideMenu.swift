@@ -370,7 +370,7 @@ private struct HeaderView: View {
                                     }])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
-                .overlay(isUploadingImage ? CircleProgress() : nil)
+                .overlay(isUploadingImage ? CircleProgress().padding(.bottom, 12) : nil)
             Text(name)
                 .font(.bold20)
                 .padding(.bottom, 2)
