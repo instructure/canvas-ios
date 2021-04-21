@@ -35,7 +35,7 @@ public struct SideMenu: View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    profileHeader()
+                    HeaderView(profileStore: profile)
                     Divider()
                     MainSection(enrollment)
                     Divider()
@@ -49,17 +49,6 @@ public struct SideMenu: View {
         }.onAppear {
             profile.refresh()
         }
-    }
-    
-    @ViewBuilder
-    func profileHeader() -> some View {
-        let profile = self.profile.first
-        let userName = profile?.name ?? env.currentSession?.userName
-        
-        HeaderView(avatarURL: profile?.avatarURL,
-                   initials: userName ?? "",
-                   name: userName.flatMap { User.displayName($0, pronouns: profile?.pronouns) } ?? "",
-                   email: profile?.email ?? "")
     }
 }
 
@@ -335,25 +324,26 @@ private struct FooterView: View {
 }
 
 private struct HeaderView: View {
-    
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-    
-    @State var avatarURL: URL?
-    var initials: String
-    var name: String
-    var email: String
-    @State var canUpdateAvatar: Bool = false
-    @State var isShowingActionSheet = false
-    @State var isUploadingImage = false
-    
-    @ObservedObject var viewModel = ImagePickerViewModel()
+    @ObservedObject var profileStore: Store<GetUserProfile>
+
+    @ObservedObject private var viewModel = ImagePickerViewModel()
+    @State private var canUpdateAvatar: Bool = false
+    @State private var isShowingActionSheet = false
+    @State private var isUploadingImage = false
+
+    private var userName: String? { profileStore.first?.name ?? env.currentSession?.userName }
+    private var avatarURL: URL? { profileStore.first?.avatarURL }
+    private var initials: String { userName ?? "" }
+    private var name: String { userName.flatMap { User.displayName($0, pronouns: profileStore.first?.pronouns) } ?? "" }
+    private var email: String { profileStore.first?.email ?? "" }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
             let avatarLabel = canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
-            DynamicAvatar(name: initials, url: $avatarURL, size: 72, isAccessible: true)
+            Avatar(name: initials, url: avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
                     if canUpdateAvatar {
                         isShowingActionSheet = true
@@ -395,12 +385,9 @@ private struct HeaderView: View {
                     UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in performUIUpdate {
                         isUploadingImage = false
                         switch result {
-                        case .success(let url):
+                        case .success:
                             // Trigger save to CoreData
-                            let profile = env.subscribe(GetUserProfile(userID: "self"))
-                            profile.refresh(force: true) { _ in
-                                avatarURL = url
-                            }
+                            profileStore.refresh(force: true)
                         case .failure(let error):
                             showError(error)
                         }
