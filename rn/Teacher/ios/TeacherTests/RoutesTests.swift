@@ -91,7 +91,7 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/act-as-user/1") is ActAsUserViewController)
         XCTAssert(router.match("/wrong-app") is WrongAppViewController)
         XCTAssert(router.match("/courses/1/assignments/2/post_policy") is PostSettingsViewController)
-        XCTAssert(router.match("/profile") is ProfileViewController)
+        XCTAssert(router.match("/profile") is CoreHostingController<SideMenu>)
         XCTAssert(router.match("/profile/settings") is ProfileSettingsViewController)
         XCTAssert(router.match("/dev-menu/experimental-features") is ExperimentalFeaturesViewController)
         XCTAssert(router.match("/support/problem") is ErrorReportViewController)

@@ -21,39 +21,8 @@ import Combine
 @testable import Core
 import TestsFoundation
 
-class SideMenuTests: CoreTestCase, LoginDelegate {
+class SideMenuTests: CoreTestCase {
 
-    lazy var controller: CoreHostingController<SideMenu> = {
-        return hostSwiftUIController(SideMenu(.student))
-    }()
-    
-    var notificationPayload: [AnyHashable: Any]?
-    func reduxActionCalled(notification: Notification) {
-        notificationPayload = notification.userInfo
-    }
-
-    var defaultsDidChange = false
-    func userDefaultsDidChange(notification: Notification) {
-        defaultsDidChange = true
-    }
-
-    var externalURL: URL?
-    func openExternalURL(_ url: URL) {
-        externalURL = url
-    }
-
-    func userDidLogin(session: LoginSession) {}
-
-    var didLogout = false
-    func userDidLogout(session: LoginSession) {
-         didLogout = true
-    }
-
-    var didChangeUser = false
-    func changeUser() {
-        didChangeUser = true
-    }
-    
     override func setUp() {
         super.setUp()
         api.mock(GetAccountHelpLinks(for: .student), value: nil)
@@ -69,15 +38,45 @@ class SideMenuTests: CoreTestCase, LoginDelegate {
         
         api.mock(GetUserRequest(userID: "self"), value: .make())
         api.mock(PutUserSettingsRequest(), value: .make(hide_dashcard_color_overlays: true))
-
-        let n = NSNotification.Name("redux-action")
-        NotificationCenter.default.addObserver(self, selector: #selector(reduxActionCalled(notification:)), name: n, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(notification:)), name: UserDefaults.didChangeNotification, object: nil)
     }
     
-    func testTree() {
-        let tree = controller.testTree
-        
+    func testParentItems() {
+        let tree = controller(.observer).testTree
+        XCTAssertNotNil(tree?.find(id: "Profile.inboxButton"))
+        XCTAssertNil(tree?.find(id: "Profile.filesButton"))
+        XCTAssertNil(tree?.find(id: "Profile.settingsButton"))
+        XCTAssertNil(tree?.find(id: "Profile.showGradesToggle"))
+        XCTAssertNil(tree?.find(id: "Profile.colorOverlayToggle"))
+        XCTAssertNotNil(tree?.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
     }
 
+    func testStudentItems() {
+        let tree = controller(.student).testTree
+        XCTAssertNil(tree?.find(id: "Profile.inboxButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.filesButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.showGradesToggle"))
+        XCTAssertNotNil(tree?.find(id: "Profile.colorOverlayToggle"))
+        XCTAssertNil(tree?.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
+    }
+
+    func testTeacherItems() {
+        let tree = controller(.teacher).testTree
+        XCTAssertNil(tree?.find(id: "Profile.inboxButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.filesButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.settingsButton"))
+        XCTAssertNil(tree?.find(id: "Profile.showGradesToggle"))
+        XCTAssertNotNil(tree?.find(id: "Profile.colorOverlayToggle"))
+        XCTAssertNil(tree?.find(id: "Profile.manageChildrenButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.changeUserButton"))
+        XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
+    }
+
+    func controller(_ enrollment: HelpLinkEnrollment) -> CoreHostingController<SideMenu> {
+        return hostSwiftUIController(SideMenu(enrollment))
+    }
 }
