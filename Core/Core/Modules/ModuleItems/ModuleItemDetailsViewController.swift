@@ -121,7 +121,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         case nil, .subHeader:
             title = NSLocalizedString("Module Item", bundle: .core, comment: "")
         }
-        titleSubtitleView.title = title
+        setupTitleViewInNavbar(title: title)
         navigationItem.rightBarButtonItems = []
         if item?.completionRequirementType == .must_mark_done {
             navigationItem.rightBarButtonItems?.append(optionsButton)

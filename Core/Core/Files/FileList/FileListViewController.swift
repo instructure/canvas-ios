@@ -158,7 +158,8 @@ public class FileListViewController: UIViewController, ColoredNavViewProtocol {
 
         loadingView.isHidden = !folder.pending || !folder.isEmpty || folder.error != nil || refreshControl.isRefreshing
         errorView.isHidden = folder.error == nil
-        titleSubtitleView.title = (path.isEmpty ? nil : folder.first?.name) ?? NSLocalizedString("Files", bundle: .core, comment: "")
+        let title = (path.isEmpty ? nil : folder.first?.name) ?? NSLocalizedString("Files", bundle: .core, comment: "")
+        setupTitleViewInNavbar(title: title)
         updateNavButtons()
 
         guard let folder = folder.first, items == nil else { return update() }
