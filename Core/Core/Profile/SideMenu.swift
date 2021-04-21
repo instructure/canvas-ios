@@ -46,6 +46,8 @@ public struct SideMenu: View {
                 }
             }.clipped()
             FooterView()
+        }.onAppear {
+            profile.refresh()
         }
     }
     
