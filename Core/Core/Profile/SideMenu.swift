@@ -55,16 +55,15 @@ public struct SideMenu: View {
 }
 
 private struct MainSection: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+
+    @ObservedObject private var tools: Store<GetGlobalNavExternalPlacements>
+    @State private var unreadCount: UInt = 0
+    @State private var canUpdateAvatar: Bool = false
     
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
-    
-    @State var unreadCount: UInt = 0
-    @State var canUpdateAvatar: Bool = false
-    
-    let enrollment: HelpLinkEnrollment
-    var tools: Store<GetGlobalNavExternalPlacements>
-    var dashboard: UIViewController {
+    private let enrollment: HelpLinkEnrollment
+    private var dashboard: UIViewController {
         guard var dashboard = controller.value.presentingViewController else {
             return UIViewController()
         }
@@ -118,6 +117,9 @@ private struct MainSection: View {
                          }
             }
         }
+        .onAppear {
+            tools.refresh()
+        }
     }
     
     func imageForDomain(_ domain: String?) -> Image {
@@ -148,12 +150,11 @@ private struct MainSection: View {
 }
 
 private struct OptionsSection: View {
+    @Environment(\.appEnvironment) private var env
+    @State private var showGrades = false
+    @ObservedObject private var settings: Store<GetUserSettings>
     
-    @Environment(\.appEnvironment) var env
-    @State var showGrades = false
-    @ObservedObject var settings: Store<GetUserSettings>
-    
-    let enrollment: HelpLinkEnrollment
+    private let enrollment: HelpLinkEnrollment
     
     init(_ enrollment: HelpLinkEnrollment) {
         self.enrollment = enrollment
@@ -177,6 +178,9 @@ private struct OptionsSection: View {
                     UpdateUserSettings(hide_dashcard_color_overlays: !$0).fetch()
                 }
             }
+        }
+        .onAppear {
+            settings.refresh()
         }
     }
 }
