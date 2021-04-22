@@ -121,6 +121,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -135,6 +136,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -364,6 +366,7 @@ exports[`CourseSettings renders 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -378,6 +381,7 @@ exports[`CourseSettings renders 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -607,6 +611,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -621,6 +626,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -834,6 +840,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -848,6 +855,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -1077,6 +1085,7 @@ exports[`CourseSettings renders with image url 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -1091,6 +1100,7 @@ exports[`CourseSettings renders with image url 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -1304,6 +1314,7 @@ exports[`CourseSettings renders without image url 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -1318,6 +1329,7 @@ exports[`CourseSettings renders without image url 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {
@@ -1547,6 +1559,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
           }
         >
           <Text
+            accessible={false}
             style={
               Object {
                 "color": "#2D3B45",
@@ -1561,6 +1574,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             Name
           </Text>
           <TextInput
+            accessibilityLabel="Name"
             onChangeText={[Function]}
             style={
               Object {

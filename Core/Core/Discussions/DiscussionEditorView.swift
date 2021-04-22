@@ -140,11 +140,13 @@ public struct DiscussionEditorView: View {
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("DiscussionEditor.titleField")
+                    .accessibility(label: Text("Title"))
             }
 
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add description", comment: ""),
+                    a11yLabel: NSLocalizedString("Description", comment: ""),
                     html: $message,
                     context: context,
                     uploadTo: .context(context),

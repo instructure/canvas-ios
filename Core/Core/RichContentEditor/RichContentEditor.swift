@@ -20,6 +20,7 @@ import SwiftUI
 
 struct RichContentEditor: UIViewControllerRepresentable {
     let placeholder: String
+    let a11yLabel: String
     @Binding var html: String
     let context: Context
     let uploadTo: FileUploadContext
@@ -70,6 +71,7 @@ struct RichContentEditor: UIViewControllerRepresentable {
         uiViewController.delegate = context.coordinator
         uiViewController.webView.sizeDelegate = context.coordinator
         uiViewController.placeholder = placeholder
+        uiViewController.a11yLabel = a11yLabel
         if context.coordinator.lastHTML != html {
             uiViewController.setHTML(html)
         }
@@ -86,6 +88,7 @@ struct RichContentEditorView_Previews: PreviewProvider {
         var body: some View {
             RichContentEditor(
                 placeholder: "Placeholder",
+                a11yLabel: "Editor",
                 html: $html,
                 context: .course("1"),
                 uploadTo: .myFiles,

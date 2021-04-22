@@ -63,6 +63,11 @@ public class RichContentEditorWrapper: UIView {
         set { controller.placeholder = newValue }
     }
 
+    @objc public var a11yLabel: String {
+        get { controller.a11yLabel }
+        set { controller.a11yLabel = newValue }
+    }
+
     @objc public var uploadContext: String {
         get {
             switch controller.uploadContext {

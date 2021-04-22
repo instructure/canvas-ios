@@ -102,6 +102,7 @@ public struct FileEditorView: View {
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("FileEditor.nameField")
+                    .accessibility(label: Text("Name", bundle: .core))
             }
 
             EditorSection(label: Text("Access", bundle: .core)) {
@@ -122,6 +123,8 @@ public struct FileEditorView: View {
                     DisclosureIndicator()
                 })
                     .identifier("FileEditor.accessButton")
+                    .accessibility(label: Text("Access", bundle: .core))
+                    .accessibility(value: Text(access.label))
 
                 if access == .scheduled {
                     Divider()

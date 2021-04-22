@@ -128,7 +128,8 @@ public class DiscussionReplyViewController: UIViewController, ErrorViewControlle
         navigationItem.rightBarButtonItem = sendButton
 
         editor.delegate = self
-        editor.placeholder = NSLocalizedString("Message", bundle: .core, comment: "")
+        editor.placeholder = NSLocalizedString("Add message", bundle: .core, comment: "")
+        editor.a11yLabel = NSLocalizedString("Message", bundle: .core, comment: "")
         editor.webView.autoresizesHeight = true
         editor.webView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         editor.webView.scrollView.alwaysBounceVertical = false

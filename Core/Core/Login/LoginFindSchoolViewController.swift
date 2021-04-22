@@ -74,6 +74,7 @@ class LoginFindSchoolViewController: UIViewController {
             string: NSLocalizedString("Find your school or district", bundle: .core, comment: ""),
             attributes: [.foregroundColor: UIColor.textDark]
         )
+        searchField.accessibilityLabel = NSLocalizedString("School’s name", bundle: .core, comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {

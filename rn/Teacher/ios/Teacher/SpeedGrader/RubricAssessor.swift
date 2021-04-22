@@ -266,6 +266,7 @@ struct RubricAssessor: View {
             field.placeholder = ""
             field.returnKeyType = .done
             field.addTarget(prompt, action: #selector(UIAlertController.performOKAlertAction), for: .editingDidEndOnExit)
+            field.accessibilityLabel = NSLocalizedString("Grade", comment: "")
         }
         prompt.addAction(AlertAction(NSLocalizedString("OK", comment: "")) { _ in
             let text = prompt.textFields?[0].text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""

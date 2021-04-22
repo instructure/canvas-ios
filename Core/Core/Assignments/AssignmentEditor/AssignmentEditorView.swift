@@ -97,11 +97,13 @@ public struct AssignmentEditorView: View {
                     .font(.regular16).foregroundColor(.textDarkest)
                     .padding(16)
                     .identifier("AssignmentEditor.titleField")
+                    .accessibility(label: Text("Title"))
             }
 
             EditorSection(label: Text("Description", bundle: .core)) {
                 RichContentEditor(
                     placeholder: NSLocalizedString("Add description", comment: ""),
+                    a11yLabel: NSLocalizedString("Description", comment: ""),
                     html: $description,
                     context: .course(courseID),
                     uploadTo: .context(.course(courseID)),
