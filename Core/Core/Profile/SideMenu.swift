@@ -174,23 +174,28 @@ private struct OptionsSection: View {
             }
         }
         .onAppear {
-            viewModel.settings.refresh()
+            viewModel.viewDidAppear()
         }
     }
 }
 
 extension OptionsSection {
     final class OptionsViewModel: ObservableObject {
-        @Published var showGrades: Bool
-        @Published var colorOverlay: Bool
-        @Published var settings: Store<GetUserSettings>
+        @Published var showGrades: Bool = false
+        @Published var colorOverlay: Bool = false
+
+        private let env = AppEnvironment.shared
+        private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
+            self?.colorOverlay = self?.settings.first?.hideDashcardColorOverlays != true
+        }
 
         init() {
-            let env = AppEnvironment.shared
-            let settings = env.subscribe(GetUserSettings(userID: "self"))
-            self.settings = settings
             showGrades = env.userDefaults?.showGradesOnDashboard == true
             colorOverlay = settings.first?.hideDashcardColorOverlays != true
+        }
+
+        func viewDidAppear() {
+            settings.refresh()
         }
     }
 }
