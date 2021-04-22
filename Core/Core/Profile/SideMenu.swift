@@ -386,8 +386,8 @@ private struct HeaderView: View {
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false
-                isUploadingImage = true
                 guard let image = image else { return }
+                isUploadingImage = true
                 do {
                     UploadAvatar(url: try image.write(nameIt: "profile")).fetch { result in performUIUpdate {
                         isUploadingImage = false
