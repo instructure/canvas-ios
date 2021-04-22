@@ -49,7 +49,8 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         XCTAssertEqual(viewController.titleSubtitleView.title, "Assignment Details")
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 0.0)
-        XCTAssertEqual(viewController.scrollviewInsetConstraint.constant, 0.0)
+        XCTAssertEqual(viewController.scrollView?.contentInset, .zero)
+        XCTAssertEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
         XCTAssertEqual(viewController.dueSection?.header.text, "Due")
         XCTAssertEqual(viewController.submissionTypesSection?.header.text, "Submission Types")
         XCTAssertEqual(viewController.fileTypesSection?.header.text, "File Types")
@@ -82,10 +83,12 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         viewController.showSubmitAssignmentButton(title: "hello")
         XCTAssertEqual(viewController.submitAssignmentButton.title(for: .normal), "hello")
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 1.0)
-        XCTAssertEqual(viewController.scrollviewInsetConstraint.constant, 75.0)
+        XCTAssertNotEqual(viewController.scrollView?.contentInset, .zero)
+        XCTAssertNotEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
 
         viewController.showSubmitAssignmentButton(title: nil)
-        XCTAssertEqual(viewController.scrollviewInsetConstraint.constant, 0.0)
+        XCTAssertEqual(viewController.scrollView?.contentInset, .zero)
+        XCTAssertEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 0)
     }
 
