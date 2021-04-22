@@ -384,7 +384,7 @@ private struct HeaderView: View {
             }
         }
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
-            ImagePicker(sourceType: viewModel.sourceType) { image in
+            ProfileImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false
                 guard let image = image else { return }
                 isUploadingImage = true
@@ -417,7 +417,7 @@ extension HeaderView {
     final class ImagePickerViewModel: ObservableObject {
         @Published var selectedImage: UIImage?
         @Published var isPresentingImagePicker = false
-        private(set) var sourceType: ImagePicker.SourceType = .camera
+        private(set) var sourceType: ProfileImagePicker.SourceType = .camera
         
         func choosePhoto() {
             sourceType = .photoLibrary
