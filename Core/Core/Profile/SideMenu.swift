@@ -425,6 +425,7 @@ extension HeaderView {
         }
         
         func takePhoto() {
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
             sourceType = .camera
             isPresentingImagePicker = true
         }
