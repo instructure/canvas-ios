@@ -160,14 +160,14 @@ private struct OptionsSection: View {
         VStack(spacing: 0) {
             SubHeaderView(title: Text("OPTIONS", bundle: .core))
             if enrollment == .student {
-                ToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades.animation()).onTapGesture {
+                ToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades).onTapGesture {
                     viewModel.showGrades.toggle()
                     env.userDefaults?.showGradesOnDashboard = viewModel.showGrades
                 }
             }
             
             if enrollment == .student || enrollment == .teacher {
-                ToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay.animation()).onTapGesture {
+                ToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
                     viewModel.colorOverlay.toggle()
                     UpdateUserSettings(hide_dashcard_color_overlays: !viewModel.colorOverlay).fetch()
                 }
@@ -519,7 +519,7 @@ private struct ToggleItem: View {
     var body: some View {
         HStack(spacing: 20) {
             image.accessibility(hidden: true)
-            let toggle = Toggle(isOn: $isOn.animation(), label: { title })
+            let toggle = Toggle(isOn: $isOn, label: { title })
                 .font(.regular16)
                 .foregroundColor(.licorice)
                 .allowsHitTesting(false)
@@ -534,6 +534,7 @@ private struct ToggleItem: View {
         .contentShape(Rectangle())
         .accessibility(label: title)
         .identifier("Profile.\(id)Toggle")
+        .animation(.default)
     }
 }
 
