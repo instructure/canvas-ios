@@ -154,7 +154,7 @@ private struct OptionsSection: View {
     @Environment(\.appEnvironment) var env
     @ObservedObject private var viewModel = OptionsViewModel()
     
-    private let enrollment: HelpLinkEnrollment
+    let enrollment: HelpLinkEnrollment
     
     var body: some View {
         VStack(spacing: 0) {
@@ -174,7 +174,7 @@ private struct OptionsSection: View {
             }
         }
         .onAppear {
-            settings.refresh()
+            viewModel.settings.refresh()
         }
     }
 }
