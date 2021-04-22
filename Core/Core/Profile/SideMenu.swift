@@ -182,11 +182,12 @@ private struct OptionsSection: View {
 }
 
 private struct BottomSection: View {
-    
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+
     @ObservedObject var helpLinks: Store<GetAccountHelpLinks>
     @ObservedObject var permissions: Store<GetContextPermissions>
+
     var dashboard: UIViewController {
         guard var dashboard = controller.value.presentingViewController else {
             return UIViewController()
@@ -261,6 +262,10 @@ private struct BottomSection: View {
                     route(to: "/dev-menu", options: .modal(embedInNav: true))
                 }
             }
+        }
+        .onAppear {
+            helpLinks.refresh()
+            permissions.refresh()
         }
     }
     
