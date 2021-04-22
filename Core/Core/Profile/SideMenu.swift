@@ -40,7 +40,7 @@ public struct SideMenu: View {
                     MainSection(enrollment)
                     Divider()
                     if enrollment != .observer {
-                        OptionsSection(enrollment)
+                        OptionsSection(enrollment: enrollment)
                         Divider()
                     }
                     BottomSection(enrollment)
@@ -150,37 +150,47 @@ private struct MainSection: View {
 }
 
 private struct OptionsSection: View {
-    @Environment(\.appEnvironment) private var env
-    @State private var showGrades = false
-    @ObservedObject private var settings: Store<GetUserSettings>
+    
+    @Environment(\.appEnvironment) var env
+    @ObservedObject private var viewModel = OptionsViewModel()
     
     private let enrollment: HelpLinkEnrollment
-    
-    init(_ enrollment: HelpLinkEnrollment) {
-        self.enrollment = enrollment
-        let env = AppEnvironment.shared
-        settings = env.subscribe(GetUserSettings(userID: "self"))
-    }
     
     var body: some View {
         VStack(spacing: 0) {
             SubHeaderView(title: Text("OPTIONS", bundle: .core))
             if enrollment == .student {
-                let showGrades = env.userDefaults?.showGradesOnDashboard == true
-                ToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: showGrades) {
-                    env.userDefaults?.showGradesOnDashboard = $0
+                ToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades.animation()).onTapGesture {
+                    viewModel.showGrades.toggle()
+                    env.userDefaults?.showGradesOnDashboard = viewModel.showGrades
                 }
             }
             
             if enrollment == .student || enrollment == .teacher {
-                let colorOverlay = settings.first?.hideDashcardColorOverlays != true
-                ToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: colorOverlay) {
-                    UpdateUserSettings(hide_dashcard_color_overlays: !$0).fetch()
+                ToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay.animation()).onTapGesture {
+                    viewModel.colorOverlay.toggle()
+                    UpdateUserSettings(hide_dashcard_color_overlays: !viewModel.colorOverlay).fetch()
                 }
             }
         }
         .onAppear {
             settings.refresh()
+        }
+    }
+}
+
+extension OptionsSection {
+    final class OptionsViewModel: ObservableObject {
+        @Published var showGrades: Bool
+        @Published var colorOverlay: Bool
+        @Published var settings: Store<GetUserSettings>
+
+        init() {
+            let env = AppEnvironment.shared
+            let settings = env.subscribe(GetUserSettings(userID: "self"))
+            self.settings = settings
+            showGrades = env.userDefaults?.showGradesOnDashboard == true
+            colorOverlay = settings.first?.hideDashcardColorOverlays != true
         }
     }
 }
@@ -465,7 +475,9 @@ private struct MenuItem: View {
     var body: some View {
         HStack(spacing: 20) {
             image
-            title.font(.regular16)
+            title
+                .font(.regular16)
+                .foregroundColor(.licorice)
             Spacer()
             
             if badgeValue > 0 {
@@ -502,19 +514,15 @@ private struct ToggleItem: View {
     let id: String
     let image: Image
     let title: Text
-    @State var isOn: Bool
-    let onToggle: (Bool) -> Void
+    @Binding var isOn: Bool
     
     var body: some View {
         HStack(spacing: 20) {
             image.accessibility(hidden: true)
-            let toggleBinding = Binding(get: { isOn }, set: { newValue in
-                isOn = newValue
-                onToggle(newValue)
-            })
-            let toggle = Toggle(isOn: toggleBinding, label: { title })
+            let toggle = Toggle(isOn: $isOn.animation(), label: { title })
                 .font(.regular16)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.licorice)
+                .allowsHitTesting(false)
             if #available(iOS 14, *) {
                 toggle.toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             } else {
