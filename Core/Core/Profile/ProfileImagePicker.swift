@@ -18,17 +18,19 @@
 
 import SwiftUI
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct ProfileImagePicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIImagePickerController
     typealias SourceType = UIImagePickerController.SourceType
 
     let sourceType: SourceType
     let completionHandler: (UIImage?) -> Void
-    
+
     func makeUIViewController(context: Self.Context) -> UIImagePickerController {
         let viewController = UIImagePickerController()
         viewController.delegate = context.coordinator
         viewController.sourceType = sourceType
+        viewController.cameraDevice = .front
+        viewController.allowsEditing = true
         return viewController
     }
     
