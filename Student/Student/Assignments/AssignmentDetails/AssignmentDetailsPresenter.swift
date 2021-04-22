@@ -276,7 +276,8 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
             assignment?.lockedForUser == true ||
             assignment?.isSubmittable == false ||
             assignment?.submission?.excused == true ||
-            assignment?.isMasteryPathAssignment == true
+            assignment?.isMasteryPathAssignment == true ||
+            assignment?.canSubmit == false
     }
 
     func attemptsIsHidden() -> Bool {

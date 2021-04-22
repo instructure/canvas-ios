@@ -25,6 +25,7 @@ public struct APIAssignment: Codable, Equatable {
     let all_dates: [APIAssignmentDate]?
     let anonymize_students: Bool?
     let assignment_group_id: ID?
+    let can_submit: Bool?
     let course_id: ID
     let description: String?
     let discussion_topic: APIDiscussionTopic?
@@ -99,6 +100,7 @@ extension APIAssignment {
         all_dates: [APIAssignmentDate]? = nil,
         anonymize_students: Bool? = nil,
         assignment_group_id: ID? = nil,
+        can_submit: Bool? = true,
         course_id: ID = "1",
         description: String? = "<p>Do the following:</p>...",
         discussion_topic: APIDiscussionTopic? = nil,
@@ -145,6 +147,7 @@ extension APIAssignment {
             all_dates: all_dates,
             anonymize_students: anonymize_students,
             assignment_group_id: assignment_group_id,
+            can_submit: can_submit,
             course_id: course_id,
             description: description,
             discussion_topic: discussion_topic,
@@ -262,7 +265,7 @@ public struct GetAssignmentRequest: APIRequestable {
     }
 
     public enum GetAssignmentInclude: String {
-        case submission, overrides, score_statistics
+        case submission, overrides, score_statistics, can_submit, observed_users
     }
 
     public var path: String {
@@ -272,9 +275,9 @@ public struct GetAssignmentRequest: APIRequestable {
 
     public var query: [APIQueryItem] {
         var query: [APIQueryItem] = []
-        var include = self.include.map { $0.rawValue }
-        include.append("observed_users")
-        query.append(.array("include", include))
+        var include = self.include
+        include.append(.can_submit)
+        query.append(.array("include", include.map { $0.rawValue }))
         if AppEnvironment.shared.app == .teacher || allDates == true {
             query.append(.value("all_dates", "true"))
         }
