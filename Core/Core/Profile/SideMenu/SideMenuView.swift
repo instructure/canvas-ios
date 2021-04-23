@@ -19,7 +19,6 @@
 import SwiftUI
 
 public struct SideMenuView: View {
-
     @Environment(\.appEnvironment) var env
     @ObservedObject var profile: Store<GetUserProfile>
 

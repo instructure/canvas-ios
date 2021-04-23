@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuOptionsSection: View {
-
     @Environment(\.appEnvironment) var env
     @ObservedObject private var viewModel = OptionsViewModel()
 

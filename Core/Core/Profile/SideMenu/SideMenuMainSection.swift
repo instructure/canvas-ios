@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuMainSection: View {
-
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 

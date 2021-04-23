@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuItem: View {
-
     let id: String
     let image: Image
     let title: Text
@@ -48,7 +47,6 @@ struct SideMenuItem: View {
 }
 
 private struct Badge: View {
-
     @State var value: UInt
 
     var body: some View {

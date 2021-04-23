@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuHeaderView: View {
-
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -128,7 +127,6 @@ extension SideMenuHeaderView {
 }
 
 struct SideMenuHeaderView_Previews: PreviewProvider {
-
     static var previews: some View {
         let profile = AppEnvironment.shared.subscribe(GetUserProfile(userID: "self"))
         SideMenuHeaderView(profileStore: profile)

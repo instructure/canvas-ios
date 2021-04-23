@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuSubHeaderView: View {
-
     var title: Text
 
     var body: some View {

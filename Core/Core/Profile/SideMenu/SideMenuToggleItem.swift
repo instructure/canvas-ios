@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuToggleItem: View {
-
     let id: String
     let image: Image
     let title: Text

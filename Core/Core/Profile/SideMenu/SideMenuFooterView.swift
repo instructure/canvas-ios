@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct SideMenuFooterView: View {
-
     var body: some View {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             HStack {
