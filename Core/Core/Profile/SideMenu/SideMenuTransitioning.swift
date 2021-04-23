@@ -21,7 +21,7 @@ import UIKit
 let drawerWidth: CGFloat = 300.0
 let animationDuration = 0.275
 
-public class DrawerOpenTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+public class SideMenuOpenTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
             let from = transitionContext.viewController(forKey: .from)?.view,
@@ -55,7 +55,7 @@ public class DrawerOpenTransitioning: NSObject, UIViewControllerAnimatedTransiti
     }
 }
 
-class DrawerCloseTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
+class SideMenuCloseTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
             let from = transitionContext.viewController(forKey: .from)?.view,
@@ -84,7 +84,7 @@ class DrawerCloseTransitioning: NSObject, UIViewControllerAnimatedTransitioning 
     }
 }
 
-public class DrawerPresentationController: UIPresentationController {
+public class SideMenuPresentationController: UIPresentationController {
     let dimmer = UIButton()
 
     public override func presentationTransitionWillBegin() {
@@ -152,18 +152,24 @@ public class DrawerPresentationController: UIPresentationController {
     }
 }
 
-public class DrawerTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
-    public static let shared = DrawerTransitioningDelegate()
+public class SideMenuTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    public static let shared = SideMenuTransitioningDelegate()
 
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DrawerOpenTransitioning()
+        return SideMenuOpenTransitioning()
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DrawerCloseTransitioning()
+        return SideMenuCloseTransitioning()
     }
 
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return DrawerPresentationController(presentedViewController: presented, presenting: presenting)
+        return SideMenuPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+
+    public static func applyTransitionSettings(on viewController: UIViewController) {
+        viewController.modalPresentationStyle = .custom
+        viewController.modalPresentationCapturesStatusBarAppearance = true
+        viewController.transitioningDelegate = SideMenuTransitioningDelegate.shared
     }
 }

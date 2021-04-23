@@ -87,7 +87,7 @@ let router = Router(routes: [
     },
 
     RouteHandler("/profile") { _, _, _ in
-        return CoreHostingController(SideMenuView(.observer), isDrawer: true)
+        return CoreHostingController(SideMenuView(.observer), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
 
     RouteHandler("/profile/observees") { _, _, _ in

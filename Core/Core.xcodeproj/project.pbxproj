@@ -472,7 +472,7 @@
 		7DA2608823F72315005D2121 /* NotificationChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D70DE93233E8DA800F5C3D4 /* NotificationChannelsViewController.swift */; };
 		7DA2608923F72315005D2121 /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E80C5233C6A65003C608B /* ProfileSettingsViewController.swift */; };
 		7DA2608A23F72315005D2121 /* APIHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED00D232C252200392F3C /* APIHelpLinks.swift */; };
-		7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */; };
+		7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA58FC223A987600FEC3F8 /* SideMenuTransitioning.swift */; };
 		7DA2608C23F72315005D2121 /* ExternalToolLaunchPlacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */; };
 		7DA2608D23F72315005D2121 /* GetAccountHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED00F232C2C7500392F3C /* GetAccountHelpLinks.swift */; };
 		7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */; };
@@ -1727,7 +1727,7 @@
 		9F900E7823217CC000BB44B4 /* APISearchRecipientsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISearchRecipientsTests.swift; sourceTree = "<group>"; };
 		9FA690EF23C79489009D12D9 /* GetConversationCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversationCourses.swift; sourceTree = "<group>"; };
 		9FA690F123C7A683009D12D9 /* GetConversationCoursesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversationCoursesTests.swift; sourceTree = "<group>"; };
-		9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerTransitioning.swift; sourceTree = "<group>"; };
+		9FAA58FC223A987600FEC3F8 /* SideMenuTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTransitioning.swift; sourceTree = "<group>"; };
 		9FAE410021B6C56D00FE7F58 /* APIExternalTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalTool.swift; sourceTree = "<group>"; };
 		9FAE410221B6C88000FE7F58 /* APIExternalToolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolTests.swift; sourceTree = "<group>"; };
 		9FAE410921B6D0A600FE7F58 /* LTITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTITools.swift; sourceTree = "<group>"; };
@@ -3669,7 +3669,6 @@
 				CFC01CC02563FE7300178E98 /* Help */,
 				7D9E80C0233C61DA003C608B /* Settings */,
 				7DBED00D232C252200392F3C /* APIHelpLinks.swift */,
-				9FAA58FC223A987600FEC3F8 /* DrawerTransitioning.swift */,
 				7DBED02223317E0F00392F3C /* ExternalToolLaunchPlacement.swift */,
 				7DBED0242331801F00392F3C /* GetGlobalNavExternalToolsPlacements.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
@@ -4132,6 +4131,7 @@
 		EB2A9BBB2632E0BB00A19A5A /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				9FAA58FC223A987600FEC3F8 /* SideMenuTransitioning.swift */,
 				EB71A2522615AD840003241C /* SideMenuView.swift */,
 				EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */,
 				EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */,
@@ -5007,7 +5007,7 @@
 				7DA260C223F72352005D2121 /* UploadFileComment.swift in Sources */,
 				D97020C52581013C002B7B73 /* ContextCardHeaderView.swift in Sources */,
 				7DA2601223F7227A005D2121 /* UIFontExtensions.swift in Sources */,
-				7DA2608B23F72315005D2121 /* DrawerTransitioning.swift in Sources */,
+				7DA2608B23F72315005D2121 /* SideMenuTransitioning.swift in Sources */,
 				7DA2609D23F72348005D2121 /* TodoListViewController.swift in Sources */,
 				7DA25FE323F721DA005D2121 /* HTTPHeaderConstants.swift in Sources */,
 				B14707B82437CC9000CE1DBD /* ModuleItemDetailsViewController.swift in Sources */,

@@ -270,7 +270,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/profile": { _, _, _ in
-        return CoreHostingController(SideMenuView(.teacher), isDrawer: true)
+        return CoreHostingController(SideMenuView(.teacher), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
 
     "/profile/settings": { _, _, _ in
