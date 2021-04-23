@@ -24,7 +24,7 @@ public struct RemoteImage: View {
     public let height: CGFloat
 
     @State private var loader: ImageLoader?
-    @State private var loadedURL: URL? = nil
+    @State private var loadedURL: URL?
     @State private var image: LoadedImage?
     @State private var started: Bool = false
 

@@ -33,20 +33,20 @@ struct ProfileImagePicker: UIViewControllerRepresentable {
         viewController.allowsEditing = true
         return viewController
     }
-    
+
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Self.Context) {}
-    
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(completionHandler: completionHandler)
     }
-    
+
     final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let completionHandler: (UIImage?) -> Void
-        
+
         init(completionHandler: @escaping (UIImage?) -> Void) {
             self.completionHandler = completionHandler
         }
-        
+
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             let image: UIImage? = {
                 if let image = info[.editedImage] as? UIImage {

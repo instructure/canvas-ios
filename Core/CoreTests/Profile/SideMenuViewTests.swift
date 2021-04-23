@@ -21,7 +21,7 @@ import Combine
 @testable import Core
 import TestsFoundation
 
-class SideMenuTests: CoreTestCase {
+class SideMenuViewTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
@@ -35,11 +35,11 @@ class SideMenuTests: CoreTestCase {
             avatar_url: URL(string: "https://localhost/avatar.png")!,
             pronouns: nil
         ))
-        
+
         api.mock(GetUserRequest(userID: "self"), value: .make())
         api.mock(PutUserSettingsRequest(), value: .make(hide_dashcard_color_overlays: true))
     }
-    
+
     func testParentItems() {
         let tree = controller(.observer).testTree
         XCTAssertNotNil(tree?.find(id: "Profile.inboxButton"))
@@ -76,7 +76,7 @@ class SideMenuTests: CoreTestCase {
         XCTAssertNotNil(tree?.find(id: "Profile.logOutButton"))
     }
 
-    func controller(_ enrollment: HelpLinkEnrollment) -> CoreHostingController<SideMenu> {
-        return hostSwiftUIController(SideMenu(enrollment))
+    func controller(_ enrollment: HelpLinkEnrollment) -> CoreHostingController<SideMenuView> {
+        return hostSwiftUIController(SideMenuView(enrollment))
     }
 }

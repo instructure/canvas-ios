@@ -876,8 +876,16 @@
 		E8E070ED24E1843600B37176 /* AvoidKeyboardAreaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */; };
 		E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */; };
 		E8E070F424E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */; };
-		EB71A2532615AD840003241C /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenu.swift */; };
-		EB989763262ECCB500E1CFE0 /* SideMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */; };
+		EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */; };
+		EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */; };
+		EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */; };
+		EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC52632E31F00A19A5A /* SideMenuFooterView.swift */; };
+		EB2A9BC92632E39500A19A5A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BC82632E39500A19A5A /* SideMenuHeaderView.swift */; };
+		EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */; };
+		EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */; };
+		EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */; };
+		EB71A2532615AD840003241C /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A2522615AD840003241C /* SideMenuView.swift */; };
+		EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */; };
 		EBEA78DE2626D38C008B82E8 /* ProfileImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */; };
 		EE424B3422E8DE2E00D083EE /* APIPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3322E8DE2E00D083EE /* APIPageTests.swift */; };
 		EE424B3622E8E16D00D083EE /* GetPagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE424B3522E8E16D00D083EE /* GetPagesTests.swift */; };
@@ -1984,8 +1992,16 @@
 		E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvoidKeyboardAreaTests.swift; sourceTree = "<group>"; };
 		E8E070F124E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensions.swift; sourceTree = "<group>"; };
 		E8E070F324E1988200B37176 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
-		EB71A2522615AD840003241C /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
-		EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTests.swift; sourceTree = "<group>"; };
+		EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
+		EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionsSection.swift; sourceTree = "<group>"; };
+		EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuBottomSection.swift; sourceTree = "<group>"; };
+		EB2A9BC52632E31F00A19A5A /* SideMenuFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFooterView.swift; sourceTree = "<group>"; };
+		EB2A9BC82632E39500A19A5A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
+		EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSubHeaderView.swift; sourceTree = "<group>"; };
+		EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuItem.swift; sourceTree = "<group>"; };
+		EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuToggleItem.swift; sourceTree = "<group>"; };
+		EB71A2522615AD840003241C /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
 		EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
 		EE424B3122E8BBEF00D083EE /* GetFrontPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFrontPage.swift; sourceTree = "<group>"; };
 		EE424B3322E8DE2E00D083EE /* APIPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageTests.swift; sourceTree = "<group>"; };
@@ -3419,7 +3435,7 @@
 				97A486C32397826300084499 /* ProfileViewControllerTests.swift */,
 				7DBED01C2330332800392F3C /* UploadAvatarTests.swift */,
 				7D71807A233FCD0A0053FC7A /* UserProfileTests.swift */,
-				EB989762262ECCB500E1CFE0 /* SideMenuTests.swift */,
+				EB989762262ECCB500E1CFE0 /* SideMenuViewTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -3656,6 +3672,7 @@
 		9FAA58FE223A987600FEC3F8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EB2A9BBB2632E0BB00A19A5A /* SideMenu */,
 				CFC01CC02563FE7300178E98 /* Help */,
 				7D9E80C0233C61DA003C608B /* Settings */,
 				7DBED00D232C252200392F3C /* APIHelpLinks.swift */,
@@ -3666,7 +3683,6 @@
 				9FAA58FD223A987600FEC3F8 /* ProfileViewController.swift */,
 				7DBED01A2330158F00392F3C /* UploadAvatar.swift */,
 				7D9E80BC233C1BD6003C608B /* UserProfile.swift */,
-				EB71A2522615AD840003241C /* SideMenu.swift */,
 				EBEA78DD2626D38C008B82E8 /* ProfileImagePicker.swift */,
 			);
 			path = Profile;
@@ -4113,6 +4129,22 @@
 				E8E070EC24E1843600B37176 /* AvoidKeyboardAreaTests.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		EB2A9BBB2632E0BB00A19A5A /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				EB71A2522615AD840003241C /* SideMenuView.swift */,
+				EB2A9BBC2632E18C00A19A5A /* SideMenuMainSection.swift */,
+				EB2A9BBF2632E27300A19A5A /* SideMenuOptionsSection.swift */,
+				EB2A9BC22632E2D000A19A5A /* SideMenuBottomSection.swift */,
+				EB2A9BC52632E31F00A19A5A /* SideMenuFooterView.swift */,
+				EB2A9BC82632E39500A19A5A /* SideMenuHeaderView.swift */,
+				EB2A9BCB2632E3D300A19A5A /* SideMenuSubHeaderView.swift */,
+				EB2A9BCE2632E40600A19A5A /* SideMenuItem.swift */,
+				EB2A9BD12632E43600A19A5A /* SideMenuToggleItem.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		EE584C7822F2043300D1E201 /* Pages */ = {
@@ -4842,7 +4874,7 @@
 				3B635B37225CE59D001F353D /* GetCalendarEventsTests.swift in Sources */,
 				B109249423CE81C400796903 /* RoleTests.swift in Sources */,
 				7D2DC301219A16EC008FE29A /* DocViewerConstantsTests.swift in Sources */,
-				EB989763262ECCB500E1CFE0 /* SideMenuTests.swift in Sources */,
+				EB989763262ECCB500E1CFE0 /* SideMenuViewTests.swift in Sources */,
 				7D5A2BC422CD0D8C0029B6AC /* APIListTests.swift in Sources */,
 				CFAE973925ECFF8F00DF2102 /* APIUserTests.swift in Sources */,
 				977921A123E11C3F0082696B /* UIBarButtonItemExtensionTests.swift in Sources */,
@@ -4866,7 +4898,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB71A2532615AD840003241C /* SideMenu.swift in Sources */,
+				EB71A2532615AD840003241C /* SideMenuView.swift in Sources */,
 				7DA260F623F72397005D2121 /* FilePickerViewController.swift in Sources */,
 				3BA649D7242530470047D8DC /* NotificationView.swift in Sources */,
 				7D4B2753253F65C600A98DE3 /* VideoRecorder.swift in Sources */,
@@ -5081,6 +5113,7 @@
 				7DA2603F23F722D9005D2121 /* Course.swift in Sources */,
 				7DA25FB423F72136005D2121 /* APIFeatureFlags.swift in Sources */,
 				7DA260E823F72359005D2121 /* SubtitleTableViewCell.swift in Sources */,
+				EB2A9BC92632E39500A19A5A /* SideMenuHeaderView.swift in Sources */,
 				7DA2606E23F722E9005D2121 /* APICommunicationChannel.swift in Sources */,
 				7DA2602823F722C2005D2121 /* LoginFindSchoolViewController.swift in Sources */,
 				CF7C6D9F25E5130200363203 /* GroupContextCardView.swift in Sources */,
@@ -5117,6 +5150,7 @@
 				7DA2607E23F722FA005D2121 /* PageViewSession.swift in Sources */,
 				7DA25FC723F72136005D2121 /* APIPostPolicyInfo.swift in Sources */,
 				3B4D892A2450A8E9004ED120 /* ConversationDetailCell.swift in Sources */,
+				EB2A9BC32632E2D000A19A5A /* SideMenuBottomSection.swift in Sources */,
 				7DA260CF23F72359005D2121 /* ChatBubbleView.swift in Sources */,
 				7DA260C823F72359005D2121 /* AccessIconView.swift in Sources */,
 				E880B50024AE352800A382F4 /* GetObserverAlerts.swift in Sources */,
@@ -5138,7 +5172,9 @@
 				B16E05E22423DF83006B6ADB /* LoginQRCodeTutorialViewController.swift in Sources */,
 				7DA2600E23F7227A005D2121 /* ProcessInfoExtensions.swift in Sources */,
 				7DA2604423F722D9005D2121 /* DiscussionTopic.swift in Sources */,
+				EB2A9BC62632E31F00A19A5A /* SideMenuFooterView.swift in Sources */,
 				7D1E856B2567356400D093C5 /* JustifiedGrid.swift in Sources */,
+				EB2A9BCC2632E3D300A19A5A /* SideMenuSubHeaderView.swift in Sources */,
 				7DA2603123F722C9005D2121 /* LTITools.swift in Sources */,
 				7DCA32072541C5F700458651 /* VideoPlayer.swift in Sources */,
 				7DA2604F23F722D9005D2121 /* LatePolicyStatus.swift in Sources */,
@@ -5164,6 +5200,7 @@
 				7DA2606623F722D9005D2121 /* Tab.swift in Sources */,
 				7DA25FAC23F72136005D2121 /* APIDocViewer.swift in Sources */,
 				3B4D89292450A8E9004ED120 /* ConversationCoursesActionSheet.swift in Sources */,
+				EB2A9BBD2632E18C00A19A5A /* SideMenuMainSection.swift in Sources */,
 				7DB94973247DA160006FB025 /* GetSubmissionSummary.swift in Sources */,
 				E8E070F224E1983E00B37176 /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
 				7DC3530D255B3DD900B36CD3 /* AssignmentEditorView.swift in Sources */,
@@ -5185,6 +5222,7 @@
 				7DA2607B23F722FA005D2121 /* PageViewEventController.swift in Sources */,
 				B11AEBBB240727AE00B736D6 /* GetPlannerCourses.swift in Sources */,
 				7DA2600023F7226E005D2121 /* PSPDFAnnotationExtension.swift in Sources */,
+				EB2A9BC02632E27300A19A5A /* SideMenuOptionsSection.swift in Sources */,
 				7DA2608423F72303005D2121 /* User.swift in Sources */,
 				7DA260E623F72359005D2121 /* RightDetailTableViewCell.swift in Sources */,
 				7DA2600823F7227A005D2121 /* NotificationCenterExtensions.swift in Sources */,
@@ -5224,6 +5262,7 @@
 				7DA2608E23F72315005D2121 /* GetGlobalNavExternalToolsPlacements.swift in Sources */,
 				7DA25FEF23F721DE005D2121 /* GetSearchRecipients.swift in Sources */,
 				7DA25FBF23F72136005D2121 /* APIModule.swift in Sources */,
+				EB2A9BD22632E43600A19A5A /* SideMenuToggleItem.swift in Sources */,
 				7D70869925699AAA00647D37 /* CourseInvitationCard.swift in Sources */,
 				CF5F602E25DBD7D800E7E0ED /* EnvironmentValues.swift in Sources */,
 				7DF4AAD8248833A400B07BB8 /* AppStoreReview.swift in Sources */,
@@ -5235,6 +5274,7 @@
 				7DA260C123F72352005D2121 /* GetGradingPeriods.swift in Sources */,
 				7DA2604323F722D9005D2121 /* DiscussionEntry.swift in Sources */,
 				7D1E85622566E80100D093C5 /* CustomizeCourseView.swift in Sources */,
+				EB2A9BCF2632E40600A19A5A /* SideMenuItem.swift in Sources */,
 				7DA25FF223F7225D005D2121 /* APIAccountNotification.swift in Sources */,
 				7DA260BC23F72352005D2121 /* GetSSOLogin.swift in Sources */,
 				7DA25FBB23F72136005D2121 /* APIList.swift in Sources */,
