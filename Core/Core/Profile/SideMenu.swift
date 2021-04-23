@@ -159,17 +159,16 @@ private struct OptionsSection: View {
     var body: some View {
         VStack(spacing: 0) {
             SubHeaderView(title: Text("OPTIONS", bundle: .core))
+                .accessibility(addTraits: .isHeader)
             if enrollment == .student {
                 ToggleItem(id: "showGrades", image: .gradebookLine, title: Text("Show Grades", bundle: .core), isOn: $viewModel.showGrades).onTapGesture {
                     viewModel.showGrades.toggle()
-                    env.userDefaults?.showGradesOnDashboard = viewModel.showGrades
                 }
             }
             
             if enrollment == .student || enrollment == .teacher {
                 ToggleItem(id: "colorOverlay", image: .coursesLine, title: Text("Color Overlay", bundle: .core), isOn: $viewModel.colorOverlay).onTapGesture {
                     viewModel.colorOverlay.toggle()
-                    UpdateUserSettings(hide_dashcard_color_overlays: !viewModel.colorOverlay).fetch()
                 }
             }
         }
@@ -181,8 +180,20 @@ private struct OptionsSection: View {
 
 extension OptionsSection {
     final class OptionsViewModel: ObservableObject {
-        @Published var showGrades: Bool = false
-        @Published var colorOverlay: Bool = false
+        @Published var showGrades: Bool = false {
+            willSet {
+                if newValue != showGrades {
+                    env.userDefaults?.showGradesOnDashboard = newValue
+                }
+            }
+        }
+        @Published var colorOverlay: Bool = false {
+            willSet {
+                if newValue != colorOverlay {
+                    UpdateUserSettings(hide_dashcard_color_overlays: !newValue).fetch()
+                }
+            }
+        }
 
         private let env = AppEnvironment.shared
         private lazy var settings: Store<GetUserSettings> = env.subscribe(GetUserSettings(userID: "self")) { [weak self] in
@@ -515,31 +526,38 @@ private struct Badge: View {
 }
 
 private struct ToggleItem: View {
-
     let id: String
     let image: Image
     let title: Text
     @Binding var isOn: Bool
-    
+
     var body: some View {
-        HStack(spacing: 20) {
-            image.accessibility(hidden: true)
-            let toggle = Toggle(isOn: $isOn, label: { title })
-                .font(.regular16)
-                .foregroundColor(.licorice)
-                .allowsHitTesting(false)
-            if #available(iOS 14, *) {
-                toggle.toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-            } else {
-                toggle
+        let toggle = Toggle(isOn: $isOn, label: {
+            HStack(spacing: 20) {
+                image
+                title
             }
-        }
+        })
+        .animation(.default)
+        .font(.regular16)
+        .foregroundColor(.licorice)
         .padding(20)
         .frame(height: 48)
         .contentShape(Rectangle())
         .accessibility(label: title)
         .identifier("Profile.\(id)Toggle")
-        .animation(.default)
+
+        if #available(iOS 14, *) {
+            toggle
+                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+                .onChange(of: isOn) { _ in
+                    // Binding change doesn't generate haptic feedback so we manually trigger one
+                    let feedback = UIImpactFeedbackGenerator(style: .medium)
+                    feedback.impactOccurred()
+                }
+        } else {
+            toggle
+        }
     }
 }
 
