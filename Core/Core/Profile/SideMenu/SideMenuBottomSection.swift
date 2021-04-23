@@ -42,7 +42,7 @@ struct SideMenuBottomSection: View {
     #if DEBUG
     @State var showDevMenu = true
     #else
-    @State var showDevMenu = UserDefaults.standard.bool(forKey: "showDevMenu")
+    @State var showDevMenu = Self.readDevMenuVisibilityFromUserDefaults()
     #endif
 
     var canActAsUser: Bool {
@@ -105,6 +105,9 @@ struct SideMenuBottomSection: View {
             helpLinks.refresh()
             permissions.refresh()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).receive(on: DispatchQueue.main)) { _ in
+            showDevMenu = Self.readDevMenuVisibilityFromUserDefaults()
+        }
     }
 
     func handleLogout() {
@@ -155,6 +158,10 @@ struct SideMenuBottomSection: View {
         let helpViewController = CoreHostingController(helpView)
         helpViewController.title = root.text
         env.router.show(helpViewController, from: controller.value, options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+    }
+
+    private static func readDevMenuVisibilityFromUserDefaults() -> Bool {
+        UserDefaults.standard.bool(forKey: "showDevMenu")
     }
 }
 

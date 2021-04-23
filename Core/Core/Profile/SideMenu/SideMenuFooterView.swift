@@ -25,7 +25,12 @@ struct SideMenuFooterView: View {
             HStack {
                 Text("v. \(version)").padding(.leading, 10).font(.regular14).foregroundColor(.ash)
                 Spacer()
-            }.padding().frame(height: 30)
+            }
+            .padding()
+            .frame(height: 30)
+            .onTapGesture(count: 10) {
+                UserDefaults.standard.set(true, forKey: "showDevMenu")
+            }
         }
     }
 }
