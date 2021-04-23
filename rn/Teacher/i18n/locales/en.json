@@ -17,6 +17,9 @@
   "add_attachment_dcdb8bf8": {
     "message": "Add attachment"
   },
+  "add_description_5321f1d": {
+    "message": "Add description"
+  },
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
   },
@@ -421,6 +424,9 @@
   },
   "media_recording_77cddc52": {
     "message": "Media Recording"
+  },
+  "message_body_bf4a882c": {
+    "message": "Message body"
   },
   "message_details_342e931f": {
     "message": "Message Details"
