@@ -26,7 +26,7 @@ public protocol AppEnvironmentDelegate {
 }
 
 open class AppEnvironment {
-    public enum App {
+    public enum App: String {
         case parent, student, teacher
     }
 
