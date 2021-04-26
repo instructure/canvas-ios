@@ -111,7 +111,9 @@ struct SubmissionGrader: View {
                     VStack(alignment: .leading, spacing: 0) {
                         SubmissionHeader(assignment: assignment, submission: submission)
                         attemptToggle
+                            .accessibility(hidden: drawerState == .max)
                         Divider()
+                        let isSubmissionContentHiddenFromA11y = drawerState != .min
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
                                 SimilarityScore(selected, file: file)
@@ -121,9 +123,12 @@ struct SubmissionGrader: View {
                                     fileID: fileID,
                                     handleRefresh: handleRefresh
                                 )
+
                             }
                             attemptPicker
                         }
+                            .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                            .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
                     }
                     Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
