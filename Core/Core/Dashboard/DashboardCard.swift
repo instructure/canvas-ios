@@ -37,7 +37,8 @@ final class DashboardCard: NSManagedObject {
     var color: UIColor { contextColor?.color ?? .ash }
 
     var isTeacherEnrollment: Bool {
-        enrollmentType.lowercased().contains("teacher")
+        let teacherRoles = ["teacher", "ta"]
+        return teacherRoles.contains(where: enrollmentType.lowercased().contains)
     }
 
     var course: Course? { managedObjectContext?.first(where: #keyPath(Course.id), equals: id) }
