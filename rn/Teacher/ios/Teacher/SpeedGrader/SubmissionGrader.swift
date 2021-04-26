@@ -89,6 +89,9 @@ struct SubmissionGrader: View {
                                         handleRefresh: handleRefresh
                                     )
                                 }
+                                    // Disable submission content interaction in case attempt picker is above it
+                                    .accessibilityElement(children: showAttempts ? .ignore : .contain)
+                                    .accessibility(hidden: showAttempts)
                                 attemptPicker
                             }
                             Spacer().frame(height: bottomInset)
@@ -113,7 +116,7 @@ struct SubmissionGrader: View {
                         attemptToggle
                             .accessibility(hidden: drawerState == .max)
                         Divider()
-                        let isSubmissionContentHiddenFromA11y = drawerState != .min
+                        let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
                                 SimilarityScore(selected, file: file)
@@ -125,10 +128,10 @@ struct SubmissionGrader: View {
                                 )
 
                             }
+                                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                             attemptPicker
                         }
-                            .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                            .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
                     }
                     Drawer(state: $drawerState, minHeight: minHeight, maxHeight: maxHeight) {
