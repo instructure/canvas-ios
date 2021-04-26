@@ -227,14 +227,16 @@ struct SubmissionGrader: View {
                     fileID = $0
                     snapDrawerTo(.min)
                 })
+                let isGradesOnScreen = (drawerState != .min && tab == .grades)
                 VStack(spacing: 0) {
                     SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: (tab == .grades) ? .contain : .ignore)
-                    .accessibility(hidden: tab != .grades)
+                    .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isGradesOnScreen)
+                let isCommentsOnScreen = (drawerState != .min && tab == .comments)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
                         assignment: assignment,
@@ -251,16 +253,17 @@ struct SubmissionGrader: View {
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .background(Color.backgroundLight)
-                    .accessibilityElement(children: (tab == .comments) ? .contain : .ignore)
-                    .accessibility(hidden: tab != .comments)
+                    .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isCommentsOnScreen)
+                let isFilesOnScreen = (drawerState != .min && tab == .files)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: (tab == .files) ? .contain : .ignore)
-                    .accessibility(hidden: tab != .files)
+                    .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isFilesOnScreen)
             }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
