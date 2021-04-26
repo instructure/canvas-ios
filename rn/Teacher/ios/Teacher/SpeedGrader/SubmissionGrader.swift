@@ -233,6 +233,8 @@ struct SubmissionGrader: View {
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                    .accessibilityElement(children: (tab == .grades) ? .contain : .ignore)
+                    .accessibility(hidden: tab != .grades)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
                         assignment: assignment,
@@ -249,12 +251,16 @@ struct SubmissionGrader: View {
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .background(Color.backgroundLight)
+                    .accessibilityElement(children: (tab == .comments) ? .contain : .ignore)
+                    .accessibility(hidden: tab != .comments)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                    .accessibilityElement(children: (tab == .files) ? .contain : .ignore)
+                    .accessibility(hidden: tab != .files)
             }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
