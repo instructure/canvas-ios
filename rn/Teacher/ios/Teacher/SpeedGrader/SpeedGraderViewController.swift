@@ -82,6 +82,7 @@ class SpeedGraderViewController: UIViewController, PagesViewControllerDataSource
         if initialIndex == nil, let current = findCurrentIndex() {
             initialIndex = current
             loadingView.unembed()
+            emptyView.unembed()
             pages.dataSource = self
             pages.scrollView.contentInsetAdjustmentBehavior = .never
             pages.scrollView.backgroundColor = .backgroundMedium
