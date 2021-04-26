@@ -27,6 +27,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
+    @NSManaged public var canSubmit: Bool
     @NSManaged public var canUnpublish: Bool
     @NSManaged public var courseID: String
     @NSManaged public var details: String?
@@ -141,6 +142,7 @@ extension Assignment {
         allowedExtensions = item.allowed_extensions ?? []
         anonymizeStudents = item.anonymize_students == true
         assignmentGroupID = item.assignment_group_id?.value
+        canSubmit = item.can_submit == true
         canUnpublish = item.unpublishable == true
         courseID = item.course_id.value
         details = item.description

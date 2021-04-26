@@ -420,6 +420,11 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
     }
 
+    func testSubmitAssignmentButtonHiddenForCantSubmit() {
+        Assignment.make(from: .make(can_submit: false, submission_types: [ .online_text_entry ]))
+        XCTAssertTrue(presenter.submitAssignmentButtonIsHidden())
+    }
+
     func setupIsHiddenTest(lockStatus: LockStatus, lockedForUser: Bool = true) {
         switch lockStatus {
         case .unlocked:
