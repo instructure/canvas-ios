@@ -131,6 +131,9 @@
 "Grade post policy" = "Zasady publikowania ocen";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Suwak stopni";
+
+/* No comment provided by engineer. */
 "Graded" = "Oceniono";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Opublikuj oceny";
+
+/* No comment provided by engineer. */
+"Post settings" = "Ustawienia publikowania";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Ustawienia publikowania";

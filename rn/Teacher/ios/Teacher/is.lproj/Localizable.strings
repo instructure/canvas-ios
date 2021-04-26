@@ -131,6 +131,9 @@
 "Grade post policy" = "Einkunnabirtingarstefna";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Einkunnasleði";
+
+/* No comment provided by engineer. */
 "Graded" = "Metið";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Birta einkunnir";
+
+/* No comment provided by engineer. */
+"Post settings" = "Færslustillingar";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Birta stillingar";

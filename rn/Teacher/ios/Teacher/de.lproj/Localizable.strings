@@ -131,6 +131,9 @@
 "Grade post policy" = "Richtlinie zur Notenvergabe";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Notenschieber";
+
+/* No comment provided by engineer. */
 "Graded" = "Benotet";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Noten mitteilen";
+
+/* No comment provided by engineer. */
+"Post settings" = "Post-Einstellungen";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Post-Einstellungen";

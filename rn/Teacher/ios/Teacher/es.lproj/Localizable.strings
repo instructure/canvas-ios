@@ -131,6 +131,9 @@
 "Grade post policy" = "Política de publicación de calificaciones";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Deslizador de calificación";
+
+/* No comment provided by engineer. */
 "Graded" = "Calificado";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publicar calificaciones";
+
+/* No comment provided by engineer. */
+"Post settings" = "Configuración de publicación";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publicar configuraciones";

@@ -131,6 +131,9 @@
 "Grade post policy" = "成績掲示規約";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "成績スライダー";
+
+/* No comment provided by engineer. */
 "Graded" = "採点済み";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "成績表の掲示";
+
+/* No comment provided by engineer. */
+"Post settings" = "掲載の設定";
 
 /* No comment provided by engineer. */
 "Post Settings" = "掲示設定";

@@ -131,6 +131,9 @@
 "Grade post policy" = "Beleid voor het posten van cijfers";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Cijferslider";
+
+/* No comment provided by engineer. */
 "Graded" = "Beoordeeld";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Cijfers posten";
+
+/* No comment provided by engineer. */
+"Post settings" = "Instellingen voor posten";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Instellingen voor posten";

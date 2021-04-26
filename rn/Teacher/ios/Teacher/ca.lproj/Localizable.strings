@@ -131,6 +131,9 @@
 "Grade post policy" = "Política de publicació de qualificacions";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Control lliscant de qualificacions";
+
+/* No comment provided by engineer. */
 "Graded" = "Qualificat";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publica les qualificacions";
+
+/* No comment provided by engineer. */
+"Post settings" = "Configuració de publicació";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publica la configuració";

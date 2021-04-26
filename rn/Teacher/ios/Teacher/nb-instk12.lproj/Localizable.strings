@@ -131,6 +131,9 @@
 "Grade post policy" = "Retningslinjer for vurderingspostering";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Vurderingsglidebryter";
+
+/* No comment provided by engineer. */
 "Graded" = "Vurdert";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publisert vurderinger";
+
+/* No comment provided by engineer. */
+"Post settings" = "Publiseringsinnstillinger";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publiseringsinnstillinger";
