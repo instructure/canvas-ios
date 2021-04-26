@@ -29,7 +29,9 @@ struct ProfileImagePicker: UIViewControllerRepresentable {
         let viewController = UIImagePickerController()
         viewController.delegate = context.coordinator
         viewController.sourceType = sourceType
-        viewController.cameraDevice = .front
+        if sourceType == .camera {
+            viewController.cameraDevice = .front
+        }
         viewController.allowsEditing = true
         return viewController
     }
