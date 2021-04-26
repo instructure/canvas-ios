@@ -131,6 +131,9 @@
 "Grade post policy" = "Arvosanan lähetyskäytäntö";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Arvosanojen liukuasteikko";
+
+/* No comment provided by engineer. */
 "Graded" = "Arvosteltu";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Lähetä arvosanoja";
+
+/* No comment provided by engineer. */
+"Post settings" = "Lähetysasetukset";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Lähetysasetukset";

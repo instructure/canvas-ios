@@ -131,6 +131,9 @@
 "Grade post policy" = "Politique de publication des notes";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Curseur des notes";
+
+/* No comment provided by engineer. */
 "Graded" = "Noté";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publier les notes";
+
+/* No comment provided by engineer. */
+"Post settings" = "Paramètres des publications";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Paramètres de publication";

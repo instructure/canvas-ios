@@ -131,6 +131,9 @@
 "Grade post policy" = "Retningslinjer for karakterpostering";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Karakterglidebryter";
+
+/* No comment provided by engineer. */
 "Graded" = "Karaktersatt";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Publisert karakterer";
+
+/* No comment provided by engineer. */
+"Post settings" = "Publiseringsinnstillinger";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publiseringsinnstillinger";

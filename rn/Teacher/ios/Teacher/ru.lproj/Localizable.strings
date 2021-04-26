@@ -131,6 +131,9 @@
 "Grade post policy" = "Политика публикации оценок";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Ползунок оценивания";
+
+/* No comment provided by engineer. */
 "Graded" = "С оценкой";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Опубликовать оценки";
+
+/* No comment provided by engineer. */
+"Post settings" = "Опубликовать настройки";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Опубликовать настройки";

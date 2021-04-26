@@ -131,6 +131,9 @@
 "Grade post policy" = "Politik for at slå karakterer op";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Karakter-skyder";
+
+/* No comment provided by engineer. */
 "Graded" = "Bedømt";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Slå karakterer op";
+
+/* No comment provided by engineer. */
+"Post settings" = "Slå karakterer op - indstillinger";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Slå karakterer op - indstillinger";

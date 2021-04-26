@@ -131,6 +131,9 @@
 "Grade post policy" = "Način sporočanja ocen";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Drsnik za ocene";
+
+/* No comment provided by engineer. */
 "Graded" = "Ocenjeno";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Pošlji ocene v SIS";
+
+/* No comment provided by engineer. */
+"Post settings" = "Nastavitve objavljanje";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Nastavitve objavljanja";

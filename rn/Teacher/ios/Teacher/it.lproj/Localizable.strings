@@ -131,6 +131,9 @@
 "Grade post policy" = "Politica di pubblicazione voto";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Indicatore scorrevole valutazione";
+
+/* No comment provided by engineer. */
 "Graded" = "Valutato";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Pubblica voti";
+
+/* No comment provided by engineer. */
+"Post settings" = "Impostazioni pubblicazione";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Pubblica impostazioni";

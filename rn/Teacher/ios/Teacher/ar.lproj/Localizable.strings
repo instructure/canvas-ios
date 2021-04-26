@@ -131,6 +131,9 @@
 "Grade post policy" = "سياسة نشر التقدير";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "شريط تمرير التقديرات";
+
+/* No comment provided by engineer. */
 "Graded" = "تم تقييم الدرجة";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "نشر الدرجات";
+
+/* No comment provided by engineer. */
+"Post settings" = "إعدادات النشر";
 
 /* No comment provided by engineer. */
 "Post Settings" = "نشر الإعدادات";

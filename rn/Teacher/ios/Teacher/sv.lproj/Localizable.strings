@@ -131,6 +131,9 @@
 "Grade post policy" = "Policy för omdömespublicering";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "Omdömesreglage";
+
+/* No comment provided by engineer. */
 "Graded" = "Har bedömts";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "Offentliggör omdömen";
+
+/* No comment provided by engineer. */
+"Post settings" = "Publiceringsinställningar";
 
 /* No comment provided by engineer. */
 "Post Settings" = "Publiceringsinställningar";

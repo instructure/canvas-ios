@@ -131,6 +131,9 @@
 "Grade post policy" = "評分公佈政策";
 
 /* No comment provided by engineer. */
+"Grade Slider" = "評分滑條";
+
+/* No comment provided by engineer. */
 "Graded" = "已評分";
 
 /* No comment provided by engineer. */
@@ -213,6 +216,9 @@
 
 /* No comment provided by engineer. */
 "Post Grades" = "公佈成績";
+
+/* No comment provided by engineer. */
+"Post settings" = "公佈設定";
 
 /* No comment provided by engineer. */
 "Post Settings" = "公佈設定";
