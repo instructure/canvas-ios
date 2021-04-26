@@ -69,8 +69,8 @@ class PageEditorViewTests: CoreTestCase {
         ))
         controller = hostSwiftUIController(PageEditorView(context: .group("1"), url: "page-1"))
         let tree = controller.testTree
-        XCTAssertNil(tree?.find(id: "PageEditor.titleField"))
-        XCTAssertNotNil(tree?.find(id: "PageEditor.titleText"))
+        XCTAssertNotNil(tree?.find(id: "PageEditor.titleField"))
+        XCTAssertNil(tree?.find(id: "PageEditor.titleText"))
         XCTAssertNil(tree?.find(id: "PageEditor.publishedToggle"))
         XCTAssertNil(tree?.find(id: "PageEditor.frontPageToggle"))
         XCTAssertNotNil(tree?.find(id: "PageEditor.editorsButton"))

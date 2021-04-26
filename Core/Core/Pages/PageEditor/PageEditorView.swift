@@ -72,7 +72,7 @@ public struct PageEditorView: View {
 
     var form: some View {
         EditorForm(isSpinning: isLoading || isSaving) {
-            if env.app == .teacher {
+            if env.app == .teacher || context.contextType == .group {
                 EditorSection(label: Text("Title", bundle: .core)) {
                     TextField(NSLocalizedString("Add Title", bundle: .core, comment: ""), text: $title)
                         .font(.regular16).foregroundColor(.textDarkest)
