@@ -39,17 +39,20 @@ class DashboardCardTests: CoreTestCase {
 
     func testTeacherEnrollment() {
         let useCase = GetDashboardCards()
-        api.mock(useCase, value: [.make(), .make(
-            enrollmentType: "TeacherEnrollment",
-            id: "2"
-        ), ])
+        api.mock(useCase, value: [
+            .make(),
+            .make(enrollmentType: "TeacherEnrollment", id: "2"),
+            .make(enrollmentType: "TAEnrollment", id: "3"),
+        ])
 
         useCase.fetch()
         let cards: [DashboardCard] = databaseClient.fetch(scope: useCase.scope)
         let studentCard: DashboardCard? = cards[0]
         let teacherCard: DashboardCard? = cards[1]
+        let taCard: DashboardCard? = cards[2]
 
         XCTAssertTrue(studentCard?.isTeacherEnrollment == false)
         XCTAssertTrue(teacherCard?.isTeacherEnrollment == true)
+        XCTAssertTrue(taCard?.isTeacherEnrollment == true)
     }
 }
