@@ -32,12 +32,12 @@ class SideMenuUITests: MiniCanvasUITestCase {
         XCTAssertTrue(app.navigationBars["Core.ProfileSettingsView"].exists)
     }
 
-//    func testHelp() {
-//        Profile.open()
-//        Profile.helpButton.waitToExist()
-//        Profile.helpButton.tap()
-//        XCTAssertTrue(app.buttons["Help"].exists)
-//    }
+    func testHelp() {
+        Profile.open()
+        Profile.helpButton.waitToExist()
+        Profile.helpButton.tap()
+        XCTAssertTrue(app.navigationBars["Help"].exists)
+    }
 
     func testChangeUser() {
         Profile.open()
