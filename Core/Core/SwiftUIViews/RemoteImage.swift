@@ -22,12 +22,15 @@ public struct RemoteImage: View {
     public let url: URL
     public let width: CGFloat
     public let height: CGFloat
-    @State var loader: ImageLoader?
-    @State var started: Bool = false
-    @State var image: LoadedImage?
-    @State var index = 0
-    @State var repeatedCount = 0
-    @State var timer: Timer?
+
+    @State private var loader: ImageLoader?
+    @State private var loadedURL: URL?
+    @State private var image: LoadedImage?
+    @State private var started: Bool = false
+
+    @State private var currentFrameIndex = 0
+    @State private var animationRepeatedCount = 0
+    @State private var frameAnimationTimer: Timer?
 
     public init(_ url: URL, width: CGFloat, height: CGFloat) {
         self.url = url
@@ -36,33 +39,60 @@ public struct RemoteImage: View {
     }
 
     public var body: some View {
-        if let image = image?.image.images?[index] ?? image?.image {
-            Image(uiImage: image.withRenderingMode(.alwaysOriginal))
-                .resizable().scaledToFill()
-                .frame(width: width, height: height)
+        if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
+            let isURLChanged = (url != loadedURL)
+
+            if isURLChanged {
+                emptyState.onAppear {
+                    resetState()
+                    load()
+                }
+            } else {
+                Image(uiImage: image.withRenderingMode(.alwaysOriginal))
+                    .resizable().scaledToFill()
+                    .frame(width: width, height: height)
+            }
         } else {
-            Spacer()
-                .frame(width: width, height: height)
-                .onAppear(perform: load)
+            emptyState.onAppear {
+                load()
+            }
         }
     }
 
-    func load() {
+    private var emptyState: some View {
+        Spacer()
+            .frame(width: width, height: height)
+    }
+
+    private func resetState() {
+        frameAnimationTimer?.invalidate()
+        frameAnimationTimer = nil
+        loader?.cancel()
+        loader = nil
+        currentFrameIndex = 0
+        animationRepeatedCount = 0
+        started = false
+        image = nil
+    }
+
+    private func load() {
         guard !started else { return }
         started = true
-        loader = ImageLoader(url: url, frame: CGRect(x: 0, y: 0, width: width, height: height)) { result in
+        let localURL = url // Create a local copy in case it changes while the previous image is still loading
+        loader = ImageLoader(url: localURL, frame: CGRect(x: 0, y: 0, width: width, height: height)) { result in
             loader = nil
             guard case .success(let loaded) = result else { return }
             self.image = loaded
+            self.loadedURL = localURL
             if let count = loaded.image.images?.count, count > 0 {
-                self.timer = Timer.scheduledTimer(withTimeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
-                    self.index = (self.index + 1) % count
-                    guard self.index == 0 else { return }
-                    self.repeatedCount += 1
-                    guard loaded.repeatCount > 0, self.repeatedCount >= loaded.repeatCount else { return }
-                    self.timer?.invalidate()
-                    self.timer = nil
-                    self.index = count - 1 // stay on end frame
+                self.frameAnimationTimer = Timer.scheduledTimer(withTimeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
+                    self.currentFrameIndex = (self.currentFrameIndex + 1) % count
+                    guard self.currentFrameIndex == 0 else { return }
+                    self.animationRepeatedCount += 1
+                    guard loaded.repeatCount > 0, self.animationRepeatedCount >= loaded.repeatCount else { return }
+                    self.frameAnimationTimer?.invalidate()
+                    self.frameAnimationTimer = nil
+                    self.currentFrameIndex = count - 1 // stay on end frame
                 }
             }
         }

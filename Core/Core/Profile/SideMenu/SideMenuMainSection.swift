@@ -1,0 +1,120 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2021-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import SwiftUI
+
+struct SideMenuMainSection: View {
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+
+    @ObservedObject private var tools: Store<GetGlobalNavExternalPlacements>
+    @State private var unreadCount: UInt = 0
+    @State private var canUpdateAvatar: Bool = false
+
+    private let enrollment: HelpLinkEnrollment
+    private var dashboard: UIViewController {
+        guard var dashboard = controller.value.presentingViewController else {
+            return UIViewController()
+        }
+        if let tabs = dashboard as? UITabBarController {
+            dashboard = tabs.selectedViewController ?? tabs
+        }
+        if let split = dashboard as? UISplitViewController {
+            dashboard = split.viewControllers.first ?? split
+        }
+
+        return dashboard
+    }
+
+    init(_ enrollment: HelpLinkEnrollment) {
+        self.enrollment = enrollment
+        let env = AppEnvironment.shared
+        self.tools = env.subscribe(GetGlobalNavExternalPlacements())
+    }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            if enrollment == .observer {
+                SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: unreadCount).onAppear {
+                    env.api.makeRequest(GetConversationsUnreadCountRequest()) { (response, _, _) in
+                        self.unreadCount = response?.unread_count ?? 0
+                    }
+                }.onTapGesture {
+                    route(to: "/conversations")
+                }
+
+                SideMenuItem(id: "manageChildren", image: .groupLine, title: Text("Manage Students", bundle: .core)).onTapGesture {
+                    route(to: "/profile/observees")
+                }
+            } else {
+                SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core)).onTapGesture {
+                    route(to: "/users/self/files")
+                }
+
+                ForEach(Array(tools), id: \.self) { tool in
+                    SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),
+                             title: Text("\(tool.title)", bundle: .core)).onTapGesture {
+                                launchLTI(url: tool.url)
+                             }
+                }
+            }
+
+            if enrollment == .student || enrollment == .teacher {
+                SideMenuItem(id: "settings", image: .settingsLine,
+                         title: Text("Settings", bundle: .core), badgeValue: 0).onTapGesture {
+                            self.route(to: "/profile/settings", options: .modal(.formSheet, embedInNav: true, addDoneButton: true))
+                         }
+            }
+        }
+        .onAppear {
+            tools.refresh()
+        }
+    }
+
+    func imageForDomain(_ domain: String?) -> Image {
+        var image = Image.ltiLine
+        guard let domain = domain else {
+            return image
+        }
+        if domain == "arc.instructure.com" {
+            image = .studioLine
+        }
+        return image
+    }
+
+    func route(to: String, options: RouteOptions = .push) {
+        let dashboard = self.dashboard
+        env.router.dismiss(controller) {
+            self.env.router.route(to: to, from: dashboard, options: options)
+        }
+    }
+
+    func launchLTI(url: URL?) {
+        guard let url = url else { return }
+        let dashboard = self.dashboard
+        env.router.dismiss(controller) {
+            LTITools(url: url).presentTool(from: dashboard, animated: true)
+        }
+    }
+}
+
+struct SideMenuMainSection_Previews: PreviewProvider {
+    static var previews: some View {
+        SideMenuMainSection(.student)
+    }
+}

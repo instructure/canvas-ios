@@ -42,6 +42,8 @@ public extension UIImage {
     static var audioSolid: UIImage { UIImage(named: "audioSolid", in: .core, compatibleWith: nil)! }
     static var boldLine: UIImage { UIImage(named: "boldLine", in: .core, compatibleWith: nil)! }
     static var boldSolid: UIImage { UIImage(named: "boldSolid", in: .core, compatibleWith: nil)! }
+    static var bookmarkLine: UIImage { UIImage(named: "bookmarkLine", in: .core, compatibleWith: nil)! }
+    static var bookmarkSolid: UIImage { UIImage(named: "bookmarkSolid", in: .core, compatibleWith: nil)! }
     static var boxLine: UIImage { UIImage(named: "boxLine", in: .core, compatibleWith: nil)! }
     static var boxSolid: UIImage { UIImage(named: "boxSolid", in: .core, compatibleWith: nil)! }
     static var bulletListLine: UIImage { UIImage(named: "bulletListLine", in: .core, compatibleWith: nil)! }
@@ -172,6 +174,8 @@ public extension UIImage {
     static var starSolid: UIImage { UIImage(named: "starSolid", in: .core, compatibleWith: nil)! }
     static var strikethroughLine: UIImage { UIImage(named: "strikethroughLine", in: .core, compatibleWith: nil)! }
     static var strikethroughSolid: UIImage { UIImage(named: "strikethroughSolid", in: .core, compatibleWith: nil)! }
+    static var studioLine: UIImage { UIImage(named: "studioLine", in: .core, compatibleWith: nil)! }
+    static var studioSolid: UIImage { UIImage(named: "studioSolid", in: .core, compatibleWith: nil)! }
     static var textLine: UIImage { UIImage(named: "textLine", in: .core, compatibleWith: nil)! }
     static var textSolid: UIImage { UIImage(named: "textSolid", in: .core, compatibleWith: nil)! }
     static var textColorLine: UIImage { UIImage(named: "textColorLine", in: .core, compatibleWith: nil)! }
@@ -217,6 +221,7 @@ public extension UIImage {
     static var filterCheckbox: UIImage { UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil)! }
     static var inboxTab: UIImage { UIImage(named: "inboxTab", in: .core, compatibleWith: nil)! }
     static var inboxTabActive: UIImage { UIImage(named: "inboxTabActive", in: .core, compatibleWith: nil)! }
+    static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
@@ -243,6 +248,8 @@ public extension Image {
     static var audioSolid: Image { Image("audioSolid", bundle: .core) }
     static var boldLine: Image { Image("boldLine", bundle: .core) }
     static var boldSolid: Image { Image("boldSolid", bundle: .core) }
+    static var bookmarkLine: Image { Image("bookmarkLine", bundle: .core) }
+    static var bookmarkSolid: Image { Image("bookmarkSolid", bundle: .core) }
     static var boxLine: Image { Image("boxLine", bundle: .core) }
     static var boxSolid: Image { Image("boxSolid", bundle: .core) }
     static var bulletListLine: Image { Image("bulletListLine", bundle: .core) }
@@ -373,6 +380,8 @@ public extension Image {
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }
     static var strikethroughSolid: Image { Image("strikethroughSolid", bundle: .core) }
+    static var studioLine: Image { Image("studioLine", bundle: .core) }
+    static var studioSolid: Image { Image("studioSolid", bundle: .core) }
     static var textLine: Image { Image("textLine", bundle: .core) }
     static var textSolid: Image { Image("textSolid", bundle: .core) }
     static var textColorLine: Image { Image("textColorLine", bundle: .core) }

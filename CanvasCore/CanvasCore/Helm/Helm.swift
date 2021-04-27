@@ -331,7 +331,7 @@ open class HelmManager: NSObject {
                 case "overCurrentContext": viewController.modalPresentationStyle = .overCurrentContext
                 case "drawer":
                     viewController.modalPresentationStyle = .custom
-                    viewController.transitioningDelegate = DrawerTransitioningDelegate.shared
+                    viewController.transitioningDelegate = SideMenuTransitioningDelegate.shared
                 default: viewController.modalPresentationStyle = .fullScreen
                 }
             }

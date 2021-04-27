@@ -354,7 +354,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/profile": { _, _, _ in
-        return ProfileViewController.create(enrollment: .student)
+        return CoreHostingController(SideMenuView(.student), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },
 
     "/profile/settings": { _, _, _ in

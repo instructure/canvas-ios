@@ -412,6 +412,17 @@ enum MiniCanvasEndpoints {
         .apiRequest(GetGroupsRequest(context: .currentUser)) { _ in [] },
         .apiRequest(GetGroupsRequest(context: Pattern.courseContext)) { _ in [] },
 
+        // MARK: HelpLinks
+        // https://canvas.instructure.com/doc/api/accounts.html#method.accounts.help_links
+        .apiRequest(GetAccountHelpLinksRequest()) { _ in
+            let helpLink = APIHelpLink(id: "search_the_canvas_guides",
+                                       text: "Search the Canvas Guides",
+                                       subtext: "Find answers to common questions",
+                                       available_to: [.observer, .student],
+                                       url: URL(string: "https://community.canvaslms.com/community/answers/guides/")!)
+            return APIHelpLinks(help_link_name: "Help", help_link_icon: "help", default_help_links: [helpLink], custom_help_links: [])
+        },
+
         // MARK: OAuth
         // https://canvas.instructure.com/doc/api/file.oauth_endpoints.html
         .rest("/login/oauth2/auth") { request in
