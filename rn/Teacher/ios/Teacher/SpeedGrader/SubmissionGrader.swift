@@ -74,6 +74,7 @@ struct SubmissionGrader: View {
             if geometry.size.width > 834 {
                 VStack(spacing: 0) {
                     SubmissionHeader(assignment: assignment, submission: submission)
+                        .accessibility(sortPriority: 2)
                     Divider()
                     HStack(spacing: 0) {
                         VStack(alignment: .leading, spacing: 0) {
@@ -97,6 +98,7 @@ struct SubmissionGrader: View {
                             Spacer().frame(height: bottomInset)
                         }
                             .zIndex(1)
+                            .accessibility(sortPriority: 1)
                         Divider()
                         VStack(spacing: 0) {
                             tools(bottomInset: bottomInset, isDrawer: false)
@@ -230,7 +232,7 @@ struct SubmissionGrader: View {
                     fileID = $0
                     snapDrawerTo(.min)
                 })
-                let isGradesOnScreen = (drawerState != .min && tab == .grades)
+                let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission)
                         .clipped()
@@ -239,7 +241,7 @@ struct SubmissionGrader: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
                     .accessibility(hidden: !isGradesOnScreen)
-                let isCommentsOnScreen = (drawerState != .min && tab == .comments)
+                let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
                         assignment: assignment,
@@ -258,7 +260,7 @@ struct SubmissionGrader: View {
                     .background(Color.backgroundLight)
                     .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
                     .accessibility(hidden: !isCommentsOnScreen)
-                let isFilesOnScreen = (drawerState != .min && tab == .files)
+                let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
@@ -278,6 +280,16 @@ struct SubmissionGrader: View {
     private func snapDrawerTo(_ state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
+        }
+    }
+
+    private func isGraderTabOnScreen(_ tab: GraderTab, isDrawer: Bool) -> Bool {
+        let isTabSelected = (self.tab == tab)
+
+        if isDrawer {
+            return (drawerState != .min && isTabSelected)
+        } else {
+            return isTabSelected
         }
     }
 }
