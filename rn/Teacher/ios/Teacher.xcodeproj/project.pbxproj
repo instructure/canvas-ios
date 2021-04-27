@@ -113,6 +113,7 @@
 		E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */; };
 		E8F4B66624EECA10003FBAFD /* ContextCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4B66524EECA10003FBAFD /* ContextCard.swift */; };
 		EB12071F2601F2C50038E875 /* GradeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12071E2601F2C50038E875 /* GradeSlider.swift */; };
+		EB3ECFC62636F63500289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC52636F63500289506 /* SideMenuUITests.swift */; };
 		EB71A24E261206CA0003241C /* GradeSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB71A24D261206CA0003241C /* GradeSliderTests.swift */; };
 		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 /* End PBXBuildFile section */
@@ -509,6 +510,7 @@
 		E8F4B66524EECA10003FBAFD /* ContextCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCard.swift; sourceTree = "<group>"; };
 		E8F6CFFE23045A01004347D9 /* CoreUITests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12071E2601F2C50038E875 /* GradeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSlider.swift; sourceTree = "<group>"; };
+		EB3ECFC52636F63500289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EB71A24D261206CA0003241C /* GradeSliderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeSliderTests.swift; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -860,6 +862,7 @@
 				E8D7EFDE2476E552007BC5FD /* Files */,
 				E801ED7A2475BAC400DF2CB9 /* Discussions */,
 				E829684D24746C5C007E7F23 /* Pages */,
+				EB3ECFC42636F61300289506 /* SideMenu */,
 				B17E1DB3238DA8290022EE0E /* SpeedGrader */,
 				3BFD1D3F2311DEAB003AE3AB /* Submissions */,
 				E8315D3A22FC9E60003CD27C /* Info.plist */,
@@ -900,6 +903,14 @@
 				E8F20FB824BFC27500F82129 /* TodoUITests.swift */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		EB3ECFC42636F61300289506 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				EB3ECFC52636F63500289506 /* SideMenuUITests.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1603,6 +1614,7 @@
 				E8F20FB924BFC27500F82129 /* TodoUITests.swift in Sources */,
 				3BFD1D4723121FEE003AE3AB /* PostPolicy.swift in Sources */,
 				3BFD1D4523121ED9003AE3AB /* SubmissionsList.swift in Sources */,
+				EB3ECFC62636F63500289506 /* SideMenuUITests.swift in Sources */,
 				E829684F24746C88007E7F23 /* PagesUITests.swift in Sources */,
 				E801ED7C2475BADB00DF2CB9 /* DiscussionsUITests.swift in Sources */,
 			);

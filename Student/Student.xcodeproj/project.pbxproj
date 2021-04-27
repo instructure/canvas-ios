@@ -232,6 +232,7 @@
 		E8C6F52B23D63BCD0086B865 /* LoginFindSchoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4622F8A0A0000AACCE /* LoginFindSchoolTests.swift */; };
 		E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */; };
 		E8EA860B2304974C00E4FD76 /* NotificationsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */; };
+		EB3ECFCA26375AF100289506 /* SideMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3ECFC926375AF100289506 /* SideMenuUITests.swift */; };
 		F1FDF738C22DCB5A94323B15 /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CB0F553F9954BEE58A730D /* Pods_defaults_Student.framework */; };
 /* End PBXBuildFile section */
 
@@ -873,6 +874,7 @@
 		E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsListTests.swift; sourceTree = "<group>"; };
 		E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
+		EB3ECFC926375AF100289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EC9D739AAC5FF4C6AAF4F8A7 /* Pods_needs_pspdfkit_StudentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2038,6 +2040,7 @@
 				E8C6F50223D626B80086B865 /* Modules */,
 				E8EA86092304974C00E4FD76 /* Notifications */,
 				E809364324C21BEC00D15E9A /* Profile */,
+				EB3ECFC826375ABA00289506 /* SideMenu */,
 				E809364824C21C2E00D15E9A /* SpringBoard */,
 				E8C6F50823D627BC0086B865 /* Submissions */,
 				7DCF0F4222F8A0A0000AACCE /* Syllabus */,
@@ -2118,6 +2121,14 @@
 				5859563901FB886F8B21AD2A /* DashboardTests.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		EB3ECFC826375ABA00289506 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				EB3ECFC926375AF100289506 /* SideMenuUITests.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2971,6 +2982,7 @@
 				7DC5718522F8B1CB00F2E9BB /* SubmissionCommentsTests.swift in Sources */,
 				B175D62223A969F600F8E696 /* IPadAssignmentsTests.swift in Sources */,
 				7DC5718F22F8B1CB00F2E9BB /* URLSubmissionTests.swift in Sources */,
+				EB3ECFCA26375AF100289506 /* SideMenuUITests.swift in Sources */,
 				7DC5718922F8B1CB00F2E9BB /* SubmissionDetails.swift in Sources */,
 				7DC5717B22F8B1CB00F2E9BB /* AssignmentDetailsTests.swift in Sources */,
 				E809364024C21BC300D15E9A /* TodoListTests.swift in Sources */,
