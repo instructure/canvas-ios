@@ -74,6 +74,7 @@ struct SubmissionGrader: View {
             if geometry.size.width > 834 {
                 VStack(spacing: 0) {
                     SubmissionHeader(assignment: assignment, submission: submission)
+                        .accessibility(sortPriority: 2)
                     Divider()
                     HStack(spacing: 0) {
                         VStack(alignment: .leading, spacing: 0) {
@@ -89,11 +90,15 @@ struct SubmissionGrader: View {
                                         handleRefresh: handleRefresh
                                     )
                                 }
+                                    // Disable submission content interaction in case attempt picker is above it
+                                    .accessibilityElement(children: showAttempts ? .ignore : .contain)
+                                    .accessibility(hidden: showAttempts)
                                 attemptPicker
                             }
                             Spacer().frame(height: bottomInset)
                         }
                             .zIndex(1)
+                            .accessibility(sortPriority: 1)
                         Divider()
                         VStack(spacing: 0) {
                             tools(bottomInset: bottomInset, isDrawer: false)
@@ -111,7 +116,9 @@ struct SubmissionGrader: View {
                     VStack(alignment: .leading, spacing: 0) {
                         SubmissionHeader(assignment: assignment, submission: submission)
                         attemptToggle
+                            .accessibility(hidden: drawerState == .max)
                         Divider()
+                        let isSubmissionContentHiddenFromA11y = (drawerState != .min || showAttempts)
                         ZStack(alignment: .top) {
                             VStack(spacing: 0) {
                                 SimilarityScore(selected, file: file)
@@ -121,7 +128,10 @@ struct SubmissionGrader: View {
                                     fileID: fileID,
                                     handleRefresh: handleRefresh
                                 )
+
                             }
+                                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                             attemptPicker
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
@@ -222,12 +232,16 @@ struct SubmissionGrader: View {
                     fileID = $0
                     snapDrawerTo(.min)
                 })
+                let isGradesOnScreen = isGraderTabOnScreen(.grades, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionGrades(assignment: assignment, containerHeight: geometry.size.height, submission: submission)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                    .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isGradesOnScreen)
+                let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
                         assignment: assignment,
@@ -244,12 +258,17 @@ struct SubmissionGrader: View {
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .background(Color.backgroundLight)
+                    .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isCommentsOnScreen)
+                let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                    .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
+                    .accessibility(hidden: !isFilesOnScreen)
             }
                 .frame(width: geometry.size.width, alignment: .leading)
                 .background(Color.backgroundLightest)
@@ -261,6 +280,16 @@ struct SubmissionGrader: View {
     private func snapDrawerTo(_ state: DrawerState) {
         withTransaction(DrawerState.transaction) {
             drawerState = state
+        }
+    }
+
+    private func isGraderTabOnScreen(_ tab: GraderTab, isDrawer: Bool) -> Bool {
+        let isTabSelected = (self.tab == tab)
+
+        if isDrawer {
+            return (drawerState != .min && isTabSelected)
+        } else {
+            return isTabSelected
         }
     }
 }
