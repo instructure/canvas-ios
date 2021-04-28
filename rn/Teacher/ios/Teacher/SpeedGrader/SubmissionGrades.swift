@@ -241,8 +241,7 @@ struct SubmissionGrades: View {
             if sliderCleared {
                 saveGrade("")
             } else if sliderExcused {
-                saveGrade(excused: true)
-                sliderValue = 0
+                updateGrade(excused: true, 0)
             } else if assignment.gradingType == .percent {
                 saveGrade("\(round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100))%")
             } else if assignment.gradingType == .points {
