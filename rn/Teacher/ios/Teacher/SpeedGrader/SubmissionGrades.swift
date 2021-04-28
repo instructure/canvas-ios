@@ -123,14 +123,7 @@ struct SubmissionGrades: View {
                             .padding(.horizontal, 16).padding(.vertical, 12)
                     }
                     if !assignment.useRubricForGrading, assignment.gradingType == .points || assignment.gradingType == .percent {
-                        ZStack {
-                            // disables page swipe around the slider
-                            Rectangle()
-                                .contentShape(Rectangle())
-                                .foregroundColor(.clear)
-                                .gesture(DragGesture(minimumDistance: 0).onChanged {_ in})
-                            slider
-                        }
+                        slider
                     }
 
                     if assignment.rubric?.isEmpty == false {
@@ -180,24 +173,64 @@ struct SubmissionGrades: View {
             sliderExcused ? Text("Excused") :
             assignment.gradingType == .percent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
             Text(score)
+        let maxScore = assignment.gradingType == .percent ? 100 : possible
 
         HStack(spacing: 8) {
             VStack {
                 Spacer()
                 Text(0)
+                    .frame(width: 30, height: 30)
+                    .onTapGesture {
+                        updateGrade(0)
+                    }
+                    .onLongPressGesture {
+                        updateGrade(noMark: true)
+                    }
                 Spacer()
             }
-            GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                           range: 0...(assignment.pointsPossible ?? 0),
-                           showTooltip: showTooltip,
-                           tooltipText: tooltipText,
-                           score: score,
-                           possible: possible,
-                           onEditingChanged: sliderChangedState)
-            Text(assignment.gradingType == .percent ? 100 : possible)
+            VStack {
+                Spacer()
+                ZStack {
+                    // disables page swipe around the slider
+                    Rectangle()
+                        .contentShape(Rectangle())
+                        .foregroundColor(.clear)
+                        .gesture(DragGesture(minimumDistance: 0).onChanged {_ in})
+                    GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
+                                   range: 0...(assignment.pointsPossible ?? 0),
+                                   showTooltip: showTooltip,
+                                   tooltipText: tooltipText,
+                                   score: score,
+                                   possible: possible,
+                                   onEditingChanged: sliderChangedState)
+                }
+            }
+            Text(maxScore)
+                .frame(width: 30, height: 30)
+                .onTapGesture {
+                    updateGrade(maxScore)
+                }
+                .onLongPressGesture {
+                    updateGrade(excused: true)
+                }
         }
         .font(.medium14).foregroundColor(.textDarkest)
         .padding(.horizontal, 16).padding(.vertical, 12)
+    }
+
+    func updateGrade(excused: Bool? = nil, noMark: Bool? = false, _ grade: Double? = nil) {
+        var gradeString: String?
+        if excused == true {
+            gradeString = nil
+        } else if noMark == true {
+            gradeString = ""
+        } else {
+            if let grade = grade {
+                gradeString = String(grade)
+            }
+        }
+        saveGrade(excused: excused, gradeString)
+        sliderValue = grade
     }
 
     func sliderChangedState(_ editing: Bool) {
@@ -208,7 +241,7 @@ struct SubmissionGrades: View {
             if sliderCleared {
                 saveGrade("")
             } else if sliderExcused {
-                saveGrade(excused: true)
+                updateGrade(excused: true, 0)
             } else if assignment.gradingType == .percent {
                 saveGrade("\(round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100))%")
             } else if assignment.gradingType == .points {
