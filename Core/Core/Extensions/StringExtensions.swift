@@ -43,4 +43,21 @@ extension String {
         let suffix = String(self[range.upperBound..<self.endIndex])
         return prefix + suffix
     }
+
+    public var removingXMLEscaping: String {
+        let xmlChars = [
+            "&lt;": "<",
+            "&gt;": ">",
+            "&amp;": "&",
+            "&apos;": "'",
+            "&quot;": "\""
+        ]
+        var result = self
+
+        for (escaped, original) in xmlChars {
+            result = result.replacingOccurrences(of: escaped, with: original, options: .caseInsensitive)
+        }
+
+        return result
+    }
 }

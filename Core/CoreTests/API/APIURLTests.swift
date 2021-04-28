@@ -62,6 +62,13 @@ class APIURLTests: CoreTestCase {
         model = try decoder.decode(TestCodable.self, from: data)
         XCTAssertNil(model.maybeURL)
     }
+
+    func testDecodeWithXMLEscapedString() throws {
+        let json: [String: Any?] = ["maybeURL": "https://learningmate.com/api/ltilaunch?custom_productId=bc1bc5be&amp;custom_resourceid=a6936184&amp;type=a5a3abc0"]
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        let model = try decoder.decode(TestCodable.self, from: data)
+        XCTAssertEqual(model.maybeURL?.rawValue, URL(string: "https://learningmate.com/api/ltilaunch?custom_productId=bc1bc5be&custom_resourceid=a6936184&type=a5a3abc0")!)
+    }
 }
 
 private class TestCodable: Codable {

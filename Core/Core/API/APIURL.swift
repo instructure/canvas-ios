@@ -33,7 +33,7 @@ public struct APIURL: Codable, Equatable {
     public init(from decoder: Decoder) throws {
         let baseURL = AppEnvironment.shared.currentSession?.baseURL
         let container = try decoder.singleValueContainer()
-        let string = try container.decode(String.self)
+        let string = try container.decode(String.self).removingXMLEscaping
         if let url = URL(string: string, relativeTo: baseURL) {
             rawValue = url
             return
