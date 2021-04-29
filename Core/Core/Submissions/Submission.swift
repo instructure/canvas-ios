@@ -307,12 +307,11 @@ extension Submission {
 
     /// See canvas-lms submission.rb `def needs_grading?`
     public var needsGrading: Bool {
-        return type != nil &&
-            (workflowState == .pending_review ||
-                ([.graded, .submitted].contains(workflowState) &&
-                    (score == nil || !gradeMatchesCurrentSubmission)
-                )
-            )
+        return excused != true &&
+            (type != nil && (workflowState == .pending_review ||
+                                ([.graded, .submitted].contains(workflowState) &&
+                                    (score == nil || !gradeMatchesCurrentSubmission))
+            ))
     }
 
     public var isGraded: Bool {
