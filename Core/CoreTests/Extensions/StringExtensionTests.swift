@@ -37,4 +37,11 @@ class StringExtensionTests: XCTestCase {
         let result = path.pruneApiVersionFromPath()
         XCTAssertEqual(result, "/courses/1/assignments/1")
     }
+
+    func testRemovingXMLEscaping() {
+        XCTAssertEqual("&lt;&gt;&amp;&apos;&quot;".removingXMLEscaping, "<>&'\"")
+        XCTAssertEqual("ltilaunch?custom_productId=1&amp;custom_resourceid=2&amp;type=3".removingXMLEscaping, "ltilaunch?custom_productId=1&custom_resourceid=2&type=3")
+        XCTAssertEqual("<>&'\"".removingXMLEscaping, "<>&'\"")
+        XCTAssertEqual("&amp=&gt;".removingXMLEscaping, "&amp=>")
+    }
 }
