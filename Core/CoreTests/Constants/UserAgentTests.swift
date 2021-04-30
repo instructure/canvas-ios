@@ -35,4 +35,10 @@ class UserAgentTests: XCTestCase {
         XCTAssertEqual(UserAgent.safari.description, "Mozilla/5.0 (iPhone; CPU iPhone OS \(os) like Mac OS X)"
             + " AppleWebKit/605.1.15 (KHTML, like Gecko) Version/\(version) Mobile/15E148 Safari/604.1")
     }
+
+    func testCustomUserAgentName() {
+        XCTAssertEqual(UserAgent.default.customUserAgentName, nil)
+        let version = UIDevice.current.systemVersion
+        XCTAssertEqual(UserAgent.safari.customUserAgentName, "Version/\(version) Safari/604.1")
+    }
 }

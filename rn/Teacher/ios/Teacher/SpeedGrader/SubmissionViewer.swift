@@ -32,7 +32,7 @@ struct SubmissionViewer: View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url).onLink(openInSafari)
+                WebView(url: url, customUserAgentName: UserAgent.safari.customUserAgentName).onLink(openInSafari)
             }
         case .discussion_topic, .online_quiz:
             WebSession(url: submission.previewUrl) { url in

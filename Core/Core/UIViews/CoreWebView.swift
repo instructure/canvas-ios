@@ -61,9 +61,12 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
-    public init() {
+    public init(customUserAgentName: String? = nil) {
         let configuration = WKWebViewConfiguration()
         configuration.processPool = CoreWebView.processPool
+        if let customUserAgentName = customUserAgentName {
+            configuration.applicationNameForUserAgent = customUserAgentName
+        }
         super.init(frame: .zero, configuration: configuration)
         setup()
     }

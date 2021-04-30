@@ -28,12 +28,18 @@ public struct WebView: UIViewRepresentable {
     var handleSize: ((CGFloat) -> Void)?
     var handleNavigationFinished: (() -> Void)?
     let source: Source?
+    var customUserAgentName: String? = nil
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     public init(url: URL?) {
         source = url.map { .url($0) }
+    }
+
+    public init(url: URL?, customUserAgentName: String?) {
+        self.init(url: url)
+        self.customUserAgentName = customUserAgentName
     }
 
     public init(html: String?) {
@@ -75,7 +81,7 @@ public struct WebView: UIViewRepresentable {
     }
 
     public func makeUIView(context: Self.Context) -> CoreWebView {
-        CoreWebView()
+        CoreWebView(customUserAgentName: customUserAgentName)
     }
 
     public func updateUIView(_ uiView: CoreWebView, context: Self.Context) {
