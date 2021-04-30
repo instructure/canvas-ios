@@ -308,11 +308,12 @@ public class GetSubmissions: CollectionUseCase {
                 return NSPredicate(key: #keyPath(Submission.submittedAt), equals: nil)
             case .needsGrading:
                 return NSPredicate(format: """
-                    %K != nil AND (%K == 'pending_review' OR (
+                        %K != true AND (%K != nil AND (%K == 'pending_review' OR (
                         %K IN { 'graded', 'submitted' } AND
                         (%K == nil OR %K == false)
-                    ))
+                    )))
                     """,
+                    #keyPath(Submission.excusedRaw),
                     #keyPath(Submission.typeRaw),
                     #keyPath(Submission.workflowStateRaw),
                     #keyPath(Submission.workflowStateRaw),
