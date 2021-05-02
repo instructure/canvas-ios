@@ -28,7 +28,7 @@ public struct WebView: UIViewRepresentable {
     var handleSize: ((CGFloat) -> Void)?
     var handleNavigationFinished: (() -> Void)?
     let source: Source?
-    var customUserAgentName: String? = nil
+    var customUserAgentName: String?
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
