@@ -380,9 +380,6 @@
 "Casual question or suggestion" = "Обычный вопрос или предложение";
 
 /* No comment provided by engineer. */
-"Change Profile Image" = "Изменить изображение профиля";
-
-/* No comment provided by engineer. */
 "Change User" = "Сменить пользователя";
 
 /* Description for Chat communication channel */
@@ -657,9 +654,6 @@
 
 /* No comment provided by engineer. */
 "Details" = "Подробные сведения";
-
-/* No comment provided by engineer. */
-"Developer Menu" = "Меню программиста";
 
 /* No comment provided by engineer. */
 "discussion" = "обсуждение";
