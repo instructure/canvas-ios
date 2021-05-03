@@ -161,11 +161,7 @@ public class GradeFormatter {
     }
 
     public static func truncate(_ value: Double, factor: Double = 100) -> NSNumber {
-        var rounded = round(value * factor) / factor
-        // We don't want to round to next integer
-        if (trunc(rounded) != trunc(value)) {
-            rounded = trunc(value * factor) / factor
-        }
+        let rounded = round(value * factor) / factor
         return NSNumber(value: rounded)
     }
 

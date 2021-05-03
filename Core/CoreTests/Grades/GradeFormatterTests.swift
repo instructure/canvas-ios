@@ -186,8 +186,8 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12%")
         XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (2.12%)")
         s.grade = "99.999%"
-        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "99.99%")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (99.99%)")
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "100%")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100 (100%)")
         s.grade = "bogus"
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
         XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100")
@@ -199,8 +199,8 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "2.12")
         XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "2.12/100")
         s.score = 99.999
-        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "99.99")
-        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "99.99/100")
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "100")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "100/100")
 
         a.gradingType = .pass_fail
         s.score = 0
