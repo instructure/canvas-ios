@@ -128,6 +128,9 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         if let submission = assignment.submission {
             userID = submission.userID
         }
+        if assignments.requested && !assignments.pending {
+            UploadManager.shared.markInterruptedSubmissionAsFailed(assignment: assignment)
+        }
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
@@ -149,7 +152,12 @@ class AssignmentDetailsPresenter: PageViewLoggerPresenterProtocol {
         } else if onlineUpload.first(where: { $0.uploadError != nil }) != nil {
             onlineUploadState = .failed
         } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
-            onlineUploadState = .completed
+            // A file uploaded to the file server doesn't mean it's also submitted to the assignment so we check both
+            if let submission = assignment?.submission, submission.status == .submitted {
+                onlineUploadState = .completed
+            } else {
+                onlineUploadState = .uploading
+            }
         } else if onlineUpload.first(where: { $0.isUploading }) != nil {
             onlineUploadState = .uploading
         } else {
