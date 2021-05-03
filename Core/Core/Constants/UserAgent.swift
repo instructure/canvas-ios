@@ -23,6 +23,7 @@ public enum UserAgent: CustomStringConvertible {
     case `default`
     case safari
     case desktopSafari
+    case safariLTI
 
     public func productNameForBundle(_ id: String?) -> String {
         switch id {
@@ -36,28 +37,20 @@ public enum UserAgent: CustomStringConvertible {
     }
 
     public var description: String {
+        let version = UIDevice.current.systemVersion
         switch self {
         case .default:
             let product = productNameForBundle(Bundle.main.bundleIdentifier)
             let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
             let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") ?? ""
-            return "\(product)/\(shortVersion) (\(bundleVersion)) \(UIDevice.current.model)/\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+            return "\(product)/\(shortVersion) (\(bundleVersion)) \(UIDevice.current.model)/\(UIDevice.current.systemName) \(version)"
         case .safari:
-            let version = UIDevice.current.systemVersion
             let os = version.replacingOccurrences(of: ".", with: "_")
             return "Mozilla/5.0 (iPhone; CPU iPhone OS \(os) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/\(version) Mobile/15E148 Safari/604.1"
         case .desktopSafari:
             return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15"
-        }
-    }
-
-    public var customUserAgentName: String? {
-        switch self {
-        case .safari:
-            let version = UIDevice.current.systemVersion
+        case .safariLTI:
             return "Version/\(version) Safari/604.1"
-        default:
-            return nil
         }
     }
 }
