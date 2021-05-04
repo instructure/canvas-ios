@@ -210,7 +210,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         setupFileForSubmittedLabel(uploadError: "error", apiAssignment: aa)
         load()
 
-        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
+        XCTAssertEqual(viewController.submittedLabel?.text, "Resubmission Failed")
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
         XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
@@ -225,6 +225,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
             grade: "10",
             score: 10,
             submission_type: .online_text_entry,
+            submitted_at: nil,
             workflow_state: .unsubmitted))
 
         setupFileForSubmittedLabel(uploadError: "error", apiAssignment: aa)
@@ -260,7 +261,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         setupFileForSubmittedLabel(uploadError: "error")
         load()
 
-        XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
+        XCTAssertEqual(viewController.submittedLabel?.text, "Resubmission Failed")
         XCTAssertEqual(viewController.fileSubmissionButton?.title(for: .normal), "Tap to view details")
     }
 
